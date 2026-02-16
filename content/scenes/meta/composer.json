@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "composer",
+    "name": "Composer",
+    "units": "relative",
+    "autoSphereRing": true,
+    "wrapLabels": true,
+    "hideScaleLabels": true
+  },
+  "objects": [
+    {
+      "id": "composer_tree",
+      "label": "Scene Tree",
+      "radius": 1.1,
+      "color": "#243d8f"
+    },
+    {
+      "id": "composer_path",
+      "label": "Path Editor",
+      "radius": 1.1,
+      "color": "#2f6b6f"
+    },
+    {
+      "id": "composer_orbit",
+      "label": "Orbit Editor",
+      "radius": 1.1,
+      "color": "#5a1f2e"
+    },
+    {
+      "id": "composer_interactions",
+      "label": "Interactions",
+      "radius": 1.1,
+      "color": "#4b0082"
+    },
+    {
+      "id": "composer_preview",
+      "label": "Preview",
+      "radius": 1.1,
+      "color": "#3a5f9f"
+    },
+    {
+      "id": "composer_export",
+      "label": "Export / Validate",
+      "radius": 1.1,
+      "color": "#2f4f7a"
+    }
+  ]
+}
