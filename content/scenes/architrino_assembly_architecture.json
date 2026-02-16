@@ -80,6 +80,23 @@
       }
     },
     {
+      "id": "assemblies",
+      "label": "Assemblies",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        0.0,
+        -18.0,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/assemblies/assemblies.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
       "id": "standard_model",
       "label": "Standard Model Assemblies",
       "radius": 2.688,
