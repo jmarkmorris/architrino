@@ -1070,7 +1070,7 @@ const composerSceneId = "composer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
-  "content/markdown/aaa/ideas-designs/arch-api.md";
+  "content/markdown/aaa/_meta/ideas/arch-api.md";
 const cacheBustToken = Date.now().toString();
 let sceneIndex = [];
 let sceneIndexReady = false;

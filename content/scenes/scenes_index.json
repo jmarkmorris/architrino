@@ -166,6 +166,11 @@
       "path": "content/scenes/quantum/quantum.json"
     },
     {
+      "id": "assemblies",
+      "name": "Assemblies",
+      "path": "content/scenes/assemblies/assemblies.json"
+    },
+    {
       "id": "star_interior",
       "name": "Star Interior",
       "path": "content/scenes/cosmology/star.json"
