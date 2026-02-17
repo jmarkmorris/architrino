@@ -855,21 +855,7 @@ To ensure reproducibility across all simulation runs, the following **baseline p
 - Convergence tests (halving $\Delta t$, halving $\eta$) must be performed for any new physical regime.
 - Parameter sweeps (varying $\eta$ over $[10^{-4}, 10^{-1}]$) required to verify physical results are not numerical artifacts.
 
-
-
 ## Analytic Regimes and Research Roadmap
-
-### Upstream Dependencies (Required for Full Theory Validation)
-
-The following documents **depend on** the Master EOM being correct and must be completed to validate the full theory:
-
-1. Must prove maximum-curvature orbit is stable attractor (Dyna + Sol)
-2. Must derive Lorentz suppression mechanically (Cos + Sig + Red)
-3. Must show only $0, \pm e/3, \pm 2e/3, \pm e$ stable (Phe + Alfa)
-4. (TBD): Must derive $P \propto |\psi|^2$ from informational ambiguity (Phe + Sig + Sol)
-
-
----
 
 ### Summary and Key Takeaways
 
