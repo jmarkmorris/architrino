@@ -1,4 +1,4 @@
-# viz3d Design Notes
+# architrino Design Notes
 
 ## Goals
 - Multi-scale 3D visualization from cosmic structures down to assembly architecture.

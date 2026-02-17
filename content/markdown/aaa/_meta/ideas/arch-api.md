@@ -259,7 +259,7 @@ Composer app (scene design)
 - Primary output: canonical JSON (schemaVersioned) that round-trips into the renderer.
 - Layout (MVP):
   - Left: scene tree + search + reorder.
-  - Center: live preview (viz3d/three.js) with viewport controls.
+  - Center: live preview (architrino/three.js) with viewport controls.
   - Right: inspector (properties, path/orbit editor, style, annotations).
   - Bottom: time controls + quality toggles.
 - Canvas behavior (path-first, local-frame):
@@ -415,7 +415,7 @@ Nested assembly principle
 
 Prototype path (designer -> JSON -> player)
 - Step 1: Define canonical JSON schema and a validator/normalizer.
-- Step 2: Build a minimal scene player that loads JSON and renders via viz3d/three.js.
+- Step 2: Build a minimal scene player that loads JSON and renders via architrino/three.js.
 - Step 3: Prototype the designer as a JSON-first UI with live preview and export/import.
 - Step 4: Iterate on presets, interactions, and reaction outcomes.
 

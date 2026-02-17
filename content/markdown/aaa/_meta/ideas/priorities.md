@@ -159,7 +159,7 @@ Yes. With sparse guidance, I can materially advance 4 of the 8 into firmer footi
 
 ---
 
-- sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
+- sim2rewrite.md has ideas for porting to architrino. wait until we have the scene builder working
 
 ---
 

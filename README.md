@@ -6,7 +6,7 @@ Minimal labeled-sphere prototype with S-curve zoom and drag pan.
 Use a local web server so ES modules load correctly.
 
 ```bash
-cd viz3d/prototype
+cd architrino
 python3 -m http.server 5173
 ```
 
@@ -22,14 +22,6 @@ This app is published as the Pages root at `https://jmarkmorris.github.io/archit
 
 If I free up the architrino domain from wordpress github can also use that url.
 
-### Refresh deployed webapp from the viz3d/prototype with a tested snapshot to `/docs` 
-From the repo root:
 
-```bash
-mkdir -p docs
-rsync -a --delete viz3d/prototype/ docs/
-```
-I then need to go to github and promote depot to main.
 
-Commit and push. In GitHub repo settings → Pages, set Source to `main` and Folder to `/docs`.
 
