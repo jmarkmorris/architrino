@@ -1,4 +1,4 @@
-# neoclassical.ai three.js prototype
+# architrino three.js prototype
 
 Minimal labeled-sphere prototype with S-curve zoom and drag pan.
 
@@ -18,9 +18,9 @@ Then open `http://localhost:5173/`.
 - Drag to pan.
 
 ## Deployed to GitHub Pages
-This app is published as the Pages root at `https://jmarkmorris.github.io/neoclassical.ai/`.
+This app is published as the Pages root at `https://jmarkmorris.github.io/architrino/`.
 
-If I free up the neoclassical.ai domain from wordpress github can also use that url.
+If I free up the architrino domain from wordpress github can also use that url.
 
 ### Refresh deployed webapp from the viz3d/prototype with a tested snapshot to `/docs` 
 From the repo root:
