@@ -7,6 +7,9 @@
   - need to go back and clean up the old neoclassical.ai repo. 
     - make it private.
 
+- set up github pages for architrino
+  - activate architrino.com
+  - set up git hub pages directly off of main. No more docs. (if possible)
 ---
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md. paths, and other scenes (sphere, ...)
@@ -23,7 +26,15 @@
 
 - review docs, put docs on webapp, and look at the directory for more 
   - my sphere labels should match my file labels
-  - unless it is a compound doc that is spread out to many spheres
+    - unless it is a compound doc that is spread out to many spheres
+  - Not referenced by the webapp (based on scene markdown config + hardcoded markdown paths):  check these.
+    - 421.md
+    - pdg-api.md
+    - causal-functional.md
+    - design.md
+    - architrino-si-base-units.md
+    - AnalyticBaselines.md
+- docs to periodically review and ensure they are offered on the webapp.
   - binary-dynamics.md (reviewed)
   - energy.md (reviewed 2/12)
   - weak-mixing-ckm.md (major work 2/15)

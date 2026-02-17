@@ -17,8 +17,8 @@ Then open `http://localhost:5173/`.
 - Pinch in/out to zoom (trackpad pinch supported).
 - Drag to pan.
 
-## Deployed to GitHub Pages
-This app is published as the Pages root at `https://jmarkmorris.github.io/architrino/`.
+## Deployed to GitHub Pages via architrino.com
+
 
 If I free up the architrino domain from wordpress github can also use that url.
 
