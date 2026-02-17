@@ -1053,6 +1053,7 @@ const markdownRenderer =
     : null;
 if (markdownRenderer) {
   markdownRenderer.disable("escape");
+  markdownRenderer.disable("emphasis");
 }
 const markdownDirectoryCache = new Map();
 const markdownSubdirCache = new Map();
@@ -1947,9 +1948,62 @@ function extractMarkdownSection(markdown, sectionKey) {
   return { title: sectionTitle, body };
 }
 
+function protectMathSegments(markdown) {
+  const protectedSegments = [];
+  let protectedIndex = 0;
+  const makeToken = () => `MATHSEGMENTTOKEN${protectedIndex++}X`;
+  const stash = (raw) => {
+    const token = makeToken();
+    protectedSegments.push({ token, raw });
+    return token;
+  };
+
+  let output = markdown;
+  output = output.replace(/\$\$[\s\S]*?\$\$/g, (match) => stash(match));
+  output = output.replace(/\\\[[\s\S]*?\\\]/g, (match) => stash(match));
+  output = output.replace(/\\\([\s\S]*?\\\)/g, (match) => stash(match));
+  output = output.replace(
+    /(^|[^\\$])\$(?!\$)([^$\n]|\\\$)+?\$(?!\$)/g,
+    (match, prefix) => {
+      const math = match.slice(prefix.length);
+      return `${prefix}${stash(math)}`;
+    },
+  );
+
+  return { markdown: output, protectedSegments };
+}
+
+function restoreMathSegments(html, protectedSegments) {
+  if (!protectedSegments?.length) {
+    return html;
+  }
+  let restored = html;
+  protectedSegments.forEach(({ token, raw }) => {
+    restored = restored.split(token).join(raw);
+  });
+  return restored;
+}
+
 function typesetMarkdown() {
   if (!markdownBody) {
     return;
+  }
+  const katexRender = window.renderMathInElement;
+  if (typeof katexRender === "function") {
+    try {
+      katexRender(markdownBody, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+        ],
+        throwOnError: false,
+      });
+      return;
+    } catch (error) {
+      console.error(error);
+    }
   }
   const mathJax = window.MathJax;
   if (!mathJax?.typesetPromise) {
@@ -2004,7 +2058,8 @@ async function showMarkdownPanel(level) {
         }
       }
       if (markdownRenderer) {
-        html = markdownRenderer.render(markdownSource);
+        const { markdown: protectedMarkdown, protectedSegments } = protectMathSegments(markdownSource);
+        html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
       } else {
         html = `<pre>${escapeHtml(markdownSource)}</pre>`;
       }
@@ -2040,7 +2095,12 @@ async function renderInfoDrawer() {
         throw new Error(`Failed to load info markdown: ${infoMarkdownPath}`);
       }
       const text = await response.text();
-      html = markdownRenderer ? markdownRenderer.render(text) : `<pre>${escapeHtml(text)}</pre>`;
+      if (markdownRenderer) {
+        const { markdown: protectedMarkdown, protectedSegments } = protectMathSegments(text);
+        html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
+      } else {
+        html = `<pre>${escapeHtml(text)}</pre>`;
+      }
       markdownCache.set(infoMarkdownPath, html);
     } catch (error) {
       console.error(error);
