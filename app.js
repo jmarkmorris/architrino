@@ -1296,9 +1296,20 @@ async function listMarkdownFilesInDir(directory) {
           .map((href) => decodeURIComponent(href))
           .map((href) => href.split("?")[0])
           .map((href) => href.split("#")[0])
+          .map((href) => {
+            if (/^https?:\/\//i.test(href)) {
+              try {
+                return new URL(href).pathname;
+              } catch (_error) {
+                return href;
+              }
+            }
+            return href;
+          })
           .map((href) => href.replace(/^\.?\//, ""))
-          .filter((href) => href.endsWith(".md"))
-          .filter((href) => !href.includes("/"))
+          .filter((href) => href.toLowerCase().endsWith(".md"))
+          .map((href) => href.split("/").pop())
+          .filter(Boolean)
           .map((href) => `${normalized}/${href}`)
       )
     );
@@ -1338,11 +1349,22 @@ async function listMarkdownDirectoriesInDir(directory) {
           .map((href) => decodeURIComponent(href))
           .map((href) => href.split("?")[0])
           .map((href) => href.split("#")[0])
+          .map((href) => {
+            if (/^https?:\/\//i.test(href)) {
+              try {
+                return new URL(href).pathname;
+              } catch (_error) {
+                return href;
+              }
+            }
+            return href;
+          })
           .map((href) => href.replace(/^\.?\//, ""))
           .filter((href) => href && href !== "../" && href !== "./")
           .filter((href) => href.endsWith("/"))
           .map((href) => href.replace(/\/$/, ""))
-          .filter((href) => !href.includes("/"))
+          .map((href) => href.split("/").pop())
+          .filter(Boolean)
           .map((href) => `${normalized}/${href}`)
       )
     );

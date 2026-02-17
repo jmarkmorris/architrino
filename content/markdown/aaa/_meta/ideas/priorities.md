@@ -1,3 +1,42 @@
+Status snapshot to paste back later:
+
+  Date/time: 2026-02-17 (local)
+
+  GitHub Pages config:
+  - Source: Deploy from branch
+  - Branch/folder: main /(root)
+  - Repo has .nojekyll committed on main
+  - CNAME file on origin/main contains: www.architrino.com
+  - Site currently live at: http://www.architrino.com/
+  - Pages UI currently shows stale error: InvalidARecordError (expected to clear after cache/TTL)
+
+  Git branches:
+  - main synced to origin/main at commit: 1ee5c1b
+  - dev at commit: acaa784 (tracks origin/dev)
+  - You can continue normal work on dev and open PRs to main
+
+  IONOS DNS (authoritative, verified):
+  - www.architrino.com CNAME jmarkmorris.github.io (TTL 3600)
+  - No direct www A record
+  - Earlier temporary www A records removed
+  - Apex architrino.com currently has no A/AAAA answer from dig in this environment (that does not block www Pages)
+
+  Verification commands already passing:
+  - dig www.architrino.com CNAME +short
+    -> jmarkmorris.github.io.
+
+  GitHub likely needs cache/validation refresh:
+  - Wait >= 1 hour from CNAME cutover, then reload Settings -> Pages and retry.
+  - Enable Enforce HTTPS only after DNS check turns valid.
+
+  When you return, send:
+
+  1. What Pages shows then.
+  2. Output of:
+
+  dig www.architrino.com CNAME +short
+
+
 
 # **The #1 priority is the dynamics/math/geometry and the mapping**
 
@@ -9,7 +48,7 @@
 
 - set up github pages for architrino
   - activate architrino.com
-  - set up git hub pages directly off of main. No more docs. (if possible)
+
 ---
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md. paths, and other scenes (sphere, ...)
@@ -197,11 +236,6 @@ Yes. Dynamics is not unique.
   7. Planck mapping is promising but still explicitly conjectural.
      dynamics/mapping-Planck-scale.md repeatedly labels key identifications as conjectured (dynamics/mapping-Planck-scale.md:28, dynamics/mapping-Planck-scale.md:194).
      Good news: this is honest and tractable if tied back to the master equation and validated numerically.
-  8. The framework already contains a falsifiability culture; that is a major asset.
-     Across docs, claims are paired with failure modes/falsifiers (dynamics/dynamo-team-insights.md:344, assemblies/particle-masses.md:180, philosophy-history/unknowns-paradoxes.md:146).
-     That is exactly what you need to move from intuition-fit to forced theory.
-
-Yes. With sparse guidance, I can materially advance 4 of the 8 into firmer footing.
 
   - Well-posed dynamics + no-runaway package
      I can consolidate dynamics/master-equation.md + dynamics/binary-dynamics.md into a formal “if-assumptions-then-guarantees” section (η>0 regime): existence/uniqueness, continuation criteria, and no-runaway
@@ -248,10 +282,6 @@ Yes. With sparse guidance, I can materially advance 4 of the 8 into firmer footi
   - On the other hand maybe we should look at the MCB as definition of zero PE and max KE.
 
 - maybe I should make a python model that computes the escaping potential with different frequencies on sliders so I can see what happens?  
-
----
-
-- change github pages on which branch it serves from now that I have alpha, beta....
 
 ---
 
