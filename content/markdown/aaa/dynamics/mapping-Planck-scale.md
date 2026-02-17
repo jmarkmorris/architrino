@@ -29,6 +29,11 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly’s internal geometry snaps into a universal, planar lock, forward-sector updates are starved, and no smaller stable mode remains.
 
+**Regime clarification (to prevent speed-label conflicts):**
+- In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are **holographic-horizon transition** statements (terminal alignment regime).
+- The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that each binary component speed is individually $> c_f$.
+- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in `tri-binary-dynamics.md`).
+
 ---
 
 ### What Planck Units Imply About the Outer Binary

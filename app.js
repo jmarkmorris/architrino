@@ -29,7 +29,6 @@ const markdownBody = document.getElementById("markdown-body");
 const markdownClose = document.getElementById("markdown-close");
 const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
 const markdownDocButton = document.getElementById("markdown-doc-button");
-const mathJaxScript = document.getElementById("mathjax-script");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
@@ -1056,8 +1055,6 @@ if (markdownRenderer) {
 }
 const markdownDirectoryCache = new Map();
 const markdownSubdirCache = new Map();
-let mathJaxReady = typeof window !== "undefined" && !!window.MathJax?.typesetPromise;
-let pendingMathTypeset = false;
 let activeMarkdownPath = null;
 let markdownTwoColumns = true;
 let composerActivePanel = "tree";
@@ -1267,15 +1264,6 @@ const periodicCategoryColors = {
   "actinide": "#7f8c8d",
   "unknown": "#556277",
 };
-
-if (mathJaxScript) {
-  mathJaxScript.addEventListener("load", () => {
-    mathJaxReady = true;
-    if (pendingMathTypeset) {
-      typesetMarkdown();
-    }
-  });
-}
 
 function formatSuperscripts(text) {
   return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
@@ -1947,23 +1935,63 @@ function extractMarkdownSection(markdown, sectionKey) {
   return { title: sectionTitle, body };
 }
 
+function protectMathSegments(markdown) {
+  const protectedSegments = [];
+  let protectedIndex = 0;
+  const makeToken = () => `MATHSEGMENTTOKEN${protectedIndex++}X`;
+  const stash = (raw) => {
+    const token = makeToken();
+    protectedSegments.push({ token, raw });
+    return token;
+  };
+
+  let output = markdown;
+  output = output.replace(/\$\$[\s\S]*?\$\$/g, (match) => stash(match));
+  output = output.replace(/\\\[[\s\S]*?\\\]/g, (match) => stash(match));
+  output = output.replace(/\\\([\s\S]*?\\\)/g, (match) => stash(match));
+  output = output.replace(
+    /(^|[^\\$])\$(?!\$)([^$\n]|\\\$)+?\$(?!\$)/g,
+    (match, prefix) => {
+      const math = match.slice(prefix.length);
+      return `${prefix}${stash(math)}`;
+    },
+  );
+
+  return { markdown: output, protectedSegments };
+}
+
+function restoreMathSegments(html, protectedSegments) {
+  if (!protectedSegments?.length) {
+    return html;
+  }
+  let restored = html;
+  protectedSegments.forEach(({ token, raw }) => {
+    restored = restored.split(token).join(raw);
+  });
+  return restored;
+}
+
 function typesetMarkdown() {
   if (!markdownBody) {
     return;
   }
-  const mathJax = window.MathJax;
-  if (!mathJax?.typesetPromise) {
-    pendingMathTypeset = true;
+  const katexRender = window.renderMathInElement;
+  if (typeof katexRender !== "function") {
     return;
   }
-  mathJaxReady = true;
-  pendingMathTypeset = false;
-  if (mathJax.typesetClear) {
-    mathJax.typesetClear([markdownBody]);
-  }
-  mathJax.typesetPromise([markdownBody]).catch((error) => {
+  try {
+    katexRender(markdownBody, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "\\[", right: "\\]", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+      ],
+      throwOnError: false,
+    });
+  } catch (error) {
     console.error(error);
-  });
+  }
 }
 
 async function showMarkdownPanel(level) {
@@ -2004,7 +2032,8 @@ async function showMarkdownPanel(level) {
         }
       }
       if (markdownRenderer) {
-        html = markdownRenderer.render(markdownSource);
+        const { markdown: protectedMarkdown, protectedSegments } = protectMathSegments(markdownSource);
+        html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
       } else {
         html = `<pre>${escapeHtml(markdownSource)}</pre>`;
       }
@@ -2040,7 +2069,12 @@ async function renderInfoDrawer() {
         throw new Error(`Failed to load info markdown: ${infoMarkdownPath}`);
       }
       const text = await response.text();
-      html = markdownRenderer ? markdownRenderer.render(text) : `<pre>${escapeHtml(text)}</pre>`;
+      if (markdownRenderer) {
+        const { markdown: protectedMarkdown, protectedSegments } = protectMathSegments(text);
+        html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
+      } else {
+        html = `<pre>${escapeHtml(text)}</pre>`;
+      }
       markdownCache.set(infoMarkdownPath, html);
     } catch (error) {
       console.error(error);
@@ -3704,14 +3738,60 @@ function updateLevelLabelWrap(level) {
     }
     const metrics = getNodeScreenMetrics(node);
     const diameter = metrics.radiusPx * 2;
-    const targetWidth = Math.round(diameter * 0.8);
-    const minWidth = 36;
+    if (!Number.isFinite(diameter) || diameter <= 0) {
+      return;
+    }
+    const targetWidth = Math.round(diameter * 0.88);
+    const minWidth = 42;
     const maxAllowed = Math.round(diameter * 0.95);
-    const maxWidth = Math.max(minWidth, Math.min(targetWidth, maxAllowed));
+    const widthFloor = Math.min(minWidth, maxAllowed);
+    const maxWidth = Math.max(widthFloor, Math.min(targetWidth, maxAllowed));
     if (node.labelMaxWidth !== maxWidth) {
       node.labelMaxWidth = maxWidth;
       node.labelObject.element.style.maxWidth = `${maxWidth}px`;
       node.labelObject.element.style.width = `${maxWidth}px`;
+    }
+
+    const name = typeof node.data.name === "string" ? node.data.name : "";
+    const tokens = name.split(/[\s-]+/).filter(Boolean);
+    const longestToken = tokens.reduce((max, token) => {
+      return Math.max(max, token.length);
+    }, 1);
+    const sizeByDiameter = diameter * 0.15;
+    const sizeByToken = maxWidth / (longestToken * 0.58);
+    const titleSize = clamp(Math.min(sizeByDiameter, sizeByToken + 0.5), 10, 16);
+
+    let titleWeight = 600;
+    if (titleSize <= 10.75) {
+      titleWeight = 400;
+    } else if (titleSize <= 12.5) {
+      titleWeight = 500;
+    }
+    const lineHeight = titleSize <= 11.5 ? 1.22 : titleSize <= 13 ? 1.18 : 1.14;
+    const letterSpacing = titleSize <= 11.5 ? 0.01 : 0.02;
+    const scaleSize = clamp(titleSize * 0.62, 8, 10);
+    const tagSize = clamp(titleSize * 0.58, 8, 9);
+    const typographyKey = [
+      titleSize.toFixed(2),
+      titleWeight,
+      lineHeight.toFixed(2),
+      letterSpacing.toFixed(2),
+      scaleSize.toFixed(2),
+      tagSize.toFixed(2),
+    ].join("|");
+
+    if (node.labelTypographyKey !== typographyKey) {
+      node.labelTypographyKey = typographyKey;
+      const labelStyle = node.labelObject.element.style;
+      labelStyle.setProperty("--label-title-size", `${titleSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-title-weight", `${titleWeight}`);
+      labelStyle.setProperty("--label-title-line-height", lineHeight.toFixed(2));
+      labelStyle.setProperty(
+        "--label-title-letter-spacing",
+        `${letterSpacing.toFixed(2)}em`
+      );
+      labelStyle.setProperty("--label-scale-size", `${scaleSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-tag-size", `${tagSize.toFixed(2)}px`);
     }
   });
 }

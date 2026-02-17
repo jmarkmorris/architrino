@@ -1,18 +1,20 @@
-## Causal Self-Action Functional — Coherent Structure
+## Causal Action Functional — Coherent Structure
 
 ### Problem Statement and Goal
 The objective is to explain why only certain assemblies are stable and discrete, and to interpret emergent “mass” as a consequence of causal interaction structure: intrinsic self‑action of each worldline plus coupling to the ambient tri-binary sea (effective spacetime), rather than an externally assigned input. The target is a geometric/variational functional derived from the causal‑wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
+Canonical dynamics are defined in [The Master Equation (Canonical Form)](master-equation.md#the-master-equation-canonical-form); this chapter provides the complementary action-functional lens.
 
 ### Core Functional Definitions
 **Self‑action functional:**
 $$
 \mathcal{A}_{\text{self}}[\gamma] = \iint_{\gamma \times \gamma}
-\frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f(t-t')\big)}
+\frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f|t-t'|\big)}
 {\|\mathbf{x}(t)-\mathbf{x}(t')\|^2}\,dt\,dt'
 $$
 We introduce a functional to replace ad‑hoc stability searches with a single quantity that can be compared across trajectories. The goal is to identify which worldlines are dynamically preferred and to connect that preference to discrete, reproducible particle‑like states.
 
 This integrates over all pairs of points on a single worldline and counts only those pairs that are causally connected by a wake moving at speed $c_f$. The $1/r^2$ factor weights nearby self‑hits more strongly than distant ones.
+Convention: this document uses the symmetric selector $|t-t'|$ in action integrals; the equivalent retarded form uses $(t-t')$ with an explicit $\Theta(t-t')$.
 
 **Interpretation:**
 1. **Object:** The full worldline $\gamma$ is treated as a single geometric object.
@@ -32,10 +34,15 @@ Dimensional check: $[\bar{\mathcal{A}}_{\text{self}}]=1/\text{Length}^2$ (invers
 **Total action (multi‑assembly):**
 $$
 \bar{\mathcal{A}}_{\text{total}}[\{\gamma_i\}] =
-\sum_{i,j}\frac{1}{T^2}\int_0^T\!\int_0^T
+\frac{1}{T^2}\left[
+\sum_i \int_0^T\!\int_0^T
+\frac{\delta_\eta\!\big(r_{ii}(t,t')-c_f|t-t'|\big)}{r_{ii}(t,t')^2}\,dt\,dt'
+\;+\;
+\frac{1}{2}\sum_{i\ne j}\int_0^T\!\int_0^T
 \frac{\delta_\eta\!\big(r_{ij}(t,t')-c_f|t-t'|\big)}{r_{ij}(t,t')^2}\,dt\,dt'
+\right]
 $$
-This aggregates self‑terms and cross‑terms between components, so stable multi‑component assemblies are assessed by the full interaction structure rather than self‑hits alone.
+This aggregates self‑terms and cross‑terms between components, with the $\frac{1}{2}\sum_{i\ne j}$ convention ensuring unordered pairs are counted once.
 
 **Definitions:** $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $r_{ij}(t,t')=\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|$, and $\Delta t = t-t'$.
 

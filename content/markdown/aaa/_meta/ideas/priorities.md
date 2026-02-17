@@ -3,12 +3,13 @@
 
 ## Sorta Sorted List (i.e., non-linear)
 
-- new architrino repository for viz3d 
-  - leave all the historic stuff behind. That repo will still exist.
-  - straighten out the structure
-    - have codex 5.3 consult 
-      - what are the best practices for a popular and often forked webapp?
+- new architrino repository is live 20260217
+  - need to go back and clean up the old neoclassical.ai repo. 
+    - make it private.
 
+- set up github pages for architrino
+  - activate architrino.com
+  - set up git hub pages directly off of main. No more docs. (if possible)
 ---
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md. paths, and other scenes (sphere, ...)
@@ -25,18 +26,26 @@
 
 - review docs, put docs on webapp, and look at the directory for more 
   - my sphere labels should match my file labels
-  - unless it is a compound doc that is spread out to many spheres
-  - binary-dynamics.md (reviewed)
-  - energy.md (reviewed 2/12)
+    - unless it is a compound doc that is spread out to many spheres
+  - Not referenced by the webapp (based on scene markdown config + hardcoded markdown paths):  check these.
+    - 421.md
+    - pdg-api.md
+    - design.md
+    - architrino-si-base-units.md
+    - AnalyticBaselines.md
+- docs to periodically review and ensure they are offered on the webapp.
+  - dynamics page (auto generated spheres)
+    - binary-dynamics.md (reviewed, linked)
+    - energy.md (reviewed 2/12, linked)
+    - master-equation.md (linked)
+    - reality-quantum-causality.md (linked)
+    - tri-binary-dynamics.md (linked)
+    - mapping-Planck-scale.md  (linked)
   - weak-mixing-ckm.md (major work 2/15)
   - unknowns-paradoxes.md
   - quantum-number-mapping.md
   - 421.md
-  - dynamo-team-insights.md
-  - master-equation.md
-  - reality-quantum-causality.md
   - pdg-api.md
-  - tri-binary-dynamics.md
   - assembly-atlas.md
   - noether-core.md
   - emergent-metric.md
@@ -45,14 +54,12 @@
   - gluons.md
   - color-charge-su3.md
   - cmb-origin.md
-  - mapping-Planck-scale.md
   - ontology.md
   - bootstrapping-the-absolute-frame.md
   - absolute-time-defense.md
   - emergence.md
   - euclidean-void.md
   - arch-api.md
-  - causal-functional.md
   - design.md
   - displacement-of-spacetime.md
   - atomic-structure.md
@@ -65,6 +72,112 @@
   - AnalyticBaselines.md
   - perspective.md
   - what are all the docs in ./architrino-assembly-architecture/validation/simulations/action-energy
+
+---
+
+Yes. Dynamics is not unique.
+
+  Scenes currently set up to autoserve markdown (auto-ring + markdown source) are:
+
+  - content/scenes/assemblies/assemblies.json
+  - content/scenes/cosmology/cosmology.json
+  - content/scenes/dynamics/dynamics.json
+  - content/scenes/foundations/foundations.json
+  - content/scenes/nuclear/nuclear_atomic.json
+  - content/scenes/phenomenology/phenomenology.json
+  - content/scenes/philosophy_history/philosophy_history.json
+  - content/scenes/philosophy_history/unknowns_paradoxes.json
+  - content/scenes/philosophy_history/out_of_the_ashes.json
+  - content/scenes/quantum/quantum.json
+  - content/scenes/spacetime/spacetime.json
+  - content/scenes/validation/validation.json
+
+  Qualification rules (runtime):
+
+  - Autoserve runs only if autoSphereRing is true and there is a markdown source (autoMarkdownDirectory or autoMarkdownPath), see app.js:1378.
+  - Scene markdown policy is converted from scene.markdown.source into auto fields, see app.js:1788.
+  - Directory mode only picks top-level .md files (no nested paths unless using subdirectories: true), see app.js:1300 and app.js:1313.
+  - In directory mode, file must be non-empty after trim (text.trim().length > 0) to become a markdown node, see app.js:1495 and app.js:1645.
+  - Files are also dropped if slug/id is empty or collides with an existing node id, see app.js:1533.
+
+  So to your “more than empty?” question: yes, it’s more than just non-empty. It also must be discoverable as top-level .md, pass id uniqueness, and not be excluded by scene policy.
+---
+
+• Assessment
+  Current architecture is a solid static, content-driven prototype with good authoring velocity, but it is now at the point where maintainability and content-loading robustness are the main risks.
+
+  What’s good
+
+  - Strong data/content separation: scenes in JSON + docs in Markdown, minimal coupling (content/scenes/dynamics/dynamics.json:1, content/markdown/aaa/dynamics/master-equation.md).
+  - Dynamic markdown scene generation is flexible (file index, section index, directory recursion) (app.js:2588, app.js:2694, app.js:2729).
+  - Caching exists for scene configs and markdown (app.js:1046, app.js:1048, app.js:2029).
+  - Math-protection pipeline to prevent markdown parsing from corrupting TeX is thoughtful (app.js:1950, app.js:2060).
+
+  Architectural pressure points
+
+  - app.js is a monolith (~174 KB) handling rendering, navigation, markdown, search, composer, periodic table, and dynamic scene synthesis in one file (app.js:1). This is the biggest long-term risk.
+  - Autoserve depends on parsing web-server directory listings (app.js:1284, app.js:1326). If directory listing behavior changes, autoserve breaks.
+  - Directory autoserve does N+1 fetches to test non-empty markdown files (app.js:1490, app.js:1495), which will scale poorly as docs grow.
+  - Search index is static (content/scenes/scenes_index.json) and can drift from actual scene files if not regenerated as part of workflow (app.js:4892).
+  - No automated tests for scene loading/rendering/markdown parsing regressions.
+
+  Operationally
+
+  - For a static-hosted research UI, this is pragmatic and works.
+  - For ongoing expansion (more scenes/docs, more contributors), the architecture is near the threshold where modularization and a deterministic content manifest pipeline become necessary to avoid fragile
+    behavior.
+
+---
+
+› you said app.js is a monolith. do you have suggestions that leverage the scene metaphor?
+
+
+• Yes. A clean refactor is to make app.js a stage manager and move behavior into scenes.
+
+  1. app.js becomes director
+
+  - Only handles routing, global app state, shared services, and scene lifecycle.
+  - API: mountScene(id), unmountScene(id), transition(from,to).
+
+  2. Scene contract per folder
+
+  - content/scenes/<scene-id>/index.js exports:
+      - meta (title, sphere, tags, order)
+      - load(ctx) (fetch markdown/data)
+      - render(ctx, root)
+      - destroy(ctx)
+  - Optional hooks: onEnter, onExit, onResize.
+
+  3. Scene manifest
+
+  - Central scenes.json (or generated) declares all scenes and routes.
+  - Lets you autoserve by qualification rules (e.g., has index.md or index.js + non-empty metadata).
+
+  4. Split scene types
+
+  - MarkdownScene (KaTeX + md rendering)
+  - VizScene (Three.js/canvas)
+  - HybridScene (both)
+  - Avoid per-page special cases in core.
+
+  5. Shared “backstage” services
+
+  - markdownService (parse + KaTeX)
+  - assetService (paths/caching)
+  - linkGraphService (doc cross-links/sphere links)
+  - eventBus (light pub/sub for scene interactions)
+
+  6. Sphere-aware composition
+
+  - Add sphere + binaryPhase fields in scene metadata.
+  - Director can enforce consistency overlays (inner/middle/outer rules) across scenes.
+
+  7. Progressive migration
+
+  - First extract 1-2 stable scenes (e.g., dynamics markdown).
+  - Keep adapter layer so old monolith routes still work during migration.
+
+  If you want, I can draft a concrete folder layout and first extraction patch for one scene end-to-end.
 
 ---
 
@@ -161,7 +274,7 @@ Yes. With sparse guidance, I can materially advance 4 of the 8 into firmer footi
 
 ---
 
-- sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
+- sim2rewrite.md has ideas for porting to architrino. wait until we have the scene builder working
 
 ---
 
