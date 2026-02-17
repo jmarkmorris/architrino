@@ -1,5 +1,8 @@
 import * as THREE from "./vendor/three/three.module.js";
 import { CSS2DRenderer, CSS2DObject } from "./vendor/three/CSS2DRenderer.js";
+import { AppDirector } from "./src/director/AppDirector.js";
+import { SceneIndexService } from "./src/services/SceneIndexService.js";
+import { PeriodicTableService } from "./src/services/PeriodicTableService.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -1071,8 +1074,9 @@ const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "content/markdown/aaa/_meta/ideas/arch-api.md";
 const cacheBustToken = Date.now().toString();
-let sceneIndex = [];
-let sceneIndexReady = false;
+let appDirector = null;
+const sceneIndexService = new SceneIndexService();
+const periodicTableService = new PeriodicTableService();
 const markdownReaderScenes = new Map();
 const searchBackStack = [];
 const metaBackStack = [];
@@ -1147,7 +1151,6 @@ let composerCameraFlightGeometry = null;
 let composerCameraWaypointMeshes = [];
 let composerCameraWaypointGeometry = null;
 let composerCameraWaypointMaterial = null;
-const periodicTableCache = { data: null, ready: false };
 let periodicGridBuilt = false;
 
 const levels = new Map();
@@ -4477,24 +4480,10 @@ function updateNavButton() {
 }
 
 async function ensurePeriodicTable() {
-  if (periodicTableCache.ready) {
-    return periodicTableCache.data;
-  }
-  try {
-    const resp = await fetch("content/scenes/chemistry/periodic_table.json");
-    if (!resp.ok) {
-      throw new Error("Failed to load periodic table");
-    }
-    const data = await resp.json();
-    periodicTableCache.data = data;
-    periodicTableCache.ready = true;
-    return data;
-  } catch (err) {
-    console.error(err);
-    periodicTableCache.data = null;
-    periodicTableCache.ready = false;
-    return null;
-  }
+  return periodicTableService.ensure(
+    fetch,
+    "content/scenes/chemistry/periodic_table.json"
+  );
 }
 
 function getPeriodicColor(category) {
@@ -4646,16 +4635,7 @@ function updateElementLegend() {
 }
 
 function getElementBySymbol(symbol) {
-  if (!symbol) {
-    return null;
-  }
-  const upper = symbol.toUpperCase();
-  if (!periodicTableCache.data?.elements) {
-    return null;
-  }
-  return periodicTableCache.data.elements.find(
-    (el) => el.symbol.toUpperCase() === upper
-  );
+  return periodicTableService.findBySymbol(symbol);
 }
 
 async function updateElementInfoPanel() {
@@ -4961,21 +4941,7 @@ function openMetaRing() {
 
 
 async function ensureSceneIndex() {
-  if (sceneIndexReady) {
-    return;
-  }
-  try {
-    const response = await fetch("content/scenes/scenes_index.json");
-    if (!response.ok) {
-      throw new Error("Failed to load scene index");
-    }
-    const data = await response.json();
-    sceneIndex = Array.isArray(data.scenes) ? data.scenes : [];
-    sceneIndexReady = true;
-  } catch (error) {
-    console.error(error);
-    sceneIndex = [];
-  }
+  await sceneIndexService.ensure(fetch, "content/scenes/scenes_index.json");
 }
 
 function setSearchOpen(isOpen) {
@@ -5015,7 +4981,7 @@ function updateSearchResults(query) {
     return;
   }
   const normalized = normalizeSearch(query);
-  const matches = sceneIndex.filter((scene) => {
+  const matches = sceneIndexService.getScenes().filter((scene) => {
     if (!normalized) {
       return true;
     }
@@ -5427,7 +5393,18 @@ if (typeof window !== "undefined") {
   window.openMetaRing = openMetaRing;
 }
 
-init();
+appDirector = new AppDirector({
+  initialize: init,
+  jumpToScene,
+  resetToRootScene,
+  startLevelTransitionOut,
+  getTransitionState: () => transitionState,
+  getNavigationStack: () => navigationStack,
+  getSearchBackStack: () => searchBackStack,
+  getMetaBackStack: () => metaBackStack,
+});
+
+appDirector.init();
 
 window.addEventListener("resize", onResize);
 canvas.addEventListener("pointerdown", onPointerDown);
@@ -5440,40 +5417,14 @@ canvas.addEventListener("pointerleave", () => {
 canvas.addEventListener("wheel", onWheel, { passive: false });
 
 if (navUpButton) {
-  navUpButton.addEventListener("click", () => {
-    if (transitionState.active) {
-      return;
-    }
-    if (navigationStack.length > 0) {
-      startLevelTransitionOut();
-      return;
-    }
-    if (searchBackStack.length > 0) {
-      const backState = searchBackStack.pop();
-      if (backState?.levelId) {
-        jumpToScene(backState.levelId, {
-          restoreNavStack: backState.navigationStack,
-        });
-      }
-      return;
-    }
-    if (metaBackStack.length > 0) {
-      const backState = metaBackStack.pop();
-      if (backState?.levelId) {
-        jumpToScene(backState.levelId, {
-          restoreNavStack: backState.navigationStack,
-        });
-      }
-    }
+  navUpButton.addEventListener("click", async () => {
+    await appDirector?.goBack();
   });
 }
 
 if (homeButton) {
-  homeButton.addEventListener("click", () => {
-    if (transitionState.active) {
-      return;
-    }
-    resetToRootScene();
+  homeButton.addEventListener("click", async () => {
+    await appDirector?.resetHome();
   });
 }
 

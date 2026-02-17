@@ -1,42 +1,3 @@
-Status snapshot to paste back later:
-
-  Date/time: 2026-02-17 (local)
-
-  GitHub Pages config:
-  - Source: Deploy from branch
-  - Branch/folder: main /(root)
-  - Repo has .nojekyll committed on main
-  - CNAME file on origin/main contains: www.architrino.com
-  - Site currently live at: http://www.architrino.com/
-  - Pages UI currently shows stale error: InvalidARecordError (expected to clear after cache/TTL)
-
-  Git branches:
-  - main synced to origin/main at commit: 1ee5c1b
-  - dev at commit: acaa784 (tracks origin/dev)
-  - You can continue normal work on dev and open PRs to main
-
-  IONOS DNS (authoritative, verified):
-  - www.architrino.com CNAME jmarkmorris.github.io (TTL 3600)
-  - No direct www A record
-  - Earlier temporary www A records removed
-  - Apex architrino.com currently has no A/AAAA answer from dig in this environment (that does not block www Pages)
-
-  Verification commands already passing:
-  - dig www.architrino.com CNAME +short
-    -> jmarkmorris.github.io.
-
-  GitHub likely needs cache/validation refresh:
-  - Wait >= 1 hour from CNAME cutover, then reload Settings -> Pages and retry.
-  - Enable Enforce HTTPS only after DNS check turns valid.
-
-  When you return, send:
-
-  1. What Pages shows then.
-  2. Output of:
-
-  dig www.architrino.com CNAME +short
-
-
 
 # **The #1 priority is the dynamics/math/geometry and the mapping**
 
@@ -44,10 +5,6 @@ Status snapshot to paste back later:
 
 - new architrino repository is live 20260217
   - need to go back and clean up the old neoclassical.ai repo. 
-    - make it private.
-
-- set up github pages for architrino
-  - activate architrino.com
 
 ---
 
@@ -59,7 +16,6 @@ Status snapshot to paste back later:
 ---
 
 - i like this term 'wake'. It is better than field. Wake: the causal‑isochron residue left by architrino motion; a wake is the architrino‑native description of what appears as a field at the effective level.
-  - Quantum Wake Theory 
 
 ---
 
@@ -168,6 +124,77 @@ Yes. Dynamics is not unique.
 
 ---
 
+What I found
+
+  1. Core responsibilities are mixed in one file:
+
+  - Scene data loading/parsing: loadSceneConfig in app.js:2336
+  - Dynamic markdown scene generation: buildAutoMarkdownNodes in app.js:1462
+  - Runtime level construction/render wiring: buildLevel in app.js:3358
+  - Navigation/transition orchestration: jumpToScene app.js:2535, transitions in app.js:4193
+  - Markdown rendering + KaTeX protections: protectMathSegments app.js:2034, showMarkdownPanel app.js:2093
+  - Feature overlays: composer app.js:4847, periodic table app.js:4614, search app.js:4963
+
+  2. You already have scene metadata and manifests:
+
+  - Static scene files under content/scenes/**
+  - Search manifest content/scenes/scenes_index.json
+  - Root scene graph in content/scenes/architrino_assembly_architecture.json
+
+  3. “Scene metaphor” already exists conceptually, but execution is hardcoded by sceneId checks (composer, periodic_table, element paths), not modular scene handlers.
+
+  Recommended modularization plan
+
+  1. Create a thin AppDirector layer first (no behavior changes).
+
+  - Keep app.js as entry only.
+  - Move shared app state and lifecycle calls into src/director/AppDirector.js.
+  - Director API: init(), navigateTo(scenePath, opts), goBack(), resetHome(), tick(now), resize().
+
+  2. Extract “backstage services” from existing functions.
+
+  - SceneRepository from loadSceneConfig, ensureDynamicSceneConfig, caches.
+  - MarkdownService from protectMathSegments, showMarkdownPanel, section/index helpers.
+  - SceneIndexService from ensureSceneIndex.
+  - PeriodicDataService from ensurePeriodicTable.
+
+  3. Introduce a scene plugin contract.
+
+  - SceneModule interface: canHandle(level), onEnter(ctx), onExit(ctx), onPointer(ctx, event), onTick(ctx, now), onResize(ctx).
+  - Start with modules:
+      - BaseGraphSceneModule (default graph behavior)
+      - ComposerSceneModule (from updateComposerOverlay + composer handlers)
+      - PeriodicSceneModule (from updatePeriodicOverlay, element detail behavior)
+      - MarkdownReaderSceneModule (for generated markdown index/doc scenes)
+
+  4. Separate renderer/runtime from scene semantics.
+
+  - Move Three.js node/link creation and animation into GraphRuntime.
+  - Keep navigation/scene switching in director.
+  - Keep transition engine isolated (transitionHandlers block becomes TransitionEngine).
+
+  5. Add an explicit scene manifest layer.
+
+  - Keep existing content/scenes/*.json.
+  - Add optional companion metadata (sphere, binaryPhase, tags) in manifest records.
+  - Director uses manifest for routing/search/display, scene JSON for graph payload.
+
+  6. Progressive migration order (lowest-risk).
+
+  - Phase A: Extract services with zero behavior change.
+  - Phase B: Extract TransitionEngine + GraphRuntime.
+  - Phase C: Pluginize composer and periodic first (already special-cased).
+  - Phase D: Pluginize markdown-generated scenes.
+  - Phase E: Slim app.js to bootstrap + wiring only.
+
+  7. Guardrails while migrating.
+
+  - Freeze JSON schema behavior from loadSceneConfig initially.
+  - Keep KaTeX delimiter preservation exactly as-is from protectMathSegments/restoreMathSegments.
+  - Add smoke checks for: root load, warp in/out, markdown open, composer overlay, periodic jump, scene search.
+
+  If you want, I can start Phase A now by creating AppDirector, SceneRepository, and MarkdownService with zero behavioral changes and wire app.js to them.
+
 › you said app.js is a monolith. do you have suggestions that leverage the scene metaphor?
 
 
@@ -244,14 +271,6 @@ Yes. Dynamics is not unique.
      I can derive a concrete weak-field map from hit-density/medium variables to g_eff constraints in spacetime/emergent-metric.md and spacetime/proper-time-and-time-dilation.md, including explicit pass/fail PPN-
      style checks.
 
-  What I can only partially advance without more guidance:
-
-  - Planck alignment mapping: I can tighten consistency and remove ambiguity, but not fully derive all identifications.
-
-  What is unlikely to leap with sparse guidance right now:
-
-  - Full LCDM replacement/CMB spectrum reproduction
-
 ---
 
 - check this idea out - if the tri-binary opens up inside the bh, then we get our quadropole resonance when a given core pops early or late. Or said another way, the event horizon isn't actually a sphere, it is some very rough surface that may have a large radial depth. We are talking about particles doing their thing in their local environment.  So they have this brief neck to planar and then they get 3d again even though they are shrinking.  How cool.  So how do we resolve the volume problem - going to zero at the event horizon.  is there a solution at the event horizon?  all 3 binaries are at c_f arghh = still not sure I have the model right.
@@ -293,13 +312,6 @@ Yes. Dynamics is not unique.
 
 ---
 
-- are there any rapid hits
-  - ellipsoid to GR
-  - koide
-  - planck
-
----
-
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
 
 ---
@@ -319,10 +331,6 @@ Yes. Dynamics is not unique.
 ---
 
 - periodic table of the standard model ( have a basic one)
-
----
-
-- what about the charts I made showing the bootstrap of knowledge.
 
 ---
 
@@ -394,7 +402,6 @@ Yes. Dynamics is not unique.
 
 ---
 
-codex
 
   1. Fill the quantum-number dictionary: derive full SU(3)×SU(2)×U(1) assignments (Q, Y, T3, B/L, spin/statistics) from the tri-binary geometry in particle-physics/fermion-mapping.md, particle-physics/charge-quantization.md, and assemblies/gluons.md; check anomaly cancellation and mixing angles against SM pulls.
 
@@ -441,18 +448,12 @@ codex
   7. Top condensation / topcolor (Miransky-Tanabashi-Yamawaki; Bardeen-Hill-Lindner; Hill): electroweak symmetry breaking from top-sector binding.
   8. Topological/preon braid ideas (Bilson-Thompson 2005 and follow-ons): particle quantum numbers from topological assembly structures.
 
-  Bottom line: many frameworks propose SM “assembly,” but none is experimentally established as a full, unique UV-complete replacement of the SM. If you want, I can map your $\mathbb{A}\mathbb{A}\mathbb{A}$ primitives directly against these
-  8 lines and identify where $\mathbb{A}\mathbb{A}\mathbb{A}$ has a chance at a genuine leap (unique closure + falsifiable prediction).
+  Bottom line: many frameworks propose SM “assembly,” but none is experimentally established as a full, unique UV-complete replacement of the SM. If you want, I can map your $\mathbb{A}\mathbb{A}\mathbb{A}$ primitives directly against these 8 lines and identify where $\mathbb{A}\mathbb{A}\mathbb{A}$ has a chance at a genuine leap (unique closure + falsifiable prediction).
 
   The closest literature is compositeness/preon/rishon work where higher generations are treated as excited states of deeper constituents, e.g. electron/muon/tau as different excitation levels. That is similar in
   spirit to “nesting,” but I’m not aware of a standard, accepted model that explicitly says “remove/destroy outer binary and you get the next generation” in that exact mechanical form.
 
   Closest precedents:
-
-  1. Harari, A Schematic Model of Quarks and Leptons (1979): https://doi.org/10.1016/0370-2693(79)90626-9
-  2. Shupe, A Composite Model of Leptons and Quarks (1979): https://doi.org/10.1016/0370-2693(79)90895-5
-  3. Harari & Seiberg, A dynamical theory for the rishon model (1981): https://doi.org/10.1016/0370-2693(81)90012-5
-  4. Experimental “excited lepton” searches (testing this compositeness idea): CMS 2013 https://doi.org/10.1016/j.physletb.2013.02.031
 
   So: conceptual neighbor exists (excited-state generations), exact “outer-shell destruction gives next generation” formulation is not mainstream in established SM-extension literature.
 
