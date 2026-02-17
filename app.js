@@ -1053,7 +1053,6 @@ const markdownRenderer =
     : null;
 if (markdownRenderer) {
   markdownRenderer.disable("escape");
-  markdownRenderer.disable("emphasis");
 }
 const markdownDirectoryCache = new Map();
 const markdownSubdirCache = new Map();
