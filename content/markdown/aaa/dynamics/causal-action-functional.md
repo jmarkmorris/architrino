@@ -1,7 +1,8 @@
-## Causal Self-Action Functional — Coherent Structure
+## Causal Action Functional — Coherent Structure
 
 ### Problem Statement and Goal
 The objective is to explain why only certain assemblies are stable and discrete, and to interpret emergent “mass” as a consequence of causal interaction structure: intrinsic self‑action of each worldline plus coupling to the ambient tri-binary sea (effective spacetime), rather than an externally assigned input. The target is a geometric/variational functional derived from the causal‑wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
+Canonical dynamics are defined in [The Master Equation (Canonical Form)](master-equation.md#the-master-equation-canonical-form); this chapter provides the complementary action-functional lens.
 
 ### Core Functional Definitions
 **Self‑action functional:**

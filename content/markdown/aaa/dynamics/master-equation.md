@@ -1308,6 +1308,8 @@ To connect with variational methods and with later continuum approximations, it 
 
 ##### Multi‑time interaction term
 
+For the focused action-functional development (definitions, theorem spine, and circular branch-count benchmark), see [Causal Action Functional](causal-action-functional.md#core-functional-definitions).
+
 Let the worldline of architrino $i$ be $\mathbf{x}_i(t)$. Consider an action of the form:
 
 $$
