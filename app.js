@@ -1,6 +1,7 @@
 import * as THREE from "./vendor/three/three.module.js";
 import { CSS2DRenderer, CSS2DObject } from "./vendor/three/CSS2DRenderer.js";
 import { AppDirector } from "./src/director/AppDirector.js";
+import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
 import { SceneIndexService } from "./src/services/SceneIndexService.js";
 import { PeriodicTableService } from "./src/services/PeriodicTableService.js";
 
@@ -1243,6 +1244,30 @@ const labelFadeState = {
   startTime: 0,
   duration: 700,
 };
+
+const transitionEngine = createTransitionEngine(transitionState, {
+  smoothstep,
+  applyZoom,
+  worldGroup,
+  camera,
+  zoomState,
+  panTween,
+  labelFadeState,
+  navigationStack,
+  setLevelOpacityWithFocus,
+  setLevelLinkOpacity,
+  setLevelOpacityWithLabel,
+  setLevelOpacity,
+  setLevelLabelOpacity,
+  resetNodeScale,
+  updateSceneLabel,
+  updateSceneMarkdown,
+  getCurrentLevel: () => currentLevel,
+  setCurrentLevel: (level) => {
+    currentLevel = level;
+  },
+  now: () => performance.now(),
+});
 
 const zoomLimits = { min: 0.35, max: 6 };
 const raycaster = new THREE.Raycaster();
@@ -2958,19 +2983,6 @@ function layoutRootLevel(level) {
   });
 }
 
-function getTransitionFocusNode(level) {
-  if (!level) {
-    return null;
-  }
-  const focusNodeId = transitionState.payload?.focusNodeId;
-  if (!focusNodeId) {
-    return null;
-  }
-  return (
-    level.nodeById.get(focusNodeId) ?? level.nodeByName.get(focusNodeId)
-  );
-}
-
 function getLevelBoundsLocal(level) {
   return getLevelBoundsFromNodes(level);
 }
@@ -4135,7 +4147,7 @@ function startLevelTransitionOut() {
     fromPivot: null,
   };
   transitionState.startTime = performance.now();
-  transitionState.duration = 2250;
+  transitionState.duration = 1500;
 
   parentLevel.group.position
     .copy(parentCenter)
@@ -4164,234 +4176,12 @@ function startLevelTransitionOut() {
 }
 
 function finalizeTransition() {
-  if (!transitionState.active) {
-    return;
-  }
-  const handler = transitionHandlers[transitionState.mode];
-  if (!handler) {
-    transitionState.active = false;
-    transitionState.payload = null;
-    return;
-  }
-  handler.finalize();
-  transitionState.active = false;
-  transitionState.payload = null;
+  transitionEngine.finalize();
 }
 
 function updateTransition(now) {
-  if (!transitionState.active) {
-    return;
-  }
-  const handler = transitionHandlers[transitionState.mode];
-  if (!handler) {
-    finalizeTransition();
-    return;
-  }
-  const done = handler.update(now);
-  if (done) {
-    finalizeTransition();
-  }
+  transitionEngine.update(now);
 }
-
-const transitionHandlers = {
-  warpIn: {
-    update: (now) => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!fromLevel || !toLevel || !payload) {
-        return true;
-      }
-      const elapsed = now - transitionState.startTime;
-      const t = Math.min(1, elapsed / transitionState.duration);
-      const panProgress = smoothstep(0, 0.35, t);
-      const scaleProgress = smoothstep(0.35, 1, t);
-      const zoomProgress = scaleProgress;
-
-      const nextZoom =
-        payload.zoomStart +
-        (payload.zoomTarget - payload.zoomStart) * zoomProgress;
-      applyZoom(nextZoom);
-
-      const focusNode = getTransitionFocusNode(fromLevel);
-      if (focusNode) {
-        const baseScale = focusNode.baseScale ?? focusNode.data?.baseScale ?? 1;
-        focusNode.group.scale.setScalar(
-          baseScale * (1 + (payload.warpScale - 1) * scaleProgress)
-        );
-      }
-      const toScale =
-        payload.toStartScale +
-        (1 - payload.toStartScale) * scaleProgress;
-      toLevel.group.scale.setScalar(toScale);
-      worldGroup.position.lerpVectors(
-        payload.panStart,
-        payload.panTarget,
-        panProgress
-      );
-
-      const focusFade = 1 - smoothstep(0.55, 1, scaleProgress);
-      const toFade = Math.pow(smoothstep(0.2, 1, scaleProgress), 1.6);
-      setLevelOpacityWithFocus(
-        fromLevel,
-        payload.focusNodeId,
-        focusFade,
-        0
-      );
-      setLevelLinkOpacity(fromLevel, 0);
-      setLevelOpacityWithLabel(toLevel, toFade, 0);
-      setLevelLinkOpacity(toLevel, toFade);
-      return t >= 1;
-    },
-    finalize: () => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!fromLevel || !toLevel || !payload) {
-        return;
-      }
-      const fromFocus = getTransitionFocusNode(fromLevel);
-      if (fromFocus) {
-        resetNodeScale(fromFocus);
-      }
-      fromLevel.group.scale.setScalar(1);
-      setLevelOpacity(fromLevel, 0);
-      setLevelLinkOpacity(fromLevel, 0);
-      worldGroup.remove(fromLevel.group);
-
-      toLevel.group.scale.setScalar(1);
-      setLevelOpacity(toLevel, 1);
-      setLevelLabelOpacity(toLevel, 0);
-      setLevelLinkOpacity(toLevel, 1);
-
-      currentLevel = toLevel;
-      zoomState.active = false;
-      panTween.active = false;
-      applyZoom(payload.zoomTarget ?? camera.zoom);
-      labelFadeState.active = true;
-      labelFadeState.level = currentLevel;
-      labelFadeState.startTime = performance.now();
-      updateSceneLabel();
-      updateSceneMarkdown();
-    },
-  },
-  warpOut: {
-    update: (now) => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!fromLevel || !toLevel || !payload) {
-        return true;
-      }
-      const elapsed = now - transitionState.startTime;
-      const t = Math.min(1, elapsed / transitionState.duration);
-      const scaleProgress = smoothstep(0.35, 1, t);
-      const zoomProgress = scaleProgress;
-
-      const nextZoom =
-        payload.zoomStart +
-        (payload.zoomTarget - payload.zoomStart) * zoomProgress;
-      applyZoom(nextZoom);
-
-      const toScale =
-        payload.toStartScale + (1 - payload.toStartScale) * scaleProgress;
-      toLevel.group.scale.setScalar(toScale);
-      worldGroup.position.copy(payload.panStart);
-
-      const fromScale = Math.max(0.05, 1 - 0.95 * scaleProgress);
-      if (payload.fromPivot) {
-        payload.fromPivot.scale.setScalar(fromScale);
-      } else {
-        fromLevel.group.scale.setScalar(fromScale);
-      }
-
-      const fromFade = 1 - smoothstep(0.35, 0.95, t);
-      const toFade = smoothstep(0.3, 1, t);
-      setLevelOpacity(fromLevel, fromFade);
-      setLevelLinkOpacity(fromLevel, fromFade);
-      setLevelOpacityWithLabel(toLevel, toFade, 0);
-      setLevelLinkOpacity(toLevel, toFade);
-      return t >= 1;
-    },
-    finalize: () => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!fromLevel || !toLevel || !payload) {
-        return;
-      }
-      toLevel.group.scale.setScalar(1);
-      setLevelOpacity(toLevel, 1);
-      setLevelLabelOpacity(toLevel, 0);
-      setLevelLinkOpacity(toLevel, 1);
-
-      const toFocus = getTransitionFocusNode(toLevel);
-      if (toFocus) {
-        resetNodeScale(toFocus);
-      }
-      if (payload.fromPivot) {
-        payload.fromPivot.scale.setScalar(1);
-        payload.fromPivot.remove(fromLevel.group);
-        worldGroup.remove(payload.fromPivot);
-        payload.fromPivot = null;
-      } else {
-        fromLevel.group.scale.setScalar(1);
-        worldGroup.remove(fromLevel.group);
-      }
-      setLevelOpacity(fromLevel, 0);
-      setLevelLinkOpacity(fromLevel, 0);
-
-      currentLevel = toLevel;
-      navigationStack.pop();
-      zoomState.active = false;
-      panTween.active = false;
-      applyZoom(payload.zoomTarget ?? camera.zoom);
-      labelFadeState.active = true;
-      labelFadeState.level = currentLevel;
-      labelFadeState.startTime = performance.now();
-      updateSceneLabel();
-      updateSceneMarkdown();
-    },
-  },
-  jump: {
-    update: (now) => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!toLevel || !payload) {
-        return true;
-      }
-      const elapsed = now - transitionState.startTime;
-      const t = Math.min(1, elapsed / transitionState.duration);
-      const fade = smoothstep(0, 1, t);
-      if (fromLevel) {
-        setLevelOpacity(fromLevel, 1 - fade);
-        setLevelLinkOpacity(fromLevel, 1 - fade);
-      }
-      setLevelOpacity(toLevel, fade);
-      setLevelLinkOpacity(toLevel, fade);
-      const startScale = payload.startScale ?? 1;
-      const scale = startScale + (1 - startScale) * fade;
-      toLevel.group.scale.setScalar(scale);
-      const nextZoom =
-        payload.zoomStart + (payload.zoomTarget - payload.zoomStart) * fade;
-      applyZoom(nextZoom);
-      return t >= 1;
-    },
-    finalize: () => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!toLevel || !payload) {
-        return;
-      }
-      if (fromLevel) {
-        setLevelOpacity(fromLevel, 0);
-        setLevelLinkOpacity(fromLevel, 0);
-        worldGroup.remove(fromLevel.group);
-      }
-      toLevel.group.scale.setScalar(1);
-      setLevelOpacity(toLevel, 1);
-      setLevelLabelOpacity(toLevel, 0);
-      setLevelLinkOpacity(toLevel, 1);
-      currentLevel = toLevel;
-      applyZoom(payload.zoomTarget ?? camera.zoom);
-      labelFadeState.active = true;
-      labelFadeState.level = currentLevel;
-      labelFadeState.startTime = performance.now();
-      updateSceneLabel();
-      updateSceneMarkdown();
-    },
-  },
-};
 
 function getNodeScreenMetrics(node) {
   const worldPos = new THREE.Vector3();
