@@ -1055,6 +1055,8 @@ if (markdownRenderer) {
 }
 const markdownDirectoryCache = new Map();
 const markdownSubdirCache = new Map();
+const markdownManifestPath = "content/markdown/markdown_index.json";
+let markdownManifestPromise = null;
 let activeMarkdownPath = null;
 let markdownTwoColumns = true;
 let composerActivePanel = "tree";
@@ -1277,6 +1279,11 @@ async function listMarkdownFilesInDir(directory) {
   if (markdownDirectoryCache.has(normalized)) {
     return markdownDirectoryCache.get(normalized);
   }
+  const manifestFiles = await listMarkdownFilesFromManifest(normalized);
+  if (manifestFiles.length) {
+    markdownDirectoryCache.set(normalized, manifestFiles);
+    return manifestFiles;
+  }
   try {
     const response = await fetch(appendCacheBust(`${normalized}/`));
     if (!response.ok) {
@@ -1330,6 +1337,11 @@ async function listMarkdownDirectoriesInDir(directory) {
   if (markdownSubdirCache.has(normalized)) {
     return markdownSubdirCache.get(normalized);
   }
+  const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
+  if (manifestDirectories.length) {
+    markdownSubdirCache.set(normalized, manifestDirectories);
+    return manifestDirectories;
+  }
   try {
     const response = await fetch(appendCacheBust(`${normalized}/`));
     if (!response.ok) {
@@ -1375,6 +1387,68 @@ async function listMarkdownDirectoriesInDir(directory) {
     markdownSubdirCache.set(normalized, []);
     return [];
   }
+}
+
+async function loadMarkdownManifest() {
+  if (markdownManifestPromise) {
+    return markdownManifestPromise;
+  }
+  markdownManifestPromise = fetch(appendCacheBust(markdownManifestPath))
+    .then(async (response) => {
+      if (!response.ok) {
+        return [];
+      }
+      const data = await response.json();
+      if (!data || !Array.isArray(data.files)) {
+        return [];
+      }
+      return data.files
+        .filter((path) => typeof path === "string" && path.toLowerCase().endsWith(".md"))
+        .map((path) => path.replace(/^\.?\//, ""));
+    })
+    .catch((error) => {
+      console.warn("Failed to load markdown manifest", error);
+      return [];
+    });
+  return markdownManifestPromise;
+}
+
+async function listMarkdownFilesFromManifest(directory) {
+  const files = await loadMarkdownManifest();
+  if (!files.length) {
+    return [];
+  }
+  const prefix = `${directory}/`;
+  return files.filter((path) => {
+    if (!path.startsWith(prefix)) {
+      return false;
+    }
+    const remainder = path.slice(prefix.length);
+    return remainder.length > 0 && !remainder.includes("/");
+  });
+}
+
+async function listMarkdownDirectoriesFromManifest(directory) {
+  const files = await loadMarkdownManifest();
+  if (!files.length) {
+    return [];
+  }
+  const prefix = `${directory}/`;
+  const subdirs = new Set();
+  files.forEach((path) => {
+    if (!path.startsWith(prefix)) {
+      return;
+    }
+    const remainder = path.slice(prefix.length);
+    if (!remainder.includes("/")) {
+      return;
+    }
+    const firstSegment = remainder.split("/")[0];
+    if (firstSegment) {
+      subdirs.add(`${directory}/${firstSegment}`);
+    }
+  });
+  return Array.from(subdirs);
 }
 
 function titleFromSlug(slug) {
