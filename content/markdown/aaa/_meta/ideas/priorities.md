@@ -30,22 +30,22 @@
   - Not referenced by the webapp (based on scene markdown config + hardcoded markdown paths):  check these.
     - 421.md
     - pdg-api.md
-    - causal-functional.md
     - design.md
     - architrino-si-base-units.md
     - AnalyticBaselines.md
 - docs to periodically review and ensure they are offered on the webapp.
-  - binary-dynamics.md (reviewed)
-  - energy.md (reviewed 2/12)
+  - dynamics page (auto generated spheres)
+    - binary-dynamics.md (reviewed, linked)
+    - energy.md (reviewed 2/12, linked)
+    - master-equation.md (linked)
+    - reality-quantum-causality.md (linked)
+    - tri-binary-dynamics.md (linked)
+    - mapping-Planck-scale.md  (linked)
   - weak-mixing-ckm.md (major work 2/15)
   - unknowns-paradoxes.md
   - quantum-number-mapping.md
   - 421.md
-  - dynamo-team-insights.md
-  - master-equation.md
-  - reality-quantum-causality.md
   - pdg-api.md
-  - tri-binary-dynamics.md
   - assembly-atlas.md
   - noether-core.md
   - emergent-metric.md
@@ -54,14 +54,12 @@
   - gluons.md
   - color-charge-su3.md
   - cmb-origin.md
-  - mapping-Planck-scale.md
   - ontology.md
   - bootstrapping-the-absolute-frame.md
   - absolute-time-defense.md
   - emergence.md
   - euclidean-void.md
   - arch-api.md
-  - causal-functional.md
   - design.md
   - displacement-of-spacetime.md
   - atomic-structure.md

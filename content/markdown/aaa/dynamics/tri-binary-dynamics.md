@@ -11,6 +11,20 @@ This chapter develops a working draft of tri-binary dynamics by extending the tw
 
 ---
 
+## Regime Map for Speed Statements (CFT / Horizon / AdS)
+
+To keep speed claims consistent across documents, all binary-speed statements should be read as **regime-qualified**:
+
+| Regime | Inner binary | Middle binary | Outer binary | Operational meaning |
+| --- | --- | --- | --- | --- |
+| **CFT exterior** (sub-horizon, weak/medium stress) | Typically in self-hit branch ($v \gtrsim c_f$ history-supported) | Near the hinge scale ($v \approx c_f$) in working models | Typically $v < c_f$ | Hierarchical tri-binary operation and ordinary ladder behavior |
+| **Holographic horizon transition** (terminal alignment) | Forward-sector components approach $c_f$ | Forward-sector components approach $c_f$ | Forward-sector components approach $c_f$ | 3D precessing structure collapses toward planar lock |
+| **AdS / self-hit interior** (post-transition, strongly nonlocal memory) | Self-hit dominated; effective closure may involve super-field effective speed | Strongly coupled to inner/outer delay closure | Can participate in states where combined in-plane effective speed satisfies $v_{\text{eff}} > c_f$ | Mach-wedge-like causal geometry and interior recycling hypotheses |
+
+**Notation guardrail:** "$v < c_f$" or "$v = c_f$" in role summaries refers to a component/regime statement, while $v_{\text{eff}} > c_f$ refers to the **combined in-plane effective motion** used in wake-geometry closure.
+
+---
+
 ## Geometry Focus
 
 ### A) High Group Velocity Geometry (Oblate Spheroid)
@@ -193,9 +207,10 @@ As alignment increases and planes coincide, the remaining degree of freedom is a
 
 An electrino:positrino binary is the most primitive assembly possible. Architrino assembly architecture posits that three binaries can become coupled into a "Noether core" tri-binary. This tri-binary is then the basis for all standard model particles, with each binary playing a distinct dynamical role.
 
-- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
-- **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
-- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether sea** for gravitational/cosmological effects.
+- **Inner binary** (MCB, CFT-exterior role): typically in/near self-hit branch ($v \gtrsim c_f$ by history), and would define fundamental units if MCB attractor is confirmed.
+- **Middle binary** (CFT-exterior role): near the symmetry hinge ($v \approx c_f$) with variable radius/frequency; energy-storage fulcrum and coupling bridge.
+- **Outer binary** (CFT-exterior role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-sea gravitational/cosmological response.
+At the holographic horizon, the three binaries are treated as a different regime where forward-sector components approach $c_f$ together; in interior AdS-like hypotheses, wake-closure can be described with combined $v_{\text{eff}} > c_f$ without requiring every component speed to exceed $c_f$.
 **Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2\Delta L_c$ rather than $\Delta L_c$, because two accelerating contributions (partner delay and self-hit) act together. If the inward track is well-approximated by a logarithmic spiral (exponential in angle), this would appear as a **kink** in the log-spiral slope at the hinge: $\Delta L_\text{cycle} = \Delta L_c$ below $c_f$, $\Delta L_\text{cycle} = 2\Delta L_c$ above. This is a hypothesis, not a derived result.
 
 **Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
