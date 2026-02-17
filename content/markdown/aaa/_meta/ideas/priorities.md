@@ -3,11 +3,9 @@
 
 ## Sorta Sorted List (i.e., non-linear)
 
-- new architrino repository for viz3d 
-  - leave all the historic stuff behind. That repo will still exist.
-  - straighten out the structure
-    - have codex 5.3 consult 
-      - what are the best practices for a popular and often forked webapp?
+- new architrino repository is live 20260217
+  - need to go back and clean up the old neoclassical.ai repo. 
+    - make it private.
 
 ---
 
