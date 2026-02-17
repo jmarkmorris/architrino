@@ -3704,14 +3704,60 @@ function updateLevelLabelWrap(level) {
     }
     const metrics = getNodeScreenMetrics(node);
     const diameter = metrics.radiusPx * 2;
-    const targetWidth = Math.round(diameter * 0.8);
-    const minWidth = 36;
+    if (!Number.isFinite(diameter) || diameter <= 0) {
+      return;
+    }
+    const targetWidth = Math.round(diameter * 0.88);
+    const minWidth = 42;
     const maxAllowed = Math.round(diameter * 0.95);
-    const maxWidth = Math.max(minWidth, Math.min(targetWidth, maxAllowed));
+    const widthFloor = Math.min(minWidth, maxAllowed);
+    const maxWidth = Math.max(widthFloor, Math.min(targetWidth, maxAllowed));
     if (node.labelMaxWidth !== maxWidth) {
       node.labelMaxWidth = maxWidth;
       node.labelObject.element.style.maxWidth = `${maxWidth}px`;
       node.labelObject.element.style.width = `${maxWidth}px`;
+    }
+
+    const name = typeof node.data.name === "string" ? node.data.name : "";
+    const tokens = name.split(/[\s-]+/).filter(Boolean);
+    const longestToken = tokens.reduce((max, token) => {
+      return Math.max(max, token.length);
+    }, 1);
+    const sizeByDiameter = diameter * 0.15;
+    const sizeByToken = maxWidth / (longestToken * 0.58);
+    const titleSize = clamp(Math.min(sizeByDiameter, sizeByToken + 0.5), 10, 16);
+
+    let titleWeight = 600;
+    if (titleSize <= 10.75) {
+      titleWeight = 400;
+    } else if (titleSize <= 12.5) {
+      titleWeight = 500;
+    }
+    const lineHeight = titleSize <= 11.5 ? 1.22 : titleSize <= 13 ? 1.18 : 1.14;
+    const letterSpacing = titleSize <= 11.5 ? 0.01 : 0.02;
+    const scaleSize = clamp(titleSize * 0.62, 8, 10);
+    const tagSize = clamp(titleSize * 0.58, 8, 9);
+    const typographyKey = [
+      titleSize.toFixed(2),
+      titleWeight,
+      lineHeight.toFixed(2),
+      letterSpacing.toFixed(2),
+      scaleSize.toFixed(2),
+      tagSize.toFixed(2),
+    ].join("|");
+
+    if (node.labelTypographyKey !== typographyKey) {
+      node.labelTypographyKey = typographyKey;
+      const labelStyle = node.labelObject.element.style;
+      labelStyle.setProperty("--label-title-size", `${titleSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-title-weight", `${titleWeight}`);
+      labelStyle.setProperty("--label-title-line-height", lineHeight.toFixed(2));
+      labelStyle.setProperty(
+        "--label-title-letter-spacing",
+        `${letterSpacing.toFixed(2)}em`
+      );
+      labelStyle.setProperty("--label-scale-size", `${scaleSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-tag-size", `${tagSize.toFixed(2)}px`);
     }
   });
 }

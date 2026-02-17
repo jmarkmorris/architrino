@@ -1390,33 +1390,39 @@ body {
   border: none;
   min-width: 0;
   max-width: none;
+  --label-title-size: 16px;
+  --label-title-weight: 600;
+  --label-title-letter-spacing: 0.02em;
+  --label-title-line-height: 1.15;
+  --label-scale-size: 10px;
+  --label-tag-size: 9px;
   text-shadow:
     0 2px 8px rgba(0, 0, 0, 0.6),
     0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .label-title {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: var(--label-title-size);
+  font-weight: var(--label-title-weight);
+  letter-spacing: var(--label-title-letter-spacing);
   white-space: nowrap;
 }
 
 .label-wrap .label-title {
   white-space: normal;
-  line-height: 1.15;
-  overflow-wrap: anywhere;
+  line-height: var(--label-title-line-height);
+  overflow-wrap: break-word;
 }
 
 .label-scale {
-  font-size: 10px;
+  font-size: var(--label-scale-size);
   opacity: 0.75;
   margin-top: 2px;
   white-space: nowrap;
 }
 
 .label-tag {
-  font-size: 9px;
+  font-size: var(--label-tag-size);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
