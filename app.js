@@ -29,7 +29,6 @@ const markdownBody = document.getElementById("markdown-body");
 const markdownClose = document.getElementById("markdown-close");
 const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
 const markdownDocButton = document.getElementById("markdown-doc-button");
-const mathJaxScript = document.getElementById("mathjax-script");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
@@ -1056,8 +1055,6 @@ if (markdownRenderer) {
 }
 const markdownDirectoryCache = new Map();
 const markdownSubdirCache = new Map();
-let mathJaxReady = typeof window !== "undefined" && !!window.MathJax?.typesetPromise;
-let pendingMathTypeset = false;
 let activeMarkdownPath = null;
 let markdownTwoColumns = true;
 let composerActivePanel = "tree";
@@ -1267,15 +1264,6 @@ const periodicCategoryColors = {
   "actinide": "#7f8c8d",
   "unknown": "#556277",
 };
-
-if (mathJaxScript) {
-  mathJaxScript.addEventListener("load", () => {
-    mathJaxReady = true;
-    if (pendingMathTypeset) {
-      typesetMarkdown();
-    }
-  });
-}
 
 function formatSuperscripts(text) {
   return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
@@ -1988,35 +1976,22 @@ function typesetMarkdown() {
     return;
   }
   const katexRender = window.renderMathInElement;
-  if (typeof katexRender === "function") {
-    try {
-      katexRender(markdownBody, {
-        delimiters: [
-          { left: "$$", right: "$$", display: true },
-          { left: "\\[", right: "\\]", display: true },
-          { left: "$", right: "$", display: false },
-          { left: "\\(", right: "\\)", display: false },
-        ],
-        throwOnError: false,
-      });
-      return;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  const mathJax = window.MathJax;
-  if (!mathJax?.typesetPromise) {
-    pendingMathTypeset = true;
+  if (typeof katexRender !== "function") {
     return;
   }
-  mathJaxReady = true;
-  pendingMathTypeset = false;
-  if (mathJax.typesetClear) {
-    mathJax.typesetClear([markdownBody]);
-  }
-  mathJax.typesetPromise([markdownBody]).catch((error) => {
+  try {
+    katexRender(markdownBody, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "\\[", right: "\\]", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+      ],
+      throwOnError: false,
+    });
+  } catch (error) {
     console.error(error);
-  });
+  }
 }
 
 async function showMarkdownPanel(level) {

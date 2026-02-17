@@ -75,6 +75,35 @@
 
 ---
 
+Yes. Dynamics is not unique.
+
+  Scenes currently set up to autoserve markdown (auto-ring + markdown source) are:
+
+  - content/scenes/assemblies/assemblies.json
+  - content/scenes/cosmology/cosmology.json
+  - content/scenes/dynamics/dynamics.json
+  - content/scenes/foundations/foundations.json
+  - content/scenes/nuclear/nuclear_atomic.json
+  - content/scenes/phenomenology/phenomenology.json
+  - content/scenes/philosophy_history/philosophy_history.json
+  - content/scenes/philosophy_history/unknowns_paradoxes.json
+  - content/scenes/philosophy_history/out_of_the_ashes.json
+  - content/scenes/quantum/quantum.json
+  - content/scenes/spacetime/spacetime.json
+  - content/scenes/validation/validation.json
+
+  Qualification rules (runtime):
+
+  - Autoserve runs only if autoSphereRing is true and there is a markdown source (autoMarkdownDirectory or autoMarkdownPath), see app.js:1378.
+  - Scene markdown policy is converted from scene.markdown.source into auto fields, see app.js:1788.
+  - Directory mode only picks top-level .md files (no nested paths unless using subdirectories: true), see app.js:1300 and app.js:1313.
+  - In directory mode, file must be non-empty after trim (text.trim().length > 0) to become a markdown node, see app.js:1495 and app.js:1645.
+  - Files are also dropped if slug/id is empty or collides with an existing node id, see app.js:1533.
+
+  So to your “more than empty?” question: yes, it’s more than just non-empty. It also must be discoverable as top-level .md, pass id uniqueness, and not be excluded by scene policy.
+
+---
+
   Best findings after reviewing the listed docs, focused on real theory advancement and provable GR/QM/LCDM mapping:
 
   2. Second breakthrough is closing the clock/ruler map and effective metric map.
