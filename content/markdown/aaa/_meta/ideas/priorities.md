@@ -101,6 +101,83 @@ Yes. Dynamics is not unique.
   - Files are also dropped if slug/id is empty or collides with an existing node id, see app.js:1533.
 
   So to your “more than empty?” question: yes, it’s more than just non-empty. It also must be discoverable as top-level .md, pass id uniqueness, and not be excluded by scene policy.
+---
+
+• Assessment
+  Current architecture is a solid static, content-driven prototype with good authoring velocity, but it is now at the point where maintainability and content-loading robustness are the main risks.
+
+  What’s good
+
+  - Strong data/content separation: scenes in JSON + docs in Markdown, minimal coupling (content/scenes/dynamics/dynamics.json:1, content/markdown/aaa/dynamics/master-equation.md).
+  - Dynamic markdown scene generation is flexible (file index, section index, directory recursion) (app.js:2588, app.js:2694, app.js:2729).
+  - Caching exists for scene configs and markdown (app.js:1046, app.js:1048, app.js:2029).
+  - Math-protection pipeline to prevent markdown parsing from corrupting TeX is thoughtful (app.js:1950, app.js:2060).
+
+  Architectural pressure points
+
+  - app.js is a monolith (~174 KB) handling rendering, navigation, markdown, search, composer, periodic table, and dynamic scene synthesis in one file (app.js:1). This is the biggest long-term risk.
+  - Autoserve depends on parsing web-server directory listings (app.js:1284, app.js:1326). If directory listing behavior changes, autoserve breaks.
+  - Directory autoserve does N+1 fetches to test non-empty markdown files (app.js:1490, app.js:1495), which will scale poorly as docs grow.
+  - Search index is static (content/scenes/scenes_index.json) and can drift from actual scene files if not regenerated as part of workflow (app.js:4892).
+  - No automated tests for scene loading/rendering/markdown parsing regressions.
+
+  Operationally
+
+  - For a static-hosted research UI, this is pragmatic and works.
+  - For ongoing expansion (more scenes/docs, more contributors), the architecture is near the threshold where modularization and a deterministic content manifest pipeline become necessary to avoid fragile
+    behavior.
+
+---
+
+› you said app.js is a monolith. do you have suggestions that leverage the scene metaphor?
+
+
+• Yes. A clean refactor is to make app.js a stage manager and move behavior into scenes.
+
+  1. app.js becomes director
+
+  - Only handles routing, global app state, shared services, and scene lifecycle.
+  - API: mountScene(id), unmountScene(id), transition(from,to).
+
+  2. Scene contract per folder
+
+  - content/scenes/<scene-id>/index.js exports:
+      - meta (title, sphere, tags, order)
+      - load(ctx) (fetch markdown/data)
+      - render(ctx, root)
+      - destroy(ctx)
+  - Optional hooks: onEnter, onExit, onResize.
+
+  3. Scene manifest
+
+  - Central scenes.json (or generated) declares all scenes and routes.
+  - Lets you autoserve by qualification rules (e.g., has index.md or index.js + non-empty metadata).
+
+  4. Split scene types
+
+  - MarkdownScene (KaTeX + md rendering)
+  - VizScene (Three.js/canvas)
+  - HybridScene (both)
+  - Avoid per-page special cases in core.
+
+  5. Shared “backstage” services
+
+  - markdownService (parse + KaTeX)
+  - assetService (paths/caching)
+  - linkGraphService (doc cross-links/sphere links)
+  - eventBus (light pub/sub for scene interactions)
+
+  6. Sphere-aware composition
+
+  - Add sphere + binaryPhase fields in scene metadata.
+  - Director can enforce consistency overlays (inner/middle/outer rules) across scenes.
+
+  7. Progressive migration
+
+  - First extract 1-2 stable scenes (e.g., dynamics markdown).
+  - Keep adapter layer so old monolith routes still work during migration.
+
+  If you want, I can draft a concrete folder layout and first extraction patch for one scene end-to-end.
 
 ---
 
