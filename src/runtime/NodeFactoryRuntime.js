@@ -34,83 +34,6 @@ export function createNodeFactory(deps) {
     });
   }
 
-  function createStripedSphereNode(nodeData) {
-    const group = new THREE.Group();
-    const sphereGeometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);
-    const baseOpacity = nodeData.baseOpacity ?? 0.72;
-    const sphereMaterial = new THREE.MeshBasicMaterial({
-      color: nodeData.color,
-      transparent: true,
-      opacity: baseOpacity,
-    });
-    sphereMaterial.depthWrite = false;
-    const mesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    group.add(mesh);
-
-    const outlineGeometry = new THREE.EdgesGeometry(sphereGeometry);
-    const outlineMaterial = new THREE.LineBasicMaterial({
-      color: "#7a7a7a",
-      transparent: true,
-      opacity: 0.3,
-    });
-    outlineMaterial.depthWrite = false;
-    const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
-    group.add(outline);
-
-    const extraMeshes = [];
-    const stripeCount = nodeData.stripeCount ?? 7;
-    const stripeThickness =
-      nodeData.stripeThickness ?? Math.max(0.03, nodeData.radius * 0.06);
-    const stripeOpacity = nodeData.stripeOpacity ?? 0.85;
-    const stripeColors = nodeData.stripeColors ?? ["#ff0000", "#4b0082"];
-
-    for (let i = 0; i < stripeCount; i += 1) {
-      const t = (i + 1) / (stripeCount + 1);
-      const phi = t * Math.PI;
-      const ringRadius = Math.sin(phi) * nodeData.radius;
-      const y = Math.cos(phi) * nodeData.radius;
-      if (ringRadius <= 0.0001) {
-        continue;
-      }
-      const ringGeometry = new THREE.TorusGeometry(ringRadius, stripeThickness, 12, 48);
-      const ringMaterial = new THREE.MeshBasicMaterial({
-        color: stripeColors[i % stripeColors.length],
-        transparent: true,
-        opacity: stripeOpacity,
-      });
-      ringMaterial.depthWrite = false;
-      const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-      ring.rotation.x = Math.PI / 2;
-      ring.position.y = y;
-      group.add(ring);
-      extraMeshes.push({ mesh: ring, baseOpacity: stripeOpacity });
-    }
-
-    const labelObject = createLabel(nodeData);
-    group.add(labelObject);
-
-    return {
-      group,
-      mesh,
-      outline,
-      labelObject,
-      labelMaxWidth: null,
-      halo: null,
-      haloBaseOpacity: 0,
-      haloIntensity: 1,
-      haloPhase: haloSeed++ * 0.6,
-      baseScale: 1,
-      data: nodeData,
-      baseOpacity: {
-        mesh: baseOpacity,
-        outline: outlineMaterial.opacity,
-        label: 1,
-      },
-      extraMeshes,
-      binaryBandData: [],
-    };
-  }
-
   function createBinaryCoreNode(nodeData, useCutaway) {
     const group = new THREE.Group();
     const shellRadius = nodeData.radius;
@@ -236,9 +159,6 @@ export function createNodeFactory(deps) {
     }
     if (nodeData.renderStyle === "binarySphere") {
       return createBinaryCoreNode(nodeData, false);
-    }
-    if (nodeData.renderStyle === "stripedSphere") {
-      return createStripedSphereNode(nodeData);
     }
     const group = new THREE.Group();
     const geometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);

@@ -327,13 +327,8 @@ export function createPeriodicOverlayRuntime(deps) {
   }
 
   return {
-    ensurePeriodicTable,
-    getPeriodicColor,
-    showPeriodicElementDetail,
-    buildPeriodicGrid,
     updatePeriodicOverlay,
     updateElementLegend,
-    getElementBySymbol,
     updateElementInfoPanel,
     wireElementLegend,
   };

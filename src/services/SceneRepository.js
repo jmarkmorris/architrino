@@ -41,13 +41,6 @@ export class SceneRepository {
           if (typeof color === "string" && this.colorTokens[color]) {
             color = this.colorTokens[color];
           }
-          const stripeColors = Array.isArray(obj.stripeColors)
-            ? obj.stripeColors.map((stripeColor) =>
-                typeof stripeColor === "string" && this.colorTokens[stripeColor]
-                  ? this.colorTokens[stripeColor]
-                  : stripeColor
-              )
-            : null;
           const node = {
             id: obj.id,
             name: obj.label || obj.id,
@@ -70,10 +63,6 @@ export class SceneRepository {
             glowRingOpacity: obj.glowRingOpacity ?? null,
             glowRingThickness: obj.glowRingThickness ?? null,
             glowRingScale: obj.glowRingScale ?? null,
-            stripeColors,
-            stripeCount: obj.stripeCount ?? null,
-            stripeThickness: obj.stripeThickness ?? null,
-            stripeOpacity: obj.stripeOpacity ?? null,
             baseOpacity: obj.baseOpacity ?? null,
             hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
             wrapLabel: obj.wrapLabel ?? wrapLabels,

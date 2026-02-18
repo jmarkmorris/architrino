@@ -2338,32 +2338,9 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
-function setTargetZoom(nextZoom, duration = 420) {
-  zoomState.active = true;
-  zoomState.startZoom = camera.zoom;
-  zoomState.targetZoom = clampZoom(nextZoom);
-  zoomState.startTime = performance.now();
-  zoomState.duration = duration;
-}
-
-function setTargetPan(nextPosition, duration = 420) {
-  panTween.active = true;
-  panTween.start.copy(worldGroup.position);
-  panTween.target.copy(nextPosition);
-  panTween.startTime = performance.now();
-  panTween.duration = duration;
-}
-
 function applyZoom(value) {
   camera.zoom = clampZoom(value);
   camera.updateProjectionMatrix();
-}
-
-function computeFocusZoom(radius, fraction = 0.32) {
-  const targetFraction = clamp(fraction, 0.15, 0.6);
-  const safeRadius = Math.max(radius, 0.01);
-  const targetZoom = (targetFraction * baseViewHeight) / (2 * safeRadius);
-  return clampZoom(targetZoom);
 }
 
 function getMarkdownReaderSceneId(markdownPath, markdownSection) {
@@ -3194,32 +3171,12 @@ const periodicOverlayRuntime = createPeriodicOverlayRuntime({
   fetchImpl: (...args) => fetch(...args),
 });
 
-async function ensurePeriodicTable() {
-  return periodicOverlayRuntime.ensurePeriodicTable();
-}
-
-function getPeriodicColor(category) {
-  return periodicOverlayRuntime.getPeriodicColor(category);
-}
-
-function showPeriodicElementDetail(el) {
-  return periodicOverlayRuntime.showPeriodicElementDetail(el);
-}
-
-function buildPeriodicGrid(data) {
-  return periodicOverlayRuntime.buildPeriodicGrid(data);
-}
-
 async function updatePeriodicOverlay() {
   return periodicOverlayRuntime.updatePeriodicOverlay();
 }
 
 function updateElementLegend() {
   return periodicOverlayRuntime.updateElementLegend();
-}
-
-function getElementBySymbol(symbol) {
-  return periodicOverlayRuntime.getElementBySymbol(symbol);
 }
 
 async function updateElementInfoPanel() {
