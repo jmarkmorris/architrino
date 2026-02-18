@@ -14,6 +14,7 @@
       "id": "quark_core",
       "label": "Uni-binary Noether core",
       "scaleExponent": -20,
+      "hideScaleLabel": true,
       "radius": 1.08,
       "color": "PURPLE",
       "position": [

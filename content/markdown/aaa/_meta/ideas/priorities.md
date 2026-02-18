@@ -1,42 +1,3 @@
-Status snapshot to paste back later:
-
-  Date/time: 2026-02-17 (local)
-
-  GitHub Pages config:
-  - Source: Deploy from branch
-  - Branch/folder: main /(root)
-  - Repo has .nojekyll committed on main
-  - CNAME file on origin/main contains: www.architrino.com
-  - Site currently live at: http://www.architrino.com/
-  - Pages UI currently shows stale error: InvalidARecordError (expected to clear after cache/TTL)
-
-  Git branches:
-  - main synced to origin/main at commit: 1ee5c1b
-  - dev at commit: acaa784 (tracks origin/dev)
-  - You can continue normal work on dev and open PRs to main
-
-  IONOS DNS (authoritative, verified):
-  - www.architrino.com CNAME jmarkmorris.github.io (TTL 3600)
-  - No direct www A record
-  - Earlier temporary www A records removed
-  - Apex architrino.com currently has no A/AAAA answer from dig in this environment (that does not block www Pages)
-
-  Verification commands already passing:
-  - dig www.architrino.com CNAME +short
-    -> jmarkmorris.github.io.
-
-  GitHub likely needs cache/validation refresh:
-  - Wait >= 1 hour from CNAME cutover, then reload Settings -> Pages and retry.
-  - Enable Enforce HTTPS only after DNS check turns valid.
-
-  When you return, send:
-
-  1. What Pages shows then.
-  2. Output of:
-
-  dig www.architrino.com CNAME +short
-
-
 
 # **The #1 priority is the dynamics/math/geometry and the mapping**
 
@@ -44,10 +5,6 @@ Status snapshot to paste back later:
 
 - new architrino repository is live 20260217
   - need to go back and clean up the old neoclassical.ai repo. 
-    - make it private.
-
-- set up github pages for architrino
-  - activate architrino.com
 
 ---
 
@@ -59,7 +16,6 @@ Status snapshot to paste back later:
 ---
 
 - i like this term 'wake'. It is better than field. Wake: the causal‑isochron residue left by architrino motion; a wake is the architrino‑native description of what appears as a field at the effective level.
-  - Quantum Wake Theory 
 
 ---
 
@@ -168,55 +124,7 @@ Yes. Dynamics is not unique.
 
 ---
 
-› you said app.js is a monolith. do you have suggestions that leverage the scene metaphor?
 
-
-• Yes. A clean refactor is to make app.js a stage manager and move behavior into scenes.
-
-  1. app.js becomes director
-
-  - Only handles routing, global app state, shared services, and scene lifecycle.
-  - API: mountScene(id), unmountScene(id), transition(from,to).
-
-  2. Scene contract per folder
-
-  - content/scenes/<scene-id>/index.js exports:
-      - meta (title, sphere, tags, order)
-      - load(ctx) (fetch markdown/data)
-      - render(ctx, root)
-      - destroy(ctx)
-  - Optional hooks: onEnter, onExit, onResize.
-
-  3. Scene manifest
-
-  - Central scenes.json (or generated) declares all scenes and routes.
-  - Lets you autoserve by qualification rules (e.g., has index.md or index.js + non-empty metadata).
-
-  4. Split scene types
-
-  - MarkdownScene (KaTeX + md rendering)
-  - VizScene (Three.js/canvas)
-  - HybridScene (both)
-  - Avoid per-page special cases in core.
-
-  5. Shared “backstage” services
-
-  - markdownService (parse + KaTeX)
-  - assetService (paths/caching)
-  - linkGraphService (doc cross-links/sphere links)
-  - eventBus (light pub/sub for scene interactions)
-
-  6. Sphere-aware composition
-
-  - Add sphere + binaryPhase fields in scene metadata.
-  - Director can enforce consistency overlays (inner/middle/outer rules) across scenes.
-
-  7. Progressive migration
-
-  - First extract 1-2 stable scenes (e.g., dynamics markdown).
-  - Keep adapter layer so old monolith routes still work during migration.
-
-  If you want, I can draft a concrete folder layout and first extraction patch for one scene end-to-end.
 
 ---
 
@@ -243,14 +151,6 @@ Yes. Dynamics is not unique.
   - Emergent metric weak-field closure
      I can derive a concrete weak-field map from hit-density/medium variables to g_eff constraints in spacetime/emergent-metric.md and spacetime/proper-time-and-time-dilation.md, including explicit pass/fail PPN-
      style checks.
-
-  What I can only partially advance without more guidance:
-
-  - Planck alignment mapping: I can tighten consistency and remove ambiguity, but not fully derive all identifications.
-
-  What is unlikely to leap with sparse guidance right now:
-
-  - Full LCDM replacement/CMB spectrum reproduction
 
 ---
 
@@ -293,13 +193,6 @@ Yes. Dynamics is not unique.
 
 ---
 
-- are there any rapid hits
-  - ellipsoid to GR
-  - koide
-  - planck
-
----
-
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
 
 ---
@@ -319,10 +212,6 @@ Yes. Dynamics is not unique.
 ---
 
 - periodic table of the standard model ( have a basic one)
-
----
-
-- what about the charts I made showing the bootstrap of knowledge.
 
 ---
 
@@ -394,7 +283,6 @@ Yes. Dynamics is not unique.
 
 ---
 
-codex
 
   1. Fill the quantum-number dictionary: derive full SU(3)×SU(2)×U(1) assignments (Q, Y, T3, B/L, spin/statistics) from the tri-binary geometry in particle-physics/fermion-mapping.md, particle-physics/charge-quantization.md, and assemblies/gluons.md; check anomaly cancellation and mixing angles against SM pulls.
 
@@ -441,18 +329,12 @@ codex
   7. Top condensation / topcolor (Miransky-Tanabashi-Yamawaki; Bardeen-Hill-Lindner; Hill): electroweak symmetry breaking from top-sector binding.
   8. Topological/preon braid ideas (Bilson-Thompson 2005 and follow-ons): particle quantum numbers from topological assembly structures.
 
-  Bottom line: many frameworks propose SM “assembly,” but none is experimentally established as a full, unique UV-complete replacement of the SM. If you want, I can map your $\mathbb{A}\mathbb{A}\mathbb{A}$ primitives directly against these
-  8 lines and identify where $\mathbb{A}\mathbb{A}\mathbb{A}$ has a chance at a genuine leap (unique closure + falsifiable prediction).
+  Bottom line: many frameworks propose SM “assembly,” but none is experimentally established as a full, unique UV-complete replacement of the SM. If you want, I can map your $\mathbb{A}\mathbb{A}\mathbb{A}$ primitives directly against these 8 lines and identify where $\mathbb{A}\mathbb{A}\mathbb{A}$ has a chance at a genuine leap (unique closure + falsifiable prediction).
 
   The closest literature is compositeness/preon/rishon work where higher generations are treated as excited states of deeper constituents, e.g. electron/muon/tau as different excitation levels. That is similar in
   spirit to “nesting,” but I’m not aware of a standard, accepted model that explicitly says “remove/destroy outer binary and you get the next generation” in that exact mechanical form.
 
   Closest precedents:
-
-  1. Harari, A Schematic Model of Quarks and Leptons (1979): https://doi.org/10.1016/0370-2693(79)90626-9
-  2. Shupe, A Composite Model of Leptons and Quarks (1979): https://doi.org/10.1016/0370-2693(79)90895-5
-  3. Harari & Seiberg, A dynamical theory for the rishon model (1981): https://doi.org/10.1016/0370-2693(81)90012-5
-  4. Experimental “excited lepton” searches (testing this compositeness idea): CMS 2013 https://doi.org/10.1016/j.physletb.2013.02.031
 
   So: conceptual neighbor exists (excited-state generations), exact “outer-shell destruction gives next generation” formulation is not mainstream in established SM-extension literature.
 

@@ -1,5 +1,18 @@
 import * as THREE from "./vendor/three/three.module.js";
 import { CSS2DRenderer, CSS2DObject } from "./vendor/three/CSS2DRenderer.js";
+import { AppDirector } from "./src/director/AppDirector.js";
+import { createLevelRuntime } from "./src/runtime/LevelRuntime.js";
+import { createMarkdownRuntime } from "./src/runtime/MarkdownRuntime.js";
+import { createNodeFactory } from "./src/runtime/NodeFactoryRuntime.js";
+import { createComposerUiRuntime } from "./src/runtime/ComposerUiRuntime.js";
+import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
+import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
+import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
+import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
+import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
+import { SceneRepository } from "./src/services/SceneRepository.js";
+import { SceneIndexService } from "./src/services/SceneIndexService.js";
+import { PeriodicTableService } from "./src/services/PeriodicTableService.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -21,7 +34,6 @@ const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
   ? Array.from(elementLegend.querySelectorAll("[data-scene]"))
   : [];
-let elementInfoPinned = false;
 const markdownPanel = document.getElementById("markdown-panel");
 const markdownTitle = document.getElementById("markdown-title");
 const markdownContent = document.getElementById("markdown-content");
@@ -1042,6 +1054,17 @@ const motionHandlers = {
   },
 };
 
+const levelRuntime = createLevelRuntime({
+  THREE,
+  motionHandlers,
+  linkColors,
+  linkStyle,
+  clamp,
+  camera,
+  binaryStyle,
+  getPulsingBandName,
+});
+
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 const markdownCache = new Map();
@@ -1057,11 +1080,6 @@ const markdownDirectoryCache = new Map();
 const markdownSubdirCache = new Map();
 const markdownManifestPath = "content/markdown/markdown_index.json";
 let markdownManifestPromise = null;
-let activeMarkdownPath = null;
-let markdownTwoColumns = true;
-let composerActivePanel = "tree";
-let haloSeed = 0;
-let infoDrawerOpen = false;
 const infoMarkdownPath = "info.md";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const metaScenePath = "content/scenes/meta/meta.json";
@@ -1071,11 +1089,13 @@ const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "content/markdown/aaa/_meta/ideas/arch-api.md";
 const cacheBustToken = Date.now().toString();
-let sceneIndex = [];
-let sceneIndexReady = false;
+let appDirector = null;
+const sceneIndexService = new SceneIndexService();
+const periodicTableService = new PeriodicTableService();
 const markdownReaderScenes = new Map();
 const searchBackStack = [];
 const metaBackStack = [];
+const generationBackStack = [];
 const composerPanelMap = new Map([
   ["composer_tree", "tree"],
   ["composer_path", "path"],
@@ -1147,8 +1167,6 @@ let composerCameraFlightGeometry = null;
 let composerCameraWaypointMeshes = [];
 let composerCameraWaypointGeometry = null;
 let composerCameraWaypointMaterial = null;
-const periodicTableCache = { data: null, ready: false };
-let periodicGridBuilt = false;
 
 const levels = new Map();
 const navigationStack = [];
@@ -1240,6 +1258,30 @@ const labelFadeState = {
   startTime: 0,
   duration: 700,
 };
+
+const transitionEngine = createTransitionEngine(transitionState, {
+  smoothstep,
+  applyZoom,
+  worldGroup,
+  camera,
+  zoomState,
+  panTween,
+  labelFadeState,
+  navigationStack,
+  setLevelOpacityWithFocus,
+  setLevelLinkOpacity,
+  setLevelOpacityWithLabel,
+  setLevelOpacity,
+  setLevelLabelOpacity,
+  resetNodeScale,
+  updateSceneLabel,
+  updateSceneMarkdown,
+  getCurrentLevel: () => currentLevel,
+  setCurrentLevel: (level) => {
+    currentLevel = level;
+  },
+  now: () => performance.now(),
+});
 
 const zoomLimits = { min: 0.35, max: 6 };
 const raycaster = new THREE.Raycaster();
@@ -1819,40 +1861,6 @@ function hideHoverTooltip() {
   hoverTooltipVisible = false;
 }
 
-function hideMarkdownPanel() {
-  if (!markdownPanel) {
-    return;
-  }
-  markdownPanel.classList.remove("is-open");
-  markdownPanel.setAttribute("aria-hidden", "true");
-  markdownPanel.inert = true;
-  if (markdownTitle) {
-    markdownTitle.textContent = "";
-  }
-  if (markdownBody) {
-    markdownBody.innerHTML = "";
-  }
-  activeMarkdownPath = null;
-}
-
-function applyMarkdownLayout() {
-  if (!markdownPanel || !markdownLayoutToggle) {
-    return;
-  }
-  markdownPanel.classList.toggle("two-columns", markdownTwoColumns);
-  markdownLayoutToggle.setAttribute(
-    "aria-label",
-    markdownTwoColumns ? "Switch to single column" : "Switch to two columns"
-  );
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-}
-
 function normalizeMarkdownKey(text) {
   return String(text)
     .normalize("NFKD")
@@ -2031,189 +2039,31 @@ function extractMarkdownSection(markdown, sectionKey) {
   return { title: sectionTitle, body };
 }
 
-function protectMathSegments(markdown) {
-  const protectedSegments = [];
-  let protectedIndex = 0;
-  const makeToken = () => `MATHSEGMENTTOKEN${protectedIndex++}X`;
-  const stash = (raw) => {
-    const token = makeToken();
-    protectedSegments.push({ token, raw });
-    return token;
-  };
-
-  let output = markdown;
-  output = output.replace(/\$\$[\s\S]*?\$\$/g, (match) => stash(match));
-  output = output.replace(/\\\[[\s\S]*?\\\]/g, (match) => stash(match));
-  output = output.replace(/\\\([\s\S]*?\\\)/g, (match) => stash(match));
-  output = output.replace(
-    /(^|[^\\$])\$(?!\$)([^$\n]|\\\$)+?\$(?!\$)/g,
-    (match, prefix) => {
-      const math = match.slice(prefix.length);
-      return `${prefix}${stash(math)}`;
-    },
-  );
-
-  return { markdown: output, protectedSegments };
-}
-
-function restoreMathSegments(html, protectedSegments) {
-  if (!protectedSegments?.length) {
-    return html;
-  }
-  let restored = html;
-  protectedSegments.forEach(({ token, raw }) => {
-    restored = restored.split(token).join(raw);
-  });
-  return restored;
-}
-
-function typesetMarkdown() {
-  if (!markdownBody) {
-    return;
-  }
-  const katexRender = window.renderMathInElement;
-  if (typeof katexRender !== "function") {
-    return;
-  }
-  try {
-    katexRender(markdownBody, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "\\[", right: "\\]", display: true },
-        { left: "$", right: "$", display: false },
-        { left: "\\(", right: "\\)", display: false },
-      ],
-      throwOnError: false,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function showMarkdownPanel(level) {
-  if (!markdownPanel || !level?.markdownPath) {
-    hideMarkdownPanel();
-    return;
-  }
-  const markdownPath = level.markdownPath;
-  const sectionKey = level.markdownSection ?? null;
-  const cacheKey = sectionKey ? `${markdownPath}::${sectionKey}` : markdownPath;
-  if (activeMarkdownPath === cacheKey && markdownPanel.classList.contains("is-open")) {
-    return;
-  }
-  if (sectionKey) {
-    markdownTwoColumns = false;
-  } else if (level.markdownColumns === 1) {
-    markdownTwoColumns = false;
-  } else if (level.markdownColumns === 2) {
-    markdownTwoColumns = true;
-  } else {
-    markdownTwoColumns = true;
-  }
-  const sectionCache = sectionKey ? markdownSectionCache : markdownCache;
-  let html = sectionCache.get(cacheKey);
-  if (!html) {
-    try {
-      const response = await fetch(markdownPath);
-      if (!response.ok) {
-        throw new Error(`Failed to load markdown: ${markdownPath}`);
-      }
-      const text = await response.text();
-      let markdownSource = text;
-      if (sectionKey) {
-        const section = extractMarkdownSection(text, sectionKey);
-        if (section) {
-          const heading = section.title ?? level.name ?? "Notes";
-          markdownSource = `## ${heading}\n\n${section.body}`;
-        }
-      }
-      if (markdownRenderer) {
-        const { markdown: protectedMarkdown, protectedSegments } = protectMathSegments(markdownSource);
-        html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
-      } else {
-        html = `<pre>${escapeHtml(markdownSource)}</pre>`;
-      }
-      sectionCache.set(cacheKey, html);
-    } catch (error) {
-      console.error(error);
-      html = `<p>Unable to load markdown.</p>`;
-    }
-  }
-  if (markdownTitle) {
-    markdownTitle.textContent = level.name ?? "Notes";
-  }
-  if (markdownBody) {
-    markdownBody.innerHTML = html;
-  }
-  markdownPanel.classList.add("is-open");
-  markdownPanel.setAttribute("aria-hidden", "false");
-  markdownPanel.inert = false;
-  activeMarkdownPath = cacheKey;
-  applyMarkdownLayout();
-  typesetMarkdown();
-}
-
-async function renderInfoDrawer() {
-  if (!infoBody) {
-    return;
-  }
-  let html = markdownCache.get(infoMarkdownPath);
-  if (!html) {
-    try {
-      const response = await fetch(infoMarkdownPath);
-      if (!response.ok) {
-        throw new Error(`Failed to load info markdown: ${infoMarkdownPath}`);
-      }
-      const text = await response.text();
-      if (markdownRenderer) {
-        const { markdown: protectedMarkdown, protectedSegments } = protectMathSegments(text);
-        html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
-      } else {
-        html = `<pre>${escapeHtml(text)}</pre>`;
-      }
-      markdownCache.set(infoMarkdownPath, html);
-    } catch (error) {
-      console.error(error);
-      html = `<p>Unable to load info.</p>`;
-    }
-  }
-  infoBody.innerHTML = html;
-}
-
-async function toggleInfoDrawer() {
-  if (!hud || !infoDrawer) {
-    return;
-  }
-  await setInfoDrawer(!infoDrawerOpen);
-}
-
-async function setInfoDrawer(open) {
-  if (!hud || !infoDrawer) {
-    return;
-  }
-  if (infoDrawerOpen === open) {
-    return;
-  }
-  infoDrawerOpen = open;
-  hud.classList.toggle("is-open", infoDrawerOpen);
-  hud.setAttribute("aria-expanded", infoDrawerOpen ? "true" : "false");
-  infoDrawer.classList.toggle("is-open", infoDrawerOpen);
-  infoDrawer.setAttribute("aria-hidden", infoDrawerOpen ? "false" : "true");
-  if (infoDrawerOpen) {
-    await renderInfoDrawer();
-  }
-}
+const markdownRuntime = createMarkdownRuntime({
+  markdownPanel,
+  markdownTitle,
+  markdownBody,
+  markdownLayoutToggle,
+  markdownRenderer,
+  markdownCache,
+  markdownSectionCache,
+  infoBody,
+  infoMarkdownPath,
+  hud,
+  infoDrawer,
+  extractMarkdownSection,
+});
 
 function updateSceneMarkdown() {
   if (!currentLevel || !currentLevel.markdownPath) {
-    hideMarkdownPanel();
+    markdownRuntime.hideMarkdownPanel();
     return;
   }
   if (currentLevel.markdownAutoOpen === false) {
-    hideMarkdownPanel();
+    markdownRuntime.hideMarkdownPanel();
     return;
   }
-  showMarkdownPanel(currentLevel);
+  markdownRuntime.showMarkdownPanel(currentLevel);
 }
 
 function getNodeGeneration(node) {
@@ -2316,7 +2166,7 @@ function purgeWorldState() {
   transitionState.payload = null;
   closeDetailPanel();
   hideHoverTooltip();
-  hideMarkdownPanel();
+  markdownRuntime.hideMarkdownPanel();
   zoomState.active = false;
   panTween.active = false;
   labelFadeState.active = false;
@@ -2333,174 +2183,20 @@ function appendCacheBust(path) {
   return `${path}${separator}v=${cacheBustToken}`;
 }
 
+const sceneRepository = new SceneRepository({
+  fetchImpl: (...args) => fetch(...args),
+  appendCacheBust,
+  sceneConfigCache,
+  sceneLoadPromises,
+  levelConfigs,
+  normalizeVelocity,
+  colorTokens,
+  deriveMarkdownConfig,
+  buildAutoMarkdownNodes,
+});
+
 async function loadSceneConfig(scenePath) {
-  if (sceneConfigCache.has(scenePath)) {
-    return sceneConfigCache.get(scenePath);
-  }
-  if (sceneLoadPromises.has(scenePath)) {
-    return sceneLoadPromises.get(scenePath);
-  }
-
-  const promise = fetch(appendCacheBust(scenePath))
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Failed to load scene ${scenePath}`);
-      }
-      return response.json();
-    })
-    .then(async (data) => {
-      const hideScaleLabels = Boolean(data.scene?.hideScaleLabels);
-      const wrapLabels = data.scene?.wrapLabels ?? true;
-      const markdownDerived = deriveMarkdownConfig(data.scene?.markdown);
-      const idMap = new Map(
-        data.objects.map((obj) => [obj.id, obj.label || obj.id])
-      );
-      let nodes = data.objects.map((obj) => {
-        const hasScale =
-          obj.scaleExponent !== undefined && obj.scaleExponent !== null;
-        const binaryBands = Array.isArray(obj.binaryBands)
-          ? obj.binaryBands
-          : null;
-        let color = obj.color ?? "#3a5a8a";
-        if (typeof color === "string" && colorTokens[color]) {
-          color = colorTokens[color];
-        }
-        const stripeColors = Array.isArray(obj.stripeColors)
-          ? obj.stripeColors.map((stripeColor) =>
-              typeof stripeColor === "string" && colorTokens[stripeColor]
-                ? colorTokens[stripeColor]
-                : stripeColor
-            )
-          : null;
-        const node = {
-          id: obj.id,
-          name: obj.label || obj.id,
-          scale: hasScale ? obj.scaleExponent : null,
-          hasScale,
-          radius: obj.radius ?? 1,
-          color,
-          position: obj.position ?? [0, 0, 0],
-          category: obj.category,
-          reaction: obj.reaction,
-          details: obj.details ?? null,
-          renderStyle: obj.renderStyle ?? null,
-          markdownPath: obj.markdownPath ?? null,
-          markdownSection: obj.markdownSection ?? null,
-          markdownColumns: obj.markdownColumns ?? null,
-          markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
-          binaryBands,
-          glowRing: obj.glowRing ?? false,
-          glowRingColor: obj.glowRingColor ?? null,
-          glowRingOpacity: obj.glowRingOpacity ?? null,
-          glowRingThickness: obj.glowRingThickness ?? null,
-          glowRingScale: obj.glowRingScale ?? null,
-          stripeColors,
-          stripeCount: obj.stripeCount ?? null,
-          stripeThickness: obj.stripeThickness ?? null,
-          stripeOpacity: obj.stripeOpacity ?? null,
-          baseOpacity: obj.baseOpacity ?? null,
-          hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
-          wrapLabel: obj.wrapLabel ?? wrapLabels,
-        };
-        if (Array.isArray(obj.subScenes) && obj.subScenes.length > 0) {
-          node.childScene = obj.subScenes[0];
-        }
-        if (obj.motion && obj.motion.type === "orbit") {
-          const orbit = obj.motion.orbit || obj.motion;
-          const centerLabel = idMap.get(orbit.center) ?? orbit.center;
-          node.orbit = {
-            center: centerLabel,
-            radius: orbit.radius ?? 1,
-            speed: orbit.speed ?? 0,
-            phase: orbit.phase ?? 0,
-            shape: orbit.shape ?? "circular",
-            yScale: orbit.yScale,
-          };
-          node.motionType = "orbit";
-        }
-        if (obj.motion && obj.motion.type === "translate") {
-          const translate = obj.motion.translate || obj.motion;
-          const velocity = normalizeVelocity(
-            translate.groupVelocity ?? translate.velocity ?? translate.v
-          );
-          node.translation = { velocity };
-          node.motionType = "translate";
-        }
-        if (binaryBands && binaryBands.length > 0) {
-          node.motionType = node.motionType ?? "binaryOrbit";
-        }
-        return node;
-      });
-      const autoMarkdownScene = markdownDerived ? { ...data.scene, ...markdownDerived } : data.scene;
-      const autoNodes = await buildAutoMarkdownNodes(autoMarkdownScene, nodes);
-      if (autoNodes.length) {
-        nodes = nodes.concat(autoNodes);
-      }
-
-      const sceneName =
-        data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;
-      const sceneId = data.scene?.id ?? null;
-      const config = {
-        layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
-        nodes,
-        links: Array.isArray(data.links) ? data.links : [],
-        sceneName,
-        sceneId,
-        markdownPath: data.scene?.markdownPath ?? null,
-        markdownSection: data.scene?.markdownSection ?? null,
-        markdownColumns: data.scene?.markdownColumns ?? null,
-        markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
-        centerOn: data.scene?.centerOn ?? null,
-        autoSphereRing: data.scene?.autoSphereRing ?? false,
-        autoMarkdownDirectory: markdownDerived?.autoMarkdownDirectory ?? null,
-        autoMarkdownPath: markdownDerived?.autoMarkdownPath ?? null,
-        autoMarkdownSection: markdownDerived?.autoMarkdownSection ?? null,
-        autoMarkdownHeadingLevel: markdownDerived?.autoMarkdownHeadingLevel ?? null,
-        autoMarkdownIncludeExistingInLayout:
-          markdownDerived?.autoMarkdownIncludeExistingInLayout ?? false,
-        autoMarkdownNodeRadius:
-          markdownDerived?.autoMarkdownNodeRadius ?? null,
-        autoMarkdownRingRadius:
-          markdownDerived?.autoMarkdownRingRadius ?? null,
-        autoMarkdownMaxRingCount:
-          markdownDerived?.autoMarkdownMaxRingCount ?? null,
-        autoMarkdownGridSpacing:
-          markdownDerived?.autoMarkdownGridSpacing ?? null,
-        autoMarkdownColumns:
-          markdownDerived?.autoMarkdownColumns ?? null,
-        autoMarkdownPalette:
-          markdownDerived?.autoMarkdownPalette ?? null,
-        autoMarkdownColor:
-          markdownDerived?.autoMarkdownColor ?? null,
-        autoMarkdownExcludePaths: Array.isArray(markdownDerived?.autoMarkdownExcludePaths)
-          ? markdownDerived.autoMarkdownExcludePaths
-          : [],
-        autoMarkdownPlainPaths: Array.isArray(markdownDerived?.autoMarkdownPlainPaths)
-          ? markdownDerived.autoMarkdownPlainPaths
-          : [],
-        autoMarkdownDefaultIndex: markdownDerived?.autoMarkdownDefaultIndex ?? null,
-        autoMarkdownIndexPaths: Array.isArray(markdownDerived?.autoMarkdownIndexPaths)
-          ? markdownDerived.autoMarkdownIndexPaths
-          : [],
-        autoMarkdownPlainSectionPaths: Array.isArray(markdownDerived?.autoMarkdownPlainSectionPaths)
-          ? markdownDerived.autoMarkdownPlainSectionPaths
-          : [],
-        autoMarkdownSectionDepth: markdownDerived?.autoMarkdownSectionDepth ?? null,
-        autoMarkdownOverrides: markdownDerived?.autoMarkdownOverrides ?? null,
-        autoMarkdownSubdirectories: markdownDerived?.autoMarkdownSubdirectories ?? false,
-      };
-      levelConfigs[scenePath] = config;
-      sceneConfigCache.set(scenePath, config);
-      return config;
-    })
-    .catch((error) => {
-      console.error(error);
-      sceneLoadPromises.delete(scenePath);
-      return null;
-    });
-
-  sceneLoadPromises.set(scenePath, promise);
-  return promise;
+  return sceneRepository.loadSceneConfig(scenePath);
 }
 
 async function resetToRootScene() {
@@ -2523,6 +2219,7 @@ async function resetToRootScene() {
   currentLevel = rootLevel;
   navigationStack.length = 0;
   searchBackStack.length = 0;
+  generationBackStack.length = 0;
   labelFadeState.active = true;
   labelFadeState.level = currentLevel;
   labelFadeState.startTime = performance.now();
@@ -2536,6 +2233,20 @@ async function jumpToScene(scenePath, options = {}) {
   if (transitionState.active) {
     return;
   }
+  const preservedWorldPosition = worldGroup.position.clone();
+  const preservedLevelPosition = currentLevel
+    ? currentLevel.group.position.clone()
+    : new THREE.Vector3(0, 0, 0);
+  const jumpWorldStart = options.preserveWorldPosition
+    ? preservedWorldPosition.clone()
+    : new THREE.Vector3(0, 0, 0);
+  const jumpWorldTarget = options.targetWorldPosition
+    ? new THREE.Vector3(
+        Number(options.targetWorldPosition.x ?? 0),
+        Number(options.targetWorldPosition.y ?? 0),
+        Number(options.targetWorldPosition.z ?? 0)
+      )
+    : jumpWorldStart.clone();
   const config = levelConfigs[scenePath] ?? (await loadSceneConfig(scenePath));
   if (!config) {
     return;
@@ -2543,15 +2254,23 @@ async function jumpToScene(scenePath, options = {}) {
   await ensureDynamicSceneConfig(scenePath);
   if (options.mode === "instant") {
     purgeWorldState();
+    worldGroup.position.copy(jumpWorldTarget);
     const level = buildLevel(scenePath);
     worldGroup.add(level.group);
-    level.group.position.set(0, 0, 0);
+    if (options.preserveLevelPosition) {
+      level.group.position.copy(preservedLevelPosition);
+    } else {
+      level.group.position.set(0, 0, 0);
+    }
     level.group.scale.setScalar(1);
     setLevelOpacity(level, 1);
     setLevelLabelOpacity(level, 0);
     setLevelLinkOpacity(level, 1);
     currentLevel = level;
     navigationStack.length = 0;
+    if (!options.preserveGenerationBackStack) {
+      generationBackStack.length = 0;
+    }
     if (Array.isArray(options.restoreNavStack)) {
       options.restoreNavStack.forEach((item) => {
         if (item && item.levelId && item.focusNodeId) {
@@ -2573,13 +2292,18 @@ async function jumpToScene(scenePath, options = {}) {
   }
 
   const nextLevel = buildLevel(scenePath);
-  hideMarkdownPanel();
+  markdownRuntime.hideMarkdownPanel();
   purgeWorldState();
+  worldGroup.position.copy(jumpWorldStart);
   if (currentLevel && !worldGroup.children.includes(currentLevel.group)) {
     worldGroup.add(currentLevel.group);
   }
   worldGroup.add(nextLevel.group);
-  nextLevel.group.position.set(0, 0, 0);
+  if (options.preserveLevelPosition) {
+    nextLevel.group.position.copy(preservedLevelPosition);
+  } else {
+    nextLevel.group.position.set(0, 0, 0);
+  }
   nextLevel.group.scale.setScalar(options.startScale ?? 1);
   setLevelOpacity(nextLevel, 0);
   setLevelLabelOpacity(nextLevel, 0);
@@ -2594,11 +2318,16 @@ async function jumpToScene(scenePath, options = {}) {
     zoomStart: camera.zoom,
     zoomTarget,
     startScale: options.startScale ?? 1,
+    worldPanStart: jumpWorldStart.clone(),
+    worldPanTarget: jumpWorldTarget.clone(),
   };
   transitionState.startTime = performance.now();
   transitionState.duration = options.duration ?? 700;
 
   navigationStack.length = 0;
+  if (!options.preserveGenerationBackStack) {
+    generationBackStack.length = 0;
+  }
   if (Array.isArray(options.restoreNavStack)) {
     options.restoreNavStack.forEach((item) => {
       if (item && item.levelId && item.focusNodeId) {
@@ -2628,32 +2357,9 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
-function setTargetZoom(nextZoom, duration = 420) {
-  zoomState.active = true;
-  zoomState.startZoom = camera.zoom;
-  zoomState.targetZoom = clampZoom(nextZoom);
-  zoomState.startTime = performance.now();
-  zoomState.duration = duration;
-}
-
-function setTargetPan(nextPosition, duration = 420) {
-  panTween.active = true;
-  panTween.start.copy(worldGroup.position);
-  panTween.target.copy(nextPosition);
-  panTween.startTime = performance.now();
-  panTween.duration = duration;
-}
-
 function applyZoom(value) {
   camera.zoom = clampZoom(value);
   camera.updateProjectionMatrix();
-}
-
-function computeFocusZoom(radius, fraction = 0.32) {
-  const targetFraction = clamp(fraction, 0.15, 0.6);
-  const safeRadius = Math.max(radius, 0.01);
-  const targetZoom = (targetFraction * baseViewHeight) / (2 * safeRadius);
-  return clampZoom(targetZoom);
 }
 
 function getMarkdownReaderSceneId(markdownPath, markdownSection) {
@@ -2831,20 +2537,7 @@ function ensureMarkdownDirectoryScene(directory, parentScene, nodeName) {
 }
 
 async function ensureDynamicSceneConfig(sceneId) {
-  const config = levelConfigs[sceneId];
-  if (!config || !config.autoSphereRing) {
-    return;
-  }
-  if (!Array.isArray(config.nodes)) {
-    config.nodes = [];
-  }
-  if (config.nodes.length) {
-    return;
-  }
-  const autoNodes = await buildAutoMarkdownNodes(config, config.nodes);
-  if (autoNodes.length) {
-    config.nodes = config.nodes.concat(autoNodes);
-  }
+  return sceneRepository.ensureDynamicSceneConfig(sceneId);
 }
 
 function computeWarpScale(objectRadius) {
@@ -2955,19 +2648,6 @@ function layoutRootLevel(level) {
   });
 }
 
-function getTransitionFocusNode(level) {
-  if (!level) {
-    return null;
-  }
-  const focusNodeId = transitionState.payload?.focusNodeId;
-  if (!focusNodeId) {
-    return null;
-  }
-  return (
-    level.nodeById.get(focusNodeId) ?? level.nodeByName.get(focusNodeId)
-  );
-}
-
 function getLevelBoundsLocal(level) {
   return getLevelBoundsFromNodes(level);
 }
@@ -3013,614 +2693,35 @@ function updateCamera() {
   camera.updateProjectionMatrix();
 }
 
-function createLabel(node) {
-  const label = document.createElement("div");
-  label.className = "label";
-  if (node.wrapLabel) {
-    label.classList.add("label-wrap");
-    label.style.maxWidth = "120px";
-  }
-  const scaleHtml = node.hideScaleLabel || !node.hasScale
-    ? ""
-    : `<div class="label-scale">10^${node.scale}</div>`;
-  const tagHtml =
-    node.category === "Reaction" ? `<div class="label-tag">RXN</div>` : "";
-  label.innerHTML = `<div class="label-title">${node.name}</div>${scaleHtml}${tagHtml}`;
-  return new CSS2DObject(label);
-}
-
-function getBinaryBandRadii(shellRadius, bands) {
-  if (!Array.isArray(bands) || bands.length === 0) {
-    return [];
-  }
-  const radiiByBand = {
-    outer: 0.75,
-    middle: 0.52,
-    inner: 0.32,
-  };
-  return bands.map((band) => {
-    const factor = radiiByBand[band] ?? 0.5;
-    return shellRadius * factor;
-  });
-}
-
-function createStripedSphereNode(nodeData) {
-  const group = new THREE.Group();
-  const sphereGeometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);
-  const baseOpacity = nodeData.baseOpacity ?? 0.72;
-  const sphereMaterial = new THREE.MeshBasicMaterial({
-    color: nodeData.color,
-    transparent: true,
-    opacity: baseOpacity,
-  });
-  sphereMaterial.depthWrite = false;
-  const mesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
-  group.add(mesh);
-
-  const outlineGeometry = new THREE.EdgesGeometry(sphereGeometry);
-  const outlineMaterial = new THREE.LineBasicMaterial({
-    color: "#7a7a7a",
-    transparent: true,
-    opacity: 0.3,
-  });
-  outlineMaterial.depthWrite = false;
-  const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
-  group.add(outline);
-
-  const extraMeshes = [];
-  const stripeCount = nodeData.stripeCount ?? 7;
-  const stripeThickness =
-    nodeData.stripeThickness ?? Math.max(0.03, nodeData.radius * 0.06);
-  const stripeOpacity = nodeData.stripeOpacity ?? 0.85;
-  const stripeColors =
-    nodeData.stripeColors ?? ["#ff0000", "#4b0082"];
-
-  for (let i = 0; i < stripeCount; i += 1) {
-    const t = (i + 1) / (stripeCount + 1);
-    const phi = t * Math.PI;
-    const ringRadius = Math.sin(phi) * nodeData.radius;
-    const y = Math.cos(phi) * nodeData.radius;
-    if (ringRadius <= 0.0001) {
-      continue;
-    }
-    const ringGeometry = new THREE.TorusGeometry(
-      ringRadius,
-      stripeThickness,
-      12,
-      48
-    );
-    const ringMaterial = new THREE.MeshBasicMaterial({
-      color: stripeColors[i % stripeColors.length],
-      transparent: true,
-      opacity: stripeOpacity,
-    });
-    ringMaterial.depthWrite = false;
-    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-    ring.rotation.x = Math.PI / 2;
-    ring.position.y = y;
-    group.add(ring);
-    extraMeshes.push({ mesh: ring, baseOpacity: stripeOpacity });
-  }
-
-  const labelObject = createLabel(nodeData);
-  group.add(labelObject);
-
-  return {
-    group,
-    mesh,
-    outline,
-    labelObject,
-    labelMaxWidth: null,
-    halo: null,
-    haloBaseOpacity: 0,
-    haloIntensity: 1,
-    haloPhase: haloSeed++ * 0.6,
-    baseScale: 1,
-    data: nodeData,
-    baseOpacity: {
-      mesh: baseOpacity,
-      outline: outlineMaterial.opacity,
-      label: 1,
-    },
-    extraMeshes,
-    binaryBandData: [],
-  };
-}
-
-function createBinaryCoreNode(nodeData, useCutaway) {
-  const group = new THREE.Group();
-  const shellRadius = nodeData.radius;
-  const shellGeometry = useCutaway
-    ? new THREE.SphereGeometry(
-        shellRadius,
-        36,
-        22,
-        Math.PI * 0.15,
-        Math.PI * 1.7,
-        0,
-        Math.PI
-      )
-    : new THREE.SphereGeometry(shellRadius, 36, 22);
-  const shellMaterial = new THREE.MeshBasicMaterial({
-    color: nodeData.color,
-    transparent: true,
-    opacity: binaryStyle.shellOpacity,
-    side: THREE.DoubleSide,
-  });
-  shellMaterial.depthWrite = false;
-  const mesh = new THREE.Mesh(shellGeometry, shellMaterial);
-  group.add(mesh);
-
-  const outlineGeometry = new THREE.EdgesGeometry(shellGeometry);
-  const outlineMaterial = new THREE.LineBasicMaterial({
-    color: "#7a7a7a",
-    transparent: true,
-    opacity: binaryStyle.shellOutlineOpacity,
-  });
-  outlineMaterial.depthWrite = false;
-  const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
-  group.add(outline);
-
-  const extraMeshes = [];
-  const binaryBandData = [];
-  const bandRadii = getBinaryBandRadii(
-    shellRadius,
-    nodeData.binaryBands
-  );
-  const particleRadius = shellRadius * binaryStyle.particleRadiusFactor;
-
-  const bandSpeedFactor = {
-    outer: 1,
-    middle: 2,
-    inner: 4,
-  };
-  bandRadii.forEach((bandRadius, index) => {
-    const ringGeometry = new THREE.TorusGeometry(
-      bandRadius,
-      shellRadius * binaryStyle.ringTubeFactor,
-      16,
-      64
-    );
-    const ringMaterial = new THREE.MeshBasicMaterial({
-      color: nodeData.color,
-      transparent: true,
-      opacity: binaryStyle.ringOpacity,
-      side: THREE.DoubleSide,
-    });
-    ringMaterial.depthWrite = false;
-    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-    group.add(ring);
-    extraMeshes.push({ mesh: ring, baseOpacity: binaryStyle.ringOpacity });
-
-    const positrinoMaterial = new THREE.MeshBasicMaterial({
-      color: binaryStyle.positrinoColor,
-      transparent: true,
-      opacity: 0.9,
-    });
-    positrinoMaterial.depthWrite = false;
-    const electrinoMaterial = new THREE.MeshBasicMaterial({
-      color: binaryStyle.electrinoColor,
-      transparent: true,
-      opacity: 0.9,
-    });
-    electrinoMaterial.depthWrite = false;
-
-    const positrino = new THREE.Mesh(
-      new THREE.SphereGeometry(particleRadius, 16, 12),
-      positrinoMaterial
-    );
-    const electrino = new THREE.Mesh(
-      new THREE.SphereGeometry(particleRadius, 16, 12),
-      electrinoMaterial
-    );
-    group.add(positrino);
-    group.add(electrino);
-    extraMeshes.push({ mesh: positrino, baseOpacity: 0.9 });
-    extraMeshes.push({ mesh: electrino, baseOpacity: 0.9 });
-
-    const bandName = nodeData.binaryBands?.[index];
-    ring.userData.bandName = bandName;
-    binaryBandData.push({
-      radius: bandRadius,
-      speed: binaryStyle.baseOrbitSpeed * (bandSpeedFactor[bandName] ?? 1),
-      phase: index * 0.7,
-      bandName,
-      ring,
-      ringBaseOpacity: binaryStyle.ringOpacity,
-      positrino,
-      electrino,
-    });
-  });
-
-  const labelObject = createLabel(nodeData);
-  group.add(labelObject);
-
-  return {
-    group,
-    mesh,
-    outline,
-    labelObject,
-    labelMaxWidth: null,
-    halo: null,
-    haloBaseOpacity: 0,
-    haloIntensity: 1,
-    haloPhase: haloSeed++ * 0.6,
-    baseScale: 1,
-    data: nodeData,
-    baseOpacity: {
-      mesh: shellMaterial.opacity,
-      outline: outlineMaterial.opacity,
-      label: 1,
-    },
-    extraMeshes,
-    binaryBandData,
-  };
-}
+const nodeFactory = createNodeFactory({
+  THREE,
+  CSS2DObject,
+  binaryStyle,
+});
 
 function createNode(nodeData) {
-  if (nodeData.renderStyle === "binaryShell") {
-    return createBinaryCoreNode(nodeData, true);
-  }
-  if (nodeData.renderStyle === "binarySphere") {
-    return createBinaryCoreNode(nodeData, false);
-  }
-  if (nodeData.renderStyle === "stripedSphere") {
-    return createStripedSphereNode(nodeData);
-  }
-  const group = new THREE.Group();
-  const geometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);
-  const isReaction = nodeData.category === "Reaction";
-  const material = new THREE.MeshBasicMaterial({
-    color: nodeData.color,
-    transparent: true,
-    opacity: isReaction ? 0.92 : 0.86,
-  });
-  material.depthWrite = false;
-  const mesh = new THREE.Mesh(geometry, material);
-  group.add(mesh);
-
-  const outlineGeometry = new THREE.EdgesGeometry(geometry);
-  const outlineMaterial = new THREE.LineBasicMaterial({
-    color: isReaction ? "#f6dd9c" : "#7a7a7a",
-    transparent: true,
-    opacity: isReaction ? 0.55 : 0.3,
-  });
-  outlineMaterial.depthWrite = false;
-  const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
-  group.add(outline);
-
-  const labelObject = createLabel(nodeData);
-  group.add(labelObject);
-
-  const extraMeshes = [];
-  if (nodeData.glowRing) {
-    const ringRadius = nodeData.radius * (nodeData.glowRingScale ?? 1.06);
-    const ringThickness =
-      nodeData.glowRingThickness ?? Math.max(0.02, nodeData.radius * 0.045);
-    const ringMaterial = new THREE.MeshBasicMaterial({
-      color: nodeData.glowRingColor ?? nodeData.color,
-      transparent: true,
-      opacity: nodeData.glowRingOpacity ?? 0.35,
-      side: THREE.DoubleSide,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    });
-    const ringGeometry = new THREE.TorusGeometry(
-      ringRadius,
-      ringThickness,
-      12,
-      64
-    );
-    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-    ring.rotation.x = Math.PI / 2;
-    ring.renderOrder = -1;
-    ring.userData.isGlowRing = true;
-    group.add(ring);
-    extraMeshes.push({ mesh: ring, baseOpacity: ringMaterial.opacity });
-  }
-
-  let halo = null;
-  if (nodeData.childScene || nodeData.markdownPath) {
-    const haloGeometry = new THREE.SphereGeometry(nodeData.radius * 1.18, 24, 16);
-    const haloMaterial = new THREE.MeshBasicMaterial({
-      color: "#d5dcff",
-      transparent: true,
-      opacity: 0.2,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    });
-    halo = new THREE.Mesh(haloGeometry, haloMaterial);
-    halo.renderOrder = -1;
-    group.add(halo);
-  }
-
-  return {
-    group,
-    mesh,
-    outline,
-    labelObject,
-    labelMaxWidth: null,
-    halo,
-    haloBaseOpacity: halo ? halo.material.opacity : 0,
-    haloIntensity: 1,
-    haloPhase: haloSeed++ * 0.6,
-    baseScale: 1,
-    data: nodeData,
-    baseOpacity: {
-      mesh: material.opacity,
-      outline: outlineMaterial.opacity,
-      label: 1,
-    },
-    extraMeshes,
-  };
+  return nodeFactory.createNode(nodeData);
 }
 
+const sceneGraphRuntime = createSceneGraphRuntime({
+  THREE,
+  levels,
+  levelConfigs,
+  rootScenePath,
+  cloneNodeData,
+  computeRingLayout,
+  createNode,
+  layoutRootLevel,
+  buildLevelLinks,
+  updateLevelMotions,
+});
+
 function buildLevel(levelId) {
-  if (levels.has(levelId)) {
-    return levels.get(levelId);
-  }
-
-  const config = levelConfigs[levelId];
-  const group = new THREE.Group();
-  let nodes = [];
-  const nodeByName = new Map();
-  const nodeById = new Map();
-  const motionNodes = [];
-  const ringTargets = [];
-  const ringTargetByMesh = new Map();
-  let primaryBinaryNode = null;
-
-  const useAutoSphereRing =
-    !!config.autoSphereRing &&
-    !config.autoMarkdownDirectory &&
-    config.layout === "static";
-  const ringNodes = useAutoSphereRing
-    ? config.nodes.filter((node) => node?.category !== "legend")
-    : [];
-  const ringLayout = useAutoSphereRing ? computeRingLayout(ringNodes) : null;
-  const useClockwiseOrder =
-    !!ringLayout &&
-    !!config.autoSphereRing &&
-    (config.autoMarkdownPath || config.autoMarkdownDirectory || config.autoMarkdownSection);
-  let ringIndex = 0;
-
-  const spacing = config.spacing ?? 7;
-  const centerOffset = (config.nodes.length - 1) / 2;
-  const isElementScene = typeof levelId === "string" && levelId.startsWith("content/scenes/elements/");
-
-  config.nodes.forEach((nodeDataRaw, index) => {
-    const nodeData = cloneNodeData(nodeDataRaw);
-    if (nodeData.category === "legend") {
-      return;
-    }
-    if (ringLayout) {
-      const positionIndex =
-        useClockwiseOrder && ringIndex > 0
-          ? ringLayout.positions.length - ringIndex
-          : ringIndex;
-      const pos = ringLayout.positions[positionIndex];
-      if (pos) {
-        nodeData.position = [pos[0], pos[1], 0];
-      }
-      nodeData.radius = ringLayout.nodeRadius;
-      ringIndex += 1;
-    }
-    const node = createNode(nodeData);
-    const hasPosition =
-      Array.isArray(nodeData.position) && nodeData.position.length >= 2;
-    if (hasPosition) {
-      node.group.position.set(
-        nodeData.position[0] ?? 0,
-        nodeData.position[1] ?? 0,
-        nodeData.position[2] ?? 0
-      );
-    } else if (config.layout === "linear") {
-      node.group.position.x = (index - centerOffset) * spacing;
-    }
-    group.add(node.group);
-    nodes.push(node);
-    nodeByName.set(nodeData.name, node);
-    if (nodeData.id) {
-      nodeById.set(nodeData.id, node);
-    }
-
-    if (nodeData.motionType) {
-      motionNodes.push(node);
-    }
-    if (node.binaryBandData && node.binaryBandData.length) {
-      node.binaryBandData.forEach((band) => {
-        if (!band.ring) {
-          return;
-        }
-        ringTargets.push({ mesh: band.ring, node, bandName: band.bandName });
-        ringTargetByMesh.set(band.ring, { node, bandName: band.bandName });
-      });
-      if (!primaryBinaryNode) {
-        primaryBinaryNode = node;
-      }
-    }
-  });
-
-  // Re-pack nucleus for element scenes: alternate P/N inside a faint circle.
-  if (isElementScene) {
-    let nucleusRadius = 0;
-    const nucleons = nodes.filter(
-      (n) => n.data.category === "proton" || n.data.category === "neutron"
-    );
-    const electrons = nodes.filter((n) => n.data.category === "electron");
-    if (nucleons.length) {
-      const avgRadius =
-        nucleons.reduce((s, n) => s + (n.data.radius ?? 0.3), 0) /
-        nucleons.length;
-      // Make electrons match nucleon size for visual consistency.
-      electrons.forEach((e) => {
-        e.data.radius = avgRadius;
-        e.mesh.geometry.dispose();
-        e.mesh.geometry = new THREE.SphereGeometry(avgRadius, 32, 20);
-        e.outline.geometry.dispose();
-        e.outline.geometry = new THREE.EdgesGeometry(e.mesh.geometry);
-      });
-      const golden = Math.PI * (3 - Math.sqrt(5));
-      let packRadius = Math.max(
-        avgRadius * 2.2,
-        Math.sqrt(nucleons.length) * avgRadius * 1.25
-      );
-      const positions = [];
-      for (let i = 0; i < nucleons.length; i++) {
-        const r = packRadius * Math.sqrt((i + 0.35) / nucleons.length);
-        const theta = i * golden;
-        positions.push(
-          new THREE.Vector3(Math.cos(theta) * r, Math.sin(theta) * r, 0)
-        );
-      }
-      const protons = nucleons.filter((n) => n.data.category === "proton");
-      const neutrons = nucleons.filter((n) => n.data.category === "neutron");
-      const ordered = [];
-      while (protons.length || neutrons.length) {
-        if (protons.length) ordered.push(protons.shift());
-        if (neutrons.length) ordered.push(neutrons.shift());
-      }
-      ordered.forEach((node, idx) => {
-        if (positions[idx]) {
-          node.group.position.copy(positions[idx]);
-        }
-      });
-
-      nucleusRadius = packRadius + avgRadius * 0.5;
-      // Nucleus boundary retained via radius for layout, but no visible ring drawn.
-    }
-
-    // Orbit guides (thin rings) for each populated shell.
-    const uniqueRadii = Array.from(
-      new Set(
-        electrons
-          .map((e) => e.data.orbit?.radius)
-          .filter((r) => typeof r === "number")
-      )
-    ).sort((a, b) => a - b);
-
-    if (uniqueRadii.length) {
-      const minShellRadius = nucleusRadius + 0.6;
-      const shellGap = 0.9;
-      const radiusMap = new Map();
-      uniqueRadii.forEach((r, idx) => {
-        radiusMap.set(r, minShellRadius + idx * shellGap);
-      });
-
-      electrons.forEach((e) => {
-        const currentRadius = e.data.orbit?.radius;
-        if (typeof currentRadius !== "number") {
-          return;
-        }
-        const newRadius = radiusMap.get(currentRadius) ?? currentRadius;
-        const pos = e.group.position;
-        const angle = Math.atan2(pos.y, pos.x) || 0;
-        if (!e.data.orbit) {
-          e.data.orbit = { center: "origin", radius: newRadius, speed: 0, phase: angle };
-        } else {
-          e.data.orbit.radius = newRadius;
-          e.data.orbit.phase = angle;
-        }
-        e.group.position.set(
-          Math.cos(angle) * newRadius,
-          Math.sin(angle) * newRadius,
-          0
-        );
-      });
-
-      const remappedRadii = uniqueRadii.map((r) => radiusMap.get(r) ?? r);
-      remappedRadii.forEach((r) => {
-        const guideGeo = new THREE.RingGeometry(
-          Math.max(0.01, r - 0.06),
-          r + 0.06,
-          96
-        );
-        const guideMat = new THREE.MeshBasicMaterial({
-          color: "#8fa7ff",
-          transparent: true,
-          opacity: 0.28,
-          side: THREE.DoubleSide,
-          depthWrite: false,
-        });
-        const guide = new THREE.Mesh(guideGeo, guideMat);
-        guide.userData.excludeFromBounds = true;
-        group.add(guide);
-      });
-    }
-  } else {
-    // Non-element scenes: still render orbit guides if present.
-    const electrons = nodes.filter((n) => n.data.category === "electron");
-    const shellRadii = Array.from(
-      new Set(
-        electrons
-          .map((e) => e.data.orbit?.radius)
-          .filter((r) => typeof r === "number")
-      )
-    ).sort((a, b) => a - b);
-    shellRadii.forEach((r) => {
-      const guideGeo = new THREE.RingGeometry(
-        Math.max(0.01, r - 0.08),
-        r + 0.08,
-        96
-      );
-      const guideMat = new THREE.MeshBasicMaterial({
-        color: "#8fa7ff",
-        transparent: true,
-        opacity: 0.28,
-        side: THREE.DoubleSide,
-        depthWrite: false,
-      });
-      const guide = new THREE.Mesh(guideGeo, guideMat);
-      guide.userData.excludeFromBounds = true;
-      group.add(guide);
-    });
-  }
-
-  const level = {
-    id: levelId,
-    name: config.sceneName ?? levelId,
-    sceneId: config.sceneId ?? null,
-    markdownPath: config.markdownPath ?? null,
-    markdownSection: config.markdownSection ?? null,
-    markdownColumns: config.markdownColumns ?? null,
-    markdownAutoOpen: config.markdownAutoOpen ?? true,
-    centerOn: config.centerOn,
-    group,
-    nodes,
-    nodeByName,
-    nodeById,
-    motionNodes,
-    ringTargets,
-    ringTargetByMesh,
-    primaryBinaryNode,
-    layout: config.layout,
-    links: [],
-  };
-
-  if (level.id === rootScenePath) {
-    layoutRootLevel(level);
-  }
-  level.nodes.forEach((node) => {
-    node.basePosition = node.group.position.clone();
-  });
-
-  levels.set(levelId, level);
-  buildLevelLinks(level, config);
-  updateLevelMotions(level, 0);
-  return level;
+  return sceneGraphRuntime.buildLevel(levelId);
 }
 
 function updateLevelMotions(level, timeSeconds) {
-  level.motionNodes.forEach((node) => {
-    const hasBinary = !!(node.binaryBandData && node.binaryBandData.length);
-    if (hasBinary) {
-      motionHandlers.binaryOrbit(node, level, timeSeconds);
-    }
-    const handler = motionHandlers[node.data.motionType];
-    if (handler && (!hasBinary || node.data.motionType !== "binaryOrbit")) {
-      handler(node, level, timeSeconds);
-    }
-  });
+  levelRuntime.updateLevelMotions(level, timeSeconds);
 }
 
 function getLevelBoundsFromNodes(level) {
@@ -3702,126 +2803,15 @@ function getLevelCenter(level) {
 }
 
 function buildLevelLinks(level, config) {
-  if (!config.links.length) {
-    return;
-  }
-  config.links.forEach((link) => {
-    const linkColor = link.color ?? linkColors[link.kind] ?? linkColors.default;
-    const arrow = new THREE.ArrowHelper(
-      new THREE.Vector3(1, 0, 0),
-      new THREE.Vector3(),
-      1,
-      linkColor,
-      linkStyle.headLengthMax,
-      linkStyle.headLengthMax * linkStyle.headWidthFactor
-    );
-    arrow.line.material.transparent = true;
-    arrow.line.material.opacity = linkStyle.lineOpacity;
-    arrow.line.material.depthWrite = false;
-    arrow.cone.material.transparent = true;
-    arrow.cone.material.opacity = linkStyle.headOpacity;
-    arrow.cone.material.depthWrite = false;
-    level.group.add(arrow);
-    level.links.push({
-      arrow,
-      from: link.from,
-      to: link.to,
-      direction: link.direction,
-      length: link.length,
-      kind: link.kind,
-      opacity: 1,
-      baseOpacity: {
-        line: linkStyle.lineOpacity,
-        cone: linkStyle.headOpacity,
-      },
-    });
-  });
-}
-
-function getNodeForLink(level, linkId) {
-  if (!linkId) {
-    return null;
-  }
-  return level.nodeById.get(linkId) || level.nodeByName.get(linkId) || null;
+  levelRuntime.buildLevelLinks(level, config);
 }
 
 function updateLevelLinks(level) {
-  if (!level || !level.links.length) {
-    return;
-  }
-  level.links.forEach((link) => {
-    const fromNode = getNodeForLink(level, link.from);
-    if (!fromNode) {
-      return;
-    }
-    const fromPos = fromNode.group.position.clone();
-    const fromRadius = fromNode.data.radius ?? 0;
-
-    if (link.to) {
-      const toNode = getNodeForLink(level, link.to);
-      if (!toNode) {
-        return;
-      }
-      const toPos = toNode.group.position.clone();
-      const toRadius = toNode.data.radius ?? 0;
-      const dir = toPos.clone().sub(fromPos);
-      const distance = dir.length();
-      if (distance <= 0.0001) {
-        return;
-      }
-      dir.normalize();
-      const length = Math.max(
-        linkStyle.minLength,
-        distance - fromRadius - toRadius - linkStyle.tipClearance
-      );
-      const origin = fromPos
-        .clone()
-        .add(dir.clone().multiplyScalar(fromRadius + linkStyle.tipClearance));
-      const headLength = clamp(
-        length * 0.3,
-        linkStyle.headLengthMin,
-        linkStyle.headLengthMax
-      );
-      const headWidth = headLength * linkStyle.headWidthFactor;
-      link.arrow.position.copy(origin);
-      link.arrow.setDirection(dir);
-      link.arrow.setLength(length, headLength, headWidth);
-    } else if (Array.isArray(link.direction)) {
-      const dir = new THREE.Vector3(
-        link.direction[0] ?? 0,
-        link.direction[1] ?? 0,
-        link.direction[2] ?? 0
-      );
-      if (dir.lengthSq() < 0.0001) {
-        return;
-      }
-      dir.normalize();
-      const length = Math.max(linkStyle.minLength, link.length ?? 2);
-      const origin = fromPos
-        .clone()
-        .add(dir.clone().multiplyScalar(fromRadius + linkStyle.tipClearance));
-      const headLength = clamp(
-        length * 0.3,
-        linkStyle.headLengthMin,
-        linkStyle.headLengthMax
-      );
-      const headWidth = headLength * linkStyle.headWidthFactor;
-      link.arrow.position.copy(origin);
-      link.arrow.setDirection(dir);
-      link.arrow.setLength(length, headLength, headWidth);
-    }
-  });
+  levelRuntime.updateLevelLinks(level);
 }
 
 function setLevelLinkOpacity(level, opacity) {
-  if (!level || !level.links.length) {
-    return;
-  }
-  level.links.forEach((link) => {
-    link.opacity = opacity;
-    link.arrow.line.material.opacity = link.baseOpacity.line * opacity;
-    link.arrow.cone.material.opacity = link.baseOpacity.cone * opacity;
-  });
+  levelRuntime.setLevelLinkOpacity(level, opacity);
 }
 
 function updateLevelLabelWrap(level) {
@@ -3893,70 +2883,28 @@ function updateLevelLabelWrap(level) {
 }
 
 function updateGlowRingOrientation(level) {
-  if (!level?.nodes?.length) {
-    return;
-  }
-  level.nodes.forEach((node) => {
-    if (!node.extraMeshes || !node.extraMeshes.length) {
-      return;
-    }
-    node.extraMeshes.forEach((entry) => {
-      const mesh = entry.mesh;
-      if (!mesh?.userData?.isGlowRing) {
-        return;
-      }
-      mesh.quaternion.copy(camera.quaternion);
-    });
-  });
-}
-
-function setNodeExtraOpacity(node, opacity) {
-  if (!node.extraMeshes || !node.extraMeshes.length) {
-    return;
-  }
-  node.extraMeshes.forEach((entry) => {
-    entry.mesh.material.opacity = entry.baseOpacity * opacity;
-  });
+  levelRuntime.updateGlowRingOrientation(level);
 }
 
 function setLevelOpacity(level, opacity) {
-  level.nodes.forEach((node) => {
-    node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
-    node.outline.material.opacity = node.baseOpacity.outline * opacity;
-    node.labelObject.element.style.opacity = opacity;
-    node.haloIntensity = opacity;
-    setNodeExtraOpacity(node, opacity);
-  });
+  levelRuntime.setLevelOpacity(level, opacity);
 }
 
 function setLevelOpacityWithLabel(level, meshOpacity, labelOpacity) {
-  level.nodes.forEach((node) => {
-    node.mesh.material.opacity = node.baseOpacity.mesh * meshOpacity;
-    node.outline.material.opacity = node.baseOpacity.outline * meshOpacity;
-    node.labelObject.element.style.opacity = labelOpacity;
-    node.haloIntensity = meshOpacity;
-    setNodeExtraOpacity(node, meshOpacity);
-  });
+  levelRuntime.setLevelOpacityWithLabel(level, meshOpacity, labelOpacity);
 }
 
 function setLevelLabelOpacity(level, labelOpacity) {
-  level.nodes.forEach((node) => {
-    node.labelObject.element.style.opacity = labelOpacity;
-  });
+  levelRuntime.setLevelLabelOpacity(level, labelOpacity);
 }
 
 function setLevelOpacityWithFocus(level, focusId, focusOpacity, otherOpacity) {
-  level.nodes.forEach((node) => {
-    const opacity =
-      node.data.id === focusId || node.data.name === focusId
-        ? focusOpacity
-        : otherOpacity;
-    node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
-    node.outline.material.opacity = node.baseOpacity.outline * opacity;
-    node.labelObject.element.style.opacity = opacity;
-    node.haloIntensity = opacity;
-    setNodeExtraOpacity(node, opacity);
-  });
+  levelRuntime.setLevelOpacityWithFocus(
+    level,
+    focusId,
+    focusOpacity,
+    otherOpacity
+  );
 }
 
 function setLevelOpacityWithFocusAndLabel(
@@ -3966,56 +2914,21 @@ function setLevelOpacityWithFocusAndLabel(
   otherOpacity,
   labelOpacity
 ) {
-  level.nodes.forEach((node) => {
-    const opacity =
-      node.data.id === focusId || node.data.name === focusId
-        ? focusOpacity
-        : otherOpacity;
-    node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
-    node.outline.material.opacity = node.baseOpacity.outline * opacity;
-    node.labelObject.element.style.opacity = opacity * labelOpacity;
-    node.haloIntensity = opacity;
-    setNodeExtraOpacity(node, opacity);
-  });
+  levelRuntime.setLevelOpacityWithFocusAndLabel(
+    level,
+    focusId,
+    focusOpacity,
+    otherOpacity,
+    labelOpacity
+  );
 }
 
 function updateLevelHalo(level, timeSeconds) {
-  if (!level) {
-    return;
-  }
-  level.nodes.forEach((node) => {
-    if (!node.halo) {
-      return;
-    }
-    const pulse = 0.5 + 0.5 * Math.sin(timeSeconds * 1.5 + node.haloPhase);
-    const scale = 1.02 + 0.06 * pulse;
-    node.halo.scale.setScalar(scale);
-    node.halo.material.opacity =
-      node.haloBaseOpacity * node.haloIntensity * (0.35 + 0.65 * pulse);
-  });
+  levelRuntime.updateLevelHalo(level, timeSeconds);
 }
 
 function updateBinaryRingPulse(level, timeSeconds) {
-  if (!level) {
-    return;
-  }
-  level.nodes.forEach((node) => {
-    if (!node.binaryBandData || !node.binaryBandData.length) {
-      return;
-    }
-    const pulsingBand = getPulsingBandName(node);
-    node.binaryBandData.forEach((band) => {
-      if (!band.ring) {
-        return;
-      }
-      const base = band.ringBaseOpacity ?? binaryStyle.ringOpacity;
-      const pulse =
-        pulsingBand && band.bandName === pulsingBand
-          ? 0.65 + 0.35 * Math.sin(timeSeconds * 2.2 + node.haloPhase)
-          : 1;
-      band.ring.material.opacity = base * (node.haloIntensity ?? 1) * pulse;
-    });
-  });
+  levelRuntime.updateBinaryRingPulse(level, timeSeconds);
 }
 
 function beginLevelTransition(targetNode, childLevelId) {
@@ -4028,7 +2941,7 @@ function beginLevelTransition(targetNode, childLevelId) {
 
   closeDetailPanel();
   hideHoverTooltip();
-  hideMarkdownPanel();
+  markdownRuntime.hideMarkdownPanel();
   const toLevel = buildLevel(childLevelId);
   if (!worldGroup.children.includes(toLevel.group)) {
     worldGroup.add(toLevel.group);
@@ -4101,7 +3014,7 @@ function startLevelTransitionOut() {
 
   closeDetailPanel();
   hideHoverTooltip();
-  hideMarkdownPanel();
+  markdownRuntime.hideMarkdownPanel();
   const parentInfo = navigationStack[navigationStack.length - 1];
   const parentLevel = buildLevel(parentInfo.levelId);
   const parentNode =
@@ -4132,7 +3045,7 @@ function startLevelTransitionOut() {
     fromPivot: null,
   };
   transitionState.startTime = performance.now();
-  transitionState.duration = 2250;
+  transitionState.duration = 1500;
 
   parentLevel.group.position
     .copy(parentCenter)
@@ -4161,234 +3074,12 @@ function startLevelTransitionOut() {
 }
 
 function finalizeTransition() {
-  if (!transitionState.active) {
-    return;
-  }
-  const handler = transitionHandlers[transitionState.mode];
-  if (!handler) {
-    transitionState.active = false;
-    transitionState.payload = null;
-    return;
-  }
-  handler.finalize();
-  transitionState.active = false;
-  transitionState.payload = null;
+  transitionEngine.finalize();
 }
 
 function updateTransition(now) {
-  if (!transitionState.active) {
-    return;
-  }
-  const handler = transitionHandlers[transitionState.mode];
-  if (!handler) {
-    finalizeTransition();
-    return;
-  }
-  const done = handler.update(now);
-  if (done) {
-    finalizeTransition();
-  }
+  transitionEngine.update(now);
 }
-
-const transitionHandlers = {
-  warpIn: {
-    update: (now) => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!fromLevel || !toLevel || !payload) {
-        return true;
-      }
-      const elapsed = now - transitionState.startTime;
-      const t = Math.min(1, elapsed / transitionState.duration);
-      const panProgress = smoothstep(0, 0.35, t);
-      const scaleProgress = smoothstep(0.35, 1, t);
-      const zoomProgress = scaleProgress;
-
-      const nextZoom =
-        payload.zoomStart +
-        (payload.zoomTarget - payload.zoomStart) * zoomProgress;
-      applyZoom(nextZoom);
-
-      const focusNode = getTransitionFocusNode(fromLevel);
-      if (focusNode) {
-        const baseScale = focusNode.baseScale ?? focusNode.data?.baseScale ?? 1;
-        focusNode.group.scale.setScalar(
-          baseScale * (1 + (payload.warpScale - 1) * scaleProgress)
-        );
-      }
-      const toScale =
-        payload.toStartScale +
-        (1 - payload.toStartScale) * scaleProgress;
-      toLevel.group.scale.setScalar(toScale);
-      worldGroup.position.lerpVectors(
-        payload.panStart,
-        payload.panTarget,
-        panProgress
-      );
-
-      const focusFade = 1 - smoothstep(0.55, 1, scaleProgress);
-      const toFade = Math.pow(smoothstep(0.2, 1, scaleProgress), 1.6);
-      setLevelOpacityWithFocus(
-        fromLevel,
-        payload.focusNodeId,
-        focusFade,
-        0
-      );
-      setLevelLinkOpacity(fromLevel, 0);
-      setLevelOpacityWithLabel(toLevel, toFade, 0);
-      setLevelLinkOpacity(toLevel, toFade);
-      return t >= 1;
-    },
-    finalize: () => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!fromLevel || !toLevel || !payload) {
-        return;
-      }
-      const fromFocus = getTransitionFocusNode(fromLevel);
-      if (fromFocus) {
-        resetNodeScale(fromFocus);
-      }
-      fromLevel.group.scale.setScalar(1);
-      setLevelOpacity(fromLevel, 0);
-      setLevelLinkOpacity(fromLevel, 0);
-      worldGroup.remove(fromLevel.group);
-
-      toLevel.group.scale.setScalar(1);
-      setLevelOpacity(toLevel, 1);
-      setLevelLabelOpacity(toLevel, 0);
-      setLevelLinkOpacity(toLevel, 1);
-
-      currentLevel = toLevel;
-      zoomState.active = false;
-      panTween.active = false;
-      applyZoom(payload.zoomTarget ?? camera.zoom);
-      labelFadeState.active = true;
-      labelFadeState.level = currentLevel;
-      labelFadeState.startTime = performance.now();
-      updateSceneLabel();
-      updateSceneMarkdown();
-    },
-  },
-  warpOut: {
-    update: (now) => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!fromLevel || !toLevel || !payload) {
-        return true;
-      }
-      const elapsed = now - transitionState.startTime;
-      const t = Math.min(1, elapsed / transitionState.duration);
-      const scaleProgress = smoothstep(0.35, 1, t);
-      const zoomProgress = scaleProgress;
-
-      const nextZoom =
-        payload.zoomStart +
-        (payload.zoomTarget - payload.zoomStart) * zoomProgress;
-      applyZoom(nextZoom);
-
-      const toScale =
-        payload.toStartScale + (1 - payload.toStartScale) * scaleProgress;
-      toLevel.group.scale.setScalar(toScale);
-      worldGroup.position.copy(payload.panStart);
-
-      const fromScale = Math.max(0.05, 1 - 0.95 * scaleProgress);
-      if (payload.fromPivot) {
-        payload.fromPivot.scale.setScalar(fromScale);
-      } else {
-        fromLevel.group.scale.setScalar(fromScale);
-      }
-
-      const fromFade = 1 - smoothstep(0.35, 0.95, t);
-      const toFade = smoothstep(0.3, 1, t);
-      setLevelOpacity(fromLevel, fromFade);
-      setLevelLinkOpacity(fromLevel, fromFade);
-      setLevelOpacityWithLabel(toLevel, toFade, 0);
-      setLevelLinkOpacity(toLevel, toFade);
-      return t >= 1;
-    },
-    finalize: () => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!fromLevel || !toLevel || !payload) {
-        return;
-      }
-      toLevel.group.scale.setScalar(1);
-      setLevelOpacity(toLevel, 1);
-      setLevelLabelOpacity(toLevel, 0);
-      setLevelLinkOpacity(toLevel, 1);
-
-      const toFocus = getTransitionFocusNode(toLevel);
-      if (toFocus) {
-        resetNodeScale(toFocus);
-      }
-      if (payload.fromPivot) {
-        payload.fromPivot.scale.setScalar(1);
-        payload.fromPivot.remove(fromLevel.group);
-        worldGroup.remove(payload.fromPivot);
-        payload.fromPivot = null;
-      } else {
-        fromLevel.group.scale.setScalar(1);
-        worldGroup.remove(fromLevel.group);
-      }
-      setLevelOpacity(fromLevel, 0);
-      setLevelLinkOpacity(fromLevel, 0);
-
-      currentLevel = toLevel;
-      navigationStack.pop();
-      zoomState.active = false;
-      panTween.active = false;
-      applyZoom(payload.zoomTarget ?? camera.zoom);
-      labelFadeState.active = true;
-      labelFadeState.level = currentLevel;
-      labelFadeState.startTime = performance.now();
-      updateSceneLabel();
-      updateSceneMarkdown();
-    },
-  },
-  jump: {
-    update: (now) => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!toLevel || !payload) {
-        return true;
-      }
-      const elapsed = now - transitionState.startTime;
-      const t = Math.min(1, elapsed / transitionState.duration);
-      const fade = smoothstep(0, 1, t);
-      if (fromLevel) {
-        setLevelOpacity(fromLevel, 1 - fade);
-        setLevelLinkOpacity(fromLevel, 1 - fade);
-      }
-      setLevelOpacity(toLevel, fade);
-      setLevelLinkOpacity(toLevel, fade);
-      const startScale = payload.startScale ?? 1;
-      const scale = startScale + (1 - startScale) * fade;
-      toLevel.group.scale.setScalar(scale);
-      const nextZoom =
-        payload.zoomStart + (payload.zoomTarget - payload.zoomStart) * fade;
-      applyZoom(nextZoom);
-      return t >= 1;
-    },
-    finalize: () => {
-      const { fromLevel, toLevel, payload } = transitionState;
-      if (!toLevel || !payload) {
-        return;
-      }
-      if (fromLevel) {
-        setLevelOpacity(fromLevel, 0);
-        setLevelLinkOpacity(fromLevel, 0);
-        worldGroup.remove(fromLevel.group);
-      }
-      toLevel.group.scale.setScalar(1);
-      setLevelOpacity(toLevel, 1);
-      setLevelLabelOpacity(toLevel, 0);
-      setLevelLinkOpacity(toLevel, 1);
-      currentLevel = toLevel;
-      applyZoom(payload.zoomTarget ?? camera.zoom);
-      labelFadeState.active = true;
-      labelFadeState.level = currentLevel;
-      labelFadeState.startTime = performance.now();
-      updateSceneLabel();
-      updateSceneMarkdown();
-    },
-  },
-};
 
 function getNodeScreenMetrics(node) {
   const worldPos = new THREE.Vector3();
@@ -4476,324 +3167,28 @@ function updateNavButton() {
   updateDocButton();
 }
 
-async function ensurePeriodicTable() {
-  if (periodicTableCache.ready) {
-    return periodicTableCache.data;
-  }
-  try {
-    const resp = await fetch("content/scenes/chemistry/periodic_table.json");
-    if (!resp.ok) {
-      throw new Error("Failed to load periodic table");
-    }
-    const data = await resp.json();
-    periodicTableCache.data = data;
-    periodicTableCache.ready = true;
-    return data;
-  } catch (err) {
-    console.error(err);
-    periodicTableCache.data = null;
-    periodicTableCache.ready = false;
-    return null;
-  }
-}
-
-function getPeriodicColor(category) {
-  if (!category) {
-    return periodicCategoryColors.unknown;
-  }
-  const key = category.toLowerCase();
-  return periodicCategoryColors[key] || periodicCategoryColors.unknown;
-}
-
-function showPeriodicElementDetail(el) {
-  if (!detailPanel || !detailTitle || !detailBody) {
-    return;
-  }
-  detailPanel.classList.add("is-open");
-  detailPanel.setAttribute("aria-hidden", "false");
-  detailPanel.inert = false;
-  detailTitle.textContent = `${el.symbol} — ${el.name}`;
-  const fields = [
-    ["Atomic #", el.number],
-    ["Category", el.category],
-    ["Phase", el.phase],
-    ["Atomic mass", el.atomic_mass ? `${el.atomic_mass}` : null],
-    ["Electron config", el.electron_configuration_semantic],
-    ["Electronegativity", el.electronegativity_pauling],
-    ["Electron affinity", el.electron_affinity],
-    ["Melting point", el.melt],
-    ["Boiling point", el.boil],
-    ["Density", el.density],
-    ["Block", el.block],
-    ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
-    ["Summary", el.summary],
-  ];
-  detailBody.innerHTML = "";
-  fields.forEach(([label, value]) => {
-    if (value === undefined || value === null || value === "") {
-      return;
-    }
-    const isSummary = label === "Summary";
-    const row = document.createElement("div");
-    row.className = "detail-row" + (isSummary ? " summary-row" : "");
-    const key = document.createElement("div");
-    key.className = "detail-key";
-    key.textContent = label;
-    const val = document.createElement("div");
-    val.className = "detail-value";
-    val.textContent = String(value);
-    row.appendChild(key);
-    row.appendChild(val);
-    detailBody.appendChild(row);
-  });
-}
-
-function buildPeriodicGrid(data) {
-  if (!periodicGrid || !periodicLegend || !data?.elements) {
-    return;
-  }
-  periodicGrid.innerHTML = "";
-  periodicLegend.innerHTML = "";
-  const frag = document.createDocumentFragment();
-  const legendSet = new Map();
-  data.elements.forEach((el) => {
-    const btn = document.createElement("button");
-    btn.className = "ptable-cell";
-    btn.style.gridColumn = el.xpos;
-    btn.style.gridRow = el.ypos;
-    const color = getPeriodicColor(el.category);
-    btn.style.background = `${color}22`;
-    btn.style.borderColor = color;
-    btn.dataset.symbol = el.symbol;
-    btn.dataset.number = el.number;
-    btn.innerHTML = `
-      <div class="ptable-number">${el.number}</div>
-      <div class="ptable-symbol">${el.symbol}</div>
-      <div class="ptable-name">${el.name}</div>
-    `;
-    btn.addEventListener("click", () => {
-      showPeriodicElementDetail(el);
-      if (currentLevel) {
-        searchBackStack.push({
-          levelId: currentLevel.id,
-          navigationStack: navigationStack.map((entry) => ({
-            levelId: entry.levelId,
-            focusNodeId: entry.focusNodeId,
-          })),
-        });
-        updateNavButton();
-      }
-      const sceneId = el.symbol.toLowerCase();
-      const path = `content/scenes/elements/${sceneId}.json`;
-      if (periodicOverlay) {
-        periodicOverlay.classList.add("is-fading");
-      }
-      jumpToScene(path, { mode: "jump", startScale: 0.35, duration: 2000 });
-    });
-    btn.addEventListener("mouseenter", () => showPeriodicElementDetail(el));
-    frag.appendChild(btn);
-    const legendKey = el.category || "Unknown";
-    if (!legendSet.has(legendKey)) {
-      legendSet.set(legendKey, color);
-    }
-  });
-  periodicGrid.appendChild(frag);
-  const legendFrag = document.createDocumentFragment();
-  Array.from(legendSet.entries())
-    .sort((a, b) => a[0].localeCompare(b[0]))
-    .forEach(([label, color]) => {
-      const item = document.createElement("div");
-      item.className = "ptable-legend-item";
-      item.innerHTML = `<span class="ptable-legend-swatch" style="background:${color}"></span>${label}`;
-      legendFrag.appendChild(item);
-    });
-  periodicLegend.appendChild(legendFrag);
-  periodicGridBuilt = true;
-}
-
-async function updatePeriodicOverlay() {
-  if (!periodicOverlay) {
-    return;
-  }
-  const isPeriodic = currentLevel?.sceneId === "periodic_table";
-  periodicOverlay.classList.toggle("is-open", !!isPeriodic);
-  periodicOverlay.setAttribute("aria-hidden", isPeriodic ? "false" : "true");
-  periodicOverlay.inert = !isPeriodic;
-  if (!isPeriodic) {
-    if (periodicOverlay.contains(document.activeElement)) {
-      (navUpButton ?? homeButton ?? sceneSearchToggle ?? document.body).focus();
-    }
-    periodicOverlay.classList.remove("is-fading");
-    return;
-  }
-  const data = await ensurePeriodicTable();
-  if (data && !periodicGridBuilt) {
-    buildPeriodicGrid(data);
-  }
-}
-
-function updateElementLegend() {
-  if (!elementLegend) {
-    return;
-  }
-  const isElement =
-    currentLevel && typeof currentLevel.id === "string"
-      ? currentLevel.id.startsWith("content/scenes/elements/")
-      : false;
-  elementLegend.classList.toggle("is-open", isElement);
-  elementLegend.setAttribute("aria-hidden", isElement ? "false" : "true");
-  elementLegend.inert = !isElement;
-}
-
-function getElementBySymbol(symbol) {
-  if (!symbol) {
-    return null;
-  }
-  const upper = symbol.toUpperCase();
-  if (!periodicTableCache.data?.elements) {
-    return null;
-  }
-  return periodicTableCache.data.elements.find(
-    (el) => el.symbol.toUpperCase() === upper
-  );
-}
-
-async function updateElementInfoPanel() {
-  if (!detailPanel || !detailTitle || !detailBody) {
-    return;
-  }
-  const scenePath = currentLevel?.id ?? "";
-  const sceneId = currentLevel?.sceneId ?? "";
-  const symbolFromPath = scenePath.includes("/elements/")
-    ? scenePath.split("/").pop()?.replace(".json", "")
-    : null;
-  const symbol = (sceneId || symbolFromPath || "").trim();
-  const isElement =
-    scenePath.includes("/elements/") || /^[a-z]{1,3}$/i.test(symbol);
-
-  if (!isElement) {
-    if (elementInfoPinned) {
-      detailPanel.classList.remove("is-open");
-      detailPanel.setAttribute("aria-hidden", "true");
-      detailPanel.inert = true;
-      elementInfoPinned = false;
-    }
-    return;
-  }
-
-  const data = await ensurePeriodicTable();
-  if (!data?.elements) {
-    return;
-  }
-  const el = getElementBySymbol(symbol);
-  if (!el) {
-    return;
-  }
-
-  detailPanel.classList.add("is-open");
-  detailPanel.setAttribute("aria-hidden", "false");
-  detailPanel.inert = false;
-  elementInfoPinned = true;
-
-  detailTitle.textContent = `${el.name} (${el.symbol})`;
-  const protons = el.number ?? 0;
-  const neutrons = Math.max(0, Math.round(el.atomic_mass ?? 0) - protons);
-  const electrons = protons;
-  const orbitals =
-    typeof el.electron_configuration_semantic === "string"
-      ? el.electron_configuration_semantic.split(/\s+/).filter(Boolean)
-      : [];
-
-  const fields = [
-    ["Atomic #", el.number],
-    ["Category", el.category],
-    ["Phase", el.phase],
-    ["Atomic mass", el.atomic_mass ? `${el.atomic_mass}` : null],
-    ["Electron config", el.electron_configuration_semantic],
-    ["Melting point", el.melt],
-    ["Boiling point", el.boil],
-    ["Density", el.density],
-    ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
-    ["Protons", protons],
-    ["Neutrons", neutrons],
-    ["Electrons", electrons],
-  ];
-
-  detailBody.innerHTML = "";
-  fields.forEach(([label, value]) => {
-    if (value === undefined || value === null || value === "") {
-      return;
-    }
-    const row = document.createElement("div");
-    row.className = "detail-row";
-    const key = document.createElement("div");
-    key.className = "detail-key";
-    key.textContent = label;
-    const val = document.createElement("div");
-    val.className = "detail-value";
-    val.textContent = String(value);
-    row.appendChild(key);
-    row.appendChild(val);
-    detailBody.appendChild(row);
-  });
-
-  if (orbitals.length) {
-    const row = document.createElement("div");
-    row.className = "detail-row detail-row-full";
-    const key = document.createElement("div");
-    key.className = "detail-key";
-    key.textContent = "Orbitals (inner \u2192 outer)";
-    const val = document.createElement("div");
-    val.className = "detail-value";
-    val.style.width = "100%";
-    const list = document.createElement("div");
-    list.style.display = "flex";
-    list.style.flexWrap = "wrap";
-    list.style.gap = "6px";
-    list.style.marginTop = "8px";
-    list.style.justifyContent = "flex-start";
-    orbitals.forEach((orb) => {
-      const chip = document.createElement("span");
-      chip.textContent = orb;
-      chip.style.padding = "2px 6px";
-      chip.style.borderRadius = "8px";
-      chip.style.background = "rgba(255,255,255,0.08)";
-      chip.style.border = "1px solid rgba(160, 170, 220, 0.25)";
-      list.appendChild(chip);
-    });
-    val.appendChild(list);
-    row.appendChild(key);
-    row.appendChild(val);
-    detailBody.appendChild(row);
-  }
-}
-function wireElementLegend() {
-  if (!elementLegendItems.length) {
-    return;
-  }
-  elementLegendItems.forEach((btn) => {
-    const scenePath = btn.getAttribute("data-scene");
-    if (!scenePath) {
-      return;
-    }
-    btn.addEventListener("click", () => {
-      if (transitionState.active) {
-        return;
-      }
-      if (currentLevel) {
-        searchBackStack.push({
-          levelId: currentLevel.id,
-          navigationStack: navigationStack.map((entry) => ({
-            levelId: entry.levelId,
-            focusNodeId: entry.focusNodeId,
-          })),
-        });
-        updateNavButton();
-      }
-      jumpToScene(scenePath, { mode: "jump" });
-    });
-  });
-}
+const periodicOverlayRuntime = createPeriodicOverlayRuntime({
+  periodicOverlay,
+  periodicGrid,
+  periodicLegend,
+  detailPanel,
+  detailTitle,
+  detailBody,
+  elementLegend,
+  elementLegendItems,
+  navUpButton,
+  homeButton,
+  sceneSearchToggle,
+  periodicCategoryColors,
+  periodicTableService,
+  getCurrentLevel: () => currentLevel,
+  searchBackStack,
+  navigationStack,
+  updateNavButton,
+  jumpToScene,
+  isTransitionActive: () => transitionState.active,
+  fetchImpl: (...args) => fetch(...args),
+});
 
 
 function updateDocButton() {
@@ -4815,99 +3210,30 @@ function updateMetaButton() {
   button.setAttribute("aria-pressed", String(isMeta));
 }
 
-function setComposerPanel(panelId) {
-  if (!composerOverlay) {
-    return;
-  }
-  const targetId = panelId || "tree";
-  const hasPanel = composerPanels.some(
-    (panel) => panel.dataset.panel === targetId
-  );
-  const nextPanel = hasPanel ? targetId : "tree";
-  composerActivePanel = nextPanel;
-  composerTabs.forEach((tab) => {
-    const isActive = tab.dataset.panel === nextPanel;
-    tab.classList.toggle("is-active", isActive);
-    tab.setAttribute("aria-selected", String(isActive));
-    tab.tabIndex = isActive ? 0 : -1;
-  });
-  composerPanels.forEach((panel) => {
-    const isActive = panel.dataset.panel === nextPanel;
-    panel.classList.toggle("is-active", isActive);
-    panel.setAttribute("aria-hidden", String(!isActive));
-  });
-  if (nextPanel === "path") {
-    composerNeedsResize = true;
-  }
-  if (nextPanel === "export") {
-    renderComposerJsonPreview();
-  }
-}
-
-function updateComposerOverlay() {
-  if (!composerOverlay) {
-    return;
-  }
-  const isComposer =
-    currentLevel?.sceneId === composerSceneId ||
-    currentLevel?.sceneId === composerPreviewSceneId;
-  composerOverlay.classList.toggle("is-open", !!isComposer);
-  composerOverlay.setAttribute("aria-hidden", isComposer ? "false" : "true");
-  composerOverlay.inert = !isComposer;
-  if (app) {
-    app.classList.toggle("composer-mode", !!isComposer);
-  }
-  if (isComposer) {
-    initComposerCanvas();
-    composerNeedsResize = true;
-    setComposerPanel(composerActivePanel);
-    renderComposerJsonPreview();
-  } else {
-    stopComposerCameraFlightPreview();
-  }
-}
-
-function openComposerDocs() {
-  if (transitionState.active) {
-    return;
-  }
-  showMarkdownPanel({
-    name: "Arch API",
-    markdownPath: composerDocsPath,
-    markdownColumns: 2,
-  });
-}
-
-function openComposerPreview() {
-  if (transitionState.active) {
-    return;
-  }
-  const state = readComposerFormState();
-  const config = buildComposerSceneConfig(state);
-  levelConfigs[composerPreviewScenePath] = config;
-  levels.delete(composerPreviewScenePath);
-  composerActivePanel = "preview";
-  setComposerPanel("preview");
-  setComposerStatus(`Previewing "${state.name}". Use Back to return.`);
-  jumpToScene(composerPreviewScenePath, { mode: "jump", startScale: 0.6, duration: 700 });
-}
-
-function exportComposerScene() {
-  const state = readComposerFormState();
-  const spec = buildComposerSceneSpec(state);
-  const json = JSON.stringify(spec, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `${state.id || "composer_scene"}.json`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
-  setComposerStatus(`Exported ${state.id}.json`);
-  renderComposerJsonPreview();
-}
+const composerUiRuntime = createComposerUiRuntime({
+  app,
+  composerOverlay,
+  composerTabs,
+  composerPanels,
+  composerSceneId,
+  composerPreviewSceneId,
+  composerPreviewScenePath,
+  composerDocsPath,
+  levelConfigs,
+  levels,
+  initComposerCanvas,
+  renderComposerJsonPreview,
+  stopComposerCameraFlightPreview,
+  showMarkdownPanel: (level) => markdownRuntime.showMarkdownPanel(level),
+  readComposerFormState,
+  buildComposerSceneConfig,
+  buildComposerSceneSpec,
+  jumpToScene,
+  setComposerStatus,
+  setComposerNeedsResize: (value) => {
+    composerNeedsResize = value;
+  },
+});
 
 function updateMarkdownDocButton() {
   if (!markdownDocButton) {
@@ -4926,10 +3252,10 @@ function updateSceneLabel() {
   updateDocButton();
   updateMetaButton();
   updateMarkdownDocButton();
-  updateComposerOverlay();
-  updatePeriodicOverlay();
-  updateElementLegend();
-  updateElementInfoPanel();
+  composerUiRuntime.updateComposerOverlay(currentLevel);
+  periodicOverlayRuntime.updatePeriodicOverlay();
+  periodicOverlayRuntime.updateElementLegend();
+  periodicOverlayRuntime.updateElementInfoPanel();
 }
 
 function openMetaRing() {
@@ -4961,91 +3287,21 @@ function openMetaRing() {
 
 
 async function ensureSceneIndex() {
-  if (sceneIndexReady) {
-    return;
-  }
-  try {
-    const response = await fetch("content/scenes/scenes_index.json");
-    if (!response.ok) {
-      throw new Error("Failed to load scene index");
-    }
-    const data = await response.json();
-    sceneIndex = Array.isArray(data.scenes) ? data.scenes : [];
-    sceneIndexReady = true;
-  } catch (error) {
-    console.error(error);
-    sceneIndex = [];
-  }
+  await sceneIndexService.ensure(fetch, "content/scenes/scenes_index.json");
 }
 
-function setSearchOpen(isOpen) {
-  if (!sceneSearchPanel) {
-    return;
-  }
-  if (!isOpen && sceneSearchPanel.contains(document.activeElement)) {
-    sceneSearchToggle?.focus();
-  }
-  sceneSearch?.classList.toggle("is-open", isOpen);
-  sceneSearchPanel.classList.toggle("is-open", isOpen);
-  sceneSearchPanel.setAttribute("aria-hidden", String(!isOpen));
-  sceneSearchPanel.inert = !isOpen;
-  if (isOpen && sceneSearchInput) {
-    sceneSearchInput.value = "";
-    updateSearchResults("");
-    sceneSearchInput.focus();
-  }
-}
-
-function isSearchOpen() {
-  return sceneSearchPanel?.classList.contains("is-open");
-}
-
-function isSearchEventTarget(target) {
-  return (
-    sceneSearchPanel?.contains(target) || sceneSearchToggle?.contains(target)
-  );
-}
-
-function normalizeSearch(text) {
-  return text.trim().toLowerCase();
-}
-
-function updateSearchResults(query) {
-  if (!sceneSearchResults) {
-    return;
-  }
-  const normalized = normalizeSearch(query);
-  const matches = sceneIndex.filter((scene) => {
-    if (!normalized) {
-      return true;
-    }
-    const name = (scene.name || "").toLowerCase();
-    const id = (scene.id || "").toLowerCase();
-    return name.includes(normalized) || id.includes(normalized);
-  });
-
-  sceneSearchResults.innerHTML = "";
-  matches.slice(0, 10).forEach((scene) => {
-    const item = document.createElement("button");
-    item.type = "button";
-    item.className = "scene-search-item";
-    item.textContent = scene.name ?? scene.id ?? scene.path;
-    item.addEventListener("click", () => {
-      if (currentLevel) {
-        searchBackStack.push({
-          levelId: currentLevel.id,
-          navigationStack: navigationStack.map((entry) => ({
-            levelId: entry.levelId,
-            focusNodeId: entry.focusNodeId,
-          })),
-        });
-      }
-      setSearchOpen(false);
-      jumpToScene(scene.path, { mode: "jump" });
-    });
-    sceneSearchResults.appendChild(item);
-  });
-}
+const sceneSearchRuntime = createSceneSearchRuntime({
+  sceneSearch,
+  sceneSearchToggle,
+  sceneSearchPanel,
+  sceneSearchInput,
+  sceneSearchResults,
+  sceneIndexService,
+  getCurrentLevel: () => currentLevel,
+  navigationStack,
+  searchBackStack,
+  jumpToScene,
+});
 
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
@@ -5068,7 +3324,19 @@ function focusOnPointer(clientX, clientY) {
       if (intersections.length) {
         closeDetailPanel();
         hideHoverTooltip();
-        jumpToScene(nextGenInfo.nextScene, { mode: "jump" });
+        generationBackStack.push({
+          levelId: currentLevel.id,
+          navigationStack: navigationStack.map((entry) => ({
+            levelId: entry.levelId,
+            focusNodeId: entry.focusNodeId,
+          })),
+        });
+        jumpToScene(nextGenInfo.nextScene, {
+          mode: "jump",
+          preserveWorldPosition: true,
+          preserveLevelPosition: true,
+          preserveGenerationBackStack: true,
+        });
         return true;
       }
     }
@@ -5095,7 +3363,7 @@ function focusOnPointer(clientX, clientY) {
     if (panelId) {
       closeDetailPanel();
       hideHoverTooltip();
-      setComposerPanel(panelId);
+      composerUiRuntime.setComposerPanel(panelId);
       return true;
     }
   }
@@ -5185,142 +3453,24 @@ function updateDecayHover(clientX, clientY) {
   showHoverTooltip(label, clientX, clientY);
 }
 
-const activePointers = new Map();
-const panState = {
-  active: false,
-  moved: false,
-  startX: 0,
-  startY: 0,
-  startWorldX: 0,
-  startWorldY: 0,
-};
-
-let pinchStartDistance = 0;
-let pinchStartZoom = 1;
-
-let lastTapTime = 0;
-let lastTapX = 0;
-let lastTapY = 0;
-
-function getWorldPerPixel() {
-  const worldHeight = (camera.top - camera.bottom) / camera.zoom;
-  return worldHeight / canvas.clientHeight;
-}
-
-function getPinchDistance() {
-  const pointers = Array.from(activePointers.values());
-  if (pointers.length < 2) {
-    return 0;
-  }
-  const dx = pointers[0].x - pointers[1].x;
-  const dy = pointers[0].y - pointers[1].y;
-  return Math.hypot(dx, dy);
-}
-
-function onPointerDown(event) {
-  if (transitionState.active) {
-    return;
-  }
-  canvas.setPointerCapture(event.pointerId);
-  activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-
-  if (activePointers.size === 1) {
-    panState.active = true;
-    panState.moved = false;
-    panState.startX = event.clientX;
-    panState.startY = event.clientY;
-    panState.startWorldX = worldGroup.position.x;
-    panState.startWorldY = worldGroup.position.y;
-  }
-
-  if (activePointers.size === 2) {
-    panState.active = false;
-    zoomState.active = false;
-    pinchStartDistance = getPinchDistance();
-    pinchStartZoom = camera.zoom;
-  }
-}
-
-function onPointerMove(event) {
-  if (transitionState.active) {
-    return;
-  }
-
-  if (activePointers.has(event.pointerId)) {
-    activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-  }
-
-  if (activePointers.size === 1 && panState.active) {
-    const dx = event.clientX - panState.startX;
-    const dy = event.clientY - panState.startY;
-    const worldPerPixel = getWorldPerPixel();
-    worldGroup.position.x = panState.startWorldX + dx * worldPerPixel;
-    worldGroup.position.y = panState.startWorldY - dy * worldPerPixel;
-    if (Math.hypot(dx, dy) > 6) {
-      panState.moved = true;
-    }
-  }
-
-  if (activePointers.size === 2) {
-    const distance = getPinchDistance();
-    if (pinchStartDistance > 0) {
-      const zoom = pinchStartZoom * (distance / pinchStartDistance);
-      applyZoom(zoom);
-      lastZoomGestureTime = performance.now();
-    }
-  }
-
-  if (event.buttons === 0 && activePointers.size === 0 && !panState.active) {
-    updateDetailHover(event.clientX, event.clientY);
-    updateDecayHover(event.clientX, event.clientY);
-  }
-}
-
-function onPointerUp(event) {
-  if (activePointers.has(event.pointerId)) {
-    activePointers.delete(event.pointerId);
-  }
-
-  if (activePointers.size < 2) {
-    pinchStartDistance = 0;
-  }
-
-  if (activePointers.size === 0) {
-    panState.active = false;
-    if (!panState.moved && !transitionState.active) {
-      if (!focusOnPointer(event.clientX, event.clientY)) {
-        const now = performance.now();
-        const dx = event.clientX - lastTapX;
-        const dy = event.clientY - lastTapY;
-        const distance = Math.hypot(dx, dy);
-        if (now - lastTapTime < 320 && distance < 24) {
-          if (currentLevel && currentLevel.id !== rootScenePath) {
-            resetToRootScene();
-          }
-          lastTapTime = 0;
-        } else {
-          lastTapTime = now;
-          lastTapX = event.clientX;
-          lastTapY = event.clientY;
-        }
-      } else {
-        lastTapTime = 0;
-      }
-    }
-  }
-}
-
-function onWheel(event) {
-  if (!event.ctrlKey || transitionState.active) {
-    return;
-  }
-  event.preventDefault();
-  zoomState.active = false;
-
-  const zoomFactor = Math.exp(-event.deltaY * 0.0025);
-  applyZoom(camera.zoom * zoomFactor);
-  lastZoomGestureTime = performance.now();
-}
+const interactionRuntime = createInteractionRuntime({
+  canvas,
+  camera,
+  worldGroup,
+  zoomState,
+  applyZoom,
+  isTransitionActive: () => transitionState.active,
+  getCurrentLevel: () => currentLevel,
+  rootScenePath,
+  resetToRootScene,
+  focusOnPointer,
+  updateDetailHover,
+  updateDecayHover,
+  setLastZoomGestureTime: (value) => {
+    lastZoomGestureTime = value;
+  },
+  now: () => performance.now(),
+});
 
 function animate(now = 0) {
   requestAnimationFrame(animate);
@@ -5427,58 +3577,46 @@ if (typeof window !== "undefined") {
   window.openMetaRing = openMetaRing;
 }
 
-init();
+appDirector = new AppDirector({
+  initialize: init,
+  jumpToScene,
+  resetToRootScene,
+  startLevelTransitionOut,
+  getTransitionState: () => transitionState,
+  getNavigationStack: () => navigationStack,
+  getSearchBackStack: () => searchBackStack,
+  getMetaBackStack: () => metaBackStack,
+  getGenerationBackStack: () => generationBackStack,
+});
+
+appDirector.init();
 
 window.addEventListener("resize", onResize);
-canvas.addEventListener("pointerdown", onPointerDown);
-canvas.addEventListener("pointermove", onPointerMove);
-canvas.addEventListener("pointerup", onPointerUp);
-canvas.addEventListener("pointercancel", onPointerUp);
+canvas.addEventListener("pointerdown", interactionRuntime.onPointerDown);
+canvas.addEventListener("pointermove", interactionRuntime.onPointerMove);
+canvas.addEventListener("pointerup", interactionRuntime.onPointerUp);
+canvas.addEventListener("pointercancel", interactionRuntime.onPointerUp);
 canvas.addEventListener("pointerleave", () => {
   hideHoverTooltip();
 });
-canvas.addEventListener("wheel", onWheel, { passive: false });
+canvas.addEventListener("wheel", interactionRuntime.onWheel, { passive: false });
 
 if (navUpButton) {
-  navUpButton.addEventListener("click", () => {
-    if (transitionState.active) {
-      return;
-    }
-    if (navigationStack.length > 0) {
-      startLevelTransitionOut();
-      return;
-    }
-    if (searchBackStack.length > 0) {
-      const backState = searchBackStack.pop();
-      if (backState?.levelId) {
-        jumpToScene(backState.levelId, {
-          restoreNavStack: backState.navigationStack,
-        });
-      }
-      return;
-    }
-    if (metaBackStack.length > 0) {
-      const backState = metaBackStack.pop();
-      if (backState?.levelId) {
-        jumpToScene(backState.levelId, {
-          restoreNavStack: backState.navigationStack,
-        });
-      }
-    }
+  navUpButton.addEventListener("click", async () => {
+    periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+    await appDirector?.goBack();
   });
 }
 
 if (homeButton) {
-  homeButton.addEventListener("click", () => {
-    if (transitionState.active) {
-      return;
-    }
-    resetToRootScene();
+  homeButton.addEventListener("click", async () => {
+    periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+    await appDirector?.resetHome();
   });
 }
 
-wireElementLegend();
-updateElementInfoPanel();
+periodicOverlayRuntime.wireElementLegend();
+periodicOverlayRuntime.updateElementInfoPanel();
 
 if (docButton) {
   docButton.addEventListener("click", () => {
@@ -5489,21 +3627,21 @@ if (docButton) {
       const docLevel = currentLevel.markdownSection
         ? { ...currentLevel, markdownSection: null }
         : currentLevel;
-      showMarkdownPanel(docLevel);
+      markdownRuntime.showMarkdownPanel(docLevel);
     }
   });
 }
 
 if (hud) {
   hud.addEventListener("click", () => {
-    toggleInfoDrawer();
+    markdownRuntime.toggleInfoDrawer();
   });
   hud.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      toggleInfoDrawer();
-    } else if (event.key === "Escape" && infoDrawerOpen) {
-      setInfoDrawer(false);
+      markdownRuntime.toggleInfoDrawer();
+    } else if (event.key === "Escape" && markdownRuntime.isInfoDrawerOpen()) {
+      markdownRuntime.setInfoDrawer(false);
     }
   });
 }
@@ -5516,7 +3654,7 @@ if (detailClose) {
 
 if (markdownClose) {
   markdownClose.addEventListener("click", () => {
-    hideMarkdownPanel();
+    markdownRuntime.hideMarkdownPanel();
   });
 }
 
@@ -5529,29 +3667,28 @@ if (markdownDocButton) {
       const docLevel = currentLevel.markdownSection
         ? { ...currentLevel, markdownSection: null }
         : currentLevel;
-      showMarkdownPanel(docLevel);
+      markdownRuntime.showMarkdownPanel(docLevel);
     }
   });
 }
 
 if (markdownLayoutToggle) {
   markdownLayoutToggle.addEventListener("click", () => {
-    markdownTwoColumns = !markdownTwoColumns;
-    applyMarkdownLayout();
+    markdownRuntime.toggleMarkdownLayout();
   });
 }
 
 if (composerTabs.length) {
   composerTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      setComposerPanel(tab.dataset.panel);
+      composerUiRuntime.setComposerPanel(tab.dataset.panel);
     });
   });
 }
 
 if (composerDocsButton) {
   composerDocsButton.addEventListener("click", () => {
-    openComposerDocs();
+    composerUiRuntime.openComposerDocs(transitionState.active);
   });
 }
 
@@ -5563,13 +3700,13 @@ if (composerExitButton) {
 
 if (composerPreviewButton) {
   composerPreviewButton.addEventListener("click", () => {
-    openComposerPreview();
+    composerUiRuntime.openComposerPreview(transitionState.active);
   });
 }
 
 if (composerExportButton) {
   composerExportButton.addEventListener("click", () => {
-    exportComposerScene();
+    composerUiRuntime.exportComposerScene();
   });
 }
 
@@ -5684,20 +3821,20 @@ if (composerCameraResetButton) {
 
 if (sceneSearchToggle) {
   sceneSearchToggle.addEventListener("click", async () => {
-    if (!isSearchOpen()) {
+    if (!sceneSearchRuntime.isSearchOpen()) {
       await ensureSceneIndex();
     }
-    setSearchOpen(!isSearchOpen());
+    sceneSearchRuntime.setSearchOpen(!sceneSearchRuntime.isSearchOpen());
   });
 }
 
 if (sceneSearchInput) {
   sceneSearchInput.addEventListener("input", (event) => {
-    updateSearchResults(event.target.value);
+    sceneSearchRuntime.updateSearchResults(event.target.value);
   });
   sceneSearchInput.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      setSearchOpen(false);
+      sceneSearchRuntime.setSearchOpen(false);
       return;
     }
     if (event.key === "Enter") {
@@ -5712,35 +3849,35 @@ if (sceneSearchInput) {
 }
 
 document.addEventListener("pointerdown", (event) => {
-  if (!isSearchOpen()) {
+  if (!sceneSearchRuntime.isSearchOpen()) {
     return;
   }
-  if (isSearchEventTarget(event.target)) {
+  if (sceneSearchRuntime.isSearchEventTarget(event.target)) {
     return;
   }
-  setSearchOpen(false);
+  sceneSearchRuntime.setSearchOpen(false);
 });
 
 document.addEventListener("focusin", (event) => {
-  if (!isSearchOpen()) {
+  if (!sceneSearchRuntime.isSearchOpen()) {
     return;
   }
-  if (isSearchEventTarget(event.target)) {
+  if (sceneSearchRuntime.isSearchEventTarget(event.target)) {
     return;
   }
-  setSearchOpen(false);
+  sceneSearchRuntime.setSearchOpen(false);
 });
 
 window.addEventListener("keydown", async (event) => {
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
     event.preventDefault();
-    if (!isSearchOpen()) {
+    if (!sceneSearchRuntime.isSearchOpen()) {
       await ensureSceneIndex();
-      setSearchOpen(true);
+      sceneSearchRuntime.setSearchOpen(true);
     } else {
-      setSearchOpen(false);
+      sceneSearchRuntime.setSearchOpen(false);
     }
-  } else if (event.key === "Escape" && isSearchOpen()) {
-    setSearchOpen(false);
+  } else if (event.key === "Escape" && sceneSearchRuntime.isSearchOpen()) {
+    sceneSearchRuntime.setSearchOpen(false);
   }
 });
