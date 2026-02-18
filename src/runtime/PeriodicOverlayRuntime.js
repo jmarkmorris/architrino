@@ -326,7 +326,18 @@ export function createPeriodicOverlayRuntime(deps) {
     });
   }
 
+  function hidePeriodicOverlayImmediately() {
+    if (!periodicOverlay) {
+      return;
+    }
+    periodicOverlay.classList.remove("is-open");
+    periodicOverlay.classList.remove("is-fading");
+    periodicOverlay.setAttribute("aria-hidden", "true");
+    periodicOverlay.inert = true;
+  }
+
   return {
+    hidePeriodicOverlayImmediately,
     updatePeriodicOverlay,
     updateElementLegend,
     updateElementInfoPanel,

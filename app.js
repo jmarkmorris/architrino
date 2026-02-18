@@ -3790,12 +3790,14 @@ canvas.addEventListener("wheel", onWheel, { passive: false });
 
 if (navUpButton) {
   navUpButton.addEventListener("click", async () => {
+    periodicOverlayRuntime.hidePeriodicOverlayImmediately();
     await appDirector?.goBack();
   });
 }
 
 if (homeButton) {
   homeButton.addEventListener("click", async () => {
+    periodicOverlayRuntime.hidePeriodicOverlayImmediately();
     await appDirector?.resetHome();
   });
 }
