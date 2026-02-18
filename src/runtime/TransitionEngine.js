@@ -170,6 +170,13 @@ export function createTransitionEngine(transitionState, deps) {
         toLevel.group.scale.setScalar(scale);
         const nextZoom = payload.zoomStart + (payload.zoomTarget - payload.zoomStart) * fade;
         deps.applyZoom(nextZoom);
+        if (payload.worldPanStart && payload.worldPanTarget) {
+          deps.worldGroup.position.lerpVectors(
+            payload.worldPanStart,
+            payload.worldPanTarget,
+            fade
+          );
+        }
         return t >= 1;
       },
       finalize: () => {
@@ -186,6 +193,9 @@ export function createTransitionEngine(transitionState, deps) {
         deps.setLevelOpacity(toLevel, 1);
         deps.setLevelLabelOpacity(toLevel, 0);
         deps.setLevelLinkOpacity(toLevel, 1);
+        if (payload.worldPanTarget) {
+          deps.worldGroup.position.copy(payload.worldPanTarget);
+        }
         deps.setCurrentLevel(toLevel);
         deps.applyZoom(payload.zoomTarget ?? deps.camera.zoom);
         deps.labelFadeState.active = true;

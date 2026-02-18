@@ -30,6 +30,20 @@ export class AppDirector {
       return;
     }
 
+    const generationStack = this.deps.getGenerationBackStack?.() ?? [];
+    if (generationStack.length > 0) {
+      const backState = generationStack.pop();
+      if (backState?.levelId) {
+        await this.deps.jumpToScene(backState.levelId, {
+          restoreNavStack: backState.navigationStack,
+          preserveGenerationBackStack: true,
+          preserveWorldPosition: true,
+          preserveLevelPosition: true,
+        });
+      }
+      return;
+    }
+
     const navStack = this.deps.getNavigationStack();
     if (navStack.length > 0) {
       this.deps.startLevelTransitionOut();

@@ -1095,6 +1095,7 @@ const periodicTableService = new PeriodicTableService();
 const markdownReaderScenes = new Map();
 const searchBackStack = [];
 const metaBackStack = [];
+const generationBackStack = [];
 const composerPanelMap = new Map([
   ["composer_tree", "tree"],
   ["composer_path", "path"],
@@ -2218,6 +2219,7 @@ async function resetToRootScene() {
   currentLevel = rootLevel;
   navigationStack.length = 0;
   searchBackStack.length = 0;
+  generationBackStack.length = 0;
   labelFadeState.active = true;
   labelFadeState.level = currentLevel;
   labelFadeState.startTime = performance.now();
@@ -2231,6 +2233,20 @@ async function jumpToScene(scenePath, options = {}) {
   if (transitionState.active) {
     return;
   }
+  const preservedWorldPosition = worldGroup.position.clone();
+  const preservedLevelPosition = currentLevel
+    ? currentLevel.group.position.clone()
+    : new THREE.Vector3(0, 0, 0);
+  const jumpWorldStart = options.preserveWorldPosition
+    ? preservedWorldPosition.clone()
+    : new THREE.Vector3(0, 0, 0);
+  const jumpWorldTarget = options.targetWorldPosition
+    ? new THREE.Vector3(
+        Number(options.targetWorldPosition.x ?? 0),
+        Number(options.targetWorldPosition.y ?? 0),
+        Number(options.targetWorldPosition.z ?? 0)
+      )
+    : jumpWorldStart.clone();
   const config = levelConfigs[scenePath] ?? (await loadSceneConfig(scenePath));
   if (!config) {
     return;
@@ -2238,15 +2254,23 @@ async function jumpToScene(scenePath, options = {}) {
   await ensureDynamicSceneConfig(scenePath);
   if (options.mode === "instant") {
     purgeWorldState();
+    worldGroup.position.copy(jumpWorldTarget);
     const level = buildLevel(scenePath);
     worldGroup.add(level.group);
-    level.group.position.set(0, 0, 0);
+    if (options.preserveLevelPosition) {
+      level.group.position.copy(preservedLevelPosition);
+    } else {
+      level.group.position.set(0, 0, 0);
+    }
     level.group.scale.setScalar(1);
     setLevelOpacity(level, 1);
     setLevelLabelOpacity(level, 0);
     setLevelLinkOpacity(level, 1);
     currentLevel = level;
     navigationStack.length = 0;
+    if (!options.preserveGenerationBackStack) {
+      generationBackStack.length = 0;
+    }
     if (Array.isArray(options.restoreNavStack)) {
       options.restoreNavStack.forEach((item) => {
         if (item && item.levelId && item.focusNodeId) {
@@ -2270,11 +2294,16 @@ async function jumpToScene(scenePath, options = {}) {
   const nextLevel = buildLevel(scenePath);
   markdownRuntime.hideMarkdownPanel();
   purgeWorldState();
+  worldGroup.position.copy(jumpWorldStart);
   if (currentLevel && !worldGroup.children.includes(currentLevel.group)) {
     worldGroup.add(currentLevel.group);
   }
   worldGroup.add(nextLevel.group);
-  nextLevel.group.position.set(0, 0, 0);
+  if (options.preserveLevelPosition) {
+    nextLevel.group.position.copy(preservedLevelPosition);
+  } else {
+    nextLevel.group.position.set(0, 0, 0);
+  }
   nextLevel.group.scale.setScalar(options.startScale ?? 1);
   setLevelOpacity(nextLevel, 0);
   setLevelLabelOpacity(nextLevel, 0);
@@ -2289,11 +2318,16 @@ async function jumpToScene(scenePath, options = {}) {
     zoomStart: camera.zoom,
     zoomTarget,
     startScale: options.startScale ?? 1,
+    worldPanStart: jumpWorldStart.clone(),
+    worldPanTarget: jumpWorldTarget.clone(),
   };
   transitionState.startTime = performance.now();
   transitionState.duration = options.duration ?? 700;
 
   navigationStack.length = 0;
+  if (!options.preserveGenerationBackStack) {
+    generationBackStack.length = 0;
+  }
   if (Array.isArray(options.restoreNavStack)) {
     options.restoreNavStack.forEach((item) => {
       if (item && item.levelId && item.focusNodeId) {
@@ -3290,7 +3324,19 @@ function focusOnPointer(clientX, clientY) {
       if (intersections.length) {
         closeDetailPanel();
         hideHoverTooltip();
-        jumpToScene(nextGenInfo.nextScene, { mode: "jump" });
+        generationBackStack.push({
+          levelId: currentLevel.id,
+          navigationStack: navigationStack.map((entry) => ({
+            levelId: entry.levelId,
+            focusNodeId: entry.focusNodeId,
+          })),
+        });
+        jumpToScene(nextGenInfo.nextScene, {
+          mode: "jump",
+          preserveWorldPosition: true,
+          preserveLevelPosition: true,
+          preserveGenerationBackStack: true,
+        });
         return true;
       }
     }
@@ -3540,6 +3586,7 @@ appDirector = new AppDirector({
   getNavigationStack: () => navigationStack,
   getSearchBackStack: () => searchBackStack,
   getMetaBackStack: () => metaBackStack,
+  getGenerationBackStack: () => generationBackStack,
 });
 
 appDirector.init();
