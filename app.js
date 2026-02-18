@@ -2,6 +2,7 @@ import * as THREE from "./vendor/three/three.module.js";
 import { CSS2DRenderer, CSS2DObject } from "./vendor/three/CSS2DRenderer.js";
 import { AppDirector } from "./src/director/AppDirector.js";
 import { createLevelRuntime } from "./src/runtime/LevelRuntime.js";
+import { createMarkdownRuntime } from "./src/runtime/MarkdownRuntime.js";
 import { createNodeFactory } from "./src/runtime/NodeFactoryRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
@@ -1075,10 +1076,7 @@ const markdownDirectoryCache = new Map();
 const markdownSubdirCache = new Map();
 const markdownManifestPath = "content/markdown/markdown_index.json";
 let markdownManifestPromise = null;
-let activeMarkdownPath = null;
-let markdownTwoColumns = true;
 let composerActivePanel = "tree";
-let infoDrawerOpen = false;
 const infoMarkdownPath = "info.md";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const metaScenePath = "content/scenes/meta/meta.json";
@@ -1861,37 +1859,7 @@ function hideHoverTooltip() {
 }
 
 function hideMarkdownPanel() {
-  if (!markdownPanel) {
-    return;
-  }
-  markdownPanel.classList.remove("is-open");
-  markdownPanel.setAttribute("aria-hidden", "true");
-  markdownPanel.inert = true;
-  if (markdownTitle) {
-    markdownTitle.textContent = "";
-  }
-  if (markdownBody) {
-    markdownBody.innerHTML = "";
-  }
-  activeMarkdownPath = null;
-}
-
-function applyMarkdownLayout() {
-  if (!markdownPanel || !markdownLayoutToggle) {
-    return;
-  }
-  markdownPanel.classList.toggle("two-columns", markdownTwoColumns);
-  markdownLayoutToggle.setAttribute(
-    "aria-label",
-    markdownTwoColumns ? "Switch to single column" : "Switch to two columns"
-  );
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  markdownRuntime.hideMarkdownPanel();
 }
 
 function normalizeMarkdownKey(text) {
@@ -2072,177 +2040,31 @@ function extractMarkdownSection(markdown, sectionKey) {
   return { title: sectionTitle, body };
 }
 
-function protectMathSegments(markdown) {
-  const protectedSegments = [];
-  let protectedIndex = 0;
-  const makeToken = () => `MATHSEGMENTTOKEN${protectedIndex++}X`;
-  const stash = (raw) => {
-    const token = makeToken();
-    protectedSegments.push({ token, raw });
-    return token;
-  };
-
-  let output = markdown;
-  output = output.replace(/\$\$[\s\S]*?\$\$/g, (match) => stash(match));
-  output = output.replace(/\\\[[\s\S]*?\\\]/g, (match) => stash(match));
-  output = output.replace(/\\\([\s\S]*?\\\)/g, (match) => stash(match));
-  output = output.replace(
-    /(^|[^\\$])\$(?!\$)([^$\n]|\\\$)+?\$(?!\$)/g,
-    (match, prefix) => {
-      const math = match.slice(prefix.length);
-      return `${prefix}${stash(math)}`;
-    },
-  );
-
-  return { markdown: output, protectedSegments };
-}
-
-function restoreMathSegments(html, protectedSegments) {
-  if (!protectedSegments?.length) {
-    return html;
-  }
-  let restored = html;
-  protectedSegments.forEach(({ token, raw }) => {
-    restored = restored.split(token).join(raw);
-  });
-  return restored;
-}
-
-function typesetMarkdown() {
-  if (!markdownBody) {
-    return;
-  }
-  const katexRender = window.renderMathInElement;
-  if (typeof katexRender !== "function") {
-    return;
-  }
-  try {
-    katexRender(markdownBody, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "\\[", right: "\\]", display: true },
-        { left: "$", right: "$", display: false },
-        { left: "\\(", right: "\\)", display: false },
-      ],
-      throwOnError: false,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-}
+const markdownRuntime = createMarkdownRuntime({
+  markdownPanel,
+  markdownTitle,
+  markdownBody,
+  markdownLayoutToggle,
+  markdownRenderer,
+  markdownCache,
+  markdownSectionCache,
+  infoBody,
+  infoMarkdownPath,
+  hud,
+  infoDrawer,
+  extractMarkdownSection,
+});
 
 async function showMarkdownPanel(level) {
-  if (!markdownPanel || !level?.markdownPath) {
-    hideMarkdownPanel();
-    return;
-  }
-  const markdownPath = level.markdownPath;
-  const sectionKey = level.markdownSection ?? null;
-  const cacheKey = sectionKey ? `${markdownPath}::${sectionKey}` : markdownPath;
-  if (activeMarkdownPath === cacheKey && markdownPanel.classList.contains("is-open")) {
-    return;
-  }
-  if (sectionKey) {
-    markdownTwoColumns = false;
-  } else if (level.markdownColumns === 1) {
-    markdownTwoColumns = false;
-  } else if (level.markdownColumns === 2) {
-    markdownTwoColumns = true;
-  } else {
-    markdownTwoColumns = true;
-  }
-  const sectionCache = sectionKey ? markdownSectionCache : markdownCache;
-  let html = sectionCache.get(cacheKey);
-  if (!html) {
-    try {
-      const response = await fetch(markdownPath);
-      if (!response.ok) {
-        throw new Error(`Failed to load markdown: ${markdownPath}`);
-      }
-      const text = await response.text();
-      let markdownSource = text;
-      if (sectionKey) {
-        const section = extractMarkdownSection(text, sectionKey);
-        if (section) {
-          const heading = section.title ?? level.name ?? "Notes";
-          markdownSource = `## ${heading}\n\n${section.body}`;
-        }
-      }
-      if (markdownRenderer) {
-        const { markdown: protectedMarkdown, protectedSegments } = protectMathSegments(markdownSource);
-        html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
-      } else {
-        html = `<pre>${escapeHtml(markdownSource)}</pre>`;
-      }
-      sectionCache.set(cacheKey, html);
-    } catch (error) {
-      console.error(error);
-      html = `<p>Unable to load markdown.</p>`;
-    }
-  }
-  if (markdownTitle) {
-    markdownTitle.textContent = level.name ?? "Notes";
-  }
-  if (markdownBody) {
-    markdownBody.innerHTML = html;
-  }
-  markdownPanel.classList.add("is-open");
-  markdownPanel.setAttribute("aria-hidden", "false");
-  markdownPanel.inert = false;
-  activeMarkdownPath = cacheKey;
-  applyMarkdownLayout();
-  typesetMarkdown();
-}
-
-async function renderInfoDrawer() {
-  if (!infoBody) {
-    return;
-  }
-  let html = markdownCache.get(infoMarkdownPath);
-  if (!html) {
-    try {
-      const response = await fetch(infoMarkdownPath);
-      if (!response.ok) {
-        throw new Error(`Failed to load info markdown: ${infoMarkdownPath}`);
-      }
-      const text = await response.text();
-      if (markdownRenderer) {
-        const { markdown: protectedMarkdown, protectedSegments } = protectMathSegments(text);
-        html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
-      } else {
-        html = `<pre>${escapeHtml(text)}</pre>`;
-      }
-      markdownCache.set(infoMarkdownPath, html);
-    } catch (error) {
-      console.error(error);
-      html = `<p>Unable to load info.</p>`;
-    }
-  }
-  infoBody.innerHTML = html;
+  return markdownRuntime.showMarkdownPanel(level);
 }
 
 async function toggleInfoDrawer() {
-  if (!hud || !infoDrawer) {
-    return;
-  }
-  await setInfoDrawer(!infoDrawerOpen);
+  return markdownRuntime.toggleInfoDrawer();
 }
 
 async function setInfoDrawer(open) {
-  if (!hud || !infoDrawer) {
-    return;
-  }
-  if (infoDrawerOpen === open) {
-    return;
-  }
-  infoDrawerOpen = open;
-  hud.classList.toggle("is-open", infoDrawerOpen);
-  hud.setAttribute("aria-expanded", infoDrawerOpen ? "true" : "false");
-  infoDrawer.classList.toggle("is-open", infoDrawerOpen);
-  infoDrawer.setAttribute("aria-hidden", infoDrawerOpen ? "false" : "true");
-  if (infoDrawerOpen) {
-    await renderInfoDrawer();
-  }
+  return markdownRuntime.setInfoDrawer(open);
 }
 
 function updateSceneMarkdown() {
@@ -4489,7 +4311,7 @@ if (hud) {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       toggleInfoDrawer();
-    } else if (event.key === "Escape" && infoDrawerOpen) {
+    } else if (event.key === "Escape" && markdownRuntime.isInfoDrawerOpen()) {
       setInfoDrawer(false);
     }
   });
@@ -4523,8 +4345,7 @@ if (markdownDocButton) {
 
 if (markdownLayoutToggle) {
   markdownLayoutToggle.addEventListener("click", () => {
-    markdownTwoColumns = !markdownTwoColumns;
-    applyMarkdownLayout();
+    markdownRuntime.toggleMarkdownLayout();
   });
 }
 
