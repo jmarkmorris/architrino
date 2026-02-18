@@ -4,6 +4,8 @@ import { AppDirector } from "./src/director/AppDirector.js";
 import { createLevelRuntime } from "./src/runtime/LevelRuntime.js";
 import { createMarkdownRuntime } from "./src/runtime/MarkdownRuntime.js";
 import { createNodeFactory } from "./src/runtime/NodeFactoryRuntime.js";
+import { createComposerUiRuntime } from "./src/runtime/ComposerUiRuntime.js";
+import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
@@ -1078,7 +1080,6 @@ const markdownDirectoryCache = new Map();
 const markdownSubdirCache = new Map();
 const markdownManifestPath = "content/markdown/markdown_index.json";
 let markdownManifestPromise = null;
-let composerActivePanel = "tree";
 const infoMarkdownPath = "info.md";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const metaScenePath = "content/scenes/meta/meta.json";
@@ -1859,10 +1860,6 @@ function hideHoverTooltip() {
   hoverTooltipVisible = false;
 }
 
-function hideMarkdownPanel() {
-  markdownRuntime.hideMarkdownPanel();
-}
-
 function normalizeMarkdownKey(text) {
   return String(text)
     .normalize("NFKD")
@@ -2056,28 +2053,16 @@ const markdownRuntime = createMarkdownRuntime({
   extractMarkdownSection,
 });
 
-async function showMarkdownPanel(level) {
-  return markdownRuntime.showMarkdownPanel(level);
-}
-
-async function toggleInfoDrawer() {
-  return markdownRuntime.toggleInfoDrawer();
-}
-
-async function setInfoDrawer(open) {
-  return markdownRuntime.setInfoDrawer(open);
-}
-
 function updateSceneMarkdown() {
   if (!currentLevel || !currentLevel.markdownPath) {
-    hideMarkdownPanel();
+    markdownRuntime.hideMarkdownPanel();
     return;
   }
   if (currentLevel.markdownAutoOpen === false) {
-    hideMarkdownPanel();
+    markdownRuntime.hideMarkdownPanel();
     return;
   }
-  showMarkdownPanel(currentLevel);
+  markdownRuntime.showMarkdownPanel(currentLevel);
 }
 
 function getNodeGeneration(node) {
@@ -2180,7 +2165,7 @@ function purgeWorldState() {
   transitionState.payload = null;
   closeDetailPanel();
   hideHoverTooltip();
-  hideMarkdownPanel();
+  markdownRuntime.hideMarkdownPanel();
   zoomState.active = false;
   panTween.active = false;
   labelFadeState.active = false;
@@ -2283,7 +2268,7 @@ async function jumpToScene(scenePath, options = {}) {
   }
 
   const nextLevel = buildLevel(scenePath);
-  hideMarkdownPanel();
+  markdownRuntime.hideMarkdownPanel();
   purgeWorldState();
   if (currentLevel && !worldGroup.children.includes(currentLevel.group)) {
     worldGroup.add(currentLevel.group);
@@ -2922,7 +2907,7 @@ function beginLevelTransition(targetNode, childLevelId) {
 
   closeDetailPanel();
   hideHoverTooltip();
-  hideMarkdownPanel();
+  markdownRuntime.hideMarkdownPanel();
   const toLevel = buildLevel(childLevelId);
   if (!worldGroup.children.includes(toLevel.group)) {
     worldGroup.add(toLevel.group);
@@ -2995,7 +2980,7 @@ function startLevelTransitionOut() {
 
   closeDetailPanel();
   hideHoverTooltip();
-  hideMarkdownPanel();
+  markdownRuntime.hideMarkdownPanel();
   const parentInfo = navigationStack[navigationStack.length - 1];
   const parentLevel = buildLevel(parentInfo.levelId);
   const parentNode =
@@ -3171,22 +3156,6 @@ const periodicOverlayRuntime = createPeriodicOverlayRuntime({
   fetchImpl: (...args) => fetch(...args),
 });
 
-async function updatePeriodicOverlay() {
-  return periodicOverlayRuntime.updatePeriodicOverlay();
-}
-
-function updateElementLegend() {
-  return periodicOverlayRuntime.updateElementLegend();
-}
-
-async function updateElementInfoPanel() {
-  return periodicOverlayRuntime.updateElementInfoPanel();
-}
-
-function wireElementLegend() {
-  return periodicOverlayRuntime.wireElementLegend();
-}
-
 
 function updateDocButton() {
   if (!docButton) {
@@ -3207,99 +3176,30 @@ function updateMetaButton() {
   button.setAttribute("aria-pressed", String(isMeta));
 }
 
-function setComposerPanel(panelId) {
-  if (!composerOverlay) {
-    return;
-  }
-  const targetId = panelId || "tree";
-  const hasPanel = composerPanels.some(
-    (panel) => panel.dataset.panel === targetId
-  );
-  const nextPanel = hasPanel ? targetId : "tree";
-  composerActivePanel = nextPanel;
-  composerTabs.forEach((tab) => {
-    const isActive = tab.dataset.panel === nextPanel;
-    tab.classList.toggle("is-active", isActive);
-    tab.setAttribute("aria-selected", String(isActive));
-    tab.tabIndex = isActive ? 0 : -1;
-  });
-  composerPanels.forEach((panel) => {
-    const isActive = panel.dataset.panel === nextPanel;
-    panel.classList.toggle("is-active", isActive);
-    panel.setAttribute("aria-hidden", String(!isActive));
-  });
-  if (nextPanel === "path") {
-    composerNeedsResize = true;
-  }
-  if (nextPanel === "export") {
-    renderComposerJsonPreview();
-  }
-}
-
-function updateComposerOverlay() {
-  if (!composerOverlay) {
-    return;
-  }
-  const isComposer =
-    currentLevel?.sceneId === composerSceneId ||
-    currentLevel?.sceneId === composerPreviewSceneId;
-  composerOverlay.classList.toggle("is-open", !!isComposer);
-  composerOverlay.setAttribute("aria-hidden", isComposer ? "false" : "true");
-  composerOverlay.inert = !isComposer;
-  if (app) {
-    app.classList.toggle("composer-mode", !!isComposer);
-  }
-  if (isComposer) {
-    initComposerCanvas();
-    composerNeedsResize = true;
-    setComposerPanel(composerActivePanel);
-    renderComposerJsonPreview();
-  } else {
-    stopComposerCameraFlightPreview();
-  }
-}
-
-function openComposerDocs() {
-  if (transitionState.active) {
-    return;
-  }
-  showMarkdownPanel({
-    name: "Arch API",
-    markdownPath: composerDocsPath,
-    markdownColumns: 2,
-  });
-}
-
-function openComposerPreview() {
-  if (transitionState.active) {
-    return;
-  }
-  const state = readComposerFormState();
-  const config = buildComposerSceneConfig(state);
-  levelConfigs[composerPreviewScenePath] = config;
-  levels.delete(composerPreviewScenePath);
-  composerActivePanel = "preview";
-  setComposerPanel("preview");
-  setComposerStatus(`Previewing "${state.name}". Use Back to return.`);
-  jumpToScene(composerPreviewScenePath, { mode: "jump", startScale: 0.6, duration: 700 });
-}
-
-function exportComposerScene() {
-  const state = readComposerFormState();
-  const spec = buildComposerSceneSpec(state);
-  const json = JSON.stringify(spec, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `${state.id || "composer_scene"}.json`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
-  setComposerStatus(`Exported ${state.id}.json`);
-  renderComposerJsonPreview();
-}
+const composerUiRuntime = createComposerUiRuntime({
+  app,
+  composerOverlay,
+  composerTabs,
+  composerPanels,
+  composerSceneId,
+  composerPreviewSceneId,
+  composerPreviewScenePath,
+  composerDocsPath,
+  levelConfigs,
+  levels,
+  initComposerCanvas,
+  renderComposerJsonPreview,
+  stopComposerCameraFlightPreview,
+  showMarkdownPanel: (level) => markdownRuntime.showMarkdownPanel(level),
+  readComposerFormState,
+  buildComposerSceneConfig,
+  buildComposerSceneSpec,
+  jumpToScene,
+  setComposerStatus,
+  setComposerNeedsResize: (value) => {
+    composerNeedsResize = value;
+  },
+});
 
 function updateMarkdownDocButton() {
   if (!markdownDocButton) {
@@ -3318,10 +3218,10 @@ function updateSceneLabel() {
   updateDocButton();
   updateMetaButton();
   updateMarkdownDocButton();
-  updateComposerOverlay();
-  updatePeriodicOverlay();
-  updateElementLegend();
-  updateElementInfoPanel();
+  composerUiRuntime.updateComposerOverlay(currentLevel);
+  periodicOverlayRuntime.updatePeriodicOverlay();
+  periodicOverlayRuntime.updateElementLegend();
+  periodicOverlayRuntime.updateElementInfoPanel();
 }
 
 function openMetaRing() {
@@ -3368,22 +3268,6 @@ const sceneSearchRuntime = createSceneSearchRuntime({
   searchBackStack,
   jumpToScene,
 });
-
-function setSearchOpen(isOpen) {
-  sceneSearchRuntime.setSearchOpen(isOpen);
-}
-
-function isSearchOpen() {
-  return sceneSearchRuntime.isSearchOpen();
-}
-
-function isSearchEventTarget(target) {
-  return sceneSearchRuntime.isSearchEventTarget(target);
-}
-
-function updateSearchResults(query) {
-  sceneSearchRuntime.updateSearchResults(query);
-}
 
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
@@ -3433,7 +3317,7 @@ function focusOnPointer(clientX, clientY) {
     if (panelId) {
       closeDetailPanel();
       hideHoverTooltip();
-      setComposerPanel(panelId);
+      composerUiRuntime.setComposerPanel(panelId);
       return true;
     }
   }
@@ -3523,142 +3407,24 @@ function updateDecayHover(clientX, clientY) {
   showHoverTooltip(label, clientX, clientY);
 }
 
-const activePointers = new Map();
-const panState = {
-  active: false,
-  moved: false,
-  startX: 0,
-  startY: 0,
-  startWorldX: 0,
-  startWorldY: 0,
-};
-
-let pinchStartDistance = 0;
-let pinchStartZoom = 1;
-
-let lastTapTime = 0;
-let lastTapX = 0;
-let lastTapY = 0;
-
-function getWorldPerPixel() {
-  const worldHeight = (camera.top - camera.bottom) / camera.zoom;
-  return worldHeight / canvas.clientHeight;
-}
-
-function getPinchDistance() {
-  const pointers = Array.from(activePointers.values());
-  if (pointers.length < 2) {
-    return 0;
-  }
-  const dx = pointers[0].x - pointers[1].x;
-  const dy = pointers[0].y - pointers[1].y;
-  return Math.hypot(dx, dy);
-}
-
-function onPointerDown(event) {
-  if (transitionState.active) {
-    return;
-  }
-  canvas.setPointerCapture(event.pointerId);
-  activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-
-  if (activePointers.size === 1) {
-    panState.active = true;
-    panState.moved = false;
-    panState.startX = event.clientX;
-    panState.startY = event.clientY;
-    panState.startWorldX = worldGroup.position.x;
-    panState.startWorldY = worldGroup.position.y;
-  }
-
-  if (activePointers.size === 2) {
-    panState.active = false;
-    zoomState.active = false;
-    pinchStartDistance = getPinchDistance();
-    pinchStartZoom = camera.zoom;
-  }
-}
-
-function onPointerMove(event) {
-  if (transitionState.active) {
-    return;
-  }
-
-  if (activePointers.has(event.pointerId)) {
-    activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-  }
-
-  if (activePointers.size === 1 && panState.active) {
-    const dx = event.clientX - panState.startX;
-    const dy = event.clientY - panState.startY;
-    const worldPerPixel = getWorldPerPixel();
-    worldGroup.position.x = panState.startWorldX + dx * worldPerPixel;
-    worldGroup.position.y = panState.startWorldY - dy * worldPerPixel;
-    if (Math.hypot(dx, dy) > 6) {
-      panState.moved = true;
-    }
-  }
-
-  if (activePointers.size === 2) {
-    const distance = getPinchDistance();
-    if (pinchStartDistance > 0) {
-      const zoom = pinchStartZoom * (distance / pinchStartDistance);
-      applyZoom(zoom);
-      lastZoomGestureTime = performance.now();
-    }
-  }
-
-  if (event.buttons === 0 && activePointers.size === 0 && !panState.active) {
-    updateDetailHover(event.clientX, event.clientY);
-    updateDecayHover(event.clientX, event.clientY);
-  }
-}
-
-function onPointerUp(event) {
-  if (activePointers.has(event.pointerId)) {
-    activePointers.delete(event.pointerId);
-  }
-
-  if (activePointers.size < 2) {
-    pinchStartDistance = 0;
-  }
-
-  if (activePointers.size === 0) {
-    panState.active = false;
-    if (!panState.moved && !transitionState.active) {
-      if (!focusOnPointer(event.clientX, event.clientY)) {
-        const now = performance.now();
-        const dx = event.clientX - lastTapX;
-        const dy = event.clientY - lastTapY;
-        const distance = Math.hypot(dx, dy);
-        if (now - lastTapTime < 320 && distance < 24) {
-          if (currentLevel && currentLevel.id !== rootScenePath) {
-            resetToRootScene();
-          }
-          lastTapTime = 0;
-        } else {
-          lastTapTime = now;
-          lastTapX = event.clientX;
-          lastTapY = event.clientY;
-        }
-      } else {
-        lastTapTime = 0;
-      }
-    }
-  }
-}
-
-function onWheel(event) {
-  if (!event.ctrlKey || transitionState.active) {
-    return;
-  }
-  event.preventDefault();
-  zoomState.active = false;
-
-  const zoomFactor = Math.exp(-event.deltaY * 0.0025);
-  applyZoom(camera.zoom * zoomFactor);
-  lastZoomGestureTime = performance.now();
-}
+const interactionRuntime = createInteractionRuntime({
+  canvas,
+  camera,
+  worldGroup,
+  zoomState,
+  applyZoom,
+  isTransitionActive: () => transitionState.active,
+  getCurrentLevel: () => currentLevel,
+  rootScenePath,
+  resetToRootScene,
+  focusOnPointer,
+  updateDetailHover,
+  updateDecayHover,
+  setLastZoomGestureTime: (value) => {
+    lastZoomGestureTime = value;
+  },
+  now: () => performance.now(),
+});
 
 function animate(now = 0) {
   requestAnimationFrame(animate);
@@ -3779,14 +3545,14 @@ appDirector = new AppDirector({
 appDirector.init();
 
 window.addEventListener("resize", onResize);
-canvas.addEventListener("pointerdown", onPointerDown);
-canvas.addEventListener("pointermove", onPointerMove);
-canvas.addEventListener("pointerup", onPointerUp);
-canvas.addEventListener("pointercancel", onPointerUp);
+canvas.addEventListener("pointerdown", interactionRuntime.onPointerDown);
+canvas.addEventListener("pointermove", interactionRuntime.onPointerMove);
+canvas.addEventListener("pointerup", interactionRuntime.onPointerUp);
+canvas.addEventListener("pointercancel", interactionRuntime.onPointerUp);
 canvas.addEventListener("pointerleave", () => {
   hideHoverTooltip();
 });
-canvas.addEventListener("wheel", onWheel, { passive: false });
+canvas.addEventListener("wheel", interactionRuntime.onWheel, { passive: false });
 
 if (navUpButton) {
   navUpButton.addEventListener("click", async () => {
@@ -3802,8 +3568,8 @@ if (homeButton) {
   });
 }
 
-wireElementLegend();
-updateElementInfoPanel();
+periodicOverlayRuntime.wireElementLegend();
+periodicOverlayRuntime.updateElementInfoPanel();
 
 if (docButton) {
   docButton.addEventListener("click", () => {
@@ -3814,21 +3580,21 @@ if (docButton) {
       const docLevel = currentLevel.markdownSection
         ? { ...currentLevel, markdownSection: null }
         : currentLevel;
-      showMarkdownPanel(docLevel);
+      markdownRuntime.showMarkdownPanel(docLevel);
     }
   });
 }
 
 if (hud) {
   hud.addEventListener("click", () => {
-    toggleInfoDrawer();
+    markdownRuntime.toggleInfoDrawer();
   });
   hud.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      toggleInfoDrawer();
+      markdownRuntime.toggleInfoDrawer();
     } else if (event.key === "Escape" && markdownRuntime.isInfoDrawerOpen()) {
-      setInfoDrawer(false);
+      markdownRuntime.setInfoDrawer(false);
     }
   });
 }
@@ -3841,7 +3607,7 @@ if (detailClose) {
 
 if (markdownClose) {
   markdownClose.addEventListener("click", () => {
-    hideMarkdownPanel();
+    markdownRuntime.hideMarkdownPanel();
   });
 }
 
@@ -3854,7 +3620,7 @@ if (markdownDocButton) {
       const docLevel = currentLevel.markdownSection
         ? { ...currentLevel, markdownSection: null }
         : currentLevel;
-      showMarkdownPanel(docLevel);
+      markdownRuntime.showMarkdownPanel(docLevel);
     }
   });
 }
@@ -3868,14 +3634,14 @@ if (markdownLayoutToggle) {
 if (composerTabs.length) {
   composerTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      setComposerPanel(tab.dataset.panel);
+      composerUiRuntime.setComposerPanel(tab.dataset.panel);
     });
   });
 }
 
 if (composerDocsButton) {
   composerDocsButton.addEventListener("click", () => {
-    openComposerDocs();
+    composerUiRuntime.openComposerDocs(transitionState.active);
   });
 }
 
@@ -3887,13 +3653,13 @@ if (composerExitButton) {
 
 if (composerPreviewButton) {
   composerPreviewButton.addEventListener("click", () => {
-    openComposerPreview();
+    composerUiRuntime.openComposerPreview(transitionState.active);
   });
 }
 
 if (composerExportButton) {
   composerExportButton.addEventListener("click", () => {
-    exportComposerScene();
+    composerUiRuntime.exportComposerScene();
   });
 }
 
@@ -4008,20 +3774,20 @@ if (composerCameraResetButton) {
 
 if (sceneSearchToggle) {
   sceneSearchToggle.addEventListener("click", async () => {
-    if (!isSearchOpen()) {
+    if (!sceneSearchRuntime.isSearchOpen()) {
       await ensureSceneIndex();
     }
-    setSearchOpen(!isSearchOpen());
+    sceneSearchRuntime.setSearchOpen(!sceneSearchRuntime.isSearchOpen());
   });
 }
 
 if (sceneSearchInput) {
   sceneSearchInput.addEventListener("input", (event) => {
-    updateSearchResults(event.target.value);
+    sceneSearchRuntime.updateSearchResults(event.target.value);
   });
   sceneSearchInput.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      setSearchOpen(false);
+      sceneSearchRuntime.setSearchOpen(false);
       return;
     }
     if (event.key === "Enter") {
@@ -4036,35 +3802,35 @@ if (sceneSearchInput) {
 }
 
 document.addEventListener("pointerdown", (event) => {
-  if (!isSearchOpen()) {
+  if (!sceneSearchRuntime.isSearchOpen()) {
     return;
   }
-  if (isSearchEventTarget(event.target)) {
+  if (sceneSearchRuntime.isSearchEventTarget(event.target)) {
     return;
   }
-  setSearchOpen(false);
+  sceneSearchRuntime.setSearchOpen(false);
 });
 
 document.addEventListener("focusin", (event) => {
-  if (!isSearchOpen()) {
+  if (!sceneSearchRuntime.isSearchOpen()) {
     return;
   }
-  if (isSearchEventTarget(event.target)) {
+  if (sceneSearchRuntime.isSearchEventTarget(event.target)) {
     return;
   }
-  setSearchOpen(false);
+  sceneSearchRuntime.setSearchOpen(false);
 });
 
 window.addEventListener("keydown", async (event) => {
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
     event.preventDefault();
-    if (!isSearchOpen()) {
+    if (!sceneSearchRuntime.isSearchOpen()) {
       await ensureSceneIndex();
-      setSearchOpen(true);
+      sceneSearchRuntime.setSearchOpen(true);
     } else {
-      setSearchOpen(false);
+      sceneSearchRuntime.setSearchOpen(false);
     }
-  } else if (event.key === "Escape" && isSearchOpen()) {
-    setSearchOpen(false);
+  } else if (event.key === "Escape" && sceneSearchRuntime.isSearchOpen()) {
+    sceneSearchRuntime.setSearchOpen(false);
   }
 });

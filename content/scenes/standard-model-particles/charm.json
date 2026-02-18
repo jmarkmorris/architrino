@@ -14,6 +14,7 @@
       "id": "quark_core",
       "label": "Bi-binary Noether core",
       "scaleExponent": -20,
+      "hideScaleLabel": true,
       "radius": 1.68,
       "color": "PURPLE",
       "position": [
