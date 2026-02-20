@@ -1096,6 +1096,43 @@ const markdownReaderScenes = new Map();
 const searchBackStack = [];
 const metaBackStack = [];
 const generationBackStack = [];
+
+function getScenePathFromHash() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  const rawHash = window.location.hash.replace(/^#/, "");
+  if (!rawHash) {
+    return null;
+  }
+  const params = new URLSearchParams(rawHash);
+  const sceneParam = params.get("scene");
+  if (sceneParam) {
+    return sceneParam;
+  }
+  try {
+    return decodeURIComponent(rawHash);
+  } catch (_error) {
+    return rawHash;
+  }
+}
+
+function syncSceneHash(scenePath) {
+  if (typeof window === "undefined") {
+    return;
+  }
+  const normalized =
+    typeof scenePath === "string" && scenePath && scenePath !== rootScenePath
+      ? scenePath
+      : "";
+  const nextHash = normalized ? `#scene=${encodeURIComponent(normalized)}` : "";
+  if (window.location.hash === nextHash) {
+    return;
+  }
+  const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
+  window.history.replaceState(window.history.state, "", nextUrl);
+}
+
 const composerPanelMap = new Map([
   ["composer_tree", "tree"],
   ["composer_path", "path"],
@@ -3253,6 +3290,7 @@ function updateMarkdownDocButton() {
 }
 
 function updateSceneLabel() {
+  syncSceneHash(currentLevel?.id ?? null);
   if (!sceneLabel) {
     return;
   }
@@ -3567,13 +3605,22 @@ function onResize() {
 
 async function init() {
   closeDetailPanel();
-  const universeConfig = await loadSceneConfig(rootScenePath);
-  if (!universeConfig) {
+  const requestedScenePath = getScenePathFromHash();
+  let initialScenePath = requestedScenePath || rootScenePath;
+  let initialConfig = await loadSceneConfig(initialScenePath);
+  if (!initialConfig && initialScenePath !== rootScenePath) {
+    initialScenePath = rootScenePath;
+    initialConfig = await loadSceneConfig(initialScenePath);
+  }
+  if (!initialConfig) {
     return;
   }
-  currentLevel = buildLevel(rootScenePath);
+  await ensureDynamicSceneConfig(initialScenePath);
+  currentLevel = buildLevel(initialScenePath);
   worldGroup.add(currentLevel.group);
-  layoutRootLevel(currentLevel);
+  if (currentLevel.id === rootScenePath) {
+    layoutRootLevel(currentLevel);
+  }
   updateCamera();
   fitCameraToLevel(currentLevel);
   updateSceneLabel();

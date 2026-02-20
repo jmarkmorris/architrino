@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "meta",
-    "name": "Meta Ring",
+    "name": "Archie",
     "units": "relative",
     "autoSphereRing": true,
     "wrapLabels": true,
