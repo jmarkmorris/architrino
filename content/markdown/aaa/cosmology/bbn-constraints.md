@@ -19,6 +19,16 @@ The structural shift is not the network form itself, but the underlying cosmolog
 - Freeze-out timing reflects emergent $H(t)$ behavior.
 - Transport and coupling are framed through assembly-scale dynamics rather than external ad hoc sectors.
 
+## Lithium Integration in the Same Framework
+
+Lithium is treated as part of the same medium-coupled BBN story:
+
+- deformation-wave channels can bias neutron transport between dense and diffuse regions,
+- this changes local reaction-path weighting during the BBN window,
+- deuterium and helium can remain near their successful network values while lithium shifts through transport-conditioned pathways.
+
+This keeps lithium inside one coherent mechanism family rather than adding a separate after-the-fact fix.
+
 ## Theory Priorities
 
 - Build a coherent mapping from medium evolution to nucleosynthesis-era conditions.

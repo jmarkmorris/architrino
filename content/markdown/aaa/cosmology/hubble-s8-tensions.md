@@ -14,6 +14,22 @@ This document frames $H_0$ and $S_8$ as linked conceptual problems inside a sing
 - $H_0$ is read through inhomogeneous medium evolution and region-dependent effective histories.
 - $S_8$ is read through growth behavior in baryonic and neutral assembly sectors with medium-coupled dynamics.
 
+## Unified Mechanism
+
+Both tensions are treated as different projections of one process: non-uniform relaxation of the Noether sea.
+
+For $H_0$:
+
+- early-universe inference samples a comparatively rigid, less-relaxed medium state,
+- local ladders sample more relaxed pockets with different clock-rate environments.
+
+For $S_8$:
+
+- baryonic and neutral-assembly sectors do not need to co-evolve identically at late times,
+- mild dark-sector drag and partial coupling can suppress growth amplitude without changing the same degree of early-time background history.
+
+So background and growth are connected through shared medium-state evolution rather than separate ad hoc corrections.
+
 ## Theory Priorities
 
 - Avoid separate, disconnected stories for $H_0$ and $S_8$.

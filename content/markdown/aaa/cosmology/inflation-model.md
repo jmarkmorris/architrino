@@ -4,11 +4,25 @@
 
 The early rapid-expansion phase is modeled as an emergent high-curvature regime of tri-binary dynamics, not as a fundamental standalone inflaton ontology.
 
-## Mechanism (Architrino)
+## SMBH-Core Mechanism (Architrino)
 
 1. Inner assemblies enter a high-energy self-hit domain near maximal curvature.
 2. Energy transfer into medium-scale layers drives rapid effective expansion of assembly spacing.
 3. The system relaxes into a slower expansion regime with residual perturbations.
+
+In the broader recycling picture, SMBH-core dynamics provide the persistent source architecture:
+
+- high-curvature interior dynamics load energy into middle-layer/horizon channels,
+- outbound disturbances seed expansion-like phases in the surrounding medium,
+- inflation-like behavior is therefore a regime of core-driven release and relaxation, not a separate scalar field ontology.
+
+## Planck-Alignment Boundary
+
+Planck scale is treated as an alignment-horizon state of assemblies, not a minimal-length axiom.
+
+- terminal alignment corresponds to the last stable lock before mode change,
+- this boundary organizes transitions between pre-alignment high-curvature behavior and post-release medium evolution,
+- inflation-language is mapped onto dynamics near and after this boundary.
 
 ## Effective Parameterization
 

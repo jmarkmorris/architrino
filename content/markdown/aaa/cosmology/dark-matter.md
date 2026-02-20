@@ -19,6 +19,25 @@ A coherent theory-level account should explain, in one framework:
 - large-scale structure role,
 - compatibility with early-universe medium history.
 
+## Three-Regime Architecture
+
+Use one unified taxonomy:
+
+1. Neutral-assembly dominant regime:
+   neutral tri-binary populations carry most non-baryonic gravitating structure.
+2. Medium-response dominant regime:
+   effective gravity is reshaped by Noether-sea elasticity and deformation response.
+3. Hybrid regime:
+   neutral assemblies set baseline mass distribution while medium response modulates low-acceleration and scale-transition behavior.
+
+This keeps galaxy curves, cluster lensing, and CMB-era matter loading inside one ontology instead of switching ontologies by scale.
+
+## Cosmology Integration
+
+- In early-time descriptions, neutral assemblies contribute to effective matter loading for acoustic structure and growth seeding.
+- At late times, medium response can alter inferred mass profiles without requiring a second dark-matter substance.
+- Structure-formation language should treat these as coupled sectors, not independent patches.
+
 ## Theory Priorities
 
 - Clarify whether dark matter is primarily a sector of assemblies, a medium-response regime, or a principled hybrid.
