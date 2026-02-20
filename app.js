@@ -1626,10 +1626,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
           })
         );
   const usedIds = new Set(existingNodes.map((node) => node.id));
-  let baseRadius =
-    typeof scene.autoMarkdownNodeRadius === "number"
-      ? scene.autoMarkdownNodeRadius
-      : 1.6;
+  const hasCustomNodeRadius = typeof scene.autoMarkdownNodeRadius === "number";
+  const hasCustomRingRadius = typeof scene.autoMarkdownRingRadius === "number";
+  let baseRadius = hasCustomNodeRadius ? scene.autoMarkdownNodeRadius : 1.6;
   const existingMaxRadius = includeExisting
     ? existingNodes.reduce(
         (maxRadius, node) => Math.max(maxRadius, node.radius ?? 0),
@@ -1664,10 +1663,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const layoutCount = includeExisting
     ? existingNodes.length + autoEntries.length
     : autoEntries.length;
-  const ringRadius =
-    typeof scene.autoMarkdownRingRadius === "number"
-      ? scene.autoMarkdownRingRadius
-      : Math.max(6, Math.min(layoutCount, maxRingCount) * layoutRadius * 1.4);
+  let ringRadius = hasCustomRingRadius
+    ? scene.autoMarkdownRingRadius
+    : Math.max(6, Math.min(layoutCount, maxRingCount) * layoutRadius * 1.4);
   const gridSpacing =
     typeof scene.autoMarkdownGridSpacing === "number"
       ? scene.autoMarkdownGridSpacing
@@ -1678,10 +1676,20 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
   const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;
 
-  if (useRing && layoutCount > 1) {
-    const maxRadius = maxRingNodeRadius(ringRadius, layoutCount);
-    if (Number.isFinite(maxRadius) && maxRadius > 0 && maxRadius < baseRadius) {
-      baseRadius = maxRadius;
+  if (useRing && layoutCount > 0) {
+    if (!hasCustomNodeRadius && !hasCustomRingRadius) {
+      const standardLayout = computeRingLayout(
+        Array.from({ length: layoutCount }, () => ({ radius: layoutRadius }))
+      );
+      if (standardLayout) {
+        ringRadius = standardLayout.ringRadius;
+        baseRadius = standardLayout.nodeRadius;
+      }
+    } else if (layoutCount > 1) {
+      const maxRadius = maxRingNodeRadius(ringRadius, layoutCount);
+      if (Number.isFinite(maxRadius) && maxRadius > 0 && maxRadius < baseRadius) {
+        baseRadius = maxRadius;
+      }
     }
   }
 
