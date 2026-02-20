@@ -50,7 +50,7 @@
 
 ---
 
-| Term to Avoid / Phase Out | Transitional Wording (if needed) | Preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ Wording | Usage Note |
+| Term to Avoid / Phase Out | Transitional Wording | Preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ Wording | Usage Note |
 | --- | --- | --- | --- |
 | vacuum (as physical emptiness) | vacuum state / medium context | Noether Sea; spacetime medium; tri-binary spacetime | Use "vacuum" only when explicitly discussing mainstream historical semantics. |
 | ether / aether (alone) | medium (clarified) | Noether Sea; spacetime medium | Avoid ambiguous historical "luminiferous ether" connotations. |

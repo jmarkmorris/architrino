@@ -1133,6 +1133,202 @@ function syncSceneHash(scenePath) {
   window.history.replaceState(window.history.state, "", nextUrl);
 }
 
+async function resolveMarkdownSectionTitleByKey(markdownPath, normalizedSectionKey) {
+  if (!markdownPath || !normalizedSectionKey) {
+    return null;
+  }
+  try {
+    const response = await fetch(appendCacheBust(markdownPath));
+    if (!response.ok) {
+      return null;
+    }
+    const text = await response.text();
+    const lines = text.split(/\r?\n/);
+    for (const line of lines) {
+      const heading = parseMarkdownHeading(line);
+      if (!heading) {
+        continue;
+      }
+      if (normalizeMarkdownKey(heading.title) === normalizedSectionKey) {
+        return heading.title;
+      }
+    }
+  } catch (error) {
+    console.warn("Failed to restore markdown section title", markdownPath, error);
+  }
+  return null;
+}
+
+async function ensureSceneConfigFromSceneId(sceneId) {
+  if (!sceneId || typeof sceneId !== "string" || levelConfigs[sceneId]) {
+    return !!levelConfigs[sceneId];
+  }
+
+  const markdownDocPrefix = "__markdown_doc__:";
+  const markdownIndexPrefix = "__markdown_index__:";
+  const markdownReaderPrefix = "__markdown_reader__:";
+  const markdownSectionIndexPrefix = "__markdown_section_index__:";
+  const markdownDirectoryPrefix = "__markdown_directory__:";
+
+  if (sceneId.startsWith(markdownDocPrefix)) {
+    const markdownPath = sceneId.slice(markdownDocPrefix.length);
+    if (!markdownPath) {
+      return false;
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: "Notes",
+      sceneId,
+      markdownPath,
+      markdownSection: null,
+      markdownColumns: null,
+      markdownAutoOpen: true,
+      centerOn: null,
+    };
+    return true;
+  }
+
+  if (sceneId.startsWith(markdownIndexPrefix)) {
+    const raw = sceneId.slice(markdownIndexPrefix.length);
+    if (!raw) {
+      return false;
+    }
+    let markdownPath = raw;
+    let headingLevel = 2;
+    const headingTokenIndex = raw.lastIndexOf("::h");
+    if (headingTokenIndex > -1) {
+      const maybePath = raw.slice(0, headingTokenIndex);
+      const maybeLevel = Number(raw.slice(headingTokenIndex + 3));
+      if (maybePath && Number.isFinite(maybeLevel)) {
+        markdownPath = maybePath;
+        headingLevel = maybeLevel;
+      }
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: "Notes",
+      sceneId,
+      markdownPath,
+      markdownSection: null,
+      markdownColumns: null,
+      markdownAutoOpen: false,
+      centerOn: null,
+      autoSphereRing: true,
+      autoMarkdownPath: markdownPath,
+      autoMarkdownHeadingLevel: headingLevel,
+      autoMarkdownIncludeExistingInLayout: false,
+      autoMarkdownPlainSectionPaths: [],
+    };
+    return true;
+  }
+
+  if (sceneId.startsWith(markdownReaderPrefix)) {
+    const raw = sceneId.slice(markdownReaderPrefix.length);
+    if (!raw) {
+      return false;
+    }
+    const sectionSep = raw.indexOf("::");
+    const markdownPath = sectionSep === -1 ? raw : raw.slice(0, sectionSep);
+    const normalizedSectionKey = sectionSep === -1 ? null : raw.slice(sectionSep + 2);
+    if (!markdownPath) {
+      return false;
+    }
+    let markdownSection = null;
+    if (normalizedSectionKey) {
+      markdownSection = await resolveMarkdownSectionTitleByKey(
+        markdownPath,
+        normalizedSectionKey
+      );
+      if (!markdownSection) {
+        return false;
+      }
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: markdownSection || "Notes",
+      sceneId,
+      markdownPath,
+      markdownSection,
+      markdownColumns: null,
+      markdownAutoOpen: true,
+      centerOn: null,
+    };
+    return true;
+  }
+
+  if (sceneId.startsWith(markdownSectionIndexPrefix)) {
+    const raw = sceneId.slice(markdownSectionIndexPrefix.length);
+    if (!raw) {
+      return false;
+    }
+    const sectionSep = raw.indexOf("::");
+    if (sectionSep === -1) {
+      return false;
+    }
+    const markdownPath = raw.slice(0, sectionSep);
+    const normalizedSectionKey = raw.slice(sectionSep + 2);
+    if (!markdownPath || !normalizedSectionKey) {
+      return false;
+    }
+    const markdownSection = await resolveMarkdownSectionTitleByKey(
+      markdownPath,
+      normalizedSectionKey
+    );
+    if (!markdownSection) {
+      return false;
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: markdownSection,
+      sceneId,
+      markdownPath,
+      markdownSection,
+      markdownColumns: null,
+      markdownAutoOpen: false,
+      centerOn: null,
+      autoSphereRing: true,
+      autoMarkdownPath: markdownPath,
+      autoMarkdownSection: markdownSection,
+      autoMarkdownHeadingLevel: 3,
+      autoMarkdownIncludeExistingInLayout: false,
+    };
+    return true;
+  }
+
+  if (sceneId.startsWith(markdownDirectoryPrefix)) {
+    const directory = sceneId.slice(markdownDirectoryPrefix.length);
+    if (!directory) {
+      return false;
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: titleFromSlug(directory.split("/").pop() || "Notes"),
+      sceneId,
+      markdownPath: null,
+      markdownSection: null,
+      markdownColumns: null,
+      markdownAutoOpen: false,
+      centerOn: null,
+      autoSphereRing: true,
+      autoMarkdownDirectory: directory,
+      autoMarkdownIncludeExistingInLayout: false,
+    };
+    return true;
+  }
+
+  return false;
+}
+
 const composerPanelMap = new Map([
   ["composer_tree", "tree"],
   ["composer_path", "path"],
@@ -2235,6 +2431,13 @@ const sceneRepository = new SceneRepository({
 });
 
 async function loadSceneConfig(scenePath) {
+  if (levelConfigs[scenePath]) {
+    return levelConfigs[scenePath];
+  }
+  const restored = await ensureSceneConfigFromSceneId(scenePath);
+  if (restored && levelConfigs[scenePath]) {
+    return levelConfigs[scenePath];
+  }
   return sceneRepository.loadSceneConfig(scenePath);
 }
 
