@@ -1187,6 +1187,11 @@ async function ensureSceneConfigFromSceneId(sceneId) {
   const markdownReaderPrefix = "__markdown_reader__:";
   const markdownSectionIndexPrefix = "__markdown_section_index__:";
   const markdownDirectoryPrefix = "__markdown_directory__:";
+  const inferSceneNameFromMarkdownPath = (markdownPath) => {
+    const leaf = String(markdownPath || "").split("/").pop() || "";
+    const slug = leaf.replace(/\.md$/i, "");
+    return slug ? titleFromSlug(slug) : "Notes";
+  };
   const inferRestoredMarkdownColumns = (markdownPath) => {
     if (
       typeof markdownPath === "string" &&
@@ -1206,7 +1211,7 @@ async function ensureSceneConfigFromSceneId(sceneId) {
       layout: "static",
       nodes: [],
       links: [],
-      sceneName: "Notes",
+      sceneName: inferSceneNameFromMarkdownPath(markdownPath),
       sceneId,
       markdownPath,
       markdownSection: null,
@@ -1237,7 +1242,7 @@ async function ensureSceneConfigFromSceneId(sceneId) {
       layout: "static",
       nodes: [],
       links: [],
-      sceneName: "Notes",
+      sceneName: inferSceneNameFromMarkdownPath(markdownPath),
       sceneId,
       markdownPath,
       markdownSection: null,
@@ -1278,7 +1283,7 @@ async function ensureSceneConfigFromSceneId(sceneId) {
       layout: "static",
       nodes: [],
       links: [],
-      sceneName: markdownSection || "Notes",
+      sceneName: markdownSection || inferSceneNameFromMarkdownPath(markdownPath),
       sceneId,
       markdownPath,
       markdownSection,

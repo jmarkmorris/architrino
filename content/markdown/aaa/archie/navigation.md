@@ -1,8 +1,8 @@
 # Navigation
 
-## How to Think About the Scene Graph
+## UI: Hierarchy of Universe Structure 
 
-This interface uses a sphere metaphor for hierarchy:
+This interface uses a sphere metaphor for selecting a scene in the hierarchy:
 
 - Each sphere is a node in the knowledge graph.
 - Clicking a glowing/active sphere descends into that node's child scene.
