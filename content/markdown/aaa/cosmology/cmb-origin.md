@@ -130,3 +130,15 @@ This document presents a chronological, linear account of the Cosmic Microwave B
 **$\Lambda\mathrm{CDM}$ interpretation:** The Big Bang is a global origin of spacetime, setting the initial conditions for all subsequent evolution.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark photons and other outbound excitations from SMBH horizons (and associated jet/surface processes) propagate through the Noether sea, thermalize, and redshift into the observed CMB. The three intrinsic tri-binary energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB thus becomes a global record of steady-state recycling dynamics, not a singular origin event.
+
+## Conceptual Mapping Notes
+
+To keep the timeline coherent, each epoch-level claim should map to recognizable CMB structure:
+
+- Peak positions ($\ell_1, \ell_2, \ell_3,\dots$): effective horizon/coupling scales.
+- Odd/even peak contrast: baryon-like loading versus photon-like modes.
+- Damping tail: diffusion/opacity behavior near decoupling.
+- TE/EE structure: coupling and phase relationships through decoupling.
+- Lensing amplitude: post-decoupling structure-growth context.
+
+Use `cmb-predictions.md` as the companion document for the explicit mapping language.

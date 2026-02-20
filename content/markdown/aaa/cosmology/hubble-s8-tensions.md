@@ -1,41 +1,21 @@
 # Hubble and $S_8$ Tensions
 
-## Scope
+## Purpose
 
-This document formalizes how Architrino cosmology addresses the Hubble and $S_8$ tensions without breaking core CMB/BBN consistency.
+This document frames $H_0$ and $S_8$ as linked conceptual problems inside a single cosmological ontology.
 
-## Tension Definitions
+## Tension Meanings
 
-- **$H_0$ tension:** mismatch between early-universe and local late-universe inferred expansion rates.
-- **$S_8$ tension:** mismatch between CMB-inferred growth amplitude and late-time lensing/clustering inferences.
+- **$H_0$ tension:** disagreement between early-inferred and local-inferred expansion rates.
+- **$S_8$ tension:** disagreement between early-inferred and late-inferred structure-growth amplitude.
 
-## Architrino Hypothesis
+## Architrino Interpretation
 
-- $H_0$ offset can emerge from medium inhomogeneity and region-dependent effective expansion histories.
-- $S_8$ offset can emerge from scale-dependent medium coupling and dark-sector assembly response.
+- $H_0$ is read through inhomogeneous medium evolution and region-dependent effective histories.
+- $S_8$ is read through growth behavior in baryonic and neutral assembly sectors with medium-coupled dynamics.
 
-## Consistency Requirement
+## Theory Priorities
 
-A viable model must fit all simultaneously:
-
-1. CMB-era constraints
-2. BAO/SN distance ladder
-3. Growth/lensing constraints
-
-## Minimal Testing Framework
-
-- Parameter block A: expansion/inhomogeneity controls
-- Parameter block B: growth-coupling controls
-- Joint likelihood-style pass/fail diagnostics (even if simplified)
-
-## Falsifiers
-
-- Solving $H_0$ worsens $S_8$ beyond acceptable range.
-- Solving $S_8$ breaks BAO/SN distance consistency.
-- Required inhomogeneity or coupling magnitude is excluded observationally.
-
-## Immediate Work
-
-1. Build joint toy fit over $(H_0, S_8)$ with shared parameter controls.
-2. Identify degeneracy-breaking observables for near-term data.
-3. Publish explicit null tests that would quickly invalidate the mechanism.
+- Avoid separate, disconnected stories for $H_0$ and $S_8$.
+- Use one shared medium-evolution language for background and growth.
+- Clarify which parts are fundamental ontology and which are effective summaries.

@@ -1,43 +1,44 @@
+# Cosmological Ontology
 
-### Cosmology in the Absolute Frame
+## Cosmology in the Absolute Frame
 
-1. **Two Times**: We analyze dynamics using **Absolute time $t$** (for $\mathbb{U}_{\text{now}}$ universe-state simulation bookkeeping) and **Cosmic time $\tau_c$** (effective FRW time for physical observers).
-2. **Expansion Ontology**: The universe is a fixed box containing a medium (Noether cores) that is evolving/relaxing. It is not a box that is getting bigger.
+1. **Two Times**: analysis uses absolute time $t$ for full-state bookkeeping and effective cosmic time $\tau_c$ for observer-level description.
+2. **Expansion Ontology**: the universe is a fixed Euclidean container with an evolving medium; the container itself does not expand.
 
+## Architrino Cosmology: Overview
 
-### Architrino Cosmology: Overview
+Cosmology is expressed in two linked descriptions:
 
-In this project, **cosmology** is formulated with two tightly linked but distinct time/space descriptions:
+1. **Absolute description ($\mathbb{U}_{\text{now}}$ universe-state perspective)**
+- Fixed Euclidean coordinates $(x,y,z)$ and absolute time $t$
+- Full microstate accounting of assemblies and medium state
+- No metric expansion of the void
 
-1. **Absolute description ($\mathbb{U}_{\text{now}}$ universe-state perspective)**:
-   - Uses the fixed Euclidean coordinates $(x,y,z)$ and absolute time $t$.
-   - Tracks the full microstate: all architrinos, all tri-binary assemblies, the Noether-core sea configuration.
-   - Sees:
-     - No expansion of the void itself,
-     - Only changing patterns and scales in the assembly network (medium + matter).
+2. **Effective observer description**
+- Emergent comoving coordinates and cosmic-time approximation
+- FRW-like expansion, redshift, and metric-like behavior as effective outputs
 
-2. **Effective cosmological description (physical observers)**:
-   - Uses emergent comoving coordinates and cosmic time (proper time of a congruence of tri-binary clocks approximately at rest with the medium).
-   - Sees:
-     - FRW-like expansion with scale factor $a(t)$,
-     - Cosmological redshift,
-     - Lightcone structure described by an effective metric $g^{\text{eff}}_{\mu\nu}$.
+## Cosmology Document Set
 
-The main goals in this directory:
+- `expansion-mechanism.md`: canonical expansion and redshift mapping in fixed void ontology.
+- `inflation-model.md`: emergent early rapid-expansion model and conceptual inflation framing.
+- `bbn-constraints.md`: light-element abundance constraints under emergent $H(t)$.
+- `cmb-origin.md`: epoch-by-epoch CMB origin narrative and interpretation mapping.
+- `cmb-predictions.md`: quantitative CMB prediction and validation structure.
+- `structure-formation.md`: growth dynamics and large-scale structure tests.
+- `hubble-s8-tensions.md`: joint treatment of late-time cosmology tensions.
+- `dark-matter.md`: dark-sector mechanism options and rejection criteria.
+- `dark-energy.md`: acceleration mechanism mapping and tests.
+- `cosmology-model-space.md`: model-class comparison framework.
+- `constraints-data-map.md`: claim-to-observable conceptual map.
+- `open-problems.md`: prioritized unresolved cosmology problems.
 
-- **expansion-mechanism.md**: Show how tri-binary scaling and Noether-core medium dynamics give rise to an effective FRW expansion history.
-- **inflation-model.md**: Connect the self-hit regime (v > c\_f) in the early universe to a period of rapid effective expansion.
-- **bbn-constraints.md**: Check whether our emergent H(t) during early times yields standard light-element abundances (Y\_p ≈ 0.24, D/H ratio).
-- **cmb-predictions.md**: Derive qualitative/quantitative predictions for the CMB power spectrum from our microscopic model.
-- **structure-formation.md**: Show how inhomogeneities in the Noether-core sea and matter assemblies grow over time in the fixed Euclidean background.
+## Working Principle
 
-Throughout, we maintain the principle:
+Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies) must be reproducible from absolute-frame medium dynamics, with GR/$\Lambda\mathrm{CDM}$ behavior appearing as effective limits where applicable.
 
-> Cosmological observables (H(z), BAO, CMB peaks, lensing) must be reproducible from the absolute-frame dynamics of the architrino + Noether-core system, with GR/$\Lambda\mathrm{CDM}$ appearing as an effective large-scale description.
+## Two Time Notions (Operational)
 
-
-### Two Time Notions
-
-* **Absolute Time ($t$):** Used to index $\mathbb{U}_{\text{now}}$ (the universe-now state). Linear, global.
-* **Cosmic Time ($\tau_c$):** Reconstructed from comoving clocks (FRW time).
-* **Dynamics:** Expansion is the evolution of the network in $t$.
+- **Absolute Time ($t$):** global linear index for full-state evolution.
+- **Cosmic Time ($\tau_c$):** reconstructed observer-level clocking.
+- **Dynamics:** expansion is encoded as medium-network evolution in $t$.

@@ -1,52 +1,26 @@
-# CMB Predictions
+# CMB Structure in Architrino Cosmology
 
-## Scope
+## Core Idea
 
-This document defines CMB predictions required for the Architrino cosmology to be competitive with $\Lambda\mathrm{CDM}$.
+CMB anisotropy structure is interpreted as emergent from coupled medium-assembly oscillations before decoupling.
 
-## Minimum Observable Set
-
-- TT spectrum peak positions and relative heights
-- TE/EE qualitative structure
-- Damping-tail behavior
-- Lensing amplitude consistency
-
-## Model Mapping
-
-In this framework, CMB structure is interpreted as coupled medium-assembly oscillations prior to decoupling.
-
-Key comparison object remains standard:
+## Effective Comparison Object
 
 $$
 C_\ell = \langle |a_{\ell m}|^2 \rangle.
 $$
 
-## Prediction Matrix (Required)
+The formal observable remains standard; interpretation and microphysical origin are re-grounded in assembly dynamics.
 
-For each observable, provide:
+## Conceptual Mapping
 
-- Standard expectation
-- Architrino mechanism
-- Quantitative prediction or bounded range
-- Decisive falsifier
+- Peak spacing reflects effective horizon/coupling scales of the medium.
+- Odd/even contrast reflects baryon-like loading relative to photon-like modes.
+- High-$\ell$ damping reflects decoupling-era diffusion/opacity analogs.
+- Polarization structure reflects phase relations in coupled oscillations.
 
-## Decoupling and Transfer
+## Theory Priorities
 
-Define explicit mapping for:
-
-- Effective sound-horizon analog
-- Peak-spacing control parameter(s)
-- Baryon-loading analog for odd/even pattern
-- Diffusion/damping analog at high $\ell$
-
-## Falsifiers
-
-- Peak spacing cannot be matched without inconsistent parameter choices.
-- Predicted odd/even structure conflicts with observed acoustic pattern.
-- Damping tail or TE/EE structure systematically misses observed trends.
-
-## Immediate Work
-
-1. Build a reduced transfer-function approximation for first-pass peak forecasts.
-2. Fit TT first three peaks before expanding to TE/EE.
-3. Publish a residual table against Planck-style summary values.
+- Define the smallest coherent parameterization of these mappings.
+- Keep one consistent ontology from pre-decoupling dynamics to observed spectra.
+- Connect CMB interpretation cleanly to expansion and structure-formation narratives.
