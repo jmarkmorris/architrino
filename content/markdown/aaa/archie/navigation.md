@@ -1,5 +1,3 @@
-# Navigation
-
 ## UI: Hierarchy of Universe Structure 
 
 This interface uses a sphere metaphor for selecting a scene in the hierarchy:
