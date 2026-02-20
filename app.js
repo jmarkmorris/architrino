@@ -1358,16 +1358,12 @@ async function listMarkdownFilesInDir(directory) {
   if (markdownDirectoryCache.has(normalized)) {
     return markdownDirectoryCache.get(normalized);
   }
-  const manifestFiles = await listMarkdownFilesFromManifest(normalized);
-  if (manifestFiles.length) {
-    markdownDirectoryCache.set(normalized, manifestFiles);
-    return manifestFiles;
-  }
   try {
     const response = await fetch(appendCacheBust(`${normalized}/`));
     if (!response.ok) {
-      markdownDirectoryCache.set(normalized, []);
-      return [];
+      const manifestFiles = await listMarkdownFilesFromManifest(normalized);
+      markdownDirectoryCache.set(normalized, manifestFiles);
+      return manifestFiles;
     }
     const html = await response.text();
     const matches = [];
@@ -1403,8 +1399,9 @@ async function listMarkdownFilesInDir(directory) {
     return files;
   } catch (error) {
     console.warn("Failed to read markdown directory", directory, error);
-    markdownDirectoryCache.set(normalized, []);
-    return [];
+    const manifestFiles = await listMarkdownFilesFromManifest(normalized);
+    markdownDirectoryCache.set(normalized, manifestFiles);
+    return manifestFiles;
   }
 }
 
@@ -1416,16 +1413,12 @@ async function listMarkdownDirectoriesInDir(directory) {
   if (markdownSubdirCache.has(normalized)) {
     return markdownSubdirCache.get(normalized);
   }
-  const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
-  if (manifestDirectories.length) {
-    markdownSubdirCache.set(normalized, manifestDirectories);
-    return manifestDirectories;
-  }
   try {
     const response = await fetch(appendCacheBust(`${normalized}/`));
     if (!response.ok) {
-      markdownSubdirCache.set(normalized, []);
-      return [];
+      const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
+      markdownSubdirCache.set(normalized, manifestDirectories);
+      return manifestDirectories;
     }
     const html = await response.text();
     const matches = [];
@@ -1463,8 +1456,9 @@ async function listMarkdownDirectoriesInDir(directory) {
     return directories;
   } catch (error) {
     console.warn("Failed to read markdown directories", directory, error);
-    markdownSubdirCache.set(normalized, []);
-    return [];
+    const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
+    markdownSubdirCache.set(normalized, manifestDirectories);
+    return manifestDirectories;
   }
 }
 

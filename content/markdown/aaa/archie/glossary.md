@@ -1,6 +1,3 @@
-
-### Definitions
-
 | Term | $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$ | $\mathbb{A}\mathbb{A}\mathbb{A}$ = Architrino Assembly Architecture |
 | --- | --- | --- |
 | Absolute Frame / Preferred Frame | No preferred inertial frame; all inertial frames are equivalent in $\mathrm{SR}/\mathrm{GR}$. | The Euclidean-void rest frame defined by isotropy of $c_f$ and absolute time; physically real but operationally hidden. |
@@ -52,8 +49,6 @@
 | Wave Function Transition | In standard QM language, state changes are described via unitary evolution plus measurement update/collapse formalisms, e.g., "collapse of the wave function". | $\mathbb{A}\mathbb{A}\mathbb{A}$ term for effective state-description transition during measurement interaction and decoherence-driven record formation; the underlying architrino dynamics remain continuous and ontic (no fundamental collapse postulate). |
 
 ---
-
-### Terms to Avoid, Phase Out, Transition to $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 | Term to Avoid / Phase Out | Transitional Wording (if needed) | Preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ Wording | Usage Note |
 | --- | --- | --- | --- |
