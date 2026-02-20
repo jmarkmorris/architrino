@@ -124,9 +124,15 @@ Yes. Dynamics is not unique.
 
 ---
 
-
+Work on event horizon, curvature, and singularity. chatgpt is saying the singularity is not the event horizon, that curvature is 1/area, that the singularity is not the center of the bh either. Interesting. as my teams.
 
 ---
+
+make a new discord server named architrino
+make a new subreddit server named architrino
+rename my blog
+having a .ai domain is kinda cool though. don't give it up.
+
 
   Best findings after reviewing the listed docs, focused on real theory advancement and provable GR/QM/LCDM mapping:
 
