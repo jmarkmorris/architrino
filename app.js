@@ -1097,24 +1097,32 @@ const searchBackStack = [];
 const metaBackStack = [];
 const generationBackStack = [];
 
-function getScenePathFromHash() {
+function getSceneStateFromHash() {
   if (typeof window === "undefined") {
-    return null;
+    return { scenePath: null, parentLevelId: null, parentFocusNodeId: null };
   }
   const rawHash = window.location.hash.replace(/^#/, "");
   if (!rawHash) {
-    return null;
+    return { scenePath: null, parentLevelId: null, parentFocusNodeId: null };
   }
   const params = new URLSearchParams(rawHash);
   const sceneParam = params.get("scene");
+  const parentLevelId = params.get("parent");
+  const parentFocusNodeId = params.get("focus");
   if (sceneParam) {
-    return sceneParam;
+    return {
+      scenePath: sceneParam,
+      parentLevelId,
+      parentFocusNodeId,
+    };
   }
+  let scenePath = rawHash;
   try {
-    return decodeURIComponent(rawHash);
+    scenePath = decodeURIComponent(rawHash);
   } catch (_error) {
-    return rawHash;
+    scenePath = rawHash;
   }
+  return { scenePath, parentLevelId: null, parentFocusNodeId: null };
 }
 
 function syncSceneHash(scenePath) {
@@ -1125,7 +1133,17 @@ function syncSceneHash(scenePath) {
     typeof scenePath === "string" && scenePath && scenePath !== rootScenePath
       ? scenePath
       : "";
-  const nextHash = normalized ? `#scene=${encodeURIComponent(normalized)}` : "";
+  const params = new URLSearchParams();
+  if (normalized) {
+    params.set("scene", normalized);
+    const parent = navigationStack[navigationStack.length - 1];
+    if (parent?.levelId && parent?.focusNodeId) {
+      params.set("parent", parent.levelId);
+      params.set("focus", parent.focusNodeId);
+    }
+  }
+  const serialized = params.toString();
+  const nextHash = serialized ? `#${serialized}` : "";
   if (window.location.hash === nextHash) {
     return;
   }
@@ -1169,6 +1187,15 @@ async function ensureSceneConfigFromSceneId(sceneId) {
   const markdownReaderPrefix = "__markdown_reader__:";
   const markdownSectionIndexPrefix = "__markdown_section_index__:";
   const markdownDirectoryPrefix = "__markdown_directory__:";
+  const inferRestoredMarkdownColumns = (markdownPath) => {
+    if (
+      typeof markdownPath === "string" &&
+      markdownPath.startsWith("content/markdown/aaa/archie/")
+    ) {
+      return 1;
+    }
+    return null;
+  };
 
   if (sceneId.startsWith(markdownDocPrefix)) {
     const markdownPath = sceneId.slice(markdownDocPrefix.length);
@@ -1183,7 +1210,7 @@ async function ensureSceneConfigFromSceneId(sceneId) {
       sceneId,
       markdownPath,
       markdownSection: null,
-      markdownColumns: null,
+      markdownColumns: inferRestoredMarkdownColumns(markdownPath),
       markdownAutoOpen: true,
       centerOn: null,
     };
@@ -1214,7 +1241,7 @@ async function ensureSceneConfigFromSceneId(sceneId) {
       sceneId,
       markdownPath,
       markdownSection: null,
-      markdownColumns: null,
+      markdownColumns: inferRestoredMarkdownColumns(markdownPath),
       markdownAutoOpen: false,
       centerOn: null,
       autoSphereRing: true,
@@ -1255,7 +1282,7 @@ async function ensureSceneConfigFromSceneId(sceneId) {
       sceneId,
       markdownPath,
       markdownSection,
-      markdownColumns: null,
+      markdownColumns: inferRestoredMarkdownColumns(markdownPath),
       markdownAutoOpen: true,
       centerOn: null,
     };
@@ -1291,7 +1318,7 @@ async function ensureSceneConfigFromSceneId(sceneId) {
       sceneId,
       markdownPath,
       markdownSection,
-      markdownColumns: null,
+      markdownColumns: inferRestoredMarkdownColumns(markdownPath),
       markdownAutoOpen: false,
       centerOn: null,
       autoSphereRing: true,
@@ -3802,8 +3829,8 @@ function onResize() {
 
 async function init() {
   closeDetailPanel();
-  const requestedScenePath = getScenePathFromHash();
-  let initialScenePath = requestedScenePath || rootScenePath;
+  const requestedSceneState = getSceneStateFromHash();
+  let initialScenePath = requestedSceneState.scenePath || rootScenePath;
   let initialConfig = await loadSceneConfig(initialScenePath);
   if (!initialConfig && initialScenePath !== rootScenePath) {
     initialScenePath = rootScenePath;
@@ -3820,6 +3847,16 @@ async function init() {
   }
   updateCamera();
   fitCameraToLevel(currentLevel);
+  if (
+    requestedSceneState.parentLevelId &&
+    requestedSceneState.parentFocusNodeId &&
+    currentLevel.id !== rootScenePath
+  ) {
+    navigationStack.push({
+      levelId: requestedSceneState.parentLevelId,
+      focusNodeId: requestedSceneState.parentFocusNodeId,
+    });
+  }
   updateSceneLabel();
   updateSceneMarkdown();
   animate();
