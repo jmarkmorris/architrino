@@ -11,7 +11,7 @@
      - Tell us what replaces them when we can't write a simple local action.
 
 2. **Separating fundamental vs emergent symmetries**  
-   - Architrino substrate has:
+   - $\mathbb{A}\mathbb{A}\mathbb{A}$ substrate has:
      - Euclidean invariance in space (rotations, translations)  
      - Absolute time translation invariance  
      - Discrete symmetries (charge conjugation, maybe parity, possibly time reversal in some restricted sense)

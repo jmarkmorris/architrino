@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This page organizes major cosmology model families and situates Architrino among them conceptually.
+This page organizes major cosmology model families and situates $\mathbb{A}\mathbb{A}\mathbb{A}$ among them conceptually.
 
 ## Model Families
 
@@ -15,7 +15,7 @@ This page organizes major cosmology model families and situates Architrino among
 
 ## Use in Theory Development
 
-- Clarify where Architrino agrees at effective level and where ontology diverges.
+- Clarify where $\mathbb{A}\mathbb{A}\mathbb{A}$ agrees at effective level and where ontology diverges.
 - Prevent category-mixing between explanatory layers.
 - Keep terminology disciplined when borrowing effective equations from other frameworks.
 
