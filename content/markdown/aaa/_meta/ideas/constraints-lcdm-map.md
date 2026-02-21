@@ -21,17 +21,4 @@ This page maps cosmology concepts to the observable domains they are meant to de
 - Background/growth bridge:
   keep $H_0$ and $S_8$ under one relaxation-and-coupling narrative rather than parallel disconnected narratives.
 
-## Concept Mapping Template
-
-For each theory claim, keep:
-
-- claim statement,
-- ontology layer (fundamental vs effective),
-- neighboring claims it must remain consistent with,
-- observable domain(s) it addresses.
-
-## Theory Priorities
-
-- Use this map to prevent fragmented sub-theories.
-- Keep one shared vocabulary across all cosmology files.
-- Ensure that new claims are integrated before they are expanded.
+#

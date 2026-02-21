@@ -22,16 +22,14 @@ Cosmology is expressed in two linked descriptions:
 
 - `expansion-mechanism.md`: canonical expansion and redshift mapping in fixed void ontology.
 - `inflation-model.md`: emergent early rapid-expansion model and conceptual inflation framing.
-- `bbn-constraints.md`: light-element abundance constraints under emergent $H(t)$.
-- `cmb-origin.md`: epoch-by-epoch CMB origin narrative and interpretation mapping.
-- `cmb-predictions.md`: quantitative CMB prediction and validation structure.
+- `BBN-constraints.md`: light-element abundance constraints under emergent $H(t)$.
+- `CMB-origin.md`: epoch-by-epoch CMB origin narrative and interpretation mapping.
+- `CMB-predictions.md`: quantitative CMB prediction and validation structure.
 - `structure-formation.md`: growth dynamics and large-scale structure tests.
 - `hubble-s8-tensions.md`: joint treatment of late-time cosmology tensions.
 - `dark-matter.md`: dark-sector mechanism options and rejection criteria.
 - `dark-energy.md`: acceleration mechanism mapping and tests.
 - `cosmology-model-space.md`: model-class comparison framework.
-- `constraints-data-map.md`: claim-to-observable conceptual map.
-- `open-problems.md`: prioritized unresolved cosmology problems.
 
 ## Working Principle
 
