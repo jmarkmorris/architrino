@@ -19,6 +19,10 @@
 
 ---
 
+go through cosmology documents on wordpress and put content in cosmology docs.
+
+---
+
 - review docs, put docs on webapp, and look at the directory for more 
   - my sphere labels should match my file labels
     - unless it is a compound doc that is spread out to many spheres

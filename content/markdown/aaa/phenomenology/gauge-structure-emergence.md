@@ -61,11 +61,15 @@ Why are charges quantized in units of e/3?
 
 **SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six e/6 Personality Charges)**
 
-|                     | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
-|---------------------|---|---|---|---|---|---|---|
-| electrinos (−e/6)   | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
-| positrinos (+e/6)   | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
-| personality count notation (−:+) | 6:0 | 5:1 | 4:2 | 3:3 | 2:4 | 1:5 | 0:6 |
-| net fermion charge (e) | −1 | −2/3 | −1/3 | 0 | +1/3 | +2/3 | +1 |
+| split | electrinos | positrinos | net fermion charge |
+|:-----:|:----------:|:----------:|:------------------:|
+| (−:+) |   (−e/6)   |   (+e/6)   |        (e)         |
+|     6:0     |         6         |         0         |           −1           |
+|     5:1     |         5         |         1         |          −2/3          |
+|     4:2     |         4         |         2         |          −1/3          |
+|     3:3     |         3         |         3         |            0           |
+|     2:4     |         2         |         4         |          +1/3          |
+|     1:5     |         1         |         5         |          +2/3          |
+|     0:6     |         0         |         6         |           +1           |
 
 The tri-binary’s six polar regions demand six personality architrinos per fermion assembly; sweeping all electrino:positrino splits across those poles yields exactly the SM charge set with no extras.

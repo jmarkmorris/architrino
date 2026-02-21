@@ -65,7 +65,7 @@
       "color": "BLUE",
       "position": [
         -9.0,
-        0.0,
+        -4.0,
         0.0
       ],
       "subScenes": [
@@ -89,7 +89,7 @@
       "color": "PURPLE",
       "position": [
         -9.0,
-        -4.0,
+        0.0,
         0.0
       ],
       "subScenes": [
@@ -161,7 +161,7 @@
       "color": "BLUE",
       "position": [
         -3.0,
-        0.0,
+        -4.0,
         0.0
       ],
       "subScenes": [
@@ -185,7 +185,7 @@
       "color": "PURPLE",
       "position": [
         -3.0,
-        -4.0,
+        0.0,
         0.0
       ],
       "subScenes": [
@@ -257,7 +257,7 @@
       "color": "BLUE",
       "position": [
         3.0,
-        0.0,
+        -4.0,
         0.0
       ],
       "subScenes": [
@@ -281,7 +281,7 @@
       "color": "PURPLE",
       "position": [
         3.0,
-        -4.0,
+        0.0,
         0.0
       ],
       "subScenes": [
@@ -304,8 +304,8 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        9.0,
-        8.0,
+        15.0,
+        -4.0,
         0.0
       ],
       "subScenes": [],
@@ -325,7 +325,7 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        9.0,
+        15.0,
         4.0,
         0.0
       ],
@@ -368,7 +368,7 @@
       "color": "RED",
       "position": [
         9.0,
-        -2.8,
+        8.0,
         0.0
       ],
       "subScenes": [],
@@ -389,7 +389,7 @@
       "color": "BLUE",
       "position": [
         9.0,
-        -5.2,
+        4.0,
         0.0
       ],
       "subScenes": [],
@@ -410,7 +410,7 @@
       "color": "PURPLE",
       "position": [
         9.0,
-        -8.0,
+        -4.0,
         0.0
       ],
       "subScenes": [
