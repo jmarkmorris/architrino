@@ -28,6 +28,8 @@ The formal observable remains standard; interpretation and microphysical origin 
 
 Whether the background is modeled as primarily primordial-fireball-origin or distributed-emission-origin, the prediction layer must reproduce the same precision observables in one parameterization. Source narrative does not exempt TT/TE/EE or damping-tail closure.
 
+In particular, distributed-source branches must demonstrate that integrated emission-plus-transport does not generically yield a distorted spectrum from mixed source temperatures.
+
 ## Redshift and Clock Link
 
 CMB frequency scaling to present observers is interpreted through medium evolution plus environment-dependent clock-rate comparison, consistent with the expansion-mechanism framing:

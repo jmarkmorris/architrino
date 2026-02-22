@@ -46,6 +46,8 @@ Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies)
 - Processes often presented as single global events are modeled as distributed, parallel, galaxy-local recycling dynamics.
 - SMBH-centered high-curvature processing is treated as a persistent cosmological engine class rather than a one-time initial-condition generator.
 - Effective cosmological chronology is therefore a stitched observational map of many local histories, not one literal global launch event.
+- Large-scale homogeneity can be treated as a statistical outcome of repeated local processes governed by the same microphysics, while permitting local fluctuations and anisotropic environments.
+- Large-scale organization can be treated as mostly scale-invariant in architecture while still allowing finite-scale departures from statistical uniformity.
 
 ## Two Time Notions (Operational)
 

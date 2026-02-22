@@ -149,6 +149,8 @@ These channels are treated as compatible with one shared thermalization and deco
 
 Jet-transport scales in the Mpc class are treated as part of this channel family, with cumulative contribution determined by source population statistics and medium thermalization depth.
 
+Isotropy in this branch is attributed to long-time averaging over many source populations following the same microphysical rules, not to one-time primordial causal contact.
+
 ## Conceptual Mapping Notes
 
 To keep the timeline coherent, each epoch-level claim should map to recognizable CMB structure:
@@ -168,6 +170,7 @@ Any distributed-emission account must match the same hard observables usually us
 - blackbody precision near $T\approx 2.725\ \mathrm{K}$,
 - near-isotropy with anisotropy amplitude $\Delta T/T\sim 10^{-5}$,
 - TT/TE/EE peak structure and damping behavior.
+- explicit demonstration that source-population spectral superposition plus transport can converge to the observed near-perfect blackbody without unacceptable distortions.
 
 Until this closure is explicit, distributed-origin language remains a constrained working hypothesis.
 

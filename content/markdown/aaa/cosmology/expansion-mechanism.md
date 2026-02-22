@@ -47,9 +47,19 @@ $$
 
 so redshift is treated as path-integrated medium evolution plus endpoint clock-rate comparison.
 
+For modeling and diagnostics, separate at least three effective channels:
+
+- endpoint clock-rate comparison,
+- source/observer relative-motion (Doppler-like) contribution,
+- propagation contribution from traversed medium state and gradients.
+
 ## Photon-Propagation Loss Branch (Constrained Option)
 
 A secondary model-space option allows additional path-dependent photon energy degradation in medium transit ("redshift toll") beyond endpoint clock comparison. This branch is only admissible if it remains consistent with precision constraints usually applied to spectral distortion, distance-duality behavior, and background thermality.
+
+In this branch, effective redshift accumulation may depend on photon energy, traversed medium state, and path environment, so any claim of a universal linear toll must be treated as a hypothesis to be tested, not assumed.
+
+Line-of-sight medium flow and local contraction/expansion regions can, in principle, contribute signed shifts, so local blueward and redward biases should be treated within one transport kernel rather than as disconnected exceptions.
 
 ## Dissipation and Rescaling Picture
 
@@ -79,6 +89,8 @@ Early-inferred and local-inferred expansion rates probe different medium states:
 So the $H_0$ split is interpreted as state-dependent inference from one ontology, not two incompatible universes.
 
 In this framing, $H_0$ is not expected to be strictly universal at all environments; a measurable local scatter tied to medium state is a direct prediction candidate.
+
+Quasar redshift distributions are a key stress test for separating intrinsic/source-population evolution from path-history redshift accumulation effects.
 
 ## Effective Friedmann Bridge (Comparison Layer)
 
