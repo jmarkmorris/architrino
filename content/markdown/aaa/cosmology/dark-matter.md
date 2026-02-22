@@ -2,7 +2,7 @@
 
 ## Core Question
 
-What does dark-matter phenomenology correspond to in Architrino assembly ontology?
+What does dark-matter phenomenology correspond to in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology?
 
 ## Working Interpretation Space
 

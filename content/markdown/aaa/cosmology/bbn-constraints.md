@@ -1,49 +1,41 @@
-# BBN in the Architrino Framework
+# BBN in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework
 
 ## Core Idea
 
-Early-universe light-element formation is treated with standard reaction-network bookkeeping while reinterpreting background evolution through Architrino medium dynamics.
+Primordial light-element formation is described with the standard reaction network, while the cosmological background is interpreted as Noether-sea evolution in absolute time inside a fixed Euclidean void.
 
 ## Network-Level Description
 
 $$
-\frac{dn_i}{dt} = \sum_{j,k}\langle\sigma v\rangle_{jk\to i}n_jn_k
-- \sum_l\langle\sigma v\rangle_{il}n_in_l.
+\frac{dn_i}{dt} = \sum_{j,k}\langle\sigma v_{\mathrm{rel}}\rangle_{jk\to i}n_jn_k
+- \sum_l\langle\sigma v_{\mathrm{rel}}\rangle_{il}n_in_l.
 $$
 
-The structural shift is not the network form itself, but the underlying cosmological evolution and assembly-mediated transport context.
+The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
 
-## Architrino Interpretation
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Primordial Chain
 
-- Effective expansion is medium-state evolution in absolute time.
-- Freeze-out timing reflects emergent $H(t)$ behavior.
-- Transport and coupling are framed through assembly-scale dynamics rather than external ad hoc sectors.
+The BBN story is one continuous mechanism:
 
-## Distributed-Processing Hypothesis (Model-Space Branch)
+1. The Noether sea evolves in absolute time $t$ within a fixed Euclidean container.
+2. This medium evolution defines an effective expansion/cooling history and therefore an emergent $H(t)$ at observer level.
+3. The resulting thermal history sets reaction-rate competition and freeze-out ordering in the standard network.
+4. Light-element abundances are the output of this same medium-and-assembly dynamics.
 
-Alongside a single early hot-phase reading, the framework can also evaluate distributed high-temperature processing channels (for example SMBH-linked outflows, localized early high-density regions, and selected stellar-explosive environments) as contributors to light-element budgets. This branch is admissible only if it reproduces the same abundance constraints in aggregate.
+## Lithium Within the Same Mechanism
 
-## Lithium Integration in the Same Framework
+Lithium is not a separate patch. It is part of the same primordial transport-and-freeze-out mechanism:
 
-Lithium is treated as part of the same medium-coupled BBN story:
-
-- deformation-wave channels can bias neutron transport between dense and diffuse regions,
-- this changes local reaction-path weighting during the BBN window,
-- deuterium and helium can remain near their successful network values while lithium shifts through transport-conditioned pathways.
+- deformation-wave transport can redistribute neutrons between denser and more diffuse zones during the BBN window,
+- this reweights local reaction paths in the same network equations,
+- deuterium and helium can remain close to their successful values while lithium pathways shift through the same transport-conditioned background.
 
 This keeps lithium inside one coherent mechanism family rather than adding a separate after-the-fact fix.
 
-## Mandatory Closure Targets
+## Effective Observer-Level Readout
 
-Any accepted BBN branch in this framework should match:
+At effective cosmology level, the same primordial chain is read through familiar BBN observables:
 
 - helium mass fraction near $Y_p\approx 0.24$,
 - deuterium abundance near $\mathrm{D/H}\approx 2.5\times10^{-5}$,
 - effective neutrino-sector coupling consistent with $N_{\text{eff}}$ constraints.
-
-## Theory Priorities
-
-- Build a coherent mapping from medium evolution to nucleosynthesis-era conditions.
-- Clarify how assembly structure enters effective reaction environments.
-- Integrate lithium discussion into the same single framework rather than separate patch explanations.
-- Demonstrate quantitatively, not only qualitatively, that any distributed-processing branch closes on the same abundance ledger.

@@ -14,7 +14,7 @@ $$
 
 In this framework, $H(z)$ and $G_{\text{eff}}$ summarize medium-state behavior rather than fundamental metric ontology.
 
-## Architrino Framing
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Framing
 
 - Growth modulation can arise from medium-response dynamics.
 - Dark-sector behavior can be described via weakly coupled neutral assemblies.

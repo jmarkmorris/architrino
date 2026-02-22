@@ -4,7 +4,7 @@
 
 How should late-time acceleration be interpreted in a fixed-void, medium-evolution cosmology?
 
-## Architrino Framing
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Framing
 
 - Acceleration is not interpreted as literal expansion of the Euclidean container.
 - Effective acceleration is associated with medium-state evolution, stress, and relaxation behavior.

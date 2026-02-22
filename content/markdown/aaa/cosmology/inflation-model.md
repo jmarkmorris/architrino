@@ -10,7 +10,7 @@ Inflation-like behavior is treated as a local or regional process (especially in
 
 Under long-lived recycling assumptions, this implies a continuously operating population of inflation-like regions rather than a unique early-universe episode.
 
-## SMBH-Core Mechanism (Architrino)
+## SMBH-Core Mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$)
 
 1. Inner assemblies enter a high-energy self-hit domain near maximal curvature.
 2. Energy transfer into medium-scale layers drives rapid effective expansion of assembly spacing.

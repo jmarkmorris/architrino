@@ -1,4 +1,4 @@
-# CMB Structure in Architrino Cosmology
+# CMB Structure in $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology
 
 ## Core Idea
 

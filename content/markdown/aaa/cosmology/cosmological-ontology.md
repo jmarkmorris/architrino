@@ -5,7 +5,7 @@
 1. **Two Times**: analysis uses absolute time $t$ for full-state bookkeeping and effective cosmic time $\tau_c$ for observer-level description.
 2. **Expansion Ontology**: the universe is a fixed Euclidean container with an evolving medium; the container itself does not expand.
 
-## Architrino Cosmology: Overview
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology: Overview
 
 Cosmology is expressed in two linked descriptions:
 
