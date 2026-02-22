@@ -208,7 +208,7 @@ export function createNodeFactory(deps) {
     }
 
     let halo = null;
-    if (nodeData.childScene || nodeData.markdownPath) {
+    if (nodeData.docDrillDownPreferred === true) {
       const haloGeometry = new THREE.SphereGeometry(nodeData.radius * 1.18, 24, 16);
       const haloMaterial = new THREE.MeshBasicMaterial({
         color: "#d5dcff",
