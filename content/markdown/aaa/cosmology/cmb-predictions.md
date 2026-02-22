@@ -15,7 +15,15 @@ $$
 C_\ell = \langle |a_{\ell m}|^2 \rangle.
 $$
 
-The formal observable remains standard; interpretation and microphysical origin are re-grounded in assembly dynamics.
+The formal observables remain standard; in practice this includes TT/TE/EE spectra (with damping-tail and lensing behavior), with $C_\ell$ as compact notation.
+
+## Forward Prediction Map
+
+Use one continuous causal map:
+
+medium state evolution $\rightarrow$ pre-decoupling coupled modes $\rightarrow$ decoupling transfer history $\rightarrow$ observed TT/TE/EE structure.
+
+Interpretation and microphysical origin are re-grounded in assembly dynamics while retaining the same observer-level prediction objects.
 
 ## Conceptual Mapping
 
@@ -24,11 +32,11 @@ The formal observable remains standard; interpretation and microphysical origin 
 - High-$\ell$ damping reflects decoupling-era diffusion/opacity analogs.
 - Polarization structure reflects phase relations in coupled oscillations.
 
-## Source-Mechanism Neutrality Constraint
+## Source-Interpretation Neutrality
 
-Whether the background is modeled as primarily primordial-fireball-origin or distributed-emission-origin, the prediction layer must reproduce the same precision observables in one parameterization. Source narrative does not exempt TT/TE/EE or damping-tail closure.
+Whether the background is read through a primarily primordial-origin interpretation or a distributed-emission interpretation, the prediction layer is one shared parameterization of the same observables.
 
-In particular, distributed-source branches must demonstrate that integrated emission-plus-transport does not generically yield a distorted spectrum from mixed source temperatures.
+So source narrative is an interpretation layer, not a change in the prediction target: TT/TE/EE structure, damping behavior, and blackbody character remain part of one coherent readout.
 
 ## Redshift and Clock Link
 
@@ -50,9 +58,6 @@ So CMB temperature/redshift summaries remain usable while their mechanism is gro
 - Keep effective $N_{\text{eff}}$ language connected to neutrino/sea coupling history.
 - Keep baryon-loading and damping-tail language connected to the same reaction/transport background used in BBN framing.
 
-## Theory Priorities
+## Coherent Reading
 
-- Define the smallest coherent parameterization of these mappings.
-- Keep one consistent ontology from pre-decoupling dynamics to observed spectra.
-- Connect CMB interpretation cleanly to expansion and structure-formation narratives.
-- Promote explicit closure tests: blackbody precision, anisotropy amplitude, peak ladder, polarization, and lensing consistency.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, peak spacing, odd/even loading, damping-tail behavior, polarization phase structure, and redshifted temperature readout are all interpreted as outputs of one medium-and-assembly history in a fixed Euclidean void.
