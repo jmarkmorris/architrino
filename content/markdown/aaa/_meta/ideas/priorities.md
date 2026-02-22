@@ -149,6 +149,9 @@ having a .ai domain is kinda cool though. don't give it up.
   6. LCDM mapping is currently narrative-rich but equation-poor; needs transfer-function closure.
      The CMB timeline and tri-binary ladder idea are clear (cosmology/cmb-origin.md:98, cosmology/cmb-origin.md:105), but not yet reduced to a predictive peak-position/amplitude pipeline.
      This is where you can convert “interesting alternative” into direct CMB/H0/S8 comparison framework.
+  6a. Decompose $\Lambda\mathrm{CDM}$ into independent observable components with explicit predicted API surfaces.
+     Build per-component interfaces (background expansion, recombination/CMB transfer, BBN yields, growth/lensing, distance ladder calibration) so each module can stand on its own observationally.
+     Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces, matches, or diverges from each component.
   7. Planck mapping is promising but still explicitly conjectural.
      dynamics/mapping-Planck-scale.md repeatedly labels key identifications as conjectured (dynamics/mapping-Planck-scale.md:28, dynamics/mapping-Planck-scale.md:194).
      Good news: this is honest and tractable if tied back to the master equation and validated numerically.

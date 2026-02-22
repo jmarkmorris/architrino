@@ -2,8 +2,8 @@
 
 ## Cosmology in the Absolute Frame
 
-1. **Two Times**: analysis uses absolute time $t$ for full-state bookkeeping and effective cosmic time $\tau_c$ for observer-level description.
-2. **Expansion Ontology**: the universe is a fixed Euclidean container with an evolving medium; the container itself does not expand.
+1. **Expansion Ontology**: the universe is a fixed Euclidean container with an evolving medium; the container itself does not expand.
+2. **Primordial Language**: "primordial" denotes an early effective observer-era regime in $\tau_c$ chronology, not a required literal one-time ontic origin event.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology: Overview
 
@@ -18,22 +18,26 @@ Cosmology is expressed in two linked descriptions:
 - Emergent comoving coordinates and cosmic-time approximation
 - FRW-like expansion, redshift, and metric-like behavior as effective outputs
 
+All cosmological observables are computed from absolute-state evolution and then projected into effective observer variables for comparison with data products.
+
 ## Cosmology Document Set
 
 - `expansion-mechanism.md`: canonical expansion and redshift mapping in fixed void ontology.
 - `inflation-model.md`: emergent early rapid-expansion model and conceptual inflation framing.
 - `BBN-constraints.md`: light-element abundance constraints under emergent $H(t)$.
 - `CMB-origin.md`: epoch-by-epoch CMB origin narrative and interpretation mapping.
-- `CMB-predictions.md`: quantitative CMB prediction and validation structure.
+- `CMB-predictions.md`: quantitative CMB prediction mapping in the same ontology.
 - `structure-formation.md`: growth dynamics and large-scale structure tests.
 - `hubble-s8-tensions.md`: joint treatment of late-time cosmology tensions.
-- `dark-matter.md`: dark-sector mechanism options and rejection criteria.
-- `dark-energy.md`: acceleration mechanism mapping and tests.
+- `dark-matter.md`: dark-sector mechanism mapping in a unified medium-and-assembly frame.
+- `dark-energy.md`: acceleration mechanism mapping in the same fixed-void ontology.
 - `cosmology-model-space.md`: model-class comparison framework.
 
 ## Working Principle
 
 Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies) must be reproducible from absolute-frame medium dynamics, with GR/$\Lambda\mathrm{CDM}$ behavior appearing as effective limits where applicable.
+
+For development and comparison, expansion, CMB transfer, BBN yields, and growth/lensing are treated as separable observational modules with explicit interface variables, while remaining one ontology.
 
 ## Origin and Global History Stance
 
@@ -49,8 +53,8 @@ Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies)
 - Large-scale homogeneity can be treated as a statistical outcome of repeated local processes governed by the same microphysics, while permitting local fluctuations and anisotropic environments.
 - Large-scale organization can be treated as mostly scale-invariant in architecture while still allowing finite-scale departures from statistical uniformity.
 
-## Two Time Notions (Operational)
+## Time Notions (Operational)
 
 - **Absolute Time ($t$):** global linear index for full-state evolution.
-- **Cosmic Time ($\tau_c$):** reconstructed observer-level clocking.
-- **Dynamics:** expansion is encoded as medium-network evolution in $t$.
+- **Cosmic Time ($\tau_c$):** reconstructed observer-level clocking used for effective observational chronology.
+- **Dynamics:** expansion is encoded as medium-network evolution in $t$, then read out as observer-level history in $\tau_c$.
