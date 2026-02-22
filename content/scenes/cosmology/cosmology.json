@@ -24,16 +24,86 @@
   },
   "objects": [
     {
-      "id": "horizon_problem",
-      "label": "Horizon Problem",
+      "id": "cosmology_observation_api",
+      "label": "Observation API and Ontology",
       "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
         0.0,
-        -7.5,
+        10.5,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "content/scenes/cosmology/observation_api_ontology.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmology_early_regimes",
+      "label": "Primordial and Early Regimes",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        9.1,
+        3.4,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/cosmology/primordial_early_regimes.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmology_growth_dark_sector",
+      "label": "Growth and Dark Sector",
+      "radius": 2.688,
+      "color": "#2c6c7e",
+      "position": [
+        5.6,
+        -8.4,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/cosmology/growth_dark_sector.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmology_tensions_validation",
+      "label": "Tensions and Validation Coupling",
+      "radius": 2.688,
+      "color": "#5a3f73",
+      "position": [
+        -5.6,
+        -8.4,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/cosmology/tensions_validation_coupling.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmology_background_dynamics",
+      "label": "Background Expansion Dynamics",
+      "radius": 2.688,
+      "color": "#2c2c60",
+      "position": [
+        -9.1,
+        3.4,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/cosmology/background_expansion_dynamics.json"
+      ],
       "motion": {
         "type": "fixed"
       }

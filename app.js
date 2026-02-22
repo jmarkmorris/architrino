@@ -1069,6 +1069,7 @@ const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 const markdownCache = new Map();
 const markdownSectionCache = new Map();
+const markdownFileSizeCache = new Map();
 const markdownRenderer =
   typeof window !== "undefined" && window.markdownit
     ? window.markdownit({ html: false, linkify: true, breaks: false })
@@ -1088,6 +1089,7 @@ const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "content/markdown/aaa/_meta/ideas/arch-api.md";
+const markdownGlowByteThreshold = 4096;
 const cacheBustToken = Date.now().toString();
 let appDirector = null;
 const sceneIndexService = new SceneIndexService();
@@ -2450,6 +2452,32 @@ function appendCacheBust(path) {
   return `${path}${separator}v=${cacheBustToken}`;
 }
 
+async function resolveMarkdownFileSize(path) {
+  if (!path) {
+    return null;
+  }
+  const normalizedPath = String(path);
+  if (markdownFileSizeCache.has(normalizedPath)) {
+    return markdownFileSizeCache.get(normalizedPath);
+  }
+
+  const promise = fetch(appendCacheBust(normalizedPath))
+    .then(async (response) => {
+      if (!response.ok) {
+        return null;
+      }
+      const blob = await response.blob();
+      return Number.isFinite(blob.size) ? blob.size : null;
+    })
+    .catch((error) => {
+      console.warn("Failed to resolve markdown byte size", normalizedPath, error);
+      return null;
+    });
+
+  markdownFileSizeCache.set(normalizedPath, promise);
+  return promise;
+}
+
 const sceneRepository = new SceneRepository({
   fetchImpl: (...args) => fetch(...args),
   appendCacheBust,
@@ -2460,6 +2488,8 @@ const sceneRepository = new SceneRepository({
   colorTokens,
   deriveMarkdownConfig,
   buildAutoMarkdownNodes,
+  resolveMarkdownFileSize,
+  markdownGlowMinBytes: markdownGlowByteThreshold,
 });
 
 async function loadSceneConfig(scenePath) {
@@ -2660,6 +2690,31 @@ function getMarkdownSectionIndexSceneId(markdownPath, markdownSection) {
 
 function getMarkdownDirectorySceneId(directory) {
   return `__markdown_directory__:${directory}`;
+}
+
+function ensureMarkdownDocScene(nodeData) {
+  const markdownPath = nodeData?.markdownPath;
+  if (!markdownPath) {
+    return null;
+  }
+  const sceneId = getMarkdownDocSceneId(markdownPath);
+  if (levelConfigs[sceneId]) {
+    return sceneId;
+  }
+  levelConfigs[sceneId] = {
+    layout: "static",
+    nodes: [],
+    links: [],
+    sceneName: nodeData.name ?? "Notes",
+    sceneId,
+    markdownPath,
+    markdownSection: nodeData.markdownSection ?? null,
+    markdownColumns: nodeData.markdownColumns ?? null,
+    markdownAutoOpen: true,
+    centerOn: null,
+  };
+  markdownReaderScenes.set(sceneId, true);
+  return sceneId;
 }
 
 function ensureMarkdownReaderScene(nodeData) {
@@ -3639,6 +3694,21 @@ function focusOnPointer(clientX, clientY) {
       closeDetailPanel();
       hideHoverTooltip();
       composerUiRuntime.setComposerPanel(panelId);
+      return true;
+    }
+  }
+
+  const prefersDocDrillDown =
+    targetNode.data.docDrillDownPreferred === true &&
+    !!targetNode.data.markdownPath;
+
+  if (prefersDocDrillDown) {
+    closeDetailPanel();
+    hideHoverTooltip();
+    const docSceneId = ensureMarkdownDocScene(targetNode.data);
+    if (docSceneId) {
+      targetNode.data.childScene = docSceneId;
+      startLevelTransitionFromNode(targetNode);
       return true;
     }
   }

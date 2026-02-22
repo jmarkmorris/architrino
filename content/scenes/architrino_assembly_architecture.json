@@ -46,40 +46,6 @@
       }
     },
     {
-      "id": "phenomenology",
-      "label": "Observables",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "position": [
-        4.31,
-        -17.48,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/phenomenology/phenomenology.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "quantum",
-      "label": "Quantum",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "position": [
-        -4.31,
-        -17.48,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/quantum/quantum.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "assemblies",
       "label": "Assemblies",
       "radius": 2.688,
@@ -91,41 +57,6 @@
       ],
       "subScenes": [
         "content/scenes/assemblies/assemblies.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "standard_model",
-      "label": "Standard Model Assemblies",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "position": [
-        8.37,
-        15.94,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/standard-model-particles/standard_model.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "scaleExponent": -18
-    },
-    {
-      "id": "fermion_generations",
-      "label": "Fermion Generation and Color",
-      "radius": 2.688,
-      "color": "PURPLE",
-      "position": [
-        17.87,
-        2.17,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/standard-model-theory/fermion_generation_color.json"
       ],
       "motion": {
         "type": "fixed"
