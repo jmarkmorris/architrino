@@ -18,6 +18,7 @@ This page organizes major cosmology model families and situates $\mathbb{A}\math
 - Clarify where $\mathbb{A}\mathbb{A}\mathbb{A}$ agrees at effective level and where ontology diverges.
 - Prevent category-mixing between explanatory layers.
 - Keep terminology disciplined when borrowing effective equations from other frameworks.
+- Track historical lineage explicitly when relevant (steady-state, quasi-steady-state, bounce/cyclic), while stating where AAA adds distinct microphysical commitments.
 
 ## Observational Discriminant Checklist
 
@@ -30,6 +31,9 @@ Use this compact checklist when comparing $\mathbb{A}\mathbb{A}\mathbb{A}$ branc
 - preferred-frame leakage limits under Lorentz-suppression expectations,
 - dark-sector profile behavior across galaxy, cluster, and lensing scales,
 - primordial/initial power-spectrum assumptions and downstream growth impact.
+- quasar number-density and isotropy interpretations versus redshift-dependent selection and transport effects.
+- high-$z$ galaxy maturity claims (including JWST-era datasets) under each model branch.
+- age assumptions (finite-age versus effectively unbounded history) and downstream structure-time implications.
 
 ## Theory Priorities
 

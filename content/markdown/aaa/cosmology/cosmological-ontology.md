@@ -41,6 +41,12 @@ Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies)
 - Large-scale cosmological history is modeled as long-lived medium-and-assembly evolution with recycling channels, including SMBH-centered processing.
 - "Big Bang timeline" language is retained as an effective observational chronology, while ontology remains fixed-void plus evolving Noether-sea state.
 
+## Galaxy-Local Cosmology Paradigm
+
+- Processes often presented as single global events are modeled as distributed, parallel, galaxy-local recycling dynamics.
+- SMBH-centered high-curvature processing is treated as a persistent cosmological engine class rather than a one-time initial-condition generator.
+- Effective cosmological chronology is therefore a stitched observational map of many local histories, not one literal global launch event.
+
 ## Two Time Notions (Operational)
 
 - **Absolute Time ($t$):** global linear index for full-state evolution.

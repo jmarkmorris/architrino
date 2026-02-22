@@ -147,6 +147,8 @@ The current model space for CMB sourcing includes:
 
 These channels are treated as compatible with one shared thermalization and decoupling story; they are not separate ontologies.
 
+Jet-transport scales in the Mpc class are treated as part of this channel family, with cumulative contribution determined by source population statistics and medium thermalization depth.
+
 ## Conceptual Mapping Notes
 
 To keep the timeline coherent, each epoch-level claim should map to recognizable CMB structure:

@@ -42,6 +42,8 @@ is treated as an emergent descriptor, not a fundamental ontological primitive.
 
 In lowest-order fits, $w\approx -1$ remains admissible as an effective summary while mechanism language stays medium-based.
 
+In this usage, the $\Lambda$ term can be read as an effective aggregate summary of distributed medium relaxation rates, not as a literal geometric constant of an expanding container.
+
 ## Cosmological-Constant Reframing
 
 The cosmological-constant hierarchy issue is handled as an ontology mismatch:

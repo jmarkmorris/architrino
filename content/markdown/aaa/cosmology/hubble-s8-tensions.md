@@ -36,6 +36,7 @@ For $H_0$:
 
 - local medium-state inhomogeneity (including void-like environments) can bias local-ladder inference relative to early-time inference,
 - late-time medium transition channels can shift low-$z$ inference without reintroducing ontology splits.
+- a non-zero environment-conditioned scatter in local $H$ inference is expected if medium-state gradients are physically relevant.
 
 For $S_8$:
 
@@ -48,3 +49,4 @@ For $S_8$:
 - Use one shared medium-evolution language for background and growth.
 - Clarify which parts are fundamental ontology and which are effective summaries.
 - Move from "can explain" language to explicit parameterized predictions and falsifiable ranges.
+- Publish explicit predictions for the amplitude and sky/environment dependence of local-$H$ scatter.

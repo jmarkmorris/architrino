@@ -8,6 +8,8 @@ The early rapid-expansion phase is modeled as an emergent high-curvature regime 
 
 Inflation-like behavior is treated as a local or regional process (especially in SMBH-core and jet-linked high-curvature environments), not as a one-time global expansion of the Euclidean container.
 
+Under long-lived recycling assumptions, this implies a continuously operating population of inflation-like regions rather than a unique early-universe episode.
+
 ## SMBH-Core Mechanism (Architrino)
 
 1. Inner assemblies enter a high-energy self-hit domain near maximal curvature.

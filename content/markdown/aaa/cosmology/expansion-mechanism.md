@@ -47,6 +47,10 @@ $$
 
 so redshift is treated as path-integrated medium evolution plus endpoint clock-rate comparison.
 
+## Photon-Propagation Loss Branch (Constrained Option)
+
+A secondary model-space option allows additional path-dependent photon energy degradation in medium transit ("redshift toll") beyond endpoint clock comparison. This branch is only admissible if it remains consistent with precision constraints usually applied to spectral distortion, distance-duality behavior, and background thermality.
+
 ## Dissipation and Rescaling Picture
 
 Apparent expansion is interpreted as relaxation of medium state:
@@ -73,6 +77,8 @@ Early-inferred and local-inferred expansion rates probe different medium states:
 - Local probes sample pockets that are further along relaxation and dissipation trajectories.
 
 So the $H_0$ split is interpreted as state-dependent inference from one ontology, not two incompatible universes.
+
+In this framing, $H_0$ is not expected to be strictly universal at all environments; a measurable local scatter tied to medium state is a direct prediction candidate.
 
 ## Effective Friedmann Bridge (Comparison Layer)
 

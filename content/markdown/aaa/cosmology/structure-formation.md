@@ -28,6 +28,8 @@ Any viable growth model in this ontology should be stress-tested against:
 - cluster mass profiles (lensing plus thermodynamic tracers),
 - cosmic shear and $S_8$-family constraints,
 - CMB matter-loading requirements (including higher-peak behavior).
+- high-$z$ mature-galaxy abundance claims and their compatibility with the selected growth history.
+- largest-structure scale statistics (including giant-wall-scale claims) under finite-age versus effectively unbounded-age assumptions.
 
 ## Theory Priorities
 

@@ -21,7 +21,7 @@ The structural shift is not the network form itself, but the underlying cosmolog
 
 ## Distributed-Processing Hypothesis (Model-Space Branch)
 
-Alongside a single early hot-phase reading, the framework can also evaluate distributed high-temperature processing channels (for example SMBH-linked outflows and other localized high-energy environments) as contributors to light-element budgets. This branch is admissible only if it reproduces the same abundance constraints in aggregate.
+Alongside a single early hot-phase reading, the framework can also evaluate distributed high-temperature processing channels (for example SMBH-linked outflows, localized early high-density regions, and selected stellar-explosive environments) as contributors to light-element budgets. This branch is admissible only if it reproduces the same abundance constraints in aggregate.
 
 ## Lithium Integration in the Same Framework
 
