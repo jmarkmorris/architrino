@@ -60,7 +60,7 @@ In the modular cosmology map, this page provides:
 
 - ontic inputs: medium-evolution thermal history and transport-conditioned reaction environment,
 - effective outputs: primordial light-element yield summaries and neutrino-sector readout terms,
-- shared bridge variables with `cmb.md` and `expansion-mechanism.md`.
+- shared bridge variables with `CMB.md` and `expansion-mechanism.md`.
 
 ## Coherent Reading
 

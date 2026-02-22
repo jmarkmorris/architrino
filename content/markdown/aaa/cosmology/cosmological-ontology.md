@@ -25,18 +25,45 @@ All cosmological observables are computed from absolute-state evolution and then
 - `expansion-mechanism.md`: canonical expansion and redshift mapping in fixed void ontology.
 - `inflation-model.md`: emergent early rapid-expansion model and conceptual inflation framing.
 - `BBN-constraints.md`: light-element abundance constraints under emergent $H(t)$.
-- `cmb.md`: integrated CMB origin narrative plus quantitative prediction mapping in the same ontology.
+- `CMB.md`: integrated CMB origin narrative plus quantitative prediction mapping in the same ontology.
 - `structure-formation.md`: growth dynamics and large-scale structure tests.
 - `hubble-s8-tensions.md`: joint treatment of late-time cosmology tensions.
 - `dark-matter.md`: dark-sector mechanism mapping in a unified medium-and-assembly frame.
 - `dark-energy.md`: acceleration mechanism mapping in the same fixed-void ontology.
-- `cosmology-model-space.md`: model-class comparison framework.
 
 ## Working Principle
 
 Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies) must be reproducible from absolute-frame medium dynamics, with GR/$\Lambda\mathrm{CDM}$ behavior appearing as effective limits where applicable.
 
 For development and comparison, expansion, CMB transfer, BBN yields, and growth/lensing are treated as separable observational modules with explicit interface variables, while remaining one ontology.
+
+## Observation-First Component Abstraction
+
+This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs $\Lambda\mathrm{CDM}$" at the bundled-model level. Instead, first abstract $\Lambda\mathrm{CDM}$ into separable observational components with no interpretational linkage baked in:
+
+- background expansion component ($H(z)$ and distance-redshift summaries),
+- recombination/CMB transfer component (TT/TE/EE, damping, lensing imprint),
+- primordial-yield component (BBN abundance outputs),
+- structure-growth component (clustering, shear, lensing growth summaries),
+- local-calibration component (distance ladder and environment-conditioned inference).
+
+This decomposition prevents hidden dependency loops where one assumed foundation silently fixes another observable domain.
+
+## Interface Variables (Predicted API Surface)
+
+Each observational component exposes explicit interface variables for cross-theory mapping:
+
+- Expansion interface: effective $a(t)$/$H(z)$ history and redshift mapping variables.
+- CMB interface: mode-seeding inputs, transfer behavior, and TT/TE/EE outputs.
+- BBN interface: thermal/reaction history inputs and light-element yield outputs.
+- Growth interface: matter-loading and coupling inputs with late-time amplitude/shape outputs.
+- Calibration interface: local-environment terms that map observer pipelines to inferred cosmological parameters.
+
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping Stance
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ maps to each observation component directly through these interfaces. Agreement or divergence from $\Lambda\mathrm{CDM}$ is evaluated per component, not as all-or-nothing acceptance of a single interpretational package.
+
+Historical correspondences (steady-state, quasi-steady-state, bounce/cyclic, SMBH-centered recycling) are tracked as lineage context, while microphysical commitments remain specific to $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ## Origin and Global History Stance
 

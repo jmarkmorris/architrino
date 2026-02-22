@@ -51,7 +51,7 @@ go through cosmology documents on wordpress and put content in cosmology docs? T
   - electroweak-bosons.md
   - gluons.md
   - color-charge-su3.md
-  - cmb.md
+  - CMB.md
   - ontology.md
   - bootstrapping-the-absolute-frame.md
   - absolute-time-defense.md
@@ -147,7 +147,7 @@ having a .ai domain is kinda cool though. don't give it up.
      simulations/perspective.md:242).
      Without this, $\mathbb{A}\mathbb{A}\mathbb{A}$ can reinterpret QM but not yet match its strongest nonlocal statistical benchmark.
   6. LCDM mapping is currently narrative-rich but equation-poor; needs transfer-function closure.
-     The CMB timeline and tri-binary ladder idea are clear (cosmology/cmb.md:98, cosmology/cmb.md:105), but not yet reduced to a predictive peak-position/amplitude pipeline.
+     The CMB timeline and tri-binary ladder idea are clear (cosmology/CMB.md:98, cosmology/CMB.md:105), but not yet reduced to a predictive peak-position/amplitude pipeline.
      This is where you can convert “interesting alternative” into direct CMB/H0/S8 comparison framework.
   6a. Decompose $\Lambda\mathrm{CDM}$ into independent observable components with explicit predicted API surfaces.
      Build per-component interfaces (background expansion, recombination/CMB transfer, BBN yields, growth/lensing, distance ladder calibration) so each module can stand on its own observationally.

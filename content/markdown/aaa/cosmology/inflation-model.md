@@ -50,7 +50,7 @@ In the modular cosmology map, this page contributes:
 
 - ontic inputs: self-hit occupancy, alignment-boundary transitions, and core-to-medium energy transfer,
 - effective outputs: inflation-like rapid expansion segments and perturbation-seeding summaries,
-- bridge variables shared with `expansion-mechanism.md` and `cmb.md`.
+- bridge variables shared with `expansion-mechanism.md` and `CMB.md`.
 
 ## Coherent Reading
 
