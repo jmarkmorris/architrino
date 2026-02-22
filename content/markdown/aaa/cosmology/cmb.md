@@ -1,6 +1,6 @@
 # CMB in $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology
 
-This document presents a chronological, linear account of the Cosmic Microwave Background (CMB) origin with parallel interpretations in standard $\Lambda\mathrm{CDM}$ and $\mathbb{A}\mathbb{A}\mathbb{A}$. Each section begins with a short time-period description and then provides two interpretations: a $\Lambda\mathrm{CDM}$ view and an $\mathbb{A}\mathbb{A}\mathbb{A}$ view.
+This document combines the CMB origin timeline and prediction layer in one place, with parallel interpretation language for standard $\Lambda\mathrm{CDM}$ and $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ## Core Idea
 
@@ -155,18 +155,6 @@ These channels are treated as parts of one shared thermalization and decoupling 
 Jet-transport scales in the Mpc class are treated as part of this channel family, with cumulative contribution determined by source population statistics and medium thermalization depth.
 
 Isotropy in this branch is attributed to long-time averaging over many source populations following the same microphysical rules, not to one-time primordial causal contact.
-
-## Conceptual Mapping Notes
-
-To keep the timeline coherent, each epoch-level claim should map to recognizable CMB structure:
-
-- Peak positions ($\ell_1, \ell_2, \ell_3,\dots$): effective horizon/coupling scales.
-- Odd/even peak contrast: baryon-like loading versus photon-like modes.
-- Damping tail: diffusion/opacity behavior near decoupling.
-- TE/EE structure: coupling and phase relationships through decoupling.
-- Lensing amplitude: post-decoupling structure-growth context.
-
-The prediction mapping is integrated in the "Prediction Layer (Unified)" section below.
 
 ## Quantitative Closure Requirements
 
