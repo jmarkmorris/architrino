@@ -82,7 +82,6 @@ Yes. Dynamics is not unique.
   - content/scenes/dynamics/dynamics.json
   - content/scenes/foundations/foundations.json
   - content/scenes/nuclear/nuclear_atomic.json
-  - content/scenes/phenomenology/phenomenology.json
   - content/scenes/philosophy_history/philosophy_history.json
   - content/scenes/philosophy_history/unknowns_paradoxes.json
   - content/scenes/philosophy_history/out_of_the_ashes.json
@@ -279,7 +278,7 @@ having a .ai domain is kinda cool though. don't give it up.
 ---
 
 ### **Honorable Mentions (Defer for Now):**
-- **`phenomenology/effective-lagrangian.md` (0 bytes):** Important for theorists, but **not critical** until we have the mass spectrum and proper time working.
+- **`dynamics/effective-lagrangian.md` (0 bytes):** Important for theorists, but **not critical** until we have the mass spectrum and proper time working.
 - **`spacetime/emergent-metric.md` (8,133 bytes):** Partially done. Needs completion, but **Proper Time Derivation** is the more urgent prerequisite.
 
 ---
@@ -299,11 +298,11 @@ having a .ai domain is kinda cool though. don't give it up.
 
   2. Populate the quantum interpretation suite: write the missing quantum/*.md with pilot-wave/self-hit mechanics, superposition, entanglement, and measurement pathways grounded in foundations/master-equation.md and foundations/self-hit-dynamics.md, plus testable predictions (double-slit, Bell/CHSH, collapse timescales).
 
-  3. Derive the effective metric and PPN numbers: from spacetime/emergent-metric.md and spacetime/ppn-parameters.md, specify g_eff(ρ_core,Φ) and compute γ, β, α_i to Cassini/LLR precision; show Shapiro delay/light bending equivalence to GR to 1e-5 while respecting adversarial/failure-criteria.md.
+  3. Derive the effective metric and PPN numbers: from spacetime/emergent-metric.md and spacetime/ppn-parameters.md, specify g_eff(ρ_core,Φ) and compute γ, β, α_i to Cassini/LLR precision; show Shapiro delay/light bending equivalence to GR to 1e-5 while respecting validation/failure-criteria.md.
 
   4. Nail self-hit/regularization numerics: implement tier-0/1 simulations per simulations/run-protocols.md and synthesis/action-energy/* to lock the maximum-curvature orbit, history resolution, and stability of binaries/tri-binaries; publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs.
 
-  5. Complete the parameter ledger and couplings: populate foundations/parameter-ledger.md with κ, ε0/μ0 equivalents, density scales, and regularization widths; tie to foundations/action.md and foundations/architrino-si-base-units.md, then cross-check against adversarial/constraint-ledger.md for viability bounds.
+  5. Complete the parameter ledger and couplings: populate foundations/parameter-ledger.md with κ, ε0/μ0 equivalents, density scales, and regularization widths; tie to foundations/action.md and foundations/architrino-si-base-units.md, then cross-check against validation/constraint-ledger.md for viability bounds.
 
   ---
 

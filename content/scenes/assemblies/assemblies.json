@@ -67,6 +67,40 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "standard_model",
+      "label": "Standard Model Assemblies",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        0.0,
+        -8.0,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/standard-model-particles/standard_model.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "fermion_generations",
+      "label": "Fermion Generation and Color",
+      "radius": 2.688,
+      "color": "#5d3a9f",
+      "position": [
+        12.0,
+        -6.0,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/standard-model-theory/fermion_generation_color.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }

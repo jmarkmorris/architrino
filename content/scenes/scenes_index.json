@@ -96,11 +96,6 @@
       "path": "content/scenes/dynamics/dynamics.json"
     },
     {
-      "id": "phenomenology",
-      "name": "Observables",
-      "path": "content/scenes/phenomenology/phenomenology.json"
-    },
-    {
       "id": "cosmology",
       "name": "Cosmology",
       "path": "content/scenes/cosmology/cosmology.json"
