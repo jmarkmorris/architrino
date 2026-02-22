@@ -46,10 +46,10 @@ export class SceneRepository {
         node.glowRing = isEligible;
         if (isEligible) {
           node.glowRingColor = node.glowRingColor ?? "#aeb6c6";
-          node.glowRingOpacity = node.glowRingOpacity ?? 0.22;
+          node.glowRingOpacity = node.glowRingOpacity ?? 0.3;
           node.glowRingThickness =
             node.glowRingThickness ?? Math.max(0.028, node.radius * 0.06);
-          node.glowRingScale = node.glowRingScale ?? 1.06;
+          node.glowRingScale = node.glowRingScale ?? 1.04;
         }
       })
     );

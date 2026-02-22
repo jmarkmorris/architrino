@@ -242,10 +242,10 @@ export function createLevelRuntime(deps) {
         return;
       }
       const pulse = 0.5 + 0.5 * Math.sin(timeSeconds * 1.5 + node.haloPhase);
-      const scale = 1.02 + 0.06 * pulse;
+      const scale = 1.0 + 0.015 * pulse;
       node.halo.scale.setScalar(scale);
       node.halo.material.opacity =
-        node.haloBaseOpacity * node.haloIntensity * (0.35 + 0.65 * pulse);
+        node.haloBaseOpacity * node.haloIntensity * (0.75 + 0.25 * pulse);
     });
   }
 
