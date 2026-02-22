@@ -121,6 +121,11 @@
       "path": "content/scenes/validation/validation.json"
     },
     {
+      "id": "validation_simulations",
+      "name": "Validation Simulations",
+      "path": "content/scenes/validation/simulations.json"
+    },
+    {
       "id": "unknowns_paradoxes",
       "name": "Unknowns & Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json"

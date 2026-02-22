@@ -10,7 +10,7 @@
       "source": {
         "type": "directory",
         "path": "content/markdown/aaa/validation",
-        "subdirectories": true
+        "subdirectories": false
       },
       "layout": {
         "includeExisting": true,
@@ -22,5 +22,23 @@
       }
     }
   },
-  "objects": []
+  "objects": [
+    {
+      "id": "validation_simulations",
+      "label": "Simulations",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "position": [
+        0.0,
+        8.0,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/validation/simulations.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
 }
