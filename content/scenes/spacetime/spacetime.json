@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime",
-    "name": "Spacetime",
+    "name": "Spacetime Assemblies",
     "units": "relative",
     "wrapLabels": true,
     "autoSphereRing": true,
