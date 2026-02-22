@@ -1,6 +1,6 @@
 # Hubble and $S_8$ Tensions
 
-## Purpose
+## Core Idea
 
 This document frames $H_0$ and $S_8$ as linked conceptual problems inside a single cosmological ontology.
 

@@ -1,6 +1,6 @@
 # Dark Energy
 
-## Core Question
+## Core Idea
 
 How should late-time acceleration be interpreted in a fixed-void, medium-evolution cosmology?
 

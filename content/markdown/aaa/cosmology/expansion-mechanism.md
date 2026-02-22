@@ -1,6 +1,6 @@
 # Expansion Mechanism
 
-## Core Statement
+## Core Idea
 
 The Euclidean void does not expand. What evolves is the Noether sea and the state of assemblies moving through it.
 
@@ -109,3 +109,7 @@ In the modular cosmology map, this page provides:
 - ontic inputs: medium density/stress state, clock-rate map, and transport environment,
 - effective outputs: inferred $a(t)$, $H(z)$, and redshift-distance behavior,
 - shared bridge variables used by `dark-energy.md`, `hubble-s8-tensions.md`, and `CMB-predictions.md`.
+
+## Coherent Reading
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, expansion/redshift observables are effective readouts of medium evolution, transport, and clock-rate mapping in a fixed Euclidean void; one ontology supports both early- and late-time inference layers.

@@ -1,6 +1,6 @@
 # Dark Matter
 
-## Core Question
+## Core Idea
 
 What does dark-matter phenomenology correspond to in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology?
 

@@ -1,6 +1,6 @@
 # Inflation Model
 
-## Core Claim
+## Core Idea
 
 The early rapid-expansion phase is modeled as an emergent high-curvature regime of tri-binary dynamics, not as a fundamental standalone inflaton ontology.
 

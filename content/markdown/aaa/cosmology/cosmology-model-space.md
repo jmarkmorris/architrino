@@ -1,6 +1,6 @@
 # Cosmology Model Space
 
-## Purpose
+## Core Idea
 
 This page decomposes cosmology into separable observational components and situates $\mathbb{A}\mathbb{A}\mathbb{A}$ relative to existing model families at the component level.
 

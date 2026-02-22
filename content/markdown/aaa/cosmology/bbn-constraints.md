@@ -39,3 +39,15 @@ At effective cosmology level, the same primordial chain is read through familiar
 - helium mass fraction near $Y_p\approx 0.24$,
 - deuterium abundance near $\mathrm{D/H}\approx 2.5\times10^{-5}$,
 - effective neutrino-sector coupling consistent with $N_{\text{eff}}$ constraints.
+
+## BBN-Module Interface
+
+In the modular cosmology map, this page provides:
+
+- ontic inputs: medium-evolution thermal history and transport-conditioned reaction environment,
+- effective outputs: primordial light-element yield summaries and neutrino-sector readout terms,
+- shared bridge variables with `CMB-predictions.md` and `expansion-mechanism.md`.
+
+## Coherent Reading
+
+BBN in $\mathbb{A}\mathbb{A}\mathbb{A}$ is one primordial-era readout of the same medium-and-assembly evolution used elsewhere; network form is standard, ontology and background interpretation are unified.

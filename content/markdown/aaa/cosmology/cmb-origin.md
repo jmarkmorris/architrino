@@ -2,6 +2,10 @@
 
 This document presents a chronological, linear account of the Cosmic Microwave Background (CMB) origin with parallel interpretations in standard $\Lambda\mathrm{CDM}$ and $\mathbb{A}\mathbb{A}\mathbb{A}$. Each section begins with a short time-period description and then provides two interpretations: a $\Lambda\mathrm{CDM}$ view and an $\mathbb{A}\mathbb{A}\mathbb{A}$ view.
 
+## Core Idea
+
+The CMB timeline is presented as an effective observer-level chronology map that is interpreted through one fixed-void, evolving-medium ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
 ## Framing Guardrails
 
 - The Euclidean void is fixed; cosmological language describes Noether-sea evolution within that fixed container.
@@ -180,3 +184,11 @@ Until this closure is explicit, distributed-origin language remains a constraine
 - Expansion wording here should remain consistent with `expansion-mechanism.md`.
 - Dark-sector loading language here should remain consistent with `dark-matter.md` and `hubble-s8-tensions.md`.
 - Parameter-bridge wording here should remain consistent with `_meta/ideas/constraints-lcdm-map.md`.
+
+## CMB-Module Interface
+
+In the modular cosmology map, this page provides:
+
+- timeline-level interpretation mapping between ontic mechanism language and observer-era chronology,
+- source-to-transport-to-decoupling narrative inputs used by `CMB-predictions.md`,
+- bridge language tying expansion, BBN, and growth narratives into one CMB interpretation layer.
