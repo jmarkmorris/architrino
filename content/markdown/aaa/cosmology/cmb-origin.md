@@ -1,12 +1,13 @@
 # CMB Origin: $\Lambda\mathrm{CDM}$ vs $\mathbb{A}\mathbb{A}\mathbb{A}$ Timeline
 
-This document presents a chronological, linear account of the Cosmic Microwave Background (CMB) origin with parallel interpretations in standard $\Lambda\mathrm{CDM}$ and the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). Each section begins with a short time-period description and then provides two interpretations: a $\Lambda\mathrm{CDM}$ view and an $\mathbb{A}\mathbb{A}\mathbb{A}$ view.
+This document presents a chronological, linear account of the Cosmic Microwave Background (CMB) origin with parallel interpretations in standard $\Lambda\mathrm{CDM}$ and $\mathbb{A}\mathbb{A}\mathbb{A}$. Each section begins with a short time-period description and then provides two interpretations: a $\Lambda\mathrm{CDM}$ view and an $\mathbb{A}\mathbb{A}\mathbb{A}$ view.
 
 ## Framing Guardrails
 
 - The Euclidean void is fixed; cosmological language describes Noether-sea evolution within that fixed container.
 - Redshift language is consistent with medium evolution plus clock-rate comparison across environments.
 - Background and growth claims are kept in one shared medium-and-assembly ontology.
+- Epoch times below are an effective observer-level chronology map, not a claim of one literal global launch event in absolute-time ontology.
 
 ## Pre-Cosmological Steady State ($\mathbb{A}\mathbb{A}\mathbb{A}$-Only)
 - Scope: $\mathbb{A}\mathbb{A}\mathbb{A}$-only steady-state background; $\Lambda\mathrm{CDM}$ does not define a pre-Big-Bang era.
@@ -42,7 +43,7 @@ This document presents a chronological, linear account of the Cosmic Microwave B
 
 **$\Lambda\mathrm{CDM}$ interpretation:** A scalar field drives exponential expansion, smoothing curvature and seeding primordial perturbations.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Inflationary Epoch: Noether Cores Form):** $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts that inflation-like behavior is sourced in SMBH-core interior dynamics. The self-hit regime of inner assemblies drives rapid effective expansion/relaxation of the surrounding tri-binary medium. Near the Planck-alignment boundary, terminal lock and release behavior organizes the transition from maximal-curvature dynamics into a broader, more uniform background state. Noether cores (tri-binary spacetime assemblies) form in bulk, establishing the coherent medium that later supports emergent metric summaries without invoking literal expansion of the void.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Inflationary Epoch: Noether-Core Transition):** $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts that inflation-like behavior is sourced in SMBH-core interior dynamics. The self-hit regime of inner assemblies drives rapid effective expansion/relaxation of the surrounding tri-binary medium. Near the Planck-alignment boundary, terminal lock and release behavior organizes the transition from maximal-curvature dynamics into a broader, more uniform background state. In the mapped chronology, Noether-core (tri-binary spacetime assembly) behavior enters a coherent regime that later supports emergent metric summaries without invoking literal expansion of the void.
 
 ## Electroweak Epoch ($\sim 10^{-12}$ s)
 - Time window: $\sim 10^{-12}$ s.
@@ -126,10 +127,10 @@ This document presents a chronological, linear account of the Cosmic Microwave B
 
 **$\Lambda\mathrm{CDM}$ interpretation:** The universe is neutral and dark; structure grows under gravity until the first luminous objects form.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: CMBR Counter-Rotating Coaxial Assemblies Launch):** The decoupled photon-like assemblies propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: CMB Counter-Rotating Coaxial Assemblies Launch):** The decoupled photon-like assemblies propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
 
-## Remapping the Big Bang to SMBH Jet and/or Surface Emissions
-- Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the Big Bang chronology.
+## Source Interpretation Layer: SMBH Jet and/or Surface Emissions
+- Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the effective Big Bang chronology map.
 - Claim: the Big Bang corresponds to the collective surfaces of SMBHs, not a singular origin.
 - Outcome: outbound SMBH emissions map onto the observed CMB after thermalization and redshift.
 
@@ -137,15 +138,15 @@ This document presents a chronological, linear account of the Cosmic Microwave B
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark photons and other outbound excitations from SMBH horizons (and associated jet/surface processes) propagate through the Noether sea, thermalize, and redshift into the observed CMB. The three intrinsic tri-binary energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB thus becomes a global record of steady-state recycling dynamics in a fixed void, not a singular origin event nor literal metric stretching of the container.
 
-## Distributed-Emission Working Channels
+## Distributed-Emission Channels (Same Ontology)
 
-The current model space for CMB sourcing includes:
+Within the same ontology, CMB sourcing can be represented through:
 
 1. SMBH jet/horizon outbound photon-like and dark-photon-like channels accumulated over long history,
 2. medium-relaxation radiation from Noether-sea state transitions,
 3. conversion/decay channels from high-velocity assembly states into photon-like modes.
 
-These channels are treated as compatible with one shared thermalization and decoupling story; they are not separate ontologies.
+These channels are treated as parts of one shared thermalization and decoupling story; they are not separate ontologies.
 
 Jet-transport scales in the Mpc class are treated as part of this channel family, with cumulative contribution determined by source population statistics and medium thermalization depth.
 
@@ -161,7 +162,7 @@ To keep the timeline coherent, each epoch-level claim should map to recognizable
 - TE/EE structure: coupling and phase relationships through decoupling.
 - Lensing amplitude: post-decoupling structure-growth context.
 
-Use `cmb-predictions.md` as the companion document for the explicit mapping language.
+Use `CMB-predictions.md` as the companion document for the explicit mapping language.
 
 ## Quantitative Closure Requirements
 
@@ -178,4 +179,4 @@ Until this closure is explicit, distributed-origin language remains a constraine
 
 - Expansion wording here should remain consistent with `expansion-mechanism.md`.
 - Dark-sector loading language here should remain consistent with `dark-matter.md` and `hubble-s8-tensions.md`.
-- Parameter-bridge wording here should remain consistent with `constraints-data-map.md`.
+- Parameter-bridge wording here should remain consistent with `_meta/ideas/constraints-lcdm-map.md`.
