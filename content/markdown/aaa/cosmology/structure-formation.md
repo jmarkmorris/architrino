@@ -37,7 +37,7 @@ In the modular cosmology map, this page provides:
 
 - ontic inputs: medium response and neutral-assembly loading history,
 - effective outputs: growth amplitude/shape evolution and lensing-relevant mass summaries,
-- shared bridge variables with `dark-matter.md`, `hubble-s8-tensions.md`, and `CMB-predictions.md`.
+- shared bridge variables with `dark-matter.md`, `hubble-s8-tensions.md`, and `cmb.md`.
 
 ## Coherent Reading
 

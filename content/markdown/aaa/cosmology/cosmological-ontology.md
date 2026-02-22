@@ -25,8 +25,7 @@ All cosmological observables are computed from absolute-state evolution and then
 - `expansion-mechanism.md`: canonical expansion and redshift mapping in fixed void ontology.
 - `inflation-model.md`: emergent early rapid-expansion model and conceptual inflation framing.
 - `BBN-constraints.md`: light-element abundance constraints under emergent $H(t)$.
-- `CMB-origin.md`: epoch-by-epoch CMB origin narrative and interpretation mapping.
-- `CMB-predictions.md`: quantitative CMB prediction mapping in the same ontology.
+- `cmb.md`: integrated CMB origin narrative plus quantitative prediction mapping in the same ontology.
 - `structure-formation.md`: growth dynamics and large-scale structure tests.
 - `hubble-s8-tensions.md`: joint treatment of late-time cosmology tensions.
 - `dark-matter.md`: dark-sector mechanism mapping in a unified medium-and-assembly frame.

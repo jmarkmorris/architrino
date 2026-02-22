@@ -1,4 +1,4 @@
-# CMB Origin: $\Lambda\mathrm{CDM}$ vs $\mathbb{A}\mathbb{A}\mathbb{A}$ Timeline
+# CMB in $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology
 
 This document presents a chronological, linear account of the Cosmic Microwave Background (CMB) origin with parallel interpretations in standard $\Lambda\mathrm{CDM}$ and $\mathbb{A}\mathbb{A}\mathbb{A}$. Each section begins with a short time-period description and then provides two interpretations: a $\Lambda\mathrm{CDM}$ view and an $\mathbb{A}\mathbb{A}\mathbb{A}$ view.
 
@@ -166,7 +166,7 @@ To keep the timeline coherent, each epoch-level claim should map to recognizable
 - TE/EE structure: coupling and phase relationships through decoupling.
 - Lensing amplitude: post-decoupling structure-growth context.
 
-Use `CMB-predictions.md` as the companion document for the explicit mapping language.
+The prediction mapping is integrated in the "Prediction Layer (Unified)" section below.
 
 ## Quantitative Closure Requirements
 
@@ -190,5 +190,60 @@ Until this closure is explicit, distributed-origin language remains a constraine
 In the modular cosmology map, this page provides:
 
 - timeline-level interpretation mapping between ontic mechanism language and observer-era chronology,
-- source-to-transport-to-decoupling narrative inputs used by `CMB-predictions.md`,
+- source-to-transport-to-decoupling narrative inputs from the unified prediction layer in this document,
 - bridge language tying expansion, BBN, and growth narratives into one CMB interpretation layer.
+
+## Prediction Layer (Unified)
+
+### Effective Comparison Object
+
+$$
+C_\ell = \langle |a_{\ell m}|^2 \rangle.
+$$
+
+The formal observables remain standard; in practice this includes TT/TE/EE spectra (with damping-tail and lensing behavior), with $C_\ell$ as compact notation.
+
+### Forward Prediction Map
+
+Use one continuous causal map:
+
+medium state evolution $\rightarrow$ pre-decoupling coupled modes $\rightarrow$ decoupling transfer history $\rightarrow$ observed TT/TE/EE structure.
+
+Interpretation and microphysical origin are re-grounded in assembly dynamics while retaining the same observer-level prediction objects.
+
+### Conceptual Mapping
+
+- Peak spacing reflects effective horizon/coupling scales of the medium.
+- Odd/even contrast reflects baryon-like loading relative to photon-like modes.
+- High-$\ell$ damping reflects decoupling-era diffusion/opacity analogs.
+- Polarization structure reflects phase relations in coupled oscillations.
+
+### Source-Interpretation Neutrality
+
+Whether the background is read through a primarily primordial-origin interpretation or a distributed-emission interpretation, the prediction layer is one shared parameterization of the same observables.
+
+So source narrative is an interpretation layer, not a change in the prediction target: TT/TE/EE structure, damping behavior, and blackbody character remain part of one coherent readout.
+
+### Redshift and Clock Link
+
+CMB frequency scaling to present observers is interpreted through medium evolution plus environment-dependent clock-rate comparison, consistent with the expansion-mechanism framing:
+
+$$
+\frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry}\right).
+$$
+
+So CMB temperature/redshift summaries remain usable while their mechanism is grounded in assembly-medium dynamics.
+
+### Dark-Sector and Growth Link
+
+- Neutral-assembly loading and medium response both contribute to how pre-decoupling oscillations map into late-time inferred matter amplitudes.
+- This keeps CMB interpretation consistent with the shared $H_0$/$S_8$ narrative rather than splitting background and growth into separate ontologies.
+
+### Parameter Bridges
+
+- Keep effective $N_{\text{eff}}$ language connected to neutrino/sea coupling history.
+- Keep baryon-loading and damping-tail language connected to the same reaction/transport background used in BBN framing.
+
+### Coherent Reading
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, peak spacing, odd/even loading, damping-tail behavior, polarization phase structure, and redshifted temperature readout are all interpreted as outputs of one medium-and-assembly history in a fixed Euclidean void.

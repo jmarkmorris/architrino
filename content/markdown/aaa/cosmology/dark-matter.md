@@ -54,7 +54,7 @@ In the modular cosmology map, dark-matter interpretation enters through:
 
 - matter-loading variables for pre-decoupling and early-growth mapping,
 - coupling/response variables for late-time profile and lensing behavior,
-- a shared interface to `structure-formation.md` and `CMB-predictions.md` so background and growth remain one model.
+- a shared interface to `structure-formation.md` and `cmb.md` so background and growth remain one model.
 
 ## Coherent Reading
 
