@@ -19,6 +19,10 @@ The structural shift is not the network form itself, but the underlying cosmolog
 - Freeze-out timing reflects emergent $H(t)$ behavior.
 - Transport and coupling are framed through assembly-scale dynamics rather than external ad hoc sectors.
 
+## Distributed-Processing Hypothesis (Model-Space Branch)
+
+Alongside a single early hot-phase reading, the framework can also evaluate distributed high-temperature processing channels (for example SMBH-linked outflows and other localized high-energy environments) as contributors to light-element budgets. This branch is admissible only if it reproduces the same abundance constraints in aggregate.
+
 ## Lithium Integration in the Same Framework
 
 Lithium is treated as part of the same medium-coupled BBN story:
@@ -29,8 +33,17 @@ Lithium is treated as part of the same medium-coupled BBN story:
 
 This keeps lithium inside one coherent mechanism family rather than adding a separate after-the-fact fix.
 
+## Mandatory Closure Targets
+
+Any accepted BBN branch in this framework should match:
+
+- helium mass fraction near $Y_p\approx 0.24$,
+- deuterium abundance near $\mathrm{D/H}\approx 2.5\times10^{-5}$,
+- effective neutrino-sector coupling consistent with $N_{\text{eff}}$ constraints.
+
 ## Theory Priorities
 
 - Build a coherent mapping from medium evolution to nucleosynthesis-era conditions.
 - Clarify how assembly structure enters effective reaction environments.
 - Integrate lithium discussion into the same single framework rather than separate patch explanations.
+- Demonstrate quantitatively, not only qualitatively, that any distributed-processing branch closes on the same abundance ledger.

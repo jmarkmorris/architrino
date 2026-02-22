@@ -4,6 +4,10 @@
 
 The early rapid-expansion phase is modeled as an emergent high-curvature regime of tri-binary dynamics, not as a fundamental standalone inflaton ontology.
 
+## Local-Process Commitment
+
+Inflation-like behavior is treated as a local or regional process (especially in SMBH-core and jet-linked high-curvature environments), not as a one-time global expansion of the Euclidean container.
+
 ## SMBH-Core Mechanism (Architrino)
 
 1. Inner assemblies enter a high-energy self-hit domain near maximal curvature.
@@ -15,6 +19,10 @@ In the broader recycling picture, SMBH-core dynamics provide the persistent sour
 - high-curvature interior dynamics load energy into middle-layer/horizon channels,
 - outbound disturbances seed expansion-like phases in the surrounding medium,
 - inflation-like behavior is therefore a regime of core-driven release and relaxation, not a separate scalar field ontology.
+
+## Effective Inflaton Reinterpretation
+
+When comparison language requires an "inflaton-like" variable, use a coarse-grained descriptor of self-hit state occupancy and transition rates near the $v\approx c_f$ boundary, rather than a new fundamental scalar field.
 
 ## Planck-Alignment Boundary
 
@@ -39,3 +47,4 @@ where $\Omega_{\text{eff}}(a)$ encodes the emergent high-curvature phase and its
 - Define the internal state variables that correspond to the inflation-like phase.
 - Clarify transition logic between high-curvature and later expansion regimes.
 - Relate perturbation-seeding language to explicit assembly dynamics.
+- Separate clearly what is local-core dynamics versus what is inferred as large-scale effective history.

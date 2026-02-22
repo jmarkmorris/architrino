@@ -30,8 +30,21 @@ For $S_8$:
 
 So background and growth are connected through shared medium-state evolution rather than separate ad hoc corrections.
 
+## Working Resolution Channels
+
+For $H_0$:
+
+- local medium-state inhomogeneity (including void-like environments) can bias local-ladder inference relative to early-time inference,
+- late-time medium transition channels can shift low-$z$ inference without reintroducing ontology splits.
+
+For $S_8$:
+
+- scale-dependent medium response and partial sector coupling can reduce late-time growth amplitude,
+- growth suppression mechanisms must remain consistent with CMB-derived early-time loading.
+
 ## Theory Priorities
 
 - Avoid separate, disconnected stories for $H_0$ and $S_8$.
 - Use one shared medium-evolution language for background and growth.
 - Clarify which parts are fundamental ontology and which are effective summaries.
+- Move from "can explain" language to explicit parameterized predictions and falsifiable ranges.

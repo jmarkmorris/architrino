@@ -137,6 +137,16 @@ This document presents a chronological, linear account of the Cosmic Microwave B
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark photons and other outbound excitations from SMBH horizons (and associated jet/surface processes) propagate through the Noether sea, thermalize, and redshift into the observed CMB. The three intrinsic tri-binary energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB thus becomes a global record of steady-state recycling dynamics in a fixed void, not a singular origin event nor literal metric stretching of the container.
 
+## Distributed-Emission Working Channels
+
+The current model space for CMB sourcing includes:
+
+1. SMBH jet/horizon outbound photon-like and dark-photon-like channels accumulated over long history,
+2. medium-relaxation radiation from Noether-sea state transitions,
+3. conversion/decay channels from high-velocity assembly states into photon-like modes.
+
+These channels are treated as compatible with one shared thermalization and decoupling story; they are not separate ontologies.
+
 ## Conceptual Mapping Notes
 
 To keep the timeline coherent, each epoch-level claim should map to recognizable CMB structure:
@@ -148,6 +158,16 @@ To keep the timeline coherent, each epoch-level claim should map to recognizable
 - Lensing amplitude: post-decoupling structure-growth context.
 
 Use `cmb-predictions.md` as the companion document for the explicit mapping language.
+
+## Quantitative Closure Requirements
+
+Any distributed-emission account must match the same hard observables usually used to validate primordial-origin models:
+
+- blackbody precision near $T\approx 2.725\ \mathrm{K}$,
+- near-isotropy with anisotropy amplitude $\Delta T/T\sim 10^{-5}$,
+- TT/TE/EE peak structure and damping behavior.
+
+Until this closure is explicit, distributed-origin language remains a constrained working hypothesis.
 
 ## Consistency Anchors
 

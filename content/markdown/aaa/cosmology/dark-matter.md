@@ -32,6 +32,16 @@ Use one unified taxonomy:
 
 This keeps galaxy curves, cluster lensing, and CMB-era matter loading inside one ontology instead of switching ontologies by scale.
 
+## Structure-Formation Option Space
+
+For development and testing, keep three explicit model options visible:
+
+1. assembly-dominant dark sector (CDM-like behavior from neutral assemblies),
+2. medium-response dominant regime (MOND-like low-acceleration modification),
+3. principled hybrid of both.
+
+No option is accepted unless it closes simultaneously on galaxy, cluster, and CMB-era constraints.
+
 ## Cosmology Integration
 
 - In early-time descriptions, neutral assemblies contribute to effective matter loading for acoustic structure and growth seeding.
@@ -43,3 +53,4 @@ This keeps galaxy curves, cluster lensing, and CMB-era matter loading inside one
 - Clarify whether dark matter is primarily a sector of assemblies, a medium-response regime, or a principled hybrid.
 - Define a minimal ontology with no duplicate mechanisms.
 - Keep language consistent with structure-formation and CMB interpretations.
+- Use explicit rejection tests: Bullet Cluster offset behavior, weak lensing profiles, and CMB peak-loading compatibility.

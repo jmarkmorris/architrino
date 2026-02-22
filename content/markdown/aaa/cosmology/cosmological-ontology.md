@@ -35,6 +35,12 @@ Cosmology is expressed in two linked descriptions:
 
 Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies) must be reproducible from absolute-frame medium dynamics, with GR/$\Lambda\mathrm{CDM}$ behavior appearing as effective limits where applicable.
 
+## Origin and Global History Stance
+
+- The Euclidean void and absolute time are treated as eternal background structure, not products of a one-time geometric origin event.
+- Large-scale cosmological history is modeled as long-lived medium-and-assembly evolution with recycling channels, including SMBH-centered processing.
+- "Big Bang timeline" language is retained as an effective observational chronology, while ontology remains fixed-void plus evolving Noether-sea state.
+
 ## Two Time Notions (Operational)
 
 - **Absolute Time ($t$):** global linear index for full-state evolution.

@@ -20,6 +20,15 @@ In this framework, $H(z)$ and $G_{\text{eff}}$ summarize medium-state behavior r
 - Dark-sector behavior can be described via weakly coupled neutral assemblies.
 - Scale dependence is expected to carry real physical meaning, not just fitting flexibility.
 
+## Core Discriminant Tests
+
+Any viable growth model in this ontology should be stress-tested against:
+
+- galaxy rotation-curve systematics,
+- cluster mass profiles (lensing plus thermodynamic tracers),
+- cosmic shear and $S_8$-family constraints,
+- CMB matter-loading requirements (including higher-peak behavior).
+
 ## Theory Priorities
 
 - Build one coherent narrative from expansion history to growth history.

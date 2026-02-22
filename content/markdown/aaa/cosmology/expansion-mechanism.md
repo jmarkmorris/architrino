@@ -16,6 +16,16 @@ where $L_{\text{core}}$ is a representative assembly-separation scale.
 
 This $a(t)$ is a summary of medium evolution inside fixed $(x,y,z)$, not geometric stretching of the container.
 
+Equivalent bookkeeping choices can be used in the same ontology:
+
+$$
+a(t)\ \leftrightarrow\ \langle R_{\text{core}}(t)\rangle
+\quad\text{or}\quad
+a(t)\propto \rho_{\text{sea}}(t)^{-1/3}.
+$$
+
+These are effective parameterizations of medium state, not independent geometric claims.
+
 ## Clock-Rate Redshift Interpretation
 
 Cosmological redshift is treated as cumulative propagation through a changing medium plus clock-rate mismatch between emitter and observer environments.
@@ -27,6 +37,23 @@ $$
 $$
 
 A photon that traverses regions with different $\rho_{\text{sea}}$ and $\Phi_{\text{eff}}$ is read by clocks with different local rates. The observed $z$ is then an emergent comparison of those rates along the path history.
+
+Operationally:
+
+$$
+1+z = \frac{\nu_e}{\nu_o}
+= \frac{(d\tau/dt)_o}{(d\tau/dt)_e},
+$$
+
+so redshift is treated as path-integrated medium evolution plus endpoint clock-rate comparison.
+
+## Dissipation and Rescaling Picture
+
+Apparent expansion is interpreted as relaxation of medium state:
+
+- high-curvature source regions inject energy into outbound assembly flows,
+- lower-density regions evolve toward larger characteristic assembly scales and lower effective temperatures,
+- observer-level expansion summaries track this rescaling history.
 
 ## Dark-Energy Language in This Frame
 
@@ -46,3 +73,13 @@ Early-inferred and local-inferred expansion rates probe different medium states:
 - Local probes sample pockets that are further along relaxation and dissipation trajectories.
 
 So the $H_0$ split is interpreted as state-dependent inference from one ontology, not two incompatible universes.
+
+## Effective Friedmann Bridge (Comparison Layer)
+
+For data-comparison work, one may retain a Friedmann-like summary:
+
+$$
+H^2 = \frac{8\pi G_{\text{eff}}}{3}\left(\rho_m+\rho_r+\rho_{\text{sea}}\right)-\frac{k_{\text{eff}}}{a^2},
+$$
+
+with $a(t)$ interpreted as a medium-state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-medium response.

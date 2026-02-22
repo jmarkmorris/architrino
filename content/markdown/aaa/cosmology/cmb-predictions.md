@@ -24,6 +24,10 @@ The formal observable remains standard; interpretation and microphysical origin 
 - High-$\ell$ damping reflects decoupling-era diffusion/opacity analogs.
 - Polarization structure reflects phase relations in coupled oscillations.
 
+## Source-Mechanism Neutrality Constraint
+
+Whether the background is modeled as primarily primordial-fireball-origin or distributed-emission-origin, the prediction layer must reproduce the same precision observables in one parameterization. Source narrative does not exempt TT/TE/EE or damping-tail closure.
+
 ## Redshift and Clock Link
 
 CMB frequency scaling to present observers is interpreted through medium evolution plus environment-dependent clock-rate comparison, consistent with the expansion-mechanism framing:
@@ -49,3 +53,4 @@ So CMB temperature/redshift summaries remain usable while their mechanism is gro
 - Define the smallest coherent parameterization of these mappings.
 - Keep one consistent ontology from pre-decoupling dynamics to observed spectra.
 - Connect CMB interpretation cleanly to expansion and structure-formation narratives.
+- Promote explicit closure tests: blackbody precision, anisotropy amplitude, peak ladder, polarization, and lensing consistency.

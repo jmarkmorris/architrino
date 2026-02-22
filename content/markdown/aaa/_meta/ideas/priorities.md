@@ -19,13 +19,12 @@
 
 ---
 
-go through cosmology documents on wordpress and put content in cosmology docs.
+go through cosmology documents on wordpress and put content in cosmology docs? This will be a slog, because they are out of date.
 
 ---
 
 - review docs, put docs on webapp, and look at the directory for more 
-  - my sphere labels should match my file labels
-    - unless it is a compound doc that is spread out to many spheres
+
   - Not referenced by the webapp (based on scene markdown config + hardcoded markdown paths):  check these.
     - 421.md
     - pdg-api.md
@@ -132,7 +131,6 @@ Work on event horizon, curvature, and singularity. chatgpt is saying the singula
 
 ---
 
-make a new discord server named architrino
 make a new subreddit server named architrino
 rename my blog
 having a .ai domain is kinda cool though. don't give it up.

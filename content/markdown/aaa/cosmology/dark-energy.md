@@ -20,6 +20,18 @@ Late-time acceleration language is interpreted as a macroscopic signature of Noe
 
 In this frame, "expansion of space" is a shorthand for evolving medium state.
 
+## Baseline-Energy Reframing
+
+A useful bookkeeping bridge is:
+
+$$
+\rho_{\text{DE,eff}} \sim \rho_{\text{sea}}\,E_{\text{core}},
+$$
+
+where $\rho_{\text{sea}}$ is effective Noether-core density and $E_{\text{core}}$ is representative per-core binding/oscillation energy.
+
+In this framing, late-time acceleration is a large-scale residual of medium baseline energy plus relaxation stress response, not raw continuum vacuum-mode summation.
+
 ## Effective Summary Language
 
 $$
@@ -27,6 +39,8 @@ w = \frac{p}{\rho}
 $$
 
 is treated as an emergent descriptor, not a fundamental ontological primitive.
+
+In lowest-order fits, $w\approx -1$ remains admissible as an effective summary while mechanism language stays medium-based.
 
 ## Cosmological-Constant Reframing
 
@@ -41,3 +55,4 @@ The cosmological-constant hierarchy issue is handled as an ontology mismatch:
 - Clarify how medium-state variables produce acceleration-like effective behavior.
 - Keep expansion and dark-energy language integrated rather than split into separate ontologies.
 - Maintain consistency with the broader no-metric-stretching commitment.
+- Quantify whether realistic $\rho_{\text{sea}} E_{\text{core}}$ ranges recover observed dark-energy-scale effective density.
