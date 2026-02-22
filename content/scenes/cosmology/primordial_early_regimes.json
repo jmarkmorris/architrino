@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "cosmology_early_regimes",
+    "name": "Primordial and Early Regimes",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "inflation_stage",
+      "label": "Inflation Model",
+      "radius": 1.6,
+      "color": "#6a4d1b",
+      "position": [0.0, 4.8, 0.0],
+      "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "bbn_stage",
+      "label": "BBN Readout",
+      "radius": 1.6,
+      "color": "#7a5a2f",
+      "position": [4.6, -0.2, 0.0],
+      "markdownPath": "content/markdown/aaa/cosmology/BBN-constraints.md",
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "cmb_stage",
+      "label": "CMB Readout",
+      "radius": 1.6,
+      "color": "#355f9a",
+      "position": [0.0, -4.8, 0.0],
+      "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "expansion_stage",
+      "label": "Expansion Mapping",
+      "radius": 1.6,
+      "color": "#2f6b7a",
+      "position": [-4.6, -0.2, 0.0],
+      "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    }
+  ]
+}

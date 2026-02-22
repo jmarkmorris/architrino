@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "cosmology_tensions_validation",
+    "name": "Tensions and Validation Coupling",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "h0_s8_tensions",
+      "label": "Hubble and S8 Tensions",
+      "radius": 1.65,
+      "color": "#6a2f6f",
+      "position": [0.0, 4.8, 0.0],
+      "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "expansion_diagnostics",
+      "label": "Expansion Diagnostics",
+      "radius": 1.55,
+      "color": "#2f6b7a",
+      "position": [4.6, 0.1, 0.0],
+      "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "growth_diagnostics",
+      "label": "Growth Diagnostics",
+      "radius": 1.55,
+      "color": "#2f7a6e",
+      "position": [0.0, -4.8, 0.0],
+      "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "cmb_anchor",
+      "label": "CMB Anchor",
+      "radius": 1.55,
+      "color": "#355f9a",
+      "position": [-4.6, 0.1, 0.0],
+      "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    }
+  ]
+}

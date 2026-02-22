@@ -101,9 +101,59 @@
       "path": "content/scenes/cosmology/cosmology.json"
     },
     {
+      "id": "cosmology_observation_api",
+      "name": "Cosmology Observation API and Ontology",
+      "path": "content/scenes/cosmology/observation_api_ontology.json"
+    },
+    {
+      "id": "cosmology_early_regimes",
+      "name": "Cosmology Primordial and Early Regimes",
+      "path": "content/scenes/cosmology/primordial_early_regimes.json"
+    },
+    {
+      "id": "cosmology_growth_dark_sector",
+      "name": "Cosmology Growth and Dark Sector",
+      "path": "content/scenes/cosmology/growth_dark_sector.json"
+    },
+    {
+      "id": "cosmology_tensions_validation",
+      "name": "Cosmology Tensions and Validation Coupling",
+      "path": "content/scenes/cosmology/tensions_validation_coupling.json"
+    },
+    {
+      "id": "cosmology_background_dynamics",
+      "name": "Cosmology Background Expansion Dynamics",
+      "path": "content/scenes/cosmology/background_expansion_dynamics.json"
+    },
+    {
       "id": "spacetime",
       "name": "Spacetime",
       "path": "content/scenes/spacetime/spacetime.json"
+    },
+    {
+      "id": "spacetime_metric_clocks",
+      "name": "Spacetime Metric Emergence and Clocks",
+      "path": "content/scenes/spacetime/metric_emergence_clocks.json"
+    },
+    {
+      "id": "spacetime_precision_tests",
+      "name": "Spacetime Precision and Weak-Field Tests",
+      "path": "content/scenes/spacetime/precision_weak_field_tests.json"
+    },
+    {
+      "id": "spacetime_strong_field",
+      "name": "Spacetime Strong Field and Horizons",
+      "path": "content/scenes/spacetime/strong_field_horizons.json"
+    },
+    {
+      "id": "spacetime_wave_channel",
+      "name": "Spacetime Wave and Phenomenology Channel",
+      "path": "content/scenes/spacetime/wave_phenomenology_channel.json"
+    },
+    {
+      "id": "spacetime_gr_bridge",
+      "name": "Spacetime GR Bridge and Effective Limits",
+      "path": "content/scenes/spacetime/gr_bridge_limits.json"
     },
     {
       "id": "cosmic_censorship",
