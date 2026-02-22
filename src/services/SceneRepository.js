@@ -9,6 +9,52 @@ export class SceneRepository {
     this.colorTokens = deps.colorTokens;
     this.deriveMarkdownConfig = deps.deriveMarkdownConfig;
     this.buildAutoMarkdownNodes = deps.buildAutoMarkdownNodes;
+    this.resolveMarkdownFileSize = deps.resolveMarkdownFileSize;
+    this.markdownGlowMinBytes =
+      typeof deps.markdownGlowMinBytes === "number"
+        ? deps.markdownGlowMinBytes
+        : 4096;
+  }
+
+  async applyMarkdownDocEligibility(nodes) {
+    if (!Array.isArray(nodes) || !nodes.length) {
+      return nodes;
+    }
+
+    await Promise.all(
+      nodes.map(async (node) => {
+        const hasDirectMarkdown = typeof node.markdownPath === "string" && node.markdownPath.length > 0;
+        if (!hasDirectMarkdown) {
+          node.docDrillDownPreferred = false;
+          node.markdownGlowEligible = false;
+          return;
+        }
+
+        let markdownByteSize = null;
+        if (typeof this.resolveMarkdownFileSize === "function") {
+          markdownByteSize = await this.resolveMarkdownFileSize(node.markdownPath);
+        }
+        const isEligible =
+          Number.isFinite(markdownByteSize) &&
+          markdownByteSize >= this.markdownGlowMinBytes;
+
+        node.markdownByteSize = Number.isFinite(markdownByteSize)
+          ? markdownByteSize
+          : null;
+        node.markdownGlowEligible = isEligible;
+        node.docDrillDownPreferred = isEligible;
+        node.glowRing = isEligible;
+        if (isEligible) {
+          node.glowRingColor = node.glowRingColor ?? "#aeb6c6";
+          node.glowRingOpacity = node.glowRingOpacity ?? 0.3;
+          node.glowRingThickness =
+            node.glowRingThickness ?? Math.max(0.028, node.radius * 0.06);
+          node.glowRingScale = node.glowRingScale ?? 1.04;
+        }
+      })
+    );
+
+    return nodes;
   }
 
   async loadSceneConfig(scenePath) {
@@ -101,6 +147,7 @@ export class SceneRepository {
         if (autoNodes.length) {
           nodes = nodes.concat(autoNodes);
         }
+        await this.applyMarkdownDocEligibility(nodes);
 
         const sceneName =
           data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;

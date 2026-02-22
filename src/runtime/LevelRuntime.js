@@ -238,14 +238,27 @@ export function createLevelRuntime(deps) {
       return;
     }
     level.nodes.forEach((node) => {
-      if (!node.halo) {
+      const pulse = 0.5 + 0.5 * Math.sin(timeSeconds * 1.5 + node.haloPhase);
+      const scale = 1.0 + 0.015 * pulse;
+      const opacityFactor = 0.5 + 0.5 * pulse;
+
+      if (node.halo) {
+        node.halo.scale.setScalar(scale);
+        node.halo.material.opacity =
+          node.haloBaseOpacity * node.haloIntensity * opacityFactor;
+      }
+
+      if (!node.extraMeshes || !node.extraMeshes.length) {
         return;
       }
-      const pulse = 0.5 + 0.5 * Math.sin(timeSeconds * 1.5 + node.haloPhase);
-      const scale = 1.02 + 0.06 * pulse;
-      node.halo.scale.setScalar(scale);
-      node.halo.material.opacity =
-        node.haloBaseOpacity * node.haloIntensity * (0.35 + 0.65 * pulse);
+      node.extraMeshes.forEach((entry) => {
+        const mesh = entry.mesh;
+        if (!mesh?.userData?.isGlowRing) {
+          return;
+        }
+        mesh.scale.setScalar(scale);
+        mesh.material.opacity = entry.baseOpacity * node.haloIntensity * opacityFactor;
+      });
     });
   }
 

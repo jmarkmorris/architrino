@@ -2,6 +2,35 @@ export function createNodeFactory(deps) {
   const { THREE, CSS2DObject, binaryStyle } = deps;
   let haloSeed = 0;
 
+  function getRingStyle(nodeData) {
+    const ringScale = nodeData.glowRingScale ?? 1.04;
+    const ringThickness =
+      nodeData.glowRingThickness ?? Math.max(0.028, nodeData.radius * 0.06);
+    const ringColor = nodeData.glowRingColor ?? "#aeb6c6";
+    const ringOpacity = nodeData.glowRingOpacity ?? 0.3;
+    return { ringScale, ringThickness, ringColor, ringOpacity };
+  }
+
+  function createRingMesh(nodeData, style) {
+    const ringGeometry = new THREE.TorusGeometry(
+      nodeData.radius * style.ringScale,
+      style.ringThickness,
+      12,
+      64
+    );
+    const ringMaterial = new THREE.MeshBasicMaterial({
+      color: style.ringColor,
+      transparent: true,
+      opacity: style.ringOpacity,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+    ring.renderOrder = -1;
+    return ring;
+  }
+
   function createLabel(node) {
     const label = document.createElement("div");
     label.className = "label";
@@ -187,38 +216,16 @@ export function createNodeFactory(deps) {
 
     const extraMeshes = [];
     if (nodeData.glowRing) {
-      const ringRadius = nodeData.radius * (nodeData.glowRingScale ?? 1.06);
-      const ringThickness =
-        nodeData.glowRingThickness ?? Math.max(0.02, nodeData.radius * 0.045);
-      const ringMaterial = new THREE.MeshBasicMaterial({
-        color: nodeData.glowRingColor ?? nodeData.color,
-        transparent: true,
-        opacity: nodeData.glowRingOpacity ?? 0.35,
-        side: THREE.DoubleSide,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-      });
-      const ringGeometry = new THREE.TorusGeometry(ringRadius, ringThickness, 12, 64);
-      const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-      ring.rotation.x = Math.PI / 2;
-      ring.renderOrder = -1;
+      const ring = createRingMesh(nodeData, getRingStyle(nodeData));
       ring.userData.isGlowRing = true;
       group.add(ring);
-      extraMeshes.push({ mesh: ring, baseOpacity: ringMaterial.opacity });
+      extraMeshes.push({ mesh: ring, baseOpacity: ring.material.opacity });
     }
 
     let halo = null;
-    if (nodeData.childScene || nodeData.markdownPath) {
-      const haloGeometry = new THREE.SphereGeometry(nodeData.radius * 1.18, 24, 16);
-      const haloMaterial = new THREE.MeshBasicMaterial({
-        color: "#d5dcff",
-        transparent: true,
-        opacity: 0.2,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-      });
-      halo = new THREE.Mesh(haloGeometry, haloMaterial);
-      halo.renderOrder = -1;
+    if (!nodeData.glowRing && (nodeData.childScene || nodeData.docDrillDownPreferred === true)) {
+      halo = createRingMesh(nodeData, getRingStyle(nodeData));
+      halo.userData.isHaloRing = true;
       group.add(halo);
     }
 
