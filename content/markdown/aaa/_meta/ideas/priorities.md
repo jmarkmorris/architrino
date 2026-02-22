@@ -19,9 +19,12 @@
 
 ---
 
+go through cosmology documents on wordpress and put content in cosmology docs? This will be a slog, because they are out of date.
+
+---
+
 - review docs, put docs on webapp, and look at the directory for more 
-  - my sphere labels should match my file labels
-    - unless it is a compound doc that is spread out to many spheres
+
   - Not referenced by the webapp (based on scene markdown config + hardcoded markdown paths):  check these.
     - 421.md
     - pdg-api.md
@@ -48,7 +51,7 @@
   - electroweak-bosons.md
   - gluons.md
   - color-charge-su3.md
-  - cmb-origin.md
+  - CMB.md
   - ontology.md
   - bootstrapping-the-absolute-frame.md
   - absolute-time-defense.md
@@ -124,9 +127,14 @@ Yes. Dynamics is not unique.
 
 ---
 
-
+Work on event horizon, curvature, and singularity. chatgpt is saying the singularity is not the event horizon, that curvature is 1/area, that the singularity is not the center of the bh either. Interesting. as my teams.
 
 ---
+
+make a new subreddit server named architrino
+rename my blog
+having a .ai domain is kinda cool though. don't give it up.
+
 
   Best findings after reviewing the listed docs, focused on real theory advancement and provable GR/QM/LCDM mapping:
 
@@ -139,8 +147,11 @@ Yes. Dynamics is not unique.
      simulations/perspective.md:242).
      Without this, $\mathbb{A}\mathbb{A}\mathbb{A}$ can reinterpret QM but not yet match its strongest nonlocal statistical benchmark.
   6. LCDM mapping is currently narrative-rich but equation-poor; needs transfer-function closure.
-     The CMB timeline and tri-binary ladder idea are clear (cosmology/cmb-origin.md:98, cosmology/cmb-origin.md:105), but not yet reduced to a predictive peak-position/amplitude pipeline.
+     The CMB timeline and tri-binary ladder idea are clear (cosmology/CMB.md:98, cosmology/CMB.md:105), but not yet reduced to a predictive peak-position/amplitude pipeline.
      This is where you can convert “interesting alternative” into direct CMB/H0/S8 comparison framework.
+  6a. Decompose $\Lambda\mathrm{CDM}$ into independent observable components with explicit predicted API surfaces.
+     Build per-component interfaces (background expansion, recombination/CMB transfer, BBN yields, growth/lensing, distance ladder calibration) so each module can stand on its own observationally.
+     Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces, matches, or diverges from each component.
   7. Planck mapping is promising but still explicitly conjectural.
      dynamics/mapping-Planck-scale.md repeatedly labels key identifications as conjectured (dynamics/mapping-Planck-scale.md:28, dynamics/mapping-Planck-scale.md:194).
      Good news: this is honest and tractable if tied back to the master equation and validated numerically.

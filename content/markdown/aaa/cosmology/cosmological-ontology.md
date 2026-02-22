@@ -1,43 +1,86 @@
+# Cosmological Ontology
 
-### Cosmology in the Absolute Frame
+## Cosmology in the Absolute Frame
 
-1. **Two Times**: We analyze dynamics using **Absolute time $t$** (for $\mathbb{U}_{\text{now}}$ universe-state simulation bookkeeping) and **Cosmic time $\tau_c$** (effective FRW time for physical observers).
-2. **Expansion Ontology**: The universe is a fixed box containing a medium (Noether cores) that is evolving/relaxing. It is not a box that is getting bigger.
+1. **Expansion Ontology**: the universe is a fixed Euclidean container with an evolving medium; the container itself does not expand.
+2. **Primordial Language**: "primordial" denotes an early effective observer-era regime in $\tau_c$ chronology, not a required literal one-time ontic origin event.
 
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology: Overview
 
-### Architrino Cosmology: Overview
+Cosmology is expressed in two linked descriptions:
 
-In this project, **cosmology** is formulated with two tightly linked but distinct time/space descriptions:
+1. **Absolute description ($\mathbb{U}_{\text{now}}$ universe-state perspective)**
+- Fixed Euclidean coordinates $(x,y,z)$ and absolute time $t$
+- Full microstate accounting of assemblies and medium state
+- No metric expansion of the void
 
-1. **Absolute description ($\mathbb{U}_{\text{now}}$ universe-state perspective)**:
-   - Uses the fixed Euclidean coordinates $(x,y,z)$ and absolute time $t$.
-   - Tracks the full microstate: all architrinos, all tri-binary assemblies, the Noether-core sea configuration.
-   - Sees:
-     - No expansion of the void itself,
-     - Only changing patterns and scales in the assembly network (medium + matter).
+2. **Effective observer description**
+- Emergent comoving coordinates and cosmic-time approximation
+- FRW-like expansion, redshift, and metric-like behavior as effective outputs
 
-2. **Effective cosmological description (physical observers)**:
-   - Uses emergent comoving coordinates and cosmic time (proper time of a congruence of tri-binary clocks approximately at rest with the medium).
-   - Sees:
-     - FRW-like expansion with scale factor $a(t)$,
-     - Cosmological redshift,
-     - Lightcone structure described by an effective metric $g^{\text{eff}}_{\mu\nu}$.
+All cosmological observables are computed from absolute-state evolution and then projected into effective observer variables for comparison with data products.
 
-The main goals in this directory:
+## Cosmology Document Set
 
-- **expansion-mechanism.md**: Show how tri-binary scaling and Noether-core medium dynamics give rise to an effective FRW expansion history.
-- **inflation-model.md**: Connect the self-hit regime (v > c\_f) in the early universe to a period of rapid effective expansion.
-- **bbn-constraints.md**: Check whether our emergent H(t) during early times yields standard light-element abundances (Y\_p ≈ 0.24, D/H ratio).
-- **cmb-predictions.md**: Derive qualitative/quantitative predictions for the CMB power spectrum from our microscopic model.
-- **structure-formation.md**: Show how inhomogeneities in the Noether-core sea and matter assemblies grow over time in the fixed Euclidean background.
+- `expansion-mechanism.md`: canonical expansion and redshift mapping in fixed void ontology.
+- `inflation-model.md`: emergent early rapid-expansion model and conceptual inflation framing.
+- `BBN-constraints.md`: light-element abundance constraints under emergent $H(t)$.
+- `CMB.md`: integrated CMB origin narrative plus quantitative prediction mapping in the same ontology.
+- `structure-formation.md`: growth dynamics and large-scale structure tests.
+- `hubble-s8-tensions.md`: joint treatment of late-time cosmology tensions.
+- `dark-matter.md`: dark-sector mechanism mapping in a unified medium-and-assembly frame.
+- `dark-energy.md`: acceleration mechanism mapping in the same fixed-void ontology.
 
-Throughout, we maintain the principle:
+## Working Principle
 
-> Cosmological observables (H(z), BAO, CMB peaks, lensing) must be reproducible from the absolute-frame dynamics of the architrino + Noether-core system, with GR/$\Lambda\mathrm{CDM}$ appearing as an effective large-scale description.
+Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies) must be reproducible from absolute-frame medium dynamics, with GR/$\Lambda\mathrm{CDM}$ behavior appearing as effective limits where applicable.
 
+For development and comparison, expansion, CMB transfer, BBN yields, and growth/lensing are treated as separable observational modules with explicit interface variables, while remaining one ontology.
 
-### Two Time Notions
+## Observation-First Component Abstraction
 
-* **Absolute Time ($t$):** Used to index $\mathbb{U}_{\text{now}}$ (the universe-now state). Linear, global.
-* **Cosmic Time ($\tau_c$):** Reconstructed from comoving clocks (FRW time).
-* **Dynamics:** Expansion is the evolution of the network in $t$.
+This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs $\Lambda\mathrm{CDM}$" at the bundled-model level. Instead, first abstract $\Lambda\mathrm{CDM}$ into separable observational components with no interpretational linkage baked in:
+
+- background expansion component ($H(z)$ and distance-redshift summaries),
+- recombination/CMB transfer component (TT/TE/EE, damping, lensing imprint),
+- primordial-yield component (BBN abundance outputs),
+- structure-growth component (clustering, shear, lensing growth summaries),
+- local-calibration component (distance ladder and environment-conditioned inference).
+
+This decomposition prevents hidden dependency loops where one assumed foundation silently fixes another observable domain.
+
+## Interface Variables (Predicted API Surface)
+
+Each observational component exposes explicit interface variables for cross-theory mapping:
+
+- Expansion interface: effective $a(t)$/$H(z)$ history and redshift mapping variables.
+- CMB interface: mode-seeding inputs, transfer behavior, and TT/TE/EE outputs.
+- BBN interface: thermal/reaction history inputs and light-element yield outputs.
+- Growth interface: matter-loading and coupling inputs with late-time amplitude/shape outputs.
+- Calibration interface: local-environment terms that map observer pipelines to inferred cosmological parameters.
+
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping Stance
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ maps to each observation component directly through these interfaces. Agreement or divergence from $\Lambda\mathrm{CDM}$ is evaluated per component, not as all-or-nothing acceptance of a single interpretational package.
+
+Historical correspondences (steady-state, quasi-steady-state, bounce/cyclic, SMBH-centered recycling) are tracked as lineage context, while microphysical commitments remain specific to $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+## Origin and Global History Stance
+
+- The Euclidean void and absolute time are treated as eternal background structure, not products of a one-time geometric origin event.
+- Large-scale cosmological history is modeled as long-lived medium-and-assembly evolution with recycling channels, including SMBH-centered processing.
+- "Big Bang timeline" language is retained as an effective observational chronology, while ontology remains fixed-void plus evolving Noether-sea state.
+
+## Galaxy-Local Cosmology Paradigm
+
+- Processes often presented as single global events are modeled as distributed, parallel, galaxy-local recycling dynamics.
+- SMBH-centered high-curvature processing is treated as a persistent cosmological engine class rather than a one-time initial-condition generator.
+- Effective cosmological chronology is therefore a stitched observational map of many local histories, not one literal global launch event.
+- Large-scale homogeneity can be treated as a statistical outcome of repeated local processes governed by the same microphysics, while permitting local fluctuations and anisotropic environments.
+- Large-scale organization can be treated as mostly scale-invariant in architecture while still allowing finite-scale departures from statistical uniformity.
+
+## Time Notions (Operational)
+
+- **Absolute Time ($t$):** global linear index for full-state evolution.
+- **Cosmic Time ($\tau_c$):** reconstructed observer-level clocking used for effective observational chronology.
+- **Dynamics:** expansion is encoded as medium-network evolution in $t$, then read out as observer-level history in $\tau_c$.

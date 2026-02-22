@@ -1096,6 +1096,271 @@ const markdownReaderScenes = new Map();
 const searchBackStack = [];
 const metaBackStack = [];
 const generationBackStack = [];
+
+function getSceneStateFromHash() {
+  if (typeof window === "undefined") {
+    return { scenePath: null, parentLevelId: null, parentFocusNodeId: null };
+  }
+  const rawHash = window.location.hash.replace(/^#/, "");
+  if (!rawHash) {
+    return { scenePath: null, parentLevelId: null, parentFocusNodeId: null };
+  }
+  const params = new URLSearchParams(rawHash);
+  const sceneParam = params.get("scene");
+  const parentLevelId = params.get("parent");
+  const parentFocusNodeId = params.get("focus");
+  if (sceneParam) {
+    return {
+      scenePath: sceneParam,
+      parentLevelId,
+      parentFocusNodeId,
+    };
+  }
+  let scenePath = rawHash;
+  try {
+    scenePath = decodeURIComponent(rawHash);
+  } catch (_error) {
+    scenePath = rawHash;
+  }
+  return { scenePath, parentLevelId: null, parentFocusNodeId: null };
+}
+
+function syncSceneHash(scenePath) {
+  if (typeof window === "undefined") {
+    return;
+  }
+  const normalized =
+    typeof scenePath === "string" && scenePath && scenePath !== rootScenePath
+      ? scenePath
+      : "";
+  const params = new URLSearchParams();
+  if (normalized) {
+    params.set("scene", normalized);
+    const parent = navigationStack[navigationStack.length - 1];
+    if (parent?.levelId && parent?.focusNodeId) {
+      params.set("parent", parent.levelId);
+      params.set("focus", parent.focusNodeId);
+    }
+  }
+  const serialized = params.toString();
+  const nextHash = serialized ? `#${serialized}` : "";
+  if (window.location.hash === nextHash) {
+    return;
+  }
+  const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
+  window.history.replaceState(window.history.state, "", nextUrl);
+}
+
+async function resolveMarkdownSectionTitleByKey(markdownPath, normalizedSectionKey) {
+  if (!markdownPath || !normalizedSectionKey) {
+    return null;
+  }
+  try {
+    const response = await fetch(appendCacheBust(markdownPath));
+    if (!response.ok) {
+      return null;
+    }
+    const text = await response.text();
+    const lines = text.split(/\r?\n/);
+    for (const line of lines) {
+      const heading = parseMarkdownHeading(line);
+      if (!heading) {
+        continue;
+      }
+      if (normalizeMarkdownKey(heading.title) === normalizedSectionKey) {
+        return heading.title;
+      }
+    }
+  } catch (error) {
+    console.warn("Failed to restore markdown section title", markdownPath, error);
+  }
+  return null;
+}
+
+async function ensureSceneConfigFromSceneId(sceneId) {
+  if (!sceneId || typeof sceneId !== "string" || levelConfigs[sceneId]) {
+    return !!levelConfigs[sceneId];
+  }
+
+  const markdownDocPrefix = "__markdown_doc__:";
+  const markdownIndexPrefix = "__markdown_index__:";
+  const markdownReaderPrefix = "__markdown_reader__:";
+  const markdownSectionIndexPrefix = "__markdown_section_index__:";
+  const markdownDirectoryPrefix = "__markdown_directory__:";
+  const inferSceneNameFromMarkdownPath = (markdownPath) => {
+    const leaf = String(markdownPath || "").split("/").pop() || "";
+    const slug = leaf.replace(/\.md$/i, "");
+    return slug ? titleFromSlug(slug) : "Notes";
+  };
+  const inferRestoredMarkdownColumns = (markdownPath) => {
+    if (
+      typeof markdownPath === "string" &&
+      markdownPath.startsWith("content/markdown/aaa/archie/")
+    ) {
+      return 1;
+    }
+    return null;
+  };
+
+  if (sceneId.startsWith(markdownDocPrefix)) {
+    const markdownPath = sceneId.slice(markdownDocPrefix.length);
+    if (!markdownPath) {
+      return false;
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: inferSceneNameFromMarkdownPath(markdownPath),
+      sceneId,
+      markdownPath,
+      markdownSection: null,
+      markdownColumns: inferRestoredMarkdownColumns(markdownPath),
+      markdownAutoOpen: true,
+      centerOn: null,
+    };
+    return true;
+  }
+
+  if (sceneId.startsWith(markdownIndexPrefix)) {
+    const raw = sceneId.slice(markdownIndexPrefix.length);
+    if (!raw) {
+      return false;
+    }
+    let markdownPath = raw;
+    let headingLevel = 2;
+    const headingTokenIndex = raw.lastIndexOf("::h");
+    if (headingTokenIndex > -1) {
+      const maybePath = raw.slice(0, headingTokenIndex);
+      const maybeLevel = Number(raw.slice(headingTokenIndex + 3));
+      if (maybePath && Number.isFinite(maybeLevel)) {
+        markdownPath = maybePath;
+        headingLevel = maybeLevel;
+      }
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: inferSceneNameFromMarkdownPath(markdownPath),
+      sceneId,
+      markdownPath,
+      markdownSection: null,
+      markdownColumns: inferRestoredMarkdownColumns(markdownPath),
+      markdownAutoOpen: false,
+      centerOn: null,
+      autoSphereRing: true,
+      autoMarkdownPath: markdownPath,
+      autoMarkdownHeadingLevel: headingLevel,
+      autoMarkdownIncludeExistingInLayout: false,
+      autoMarkdownPlainSectionPaths: [],
+    };
+    return true;
+  }
+
+  if (sceneId.startsWith(markdownReaderPrefix)) {
+    const raw = sceneId.slice(markdownReaderPrefix.length);
+    if (!raw) {
+      return false;
+    }
+    const sectionSep = raw.indexOf("::");
+    const markdownPath = sectionSep === -1 ? raw : raw.slice(0, sectionSep);
+    const normalizedSectionKey = sectionSep === -1 ? null : raw.slice(sectionSep + 2);
+    if (!markdownPath) {
+      return false;
+    }
+    let markdownSection = null;
+    if (normalizedSectionKey) {
+      markdownSection = await resolveMarkdownSectionTitleByKey(
+        markdownPath,
+        normalizedSectionKey
+      );
+      if (!markdownSection) {
+        return false;
+      }
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: markdownSection || inferSceneNameFromMarkdownPath(markdownPath),
+      sceneId,
+      markdownPath,
+      markdownSection,
+      markdownColumns: inferRestoredMarkdownColumns(markdownPath),
+      markdownAutoOpen: true,
+      centerOn: null,
+    };
+    return true;
+  }
+
+  if (sceneId.startsWith(markdownSectionIndexPrefix)) {
+    const raw = sceneId.slice(markdownSectionIndexPrefix.length);
+    if (!raw) {
+      return false;
+    }
+    const sectionSep = raw.indexOf("::");
+    if (sectionSep === -1) {
+      return false;
+    }
+    const markdownPath = raw.slice(0, sectionSep);
+    const normalizedSectionKey = raw.slice(sectionSep + 2);
+    if (!markdownPath || !normalizedSectionKey) {
+      return false;
+    }
+    const markdownSection = await resolveMarkdownSectionTitleByKey(
+      markdownPath,
+      normalizedSectionKey
+    );
+    if (!markdownSection) {
+      return false;
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: markdownSection,
+      sceneId,
+      markdownPath,
+      markdownSection,
+      markdownColumns: inferRestoredMarkdownColumns(markdownPath),
+      markdownAutoOpen: false,
+      centerOn: null,
+      autoSphereRing: true,
+      autoMarkdownPath: markdownPath,
+      autoMarkdownSection: markdownSection,
+      autoMarkdownHeadingLevel: 3,
+      autoMarkdownIncludeExistingInLayout: false,
+    };
+    return true;
+  }
+
+  if (sceneId.startsWith(markdownDirectoryPrefix)) {
+    const directory = sceneId.slice(markdownDirectoryPrefix.length);
+    if (!directory) {
+      return false;
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName: titleFromSlug(directory.split("/").pop() || "Notes"),
+      sceneId,
+      markdownPath: null,
+      markdownSection: null,
+      markdownColumns: null,
+      markdownAutoOpen: false,
+      centerOn: null,
+      autoSphereRing: true,
+      autoMarkdownDirectory: directory,
+      autoMarkdownIncludeExistingInLayout: false,
+    };
+    return true;
+  }
+
+  return false;
+}
+
 const composerPanelMap = new Map([
   ["composer_tree", "tree"],
   ["composer_path", "path"],
@@ -1321,16 +1586,12 @@ async function listMarkdownFilesInDir(directory) {
   if (markdownDirectoryCache.has(normalized)) {
     return markdownDirectoryCache.get(normalized);
   }
-  const manifestFiles = await listMarkdownFilesFromManifest(normalized);
-  if (manifestFiles.length) {
-    markdownDirectoryCache.set(normalized, manifestFiles);
-    return manifestFiles;
-  }
   try {
     const response = await fetch(appendCacheBust(`${normalized}/`));
     if (!response.ok) {
-      markdownDirectoryCache.set(normalized, []);
-      return [];
+      const manifestFiles = await listMarkdownFilesFromManifest(normalized);
+      markdownDirectoryCache.set(normalized, manifestFiles);
+      return manifestFiles;
     }
     const html = await response.text();
     const matches = [];
@@ -1366,8 +1627,9 @@ async function listMarkdownFilesInDir(directory) {
     return files;
   } catch (error) {
     console.warn("Failed to read markdown directory", directory, error);
-    markdownDirectoryCache.set(normalized, []);
-    return [];
+    const manifestFiles = await listMarkdownFilesFromManifest(normalized);
+    markdownDirectoryCache.set(normalized, manifestFiles);
+    return manifestFiles;
   }
 }
 
@@ -1379,16 +1641,12 @@ async function listMarkdownDirectoriesInDir(directory) {
   if (markdownSubdirCache.has(normalized)) {
     return markdownSubdirCache.get(normalized);
   }
-  const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
-  if (manifestDirectories.length) {
-    markdownSubdirCache.set(normalized, manifestDirectories);
-    return manifestDirectories;
-  }
   try {
     const response = await fetch(appendCacheBust(`${normalized}/`));
     if (!response.ok) {
-      markdownSubdirCache.set(normalized, []);
-      return [];
+      const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
+      markdownSubdirCache.set(normalized, manifestDirectories);
+      return manifestDirectories;
     }
     const html = await response.text();
     const matches = [];
@@ -1426,8 +1684,9 @@ async function listMarkdownDirectoriesInDir(directory) {
     return directories;
   } catch (error) {
     console.warn("Failed to read markdown directories", directory, error);
-    markdownSubdirCache.set(normalized, []);
-    return [];
+    const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
+    markdownSubdirCache.set(normalized, manifestDirectories);
+    return manifestDirectories;
   }
 }
 
@@ -1626,10 +1885,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
           })
         );
   const usedIds = new Set(existingNodes.map((node) => node.id));
-  let baseRadius =
-    typeof scene.autoMarkdownNodeRadius === "number"
-      ? scene.autoMarkdownNodeRadius
-      : 1.6;
+  const hasCustomNodeRadius = typeof scene.autoMarkdownNodeRadius === "number";
+  const hasCustomRingRadius = typeof scene.autoMarkdownRingRadius === "number";
+  let baseRadius = hasCustomNodeRadius ? scene.autoMarkdownNodeRadius : 1.6;
   const existingMaxRadius = includeExisting
     ? existingNodes.reduce(
         (maxRadius, node) => Math.max(maxRadius, node.radius ?? 0),
@@ -1664,10 +1922,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const layoutCount = includeExisting
     ? existingNodes.length + autoEntries.length
     : autoEntries.length;
-  const ringRadius =
-    typeof scene.autoMarkdownRingRadius === "number"
-      ? scene.autoMarkdownRingRadius
-      : Math.max(6, Math.min(layoutCount, maxRingCount) * layoutRadius * 1.4);
+  let ringRadius = hasCustomRingRadius
+    ? scene.autoMarkdownRingRadius
+    : Math.max(6, Math.min(layoutCount, maxRingCount) * layoutRadius * 1.4);
   const gridSpacing =
     typeof scene.autoMarkdownGridSpacing === "number"
       ? scene.autoMarkdownGridSpacing
@@ -1678,10 +1935,20 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
   const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;
 
-  if (useRing && layoutCount > 1) {
-    const maxRadius = maxRingNodeRadius(ringRadius, layoutCount);
-    if (Number.isFinite(maxRadius) && maxRadius > 0 && maxRadius < baseRadius) {
-      baseRadius = maxRadius;
+  if (useRing && layoutCount > 0) {
+    if (!hasCustomNodeRadius && !hasCustomRingRadius) {
+      const standardLayout = computeRingLayout(
+        Array.from({ length: layoutCount }, () => ({ radius: layoutRadius }))
+      );
+      if (standardLayout) {
+        ringRadius = standardLayout.ringRadius;
+        baseRadius = standardLayout.nodeRadius;
+      }
+    } else if (layoutCount > 1) {
+      const maxRadius = maxRingNodeRadius(ringRadius, layoutCount);
+      if (Number.isFinite(maxRadius) && maxRadius > 0 && maxRadius < baseRadius) {
+        baseRadius = maxRadius;
+      }
     }
   }
 
@@ -2196,6 +2463,13 @@ const sceneRepository = new SceneRepository({
 });
 
 async function loadSceneConfig(scenePath) {
+  if (levelConfigs[scenePath]) {
+    return levelConfigs[scenePath];
+  }
+  const restored = await ensureSceneConfigFromSceneId(scenePath);
+  if (restored && levelConfigs[scenePath]) {
+    return levelConfigs[scenePath];
+  }
   return sceneRepository.loadSceneConfig(scenePath);
 }
 
@@ -3245,6 +3519,7 @@ function updateMarkdownDocButton() {
 }
 
 function updateSceneLabel() {
+  syncSceneHash(currentLevel?.id ?? null);
   if (!sceneLabel) {
     return;
   }
@@ -3559,15 +3834,34 @@ function onResize() {
 
 async function init() {
   closeDetailPanel();
-  const universeConfig = await loadSceneConfig(rootScenePath);
-  if (!universeConfig) {
+  const requestedSceneState = getSceneStateFromHash();
+  let initialScenePath = requestedSceneState.scenePath || rootScenePath;
+  let initialConfig = await loadSceneConfig(initialScenePath);
+  if (!initialConfig && initialScenePath !== rootScenePath) {
+    initialScenePath = rootScenePath;
+    initialConfig = await loadSceneConfig(initialScenePath);
+  }
+  if (!initialConfig) {
     return;
   }
-  currentLevel = buildLevel(rootScenePath);
+  await ensureDynamicSceneConfig(initialScenePath);
+  currentLevel = buildLevel(initialScenePath);
   worldGroup.add(currentLevel.group);
-  layoutRootLevel(currentLevel);
+  if (currentLevel.id === rootScenePath) {
+    layoutRootLevel(currentLevel);
+  }
   updateCamera();
   fitCameraToLevel(currentLevel);
+  if (
+    requestedSceneState.parentLevelId &&
+    requestedSceneState.parentFocusNodeId &&
+    currentLevel.id !== rootScenePath
+  ) {
+    navigationStack.push({
+      levelId: requestedSceneState.parentLevelId,
+      focusNodeId: requestedSceneState.parentFocusNodeId,
+    });
+  }
   updateSceneLabel();
   updateSceneMarkdown();
   animate();

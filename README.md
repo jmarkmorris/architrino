@@ -1,6 +1,4 @@
-# architrino three.js prototype
-
-Minimal labeled-sphere prototype with S-curve zoom and drag pan.
+# Architrino Assembly Architecture
 
 ## Run locally
 Use a local web server so ES modules load correctly.
@@ -18,9 +16,6 @@ Then open `http://localhost:5173/`.
 - Drag to pan.
 
 ## Deployed to GitHub Pages via architrino.com
-
-
-If I free up the architrino domain from wordpress github can also use that url.
 
 
 

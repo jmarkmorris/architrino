@@ -1,6 +1,3 @@
-
-### Definitions
-
 | Term | $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$ | $\mathbb{A}\mathbb{A}\mathbb{A}$ = Architrino Assembly Architecture |
 | --- | --- | --- |
 | Absolute Frame / Preferred Frame | No preferred inertial frame; all inertial frames are equivalent in $\mathrm{SR}/\mathrm{GR}$. | The Euclidean-void rest frame defined by isotropy of $c_f$ and absolute time; physically real but operationally hidden. |
@@ -19,16 +16,21 @@
 | Causal Isochron | Retarded-time/light-cone surfaces are mathematical constructs; fields are not defined as isochron surfaces. | Expanding causal surface from a single emission time: $r=c_f(t-t_0)$ with $1/r^2$ surface density; intersections deliver radial hits. |
 | Causal Wake | Causal influence propagates along light cones; described by fields/wavefronts. | Union of all causal isochrons emitted by a source; the wake/field landscape guiding interactions. |
 | CFT Region / CFT Space | Conformal field theories are specific QFTs without intrinsic length scales. | Partner-only, sub-field-speed regime ($v<c_f$) associated with exterior/bulk behavior. |
+| Clock-Rate Redshift | Cosmological redshift is usually modeled by metric expansion with $1+z=a_{\text{obs}}/a_{\text{emit}}$. | Redshift is interpreted as medium-evolution plus path-integrated clock-rate comparison between emission and observation environments in a fixed Euclidean void. |
 | Deterministic Multistability | Standard models usually present either deterministic evolution equations or probabilistic outcomes; this combined term is not standard. | Laws are deterministic, but near threshold/self-hit regimes multiple stable attractors can coexist; realized outcomes are microstate-sensitive without ontic randomness. |
 | Effective Metric | Metric $g_{\mu\nu}$ is fundamental in $\mathrm{GR}$, not an emergent medium property. | Emergent refractive geometry from Noether Sea density/stress that reproduces GR-like behavior. |
+| Effective Scale Factor | In standard cosmology, $a(t)$ is the FLRW scale factor describing metric expansion of space. | $a(t)$ is an effective summary of Noether-sea structural evolution (for example via representative assembly-separation scales) inside a fixed Euclidean container. |
 | Electrino | No fundamental $-e/6$ charge; electron is elementary with charge $-e$. | Negative-polarity architrino with charge $q=-\epsilon$ where $\epsilon=\lvert e\rvert/6$. |
 | Emission Time | Usually implicit as retarded time in propagators/Green-function methods. | Explicit source-emission timestamp $t_0$ for a wake contribution later received at $(\mathbf{x},t)$ under the causal condition. |
 | Euclidean Void | No fixed Euclidean background; $\mathrm{GR}$ uses dynamical spacetime geometry, $\mathrm{QM}/\mathrm{QFT}$ assumes a background only in specific approximations. | Continuous, unmoving $\mathbb{R}^3$ container. |
 | Event-Horizon Alignment Condition | Event horizon is a null surface in GR. | Planck-scale alignment: middle and outer binaries reach $v=c_f$ and become coplanar/co-linear with the inner binary; precession ceases. |
 | Field Speed ($c_f$, $\mathbb{A}\mathbb{A}\mathbb{A}$ reference speed) | Speed of light $c$ in vacuum; invariant signal speed in $\mathrm{SR}/\mathrm{GR}$. | Propagation speed of architrino potential wakes relative to the void; reference speed for self-hit threshold. |
 | Field-Speed Threshold | No special threshold at $v=c$ beyond kinematic invariance. | Symmetry-breaking boundary at $v=c_f$ separating partner-only and self-hit regimes. |
+| Hybrid Regime | Not a standard single-term category in $\Lambda\mathrm{CDM}$; mixed models exist across modified-gravity and dark-matter literature. | Both together; neutral assemblies provide baseline mass, medium response modulates behavior by scale/environment. |
 | Horizon Interface | Not a standard term in $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$ as used here. | Interface layer where middle and outer binaries lock at $v=c_f$; surface degrees of freedom at Planck alignment. |
+| Medium Response | In standard cosmology this is often represented through effective modified-gravity response or environment-dependent phenomenology. | Gravity-like effects from Noether-sea elasticity/response, not extra matter alone. |
 | Measurement Interaction | In standard usage, "measurement" is often formalized by projection, POVMs, or decoherence models. | Physical interaction between assemblies and environment/detector that drives irreversible record formation and effective outcome selection without invoking ontic wavefunction collapse. |
+| Neutral Assemblies | Rough analog to non-luminous gravitating matter components in dark-sector modeling. | Dark-sector-like gravitating structures made of neutral tri-binary assemblies. |
 | Noether Core | No such assembly; vacuum is not composed of cores. | Neutral assembly (coupled pro/anti tri-binaries) forming a spacetime medium node. |
 | Noether Sea | No physical sea; vacuum is the ground state of fields, not a substance. | Lattice/network of Noether cores filling space; the spacetime medium. |
 | Noether Sea Density ($\rho_{vac}$) | Vacuum energy density or cosmological-constant density $\rho_\Lambda$; typically treated as constant in $\Lambda\mathrm{CDM}$. | Local Noether core number density $\rho_{vac}(\mathbf{x},t)$; sets refractive index and clock rates. |
@@ -43,6 +45,7 @@
 | Refractive Gravity | No standard term as a foundational ontology in $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$; gravity is modeled as spacetime curvature in GR. | $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation in which gravity-like effects arise from propagation and clock/ruler response in a non-uniform Noether Sea (effective refractive medium), yielding GR-like phenomenology without fundamental void curvature. |
 | Self-Hit | No self-intercepting field-wake dynamics in standard $\mathrm{GR}/\mathrm{QM}$. | When $v>c_f$, an architrino intercepts its own wake, creating non-Markovian feedback. |
 | Self-Hit Onset Boundary | No analogue in standard models. | Bifurcation surface at which delayed self-interaction first appears, typically at $v=c_f$. |
+| SMBH-Core Recycling | SMBHs in standard cosmology are compact objects in evolving spacetime, with accretion/feedback but no required cosmological recycling ontology. | SMBH interiors and horizon channels act as long-lived source/release regions that drive recurrent medium-loading, relaxation, and large-scale cosmological history in the Architrino framework. |
 | Spacetime Medium (Noether Core Sea) | No physical medium; spacetime is the metric field and vacuum is not a substance. | Pervasive assembly network giving rise to effective metric/inertia. |
 | Spiral | Orbital spirals arise from radiation reaction, dissipation, or non-conservative forces; not a fundamental mechanism. | Typical binary path in sub-$c_f$ regime: logarithmic-like inward spiral driven by delayed partner hits and positive tangential power. |
 | Transient Assembly | No single direct counterpart; roughly overlaps with short-lived intermediate states in QFT language. | Short-lived, non-asymptotic architrino configuration that forms and decays during interactions; preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement for ambiguous "virtual particle" phrasing. |
@@ -53,9 +56,7 @@
 
 ---
 
-### Terms to Avoid, Phase Out, Transition to $\mathbb{A}\mathbb{A}\mathbb{A}$
-
-| Term to Avoid / Phase Out | Transitional Wording (if needed) | Preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ Wording | Usage Note |
+| Term to Avoid / Phase Out | Transitional Wording | Preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ Wording | Usage Note |
 | --- | --- | --- | --- |
 | vacuum (as physical emptiness) | vacuum state / medium context | Noether Sea; spacetime medium; tri-binary spacetime | Use "vacuum" only when explicitly discussing mainstream historical semantics. |
 | ether / aether (alone) | medium (clarified) | Noether Sea; spacetime medium | Avoid ambiguous historical "luminiferous ether" connotations. |

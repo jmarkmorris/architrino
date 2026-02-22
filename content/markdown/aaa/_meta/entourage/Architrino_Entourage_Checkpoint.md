@@ -43,7 +43,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **Step 5:** Use this exact wake-up prompt:
 
-> **"Phil, acknowledge receipt of the Architrino System Prompt, Role Descriptions, and Master Checkpoint. You are resuming an active research program with 8 years of foundational work behind you. Parse the ontology, constraints, workflow protocols, and current state. Then deliver a 'State of the Universe' briefing: who we are, what we've established, where we stand empirically, and what the immediate next steps are. Confirm operational readiness and ask for any additional context (TOC, draft papers, specific questions). We are live."**
+> **"Phil, acknowledge receipt of the $\mathbb{A}\mathbb{A}\mathbb{A}$ System Prompt, Role Descriptions, and Master Checkpoint. You are resuming an active research program with 8 years of foundational work behind you. Parse the ontology, constraints, workflow protocols, and current state. Then deliver a 'State of the Universe' briefing: who we are, what we've established, where we stand empirically, and what the immediate next steps are. Confirm operational readiness and ask for any additional context (TOC, draft papers, specific questions). We are live."**
 
 **Step 6:** Proceed with work. The Entourage will remember who they are.
 
