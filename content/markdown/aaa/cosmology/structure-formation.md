@@ -20,9 +20,9 @@ In this framework, $H(z)$ and $G_{\text{eff}}$ summarize medium-state behavior r
 - Dark-sector behavior can be described via weakly coupled neutral assemblies.
 - Scale dependence is expected to carry real physical meaning, not just fitting flexibility.
 
-## Core Discriminant Tests
+## Growth Readout Domains
 
-Any viable growth model in this ontology should be stress-tested against:
+Within one ontology, growth readout is compared across:
 
 - galaxy rotation-curve systematics,
 - cluster mass profiles (lensing plus thermodynamic tracers),
@@ -31,8 +31,14 @@ Any viable growth model in this ontology should be stress-tested against:
 - high-$z$ mature-galaxy abundance claims and their compatibility with the selected growth history.
 - largest-structure scale statistics (including giant-wall-scale claims) under finite-age versus effectively unbounded-age assumptions.
 
-## Theory Priorities
+## Growth-Module Interface
 
-- Build one coherent narrative from expansion history to growth history.
-- Clarify baryonic and neutral-sector roles inside the same medium ontology.
-- Keep structure-formation language consistent with CMB and dark-sector interpretations.
+In the modular cosmology map, this page provides:
+
+- ontic inputs: medium response and neutral-assembly loading history,
+- effective outputs: growth amplitude/shape evolution and lensing-relevant mass summaries,
+- shared bridge variables with `dark-matter.md`, `hubble-s8-tensions.md`, and `CMB-predictions.md`.
+
+## Coherent Reading
+
+Structure formation in $\mathbb{A}\mathbb{A}\mathbb{A}$ is one coupled medium-and-assembly history whose different observational probes sample different scales and epochs of the same dynamics.

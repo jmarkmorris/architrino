@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This page organizes major cosmology model families and situates $\mathbb{A}\mathbb{A}\mathbb{A}$ among them conceptually.
+This page decomposes cosmology into separable observational components and situates $\mathbb{A}\mathbb{A}\mathbb{A}$ relative to existing model families at the component level.
 
 ## Model Families
 
@@ -13,33 +13,30 @@ This page organizes major cosmology model families and situates $\mathbb{A}\math
 - PBH-centered dark-sector interpretations
 - Modified-gravity families
 
-## Use in Theory Development
+## Component Decomposition (Observation-First)
 
-- Clarify where $\mathbb{A}\mathbb{A}\mathbb{A}$ agrees at effective level and where ontology diverges.
-- Prevent category-mixing between explanatory layers.
-- Keep terminology disciplined when borrowing effective equations from other frameworks.
-- Track historical lineage explicitly when relevant (steady-state, quasi-steady-state, bounce/cyclic), while stating where AAA adds distinct microphysical commitments.
-- Include historical correspondences such as quasi-steady-state multiplicative creation near supermassive concentrations when mapping precursor ideas to SMBH-centered recycling language.
+Treat the cosmology stack as separable modules:
 
-## Observational Discriminant Checklist
+- background expansion module ($H(z)$ and distance-redshift summaries),
+- recombination/CMB transfer module (TT/TE/EE, damping, lensing imprint),
+- primordial-yield module (BBN abundance outputs),
+- structure-growth module (clustering, shear, lensing growth summaries),
+- local-calibration module (distance ladder and environment-conditioned inference).
 
-Use this compact checklist when comparing $\mathbb{A}\mathbb{A}\mathbb{A}$ branches against $\Lambda\mathrm{CDM}$:
+This separation is used to prevent hidden dependency loops where one assumed foundation silently fixes another observable domain.
 
-- very-high-$z$ $H(z)$ behavior and any nonstandard early-history signatures,
-- CMB TT/TE/EE peak and damping closure under the chosen source model,
-- void-versus-cluster inference shifts in low-$z$ expansion summaries,
-- gravitational-wave speed and dispersion limits in medium language,
-- preferred-frame leakage limits under Lorentz-suppression expectations,
-- dark-sector profile behavior across galaxy, cluster, and lensing scales,
-- primordial/initial power-spectrum assumptions and downstream growth impact.
-- quasar number-density and isotropy interpretations versus redshift-dependent selection and transport effects.
-- redshift-distance linearity assumptions at large lookback and their impact on quasar/evolution inferences.
-- high-$z$ galaxy maturity claims (including JWST-era datasets) under each model branch.
-- high-$z$ rotating-disk and early-morphology claims under each model branch.
-- age assumptions (finite-age versus effectively unbounded history) and downstream structure-time implications.
+## Interface Variables (Predicted API Surface)
 
-## Theory Priorities
+For cross-model comparison, each module should expose explicit interface variables rather than implicit narrative coupling:
 
-- Maintain one concise comparison matrix for conceptual orientation.
-- Keep the matrix focused on mechanism and ontology, not rhetorical positioning.
-- Keep each model branch tied to explicit falsification conditions before parameter expansion.
+- Expansion interface: effective $a(t)$/$H(z)$ history and redshift mapping variables.
+- CMB interface: mode-seeding inputs, transfer behavior, and TT/TE/EE outputs.
+- BBN interface: thermal/reaction history inputs and light-element yield outputs.
+- Growth interface: matter-loading and coupling inputs with late-time amplitude/shape outputs.
+- Calibration interface: local-environment terms that map observer pipelines to inferred cosmological parameters.
+
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Positioning
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ keeps one ontology (fixed Euclidean void plus evolving Noether sea) while matching effective observer-level outputs through these module interfaces. Agreement or divergence from $\Lambda\mathrm{CDM}$ is therefore expressed module-by-module, not as all-or-nothing adoption of a single bundled model.
+
+Historical correspondences (steady-state, quasi-steady-state, bounce/cyclic, SMBH-centered recycling) are tracked as interpretation lineage, while microphysical commitments remain specific to $\mathbb{A}\mathbb{A}\mathbb{A}$.

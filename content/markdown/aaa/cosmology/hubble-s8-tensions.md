@@ -30,7 +30,7 @@ For $S_8$:
 
 So background and growth are connected through shared medium-state evolution rather than separate ad hoc corrections.
 
-## Working Resolution Channels
+## Coupled Interpretation Channels
 
 For $H_0$:
 
@@ -43,10 +43,14 @@ For $S_8$:
 - scale-dependent medium response and partial sector coupling can reduce late-time growth amplitude,
 - growth suppression mechanisms must remain consistent with CMB-derived early-time loading.
 
-## Theory Priorities
+## Cross-Module Interface
 
-- Avoid separate, disconnected stories for $H_0$ and $S_8$.
-- Use one shared medium-evolution language for background and growth.
-- Clarify which parts are fundamental ontology and which are effective summaries.
-- Move from "can explain" language to explicit parameterized predictions and falsifiable ranges.
-- Publish explicit predictions for the amplitude and sky/environment dependence of local-$H$ scatter.
+In the modular cosmology map, this document is the coupling layer between:
+
+- expansion-module outputs (`expansion-mechanism.md`) that shape inferred $H_0$,
+- growth-module outputs (`structure-formation.md`) that shape inferred $S_8$,
+- shared medium-state variables that keep both readouts in one ontology.
+
+## Coherent Reading
+
+$H_0$ and $S_8$ are not separate anomalies requiring separate ontologies; they are two observer-level projections of one medium-relaxation and coupling history in $\mathbb{A}\mathbb{A}\mathbb{A}$.

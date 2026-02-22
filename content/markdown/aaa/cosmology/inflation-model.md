@@ -44,9 +44,14 @@ $$
 
 where $\Omega_{\text{eff}}(a)$ encodes the emergent high-curvature phase and its relaxation.
 
-## Theory Priorities
+## Expansion-Module Interface
 
-- Define the internal state variables that correspond to the inflation-like phase.
-- Clarify transition logic between high-curvature and later expansion regimes.
-- Relate perturbation-seeding language to explicit assembly dynamics.
-- Separate clearly what is local-core dynamics versus what is inferred as large-scale effective history.
+In the modular cosmology map, this page contributes:
+
+- ontic inputs: self-hit occupancy, alignment-boundary transitions, and core-to-medium energy transfer,
+- effective outputs: inflation-like rapid expansion segments and perturbation-seeding summaries,
+- bridge variables shared with `expansion-mechanism.md` and `CMB-origin.md`.
+
+## Coherent Reading
+
+Inflation language in $\mathbb{A}\mathbb{A}\mathbb{A}$ is an effective description of high-curvature release-and-relaxation dynamics in the Noether sea, not an added standalone scalar ontology.

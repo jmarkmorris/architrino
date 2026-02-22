@@ -22,7 +22,7 @@ In this frame, "expansion of space" is a shorthand for evolving medium state.
 
 ## Baseline-Energy Reframing
 
-A useful bookkeeping bridge is:
+A useful observer-level bookkeeping bridge is:
 
 $$
 \rho_{\text{DE,eff}} \sim \rho_{\text{sea}}\,E_{\text{core}},
@@ -52,9 +52,14 @@ The cosmological-constant hierarchy issue is handled as an ontology mismatch:
 - Inner and middle assembly structure acts as the main high-curvature storage and recycling channel.
 - The late-time effective acceleration term is the residual large-scale medium state, not raw summed vacuum-mode energy.
 
-## Theory Priorities
+## Expansion-Module Interface
 
-- Clarify how medium-state variables produce acceleration-like effective behavior.
-- Keep expansion and dark-energy language integrated rather than split into separate ontologies.
-- Maintain consistency with the broader no-metric-stretching commitment.
-- Quantify whether realistic $\rho_{\text{sea}} E_{\text{core}}$ ranges recover observed dark-energy-scale effective density.
+Within the modular cosmology map, this page provides the dark-energy interpretation layer of the expansion module:
+
+- Ontic variables: medium density/stress and assembly relaxation state.
+- Effective outputs: inferred acceleration history and equation-of-state summaries.
+- Cross-link: the same medium evolution that sets acceleration language also sets redshift and clock-rate interpretation in `expansion-mechanism.md`.
+
+## Coherent Reading
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, late-time acceleration is a readout of Noether-sea relaxation and stress history in a fixed Euclidean void; $w$ and $\Lambda$ remain useful effective descriptors, while mechanism remains medium-and-assembly dynamics.

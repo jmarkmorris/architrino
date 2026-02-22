@@ -53,11 +53,11 @@ For modeling and diagnostics, separate at least three effective channels:
 - source/observer relative-motion (Doppler-like) contribution,
 - propagation contribution from traversed medium state and gradients.
 
-## Photon-Propagation Loss Branch (Constrained Option)
+## Photon-Propagation Contribution
 
-A secondary model-space option allows additional path-dependent photon energy degradation in medium transit ("redshift toll") beyond endpoint clock comparison. This branch is only admissible if it remains consistent with precision constraints usually applied to spectral distortion, distance-duality behavior, and background thermality.
+Beyond endpoint clock comparison, the same transport picture can include path-dependent photon energy evolution in medium transit ("redshift toll").
 
-In this branch, effective redshift accumulation may depend on photon energy, traversed medium state, and path environment, so any claim of a universal linear toll must be treated as a hypothesis to be tested, not assumed.
+In this reading, effective redshift accumulation may depend on photon energy, traversed medium state, and path environment, so redshift is modeled as a transport kernel rather than a single universal linear rule.
 
 Line-of-sight medium flow and local contraction/expansion regions can, in principle, contribute signed shifts, so local blueward and redward biases should be treated within one transport kernel rather than as disconnected exceptions.
 
@@ -88,9 +88,9 @@ Early-inferred and local-inferred expansion rates probe different medium states:
 
 So the $H_0$ split is interpreted as state-dependent inference from one ontology, not two incompatible universes.
 
-In this framing, $H_0$ is not expected to be strictly universal at all environments; a measurable local scatter tied to medium state is a direct prediction candidate.
+In this framing, $H_0$ is not expected to be strictly universal at all environments; local scatter is read as part of medium-state dependence.
 
-Quasar redshift distributions are a key stress test for separating intrinsic/source-population evolution from path-history redshift accumulation effects.
+Quasar redshift distributions are interpreted in the same transport-and-source framework, separating source-population evolution from path-history accumulation within one model.
 
 ## Effective Friedmann Bridge (Comparison Layer)
 
@@ -101,3 +101,11 @@ H^2 = \frac{8\pi G_{\text{eff}}}{3}\left(\rho_m+\rho_r+\rho_{\text{sea}}\right)-
 $$
 
 with $a(t)$ interpreted as a medium-state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-medium response.
+
+## Expansion-Module Interface
+
+In the modular cosmology map, this page provides:
+
+- ontic inputs: medium density/stress state, clock-rate map, and transport environment,
+- effective outputs: inferred $a(t)$, $H(z)$, and redshift-distance behavior,
+- shared bridge variables used by `dark-energy.md`, `hubble-s8-tensions.md`, and `CMB-predictions.md`.

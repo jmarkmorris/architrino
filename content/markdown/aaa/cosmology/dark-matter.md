@@ -19,7 +19,7 @@ A coherent theory-level account should explain, in one framework:
 - large-scale structure role,
 - compatibility with early-universe medium history.
 
-## Three-Regime Architecture
+## Unified Regime Architecture
 
 Use one unified taxonomy:
 
@@ -32,15 +32,15 @@ Use one unified taxonomy:
 
 This keeps galaxy curves, cluster lensing, and CMB-era matter loading inside one ontology instead of switching ontologies by scale.
 
-## Structure-Formation Option Space
+## Growth-Module Interpretation Layer
 
-For development and testing, keep three explicit model options visible:
+Within one ontology, these same regimes can be read as different limits of one coupled system:
 
 1. assembly-dominant dark sector (CDM-like behavior from neutral assemblies),
 2. medium-response dominant regime (MOND-like low-acceleration modification),
 3. principled hybrid of both.
 
-No option is accepted unless it closes simultaneously on galaxy, cluster, and CMB-era constraints.
+This is treated as a continuum of behavior across environments rather than separate patched models.
 
 ## Cosmology Integration
 
@@ -48,9 +48,14 @@ No option is accepted unless it closes simultaneously on galaxy, cluster, and CM
 - At late times, medium response can alter inferred mass profiles without requiring a second dark-matter substance.
 - Structure-formation language should treat these as coupled sectors, not independent patches.
 
-## Theory Priorities
+## Growth-Module Interface
 
-- Clarify whether dark matter is primarily a sector of assemblies, a medium-response regime, or a principled hybrid.
-- Define a minimal ontology with no duplicate mechanisms.
-- Keep language consistent with structure-formation and CMB interpretations.
-- Use explicit rejection tests: Bullet Cluster offset behavior, weak lensing profiles, and CMB peak-loading compatibility.
+In the modular cosmology map, dark-matter interpretation enters through:
+
+- matter-loading variables for pre-decoupling and early-growth mapping,
+- coupling/response variables for late-time profile and lensing behavior,
+- a shared interface to `structure-formation.md` and `CMB-predictions.md` so background and growth remain one model.
+
+## Coherent Reading
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, dark-matter phenomenology is read as neutral-assembly loading plus medium response within one mechanism family; different observational regimes emphasize different limits of the same underlying dynamics.
