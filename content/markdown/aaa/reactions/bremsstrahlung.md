@@ -1,0 +1,3 @@
+# Bremsstrahlung
+
+Bremsstrahlung ("braking radiation") is electromagnetic emission produced when charged particles are accelerated by Coulomb fields, most commonly when relativistic or semi-relativistic electrons scatter off ions or nuclei. In kinetic and QED language, the particle's momentum change couples to the radiation field, generating a broad, continuous photon spectrum whose shape depends on projectile energy, target charge, plasma state, and optical depth. Across nuclear and particle contexts, bremsstrahlung is central to energy-loss budgets, detector backgrounds, and radiative transfer, and in hot plasmas it can dominate the conversion of kinetic energy into observable X-ray or gamma-ray luminosity.
