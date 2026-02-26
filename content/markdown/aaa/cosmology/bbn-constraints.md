@@ -121,6 +121,25 @@ In the modular cosmology map, this page provides:
 - effective outputs: primordial light-element yield summaries and neutrino-sector readout terms,
 - shared bridge variables with `CMB.md` and `expansion-mechanism.md`.
 
+## Philosophical and Explanatory Consequences
+
+### What the Eternal-Universe Interpretation Gains
+
+- **No singularity:** Avoids the conceptual paradox of $t=0$ and "something from nothing."
+- **No fine-tuning of initial conditions:** Abundances emerge from dynamical equilibration in SMBH environments, not from finely-tuned cosmic initial states.
+- **Mechanistic clarity:** Replaces abstract "expansion cooling" with explicit radial outflow of assemblies through fixed Euclidean space.
+
+### What It Must Explain
+
+- **Homogeneity:** Why do spatially separated SMBH nucleation sites produce nearly identical light-element ratios?
+- **Timing consistency:** Why does the effective freeze-out sequence (D $\to$ $^3$He $\to$ $^4$He) occur so uniformly?
+- **Neutrino sector:** How does local SMBH nucleation produce the observed $N_{\text{eff}} \approx 3$ signature?
+
+### Burden of Proof
+
+- Standard BBN is a single-parameter fit (baryon-to-photon ratio) that works spectacularly well.
+- $\mathbb{A}\mathbb{A}\mathbb{A}$ must show that SMBH-averaged outputs reproduce this success without ad hoc tuning of SMBH properties or recycling rates.
+
 ## Coherent Reading
 
 BBN in $\mathbb{A}\mathbb{A}\mathbb{A}$ is one primordial-era readout of the same medium-and-assembly evolution used elsewhere; network form is standard, ontology and background interpretation are unified.
