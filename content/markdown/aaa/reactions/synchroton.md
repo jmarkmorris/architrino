@@ -1,0 +1,3 @@
+# Synchrotron Cascades
+
+Synchrotron cascades are multi-stage electromagnetic processes in which relativistic charged particles radiate synchrotron photons in strong magnetic fields, and those photons then feed secondary channels such as pair production and further radiative cooling. The result is a non-thermal cascade spectrum shaped by magnetic-field strength, particle injection energy, compactness, and escape times, with strong coupling between microphysical emission rates and macroscopic transport. In high-energy astrophysical and plasma environments, these cascades provide a mechanism for rapidly reprocessing particle energy into broadband radiation while simultaneously controlling pair loading and opacity.
