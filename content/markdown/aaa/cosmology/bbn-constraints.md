@@ -108,7 +108,7 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 
 - **Spatial Inhomogeneities:** If BBN is SMBH-local, early structures might show abundance gradients correlated with SMBH proximity.
 - **Time Evolution:** In an eternal universe, light-element ratios could vary with cosmic epoch if SMBH nucleation efficiency evolves (contrast with Big Bang's fixed primordial values).
-- **Lithium Tension:** The $^7$Li discrepancy may reflect transport inhomogeneities in SMBH outflows, not a universal primordial deficit.
+- **Lithium Tension as Signal:** The $^7$Li discrepancy can be interpreted as a transport signature: hotter jet-core tracks preferentially deplete $^7$Be/$^7$Li while cooler sheath tracks preserve D, yielding an integrated low-Li/high-D pattern.
 
 ### Current Status
 
@@ -154,10 +154,11 @@ The BBN reaction sequence requires a high photon-to-baryon environment so D is n
 
 ### 5. Lithium Goal: Promote to a Distinguishing Prediction
 
-Lithium should be treated as a primary discriminator, not only a trace channel.
+Lithium is treated here as a primary discriminator, not only a trace channel.
 
-- **Goal:** Test whether core-sheath inhomogeneity can suppress $^7$Be/$^7$Li while preserving high D, producing the observed low-Li/high-D direction.
-- **Prediction class:** Inhomogeneous SMBH-reactor transport can map naturally to lithium tension as a spatial-integration effect.
+- **Goal:** Quantify whether core-sheath inhomogeneity can suppress $^7$Be/$^7$Li while preserving high D, producing the observed low-Li/high-D direction.
+- **Primary distinguishing prediction:** In SMBH-local reactor mappings, spatial inhomogeneity is a productive mechanism (not a nuisance), and lithium depletion emerges from transport-weighted integration across heterogeneous flow channels.
+- **Interpretive contrast:** Standard BBN uses near-homogeneous initial conditions, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ local-reactor mapping can use controlled inhomogeneity as an explanatory lever.
 
 ### 6. Equation-of-State Goal: Specify Tri-Binary Compression EoS
 
