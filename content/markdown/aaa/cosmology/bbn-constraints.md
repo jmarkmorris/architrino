@@ -49,6 +49,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 Tri-binary spacetime assemblies compress toward maximum-curvature states.
 Proton/neutron assemblies (nucleon tri-binaries) are driven into close proximity by intense Noether-Sea density gradients.
 Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
+Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether-Sea saturation rather than scaling linearly with SMBH mass.
 
 2. **Radial Outflow (Jets/Winds):**
 
@@ -123,7 +124,8 @@ Standard BBN effectively behaves like a calibrated standard reactor: one paramet
 
 - **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
 - **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
-- **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether-core saturation), yielding mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
+- **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether-core saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
+- **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to medium-state convergence and remains weakly dependent on SMBH mass class.
 
 ### 2. Freeze-Out Timing Goal: Weak-Rate vs Outflow Timescale
 
