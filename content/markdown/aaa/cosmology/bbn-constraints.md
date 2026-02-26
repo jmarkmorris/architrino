@@ -113,6 +113,16 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 - Homogeneity of observed abundances (low dispersion across cosmic volume) constrains how much local variation the SMBH process can tolerate.
 - This is a quantitative challenge: prove SMBH environments produce sufficiently uniform outputs to match observations.
 
+## Nuclear Physics Critiques & Requirements
+
+### 1. The "Standard Candle" Reactor Problem (Homogeneity)
+
+The strongest empirical success of Standard BBN is that a single parameter, $\eta$ (baryon-to-photon ratio), predicts light-element abundances across widely separated environments. Any SMBH-local reinterpretation must match that universality.
+
+- **Critique:** SMBHs span large ranges in mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion state. If local $T(t)$ and $\rho(t)$ tracks depend directly on these macro-parameters, then yield outputs, especially $Y_p$, should show large reactor-to-reactor scatter. Observationally, $Y_p$ remains tightly clustered near $Y_p\approx0.245\pm0.003$.
+- **Requirement:** Derive a **Universal Ejection Attractor** in which near-horizon architrino compression drives the medium toward critical conditions set by Noether-core saturation, not by total SMBH mass.
+- **Consequence:** The model must show mass-insensitive attractor values for at least $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$, and then demonstrate that these enforce near-identical freeze-out histories and low-dispersion light-element yields.
+
 ## Philosophical and Explanatory Consequences
 
 ### What the Eternal-Universe Interpretation Gains
@@ -142,4 +152,3 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 | Expansion driver | Metric expansion | Radial outflow of assemblies |
 | Light-element origin | Primordial relics | SMBH nucleation products |
 | Homogeneity explanation | Initial conditions | Dynamical equilibration |
-
