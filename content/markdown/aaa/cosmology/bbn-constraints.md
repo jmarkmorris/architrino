@@ -1,8 +1,32 @@
 # BBN in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework
 
-## Core Idea
+## Standard vs. $\mathbb{A}\mathbb{A}\mathbb{A}$ BBN: Ontological Reframing
 
-Big Bang nucleosynthesis (BBN) is the early-epoch formation of light nuclei from a hot proton-neutron-electron-photon plasma. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the reaction network remains standard, while the background history is interpreted as Noether-sea evolution in absolute time inside a fixed Euclidean void.
+### Standard Big Bang Nucleosynthesis
+
+- **When:** 10 seconds to 20 minutes after $t=0$ (cosmic singularity).
+- **Where:** Everywhere in the observable universe; a homogeneous, isotropic thermal bath.
+- **Why:** Expansion cooling drives the universe through nuclear-reaction freeze-out.
+- **Background:** Finite age, singular origin, universal thermal history.
+
+### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reinterpretation
+
+- **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $t$ within the eternal Euclidean void.
+- **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their recycling jets.
+- **Why:** Tri-binary spacetime assemblies (Noether Sea) near SMBHs reach densities/temperatures sufficient for nuclear reactions; subsequent radial outflow and cooling mimics expansion-driven freeze-out.
+- **Background:** Eternal void; no singularity; "BBN" is a recurring local process, not a singular cosmic event.
+
+### What Remains Unchanged
+
+- The nuclear reaction network itself (same cross-sections, same branching ratios).
+- The yield hierarchy (H, D, $^4$He, trace Li) and sensitivity to neutron-to-proton ratio.
+- The effective thermal history experienced by participating assemblies.
+
+### What Changes
+
+- **Cosmology:** From singular, universal expansion to local, repeating cycles near SMBHs.
+- **Light-element origin:** From primordial relics of $t=0$ to ongoing nucleation products ejected from SMBH environments.
+- **Observational interpretation:** "Primordial" abundances reflect equilibrium distributions from continuous recycling, not a one-time cosmic event.
 
 ## Element Context (Textbook Ordering)
 
