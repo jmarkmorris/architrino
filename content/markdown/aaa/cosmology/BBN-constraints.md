@@ -56,6 +56,7 @@ Interpretive saturation claim: compression approaches medium-defined ceilings $T
 Material ejected from near-horizon regions undergoes rapid radial expansion.
 Effective cooling rate $dT/dt$ matches the freeze-out timing required for standard BBN yields.
 This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective "expansion" as density dilution.
+Interpretive timing claim: the effective expansion rate is not free-form jet kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$ and near-core stability times, so the cooling window can align with weak freeze-out timing.
 
 3. **Observable Output:**
 
@@ -133,6 +134,7 @@ In Standard BBN, neutron freeze-out is set by $\Gamma_{\mathrm{weak}} \sim H$. I
 
 - **Goal:** Show the ejection/cooling timescale naturally lands near the weak freeze-out scale, $\tau_{\mathrm{cool}}\approx 1\,\mathrm{s}$.
 - **Sensitivity checks:** Too slow drives $n\to p$ decay toward H-dominated yields; too fast preserves high $n/p$ and overproduces helium (for example $Y_p>0.5$).
+- **Physical closure target:** Parameterize the effective expansion clock as an assembly-limited rate (bounded by transport scales set by $c_f$ and local stability times) rather than unconstrained jet phenomenology.
 
 ### 3. Deuterium Survival Goal: Monotonic Quench Window
 
