@@ -7,7 +7,7 @@
 - **When:** 10 seconds to 20 minutes after $t=0$ (cosmic singularity).
 - **Where:** Everywhere in the observable universe; a homogeneous, isotropic thermal bath.
 - **Why:** Expansion cooling drives the universe through nuclear-reaction freeze-out.
-- **Background:** Finite age, singular origin, universal thermal history.
+- **Background:** Finite age, singular origin, SMBH-environment thermal history.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reinterpretation
 
@@ -63,7 +63,7 @@ These abundances are observationally indistinguishable from "primordial" BBN if 
 
 ### Key Difference from Standard BBN
 
-- **Standard:** One universal thermal history; all light elements formed in the same cosmic epoch.
+- **Standard:** One SMBH-environment thermal history; all light elements formed in the same cosmic epoch.
 - **$\mathbb{A}\mathbb{A}\mathbb{A}$:** Many local nucleation sites; observed abundances reflect averaged outputs from SMBH environments plus later stellar processing.
 
 ## Network-Level Description
@@ -75,7 +75,7 @@ $$
 
 The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
 
-## $\mathbb{A}\mathbb{A}\mathbb{A}$ Primordial Chain
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ SMBH-Local Nucleation Chain
 
 The BBN story is one continuous mechanism:
 
@@ -140,6 +140,17 @@ In the modular cosmology map, this page provides:
 - Standard BBN is a single-parameter fit (baryon-to-photon ratio) that works spectacularly well.
 - $\mathbb{A}\mathbb{A}\mathbb{A}$ must show that SMBH-averaged outputs reproduce this success without ad hoc tuning of SMBH properties or recycling rates.
 
+## Summary Table
+
+| Aspect | Standard BBN | $\mathbb{A}\mathbb{A}\mathbb{A}$ BBN |
+|---|---|---|
+| Universe age | Finite ($t\sim13.8$ Gyr) | Eternal (no beginning) |
+| BBN location | Everywhere | Near SMBH cores |
+| BBN frequency | Once (first 20 min) | Recurring (wherever SMBHs form) |
+| Expansion driver | Metric expansion | Radial outflow of assemblies |
+| Light-element origin | Primordial relics | SMBH nucleation products |
+| Homogeneity explanation | Initial conditions | Dynamical equilibration |
+
 ## Coherent Reading
 
-BBN in $\mathbb{A}\mathbb{A}\mathbb{A}$ is one primordial-era readout of the same medium-and-assembly evolution used elsewhere; network form is standard, ontology and background interpretation are unified.
+BBN in $\mathbb{A}\mathbb{A}\mathbb{A}$ is one SMBH-nucleation-era readout of the same medium-and-assembly evolution used elsewhere; network form is standard, ontology and background interpretation are unified.
