@@ -175,6 +175,14 @@ Cosmological data are consistent with an effective relativistic-species count ne
 - **Opacity-to-decoupling mapping:** Model a dense phase where neutrinos are initially trapped (interaction-opaque core conditions), followed by release at a defined decoupling temperature window.
 - **Consistency check:** Free-streaming onset and energy partition should map to BBN/CMB-inferred $N_{\text{eff}}$ without introducing extra relativistic degrees of freedom.
 
+### 8. Early-Enrichment Timing Goal: "Old Stars" Consistency
+
+Observed low-metallicity gas and very old stars with BBN-like light-element patterns require a viable pre-stellar enrichment pathway in SMBH-local interpretations.
+
+- **Cycle mapping objective:** Establish an early sequence SMBH nucleation $\to$ jet/wind ejection $\to$ ambient gas-cloud enrichment $\to$ subsequent star formation.
+- **Timescale objective:** Show that transport and mixing can populate star-forming reservoirs with BBN-like yields early enough to match old-star abundance constraints.
+- **Formation-context option:** Evaluate whether early structure formation with primordial or very-early SMBH populations can supply the required enrichment baseline.
+
 ## Philosophical and Explanatory Consequences
 
 ### What the Eternal-Universe Interpretation Gains
