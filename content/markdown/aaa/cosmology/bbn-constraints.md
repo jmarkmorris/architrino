@@ -28,7 +28,7 @@
 - **Light-element origin:** From primordial relics of $t=0$ to ongoing nucleation products ejected from SMBH environments.
 - **Observational interpretation:** "Primordial" abundances reflect equilibrium distributions from continuous recycling, not a one-time cosmic event.
 
-## Element Context (Textbook Ordering)
+## Element Context
 
 In BBN, elements are not treated as isolated topics; they are one coupled yield system:
 
@@ -113,14 +113,6 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 - Homogeneity of observed abundances (low dispersion across cosmic volume) constrains how much local variation the SMBH process can tolerate.
 - This is a quantitative challenge: prove SMBH environments produce sufficiently uniform outputs to match observations.
 
-## BBN-Module Interface
-
-In the modular cosmology map, this page provides:
-
-- ontic inputs: medium-evolution thermal history and transport-conditioned reaction environment,
-- effective outputs: primordial light-element yield summaries and neutrino-sector readout terms,
-- shared bridge variables with `CMB.md` and `expansion-mechanism.md`.
-
 ## Philosophical and Explanatory Consequences
 
 ### What the Eternal-Universe Interpretation Gains
@@ -151,6 +143,3 @@ In the modular cosmology map, this page provides:
 | Light-element origin | Primordial relics | SMBH nucleation products |
 | Homogeneity explanation | Initial conditions | Dynamical equilibration |
 
-## Coherent Reading
-
-BBN in $\mathbb{A}\mathbb{A}\mathbb{A}$ is one SMBH-nucleation-era readout of the same medium-and-assembly evolution used elsewhere; network form is standard, ontology and background interpretation are unified.
