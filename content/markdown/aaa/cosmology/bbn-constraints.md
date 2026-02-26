@@ -94,15 +94,24 @@ Lithium is not a separate patch. It is part of the same primordial transport-and
 
 This keeps lithium inside one coherent mechanism family rather than adding a separate after-the-fact fix.
 
-## Effective Observer-Level Readout
+## Observational Equivalence and Distinguishing Tests
 
-At effective cosmology level, the same primordial chain is read through familiar BBN observables:
+### Why Standard BBN Fits So Well
 
-- hydrogen as residual baryonic fraction after light-nucleus freeze-out,
-- helium mass fraction near $Y_p\approx 0.24$,
-- deuterium abundance near $\mathrm{D/H}\approx 2.5\times10^{-5}$,
-- trace lithium abundance as part of the same coupled yield ledger,
-- effective neutrino-sector coupling consistent with $N_{\text{eff}}$ constraints.
+- If SMBHs dominate early galaxy formation, their nucleosynthetic output would establish a baseline light-element abundance.
+- Subsequent stellar evolution and mixing would homogenize these abundances across cosmic scales.
+- The effective "primordial" abundances reflect equilibrated distributions from SMBH recycling, not a singular cosmic event.
+
+### Potential Distinguishing Signatures
+
+- **Spatial Inhomogeneities:** If BBN is SMBH-local, early structures might show abundance gradients correlated with SMBH proximity.
+- **Time Evolution:** In an eternal universe, light-element ratios could vary with cosmic epoch if SMBH nucleation efficiency evolves (contrast with Big Bang's fixed primordial values).
+- **Lithium Tension:** The $^7$Li discrepancy may reflect transport inhomogeneities in SMBH outflows, not a universal primordial deficit.
+
+### Current Status
+
+- Homogeneity of observed abundances (low dispersion across cosmic volume) constrains how much local variation the SMBH process can tolerate.
+- This is a quantitative challenge: prove SMBH environments produce sufficiently uniform outputs to match observations.
 
 ## BBN-Module Interface
 
