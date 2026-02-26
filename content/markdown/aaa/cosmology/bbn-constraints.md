@@ -167,6 +167,14 @@ The model needs an explicit compression-zone equation of state (for example loca
 - **Goal:** Determine whether tri-binary matter stiffens near horizon compression (high effective sound speed), and whether that stiffness is sufficient to drive rapid radial expansion.
 - **Mapping task:** Connect the EoS choice directly to freeze-out timing, D quench, and final yield sensitivity.
 
+### 7. Neutrino-Counting Goal: Recover Effective $N_{\text{eff}}$
+
+Cosmological data are consistent with an effective relativistic-species count near $N_{\text{eff}}\approx3.04$, so SMBH-local mappings need a neutrino history compatible with that target.
+
+- **Goal:** Show that neutrino production in the relevant nucleation zone is close enough to thermalized flavor populations to recover effective three-species behavior at observer level.
+- **Opacity-to-decoupling mapping:** Model a dense phase where neutrinos are initially trapped (interaction-opaque core conditions), followed by release at a defined decoupling temperature window.
+- **Consistency check:** Free-streaming onset and energy partition should map to BBN/CMB-inferred $N_{\text{eff}}$ without introducing extra relativistic degrees of freedom.
+
 ## Philosophical and Explanatory Consequences
 
 ### What the Eternal-Universe Interpretation Gains
