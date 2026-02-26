@@ -145,10 +145,11 @@ Deuterium survives only if the flow exits the bottleneck window quickly after fo
 
 ### 4. Photon-Bath Goal: Reproduce Effective $\eta^{-1}\sim10^9$
 
-The BBN reaction sequence requires a high photon-to-baryon environment so D is not stabilized too early.
+The BBN reaction sequence requires a high photon-to-baryon environment so D is not stabilized too early, consistent with effective $\eta\approx6\times10^{-10}$.
 
 - **Goal:** Identify a photon-dominated reaction zone with $\rho_\gamma\gg\rho_b$ in the relevant nucleation channel.
 - **Interpretive option:** Distinct jet shear layers or pair/synchrotron-bright regions can be tested as photon-bath suppliers, rather than matter-heavy disk zones.
+- **Source-model objective:** Show how recycling-zone photon production (for example pair annihilation, bremsstrahlung, and synchrotron cascades) can maintain BBN-compatible photon loading during the D bottleneck window.
 - **Consistency check:** If this condition is unmet, D forms too early and is over-processed.
 
 ### 5. Lithium Goal: Promote to a Distinguishing Prediction
