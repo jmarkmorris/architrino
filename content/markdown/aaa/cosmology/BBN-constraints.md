@@ -111,17 +111,55 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 ### Current Status
 
 - Homogeneity of observed abundances (low dispersion across cosmic volume) constrains how much local variation the SMBH process can tolerate.
-- This is a quantitative challenge: prove SMBH environments produce sufficiently uniform outputs to match observations.
+- This is a quantitative mapping objective: demonstrate that SMBH environments can produce sufficiently uniform outputs to match observations.
 
-## Nuclear Physics Critiques & Requirements
+## Observable-Mapping Goals (Interpretation-Scoped)
 
-### 1. The "Standard Candle" Reactor Problem (Homogeneity)
+These goals are for mapping $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics to measured cosmological observables in SMBH-reactor-style interpretations. They are viability objectives and consistency checks, not yet settled derivations.
 
-The strongest empirical success of Standard BBN is that a single parameter, $\eta$ (baryon-to-photon ratio), predicts light-element abundances across widely separated environments. Any SMBH-local reinterpretation must match that universality.
+### 1. Homogeneity Goal: "Universal Ejection Attractor"
 
-- **Critique:** SMBHs span large ranges in mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion state. If local $T(t)$ and $\rho(t)$ tracks depend directly on these macro-parameters, then yield outputs, especially $Y_p$, should show large reactor-to-reactor scatter. Observationally, $Y_p$ remains tightly clustered near $Y_p\approx0.245\pm0.003$.
-- **Requirement:** Derive a **Universal Ejection Attractor** in which near-horizon architrino compression drives the medium toward critical conditions set by Noether-core saturation, not by total SMBH mass.
-- **Consequence:** The model must show mass-insensitive attractor values for at least $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$, and then demonstrate that these enforce near-identical freeze-out histories and low-dispersion light-element yields.
+Standard BBN effectively behaves like a calibrated standard reactor: one parameter, $\eta$ (baryon-to-photon ratio), predicts light-element abundances across the sky. SMBH-local models should recover similar universality.
+
+- **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
+- **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
+- **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether-core saturation), yielding mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
+
+### 2. Freeze-Out Timing Goal: Weak-Rate vs Outflow Timescale
+
+In Standard BBN, neutron freeze-out is set by $\Gamma_{\mathrm{weak}} \sim H$. In SMBH-local mappings, $H$ is replaced by effective outflow dilution/velocity-gradient scales (for example $\nabla\cdot\mathbf{v}$).
+
+- **Goal:** Show the ejection/cooling timescale naturally lands near the weak freeze-out scale, $\tau_{\mathrm{cool}}\approx 1\,\mathrm{s}$.
+- **Sensitivity checks:** Too slow drives $n\to p$ decay toward H-dominated yields; too fast preserves high $n/p$ and overproduces helium (for example $Y_p>0.5$).
+
+### 3. Deuterium Survival Goal: Monotonic Quench Window
+
+Deuterium survives only if the flow exits the bottleneck window quickly after formation (around $T\approx0.1\,\mathrm{MeV}$), rather than recirculating and re-burning.
+
+- **Goal:** Require laminar, monotonic cooling through the D-formation window, followed by rapid quench.
+- **Mapping task:** Relate jet transport properties (including Reynolds-like turbulence diagnostics) and cooling curves to the D-survival window.
+
+### 4. Photon-Bath Goal: Reproduce Effective $\eta^{-1}\sim10^9$
+
+The BBN reaction sequence requires a high photon-to-baryon environment so D is not stabilized too early.
+
+- **Goal:** Identify a photon-dominated reaction zone with $\rho_\gamma\gg\rho_b$ in the relevant nucleation channel.
+- **Interpretive option:** Distinct jet shear layers or pair/synchrotron-bright regions can be tested as photon-bath suppliers, rather than matter-heavy disk zones.
+- **Consistency check:** If this condition is unmet, D forms too early and is over-processed.
+
+### 5. Lithium Goal: Promote to a Distinguishing Prediction
+
+Lithium should be treated as a primary discriminator, not only a trace channel.
+
+- **Goal:** Test whether core-sheath inhomogeneity can suppress $^7$Be/$^7$Li while preserving high D, producing the observed low-Li/high-D direction.
+- **Prediction class:** Inhomogeneous SMBH-reactor transport can map naturally to lithium tension as a spatial-integration effect.
+
+### 6. Equation-of-State Goal: Specify Tri-Binary Compression EoS
+
+The model needs an explicit compression-zone equation of state (for example local $P(\rho)$ or effective $w$ behavior) to close dynamics.
+
+- **Goal:** Determine whether tri-binary matter stiffens near horizon compression (high effective sound speed), and whether that stiffness is sufficient to drive rapid radial expansion.
+- **Mapping task:** Connect the EoS choice directly to freeze-out timing, D quench, and final yield sensitivity.
 
 ## Philosophical and Explanatory Consequences
 
@@ -131,16 +169,16 @@ The strongest empirical success of Standard BBN is that a single parameter, $\et
 - **No fine-tuning of initial conditions:** Abundances emerge from dynamical equilibration in SMBH environments, not from finely-tuned cosmic initial states.
 - **Mechanistic clarity:** Replaces abstract "expansion cooling" with explicit radial outflow of assemblies through fixed Euclidean space.
 
-### What It Must Explain
+### What It Seeks to Explain
 
 - **Homogeneity:** Why do spatially separated SMBH nucleation sites produce nearly identical light-element ratios?
 - **Timing consistency:** Why does the effective freeze-out sequence (D $\to$ $^3$He $\to$ $^4$He) occur so uniformly?
 - **Neutrino sector:** How does local SMBH nucleation produce the observed $N_{\text{eff}} \approx 3$ signature?
 
-### Burden of Proof
+### Evaluation Standard
 
 - Standard BBN is a single-parameter fit (baryon-to-photon ratio) that works spectacularly well.
-- $\mathbb{A}\mathbb{A}\mathbb{A}$ must show that SMBH-averaged outputs reproduce this success without ad hoc tuning of SMBH properties or recycling rates.
+- $\mathbb{A}\mathbb{A}\mathbb{A}$ should show that SMBH-averaged outputs can reproduce this success without ad hoc tuning of SMBH properties or recycling rates.
 
 ## Summary Table
 
