@@ -89,6 +89,12 @@ This file adopts the following provisional commitments.
 
 These commitments are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
 
+### Conservation Note for Pair Production
+
+This chapter uses the nucleation interpretation (not creation from nothing): pair channels reorganize substrate content into new charged assemblies. The bookkeeping requirement is global architrino conservation together with local energy-momentum conservation at the interaction zone.
+
+Any additional dependence of pair yield on local Noether-Sea state beyond standard kinematic threshold conditions is treated here as a mapping/simulation goal, not as an asserted observational deviation.
+
 A minimal mapping for cascade depth can be expressed as a dimensionless competition ratio
 
 $$
