@@ -40,6 +40,8 @@ $$
 \mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \rho_{\mathrm{aether}}^{\alpha} \left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert^{\beta},
 $$
 
+Conceptual nucleation picture for this ansatz: a photon corridor is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents that barrier and is interpreted as an effective function of Noether Sea stiffness plus local tri-binary geometry. The coupling through $\Delta E/E_{\gamma,\min}$ represents available shed energy relative to minimum stable corridor cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
+
 $$
 P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{\Delta E}{E_{\gamma,\min}}\right)\right],
 $$
