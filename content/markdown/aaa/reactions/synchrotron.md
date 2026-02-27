@@ -55,6 +55,29 @@ Cascade closure then depends on whether photon energies and path lengths satisfy
 
 These equations and thresholds are the observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping must recover in validated limits.
 
+## Core Channels (Inclusion Rule)
+
+This chapter uses a dominant-channel rule: include reactions/channels that contribute at least about 1% in the relevant regime. Where PDG branching ratios are defined, this is a `BR > 1%` rule; where transport channels are not tabulated by PDG branching, use contribution to modeled emissivity/opacity.
+
+- `e^\pm + B \rightarrow e^\pm + \gamma_{\mathrm{syn}}` (effective synchrotron emission channel).
+- `\gamma + \gamma \rightarrow e^+ + e^-` (Breit-Wheeler pair channel in dense radiation fields).
+- Secondary-loop channel: newly produced `e^\pm` re-enter synchrotron emission, closing the cascade.
+
+Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them.
+
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
+
+- **Synchrotron emission channel:** curved charged-assembly transport in anisotropic Noether-Sea states crosses planar-mode threshold and nucleates photon assemblies.
+- **Pair channel:** two-photon planar-mode overlap recruits/relocks local substrate content into charged pair assemblies; provenance and conservation bookkeeping remain explicit.
+- **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
+
+## Observer-Level Closure Checks
+
+- Pair threshold closure: enforce `$s \ge 4m_e^2$` for `$\gamma\gamma \rightarrow e^+e^-$`.
+- Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
+- Timing closure: in weak-gravity astrophysical limits, `$\Gamma_{\mathrm{eff}} \rightarrow \gamma_{\mathrm{SR}}$` so cooling breaks are preserved.
+- Polarization closure: recover observer-level synchrotron polarization geometry from directional `$B$` mapping.
+
 ## Regime Map
 
 - **Weak-cascade regime:** synchrotron emission present but pair feedback limited; spectrum tracks injected particles.

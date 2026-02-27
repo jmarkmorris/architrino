@@ -132,6 +132,29 @@ For high-energy scattering language, the differential yield is tracked with $d\s
 
 Baseline takeaway: these equations are the standard observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping must reproduce in validated regimes.
 
+## Core Channels (Inclusion Rule)
+
+This chapter uses a dominant-channel rule: include reactions/channels that contribute at least about 1% in the relevant regime. Where PDG branching ratios are defined, this is a `BR > 1%` rule; where transport channels are not tabulated by PDG branching, use contribution to modeled emissivity/opacity.
+
+- `e^- + Z \rightarrow e^- + Z + \gamma` (electron-ion/nuclear bremsstrahlung baseline channel).
+- `e^+ + Z \rightarrow e^+ + Z + \gamma` (positron analog in mixed plasmas/beams).
+- Thermal free-free ensemble channel (many-event superposition governing continuum emissivity).
+
+Associated pair/Compton channels are included when they exceed the same contribution threshold in the modeled zone.
+
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
+
+- **Bremsstrahlung channel:** target-induced deceleration drives wake-strain concentration; above planar-mode threshold, photon mode nucleation carries emitted energy-momentum.
+- **Positron analog:** same wake-threshold logic with sign-reversed charge trajectory in observer-level kinematics.
+- **Thermal ensemble:** macroscopic free-free emissivity is the aggregate of many local planar-mode nucleation events under screened Coulomb transport.
+
+## Observer-Level Closure Checks
+
+- Differential-yield closure: recover standard `d\sigma/dk` behavior with screening/Coulomb corrections in validated regimes.
+- Scaling closure: recover `$Z^2$` coherence limit and form-factor/screening breakdown structure at high `$q$`.
+- Energy-momentum closure: maintain event-level balance with explicit recoil and medium channels.
+- Inclusive-IR closure: any `$E_{\gamma,\min}$` hypothesis must remain compatible with inclusive-QED tested observables.
+
 ## IR Regularization as a Stability Floor
 
 Standard soft-photon emission produces infrared-divergent exclusive rates, handled by inclusive observables and resummation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation, an additional hypothesis is available: stable planar photon assemblies exist only above a minimum nucleation energy $E_{\gamma,\min}$.
