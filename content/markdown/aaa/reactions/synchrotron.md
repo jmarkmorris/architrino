@@ -91,7 +91,9 @@ These commitments are ontology-level and must reduce to standard synchrotron/pai
 
 ### Conservation Note for Pair Production
 
-This chapter uses the nucleation interpretation (not creation from nothing): pair channels reorganize substrate content into new charged assemblies. The bookkeeping requirement is global architrino conservation together with local energy-momentum conservation at the interaction zone.
+This chapter uses the nucleation interpretation (not creation from nothing): pair channels reorganize substrate content into new charged assemblies. In this ontology, each architrino has provenance and identity through path history in absolute time; interaction channels redistribute and relock existing constituents rather than instantiate new substrate entities.
+
+The bookkeeping requirement is therefore threefold: global architrino conservation, path-history-consistent provenance through reaction channels, and local energy-momentum conservation at the interaction zone.
 
 Any additional dependence of pair yield on local Noether-Sea state beyond standard kinematic threshold conditions is treated here as a mapping/simulation goal, not as an asserted observational deviation.
 
