@@ -67,6 +67,15 @@ $$
 \mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\mathrm{aether}}\right).
 $$
 
+### Emergence of Radiation from Assembly Dynamics
+
+This section states the mechanism-level emergence claim explicitly:
+
+1. **Mechanism:** deceleration-driven internal reconfiguration in the electron assembly concentrates energy into an emission-capable mode; if threshold is crossed, a planar corridor is nucleated and propagates as a photon assembly.
+2. **Microstate mapping:** non-emissive states satisfy $\mathcal{I}_e < \mathcal{I}_{\mathrm{crit}}$; emissive states satisfy $\mathcal{I}_e \ge \mathcal{I}_{\mathrm{crit}}$ and admit corridor nucleation probability $P_{\mathrm{nuc}}>0$.
+3. **Classical-limit recovery:** for many emissions over smooth trajectories, coarse-grained power recovers the standard acceleration-radiation scaling (Larmor/Lienard class) in weak-coupling validated regimes.
+4. **Declared breakdown regime:** near unresolved ultra-strong-field or ultra-high-energy domains, this effective mapping is not assumed complete and requires direct Master Equation treatment.
+
 ## Core Equations
 
 A compact emissivity form for thermal free-free emission is
