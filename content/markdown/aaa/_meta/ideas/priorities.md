@@ -98,6 +98,7 @@ go through cosmology documents on wordpress and put content in cosmology docs? T
     - tri-binary-dynamics.md (linked)
     - mapping-Planck-scale.md  (linked)
   - weak-mixing-ckm.md (major work 2/15)
+  - cosmology
   - unknowns-paradoxes.md
   - quantum-number-mapping.md
   - 421.md

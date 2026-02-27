@@ -322,7 +322,7 @@ Charge Conservation Enforcement (speculative, to simulate):
 - Any spare decorations must close through one of the following channels:
   - **Product incorporation:** absorbed into a final-state assembly while preserving charge/polarity bookkeeping.
   - **Current carriage:** carried out on charged lepton/neutrino legs as part of the weak-current flow.
-  - **Immediate annihilation:** cancelled by opposite charges drawn from the Sea, releasing short photon-like corridors.
+  - **Immediate annihilation:** cancelled by opposite charges drawn from the Sea, releasing short photon-like planar modes.
 - Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
 
 Decision cues to log in sims: initial separation, relative phase, local Sea density; pick dominant channel based on these and record energy/charge routing.
