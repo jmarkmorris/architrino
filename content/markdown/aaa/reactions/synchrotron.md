@@ -97,13 +97,21 @@ $$
 \mathcal{C}_{\mathrm{cas}} \equiv \frac{\tau_{\mathrm{esc}}}{\tau_{\mathrm{syn}}} \, \tau_{\gamma\gamma},
 $$
 
+where
+
+$$
+\tau_{\gamma\gamma} \equiv n_{\gamma}\,\sigma_{\gamma\gamma}\,L
+$$
+
+is the standard dimensionless pair-production optical depth across characteristic path length $L$.
+
 with qualitative regimes:
 
 - $\mathcal{C}_{\mathrm{cas}} \ll 1$: shallow cascade, injection-tracing spectra.
 - $\mathcal{C}_{\mathrm{cas}} \sim 1$: transitional pair feedback.
 - $\mathcal{C}_{\mathrm{cas}} \gg 1$: deep pair-loaded cascade.
 
-This is a provisional map variable, not a claimed first-principles closure.
+This is a heuristic bookkeeping product of cooling competition, escape competition, and pair opacity, not a claimed first-principles closure.
 
 ## Observer-Frame Transport
 
