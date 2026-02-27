@@ -8,6 +8,13 @@ In a Coulomb encounter, the projectile momentum changes by $\Delta \mathbf{p}$, 
 
 At low photon energies, multiple small-angle encounters contribute strongly and infrared-safe observables require inclusive treatment. At high energies, relativistic corrections, recoil, and quantum suppression effects become important.
 
+## Prerequisites (Minimal)
+
+- Photon assembly ontology (planar tri-binary corridor language at micro level).
+- Master Equation state-transition framework (emissive vs non-emissive microstates).
+- Emergent metric/geodesic transport framework (observer-level propagation and lensing).
+- Absolute-time to proper-time conversion rules used for rate equations.
+
 ## AAA Micro-Physical Derivation (Interpretive Map)
 
 ### Wake Shock Definition (Ontology-Level)
