@@ -233,10 +233,26 @@ In standard plasma and astrophysical modeling, bremsstrahlung is treated as a lo
 
 ## Falsifiable Checks
 
-- Compare predicted low-energy turnover against high-sensitivity soft-photon spectra.
-- Test scaling residuals from $Z^2$ across target $Z$, beam energy, and impact-parameter proxies.
-- Validate angular-correlation predictions using fixed-target electron-nucleus bremsstrahlung datasets.
-- Check whether inferred medium recoil signatures are consistent with energy closure in dense-target experiments.
-- Run consistency tests that force $E_{\gamma,\min}$ below empirical soft-photon sensitivity in collider/fixed-target bands.
-- Compare reconstructed high-$z$ bremsstrahlung backgrounds against the redshift map with and without extra $\mathcal{T}$ opacity.
-- Cross-check cluster/AGN continuum lensing against null-geodesic transport in the same metric sector used elsewhere in AAA.
+- **Scope constraint:** validation in this track is limited to logical consistency, simulation, and reanalysis of existing/public datasets; no requirement for new observations.
+- **Low-energy turnover test:** constrain suppression ratio
+  $$
+  R_{\mathrm{IR}}(\nu) \equiv \frac{\Phi_{\nu,\mathrm{obs}}}{\Phi_{\nu,\mathrm{QED}}}
+  $$
+  in soft-photon bands from archival datasets; working benchmark is $R_{\mathrm{IR}}(\nu)\approx 1$ above instrumental floor, with any persistent downturn used to bound or fit $E_{\gamma,\min}$.
+- **$Z^2$ residual test:** at fixed beam energy, measure
+  $$
+  R_Z(k) \equiv \frac{(d\sigma/dk)_{\mathrm{obs}}}{(d\sigma/dk)_{Z^2\text{-scaled}}}
+  $$
+  for representative targets $Z=\{6,13,29,82\}$ using published fixed-target data, and map deviations versus momentum transfer to identify the $Z^2\rightarrow Z$ transition scale.
+- **Angular-correlation closure:** fit photon-angle distributions in fixed-target $e$-$A$ bremsstrahlung and test whether one momentum-partition model closes both energy and angle residuals within experimental uncertainty.
+- **Recoil/medium partition test:** in dense targets, jointly infer $\Delta \mathbf{p}_{\mathrm{recoil}}$ and $\Delta \mathbf{p}_{\mathrm{med}}$ from kinematic closure; reject mappings that require unphysical recoil-energy budgets.
+- **Soft-photon compatibility bound:** require any fitted $E_{\gamma,\min}$ to remain below empirical sensitivity of the soft-photon datasets used in the fit, so inclusive QED-tested observables are preserved by construction.
+- **High-$z$ propagation test:** compare reconstructed bremsstrahlung backgrounds against
+  $$
+  \epsilon_\nu^{\mathrm{obs}}=(1+z)^{-4}\epsilon_{\nu(1+z)}^{\mathrm{ff}}\mathcal{T}
+  $$
+  with and without additional aether-opacity terms using existing background synthesis catalogs; treat statistically preferred excess opacity as a direct falsifiable signal.
+- **Lensing transport test:** cross-check cluster/AGN continuum magnification and profile distortions against null-geodesic transport in the same effective metric sector.
+- **Simulation identifiability test:** generate synthetic spectra/angles from both baseline QED and AAA mapping variants, then verify whether parameter inference can distinguish models without degeneracy under current measurement noise.
+
+These numerical targets are initial benchmarking values for mapping/simulation pipelines and will be tightened with uncertainty budgets in the Sig-led validation pass.
