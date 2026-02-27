@@ -149,6 +149,14 @@ $$
 \frac{dt}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\mathrm{aether}},\Phi).
 $$
 
+For operational closure in this chapter, use the provisional split
+
+$$
+\Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\mathrm{aether}})+\delta_{\Phi}(\Phi)\right],
+$$
+
+with $\gamma(v_e)=1/\sqrt{1-v_e^2/c^2}$ and $|\delta_{\rho}|,|\delta_{\Phi}|\ll 1$ in laboratory and weak-field astrophysical regimes where standard relativistic timing is already validated. The full derivation and regime-dependent corrections are delegated to the metric/time foundations chapter; this file uses the above form as a controlled working map.
+
 The mapping requirement is to keep this conversion explicit in relativistic plasma and compact-object applications, so cooling in proper time and substrate evolution in absolute time remain consistent.
 
 ## Cosmological Propagation and Redshift Map
