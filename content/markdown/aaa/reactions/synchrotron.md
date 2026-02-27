@@ -2,15 +2,9 @@
 
 Synchrotron cascades are coupled electromagnetic processes in which relativistic charged particles radiate synchrotron photons in magnetic fields, and those photons then trigger secondary channels such as pair production and further radiation. The cascade redistributes injected particle energy into broadband non-thermal emission, with spectral shape set by magnetic field strength, source compactness, transport geometry, and escape times.
 
-## Teaching Path
+## Scope
 
-This chapter is organized in three layers:
-
-1. **Standard baseline:** established synchrotron and cascade physics.
-2. **$\mathbb{A}\mathbb{A}\mathbb{A}$ mapping layer:** ontology-level reinterpretation without changing validated reaction channels.
-3. **Validation layer:** mapping goals testable with logic, simulation, and archival datasets.
-
-Read left-to-right as baseline physics $\rightarrow$ mapping assumptions $\rightarrow$ falsifiable workflow.
+This chapter presents synchrotron-cascade theory first in standard observer-level form, then in a provisional $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology map that preserves established reaction physics.
 
 ## Notation Snapshot
 
@@ -57,7 +51,7 @@ $$
 
 Cascade closure then depends on whether photon energies and path lengths satisfy pair-production thresholds and interaction depths in the local radiation field.
 
-Baseline takeaway: these equations and thresholds are the observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping must recover in validated limits.
+These equations and thresholds are the observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping must recover in validated limits.
 
 ## Regime Map
 
@@ -101,9 +95,7 @@ with qualitative regimes:
 
 This is a provisional map variable, not a claimed first-principles closure.
 
-Mapping takeaway: the chapter keeps standard emission physics fixed and adds explicit state variables for assembly-level transport interpretation.
-
-## Time and Propagation Notes
+## Observer-Frame Transport
 
 For cosmology-facing use, source-frame emissivity must be propagated to observer-frame spectra with explicit redshift and transfer factors:
 
@@ -115,35 +107,11 @@ with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$. In standard-limit re
 
 For substrate vs operational timing, cooling/transport bookkeeping may require explicit conversion between absolute-time and proper-time rate expressions in relativistic zones. In this file, rate equations are observer-level unless a mapping section states otherwise.
 
-Requirement takeaway: propagation and timing conventions must stay explicit when synchrotron outputs are used in cosmology-linked arguments.
+Propagation and timing conventions must stay explicit when synchrotron outputs are used in cosmology-linked arguments.
 
-## $\mathbb{A}\mathbb{A}\mathbb{A}$ Observable-Mapping Goals
+## Anticipated Mapping Targets
 
 - Recover observed cascade-like spectral slopes and break structures in limits where synchrotron cooling dominates.
 - Map pair-loading predictions to assembly-density and outflow-structure variables without changing QED/QED-like reaction channels.
 - Quantify joint regimes where synchrotron cascades and bremsstrahlung together set the photon bath relevant to nucleation-era mapping.
-- Establish falsifiable signatures in polarization, high-energy cutoffs, and spatial gradients across core-sheath outflows.
 - Bound acceptable parameter freedom in provisional mapping variables so parsimony does not degrade relative to standard transport models.
-
-## Falsifiable Checks (No New Observations Required)
-
-- **Scope constraint:** this track is limited to logic, simulation, and archival/public data reanalysis.
-- **Cooling-break consistency:** test whether one mapped cooling history reproduces multi-band break alignment in archived AGN/blazar fits where synchrotron cooling is dominant.
-- **Pair-loading consistency:** compare modeled pair-opacity turnovers against published high-energy spectral cutoffs using shared source classes.
-- **Polarization consistency:** check if mapped core-sheath geometry reproduces observed polarization fraction/angle trends without adding source-specific ad hoc terms.
-- **Joint-channel closure:** test whether synchrotron + bremsstrahlung + inverse-Compton runs can match archival spectra with one transport parameterization per source family.
-
-## Open Modeling Tasks
-
-- Build coupled transport runs including synchrotron emission, pair production, bremsstrahlung, and escape.
-- Define compactness and field-strength priors for SMBH-local zones used in cosmology-facing modules.
-- Benchmark model outputs against multi-band source spectra with reported polarization and variability constraints.
-- Track a transparent parameter ledger for provisional mapping terms and require reduction across simulation iterations.
-
-## Learning Checkpoint
-
-If this chapter is coherent, a reader should be able to:
-
-1. State the standard synchrotron-cascade equations and controlling timescale competitions.
-2. Separate unchanged baseline physics from $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping assumptions.
-3. Design a simulation-and-archival-data validation plan without invoking new observations.
