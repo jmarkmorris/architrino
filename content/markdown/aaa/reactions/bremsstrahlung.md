@@ -32,7 +32,9 @@ $$
 
 where $\Delta E_{e}$ is electron assembly energy loss, $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, and $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments). In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses photon-assembly stability threshold so discrete photon output is recovered from continuous transport.
 
-To make the wake language calculable, the current AAA program uses a provisional mapping ansatz (to be derived from Master Equation dynamics in the substrate chapters):
+### Provisional Effective Parameterization (Pending Derivation)
+
+To make the wake language calculable, the current AAA program uses a provisional mapping ansatz. This is a working effective form pending derivation from the Master Equation, not a claimed first-principles closure:
 
 $$
 \mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \rho_{\mathrm{aether}}^{\alpha} \left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert^{\beta},
@@ -43,6 +45,19 @@ P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{w
 $$
 
 with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$ are effective tri-binary medium parameters. This is explicitly a mapping goal, not yet a closed derivation.
+
+Interpretation of coefficients in the current draft:
+
+- $A_{\mathrm{tb}}$: normalization for assembly-to-medium coupling strength.
+- $\alpha$: sensitivity exponent to local aether density.
+- $\beta$: sensitivity exponent to deceleration magnitude.
+- $\mathcal{S}_*$: effective onset scale for emission-capable wake states.
+
+Status and handling:
+
+- Parameters are currently phenomenological placeholders with bounded priors, to be reduced or eliminated by Master Equation derivation.
+- If fit is required before derivation, parameter count and uncertainty ranges are tracked explicitly as theory-cost items, rather than treated as hidden freedom.
+- Parsimony assessment is therefore provisional until derivation quality is established in the foundations track.
 
 For gravity integration (Cos Ch. 32-34), the same source terms must be expressible through the emergent metric fields that govern local geodesics, so the closure target is
 
