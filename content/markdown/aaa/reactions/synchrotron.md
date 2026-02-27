@@ -123,7 +123,37 @@ $$
 
 with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$. In standard-limit regimes, this must reduce to conventional transport results used in high-energy astrophysics.
 
-For substrate vs operational timing, cooling/transport bookkeeping may require explicit conversion between absolute-time and proper-time rate expressions in relativistic zones. In this file, rate equations are observer-level unless a mapping section states otherwise.
+### Absolute-Time vs Proper-Time Bookkeeping (Provisional)
+
+In this file, $\tau_{\mathrm{syn}}$ is the observer-frame cooling timescale:
+
+$$
+\tau_{\mathrm{syn}}^{\mathrm{obs}} \approx \frac{6\pi m_e c}{\sigma_T B^2\gamma}.
+$$
+
+For ontology-level bookkeeping, use the conversion
+
+$$
+dt = \Gamma_{\mathrm{eff}}(v,\rho_{\mathrm{NS}},\Phi)\,d\tau_{\mathrm{asm}},
+$$
+
+where $t$ is substrate absolute time and $\tau_{\mathrm{asm}}$ is assembly proper time. Then
+
+$$
+\left(\frac{dE}{dt}\right)_{\mathrm{abs}}=\frac{1}{\Gamma_{\mathrm{eff}}}\left(\frac{dE}{d\tau_{\mathrm{asm}}}\right),
+\qquad
+\tau_{\mathrm{syn}}^{\mathrm{abs}}=\Gamma_{\mathrm{eff}}\,\tau_{\mathrm{syn}}^{\mathrm{asm}}.
+$$
+
+Toy mapping example (local weak-gravity zone): if $\gamma=10^4$, $B=1\,\mathrm{G}$, and $\Gamma_{\mathrm{eff}}\approx\gamma$, then
+
+$$
+\tau_{\mathrm{syn}}^{\mathrm{obs}}\approx 7.7\times 10^4\,\mathrm{s},
+\qquad
+\tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}.
+$$
+
+Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is only an SR-limit surrogate for scale illustration, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ law. This block is a provisional timing map for logical/simulation workflows; a full $\Gamma_{\mathrm{eff}}(v,\rho_{\mathrm{NS}},\Phi)$ derivation is deferred.
 
 Propagation and timing conventions must stay explicit when synchrotron outputs are used in cosmology-linked arguments.
 
