@@ -85,7 +85,7 @@ This file adopts the following provisional commitments.
 
 - **Synchrotron emission (provisional):** a charged tri-binary assembly forced onto a curved trajectory by a magnetized Noether-Sea state develops a wake-strain instability; when local strain exceeds corridor-lock threshold, a photon assembly nucleates and carries away energy-momentum.
 - **Magnetic field ontology (provisional commitment):** observer-level $B$ is the effective coarse-grained vorticity/anisotropy field of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$. Charged-assembly curvature is therefore transport through an anisotropic substrate state. In validated limits this must reproduce standard Lorentz-force kinematics and Maxwell-level phenomenology.
-- **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by two-photon corridor overlap above threshold, not ex nihilo creation.
+- **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by two-photon corridor overlap above threshold, not ex nihilo creation. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling.
 
 These commitments are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
 
