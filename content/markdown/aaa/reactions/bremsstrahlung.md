@@ -214,6 +214,13 @@ In AAA ontology, the photon is fundamentally a planar tri-binary assembly propag
 
 In standard plasma and astrophysical modeling, bremsstrahlung is treated as a local radiative process inside a given source geometry and transport model. In the AAA program, the same reaction physics is retained at network level, while interpretation changes at background level: bremsstrahlung constrains how assembly transport, compression, and outflow map to observable photon continua.
 
+## Theoretical Virtue Trade-offs
+
+- **Cost (current):** provisional parameter overhead from mapping ansatz terms ($A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*,E_{\gamma,\min}$) plus correction structure in $\Gamma_{\mathrm{eff}}$.
+- **Benefit (target):** single ontology spanning radiation process, medium coupling, and emergent metric transport; explicit micro-to-macro mapping handles for simulation; possible principled IR-floor interpretation.
+- **Reduction path:** derive ansatz structure from Master Equation dynamics and collapse phenomenological degrees of freedom into shared substrate parameters reused across chapters.
+- **Net status:** **Yellow (provisional)** until parameter reduction and cross-chapter closure are demonstrated in the mapping/simulation pipeline.
+
 ## AAA Observable-Mapping Goals
 
 - Recover measured continuum spectra and angular distributions without altering QED cross-sections in validated regimes.
