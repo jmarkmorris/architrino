@@ -20,6 +20,24 @@ $$
 
 where $\Delta E_{e}$ is electron assembly energy loss, $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, and $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments). In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses photon-assembly stability threshold so discrete photon output is recovered from continuous transport.
 
+To make the wake language calculable, the current AAA program uses a provisional mapping ansatz (to be derived from Master Equation dynamics in the substrate chapters):
+
+$$
+\mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \rho_{\mathrm{aether}}^{\alpha} \left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert^{\beta},
+$$
+
+$$
+P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{\Delta E}{E_{\gamma,\min}}\right)\right],
+$$
+
+with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$ are effective tri-binary medium parameters. This is explicitly a mapping goal, not yet a closed derivation.
+
+For gravity integration (Cos Ch. 32-34), the same source terms must be expressible through the emergent metric fields that govern local geodesics, so the closure target is
+
+$$
+\mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\mathrm{aether}}\right).
+$$
+
 ## Core Equations
 
 A compact emissivity form for thermal free-free emission is
@@ -47,6 +65,8 @@ This implies a channel bifurcation:
 
 If validated, this gives a physical low-energy floor for discrete photon output while preserving standard inclusive observables in measured bands.
 
+Compatibility requirement with tested QED is strict: any nonzero $E_{\gamma,\min}$ must keep inclusive-rate deviations below current precision in relevant beam windows. Operationally, this document treats the floor as a bounded hypothesis, with a conservative working ceiling in the far-IR regime, until a dedicated global fit is completed.
+
 ## $Z^2$ Scaling and Finite-Geometry Resolution
 
 The leading $Z^2$ behavior follows coherent target-charge action at large impact parameter and low momentum transfer. At sufficiently small impact parameter $b$ (high $q$), the projectile resolves finite target geometry and coherence drops.
@@ -55,6 +75,14 @@ The leading $Z^2$ behavior follows coherent target-charge action at large impact
 - **Incoherent-resolution regime ($b \lesssim R_{\mathrm{nuc}}$):** interaction resolves constituent proton assemblies; scaling moves toward $\propto Z$ with suppression encoded by nuclear form factor $F(q^2)$.
 
 In AAA mapping, finite geometry is explicitly the spatial distribution of proton tri-binaries in the nucleus. Deviation from pure $Z^2$ is therefore the observable transition from coherent whole-assembly wake coupling to resolved sub-assembly coupling, with additional screening from the atomic electron cloud.
+
+A gravity-coupled extension can be written as
+
+$$
+\frac{d\sigma}{dk} \propto Z_{\mathrm{eff}}^2 \, |F(q^2)|^2 \, \left[1+\delta_g(r,\Phi)\right],
+$$
+
+where $\delta_g$ parameterizes local metric/aether corrections. For standard nuclei in laboratory regimes, $\delta_g$ is expected to be subdominant; the term is retained so compact-object surface applications can be treated in one formalism.
 
 ## Momentum-Flux Closure at Emission
 
@@ -65,6 +93,51 @@ $$
 $$
 
 Photon emission angle is therefore constrained by incident electron momentum, target potential geometry, and local wake transfer into corridor plus recoil channel. For isolated heavy targets, momentum closure is dominated by $\Delta \mathbf{p}_{\mathrm{recoil}}$ with negligible recoil energy; medium momentum terms are reserved for explicit collective-excitation environments. This is the micro-level closure condition behind macroscopic angular spectra.
+
+## Time Parameterization (Absolute vs Proper Time)
+
+Rate equations in this file are observer-level unless noted. For substrate-level AAA transport, convert via
+
+$$
+\frac{dE_e}{d\tau_e} = \frac{dE_e}{dt}\,\frac{dt}{d\tau_e},
+\qquad
+\frac{dt}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\mathrm{aether}},\Phi).
+$$
+
+The mapping requirement is to keep this conversion explicit in relativistic plasma and compact-object applications, so cooling in proper time and substrate evolution in absolute time remain consistent.
+
+## Cosmological Propagation and Redshift Map
+
+For source emissivity at emission redshift $z_{\mathrm{em}}$, the observer-level mapping target is
+
+$$
+\epsilon_\nu^{\mathrm{obs}}(z_{\mathrm{obs}}) = (1+z)^{-4}\,\epsilon_{\nu(1+z)}^{\mathrm{ff}}(z_{\mathrm{em}})\,\mathcal{T}(\nu, z_{\mathrm{em}}\to z_{\mathrm{obs}}),
+$$
+
+with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the transfer factor (absorption/scattering in plasma and any aether-specific opacity). Consistency condition: when aether evolution reproduces $\Lambda$CDM background expansion and negligible extra opacity, this reduces to standard cosmological redshift transport.
+
+## Thermal Equilibrium Assumptions in Evolving Medium
+
+The free-free forms above assume local thermodynamic equilibrium (LTE). In evolving medium states, define
+
+$$
+\chi \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}.
+$$
+
+- **$\chi \ll 1$:** assembly-medium coupling is fast, LTE emissivity is valid with instantaneous state variables.
+- **$\chi \gtrsim 1$:** non-equilibrium corrections are required; emissivity must be computed from evolving distribution functions rather than a single local $T$.
+
+This ratio is a required diagnostic in cosmology-facing uses (reionization, cluster outskirts, early-structure transport).
+
+## Geodesics and Lensing Consistency
+
+Bremsstrahlung photons, once emitted, are modeled as propagating on null geodesics of the emergent metric:
+
+$$
+ds^2 = 0,\qquad k^\mu \nabla_\mu k^\nu = 0.
+$$
+
+Therefore the default requirement is recovery of tested lensing behavior (magnification, profile distortion, time-delay structure) in regimes where AAA metric solutions match GR limits. Any residual lensing deviation is treated as a falsifiable beyond-GR prediction, not as a free reinterpretation.
 
 ## Regime Map
 
@@ -94,6 +167,12 @@ In standard plasma and astrophysical modeling, bremsstrahlung is treated as a lo
 - Quantify transition scales where $Z^2$ coherence weakens as target internal geometry is resolved.
 - Map the $Z^2 \rightarrow Z$ crossover to explicit nuclear form-factor observables $F(q^2)$ and screening-length scales.
 - Compute vertex-level momentum partition predictions for corridor directionality and compare with differential scattering data.
+- Derive or fit the provisional nucleation map $P_{\mathrm{nuc}}(\mathcal{S}_{\mathrm{wake}},\Delta E)$ from Master Equation dynamics.
+- Bound $E_{\gamma,\min}$ by inclusive soft-photon datasets so QED-tested regimes are automatically recovered.
+- Propagate source emissivity to observer spectra with explicit $\mathcal{T}$ and verify recovery of standard redshift limits.
+- Quantify when metric/aether corrections $\delta_g$ to form-factor scaling are negligible versus measurable.
+- Track $\tau_{\mathrm{couple}}/\tau_{\mathrm{cool}}$ across regimes to separate LTE-valid from non-equilibrium modeling zones.
+- Verify lensing observables from bremsstrahlung continua against null-geodesic predictions in the effective metric.
 
 ## Falsifiable Checks
 
@@ -101,3 +180,6 @@ In standard plasma and astrophysical modeling, bremsstrahlung is treated as a lo
 - Test scaling residuals from $Z^2$ across target $Z$, beam energy, and impact-parameter proxies.
 - Validate angular-correlation predictions using fixed-target electron-nucleus bremsstrahlung datasets.
 - Check whether inferred medium recoil signatures are consistent with energy closure in dense-target experiments.
+- Run consistency tests that force $E_{\gamma,\min}$ below empirical soft-photon sensitivity in collider/fixed-target bands.
+- Compare reconstructed high-$z$ bremsstrahlung backgrounds against the redshift map with and without extra $\mathcal{T}$ opacity.
+- Cross-check cluster/AGN continuum lensing against null-geodesic transport in the same metric sector used elsewhere in AAA.
