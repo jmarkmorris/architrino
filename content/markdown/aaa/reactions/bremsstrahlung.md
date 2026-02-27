@@ -10,6 +10,18 @@ At low photon energies, multiple small-angle encounters contribute strongly and 
 
 ## AAA Micro-Physical Derivation (Interpretive Map)
 
+### Wake Shock Definition (Ontology-Level)
+
+In this document, a **wake shock** is defined as a microstate transition of the electron tri-binary assembly during strong deceleration, not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in the middle binary (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether Sea.
+
+A minimal trigger condition is written as
+
+$$
+\mathcal{I}_e\!\left(\rho_{\mathrm{aether}},\left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}},
+$$
+
+where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
+
 In AAA terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly. When the local shock intensity exceeds a corridor-stability threshold, shed energy nucleates a planar tri-binary photon corridor in the Noether Sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
 
 A minimal bookkeeping condition for each emission event is
