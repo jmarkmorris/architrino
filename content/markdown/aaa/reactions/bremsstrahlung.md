@@ -192,6 +192,10 @@ $$
 
 Therefore the default requirement is recovery of tested lensing behavior (magnification, profile distortion, time-delay structure) in regimes where AAA metric solutions match GR limits. Any residual lensing deviation is treated as a falsifiable beyond-GR prediction, not as a free reinterpretation.
 
+## Photon Ontology Note
+
+In AAA ontology, the photon is fundamentally a planar tri-binary assembly propagating through the Noether Sea. The language of "field quanta" and effectively continuous emission is retained as a coarse-grained description over many discrete corridor-nucleation events. In this file, $\mathbf{p}_{\gamma}$ denotes momentum of that discrete assembly object at micro level, while standard QED field language is used for observer-level rates and spectra.
+
 ## Regime Map
 
 - **Thermal bremsstrahlung (free-free):** hot plasmas, continuum X-ray backgrounds, cluster gas.
