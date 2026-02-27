@@ -1,12 +1,24 @@
 # Bremsstrahlung
 
-Bremsstrahlung ("braking radiation") is electromagnetic emission generated when a charged particle is accelerated by another charge, typically an electron deflected by an ion or nucleus. Because the acceleration history is continuous across many scattering angles and impact parameters, bremsstrahlung produces a broad continuum rather than a line spectrum. In practice it is a core process in nuclear and particle experiments, hot-plasma diagnostics, and high-energy astrophysical source modeling.
+Bremsstrahlung ("braking radiation") is electromagnetic emission generated when a charged particle is accelerated by another charge, typically an electron deflected by an ion or nucleus. Because the acceleration history spans many scattering angles and impact parameters, bremsstrahlung produces a broad continuum rather than a line spectrum. In practice it is a core process in nuclear and particle experiments, hot-plasma diagnostics, and high-energy astrophysical source modeling.
 
 ## Physical Mechanism
 
-In a Coulomb encounter, the projectile momentum changes by $\Delta \mathbf{p}$, and this acceleration drives radiation. For electron-ion bremsstrahlung, the emitted power increases with target charge and projectile energy, while the spectral shape is set by scattering kinematics, screening, and medium optical depth.
+In a Coulomb encounter, the projectile momentum changes by $\Delta \mathbf{p}$, and this acceleration drives radiation. For electron-ion bremsstrahlung, emitted power increases with target charge and projectile energy, while spectral shape is set by scattering kinematics, screening, and medium optical depth.
 
 At low photon energies, multiple small-angle encounters contribute strongly and infrared-safe observables require inclusive treatment. At high energies, relativistic corrections, recoil, and quantum suppression effects become important.
+
+## AAA Micro-Physical Derivation (Interpretive Map)
+
+In AAA terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration perturb the electron assembly, and energy shed from that perturbation is mapped to nucleation of a planar tri-binary photon corridor in the Noether Sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
+
+A minimal bookkeeping condition for each emission event is
+
+$$
+\Delta E_{e} = E_{\gamma} + \Delta E_{\mathrm{sea}},
+$$
+
+where $\Delta E_{e}$ is electron assembly energy loss, $E_{\gamma}$ is emitted photon energy, and $\Delta E_{\mathrm{sea}}$ is local medium recoil/heating. Mapping work focuses on identifying when $\Delta E_{e}$ crosses a photon-assembly stability threshold so discrete photon output is recovered from continuous transport.
 
 ## Core Equations
 
@@ -23,6 +35,24 @@ $$
 $$
 
 For high-energy scattering language, the differential yield is tracked with $d\sigma/dk$ (photon energy $k$), including screening and Coulomb corrections in the target.
+
+## IR Regularization as a Stability Floor
+
+Standard soft-photon emission produces infrared-divergent exclusive rates, handled by inclusive observables and resummation. In AAA interpretation, an additional hypothesis is available: stable planar photon assemblies exist only above a minimum nucleation energy $E_{\gamma,\min}$. If validated, this gives a physical low-energy floor for emitted discrete photons while preserving standard inclusive observables in measured bands.
+
+## $Z^2$ Scaling and Finite-Geometry Resolution
+
+The leading $Z^2$ behavior follows coherent target-charge action at large impact parameter. At sufficiently small impact parameter $b$, the projectile can resolve internal target structure, and effective coherence drops. In AAA language this is mapped to resolution of discrete target assembly geometry rather than a point-charge source. Observable consequence: controlled deviations from pure $Z^2$ scaling in high-resolution regimes.
+
+## Momentum-Flux Closure at Emission
+
+AAA mapping enforces local momentum-flux balance at the emission vertex:
+
+$$
+\Delta \mathbf{p}_e + \mathbf{p}_{\gamma} + \Delta \mathbf{p}_{\mathrm{sea}} = 0.
+$$
+
+Photon emission angle is therefore constrained by incident electron momentum, target potential geometry, and local wake transfer into corridor plus medium recoil. This is the micro-level closure condition behind macroscopic angular spectra.
 
 ## Regime Map
 
@@ -44,13 +74,17 @@ In standard plasma and astrophysical modeling, bremsstrahlung is treated as a lo
 
 ## AAA Observable-Mapping Goals
 
-- Recover the standard thermal and non-thermal spectral slopes in relevant limits without altering QED cross-sections.
+- Recover measured continuum spectra and angular distributions without altering QED cross-sections in validated regimes.
 - Demonstrate consistency between inferred source density from bremsstrahlung normalization and assembly-level density evolution.
 - Show that bremsstrahlung cooling timescales can be embedded in SMBH-local nucleation/outflow histories used in cosmology-facing modules.
 - Quantify when bremsstrahlung dominates photon production versus synchrotron cascades in the same transport zone.
+- Identify whether a finite $E_{\gamma,\min}$ can regularize low-energy discrete-photon emission while remaining consistent with inclusive QED limits.
+- Quantify transition scales where $Z^2$ coherence weakens as target internal geometry is resolved.
+- Compute vertex-level momentum partition predictions for corridor directionality and compare with differential scattering data.
 
-## Open Modeling Tasks
+## Falsifiable Checks
 
-- Build a shared parameter interface connecting reaction-zone inputs ($n_e$, $n_i$, $T$, composition) to continuum observables.
-- Add coupled-radiation runs that include bremsstrahlung, synchrotron, pair processes, and escape.
-- Define falsifiable benchmarks against measured source continua and laboratory high-$Z$ scattering datasets.
+- Compare predicted low-energy turnover against high-sensitivity soft-photon spectra.
+- Test scaling residuals from $Z^2$ across target $Z$, beam energy, and impact-parameter proxies.
+- Validate angular-correlation predictions using fixed-target electron-nucleus bremsstrahlung datasets.
+- Check whether inferred medium recoil signatures are consistent with energy closure in dense-target experiments.
