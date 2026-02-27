@@ -12,6 +12,8 @@ This chapter is organized in three layers:
 
 Read left-to-right as: baseline physics $\rightarrow$ ontology mapping $\rightarrow$ falsifiable workflow.
 
+Terminology in this chapter follows [mode-taxonomy.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/dynamics/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
+
 ## Notation Snapshot
 
 - $\Delta E_e$: projectile electron energy loss per event.
@@ -20,7 +22,7 @@ Read left-to-right as: baseline physics $\rightarrow$ ontology mapping $\rightar
 - $\Delta E_{\mathrm{med}}$: medium-excitation energy channel.
 - $\mathcal{S}_{\mathrm{wake}}$: effective wake intensity variable.
 - $\mathcal{S}_*$: effective nucleation threshold scale.
-- $E_{\gamma,\min}$: hypothesized minimum stable corridor energy.
+- $E_{\gamma,\min}$: hypothesized minimum stable planar-mode energy.
 - $\Gamma_{\mathrm{eff}}$: absolute-time/proper-time conversion factor.
 
 ## Physical Mechanism
@@ -31,7 +33,7 @@ At low photon energies, multiple small-angle encounters contribute strongly and 
 
 ## Prerequisites (Minimal)
 
-- Photon assembly ontology (planar tri-binary corridor language at micro level).
+- Photon assembly ontology (planar-mode tri-binary language at micro level).
 - Master Equation state-transition framework (emissive vs non-emissive microstates).
 - Emergent metric/geodesic transport framework (observer-level propagation and lensing).
 - Absolute-time to proper-time conversion rules used for rate equations.
@@ -56,7 +58,7 @@ $$
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly. When the local shock intensity exceeds a corridor-stability threshold, shed energy nucleates a planar tri-binary photon corridor in the Noether Sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly. When the local shock intensity exceeds a planar-mode stability threshold, shed energy nucleates a planar tri-binary photon mode in the Noether Sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
 
 A minimal bookkeeping condition for each emission event is
 
@@ -76,7 +78,7 @@ $$
 \mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \rho_{\mathrm{aether}}^{\alpha} \left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert^{\beta},
 $$
 
-Conceptual nucleation picture for this ansatz: a photon corridor is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents that barrier and is interpreted as an effective function of Noether Sea stiffness plus local tri-binary geometry. The coupling through $\Delta E/E_{\gamma,\min}$ represents available shed energy relative to minimum stable corridor cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
+Conceptual nucleation picture for this ansatz: a photon planar mode is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents that barrier and is interpreted as an effective function of Noether Sea stiffness plus local tri-binary geometry. The coupling through $\Delta E/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
 
 $$
 P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{\Delta E}{E_{\gamma,\min}}\right)\right],
@@ -107,8 +109,8 @@ $$
 
 This section states the mechanism-level emergence claim explicitly:
 
-1. **Mechanism:** deceleration-driven internal reconfiguration in the electron assembly concentrates energy into an emission-capable mode; if threshold is crossed, a planar corridor is nucleated and propagates as a photon assembly.
-2. **Microstate mapping:** non-emissive states satisfy $\mathcal{I}_e < \mathcal{I}_{\mathrm{crit}}$; emissive states satisfy $\mathcal{I}_e \ge \mathcal{I}_{\mathrm{crit}}$ and admit corridor nucleation probability $P_{\mathrm{nuc}}>0$.
+1. **Mechanism:** deceleration-driven internal reconfiguration in the electron assembly concentrates energy into an emission-capable mode; if threshold is crossed, a planar mode is nucleated and propagates as a photon assembly.
+2. **Microstate mapping:** non-emissive states satisfy $\mathcal{I}_e < \mathcal{I}_{\mathrm{crit}}$; emissive states satisfy $\mathcal{I}_e \ge \mathcal{I}_{\mathrm{crit}}$ and admit planar-mode nucleation probability $P_{\mathrm{nuc}}>0$.
 3. **Classical-limit recovery:** for many emissions over smooth trajectories, coarse-grained power recovers the standard acceleration-radiation scaling (Larmor/Lienard class) in weak-coupling validated regimes.
 4. **Declared breakdown regime:** near unresolved ultra-strong-field or ultra-high-energy domains, this effective mapping is not assumed complete and requires direct Master Equation treatment.
 
@@ -136,8 +138,8 @@ Standard soft-photon emission produces infrared-divergent exclusive rates, handl
 
 This implies a channel bifurcation:
 
-- **If $\Delta E > E_{\gamma,\min}$:** wake shock locks into a planar corridor and emits a photon.
-- **If $\Delta E < E_{\gamma,\min}$:** no stable corridor forms, and energy dissipates as non-radiative heating/turbulence in the local medium.
+- **If $\Delta E > E_{\gamma,\min}$:** wake shock locks into a planar mode and emits a photon.
+- **If $\Delta E < E_{\gamma,\min}$:** no stable planar mode forms, and energy dissipates as non-radiative heating/turbulence in the local medium.
 
 If validated, this gives a physical low-energy floor for discrete photon output while preserving standard inclusive observables in measured bands.
 
@@ -179,7 +181,7 @@ $$
 \Delta \mathbf{p}_e + \mathbf{p}_{\gamma} + \Delta \mathbf{p}_{\mathrm{recoil}} + \Delta \mathbf{p}_{\mathrm{med}} = 0.
 $$
 
-Photon emission angle is therefore constrained by incident electron momentum, target potential geometry, and local wake transfer into corridor plus recoil channel. For isolated heavy targets, momentum closure is dominated by $\Delta \mathbf{p}_{\mathrm{recoil}}$ with negligible recoil energy; medium momentum terms are reserved for explicit collective-excitation environments. This is the micro-level closure condition behind macroscopic angular spectra.
+Photon emission angle is therefore constrained by incident electron momentum, target potential geometry, and local wake transfer into planar mode plus recoil channel. For isolated heavy targets, momentum closure is dominated by $\Delta \mathbf{p}_{\mathrm{recoil}}$ with negligible recoil energy; medium momentum terms are reserved for explicit collective-excitation environments. This is the micro-level closure condition behind macroscopic angular spectra.
 
 Requirement takeaway: recoil must stay kinematically closed at vertex level before any medium-excitation interpretation is accepted.
 
@@ -246,7 +248,7 @@ Requirement takeaway: lensing is a hard consistency gate for metric-sector claim
 
 ## Photon Ontology Note
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, the photon is fundamentally a planar tri-binary assembly propagating through the Noether Sea. The language of "field quanta" and effectively continuous emission is retained as a coarse-grained description over many discrete corridor-nucleation events. In this file, $\mathbf{p}_{\gamma}$ denotes momentum of that discrete assembly object at micro level, while standard QED field language is used for observer-level rates and spectra.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, the photon is fundamentally a planar tri-binary assembly propagating through the Noether Sea. The language of "field quanta" and effectively continuous emission is retained as a coarse-grained description over many discrete planar-mode nucleation events. In this file, $\mathbf{p}_{\gamma}$ denotes momentum of that discrete assembly object at micro level, while standard QED field language is used for observer-level rates and spectra.
 
 ## Regime Map
 
@@ -282,7 +284,7 @@ In standard plasma and astrophysical modeling, bremsstrahlung is treated as a lo
 - Identify whether a finite $E_{\gamma,\min}$ can regularize low-energy discrete-photon emission while remaining consistent with inclusive QED limits.
 - Quantify transition scales where $Z^2$ coherence weakens as target internal geometry is resolved.
 - Map the $Z^2 \rightarrow Z$ crossover to explicit nuclear form-factor observables $F(q^2)$ and screening-length scales.
-- Compute vertex-level momentum partition predictions for corridor directionality and compare with differential scattering data.
+- Compute vertex-level momentum partition predictions for planar-mode directionality and compare with differential scattering data.
 - Derive or fit the provisional nucleation map $P_{\mathrm{nuc}}(\mathcal{S}_{\mathrm{wake}},\Delta E)$ from Master Equation dynamics.
 - Bound $E_{\gamma,\min}$ by inclusive soft-photon datasets so QED-tested regimes are automatically recovered.
 - Propagate source emissivity to observer spectra with explicit $\mathcal{T}$ and verify recovery of standard redshift limits.
