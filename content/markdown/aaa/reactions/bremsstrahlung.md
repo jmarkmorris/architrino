@@ -151,9 +151,9 @@ Associated pair/Compton channels are included when they exceed the same contribu
 ## Observer-Level Closure Checks
 
 - Differential-yield closure: recover standard `d\sigma/dk` behavior with screening/Coulomb corrections in validated regimes.
-- Scaling closure: recover `$Z^2$` coherence limit and form-factor/screening breakdown structure at high `$q$`.
+- Scaling closure: recover $Z^2$ coherence limit and form-factor/screening breakdown structure at high $q$.
 - Energy-momentum closure: maintain event-level balance with explicit recoil and medium channels.
-- Inclusive-IR closure: any `$E_{\gamma,\min}$` hypothesis must remain compatible with inclusive-QED tested observables.
+- Inclusive-IR closure: any $E_{\gamma,\min}$ hypothesis must remain compatible with inclusive-QED tested observables.
 
 ## IR Regularization as a Stability Floor
 

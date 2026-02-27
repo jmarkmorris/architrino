@@ -73,10 +73,10 @@ Secondary channels below the 1% contribution level are treated as corrections un
 
 ## Observer-Level Closure Checks
 
-- Pair threshold closure: enforce `$s \ge 4m_e^2$` for `$\gamma\gamma \rightarrow e^+e^-$`.
+- Pair threshold closure: enforce $s \ge 4m_e^2$ for $\gamma\gamma \rightarrow e^+e^-$.
 - Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
-- Timing closure: in weak-gravity astrophysical limits, `$\Gamma_{\mathrm{eff}} \rightarrow \gamma_{\mathrm{SR}}$` so cooling breaks are preserved.
-- Polarization closure: recover observer-level synchrotron polarization geometry from directional `$B$` mapping.
+- Timing closure: in weak-gravity astrophysical limits, $\Gamma_{\mathrm{eff}} \rightarrow \gamma_{\mathrm{SR}}$ so cooling breaks are preserved.
+- Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping.
 
 ## Regime Map
 
@@ -109,7 +109,7 @@ Status convention used below:
 This file adopts the following provisional commitments.
 
 - **Synchrotron emission (provisional):** a charged tri-binary assembly forced onto a curved trajectory by a magnetized Noether-Sea state develops a wake-strain instability; when local strain exceeds the planar-mode threshold, a photon assembly nucleates and carries away energy-momentum.
-- **Magnetic field ontology (provisional commitment):** observer-level $B$ is the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$. Charged-assembly curvature is therefore transport through an anisotropic substrate state with explicit directionality. In validated limits this must reproduce standard Lorentz-force kinematics, Maxwell-level phenomenology, and synchrotron polarization geometry (`$\mathbf{E}_\gamma \perp \mathbf{B}$ and $\mathbf{E}_\gamma \perp \mathbf{v}$` at observer level).
+- **Magnetic field ontology (provisional commitment):** observer-level $B$ is the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$. Charged-assembly curvature is therefore transport through an anisotropic substrate state with explicit directionality. In validated limits this must reproduce standard Lorentz-force kinematics, Maxwell-level phenomenology, and synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}$ and $\mathbf{E}_\gamma \perp \mathbf{v}$ at observer level).
 - **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by two-photon planar-mode overlap above threshold, not ex nihilo creation. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling.
 
 These commitments are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
