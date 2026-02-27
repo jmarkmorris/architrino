@@ -89,6 +89,12 @@ This file adopts the following provisional commitments.
 
 These commitments are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
 
+### Curvature Convention
+
+In this chapter, "curved transport" means Euclidean-space trajectory curvature of charged assemblies under effective magnetic forcing at substrate level. Observer-level curved-spacetime language is used only as an effective description of transport and timing, not as a replacement for the substrate trajectory picture.
+
+Operationally: compute emissivity and spectra with standard observer-frame equations; interpret underlying trajectory control through the Noether-Sea anisotropy map when using $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
+
 ### Conservation Note for Pair Production
 
 This chapter uses the nucleation interpretation (not creation from nothing): pair channels reorganize substrate content into new charged assemblies. In this ontology, each architrino has provenance and identity through path history in absolute time; interaction channels redistribute and relock existing constituents rather than instantiate new substrate entities.
@@ -179,3 +185,13 @@ This mapping aims at mechanistic compression across channels:
 - A testable mapping hypothesis that pair-loading boundaries depend on local Noether-Sea state variables (`\rho_{\mathrm{NS}}`, anisotropy) in addition to standard observer-level compactness controls.
 
 If future derivations show no measurable deviations in tested regimes, the remaining claim is ontological unification rather than new phenomenology.
+
+## Why Reinterpret (Theory Payoff)
+
+The reinterpretation is justified only if it improves theory structure, not vocabulary. In this chapter the intended payoff is:
+
+- A single substrate mechanism class for radiation channels usually treated separately (synchrotron, pair loading, bremsstrahlung).
+- A common conservation/provenance bookkeeping layer for mapping reaction networks into absolute-time assembly simulations.
+- A constrained bridge from standard observables to substrate variables, so mapping claims can fail under consistency checks rather than being post-hoc fits.
+
+If these gains are not realized in derivations or simulations, standard plasma/QED transport remains the preferred explanatory layer for this topic.
