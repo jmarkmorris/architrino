@@ -22,3 +22,34 @@ ChatGPT 5.3 codex medium:
 
   - Full OG multi-rounds from the start (too much style drift, low signal).
   - Person-to-person baton rewrites (fragmented logic and inconsistent notation).
+
+
+  ---
+
+  Best strategy is a hybrid, not full baton and not full-group free-for-all.
+
+  1. I write Draft v1 of bremsstrahlung.md (/Users/markmorris/vibe/architrino/content/markdown/aaa/reactions/bremsstrahlung.md) to textbook quality baseline (definitions, regimes, equations, observables, AAA mapping goals, falsifiable
+     checks).
+  2. Focused review round (single pass each):
+
+  - Phe: phenomenology and observable constraints.
+  - Alfa: nuclear/particle/plasma process correctness.
+  - Cos: cosmology integration and consistency with BBN/CMB framing.
+
+  3. Single integrator pass by one lead writer (me) to merge comments into one coherent voice.
+  4. One final red-team pass from Cami for conceptual clarity and overclaim control.
+
+  Avoid:
+
+  - Full OG multi-rounds from the start (too much style drift, low signal).
+  - Person-to-person baton rewrites (fragmented logic and inconsistent notation).
+
+  If you want ultimate textbook expression, enforce a hard template per section:
+
+  - Definition
+  - Physical mechanism
+  - Core equations
+  - Regime map
+  - Observable consequences
+  - AAA interpretation vs standard
+  - Open mapping goals
