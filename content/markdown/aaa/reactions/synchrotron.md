@@ -163,3 +163,13 @@ Propagation and timing conventions must stay explicit when synchrotron outputs a
 - Map pair-loading predictions to assembly-density and outflow-structure variables without changing QED/QED-like reaction channels.
 - Quantify joint regimes where synchrotron cascades and bremsstrahlung together set the photon bath relevant to nucleation-era mapping.
 - Bound acceptable parameter freedom in provisional mapping variables so parsimony does not degrade relative to standard transport models.
+
+## Explanatory Gain (Provisional)
+
+This mapping is not intended to be word substitution. Its intended gain is mechanistic compression across channels:
+
+- One substrate language for synchrotron, pair production, and bremsstrahlung as wake/assembly transport outcomes.
+- A single timing-conversion layer for rate equations (`observer` vs `assembly` clocks) used consistently in simulation bookkeeping.
+- A testable mapping hypothesis that pair-loading boundaries depend on local Noether-Sea state variables (`\rho_{\mathrm{NS}}`, anisotropy) in addition to standard observer-level compactness controls.
+
+If future derivations show no measurable deviations from standard transport in tested regimes, the remaining value is ontological unification with no extra phenomenological claim.
