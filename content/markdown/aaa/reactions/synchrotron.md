@@ -45,11 +45,19 @@ $$
 E_{\gamma,\mathrm{syn}} \sim h\nu_c \propto \gamma^2 B.
 $$
 
-An operational cooling-scale relation is
+For pitch angle $\alpha$, a standard critical-frequency expression is
+
+$$
+\nu_c = \frac{3}{2}\gamma^2\frac{eB}{2\pi m_e c}\sin\alpha.
+$$
+
+An operational energy-loss (cooling) timescale relation is
 
 $$
 \tau_{\mathrm{syn}} \sim \frac{E_e}{P_{\mathrm{syn}}} \propto \frac{1}{\gamma B^2}.
 $$
+
+Here $\tau_{\mathrm{syn}}$ denotes a characteristic energy-loss timescale ($E/|dE/dt|$), distinct from the instantaneous synchrotron power rate $P_{\mathrm{syn}}$.
 
 Cascade closure then depends on whether photon energies and path lengths satisfy pair-production thresholds and interaction depths in the local radiation field.
 
@@ -60,29 +68,29 @@ These equations and thresholds are the observer-level scaffold that $\mathbb{A}\
 This chapter uses a dominant-channel rule: include reactions/channels that contribute at least about 1% in the relevant regime. Where PDG branching ratios are defined, this is a `BR > 1%` rule; where transport channels are not tabulated by PDG branching, use contribution to modeled emissivity/opacity.
 
 - `e^\pm + B \rightarrow e^\pm + \gamma_{\mathrm{syn}}` (effective synchrotron emission channel).
-- `\gamma + \gamma \rightarrow e^+ + e^-` (Breit-Wheeler pair channel in dense radiation fields).
+- `\gamma + \gamma \rightarrow e^+ + e^-` (Breit-Wheeler two-photon interaction / photon-photon annihilation channel in dense radiation fields, distinct from Schwinger vacuum pair production).
 - Secondary-loop channel: newly produced `e^\pm` re-enter synchrotron emission, closing the cascade.
 
 Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
 
-- **Synchrotron emission channel:** curved charged-assembly transport in anisotropic Noether-Sea states crosses planar-mode threshold and nucleates photon assemblies.
-- **Pair channel:** two-photon planar-mode overlap recruits/relocks local substrate content into charged pair assemblies; provenance and conservation bookkeeping remain explicit.
+- **Synchrotron emission channel:** curved charged-assembly transport in anisotropic Noether-Sea states crosses planar-mode threshold and nucleates [photon assemblies](/Users/markmorris/vibe/architrino/content/markdown/aaa/assemblies/bosons/photon.md) from interaction energy / wake stress while conserving charged-assembly identity.
+- **Pair channel:** two-photon planar-mode overlap recruits/relocks local substrate content into charged pair assemblies; this recruitment must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea cores $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
 - **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 
 ## Observer-Level Closure Checks
 
-- Pair threshold closure: enforce $s \ge 4m_e^2$ for $\gamma\gamma \rightarrow e^+e^-$.
+- Pair threshold closure: enforce $s \ge 4m_e^2$ for $\gamma\gamma \rightarrow e^+e^-$, with $s=(k_1+k_2)^2$ the center-of-mass energy squared.
 - Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
 - Timing closure: in weak-gravity astrophysical limits, $\Gamma_{\mathrm{eff}} \rightarrow \gamma_{\mathrm{SR}}$ so cooling breaks are preserved.
-- Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping.
+- Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping; in uniform-field limits, failure to recover linear polarization fractions $\Pi \approx 70\%-75\%$ falsifies the geometric mapping.
 
 ## Regime Map
 
 - **Weak-cascade regime:** synchrotron emission present but pair feedback limited; spectrum tracks injected particles.
 - **Pair-loaded regime:** secondary pairs significantly modify emissivity and opacity.
-- **Fast-cooling regime:** radiative losses dominate transport times; high-energy particles cool before escape.
+- **Fast-cooling regime:** synchrotron cooling timescale is shorter than the dynamical/escape timescale, $\tau_{\mathrm{syn}} < \tau_{\mathrm{esc}}$, so high-energy particles cool before escape.
 - **Escape-dominated regime:** particles or photons leave the zone before deep cascade development.
 
 ## Observable Consequences
@@ -109,7 +117,7 @@ Status convention used below:
 This file adopts the following provisional commitments.
 
 - **Synchrotron emission (provisional):** a charged tri-binary assembly forced onto a curved trajectory by a magnetized Noether-Sea state develops a wake-strain instability; when local strain exceeds the planar-mode threshold, a photon assembly nucleates and carries away energy-momentum.
-- **Magnetic field ontology (provisional commitment):** observer-level $B$ is the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$. Charged-assembly curvature is therefore transport through an anisotropic substrate state with explicit directionality. In validated limits this must reproduce standard Lorentz-force kinematics, Maxwell-level phenomenology, and synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}$ and $\mathbf{E}_\gamma \perp \mathbf{v}$ at observer level).
+- **Magnetic field ontology (provisional commitment, Option B):** observer-level $B$ is the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$, rather than a separate fundamental void field (Option A). Charged-assembly curvature is therefore transport through an anisotropic substrate state with explicit directionality. In validated limits this must reproduce standard Lorentz-force kinematics, including derivation of effective $\mathbf{v}\times\mathbf{B}$ dynamics, Maxwell-level phenomenology, and synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}$ and $\mathbf{E}_\gamma \perp \mathbf{v}$ at observer level); if the $\mathbf{v}\times\mathbf{B}$ structure cannot be derived from anisotropy geometry, this ontology mapping fails.
 - **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by two-photon planar-mode overlap above threshold, not ex nihilo creation. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling.
 
 These commitments are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
