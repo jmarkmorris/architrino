@@ -96,6 +96,13 @@ If validated, this gives a physical low-energy floor for discrete photon output 
 
 Compatibility requirement with tested QED is strict: any nonzero $E_{\gamma,\min}$ must keep inclusive-rate deviations below current precision in relevant beam windows. Operationally, this document treats the floor as a bounded hypothesis, with a conservative working ceiling in the far-IR regime, until a dedicated global fit is completed.
 
+Interpretation split used in this draft:
+
+- **Epistemic reinterpretation (default-safe):** sub-threshold energy loss is attributed to local medium heating rather than resolved soft-photon quanta, while inclusive observables remain QED-standard in tested regimes.
+- **Ontic prediction (conditional):** if $E_{\gamma,\min}$ is above current soft-photon sensitivity, the model predicts a measurable low-frequency turnover at $\nu_{\min}=E_{\gamma,\min}/h$.
+
+Current status: this chapter treats the claim as epistemic by default and promotes ontic turnover as a conditional test target only after explicit data-bounded calibration.
+
 ## $Z^2$ Scaling and Finite-Geometry Resolution
 
 The leading $Z^2$ behavior follows coherent target-charge action at large impact parameter and low momentum transfer. At sufficiently small impact parameter $b$ (high $q$), the projectile resolves finite target geometry and coherence drops.
