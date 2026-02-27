@@ -81,15 +81,13 @@ Status convention used below:
 
 ### Architrino-Level Process Commitments
 
-To avoid a label-only reinterpretation, this file adopts the following explicit provisional commitments.
+This file adopts the following provisional commitments.
 
 - **Synchrotron emission (provisional):** a charged tri-binary assembly forced onto a curved trajectory by a magnetized Noether-Sea state develops a wake-strain instability; when local strain exceeds corridor-lock threshold, a photon assembly nucleates and carries away energy-momentum.
-- **Magnetic field mapping (provisional):** observer-level $B$ is the effective coarse-grained measure of Noether-Sea anisotropy/vorticity that biases charged-assembly trajectories into curvature. This preserves standard Lorentz-force kinematics at observer level while changing substrate interpretation.
+- **Magnetic field ontology (provisional commitment):** observer-level $B$ is the effective coarse-grained vorticity/anisotropy field of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$. Charged-assembly curvature is therefore transport through an anisotropic substrate state. In validated limits this must reproduce standard Lorentz-force kinematics and Maxwell-level phenomenology.
 - **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by two-photon corridor overlap above threshold, not ex nihilo creation.
 
 These commitments are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
-
-At the ontology level, synchrotron emission is interpreted as energy shedding from curved charged-assembly transport in magnetized medium states. The emitted photon channel remains the same observable channel as in standard modeling; the reinterpretation is about substrate bookkeeping and transport history, not cross-section replacement.
 
 A minimal mapping for cascade depth can be expressed as a dimensionless competition ratio
 
@@ -105,7 +103,7 @@ $$
 
 is the standard dimensionless pair-production optical depth across characteristic path length $L$.
 
-with qualitative regimes:
+Qualitative regimes:
 
 - $\mathcal{C}_{\mathrm{cas}} \ll 1$: shallow cascade, injection-tracing spectra.
 - $\mathcal{C}_{\mathrm{cas}} \sim 1$: transitional pair feedback.
@@ -155,7 +153,7 @@ $$
 
 Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is only an SR-limit surrogate for scale illustration, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ law. This block is a provisional timing map for logical/simulation workflows; a full $\Gamma_{\mathrm{eff}}(v,\rho_{\mathrm{NS}},\Phi)$ derivation is deferred.
 
-Propagation and timing conventions must stay explicit when synchrotron outputs are used in cosmology-linked arguments.
+Propagation and timing conventions must remain explicit in cosmology-facing use.
 
 ## Anticipated Mapping Targets
 
@@ -166,10 +164,10 @@ Propagation and timing conventions must stay explicit when synchrotron outputs a
 
 ## Explanatory Gain (Provisional)
 
-This mapping is not intended to be word substitution. Its intended gain is mechanistic compression across channels:
+This mapping aims at mechanistic compression across channels:
 
 - One substrate language for synchrotron, pair production, and bremsstrahlung as wake/assembly transport outcomes.
 - A single timing-conversion layer for rate equations (`observer` vs `assembly` clocks) used consistently in simulation bookkeeping.
 - A testable mapping hypothesis that pair-loading boundaries depend on local Noether-Sea state variables (`\rho_{\mathrm{NS}}`, anisotropy) in addition to standard observer-level compactness controls.
 
-If future derivations show no measurable deviations from standard transport in tested regimes, the remaining value is ontological unification with no extra phenomenological claim.
+If future derivations show no measurable deviations in tested regimes, the remaining claim is ontological unification rather than new phenomenology.
