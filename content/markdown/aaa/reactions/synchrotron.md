@@ -79,6 +79,16 @@ Status convention used below:
 - **Provisional map:** ontology-level working hypothesis pending deeper derivation.
 - **Requirement:** compatibility condition for known observables.
 
+### Architrino-Level Process Commitments
+
+To avoid a label-only reinterpretation, this file adopts the following explicit provisional commitments.
+
+- **Synchrotron emission (provisional):** a charged tri-binary assembly forced onto a curved trajectory by a magnetized Noether-Sea state develops a wake-strain instability; when local strain exceeds corridor-lock threshold, a photon assembly nucleates and carries away energy-momentum.
+- **Magnetic field mapping (provisional):** observer-level $B$ is the effective coarse-grained measure of Noether-Sea anisotropy/vorticity that biases charged-assembly trajectories into curvature. This preserves standard Lorentz-force kinematics at observer level while changing substrate interpretation.
+- **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by two-photon corridor overlap above threshold, not ex nihilo creation.
+
+These commitments are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
+
 At the ontology level, synchrotron emission is interpreted as energy shedding from curved charged-assembly transport in magnetized medium states. The emitted photon channel remains the same observable channel as in standard modeling; the reinterpretation is about substrate bookkeeping and transport history, not cross-section replacement.
 
 A minimal mapping for cascade depth can be expressed as a dimensionless competition ratio
