@@ -165,7 +165,7 @@ $$
 \tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}.
 $$
 
-Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is only an SR-limit surrogate for scale illustration, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ law. This block is a provisional timing map for logical/simulation workflows; a full $\Gamma_{\mathrm{eff}}(v,\rho_{\mathrm{NS}},\Phi)$ derivation is deferred.
+Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is only an SR-limit surrogate for scale illustration, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ law. In validated limits relevant to standard astrophysical jets and weak gravity, $\Gamma_{\mathrm{eff}}$ must asymptotically approach the Lorentz factor $\gamma_{\mathrm{SR}}$ to preserve observed cooling breaks and spectral indices. Any non-Lorentzian correction is restricted to extreme environments (for example, near-horizon or ultra-high-density zones) and must be explicitly bounded in mapping/simulation studies.
 
 Propagation and timing conventions must remain explicit in cosmology-facing use.
 
