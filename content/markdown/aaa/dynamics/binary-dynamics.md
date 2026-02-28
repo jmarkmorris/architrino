@@ -542,15 +542,47 @@ $$
 
 #### Theorem 1 (Local Existence and Uniqueness)
 **Assumptions:**
-1. $\eta > 0$ (Finite regularization).
-2. The initial history $\phi^0 \in \mathcal{H}$ satisfies the "gluing condition" at $t=0$ (acceleration computed from history matches $\ddot{\phi}^0(0-)$) to ensure $C^2$ smoothness at the junction, though $C^1$ solutions exist without this.
-3. No "tangential" causal intersections in the history (roots are simple).
+1. $\eta > 0$, and $\rho_\eta$ is $C^1$ with bounded value and bounded derivative.
+2. Initial history $\phi^0 \in \mathcal{H}$ is admissible: there exists $d_{\min}>0$ such that all interaction channels used by Definition 3 satisfy
+   $$
+   \|\phi_i(0)-\phi_j(\theta)\|\ge d_{\min},\qquad \theta\in[-h,0],
+   $$
+   on a neighborhood of $\phi^0$.
+3. Delay roots used in channel construction are simple (transversal), i.e. no causal-shock degeneracy (Lemma 1).
+4. Couplings/charges are finite.
+5. Optional higher-smoothness gluing condition at $t=0$ (needed for $C^2$ at the junction, not for $C^1$ well-posedness).
 
 **Statement:**
-There exists a maximal time $T > 0$ and a unique solution $\mathbf{x}(t)$ on $[-h, T)$ such that $\mathbf{x}_0 = \phi^0$ and $\mathbf{x}(t)$ satisfies the regularized master equation.
+Let $\mathbf{Y}=(\mathbf{x},\mathbf{v})$ and write the system in first-order form
+$$
+\dot{\mathbf{Y}}(t)=\mathcal{G}(\mathbf{Y}_t),\qquad
+\mathbf{Y}_{t_0}=\phi^0.
+$$
+Then there exists $T>0$ and a unique $C^1$ solution on $[t_0-h,t_0+T)$.  
+Equivalently, there is a unique maximal solution interval
+$$
+[t_0-h,t_{\max}),\qquad t_{\max}>t_0.
+$$
+If the optional gluing condition holds, the solution is $C^2$ at $t_0$.
 
-*Proof Strategy:*
-The problem is reduced to $\dot{\mathbf{x}}(t) = \mathbf{v}(t), \dot{\mathbf{v}}(t) = F(\mathbf{x}_t)$. Since $F$ is locally Lipschitz on the open subset of $\mathcal{H}$ where causal roots are simple (Lemma 1), the Picard-Lindelof theorem for Banach spaces applies.
+*Proof.*  
+Define
+$$
+\mathcal{G}(\phi)=(\phi_v(0),F(\phi)),
+$$
+with $F$ from Definition 3.
+
+1. By Assumption 2, every denominator in the interaction kernel is bounded away from zero on the admissible neighborhood; therefore the map
+   $$
+   (\mathbf{u},\mathbf{w})\mapsto \frac{\mathbf{u}-\mathbf{w}}{\|\mathbf{u}-\mathbf{w}\|^3}
+   $$
+   is $C^1$ there with bounded derivative.
+2. By Assumption 1, composition with $\rho_\eta$ preserves $C^1$ regularity and bounded derivatives.  
+3. By Lemma 1 and Assumption 3, delay branches (where used) depend $C^1$ on history; thus branch-evaluation maps are locally Lipschitz in $\phi$.
+4. Finite sums over channels and integration over finite interval $[-h,0]$ preserve local Lipschitz continuity; hence $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}$ containing $\phi^0$.
+5. Apply the standard Banach-space existence/uniqueness theorem for state-dependent DDEs: a unique local $C^1$ solution exists and extends uniquely to a maximal interval.
+
+Therefore Theorem 1 holds. $\square$
 
 ---
 

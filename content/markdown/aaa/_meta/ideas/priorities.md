@@ -1,6 +1,21 @@
 
 # **The #1 priority is the dynamics/math/geometry and the mapping**
 
+  4. Turn “variation reproduces master equation” from assertion to derivation in effective-lagrangian.md:22.
+     Deliverable: explicit Euler–Lagrange calculation + regularization assumptions.
+  5. Derive the linear constitutive map for (G_{\text{eff}}(a,k)) requested in structure-formation.md:163 and structure-formation.md:214.
+     Deliverable: closed (\mu(a,k)) form from medium moduli/response.
+  6. Complete PPN spine beyond (\gamma): PPN-parameters.md:72, PPN-parameters.md:77.
+     Deliverable: explicit (\beta), (\alpha_1,\alpha_2,\alpha_3) formulas and zero-leakage conditions.
+  7. Close the proper-time derivation gap at proper-time-and-time-dilation.md:138.
+     Deliverable: concrete tri-binary clock model with extracted coefficients and benchmark error bounds.
+  8. Make down-family selection rigorous in color-charge-su3.md:248 with the failure condition at color-charge-su3.md:253.
+     Deliverable: energy/stability criterion proving single low-energy family survives.
+  9. Add uncertainty propagation to CKM closure (currently central-value heavy) in weak-mixing-ckm.md.
+     Deliverable: confidence interval test for (\cos\delta=s_{13}/(s_{12}s_{23})).
+  10. Fill zero-byte core math stubs: gauge-symmetries.md, gravitational-waves.md.
+     Deliverable: minimal theorem-backed skeletons so key derivation chain is not broken.
+
 ## Infrastructure
 
 • Current architecture works, but it’s fragile because scene graph truth is split across runtime code, scene JSON, and manual indexes.
