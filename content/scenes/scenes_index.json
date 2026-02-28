@@ -1,239 +1,9 @@
 {
   "scenes": [
     {
-      "id": "atom",
-      "name": "Atom",
-      "path": "content/scenes/nuclear/atom.json"
-    },
-    {
-      "id": "cno_cycle_detail",
-      "name": "CNO Cycle Detail",
-      "path": "content/scenes/nuclear/cno_cycle_detail.json"
-    },
-    {
-      "id": "down_quark",
-      "name": "Down Quark",
-      "path": "content/scenes/standard-model-particles/down_quark.json"
-    },
-    {
-      "id": "electron",
-      "name": "Electron",
-      "path": "content/scenes/standard-model-particles/electron.json"
-    },
-    {
-      "id": "galaxy",
-      "name": "Galaxy",
-      "path": "content/scenes/cosmology/galaxy.json"
-    },
-    {
-      "id": "galaxy_cluster",
-      "name": "Galaxy Cluster",
-      "path": "content/scenes/cosmology/galaxy_cluster.json"
-    },
-    {
-      "id": "galaxy_disk",
-      "name": "Galaxy Disk",
-      "path": "content/scenes/cosmology/disk.json"
-    },
-    {
-      "id": "higgs_boson",
-      "name": "Higgs Boson",
-      "path": "content/scenes/standard-model-particles/higgs_boson.json"
-    },
-    {
-      "id": "intracluster_medium",
-      "name": "Intracluster Medium",
-      "path": "content/scenes/cosmology/intracluster_medium.json"
-    },
-    {
-      "id": "molecule",
-      "name": "Molecule",
-      "path": "content/scenes/chemistry/molecule.json"
-    },
-    {
-      "id": "moon",
-      "name": "Moon",
-      "path": "content/scenes/cosmology/moon.json"
-    },
-    {
-      "id": "neutrino",
-      "name": "Neutrino",
-      "path": "content/scenes/standard-model-particles/neutrino.json"
-    },
-    {
-      "id": "neutron",
-      "name": "Neutron",
-      "path": "content/scenes/nuclear/neutron.json"
-    },
-    {
-      "id": "nuclear_atomic",
-      "name": "Nuclear-Atomic",
-      "path": "content/scenes/nuclear/nuclear_atomic.json"
-    },
-    {
-      "id": "physics_frontiers",
-      "name": "Physics Frontiers",
+      "id": "architrino_assembly_architecture",
+      "name": "Architrino Assembly Architecture",
       "path": "content/scenes/architrino_assembly_architecture.json"
-    },
-    {
-      "id": "meta",
-      "name": "Meta Ring",
-      "path": "content/scenes/meta/meta.json"
-    },
-    {
-      "id": "composer",
-      "name": "Composer",
-      "path": "content/scenes/meta/composer.json"
-    },
-    {
-      "id": "foundations",
-      "name": "Foundations",
-      "path": "content/scenes/foundations/foundations.json"
-    },
-    {
-      "id": "dynamics",
-      "name": "Dynamics",
-      "path": "content/scenes/dynamics/dynamics.json"
-    },
-    {
-      "id": "cosmology",
-      "name": "Cosmology",
-      "path": "content/scenes/cosmology/cosmology.json"
-    },
-    {
-      "id": "cosmology_observation_api",
-      "name": "Cosmology Observation API and Ontology",
-      "path": "content/scenes/cosmology/observation_api_ontology.json"
-    },
-    {
-      "id": "cosmology_early_regimes",
-      "name": "Cosmology Primordial and Early Regimes",
-      "path": "content/scenes/cosmology/primordial_early_regimes.json"
-    },
-    {
-      "id": "cosmology_growth_dark_sector",
-      "name": "Cosmology Growth and Dark Sector",
-      "path": "content/scenes/cosmology/growth_dark_sector.json"
-    },
-    {
-      "id": "cosmology_tensions_validation",
-      "name": "Cosmology Tensions and Validation Coupling",
-      "path": "content/scenes/cosmology/tensions_validation_coupling.json"
-    },
-    {
-      "id": "cosmology_background_dynamics",
-      "name": "Cosmology Background Expansion Dynamics",
-      "path": "content/scenes/cosmology/background_expansion_dynamics.json"
-    },
-    {
-      "id": "spacetime",
-      "name": "Spacetime Assemblies",
-      "path": "content/scenes/spacetime/spacetime.json"
-    },
-    {
-      "id": "spacetime_metric_clocks",
-      "name": "Spacetime Metric Emergence and Clocks",
-      "path": "content/scenes/spacetime/metric_emergence_clocks.json"
-    },
-    {
-      "id": "spacetime_precision_tests",
-      "name": "Spacetime Precision and Weak-Field Tests",
-      "path": "content/scenes/spacetime/precision_weak_field_tests.json"
-    },
-    {
-      "id": "spacetime_strong_field",
-      "name": "Spacetime Strong Field and Horizons",
-      "path": "content/scenes/spacetime/strong_field_horizons.json"
-    },
-    {
-      "id": "spacetime_wave_channel",
-      "name": "Spacetime Wave and Phenomenology Channel",
-      "path": "content/scenes/spacetime/wave_phenomenology_channel.json"
-    },
-    {
-      "id": "spacetime_gr_bridge",
-      "name": "Spacetime GR Bridge and Effective Limits",
-      "path": "content/scenes/spacetime/gr_bridge_limits.json"
-    },
-    {
-      "id": "cosmic_censorship",
-      "name": "Cosmic Censorship",
-      "path": "content/scenes/spacetime/cosmic_censorship.json"
-    },
-    {
-      "id": "philosophy_history",
-      "name": "Philosophy-History",
-      "path": "content/scenes/philosophy_history/philosophy_history.json"
-    },
-    {
-      "id": "validation",
-      "name": "Validation",
-      "path": "content/scenes/validation/validation.json"
-    },
-    {
-      "id": "validation_simulations",
-      "name": "Validation Simulations",
-      "path": "content/scenes/validation/simulations.json"
-    },
-    {
-      "id": "unknowns_paradoxes",
-      "name": "Unknowns & Paradoxes",
-      "path": "content/scenes/philosophy_history/unknowns_paradoxes.json"
-    },
-    {
-      "id": "out_of_the_ashes",
-      "name": "Out of the Ashes",
-      "path": "content/scenes/philosophy_history/out_of_the_ashes.json"
-    },
-    {
-      "id": "gravity",
-      "name": "Gravity",
-      "path": "content/scenes/spacetime/gravity.json"
-    },
-    {
-      "id": "planet",
-      "name": "Planet",
-      "path": "content/scenes/cosmology/planet.json"
-    },
-    {
-      "id": "proton",
-      "name": "Proton",
-      "path": "content/scenes/nuclear/proton.json"
-    },
-    {
-      "id": "solar_system",
-      "name": "Solar System",
-      "path": "content/scenes/cosmology/solar_system.json"
-    },
-    {
-      "id": "standard_model",
-      "name": "Standard Model",
-      "path": "content/scenes/standard-model-particles/standard_model.json"
-    },
-    {
-      "id": "quantum",
-      "name": "Quantum",
-      "path": "content/scenes/quantum/quantum.json"
-    },
-    {
-      "id": "assemblies",
-      "name": "Assemblies",
-      "path": "content/scenes/assemblies/assemblies.json"
-    },
-    {
-      "id": "star_interior",
-      "name": "Star Interior",
-      "path": "content/scenes/cosmology/star.json"
-    },
-    {
-      "id": "universe",
-      "name": "Universe",
-      "path": "content/scenes/cosmology/universe.json"
-    },
-    {
-      "id": "up_quark",
-      "name": "Up Quark",
-      "path": "content/scenes/standard-model-particles/up_quark.json"
     },
     {
       "id": "electrino",
@@ -246,19 +16,304 @@
       "path": "content/scenes/architrino-theory/positrino.json"
     },
     {
-      "id": "nucleus",
-      "name": "Nucleus",
-      "path": "content/scenes/nuclear/nucleus.json"
+      "id": "assemblies",
+      "name": "Assemblies",
+      "path": "content/scenes/assemblies/assemblies.json"
     },
     {
-      "id": "fermion_generation_color",
-      "name": "Fermion Generation and Color",
-      "path": "content/scenes/standard-model-theory/fermion_generation_color.json"
+      "id": "molecule",
+      "name": "Molecule",
+      "path": "content/scenes/chemistry/molecule.json"
     },
     {
       "id": "periodic_table",
       "name": "Periodic Table",
       "path": "content/scenes/chemistry/periodic_table_scene.json"
+    },
+    {
+      "id": "cosmology_background_dynamics",
+      "name": "Background Expansion Dynamics",
+      "path": "content/scenes/cosmology/background_expansion_dynamics.json"
+    },
+    {
+      "id": "cosmology",
+      "name": "Cosmology",
+      "path": "content/scenes/cosmology/cosmology.json"
+    },
+    {
+      "id": "galaxy_disk",
+      "name": "Galaxy Disk",
+      "path": "content/scenes/cosmology/disk.json"
+    },
+    {
+      "id": "galaxy_cluster",
+      "name": "Galaxy Cluster",
+      "path": "content/scenes/cosmology/galaxy_cluster.json"
+    },
+    {
+      "id": "galaxy",
+      "name": "Galaxy",
+      "path": "content/scenes/cosmology/galaxy.json"
+    },
+    {
+      "id": "cosmology_growth_dark_sector",
+      "name": "Growth and Dark Sector",
+      "path": "content/scenes/cosmology/growth_dark_sector.json"
+    },
+    {
+      "id": "intracluster_medium",
+      "name": "Intracluster Medium",
+      "path": "content/scenes/cosmology/intracluster_medium.json"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "path": "content/scenes/cosmology/moon.json"
+    },
+    {
+      "id": "cosmology_observation_api",
+      "name": "Observation API and Ontology",
+      "path": "content/scenes/cosmology/observation_api_ontology.json"
+    },
+    {
+      "id": "planet",
+      "name": "Planet",
+      "path": "content/scenes/cosmology/planet.json"
+    },
+    {
+      "id": "cosmology_early_regimes",
+      "name": "Primordial and Early Regimes",
+      "path": "content/scenes/cosmology/primordial_early_regimes.json"
+    },
+    {
+      "id": "solar_system",
+      "name": "Solar System",
+      "path": "content/scenes/cosmology/solar_system.json"
+    },
+    {
+      "id": "star_interior",
+      "name": "Star Interior",
+      "path": "content/scenes/cosmology/star.json"
+    },
+    {
+      "id": "cosmology_tensions_validation",
+      "name": "Tensions and Validation Coupling",
+      "path": "content/scenes/cosmology/tensions_validation_coupling.json"
+    },
+    {
+      "id": "universe",
+      "name": "Universe",
+      "path": "content/scenes/cosmology/universe.json"
+    },
+    {
+      "id": "dynamics",
+      "name": "Dynamics",
+      "path": "content/scenes/dynamics/dynamics.json"
+    },
+    {
+      "id": "ac",
+      "name": "Actinium (Ac)",
+      "path": "content/scenes/elements/ac.json"
+    },
+    {
+      "id": "ag",
+      "name": "Silver (Ag)",
+      "path": "content/scenes/elements/ag.json"
+    },
+    {
+      "id": "al",
+      "name": "Aluminium (Al)",
+      "path": "content/scenes/elements/al.json"
+    },
+    {
+      "id": "am",
+      "name": "Americium (Am)",
+      "path": "content/scenes/elements/am.json"
+    },
+    {
+      "id": "ar",
+      "name": "Argon (Ar)",
+      "path": "content/scenes/elements/ar.json"
+    },
+    {
+      "id": "as",
+      "name": "Arsenic (As)",
+      "path": "content/scenes/elements/as.json"
+    },
+    {
+      "id": "at",
+      "name": "Astatine (At)",
+      "path": "content/scenes/elements/at.json"
+    },
+    {
+      "id": "au",
+      "name": "Gold (Au)",
+      "path": "content/scenes/elements/au.json"
+    },
+    {
+      "id": "b",
+      "name": "Boron (B)",
+      "path": "content/scenes/elements/b.json"
+    },
+    {
+      "id": "ba",
+      "name": "Barium (Ba)",
+      "path": "content/scenes/elements/ba.json"
+    },
+    {
+      "id": "be",
+      "name": "Beryllium (Be)",
+      "path": "content/scenes/elements/be.json"
+    },
+    {
+      "id": "bh",
+      "name": "Bohrium (Bh)",
+      "path": "content/scenes/elements/bh.json"
+    },
+    {
+      "id": "bi",
+      "name": "Bismuth (Bi)",
+      "path": "content/scenes/elements/bi.json"
+    },
+    {
+      "id": "bk",
+      "name": "Berkelium (Bk)",
+      "path": "content/scenes/elements/bk.json"
+    },
+    {
+      "id": "br",
+      "name": "Bromine (Br)",
+      "path": "content/scenes/elements/br.json"
+    },
+    {
+      "id": "c",
+      "name": "Carbon (C)",
+      "path": "content/scenes/elements/c.json"
+    },
+    {
+      "id": "ca",
+      "name": "Calcium (Ca)",
+      "path": "content/scenes/elements/ca.json"
+    },
+    {
+      "id": "cd",
+      "name": "Cadmium (Cd)",
+      "path": "content/scenes/elements/cd.json"
+    },
+    {
+      "id": "ce",
+      "name": "Cerium (Ce)",
+      "path": "content/scenes/elements/ce.json"
+    },
+    {
+      "id": "cf",
+      "name": "Californium (Cf)",
+      "path": "content/scenes/elements/cf.json"
+    },
+    {
+      "id": "cl",
+      "name": "Chlorine (Cl)",
+      "path": "content/scenes/elements/cl.json"
+    },
+    {
+      "id": "cm",
+      "name": "Curium (Cm)",
+      "path": "content/scenes/elements/cm.json"
+    },
+    {
+      "id": "cn",
+      "name": "Copernicium (Cn)",
+      "path": "content/scenes/elements/cn.json"
+    },
+    {
+      "id": "co",
+      "name": "Cobalt (Co)",
+      "path": "content/scenes/elements/co.json"
+    },
+    {
+      "id": "cr",
+      "name": "Chromium (Cr)",
+      "path": "content/scenes/elements/cr.json"
+    },
+    {
+      "id": "cs",
+      "name": "Cesium (Cs)",
+      "path": "content/scenes/elements/cs.json"
+    },
+    {
+      "id": "cu",
+      "name": "Copper (Cu)",
+      "path": "content/scenes/elements/cu.json"
+    },
+    {
+      "id": "db",
+      "name": "Dubnium (Db)",
+      "path": "content/scenes/elements/db.json"
+    },
+    {
+      "id": "ds",
+      "name": "Darmstadtium (Ds)",
+      "path": "content/scenes/elements/ds.json"
+    },
+    {
+      "id": "dy",
+      "name": "Dysprosium (Dy)",
+      "path": "content/scenes/elements/dy.json"
+    },
+    {
+      "id": "er",
+      "name": "Erbium (Er)",
+      "path": "content/scenes/elements/er.json"
+    },
+    {
+      "id": "es",
+      "name": "Einsteinium (Es)",
+      "path": "content/scenes/elements/es.json"
+    },
+    {
+      "id": "eu",
+      "name": "Europium (Eu)",
+      "path": "content/scenes/elements/eu.json"
+    },
+    {
+      "id": "f",
+      "name": "Fluorine (F)",
+      "path": "content/scenes/elements/f.json"
+    },
+    {
+      "id": "fe",
+      "name": "Iron (Fe)",
+      "path": "content/scenes/elements/fe.json"
+    },
+    {
+      "id": "fl",
+      "name": "Flerovium (Fl)",
+      "path": "content/scenes/elements/fl.json"
+    },
+    {
+      "id": "fm",
+      "name": "Fermium (Fm)",
+      "path": "content/scenes/elements/fm.json"
+    },
+    {
+      "id": "fr",
+      "name": "Francium (Fr)",
+      "path": "content/scenes/elements/fr.json"
+    },
+    {
+      "id": "ga",
+      "name": "Gallium (Ga)",
+      "path": "content/scenes/elements/ga.json"
+    },
+    {
+      "id": "gd",
+      "name": "Gadolinium (Gd)",
+      "path": "content/scenes/elements/gd.json"
+    },
+    {
+      "id": "ge",
+      "name": "Germanium (Ge)",
+      "path": "content/scenes/elements/ge.json"
     },
     {
       "id": "h",
@@ -267,258 +322,28 @@
     },
     {
       "id": "he",
-      "name": "Helium (HE)",
+      "name": "Helium (He)",
       "path": "content/scenes/elements/he.json"
     },
     {
-      "id": "li",
-      "name": "Lithium (LI)",
-      "path": "content/scenes/elements/li.json"
+      "id": "hf",
+      "name": "Hafnium (Hf)",
+      "path": "content/scenes/elements/hf.json"
     },
     {
-      "id": "be",
-      "name": "Beryllium (BE)",
-      "path": "content/scenes/elements/be.json"
+      "id": "hg",
+      "name": "Mercury (Hg)",
+      "path": "content/scenes/elements/hg.json"
     },
     {
-      "id": "b",
-      "name": "Boron (B)",
-      "path": "content/scenes/elements/b.json"
+      "id": "ho",
+      "name": "Holmium (Ho)",
+      "path": "content/scenes/elements/ho.json"
     },
     {
-      "id": "c",
-      "name": "Carbon (C)",
-      "path": "content/scenes/elements/c.json"
-    },
-    {
-      "id": "n",
-      "name": "Nitrogen (N)",
-      "path": "content/scenes/elements/n.json"
-    },
-    {
-      "id": "o",
-      "name": "Oxygen (O)",
-      "path": "content/scenes/elements/o.json"
-    },
-    {
-      "id": "f",
-      "name": "Fluorine (F)",
-      "path": "content/scenes/elements/f.json"
-    },
-    {
-      "id": "ne",
-      "name": "Neon (NE)",
-      "path": "content/scenes/elements/ne.json"
-    },
-    {
-      "id": "na",
-      "name": "Sodium (NA)",
-      "path": "content/scenes/elements/na.json"
-    },
-    {
-      "id": "mg",
-      "name": "Magnesium (MG)",
-      "path": "content/scenes/elements/mg.json"
-    },
-    {
-      "id": "al",
-      "name": "Aluminium (AL)",
-      "path": "content/scenes/elements/al.json"
-    },
-    {
-      "id": "si",
-      "name": "Silicon (SI)",
-      "path": "content/scenes/elements/si.json"
-    },
-    {
-      "id": "p",
-      "name": "Phosphorus (P)",
-      "path": "content/scenes/elements/p.json"
-    },
-    {
-      "id": "s",
-      "name": "Sulfur (S)",
-      "path": "content/scenes/elements/s.json"
-    },
-    {
-      "id": "cl",
-      "name": "Chlorine (CL)",
-      "path": "content/scenes/elements/cl.json"
-    },
-    {
-      "id": "ar",
-      "name": "Argon (AR)",
-      "path": "content/scenes/elements/ar.json"
-    },
-    {
-      "id": "k",
-      "name": "Potassium (K)",
-      "path": "content/scenes/elements/k.json"
-    },
-    {
-      "id": "ca",
-      "name": "Calcium (CA)",
-      "path": "content/scenes/elements/ca.json"
-    },
-    {
-      "id": "sc",
-      "name": "Scandium (SC)",
-      "path": "content/scenes/elements/sc.json"
-    },
-    {
-      "id": "ti",
-      "name": "Titanium (TI)",
-      "path": "content/scenes/elements/ti.json"
-    },
-    {
-      "id": "v",
-      "name": "Vanadium (V)",
-      "path": "content/scenes/elements/v.json"
-    },
-    {
-      "id": "cr",
-      "name": "Chromium (CR)",
-      "path": "content/scenes/elements/cr.json"
-    },
-    {
-      "id": "mn",
-      "name": "Manganese (MN)",
-      "path": "content/scenes/elements/mn.json"
-    },
-    {
-      "id": "fe",
-      "name": "Iron (FE)",
-      "path": "content/scenes/elements/fe.json"
-    },
-    {
-      "id": "co",
-      "name": "Cobalt (CO)",
-      "path": "content/scenes/elements/co.json"
-    },
-    {
-      "id": "ni",
-      "name": "Nickel (NI)",
-      "path": "content/scenes/elements/ni.json"
-    },
-    {
-      "id": "cu",
-      "name": "Copper (CU)",
-      "path": "content/scenes/elements/cu.json"
-    },
-    {
-      "id": "zn",
-      "name": "Zinc (ZN)",
-      "path": "content/scenes/elements/zn.json"
-    },
-    {
-      "id": "ga",
-      "name": "Gallium (GA)",
-      "path": "content/scenes/elements/ga.json"
-    },
-    {
-      "id": "ge",
-      "name": "Germanium (GE)",
-      "path": "content/scenes/elements/ge.json"
-    },
-    {
-      "id": "as",
-      "name": "Arsenic (AS)",
-      "path": "content/scenes/elements/as.json"
-    },
-    {
-      "id": "se",
-      "name": "Selenium (SE)",
-      "path": "content/scenes/elements/se.json"
-    },
-    {
-      "id": "br",
-      "name": "Bromine (BR)",
-      "path": "content/scenes/elements/br.json"
-    },
-    {
-      "id": "kr",
-      "name": "Krypton (KR)",
-      "path": "content/scenes/elements/kr.json"
-    },
-    {
-      "id": "rb",
-      "name": "Rubidium (RB)",
-      "path": "content/scenes/elements/rb.json"
-    },
-    {
-      "id": "sr",
-      "name": "Strontium (SR)",
-      "path": "content/scenes/elements/sr.json"
-    },
-    {
-      "id": "y",
-      "name": "Yttrium (Y)",
-      "path": "content/scenes/elements/y.json"
-    },
-    {
-      "id": "zr",
-      "name": "Zirconium (ZR)",
-      "path": "content/scenes/elements/zr.json"
-    },
-    {
-      "id": "nb",
-      "name": "Niobium (NB)",
-      "path": "content/scenes/elements/nb.json"
-    },
-    {
-      "id": "mo",
-      "name": "Molybdenum (MO)",
-      "path": "content/scenes/elements/mo.json"
-    },
-    {
-      "id": "tc",
-      "name": "Technetium (TC)",
-      "path": "content/scenes/elements/tc.json"
-    },
-    {
-      "id": "ru",
-      "name": "Ruthenium (RU)",
-      "path": "content/scenes/elements/ru.json"
-    },
-    {
-      "id": "rh",
-      "name": "Rhodium (RH)",
-      "path": "content/scenes/elements/rh.json"
-    },
-    {
-      "id": "pd",
-      "name": "Palladium (PD)",
-      "path": "content/scenes/elements/pd.json"
-    },
-    {
-      "id": "ag",
-      "name": "Silver (AG)",
-      "path": "content/scenes/elements/ag.json"
-    },
-    {
-      "id": "cd",
-      "name": "Cadmium (CD)",
-      "path": "content/scenes/elements/cd.json"
-    },
-    {
-      "id": "in",
-      "name": "Indium (IN)",
-      "path": "content/scenes/elements/in.json"
-    },
-    {
-      "id": "sn",
-      "name": "Tin (SN)",
-      "path": "content/scenes/elements/sn.json"
-    },
-    {
-      "id": "sb",
-      "name": "Antimony (SB)",
-      "path": "content/scenes/elements/sb.json"
-    },
-    {
-      "id": "te",
-      "name": "Tellurium (TE)",
-      "path": "content/scenes/elements/te.json"
+      "id": "hs",
+      "name": "Hassium (Hs)",
+      "path": "content/scenes/elements/hs.json"
     },
     {
       "id": "i",
@@ -526,194 +351,314 @@
       "path": "content/scenes/elements/i.json"
     },
     {
-      "id": "xe",
-      "name": "Xenon (XE)",
-      "path": "content/scenes/elements/xe.json"
-    },
-    {
-      "id": "cs",
-      "name": "Cesium (CS)",
-      "path": "content/scenes/elements/cs.json"
-    },
-    {
-      "id": "ba",
-      "name": "Barium (BA)",
-      "path": "content/scenes/elements/ba.json"
-    },
-    {
-      "id": "la",
-      "name": "Lanthanum (LA)",
-      "path": "content/scenes/elements/la.json"
-    },
-    {
-      "id": "ce",
-      "name": "Cerium (CE)",
-      "path": "content/scenes/elements/ce.json"
-    },
-    {
-      "id": "pr",
-      "name": "Praseodymium (PR)",
-      "path": "content/scenes/elements/pr.json"
-    },
-    {
-      "id": "nd",
-      "name": "Neodymium (ND)",
-      "path": "content/scenes/elements/nd.json"
-    },
-    {
-      "id": "pm",
-      "name": "Promethium (PM)",
-      "path": "content/scenes/elements/pm.json"
-    },
-    {
-      "id": "sm",
-      "name": "Samarium (SM)",
-      "path": "content/scenes/elements/sm.json"
-    },
-    {
-      "id": "eu",
-      "name": "Europium (EU)",
-      "path": "content/scenes/elements/eu.json"
-    },
-    {
-      "id": "gd",
-      "name": "Gadolinium (GD)",
-      "path": "content/scenes/elements/gd.json"
-    },
-    {
-      "id": "tb",
-      "name": "Terbium (TB)",
-      "path": "content/scenes/elements/tb.json"
-    },
-    {
-      "id": "dy",
-      "name": "Dysprosium (DY)",
-      "path": "content/scenes/elements/dy.json"
-    },
-    {
-      "id": "ho",
-      "name": "Holmium (HO)",
-      "path": "content/scenes/elements/ho.json"
-    },
-    {
-      "id": "er",
-      "name": "Erbium (ER)",
-      "path": "content/scenes/elements/er.json"
-    },
-    {
-      "id": "tm",
-      "name": "Thulium (TM)",
-      "path": "content/scenes/elements/tm.json"
-    },
-    {
-      "id": "yb",
-      "name": "Ytterbium (YB)",
-      "path": "content/scenes/elements/yb.json"
-    },
-    {
-      "id": "lu",
-      "name": "Lutetium (LU)",
-      "path": "content/scenes/elements/lu.json"
-    },
-    {
-      "id": "hf",
-      "name": "Hafnium (HF)",
-      "path": "content/scenes/elements/hf.json"
-    },
-    {
-      "id": "ta",
-      "name": "Tantalum (TA)",
-      "path": "content/scenes/elements/ta.json"
-    },
-    {
-      "id": "w",
-      "name": "Tungsten (W)",
-      "path": "content/scenes/elements/w.json"
-    },
-    {
-      "id": "re",
-      "name": "Rhenium (RE)",
-      "path": "content/scenes/elements/re.json"
-    },
-    {
-      "id": "os",
-      "name": "Osmium (OS)",
-      "path": "content/scenes/elements/os.json"
+      "id": "in",
+      "name": "Indium (In)",
+      "path": "content/scenes/elements/in.json"
     },
     {
       "id": "ir",
-      "name": "Iridium (IR)",
+      "name": "Iridium (Ir)",
       "path": "content/scenes/elements/ir.json"
     },
     {
-      "id": "pt",
-      "name": "Platinum (PT)",
-      "path": "content/scenes/elements/pt.json"
+      "id": "k",
+      "name": "Potassium (K)",
+      "path": "content/scenes/elements/k.json"
     },
     {
-      "id": "au",
-      "name": "Gold (AU)",
-      "path": "content/scenes/elements/au.json"
+      "id": "kr",
+      "name": "Krypton (Kr)",
+      "path": "content/scenes/elements/kr.json"
     },
     {
-      "id": "hg",
-      "name": "Mercury (HG)",
-      "path": "content/scenes/elements/hg.json"
+      "id": "la",
+      "name": "Lanthanum (La)",
+      "path": "content/scenes/elements/la.json"
     },
     {
-      "id": "tl",
-      "name": "Thallium (TL)",
-      "path": "content/scenes/elements/tl.json"
+      "id": "li",
+      "name": "Lithium (Li)",
+      "path": "content/scenes/elements/li.json"
     },
     {
-      "id": "pb",
-      "name": "Lead (PB)",
-      "path": "content/scenes/elements/pb.json"
+      "id": "lr",
+      "name": "Lawrencium (Lr)",
+      "path": "content/scenes/elements/lr.json"
     },
     {
-      "id": "bi",
-      "name": "Bismuth (BI)",
-      "path": "content/scenes/elements/bi.json"
+      "id": "lu",
+      "name": "Lutetium (Lu)",
+      "path": "content/scenes/elements/lu.json"
     },
     {
-      "id": "po",
-      "name": "Polonium (PO)",
-      "path": "content/scenes/elements/po.json"
+      "id": "lv",
+      "name": "Livermorium (Lv)",
+      "path": "content/scenes/elements/lv.json"
     },
     {
-      "id": "at",
-      "name": "Astatine (AT)",
-      "path": "content/scenes/elements/at.json"
+      "id": "mc",
+      "name": "Moscovium (Mc)",
+      "path": "content/scenes/elements/mc.json"
     },
     {
-      "id": "rn",
-      "name": "Radon (RN)",
-      "path": "content/scenes/elements/rn.json"
+      "id": "md",
+      "name": "Mendelevium (Md)",
+      "path": "content/scenes/elements/md.json"
     },
     {
-      "id": "fr",
-      "name": "Francium (FR)",
-      "path": "content/scenes/elements/fr.json"
+      "id": "mg",
+      "name": "Magnesium (Mg)",
+      "path": "content/scenes/elements/mg.json"
     },
     {
-      "id": "ra",
-      "name": "Radium (RA)",
-      "path": "content/scenes/elements/ra.json"
+      "id": "mn",
+      "name": "Manganese (Mn)",
+      "path": "content/scenes/elements/mn.json"
     },
     {
-      "id": "ac",
-      "name": "Actinium (AC)",
-      "path": "content/scenes/elements/ac.json"
+      "id": "mo",
+      "name": "Molybdenum (Mo)",
+      "path": "content/scenes/elements/mo.json"
     },
     {
-      "id": "th",
-      "name": "Thorium (TH)",
-      "path": "content/scenes/elements/th.json"
+      "id": "mt",
+      "name": "Meitnerium (Mt)",
+      "path": "content/scenes/elements/mt.json"
+    },
+    {
+      "id": "n",
+      "name": "Nitrogen (N)",
+      "path": "content/scenes/elements/n.json"
+    },
+    {
+      "id": "na",
+      "name": "Sodium (Na)",
+      "path": "content/scenes/elements/na.json"
+    },
+    {
+      "id": "nb",
+      "name": "Niobium (Nb)",
+      "path": "content/scenes/elements/nb.json"
+    },
+    {
+      "id": "nd",
+      "name": "Neodymium (Nd)",
+      "path": "content/scenes/elements/nd.json"
+    },
+    {
+      "id": "ne",
+      "name": "Neon (Ne)",
+      "path": "content/scenes/elements/ne.json"
+    },
+    {
+      "id": "nh",
+      "name": "Nihonium (Nh)",
+      "path": "content/scenes/elements/nh.json"
+    },
+    {
+      "id": "ni",
+      "name": "Nickel (Ni)",
+      "path": "content/scenes/elements/ni.json"
+    },
+    {
+      "id": "no",
+      "name": "Nobelium (No)",
+      "path": "content/scenes/elements/no.json"
+    },
+    {
+      "id": "np",
+      "name": "Neptunium (Np)",
+      "path": "content/scenes/elements/np.json"
+    },
+    {
+      "id": "o",
+      "name": "Oxygen (O)",
+      "path": "content/scenes/elements/o.json"
+    },
+    {
+      "id": "og",
+      "name": "Oganesson (Og)",
+      "path": "content/scenes/elements/og.json"
+    },
+    {
+      "id": "os",
+      "name": "Osmium (Os)",
+      "path": "content/scenes/elements/os.json"
+    },
+    {
+      "id": "p",
+      "name": "Phosphorus (P)",
+      "path": "content/scenes/elements/p.json"
     },
     {
       "id": "pa",
-      "name": "Protactinium (PA)",
+      "name": "Protactinium (Pa)",
       "path": "content/scenes/elements/pa.json"
+    },
+    {
+      "id": "pb",
+      "name": "Lead (Pb)",
+      "path": "content/scenes/elements/pb.json"
+    },
+    {
+      "id": "pd",
+      "name": "Palladium (Pd)",
+      "path": "content/scenes/elements/pd.json"
+    },
+    {
+      "id": "pm",
+      "name": "Promethium (Pm)",
+      "path": "content/scenes/elements/pm.json"
+    },
+    {
+      "id": "po",
+      "name": "Polonium (Po)",
+      "path": "content/scenes/elements/po.json"
+    },
+    {
+      "id": "pr",
+      "name": "Praseodymium (Pr)",
+      "path": "content/scenes/elements/pr.json"
+    },
+    {
+      "id": "pt",
+      "name": "Platinum (Pt)",
+      "path": "content/scenes/elements/pt.json"
+    },
+    {
+      "id": "pu",
+      "name": "Plutonium (Pu)",
+      "path": "content/scenes/elements/pu.json"
+    },
+    {
+      "id": "ra",
+      "name": "Radium (Ra)",
+      "path": "content/scenes/elements/ra.json"
+    },
+    {
+      "id": "rb",
+      "name": "Rubidium (Rb)",
+      "path": "content/scenes/elements/rb.json"
+    },
+    {
+      "id": "re",
+      "name": "Rhenium (Re)",
+      "path": "content/scenes/elements/re.json"
+    },
+    {
+      "id": "rf",
+      "name": "Rutherfordium (Rf)",
+      "path": "content/scenes/elements/rf.json"
+    },
+    {
+      "id": "rg",
+      "name": "Roentgenium (Rg)",
+      "path": "content/scenes/elements/rg.json"
+    },
+    {
+      "id": "rh",
+      "name": "Rhodium (Rh)",
+      "path": "content/scenes/elements/rh.json"
+    },
+    {
+      "id": "rn",
+      "name": "Radon (Rn)",
+      "path": "content/scenes/elements/rn.json"
+    },
+    {
+      "id": "ru",
+      "name": "Ruthenium (Ru)",
+      "path": "content/scenes/elements/ru.json"
+    },
+    {
+      "id": "s",
+      "name": "Sulfur (S)",
+      "path": "content/scenes/elements/s.json"
+    },
+    {
+      "id": "sb",
+      "name": "Antimony (Sb)",
+      "path": "content/scenes/elements/sb.json"
+    },
+    {
+      "id": "sc",
+      "name": "Scandium (Sc)",
+      "path": "content/scenes/elements/sc.json"
+    },
+    {
+      "id": "se",
+      "name": "Selenium (Se)",
+      "path": "content/scenes/elements/se.json"
+    },
+    {
+      "id": "sg",
+      "name": "Seaborgium (Sg)",
+      "path": "content/scenes/elements/sg.json"
+    },
+    {
+      "id": "si",
+      "name": "Silicon (Si)",
+      "path": "content/scenes/elements/si.json"
+    },
+    {
+      "id": "sm",
+      "name": "Samarium (Sm)",
+      "path": "content/scenes/elements/sm.json"
+    },
+    {
+      "id": "sn",
+      "name": "Tin (Sn)",
+      "path": "content/scenes/elements/sn.json"
+    },
+    {
+      "id": "sr",
+      "name": "Strontium (Sr)",
+      "path": "content/scenes/elements/sr.json"
+    },
+    {
+      "id": "ta",
+      "name": "Tantalum (Ta)",
+      "path": "content/scenes/elements/ta.json"
+    },
+    {
+      "id": "tb",
+      "name": "Terbium (Tb)",
+      "path": "content/scenes/elements/tb.json"
+    },
+    {
+      "id": "tc",
+      "name": "Technetium (Tc)",
+      "path": "content/scenes/elements/tc.json"
+    },
+    {
+      "id": "te",
+      "name": "Tellurium (Te)",
+      "path": "content/scenes/elements/te.json"
+    },
+    {
+      "id": "th",
+      "name": "Thorium (Th)",
+      "path": "content/scenes/elements/th.json"
+    },
+    {
+      "id": "ti",
+      "name": "Titanium (Ti)",
+      "path": "content/scenes/elements/ti.json"
+    },
+    {
+      "id": "tl",
+      "name": "Thallium (Tl)",
+      "path": "content/scenes/elements/tl.json"
+    },
+    {
+      "id": "tm",
+      "name": "Thulium (Tm)",
+      "path": "content/scenes/elements/tm.json"
+    },
+    {
+      "id": "ts",
+      "name": "Tennessine (Ts)",
+      "path": "content/scenes/elements/ts.json"
     },
     {
       "id": "u",
@@ -721,139 +666,234 @@
       "path": "content/scenes/elements/u.json"
     },
     {
-      "id": "np",
-      "name": "Neptunium (NP)",
-      "path": "content/scenes/elements/np.json"
-    },
-    {
-      "id": "pu",
-      "name": "Plutonium (PU)",
-      "path": "content/scenes/elements/pu.json"
-    },
-    {
-      "id": "am",
-      "name": "Americium (AM)",
-      "path": "content/scenes/elements/am.json"
-    },
-    {
-      "id": "cm",
-      "name": "Curium (CM)",
-      "path": "content/scenes/elements/cm.json"
-    },
-    {
-      "id": "bk",
-      "name": "Berkelium (BK)",
-      "path": "content/scenes/elements/bk.json"
-    },
-    {
-      "id": "cf",
-      "name": "Californium (CF)",
-      "path": "content/scenes/elements/cf.json"
-    },
-    {
-      "id": "es",
-      "name": "Einsteinium (ES)",
-      "path": "content/scenes/elements/es.json"
-    },
-    {
-      "id": "fm",
-      "name": "Fermium (FM)",
-      "path": "content/scenes/elements/fm.json"
-    },
-    {
-      "id": "md",
-      "name": "Mendelevium (MD)",
-      "path": "content/scenes/elements/md.json"
-    },
-    {
-      "id": "no",
-      "name": "Nobelium (NO)",
-      "path": "content/scenes/elements/no.json"
-    },
-    {
-      "id": "lr",
-      "name": "Lawrencium (LR)",
-      "path": "content/scenes/elements/lr.json"
-    },
-    {
-      "id": "rf",
-      "name": "Rutherfordium (RF)",
-      "path": "content/scenes/elements/rf.json"
-    },
-    {
-      "id": "db",
-      "name": "Dubnium (DB)",
-      "path": "content/scenes/elements/db.json"
-    },
-    {
-      "id": "sg",
-      "name": "Seaborgium (SG)",
-      "path": "content/scenes/elements/sg.json"
-    },
-    {
-      "id": "bh",
-      "name": "Bohrium (BH)",
-      "path": "content/scenes/elements/bh.json"
-    },
-    {
-      "id": "hs",
-      "name": "Hassium (HS)",
-      "path": "content/scenes/elements/hs.json"
-    },
-    {
-      "id": "mt",
-      "name": "Meitnerium (MT)",
-      "path": "content/scenes/elements/mt.json"
-    },
-    {
-      "id": "ds",
-      "name": "Darmstadtium (DS)",
-      "path": "content/scenes/elements/ds.json"
-    },
-    {
-      "id": "rg",
-      "name": "Roentgenium (RG)",
-      "path": "content/scenes/elements/rg.json"
-    },
-    {
-      "id": "cn",
-      "name": "Copernicium (CN)",
-      "path": "content/scenes/elements/cn.json"
-    },
-    {
-      "id": "nh",
-      "name": "Nihonium (NH)",
-      "path": "content/scenes/elements/nh.json"
-    },
-    {
-      "id": "fl",
-      "name": "Flerovium (FL)",
-      "path": "content/scenes/elements/fl.json"
-    },
-    {
-      "id": "mc",
-      "name": "Moscovium (MC)",
-      "path": "content/scenes/elements/mc.json"
-    },
-    {
-      "id": "lv",
-      "name": "Livermorium (LV)",
-      "path": "content/scenes/elements/lv.json"
-    },
-    {
-      "id": "ts",
-      "name": "Tennessine (TS)",
-      "path": "content/scenes/elements/ts.json"
-    },
-    {
-      "id": "og",
-      "name": "Oganesson (OG)",
-      "path": "content/scenes/elements/og.json"
-    },
-    {
       "id": "uue",
-      "name": "Ununennium (UUE)",
+      "name": "Ununennium (Uue)",
       "path": "content/scenes/elements/uue.json"
+    },
+    {
+      "id": "v",
+      "name": "Vanadium (V)",
+      "path": "content/scenes/elements/v.json"
+    },
+    {
+      "id": "w",
+      "name": "Tungsten (W)",
+      "path": "content/scenes/elements/w.json"
+    },
+    {
+      "id": "xe",
+      "name": "Xenon (Xe)",
+      "path": "content/scenes/elements/xe.json"
+    },
+    {
+      "id": "y",
+      "name": "Yttrium (Y)",
+      "path": "content/scenes/elements/y.json"
+    },
+    {
+      "id": "yb",
+      "name": "Ytterbium (Yb)",
+      "path": "content/scenes/elements/yb.json"
+    },
+    {
+      "id": "zn",
+      "name": "Zinc (Zn)",
+      "path": "content/scenes/elements/zn.json"
+    },
+    {
+      "id": "zr",
+      "name": "Zirconium (Zr)",
+      "path": "content/scenes/elements/zr.json"
+    },
+    {
+      "id": "foundations",
+      "name": "Foundations",
+      "path": "content/scenes/foundations/foundations.json"
+    },
+    {
+      "id": "composer",
+      "name": "Composer",
+      "path": "content/scenes/meta/composer.json"
+    },
+    {
+      "id": "meta",
+      "name": "Archie",
+      "path": "content/scenes/meta/meta.json"
+    },
+    {
+      "id": "atom",
+      "name": "Atom",
+      "path": "content/scenes/nuclear/atom.json"
+    },
+    {
+      "id": "cno_cycle_detail",
+      "name": "CNO Cycle Detail",
+      "path": "content/scenes/nuclear/cno_cycle_detail.json"
+    },
+    {
+      "id": "neutron",
+      "name": "Neutron",
+      "path": "content/scenes/nuclear/neutron.json"
+    },
+    {
+      "id": "nuclear_atomic",
+      "name": "Nuclear-Atomic",
+      "path": "content/scenes/nuclear/nuclear_atomic.json"
+    },
+    {
+      "id": "nucleus",
+      "name": "Nucleus",
+      "path": "content/scenes/nuclear/nucleus.json"
+    },
+    {
+      "id": "proton",
+      "name": "Proton",
+      "path": "content/scenes/nuclear/proton.json"
+    },
+    {
+      "id": "out_of_the_ashes",
+      "name": "Out of the Ashes",
+      "path": "content/scenes/philosophy_history/out_of_the_ashes.json"
+    },
+    {
+      "id": "philosophy_history",
+      "name": "Philosophy-History",
+      "path": "content/scenes/philosophy_history/philosophy_history.json"
+    },
+    {
+      "id": "unknowns_paradoxes",
+      "name": "Unknowns & Paradoxes",
+      "path": "content/scenes/philosophy_history/unknowns_paradoxes.json"
+    },
+    {
+      "id": "quantum",
+      "name": "Quantum",
+      "path": "content/scenes/quantum/quantum.json"
+    },
+    {
+      "id": "cosmic_censorship",
+      "name": "Cosmic Censorship",
+      "path": "content/scenes/spacetime/cosmic_censorship.json"
+    },
+    {
+      "id": "spacetime_gr_bridge",
+      "name": "GR Bridge and Effective Limits",
+      "path": "content/scenes/spacetime/gr_bridge_limits.json"
+    },
+    {
+      "id": "gravity",
+      "name": "Gravity",
+      "path": "content/scenes/spacetime/gravity.json"
+    },
+    {
+      "id": "spacetime_metric_clocks",
+      "name": "Metric Emergence and Clocks",
+      "path": "content/scenes/spacetime/metric_emergence_clocks.json"
+    },
+    {
+      "id": "spacetime_precision_tests",
+      "name": "Precision and Weak-Field Tests",
+      "path": "content/scenes/spacetime/precision_weak_field_tests.json"
+    },
+    {
+      "id": "spacetime",
+      "name": "Spacetime Assemblies",
+      "path": "content/scenes/spacetime/spacetime.json"
+    },
+    {
+      "id": "spacetime_strong_field",
+      "name": "Strong Field and Horizons",
+      "path": "content/scenes/spacetime/strong_field_horizons.json"
+    },
+    {
+      "id": "spacetime_wave_channel",
+      "name": "Wave and Phenomenology Channel",
+      "path": "content/scenes/spacetime/wave_phenomenology_channel.json"
+    },
+    {
+      "id": "bottom",
+      "name": "Bottom Quark",
+      "path": "content/scenes/standard-model-particles/bottom.json"
+    },
+    {
+      "id": "charm",
+      "name": "Charm Quark",
+      "path": "content/scenes/standard-model-particles/charm.json"
+    },
+    {
+      "id": "down_quark",
+      "name": "Down Quark",
+      "path": "content/scenes/standard-model-particles/down_quark.json"
+    },
+    {
+      "id": "electron",
+      "name": "Electron",
+      "path": "content/scenes/standard-model-particles/electron.json"
+    },
+    {
+      "id": "higgs_boson",
+      "name": "Higgs Boson",
+      "path": "content/scenes/standard-model-particles/higgs_boson.json"
+    },
+    {
+      "id": "muon_neutrino",
+      "name": "Muon Neutrino",
+      "path": "content/scenes/standard-model-particles/muon_neutrino.json"
+    },
+    {
+      "id": "muon",
+      "name": "Muon",
+      "path": "content/scenes/standard-model-particles/muon.json"
+    },
+    {
+      "id": "neutrino",
+      "name": "Neutrino",
+      "path": "content/scenes/standard-model-particles/neutrino.json"
+    },
+    {
+      "id": "standard_model",
+      "name": "Standard Model",
+      "path": "content/scenes/standard-model-particles/standard_model.json"
+    },
+    {
+      "id": "strange",
+      "name": "Strange Quark",
+      "path": "content/scenes/standard-model-particles/strange.json"
+    },
+    {
+      "id": "tau_neutrino",
+      "name": "Tau Neutrino",
+      "path": "content/scenes/standard-model-particles/tau_neutrino.json"
+    },
+    {
+      "id": "tau",
+      "name": "Tau",
+      "path": "content/scenes/standard-model-particles/tau.json"
+    },
+    {
+      "id": "top",
+      "name": "Top Quark",
+      "path": "content/scenes/standard-model-particles/top.json"
+    },
+    {
+      "id": "up_quark",
+      "name": "Up Quark",
+      "path": "content/scenes/standard-model-particles/up_quark.json"
+    },
+    {
+      "id": "fermion_generation_color",
+      "name": "Fermion Generation and Color",
+      "path": "content/scenes/standard-model-theory/fermion_generation_color.json"
+    },
+    {
+      "id": "validation_simulations",
+      "name": "Validation Simulations",
+      "path": "content/scenes/validation/simulations.json"
+    },
+    {
+      "id": "validation",
+      "name": "Validation",
+      "path": "content/scenes/validation/validation.json"
     }
   ]
 }
