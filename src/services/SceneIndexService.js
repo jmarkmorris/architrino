@@ -6,7 +6,8 @@ export class SceneIndexService {
     this.ready = false;
   }
 
-  async ensure(fetchImpl, path, graphPath = null) {
+  async ensure(fetchImpl, path, graphPath = null, options = {}) {
+    const allowLegacyFallback = options.allowLegacyFallback !== false;
     if (this.ready) {
       return this.getSearchEntries();
     }
@@ -16,6 +17,11 @@ export class SceneIndexService {
       if (loaded) {
         this.ready = true;
         this.source = "graph_manifest";
+        return this.getSearchEntries();
+      }
+      if (!allowLegacyFallback) {
+        this.ready = true;
+        this.source = "manifest_unavailable";
         return this.getSearchEntries();
       }
     }
@@ -61,7 +67,7 @@ export class SceneIndexService {
         }));
       return true;
     } catch (error) {
-      console.warn(`[SceneIndexService] Falling back to scenes index: ${error.message}`);
+      console.warn(`[SceneIndexService] Failed to load scene graph manifest: ${error.message}`);
       this.searchEntries = [];
       this.scenes = [];
       return false;
