@@ -73,3 +73,28 @@ Why are charges quantized in units of e/3?
 |     0:6     |         0         |         6         |           +1           |
 
 The tri-binary’s six polar regions demand six personality architrinos per fermion assembly; sweeping all electrino:positrino splits across those poles yields exactly the SM charge set with no extras.
+
+### Combinatorial Proof (Six $\pm e/6$ Slots)
+
+**Proposition.** If a fermion personality layer has exactly six slots, each occupied by either $+e/6$ or $-e/6$, then the total charge can only be
+$$
+\{-e,-2e/3,-e/3,0,+e/3,+2e/3,+e\}.
+$$
+
+**Proof.** Let $N_+$ be the number of $+e/6$ slots and $N_-$ the number of $-e/6$ slots. Then
+$$
+N_+ + N_- = 6,\qquad N_+,N_- \in \{0,1,\dots,6\}.
+$$
+The net personality charge is
+$$
+Q=\frac{e}{6}(N_+ - N_-).
+$$
+Using $N_-=6-N_+$,
+$$
+Q=\frac{e}{6}(2N_+ - 6)=\frac{e}{3}(N_+ - 3).
+$$
+Since $N_+$ is an integer from $0$ to $6$, $(N_+-3)\in\{-3,-2,-1,0,1,2,3\}$, so
+$$
+Q\in\left\{-e,-\frac{2e}{3},-\frac{e}{3},0,\frac{e}{3},\frac{2e}{3},e\right\}.
+$$
+No other values are possible. Different permutations with the same $(N_+,N_-)$ have identical total $Q$; they only change micro-geometry, not net charge.

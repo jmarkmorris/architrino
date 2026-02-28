@@ -4,12 +4,7 @@
 
 • Yes. Beyond CKM, there are several genuinely tractable math targets.
 
-  2. Causal-action theorem spine completion
-      - Turn the existing theorem sketches into complete proofs + assumptions checklist from causal-action-functional.md#L130, with explicit branch-count proposition at causal-action-functional.md#L231.
-      - This is close to publishable internal math if tightened.
-  3. Charge-quantization combinatorics proof
-      - Prove that 6 slots with (\pm e/6) gives only (0,\pm1/3,\pm2/3,\pm1), as stated in gauge-structure-emergence.md#L55 and gauge-structure-emergence.md#L64.
-      - Very low effort, high clarity gain.
+
   4. SU(3) from axis-exceptionality (algebra closure)
       - Make the basis/generator mapping rigorous from color-charge-su3.md#L257, color-charge-su3.md#L269, color-charge-su3.md#L315.
       - Low-hanging because the geometric basis is already defined; you need closure/representation details.
