@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+current_branch="$(git symbolic-ref --quiet --short HEAD || true)"
+if [[ "${ALLOW_MAIN_COMMIT:-}" != "1" && "$current_branch" == "main" ]]; then
+  echo "[pre-commit] direct commits on 'main' are blocked."
+  echo "[pre-commit] create a feature branch, commit there, and merge via PR."
+  echo "[pre-commit] override once with: ALLOW_MAIN_COMMIT=1 git commit ..."
+  exit 1
+fi
+
 echo "[pre-commit] validating content indexes and references..."
 node scripts/validate-content.mjs --check --strict
 echo "[pre-commit] validating scene graph manifest..."
