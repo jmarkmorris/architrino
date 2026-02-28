@@ -84,7 +84,7 @@ Numerical implementations (Sol) discretize this integral by sampling discrete em
 
 #### Working Non-Local Action (Defines $E_{\text{wake}}$)
 
-To define the conserved energy in a delay system, we require an explicit non-local action. A minimal, $\eta$-regularized working form is:
+To define conserved energy in computation, we use an $\eta$-regularized **surrogate** of the exact causal-delay action given later in Section 6.1.3. A minimal working form is:
 $$
 S
 = \int dt \sum_i \frac{1}{2} m_i \left|\dot{\mathbf{x}}_i(t)\right|^2
@@ -93,7 +93,7 @@ S
 \frac{1}{r_{ij}^2(t; t_0)}\,
 \delta_\eta\!\big(r_{ij}(t; t_0) - c_f(t - t_0)\big).
 $$
-where $\delta_\eta$ is a mollified delta (shell of width $\eta$). This action yields the Master Equation under variation and, by time-translation symmetry, defines the conserved energy:
+where $\delta_\eta$ is a mollified delta (shell of width $\eta$). This regularized surrogate converges to the exact cone-constrained theory as $\eta\to 0$ and, by time-translation symmetry, defines the conserved energy used in diagnostics:
 $$
 E_{\text{total}}(t) = \sum_i \frac{1}{2}m_i\left|\dot{\mathbf{x}}_i(t)\right|^2 + E_{\text{wake}}(t).
 $$
@@ -932,8 +932,8 @@ Assumptions:
 
 Then:
 
-- For each pair $(i,j)$, the causal root is essentially unique and very close to the instantaneous retarded time.
-- We can neglect acceleration and velocity corrections in the retarded position.
+- For each pair $(i,j)$, the causal root is essentially unique and very close to the instantaneous causal-delay emission time.
+- We can neglect acceleration and velocity corrections in the past-emission position.
 
 To leading order, we should recover:
 
@@ -969,7 +969,7 @@ Then:
 We can:
 
 - Write the exact integral for $t(r)$, and invert in special cases.
-- Then treat retardation as a small parameter $\epsilon_\mathrm{ret} \sim r/c_f T$ and develop a systematic expansion.
+- Then treat causal delay as a small parameter $\epsilon_\mathrm{ret} \sim r/c_f T$ and develop a systematic expansion.
 
 So: **analytic yes** (up to standard quadratures), and corrections doable.
 
@@ -982,12 +982,12 @@ This is in the draft as the “unstable orbit” case.
 We can:
 
 - Assume circular orbit of radius $R$, angular speed $\omega$, velocity $v = \omega R < c_f$.
-- Solve the causal constraint for a *single* retarded emission angle (unique $t_0$).
-- Compute the exact radial and tangential components of the retarded force.
+- Solve the causal constraint for a *single* causal-delay emission angle (unique $t_0$).
+- Compute the exact radial and tangential components of the causal-delay force.
 
-This is analogous to classical EM with retarded potentials but simpler (pure radial kernel). There are known techniques:
+This is analogous to classical EM with causal-delay potentials but simpler (pure radial kernel). There are known techniques:
 
-- Solve for the retarded phase difference $\Delta\phi$ by transcendental equation,
+- Solve for the causal-delay phase difference $\Delta\phi$ by transcendental equation,
 - Then get closed expressions (often implicit) for the force components.
 
 Outcome:
@@ -1052,7 +1052,7 @@ For the full **two‑body** maximum‑curvature orbit (inner binary), we have:
 
 - Two charges on roughly circular orbits about their COM,
 - Both potentially with self‑hit,
-- Plus partner forces with retardation.
+- Plus partner forces with causal delay.
 
 Analytic expectations:
 
@@ -1061,7 +1061,7 @@ Analytic expectations:
 
   - We can construct a **reduced model**:
     - Assume perfectly circular orbits with fixed $R$, $\omega$,
-    - Compute partner force including retardation (as in 2.3),
+    - Compute partner force including causal delay (as in 2.3),
     - Compute self‑force (as in 2.4),
     - Demand that time‑averaged radial force gives exactly $\omega^2 R$,
     - Demand that time‑averaged tangential force vanish.
@@ -1121,7 +1121,7 @@ If we prioritize “bang for analytic buck,” I’d line up:
      asymptotically, analyze the self‑force series.
    - Deliver: explicit formulas + asymptotics for self‑force vs $v/c_f$.
 
-2. **Partner‑only circular orbit with retardation (v<c_f)**  
+2. **Partner‑only circular orbit with causal delay (v<c_f)**  
    - Derive exact expressions for radial and tangential forces.
    - Prove tangential component >0 → analytic demonstration of spiral‑in instability.
 
@@ -1293,7 +1293,7 @@ This gives us:
 
 To connect with variational methods and with later continuum approximations, it is useful to exhibit an **action principle** from which the Master Equation can be derived. Because the dynamics depend on **path history** via causal wakes (not just instantaneous positions), the action is necessarily **nonlocal in time**.
 
-##### Multi‑time interaction term
+##### Exact causal-delay Fokker-type interaction term
 
 For the focused action-functional development (definitions, theorem spine, and circular branch-count benchmark), see [Causal Action Functional](causal-action-functional.md#core-functional-definitions).
 
@@ -1312,31 +1312,50 @@ with interaction contributions
 $$
 S_{ij}
 =
-\kappa |q_i q_j|
+\frac{\kappa\,\sigma_{ij}\,|q_i q_j|}{c_f}
 \int dt \int dt'\,
-\mathcal{K}_{ij}\!\left(t,t';\mathbf{x}_i(t),\mathbf{x}_j(t')\right).
+\Theta(t-t')\,
+\frac{\delta\!\big(g_{ij}(t,t')\big)}{r_{ij}(t,t')},
 $$
 
-We choose the kernel $\mathcal{K}_{ij}$ to enforce the **causal wake condition**:
+where
 
 $$
-\mathcal{K}_{ij} =
-\sigma_{ij}\,
-\frac{1}{r_{ij}(t,t')}
-\,\delta_\eta\!\left(r_{ij}(t,t') - c_f|t-t'|\right),
+g_{ij}(t,t') \equiv t-t' - \frac{r_{ij}(t,t')}{c_f},
+\qquad
+r_{ij}(t,t') = \|\mathbf{x}_i(t) - \mathbf{x}_j(t')\|.
 $$
 
-where:
+Key points:
 
-- $r_{ij}(t,t') = \|\mathbf{x}_i(t) - \mathbf{x}_j(t')\|$,
-- $\delta_\eta$ is a **narrow, normalized peak** (a mollified delta) of width $\eta$,
-- The factor $1/r_{ij}$ is the static‑like part of the interaction kernel.
+- $\Theta(t-t')$ enforces the purely past-causal branch ($t' \le t$).
+- $\delta(g_{ij})$ restricts support to the characteristic causal cone $r_{ij}=c_f(t-t')$.
+- The exact action contains no mollifier: $\eta$ is not a fundamental parameter.
 
-Interpretation:
+Integrating out the delta via the delay-map Jacobian gives the branch-resolved form:
 
-- The double integral scans over all pairs of worldline points with earlier‑to‑later separation,
-- The peak $\delta_\eta(r - c_f|t-t'|)$ selects only those pairs that lie on the **causal isochrons** of the wake emitted at $(t',\mathbf{x}_j(t'))$,
-- The $1/r_{ij}$ factor produces the eventual $1/r^2$ dependence in the acceleration after variation and time differentiation.
+$$
+\delta\!\big(g_{ij}(t,t')\big)
+=
+\sum_{t_0\in\mathcal{C}_j(t)}
+\frac{\delta(t'-t_0)}
+{\left|\partial_{t'} g_{ij}(t,t_0)\right|},
+\qquad
+\partial_{t'} g_{ij}
+= -1 + \frac{\hat{\mathbf{r}}_{ij}(t;t_0)\cdot \mathbf{v}_j(t_0)}{c_f}.
+$$
+
+Hence
+
+$$
+S_{ij}
+=
+\frac{\kappa\,\sigma_{ij}\,|q_i q_j|}{c_f}
+\int dt\,
+\sum_{t_0\in\mathcal{C}_j(t)}
+\frac{1}
+{r_{ij}(t;t_0)\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}.
+$$
 
 ##### Variation and line‑of‑action forces
 
@@ -1347,32 +1366,31 @@ $$
 = \sum_j \mathbf{F}_{ij}(t),
 $$
 
-with
+and the branch-resolved force admits the structure
 
 $$
-\mathbf{F}_{ij}(t) = \kappa \sigma_{ij}|q_i q_j|
-\int dt'\,
-\frac{\partial}{\partial \mathbf{x}_i(t)}
-\left\{
-\frac{1}{r_{ij}(t,t')}
-\delta_\eta\!\left(r_{ij}(t,t') - c_f|t-t'|\right)
-\right\}.
+\mathbf{F}_{ij}(t)
+=
+\kappa\,\sigma_{ij}\,|q_i q_j|
+\sum_{t_0\in\mathcal{C}_j(t)}
+\left[
+\frac{\hat{\mathbf{r}}_{ij}(t;t_0)}
+{r_{ij}^2(t;t_0)\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
+\;+\;
+\mathbf{J}_{ij}^{(\text{delay})}(t;t_0)
+\right],
 $$
 
-The spatial derivative produces a unit vector along $\hat{\mathbf{r}}_{ij}$ together with the derivative of the peak function. In the limit $\eta\to 0$, this variation reproduces:
+where $\mathbf{J}_{ij}^{(\text{delay})}$ collects finite Jacobian/branch-motion terms from varying the delay roots. The line-of-action piece is radial and scales as $1/r_{ij}^2$.
 
-- A sum over all **path‑history times** $t_0 \in \mathcal{C}_j(t)$ that satisfy the causal wake condition,
-- A force vector parallel to $\hat{\mathbf{r}}_{ij}$,
-- With magnitude proportional to $1/r_{ij}^2$,
-
-precisely matching the canonical Master Equation.
+This $1/r^2$ scaling is not an added ansatz: it is the unique pull-back of a scale-invariant causal-cone constraint in 3D when varying a $1/r$ Fokker kernel.
 
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
 Thus:
 
-- The Master Equation can be viewed as the **Euler–Lagrange equation** of a nonlocal action that encodes all path‑history information through causal wake geometry,
-- While remaining fully deterministic and entirely resident in the architrino degrees of freedom.
+- The Master Equation is the **Euler–Lagrange equation** of an exact nonlocal causal-delay action with no fundamental mollifier,
+- Any $\delta_\eta$ replacement is a numerical regularization of this exact theory for simulation and convergence control.
 
 ---
 
