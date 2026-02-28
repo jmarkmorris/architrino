@@ -226,7 +226,78 @@ $$
 $$
 
 where $c_{ij}\equiv\sqrt{1-s_{ij}^2}$. The resulting magnitude matrix is numerically close to the PDG central hierarchy, and the phase/Jarlskog emerge from the overlap geometry rather than an independent CP fit parameter.
-Comparison note: this is a central-value check, not a statistical fit with propagated uncertainties.
+
+### Uncertainty propagation for holonomy closure
+
+Define
+$$
+x \equiv \cos\delta_{\text{pred}}=\frac{s_{13}}{s_{12}s_{23}}.
+$$
+For input vector
+$$
+\mathbf{s}=(s_{12},s_{23},s_{13})^\top
+$$
+with covariance matrix $\Sigma_s$, use first-order propagation
+$$
+\sigma_x^2 = \nabla_{\mathbf{s}}x^\top\,\Sigma_s\,\nabla_{\mathbf{s}}x,
+$$
+with Jacobian
+$$
+\frac{\partial x}{\partial s_{13}}=\frac{1}{s_{12}s_{23}}=\frac{x}{s_{13}},\qquad
+\frac{\partial x}{\partial s_{12}}=-\frac{s_{13}}{s_{12}^2s_{23}}=-\frac{x}{s_{12}},\qquad
+\frac{\partial x}{\partial s_{23}}=-\frac{s_{13}}{s_{12}s_{23}^2}=-\frac{x}{s_{23}}.
+$$
+
+So
+$$
+\sigma_x^2
+=
+x^2\!\left[
+\frac{\sigma_{13}^2}{s_{13}^2}
++\frac{\sigma_{12}^2}{s_{12}^2}
++\frac{\sigma_{23}^2}{s_{23}^2}
+-2\frac{\mathrm{Cov}(s_{13},s_{12})}{s_{13}s_{12}}
+-2\frac{\mathrm{Cov}(s_{13},s_{23})}{s_{13}s_{23}}
++2\frac{\mathrm{Cov}(s_{12},s_{23})}{s_{12}s_{23}}
+\right].
+$$
+If correlations are unavailable, set off-diagonal covariances to zero.
+
+Map to phase uncertainty via
+$$
+\delta_{\text{pred}}=\arccos x,\qquad
+\sigma_{\delta,\text{pred}}=\frac{\sigma_x}{\sqrt{1-x^2}}
+\quad(\text{radians}),
+$$
+valid away from $|x|\approx1$. Near boundaries, use Monte Carlo propagation with clipping $x\in[-1,1]$.
+
+### Confidence-interval closure test
+
+At confidence level $p$ (normal quantile $z_p$):
+$$
+I_x^{(p)}=
+\big[\max(-1,x-z_p\sigma_x),\ \min(1,x+z_p\sigma_x)\big].
+$$
+
+If an external phase estimate $\delta_{\text{ext}}\pm\sigma_{\delta,\text{ext}}$ is available, convert it to
+$$
+x_{\text{ext}}=\cos\delta_{\text{ext}},\qquad
+\sigma_{x,\text{ext}}=|\sin\delta_{\text{ext}}|\,\sigma_{\delta,\text{ext}}.
+$$
+Define residual and pull:
+$$
+r_x \equiv x-x_{\text{ext}},\qquad
+Z_{\text{closure}}\equiv
+\frac{|r_x|}{\sqrt{\sigma_x^2+\sigma_{x,\text{ext}}^2}}.
+$$
+
+**Pass criterion (closure holds at CL $p$):**
+$$
+Z_{\text{closure}}\le z_p.
+$$
+Equivalent interval criterion: $I_x^{(p)}$ overlaps $I_{x,\text{ext}}^{(p)}$.
+
+This upgrades the CKM closure check from central-value comparison to a statistically testable confidence-interval statement.
 
 Post-fit prediction CKM magnitude check (calibrated only on $\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert$). The remaining entries
 $\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are predictions:

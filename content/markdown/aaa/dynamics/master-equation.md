@@ -161,15 +161,50 @@ On a bounded history interval $I_t$ (e.g., simulation memory window), define:
   D_{ij}(t)\equiv \deg(F_t^{(ij)},I_t,0)=\sum_{t_0\in\mathcal{C}_j(t)} \mathrm{sign}\!\left(\frac{dF_t^{(ij)}}{dt_0}\Big|_{t_0}\right).
   $$
 
-For regular configurations (no boundary-root crossing and no critical root with $dF_t/dt_0=0$), $D_{ij}$ is homotopy-invariant. Root births/deaths occur only at fold events where
+#### Delay-Map Theorem Pack (Formalized)
 
+Fix a bounded history interval $I_t=[a,b]\subset(-\infty,t)$ and define regularity conditions:
+
+- **(R1) Boundary regularity:** $0\notin F_t^{(ij)}(\partial I_t)$ (no root crossing at $a$ or $b$).
+- **(R2) Simple roots:** if $F_t^{(ij)}(t_0)=0$, then $\frac{dF_t^{(ij)}}{dt_0}(t_0)\neq 0$.
+
+**Theorem 1 (Degree invariance on regular families).**  
+For any continuous deformation of worldlines/parameters that preserves (R1)-(R2), the signed degree
+$D_{ij}(t)=\deg(F_t^{(ij)},I_t,0)$ is invariant.
+
+*Proof sketch:* In 1D, $D_{ij}$ is the oriented count of simple roots. Under a regular homotopy, roots move continuously and cannot appear/disappear in the interior without becoming critical, and cannot enter/leave through the boundary by (R1). Hence the oriented count is constant.
+
+**Proposition 2 (Sub-$c_f$ monotonic single-hit regime).**  
+If there exists $v_*<c_f$ such that $|\mathbf{v}_j(t_0)|\le v_*$ for all $t_0\in I_t$, then
 $$
-F_t^{(ij)}(t_0)=0,\qquad \frac{dF_t^{(ij)}}{dt_0}=0.
+\frac{dF_t^{(ij)}}{dt_0}
+\ge
+1-\frac{v_*}{c_f}
+>0,
 $$
+so $F_t^{(ij)}$ is strictly increasing on $I_t$. Therefore it has at most one root. If additionally $F_t^{(ij)}(a)<0<F_t^{(ij)}(b)$ (or the opposite sign ordering), then exactly one root exists and
+$$
+N_{ij}(t)=1,\qquad D_{ij}(t)=+1.
+$$
+
+*Proof sketch:* Strict positivity of the Jacobian gives monotonicity, hence injectivity. Existence under endpoint sign change follows by the intermediate value theorem.
+
+**Proposition 3 (Fold criterion and even-jump law).**  
+In a one-parameter family $F^{(ij)}(t_0;\lambda)$ (with $\lambda$ a control parameter, e.g. receiver time or orbit parameter), interior root-count changes occur only at fold points:
+$$
+F^{(ij)}(t_0;\lambda)=0,\qquad \partial_{t_0}F^{(ij)}(t_0;\lambda)=0.
+$$
+For generic folds ($\partial_{t_0t_0}F\neq0$, $\partial_\lambda F\neq0$), one root pair is created/annihilated, so
+$$
+\Delta N_{ij}=\pm2,\qquad \Delta D_{ij}=0
+$$
+between regular intervals.
+
+*Proof sketch:* Local normal form near a generic fold is equivalent to $u^2\pm\mu=0$, yielding either 0 or 2 simple roots. The two roots carry opposite Jacobian signs, so the degree is unchanged.
 
 #### Single-Hit Regime (Unique $t_0$)
 
-In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), the map is strictly monotone:
+In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), Proposition 2 applies, and the map is strictly monotone:
 
 $$
 \frac{dF_t^{(ij)}}{dt_0}
@@ -554,27 +589,51 @@ while preserving total emission $q$.
 
 #### Well-Posedness (Existence and Uniqueness)
 
-**Theorem (Schematic):**
+To make the existence/uniqueness claim precise, we now formalize the
+regularized dynamics introduced above (finite $\eta>0$) as a
+state-dependent delay system in first-order form:
+$$
+\dot{\mathbf{Y}}(t)=\mathcal{G}(\mathbf{Y}_t),\qquad
+\mathbf{Y}_t(\theta)=\mathbf{Y}(t+\theta),\ \theta\in[-h,0],
+$$
+with phase space $\mathcal{H}=C^1([-h,0],\mathbb{R}^{6N})$.
 
-Given:
-- Initial conditions $\{\mathbf{x}_i(t_0), \mathbf{v}_i(t_0)\}$ for all $i$ at some reference time $t_0$
-- Initial history $\{\mathbf{x}_i(t) : t < t_0\}$ (for causal lookback; typically set to free evolution or specified trajectories)
-- Regularization parameter $\eta > 0$
-- Bounded initial speeds $|\mathbf{v}_i(t_0)| < V_{\max}$
+**Assumptions (regularized regime):**
 
-Then:
-- The system admits a **unique local solution** $\{\mathbf{X}_i(t) : t \in [t_0, t_0 + T]\}$ for some $T > 0$.
-- If speeds remain bounded ($|\mathbf{v}_i(t)| < V_{\max}$ for all $t$), the solution extends to all future times.
+- **(W1) Kernel regularity:** $\delta_\eta$ is $C^1$, bounded, and integrable.
+- **(W2) Uniform branch finiteness:** on the considered history neighborhood, each pair $(i,j)$ has at most $B_{ij}<\infty$ active causal branches.
+- **(W3) Root transversality:** for every active branch $\tau_{ij,\ell}$,
+  $$
+  \left|\partial_\tau g_{ij}(\tau,\phi)\right|\ge \nu>0,
+  \qquad
+  g_{ij}(\tau,\phi)=\|\phi_i(0)-\phi_j(-\tau)\|-c_f\tau.
+  $$
+- **(W4) Distance floor on the branch support:** $\|\phi_i(0)-\phi_j(-\tau_{ij,\ell}(\phi))\|\ge d_{\min}>0$.
+- **(W5) Bounded charges/couplings:** $\kappa$, $|q_i|$ finite.
 
-**Breakdown:** Solutions may become ill-defined if:
-- Speeds diverge to infinity (unphysical runaway; typically prevented by self-hit repulsion).
-- Causal roots proliferate without bound (numerical intractability; not expected in physical configurations).
+**Theorem (Local well-posedness and continuation).**  
+Under (W1)-(W5), for any initial history $\phi^0\in\mathcal{H}$ there exists $T>0$ and a unique solution
+$$
+\mathbf{Y}\in C^1([t_0-h,t_0+T),\mathbb{R}^{6N}),\qquad \mathbf{Y}_{t_0}=\phi^0.
+$$
+The solution extends uniquely to a maximal interval $[t_0-h,t_{\max})$. If on every finite interval
+$$
+\sup_{t<t^\ast}\|\mathbf{v}(t)\|<\infty,\quad
+\inf_{t<t^\ast,\ i,j,\ell} r_{ij,\ell}(t)>0,\quad
+\inf_{t<t^\ast,\ i,j,\ell}|\partial_\tau g_{ij,\ell}(t)|>0,
+$$
+then $t_{\max}=\infty$.
+Here $r_{ij,\ell}(t)$ denotes the source-receiver distance on branch $\ell$.
 
-**Proof strategy (deferred to rigorous appendix):**
+**Proof.**
 
-1. Show that $\mathcal{F}$ is Lipschitz continuous in the state variables (for fixed $\eta > 0$).
-2. Apply fixed-point theorems for DDEs with state-dependent delays (see Hale & Verduyn Lunel, *Functional Differential Equations*).
-3. Verify that self-hit terms (if present) satisfy the same Lipschitz bounds.
+1. By (W3), each active delay branch is simple; the Implicit Function Theorem gives $\tau_{ij,\ell}(\phi)\in C^1$ on a neighborhood of $\phi^0$.
+2. Each per-branch acceleration term is a composition of $C^1$ maps (evaluation, subtraction, norm, mollifier, and unit-direction projection). By (W4), denominators stay away from zero; by (W5), coefficients are bounded. Hence each branch term is locally Lipschitz in $\phi$.
+3. By (W2), only finitely many branches contribute, so their sum $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}$ where (W3)-(W4) hold.
+4. Standard state-dependent DDE existence/uniqueness theory on Banach spaces applies, yielding a unique local $C^1$ solution and a maximal extension.
+5. Continuation follows from the same theorem: finite-time breakdown can occur only by leaving every bounded subset of the admissible set, i.e. via unbounded speed, vanishing separation on active support, or transversality loss/root accumulation.
+
+Therefore the regularized master dynamics are locally well-posed, with global existence whenever those failure modes are excluded. $\square$
 
 ## Operational Principles, Self-Interaction, and Examples
 

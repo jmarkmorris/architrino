@@ -223,12 +223,22 @@ export class SceneRepository {
     if (!Array.isArray(config.nodes)) {
       config.nodes = [];
     }
-    if (config.nodes.length) {
-      return;
+    if (!config.nodes.length) {
+      const autoNodes = await this.buildAutoMarkdownNodes(config, config.nodes);
+      if (autoNodes.length) {
+        config.nodes = config.nodes.concat(autoNodes);
+      }
     }
-    const autoNodes = await this.buildAutoMarkdownNodes(config, config.nodes);
-    if (autoNodes.length) {
-      config.nodes = config.nodes.concat(autoNodes);
+
+    const needsEligibility = config.nodes.some(
+      (node) =>
+        node &&
+        typeof node.markdownPath === "string" &&
+        node.markdownPath.length > 0 &&
+        typeof node.markdownGlowEligible !== "boolean"
+    );
+    if (needsEligibility) {
+      await this.applyMarkdownDocEligibility(config.nodes);
     }
   }
 }

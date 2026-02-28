@@ -1,7 +1,5 @@
 Not sure if this is worth including - might be far too speculative.
 
-
-
 # The Supergalactic Plane: Large-Scale Structure and Architrino Assembly Architecture
 
 ## Observational Overview
@@ -26,7 +24,7 @@ Standard $\Lambda$CDM structure formation accounts for the SGP as a natural outc
 
 In the architrino framework, large-scale gravitational dynamics are emergent properties of the tri-binary spacetime medium (the Noether Sea). Matter concentrations correspond to regions of enhanced Noether Sea energy density; voids correspond to depleted regions. The effective metric experienced by assemblies is set by the local density, stress, and orientation of spacetime tri-binaries: gradients in these quantities produce the refractive deflection that assemblies interpret as gravitational acceleration.
 
-The Zel'dovich pancake mechanism carries over directly. The Noether Sea compliance is anisotropic wherever density gradients are anisotropic: the axis along which the gradient is steepest collapses first, producing a sheet. Subsequent matter infall is funneled along filamentary density ridges toward the nodes (clusters) embedded in the sheet. The topology of the cosmic web—sheets, filaments, nodes, voids—is therefore the same in AAA as in standard $\Lambda$CDM, with a different underlying ontology (assembly density gradients in a flat Euclidean void, rather than metric expansion of a curved manifold).
+The Zel'dovich pancake mechanism carries over directly. The Noether Sea compliance is anisotropic wherever density gradients are anisotropic: the axis along which the gradient is steepest collapses first, producing a sheet. Subsequent matter infall is funneled along filamentary density ridges toward the nodes (clusters) embedded in the sheet. The topology of the cosmic web—sheets, filaments, nodes, voids—is therefore the same in $\mathbb{A}\mathbb{A}\mathbb{A}$ as in standard $\Lambda$CDM, with a different underlying ontology (assembly density gradients in a flat Euclidean void, rather than metric expansion of a curved manifold).
 
 No new mechanism is required to produce the SGP: it is a standard gravitational-instability outcome expressed in the language of Noether Sea energy-density modulation.
 
@@ -61,7 +59,7 @@ The feedback-sharpening hypothesis yields three observationally accessible predi
 - **Jet-sculpted morphology at the sheet edge.** The boundaries of the SGP should exhibit cavities, lobes, and weak shock features at scales of tens of megaparsecs, consistent with the cumulative imprint of AGN outflows from the embedded clusters.
 - **Density-contrast evolution.** In numerical simulations that include AGN feedback within the Noether Sea refractive-gravity framework, the sheet–void density ratio should increase more rapidly than in simulations without jet feedback, producing a sharper SGP at low redshift.
 
-**Failure mode.** If void energy content shows no correlation with nearby cluster jet activity—consistent instead with purely adiabatic evolution—the jet-sharpening mechanism is ruled out as a significant contributor at these scales, and the AAA cosmological picture must confine SMBH recycling effects to cluster and sub-cluster scales.
+**Failure mode.** If void energy content shows no correlation with nearby cluster jet activity—consistent instead with purely adiabatic evolution—the jet-sharpening mechanism is ruled out as a significant contributor at these scales, and the $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmological picture must confine SMBH recycling effects to cluster and sub-cluster scales.
 
 ---
 
@@ -69,10 +67,10 @@ The feedback-sharpening hypothesis yields three observationally accessible predi
 
 The Supergalactic Plane maps cleanly onto the architrino framework at three levels:
 
-| Feature | AAA mechanism | Status |
+| Feature | $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism | Status |
 |---|---|---|
 | Planar geometry | Anisotropic gravitational collapse via Noether Sea density gradients (Zel'dovich pancake) | Direct carry-over from standard structure formation; no new physics required |
 | Elliptical dominance on the plane | Merger-driven decoherence of Noether core angular-momentum alignment | Consistent re-expression of standard environmental transformation |
 | Sheet–void contrast maintenance | SMBH jet feedback deposits energy into voids, deepening the density gradient | Quantitative prediction; testable against void energetics and jet-power inventories |
 
-The SGP provides no evidence for or against the architrino substrate at the level of cosmic-web topology, which is determined by gravitational instability regardless of whether gravity is fundamental or emergent. The distinctive AAA contribution is the feedback loop connecting SMBH recycling (Planck-alignment core physics) to void evacuation, a mechanism that makes specific predictions about the thermal state of supervoids adjacent to jet-active superclusters.
+The SGP provides no evidence for or against the architrino substrate at the level of cosmic-web topology, which is determined by gravitational instability regardless of whether gravity is fundamental or emergent. The distinctive $\mathbb{A}\mathbb{A}\mathbb{A}$ contribution is the feedback loop connecting SMBH recycling (Planck-alignment core physics) to void evacuation, a mechanism that makes specific predictions about the thermal state of supervoids adjacent to jet-active superclusters.

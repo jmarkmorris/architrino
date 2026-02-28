@@ -135,44 +135,75 @@ In this framework, **Planck-scale** references are tied to an **event-horizon al
 
 ## Clock Model and Equations of Motion
 
-To turn the above hypotheses into a derivation, we must specify a concrete **clock model** and derive its frequency from the master dynamics.
+To close the derivation gap, we now fix an explicit clock model and an explicit observable-extraction map.
 
-### Minimal Clock: Single Tri‑Binary Core
+### Concrete Tri-Binary Clock State
 
-- Three nested binaries (inner, middle, outer) of opposite‑charge architrino pairs.
-- The **middle binary** is chosen as the clock’s “tick”:
- - Equilibrium radius $R_m$,
- - Equilibrium angular frequency $\omega_0$ at rest in homogeneous Noether Sea.
-
-### Internal Dynamics in the Absolute Frame
-
-Using the Master Equation of Motion:
-
-1. Write the delay‑differential equation for each architrino in the tri‑binary, including:
- - Partner forces within the binary,
- - Forces from other binaries in the same core (coupling),
- - Self‑hit contributions (path‑history).
-
-2. For the rest clock in homogeneous medium ($\mathbf{v}=0$, constant $\rho_{\text{vac,0}}$), solve (analytically or numerically) for the stable periodic orbit and its period $T_0$.
-
-3. Define proper time for this ideal clock as:
- $$
- \tau(t) = \frac{t}{T_0} \quad\text{(up to units)}
- $$
- so that $d\tau/dt = 1$ by construction in this special case.
-
-### Boosted and Curved‑Medium Clocks
-
-Next, consider the **same internal configuration** but with:
-
-- **Uniform boost:** Clock center‑of‑mass moving at constant $\mathbf{v}$ through the Noether Sea.
-- **Background potential/density:** $\rho_{\text{vac}}(\mathbf{x})$ and $\Phi_{\text{eff}}(\mathbf{x})$ prescribed from spacetime/aether modeling.
-
-The equations of motion now have modified retardation conditions for all interactions, since the source and receiver worldlines are tilted in $(t,\mathbf{x})$, and the medium modifies effective propagation.
-
-We must solve for the new period $T(v,\Phi_{\text{eff}},\rho_{\text{vac}})$:
+Use one neutral tri-binary core with six constituent architrinos:
 $$
-\omega(v,\Phi_{\text{eff}},\rho_{\text{vac}}) = \frac{2\pi}{T(v,\Phi_{\text{eff}},\rho_{\text{vac}})}.
+\mathcal{A}=\{i_+,i_-,m_+,m_-,o_+,o_-\},
+$$
+with charges $q_a=\pm|e/6|$, effective inertial parameters $m_a$, and trajectories $\mathbf{x}_a(t)$.
+
+Define pair-separation vectors
+$$
+\mathbf{r}_i=\mathbf{x}_{i+}-\mathbf{x}_{i-},\quad
+\mathbf{r}_m=\mathbf{x}_{m+}-\mathbf{x}_{m-},\quad
+\mathbf{r}_o=\mathbf{x}_{o+}-\mathbf{x}_{o-},
+$$
+with radii $R_b=|\mathbf{r}_b|$ for $b\in\{i,m,o\}$ and nested ordering
+$$
+R_i<R_m<R_o.
+$$
+
+### Microscopic Evolution Equation (Regularized)
+
+For each $a\in\mathcal{A}$ evolve
+$$
+m_a\ddot{\mathbf{x}}_a(t)=
+\sum_{b\in\mathcal{A}}
+\kappa\,\sigma_{ab}|q_aq_b|
+\int_{-\infty}^{t}\!dt_0\;
+\frac{\hat{\mathbf{r}}_{ab}(t;t_0)}{r_{ab}(t;t_0)^2}\,
+\delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big),
+$$
+$$
+r_{ab}(t;t_0)=\|\mathbf{x}_a(t)-\mathbf{x}_b(t_0)\|,
+\qquad
+\hat{\mathbf{r}}_{ab}=\frac{\mathbf{x}_a(t)-\mathbf{x}_b(t_0)}{r_{ab}(t;t_0)}.
+$$
+This is the same $\eta>0$ regularized kernel used in the dynamical chapters.
+
+### Clock Observable and Proper-Time Map
+
+Take the middle binary as the clock channel. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf{r}_m$, and define phase
+$$
+\theta_m(t)=\operatorname{atan2}\!\big(\mathbf{r}_m\!\cdot\!\mathbf{e}_2,\mathbf{r}_m\!\cdot\!\mathbf{e}_1\big).
+$$
+On a window $[t_1,t_2]$, define measured frequency
+$$
+\omega_{\text{clk}}
+=
+\frac{\theta_m(t_2)-\theta_m(t_1)}{t_2-t_1}.
+$$
+For the reference run $(v=0,\Phi_N=0)$, set $\omega_0=\omega_{\text{clk}}^{\text{ref}}$ and define
+$$
+\frac{d\tau}{dt}\equiv\frac{\omega_{\text{clk}}}{\omega_0}.
+$$
+
+### Controlled Perturbation Family
+
+Run the same core under controlled backgrounds:
+
+1. Uniform center-of-mass drift speed $v=|\mathbf{V}_{\text{CM}}|$ through homogeneous medium.
+2. Weak static potential background $\Phi_N(\mathbf{x})$ (or $U\equiv-\Phi_N>0$).
+3. Weak-field regime constraints: $v^2/c_f^2\ll1$ and $|U|/c_f^2\ll1$.
+
+For each run $j$, record
+$$
+\left(U_j,\;v_j,\;\omega_j\right),
+\qquad
+y_j\equiv\frac{\omega_j}{\omega_0}-1.
 $$
 
 ---
@@ -183,25 +214,89 @@ Because closed‑form analytic solutions are unlikely, we will combine **perturb
 
 ### Perturbative Expansion (Weak‑field, Low‑velocity)
 
-1. **Linearize around rest solution:**
- - Write $\mathbf{x}_a(t) = \mathbf{x}_a^{(0)}(t) + \delta\mathbf{x}_a(t)$, where $\mathbf{x}_a^{(0)}$ is the periodic orbit at rest.
- - Introduce small parameters:
- - $\epsilon_v = v/c \ll 1$,
- - $\epsilon_\Phi = |\Phi_N|/c^2 \ll 1$.
+Linearize each trajectory as $\mathbf{x}_a(t)=\mathbf{x}_a^{(0)}(t)+\delta\mathbf{x}_a(t)$ around the periodic rest solution and expand the extracted clock ratio in
+$$
+\epsilon_U\equiv U/c_f^2,\qquad \epsilon_v\equiv v^2/c_f^2.
+$$
 
-2. **Expand interaction delays and forces** to first order in $\epsilon_v$ and $\epsilon_\Phi$, obtaining a linear system for $\delta\mathbf{x}_a(t)$.
+Use the regression model
+$$
+\frac{\omega}{\omega_0}
+=
+1-A_U\,\epsilon_U-A_v\,\epsilon_v
++C_2\,\epsilon_U^2
++C_{Uv}\,\epsilon_U\epsilon_v
++C_{v4}\,\epsilon_v^2
++\mathcal{O}(\epsilon^3).
+$$
 
-3. **Solve for frequency shift**:
- - Compute $\delta\omega(v,\Phi_N)$ from the linearized equations.
- - Show explicitly that:
- $$
- \frac{\omega(v,\Phi_N)}{\omega_0}
- = 1 + \alpha\,\frac{\Phi_N}{c_f^2} - \frac{1}{2}\,\frac{v^2}{c_f^2} + \mathcal{O}(\epsilon_v^4,\epsilon_\Phi^2)
- $$
- with $\alpha$ expected to be $1$ in the GR‑matching limit.
+Coefficient extraction from simulation ensemble $\{(U_j,v_j,\omega_j)\}_{j=1}^N$:
+$$
+\mathbf{y}=X\mathbf{c}+\boldsymbol{\varepsilon},
+\qquad
+\hat{\mathbf{c}}=(X^\top W X)^{-1}X^\top W\mathbf{y},
+$$
+with
+$$
+\mathbf{c}=(A_U,A_v,C_2,C_{Uv},C_{v4})^\top,\quad
+y_j=\frac{\omega_j}{\omega_0}-1,
+$$
+and design row
+$$
+X_j=\left(-\epsilon_{U,j},\,-\epsilon_{v,j},\,\epsilon_{U,j}^2,\,
+\epsilon_{U,j}\epsilon_{v,j},\,\epsilon_{v,j}^2\right).
+$$
 
-4. **Match to GR:** 
- Identify conditions under which $\alpha=1$ and cross‑terms vanish to the accuracy of current experiments ($\lesssim 10^{-5}$ in PPN parameters).
+Estimated covariance:
+$$
+\mathrm{Cov}(\hat{\mathbf{c}})
+=
+\hat{s}^2(X^\top W X)^{-1},
+\qquad
+\hat{s}^2=\frac{\sum_j w_j(y_j-(X\hat{\mathbf{c}})_j)^2}{N-5}.
+$$
+
+### Coefficient Targets and PPN Map
+
+In the GR-matching weak-field limit ($c_f=c$), first-order targets are
+$$
+A_U^\star=1,\qquad A_v^\star=\frac{1}{2}.
+$$
+
+For the static branch ($v=0$),
+$$
+\frac{\omega}{\omega_0}=1-\frac{U}{c_f^2}+C_2\frac{U^2}{c_f^4}+\cdots,
+$$
+and the PPN map used in `spacetime/ppn-parameters.md` is
+$$
+\beta_{\mathrm{eff}}=\frac{1+2C_2}{2}.
+$$
+So the GR target $\beta_{\mathrm{eff}}=1$ implies
+$$
+C_2^\star=\frac{1}{2}.
+$$
+
+The mixed coefficient $C_{Uv}$ is treated as a leakage diagnostic at this order.
+
+### Benchmark Error Bounds (Pass/Fail)
+
+Define coefficient errors
+$$
+\epsilon_{A_U}=|\hat{A}_U-1|,\quad
+\epsilon_{A_v}=|\hat{A}_v-\tfrac{1}{2}|,\quad
+\epsilon_\beta=|\hat{\beta}_{\mathrm{eff}}-1|,
+\quad
+\epsilon_{Uv}=|\hat{C}_{Uv}|.
+$$
+
+Required bounds for weak-field acceptance:
+
+1. $\epsilon_{A_U}\le 10^{-5}$.
+2. $\epsilon_{A_v}\le 10^{-5}$.
+3. $\epsilon_\beta\le 10^{-5}$.
+4. $\epsilon_{Uv}\le 10^{-5}$.
+5. Fit residual RMS: $\sqrt{\frac{1}{N}\sum_j (y_j-(X\hat{\mathbf{c}})_j)^2}\le 10^{-6}$.
+6. Statistical confidence: each bound above must hold at $2\sigma$, using $\mathrm{Cov}(\hat{\mathbf{c}})$.
 
 ### Direct Numerical Experiments
 
@@ -246,7 +341,7 @@ To claim success, the derived $d\tau/dt$ must reproduce:
 4. **Weak‑field PPN Parameters:**
  - Effective metric inferred from $d\tau/dt$ should yield PPN parameters $\gamma$ and $\beta$ within $|\gamma-1|, |\beta-1| \lesssim 10^{-5}$.
 
-These are encoded in `validation/experiments/*` and.
+These are encoded in `validation/experiments/*` and `validation/constraint-ledger.md`.
 
 ---
 

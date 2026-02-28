@@ -1,6 +1,6 @@
 # The Measurement Problem and Wavefunction Collapse: Traditional vs. Architrino Assembly Architecture
 
-This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture (AAA). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix.
+This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix.
 
 ### The Traditional Measurement Problem
 
@@ -13,9 +13,9 @@ This dualistic evolution introduces the Measurement Problem:
 
 Traditional interpretations typically resolve this by either treating the wavefunction as a complete ontological entity that physically splits (Many-Worlds), accepting ad-hoc modifications to the Schrödinger equation (Objective Collapse theories), or treating the wavefunction as a purely informational tool with no underlying micro-reality (Copenhagen/QBism).
 
-### Architrino Assembly Architecture (AAA) Mechanism
+### Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
 
-The AAA framework rejects the projection postulate as a fundamental physical process. Instead, the universe evolves continuously in absolute time within a Euclidean void, governed strictly by the deterministic Master Equation. There is no ontological distinction between a "measured system" and a "measurement apparatus"—both are interacting tri-binary assemblies immersed in the Noether Sea.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework rejects the projection postulate as a fundamental physical process. Instead, the universe evolves continuously in absolute time within a Euclidean void, governed strictly by the deterministic Master Equation. There is no ontological distinction between a "measured system" and a "measurement apparatus"—both are interacting tri-binary assemblies immersed in the Noether Sea.
 
 What standard quantum mechanics describes as "wavefunction collapse" maps directly to **threshold resolution** in a multistable dynamical system. 
 
@@ -36,7 +36,7 @@ The correspondence between the quantum mechanical measurement formalism and arch
 
 ### Overcoming the Heisenberg Cut
 
-Because both the target and the detector are governed by the same underlying Master Equation, the AAA framework eliminates the Heisenberg cut. A "measurement" requires no conscious observer; it is merely an interaction involving sufficient action transfer (on the scale of $h$) and sufficient environmental dissipation to lock an assembly into a new limit cycle and prevent coherent revival. 
+Because both the target and the detector are governed by the same underlying Master Equation, the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework eliminates the Heisenberg cut. A "measurement" requires no conscious observer; it is merely an interaction involving sufficient action transfer (on the scale of $h$) and sufficient environmental dissipation to lock an assembly into a new limit cycle and prevent coherent revival. 
 
 The threshold for a "record" is determined entirely by the stiffness of the local Noether Sea and the decoherence timescale of the surrounding assembly lattice.
 

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "[pre-push] validating content indexes and references..."
+node scripts/validate-content.mjs --check --strict
+echo "[pre-push] validating scene graph manifest..."
+node scripts/build-scene-graph.mjs --check --strict

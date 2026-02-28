@@ -1,4 +1,4 @@
-# Walkthrough Step 3 — Causal set and delay geometry
+# Causal set and delay geometry
 
 Existing text excerpt:
 > -   **Causal Interaction Set:** The receiver $o'$ at time $t$ interacts with a source $o$ through the (possibly multi-valued) set of causal emission times

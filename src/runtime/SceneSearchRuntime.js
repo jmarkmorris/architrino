@@ -16,18 +16,32 @@ export function createSceneSearchRuntime(deps) {
     return text.trim().toLowerCase();
   }
 
+  function getSearchEntries() {
+    if (sceneIndexService && typeof sceneIndexService.getSearchEntries === "function") {
+      return sceneIndexService.getSearchEntries();
+    }
+    return sceneIndexService.getScenes();
+  }
+
   function updateSearchResults(query) {
     if (!sceneSearchResults) {
       return;
     }
     const normalized = normalizeSearch(query);
-    const matches = sceneIndexService.getScenes().filter((scene) => {
+    const matches = getSearchEntries().filter((scene) => {
       if (!normalized) {
         return true;
       }
       const name = (scene.name || "").toLowerCase();
       const id = (scene.id || "").toLowerCase();
-      return name.includes(normalized) || id.includes(normalized);
+      const path = (scene.path || "").toLowerCase();
+      const nodeType = (scene.nodeType || "").toLowerCase();
+      return (
+        name.includes(normalized) ||
+        id.includes(normalized) ||
+        path.includes(normalized) ||
+        nodeType.includes(normalized)
+      );
     });
 
     sceneSearchResults.innerHTML = "";

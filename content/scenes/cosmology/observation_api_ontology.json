@@ -9,11 +9,11 @@
   "objects": [
     {
       "id": "ontology_anchor",
-      "label": "Cosmological Ontology",
+      "label": "Cosmology Ontology",
       "radius": 1.65,
       "color": "#355f9a",
       "position": [0.0, 5.3, 0.0],
-      "markdownPath": "content/markdown/aaa/cosmology/cosmological-ontology.md",
+      "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
     },

@@ -131,7 +131,7 @@ The architrino framework proposes to fill both gaps: every spacetime assembly ca
 
 ---
 
-## The Two-Parameter Deformation in AAA
+## The Two-Parameter Deformation in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 ### Shape Deformation (Oblateness)
 
@@ -151,7 +151,7 @@ $$
 R_\perp = R_\perp(E), \quad \frac{dR_\perp}{dE} < 0.
 $$
 
-This is not present in standard GR analogues, where the horizon scale is set by $M$ independently of the deformation parameter $a/M$. In AAA the two are coupled: increasing energy simultaneously flattens and shrinks the core.
+This is not present in standard GR analogues, where the horizon scale is set by $M$ independently of the deformation parameter $a/M$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the two are coupled: increasing energy simultaneously flattens and shrinks the core.
 
 ### Combined Exclusion Volume
 
@@ -235,7 +235,7 @@ As the universe cools and spacetime assemblies lose energy, $R_\perp$ grows (cor
 
 ## Comparison to Standard GR
 
-| Feature | Standard GR | AAA (shape + scale) |
+| Feature | Standard GR | $\mathbb{A}\mathbb{A}\mathbb{A}$ (shape + scale) |
 |---|---|---|
 | Degrees of freedom per point | 10 metric components (constrained by symmetries, gauge) | $\xi$, $\lambda$, $n$, $\hat{u}$ (4 scalar fields + orientation) |
 | Shape deformation | Implicit in specific solutions (Kerr $a/M$) | Universal: every core has $\xi(x)$ |

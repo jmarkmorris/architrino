@@ -1,6 +1,6 @@
 # Superposition Mechanism: Traditional vs. Architrino Assembly Architecture
 
-This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture (AAA).
+This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
 
 ### Traditional Quantum Mechanical View
 
@@ -12,9 +12,9 @@ The coefficients $c_n$ are complex probability amplitudes, and the system evolve
 
 Traditional superposition treats the indeterminacy as fundamental and ontological: prior to measurement, the particle possesses no definite state or trajectory.
 
-### Architrino Assembly Architecture (AAA) Mechanism
+### Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
 
-In the AAA framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing. 
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing. 
 
 The linearity of quantum superposition arises strictly from the linearity of the Master Equation: the total potential field experienced by any receiver is the exact, unmediated linear sum of all $1/r^2$ causal wake surfaces intersecting its current location. 
 

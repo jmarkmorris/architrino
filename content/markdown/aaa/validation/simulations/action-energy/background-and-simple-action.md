@@ -1,4 +1,4 @@
-# Walkthrough Step 1 — Background and Simple Action
+# Background and Simple Action
 
 Existing text excerpt:
 > The dynamics of an architrino are governed by a simple action: an acceleration caused by the intersection of its path with a potential field.

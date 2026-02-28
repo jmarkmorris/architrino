@@ -1,13 +1,13 @@
-# Chapter: Geometric Unification in $E_8$ and a Discrete AAA Interpretation
+# Chapter: Geometric Unification in $E_8$ and a Discrete $\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation
 
 ## 1. Chapter Scope
 
-This chapter presents a graduate-level treatment of A. Garrett Lisi's proposal, *An Exceptionally Simple Theory of Everything* (2007), and then evaluates how its geometric structure might be reinterpreted within an Architrino Assembly Architecture (AAA) framework.
+This chapter presents a graduate-level treatment of A. Garrett Lisi's proposal, *An Exceptionally Simple Theory of Everything* (2007), and then evaluates how its geometric structure might be reinterpreted within an Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) framework.
 
 The chapter has two goals:
 
 1. Reconstruct the mathematical logic of the $E_8$ proposal with clear technical boundaries.
-2. Distinguish established results from speculative AAA mappings, with explicit falsifiability criteria.
+2. Distinguish established results from speculative $\mathbb{A}\mathbb{A}\mathbb{A}$ mappings, with explicit falsifiability criteria.
 
 ## 2. Mathematical Preliminaries
 
@@ -111,7 +111,7 @@ Even when a triality map is algebraically suggestive, it does not by itself deri
 
 The framework suggests additional bosonic or matter-like states beyond the Standard Model. Any such proposal is constrained by collider non-observation and proton-decay bounds. As of now, no decisive empirical confirmation exists for the specific novel states often associated with the model.
 
-## 6. AAA Mapping: A Structured but Speculative Reinterpretation
+## 6. $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping: A Structured but Speculative Reinterpretation
 
 The following mapping is a research hypothesis, not an established derivation.
 
@@ -121,7 +121,7 @@ Hypothesis: each allowed $E_8$ root state corresponds to a stable Architrino ass
 
 ### 6.2 Lie Brackets as Rewrite Rules
 
-If $\alpha+\beta=\gamma$ defines an allowed bracket channel, AAA interprets this as an allowed local graph rewrite:
+If $\alpha+\beta=\gamma$ defines an allowed bracket channel, $\mathbb{A}\mathbb{A}\mathbb{A}$ interprets this as an allowed local graph rewrite:
 
 $$
 \mathcal{A}_\alpha + \mathcal{A}_\beta \rightarrow \mathcal{A}_\gamma.
@@ -135,7 +135,7 @@ The map $T^3=1$ is interpreted as a finite topological operation class on an ass
 
 ### 6.4 Emergent Metric from Discrete Duality
 
-In AAA terms, metric information is expected to emerge from network connectivity and primal-dual lattice structure. This offers a possible route for reinterpreting Hodge-dual usage without taking the continuum metric as fundamental.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, metric information is expected to emerge from network connectivity and primal-dual lattice structure. This offers a possible route for reinterpreting Hodge-dual usage without taking the continuum metric as fundamental.
 
 
 ## 7. Chapter Summary
@@ -146,5 +146,5 @@ Lisi's proposal remains an important pedagogical case in ambitious geometric uni
 2. Chirality and observed flavor structure are decisive filters.
 3. A viable theory must survive precision phenomenology.
 
-AAA can be framed as a discrete completion attempt of this geometric program, but it must be judged by the same standards: derivational rigor, quantitative fits, and falsifiable predictions.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ can be framed as a discrete completion attempt of this geometric program, but it must be judged by the same standards: derivational rigor, quantitative fits, and falsifiable predictions.
 

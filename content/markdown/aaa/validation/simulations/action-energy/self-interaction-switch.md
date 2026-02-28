@@ -1,4 +1,4 @@
-# Walkthrough Step 8 — Self-interaction switch
+# Self-interaction switch
 
 Existing text excerpt:
 > ### **Self-Interaction**

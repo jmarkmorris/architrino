@@ -1,4 +1,4 @@
-# Walkthrough Step 6 — Well-posedness and regularization
+# Well-posedness and regularization
 
 Existing text excerpt:
 > ### **Well-posedness and Regularization**

@@ -1,6 +1,6 @@
 # Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture
 
-This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture (AAA). The central thesis is that entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers.
+This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers.
 
 ---
 
@@ -38,11 +38,11 @@ Despite the correlations, entanglement cannot transmit information faster than l
 
 ---
 
-## Architrino Assembly Architecture (AAA) Mechanism
+## Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
 
 ### Ontological Starting Point
 
-In the AAA framework, every architrino possesses a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ in the Euclidean void at every absolute time $t$. There is no ontological indeterminacy. The complete microstate of a system is:
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, every architrino possesses a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ in the Euclidean void at every absolute time $t$. There is no ontological indeterminacy. The complete microstate of a system is:
 
 $$
 \Gamma(t) = \bigl\{(\mathbf{x}_i(t),\, \mathbf{v}_i(t),\, q_i)\bigr\}_{i=1}^{N},
@@ -92,7 +92,7 @@ Because the hidden variables of $A$ and $B$ are correlated from creation, the me
 
 ### Addressing Bell's Theorem
 
-Bell's theorem excludes theories that are simultaneously **local** (in the Bell sense) and assign pre-existing values to all observables. The AAA framework is a **nonlocal hidden-variable theory** in the following precise sense:
+Bell's theorem excludes theories that are simultaneously **local** (in the Bell sense) and assign pre-existing values to all observables. The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is a **nonlocal hidden-variable theory** in the following precise sense:
 
 **What "nonlocal" means here.** The framework does not violate causality. No signal, influence, or energy propagates faster than $c_f$. The nonlocality resides in the **ontological structure**: the existence of absolute time provides a global simultaneity surface, and the creation event imprints **joint constraints** on the hidden variables of both particles that are not factorizable into independent local assignments.
 
@@ -102,9 +102,9 @@ $$
 P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) = P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda),
 $$
 
-where $a, b$ are outcomes and $\hat{m}_A, \hat{m}_B$ are measurement settings. In the AAA framework, this factorization can fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ encodes **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections) that make the outcomes at $A$ and $B$ statistically dependent even when conditioned on $\lambda$ as partitioned by Bell's formalism. The correlations are built into the structure of $\lambda$ itself, in a way that resists decomposition into independent local parts.
+where $a, b$ are outcomes and $\hat{m}_A, \hat{m}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this factorization can fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ encodes **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections) that make the outcomes at $A$ and $B$ statistically dependent even when conditioned on $\lambda$ as partitioned by Bell's formalism. The correlations are built into the structure of $\lambda$ itself, in a way that resists decomposition into independent local parts.
 
-**Which loophole is exploited?** The AAA framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure (in Bohm's case, the pilot wave on configuration space; in AAA, the correlated path-history wake geometry in absolute time). Like Bohmian mechanics, it is explicitly nonlocal in the Bell sense while strictly prohibiting superluminal signaling. The nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
+**Which loophole is exploited?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure (in Bohm's case, the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correlated path-history wake geometry in absolute time). Like Bohmian mechanics, it is explicitly nonlocal in the Bell sense while strictly prohibiting superluminal signaling. The nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
 
 **Measurement independence** is preserved: the choice of measurement settings at $A$ and $B$ can be freely varied without correlation with the hidden variables $\lambda$ established at creation. The theory does not invoke superdeterminism.
 
@@ -112,7 +112,7 @@ where $a, b$ are outcomes and $\hat{m}_A, \hat{m}_B$ are measurement settings. I
 
 The existence of absolute time $t$ is essential to the consistency of this picture. In the standard relativistic framework, the absence of a preferred foliation means that "which measurement happened first" is frame-dependent for spacelike-separated events. This makes it difficult to tell a coherent story about how correlations are maintained without invoking some form of action at a distance.
 
-In the AAA framework, there is an objective temporal ordering. At any absolute time $t$, the complete microstate $\Gamma(t)$ is defined on a global simultaneity surface $\Sigma_t$. The correlations between $A$ and $B$ are **already present** in $\Gamma(t)$ for all $t > t_0$, carried in the respective internal configurations. The measurement at $A$ (occurring at some absolute time $t_A$) resolves $A$'s configuration into a definite basin; the measurement at $B$ (at $t_B$) does the same for $B$. Whether $t_A < t_B$ or $t_B < t_A$ is an objective fact, but it does not matter for the statistics: the correlations were fixed at $t_0$ and are simply **read out** at $t_A$ and $t_B$.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective temporal ordering. At any absolute time $t$, the complete microstate $\Gamma(t)$ is defined on a global simultaneity surface $\Sigma_t$. The correlations between $A$ and $B$ are **already present** in $\Gamma(t)$ for all $t > t_0$, carried in the respective internal configurations. The measurement at $A$ (occurring at some absolute time $t_A$) resolves $A$'s configuration into a definite basin; the measurement at $B$ (at $t_B$) does the same for $B$. Whether $t_A < t_B$ or $t_B < t_A$ is an objective fact, but it does not matter for the statistics: the correlations were fixed at $t_0$ and are simply **read out** at $t_A$ and $t_B$.
 
 This structure avoids the conceptual difficulties of standard nonlocality:
 
@@ -122,7 +122,7 @@ This structure avoids the conceptual difficulties of standard nonlocality:
 
 ### No-Signaling: Why Correlations Cannot Transmit Information
 
-Entanglement correlations in the AAA framework cannot be used for faster-than-light communication for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is:
+Entanglement correlations in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework cannot be used for faster-than-light communication for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is:
 
 $$
 P(a \,|\, \hat{m}_A) = \int P(a \,|\, \hat{m}_A, \lambda)\, \rho(\lambda)\, d\lambda,
@@ -140,7 +140,7 @@ The correlations become visible only when outcomes from both sides are **compare
 
 ## The Phenomenological Mapping
 
-| Quantum Formalism | AAA Micro-Dynamics |
+| Quantum Formalism | $\mathbb{A}\mathbb{A}\mathbb{A}$ Micro-Dynamics |
 |:---|:---|
 | **Entangled state** $\lvert\Psi\rangle_{AB}$ | Joint constraint on the hidden variables $(\Gamma_A, \Gamma_B)$ inherited from a shared creation event; the microstate is non-factorizable because conservation laws at fragmentation enforce correlated binary phases and orientations. |
 | **Non-separability** (no product-state decomposition) | The hidden-variable space $\lambda$ encodes geometric correlations (relative binary-plane angles, wake-phase offsets) that cannot be decomposed into independent local assignments without losing information. |
@@ -154,7 +154,7 @@ The correlations become visible only when outcomes from both sides are **compare
 
 ## Ontic vs. Epistemic: The Two-Level Reading
 
-The AAA framework supports a clean two-level interpretation of entanglement:
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interpretation of entanglement:
 
 **Ontic level (Absolute Observer).** The microstate $\Gamma(t)$ is always definite and global. After a creation event at $t_0$, the daughter microstates $\Gamma_A(t)$ and $\Gamma_B(t)$ are each fully determined for all $t > t_0$. The "entanglement" is simply the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained—a bookkeeping statement about the initial conditions, not a dynamical link.
 
@@ -166,21 +166,21 @@ The persistent philosophical puzzles of entanglement—how can a measurement "he
 
 ## Comparison with Competing Interpretations
 
-| Interpretation | Hidden Variables? | Nonlocal Influence? | Collapse? | AAA Alignment |
+| Interpretation | Hidden Variables? | Nonlocal Influence? | Collapse? | $\mathbb{A}\mathbb{A}\mathbb{A}$ Alignment |
 |:---|:---|:---|:---|:---|
 | **Copenhagen** | No | Ambiguous | Yes (axiom) | Rejects collapse axiom; $\lvert\psi\rangle$ is epistemic. |
 | **Many-Worlds** | No | No (all branches real) | No | Rejects ontic branching; one realized trajectory. |
-| **de Broglie–Bohm** | Yes (positions) | Yes (pilot wave) | Effective | Closest structural analogue; AAA replaces pilot wave with causal wake geometry. |
+| **de Broglie–Bohm** | Yes (positions) | Yes (pilot wave) | Effective | Closest structural analogue; $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces pilot wave with causal wake geometry. |
 | **QBism** | No (probabilities are personal) | No | No (belief update) | Shares epistemic reading of $\lvert\psi\rangle$ but rejects subjectivism; $\Gamma(t)$ is objective. |
 | **Superdeterminism** | Yes | No | No | Rejects; measurement independence preserved. |
-| **AAA** | Yes (full microstate $\Gamma$) | Yes (non-separable $\lambda$, no signaling) | Effective (threshold crossing) | — |
+| **$\mathbb{A}\mathbb{A}\mathbb{A}$** | Yes (full microstate $\Gamma$) | Yes (non-separable $\lambda$, no signaling) | Effective (threshold crossing) | — |
 
-The AAA framework is most naturally compared to Bohmian mechanics. Both are deterministic hidden-variable theories that are explicitly nonlocal in the Bell sense. The structural differences are:
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Bohmian mechanics. Both are deterministic hidden-variable theories that are explicitly nonlocal in the Bell sense. The structural differences are:
 
-- **Guidance mechanism**: Bohm uses a pilot wave $\psi$ on configuration space; AAA uses the superposed causal wake field in 3D Euclidean space plus absolute time.
-- **Ontological economy**: AAA does not require a separate ontological category for the wave; the wake field is generated by the architrinos themselves.
-- **Non-Markovian memory**: AAA's self-hit dynamics introduce history dependence absent in standard Bohmian mechanics.
-- **Spacetime**: Bohm typically works within Minkowski spacetime; AAA replaces it with Euclidean void + absolute time, making the nonlocality conceptually transparent.
+- **Guidance mechanism**: Bohm uses a pilot wave $\psi$ on configuration space; $\mathbb{A}\mathbb{A}\mathbb{A}$ uses the superposed causal wake field in 3D Euclidean space plus absolute time.
+- **Ontological economy**: $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require a separate ontological category for the wave; the wake field is generated by the architrinos themselves.
+- **Non-Markovian memory**: $\mathbb{A}\mathbb{A}\mathbb{A}$'s self-hit dynamics introduce history dependence absent in standard Bohmian mechanics.
+- **Spacetime**: Bohm typically works within Minkowski spacetime; $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces it with Euclidean void + absolute time, making the nonlocality conceptually transparent.
 
 ---
 

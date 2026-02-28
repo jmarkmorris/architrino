@@ -293,17 +293,43 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
 #### Apparent Obstruction: Non-Negativity of Tangential Components
 
-**Key Result**: For the symmetric, non-translating two-body circle geometry, and for **any** single causal root (including all older roots with winding index $m \ge 0$), the tangential components satisfy:
+**Theorem (No-go for constant-speed circular orbit in the bare two-body kernel).**  
+In the symmetric, non-translating circular binary with canonical delayed radial forces only, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
 
 $$
-T_s \ge 0, \quad T_p \ge 0 \quad \Rightarrow \quad T = T_s + T_p > 0.
+T_{\mathrm{net}}
+=
+\sum_{m\in\mathcal{M}_p} w_{p,m} T_{p,m}
+\;+\;
+\sum_{m\in\mathcal{M}_s} w_{s,m} T_{s,m}
+>0,
 $$
+where $w_{p,m},w_{s,m}\ge 0$ are branch weights induced by regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
 
-**Conclusion (provisional)**: The per-hit analysis yields $T \ge 0$ for every root. Because all roots for a given speed have the same sign of tangential projection (the chords all lean the same way), the **bare two-body kernel tends to monotonically increase orbital speed at fixed radius**. A genuine $\langle T \rangle = 0$ circle from this kernel alone would require **nontrivial** geometric/time-averaged cancellation across many roots; it is not guaranteed. The existence of an MCB in the pure two-body system is therefore a conjecture that must be directly tested; if simulations fail to find such a cycle, the architecture must invoke either additional physics (e.g., medium coupling, radiation, velocity dependence) or a modified interaction law.
+*Proof.*  
+For any active partner branch, the tangential contribution is
+$$
+T_{p,m}
+=
+\frac{\kappa\epsilon^2}{4R^2}
+\frac{\sin(\tilde{\delta}_{p,m}/2)}{\cos^2(\tilde{\delta}_{p,m}/2)}
+>0,
+\qquad \tilde{\delta}_{p,m}\in(0,\pi),
+$$
+and for any active self branch (when present),
+$$
+T_{s,m}
+=
+\frac{\kappa\epsilon^2}{4R^2}
+\frac{\cos(\tilde{\delta}_{s,m}/2)}{\sin^2(\tilde{\delta}_{s,m}/2)}
+>0,
+\qquad \tilde{\delta}_{s,m}\in(0,\pi).
+$$
+The sign is branch-invariant because winding changes timing, not chord orientation in this symmetric geometry. Therefore each summand in $T_{\mathrm{net}}$ is nonnegative, and at least one is strictly positive whenever any hit exists. Hence $T_{\mathrm{net}}>0$. $\square$
 
-- **Nontrivial multi-root cancellation** from geometry/time-weighting across roots,
-- **Additional interactions** that provide negative tangential work on average (medium coupling, radiation, velocity dependence),
-- **Multi-body stabilization** (tri-binary structure with nested pairs) that changes the root geometry.
+**Corollary.**  
+Within the bare isolated two-body kernel, an exact constant-speed circular orbit
+($\langle T\rangle=0$) is impossible. Any MCB-like steady state must therefore come from terms outside this kernel, e.g. medium coupling/dissipation, radiation-reaction-like closure, or genuinely multi-body tri-binary effects.
 
 **Plain language**: The isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every root pushes the same way. A steady circle must come from exceptional multi-root averaging or from extra physics beyond the bare kernel. This is a primary test of the MCB attractor hypothesis.
 
@@ -481,7 +507,27 @@ $$
 
 *Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+$ such that $\tau(\phi) = \tau^*$.
 
-*Proof Sketch:* Apply the Implicit Function Theorem to $g_{ij}$. The condition $\partial_\tau g \neq 0$ corresponds to the source not moving exactly at the speed of light *towards* the receiver at the retarded time (no "causal shock" accumulation).
+*Proof.*  
+Define
+$$
+g_{ij}(\tau,\phi)=\|\phi_i(0)-\phi_j(-\tau)\|-c_f\tau.
+$$
+Because $\phi\in C^1$, the evaluation maps $\phi\mapsto \phi_i(0)$ and
+$(\tau,\phi)\mapsto \phi_j(-\tau)$ are $C^1$, hence $g_{ij}$ is $C^1$ on
+$\mathbb{R}^+\times\mathcal{H}$. At a root $(\tau^*,\phi)$,
+$$
+\partial_\tau g_{ij}
+=-\hat{\mathbf{r}}_{ij}\!\cdot\!\dot{\phi}_j(-\tau^*)-c_f,
+\quad
+\hat{\mathbf{r}}_{ij}
+\equiv
+\frac{\phi_i(0)-\phi_j(-\tau^*)}{\|\phi_i(0)-\phi_j(-\tau^*)\|}.
+$$
+The simple-root condition is exactly $\partial_\tau g_{ij}\neq 0$, i.e. no
+retarded tangency/causal-shock degeneracy. Therefore, by the Banach-space
+Implicit Function Theorem, there exist a neighborhood $U$ of $\phi$ and a
+unique $C^1$ map $\tau:U\to\mathbb{R}^+$ with
+$g_{ij}(\tau(\psi),\psi)=0$ and $\tau(\phi)=\tau^*$. $\square$
 
 #### Definition 3 (Regularized Force Field)
 To ensure the vector field is Lipschitz, we replace the distributional Dirac delta of the master equation with the mollifier $\rho_\eta$ (see `dynamics/master-equation.md`). The acceleration functional $F_i: \mathcal{H} \to \mathbb{R}^3$ is:
@@ -496,15 +542,47 @@ $$
 
 #### Theorem 1 (Local Existence and Uniqueness)
 **Assumptions:**
-1. $\eta > 0$ (Finite regularization).
-2. The initial history $\phi^0 \in \mathcal{H}$ satisfies the "gluing condition" at $t=0$ (acceleration computed from history matches $\ddot{\phi}^0(0-)$) to ensure $C^2$ smoothness at the junction, though $C^1$ solutions exist without this.
-3. No "tangential" causal intersections in the history (roots are simple).
+1. $\eta > 0$, and $\rho_\eta$ is $C^1$ with bounded value and bounded derivative.
+2. Initial history $\phi^0 \in \mathcal{H}$ is admissible: there exists $d_{\min}>0$ such that all interaction channels used by Definition 3 satisfy
+   $$
+   \|\phi_i(0)-\phi_j(\theta)\|\ge d_{\min},\qquad \theta\in[-h,0],
+   $$
+   on a neighborhood of $\phi^0$.
+3. Delay roots used in channel construction are simple (transversal), i.e. no causal-shock degeneracy (Lemma 1).
+4. Couplings/charges are finite.
+5. Optional higher-smoothness gluing condition at $t=0$ (needed for $C^2$ at the junction, not for $C^1$ well-posedness).
 
 **Statement:**
-There exists a maximal time $T > 0$ and a unique solution $\mathbf{x}(t)$ on $[-h, T)$ such that $\mathbf{x}_0 = \phi^0$ and $\mathbf{x}(t)$ satisfies the regularized master equation.
+Let $\mathbf{Y}=(\mathbf{x},\mathbf{v})$ and write the system in first-order form
+$$
+\dot{\mathbf{Y}}(t)=\mathcal{G}(\mathbf{Y}_t),\qquad
+\mathbf{Y}_{t_0}=\phi^0.
+$$
+Then there exists $T>0$ and a unique $C^1$ solution on $[t_0-h,t_0+T)$.  
+Equivalently, there is a unique maximal solution interval
+$$
+[t_0-h,t_{\max}),\qquad t_{\max}>t_0.
+$$
+If the optional gluing condition holds, the solution is $C^2$ at $t_0$.
 
-*Proof Strategy:*
-The problem is reduced to $\dot{\mathbf{x}}(t) = \mathbf{v}(t), \dot{\mathbf{v}}(t) = F(\mathbf{x}_t)$. Since $F$ is locally Lipschitz on the open subset of $\mathcal{H}$ where causal roots are simple (Lemma 1), the Picard-Lindelof theorem for Banach spaces applies.
+*Proof.*  
+Define
+$$
+\mathcal{G}(\phi)=(\phi_v(0),F(\phi)),
+$$
+with $F$ from Definition 3.
+
+1. By Assumption 2, every denominator in the interaction kernel is bounded away from zero on the admissible neighborhood; therefore the map
+   $$
+   (\mathbf{u},\mathbf{w})\mapsto \frac{\mathbf{u}-\mathbf{w}}{\|\mathbf{u}-\mathbf{w}\|^3}
+   $$
+   is $C^1$ there with bounded derivative.
+2. By Assumption 1, composition with $\rho_\eta$ preserves $C^1$ regularity and bounded derivatives.  
+3. By Lemma 1 and Assumption 3, delay branches (where used) depend $C^1$ on history; thus branch-evaluation maps are locally Lipschitz in $\phi$.
+4. Finite sums over channels and integration over finite interval $[-h,0]$ preserve local Lipschitz continuity; hence $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}$ containing $\phi^0$.
+5. Apply the standard Banach-space existence/uniqueness theorem for state-dependent DDEs: a unique local $C^1$ solution exists and extends uniquely to a maximal interval.
+
+Therefore Theorem 1 holds. $\square$
 
 ---
 
@@ -555,8 +633,35 @@ Let $\mathbf{x}(t)$ be a solution to the master equation.
 1. **Time Translation:** For any $\tau \in \mathbb{R}$, $\mathbf{y}(t) = \mathbf{x}(t + \tau)$ is also a solution.
 2. **Spatial Isometry:** For any $R \in O(3)$ and $\mathbf{b} \in \mathbb{R}^3$, $\mathbf{y}(t) = R\mathbf{x}(t) + \mathbf{b}$ is also a solution.
 
-*Proof Sketch:*
-The causal constraint $\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0)$ depends only on the Euclidean distance and time difference. Both are invariants of $G_{\text{fund}}$. The vector direction $\hat{\mathbf{r}}$ rotates covariantly with $R$. Thus, the dynamics are form-invariant.
+*Proof.*  
+For time translation, set $\mathbf{y}_i(t)=\mathbf{x}_i(t+\tau)$. If
+$t_0\in\mathcal{C}_j^x(t+\tau)$ for the original solution, then
+$t_0-\tau\in\mathcal{C}_j^y(t)$ because
+$$
+\|\mathbf{y}_i(t)-\mathbf{y}_j(t_0-\tau)\|
+=\|\mathbf{x}_i(t+\tau)-\mathbf{x}_j(t_0)\|
+=c_f[(t+\tau)-t_0]
+=c_f[t-(t_0-\tau)].
+$$
+Hence the same branch contributions appear with shifted times, and
+$\ddot{\mathbf{y}}_i(t)=\ddot{\mathbf{x}}_i(t+\tau)$ satisfies the same force law.
+
+For spatial isometries, set $\mathbf{y}_i(t)=R\mathbf{x}_i(t)+\mathbf{b}$,
+$R\in O(3)$. Distances are preserved:
+$$
+\|\mathbf{y}_i(t)-\mathbf{y}_j(t_0)\|
+=\|R(\mathbf{x}_i(t)-\mathbf{x}_j(t_0))\|
+=\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\|,
+$$
+so causal-root times are unchanged. Unit directions transform covariantly:
+$\hat{\mathbf{r}}_{ij}^y=R\hat{\mathbf{r}}_{ij}^x$. Therefore each force term
+transforms as $\mathbf{a}_{ij}^y=R\mathbf{a}_{ij}^x$, and
+$$
+\ddot{\mathbf{y}}_i(t)=R\ddot{\mathbf{x}}_i(t)
+=\sum_j\sum_{t_0\in\mathcal{C}_j(t)}
+\kappa\sigma_{ij}\frac{|q_iq_j|}{r_{ij}^2}\,\hat{\mathbf{r}}_{ij}^y.
+$$
+Thus $\mathbf{y}$ solves the same equations. $\square$
 
 **Implication:** There exist exact integrals of motion corresponding to these symmetries. However, because the interaction is non-local in time, these integrals must account for "momentum and energy in flight" (stored in the wake surfaces).
 

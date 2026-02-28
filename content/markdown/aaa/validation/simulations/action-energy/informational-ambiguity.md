@@ -1,4 +1,4 @@
-# Walkthrough Step 9 — Informational ambiguity
+# Informational ambiguity
 
 Existing text excerpt:
 > ### **Informational Ambiguity at the Receiver**
