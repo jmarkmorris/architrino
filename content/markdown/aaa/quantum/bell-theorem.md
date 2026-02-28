@@ -1,6 +1,6 @@
 # Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response
 
-This document presents the standard derivation and physical content of Bell's theorem, then provides a precise account of how the Architrino Assembly Architecture (AAA) accommodates the experimentally observed violations of Bell inequalities. The central conclusion is that AAA is a deterministic, nonlocal hidden-variable theory that violates Bell locality through the non-separable geometric structure of its hidden-variable space, while strictly preserving no-signaling and measurement independence.
+This document presents the standard derivation and physical content of Bell's theorem, then provides a precise account of how the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) accommodates the experimentally observed violations of Bell inequalities. The central conclusion is that $\mathbb{A}\mathbb{A}\mathbb{A}$ is a deterministic, nonlocal hidden-variable theory that violates Bell locality through the non-separable geometric structure of its hidden-variable space, while strictly preserving no-signaling and measurement independence.
 
 ---
 
@@ -125,9 +125,9 @@ The major responses in the literature are:
 
 ## Architrino Assembly Architecture Response
 
-### Which Assumption Does AAA Deny?
+### Which Assumption Does $\mathbb{A}\mathbb{A}\mathbb{A}$ Deny?
 
-**AAA denies Bell Locality.** It retains Realism and Measurement Independence.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ denies Bell Locality.** It retains Realism and Measurement Independence.
 
 Specifically:
 
@@ -141,11 +141,11 @@ $$
 
 even though no signal passes between the detectors at or after the time of measurement.
 
-- **Measurement Independence is preserved**: The choice of detector settings $\hat{m}_A, \hat{m}_B$ is uncorrelated with $\lambda$. The creation event that sets $\lambda$ lies in the causal past of both detectors, but the setting choices are determined by apparatus configurations (or cosmic random-number generators) that have no causal connection to the source. AAA does not invoke superdeterminism.
+- **Measurement Independence is preserved**: The choice of detector settings $\hat{m}_A, \hat{m}_B$ is uncorrelated with $\lambda$. The creation event that sets $\lambda$ lies in the causal past of both detectors, but the setting choices are determined by apparatus configurations (or cosmic random-number generators) that have no causal connection to the source. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not invoke superdeterminism.
 
 ### Why Bell Locality Fails: The Geometric Mechanism
 
-The non-separability of $\lambda$ requires a precise physical account. In AAA, the hidden variable for an entangled pair is not a list of independent local properties but a **joint geometric constraint** on the internal configurations of both assemblies.
+The non-separability of $\lambda$ requires a precise physical account. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the hidden variable for an entangled pair is not a list of independent local properties but a **joint geometric constraint** on the internal configurations of both assemblies.
 
 **Creation event.** When a parent assembly fragments into daughters $A$ and $B$ at absolute time $t_0$, the Master Equation and conservation laws (charge, momentum, angular momentum, energy) jointly determine the daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$. The angular momentum constraint is the critical one: the total angular momentum $\mathbf{J}_A + \mathbf{J}_B = \mathbf{J}_{\text{parent}}$ is enforced at $t_0$ and thereafter conserved independently by each daughter.
 
@@ -157,7 +157,7 @@ For a spin-singlet-like creation ($\mathbf{J}_{\text{parent}} = 0$), this means 
 
 ### Reproducing the Quantum Correlation Function
 
-The central quantitative test is whether the AAA hidden-variable structure reproduces the singlet correlation:
+The central quantitative test is whether the $\mathbb{A}\mathbb{A}\mathbb{A}$ hidden-variable structure reproduces the singlet correlation:
 
 $$
 E(\hat{m}_A, \hat{m}_B) = -\cos\theta_{AB}.
@@ -173,7 +173,7 @@ $$
 
 which is **linear** in $\theta_{AB}$ and does not violate the CHSH bound. This is the well-known failure of all local hidden-variable models with sharp basin boundaries.
 
-The resolution within AAA lies in the **non-sharp basin structure**. The measurement interaction is not an instantaneous projection; it is a finite-time threshold crossing through a metastable region (see `quantum/superposition-mechanism.md`). The effective basin boundary is broadened by:
+The resolution within $\mathbb{A}\mathbb{A}\mathbb{A}$ lies in the **non-sharp basin structure**. The measurement interaction is not an instantaneous projection; it is a finite-time threshold crossing through a metastable region (see `quantum/superposition-mechanism.md`). The effective basin boundary is broadened by:
 
 1. **Wake-phase sensitivity**: the exact outcome depends on the phase relationship between the assembly's internal oscillations and the apparatus potential at the moment of interaction, producing a smooth, sinusoidal dependence on the angle between $\hat{m}$ and $\hat{n}$ rather than a step function.
 
@@ -197,9 +197,9 @@ which, combined with the uniform distribution over $\hat{n}$ and the anti-correl
 
 ### de Broglie–Bohm (Pilot-Wave) Theory
 
-The closest structural relative. Both AAA and Bohmian mechanics are deterministic, realistic, and explicitly nonlocal. Key differences:
+The closest structural relative. Both $\mathbb{A}\mathbb{A}\mathbb{A}$ and Bohmian mechanics are deterministic, realistic, and explicitly nonlocal. Key differences:
 
-| Feature | de Broglie–Bohm | AAA |
+| Feature | de Broglie–Bohm | $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 |:---|:---|:---|
 | Hidden variables | Particle positions in 3D | Full microstate $\Gamma(t)$ (positions, velocities, charges) in 3D |
 | Guidance mechanism | Pilot wave $\psi$ on configuration space $\mathbb{R}^{3N}$ | Superposed causal wake field in physical 3D space |
@@ -208,25 +208,25 @@ The closest structural relative. Both AAA and Bohmian mechanics are deterministi
 | Spacetime | Minkowski (standard) or absolute time (non-relativistic) | Euclidean void + absolute time (fundamental) |
 | Memory | Markovian (given $\psi$) | Non-Markovian (self-hit, path-history dependence) |
 
-In Bohmian mechanics, the pilot wave on $\mathbb{R}^{3N}$ provides instantaneous, nonlocal guidance: a change in configuration at one location instantaneously alters the velocity field everywhere. In AAA, the nonlocality is more conservative: it resides in the **initial conditions** ($\lambda$) rather than in an ongoing dynamical coupling. After creation, each assembly evolves locally (no faster-than-$c_f$ influence); the correlations are pre-established, not dynamically maintained.
+In Bohmian mechanics, the pilot wave on $\mathbb{R}^{3N}$ provides instantaneous, nonlocal guidance: a change in configuration at one location instantaneously alters the velocity field everywhere. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the nonlocality is more conservative: it resides in the **initial conditions** ($\lambda$) rather than in an ongoing dynamical coupling. After creation, each assembly evolves locally (no faster-than-$c_f$ influence); the correlations are pre-established, not dynamically maintained.
 
 ### Superdeterminism
 
-Superdeterministic models deny measurement independence: the detector settings and the hidden variables share a common cause in the remote past, eliminating genuine free choice. AAA explicitly rejects this route. The creation event that sets $\lambda$ is causally disconnected from the apparatus settings (which can be determined by distant quasars or quantum random-number generators). Measurement independence is a structural feature of the theory, not an approximation.
+Superdeterministic models deny measurement independence: the detector settings and the hidden variables share a common cause in the remote past, eliminating genuine free choice. $\mathbb{A}\mathbb{A}\mathbb{A}$ explicitly rejects this route. The creation event that sets $\lambda$ is causally disconnected from the apparatus settings (which can be determined by distant quasars or quantum random-number generators). Measurement independence is a structural feature of the theory, not an approximation.
 
 ### Retrocausal Models
 
-Retrocausal interpretations allow influences from future measurement settings to propagate backward in time to the source, effectively setting $\lambda$ in response to $\hat{m}_A$ and $\hat{m}_B$. AAA's absolute-time ontology categorically forbids backward-in-$t$ causation. All causal influences propagate forward in absolute time at or below $c_f$. The correlations in $\lambda$ are forward-causal consequences of the creation event, established before any measurement setting is chosen.
+Retrocausal interpretations allow influences from future measurement settings to propagate backward in time to the source, effectively setting $\lambda$ in response to $\hat{m}_A$ and $\hat{m}_B$. $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time ontology categorically forbids backward-in-$t$ causation. All causal influences propagate forward in absolute time at or below $c_f$. The correlations in $\lambda$ are forward-causal consequences of the creation event, established before any measurement setting is chosen.
 
 ---
 
 ## The Role of Absolute Time
 
-The existence of a global time parameter $t$ is essential for the internal consistency of the AAA account of Bell violations.
+The existence of a global time parameter $t$ is essential for the internal consistency of the $\mathbb{A}\mathbb{A}\mathbb{A}$ account of Bell violations.
 
 **Problem in relativistic frameworks.** In Minkowski spacetime, spacelike-separated measurements have no invariant temporal ordering. Telling a story about "what happens first" requires selecting a frame, and different frames give different orderings. This makes it conceptually difficult to describe how pre-established correlations are "read out" without invoking some form of action at a distance.
 
-**Resolution via absolute time.** In AAA, the temporal ordering of all events is objective. Measurements at $A$ and $B$ occur at definite absolute times $t_A$ and $t_B$, with $t_A < t_B$, $t_A = t_B$, or $t_A > t_B$ as an objective fact. In all three cases the account is the same:
+**Resolution via absolute time.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, the temporal ordering of all events is objective. Measurements at $A$ and $B$ occur at definite absolute times $t_A$ and $t_B$, with $t_A < t_B$, $t_A = t_B$, or $t_A > t_B$ as an objective fact. In all three cases the account is the same:
 
 1. At $t_0 < \min(t_A, t_B)$: the creation event establishes $\lambda$.
 2. At each measurement time: the local apparatus drives the local assembly across a basin boundary. The outcome is determined by $\lambda$ and the local setting.
@@ -240,7 +240,7 @@ No step involves faster-than-$c_f$ influence. The correlations are visible only 
 
 ## Observables, Falsifiability, and Failure Modes
 
-**Claim:** AAA reproduces all experimentally observed Bell inequality violations through pre-established, non-separable hidden variables set at a shared creation event, without superluminal signaling or denial of measurement independence.
+**Claim:** $\mathbb{A}\mathbb{A}\mathbb{A}$ reproduces all experimentally observed Bell inequality violations through pre-established, non-separable hidden variables set at a shared creation event, without superluminal signaling or denial of measurement independence.
 
 **Assumptions:**
 - The full microstate $\Gamma(t)$ is definite at all $t$ (realism).
@@ -251,7 +251,7 @@ No step involves faster-than-$c_f$ influence. The correlations are visible only 
 
 **Predictions:**
 - All standard Bell-CHSH violations are reproduced: $|S| = 2\sqrt{2}$ for singlet pairs with optimal settings.
-- No violation of the Tsirelson bound: $|S| \leq 2\sqrt{2}$. Observing $|S| > 2\sqrt{2}$ would falsify both QM and any AAA model that reproduces QM.
+- No violation of the Tsirelson bound: $|S| \leq 2\sqrt{2}$. Observing $|S| > 2\sqrt{2}$ would falsify both QM and any $\mathbb{A}\mathbb{A}\mathbb{A}$ model that reproduces QM.
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
 - Decoherence rates for entangled pairs depend on local Noether Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with `quantum/entanglement-nonlocality.md`).
 
@@ -259,7 +259,7 @@ No step involves faster-than-$c_f$ influence. The correlations are visible only 
 - If the Master Equation dynamics for a tri-binary measurement interaction yield a response function that is **not** $\cos^2(\alpha/2)$—for instance, a linear or piecewise-linear function—the resulting $E(\theta_{AB})$ will disagree with the quantum prediction and with experiment. This is a falsification of the specific mechanism, requiring revision of the measurement model or the assembly-apparatus coupling.
 - If simulations of correlated pair creation under the Master Equation produce a hidden-variable distribution $\rho(\lambda)$ that is **separable** (factorizes into independent local distributions), the theory reduces to a local hidden-variable model and cannot violate the CHSH bound. This would be a fundamental failure requiring revision of the creation-event dynamics or the conservation-law implementation.
 - If any experiment demonstrates genuine **signaling** via entanglement (information transfer at $B$ contingent on the setting choice at $A$, without a classical channel), the entire framework fails.
-- If measurement independence is empirically falsified (e.g., via cosmic Bell tests showing setting–source correlations at a level incompatible with statistical noise), the assumption structure changes for all interpretations, not only AAA.
+- If measurement independence is empirically falsified (e.g., via cosmic Bell tests showing setting–source correlations at a level incompatible with statistical noise), the assumption structure changes for all interpretations, not only $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 **Next Steps:**
 - Derive the angular response function $P(a|\hat{m}, \hat{n})$ from the Master Equation for a tri-binary assembly driven by a Stern-Gerlach-like apparatus potential gradient. The key calculation is the basin-boundary geometry as a function of the angle between the driving field and the internal angular-momentum axis.

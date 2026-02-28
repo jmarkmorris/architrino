@@ -1,4 +1,4 @@
-# Jacobson (1995): Thermodynamics of Spacetime — Summary and AAA Mapping
+# Jacobson (1995): Thermodynamics of Spacetime — Summary and $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping
 
 ## Summary of the Paper
 
@@ -26,27 +26,27 @@ The paper's most provocative conclusion: the Einstein equation is a macroscopic 
 
 ## Mappings to the Architrino Assembly Architecture
 
-Jacobson's paper is remarkably consonant with the AAA programme. Below is a point-by-point comparison.
+Jacobson's paper is remarkably consonant with the $\mathbb{A}\mathbb{A}\mathbb{A}$ programme. Below is a point-by-point comparison.
 
 ### The effective metric is thermodynamic, not fundamental
 
-Jacobson treats $g_{\mu\nu}$ as emergent from microscopic degrees of freedom, exactly as AAA does. In our framework the Noether Sea of tri-binary spacetime assemblies is the microstructure; the effective metric $g_{\mu\nu}$ encodes density, deformation, and orientation of those assemblies. Jacobson's argument provides independent, theory-agnostic motivation for why GR should be the correct long-wavelength limit of **any** local, area-scaling, thermodynamically equilibrated microstructure — including ours.
+Jacobson treats $g_{\mu\nu}$ as emergent from microscopic degrees of freedom, exactly as $\mathbb{A}\mathbb{A}\mathbb{A}$ does. In our framework the Noether Sea of tri-binary spacetime assemblies is the microstructure; the effective metric $g_{\mu\nu}$ encodes density, deformation, and orientation of those assemblies. Jacobson's argument provides independent, theory-agnostic motivation for why GR should be the correct long-wavelength limit of **any** local, area-scaling, thermodynamically equilibrated microstructure — including ours.
 
 ### "Do not quantize the equation of state"
 
-This is a direct vindication of our ontological stance. AAA posits that the correct objects to study at the fundamental level are architrinos and their assemblies — not the emergent metric. Jacobson's sound-wave analogy (quantizing the Einstein equation is like quantizing the acoustic wave equation for air) maps onto our position that GR, QFT, and QM are all effective coarse-grainings of deterministic architrino dynamics. The thing to simulate and understand is the microstructure; the continuum equations follow.
+This is a direct vindication of our ontological stance. $\mathbb{A}\mathbb{A}\mathbb{A}$ posits that the correct objects to study at the fundamental level are architrinos and their assemblies — not the emergent metric. Jacobson's sound-wave analogy (quantizing the Einstein equation is like quantizing the acoustic wave equation for air) maps onto our position that GR, QFT, and QM are all effective coarse-grainings of deterministic architrino dynamics. The thing to simulate and understand is the microstructure; the continuum equations follow.
 
 ### Entropy $\propto$ area and the Planck-alignment plateau
 
-Jacobson assumes $dS = \eta\,\delta A$ and derives $G = (4\hbar\eta)^{-1}$, identifying $\eta^{-1/2} \sim \ell_P$. In AAA, the Planck-alignment state is the configuration where all three tri-binary binaries become co-planar at $v = c_f$, with the outer binary circumference equal to $\ell_P$ and the alignment area $R_{\text{align}}^2 = (\ell_P/2\pi)^2$. The entropy-area law then has a concrete microstructural interpretation: each Planck-area "tile" on a horizon corresponds to one aligned tri-binary degree of freedom. Jacobson's $\eta$ is, in our language, the inverse of the alignment-area scale that the tri-binary geometry sets.
+Jacobson assumes $dS = \eta\,\delta A$ and derives $G = (4\hbar\eta)^{-1}$, identifying $\eta^{-1/2} \sim \ell_P$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Planck-alignment state is the configuration where all three tri-binary binaries become co-planar at $v = c_f$, with the outer binary circumference equal to $\ell_P$ and the alignment area $R_{\text{align}}^2 = (\ell_P/2\pi)^2$. The entropy-area law then has a concrete microstructural interpretation: each Planck-area "tile" on a horizon corresponds to one aligned tri-binary degree of freedom. Jacobson's $\eta$ is, in our language, the inverse of the alignment-area scale that the tri-binary geometry sets.
 
 ### Local Rindler horizon ↔ middle-binary $v = c_f$ surface
 
-Jacobson's construction picks out a null surface at each point — the local Rindler horizon — to define the equilibrium system. In AAA, the middle binary of every tri-binary always rides at $v = c_f$ and defines the local causal cone. A pencil of middle-binary causal surfaces in the Noether Sea is the microscopic realization of Jacobson's local Rindler horizon. The "instantaneously stationary" condition (vanishing expansion and shear at $\mathcal{P}$) maps to the middle binary being in steady-state at $c_f$ — exactly the symmetry-breaking threshold that defines effective Lorentz structure.
+Jacobson's construction picks out a null surface at each point — the local Rindler horizon — to define the equilibrium system. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the middle binary of every tri-binary always rides at $v = c_f$ and defines the local causal cone. A pencil of middle-binary causal surfaces in the Noether Sea is the microscopic realization of Jacobson's local Rindler horizon. The "instantaneously stationary" condition (vanishing expansion and shear at $\mathcal{P}$) maps to the middle binary being in steady-state at $c_f$ — exactly the symmetry-breaking threshold that defines effective Lorentz structure.
 
 ### Heat flux across horizon ↔ energy transfer across the $v = c_f$ surface
 
-Jacobson defines $\delta Q = \int T_{ab}\chi^a d\Sigma^b$ as the boost energy crossing the horizon. In AAA, energy transfer between the $v < c_f$ (outer) and $v > c_f$ (inner) regimes is mediated through the middle binary at $v = c_f$. The middle binary is the fulcrum; energy flux across it is literally heat flowing across the causal boundary between the sub- and super-field-speed worlds. The AAA tri-binary table from `philosophy-history/theory-mapping.md` captures this:
+Jacobson defines $\delta Q = \int T_{ab}\chi^a d\Sigma^b$ as the boost energy crossing the horizon. In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy transfer between the $v < c_f$ (outer) and $v > c_f$ (inner) regimes is mediated through the middle binary at $v = c_f$. The middle binary is the fulcrum; energy flux across it is literally heat flowing across the causal boundary between the sub- and super-field-speed worlds. The $\mathbb{A}\mathbb{A}\mathbb{A}$ tri-binary table from `philosophy-history/theory-mapping.md` captures this:
 
 | Tri-Binary Region | Speed Regime | Jacobson Analogue |
 |:---|:---|:---|
@@ -56,15 +56,15 @@ Jacobson defines $\delta Q = \int T_{ab}\chi^a d\Sigma^b$ as the boost energy cr
 
 ### Unruh temperature ↔ acceleration-dependent assembly response
 
-Jacobson assigns $T = \hbar\kappa/2\pi$ via the Unruh effect. In AAA, an accelerating assembly couples more strongly to the Noether Sea; its internal oscillation rates and effective temperature change as the tri-binary deforms. The Unruh temperature should be derivable as the effective thermal spectrum of the architrino wake field experienced by an assembly whose translational acceleration is $\kappa$. This is a concrete simulation target: compute the power spectrum of wake-field hits on an accelerating test assembly and check that it is Planckian with $T = \hbar\kappa/2\pi$.
+Jacobson assigns $T = \hbar\kappa/2\pi$ via the Unruh effect. In $\mathbb{A}\mathbb{A}\mathbb{A}$, an accelerating assembly couples more strongly to the Noether Sea; its internal oscillation rates and effective temperature change as the tri-binary deforms. The Unruh temperature should be derivable as the effective thermal spectrum of the architrino wake field experienced by an assembly whose translational acceleration is $\kappa$. This is a concrete simulation target: compute the power spectrum of wake-field hits on an accelerating test assembly and check that it is Planckian with $T = \hbar\kappa/2\pi$.
 
 ### Breakdown of equilibrium ↔ strong-gravity / Planck-core regime
 
-Jacobson emphasizes that the thermodynamic derivation fails when equilibrium fails — near singularities, the big bang, or late-stage black-hole evaporation. In AAA, these are precisely the regimes where the inner binary ($v > c_f$) dynamics dominate, tri-binaries are driven to full planar alignment, and the Noether Sea can no longer be treated as a smooth, slowly varying medium. The "non-equilibrium spacetime" Jacobson hopes to understand maps to the inflationary/deflationary core dynamics of dense, fully aligned tri-binary regions (black-hole cores, early universe).
+Jacobson emphasizes that the thermodynamic derivation fails when equilibrium fails — near singularities, the big bang, or late-stage black-hole evaporation. In $\mathbb{A}\mathbb{A}\mathbb{A}$, these are precisely the regimes where the inner binary ($v > c_f$) dynamics dominate, tri-binaries are driven to full planar alignment, and the Noether Sea can no longer be treated as a smooth, slowly varying medium. The "non-equilibrium spacetime" Jacobson hopes to understand maps to the inflationary/deflationary core dynamics of dense, fully aligned tri-binary regions (black-hole cores, early universe).
 
-### $\Lambda$ remains undetermined — AAA offers a route
+### $\Lambda$ remains undetermined — $\mathbb{A}\mathbb{A}\mathbb{A}$ offers a route
 
-Jacobson notes that his derivation leaves $\Lambda$ as a free integration constant. In AAA, the cosmological constant is tied to the baseline energy density of the Noether Sea: $\Lambda_{\text{eff}} \sim 8\pi G\,\rho_{\text{aether}}\,E_{\text{core}}$. If we can compute the equilibrium energy density of the tri-binary spacetime medium from first principles (assembly density × binding energy per core), we obtain a prediction for $\Lambda$ — potentially addressing the vacuum-energy problem that Jacobson's framework leaves open.
+Jacobson notes that his derivation leaves $\Lambda$ as a free integration constant. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the cosmological constant is tied to the baseline energy density of the Noether Sea: $\Lambda_{\text{eff}} \sim 8\pi G\,\rho_{\text{aether}}\,E_{\text{core}}$. If we can compute the equilibrium energy density of the tri-binary spacetime medium from first principles (assembly density × binding energy per core), we obtain a prediction for $\Lambda$ — potentially addressing the vacuum-energy problem that Jacobson's framework leaves open.
 
 ---
 
@@ -74,7 +74,7 @@ Jacobson's derivation is powerful because it is **model-independent at the micro
 
 **Encouraging:** It means that if the Noether Sea satisfies (a)–(c), we automatically recover GR without having to derive it from scratch equation by equation. Our task reduces to demonstrating that tri-binary spacetime assemblies do, in fact, have area-scaling entropy and local equilibrium.
 
-**Constraining:** It also means that recovering GR alone is not a distinguishing test of AAA — any model satisfying Jacobson's premises would do the same. Our distinguishing predictions must come from the **departures** from equilibrium: the strong-gravity, Planck-core, and early-universe regimes where Jacobson's derivation explicitly breaks down. Those are the regimes where the inner-binary self-hit dynamics, the discrete tri-binary alignment ladder, and the Noether Sea phase transitions produce signatures that differ from standard GR.
+**Constraining:** It also means that recovering GR alone is not a distinguishing test of $\mathbb{A}\mathbb{A}\mathbb{A}$ — any model satisfying Jacobson's premises would do the same. Our distinguishing predictions must come from the **departures** from equilibrium: the strong-gravity, Planck-core, and early-universe regimes where Jacobson's derivation explicitly breaks down. Those are the regimes where the inner-binary self-hit dynamics, the discrete tri-binary alignment ladder, and the Noether Sea phase transitions produce signatures that differ from standard GR.
 
 **Concrete next steps for the gravity/cosmology programme:**
 
