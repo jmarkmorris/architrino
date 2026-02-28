@@ -5,11 +5,14 @@ import { createLevelRuntime } from "./src/runtime/LevelRuntime.js";
 import { createMarkdownRuntime } from "./src/runtime/MarkdownRuntime.js";
 import { createNodeFactory } from "./src/runtime/NodeFactoryRuntime.js";
 import { createComposerUiRuntime } from "./src/runtime/ComposerUiRuntime.js";
+import { createComposerControlsUiRuntime } from "./src/runtime/ComposerControlsUiRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
 import { createSceneSearchUiRuntime } from "./src/runtime/SceneSearchUiRuntime.js";
 import { createScenePanelUiRuntime } from "./src/runtime/ScenePanelUiRuntime.js";
+import { createAppShellUiRuntime } from "./src/runtime/AppShellUiRuntime.js";
+import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
 import { SceneRepository } from "./src/services/SceneRepository.js";
@@ -647,20 +650,12 @@ function initComposerCanvas() {
   updateComposerCamera();
   resizeComposerCanvas();
 
-  composerCanvas.addEventListener("pointerdown", onComposerPointerDown);
-  composerCanvas.addEventListener("pointermove", onComposerPointerMove);
-  composerCanvas.addEventListener("pointerup", onComposerPointerUp);
-  composerCanvas.addEventListener("pointercancel", onComposerPointerUp);
-  composerCanvas.addEventListener("pointerleave", onComposerPointerUp);
-  composerCanvas.addEventListener(
-    "wheel",
-    (event) => {
-      onComposerWheel(event);
-    },
-    { passive: false }
-  );
-  composerCanvas.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
+  wireComposerCanvasUiListeners({
+    composerCanvas,
+    onComposerPointerDown,
+    onComposerPointerMove,
+    onComposerPointerUp,
+    onComposerWheel,
   });
 }
 
@@ -2590,6 +2585,52 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   getCurrentLevel: () => currentLevel,
   isTransitionActive: () => transitionState.active,
 });
+const composerControlsUiRuntime = createComposerControlsUiRuntime({
+  composerTabs,
+  composerDocsButton,
+  composerExitButton,
+  composerPreviewButton,
+  composerExportButton,
+  composerSceneIdInput,
+  composerSceneNameInput,
+  composerNodeCountInput,
+  composerNodeLabelsInput,
+  composerPathModeSelect,
+  composerPathResetButton,
+  composerFrameEditToggle,
+  composerFrameResetButton,
+  composerFrameScaleInput,
+  composerCameraPoiSelect,
+  composerCameraWaypointAdd,
+  composerCameraWaypointClear,
+  composerCameraFlightToggle,
+  composerCameraSpeedInput,
+  composerCameraRadiusInput,
+  composerCameraResetButton,
+  composerUiRuntime,
+  navUpButton,
+  composerPathState,
+  composerCameraFlightState,
+  getComposerFrameEditMode: () => composerFrameEditMode,
+  setComposerFrameEditMode: (value) => {
+    composerFrameEditMode = value;
+  },
+  updateComposerPathGeometry,
+  resetComposerPathPoints,
+  setComposerFrameDefaults,
+  updateComposerFrame,
+  addComposerCameraWaypoint,
+  clearComposerCameraWaypoints,
+  stopComposerCameraFlightPreview,
+  startComposerCameraFlightPreview,
+  applyComposerFrameScaleInput,
+  applyComposerCameraSpeedInput,
+  applyComposerCameraRadiusInput,
+  setComposerCameraDefaults,
+  updateComposerCamera,
+  renderComposerJsonPreview,
+  isTransitionActive: () => transitionState.active,
+});
 
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
@@ -2907,176 +2948,19 @@ appDirector = new AppDirector({
   getMetaBackStack: () => metaBackStack,
   getGenerationBackStack: () => generationBackStack,
 });
+const appShellUiRuntime = createAppShellUiRuntime({
+  canvas,
+  interactionRuntime,
+  onResize,
+  hideHoverTooltip,
+  navUpButton,
+  homeButton,
+  periodicOverlayRuntime,
+  appDirector,
+});
 
 appDirector.init();
-
-window.addEventListener("resize", onResize);
-canvas.addEventListener("pointerdown", interactionRuntime.onPointerDown);
-canvas.addEventListener("pointermove", interactionRuntime.onPointerMove);
-canvas.addEventListener("pointerup", interactionRuntime.onPointerUp);
-canvas.addEventListener("pointercancel", interactionRuntime.onPointerUp);
-canvas.addEventListener("pointerleave", () => {
-  hideHoverTooltip();
-});
-canvas.addEventListener("wheel", interactionRuntime.onWheel, { passive: false });
-
-if (navUpButton) {
-  navUpButton.addEventListener("click", async () => {
-    periodicOverlayRuntime.hidePeriodicOverlayImmediately();
-    await appDirector?.goBack();
-  });
-}
-
-if (homeButton) {
-  homeButton.addEventListener("click", async () => {
-    periodicOverlayRuntime.hidePeriodicOverlayImmediately();
-    await appDirector?.resetHome();
-  });
-}
-
-periodicOverlayRuntime.wireElementLegend();
-periodicOverlayRuntime.updateElementInfoPanel();
+appShellUiRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
-
-if (composerTabs.length) {
-  composerTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      composerUiRuntime.setComposerPanel(tab.dataset.panel);
-    });
-  });
-}
-
-if (composerDocsButton) {
-  composerDocsButton.addEventListener("click", () => {
-    composerUiRuntime.openComposerDocs(transitionState.active);
-  });
-}
-
-if (composerExitButton) {
-  composerExitButton.addEventListener("click", () => {
-    navUpButton?.click();
-  });
-}
-
-if (composerPreviewButton) {
-  composerPreviewButton.addEventListener("click", () => {
-    composerUiRuntime.openComposerPreview(transitionState.active);
-  });
-}
-
-if (composerExportButton) {
-  composerExportButton.addEventListener("click", () => {
-    composerUiRuntime.exportComposerScene();
-  });
-}
-
-const composerInputs = [
-  composerSceneIdInput,
-  composerSceneNameInput,
-  composerNodeCountInput,
-  composerNodeLabelsInput,
-].filter(Boolean);
-if (composerInputs.length) {
-  composerInputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      renderComposerJsonPreview();
-    });
-  });
-}
-
-if (composerPathModeSelect) {
-  composerPathModeSelect.addEventListener("change", () => {
-    composerPathState.interpolate = composerPathModeSelect.value;
-    updateComposerPathGeometry();
-    renderComposerJsonPreview();
-  });
-}
-
-if (composerPathResetButton) {
-  composerPathResetButton.addEventListener("click", () => {
-    resetComposerPathPoints();
-    renderComposerJsonPreview();
-  });
-}
-
-if (composerFrameEditToggle) {
-  composerFrameEditToggle.addEventListener("click", () => {
-    composerFrameEditMode = !composerFrameEditMode;
-    composerFrameEditToggle.classList.toggle("is-active", composerFrameEditMode);
-    composerFrameEditToggle.textContent = composerFrameEditMode
-      ? "Editing Frame"
-      : "Edit Frame";
-  });
-}
-
-if (composerFrameResetButton) {
-  composerFrameResetButton.addEventListener("click", () => {
-    setComposerFrameDefaults();
-    updateComposerFrame();
-  });
-}
-
-if (composerCameraPoiSelect) {
-  composerCameraPoiSelect.addEventListener("change", () => {
-    composerCameraFlightState.poiMode = composerCameraPoiSelect.value;
-  });
-}
-
-if (composerCameraWaypointAdd) {
-  composerCameraWaypointAdd.addEventListener("click", () => {
-    addComposerCameraWaypoint();
-  });
-}
-
-if (composerCameraWaypointClear) {
-  composerCameraWaypointClear.addEventListener("click", () => {
-    clearComposerCameraWaypoints();
-  });
-}
-
-if (composerCameraFlightToggle) {
-  composerCameraFlightToggle.addEventListener("click", () => {
-    if (composerCameraFlightState.preview) {
-      stopComposerCameraFlightPreview();
-    } else {
-      startComposerCameraFlightPreview();
-    }
-  });
-}
-
-const composerFrameInputs = [
-  composerFrameScaleInput,
-].filter(Boolean);
-if (composerFrameInputs.length) {
-  composerFrameInputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      applyComposerFrameScaleInput();
-    });
-  });
-}
-
-const composerCameraInputs = [
-  composerCameraSpeedInput,
-  composerCameraRadiusInput,
-].filter(Boolean);
-if (composerCameraInputs.length) {
-  composerCameraInputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      if (input === composerCameraSpeedInput) {
-        applyComposerCameraSpeedInput();
-      }
-      if (input === composerCameraRadiusInput) {
-        applyComposerCameraRadiusInput();
-      }
-    });
-  });
-}
-
-if (composerCameraResetButton) {
-  composerCameraResetButton.addEventListener("click", () => {
-    setComposerCameraDefaults();
-    updateComposerCamera();
-  });
-}
-
+composerControlsUiRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
