@@ -7,6 +7,7 @@ const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
+const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
 
 const args = new Set(process.argv.slice(2));
 const wantsWrite = args.has("--write");
@@ -343,6 +344,449 @@ function validateDirectoryReference(sourcePath, field, refPath, exactSet, lowerM
   }
 }
 
+function schemaLocation(pathParts) {
+  return pathParts.length ? pathParts.join("") : "$";
+}
+
+function schemaTypeMatches(value, expectedType) {
+  if (expectedType === "array") {
+    return Array.isArray(value);
+  }
+  if (expectedType === "null") {
+    return value === null;
+  }
+  if (expectedType === "integer") {
+    return Number.isInteger(value);
+  }
+  if (expectedType === "number") {
+    return typeof value === "number" && Number.isFinite(value);
+  }
+  if (expectedType === "object") {
+    return value !== null && typeof value === "object" && !Array.isArray(value);
+  }
+  if (expectedType === "string") {
+    return typeof value === "string";
+  }
+  if (expectedType === "boolean") {
+    return typeof value === "boolean";
+  }
+  return true;
+}
+
+function validateSchemaValue(scenePath, value, schema, pathParts = []) {
+  if (!schema || typeof schema !== "object") {
+    return;
+  }
+  const location = schemaLocation(pathParts);
+
+  const rawTypes = Array.isArray(schema.type) ? schema.type : schema.type ? [schema.type] : [];
+  if (rawTypes.length) {
+    const typeMatches = rawTypes.some((type) => schemaTypeMatches(value, type));
+    if (!typeMatches) {
+      errors.push(
+        `${scenePath}: schema ${location}: expected ${rawTypes.join(" | ")}, got ${
+          Array.isArray(value) ? "array" : value === null ? "null" : typeof value
+        }`
+      );
+      return;
+    }
+  }
+
+  if (Array.isArray(schema.enum) && schema.enum.length && !schema.enum.includes(value)) {
+    errors.push(`${scenePath}: schema ${location}: value is not in enum`);
+    return;
+  }
+
+  if (typeof value === "string") {
+    if (typeof schema.minLength === "number" && value.length < schema.minLength) {
+      errors.push(
+        `${scenePath}: schema ${location}: string length ${value.length} < minLength ${schema.minLength}`
+      );
+    }
+    if (typeof schema.maxLength === "number" && value.length > schema.maxLength) {
+      errors.push(
+        `${scenePath}: schema ${location}: string length ${value.length} > maxLength ${schema.maxLength}`
+      );
+    }
+  }
+
+  if (typeof value === "number" && Number.isFinite(value)) {
+    if (typeof schema.minimum === "number" && value < schema.minimum) {
+      errors.push(`${scenePath}: schema ${location}: ${value} < minimum ${schema.minimum}`);
+    }
+    if (typeof schema.maximum === "number" && value > schema.maximum) {
+      errors.push(`${scenePath}: schema ${location}: ${value} > maximum ${schema.maximum}`);
+    }
+  }
+
+  if (Array.isArray(value)) {
+    if (typeof schema.minItems === "number" && value.length < schema.minItems) {
+      errors.push(
+        `${scenePath}: schema ${location}: array length ${value.length} < minItems ${schema.minItems}`
+      );
+    }
+    if (typeof schema.maxItems === "number" && value.length > schema.maxItems) {
+      errors.push(
+        `${scenePath}: schema ${location}: array length ${value.length} > maxItems ${schema.maxItems}`
+      );
+    }
+    if (schema.items && typeof schema.items === "object") {
+      value.forEach((item, index) => {
+        validateSchemaValue(scenePath, item, schema.items, [...pathParts, `[${index}]`]);
+      });
+    }
+    return;
+  }
+
+  if (value && typeof value === "object") {
+    const props = schema.properties && typeof schema.properties === "object" ? schema.properties : {};
+    const required = Array.isArray(schema.required) ? schema.required : [];
+
+    for (const key of required) {
+      if (!(key in value)) {
+        errors.push(`${scenePath}: schema ${location}: missing required property "${key}"`);
+      }
+    }
+
+    for (const [key, propSchema] of Object.entries(props)) {
+      if (!(key in value)) {
+        continue;
+      }
+      validateSchemaValue(scenePath, value[key], propSchema, [...pathParts, `.${key}`]);
+    }
+
+    if (schema.additionalProperties === false) {
+      for (const key of Object.keys(value)) {
+        if (!(key in props)) {
+          errors.push(`${scenePath}: schema ${location}: unexpected property "${key}"`);
+        }
+      }
+    } else if (schema.additionalProperties && typeof schema.additionalProperties === "object") {
+      for (const key of Object.keys(value)) {
+        if (key in props) {
+          continue;
+        }
+        validateSchemaValue(
+          scenePath,
+          value[key],
+          schema.additionalProperties,
+          [...pathParts, `.${key}`]
+        );
+      }
+    }
+  }
+}
+
+function normalizeMarkdownKey(text) {
+  return String(text)
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function normalizeMarkdownPath(pathValue) {
+  return normalizePath(pathValue).toLowerCase();
+}
+
+function stripWalkthroughStepPrefix(title) {
+  return String(title || "")
+    .trim()
+    .replace(/^Walkthrough\s+Step\s+\d+\s*[\u2014\-:]\s*/i, "")
+    .trim();
+}
+
+function slugifyAutogeneratedId(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function parseMarkdownHeading(line) {
+  const match = line.match(/^(#{2,3})\s+(.*)$/);
+  if (!match) {
+    const numbered = line.match(/^\*\*(\d+)\.\s+(.+?)\*\*/);
+    if (!numbered) {
+      return null;
+    }
+    return { level: 3, title: numbered[2].trim() };
+  }
+  const level = match[1].length;
+  let title = match[2].trim();
+  const boldMatch = title.match(/^\*\*(.+?)\*\*/);
+  if (boldMatch) {
+    title = boldMatch[1].trim();
+  }
+  return { level, title };
+}
+
+function extractMarkdownSection(markdown, sectionKey) {
+  const target = normalizeMarkdownKey(sectionKey);
+  if (!target) {
+    return null;
+  }
+  const lines = markdown.split(/\r?\n/);
+  let sectionTitle = null;
+  let start = -1;
+  let end = lines.length;
+  let startLevel = null;
+  for (let i = 0; i < lines.length; i += 1) {
+    const heading = parseMarkdownHeading(lines[i]);
+    if (!heading) {
+      continue;
+    }
+    const headingKey = normalizeMarkdownKey(heading.title);
+    if (start === -1) {
+      if (headingKey === target) {
+        sectionTitle = heading.title;
+        start = i + 1;
+        startLevel = heading.level;
+      }
+      continue;
+    }
+    if (heading.level <= (startLevel ?? heading.level)) {
+      end = i;
+      break;
+    }
+  }
+  if (start === -1) {
+    return null;
+  }
+  return {
+    title: sectionTitle,
+    body: lines.slice(start, end).join("\n").trim(),
+  };
+}
+
+function deriveMarkdownConfig(markdownPolicy) {
+  if (!markdownPolicy || typeof markdownPolicy !== "object") {
+    return null;
+  }
+  const derived = {};
+  const source = markdownPolicy.source ?? {};
+  const sourcePath = typeof source.path === "string" ? source.path : null;
+  const sourceType =
+    source.type ??
+    (sourcePath && sourcePath.toLowerCase().endsWith(".md") ? "file" : "directory");
+  if (sourceType === "file" && sourcePath) {
+    derived.autoMarkdownPath = sourcePath;
+  } else if (sourceType === "directory" && sourcePath) {
+    derived.autoMarkdownDirectory = sourcePath;
+    derived.autoMarkdownSubdirectories = source.subdirectories === true;
+  }
+
+  const render = markdownPolicy.render ?? {};
+  if (typeof render.headingLevel === "number") {
+    derived.autoMarkdownHeadingLevel = render.headingLevel;
+  }
+  if (typeof render.sectionDepth === "number") {
+    derived.autoMarkdownSectionDepth = render.sectionDepth;
+  }
+
+  if (Array.isArray(markdownPolicy.exclude)) {
+    derived.autoMarkdownExcludePaths = markdownPolicy.exclude;
+  }
+
+  return derived;
+}
+
+function listMarkdownFilesInDirectory(directory, markdownFiles) {
+  const normalizedDir = normalizePath(directory);
+  if (!normalizedDir) {
+    return [];
+  }
+  const prefix = `${normalizedDir}/`;
+  return markdownFiles.filter((filePath) => {
+    if (!filePath.startsWith(prefix)) {
+      return false;
+    }
+    const remainder = filePath.slice(prefix.length);
+    return remainder.length > 0 && !remainder.includes("/");
+  });
+}
+
+function listMarkdownDirectoriesInDirectory(directory, markdownDirectories) {
+  const normalizedDir = normalizePath(directory);
+  if (!normalizedDir) {
+    return [];
+  }
+  const prefix = `${normalizedDir}/`;
+  const subdirs = new Set();
+  for (const dirPath of markdownDirectories) {
+    if (!dirPath.startsWith(prefix)) {
+      continue;
+    }
+    const remainder = dirPath.slice(prefix.length);
+    if (!remainder || remainder.includes("/")) {
+      continue;
+    }
+    subdirs.add(dirPath);
+  }
+  return [...subdirs];
+}
+
+function validateSceneIntegrity(scenePath, data, markdownContext) {
+  const scene = data.scene ?? {};
+  const objects = Array.isArray(data.objects) ? data.objects : [];
+  const links = Array.isArray(data.links) ? data.links : [];
+
+  const nodeIdToIndex = new Map();
+  for (const [index, obj] of objects.entries()) {
+    const objectId = asText(obj?.id);
+    if (!objectId) {
+      continue;
+    }
+    if (nodeIdToIndex.has(objectId)) {
+      errors.push(
+        `${scenePath}: duplicate node id "${objectId}" at objects[${nodeIdToIndex.get(
+          objectId
+        )}] and objects[${index}]`
+      );
+    } else {
+      nodeIdToIndex.set(objectId, index);
+    }
+  }
+
+  const explicitLinkIds = new Map();
+  const autogeneratedLinkIds = new Map();
+  for (const [index, link] of links.entries()) {
+    if (!link || typeof link !== "object") {
+      continue;
+    }
+    const fromId = asText(link.from);
+    const toId = asText(link.to);
+    if (fromId && !nodeIdToIndex.has(fromId)) {
+      errors.push(
+        `${scenePath}: orphan link links[${index}] references missing source node "${fromId}"`
+      );
+    }
+    if (toId && !nodeIdToIndex.has(toId)) {
+      errors.push(`${scenePath}: orphan link links[${index}] references missing target node "${toId}"`);
+    }
+
+    const explicitId = asText(link.id);
+    if (explicitId) {
+      if (explicitLinkIds.has(explicitId)) {
+        errors.push(
+          `${scenePath}: duplicate link id "${explicitId}" at links[${explicitLinkIds.get(
+            explicitId
+          )}] and links[${index}]`
+        );
+      } else {
+        explicitLinkIds.set(explicitId, index);
+      }
+      continue;
+    }
+
+    if (!fromId || !toId) {
+      continue;
+    }
+    const autoId = `${fromId}::${toId}::${asText(link.kind) || "default"}`;
+    if (autogeneratedLinkIds.has(autoId)) {
+      errors.push(
+        `${scenePath}: duplicate autogenerated link id "${autoId}" at links[${autogeneratedLinkIds.get(
+          autoId
+        )}] and links[${index}]`
+      );
+    } else {
+      autogeneratedLinkIds.set(autoId, index);
+    }
+  }
+
+  const markdownDerived = deriveMarkdownConfig(scene.markdown);
+  const autoScene = markdownDerived ? { ...scene, ...markdownDerived } : scene;
+  if (
+    autoScene.autoSphereRing !== true ||
+    (!autoScene.autoMarkdownPath && !autoScene.autoMarkdownDirectory)
+  ) {
+    return;
+  }
+
+  let entries = [];
+  let useDirectories = false;
+  let usedHeadingLevel =
+    typeof autoScene.autoMarkdownHeadingLevel === "number" ? autoScene.autoMarkdownHeadingLevel : 3;
+  const existingIds = new Set(nodeIdToIndex.keys());
+
+  if (autoScene.autoMarkdownPath) {
+    const markdownPath = normalizePath(autoScene.autoMarkdownPath);
+    const markdownSource = markdownContext.markdownTextByPath.get(markdownPath);
+    if (typeof markdownSource !== "string") {
+      return;
+    }
+    const preferredLevels = [usedHeadingLevel];
+    if (usedHeadingLevel === 2) {
+      preferredLevels.push(3);
+    } else if (usedHeadingLevel !== 2) {
+      preferredLevels.push(2);
+    }
+    let content = markdownSource;
+    if (autoScene.autoMarkdownSection) {
+      const section = extractMarkdownSection(markdownSource, autoScene.autoMarkdownSection);
+      content = section?.body ?? "";
+    }
+    const lines = content.split(/\r?\n/);
+    for (const level of preferredLevels) {
+      const levelEntries = [];
+      lines.forEach((line) => {
+        const heading = parseMarkdownHeading(line);
+        if (heading && heading.level === level) {
+          levelEntries.push(heading.title);
+        }
+      });
+      if (levelEntries.length) {
+        entries = levelEntries;
+        usedHeadingLevel = level;
+        break;
+      }
+    }
+  } else {
+    useDirectories = autoScene.autoMarkdownSubdirectories === true;
+    const sourceDirectory = normalizePath(autoScene.autoMarkdownDirectory);
+    entries = useDirectories
+      ? listMarkdownDirectoriesInDirectory(sourceDirectory, markdownContext.markdownDirectories).sort()
+      : listMarkdownFilesInDirectory(sourceDirectory, markdownContext.markdownFiles).sort();
+  }
+
+  if (Array.isArray(autoScene.autoMarkdownExcludePaths) && autoScene.autoMarkdownExcludePaths.length) {
+    const excluded = new Set(autoScene.autoMarkdownExcludePaths.map((entry) => normalizeMarkdownPath(entry)));
+    entries = entries.filter((entry) => !excluded.has(normalizeMarkdownPath(entry)));
+  }
+
+  const autogeneratedIds = new Map();
+  for (const [index, rawEntry] of entries.entries()) {
+    let idBasis = "";
+    if (autoScene.autoMarkdownPath) {
+      const stripped = stripWalkthroughStepPrefix(rawEntry);
+      idBasis = stripped || rawEntry;
+    } else {
+      const entryName = String(rawEntry).split("/").pop() || "";
+      idBasis = useDirectories ? entryName : entryName.replace(/\.md$/i, "");
+    }
+    const generatedId = slugifyAutogeneratedId(idBasis);
+    if (!generatedId) {
+      errors.push(`${scenePath}: autogenerated markdown node id is empty for entry "${rawEntry}"`);
+      continue;
+    }
+    if (existingIds.has(generatedId)) {
+      errors.push(
+        `${scenePath}: duplicate autogenerated node id "${generatedId}" collides with existing object id`
+      );
+      continue;
+    }
+    if (autogeneratedIds.has(generatedId)) {
+      const first = autogeneratedIds.get(generatedId);
+      errors.push(
+        `${scenePath}: duplicate autogenerated node id "${generatedId}" for entries "${first.entry}" and "${rawEntry}" (indices ${first.index} and ${index})`
+      );
+      continue;
+    }
+    autogeneratedIds.set(generatedId, { entry: rawEntry, index });
+  }
+}
+
 const allSceneJson = walkFiles(SCENES_DIR, (name) => name.toLowerCase().endsWith(".json"));
 const allMarkdownFiles = walkFiles(MARKDOWN_DIR, (name) => name.toLowerCase().endsWith(".md"));
 const allMarkdownDirectories = walkDirs(MARKDOWN_DIR).map((d) => normalizePath(d));
@@ -382,6 +826,39 @@ if (ancillarySceneJson.length) {
   notes.push(
     `Ignored non-scene JSON under ${SCENES_DIR}: ${ancillarySceneJson.join(", ")}`
   );
+}
+
+const sceneSchemaResult = readJson(SCENE_SCHEMA_PATH);
+const sceneSchema = sceneSchemaResult.ok ? sceneSchemaResult.data : null;
+if (!sceneSchemaResult.ok) {
+  errors.push(
+    `${SCENE_SCHEMA_PATH}: failed to parse JSON schema (${sceneSchemaResult.error.message})`
+  );
+}
+
+const markdownTextByPath = new Map();
+for (const markdownPath of allMarkdownFiles) {
+  const absoluteMarkdownPath = path.join(rootDir, markdownPath);
+  try {
+    markdownTextByPath.set(markdownPath, fs.readFileSync(absoluteMarkdownPath, "utf8"));
+  } catch (error) {
+    warnings.push(`${markdownPath}: failed to read markdown source (${error.message})`);
+  }
+}
+
+const scenePathBySceneId = new Map();
+for (const scenePath of sceneConfigs) {
+  const sceneId = asText(sceneDataByPath.get(scenePath)?.scene?.id);
+  if (!sceneId) {
+    errors.push(`${scenePath}: scene.id is required and must be non-empty`);
+    continue;
+  }
+  const priorPath = scenePathBySceneId.get(sceneId);
+  if (priorPath && priorPath !== scenePath) {
+    errors.push(`${scenePath}: duplicate scene.id "${sceneId}" already defined in ${priorPath}`);
+  } else if (!priorPath) {
+    scenePathBySceneId.set(sceneId, scenePath);
+  }
 }
 
 const indexedScenePaths = [];
@@ -497,11 +974,21 @@ const markdownFileSet = new Set(allMarkdownFiles);
 const markdownFileLower = createLowerMap(allMarkdownFiles);
 const markdownDirSet = new Set(allMarkdownDirectories);
 const markdownDirLower = createLowerMap(allMarkdownDirectories);
+const markdownContext = {
+  markdownFiles: allMarkdownFiles,
+  markdownDirectories: allMarkdownDirectories,
+  markdownTextByPath,
+};
 
 for (const scenePath of sceneConfigs) {
   const data = sceneDataByPath.get(scenePath);
   const scene = data.scene || {};
   const objects = Array.isArray(data.objects) ? data.objects : [];
+
+  if (sceneSchema) {
+    validateSchemaValue(scenePath, data, sceneSchema, []);
+  }
+  validateSceneIntegrity(scenePath, data, markdownContext);
 
   if (typeof scene.markdownPath === "string") {
     validateFileReference(
