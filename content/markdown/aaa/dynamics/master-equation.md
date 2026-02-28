@@ -161,15 +161,50 @@ On a bounded history interval $I_t$ (e.g., simulation memory window), define:
   D_{ij}(t)\equiv \deg(F_t^{(ij)},I_t,0)=\sum_{t_0\in\mathcal{C}_j(t)} \mathrm{sign}\!\left(\frac{dF_t^{(ij)}}{dt_0}\Big|_{t_0}\right).
   $$
 
-For regular configurations (no boundary-root crossing and no critical root with $dF_t/dt_0=0$), $D_{ij}$ is homotopy-invariant. Root births/deaths occur only at fold events where
+#### Delay-Map Theorem Pack (Formalized)
 
+Fix a bounded history interval $I_t=[a,b]\subset(-\infty,t)$ and define regularity conditions:
+
+- **(R1) Boundary regularity:** $0\notin F_t^{(ij)}(\partial I_t)$ (no root crossing at $a$ or $b$).
+- **(R2) Simple roots:** if $F_t^{(ij)}(t_0)=0$, then $\frac{dF_t^{(ij)}}{dt_0}(t_0)\neq 0$.
+
+**Theorem 1 (Degree invariance on regular families).**  
+For any continuous deformation of worldlines/parameters that preserves (R1)-(R2), the signed degree
+$D_{ij}(t)=\deg(F_t^{(ij)},I_t,0)$ is invariant.
+
+*Proof sketch:* In 1D, $D_{ij}$ is the oriented count of simple roots. Under a regular homotopy, roots move continuously and cannot appear/disappear in the interior without becoming critical, and cannot enter/leave through the boundary by (R1). Hence the oriented count is constant.
+
+**Proposition 2 (Sub-$c_f$ monotonic single-hit regime).**  
+If there exists $v_*<c_f$ such that $|\mathbf{v}_j(t_0)|\le v_*$ for all $t_0\in I_t$, then
 $$
-F_t^{(ij)}(t_0)=0,\qquad \frac{dF_t^{(ij)}}{dt_0}=0.
+\frac{dF_t^{(ij)}}{dt_0}
+\ge
+1-\frac{v_*}{c_f}
+>0,
 $$
+so $F_t^{(ij)}$ is strictly increasing on $I_t$. Therefore it has at most one root. If additionally $F_t^{(ij)}(a)<0<F_t^{(ij)}(b)$ (or the opposite sign ordering), then exactly one root exists and
+$$
+N_{ij}(t)=1,\qquad D_{ij}(t)=+1.
+$$
+
+*Proof sketch:* Strict positivity of the Jacobian gives monotonicity, hence injectivity. Existence under endpoint sign change follows by the intermediate value theorem.
+
+**Proposition 3 (Fold criterion and even-jump law).**  
+In a one-parameter family $F^{(ij)}(t_0;\lambda)$ (with $\lambda$ a control parameter, e.g. receiver time or orbit parameter), interior root-count changes occur only at fold points:
+$$
+F^{(ij)}(t_0;\lambda)=0,\qquad \partial_{t_0}F^{(ij)}(t_0;\lambda)=0.
+$$
+For generic folds ($\partial_{t_0t_0}F\neq0$, $\partial_\lambda F\neq0$), one root pair is created/annihilated, so
+$$
+\Delta N_{ij}=\pm2,\qquad \Delta D_{ij}=0
+$$
+between regular intervals.
+
+*Proof sketch:* Local normal form near a generic fold is equivalent to $u^2\pm\mu=0$, yielding either 0 or 2 simple roots. The two roots carry opposite Jacobian signs, so the degree is unchanged.
 
 #### Single-Hit Regime (Unique $t_0$)
 
-In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), the map is strictly monotone:
+In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), Proposition 2 applies, and the map is strictly monotone:
 
 $$
 \frac{dF_t^{(ij)}}{dt_0}
