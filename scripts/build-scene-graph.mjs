@@ -320,6 +320,8 @@ const edgeByKey = new Map();
 const markdownDirectories = new Set();
 const sceneSearchOrder = sceneEntries.map((entry) => entry.path);
 const scenePathSet = new Set(sceneEntries.map((entry) => entry.path));
+const periodicRuntimeRouteBySymbol = new Map();
+const elementLegendRuntimeTargets = new Set();
 
 function addNode(node) {
   const nodeId = asText(node.nodeId);
@@ -619,6 +621,7 @@ if (!periodicDataResult.ok) {
       source: "src/runtime/PeriodicOverlayRuntime.js",
       field: `periodicGrid:${symbol}`,
     });
+    periodicRuntimeRouteBySymbol.set(symbol, targetScenePath);
   });
 }
 
@@ -631,6 +634,9 @@ if (!indexHtmlResult.ok) {
     (match) => normalizePath(match[1])
   );
   const legendTargets = [...new Set(dataSceneMatches.filter(Boolean))];
+  legendTargets.forEach((targetScenePath) => {
+    elementLegendRuntimeTargets.add(targetScenePath);
+  });
   const elementScenePaths = sceneEntries
     .map((entry) => entry.path)
     .filter((scenePath) => scenePath.includes("/scenes/elements/"));
@@ -702,6 +708,13 @@ for (const edge of edges) {
   }
 }
 
+const periodicGridRoutes = Object.fromEntries(
+  [...periodicRuntimeRouteBySymbol.entries()].sort(([a], [b]) => a.localeCompare(b))
+);
+const orderedElementLegendTargets = [...elementLegendRuntimeTargets].sort((a, b) =>
+  a.localeCompare(b)
+);
+
 const manifest = {
   meta: {
     schemaVersion: 1,
@@ -719,7 +732,13 @@ const manifest = {
       markdownIndexes: markdownIndexNodes.length,
       markdownDocs: markdownDocNodes.length,
       runtimeEdges: edges.filter((edge) => edge.edgeType === "runtime_generated").length,
+      periodicGridRoutes: Object.keys(periodicGridRoutes).length,
+      elementLegendTargets: orderedElementLegendTargets.length,
     },
+  },
+  runtimeRoutes: {
+    periodicGrid: periodicGridRoutes,
+    elementLegendTargets: orderedElementLegendTargets,
   },
   searchEntries,
   nodes,

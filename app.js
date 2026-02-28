@@ -30,6 +30,7 @@ import {
 import { createMarkdownManifestService } from "./src/services/MarkdownManifestService.js";
 import { createMarkdownSceneRegistry } from "./src/services/MarkdownSceneRegistryService.js";
 import { createMarkdownNodeBuilder } from "./src/services/MarkdownNodeBuilder.js";
+import { createSceneGraphManifestService } from "./src/services/SceneGraphManifestService.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -1124,6 +1125,12 @@ const markdownManifestService = createMarkdownManifestService({
   fetchImpl: (...args) => fetch(...args),
   appendCacheBust,
   manifestPath: markdownManifestPath,
+  logger: console,
+});
+const sceneGraphManifestService = createSceneGraphManifestService({
+  fetchImpl: (...args) => fetch(...args),
+  appendCacheBust,
+  manifestPath: sceneGraphManifestPath,
   logger: console,
 });
 
@@ -2516,6 +2523,7 @@ const periodicOverlayRuntime = createPeriodicOverlayRuntime({
   sceneSearchToggle,
   periodicCategoryColors,
   periodicTableService,
+  sceneGraphManifestService,
   getCurrentLevel: () => currentLevel,
   searchBackStack,
   navigationStack,

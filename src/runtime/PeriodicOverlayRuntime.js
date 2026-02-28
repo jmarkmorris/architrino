@@ -13,6 +13,7 @@ export function createPeriodicOverlayRuntime(deps) {
     sceneSearchToggle,
     periodicCategoryColors,
     periodicTableService,
+    sceneGraphManifestService,
     getCurrentLevel,
     searchBackStack,
     navigationStack,
@@ -34,6 +35,25 @@ export function createPeriodicOverlayRuntime(deps) {
 
   function getElementBySymbol(symbol) {
     return periodicTableService.findBySymbol(symbol);
+  }
+
+  async function resolveElementScenePath(symbol) {
+    const normalizedSymbol = String(symbol || "").trim().toLowerCase();
+    if (!normalizedSymbol) {
+      return null;
+    }
+    if (
+      sceneGraphManifestService &&
+      typeof sceneGraphManifestService.resolvePeriodicElementScenePath === "function"
+    ) {
+      const targetFromManifest = await sceneGraphManifestService.resolvePeriodicElementScenePath(
+        normalizedSymbol
+      );
+      if (typeof targetFromManifest === "string" && targetFromManifest) {
+        return targetFromManifest;
+      }
+    }
+    return `content/scenes/elements/${normalizedSymbol}.json`;
   }
 
   function getPeriodicColor(category) {
@@ -110,7 +130,7 @@ export function createPeriodicOverlayRuntime(deps) {
         <div class="ptable-symbol">${el.symbol}</div>
         <div class="ptable-name">${el.name}</div>
       `;
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", async () => {
         showPeriodicElementDetail(el);
         const currentLevel = getCurrentLevel();
         if (currentLevel) {
@@ -123,8 +143,10 @@ export function createPeriodicOverlayRuntime(deps) {
           });
           updateNavButton();
         }
-        const sceneId = el.symbol.toLowerCase();
-        const path = `content/scenes/elements/${sceneId}.json`;
+        const path = await resolveElementScenePath(el.symbol);
+        if (!path) {
+          return;
+        }
         if (periodicOverlay) {
           periodicOverlay.classList.add("is-fading");
         }

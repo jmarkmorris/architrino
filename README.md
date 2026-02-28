@@ -25,7 +25,7 @@ node scripts/validate-content.mjs --check
 node scripts/validate-content.mjs --write
 node scripts/build-scene-graph.mjs --check
 node scripts/build-scene-graph.mjs --write
+node scripts/smoke-option3.mjs
 ```
 
 If `--write` updates index or graph files intentionally, include those file changes in your commit.
-
