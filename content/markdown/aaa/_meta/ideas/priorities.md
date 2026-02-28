@@ -64,6 +64,8 @@
 - new architrino repository is live 20260217
   - need to go back and clean up the old neoclassical.ai repo. 
 
+- neoclassical.ai domain is not working
+
 ---
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md. paths, and other scenes (sphere, ...)
