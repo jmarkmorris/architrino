@@ -17,6 +17,11 @@ Then open `http://localhost:5173/`.
 
 ## Deployed to GitHub Pages via architrino.com
 
+## Runtime Contract
+- Runtime search is manifest-only and reads `content/graph/scene_graph.json`.
+- Periodic element routing is manifest-only via `runtimeRoutes.periodicGrid` in `content/graph/scene_graph.json`.
+- Keep the manifest up to date after content changes.
+
 ## Content Validation
 Run these from the repo root:
 

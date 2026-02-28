@@ -6,17 +6,15 @@ export class SceneIndexService {
     this.ready = false;
   }
 
-  async ensure(fetchImpl, graphPath = null) {
+  async ensure(fetchImpl, graphPath) {
     if (this.ready) {
       return this.getSearchEntries();
     }
 
     if (!graphPath) {
-      this.searchEntries = [];
-      this.scenes = [];
-      this.ready = true;
-      this.source = "manifest_missing";
-      return this.getSearchEntries();
+      throw new Error(
+        "[SceneIndexService] graphPath is required (runtime search is manifest-only)"
+      );
     }
 
     const loaded = await this.tryLoadGraphManifest(fetchImpl, graphPath);

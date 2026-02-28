@@ -5,6 +5,7 @@ import path from "node:path";
 
 const rootDir = process.cwd();
 const SCENE_GRAPH_PATH = "content/graph/scene_graph.json";
+// scenes_index is used here only for integrity cross-checks, not runtime routing/search.
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const PERIODIC_TABLE_PATH = "content/scenes/chemistry/periodic_table.json";
 
