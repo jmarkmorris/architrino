@@ -1,5 +1,7 @@
 **Geometric Mapping of the Koide Cone in Assembly Architecture**
 
+This note records a conjectural mapping between Koide-style mass relations and AAA assembly geometry. It is not a derivation.
+
 In the Architrino Assembly Architecture, mass is not a fundamental quantum number but an emergent inertial parameter. It arises from the time-integrated drag exerted by the Noether Sea on the exposed causal wakes of an assembly. The Koide relation maps directly to the discrete topological reduction of the tri-binary nucleus.
 
 Let the effective coupling length of the $n$-th generation core be $r_n \propto \sqrt{m_n}$. The generation index $n \in \{I, II, III\}$ corresponds inversely to the number of active, mutually orthogonal binary rings shielding the high-energy inner self-hit core (Gen I = 3 rings, Gen II = 2 rings, Gen III = 1 ring). 

@@ -1,7 +1,5 @@
 Not sure if this is worth including - might be far too speculative.
 
-
-
 # The Supergalactic Plane: Large-Scale Structure and Architrino Assembly Architecture
 
 ## Observational Overview
