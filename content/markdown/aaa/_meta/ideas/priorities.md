@@ -6,8 +6,7 @@
 
 
 
-  9. Add uncertainty propagation to CKM closure (currently central-value heavy) in weak-mixing-ckm.md.
-     Deliverable: confidence interval test for (\cos\delta=s_{13}/(s_{12}s_{23})).
+
   10. Fill zero-byte core math stubs: gauge-symmetries.md, gravitational-waves.md.
      Deliverable: minimal theorem-backed skeletons so key derivation chain is not broken.
 
