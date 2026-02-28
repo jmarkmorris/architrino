@@ -240,6 +240,65 @@ function inferSceneId(scenePath) {
   return file.replace(/\.json$/i, "");
 }
 
+function inferSceneName(scenePath, sceneMeta, sceneId) {
+  return (
+    asText(sceneMeta.name) ||
+    asText(sceneMeta.title) ||
+    titleFromSlug(sceneId) ||
+    titleFromSlug(scenePath.split("/").pop() || "scene")
+  );
+}
+
+function buildGeneratedScenesIndex(scenePaths, sceneDataByPath, currentSceneEntries) {
+  const derivedByPath = new Map(
+    scenePaths.map((scenePath) => {
+      const sceneData = sceneDataByPath.get(scenePath) || {};
+      const sceneMeta = sceneData.scene || {};
+      const sceneId = asText(sceneMeta.id) || inferSceneId(scenePath);
+      const sceneName = inferSceneName(scenePath, sceneMeta, sceneId);
+      return [
+        scenePath,
+        {
+          id: sceneId,
+          name: sceneName,
+          path: scenePath,
+        },
+      ];
+    })
+  );
+
+  const generated = [];
+  const seenPaths = new Set();
+
+  for (const entry of currentSceneEntries) {
+    if (!entry || typeof entry.path !== "string") {
+      continue;
+    }
+    if (seenPaths.has(entry.path)) {
+      continue;
+    }
+    const derived = derivedByPath.get(entry.path);
+    if (!derived) {
+      continue;
+    }
+    generated.push({
+      id: asText(entry.id) || derived.id,
+      name: asText(entry.name) || derived.name,
+      path: entry.path,
+    });
+    seenPaths.add(entry.path);
+  }
+
+  const newPaths = scenePaths
+    .filter((scenePath) => !seenPaths.has(scenePath))
+    .sort((a, b) => a.localeCompare(b));
+  for (const scenePath of newPaths) {
+    generated.push(derivedByPath.get(scenePath));
+  }
+
+  return { scenes: generated };
+}
+
 function addMissingRefError(sourcePath, field, refPath) {
   errors.push(`${sourcePath} -> ${field}: missing path "${refPath}"`);
 }
@@ -325,31 +384,10 @@ if (ancillarySceneJson.length) {
   );
 }
 
-const generatedScenesIndex = {
-  scenes: sceneConfigs.map((scenePath) => {
-    const sceneData = sceneDataByPath.get(scenePath) || {};
-    const sceneMeta = sceneData.scene || {};
-    const sceneId = asText(sceneMeta.id) || inferSceneId(scenePath);
-    const sceneName =
-      asText(sceneMeta.name) ||
-      asText(sceneMeta.title) ||
-      titleFromSlug(sceneId) ||
-      sceneId;
-    return {
-      id: sceneId,
-      name: sceneName,
-      path: scenePath,
-    };
-  }),
-};
-
-const generatedMarkdownIndex = {
-  files: [...allMarkdownFiles],
-};
-
 const indexedScenePaths = [];
 const indexedMarkdownPaths = [];
 const indexedSceneIds = [];
+const currentSceneEntries = [];
 
 const currentScenesIndex = readJson(SCENES_INDEX_PATH);
 if (!currentScenesIndex.ok) {
@@ -368,13 +406,21 @@ if (!currentScenesIndex.ok) {
       errors.push(`${SCENES_INDEX_PATH}: scenes[${index}].path must be a string`);
       continue;
     }
-    indexedScenePaths.push(normalizePath(scene.path));
-    if (typeof scene.id === "string" && scene.id.trim()) {
-      indexedSceneIds.push(scene.id.trim());
+    const normalizedPath = normalizePath(scene.path);
+    indexedScenePaths.push(normalizedPath);
+    const sceneId = typeof scene.id === "string" ? scene.id.trim() : "";
+    const sceneName = typeof scene.name === "string" ? scene.name.trim() : "";
+    currentSceneEntries.push({
+      id: sceneId,
+      name: sceneName,
+      path: normalizedPath,
+    });
+    if (sceneId) {
+      indexedSceneIds.push(sceneId);
     } else {
       warnings.push(`${SCENES_INDEX_PATH}: scenes[${index}] has missing/empty id`);
     }
-    if (typeof scene.name !== "string" || !scene.name.trim()) {
+    if (!sceneName) {
       warnings.push(`${SCENES_INDEX_PATH}: scenes[${index}] has missing/empty name`);
     }
   }
@@ -411,6 +457,16 @@ if (duplicateSceneIds.length) {
     `${SCENES_INDEX_PATH}: duplicate scene ids (${duplicateSceneIds.join(", ")})`
   );
 }
+
+const generatedScenesIndex = buildGeneratedScenesIndex(
+  sceneConfigs,
+  sceneDataByPath,
+  currentSceneEntries
+);
+
+const generatedMarkdownIndex = {
+  files: [...allMarkdownFiles],
+};
 
 const sceneIndexDrift = summarizeIndexDrift(indexedScenePaths, sceneConfigs);
 const markdownIndexDrift = summarizeIndexDrift(indexedMarkdownPaths, allMarkdownFiles);

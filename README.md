@@ -17,6 +17,14 @@ Then open `http://localhost:5173/`.
 
 ## Deployed to GitHub Pages via architrino.com
 
+## Content Validation
+Run these from the repo root:
 
+```bash
+node scripts/validate-content.mjs --check
+node scripts/validate-content.mjs --write
+```
+
+If `--write` updates index files intentionally, include those index file changes in your commit.
 
 
