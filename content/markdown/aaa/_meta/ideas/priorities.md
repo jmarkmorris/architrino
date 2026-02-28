@@ -4,10 +4,8 @@
 
 
 
-  7. Close the proper-time derivation gap at proper-time-and-time-dilation.md:138.
-     Deliverable: concrete tri-binary clock model with extracted coefficients and benchmark error bounds.
-  8. Make down-family selection rigorous in color-charge-su3.md:248 with the failure condition at color-charge-su3.md:253.
-     Deliverable: energy/stability criterion proving single low-energy family survives.
+
+
   9. Add uncertainty propagation to CKM closure (currently central-value heavy) in weak-mixing-ckm.md.
      Deliverable: confidence interval test for (\cos\delta=s_{13}/(s_{12}s_{23})).
   10. Fill zero-byte core math stubs: gauge-symmetries.md, gravitational-waves.md.
