@@ -34,6 +34,7 @@ import { createSceneGraphManifestService } from "./src/services/SceneGraphManife
 import { createSceneStateHashService } from "./src/services/SceneStateHashService.js";
 import { createMarkdownSectionTitleResolver } from "./src/services/MarkdownSectionTitleService.js";
 import { createSceneBootstrapService } from "./src/services/SceneBootstrapService.js";
+import { createSceneSearchCoordinatorService } from "./src/services/SceneSearchCoordinatorService.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -2550,11 +2551,6 @@ function openMetaRing() {
   jumpToScene(metaScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
 }
 
-
-async function ensureSceneIndex() {
-  await sceneIndexService.ensure(fetch, sceneGraphManifestPath);
-}
-
 const sceneSearchRuntime = createSceneSearchRuntime({
   sceneSearch,
   sceneSearchToggle,
@@ -2566,6 +2562,12 @@ const sceneSearchRuntime = createSceneSearchRuntime({
   navigationStack,
   searchBackStack,
   jumpToScene,
+});
+const sceneSearchCoordinator = createSceneSearchCoordinatorService({
+  sceneIndexService,
+  sceneSearchRuntime,
+  fetchImpl: (...args) => fetch(...args),
+  sceneGraphManifestPath,
 });
 
 function focusOnPointer(clientX, clientY) {
@@ -3117,10 +3119,7 @@ if (composerCameraResetButton) {
 
 if (sceneSearchToggle) {
   sceneSearchToggle.addEventListener("click", async () => {
-    if (!sceneSearchRuntime.isSearchOpen()) {
-      await ensureSceneIndex();
-    }
-    sceneSearchRuntime.setSearchOpen(!sceneSearchRuntime.isSearchOpen());
+    await sceneSearchCoordinator.toggleSearchPanel();
   });
 }
 
@@ -3130,7 +3129,7 @@ if (sceneSearchInput) {
   });
   sceneSearchInput.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      sceneSearchRuntime.setSearchOpen(false);
+      sceneSearchCoordinator.closeSearchPanel();
       return;
     }
     if (event.key === "Enter") {
@@ -3151,7 +3150,7 @@ document.addEventListener("pointerdown", (event) => {
   if (sceneSearchRuntime.isSearchEventTarget(event.target)) {
     return;
   }
-  sceneSearchRuntime.setSearchOpen(false);
+  sceneSearchCoordinator.closeSearchPanel();
 });
 
 document.addEventListener("focusin", (event) => {
@@ -3161,19 +3160,18 @@ document.addEventListener("focusin", (event) => {
   if (sceneSearchRuntime.isSearchEventTarget(event.target)) {
     return;
   }
-  sceneSearchRuntime.setSearchOpen(false);
+  sceneSearchCoordinator.closeSearchPanel();
 });
 
 window.addEventListener("keydown", async (event) => {
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
     event.preventDefault();
     if (!sceneSearchRuntime.isSearchOpen()) {
-      await ensureSceneIndex();
-      sceneSearchRuntime.setSearchOpen(true);
+      await sceneSearchCoordinator.openSearchPanel();
     } else {
-      sceneSearchRuntime.setSearchOpen(false);
+      sceneSearchCoordinator.closeSearchPanel();
     }
   } else if (event.key === "Escape" && sceneSearchRuntime.isSearchOpen()) {
-    sceneSearchRuntime.setSearchOpen(false);
+    sceneSearchCoordinator.closeSearchPanel();
   }
 });
