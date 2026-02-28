@@ -1,6 +1,34 @@
 
 # **The #1 priority is the dynamics/math/geometry and the mapping**
 
+
+• Yes. Beyond CKM, there are several genuinely tractable math targets.
+
+  1. Delay-map/root topology theorem pack
+      - Formalize monotonic single-hit regime, fold bifurcation condition, and degree/root-count behavior already stated in master-equation.md#L130, master-equation.md#L164, master-equation.md#L170,
+        master-equation.md#L189.
+      - Low-hanging because the objects and claims are already explicit; it mainly needs proof cleanup.
+  2. Causal-action theorem spine completion
+      - Turn the existing theorem sketches into complete proofs + assumptions checklist from causal-action-functional.md#L130, with explicit branch-count proposition at causal-action-functional.md#L231.
+      - This is close to publishable internal math if tightened.
+  3. Charge-quantization combinatorics proof
+      - Prove that 6 slots with (\pm e/6) gives only (0,\pm1/3,\pm2/3,\pm1), as stated in gauge-structure-emergence.md#L55 and gauge-structure-emergence.md#L64.
+      - Very low effort, high clarity gain.
+  4. SU(3) from axis-exceptionality (algebra closure)
+      - Make the basis/generator mapping rigorous from color-charge-su3.md#L257, color-charge-su3.md#L269, color-charge-su3.md#L315.
+      - Low-hanging because the geometric basis is already defined; you need closure/representation details.
+  5. Weak-field clock-law coefficient extraction
+      - Derive/fix first-order coefficients in (d\tau/dt) expansion from proper-time-and-time-dilation.md#L186 and proper-time-and-time-dilation.md#L199.
+      - Bounded perturbation problem with clear benchmark form.
+  6. PPN-(\gamma) refractive Shapiro map
+      - Build the explicit refractive-delay integral to match the stated target in PPN-parameters.md#L3 and metric mapping requirement in emergent-metric.md#L121.
+      - Good medium-complexity win with direct observational tie-in.
+  7. Numerical rigor: provenance/convergence metrics
+      - Convert qualitative checks into strict quantitative pass/fail criteria from convergence-tests.md#L1 and synthetic-observables.md#L31.
+      - Fast progress and essential for all later claims.
+
+  If you want, I can start by drafting the full theorem/proof write-up for items 1 and 2 first.
+
 ## Infrastructure
 
 • Current architecture works, but it’s fragile because scene graph truth is split across runtime code, scene JSON, and manual indexes.
