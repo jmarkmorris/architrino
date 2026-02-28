@@ -5,9 +5,7 @@
 • Yes. Beyond CKM, there are several genuinely tractable math targets.
 
 
-  4. SU(3) from axis-exceptionality (algebra closure)
-      - Make the basis/generator mapping rigorous from color-charge-su3.md#L257, color-charge-su3.md#L269, color-charge-su3.md#L315.
-      - Low-hanging because the geometric basis is already defined; you need closure/representation details.
+ 
   5. Weak-field clock-law coefficient extraction
       - Derive/fix first-order coefficients in (d\tau/dt) expansion from proper-time-and-time-dilation.md#L186 and proper-time-and-time-dilation.md#L199.
       - Bounded perturbation problem with clear benchmark form.

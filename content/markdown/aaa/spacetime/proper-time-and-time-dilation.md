@@ -193,15 +193,50 @@ Because closed‑form analytic solutions are unlikely, we will combine **perturb
 
 3. **Solve for frequency shift**:
  - Compute $\delta\omega(v,\Phi_N)$ from the linearized equations.
- - Show explicitly that:
+ - Use the first-order ansatz:
+ $$
+ \frac{\omega(v,\Phi_N)}{\omega_0}
+ = 1 + A_\Phi\,\frac{\Phi_N}{c_f^2} + A_v\,\frac{v^2}{c_f^2}
+ + \mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4},\frac{v^4}{c_f^4},\frac{\Phi_N v^2}{c_f^4}\right).
+ $$
+ Since $d\tau/dt=\omega/\omega_0$, coefficient extraction is equivalent in either observable.
+ - GR weak-field benchmark:
+ $$
+ \frac{d\tau}{dt}
+ = \sqrt{1+\frac{2\Phi_N}{c^2}-\frac{v^2}{c^2}}
+ = 1+\frac{\Phi_N}{c^2}-\frac{1}{2}\frac{v^2}{c^2}
+ + \mathcal{O}\!\left(\frac{\Phi_N^2}{c^4},\frac{v^4}{c^4},\frac{\Phi_N v^2}{c^4}\right).
+ $$
+ Therefore, in the GR-matching limit ($c_f=c$), the first-order targets are
+ $$
+ A_\Phi=1,\qquad A_v=-\frac{1}{2}.
+ $$
+ - In the notation used in this chapter:
  $$
  \frac{\omega(v,\Phi_N)}{\omega_0}
  = 1 + \alpha\,\frac{\Phi_N}{c_f^2} - \frac{1}{2}\,\frac{v^2}{c_f^2} + \mathcal{O}(\epsilon_v^4,\epsilon_\Phi^2)
  $$
- with $\alpha$ expected to be $1$ in the GR‑matching limit.
+ with $\alpha=A_\Phi$ and benchmark value $\alpha=1$.
+
+  **Simulation extraction formulas (first-order):**
+  $$
+  \alpha_{\mathrm{fit}}
+  \approx
+  \frac{\omega(0,\Phi_2)-\omega(0,\Phi_1)}
+       {\omega_0\left[(\Phi_2-\Phi_1)/c_f^2\right]},
+  \qquad
+  A_{v,\mathrm{fit}}
+  \approx
+  \frac{\omega(v_2,0)-\omega(v_1,0)}
+       {\omega_0\left[(v_2^2-v_1^2)/c_f^2\right]}.
+  $$
+  Targets: $\alpha_{\mathrm{fit}}\to 1$ and $A_{v,\mathrm{fit}}\to -1/2$ as
+  resolution and regularization are refined.
 
 4. **Match to GR:** 
- Identify conditions under which $\alpha=1$ and cross‑terms vanish to the accuracy of current experiments ($\lesssim 10^{-5}$ in PPN parameters).
+ Identify conditions under which $\alpha=1$, $A_v=-1/2$, and mixed terms
+ $\propto \Phi_N v^2/c_f^4$ vanish within experimental accuracy
+ ($\lesssim 10^{-5}$ in PPN parameters).
 
 ### Direct Numerical Experiments
 
