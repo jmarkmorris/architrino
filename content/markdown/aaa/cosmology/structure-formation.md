@@ -160,7 +160,93 @@ $$
 G_{\text{eff}}(a, k) = G_N \bigl[1 + \mu(a, k)\bigr],
 $$
 
-where $\mu(a, k)$ is a dimensionless modification function. In the medium picture, $\mu$ is derived from the linearized constitutive relation of the Noether Sea (its bulk modulus, shear response, and frequency-dependent compliance). Setting $\mu = 0$ recovers standard GR growth. Current data constrain $|\mu| \lesssim 0.1$ at the scales probed by galaxy surveys and CMB lensing.
+where $\mu(a, k)$ is a dimensionless modification function.
+
+### Linear Constitutive Derivation of $\mu(a,k)$
+
+To make the map explicit, linearize the Noether-Sea medium around a homogeneous background with displacement field $\mathbf{u}$ and scalar compression mode
+$$
+\theta \equiv \nabla\cdot\mathbf{u}.
+$$
+
+Use isotropic linear constitutive response (elastic + Kelvin-Voigt damping):
+$$
+\delta \sigma_{ij}
+=
+K(a)\,\delta_{ij}\,\theta
++2S(a)\!\left(u_{ij}-\frac{1}{3}\delta_{ij}\theta\right)
++\zeta(a)\,\delta_{ij}\,\dot{\theta}
++2\eta(a)\!\left(\dot{u}_{ij}-\frac{1}{3}\delta_{ij}\dot{\theta}\right),
+$$
+with bulk modulus $K$, shear modulus $S$, and viscosities $(\zeta,\eta)$.
+
+For scalar/longitudinal modes in Fourier space, the linear response equation is
+$$
+\left[M_L(a)k^2 + m_L^2(a) - i\omega\,\Gamma_L(a)\,k^2\right]\theta(a,k,\omega)
+=
+g_m(a)\,\delta\rho_m(a,k,\omega),
+$$
+where
+$$
+M_L(a)\equiv K(a)+\frac{4}{3}S(a),
+\qquad
+\Gamma_L(a)\equiv \zeta(a)+\frac{4}{3}\eta(a),
+$$
+and $m_L(a)$ is the finite-range restoring scale (equivalently $k_\ast(a)^2=m_L^2/M_L$).
+
+The induced sea-density perturbation is
+$$
+\delta\rho_{\text{sea}}(a,k,\omega)
+=
+-\bar{\rho}_{\text{sea}}(a)\,\theta(a,k,\omega)
+=
+\chi_{\text{sea}}(a,k,\omega)\,\delta\rho_m(a,k,\omega),
+$$
+with susceptibility
+$$
+\chi_{\text{sea}}(a,k,\omega)
+=
+-\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}
+{M_L(a)k^2+m_L^2(a)-i\omega\,\Gamma_L(a)k^2}.
+$$
+
+Insert this into the linear Poisson source:
+$$
+-k^2\Phi(a,k)=4\pi G_N a^2\bigl[\delta\rho_m+\delta\rho_{\text{sea}}\bigr]
+=
+4\pi G_N a^2\bigl[1+\chi_{\text{sea}}(a,k,\omega)\bigr]\delta\rho_m.
+$$
+Therefore
+$$
+G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\chi_{\text{sea}}(a,k,\omega)\bigr],
+\qquad
+\mu(a,k,\omega)=\chi_{\text{sea}}(a,k,\omega).
+$$
+
+For growth calculations use the quasi-static branch $\omega\simeq H(a)f(a)$ and the real part:
+$$
+\mu(a,k)
+=
+-\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)\,\bigl[M_L(a)k^2+m_L^2(a)\bigr]}
+{\bigl[M_L(a)k^2+m_L^2(a)\bigr]^2+\bigl[H(a)f(a)\Gamma_L(a)k^2\bigr]^2}.
+$$
+
+In the strictly quasi-static limit ($Hf\,\Gamma_Lk^2\ll M_Lk^2+m_L^2$), this reduces to the closed Yukawa-like form
+$$
+\mu(a,k)
+\approx
+-\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}
+{m_L^2(a)+M_L(a)k^2}
+=
+\frac{\mu_0(a)}{1+\bigl(k/k_\ast(a)\bigr)^2},
+$$
+$$
+\mu_0(a)\equiv-\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}{m_L^2(a)},
+\qquad
+k_\ast(a)^2\equiv\frac{m_L^2(a)}{M_L(a)}.
+$$
+
+Setting $g_m=0$ (or equivalently $\mu=0$) recovers standard GR growth. Current data constrain $|\mu| \lesssim 0.1$ on the scales probed by galaxy surveys and CMB lensing.
 
 A concrete prediction: if the medium's compliance decreases as it cools (outer binaries expand, lowering the energy density and stiffening the lattice), then $\mu < 0$ at late times, suppressing growth and lowering $S_8$. This is a falsifiable, quantitative claim.
 
@@ -211,7 +297,7 @@ In the modular cosmology architecture, this document provides:
 - If high-$z$ structure observations require growth rates exceeding the maximum permitted by any physical $G_{\text{eff}}(z)$ profile (even with early-time enhancement), the framework cannot accommodate the data.
 
 **Next steps:**
-- Derive $G_{\text{eff}}(t, k)$ from the linearized constitutive relation of the Noether Sea, using the effective Lagrangian formalism (`dynamics/effective-lagrangian.md`) applied to small perturbations around the homogeneous background.
+- Calibrate the constitutive coefficients $\{K,S,\zeta,\eta,m_L,g_m\}(a)$ in the derived $\mu(a,k)$ map using linear-response simulations from `dynamics/effective-lagrangian.md`, then project to survey observables.
 - Compute $f\sigma_8(z)$ for a family of medium-compliance histories and compare against DESI, Euclid, and Rubin LSST data.
 - Simulate the nonlinear regime ($|\delta| \gtrsim 1$) using N-body methods with the modified $G_{\text{eff}}$ to produce halo mass functions and concentration–mass relations for comparison with cluster surveys.
 - Interface with `CMB.md` to verify that the primordial spectrum and lensing amplitude are jointly consistent.

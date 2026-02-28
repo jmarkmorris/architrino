@@ -3,8 +3,7 @@
 
 
 
-  6. Complete PPN spine beyond (\gamma): PPN-parameters.md:72, PPN-parameters.md:77.
-     Deliverable: explicit (\beta), (\alpha_1,\alpha_2,\alpha_3) formulas and zero-leakage conditions.
+
   7. Close the proper-time derivation gap at proper-time-and-time-dilation.md:138.
      Deliverable: concrete tri-binary clock model with extracted coefficients and benchmark error bounds.
   8. Make down-family selection rigorous in color-charge-su3.md:248 with the failure condition at color-charge-su3.md:253.
