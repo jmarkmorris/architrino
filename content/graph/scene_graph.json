@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 352,
-      "edges": 1120,
+      "nodes": 353,
+      "edges": 1121,
       "scenes": 179,
       "markdownIndexes": 23,
-      "markdownDocs": 150,
+      "markdownDocs": 151,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1544,6 +1544,12 @@
       "id": "content/markdown/aaa/_meta/ideas/priorities.md",
       "name": "**The #1 priority is the dynamics/math/geometry and the mapping**",
       "path": "__markdown_doc__:content/markdown/aaa/_meta/ideas/priorities.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/_meta/ideas/process.md",
+      "name": "Process",
+      "path": "__markdown_doc__:content/markdown/aaa/_meta/ideas/process.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4334,6 +4340,15 @@
       "name": "**The #1 priority is the dynamics/math/geometry and the mapping**",
       "path": "content/markdown/aaa/_meta/ideas/priorities.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/_meta/ideas/priorities.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/_meta/ideas/process.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/_meta/ideas/process.md",
+      "name": "Process",
+      "path": "content/markdown/aaa/_meta/ideas/process.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/_meta/ideas/process.md",
       "implicit": false
     },
     {
@@ -9003,6 +9018,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/_meta/ideas",
       "to": "markdown_doc:content/markdown/aaa/_meta/ideas/priorities.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/_meta/ideas",
+      "to": "markdown_doc:content/markdown/aaa/_meta/ideas/process.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
