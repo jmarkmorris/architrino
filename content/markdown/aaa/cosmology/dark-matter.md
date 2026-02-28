@@ -9,7 +9,7 @@ Throughout, "dark matter" refers to the set of phenomena conventionally attribut
 
 ## Observational Constraint Summary
 
-Any AAA dark-matter account must simultaneously satisfy the following targets, drawn from current data:
+Any $\mathbb{A}\mathbb{A}\mathbb{A}$ dark-matter account must simultaneously satisfy the following targets, drawn from current data:
 
 | Observable | Constraint | Reference regime |
 |:---|:---|:---|
@@ -22,7 +22,7 @@ Any AAA dark-matter account must simultaneously satisfy the following targets, d
 | Lensing amplitude $S_8$ | $S_8 = \sigma_8 (\Omega_m/0.3)^{0.5} \approx 0.77$–$0.83$ | Weak lensing surveys |
 | Direct detection | No confirmed WIMP signal above $\sigma_{\mathrm{SI}} \sim 10^{-47}\;\mathrm{cm}^2$ at 30 GeV | Laboratory bounds |
 
-## AAA Ontology Foundations
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 ### The Noether Sea as Gravitational Medium
 
@@ -32,7 +32,7 @@ Massive composite assemblies (protons, atoms, stars) are tri-binary configuratio
 
 ### What Counts as "Dark" in this Ontology
 
-A dark-matter candidate in AAA must satisfy two conditions:
+A dark-matter candidate in $\mathbb{A}\mathbb{A}\mathbb{A}$ must satisfy two conditions:
 
 - **Gravitational coupling:** The candidate must compress the Noether Sea (contribute to effective $\rho_{\mathrm{NS}}$ gradients) and therefore deflect light and accelerate baryonic matter.
 - **Electromagnetic transparency:** The candidate must couple negligibly to photon-mode assemblies so that it neither emits, absorbs, nor scatters electromagnetic radiation at detectable levels.
@@ -47,7 +47,7 @@ Two substrate-level mechanisms can satisfy these conditions, either separately o
 
 - **Neutrino-class assemblies:** Pro-tri-binary cores with balanced personality layers (3P, 3E decoration). These are the SM neutrinos themselves; their masses ($\sum m_\nu < 0.12$ eV from cosmological bounds) are too small to account for the full $\Omega_{\mathrm{DM}}$, but they contribute to the hot dark-matter fraction and to $N_{\mathrm{eff}}$.
 
-- **Heavier neutral assemblies (hypothetical):** Tri-binary cores carrying decoration patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In AAA these would be assemblies whose personality layers cancel in both net charge and oscillating dipole moment—analogous to the neutrino's balanced decoration but realized on a heavier core (e.g., a bi-binary or uni-binary nucleus with appropriately locked decoration, or a multi-core composite). The mass scale is set by the core's internal binding energy and Noether-Sea drag.
+- **Heavier neutral assemblies (hypothetical):** Tri-binary cores carrying decoration patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose personality layers cancel in both net charge and oscillating dipole moment—analogous to the neutrino's balanced decoration but realized on a heavier core (e.g., a bi-binary or uni-binary nucleus with appropriately locked decoration, or a multi-core composite). The mass scale is set by the core's internal binding energy and Noether-Sea drag.
 
 - **Primordial Noether-core defects:** Dense, self-gravitating clusters of maximally contracted tri-binaries produced in the high-energy epoch—analogous to primordial black holes in standard cosmology but with internal Planck-core structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics.
 
@@ -61,7 +61,7 @@ Two substrate-level mechanisms can satisfy these conditions, either separately o
 
 **Mechanism sketch.** Each Noether-Sea tri-binary has a minimum restoring-force threshold set by the outer-binary binding. Below the corresponding acceleration scale, the medium deforms more easily per unit stress—the effective $G$ increases with decreasing acceleration. This is structurally analogous to MOND ($\mu(a/a_0)\,a = a_N$) but derived from assembly elasticity rather than postulated. The transition function $\mu$ would emerge from the outer-binary response curve as a function of the local strain rate $\nabla\Phi / a_0$.
 
-**Characteristic scale.** The MOND acceleration $a_0 \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to $c H_0 / (2\pi)$. In AAA, this coincidence could reflect a connection between the outer-binary expansion/contraction timescale (set by the cosmological evolution of the Noether Sea) and the local stiffness threshold. This is a mapping target, not a derived result.
+**Characteristic scale.** The MOND acceleration $a_0 \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to $c H_0 / (2\pi)$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this coincidence could reflect a connection between the outer-binary expansion/contraction timescale (set by the cosmological evolution of the Noether Sea) and the local stiffness threshold. This is a mapping target, not a derived result.
 
 **Limitations.** A pure medium-response account faces well-documented difficulties:
 - Reproducing the Bullet Cluster offset without a collisionless component.
@@ -106,10 +106,10 @@ The boundaries between regimes are set by the ratio $|\nabla\Phi|/a_0$ and the l
 
 ## SMBH Recycling and Dark-Sector Flow
 
-In AAA cosmology, supermassive black holes (SMBHs) are recycling furnaces: baryonic and dark-sector assemblies fall in, are processed through the high-energy interior (inner tri-binary regime, $v > c_f$), and re-emerge via jets and radiative outflows in altered assembly configurations. This cycle has implications for the dark sector:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, supermassive black holes (SMBHs) are recycling furnaces: baryonic and dark-sector assemblies fall in, are processed through the high-energy interior (inner tri-binary regime, $v > c_f$), and re-emerge via jets and radiative outflows in altered assembly configurations. This cycle has implications for the dark sector:
 
 - **Neutral-assembly processing:** If neutral assemblies accrete onto SMBHs, they contribute to the energy budget available for jet launching. Re-emitted assemblies may include photons (planar-mode tri-binaries), neutrinos, and potentially new neutral assemblies formed during the recycling process.
-- **Dark-sector mass evolution:** Unlike pure $\Lambda\mathrm{CDM}$ where dark matter is strictly conserved and collisionless, AAA permits slow conversion between dark and visible sectors through SMBH processing. This conversion rate must be small enough to preserve $\Omega_{\mathrm{DM}}$ to within Planck-era constraints over cosmological timescales, which places an upper bound on the SMBH dark-matter accretion efficiency.
+- **Dark-sector mass evolution:** Unlike pure $\Lambda\mathrm{CDM}$ where dark matter is strictly conserved and collisionless, $\mathbb{A}\mathbb{A}\mathbb{A}$ permits slow conversion between dark and visible sectors through SMBH processing. This conversion rate must be small enough to preserve $\Omega_{\mathrm{DM}}$ to within Planck-era constraints over cosmological timescales, which places an upper bound on the SMBH dark-matter accretion efficiency.
 - **Observable signature (speculative):** If SMBH recycling converts neutral assemblies into electromagnetic-channel products at non-negligible rates, this could produce a correlation between SMBH mass and local dark-matter deficit. This is a mapping target for simulation, not an asserted observational deviation.
 
 ## Candidate Assembly Properties
@@ -123,7 +123,7 @@ The neutral-assembly mass is not a free parameter to be fitted post hoc; it must
 - $m \sim$ GeV–TeV: WIMP-like; direct-detection null results constrain cross-sections tightly.
 - $m \gg$ TeV: superheavy; must be produced non-thermally (e.g., gravitational production or SMBH-related formation in early epochs).
 
-The AAA framework does not currently predict a unique mass; deriving the mass spectrum from first-principles tri-binary binding energies and formation rates is a high-priority simulation target.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not currently predict a unique mass; deriving the mass spectrum from first-principles tri-binary binding energies and formation rates is a high-priority simulation target.
 
 ### Interaction Cross-Sections
 
@@ -136,7 +136,7 @@ Neutral assemblies interact with each other and with baryonic matter only throug
 
 ### Stability
 
-The neutral-assembly candidate must be cosmologically stable: lifetime $\tau \gg t_0 \approx 13.8$ Gyr. In AAA, stability follows from the same topological arguments that stabilize the proton: the assembly occupies a deep attractor basin in tri-binary configuration space, and all decay channels either violate charge/polarity conservation or require energy input exceeding the cosmological temperature.
+The neutral-assembly candidate must be cosmologically stable: lifetime $\tau \gg t_0 \approx 13.8$ Gyr. In $\mathbb{A}\mathbb{A}\mathbb{A}$, stability follows from the same topological arguments that stabilize the proton: the assembly occupies a deep attractor basin in tri-binary configuration space, and all decay channels either violate charge/polarity conservation or require energy input exceeding the cosmological temperature.
 
 ## Cosmology Integration
 
@@ -148,11 +148,11 @@ $$
 \Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.25.
 $$
 
-Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the CMB power spectrum: suppression of odd peaks (baryon loading) with the overall amplitude and peak-height ratios set by $\Omega_A/\Omega_b$. The AAA model must reproduce the Planck TT power spectrum through the third acoustic peak to within $\sim 5\%$ in $C_\ell$ residuals.
+Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the CMB power spectrum: suppression of odd peaks (baryon loading) with the overall amplitude and peak-height ratios set by $\Omega_A/\Omega_b$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ model must reproduce the Planck TT power spectrum through the third acoustic peak to within $\sim 5\%$ in $C_\ell$ residuals.
 
 ### Post-Decoupling Growth
 
-Matter perturbations grow as $\delta \propto a$ in the matter-dominated era. The AAA growth equation in the Newtonian limit reads:
+Matter perturbations grow as $\delta \propto a$ in the matter-dominated era. The $\mathbb{A}\mathbb{A}\mathbb{A}$ growth equation in the Newtonian limit reads:
 
 $$
 \ddot{\delta}_A + 2H\dot{\delta}_A = 4\pi G_{\mathrm{eff}}\,\rho_m\,\delta_m,
@@ -162,27 +162,27 @@ where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependen
 
 ### BAO and Matter Power Spectrum
 
-The matter power spectrum $P(k)$ encodes the transfer function through matter-radiation equality and the BAO wiggles imprinted at decoupling. The neutral-assembly contribution sets the shape of $P(k)$ on scales $k > k_{\mathrm{eq}}$, where $k_{\mathrm{eq}} \propto \Omega_m h^2$. AAA must match the observed $P(k)$ from galaxy surveys (BOSS, DESI) to within the statistical precision of those measurements.
+The matter power spectrum $P(k)$ encodes the transfer function through matter-radiation equality and the BAO wiggles imprinted at decoupling. The neutral-assembly contribution sets the shape of $P(k)$ on scales $k > k_{\mathrm{eq}}$, where $k_{\mathrm{eq}} \propto \Omega_m h^2$. $\mathbb{A}\mathbb{A}\mathbb{A}$ must match the observed $P(k)$ from galaxy surveys (BOSS, DESI) to within the statistical precision of those measurements.
 
 ### $H_0$ and $S_8$ Tensions
 
-The AAA hybrid baseline offers two potential handles on current cosmological tensions:
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid baseline offers two potential handles on current cosmological tensions:
 
-- **$H_0$ tension ($67.4$ vs $73.0\;\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1}$):** If neutral-assembly properties (e.g., a non-zero but small self-interaction or a late-time decay channel) modify the distance ladder or sound horizon differently from pure CDM, the inferred $H_0$ could shift. This requires explicit computation of $r_s$ and $D_L(z)$ within the AAA expansion history.
+- **$H_0$ tension ($67.4$ vs $73.0\;\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1}$):** If neutral-assembly properties (e.g., a non-zero but small self-interaction or a late-time decay channel) modify the distance ladder or sound horizon differently from pure CDM, the inferred $H_0$ could shift. This requires explicit computation of $r_s$ and $D_L(z)$ within the $\mathbb{A}\mathbb{A}\mathbb{A}$ expansion history.
 - **$S_8$ tension ($\sim 2$–$3\sigma$ between CMB and weak lensing):** The scale-dependent medium response could suppress late-time growth at $k \sim 0.1$–$1\;h\,\mathrm{Mpc}^{-1}$, lowering $\sigma_8$ relative to the CMB-inferred value while leaving the CMB itself unchanged. This is a quantitative prediction that can be tested once $G_{\mathrm{eff}}(a,k)$ is derived from Noether-Sea constitutive relations.
 
 ## Falsifiability and Failure Modes
 
 ### Tier-1 Failures (Theory-Killing)
 
-- **Bullet Cluster:** If the AAA framework cannot produce a collisionless dark component that leads the baryonic gas after a cluster merger, the neutral-assembly hypothesis fails, and the theory must rely entirely on medium response—which faces its own Bullet-Cluster problem.
-- **CMB third peak:** If no neutral-assembly population with the correct $\Omega_A h^2$ can be identified from the AAA assembly spectrum, the CMB matter-loading constraint is violated.
+- **Bullet Cluster:** If the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework cannot produce a collisionless dark component that leads the baryonic gas after a cluster merger, the neutral-assembly hypothesis fails, and the theory must rely entirely on medium response—which faces its own Bullet-Cluster problem.
+- **CMB third peak:** If no neutral-assembly population with the correct $\Omega_A h^2$ can be identified from the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly spectrum, the CMB matter-loading constraint is violated.
 - **BBN consistency:** If neutral assemblies interact strongly enough to alter the neutron-to-proton ratio at $T \sim 1$ MeV, light-element abundances are disrupted. Bound: any new species contributing to $N_{\mathrm{eff}}$ at BBN must satisfy $\Delta N_{\mathrm{eff}} < 0.4$ (95% CL).
 
 ### Tier-2 Failures (Require Revision)
 
 - **Rotation-curve diversity:** If the medium-response correction cannot explain the scatter in rotation-curve shapes at fixed $v_{\mathrm{max}}$ without galaxy-by-galaxy fitting, the hybrid model loses its advantage over pure CDM + baryonic feedback.
-- **$P(k)$ shape:** If the AAA $P(k)$ deviates from $\Lambda\mathrm{CDM}$ by more than $\sim 5\%$ at $k < 0.2\;h\,\mathrm{Mpc}^{-1}$ without improving tension metrics, the model performs worse than the baseline.
+- **$P(k)$ shape:** If the $\mathbb{A}\mathbb{A}\mathbb{A}$ $P(k)$ deviates from $\Lambda\mathrm{CDM}$ by more than $\sim 5\%$ at $k < 0.2\;h\,\mathrm{Mpc}^{-1}$ without improving tension metrics, the model performs worse than the baseline.
 - **Direct detection:** If the predicted residual coupling of neutral assemblies exceeds current direct-detection bounds, the candidate is experimentally excluded at that mass scale.
 
 ### Tier-3 Predictions (Discriminating)

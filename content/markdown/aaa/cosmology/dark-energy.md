@@ -1,65 +1,270 @@
-# Dark Energy
 
-## Core Idea
+# Dark Energy in the Architrino Assembly Architecture
 
-How should late-time acceleration be interpreted in a fixed-void, medium-evolution cosmology?
+## Scope and Purpose
 
-## $\mathbb{A}\mathbb{A}\mathbb{A}$ Framing
+Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 68% of the present energy budget to dark energy—a component with equation-of-state parameter $w \approx -1$ that drives late-time accelerated expansion. The simplest realization is a cosmological constant $\Lambda$, which enters Einstein's field equations as a geometric term equivalent to a constant vacuum energy density $\rho_\Lambda = \Lambda c^2 / (8\pi G) \approx 5.96 \times 10^{-27}\;\mathrm{kg\,m^{-3}}$.
 
-- Acceleration is not interpreted as literal expansion of the Euclidean container.
-- Effective acceleration is associated with medium-state evolution, stress, and relaxation behavior.
-- Observer-level equations of state remain useful summary language.
+This chapter maps dark-energy phenomenology onto the architrino assembly architecture. The central claim is that late-time acceleration is not the expansion of the Euclidean void itself—which is fixed, non-dynamical, and does not stretch—but a macroscopic readout of the evolving internal state of the Noether Sea. The task is to identify the substrate-level mechanism, derive the effective equation of state, match observational benchmarks, and state failure conditions.
 
-## Medium-Relaxation Interpretation
+## Observational Constraint Summary
 
-Late-time acceleration language is interpreted as a macroscopic signature of Noether-sea relaxation:
+Any $\mathbb{A}\mathbb{A}\mathbb{A}$ dark-energy account must satisfy the following targets:
 
-- high-curvature source regions feed energy into outbound assembly flows,
-- those flows dissipate and reconfigure outer-layer geometry,
-- large-scale clock comparisons read this as acceleration history.
+| Observable | Constraint | Reference |
+|:---|:---|:---|
+| $\Omega_\Lambda$ | $0.685 \pm 0.007$ | Planck 2018 (TT,TE,EE+lowE+lensing) |
+| $w_0$ | $-1.03 \pm 0.03$ | Planck + BAO + SNe Ia combined |
+| $w_a$ (time variation) | $-0.3 \pm 0.3$ (consistent with 0) | DESI 2024 + Pantheon+ |
+| $H_0$ (CMB-inferred) | $67.4 \pm 0.5\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$ | Planck 2018 |
+| SN Ia distance moduli | $\mu(z)$ to $\sim 0.1$ mag over $0.01 < z < 2.3$ | Pantheon+ / Union3 |
+| BAO angular scale | $D_V(z)/r_d$ at $z = 0.15$–$2.33$ to $\sim 1$–$2\%$ | BOSS, eBOSS, DESI |
+| CMB ISW signal | Positive cross-correlation with LSS at $z < 1$ | Planck × LSS surveys |
+| Age of the universe | $t_0 = 13.80 \pm 0.02$ Gyr | CMB + $H(z)$ integration |
 
-In this frame, "expansion of space" is a shorthand for evolving medium state.
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
-## Baseline-Energy Reframing
+### The Void Does Not Expand
 
-A useful observer-level bookkeeping bridge is:
+The Euclidean void $\mathbb{R}^3$ with metric $h_{ij} = \delta_{ij}$ is static, homogeneous, isotropic, and non-dynamical (Postulate 2). It does not curve, stretch, or respond to energy content. Cosmological "expansion" in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework refers exclusively to the dynamical evolution of the assemblies that populate the void—not to any change in the void's geometry.
+
+### The Noether Sea Carries the Dynamics
+
+The physical medium that implements Einstein's spacetime is the Noether Sea: a dense lattice of coupled neutral pro/anti tri-binary pairs. Each tri-binary has internal energy stored across three nested binaries operating in distinct field-speed regimes. The collective state of this medium—its local density $\rho_{\mathrm{NS}}(\mathbf{x},t)$, its internal energy spectrum, and its anisotropy—defines the effective metric experienced by all embedded assemblies.
+
+Late-time cosmological acceleration, in this picture, is a statement about how the Noether Sea's aggregate properties evolve on Hubble timescales, not about the container expanding.
+
+## Medium-State Interpretation of Accelerated Expansion
+
+### Baseline Energy of the Noether Sea
+
+Every Noether-Sea tri-binary carries internal binding energy distributed across its three binary tiers:
+
+- **Inner binary** ($v > c_f$, self-hit regime): highest energy density, tightest orbit, contributes to the gravitational charge and inertial mass of the assembly.
+- **Middle binary** ($v = c_f$): defines the effective causal speed; carries intermediate energy.
+- **Outer binary** ($v < c_f$): lowest energy density, largest radius; couples most directly to cosmological-scale dynamics through expansion/contraction modes.
+
+The baseline energy density of the Noether Sea is
 
 $$
-\rho_{\text{DE,eff}} \sim \rho_{\text{sea}}\,E_{\text{core}},
+\rho_{\mathrm{sea}} = n_{\mathrm{core}}\,\langle E_{\mathrm{core}} \rangle,
 $$
 
-where $\rho_{\text{sea}}$ is effective Noether-core density and $E_{\text{core}}$ is representative per-core binding/oscillation energy.
+where $n_{\mathrm{core}}$ is the number density of tri-binary pairs and $\langle E_{\mathrm{core}} \rangle$ is the mean energy per core. This quantity sets the scale of the effective dark-energy density:
 
-In this framing, late-time acceleration is a large-scale residual of medium baseline energy plus relaxation stress response, not raw continuum vacuum-mode summation.
+$$
+\rho_{\mathrm{DE,eff}} \sim \rho_{\mathrm{sea}}\,f(\text{outer-binary state}),
+$$
 
-## Effective Summary Language
+where $f$ encodes what fraction of the baseline energy acts as an effective negative pressure on cosmological scales.
+
+### Why Negative Pressure?
+
+In standard thermodynamics, a system with equation of state $w = p/\rho < -1/3$ drives acceleration of the scale factor. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the Noether Sea can exhibit effective negative pressure through the following mechanism:
+
+**Outer-binary tension.** Each tri-binary's outer binary is a bound oscillator in the $v < c_f$ regime. The outer binary has a natural equilibrium radius set by the balance between partner attraction and coupling to the medium. When the mean inter-core spacing increases (due to matter dilution as structure forms and baryonic assemblies aggregate into galaxies), the outer binaries of neighbouring Noether-Sea cores are stretched beyond equilibrium. This stretching stores elastic energy and produces a restoring stress—a tension—that acts to resist further separation.
+
+A uniform medium under tension has the thermodynamic signature $p < 0$. If the magnitude of the tension exceeds $\rho c^2/3$, the effective equation of state satisfies $w < -1/3$, which drives acceleration.
+
+**Self-consistency requirement.** The tension must be nearly constant in time (slowly varying) to produce $w \approx -1$ rather than a rapidly oscillating or decaying equation of state. This requires that the outer-binary relaxation timescale is comparable to or longer than the Hubble time:
+
+$$
+\tau_{\mathrm{relax}}^{\mathrm{outer}} \gtrsim H_0^{-1} \approx 1.4 \times 10^{10}\;\mathrm{yr}.
+$$
+
+This is a non-trivial constraint on the outer-binary dynamics and must be verified by simulation.
+
+### Medium Relaxation and the Expansion History
+
+The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relaxation of the Noether-Sea state. Schematically:
+
+- At early times ($z \gg 1$), the medium is dense and hot; outer binaries are contracted, and the effective dark-energy contribution is subdominant relative to matter and radiation energy densities.
+- As the medium cools and dilutes through structure formation and radiation escape, outer binaries relax toward larger radii. The associated tension becomes dynamically significant when $\rho_{\mathrm{DE,eff}} \sim \rho_m$, which occurs at $z \sim 0.3$–$0.7$ (the onset of acceleration).
+- At late times ($z \to 0$), the medium approaches a quasi-equilibrium state with slowly evolving tension, producing an approximately constant $\rho_{\mathrm{DE,eff}}$ and $w \approx -1$.
+
+This narrative must be made quantitative through a constitutive relation linking the Noether-Sea state variables to an effective pressure. The minimal parameterization is:
+
+$$
+p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\mathrm{NS}},\;\dot{\rho}_{\mathrm{NS}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{eff}}\bigr),
+$$
+
+where $\langle R_{\mathrm{outer}} \rangle$ is the mean outer-binary radius and $T_{\mathrm{eff}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled tri-binary lattices is a primary simulation target.
+
+## Effective Friedmann Framework
+
+### Background Equations
+
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the Friedmann equations are not fundamental but emerge as the effective large-scale description of the evolving Noether-Sea medium in the homogeneous, isotropic limit. The effective Hubble rate is:
+
+$$
+H^2(z) = \frac{8\pi G_{\mathrm{eff}}}{3}\bigl[\rho_r(z) + \rho_m(z) + \rho_{\mathrm{DE,eff}}(z)\bigr],
+$$
+
+where $\rho_r$, $\rho_m$, and $\rho_{\mathrm{DE,eff}}$ are the effective energy densities of radiation-mode assemblies, matter assemblies (baryonic + neutral dark assemblies), and the Noether-Sea baseline/tension term respectively. In the standard limit, $G_{\mathrm{eff}} \to G_N$ and $\rho_{\mathrm{DE,eff}} \to \rho_\Lambda = \text{const}$, recovering $\Lambda\mathrm{CDM}$.
+
+The effective dark-energy density evolves according to:
+
+$$
+\dot{\rho}_{\mathrm{DE,eff}} + 3H(1 + w_{\mathrm{eff}})\,\rho_{\mathrm{DE,eff}} = \mathcal{S}_{\mathrm{relax}},
+$$
+
+where $w_{\mathrm{eff}} = p_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$ and $\mathcal{S}_{\mathrm{relax}}$ is a source term encoding energy exchange between the dark-energy sector and other components during medium relaxation. In the $\Lambda\mathrm{CDM}$ limit, $w_{\mathrm{eff}} = -1$ and $\mathcal{S}_{\mathrm{relax}} = 0$; both conditions must be recovered to high precision in the tested regime.
+
+### Equation of State: Effective Descriptor
+
+The equation-of-state parameter
 
 $$
 w = \frac{p}{\rho}
 $$
 
-is treated as an emergent descriptor, not a fundamental ontological primitive.
+is treated as an emergent summary of the medium state, not as a fundamental ontological quantity. In lowest-order fits, $w \approx -1$ is admissible as an effective description while the underlying mechanism remains medium-based. Time variation can be parameterized in the standard $w_0$–$w_a$ form:
 
-In lowest-order fits, $w\approx -1$ remains admissible as an effective summary while mechanism language stays medium-based.
+$$
+w(a) = w_0 + w_a(1-a),
+$$
 
-In this usage, the $\Lambda$ term can be read as an effective aggregate summary of distributed medium relaxation rates, not as a literal geometric constant of an expanding container.
+with $a = 1/(1+z)$ the effective scale factor (defined operationally through the redshift of photon-mode assemblies). The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must produce $w_0$ and $w_a$ values consistent with the observational bounds listed above.
 
-## Cosmological-Constant Reframing
+## The Cosmological-Constant Problem
 
-The cosmological-constant hierarchy issue is handled as an ontology mismatch:
+### The Hierarchy as an Ontology Mismatch
 
-- QFT zero-point bookkeeping is not automatically mapped onto curvature-driving energy in this medium picture.
-- Inner and middle assembly structure acts as the main high-curvature storage and recycling channel.
-- The late-time effective acceleration term is the residual large-scale medium state, not raw summed vacuum-mode energy.
+In standard QFT, summing zero-point energies of all field modes up to some cutoff $\Lambda_{\mathrm{UV}}$ produces a vacuum energy density
+
+$$
+\rho_{\mathrm{vac}}^{\mathrm{QFT}} \sim \frac{\Lambda_{\mathrm{UV}}^4}{\hbar^3 c^5},
+$$
+
+which for $\Lambda_{\mathrm{UV}} = M_{\mathrm{Pl}}c$ exceeds the observed $\rho_\Lambda$ by $\sim 120$ orders of magnitude. This is the cosmological-constant problem.
+
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the problem is reframed as an ontology mismatch:
+
+- QFT zero-point energies are not physical observables of the Euclidean void (which carries no energy). They are artifacts of the continuum-field approximation applied to a substrate that is fundamentally discrete (point architrinos) and finite (a definite number of tri-binary assemblies per unit volume).
+- The inner and middle binaries of each Noether-Sea tri-binary store enormous energy densities locally (self-hit regime, $v > c_f$ and $v = c_f$), but this energy is locked into stable, high-frequency orbital modes that do not gravitate as a cosmological constant. Only the slowly varying, large-scale stress from the outer-binary sector contributes to $\rho_{\mathrm{DE,eff}}$.
+- The observed smallness of $\rho_\Lambda$ relative to naïve QFT estimates reflects the fact that most internal tri-binary energy is dynamically inert on Hubble timescales—it is shielded by the nested-binary hierarchy, not canceled by fine-tuning.
+
+**Falsifiability of this resolution.** If the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires fine-tuning of the outer-binary relaxation parameters to achieve $\rho_{\mathrm{DE,eff}} \sim 10^{-47}\;\mathrm{GeV}^4$ (i.e., if the natural scale of the outer-binary tension is many orders of magnitude away from the observed value and must be adjusted by hand), the hierarchy problem is not resolved but merely relocated. The fine-tuning quotient must satisfy FTQ $< 10$ for the dark-energy sector; exceeding this threshold triggers a Red Team review.
+
+### Comparison to Sequestering and Degravitation Proposals
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism is structurally similar to vacuum-energy sequestering proposals (Kaloper & Padilla 2014) in which high-energy modes are dynamically decoupled from the gravitational sector. The key difference is that $\mathbb{A}\mathbb{A}\mathbb{A}$ provides a concrete physical mechanism for the decoupling (nested-binary shielding) rather than imposing it through a global constraint or modified variational principle. Whether the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism achieves the same quantitative suppression must be established through simulation.
+
+## Redshift as Clock Comparison
+
+### Mechanism
+
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not caused by the stretching of space (the void does not stretch) but by the comparison of clocks at emission and reception:
+
+- A photon-mode assembly emitted at cosmic time $t_e$ carries a frequency set by the tri-binary oscillation rates of the source assembly at that epoch.
+- At reception time $t_0$, the observer's local clock rate is set by the current Noether-Sea state.
+- If the Noether-Sea state has evolved between $t_e$ and $t_0$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency is lower than the emitted frequency. This is the operational content of $1 + z = \nu_e/\nu_0$.
+
+The redshift-distance relation $z(d_L)$ encodes the entire history of Noether-Sea state evolution along the photon's path. In the effective Friedmann description, this is captured by:
+
+$$
+d_L(z) = (1+z)\int_0^z \frac{c\,dz'}{H(z')},
+$$
+
+which must match SN Ia distance moduli to within $\sim 0.1$ mag over $0 < z < 2.3$.
+
+### Tired-Light Exclusion
+
+This mechanism is distinct from classical tired-light proposals. In tired light, photons lose energy through scattering or absorption, producing:
+- Image blurring (not observed),
+- Time-dilation violations (SN Ia light curves confirm $\Delta t \propto (1+z)$),
+- Modified surface-brightness relations (Tolman test).
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve photon energy loss in transit. The photon assembly propagates through the Noether Sea without degradation (in the weak-field, low-density limit); the frequency difference arises from the evolving calibration of source and receiver clocks. This reproduces the standard $(1+z)$ time-dilation signature and is consistent with Tolman surface-brightness tests.
+
+## SMBH Recycling and Energy Flow
+
+Supermassive black holes process matter and radiation through their high-energy interiors. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ picture, this recycling has implications for the dark-energy sector:
+
+- **Energy input to the Noether Sea.** Jets and radiative outflows from SMBHs inject energy into the surrounding medium, locally exciting outer-binary modes and increasing the Noether-Sea internal temperature. On galactic and cluster scales, this injection is a source of heating that counteracts the natural cosmological cooling of the medium.
+- **Feedback on $w_{\mathrm{eff}}$.** If SMBH energy injection is correlated with structure formation (as observed in AGN feedback models), the effective dark-energy equation of state could exhibit weak environmental dependence—slightly different $w$ in cluster environments versus voids. Any such variation must be small enough to remain within current $w_0$–$w_a$ bounds but could, in principle, be detectable with next-generation surveys.
+- **No perpetual motion.** The recycling process does not create energy; it redistributes it. The total energy budget (matter + radiation + medium baseline) is conserved in absolute time. What changes is the partition between locked internal modes and the slowly varying tension sector.
+
+## Regime Map
+
+| Epoch | Noether-Sea state | Effective $w$ | Dominant mechanism |
+|:---|:---|:---|:---|
+| Radiation era ($z > 3400$) | Hot, dense; outer binaries contracted | $w_{\mathrm{eff}} \to 0$ (subdominant) | Radiation pressure dominates |
+| Matter era ($3400 > z > 0.7$) | Cooling; outer binaries relaxing | $w_{\mathrm{eff}}$ transitions toward $-1$ | Matter density dominates; tension grows |
+| Acceleration onset ($z \sim 0.7$) | $\rho_{\mathrm{DE,eff}} \sim \rho_m$ | $w_{\mathrm{eff}} \approx -1$ | Tension becomes dynamically significant |
+| Present ($z = 0$) | Quasi-equilibrium tension | $w_{\mathrm{eff}} \approx -1.03 \pm 0.03$ | Acceleration established |
+| Far future ($z \to -1$) | Full relaxation | $w_{\mathrm{eff}} \to -1$ or evolves | Depends on relaxation endpoint |
+
+The acceleration onset redshift $z \sim 0.7$ is an observational benchmark: the $\mathbb{A}\mathbb{A}\mathbb{A}$ medium-relaxation model must produce a deceleration-to-acceleration transition at this epoch without fine-tuning the relaxation rate to match the observation. A natural transition requires that the outer-binary relaxation timescale is set by assembly-scale physics (outer-binary binding energy and Noether-Sea coupling) rather than by a free cosmological parameter.
+
+## Observable Predictions and Diagnostics
+
+### Distance Measures
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ effective Friedmann equation must reproduce:
+
+- SN Ia distance moduli $\mu(z)$ over $0.01 < z < 2.3$,
+- BAO angular-diameter distances $D_A(z)/r_d$ at survey redshifts,
+- CMB distance to last scattering $D_A(z_*)/r_d$.
+
+In the $\Lambda\mathrm{CDM}$ limit, all three are automatically consistent. Any deviation introduced by medium-state evolution (e.g., time-varying $w$, scale-dependent $G_{\mathrm{eff}}$, or source-term $\mathcal{S}_{\mathrm{relax}} \neq 0$) must remain within current statistical uncertainties or must improve tension metrics.
+
+### Integrated Sachs-Wolfe (ISW) Effect
+
+Late-time acceleration causes gravitational potentials to decay, producing a positive cross-correlation between CMB temperature and large-scale structure at $z < 1$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must reproduce the observed ISW signal amplitude. If the medium-response mechanism alters the rate of potential decay (through $G_{\mathrm{eff}}$ evolution or through the $\mathcal{S}_{\mathrm{relax}}$ coupling), the ISW prediction changes and can be compared to data.
+
+### Time Variation of $w$
+
+Recent DESI BAO results combined with SN Ia data show mild ($\sim 2\sigma$) evidence for $w_a \neq 0$, with $w$ possibly crossing $-1$ between $z \sim 0.5$ and $z \sim 0$. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, such crossing is natural: the medium relaxation rate is not constant but depends on the local Noether-Sea state, which itself evolves. A phantom-crossing signature ($w$ dropping below $-1$ and returning) would correspond to a transient epoch where the relaxation source term $\mathcal{S}_{\mathrm{relax}}$ temporarily overdrives the tension sector.
+
+Whether the $\mathbb{A}\mathbb{A}\mathbb{A}$ model naturally produces crossing at the observed magnitude and redshift is a quantitative question for simulation. If the model produces no time variation at all (strict $w = -1$), it is indistinguishable from $\Lambda\mathrm{CDM}$ in this observable and loses discriminating power.
+
+### Gravitational-Wave Standard Sirens
+
+GW events with electromagnetic counterparts provide luminosity-distance measurements independent of the cosmic distance ladder. The $\mathbb{A}\mathbb{A}\mathbb{A}$ expansion history must be consistent with current GW170817 constraints ($H_0 = 70^{+12}_{-8}\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$) and with tighter future bounds from LIGO/Virgo/KAGRA O5 and LISA. Any discrepancy between GW-inferred and photon-inferred distances at the same redshift would signal a propagation-speed difference between tensor-mode and photon-mode assemblies—a Tier-1 constraint violation ($|c_{\mathrm{GW}} - c|/c < 10^{-15}$).
+
+## Falsifiability and Failure Modes
+
+### Tier-1 Failures (Theory-Killing)
+
+- **$w$ far from $-1$:** If the natural medium-relaxation equation of state produces $|w_0 + 1| > 0.2$ without parameter adjustment, the model is excluded by current data.
+- **No acceleration onset:** If the medium-relaxation mechanism cannot produce a deceleration-to-acceleration transition at $z \sim 0.3$–$1.0$, the expansion history is qualitatively wrong.
+- **Age crisis:** If the integrated $H(z)$ yields $t_0 < 12$ Gyr or $t_0 > 15$ Gyr, the model is inconsistent with stellar ages and CMB-inferred age.
+- **Fine-tuning:** If achieving $\rho_{\mathrm{DE,eff}} \sim 10^{-47}\;\mathrm{GeV}^4$ requires adjusting outer-binary parameters to more than 1 part in $10^{10}$ (FTQ $> 10$), the cosmological-constant problem is relocated, not resolved.
+
+### Tier-2 Failures (Require Revision)
+
+- **ISW amplitude mismatch:** If the predicted ISW cross-correlation amplitude deviates from observations by $> 3\sigma$, the potential-decay rate is wrong and the medium-relaxation model needs modification.
+- **BAO shape distortion:** If medium-state evolution introduces scale-dependent distortions in the BAO feature beyond $\sim 2\%$, the model performs worse than $\Lambda\mathrm{CDM}$.
+- **SN Ia residual trends:** If distance-modulus residuals relative to the best-fit $\mathbb{A}\mathbb{A}\mathbb{A}$ expansion history show redshift-dependent trends exceeding 0.05 mag, the model is disfavored.
+
+### Tier-3 Predictions (Discriminating)
+
+- **Time-varying $w$:** If DESI + Euclid confirm $w_a \neq 0$ at $> 3\sigma$, and the $\mathbb{A}\mathbb{A}\mathbb{A}$ medium-relaxation model naturally produces this variation with the correct sign and magnitude, this constitutes a structural success over bare $\Lambda$.
+- **Environmental $w$ dependence:** A weak dependence of the effective equation of state on local environment (cluster vs void) is a unique prediction of the medium-response mechanism. This could manifest as $\sim 1\%$-level variations in inferred $H(z)$ from line-of-sight-dependent analyses.
+- **Correlated ISW–$w$ evolution:** If potential decay and $w$ evolution are driven by the same relaxation dynamics, the ISW signal and $w(z)$ are not independent observables but correlated through the constitutive relation. This correlation is testable with combined CMB × LSS × SN analyses.
 
 ## Expansion-Module Interface
 
-Within the modular cosmology map, this page provides the dark-energy interpretation layer of the expansion module:
+In the modular cosmology architecture, this chapter provides:
 
-- Ontic variables: medium density/stress and assembly relaxation state.
-- Effective outputs: inferred acceleration history and equation-of-state summaries.
-- Cross-link: the same medium evolution that sets acceleration language also sets redshift and clock-rate interpretation in `expansion-mechanism.md`.
+- **Output to `expansion-history.md`:** $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$ from the medium-relaxation model.
+- **Output to `CMB.md`:** late-time ISW contribution and distance to last scattering.
+- **Output to `structure-formation.md`:** potential evolution $\dot{\Phi}(z)$ entering the growth equation.
+- **Input from `dark-matter.md`:** $\Omega_m(z)$ and $G_{\mathrm{eff}}(a,k)$ for consistent Friedmann integration.
+- **Input from `BBN.md`:** early-universe constraints ensuring $\rho_{\mathrm{DE,eff}}(z_{\mathrm{BBN}})$ is negligible relative to radiation density.
+- **Ontic variables passed:** $\rho_{\mathrm{NS}}(z)$, $\langle R_{\mathrm{outer}} \rangle(z)$, $\tau_{\mathrm{relax}}^{\mathrm{outer}}$, $\mathcal{S}_{\mathrm{relax}}(z)$.
+- **Effective outputs returned:** $w_{\mathrm{eff}}(z)$, $\rho_{\mathrm{DE,eff}}(z)$, $H(z)$.
 
-## Coherent Reading
+All interfaces use the same absolute-time / Euclidean-void substrate and Noether-Sea state variables, ensuring ontological consistency with other cosmology modules.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, late-time acceleration is a readout of Noether-sea relaxation and stress history in a fixed Euclidean void; $w$ and $\Lambda$ remain useful effective descriptors, while mechanism remains medium-and-assembly dynamics.
+## Summary
+
+Late-time accelerated expansion, conventionally attributed to dark energy or a cosmological constant, is interpreted in the architrino assembly architecture as a macroscopic signature of Noether-Sea medium relaxation within a fixed Euclidean void:
+
+- The Noether Sea carries a baseline energy density set by the binding and oscillation energies of its constituent tri-binaries.
+- The outer-binary sector of these tri-binaries produces an effective tension (negative pressure) as the medium relaxes and outer-binary radii evolve on cosmological timescales.
+- When this tension satisfies $w < -1/3$, the effective expansion history shows acceleration.
+- The cosmological-constant hierarchy problem is reframed: high-energy internal modes are dynamically shielded from the tension sector by the nested-binary architecture, so the natural scale of $\rho_{\mathrm{DE,eff}}$ is set by outer-binary physics, not by summing all zero-point modes.
+
+The parameters $w$ and $\Lambda$ remain useful effective descriptors of the observed expansion history, while the mechanistic content resides in the Noether-Sea constitutive relation and outer-binary dynamics. Deriving that constitutive relation from the master equation is the critical open program; explicit failure conditions are defined above.
