@@ -71,9 +71,91 @@ Validation target: in the weak-field solar-system regime, $\gamma_{\text{eff}}$ 
 
 #### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
-* **Architrino Interpretation:** Relates to the "Self-Hit" contribution of mass-assemblies and the non-linear density response of the Noether Core sea.
-* **Observable:** Perihelion precession of Mercury. 
+* **Architrino Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether-Sea constitutive nonlinearity.
+* **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$ and expand the static clock law
+$$
+\frac{d\tau}{dt}\bigg|_{v=0}
+=
+1-\frac{U}{c_f^2}
++C_2(a,k)\frac{U^2}{c_f^4}
++\mathcal{O}\!\left(\frac{U^3}{c_f^6}\right).
+$$
+Since $-g_{00}=(d\tau/dt)^2$ for a static observer,
+$$
+g_{00}
+=
+-1
++2\frac{U}{c_f^2}
+-\bigl[1+2C_2(a,k)\bigr]\frac{U^2}{c_f^4}
++\mathcal{O}\!\left(\frac{U^3}{c_f^6}\right).
+$$
+Match to the PPN form
+$$
+g_{00}^{\mathrm{PPN}}
+=
+-1+2\frac{U}{c_f^2}-2\beta_{\mathrm{eff}}\frac{U^2}{c_f^4}+\cdots
+$$
+to obtain
+$$
+\boxed{\beta_{\mathrm{eff}}(a,k)=\frac{1+2C_2(a,k)}{2}}.
+$$
+Equivalently, if $\alpha(\mathcal{I})=1+\lambda_t\mathcal{I}+\frac{1}{2}\lambda_{tt}\mathcal{I}^2$ and
+$\mathcal{I}=\chi_1(a,k)\,U/c_f^2+\chi_2(a,k)\,U^2/c_f^4+\cdots$, then
+$$
+\beta_{\mathrm{eff}}(a,k)
+=
+\frac{1}{2}
++\lambda_t\chi_2(a,k)
++\frac{1}{2}\lambda_{tt}\chi_1(a,k)^2.
+$$
+* **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
 #### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
-* **Crucial Test:** These must be identically zero in our framework’s effective limit to satisfy LLR (Lunar Laser Ranging) and pulsar timing data.
-* **Strategy:** Use $\mathbb{U}_{\text{now}}$ (the universe-now state) to quantify any "leakage" of the Euclidean rest frame into the PPN formalism.
+* **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).
+* **Constitutive leakage ansatz:** Let $\mathbf{w}$ be the medium drift velocity relative to the barycentric frame. Write the lowest-order drift terms as
+$$
+g_{0i}^{\text{leak}}
+=
+-\frac{1}{2}\Xi_1(a,k)\frac{w_i U}{c_f^3}
+-\Xi_2(a,k)\frac{w^j U_{ij}}{c_f^3},
+$$
+$$
+g_{00}^{\text{leak}}
+=
+-\Xi_3(a,k)\frac{w^2 U}{c_f^4}
+-\Xi_2(a,k)\frac{w^i w^j U_{ij}}{c_f^4}
++\Xi_4(a,k)\frac{w^i V_i}{c_f^3}.
+$$
+Matching to standard PPN preferred-frame structure gives
+$$
+\boxed{\alpha_1(a,k)=\Xi_1(a,k)},\qquad
+\boxed{\alpha_2(a,k)=\Xi_2(a,k)},
+$$
+$$
+\boxed{\alpha_3(a,k)=\Xi_1(a,k)-\Xi_2(a,k)-\Xi_3(a,k)},
+$$
+with consistency relation
+$$
+\Xi_4(a,k)=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3.
+$$
+
+### Zero-Leakage Conditions (Preferred-Frame Closure)
+
+The effective theory is preferred-frame safe iff all drift couplings vanish:
+$$
+\Xi_1=\Xi_2=\Xi_3=\Xi_4=0
+\quad\Longleftrightarrow\quad
+\alpha_1=\alpha_2=\alpha_3=0.
+$$
+
+Equivalent constitutive conditions:
+$$
+\left.\frac{\partial g_{\mu\nu}}{\partial w_i}\right|_{\mathbf{w}=0}=0,
+\qquad
+\left.\frac{\partial^2 g_{00}}{\partial w_i\partial w_j}\right|_{\mathbf{w}=0}
+\propto \delta_{ij}
+\ \text{with zero traceless part},
+$$
+and no momentum-density coupling term $w^iV_i$ at the retained PN order.
+
+Operationally, extract $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ from boosted weak-field simulations in orthogonal directions; passing requires consistency with the Tier-1 isotropy/leakage thresholds in `validation/constraint-ledger.md`.
