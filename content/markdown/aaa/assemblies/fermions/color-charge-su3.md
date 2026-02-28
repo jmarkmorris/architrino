@@ -245,12 +245,74 @@ We must not over‑predict.
   2. Make one family metastable/short‑lived only at high energies, or  
   3. Contextually select families inside hadrons (baryon environment determines which pattern survives).
 
-**Working hypothesis** (to be checked via energy minimization in the 9‑axis network):
+### Rigorous low-energy selection criterion
 
-- Ground‑state down quark $d$ in nucleons prefers one family (likely the “hybrid” Family II with two Pm axes → better screening).  
-- Strange/bottom quarks may correspond to other family choices or higher‑energy configurations.
+Fix one down flavor and let $\Omega_I,\Omega_{II}$ be the Family I/II constrained sectors of the full 9-axis baryon network phase space (after quotienting axis-label gauge redundancy).
 
-**Failure condition:** if a detailed stability analysis shows both families are equally and generically stable in the low‑energy vacuum, the model over‑predicts down‑type species and must be revised.
+Define the reduced energy minima
+$$
+E_F^\star \equiv \min_{X\in\Omega_F}\mathcal{E}(X),\qquad F\in\{I,II\},
+$$
+and local Hessians
+$$
+H_F \equiv D^2\mathcal{E}(X_F^\star).
+$$
+For finite but low effective noise/temperature $T_{\mathrm{eff}}$, use the harmonic free-energy approximation
+$$
+\mathcal{F}_F(T_{\mathrm{eff}})
+=
+E_F^\star+\frac{T_{\mathrm{eff}}}{2}\log\det H_F
++\mathcal{O}(T_{\mathrm{eff}}^2).
+$$
+
+Linearize the delay dynamics about each minimizer and let
+$$
+\rho_F\equiv \max_{j\neq 1}|\mu_j^{(F)}|
+$$
+be the Floquet spectral radius of nontrivial multipliers.
+
+**Theorem (Single-family low-energy survival).**  
+Assume there exists $F_\star\in\{I,II\}$ such that:
+
+1. **Local dynamical stability:** $\rho_{F_\star}<1$.
+2. **Competitor exclusion:** either $\rho_{\bar F}\ge 1$ (linearly unstable), or $\rho_{\bar F}<1$ and
+$$
+\Delta\mathcal{F}\equiv \mathcal{F}_{\bar F}-\mathcal{F}_{F_\star}>0.
+$$
+3. **Low-energy regime:** $T_{\mathrm{eff}}\ll \Delta\mathcal{F}$ and forcing amplitude is below the inter-family escape barrier.
+
+Then stationary occupation satisfies
+$$
+\frac{\pi_{\bar F}}{\pi_{F_\star}}
+\lesssim
+\exp\!\left(-\frac{\Delta\mathcal{F}}{T_{\mathrm{eff}}}\right),
+$$
+so $\pi_{\bar F}\to 0$ as $T_{\mathrm{eff}}\to 0$. Hence exactly one down-family survives as the low-energy vacuum family.
+
+*Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight.
+
+**Concrete screening corollary (Family II preference test).**  
+If the reduced minimum can be decomposed as
+$$
+E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{Pm}^{(F)},
+$$
+with $N_{Pm}^{(I)}=0$, $N_{Pm}^{(II)}=2$, then Family II is selected whenever
+$$
+2s>
+\big(E_{\text{core},II}-E_{\text{core},I}\big)
++\big(E_{\text{self-hit},II}-E_{\text{self-hit},I}\big)
++\big(E_{\text{strain},II}-E_{\text{strain},I}\big),
+$$
+and the stability condition $\rho_{II}<1$ holds.
+
+**Failure condition (theory-level, explicit).**  
+The model fails this selection requirement if, over the low-energy vacuum window relevant to nucleons,
+$$
+\rho_I<1,\qquad \rho_{II}<1,\qquad
+|\mathcal{F}_{II}-\mathcal{F}_I|\le \varepsilon_F
+$$
+for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening.  
+In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
 
 
 
