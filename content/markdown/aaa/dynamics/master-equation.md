@@ -127,19 +127,83 @@ $$
 \mathcal{C}_j(t) = \Big\{ t_0 < t \;\Big|\; \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0) \Big\}.
 $$
 
+#### Causal-Time Map and Root Topology
+
+For fixed receiver time $t$, define the causal-time map
+
+$$
+f_t^{(ij)}(t_0)
+\equiv
+t_0 + \frac{1}{c_f}\,\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\|,
+\qquad
+F_t^{(ij)}(t_0)\equiv f_t^{(ij)}(t_0)-t.
+$$
+
+Then causal emission times are exactly the roots:
+
+$$
+t_0\in \mathcal{C}_j(t)\quad \Longleftrightarrow\quad F_t^{(ij)}(t_0)=0.
+$$
+
+The one-dimensional delay-map Jacobian is
+
+$$
+\frac{dF_t^{(ij)}}{dt_0}
+=
+1-\frac{\hat{\mathbf{r}}_{ij}(t;t_0)\cdot \mathbf{v}_j(t_0)}{c_f}.
+$$
+
+On a bounded history interval $I_t$ (e.g., simulation memory window), define:
+
+- Unsigned root count: $N_{ij}(t)\equiv \#\mathcal{C}_j(t)$,
+- Signed Brouwer degree:
+  $$
+  D_{ij}(t)\equiv \deg(F_t^{(ij)},I_t,0)=\sum_{t_0\in\mathcal{C}_j(t)} \mathrm{sign}\!\left(\frac{dF_t^{(ij)}}{dt_0}\Big|_{t_0}\right).
+  $$
+
+For regular configurations (no boundary-root crossing and no critical root with $dF_t/dt_0=0$), $D_{ij}$ is homotopy-invariant. Root births/deaths occur only at fold events where
+
+$$
+F_t^{(ij)}(t_0)=0,\qquad \frac{dF_t^{(ij)}}{dt_0}=0.
+$$
+
 #### Single-Hit Regime (Unique $t_0$)
 
-In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), the causal set $\mathcal{C}_j(t)$ is **generically a singleton**: there is exactly one emission time $t_0$ that satisfies the causal constraint.
+In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), the map is strictly monotone:
+
+$$
+\frac{dF_t^{(ij)}}{dt_0}
+\ge
+1-\frac{|\mathbf{v}_j(t_0)|}{c_f}
+>0,
+$$
+
+so $f_t^{(ij)}$ is a diffeomorphic time map on $I_t$, and the causal set is generically a singleton:
+
+$$
+N_{ij}(t)=1,\qquad D_{ij}(t)=+1.
+$$
 
 **Intuition:** If the source is moving slower than the field speed, its past emissions form a non-overlapping family of concentric (or nearly concentric) isochrons. Any given receiver location lies on exactly one of those causal surfaces.
 
 #### Multi-Hit Regime (Multiple $t_0$)
 
-In the **super-field-speed regime** ($|\mathbf{v}_j| > c_f$ at some past times), the causal set $\mathcal{C}_j(t)$ can contain **multiple solutions**:
+In the **super-field-speed regime** ($|\mathbf{v}_j| > c_f$ at some past times), the delay map can fold when
+$\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_j > c_f$, i.e. when $dF_t^{(ij)}/dt_0$ changes sign. Then $\mathcal{C}_j(t)$ can contain multiple solutions:
 
 $$
 \mathcal{C}_j(t) = \{t_{0,1}, t_{0,2}, \ldots, t_{0,m}\}.
 $$
+
+Fold bifurcations create/annihilate roots in pairs. The signed degree $D_{ij}$ stays topologically fixed between folds, while the unsigned branch count $N_{ij}$ jumps by even integers.
+
+For the first folded branch used in the tri-binary closure mechanism, one obtains the geometric doubling
+
+$$
+N_O=1 \;\longrightarrow\; N_I=2,
+$$
+
+which is the root-count counterpart of the action-partition doubling used later ($w_I=2w_O$) and the associated $1:2:4$ frequency-lock discussion.
 
 **Intuition:** If the source outruns its own emissions, it can emit multiple wake surfaces that later converge and intersect the same receiver location simultaneously (or nearly so, within regularization width $\eta$).
 
