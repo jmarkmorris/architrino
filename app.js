@@ -1101,10 +1101,6 @@ const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const infoMarkdownPath = "info.md";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const metaScenePath = "content/scenes/meta/meta.json";
-const runtimeFeatureFlags = {
-  requireManifestForSearch: true,
-  requireManifestForPeriodicRoutes: true,
-};
 const composerSceneId = "composer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
@@ -2528,7 +2524,6 @@ const periodicOverlayRuntime = createPeriodicOverlayRuntime({
   periodicCategoryColors,
   periodicTableService,
   sceneGraphManifestService,
-  allowElementScenePathFallback: !runtimeFeatureFlags.requireManifestForPeriodicRoutes,
   getCurrentLevel: () => currentLevel,
   searchBackStack,
   navigationStack,
@@ -2636,14 +2631,7 @@ function openMetaRing() {
 
 
 async function ensureSceneIndex() {
-  await sceneIndexService.ensure(
-    fetch,
-    "content/scenes/scenes_index.json",
-    sceneGraphManifestPath,
-    {
-      allowLegacyFallback: !runtimeFeatureFlags.requireManifestForSearch,
-    }
-  );
+  await sceneIndexService.ensure(fetch, sceneGraphManifestPath);
 }
 
 const sceneSearchRuntime = createSceneSearchRuntime({

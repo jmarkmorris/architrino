@@ -14,7 +14,6 @@ export function createPeriodicOverlayRuntime(deps) {
     periodicCategoryColors,
     periodicTableService,
     sceneGraphManifestService,
-    allowElementScenePathFallback = true,
     getCurrentLevel,
     searchBackStack,
     navigationStack,
@@ -54,13 +53,10 @@ export function createPeriodicOverlayRuntime(deps) {
         return targetFromManifest;
       }
     }
-    if (!allowElementScenePathFallback) {
-      console.warn(
-        `[PeriodicOverlayRuntime] Missing manifest route for periodic symbol "${normalizedSymbol}"`
-      );
-      return null;
-    }
-    return `content/scenes/elements/${normalizedSymbol}.json`;
+    console.warn(
+      `[PeriodicOverlayRuntime] Missing manifest route for periodic symbol "${normalizedSymbol}"`
+    );
+    return null;
   }
 
   function getPeriodicColor(category) {

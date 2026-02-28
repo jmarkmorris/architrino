@@ -6,31 +6,22 @@ export class SceneIndexService {
     this.ready = false;
   }
 
-  async ensure(fetchImpl, path, graphPath = null, options = {}) {
-    const allowLegacyFallback = options.allowLegacyFallback !== false;
+  async ensure(fetchImpl, graphPath = null) {
     if (this.ready) {
       return this.getSearchEntries();
     }
 
-    if (graphPath) {
-      const loaded = await this.tryLoadGraphManifest(fetchImpl, graphPath);
-      if (loaded) {
-        this.ready = true;
-        this.source = "graph_manifest";
-        return this.getSearchEntries();
-      }
-      if (!allowLegacyFallback) {
-        this.ready = true;
-        this.source = "manifest_unavailable";
-        return this.getSearchEntries();
-      }
+    if (!graphPath) {
+      this.searchEntries = [];
+      this.scenes = [];
+      this.ready = true;
+      this.source = "manifest_missing";
+      return this.getSearchEntries();
     }
 
-    await this.loadLegacySceneIndex(fetchImpl, path);
+    const loaded = await this.tryLoadGraphManifest(fetchImpl, graphPath);
     this.ready = true;
-    if (this.source === "uninitialized") {
-      this.source = "legacy_index";
-    }
+    this.source = loaded ? "graph_manifest" : "manifest_unavailable";
     return this.getSearchEntries();
   }
 
@@ -140,22 +131,4 @@ export class SceneIndexService {
     };
   }
 
-  async loadLegacySceneIndex(fetchImpl, path) {
-    try {
-      const response = await fetchImpl(path);
-      if (!response.ok) {
-        throw new Error("Failed to load scene index");
-      }
-      const data = await response.json();
-      this.scenes = Array.isArray(data.scenes) ? data.scenes : [];
-      this.searchEntries = this.scenes
-        .map((scene) => this.normalizeSearchEntry(scene))
-        .filter((scene) => !!scene);
-    } catch (error) {
-      console.error(error);
-      this.scenes = [];
-      this.searchEntries = [];
-      this.source = "empty";
-    }
-  }
 }
