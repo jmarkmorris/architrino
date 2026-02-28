@@ -13,6 +13,14 @@ import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
 import { SceneRepository } from "./src/services/SceneRepository.js";
 import { SceneIndexService } from "./src/services/SceneIndexService.js";
 import { PeriodicTableService } from "./src/services/PeriodicTableService.js";
+import {
+  compactMarkdownNodeLabel,
+  createMarkdownDocumentTitleResolver,
+  extractMarkdownDocumentTitle,
+  stripWalkthroughStepPrefix,
+  titleFromSlug,
+} from "./src/services/MarkdownNamingService.js";
+import { createMarkdownNodeBuilder } from "./src/services/MarkdownNodeBuilder.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -1100,6 +1108,13 @@ const markdownReaderScenes = new Map();
 const searchBackStack = [];
 const metaBackStack = [];
 const generationBackStack = [];
+const resolveMarkdownDocumentTitle = createMarkdownDocumentTitleResolver({
+  fetchImpl: (...args) => fetch(...args),
+  appendCacheBust,
+  normalizeMarkdownPath,
+  cache: markdownTitleCache,
+  logger: console,
+});
 
 function getSceneStateFromHash() {
   if (typeof window === "undefined") {
@@ -1676,339 +1691,6 @@ async function listMarkdownDirectoriesFromManifest(directory) {
   return Array.from(subdirs);
 }
 
-function titleFromSlug(slug) {
-  return slug
-    .split(/[-_]+/g)
-    .filter(Boolean)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-}
-
-async function buildAutoMarkdownNodes(scene, existingNodes) {
-  if (!scene?.autoSphereRing || (!scene?.autoMarkdownDirectory && !scene?.autoMarkdownPath)) {
-    return [];
-  }
-  const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
-  const sectionKey = scene.autoMarkdownSection ?? null;
-  let entries = [];
-  let useDirectories = false;
-  let usedHeadingLevel =
-    typeof scene.autoMarkdownHeadingLevel === "number"
-      ? scene.autoMarkdownHeadingLevel
-      : 3;
-  let sectionSubheadings = null;
-
-  if (scene.autoMarkdownPath) {
-    const preferredLevels = [usedHeadingLevel];
-    if (usedHeadingLevel === 2) {
-      preferredLevels.push(3);
-    } else if (usedHeadingLevel !== 2) {
-      preferredLevels.push(2);
-    }
-    try {
-      const response = await fetch(appendCacheBust(scene.autoMarkdownPath));
-      if (response.ok) {
-        const text = await response.text();
-        let content = text;
-        if (sectionKey) {
-          const section = extractMarkdownSection(text, sectionKey);
-          content = section?.body ?? "";
-        }
-        const lines = content.split(/\r?\n/);
-        for (const level of preferredLevels) {
-          const levelEntries = [];
-          lines.forEach((line) => {
-            const heading = parseMarkdownHeading(line);
-            if (heading && heading.level === level) {
-              levelEntries.push({ title: heading.title });
-            }
-          });
-          if (levelEntries.length) {
-            entries = levelEntries;
-            usedHeadingLevel = level;
-            break;
-          }
-        }
-        if (!sectionKey && usedHeadingLevel === 2) {
-          sectionSubheadings = new Map();
-          let currentSection = null;
-          text.split(/\r?\n/).forEach((line) => {
-            const heading = parseMarkdownHeading(line);
-            if (!heading) {
-              return;
-            }
-            if (heading.level === 2) {
-              currentSection = heading.title;
-              if (!sectionSubheadings.has(currentSection)) {
-                sectionSubheadings.set(currentSection, false);
-              }
-            } else if (heading.level === 3 && currentSection) {
-              sectionSubheadings.set(currentSection, true);
-            } else if (heading.level <= 2) {
-              currentSection = heading.title;
-            }
-          });
-        }
-      }
-    } catch (error) {
-      console.warn("Failed to read markdown file", scene.autoMarkdownPath, error);
-    }
-  } else {
-    useDirectories = scene.autoMarkdownSubdirectories === true;
-    entries = useDirectories
-      ? (await listMarkdownDirectoriesInDir(scene.autoMarkdownDirectory)).sort()
-      : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
-  }
-
-  if (Array.isArray(scene.autoMarkdownExcludePaths) && scene.autoMarkdownExcludePaths.length) {
-    const exclude = new Set(
-      scene.autoMarkdownExcludePaths.map((path) => normalizeMarkdownPath(path))
-    );
-    entries = entries.filter((entry) => !exclude.has(normalizeMarkdownPath(entry)));
-  }
-
-  const defaultIndex = scene.autoMarkdownDefaultIndex === true;
-  const indexPaths = Array.isArray(scene.autoMarkdownIndexPaths)
-    ? new Set(scene.autoMarkdownIndexPaths.map((path) => normalizeMarkdownPath(path)))
-    : null;
-  const plainPaths = Array.isArray(scene.autoMarkdownPlainPaths)
-    ? new Set(scene.autoMarkdownPlainPaths.map((path) => normalizeMarkdownPath(path)))
-    : null;
-  const plainSectionPaths = Array.isArray(scene.autoMarkdownPlainSectionPaths)
-    ? new Set(scene.autoMarkdownPlainSectionPaths.map((path) => normalizeMarkdownPath(path)))
-    : null;
-  const defaultSectionDepth =
-    typeof scene.autoMarkdownSectionDepth === "number"
-      ? scene.autoMarkdownSectionDepth
-      : 2;
-  const pathOverrides =
-    scene.autoMarkdownOverrides && typeof scene.autoMarkdownOverrides === "object"
-      ? scene.autoMarkdownOverrides
-      : null;
-
-  if (!entries.length && !includeExisting) {
-    return [];
-  }
-  const fileInfos = scene.autoMarkdownPath
-    ? entries.map((entry) => ({
-        title: stripWalkthroughStepPrefix(entry.title) || entry.title,
-      }))
-    : useDirectories
-      ? entries.map((path) => ({ path, isNonEmpty: false }))
-      : await Promise.all(
-          entries.map(async (path) => {
-            try {
-              const response = await fetch(appendCacheBust(path));
-              if (!response.ok) {
-                return { path, isNonEmpty: false };
-              }
-              const text = await response.text();
-              const headingTitle = extractMarkdownDocumentTitle(text);
-              return {
-                path,
-                isNonEmpty: text.trim().length > 0,
-                title: headingTitle,
-              };
-            } catch (error) {
-              console.warn("Failed to read markdown file", path, error);
-              return { path, isNonEmpty: false };
-            }
-          })
-        );
-  const usedIds = new Set(existingNodes.map((node) => node.id));
-  const hasCustomNodeRadius = typeof scene.autoMarkdownNodeRadius === "number";
-  const hasCustomRingRadius = typeof scene.autoMarkdownRingRadius === "number";
-  let baseRadius = hasCustomNodeRadius ? scene.autoMarkdownNodeRadius : 1.6;
-  const existingMaxRadius = includeExisting
-    ? existingNodes.reduce(
-        (maxRadius, node) => Math.max(maxRadius, node.radius ?? 0),
-        0
-      )
-    : 0;
-  const layoutRadius = Math.max(baseRadius, existingMaxRadius);
-  const palette =
-    Array.isArray(scene.autoMarkdownPalette) && scene.autoMarkdownPalette.length
-      ? scene.autoMarkdownPalette
-      : defaultAutoMarkdownPalette;
-  const baseColor = scene.autoMarkdownColor ?? null;
-  const maxRingCount =
-    typeof scene.autoMarkdownMaxRingCount === "number"
-      ? scene.autoMarkdownMaxRingCount
-      : 14;
-  const autoEntries = [];
-  fileInfos.forEach((info) => {
-    const entryName = info.title ?? info.path?.split("/").pop() ?? "";
-    const slug = useDirectories || info.title ? entryName : entryName.replace(/\.md$/i, "");
-    const id = slug
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "_")
-      .replace(/^_+|_+$/g, "");
-    if (!id || usedIds.has(id)) {
-      return;
-    }
-    autoEntries.push({ info, slug, id });
-  });
-  const layoutCount = includeExisting
-    ? existingNodes.length + autoEntries.length
-    : autoEntries.length;
-  let ringRadius = hasCustomRingRadius
-    ? scene.autoMarkdownRingRadius
-    : Math.max(6, Math.min(layoutCount, maxRingCount) * layoutRadius * 1.4);
-  const gridSpacing =
-    typeof scene.autoMarkdownGridSpacing === "number"
-      ? scene.autoMarkdownGridSpacing
-      : layoutRadius * 2.6;
-  const useRing = layoutCount <= maxRingCount;
-  const columns = useRing ? 1 : Math.ceil(Math.sqrt(layoutCount));
-  const rows = useRing ? layoutCount : Math.ceil(layoutCount / columns);
-  const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
-  const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;
-
-  if (useRing && layoutCount > 0) {
-    if (!hasCustomNodeRadius && !hasCustomRingRadius) {
-      const standardLayout = computeRingLayout(
-        Array.from({ length: layoutCount }, () => ({ radius: layoutRadius }))
-      );
-      if (standardLayout) {
-        ringRadius = standardLayout.ringRadius;
-        baseRadius = standardLayout.nodeRadius;
-      }
-    } else if (layoutCount > 1) {
-      const maxRadius = maxRingNodeRadius(ringRadius, layoutCount);
-      if (Number.isFinite(maxRadius) && maxRadius > 0 && maxRadius < baseRadius) {
-        baseRadius = maxRadius;
-      }
-    }
-  }
-
-  if (includeExisting) {
-    existingNodes.forEach((node) => {
-      node.radius = baseRadius;
-    });
-  }
-
-  const positionForIndex = (index) => {
-    if (useRing) {
-      const orderIndex = layoutCount - 1 - index;
-      const angle =
-        ringLayoutDefaults.startAngle + (orderIndex / layoutCount) * Math.PI * 2;
-      return [Math.cos(angle) * ringRadius, Math.sin(angle) * ringRadius];
-    }
-    const row = Math.floor(index / columns);
-    const col = index % columns;
-    return [startX + col * gridSpacing, startY - row * gridSpacing];
-  };
-
-  if (includeExisting) {
-    existingNodes.forEach((node, index) => {
-      const [x, y] = positionForIndex(index);
-      node.position = [Number(x.toFixed(2)), Number(y.toFixed(2)), 0];
-    });
-  }
-
-  const isSectionIndex = !!sectionKey;
-  const isTwoLevelRoot = !isSectionIndex && scene.autoMarkdownPath && usedHeadingLevel === 2;
-
-  return autoEntries
-    .map((entry, index) => {
-      const { info, slug, id } = entry;
-      const layoutIndex = includeExisting ? existingNodes.length + index : index;
-      const [x, y] = positionForIndex(layoutIndex);
-      let color = baseColor ?? palette[index % palette.length] ?? "#3a5a8a";
-      if (typeof color === "string" && colorTokens[color]) {
-        color = colorTokens[color];
-      }
-      const nodeName = scene.autoMarkdownPath
-        ? info.title ?? titleFromSlug(slug)
-        : info.title ?? titleFromSlug(slug);
-      const node = {
-        id,
-        name: nodeName,
-        shortName: compactMarkdownNodeLabel(nodeName),
-        radius: baseRadius,
-        position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
-        color,
-        wrapLabel: scene.wrapLabels ?? true,
-      };
-      if (scene.autoMarkdownPath) {
-        const override = pathOverrides
-          ? pathOverrides[normalizeMarkdownPath(scene.autoMarkdownPath)]
-          : null;
-        const sectionDepth =
-          typeof override?.sectionDepth === "number" ? override.sectionDepth : defaultSectionDepth;
-        const allowSectionIndex =
-          sectionDepth >= 2 &&
-          !(plainSectionPaths && plainSectionPaths.has(normalizeMarkdownPath(scene.autoMarkdownPath)));
-        const hasSubheadings =
-          isTwoLevelRoot && info.title
-            ? sectionSubheadings?.get(info.title) === true
-            : false;
-        if (isTwoLevelRoot && info.title && hasSubheadings && allowSectionIndex) {
-          const childScene = ensureMarkdownSectionIndexScene(
-            scene.autoMarkdownPath,
-            info.title,
-            scene
-          );
-          if (childScene) {
-            node.childScene = childScene;
-          }
-        } else {
-          node.markdownPath = scene.autoMarkdownPath;
-          node.markdownSection = info.title ?? null;
-        }
-      } else if (useDirectories) {
-        const childScene = ensureMarkdownDirectoryScene(
-          info.path,
-          scene,
-          node.name
-        );
-        if (childScene) {
-          node.childScene = childScene;
-        }
-      } else if (info.isNonEmpty) {
-        const normalizedPath = normalizeMarkdownPath(info.path);
-        const override = pathOverrides ? pathOverrides[normalizedPath] : null;
-        node.markdownPath = info.path;
-        let autoIndex = defaultIndex;
-        if (indexPaths && indexPaths.has(normalizedPath)) {
-          autoIndex = true;
-        }
-        if (plainPaths && plainPaths.has(normalizedPath)) {
-          autoIndex = false;
-        }
-        if (override?.mode === "index") {
-          autoIndex = true;
-        } else if (override?.mode === "doc") {
-          autoIndex = false;
-        }
-        node.markdownAutoIndex = autoIndex;
-        if (typeof override?.headingLevel === "number") {
-          node.markdownHeadingLevel = override.headingLevel;
-        }
-        if (override?.columns === 1 || override?.columns === 2) {
-          node.markdownColumns = override.columns;
-        }
-        const sectionDepth =
-          typeof override?.sectionDepth === "number" ? override.sectionDepth : defaultSectionDepth;
-        const plainSectionList = [];
-        if (plainSectionPaths && plainSectionPaths.has(normalizedPath)) {
-          plainSectionList.push(info.path);
-        }
-        if (sectionDepth < 2) {
-          plainSectionList.push(info.path);
-        }
-        if (plainSectionList.length) {
-          node.markdownPlainSectionPaths = plainSectionList;
-        }
-        if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
-          node.markdownColumns = scene.autoMarkdownColumns;
-        }
-      }
-      return node;
-    })
-    .filter(Boolean);
-}
-
 function closeDetailPanel() {
   if (!detailPanel) {
     return;
@@ -2072,98 +1754,6 @@ function normalizeMarkdownPath(path) {
     .replace(/\\/g, "/")
     .replace(/^\.?\//, "")
     .toLowerCase();
-}
-
-function stripWalkthroughStepPrefix(title) {
-  const cleaned = String(title || "").trim();
-  if (!cleaned) {
-    return "";
-  }
-  return cleaned
-    .replace(/^Walkthrough\s+Step\s+\d+\s*[—\-:]\s*/i, "")
-    .trim();
-}
-
-function compactMarkdownNodeLabel(title, maxChars = 34) {
-  let text = String(title || "").trim().replace(/\s+/g, " ");
-  if (!text) {
-    return "";
-  }
-
-  const splitters = [" — ", " – ", " - ", ": "];
-  for (const splitter of splitters) {
-    if (!text.includes(splitter)) {
-      continue;
-    }
-    const head = text.split(splitter)[0].trim();
-    if (head.length >= 8) {
-      text = head;
-      break;
-    }
-  }
-
-  if (text.length <= maxChars) {
-    return text;
-  }
-
-  const budget = Math.max(10, maxChars - 1);
-  const words = text.split(" ");
-  let compact = "";
-  for (const word of words) {
-    const candidate = compact ? `${compact} ${word}` : word;
-    if (candidate.length > budget) {
-      break;
-    }
-    compact = candidate;
-  }
-  if (compact.length >= 12) {
-    return `${compact}…`;
-  }
-  return `${text.slice(0, budget).trimEnd()}…`;
-}
-
-function extractMarkdownDocumentTitle(markdownText) {
-  if (typeof markdownText !== "string" || !markdownText.trim()) {
-    return null;
-  }
-  const lines = markdownText.split(/\r?\n/);
-  for (const line of lines) {
-    const match = line.match(/^#\s+(.+)$/);
-    if (!match) {
-      continue;
-    }
-    const heading = match[1].trim();
-    if (!heading) {
-      continue;
-    }
-    const stripped = stripWalkthroughStepPrefix(heading);
-    return stripped || heading;
-  }
-  return null;
-}
-
-async function resolveMarkdownDocumentTitle(markdownPath) {
-  if (!markdownPath) {
-    return null;
-  }
-  const normalizedPath = normalizeMarkdownPath(markdownPath);
-  if (markdownTitleCache.has(normalizedPath)) {
-    return markdownTitleCache.get(normalizedPath);
-  }
-  const promise = fetch(appendCacheBust(markdownPath))
-    .then(async (response) => {
-      if (!response.ok) {
-        return null;
-      }
-      const text = await response.text();
-      return extractMarkdownDocumentTitle(text);
-    })
-    .catch((error) => {
-      console.warn("Failed to resolve markdown title", markdownPath, error);
-      return null;
-    });
-  markdownTitleCache.set(normalizedPath, promise);
-  return promise;
 }
 
 function deriveMarkdownConfig(markdownPolicy) {
@@ -2497,6 +2087,28 @@ async function resolveMarkdownFileSize(path) {
   markdownFileSizeCache.set(normalizedPath, promise);
   return promise;
 }
+
+const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
+  fetchImpl: (...args) => fetch(...args),
+  appendCacheBust,
+  parseMarkdownHeading,
+  extractMarkdownSection,
+  listMarkdownFilesInDir,
+  listMarkdownDirectoriesInDir,
+  normalizeMarkdownPath,
+  titleFromSlug,
+  stripWalkthroughStepPrefix,
+  extractMarkdownDocumentTitle,
+  compactMarkdownNodeLabel,
+  colorTokens,
+  defaultAutoMarkdownPalette,
+  computeRingLayout,
+  maxRingNodeRadius,
+  ringLayoutDefaults,
+  ensureMarkdownSectionIndexScene,
+  ensureMarkdownDirectoryScene,
+  logger: console,
+});
 
 const sceneRepository = new SceneRepository({
   fetchImpl: (...args) => fetch(...args),
@@ -3187,8 +2799,16 @@ function updateLevelLabelWrap(level) {
       node.labelObject.element.style.width = `${maxWidth}px`;
     }
 
-    const name = typeof node.data.name === "string" ? node.data.name : "";
-    const tokens = name.split(/[\s-]+/).filter(Boolean);
+    const labelName =
+      typeof node.data.shortName === "string" && node.data.shortName.trim()
+        ? node.data.shortName.trim()
+        : typeof node.data.name === "string"
+          ? node.data.name
+          : "";
+    const tokens = labelName
+      .split(/[\s-]+/)
+      .map((token) => token.replace(/[^A-Za-z0-9]/g, ""))
+      .filter(Boolean);
     const longestToken = tokens.reduce((max, token) => {
       return Math.max(max, token.length);
     }, 1);

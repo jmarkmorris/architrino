@@ -1,4 +1,4 @@
-# Cosmological Ontology
+# Cosmology Ontology
 
 ## Cosmology in the Absolute Frame
 

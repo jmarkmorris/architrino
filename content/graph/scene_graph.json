@@ -1610,7 +1610,7 @@
     },
     {
       "id": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-      "name": "Cosmological Ontology",
+      "name": "Cosmology Ontology",
       "path": "__markdown_doc__:content/markdown/aaa/cosmology/cosmology-ontology.md",
       "nodeType": "markdown_doc"
     },
@@ -4498,7 +4498,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/cosmology/cosmology-ontology.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-      "name": "Cosmological Ontology",
+      "name": "Cosmology Ontology",
       "path": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/cosmology-ontology.md",
       "implicit": false
