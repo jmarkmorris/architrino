@@ -9,6 +9,7 @@ import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
 import { createSceneSearchUiRuntime } from "./src/runtime/SceneSearchUiRuntime.js";
+import { createScenePanelUiRuntime } from "./src/runtime/ScenePanelUiRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
 import { SceneRepository } from "./src/services/SceneRepository.js";
@@ -2577,6 +2578,18 @@ const sceneSearchUiRuntime = createSceneSearchUiRuntime({
   sceneSearchRuntime,
   sceneSearchCoordinator,
 });
+const scenePanelUiRuntime = createScenePanelUiRuntime({
+  docButton,
+  hud,
+  detailClose,
+  markdownClose,
+  markdownDocButton,
+  markdownLayoutToggle,
+  markdownRuntime,
+  closeDetailPanel,
+  getCurrentLevel: () => currentLevel,
+  isTransitionActive: () => transitionState.active,
+});
 
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
@@ -2923,66 +2936,7 @@ if (homeButton) {
 
 periodicOverlayRuntime.wireElementLegend();
 periodicOverlayRuntime.updateElementInfoPanel();
-
-if (docButton) {
-  docButton.addEventListener("click", () => {
-    if (transitionState.active) {
-      return;
-    }
-    if (currentLevel?.markdownPath) {
-      const docLevel = currentLevel.markdownSection
-        ? { ...currentLevel, markdownSection: null }
-        : currentLevel;
-      markdownRuntime.showMarkdownPanel(docLevel);
-    }
-  });
-}
-
-if (hud) {
-  hud.addEventListener("click", () => {
-    markdownRuntime.toggleInfoDrawer();
-  });
-  hud.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      markdownRuntime.toggleInfoDrawer();
-    } else if (event.key === "Escape" && markdownRuntime.isInfoDrawerOpen()) {
-      markdownRuntime.setInfoDrawer(false);
-    }
-  });
-}
-
-if (detailClose) {
-  detailClose.addEventListener("click", () => {
-    closeDetailPanel();
-  });
-}
-
-if (markdownClose) {
-  markdownClose.addEventListener("click", () => {
-    markdownRuntime.hideMarkdownPanel();
-  });
-}
-
-if (markdownDocButton) {
-  markdownDocButton.addEventListener("click", () => {
-    if (transitionState.active) {
-      return;
-    }
-    if (currentLevel?.markdownPath) {
-      const docLevel = currentLevel.markdownSection
-        ? { ...currentLevel, markdownSection: null }
-        : currentLevel;
-      markdownRuntime.showMarkdownPanel(docLevel);
-    }
-  });
-}
-
-if (markdownLayoutToggle) {
-  markdownLayoutToggle.addEventListener("click", () => {
-    markdownRuntime.toggleMarkdownLayout();
-  });
-}
+scenePanelUiRuntime.wireListeners();
 
 if (composerTabs.length) {
   composerTabs.forEach((tab) => {
