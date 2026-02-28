@@ -1,4 +1,4 @@
-# Proper Time and Time Dilation from Absolute Time
+# Proper Time and Time Dilation
 
 **Goal:** Derive the relation between **absolute time** $t$ (used to index $\mathbb{U}_{\text{now}}$, the universe-now state, in the Euclidean void) and the **proper time** $\tau$ measured by physical clocks built from tri‑binary assemblies, and show how GR‑like time dilation and gravitational redshift arise as effective behavior.
 

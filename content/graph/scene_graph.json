@@ -2070,7 +2070,7 @@
     },
     {
       "id": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
-      "name": "Proper Time and Time Dilation from Absolute Time",
+      "name": "Proper Time and Time Dilation",
       "path": "__markdown_doc__:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "nodeType": "markdown_doc"
     },
@@ -5123,7 +5123,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
-      "name": "Proper Time and Time Dilation from Absolute Time",
+      "name": "Proper Time and Time Dilation",
       "path": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "implicit": false
