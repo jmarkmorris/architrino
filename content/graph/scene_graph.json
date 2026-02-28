@@ -2051,9 +2051,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
       "name": "GR Phenomenology (Stub)",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "path": "__markdown_doc__:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5099,12 +5099,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
       "name": "GR Phenomenology (Stub)",
-      "path": "content/markdown/aaa/spacetime/GR-phenomenology.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "path": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "implicit": false
     },
     {
@@ -8709,7 +8709,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/gr_bridge_limits.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/gr_bridge_limits.json",
       "field": "gr_phenomenology_core.markdownPath"
@@ -8765,7 +8765,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/strong_field_horizons.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/strong_field_horizons.json",
       "field": "gr_phenomenology_high_curvature.markdownPath"
@@ -8786,7 +8786,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/wave_phenomenology_channel.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/wave_phenomenology_channel.json",
       "field": "gr_phenomenology_bridge.markdownPath"
@@ -9612,7 +9612,7 @@
     },
     {
       "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"

@@ -13,7 +13,7 @@
       "radius": 1.65,
       "color": "#4a5f8a",
       "position": [0.0, 4.8, 0.0],
-      "markdownPath": "content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
     },
