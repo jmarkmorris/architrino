@@ -1589,51 +1589,9 @@ async function listMarkdownFilesInDir(directory) {
   if (markdownDirectoryCache.has(normalized)) {
     return markdownDirectoryCache.get(normalized);
   }
-  try {
-    const response = await fetch(appendCacheBust(`${normalized}/`));
-    if (!response.ok) {
-      const manifestFiles = await listMarkdownFilesFromManifest(normalized);
-      markdownDirectoryCache.set(normalized, manifestFiles);
-      return manifestFiles;
-    }
-    const html = await response.text();
-    const matches = [];
-    const hrefRegex = /href="([^"]+\.md)"/gi;
-    let match = null;
-    while ((match = hrefRegex.exec(html))) {
-      matches.push(match[1]);
-    }
-    const files = Array.from(
-      new Set(
-        matches
-          .map((href) => decodeURIComponent(href))
-          .map((href) => href.split("?")[0])
-          .map((href) => href.split("#")[0])
-          .map((href) => {
-            if (/^https?:\/\//i.test(href)) {
-              try {
-                return new URL(href).pathname;
-              } catch (_error) {
-                return href;
-              }
-            }
-            return href;
-          })
-          .map((href) => href.replace(/^\.?\//, ""))
-          .filter((href) => href.toLowerCase().endsWith(".md"))
-          .map((href) => href.split("/").pop())
-          .filter(Boolean)
-          .map((href) => `${normalized}/${href}`)
-      )
-    );
-    markdownDirectoryCache.set(normalized, files);
-    return files;
-  } catch (error) {
-    console.warn("Failed to read markdown directory", directory, error);
-    const manifestFiles = await listMarkdownFilesFromManifest(normalized);
-    markdownDirectoryCache.set(normalized, manifestFiles);
-    return manifestFiles;
-  }
+  const manifestFiles = await listMarkdownFilesFromManifest(normalized);
+  markdownDirectoryCache.set(normalized, manifestFiles);
+  return manifestFiles;
 }
 
 async function listMarkdownDirectoriesInDir(directory) {
@@ -1644,53 +1602,9 @@ async function listMarkdownDirectoriesInDir(directory) {
   if (markdownSubdirCache.has(normalized)) {
     return markdownSubdirCache.get(normalized);
   }
-  try {
-    const response = await fetch(appendCacheBust(`${normalized}/`));
-    if (!response.ok) {
-      const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
-      markdownSubdirCache.set(normalized, manifestDirectories);
-      return manifestDirectories;
-    }
-    const html = await response.text();
-    const matches = [];
-    const hrefRegex = /href="([^"]+\/)"/gi;
-    let match = null;
-    while ((match = hrefRegex.exec(html))) {
-      matches.push(match[1]);
-    }
-    const directories = Array.from(
-      new Set(
-        matches
-          .map((href) => decodeURIComponent(href))
-          .map((href) => href.split("?")[0])
-          .map((href) => href.split("#")[0])
-          .map((href) => {
-            if (/^https?:\/\//i.test(href)) {
-              try {
-                return new URL(href).pathname;
-              } catch (_error) {
-                return href;
-              }
-            }
-            return href;
-          })
-          .map((href) => href.replace(/^\.?\//, ""))
-          .filter((href) => href && href !== "../" && href !== "./")
-          .filter((href) => href.endsWith("/"))
-          .map((href) => href.replace(/\/$/, ""))
-          .map((href) => href.split("/").pop())
-          .filter(Boolean)
-          .map((href) => `${normalized}/${href}`)
-      )
-    );
-    markdownSubdirCache.set(normalized, directories);
-    return directories;
-  } catch (error) {
-    console.warn("Failed to read markdown directories", directory, error);
-    const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
-    markdownSubdirCache.set(normalized, manifestDirectories);
-    return manifestDirectories;
-  }
+  const manifestDirectories = await listMarkdownDirectoriesFromManifest(normalized);
+  markdownSubdirCache.set(normalized, manifestDirectories);
+  return manifestDirectories;
 }
 
 async function loadMarkdownManifest() {
