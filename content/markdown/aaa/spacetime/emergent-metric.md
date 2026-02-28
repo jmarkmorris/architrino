@@ -125,6 +125,38 @@ The core task of this document will be to:
 2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:
    $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c^2}\right), \quad g^{\text{eff}}_{ij} \approx \delta_{ij}\left(1 - \frac{2\Phi_N}{c^2}\right).$
 
+#### Minimal Weak-Field Constitutive Map (for PPN Matching)
+
+To make the mapping functional explicit at first post-Newtonian order, use:
+$$
+g^{\text{eff}}_{00}(\mathbf{x})=
+-\left(1+\frac{2\Phi_N(\mathbf{x})}{c_f^2}\right)
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
+$$
+$$
+g^{\text{eff}}_{ij}(\mathbf{x})=
+\delta_{ij}\left(1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_f^2}\right)
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right).
+$$
+
+Equivalent refractive form:
+$$
+n(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
+=1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
+$$
+so travel time on a Euclidean anchor path $\Gamma$ is
+$$
+t[\Gamma]=\frac{1}{c_f}\int_\Gamma n(\mathbf{x})\,ds.
+$$
+
+This is the concrete first-order realization of
+$$
+(\delta_{ij},\rho_{\text{core}},\text{stress},\Phi_N)\mapsto g^{\text{eff}}_{\mu\nu},
+$$
+with $\gamma_{\text{eff}}$ the observable refraction/space-curvature coefficient to be fitted from Shapiro-delay data.  
+Implementation of the corresponding one-way delay integral is given in [PPN-parameters](./PPN-parameters.md#explicit-weak-field-refractive-shapiro-map-ppn-gamma).
+
 #### Virtual vs. Physical Observers
 
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**:

@@ -6,17 +6,10 @@
 
 
  
-  5. Weak-field clock-law coefficient extraction
-      - Derive/fix first-order coefficients in (d\tau/dt) expansion from proper-time-and-time-dilation.md#L186 and proper-time-and-time-dilation.md#L199.
-      - Bounded perturbation problem with clear benchmark form.
-  6. PPN-(\gamma) refractive Shapiro map
-      - Build the explicit refractive-delay integral to match the stated target in PPN-parameters.md#L3 and metric mapping requirement in emergent-metric.md#L121.
-      - Good medium-complexity win with direct observational tie-in.
-  7. Numerical rigor: provenance/convergence metrics
-      - Convert qualitative checks into strict quantitative pass/fail criteria from convergence-tests.md#L1 and synthetic-observables.md#L31.
-      - Fast progress and essential for all later claims.
 
-  If you want, I can start by drafting the full theorem/proof write-up for items 1 and 2 first.
+
+
+
 
 ## Infrastructure
 
