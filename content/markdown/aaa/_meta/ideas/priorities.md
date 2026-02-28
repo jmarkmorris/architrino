@@ -7,8 +7,7 @@
 
 
 
-  10. Fill zero-byte core math stubs: gauge-symmetries.md, gravitational-waves.md.
-     Deliverable: minimal theorem-backed skeletons so key derivation chain is not broken.
+
 
 ## Infrastructure
 
