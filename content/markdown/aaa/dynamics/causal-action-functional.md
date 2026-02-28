@@ -129,46 +129,84 @@ is a signed measure of handedness for the self‑interaction pattern. Nonzero $W
 
 ### Theorem Spine (Provable Core under A1-A5)
 
+In this section we also assume the standard mollifier properties:
+$\phi_\eta\in C_c^\infty(\mathbb{R})$, $\phi_\eta\ge0$, $\int_{\mathbb{R}}\phi_\eta(s)\,ds=1$, and $\phi_\eta\to\delta$ weakly as $\eta\to0^+$.
+
+#### Assumptions Checklist (Use Before Citing a Theorem)
+
+| Claim | A1 | A2 | A3 | A4 | A5 |
+| --- | --- | --- | --- | --- | --- |
+| Theorem 1 (finiteness/nonnegativity) | required | required | required | not required | not required |
+| Theorem 2 (coarea limit) | required | required | required | required | not required |
+| Corollary 2.1 (integer labels) | required | required | required | required | required |
+| Theorem 3 (bifurcation criterion) | required | required | required | required (except at critical value) | required |
+| Theorem 4 (two-sided bounds) | required | required | required | not required | not required |
+
 #### Theorem 1 (Well-defined finite regularized action)
 Under (A1)-(A3), $\bar{\mathcal{A}}_{\text{self},\eta}[\gamma]$ is finite and nonnegative.
 
-**Proof sketch:** Nonnegativity is immediate from $\phi_\eta\ge0$ and $r^{-2}>0$.
-Finiteness follows from $r^{-2}\le r_{\min}^{-2}$ on support and bounded domain
-$[0,T]^2$.
+**Proof.** Write
+$$
+\bar{\mathcal{A}}_{\text{self},\eta}
+=\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2}\,dt\,dt'.
+$$
+The integrand is nonnegative because $\phi_\eta\ge0$ and $r^{-2}>0$, so $\bar{\mathcal{A}}_{\text{self},\eta}\ge0$.
+By (A3), on the support of $\phi_\eta(F_\gamma)$ we have $r\ge r_{\min}>0$, hence
+$r^{-2}\le r_{\min}^{-2}$. Therefore
+$$
+0\le \bar{\mathcal{A}}_{\text{self},\eta}
+\le
+\frac{1}{T^2}\,r_{\min}^{-2}\,\|\phi_\eta\|_\infty\,|[0,T]^2|
+=
+\frac{\|\phi_\eta\|_\infty}{r_{\min}^2}<\infty.
+$$
+So the functional is finite and nonnegative.
 
 #### Theorem 2 (Coarea reduction to causal locus)
-Under (A1)-(A4), the $\eta\to0^+$ leading term of
+Under (A1)-(A4), the $\eta\to0^+$ limit of
 $\bar{\mathcal{A}}_{\text{self},\eta}$ is the weighted 1D measure of the causal locus:
 $$
-\bar{\mathcal{A}}_{\text{self}}
-\sim
+\lim_{\eta\to0^+}\bar{\mathcal{A}}_{\text{self},\eta}
+=
 \frac{1}{T^2}
 \int_{\mathcal{L}_{\text{causal}}}
 \frac{1}{r(t,t')^2\,\|\nabla F_\gamma(t,t')\|}\,d\ell,
 $$
 where $\mathcal{L}_{\text{causal}}=\{(t,t')\in T^2: F_\gamma(t,t')=0\}$.
 
-**Proof sketch:** Apply coarea in $(t,t')$ with level function $F_\gamma$ and use the
-mollifier concentration on $F_\gamma=0$.
+**Proof.** Apply the coarea formula on $[0,T]^2$ with level function $F_\gamma$:
+$$
+\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2}\,dt\,dt'
+=
+\int_{\mathbb{R}}\phi_\eta(s)\,
+H(s)\,ds,
+$$
+with
+$$
+H(s)\equiv
+\int_{F_\gamma^{-1}(s)}
+\frac{1}{r^2\,\|\nabla F_\gamma\|}\,d\ell.
+$$
+By (A4), $\|\nabla F_\gamma\|$ is nonzero on $F_\gamma^{-1}(0)$, so in a small tubular neighborhood of the zero level the level sets are regular 1-manifolds and $H(s)$ is continuous near $s=0$. By (A3), $r^{-2}$ is bounded on the active support, so $H(s)$ is locally bounded. Since $\phi_\eta$ is an approximate identity, $\int \phi_\eta(s)H(s)\,ds\to H(0)$ as $\eta\to0^+$. Dividing by $T^2$ yields the claimed limit.
 
 #### Corollary 2.1 (Discrete branch labels)
 Connected components of $\mathcal{L}_{\text{causal}}$ carry winding numbers
 $(p,q)\in\mathbb{Z}^2$ on $T^2$. These are unchanged under smooth deformations that
-preserve (A4).
+preserve (A4) and remain inside one homotopy class (A5).
 
-**Meaning:** integer labels are structural, not fit parameters.
+**Proof.** Under (A4), each connected component of the level set $F_\gamma=0$ is a smooth embedded closed curve on $T^2$, hence defines a homology class in $H_1(T^2,\mathbb{Z})\cong\mathbb{Z}^2$. The coordinates of this class are the winding numbers $(p,q)$. Under a smooth deformation preserving regularity and homotopy class, components evolve by isotopy, so their homology classes are unchanged.
 
 #### Theorem 3 (Bifurcation criterion for quantized branch changes)
-Integer labels and component counts can change only at parameter values where (A4)
-fails, i.e., where $\nabla F_\gamma=0$ somewhere on $F_\gamma=0$ (tangent/degenerate
-causal intersection).
+For a smooth one-parameter family $\gamma_\lambda$ (equivalently $F_\lambda$), component count and winding labels can change only at parameter values $\lambda_*$ where transversality fails:
+$$
+F_{\lambda_*}(t,t')=0,\qquad \nabla F_{\lambda_*}(t,t')=0
+$$
+for some $(t,t')\in T^2$.
 
-**Proof sketch:** Away from critical values, implicit-function continuation gives
-smooth families of causal-locus components with fixed topology. Topology change
-requires critical-point crossing.
+**Proof.** Fix $\lambda_0$ such that $F_{\lambda_0}^{-1}(0)$ is regular (A4). By the implicit function theorem, near every point of $F_{\lambda_0}^{-1}(0)$ the zero set is a smooth curve varying smoothly with $\lambda$. Compactness of $T^2$ gives a finite cover, so the full causal locus varies by isotopy for $\lambda$ in a neighborhood of $\lambda_0$. Isotopy preserves component count and homology labels. Therefore these quantities are locally constant on regular parameter intervals. Any change between two regular intervals must pass through a non-regular parameter where $\nabla F=0$ at a zero-level point.
 
 #### Theorem 4 (Two-sided bounds useful for validation)
-Under (A1)-(A4), for any fixed $\eta>0$:
+Under (A1)-(A3), for any fixed $\eta>0$:
 $$
 0\le
 \bar{\mathcal{A}}_{\text{self},\eta}
@@ -181,6 +219,15 @@ $$
 \ge
 \frac{1}{r_{\max}^2T^2}
 \int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'.
+$$
+
+**Proof.** The upper bound is exactly the estimate used in Theorem 1. For the lower bound, if $r\le r_{\max}$ on support, then $r^{-2}\ge r_{\max}^{-2}$ on support, hence
+$$
+\bar{\mathcal{A}}_{\text{self},\eta}
+=
+\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2}\,dt\,dt'
+\ge
+\frac{1}{r_{\max}^2T^2}\int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'.
 $$
 
 **Meaning:** numerical pipelines can assert hard pass/fail envelopes before any
@@ -228,16 +275,21 @@ $$
 Let $I_{\text{branch}}\subset(0,\pi)$ denote the chosen admissible interval.
 Then admissible causal roots are zeros of $g_\beta$ in $I_{\text{branch}}$.
 
-#### Proposition 5.1 (Discrete root count)
-For fixed $\beta$, the admissible set $\{\xi_n\}$ is finite and integer-valued.
-Root count changes only when
+#### Proposition 5.1 (Discrete Root Count and Branch-Change Criterion)
+Fix a compact admissible interval $I_{\text{branch}}=[a,b]\subset(0,\pi)$ with boundary regularity $g_\beta(a)\neq0$, $g_\beta(b)\neq0$.
+
+1. For fixed $\beta>0$, the admissible root set
+   $\{\xi\in I_{\text{branch}}:g_\beta(\xi)=0\}$ is finite.
+2. In a smooth one-parameter scan $\beta=\beta(\lambda)$, the root count in
+   $I_{\text{branch}}$ is locally constant except when
 $$
 g_\beta(\xi)=0,\qquad \partial_\xi g_\beta(\xi)=0
 $$
-are simultaneously satisfied (tangent birth/death of roots).
+at some interior point $\xi\in(a,b)$.
 
-**Proof sketch:** Real-analyticity of $g_\beta$ gives isolated simple roots except at
-double-root points, which are exactly the simultaneous equations above.
+**Proof.** For fixed $\beta$, $g_\beta$ is real-analytic on $(0,\pi)$, hence zeros are isolated unless the function is identically zero on an interval. That cannot occur here because $g_\beta$ is not identically zero. A discrete subset of a compact interval is finite, proving (1).
+
+For (2), if $\xi_*$ is a simple root ($\partial_\xi g_\beta(\xi_*)\neq0$), the implicit function theorem gives a unique smooth continuation of that root under small parameter changes, so simple roots cannot be created or destroyed locally. Root-count change can therefore occur only when simplicity fails, i.e. when $g_\beta=0$ and $\partial_\xi g_\beta=0$ simultaneously (multiple/tangent root). Boundary-root events are excluded by the boundary-regularity condition.
 
 This is the 1D analog of Theorem 3 and provides an explicit, checkable bifurcation
 condition for the circular toy model.

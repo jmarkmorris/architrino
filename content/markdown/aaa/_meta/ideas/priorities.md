@@ -4,10 +4,6 @@
 
 • Yes. Beyond CKM, there are several genuinely tractable math targets.
 
-  1. Delay-map/root topology theorem pack
-      - Formalize monotonic single-hit regime, fold bifurcation condition, and degree/root-count behavior already stated in master-equation.md#L130, master-equation.md#L164, master-equation.md#L170,
-        master-equation.md#L189.
-      - Low-hanging because the objects and claims are already explicit; it mainly needs proof cleanup.
   2. Causal-action theorem spine completion
       - Turn the existing theorem sketches into complete proofs + assumptions checklist from causal-action-functional.md#L130, with explicit branch-count proposition at causal-action-functional.md#L231.
       - This is close to publishable internal math if tightened.
