@@ -2058,13 +2058,13 @@
     },
     {
       "id": "content/markdown/aaa/spacetime/gravitational-waves.md",
-      "name": "Gravitational Waves (Minimal Derivation Spine)",
+      "name": "Gravitational Waves",
       "path": "__markdown_doc__:content/markdown/aaa/spacetime/gravitational-waves.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/ppn-parameters.md",
-      "name": "Ppn Parameters",
+      "name": "PPN Parameters",
       "path": "__markdown_doc__:content/markdown/aaa/spacetime/ppn-parameters.md",
       "nodeType": "markdown_doc"
     },
@@ -5105,7 +5105,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/gravitational-waves.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/gravitational-waves.md",
-      "name": "Gravitational Waves (Minimal Derivation Spine)",
+      "name": "Gravitational Waves",
       "path": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/gravitational-waves.md",
       "implicit": false
@@ -5114,7 +5114,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/ppn-parameters.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/ppn-parameters.md",
-      "name": "Ppn Parameters",
+      "name": "PPN Parameters",
       "path": "content/markdown/aaa/spacetime/ppn-parameters.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/ppn-parameters.md",
       "implicit": false
