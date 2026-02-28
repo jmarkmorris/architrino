@@ -33,7 +33,7 @@
       "radius": 1.55,
       "color": "#3f5f8a",
       "position": [0.0, -4.8, 0.0],
-      "markdownPath": "content/markdown/aaa/spacetime/PPN-parameters.md",
+      "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
     },
