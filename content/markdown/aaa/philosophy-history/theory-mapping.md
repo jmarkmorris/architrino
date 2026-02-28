@@ -4,6 +4,8 @@
 **Purpose:** A compact, cross-audience map of major theories. Each entry moves from accessible to technical: (1) a
 high-level summary, (2) a STEM-friendly abstraction, (3) the mathematical essence (key idea or formula) and is followed by (4) the architrino assembly architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) perspective.
 
+**Ontology Principle:** In the architrino framework, form precedes function: the geometric structure of assemblies is ontologically prior, and physical behavior (charge, mass, spin, interaction) emerges from that geometry rather than being a design specification imposed on it.
+
 ---
 
 ## Core Assembly Layer (Noether Core / Tri-Binary)
