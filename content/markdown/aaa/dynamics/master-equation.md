@@ -589,27 +589,51 @@ while preserving total emission $q$.
 
 #### Well-Posedness (Existence and Uniqueness)
 
-**Theorem (Schematic):**
+To make the existence/uniqueness claim precise, we now formalize the
+regularized dynamics introduced above (finite $\eta>0$) as a
+state-dependent delay system in first-order form:
+$$
+\dot{\mathbf{Y}}(t)=\mathcal{G}(\mathbf{Y}_t),\qquad
+\mathbf{Y}_t(\theta)=\mathbf{Y}(t+\theta),\ \theta\in[-h,0],
+$$
+with phase space $\mathcal{H}=C^1([-h,0],\mathbb{R}^{6N})$.
 
-Given:
-- Initial conditions $\{\mathbf{x}_i(t_0), \mathbf{v}_i(t_0)\}$ for all $i$ at some reference time $t_0$
-- Initial history $\{\mathbf{x}_i(t) : t < t_0\}$ (for causal lookback; typically set to free evolution or specified trajectories)
-- Regularization parameter $\eta > 0$
-- Bounded initial speeds $|\mathbf{v}_i(t_0)| < V_{\max}$
+**Assumptions (regularized regime):**
 
-Then:
-- The system admits a **unique local solution** $\{\mathbf{X}_i(t) : t \in [t_0, t_0 + T]\}$ for some $T > 0$.
-- If speeds remain bounded ($|\mathbf{v}_i(t)| < V_{\max}$ for all $t$), the solution extends to all future times.
+- **(W1) Kernel regularity:** $\delta_\eta$ is $C^1$, bounded, and integrable.
+- **(W2) Uniform branch finiteness:** on the considered history neighborhood, each pair $(i,j)$ has at most $B_{ij}<\infty$ active causal branches.
+- **(W3) Root transversality:** for every active branch $\tau_{ij,\ell}$,
+  $$
+  \left|\partial_\tau g_{ij}(\tau,\phi)\right|\ge \nu>0,
+  \qquad
+  g_{ij}(\tau,\phi)=\|\phi_i(0)-\phi_j(-\tau)\|-c_f\tau.
+  $$
+- **(W4) Distance floor on the branch support:** $\|\phi_i(0)-\phi_j(-\tau_{ij,\ell}(\phi))\|\ge d_{\min}>0$.
+- **(W5) Bounded charges/couplings:** $\kappa$, $|q_i|$ finite.
 
-**Breakdown:** Solutions may become ill-defined if:
-- Speeds diverge to infinity (unphysical runaway; typically prevented by self-hit repulsion).
-- Causal roots proliferate without bound (numerical intractability; not expected in physical configurations).
+**Theorem (Local well-posedness and continuation).**  
+Under (W1)-(W5), for any initial history $\phi^0\in\mathcal{H}$ there exists $T>0$ and a unique solution
+$$
+\mathbf{Y}\in C^1([t_0-h,t_0+T),\mathbb{R}^{6N}),\qquad \mathbf{Y}_{t_0}=\phi^0.
+$$
+The solution extends uniquely to a maximal interval $[t_0-h,t_{\max})$. If on every finite interval
+$$
+\sup_{t<t^\ast}\|\mathbf{v}(t)\|<\infty,\quad
+\inf_{t<t^\ast,\ i,j,\ell} r_{ij,\ell}(t)>0,\quad
+\inf_{t<t^\ast,\ i,j,\ell}|\partial_\tau g_{ij,\ell}(t)|>0,
+$$
+then $t_{\max}=\infty$.
+Here $r_{ij,\ell}(t)$ denotes the source-receiver distance on branch $\ell$.
 
-**Proof strategy (deferred to rigorous appendix):**
+**Proof.**
 
-1. Show that $\mathcal{F}$ is Lipschitz continuous in the state variables (for fixed $\eta > 0$).
-2. Apply fixed-point theorems for DDEs with state-dependent delays (see Hale & Verduyn Lunel, *Functional Differential Equations*).
-3. Verify that self-hit terms (if present) satisfy the same Lipschitz bounds.
+1. By (W3), each active delay branch is simple; the Implicit Function Theorem gives $\tau_{ij,\ell}(\phi)\in C^1$ on a neighborhood of $\phi^0$.
+2. Each per-branch acceleration term is a composition of $C^1$ maps (evaluation, subtraction, norm, mollifier, and unit-direction projection). By (W4), denominators stay away from zero; by (W5), coefficients are bounded. Hence each branch term is locally Lipschitz in $\phi$.
+3. By (W2), only finitely many branches contribute, so their sum $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}$ where (W3)-(W4) hold.
+4. Standard state-dependent DDE existence/uniqueness theory on Banach spaces applies, yielding a unique local $C^1$ solution and a maximal extension.
+5. Continuation follows from the same theorem: finite-time breakdown can occur only by leaving every bounded subset of the admissible set, i.e. via unbounded speed, vanishing separation on active support, or transversality loss/root accumulation.
+
+Therefore the regularized master dynamics are locally well-posed, with global existence whenever those failure modes are excluded. $\square$
 
 ## Operational Principles, Self-Interaction, and Examples
 
