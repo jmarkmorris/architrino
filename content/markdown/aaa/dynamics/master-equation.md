@@ -1173,7 +1173,7 @@ Once any internal binary reaches the $v>c_f$ regime at some stage in its history
 We organize the discussion into four pieces:
 
 1. Aggregate kinetic energy for a finite, isolated set of architrinos,
-2. An effective notion of aggregate potential energy compatible with path‑history dynamics,
+2. An exact nonlocal Noether energy charge compatible with path‑history dynamics,
 3. A nonlocal Lagrangian whose variations reproduce the Master Equation,
 4. A corresponding Hamiltonian / total energy functional, with energy exchange only at $t=\text{now}$ between architrinos.
 
@@ -1211,13 +1211,9 @@ Thus kinetic energy splits naturally into:
 
 ---
 
-#### Aggregate Potential Energy as Path‑History Bookkeeping
+#### Exact Nonlocal Noether Energy (Causal-Delay Charge)
 
-With finite‑speed causal wakes and path‑history dependence, traditional “instantaneous potential energy as a function only of positions” is not fundamental. Forces at time $t$ depend on **where sources were** at their emission times $t_0$, not where they are now. Nevertheless, for finite isolated sets we can define a useful **energy bookkeeping** that:
-
-- Tracks energy exchange between architrinos only at actual wake–receiver intersections,
-- Reduces, in appropriate limits, to familiar pairwise $1/r$‑like structure,
-- Requires no independent “field energy” living in the void between sources and receivers.
+With finite‑speed causal wakes and path‑history dependence, an instantaneous position-only potential is not fundamental. The exact theory instead uses the time-translation symmetry of the nonlocal action (Section 6.1.3) to define a conserved Noether charge.
 
 ##### Energy exchange per causal hit
 
@@ -1247,45 +1243,66 @@ $$
 
 with the understanding that for self‑hit we include $j=i$ as well.
 
-##### Effective potential energy for finite systems
+##### Exact wake-energy functional at time boundary $t$
 
-For an *isolated* finite system, we define an **effective potential energy** $U(t)$ such that the **total energy**
+Let $\mathcal{K}_{ij}(t_1,t_0)$ denote the causal-delay interaction kernel from Section 6.1.3:
 
 $$
-E_\text{tot}(t) \equiv K(t) + U(t)
+\mathcal{K}_{ij}(t_1,t_0)
+=
+\frac{\kappa\,\sigma_{ij}\,|q_i q_j|}{c_f}\,
+\Theta(t_1-t_0)\,
+\frac{\delta\!\big(g_{ij}(t_1,t_0)\big)}{r_{ij}(t_1,t_0)},
+\qquad
+g_{ij}(t_1,t_0)=t_1-t_0-\frac{r_{ij}(t_1,t_0)}{c_f}.
 $$
 
-is conserved in absolute time under the exact path‑history evolution dictated by the Master Equation. This is a **constructive definition**: we are not imposing conservation as an independent axiom, but rather defining $U(t)$ as the complementary bookkeeping quantity that makes the sum $K + U$ time-independent.
+For an isolated system, the nonlocal Noether charge associated with $t\mapsto t+\tau$ is
 
-Operationally:
+$$
+E_{\text{tot}}(t)=K(t)+E_{\text{wake}}(t),
+$$
 
-- Choose a reference time $t_\ast$ and conventionally set $U(t_\ast)=U_\ast$.
-- For any later time $t$, define
-  $$
-  U(t) \equiv U_\ast - \int_{t_\ast}^{t} \frac{dK}{dt'}\,dt'
-  = U_\ast - \int_{t_\ast}^{t} \sum_i \mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt',
-  $$
-  where $\mathbf{a}_i$ is the full acceleration from all sources and self‑hits.
-- This defines $U(t)$ entirely from **architrino dynamics**; no separate field degree of freedom is required.
+with
 
-Properties:
+$$
+E_{\text{wake}}(t)
+=
+\frac{1}{2}\sum_{i,j}
+\int_{-\infty}^{t} dt_0
+\int_{t}^{\infty} dt_1\,
+\partial_{t_1}\mathcal{K}_{ij}(t_1,t_0).
+$$
 
-- By construction,
-  $$
-  \frac{d}{dt} E_\text{tot}(t) = \frac{dK}{dt} + \frac{dU}{dt} = 0
-  $$
-  for an isolated system, so $E_\text{tot}$ is conserved.
-- In regimes where causal delays are short compared to dynamical timescales and where self‑hit contributions are dominated by quasi‑stationary inner binaries, $U(t)$ can be approximated by an **instantaneous pair‑interaction form**:
-  $$
-  U(t) \approx \sum_{i<j} U_{ij}\big(\mathbf{x}_i(t), \mathbf{x}_j(t)\big),
-  $$
-  with a leading $1/r_{ij}$ term plus geometry‑dependent corrections from internal self‑hit structure.
+For $i=j$, the same rule applies with the trivial coincidence branch ($t_1=t_0$) excluded, matching the self-hit convention in Section 6.1.3.
 
-This gives us:
+Interpretation: the double integral measures interaction links that cross the time boundary $t$ (past emission side $t_0\le t$ and future reception side $t_1\ge t$). This is the exact “in-flight” interaction contribution in the nonlocal theory.
 
-- A **well‑defined, history‑aware potential energy functional** for any finite set,
-- That **reduces** in appropriate limits to a familiar, position‑dependent interaction energy,
-- Without ever assigning energy density to an independent “field substance” living between architrinos.
+By nonlocal Noether’s theorem, for exact solutions of the Master Equation,
+
+$$
+\frac{d}{dt}\Big(K(t)+E_{\text{wake}}(t)\Big)=0.
+$$
+
+No separate spatial field-energy ontology is required; conservation is encoded directly in worldline geometry and the causal kernel.
+
+##### Diagnostic equivalent (work-integral form)
+
+For simulation diagnostics, one may still compute an equivalent interaction functional by integrating instantaneous power:
+
+$$
+U(t)=U_\ast-\int_{t_\ast}^{t}\sum_i \mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
+$$
+
+In the exact continuum theory this differs from $E_{\text{wake}}(t)$ only by a reference constant, so both yield the same conserved $E_{\text{tot}}$.
+
+In short-delay effective limits, $E_{\text{wake}}$ reduces to an approximate instantaneous pair form
+
+$$
+E_{\text{wake}}(t)\approx\sum_{i<j}U_{ij}\big(\mathbf{x}_i(t),\mathbf{x}_j(t)\big),
+$$
+
+with leading $1/r_{ij}$ behavior plus geometry-dependent self-hit corrections.
 
 ---
 
@@ -1472,7 +1489,7 @@ which:
 #### Summary
 
 - **Kinetic energy** is defined in the usual way at the architrino level, with internal kinetic energy of tightly bound self‑hit binaries contributing to assembly rest masses.
-- **Potential energy** is not primitive but arises as a **bookkeeping device** ensuring conservation of a total energy $H = K + U$ in an isolated system, with $U$ defined from the time‑integrated work done by causal‑wake intersections.
+- **Interaction energy** is not primitive as an instantaneous position function; it enters as an exact nonlocal Noether charge $E_{\text{wake}}$ (with $U$ as an equivalent diagnostic reconstruction up to a constant).
 - A **nonlocal action principle** exists: a multi‑time Lagrangian whose kernel enforces the causal isochron geometry reproduces the Master Equation under variation, including self‑hit.
 - The **Hamiltonian** for an isolated system is a conserved history‑aware functional of the worldlines; in suitable limits it reduces to a canonical $H_\text{eff} = \sum \mathbf{P}^2/2M + U_\text{eff}$ for effective assemblies, with no separate “field energy” ontology.
 
@@ -1482,7 +1499,7 @@ All energy accounting remains localized to **architrinos and their assemblies** 
 
 ### Total Energy Calculation for an Isolated Set of Architrinos
 
-In the Architrino Assembly Architecture, we start from a **concrete dynamical rule** at the architrino level and ask what happens to total energy as the system evolves. We do **not** assume in advance that there is a simple, conserved scalar like in textbook mechanics; instead, we:
+In the Architrino Assembly Architecture, the conserved total energy follows from the time-translation symmetry of the nonlocal action. This section gives the operational calculation route for that same conserved quantity:
 
 - Define kinetic energy in the usual kinematic way.
 - Track how causal‑wake intersections (including self‑hit) change kinetic energy.
@@ -1667,7 +1684,7 @@ Two important clarifications:
 
 2. We have **not** assigned an independent energy density to a field in the void.
    - All changes in energy happen at architrinos, at the moments when wakes intersect them.
-   - $W(t)$ is a global bookkeeping functional that encodes how much of the “interaction capacity” of the past wakes is still unrealized as kinetic motion.
+   - $W(t)$ is a diagnostic estimator for the nonlocal interaction charge, encoding how much of the “interaction capacity” of past wakes is still unrealized as kinetic motion.
 
 In this sense, one can regard $E_{\text{calc}}$ either as:
 
@@ -1678,13 +1695,13 @@ In this sense, one can regard $E_{\text{calc}}$ either as:
 
 #### Open Tasks for This Framework
 
-To turn this into a practical tool rather than a formal definition, we still need to:
+To turn this into a practical computational tool, we still need to:
 
-1. **Express $W(t)$ more explicitly** in terms of:
-   - Recognizable structures in past worldlines (e.g., cumulative contributions of wakes that are geometrically able to intersect vs those that never can), and
-   - The causal intersection geometry.
+1. **Derive branch-resolved evaluation formulas for $E_{\text{wake}}(t)$** in terms of:
+   - Delay roots and their Jacobians, and
+   - Causal intersection geometry of worldline segments.
 
-2. **Analyze how self‑hit reshapes $W(t)$**:
+2. **Analyze how self‑hit reshapes $E_{\text{wake}}(t)$ and its estimator $W(t)$**:
    - Before self‑hit, many emissions may have no future self‑intersection.
    - After self‑hit is allowed, some of those emissions begin to contribute to future self‑intersections, altering the partition of “who will feel what, and when.”
 
@@ -1693,15 +1710,15 @@ To turn this into a practical tool rather than a formal definition, we still nee
    - Compute $K(t)$ directly.
    - Numerically accumulate the work term
      $\displaystyle \int \sum_i m_i\,\mathbf{a}_i\cdot\mathbf{v}_i\,dt$
-     to define $W(t)$.
-   - Check whether $E_{\text{calc}}(t) = K(t) + W(t)$ remains flat (within numerical tolerance) over long times.
+     to define $W(t)$ as an estimator of $E_{\text{wake}}$.
+   - Check whether $E_{\text{calc}}(t) = K(t) + W(t)$ remains flat (within numerical tolerance) and matches direct evaluations of $K+E_{\text{wake}}$ where feasible.
 
 If $E_{\text{calc}}(t)$ shows systematic drift for truly isolated ensembles under accurate integration (after ruling out numerical artifacts via convergence tests), this is a **falsification signal**: it indicates either:
 
 1. The Master Equation as written is not strictly conservative (which would require adding dissipative or source terms), or
-2. The definition of $W(t)$ (or $U(t)$) is incomplete and must account for additional energy-storage mechanisms in the wake pattern.
+2. The implemented estimator for $E_{\text{wake}}(t)$ is incomplete and must account for additional nonlocal terms in the wake geometry.
 
-Either outcome would require revising the fundamental dynamics or the energy bookkeeping. This is a **hard test** of the theory's internal consistency.
+Either outcome would require revising the fundamental dynamics or the nonlocal energy-functional construction. This is a **hard test** of the theory's internal consistency.
 
 If, instead, $E_{\text{calc}}(t)$ is robustly constant, then we will have:
 
@@ -1769,15 +1786,15 @@ $$
 $$
 is constant in time for isolated systems.
 
-**Remark.** These definitions mirror the energy bookkeeping in Sections 6.1-6.2: the "missing" momentum and angular momentum are attributed to in-flight wake geometry, so the total conserved quantities are functionals of the path history.
+**Remark.** These definitions mirror the nonlocal energy charge in Sections 6.1-6.2: the "missing" momentum and angular momentum are attributed to in-flight wake geometry, so the total conserved quantities are functionals of the path history.
 
 #### Energy Functional and No-Runaway Criterion
 
 Time-translation invariance implies a conserved history functional. In this document we define the total energy as
 $$
-E_{\text{tot}}(t) = K(t) + U(t),
+E_{\text{tot}}(t) = K(t) + E_{\text{wake}}(t),
 $$
-where $K$ is kinetic energy and $U$ is the interaction bookkeeping functional defined in Sections 6.1-6.2.
+where $K$ is kinetic energy and $E_{\text{wake}}$ is the nonlocal Noether interaction charge from Sections 6.1-6.2. In diagnostics, $U$ or $W$ may be used as equivalent reconstructions up to a constant offset.
 
 **Lemma (Bounded work rate under regularization).** If $\eta>0$ and the mollified kernel bounds the per-hit force, then there exists $F_{\max}(\eta)$ such that
 $$
@@ -1793,7 +1810,7 @@ $$
 
 In addition to the convergence checks in Section 4.2, track these conserved functionals in any isolated run:
 
-- **Total energy**: $E_{\text{calc}}(t) = K(t) + U(t)$ should be constant up to the energy-drift thresholds in Section 4.2.3.
+- **Total energy**: $E_{\text{calc}}(t) = K(t) + U(t)$ (or direct $K+E_{\text{wake}}$ where available) should be constant up to the energy-drift thresholds in Section 4.2.3.
 - **Total momentum**: $\mathbf{P}_{\text{tot}}(t)$ should be constant; monitor $\|\mathbf{P}_{\text{tot}}(t)-\mathbf{P}_{\text{tot}}(0)\|$.
 - **Total angular momentum**: $\mathbf{L}_{\text{tot}}(t)$ should be constant; in planar runs, the unit axis $\hat{\mathbf{n}} = \mathbf{L}_{\text{tot}}/\|\mathbf{L}_{\text{tot}}\|$ should remain fixed.
 - **Binary symmetry defect** (for symmetric initial data):
