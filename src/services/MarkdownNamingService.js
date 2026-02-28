@@ -55,7 +55,7 @@ export function compactMarkdownNodeLabel(title, maxChars = 34) {
   return `${text.slice(0, budget).trimEnd()}\u2026`;
 }
 
-const sphereAaaText = "AAA";
+const sphereAaaText = "\u{1D538}\u{1D538}\u{1D538}";
 
 function collapseAaaLabel(text) {
   const normalizedText = String(text);
