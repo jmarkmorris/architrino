@@ -2,28 +2,140 @@
 
 This document formalizes the variational foundation of the Architrino Assembly Architecture. It bridges the exact, path-history-dependent microdynamics of discrete architrinos with the coarse-grained, effective field theories that govern macroscopic assembly behavior in the Noether Sea. 
 
-### The Exact Nonlocal Action
+### Regularized Nonlocal Action and Variation
 
 The Master Equation of motion for architrinos is non-Markovian, driven by the intersection of trajectories with past causal wake surfaces. Consequently, the fundamental action principle cannot be a local integral over instantaneous states. It must be a multi-time functional that evaluates the entire path history.
 
-For a finite, isolated set of architrinos parameterized by absolute time $t$ in the Euclidean void, the exact action is defined as:
+For a finite, isolated set of architrinos parameterized by absolute time $t$ in the Euclidean void, use the $\eta>0$ regularized retarded action (the exact kernel is recovered as $\eta\to0^+$).
 
 $$
-S[\{\mathbf{x}_i\}] = \int dt \sum_i \frac{1}{2} m_i |\dot{\mathbf{x}}_i(t)|^2 - \frac{1}{2} \sum_{i,j} \kappa \, \sigma_{ij} |q_i q_j| \int dt \int_{-\infty}^{t} dt_0 \frac{1}{r_{ij}^2(t; t_0)} \delta_\eta \Big(r_{ij}(t; t_0) - c_f(t - t_0)\Big)
+S_\eta[\{\mathbf{x}_i\}]
+=
+\int dt \sum_i \frac{1}{2} m_i |\dot{\mathbf{x}}_i(t)|^2
+- \frac{1}{2}\sum_{i,j}\frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
+\int dt \int_{-\infty}^{t} dt_0\,
+\frac{\phi_\eta\!\big(g_{ij}(t,t_0)\big)}{r_{ij}(t;t_0)},
+$$
+$$
+g_{ij}(t,t_0)\equiv t-t_0-\frac{r_{ij}(t;t_0)}{c_f},
+\qquad
+r_{ij}(t;t_0)=\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\|,
+\qquad
+\phi_\eta\equiv\delta_\eta.
 $$
 
 where:
 *   $\mathbf{x}_i(t)$ is the trajectory of architrino $i$.
 *   $m_i$ is the inertial parameter (effective mass) of the receiver.
-*   $r_{ij}(t; t_0) = \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|$ is the Euclidean spatial separation between the reception and emission events.
+*   $r_{ij}(t; t_0)$ is the Euclidean separation between reception and emission events.
 *   $\delta_\eta$ is a mollified delta function of width $\eta > 0$, regularizing the causal wake surface to ensure a Lipschitz-continuous vector field.
 *   $\sigma_{ij} = \text{sign}(q_i q_j)$ enforces attraction for opposite charges and repulsion for like charges.
 
-Varying this action with respect to $\mathbf{x}_i(t)$ reproduces the Master Equation. The spatial gradient of the interaction kernel generates a purely radial force vector $\hat{\mathbf{r}}_{ij}$ evaluated strictly on the causal isochrons, including the critical self-hit contributions when $i=j$ and $v > c_f$.
+#### Regularization and Admissibility Assumptions
+
+The derivation below is valid under:
+
+- **(EL1)** $\mathbf{x}_i\in C^2([t_a,t_b];\mathbb{R}^3)$ and variations $\boldsymbol{\xi}_i$ are $C^1$ with $\boldsymbol{\xi}_i(t_a)=\boldsymbol{\xi}_i(t_b)=0$.
+- **(EL2)** $\phi_\eta\in C_c^1(\mathbb{R})$, $\phi_\eta\ge0$, $\int\phi_\eta(s)\,ds=1$.
+- **(EL3)** Collision exclusion on active support: $r_{ij}(t;t_0)\ge r_{\min}>0$ whenever $\phi_\eta(g_{ij}(t,t_0))\neq0$.
+- **(EL4)** Delay-root transversality on active branches: $\partial_{t_0}g_{ij}(t,t_0)\neq0$ when $g_{ij}(t,t_0)=0$.
+- **(EL5)** Integrability on the chosen history window (finite window or decay) so differentiation under the time integrals is justified.
+- **(EL6)** Retarded branch convention: only $t_0\le t$ contributes (equivalently, the $\Theta(t-t_0)$ branch of the causal selector).
+
+#### Explicit Euler-Lagrange Calculation
+
+Set $\mathbf{x}_i^\varepsilon=\mathbf{x}_i+\varepsilon\boldsymbol{\xi}_i$ and differentiate at $\varepsilon=0$.
+
+Kinetic term:
+$$
+\delta S_{\eta,\text{kin}}
+=
+\sum_i\int_{t_a}^{t_b} m_i\dot{\mathbf{x}}_i\cdot\dot{\boldsymbol{\xi}}_i\,dt
+=
+-\sum_i\int_{t_a}^{t_b} m_i\ddot{\mathbf{x}}_i\cdot\boldsymbol{\xi}_i\,dt.
+$$
+
+For the interaction kernel
+$$
+\mathcal{K}_{ij}(t,t_0)\equiv \frac{\phi_\eta(g_{ij}(t,t_0))}{r_{ij}(t;t_0)},
+\qquad
+\hat{\mathbf{r}}_{ij}\equiv\frac{\mathbf{x}_i(t)-\mathbf{x}_j(t_0)}{r_{ij}(t;t_0)},
+$$
+the receiver-coordinate gradient is
+$$
+\nabla_{\mathbf{x}_i(t)}\mathcal{K}_{ij}
+=
+-\hat{\mathbf{r}}_{ij}
+\left[
+\frac{\phi_\eta(g_{ij})}{r_{ij}^2}
++
+\frac{\phi_\eta'(g_{ij})}{c_f\,r_{ij}}
+\right].
+$$
+Hence
+$$
+\delta S_\eta
+=
+\sum_i\int_{t_a}^{t_b}\boldsymbol{\xi}_i(t)\cdot
+\Bigg(
+-m_i\ddot{\mathbf{x}}_i(t)
++
+\sum_j \frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
+\int_{-\infty}^{t}dt_0\,
+\hat{\mathbf{r}}_{ij}
+\left[
+\frac{\phi_\eta(g_{ij})}{r_{ij}^2}
++
+\frac{\phi_\eta'(g_{ij})}{c_f\,r_{ij}}
+\right]
++
+\mathbf{J}_{i,\eta}^{(\text{delay})}(t)
+\Bigg)\,dt.
+$$
+
+The $\mathbf{J}_{i,\eta}^{(\text{delay})}$ term is the explicit source-time/moving-root correction from varying the delayed argument and exchanging $(t,t_0)$ roles in the symmetric pair sum. By the fundamental lemma of the calculus of variations, stationarity $\delta S_\eta=0$ gives
+$$
+m_i\ddot{\mathbf{x}}_i(t)
+=
+\sum_j \frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
+\int_{-\infty}^{t}dt_0\,
+\hat{\mathbf{r}}_{ij}
+\left[
+\frac{\phi_\eta(g_{ij})}{r_{ij}^2}
++
+\frac{\phi_\eta'(g_{ij})}{c_f\,r_{ij}}
+\right]
++
+\mathbf{J}_{i,\eta}^{(\text{delay})}(t).
+$$
+
+Under (EL4), the $\eta\to0^+$ limit can be written branchwise:
+$$
+\phi_\eta(g_{ij}(t,t_0))
+\;\xrightarrow{\eta\to0^+}\;
+\sum_{\tau\in\mathcal{C}_j(t)}
+\frac{\delta(t_0-\tau)}
+{\left|1-\hat{\mathbf{r}}_{ij}(t;\tau)\cdot\mathbf{v}_j(\tau)/c_f\right|},
+$$
+so
+$$
+m_i\ddot{\mathbf{x}}_i(t)
+=
+\sum_j \kappa \, \sigma_{ij}|q_i q_j|
+\sum_{\tau\in\mathcal{C}_j(t)}
+\left[
+\frac{\hat{\mathbf{r}}_{ij}(t;\tau)}
+{r_{ij}(t;\tau)^2\,\left|1-\hat{\mathbf{r}}_{ij}(t;\tau)\cdot\mathbf{v}_j(\tau)/c_f\right|}
++
+\mathbf{J}_{ij}^{(\text{delay})}(t;\tau)
+\right].
+$$
+
+This is the same line-of-action force structure as the Master Equation derivation (including self-hit branches $i=j$ when present), now stated as an explicit Euler-Lagrange consequence of the regularized action.
 
 ### Symmetries and History-Aware Conservation Laws
 
-The action $S$ is invariant under the fundamental symmetry group of the substrate: the Euclidean group $E(3)$ and absolute time translations $\mathbb{R}_{\text{time}}$. 
+The regularized action $S_\eta$ is invariant under the fundamental symmetry group of the substrate: the Euclidean group $E(3)$ and absolute time translations $\mathbb{R}_{\text{time}}$; the exact statement is recovered in the $\eta\to0^+$ limit.
 
 Because the Lagrangian is nonlocal in time, standard Noether charges are augmented by path-history functionals tracking "in-flight" interactions encoded in the causal wakes.
 

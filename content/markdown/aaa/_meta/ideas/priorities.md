@@ -1,10 +1,8 @@
 
 # **The #1 priority is the dynamics/math/geometry and the mapping**
 
-  4. Turn “variation reproduces master equation” from assertion to derivation in effective-lagrangian.md:22.
-     Deliverable: explicit Euler–Lagrange calculation + regularization assumptions.
-  5. Derive the linear constitutive map for (G_{\text{eff}}(a,k)) requested in structure-formation.md:163 and structure-formation.md:214.
-     Deliverable: closed (\mu(a,k)) form from medium moduli/response.
+
+
   6. Complete PPN spine beyond (\gamma): PPN-parameters.md:72, PPN-parameters.md:77.
      Deliverable: explicit (\beta), (\alpha_1,\alpha_2,\alpha_3) formulas and zero-leakage conditions.
   7. Close the proper-time derivation gap at proper-time-and-time-dilation.md:138.
