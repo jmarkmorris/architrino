@@ -1,68 +1,54 @@
 ### The Case for Absolute Time ($t$)
 
-1. **Fundamental Parameter**: Absolute time $t$ is the unique, universal evolution parameter of the architrino master equation. It provides a unique global foliation of the universe.
-2. **$\mathbb{U}_{\text{now}}$ universe-state perspective Knowledge**: The $\mathbb{U}_{\text{now}}$ universe-state perspective indexes the state of all architrinos against $t$. The microdynamics can admit **meta-stable branching** at self-hit thresholds (multiple coexisting attractors), so $t$ still defines a single realized history while allowing branching *possibilities* in the evolution rule.
-3. **Derived Proper Time ($\tau$)**: Proper time is not fundamental; it is a derived functional of the tri-binary clock's motion and its interaction with the local Noether core sea density.
-4. **Simultaneity Reclaimed**: In the absolute frame, simultaneity is objective. The "Relativity of Simultaneity" is reinterpreted as a synchronization convention used by assemblies that rely on $c_f$-limited signaling within a moving medium.
-
+1. **Fundamental evolution parameter**: Absolute time $t$ is the unique global parameter of the master equation.
+2. **Product substrate**: The kinematic background is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with global clock map $\pi_t:\mathcal{M}\to\mathbb{R}$.
+3. **Unique foliation**: The simultaneity slice at fixed $t_0$ is the level set
+   $$
+   \Sigma_{t_0} = \pi_t^{-1}(t_0) = \mathbb{R}^3 \times \{t_0\}.
+   $$
+4. **Global time form**: The 1-form $dt$ is closed and exact, providing an intrinsic time orientation and eliminating foliation ambiguity.
+5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of tri-binary internal phase dynamics.
 
 ### Absolute Time, Global Foliation, and Proper Time
 
-**Absolute time $t$**  
-- A single, global, monotonically increasing parameter.
-- Defines a unique foliation of the universe into constant‑time hypersurfaces:
-  $\Sigma_t = \{(x,y,z,t) \mid (x,y,z) \in \mathbb{R}^3\}.$
-- The $\mathbb{U}_{\text{now}}$ universe-state perspective indexes the microstate $S(t)$ on each $\Sigma_t$.
+**Absolute time $t$ and universe state**
+- The $\mathbb{U}_{\text{now}}$ perspective indexes the exact microstate as $S(t)$ on each slice $\Sigma_t$.
+- On each $\Sigma_t$, the spatial metric is Euclidean: $h_{ij}=\delta_{ij}$.
+- Absolute time is substrate structure, not a coordinate gauge choice.
 
-This contrasts with:
+**Deterministic evolution and basin selection**
+- The delay-differential master equation is deterministic: a fully specified microstate $S(t_0)$ generates a unique trajectory $S(t)$ for $t>t_0$.
+- Apparent branching is multistability, not stochastic evolution: near separatrices, infinitesimal perturbations in initial microstate direct trajectories into different attractor basins.
+- Therefore the correct statement is basin selection under deterministic flow, not a "distribution of allowed configurations" from one exact state.
 
-- **Special Relativity**: simultaneity is frame‑dependent; no global “now.”  
-- **General Relativity**: slices are gauge choices; no preferred foliation; time is embedded in a dynamical metric.
+**Proper time $\tau$ for physical observers**
 
-In our ontology:
+Physical clocks are tri-binary assemblies; ticks correspond to internal limit-cycle phase evolution. For a clock worldline $\mathbf{X}(t)$ with $\mathbf{v}(t)=d\mathbf{X}/dt$,
 
-- Absolute time is a **real structure** of the substrate, not a coordinate convention.
-- There is one global “now” in which all architrino positions/velocities are defined.
+$$
+d\tau = F\big(\rho_{\text{sea}}(\mathbf{X},t), \sigma_{ij}(\mathbf{X},t), \mathbf{v}(t)\big)\,dt,
+$$
 
-**Proper time $\tau$ for physical observers**  
+where $\rho_{\text{sea}}$ and $\sigma_{ij}$ are coarse-grained Noether-sea density and stress fields. Microscopically, $F$ summarizes delayed assembly-medium interactions; $\Phi$ and $\nabla\Phi$ are effective coarse-grained encodings of that same local state.
 
-Physical clocks are tri‑binary assemblies. Their “ticks” are internal dynamical cycles (e.g. orbital frequencies of inner binaries). For a clock following a worldline $\mathbf{X}(t)$, the relation between its proper time $\tau$ and absolute time $t$ is:
+Equivalent phase-functional form:
 
-$d\tau = F(\text{local medium state at } \mathbf{X}(t), \Phi(\mathbf{X}(t),t), \nabla\Phi(\mathbf{X}(t),t), \mathbf{v}(t))\,dt$
+$$
+\tau(t_1)-\tau(t_0)=\int_{t_0}^{t_1}\Omega_{\mathrm{clk}}\!\left[\Gamma_{\mathrm{loc}}(s)\right]\,ds,
+$$
 
-where:
-- $\mathbf{v}(t) = d\mathbf{X}/dt$ is velocity in the void frame,
-- $\Phi$ and $\nabla\Phi$ encode local potentials/forces,
-- the medium state encodes Noether‑core density and stress.
+with $\Omega_{\mathrm{clk}}$ the instantaneous internal oscillation rate determined by the local delayed interaction history $\Gamma_{\mathrm{loc}}$.
 
-We will require that in the appropriate regimes:
+Required emergent limits:
+- Homogeneous medium, low velocities:
+  $$
+  \frac{d\tau}{dt} \approx \sqrt{1 - v^2/c_f^2}.
+  $$
+- Weak field, low velocities:
+  $$
+  \frac{d\tau}{dt} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_f^2 - v^2/c_f^2}.
+  $$
 
-- Homogeneous medium, low velocities:  
-  $d\tau/dt \approx \sqrt{1 - v^2/c^2}$ (kinematic time dilation).
-- Weak field, low velocities:  
-  $d\tau/dt \approx \sqrt{1 + 2\Phi_\text{eff}/c^2 - v^2/c^2}$ (GR‑like redshift).
+**Key point**
 
-**Key point:**  
-Physical observers experience relativity of simultaneity and time dilation as **emergent properties** of assembly dynamics in the medium. The $\mathbb{U}_{\text{now}}$ universe-state perspective always uses absolute time $t$; proper time $\tau$ is derived.
-
-Any observable signal of absolute time (e.g. orientation‑dependent tick rates absent medium gradients) would falsify the model.
-
-**Clarification (Determinism vs "pre-ordained future"):**  
-See the canonical definition of determinism, multistability, and "decision" in `foundations/ontology.md`.
-
-
-### Absolute Time and Unique Global Foliation
-
-Absolute time $t$ provides a **unique foliation** of the universe into “instants.” The $\mathbb{U}_{\text{now}}$ universe-state perspective has access to the full microstate on each slice.
-
-* **$\mathbb{U}_{\text{now}}$ vs. PO Time**: Absolute time $t$ is the evolution parameter. Proper time $\tau$ (measured by assembly clocks) is a derived functional: $d\tau = F(\text{local medium}, v) dt$.
-* **Causal Realism**: The $\mathbb{U}_{\text{now}}$ sees causation as explicit lawlike evolution from one architrino configuration at time $t$ to the distribution of allowed configurations at time $t+\Delta t$, including meta-stable branches.
-* **Refutation of Timelessness**: We reject the "Block Universe" where time is a dimension. Time is a process parameter.
-
-
-### Absolute Time and Unique Global Foliation
-
-* **$\mathbb{U}_{\text{now}}$ Perspective:** The $\mathbb{U}_{\text{now}}$ universe-state perspective at any $(x,y,z)$ sees the exact same absolute time $t$. This creates a unique foliation $\Sigma_t$.
-* **Proper Time Distinction:** Absolute time $t$ is the evolution parameter. Proper time $\tau$ is a derived functional measured by assembly clocks: $d\tau = F(\text{medium}, v) dt$.
-* **Refuting Kant:** Space/Time are not mental forms; they are the rigid stage of the $\mathbb{U}_{\text{now}}$.
-* **Refuting Relationalism (Leibniz):** Space is a container (void), not just relations between objects.
+Relativity of simultaneity and time dilation are emergent observer-level effects of assembly dynamics. The $\mathbb{U}_{\text{now}}$ formalism evolves in absolute time $t$; proper time $\tau$ is a derived clock functional.

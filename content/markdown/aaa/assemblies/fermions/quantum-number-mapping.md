@@ -195,7 +195,7 @@ The full SM gauge group is captured geometrically as:
 - **SU(3) (Color):** azimuthal phase of the personality asymmetry (Red, Green, Blue). Quarks carry a rotating dipole/quadrupole that fixes their SU(3) orientation; leptons are azimuthally symmetric (singlets). Gluons are planar phase-correction ribbons that live on flux tubes and form the octet.
 - **SU(2) (Weak isospin):** polarity of the **Weak-Coupling Triad** (three exposed decoration sites). Left-handed fermions are doublets; right-handed fermions are singlets (Weak-Coupling Triad hidden).
 - **U(1) (Hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
-- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing corridor; $W^\pm$ and $Z$ are the chiral corridors moving Weak-Coupling Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
+- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving Weak-Coupling Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
 
 **Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). Relation: $Q = T_3 + Y/2$ for all fields.
 
@@ -215,7 +215,7 @@ The full SM gauge group is captured geometrically as:
 - **Gluons (8):** phase-transfer ribbons on flux tubes; adjoint of SU(3), no net decoration charge.
 - **$W^\pm$, $Z$:** transient recoupling corridors moving Weak-Coupling Triad charge/phase between assemblies (spin-1, weak SU(2) triplet).
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
-- **Photon:** mixed corridor aligned to leave Shielded + Weak-Coupling Triad combination invariant ($Q$-coupling only).
+- **Photon:** mixed planar mode aligned to leave Shielded + Weak-Coupling Triad combination invariant ($Q$-coupling only).
 
 *Boson details:* see `assemblies/bosons/gluons.md` (color sector) and `assemblies/bosons/electroweak-bosons.md` (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.) 
 ### Hypercharge bookkeeping (Shielded triad → $Y$)

@@ -64,6 +64,8 @@
 - new architrino repository is live 20260217
   - need to go back and clean up the old neoclassical.ai repo. 
 
+- neoclassical.ai domain is not working
+
 ---
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md. paths, and other scenes (sphere, ...)
@@ -98,6 +100,7 @@ go through cosmology documents on wordpress and put content in cosmology docs? T
     - tri-binary-dynamics.md (linked)
     - mapping-Planck-scale.md  (linked)
   - weak-mixing-ckm.md (major work 2/15)
+  - cosmology
   - unknowns-paradoxes.md
   - quantum-number-mapping.md
   - 421.md

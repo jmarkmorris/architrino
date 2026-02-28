@@ -1,7 +1,7 @@
 # Electroweak Bosons: Photons, W/Z, and Higgs
 
 **Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
-**Core Principle:** Bosons are discrete, propagating assemblies of architrinos (Planar Tri-binaries) organized into phase-locked corridors.
+**Core Principle:** Bosons are discrete, propagating assemblies of architrinos (Planar Tri-binaries) organized into phase-locked modes.
 
 ---
 
@@ -12,7 +12,7 @@ The Photon is the fundamental carrier of the electromagnetic interaction. Unlike
 ### Ontological Status: No Separate Gauge Inventory
 *   **The Claim:** There is no abstract "electromagnetic field" separate from the particles.
 *   **The Reality:** The "field" is simply the aggregate path-history of constituent architrinos.
-*   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable geometric corridor. Emission is not the excitation of a background field; it is the **release** of internal architrino sub-assemblies from a source.
+*   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable planar mode. Emission is not the excitation of a background field; it is the **release** of internal architrino sub-assemblies from a source.
 
 ### Geometric Unit: The Contra-Rotating Pair
 At the finest scale, the photon unit is a composite assembly:
@@ -22,30 +22,30 @@ At the finest scale, the photon unit is a composite assembly:
 *   **Neutrality:** This cancellation ensures zero net static charge, leaving only the transverse oscillating field.
 
 ### Propagation: The "Photon Train"
-A photon manifests as a **Phase-Locked Corridor** of delayed actions.
-*   **The Corridor:** A quasi-cylindrical tube aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
+A photon manifests as a **Phase-Locked Planar-Mode Train** of delayed actions.
+*   **The Mode Train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
 *   **Burst vs. Continuous:**
-    *   **Packet (Particle-like):** A discrete atomic transition releases a short "burst" train—a finite segment of the corridor.
+    *   **Packet (Particle-like):** A discrete atomic transition releases a short "burst" train—a finite segment of the planar-mode train.
     *   **Beam (Classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
 *   **Group Velocity:** The planar (edge-on) orientation minimizes interaction with the vacuum lattice, allowing propagation at the field speed limit ($v \approx 1$).
 
 ### Interaction Rules: Capture and Release
-*   **Emission (Corridor Release):** Driven by accelerated motion in the source binary. The internal binding is overcome, and a "stack" of planar wakes is shed along a tangential vector.
-*   **Absorption (Corridor Capture):**
+*   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The internal binding is overcome, and a "stack" of planar wakes is shed along a tangential vector.
+*   **Absorption (Planar-Mode Capture):**
     *   Absorption is not the annihilation of a quantum field operator.
-    *   It is the **mechanical re-capture** of the corridor by an internal binary in the target atom.
+    *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
     *   The "Train" docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
 
 ### Environmental Coupling (The Aether)
 *   **Spacetime Aether:** The vacuum is populated by neutral assemblies (Noether Cores).
 *   **Attenuation & Refraction:**
-    *   As the photon train passes through regions of varying density (dielectric media or dense Aether), the corridor **re-couples** transiently with ambient assemblies.
+    *   As the photon train passes through regions of varying density (dielectric media or dense Aether), the planar mode **re-couples** transiently with ambient assemblies.
     *   **Refraction:** This drag slows the phase velocity ($v_{phase} < c$).
     *   **Attenuation:** Incoherent scattering can "strip" units off the train, depleting the beam energy over distance (scattering) or absorbing it entirely (opacity).
 
 ### Phenomenology
-*   **Energy-Frequency:** For a periodic source $\omega$, the flux of architrino hits along the corridor scales as $E_{app} \propto \omega$.
-*   **Malus' Law:** Emerges as the geometric projection of the transverse corridor width onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
+*   **Energy-Frequency:** For a periodic source $\omega$, the flux of architrino hits along the planar mode scales as $E_{app} \propto \omega$.
+*   **Malus' Law:** Emerges as the geometric projection of the transverse planar-mode profile onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
 
 ---
 
@@ -110,13 +110,13 @@ The Higgs is not a propagating assembly *through* the vacuum; it is a resonance 
 
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
-| **Photon** | Coaxial Contra-Rotating Planar Stack | Neutral (0) | Infinite Corridor ("Train") | None (Planar/Edge-on) |
+| **Photon** | Coaxial Contra-Rotating Planar Stack | Neutral (0) | Infinite Planar-Mode Train | None (Planar/Edge-on) |
 | **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
 | **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
 | **Higgs** | Radial Vacuum Oscillation | N/A | Local Resonance | Lattice Stiffness |
 
 ## Pair production (note)
 
-- A neutral Noether Sea cluster (e.g., two neutral cores, 3P/3E each) contains the ingredients for a particle–antiparticle pair. With sufficient energy input (e.g., $\gamma\gamma \to e^+ e^-$), a corridor can unpack that cluster into $e^-$ and $e^+$ while returning the cores to neutrality.
+- A neutral Noether Sea cluster (e.g., two neutral cores, 3P/3E each) contains the ingredients for a particle–antiparticle pair. With sufficient energy input (e.g., $\gamma\gamma \to e^+ e^-$), a pair-conversion mode can unpack that cluster into $e^-$ and $e^+$ while returning the cores to neutrality.
 - In photon–photon pair production, the photons supply the energy; the Sea contributes neutral cores, and the six-charge excess arranges into the $\pm e$ decorations of the outgoing pair. Charge and architrino counts stay balanced because the cores are returned neutral.
-- Sketch model: energy in → corridor forms using neutral cores + six-charge split → particle + antiparticle → neutral cores relax back to the Sea.
+- Sketch model: energy in → pair-conversion mode forms using neutral cores + six-charge split → particle + antiparticle → neutral cores relax back to the Sea.

@@ -203,7 +203,7 @@ Plain language: changing what you do now changes which shoves you’ll see later
 Linear superposition at the isochron level plus coherent geometry yields interference-like patterns in aggregates:
 - Corridor fields from multiple sources add linearly; a detector that integrates over a small time window and area effectively accumulates a complex amplitude A_corr from coherent sub-bundles.
 - Intensity emerges as an overlap norm ∝ |A_corr|² under time/ensemble averaging of phase-like structure encoded by path histories.
-- Polarization example (already used): Malus’s law arises as a geometric projection of a corridor’s transverse pattern onto an analyzer axis, giving cos²$\theta$ transmission without right-hand-rule magnetism.
+- Polarization example (already used): Malus’s law arises as a geometric projection of a corridor’s transverse pattern onto an analyzer axis, giving $\cos^2\theta$ transmission without right-hand-rule magnetism.
 
 Plain language: aligned corridors add, misaligned ones cancel; the strength you record scales like the square of how well patterns line up.
 
@@ -227,7 +227,7 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
   - Which-way intervention: inserting a context that disrupts one corridor’s coherence changes the ledger classes and removes the overlap term, flattening the pattern.
 
 - Polarization analyzer:
-  - The analyzer projects the corridor’s transverse structure onto its axis; transmission ∝ cos²$\theta$ follows immediately from geometric projection.
+  - The analyzer projects the corridor’s transverse structure onto its axis; transmission $\propto \cos^2\theta$ follows immediately from geometric projection.
 
 - Sequential filters (order matters):
   - Two non-parallel analyzers F($\theta$₁) and G($\theta$₂) applied in different orders yield different transmitted patterns because they recondition future causal roots differently: F∘G ≠ G∘F.
@@ -239,6 +239,6 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 - Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent corridors; quantify the asymmetry F∘G vs G∘F.
 - Corridor interference robustness: map how partial decoherence (deliberate jitter in source paths) suppresses the overlap term; compare to predicted |A|² decay with coherence length.
 - Multi-receiver triangulation under ambiguity: show that two-sided localization from unoriented lines plus time series reduces, but does not eliminate, sign/side and distance–speed degeneracies—matching Step 9 limits.
-- Bell-type correlation target (open): assess whether corridor-phase models with absolute time can reproduce observed cos(2$\theta$) correlations across separated analyzers without hidden cross-product forces; treat Tsirelson-like bounds as a stringent benchmark.
+- Bell-type correlation target (open): assess whether corridor-phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product forces; treat Tsirelson-like bounds as a stringent benchmark.
 
 Plain language: we can test the framework by checking order effects, interference weakening when we scramble coherence, and how much multiple receivers really help; reproducing quantum correlations is the toughest, and we flag it as an explicit target.

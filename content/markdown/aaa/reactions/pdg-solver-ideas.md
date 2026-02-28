@@ -2,6 +2,32 @@ Here is a brainstorming architecture for the **Architrino Provenance Engine (APE
 
 ---
 
+## Core Channels (Inclusion Rule)
+
+This design note follows the same dominant-channel policy used in reaction chapters: include channels with at least about 1% contribution in the target regime. Where PDG branching ratios are available, use `BR > 1%`; where they are not, use contribution to modeled event yield.
+
+Initial high-priority solver channels:
+
+- Dominant electroweak decays and scatterings with `BR > 1%` in PDG tables for targeted particles.
+- Dominant electromagnetic radiation channels in plasma/beam contexts when event-yield contribution exceeds about 1%.
+- Dominant hadronic channels used to close event-level conservation and provenance in reconstruction workflows.
+
+Sub-1% channels are included as secondary corrections unless they control a specific diagnostic observable.
+
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
+
+- **Channel events:** interpreted as substrate reconfiguration with provenance-preserving relocking of existing architrinos, not ex nihilo creation.
+- **Intermediate soup state:** operational bookkeeping layer for temporary component pools under conservation constraints.
+- **Product assembly:** solver output must provide component-level provenance from input state plus local substrate recruitment where required by channel energetics.
+
+## Observer-Level Closure Checks
+
+- Threshold/rate closure: recover standard PDG/QFT thresholds and leading rates for all implemented dominant channels.
+- Conservation closure: enforce charge, momentum, and energy closure at each event, with explicit provenance accounting.
+- Mapping closure: any substrate-level parameterization must reduce to standard observer-level predictions in validated regimes.
+
+---
+
 ### The Core Data Structure: The "Stack"
 
 In the Standard Model, a particle is a set of quantum numbers ($Q, S, L, B, etc.$). In the APE, a particle is a hierarchical graph.
