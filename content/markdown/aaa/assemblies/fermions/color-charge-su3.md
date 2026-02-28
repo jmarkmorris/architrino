@@ -256,63 +256,78 @@ We must not over‑predict.
 
 ## Color Hilbert Space and SU(3) Structure
 
-For any quark flavor $q$, the color state is a vector in:
+For any quark flavor $q$, define the color state space
+$$
+\mathcal{H}^{\text{color}}_q \equiv \mathrm{span}\{|q_H\rangle,|q_M\rangle,|q_L\rangle\}\cong\mathbb{C}^3,
+$$
+where $|q_H\rangle,|q_M\rangle,|q_L\rangle$ mean "axis-exceptionality on H/M/L", respectively.
+Fix this ordered basis and identify it with the canonical triplet basis
+$$
+|q_H\rangle\leftrightarrow e_1,\quad |q_M\rangle\leftrightarrow e_2,\quad |q_L\rangle\leftrightarrow e_3.
+$$
 
-$\mathcal{H}^{\text{color}}_q \cong \mathbb{C}^3$
+### Admissible color transformations
 
-with basis:
+We model internal color reconfiguration by linear maps $U:\mathcal{H}^{\text{color}}_q\to\mathcal{H}^{\text{color}}_q$ satisfying:
 
-$|q_H\rangle,\quad |q_M\rangle,\quad |q_L\rangle$
+- Preserve net electric charge and total personality inventory.
+- Preserve the one-axis-exceptionality sector (map superpositions of $|q_H\rangle,|q_M\rangle,|q_L\rangle$ to itself).
+- Preserve Born norm (probability conservation): $U^\dagger U=I$.
+- Preserve oriented color volume (gauge-fixed convention): $\det U=1$.
 
-(“axis exceptional on H/M/L”). Identifying this basis with the usual SU(3) triplet basis $|q_1\rangle,|q_2\rangle,|q_3\rangle$ is straightforward.
+So the effective color action is represented by
+$$
+U\in SU(3).
+$$
 
-### Allowed transformations
+The usual global phase map $|q\rangle\to e^{i\theta}|q\rangle$ is treated as unobservable gauge redundancy (it does not change which axis is exceptional or relative axis phases).
 
-We consider internal deformations of the Noether core that:
+### Generator basis from axis operations
 
-- Preserve:
-  - Net electric charge,  
-  - Total number of electrinos/positrinos in the 6 personality slots,  
-  - Exactly one axis in an exceptional pattern class.
-- Change:
-  - Which axis is exceptional,  
-  - Relative phases associated with each axis’ personality state.
+Let $E_{ab}$ be matrix units in the ordered basis $(H,M,L)$, i.e.
+$(E_{ab})_{cd}=\delta_{ac}\delta_{bd}$ for $a,b\in\{H,M,L\}$.
+Define Hermitian generators:
+$$
+T^{(x)}_{ab}\equiv \frac{1}{2}(E_{ab}+E_{ba}),\qquad
+T^{(y)}_{ab}\equiv -\frac{i}{2}(E_{ab}-E_{ba})
+\quad (a<b),
+$$
+giving six off-diagonal generators:
+$(HM),(HL),(ML)$ each with $(x,y)$ components.
+Define diagonal generators:
+$$
+H_1\equiv \frac{1}{2}(E_{HH}-E_{MM}),\qquad
+H_2\equiv \frac{1}{2\sqrt{3}}(E_{HH}+E_{MM}-2E_{LL}).
+$$
+These eight matrices are exactly the standard $T^a=\lambda_a/2$ basis up to the explicit relabeling $1\leftrightarrow H$, $2\leftrightarrow M$, $3\leftrightarrow L$.
 
-Linearity and probability conservation in color imply these transformations act as **unitary** operators on $\mathbb{C}^3$. Removing an overall unobservable phase (see below) leaves **SU(3)**.
+### Algebra closure (rigorous statement)
 
-### U(3) vs SU(3): overall phase as gauge
+**Proposition.** The real span of
+$$
+\mathcal{B}=\{T^{(x)}_{HM},T^{(y)}_{HM},T^{(x)}_{HL},T^{(y)}_{HL},T^{(x)}_{ML},T^{(y)}_{ML},H_1,H_2\}
+$$
+is an 8-dimensional Lie algebra isomorphic to $\mathfrak{su}(3)$; equivalently,
+$$
+[T^a,T^b]=i f^{abc}T^c
+$$
+for the standard SU(3) structure constants in this basis.
 
-In general, 3×3 unitary matrices form U(3) = SU(3) × U(1). The U(1) factor multiplies the entire color state by a common phase:
+**Proof.** Each element of $\mathcal{B}$ is Hermitian and traceless, and there are eight linearly independent such matrices. Under the basis identification above, $\mathcal{B}$ maps one-to-one to the Gell-Mann basis $\{\lambda_a/2\}_{a=1}^8$, whose commutator algebra is $\mathfrak{su}(3)$. Therefore the axis-exceptionality generators close under commutator with the same structure constants.
 
-$|q\rangle \to e^{i\theta} |q\rangle.$
+### Example: H↔M axis-swap generator
 
-In this ontology:
-
-- This global phase does **not** change:
-  - Which axis is exceptional, or  
-  - Any relative phase between axes.
-- It does **not** correspond to a physical spatial rotation of the tri‑binary scaffold (that is handled by actual spatial rotations in R³, not by this internal color phase).
-
-We therefore treat global U(1) in color space as a **pure gauge redundancy** with no direct observable. The physical color symmetry group is:
-
-$G_{\text{color}} \cong SU(3).$
-
-### Example generator as axis‑swap
-
-Identify:
-$|q_H\rangle \equiv |q_1\rangle,\ |q_M\rangle \equiv |q_2\rangle,\ |q_L\rangle \equiv |q_3\rangle.$
-
-Consider the generator that exchanges H and M exceptional roles (leaving L untouched):
-
-$T_{HM} \propto \begin{pmatrix} 0 & 1 & 0\\ 1 & 0 & 0\\ 0 & 0 & 0 \end{pmatrix}.$
-
-Infinitesimally, this mixes $|q_H\rangle$ and $|q_M\rangle$ while preserving total norm. In conventional QCD this is proportional to Gell‑Mann matrix $\lambda_1$:
-
-$\lambda_1 = \begin{pmatrix} 0 & 1 & 0\\ 1 & 0 & 0\\ 0 & 0 & 0 \end{pmatrix}.$
-
-Geometric meaning: a small deformation that moves “axis exceptionality” continuously between H and M axes.
-
-Together with other off‑diagonal generators (H↔L, M↔L) and diagonal generators (relative phase shifts between axes), these span su(3) with the usual commutation relations $[T^a,T^b]=if^{abc}T^c$. We will explicitly map more generators to concrete axis operations in a separate mathematical appendix.
+The infinitesimal H↔M mixer is
+$$
+T^{(x)}_{HM}
+=\frac{1}{2}\begin{pmatrix}
+0&1&0\\
+1&0&0\\
+0&0&0
+\end{pmatrix}
+=\frac{\lambda_1}{2}.
+$$
+It continuously rotates exceptionality between H and M while leaving L unchanged at first order. Together with $T^{(y)}_{HM}=\lambda_2/2$, it generates the embedded SU(2) subgroup acting on the $(H,M)$ color plane.
 
 
 
