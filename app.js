@@ -50,7 +50,7 @@ const homeButton = document.getElementById("home-button");
 const docButton = document.getElementById("doc-button");
 const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
-  ? Array.from(elementLegend.querySelectorAll("[data-scene]"))
+  ? Array.from(elementLegend.querySelectorAll(".legend-pill"))
   : [];
 const markdownPanel = document.getElementById("markdown-panel");
 const markdownTitle = document.getElementById("markdown-title");

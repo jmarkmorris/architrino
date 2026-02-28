@@ -326,29 +326,58 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!elementLegendItems.length) {
       return;
     }
-    elementLegendItems.forEach((btn) => {
-      const scenePath = btn.getAttribute("data-scene");
-      if (!scenePath) {
-        return;
-      }
-      btn.addEventListener("click", () => {
-        if (isTransitionActive()) {
+    if (
+      !sceneGraphManifestService ||
+      typeof sceneGraphManifestService.listElementLegendTargets !== "function"
+    ) {
+      console.warn("[PeriodicOverlayRuntime] Missing scene graph manifest service for legend routes");
+      return;
+    }
+
+    sceneGraphManifestService
+      .listElementLegendTargets()
+      .then((legendTargets) => {
+        const targets = Array.isArray(legendTargets) ? legendTargets : [];
+        if (!targets.length) {
+          console.warn("[PeriodicOverlayRuntime] No legend routes found in scene graph manifest");
           return;
         }
-        const currentLevel = getCurrentLevel();
-        if (currentLevel) {
-          searchBackStack.push({
-            levelId: currentLevel.id,
-            navigationStack: navigationStack.map((entry) => ({
-              levelId: entry.levelId,
-              focusNodeId: entry.focusNodeId,
-            })),
-          });
-          updateNavButton();
+        if (targets.length !== elementLegendItems.length) {
+          console.warn(
+            `[PeriodicOverlayRuntime] Legend route count (${targets.length}) does not match legend button count (${elementLegendItems.length})`
+          );
         }
-        jumpToScene(scenePath, { mode: "jump" });
+        elementLegendItems.forEach((btn, index) => {
+          const scenePath = targets[index] ?? null;
+          if (!scenePath) {
+            btn.disabled = true;
+            btn.setAttribute("aria-disabled", "true");
+            return;
+          }
+          btn.disabled = false;
+          btn.removeAttribute("aria-disabled");
+          btn.addEventListener("click", () => {
+            if (isTransitionActive()) {
+              return;
+            }
+            const currentLevel = getCurrentLevel();
+            if (currentLevel) {
+              searchBackStack.push({
+                levelId: currentLevel.id,
+                navigationStack: navigationStack.map((entry) => ({
+                  levelId: entry.levelId,
+                  focusNodeId: entry.focusNodeId,
+                })),
+              });
+              updateNavButton();
+            }
+            jumpToScene(scenePath, { mode: "jump" });
+          });
+        });
+      })
+      .catch((error) => {
+        console.warn("[PeriodicOverlayRuntime] Failed to load legend routes", error);
       });
-    });
   }
 
   function hidePeriodicOverlayImmediately() {

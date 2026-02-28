@@ -711,9 +711,7 @@ for (const edge of edges) {
 const periodicGridRoutes = Object.fromEntries(
   [...periodicRuntimeRouteBySymbol.entries()].sort(([a], [b]) => a.localeCompare(b))
 );
-const orderedElementLegendTargets = [...elementLegendRuntimeTargets].sort((a, b) =>
-  a.localeCompare(b)
-);
+const orderedElementLegendTargets = [...elementLegendRuntimeTargets];
 
 const manifest = {
   meta: {
