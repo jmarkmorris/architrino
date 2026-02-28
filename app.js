@@ -31,6 +31,8 @@ import { createMarkdownManifestService } from "./src/services/MarkdownManifestSe
 import { createMarkdownSceneRegistry } from "./src/services/MarkdownSceneRegistryService.js";
 import { createMarkdownNodeBuilder } from "./src/services/MarkdownNodeBuilder.js";
 import { createSceneGraphManifestService } from "./src/services/SceneGraphManifestService.js";
+import { createSceneStateHashService } from "./src/services/SceneStateHashService.js";
+import { createMarkdownSectionTitleResolver } from "./src/services/MarkdownSectionTitleService.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -1133,86 +1135,13 @@ const sceneGraphManifestService = createSceneGraphManifestService({
   manifestPath: sceneGraphManifestPath,
   logger: console,
 });
-
-function getSceneStateFromHash() {
-  if (typeof window === "undefined") {
-    return { scenePath: null, parentLevelId: null, parentFocusNodeId: null };
-  }
-  const rawHash = window.location.hash.replace(/^#/, "");
-  if (!rawHash) {
-    return { scenePath: null, parentLevelId: null, parentFocusNodeId: null };
-  }
-  const params = new URLSearchParams(rawHash);
-  const sceneParam = params.get("scene");
-  const parentLevelId = params.get("parent");
-  const parentFocusNodeId = params.get("focus");
-  if (sceneParam) {
-    return {
-      scenePath: sceneParam,
-      parentLevelId,
-      parentFocusNodeId,
-    };
-  }
-  let scenePath = rawHash;
-  try {
-    scenePath = decodeURIComponent(rawHash);
-  } catch (_error) {
-    scenePath = rawHash;
-  }
-  return { scenePath, parentLevelId: null, parentFocusNodeId: null };
-}
-
-function syncSceneHash(scenePath) {
-  if (typeof window === "undefined") {
-    return;
-  }
-  const normalized =
-    typeof scenePath === "string" && scenePath && scenePath !== rootScenePath
-      ? scenePath
-      : "";
-  const params = new URLSearchParams();
-  if (normalized) {
-    params.set("scene", normalized);
-    const parent = navigationStack[navigationStack.length - 1];
-    if (parent?.levelId && parent?.focusNodeId) {
-      params.set("parent", parent.levelId);
-      params.set("focus", parent.focusNodeId);
-    }
-  }
-  const serialized = params.toString();
-  const nextHash = serialized ? `#${serialized}` : "";
-  if (window.location.hash === nextHash) {
-    return;
-  }
-  const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
-  window.history.replaceState(window.history.state, "", nextUrl);
-}
-
-async function resolveMarkdownSectionTitleByKey(markdownPath, normalizedSectionKey) {
-  if (!markdownPath || !normalizedSectionKey) {
-    return null;
-  }
-  try {
-    const response = await fetch(appendCacheBust(markdownPath));
-    if (!response.ok) {
-      return null;
-    }
-    const text = await response.text();
-    const lines = text.split(/\r?\n/);
-    for (const line of lines) {
-      const heading = parseMarkdownHeading(line);
-      if (!heading) {
-        continue;
-      }
-      if (normalizeMarkdownKey(heading.title) === normalizedSectionKey) {
-        return heading.title;
-      }
-    }
-  } catch (error) {
-    console.warn("Failed to restore markdown section title", markdownPath, error);
-  }
-  return null;
-}
+const resolveMarkdownSectionTitleByKey = createMarkdownSectionTitleResolver({
+  fetchImpl: (...args) => fetch(...args),
+  appendCacheBust,
+  parseMarkdownHeading,
+  normalizeMarkdownKey,
+  logger: console,
+});
 
 const markdownSceneRegistry = createMarkdownSceneRegistry({
   levelConfigs,
@@ -1298,6 +1227,10 @@ let composerCameraWaypointMaterial = null;
 const levels = new Map();
 const navigationStack = [];
 let currentLevel = null;
+const sceneStateHashService = createSceneStateHashService({
+  rootScenePath,
+  getNavigationStack: () => navigationStack,
+});
 
 const ringLayoutDefaults = {
   haloScale: 1.18,
@@ -2588,7 +2521,7 @@ function updateMarkdownDocButton() {
 }
 
 function updateSceneLabel() {
-  syncSceneHash(currentLevel?.id ?? null);
+  sceneStateHashService.syncSceneHash(currentLevel?.id ?? null);
   if (!sceneLabel) {
     return;
   }
@@ -2918,7 +2851,7 @@ function onResize() {
 
 async function init() {
   closeDetailPanel();
-  const requestedSceneState = getSceneStateFromHash();
+  const requestedSceneState = sceneStateHashService.getSceneStateFromHash();
   let initialScenePath = requestedSceneState.scenePath || rootScenePath;
   let initialConfig = await loadSceneConfig(initialScenePath);
   if (!initialConfig && initialScenePath !== rootScenePath) {
