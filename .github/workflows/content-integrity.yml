@@ -18,3 +18,6 @@ jobs:
 
       - name: Validate content indexes and references
         run: node scripts/validate-content.mjs --check --strict
+
+      - name: Validate generated scene graph manifest
+        run: node scripts/build-scene-graph.mjs --check --strict

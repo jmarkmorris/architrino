@@ -43,7 +43,7 @@
       "radius": 1.55,
       "color": "#355f9a",
       "position": [-4.6, 0.1, 0.0],
-      "markdownPath": "content/markdown/aaa/cosmology/cmb.md",
+      "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
     }

@@ -23,8 +23,9 @@ Run these from the repo root:
 ```bash
 node scripts/validate-content.mjs --check
 node scripts/validate-content.mjs --write
+node scripts/build-scene-graph.mjs --check
+node scripts/build-scene-graph.mjs --write
 ```
 
-If `--write` updates index files intentionally, include those index file changes in your commit.
-
+If `--write` updates index or graph files intentionally, include those file changes in your commit.
 

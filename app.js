@@ -1080,6 +1080,7 @@ if (markdownRenderer) {
 const markdownDirectoryCache = new Map();
 const markdownSubdirCache = new Map();
 const markdownManifestPath = "content/markdown/markdown_index.json";
+const sceneGraphManifestPath = "content/graph/scene_graph.json";
 let markdownManifestPromise = null;
 const infoMarkdownPath = "info.md";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
@@ -3617,7 +3618,11 @@ function openMetaRing() {
 
 
 async function ensureSceneIndex() {
-  await sceneIndexService.ensure(fetch, "content/scenes/scenes_index.json");
+  await sceneIndexService.ensure(
+    fetch,
+    "content/scenes/scenes_index.json",
+    sceneGraphManifestPath
+  );
 }
 
 const sceneSearchRuntime = createSceneSearchRuntime({

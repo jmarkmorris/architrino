@@ -9,11 +9,11 @@
   "objects": [
     {
       "id": "ontology_anchor",
-      "label": "Cosmological Ontology",
+      "label": "Cosmology Ontology",
       "radius": 1.65,
       "color": "#355f9a",
       "position": [0.0, 5.3, 0.0],
-      "markdownPath": "content/markdown/aaa/cosmology/cosmological-ontology.md",
+      "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
     },
@@ -33,7 +33,7 @@
       "radius": 1.55,
       "color": "#3f5f8a",
       "position": [2.9, -4.5, 0.0],
-      "markdownPath": "content/markdown/aaa/cosmology/cmb.md",
+      "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
     },
@@ -43,7 +43,7 @@
       "radius": 1.55,
       "color": "#7a5a2f",
       "position": [-2.9, -4.5, 0.0],
-      "markdownPath": "content/markdown/aaa/cosmology/bbn-constraints.md",
+      "markdownPath": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
     },
