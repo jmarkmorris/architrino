@@ -8,6 +8,7 @@ import { createComposerUiRuntime } from "./src/runtime/ComposerUiRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
+import { createSceneSearchUiRuntime } from "./src/runtime/SceneSearchUiRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
 import { SceneRepository } from "./src/services/SceneRepository.js";
@@ -2569,6 +2570,13 @@ const sceneSearchCoordinator = createSceneSearchCoordinatorService({
   fetchImpl: (...args) => fetch(...args),
   sceneGraphManifestPath,
 });
+const sceneSearchUiRuntime = createSceneSearchUiRuntime({
+  sceneSearchToggle,
+  sceneSearchInput,
+  sceneSearchResults,
+  sceneSearchRuntime,
+  sceneSearchCoordinator,
+});
 
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
@@ -3117,61 +3125,4 @@ if (composerCameraResetButton) {
   });
 }
 
-if (sceneSearchToggle) {
-  sceneSearchToggle.addEventListener("click", async () => {
-    await sceneSearchCoordinator.toggleSearchPanel();
-  });
-}
-
-if (sceneSearchInput) {
-  sceneSearchInput.addEventListener("input", (event) => {
-    sceneSearchRuntime.updateSearchResults(event.target.value);
-  });
-  sceneSearchInput.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      sceneSearchCoordinator.closeSearchPanel();
-      return;
-    }
-    if (event.key === "Enter") {
-      const firstItem = sceneSearchResults?.querySelector(
-        ".scene-search-item"
-      );
-      if (firstItem) {
-        firstItem.click();
-      }
-    }
-  });
-}
-
-document.addEventListener("pointerdown", (event) => {
-  if (!sceneSearchRuntime.isSearchOpen()) {
-    return;
-  }
-  if (sceneSearchRuntime.isSearchEventTarget(event.target)) {
-    return;
-  }
-  sceneSearchCoordinator.closeSearchPanel();
-});
-
-document.addEventListener("focusin", (event) => {
-  if (!sceneSearchRuntime.isSearchOpen()) {
-    return;
-  }
-  if (sceneSearchRuntime.isSearchEventTarget(event.target)) {
-    return;
-  }
-  sceneSearchCoordinator.closeSearchPanel();
-});
-
-window.addEventListener("keydown", async (event) => {
-  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
-    event.preventDefault();
-    if (!sceneSearchRuntime.isSearchOpen()) {
-      await sceneSearchCoordinator.openSearchPanel();
-    } else {
-      sceneSearchCoordinator.closeSearchPanel();
-    }
-  } else if (event.key === "Escape" && sceneSearchRuntime.isSearchOpen()) {
-    sceneSearchCoordinator.closeSearchPanel();
-  }
-});
+sceneSearchUiRuntime.wireListeners();
