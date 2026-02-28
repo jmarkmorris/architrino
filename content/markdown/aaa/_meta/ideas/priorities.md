@@ -1,16 +1,6 @@
 
 # **The #1 priority is the dynamics/math/geometry and the mapping**
 
-
-• Yes. Beyond CKM, there are several genuinely tractable math targets.
-
-
- 
-
-
-
-
-
 ## Infrastructure
 
 • Current architecture works, but it’s fragile because scene graph truth is split across runtime code, scene JSON, and manual indexes.
