@@ -33,6 +33,7 @@ import { createMarkdownNodeBuilder } from "./src/services/MarkdownNodeBuilder.js
 import { createSceneGraphManifestService } from "./src/services/SceneGraphManifestService.js";
 import { createSceneStateHashService } from "./src/services/SceneStateHashService.js";
 import { createMarkdownSectionTitleResolver } from "./src/services/MarkdownSectionTitleService.js";
+import { createSceneBootstrapService } from "./src/services/SceneBootstrapService.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -1628,23 +1629,18 @@ const sceneRepository = new SceneRepository({
   resolveMarkdownFileSize,
   markdownGlowMinBytes: markdownGlowByteThreshold,
 });
-
-async function loadSceneConfig(scenePath) {
-  if (levelConfigs[scenePath]) {
-    return levelConfigs[scenePath];
-  }
-  const restored = await markdownSceneRegistry.ensureSceneConfigFromSceneId(scenePath);
-  if (restored && levelConfigs[scenePath]) {
-    return levelConfigs[scenePath];
-  }
-  return sceneRepository.loadSceneConfig(scenePath);
-}
+const sceneBootstrapService = createSceneBootstrapService({
+  levelConfigs,
+  sceneRepository,
+  markdownSceneRegistry,
+  rootScenePath,
+});
 
 async function resetToRootScene() {
   if (transitionState.active) {
     return;
   }
-  const config = await loadSceneConfig(rootScenePath);
+  const config = await sceneBootstrapService.loadSceneConfig(rootScenePath);
   if (!config) {
     return;
   }
@@ -1688,11 +1684,10 @@ async function jumpToScene(scenePath, options = {}) {
         Number(options.targetWorldPosition.z ?? 0)
       )
     : jumpWorldStart.clone();
-  const config = levelConfigs[scenePath] ?? (await loadSceneConfig(scenePath));
+  const config = await sceneBootstrapService.ensureSceneReady(scenePath);
   if (!config) {
     return;
   }
-  await ensureDynamicSceneConfig(scenePath);
   if (options.mode === "instant") {
     purgeWorldState();
     worldGroup.position.copy(jumpWorldTarget);
@@ -1801,10 +1796,6 @@ function clamp(value, min, max) {
 function applyZoom(value) {
   camera.zoom = clampZoom(value);
   camera.updateProjectionMatrix();
-}
-
-async function ensureDynamicSceneConfig(sceneId) {
-  return sceneRepository.ensureDynamicSceneConfig(sceneId);
 }
 
 function computeWarpScale(objectRadius) {
@@ -2271,13 +2262,10 @@ async function startLevelTransitionFromNode(targetNode) {
     return;
   }
 
-  if (!levelConfigs[childLevelId]) {
-    const config = await loadSceneConfig(childLevelId);
-    if (!config) {
-      return;
-    }
+  const config = await sceneBootstrapService.ensureSceneReady(childLevelId);
+  if (!config) {
+    return;
   }
-  await ensureDynamicSceneConfig(childLevelId);
 
   beginLevelTransition(targetNode, childLevelId);
 }
@@ -2852,16 +2840,13 @@ function onResize() {
 async function init() {
   closeDetailPanel();
   const requestedSceneState = sceneStateHashService.getSceneStateFromHash();
-  let initialScenePath = requestedSceneState.scenePath || rootScenePath;
-  let initialConfig = await loadSceneConfig(initialScenePath);
-  if (!initialConfig && initialScenePath !== rootScenePath) {
-    initialScenePath = rootScenePath;
-    initialConfig = await loadSceneConfig(initialScenePath);
-  }
-  if (!initialConfig) {
+  const initialScene = await sceneBootstrapService.resolveInitialScene(
+    requestedSceneState.scenePath || rootScenePath
+  );
+  if (!initialScene) {
     return;
   }
-  await ensureDynamicSceneConfig(initialScenePath);
+  const initialScenePath = initialScene.scenePath;
   currentLevel = buildLevel(initialScenePath);
   worldGroup.add(currentLevel.group);
   if (currentLevel.id === rootScenePath) {
