@@ -672,7 +672,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 **Role in binary formation:** Self-hit provides **repulsive radial force** that opposes the attractive pull of opposite-charge partners. This competition produces:
 
 - **Maximum-curvature orbits**: Stable or quasi-stable configurations at minimum radius $R_{\min}$.
-- **Prevention of singularities**: Self-repulsion prevents classical $r \to 0$ collapse.
+- **Null-separatrix protection**: The Jacobian-degenerate boundary $J=0$ acts as a geometric wall against collapse.
 - **Energy balance**: Self-hit can absorb tangential power, enabling quasi-circular orbits.
 
 **Connection to quantum behavior:** The non-Markovian memory and deterministic-but-complex self-hit dynamics are the **seed** of quantum-like phenomena:
@@ -728,23 +728,45 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 - Opposite-charge binary spirals inward (as in 8.2) until speed crosses $v = c_f$
 - Self-hits activate → repulsive outward force
 
-**Competition:**
-- Partner attraction (inward radial)
-- Self-repulsion (outward radial)
+**Geometric definition (Null Separatrix):**
+For an active causal root $t_0 \in \mathcal{C}_i(t)$ on the self-hit branch, define
 
-**Equilibrium:** At critical speed $v_{\text{eq}} > c_f$ and minimum radius $R_{\min}$:
-- Radial forces approximately balance (time-averaged)
-- Tangential power oscillates around zero
-- Orbit stabilizes at **maximum curvature** (tightest configuration)
+$$
+J_{ii}(t;t_0)\equiv 1-\frac{\mathbf{v}_i(t_0)\cdot \hat{\mathbf{r}}_{ii}(t;t_0)}{c_f}.
+$$
+
+The maximum-curvature binary (MCB) boundary is the Jacobian-degenerate set
+
+$$
+J_{ii}(t;t_0)=0,
+$$
+
+with approach from the admissible side $J_{ii}>0$. Geometrically, this is the state where the receiver trajectory is tangent to the causal cone of its own past emission (the “riding-the-shock” limit).
+
+**Why this is a hard wall in the exact theory:**
+In the branch-resolved force from Section 6.1.3, the self-hit contribution carries the factor
+
+$$
+\frac{1}{r_{ii}^2(t;t_0)\,\left|J_{ii}(t;t_0)\right|}.
+$$
+
+Hence as $J_{ii}\to 0^+$ the ideal (unregularized) response diverges, producing a restoring barrier that blocks continuation into a collapsing branch. With finite numerical regularization $\eta>0$, this appears as a very large but finite restoring force and must sharpen as $\eta\to 0$.
+
+**Operational characterization of MCB:**
+- The inner branch evolves near $J_{ii}=0$ without crossing it.
+- The minimum radius $R_{\min}$ is the smallest orbit radius compatible with $J_{ii}\ge 0$ on active roots.
+- Tangential power averages near zero over one cycle in the locked regime.
 
 **Significance:**
 - Defines a **fundamental length scale** $R_{\min}$ that sets the tightest stable orbit radius
-- Prevents classical $r \to 0$ singularities
+- In the exact geometric model, excludes classical $r \to 0$ collapse by a null-separatrix barrier
 - Foundation for stable particle assemblies (tri-binaries; see TOC Ch. 11)
 
-**Status:** Stability of maximum-curvature orbit is currently a **hypothesis** (not yet proven). Requires: (1) map attractor basins in phase space, (2) demonstrate convergence to stable orbit in long-time simulations ($> 10^6$ orbits), (3) Red to verify no secular energy drift.
+**Status split (analytic vs numeric):**
+- **Analytic:** Existence of the Jacobian-null boundary and its singular restoring scaling in the exact kernel.
+- **Numeric still required:** Basin size, global attractivity, and long-time capture probability for realistic multi-body assemblies.
 
-**Failure mode:** If simulations show radial oscillations **diverge** (orbit spirals outward or collapses), maximum-curvature orbit is **not** an attractor; self-hit alone is insufficient for stability.
+**Failure mode:** If converged $\eta\to 0$ simulations exhibit trajectories crossing the $J=0$ boundary into collapse, or persistent radial divergence without capture, then the MCB-as-separatrix mechanism is falsified or incomplete.
 
 
 
@@ -1098,8 +1120,10 @@ We will not get a *closed‑form sum*, but:
 
 - The geometry is 100% analyzable,
 - Large‑$n$ roots have asymptotic expansions,
-- We can show convergence of the self‑force series,
+- We can show convergence of the self‑force series away from Jacobian-degenerate roots ($J=0$),
 - And derive asymptotic radial/tangential components as functions of $v/c_f$.
+
+Near the null-separatrix condition $J\to 0$, the exact branch weight carries a $1/|J|$ singularity (see Maximum-Curvature Orbit and Section 6.1.3), so this toy model also captures the geometric-wall limit.
 
 So: **strong analytic handle**, though not “closed form in elementary functions.”
 
