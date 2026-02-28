@@ -67,14 +67,46 @@ function titleFromSlug(slug) {
     .join(" ");
 }
 
+function stripWalkthroughStepPrefix(title) {
+  const cleaned = String(title || "").trim();
+  if (!cleaned) {
+    return "";
+  }
+  return cleaned
+    .replace(/^Walkthrough\s+Step\s+\d+\s*[—\-:]\s*/i, "")
+    .trim();
+}
+
+function extractMarkdownDocumentTitle(markdownText) {
+  if (typeof markdownText !== "string" || !markdownText.trim()) {
+    return null;
+  }
+  const lines = markdownText.split(/\r?\n/);
+  for (const line of lines) {
+    const match = line.match(/^#\s+(.+)$/);
+    if (!match) {
+      continue;
+    }
+    const heading = match[1].trim();
+    if (!heading) {
+      continue;
+    }
+    return stripWalkthroughStepPrefix(heading) || heading;
+  }
+  return null;
+}
+
 function inferSceneId(scenePath) {
   const file = scenePath.split("/").pop() || "scene";
   return file.replace(/\.json$/i, "");
 }
 
-function inferMarkdownName(markdownPath) {
+function inferMarkdownName(markdownPath, resolvedTitle = null) {
+  if (resolvedTitle && resolvedTitle.trim()) {
+    return resolvedTitle.trim();
+  }
   const file = markdownPath.split("/").pop() || "notes";
-  return titleFromSlug(file);
+  return stripWalkthroughStepPrefix(titleFromSlug(file)) || titleFromSlug(file);
 }
 
 function inferDirectoryName(directoryPath) {
@@ -270,6 +302,19 @@ for (const sceneEntry of sceneEntries) {
   sceneDataByPath.set(sceneEntry.path, data);
 }
 
+const markdownTitleByPath = new Map();
+for (const markdownPath of markdownFiles) {
+  const markdownRaw = readText(markdownPath);
+  if (!markdownRaw.ok) {
+    warnings.push(`${markdownPath}: failed to read markdown file (${markdownRaw.error.message})`);
+    continue;
+  }
+  const title = extractMarkdownDocumentTitle(markdownRaw.data);
+  if (title) {
+    markdownTitleByPath.set(markdownPath, title);
+  }
+}
+
 const nodeById = new Map();
 const edgeByKey = new Map();
 const markdownDirectories = new Set();
@@ -318,11 +363,12 @@ function ensureMarkdownDocNode(markdownPath) {
   }
   const nodeId = markdownDocNodeId(normalizedPath);
   if (!nodeById.has(nodeId)) {
+    const resolvedTitle = markdownTitleByPath.get(normalizedPath) || null;
     addNode({
       nodeId,
       nodeType: "markdown_doc",
       id: normalizedPath,
-      name: inferMarkdownName(normalizedPath),
+      name: inferMarkdownName(normalizedPath, resolvedTitle),
       path: normalizedPath,
       searchTarget: `__markdown_doc__:${normalizedPath}`,
       implicit: !markdownFileSet.has(normalizedPath),

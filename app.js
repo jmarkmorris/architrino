@@ -1069,6 +1069,7 @@ const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 const markdownCache = new Map();
 const markdownSectionCache = new Map();
+const markdownTitleCache = new Map();
 const markdownFileSizeCache = new Map();
 const markdownRenderer =
   typeof window !== "undefined" && window.markdownit
@@ -1193,7 +1194,7 @@ async function ensureSceneConfigFromSceneId(sceneId) {
   const inferSceneNameFromMarkdownPath = (markdownPath) => {
     const leaf = String(markdownPath || "").split("/").pop() || "";
     const slug = leaf.replace(/\.md$/i, "");
-    return slug ? titleFromSlug(slug) : "Notes";
+    return slug ? stripWalkthroughStepPrefix(titleFromSlug(slug)) : "Notes";
   };
   const inferRestoredMarkdownColumns = (markdownPath) => {
     if (
@@ -1210,11 +1211,12 @@ async function ensureSceneConfigFromSceneId(sceneId) {
     if (!markdownPath) {
       return false;
     }
+    const resolvedDocTitle = await resolveMarkdownDocumentTitle(markdownPath);
     levelConfigs[sceneId] = {
       layout: "static",
       nodes: [],
       links: [],
-      sceneName: inferSceneNameFromMarkdownPath(markdownPath),
+      sceneName: resolvedDocTitle || inferSceneNameFromMarkdownPath(markdownPath),
       sceneId,
       markdownPath,
       markdownSection: null,
@@ -1241,11 +1243,12 @@ async function ensureSceneConfigFromSceneId(sceneId) {
         headingLevel = maybeLevel;
       }
     }
+    const resolvedDocTitle = await resolveMarkdownDocumentTitle(markdownPath);
     levelConfigs[sceneId] = {
       layout: "static",
       nodes: [],
       links: [],
-      sceneName: inferSceneNameFromMarkdownPath(markdownPath),
+      sceneName: resolvedDocTitle || inferSceneNameFromMarkdownPath(markdownPath),
       sceneId,
       markdownPath,
       markdownSection: null,
@@ -1282,11 +1285,15 @@ async function ensureSceneConfigFromSceneId(sceneId) {
         return false;
       }
     }
+    const resolvedDocTitle = await resolveMarkdownDocumentTitle(markdownPath);
     levelConfigs[sceneId] = {
       layout: "static",
       nodes: [],
       links: [],
-      sceneName: markdownSection || inferSceneNameFromMarkdownPath(markdownPath),
+      sceneName:
+        markdownSection ||
+        resolvedDocTitle ||
+        inferSceneNameFromMarkdownPath(markdownPath),
       sceneId,
       markdownPath,
       markdownSection,
@@ -1783,7 +1790,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     return [];
   }
   const fileInfos = scene.autoMarkdownPath
-    ? entries.map((entry) => ({ title: entry.title }))
+    ? entries.map((entry) => ({
+        title: stripWalkthroughStepPrefix(entry.title) || entry.title,
+      }))
     : useDirectories
       ? entries.map((path) => ({ path, isNonEmpty: false }))
       : await Promise.all(
@@ -1794,7 +1803,12 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
                 return { path, isNonEmpty: false };
               }
               const text = await response.text();
-              return { path, isNonEmpty: text.trim().length > 0 };
+              const headingTitle = extractMarkdownDocumentTitle(text);
+              return {
+                path,
+                isNonEmpty: text.trim().length > 0,
+                title: headingTitle,
+              };
             } catch (error) {
               console.warn("Failed to read markdown file", path, error);
               return { path, isNonEmpty: false };
@@ -1824,9 +1838,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const autoEntries = [];
   fileInfos.forEach((info) => {
     const entryName = info.title ?? info.path?.split("/").pop() ?? "";
-    const slug = useDirectories
-      ? entryName
-      : entryName.replace(/\.md$/i, "");
+    const slug = useDirectories || info.title ? entryName : entryName.replace(/\.md$/i, "");
     const id = slug
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "_")
@@ -1908,10 +1920,11 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
       }
       const nodeName = scene.autoMarkdownPath
         ? info.title ?? titleFromSlug(slug)
-        : titleFromSlug(slug);
+        : info.title ?? titleFromSlug(slug);
       const node = {
         id,
         name: nodeName,
+        shortName: compactMarkdownNodeLabel(nodeName),
         radius: baseRadius,
         position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
         color,
@@ -2059,6 +2072,98 @@ function normalizeMarkdownPath(path) {
     .replace(/\\/g, "/")
     .replace(/^\.?\//, "")
     .toLowerCase();
+}
+
+function stripWalkthroughStepPrefix(title) {
+  const cleaned = String(title || "").trim();
+  if (!cleaned) {
+    return "";
+  }
+  return cleaned
+    .replace(/^Walkthrough\s+Step\s+\d+\s*[—\-:]\s*/i, "")
+    .trim();
+}
+
+function compactMarkdownNodeLabel(title, maxChars = 34) {
+  let text = String(title || "").trim().replace(/\s+/g, " ");
+  if (!text) {
+    return "";
+  }
+
+  const splitters = [" — ", " – ", " - ", ": "];
+  for (const splitter of splitters) {
+    if (!text.includes(splitter)) {
+      continue;
+    }
+    const head = text.split(splitter)[0].trim();
+    if (head.length >= 8) {
+      text = head;
+      break;
+    }
+  }
+
+  if (text.length <= maxChars) {
+    return text;
+  }
+
+  const budget = Math.max(10, maxChars - 1);
+  const words = text.split(" ");
+  let compact = "";
+  for (const word of words) {
+    const candidate = compact ? `${compact} ${word}` : word;
+    if (candidate.length > budget) {
+      break;
+    }
+    compact = candidate;
+  }
+  if (compact.length >= 12) {
+    return `${compact}…`;
+  }
+  return `${text.slice(0, budget).trimEnd()}…`;
+}
+
+function extractMarkdownDocumentTitle(markdownText) {
+  if (typeof markdownText !== "string" || !markdownText.trim()) {
+    return null;
+  }
+  const lines = markdownText.split(/\r?\n/);
+  for (const line of lines) {
+    const match = line.match(/^#\s+(.+)$/);
+    if (!match) {
+      continue;
+    }
+    const heading = match[1].trim();
+    if (!heading) {
+      continue;
+    }
+    const stripped = stripWalkthroughStepPrefix(heading);
+    return stripped || heading;
+  }
+  return null;
+}
+
+async function resolveMarkdownDocumentTitle(markdownPath) {
+  if (!markdownPath) {
+    return null;
+  }
+  const normalizedPath = normalizeMarkdownPath(markdownPath);
+  if (markdownTitleCache.has(normalizedPath)) {
+    return markdownTitleCache.get(normalizedPath);
+  }
+  const promise = fetch(appendCacheBust(markdownPath))
+    .then(async (response) => {
+      if (!response.ok) {
+        return null;
+      }
+      const text = await response.text();
+      return extractMarkdownDocumentTitle(text);
+    })
+    .catch((error) => {
+      console.warn("Failed to resolve markdown title", markdownPath, error);
+      return null;
+    });
+  markdownTitleCache.set(normalizedPath, promise);
+  return promise;
 }
 
 function deriveMarkdownConfig(markdownPolicy) {

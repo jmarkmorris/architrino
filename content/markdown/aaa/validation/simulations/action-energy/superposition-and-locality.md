@@ -1,4 +1,4 @@
-# Walkthrough Step 7 — Superposition and locality
+# Superposition and locality
 
 Existing text excerpt:
 > -   **Superposition:** The potential fields from all sources superpose linearly. The net potential at any point is the sum of the individual potentials:

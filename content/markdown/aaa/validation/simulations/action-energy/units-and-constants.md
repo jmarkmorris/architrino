@@ -1,4 +1,4 @@
-# Walkthrough Step 2 — Units and Constants
+# Units and Constants
 
 Existing text excerpt:
 > ### **Units and constants**

@@ -1,4 +1,4 @@
-# Walkthrough Step 5 — Receiver velocity and work
+# Receiver velocity and work
 
 Existing text excerpt:
 > ### Receiver velocity: radial vs orthogonal components (instantaneous effect)

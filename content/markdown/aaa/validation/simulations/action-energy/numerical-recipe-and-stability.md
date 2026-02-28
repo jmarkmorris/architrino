@@ -1,4 +1,4 @@
-# Walkthrough Step 10 — Numerical recipe and stability
+# Numerical recipe and stability
 
 Event-aware integration (practical algorithm):
 

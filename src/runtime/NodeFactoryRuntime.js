@@ -38,13 +38,17 @@ export function createNodeFactory(deps) {
       label.classList.add("label-wrap");
       label.style.maxWidth = "120px";
     }
+    const displayName =
+      typeof node.shortName === "string" && node.shortName.trim()
+        ? node.shortName.trim()
+        : node.name;
     const scaleHtml =
       node.hideScaleLabel || !node.hasScale
         ? ""
         : `<div class="label-scale">10^${node.scale}</div>`;
     const tagHtml =
       node.category === "Reaction" ? `<div class="label-tag">RXN</div>` : "";
-    label.innerHTML = `<div class="label-title">${node.name}</div>${scaleHtml}${tagHtml}`;
+    label.innerHTML = `<div class="label-title">${displayName}</div>${scaleHtml}${tagHtml}`;
     return new CSS2DObject(label);
   }
 
