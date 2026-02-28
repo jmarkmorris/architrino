@@ -2,14 +2,14 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime_gr_bridge",
-    "name": "GR Bridge and Effective Limits",
+    "name": "General Relativity Bridge and Effective Limits",
     "units": "relative",
     "wrapLabels": true
   },
   "objects": [
     {
       "id": "gr_phenomenology_core",
-      "label": "GR Phenomenology",
+      "label": "General Relativity Observables",
       "radius": 1.65,
       "color": "#4a5f8a",
       "position": [0.0, 4.8, 0.0],

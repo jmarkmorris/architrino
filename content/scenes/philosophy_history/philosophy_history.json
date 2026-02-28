@@ -39,5 +39,39 @@
     }
   },
   "objects": [
+    {
+      "id": "out_of_the_ashes_scene",
+      "label": "Out of the Ashes",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "position": [
+        8.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/philosophy_history/out_of_the_ashes.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknowns_paradoxes_scene",
+      "label": "Unknowns & Paradoxes",
+      "radius": 2.688,
+      "color": "#5a3f73",
+      "position": [
+        -8.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/philosophy_history/unknowns_paradoxes.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
   ]
 }

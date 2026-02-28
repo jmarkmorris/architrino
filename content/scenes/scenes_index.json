@@ -777,7 +777,7 @@
     },
     {
       "id": "spacetime_gr_bridge",
-      "name": "GR Bridge and Effective Limits",
+      "name": "General Relativity Bridge and Effective Limits",
       "path": "content/scenes/spacetime/gr_bridge_limits.json"
     },
     {
@@ -807,7 +807,7 @@
     },
     {
       "id": "spacetime_wave_channel",
-      "name": "Wave and Phenomenology Channel",
+      "name": "Wave and Observables Channel",
       "path": "content/scenes/spacetime/wave_phenomenology_channel.json"
     },
     {

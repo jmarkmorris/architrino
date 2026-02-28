@@ -37,6 +37,40 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "periodic_table",
+      "label": "Periodic Table",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        4.5,
+        4.5,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/chemistry/periodic_table_scene.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "atom",
+      "label": "Atom",
+      "radius": 2.688,
+      "color": "#a50041",
+      "position": [
+        4.5,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/nuclear/atom.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }

@@ -36,6 +36,17 @@
       "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
+    },
+    {
+      "id": "cosmic_censorship_bridge",
+      "label": "Cosmic Censorship",
+      "radius": 1.6,
+      "color": "#3a5f9f",
+      "position": [0.0, -5.2, 0.0],
+      "subScenes": [
+        "content/scenes/spacetime/cosmic_censorship.json"
+      ],
+      "motion": { "type": "fixed" }
     }
   ]
 }

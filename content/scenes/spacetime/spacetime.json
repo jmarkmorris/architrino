@@ -76,7 +76,7 @@
     },
     {
       "id": "spacetime_wave_channel",
-      "label": "Wave and Phenomenology Channel",
+      "label": "Wave and Observables Channel",
       "radius": 2.688,
       "color": "#5a3f73",
       "position": [
@@ -93,7 +93,7 @@
     },
     {
       "id": "spacetime_gr_bridge",
-      "label": "GR Bridge and Effective Limits",
+      "label": "General Relativity Bridge and Effective Limits",
       "radius": 2.688,
       "color": "#2c6c7e",
       "position": [
@@ -104,6 +104,21 @@
       "subScenes": [
         "content/scenes/spacetime/gr_bridge_limits.json"
       ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "spacetime_gravity",
+      "label": "Gravity",
+      "radius": 2.688,
+      "color": "#2a3b5a",
+      "position": [
+        0.0,
+        -11.2,
+        0.0
+      ],
+      "subScenes": [],
       "motion": {
         "type": "fixed"
       }
