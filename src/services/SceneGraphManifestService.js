@@ -3,7 +3,7 @@ function normalizePath(value) {
 }
 
 const PERIODIC_SOURCE_SCENE_PATH = "content/scenes/chemistry/periodic_table_scene.json";
-const ELEMENT_LEGEND_FIELD = "elementLegend:data-scene";
+const ELEMENT_LEGEND_FIELD = "elementLegend:route";
 
 export function createSceneGraphManifestService(deps = {}) {
   const fetchImpl = deps.fetchImpl;

@@ -20,6 +20,7 @@ Then open `http://localhost:5173/`.
 ## Runtime Contract
 - Runtime search is manifest-only and reads `content/graph/scene_graph.json`.
 - Periodic element routing is manifest-only via `runtimeRoutes.periodicGrid` in `content/graph/scene_graph.json`.
+- Element legend routing is generated from `content/graph/runtime_routes.json` into `runtimeRoutes.elementLegendTargets`.
 - Keep the manifest up to date after content changes.
 
 ## Content Validation

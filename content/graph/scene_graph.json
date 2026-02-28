@@ -6,7 +6,7 @@
       "scenesIndex": "content/scenes/scenes_index.json",
       "markdownIndex": "content/markdown/markdown_index.json",
       "periodicTable": "content/scenes/chemistry/periodic_table.json",
-      "elementLegendSource": "index.html"
+      "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
       "nodes": 352,
@@ -10755,2499 +10755,2499 @@
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ag.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ag.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ag.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/al.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/al.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/al.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/am.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/am.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/am.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ar.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ar.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ar.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/as.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/as.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/as.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/at.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/at.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/at.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/au.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/au.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/au.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/b.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/b.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/b.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ba.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ba.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ba.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/be.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/be.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/be.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/bh.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/bh.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/bh.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/bi.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/bi.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/bi.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/bk.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/bk.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/bk.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/br.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/br.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/br.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/c.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/c.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/c.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ca.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ca.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ca.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cd.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cd.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cd.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ce.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ce.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ce.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cf.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cf.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cf.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cl.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cl.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cl.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/co.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/co.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/co.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cs.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cs.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cs.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cu.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cu.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/cu.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/db.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/db.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/db.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ds.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ds.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ds.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/dy.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/dy.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/dy.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/er.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/er.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/er.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/es.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/es.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/es.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/eu.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/eu.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/eu.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/f.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/f.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/f.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fe.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fe.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fe.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fl.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fl.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fl.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/fr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ga.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ga.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ga.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/gd.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/gd.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/gd.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ge.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ge.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ge.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/h.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/h.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/h.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/he.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/he.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/he.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/hf.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/hf.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/hf.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/hg.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/hg.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/hg.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ho.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ho.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ho.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/hs.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/hs.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/hs.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/i.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/i.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/i.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/in.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/in.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/in.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ir.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ir.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ir.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/k.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/k.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/k.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/kr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/kr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/kr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/la.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/la.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/la.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/li.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/li.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/li.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/lr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/lr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/lr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/lu.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/lu.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/lu.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/lv.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/lv.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/lv.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mc.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mc.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mc.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/md.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/md.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/md.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mg.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mg.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mg.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mo.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mo.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mo.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mt.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mt.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/mt.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/n.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/n.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/n.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/na.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/na.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/na.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/nb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/nb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/nb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/nd.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/nd.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/nd.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ne.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ne.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ne.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/nh.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/nh.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/nh.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ni.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ni.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ni.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/no.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/no.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/no.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/np.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/np.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/np.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/o.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/o.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/o.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/og.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/og.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/og.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/os.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/os.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/os.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/p.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/p.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/p.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pa.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pa.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pa.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pd.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pd.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pd.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/po.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/po.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/po.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pt.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pt.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pt.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pu.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pu.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/pu.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ra.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ra.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ra.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/re.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/re.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/re.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rf.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rf.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rf.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rg.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rg.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rg.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rh.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rh.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rh.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/rn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ru.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ru.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ru.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/s.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/s.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/s.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sc.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sc.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sc.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/se.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/se.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/se.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sg.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sg.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sg.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/si.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/si.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/si.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/sr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ta.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ta.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ta.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tc.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tc.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tc.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/te.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/te.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/te.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/th.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/th.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/th.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ti.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ti.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ti.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tl.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tl.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tl.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/tm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ts.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ts.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/ts.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/u.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/u.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/u.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/uue.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/uue.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/uue.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/v.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/v.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/v.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/w.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/w.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/w.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/xe.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/xe.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/xe.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/y.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/y.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/y.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/yb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/yb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/yb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/zn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/zn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/zn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/zr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/zr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     },
     {
       "from": "scene:content/scenes/elements/zr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
-      "field": "elementLegend:data-scene"
+      "field": "elementLegend:route"
     }
   ]
 }

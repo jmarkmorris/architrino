@@ -21,3 +21,6 @@ jobs:
 
       - name: Validate generated scene graph manifest
         run: node scripts/build-scene-graph.mjs --check --strict
+
+      - name: Smoke test manifest runtime routes/search
+        run: node scripts/smoke-option3.mjs

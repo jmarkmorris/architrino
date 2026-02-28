@@ -1,0 +1,7 @@
+{
+  "elementLegendTargets": [
+    "content/scenes/nuclear/proton.json",
+    "content/scenes/nuclear/neutron.json",
+    "content/scenes/standard-model-particles/electron.json"
+  ]
+}

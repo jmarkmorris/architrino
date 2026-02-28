@@ -6,7 +6,7 @@ import path from "node:path";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
 const PERIODIC_TABLE_PATH = "content/scenes/chemistry/periodic_table.json";
-const INDEX_HTML_PATH = "index.html";
+const LEGEND_ROUTES_PATH = "content/graph/runtime_routes.json";
 const OUTPUT_PATH = "content/graph/scene_graph.json";
 
 const args = new Set(process.argv.slice(2));
@@ -321,7 +321,7 @@ const markdownDirectories = new Set();
 const sceneSearchOrder = sceneEntries.map((entry) => entry.path);
 const scenePathSet = new Set(sceneEntries.map((entry) => entry.path));
 const periodicRuntimeRouteBySymbol = new Map();
-const elementLegendRuntimeTargets = new Set();
+const elementLegendRuntimeTargets = [];
 
 function addNode(node) {
   const nodeId = asText(node.nodeId);
@@ -625,32 +625,56 @@ if (!periodicDataResult.ok) {
   });
 }
 
-const indexHtmlResult = readText(INDEX_HTML_PATH);
-if (!indexHtmlResult.ok) {
-  warnings.push(`${INDEX_HTML_PATH}: failed to read file (${indexHtmlResult.error.message})`);
-} else {
-  const dataSceneMatches = Array.from(
-    indexHtmlResult.data.matchAll(/data-scene=\"([^\"]+)\"/g),
-    (match) => normalizePath(match[1])
+const legendRoutesResult = readJson(LEGEND_ROUTES_PATH);
+if (!legendRoutesResult.ok) {
+  warnings.push(
+    `${LEGEND_ROUTES_PATH}: failed to parse JSON (${legendRoutesResult.error.message})`
   );
-  const legendTargets = [...new Set(dataSceneMatches.filter(Boolean))];
-  legendTargets.forEach((targetScenePath) => {
-    elementLegendRuntimeTargets.add(targetScenePath);
-  });
+} else {
+  const configuredTargets = Array.isArray(legendRoutesResult.data?.elementLegendTargets)
+    ? legendRoutesResult.data.elementLegendTargets
+    : null;
+  if (!configuredTargets) {
+    warnings.push(`${LEGEND_ROUTES_PATH}: expected { "elementLegendTargets": [...] }`);
+  } else {
+    const seenLegendTargets = new Set();
+    configuredTargets.forEach((entry, index) => {
+      if (typeof entry !== "string") {
+        warnings.push(`${LEGEND_ROUTES_PATH}: elementLegendTargets[${index}] must be a string`);
+        return;
+      }
+      const targetScenePath = normalizePath(entry);
+      if (!targetScenePath) {
+        warnings.push(`${LEGEND_ROUTES_PATH}: elementLegendTargets[${index}] must not be empty`);
+        return;
+      }
+      if (seenLegendTargets.has(targetScenePath)) {
+        return;
+      }
+      seenLegendTargets.add(targetScenePath);
+      if (!scenePathSet.has(targetScenePath)) {
+        warnings.push(
+          `${LEGEND_ROUTES_PATH}: target scene missing from scene index (${targetScenePath})`
+        );
+      }
+      elementLegendRuntimeTargets.push(targetScenePath);
+    });
+  }
+
   const elementScenePaths = sceneEntries
     .map((entry) => entry.path)
     .filter((scenePath) => scenePath.includes("/scenes/elements/"));
 
   for (const elementScenePath of elementScenePaths) {
     const from = ensureSceneNode(elementScenePath);
-    for (const targetScenePath of legendTargets) {
+    for (const targetScenePath of elementLegendRuntimeTargets) {
       const to = ensureSceneNode(targetScenePath);
       addEdge({
         from,
         to,
         edgeType: "runtime_generated",
         source: "src/runtime/PeriodicOverlayRuntime.js",
-        field: "elementLegend:data-scene",
+        field: "elementLegend:route",
       });
     }
   }
@@ -721,7 +745,7 @@ const manifest = {
       scenesIndex: SCENES_INDEX_PATH,
       markdownIndex: MARKDOWN_INDEX_PATH,
       periodicTable: PERIODIC_TABLE_PATH,
-      elementLegendSource: INDEX_HTML_PATH,
+      elementLegendSource: LEGEND_ROUTES_PATH,
     },
     counts: {
       nodes: nodes.length,
