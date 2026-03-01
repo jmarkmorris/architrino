@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "no",
+    "kind": "diagram",
     "name": "Nobelium (No)",
     "units": "relative",
     "scaleBandLog10m": [

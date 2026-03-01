@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "neutron",
+    "kind": "diagram",
     "name": "Neutron",
     "units": "relative",
     "scaleBandLog10m": [

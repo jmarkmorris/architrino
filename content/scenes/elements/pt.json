@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "pt",
+    "kind": "diagram",
     "name": "Platinum (Pt)",
     "units": "relative",
     "scaleBandLog10m": [

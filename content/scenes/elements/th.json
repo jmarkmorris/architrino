@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "th",
+    "kind": "diagram",
     "name": "Thorium (Th)",
     "units": "relative",
     "scaleBandLog10m": [

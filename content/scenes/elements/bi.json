@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "bi",
+    "kind": "diagram",
     "name": "Bismuth (Bi)",
     "units": "relative",
     "scaleBandLog10m": [

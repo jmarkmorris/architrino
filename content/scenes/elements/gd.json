@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "gd",
+    "kind": "diagram",
     "name": "Gadolinium (Gd)",
     "units": "relative",
     "scaleBandLog10m": [

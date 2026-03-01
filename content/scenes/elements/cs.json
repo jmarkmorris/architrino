@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cs",
+    "kind": "diagram",
     "name": "Cesium (Cs)",
     "units": "relative",
     "scaleBandLog10m": [

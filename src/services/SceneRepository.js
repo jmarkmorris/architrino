@@ -40,7 +40,13 @@ export class SceneRepository {
 
   resolveSceneKind(sceneData, nodes) {
     const rawKind = sceneData?.scene?.kind;
-    if (rawKind === "index" || rawKind === "leaf" || rawKind === "hybrid") {
+    if (
+      rawKind === "index" ||
+      rawKind === "leaf" ||
+      rawKind === "hybrid" ||
+      rawKind === "diagram" ||
+      rawKind === "markdown_split"
+    ) {
       return rawKind;
     }
     const list = Array.isArray(nodes) ? nodes : [];
@@ -67,7 +73,9 @@ export class SceneRepository {
     if (hasLeafContent) {
       return "leaf";
     }
-    return "index";
+    // If a scene has no outgoing navigation and no markdown content,
+    // treat it as terminal content by default.
+    return "leaf";
   }
 
   shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {

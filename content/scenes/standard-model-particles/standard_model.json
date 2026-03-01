@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "standard_model",
+    "kind": "diagram",
     "name": "Standard Model",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime",
+    "kind": "hybrid",
     "name": "Spacetime",
     "units": "relative",
     "wrapLabels": true,

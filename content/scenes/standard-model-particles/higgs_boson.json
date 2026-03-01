@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "higgs_boson",
+    "kind": "hybrid",
     "name": "Higgs Boson",
     "units": "relative",
     "scaleBandLog10m": [

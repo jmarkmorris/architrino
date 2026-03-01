@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cu",
+    "kind": "diagram",
     "name": "Copper (Cu)",
     "units": "relative",
     "scaleBandLog10m": [

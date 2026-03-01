@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "p",
+    "kind": "diagram",
     "name": "Phosphorus (P)",
     "units": "relative",
     "scaleBandLog10m": [

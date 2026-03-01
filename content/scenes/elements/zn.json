@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "zn",
+    "kind": "diagram",
     "name": "Zinc (Zn)",
     "units": "relative",
     "scaleBandLog10m": [

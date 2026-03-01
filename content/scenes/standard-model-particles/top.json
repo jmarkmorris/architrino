@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "top",
+    "kind": "diagram",
     "name": "Top Quark",
     "units": "relative",
     "scaleBandLog10m": [

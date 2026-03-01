@@ -3,6 +3,9 @@
 
 ## Infrastructure
 
+- we have Color Charge and SU(3) and Color Charge in the search index
+- search index does not go alpha first
+
 
 
 ## Sorta Sorted List (i.e., non-linear)

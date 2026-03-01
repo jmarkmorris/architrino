@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "sc",
+    "kind": "diagram",
     "name": "Scandium (Sc)",
     "units": "relative",
     "scaleBandLog10m": [

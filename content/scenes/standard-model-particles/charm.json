@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "charm",
+    "kind": "diagram",
     "name": "Charm Quark",
     "units": "relative",
     "scaleBandLog10m": [

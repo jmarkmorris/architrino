@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "as",
+    "kind": "diagram",
     "name": "Arsenic (As)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "fl",
+    "kind": "diagram",
     "name": "Flerovium (Fl)",
     "units": "relative",
     "scaleBandLog10m": [

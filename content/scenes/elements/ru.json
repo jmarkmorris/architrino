@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ru",
+    "kind": "diagram",
     "name": "Ruthenium (Ru)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "mt",
+    "kind": "diagram",
     "name": "Meitnerium (Mt)",
     "units": "relative",
     "scaleBandLog10m": [

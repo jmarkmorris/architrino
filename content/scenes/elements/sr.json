@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "sr",
+    "kind": "diagram",
     "name": "Strontium (Sr)",
     "units": "relative",
     "scaleBandLog10m": [

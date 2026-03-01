@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "nh",
+    "kind": "diagram",
     "name": "Nihonium (Nh)",
     "units": "relative",
     "scaleBandLog10m": [

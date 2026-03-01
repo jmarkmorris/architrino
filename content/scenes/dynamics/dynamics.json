@@ -1,6 +1,7 @@
 {
   "scene": {
     "id": "dynamics",
+    "kind": "hybrid",
     "name": "Dynamics",
     "layoutMode": "ring"
   },

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "periodic_table",
+    "kind": "diagram",
     "name": "Periodic Table",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "color_charge_su3",
+    "kind": "leaf",
     "name": "Color Charge SU3",
     "units": "relative",
     "scaleBandLog10m": [

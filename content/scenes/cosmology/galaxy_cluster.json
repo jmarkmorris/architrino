@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "galaxy_cluster",
+    "kind": "hybrid",
     "name": "Galaxy Cluster",
     "units": "relative",
     "scaleBandLog10m": [22, 24]

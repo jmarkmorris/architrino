@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "zr",
+    "kind": "diagram",
     "name": "Zirconium (Zr)",
     "units": "relative",
     "scaleBandLog10m": [

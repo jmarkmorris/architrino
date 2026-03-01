@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "hg",
+    "kind": "diagram",
     "name": "Mercury (Hg)",
     "units": "relative",
     "scaleBandLog10m": [

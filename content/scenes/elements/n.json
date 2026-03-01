@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "n",
+    "kind": "diagram",
     "name": "Nitrogen (N)",
     "units": "relative",
     "scaleBandLog10m": [

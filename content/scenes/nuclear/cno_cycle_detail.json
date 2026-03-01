@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cno_cycle_detail",
+    "kind": "diagram",
     "name": "CNO Cycle Detail",
     "units": "relative",
     "scaleBandLog10m": [

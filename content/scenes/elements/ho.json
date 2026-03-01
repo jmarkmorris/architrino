@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ho",
+    "kind": "diagram",
     "name": "Holmium (Ho)",
     "units": "relative",
     "scaleBandLog10m": [

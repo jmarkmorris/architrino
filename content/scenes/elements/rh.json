@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "rh",
+    "kind": "diagram",
     "name": "Rhodium (Rh)",
     "units": "relative",
     "scaleBandLog10m": [

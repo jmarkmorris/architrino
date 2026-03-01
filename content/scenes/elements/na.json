@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "na",
+    "kind": "diagram",
     "name": "Sodium (Na)",
     "units": "relative",
     "scaleBandLog10m": [

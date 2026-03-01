@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "nucleus",
+    "kind": "diagram",
     "name": "Nucleus",
     "units": "relative",
     "scaleBandLog10m": [

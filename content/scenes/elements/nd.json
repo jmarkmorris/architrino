@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "nd",
+    "kind": "diagram",
     "name": "Neodymium (Nd)",
     "units": "relative",
     "scaleBandLog10m": [

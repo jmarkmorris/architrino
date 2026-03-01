@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cn",
+    "kind": "diagram",
     "name": "Copernicium (Cn)",
     "units": "relative",
     "scaleBandLog10m": [

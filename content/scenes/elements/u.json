@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "u",
+    "kind": "diagram",
     "name": "Uranium (U)",
     "units": "relative",
     "scaleBandLog10m": [

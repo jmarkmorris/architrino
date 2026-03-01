@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "rg",
+    "kind": "diagram",
     "name": "Roentgenium (Rg)",
     "units": "relative",
     "scaleBandLog10m": [

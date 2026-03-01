@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "moon",
+    "kind": "hybrid",
     "name": "Moon",
     "units": "relative",
     "scaleBandLog10m": [5, 6]

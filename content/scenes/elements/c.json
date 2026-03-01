@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "c",
+    "kind": "diagram",
     "name": "Carbon (C)",
     "units": "relative",
     "scaleBandLog10m": [

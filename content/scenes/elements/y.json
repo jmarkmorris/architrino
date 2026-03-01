@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "y",
+    "kind": "diagram",
     "name": "Yttrium (Y)",
     "units": "relative",
     "scaleBandLog10m": [

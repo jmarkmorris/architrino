@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ra",
+    "kind": "diagram",
     "name": "Radium (Ra)",
     "units": "relative",
     "scaleBandLog10m": [

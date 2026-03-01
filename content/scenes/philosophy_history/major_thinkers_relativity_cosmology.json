@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "major_thinkers_relativity_cosmology",
+    "kind": "markdown_split",
     "name": "Relativity, Gravity & Cosmology (Spacetime Ontology \u2192 Quantum Gravity)",
     "units": "relative",
     "wrapLabels": true,

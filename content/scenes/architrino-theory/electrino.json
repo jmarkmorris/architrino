@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "electrino",
+    "kind": "diagram",
     "name": "Electrino",
     "units": "relative",
     "scaleBandLog10m": [

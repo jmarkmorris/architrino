@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "composer",
+    "kind": "diagram",
     "name": "Composer",
     "units": "relative",
     "layoutMode": "ring",

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "tb",
+    "kind": "diagram",
     "name": "Terbium (Tb)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "eu",
+    "kind": "diagram",
     "name": "Europium (Eu)",
     "units": "relative",
     "scaleBandLog10m": [
