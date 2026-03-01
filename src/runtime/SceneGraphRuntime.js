@@ -46,7 +46,14 @@ export function createSceneGraphRuntime(deps) {
         Number.isFinite(node?.radius) && node.radius > 0 ? node.radius : 1
       )
     );
-    const spacing = Number((maxNodeRadius * 2.9).toFixed(2));
+    // Match ring guard-band logic for grid packing so spheres can be larger
+    // while keeping a consistent non-touching halo gap.
+    const haloScale = 1.18;
+    const guardBandMin = 0.15;
+    const guardBandRatio = 0.08;
+    const haloDiameter = maxNodeRadius * haloScale * 2;
+    const guardBand = Math.max(guardBandMin, haloDiameter * guardBandRatio);
+    const spacing = Number((haloDiameter + guardBand).toFixed(2));
     const columns =
       Number.isInteger(requestedColumns) && requestedColumns > 0
         ? requestedColumns
