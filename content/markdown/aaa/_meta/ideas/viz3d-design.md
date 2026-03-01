@@ -384,10 +384,12 @@ Implication:
 - `node scripts/validate-content.mjs --write`
 - `node scripts/build-scene-graph.mjs --write`
 - verify no orphan `subScenes` references and no drift.
+- completed for current slice with explicit audit: `subScenes` missing refs = 0, `markdownPath` missing refs = 0, then strict checks pass.
 
 11. Enforce with validation:
 - add validator failures for new `scene.markdown` or other retired auto-generation fields once migration starts.
 - optionally warn first, then flip to hard fail.
+- implemented as hard fail: `scripts/validate-content.mjs --check --strict` now fails if any scene uses legacy auto-generation fields and also fails if `scripts/config/legacy-scene-autogen-allowlist.json` contains any entries.
 
 12. Commit in domain batches:
 - one subtree at a time (for example one domain folder per batch).
@@ -395,3 +397,12 @@ Implication:
 
 13. Final cleanup:
 - remove dead scene files, dead markdown routing assumptions, dynamic migration allowlist, and obsolete runtime branches tied only to legacy auto-generation.
+
+
+Which if any of the following occur in our webapp?  Evaluate each individually, in turn.
+
+1. scenes that have custom aspects
+2. spheres that have custom colors
+3. spheres that have different thickness glow rings
+4. special glow ring colors.
+5. scenes or spheres that have any other special cases

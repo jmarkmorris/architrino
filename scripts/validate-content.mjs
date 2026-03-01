@@ -1150,6 +1150,12 @@ const stableIdLabelLock = readStableIdLabelLock();
 const legacyAutogenAllowlist = readLegacyAutogenAllowlist();
 const legacyAutogenScenes = [];
 
+if (legacyAutogenAllowlist.scenes.size > 0) {
+  errors.push(
+    `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: migration allowlist must be empty now; remove entries instead of allowlisting legacy auto-generation fields`
+  );
+}
+
 if (stableIdLabelLock.entries.size) {
   notes.push(`Stable ID/label lock coverage: ${stableIdLabelLock.entries.size} scene file(s).`);
 }
