@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 341,
-      "edges": 1122,
+      "edges": 1121,
       "scenes": 168,
       "markdownIndexes": 23,
       "markdownDocs": 150,
@@ -5329,6 +5329,13 @@
       "field": "objects[2].subScenes[0]"
     },
     {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/standard-model-particles/electron.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "objects[1].subScenes[0]"
+    },
+    {
       "from": "scene:content/scenes/cosmology/disk.json",
       "to": "scene:content/scenes/cosmology/solar_system.json",
       "edgeType": "subscene",
@@ -8309,20 +8316,6 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "color_charge_su3.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/electron.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/fermions.json",
-      "field": "electron.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/fermions.json",
-      "field": "muon_tau.markdownPath"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",

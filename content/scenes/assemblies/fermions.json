@@ -19,21 +19,13 @@
       }
     },
     {
-      "id": "electron",
-      "label": "Electron",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/assemblies/fermions/electron.md",
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "muon_tau",
-      "label": "Muon Tau",
+      "id": "electron_muon_tau",
+      "label": "Electron, Muon, Tau",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+      "subScenes": [
+        "content/scenes/standard-model-particles/electron.json"
+      ],
       "motion": {
         "type": "fixed"
       }
