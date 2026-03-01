@@ -834,11 +834,6 @@
       "id": "assemblies",
       "name": "Assemblies",
       "path": "content/scenes/assemblies/assemblies.json"
-    },
-    {
-      "id": "bosons_assemblies",
-      "name": "Bosons",
-      "path": "content/scenes/assemblies/bosons.json"
     }
   ]
 }

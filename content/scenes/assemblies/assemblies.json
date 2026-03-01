@@ -73,18 +73,30 @@
       }
     },
     {
-      "id": "bosons_scene",
-      "label": "Bosons",
+      "id": "electroweak_bosons",
+      "label": "Electroweak Bosons",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        12.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/assemblies/bosons.json"
-      ],
+      "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "gluons",
+      "label": "Gluons",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "markdownPath": "content/markdown/aaa/assemblies/bosons/gluons.md",
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "photons",
+      "label": "Photons",
+      "radius": 2.688,
+      "color": "#3f6a5a",
       "motion": {
         "type": "fixed"
       }
