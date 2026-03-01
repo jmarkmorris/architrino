@@ -10,10 +10,10 @@
     },
     "counts": {
       "nodes": 353,
-      "edges": 1121,
-      "scenes": 179,
+      "edges": 1129,
+      "scenes": 180,
       "markdownIndexes": 23,
-      "markdownDocs": 151,
+      "markdownDocs": 150,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -164,12 +164,6 @@
       "id": "positrino",
       "name": "Positrino",
       "path": "content/scenes/architrino-theory/positrino.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "assemblies",
-      "name": "Assemblies",
-      "path": "content/scenes/assemblies/assemblies.json",
       "nodeType": "scene"
     },
     {
@@ -1080,7 +1074,7 @@
     },
     {
       "id": "spacetime_gr_bridge",
-      "name": "GR Bridge and Effective Limits",
+      "name": "General Relativity Bridge and Effective Limits",
       "path": "content/scenes/spacetime/gr_bridge_limits.json",
       "nodeType": "scene"
     },
@@ -1116,7 +1110,7 @@
     },
     {
       "id": "spacetime_wave_channel",
-      "name": "Wave and Phenomenology Channel",
+      "name": "Wave and Observables Channel",
       "path": "content/scenes/spacetime/wave_phenomenology_channel.json",
       "nodeType": "scene"
     },
@@ -1220,6 +1214,18 @@
       "id": "validation",
       "name": "Validation",
       "path": "content/scenes/validation/validation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies",
+      "name": "Assemblies",
+      "path": "content/scenes/assemblies/assemblies.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "bosons_assemblies",
+      "name": "Bosons",
+      "path": "content/scenes/assemblies/bosons.json",
       "nodeType": "scene"
     },
     {
@@ -1674,7 +1680,7 @@
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-      "name": "Color Charge and SU(3) from Tri‑Binary (“Noether Core”) Geometry",
+      "name": "Color Charge and SU(3)",
       "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "nodeType": "markdown_doc"
     },
@@ -1710,7 +1716,7 @@
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-      "name": "Weak Mixing (Flavor-Mass Basis Misalignment)",
+      "name": "Weak Mixing and CKM",
       "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "nodeType": "markdown_doc"
     },
@@ -1800,7 +1806,7 @@
     },
     {
       "id": "content/markdown/aaa/dynamics/effective-lagrangian.md",
-      "name": "Effective Lagrangian and Action Principles",
+      "name": "Effective Lagrangian",
       "path": "__markdown_doc__:content/markdown/aaa/dynamics/effective-lagrangian.md",
       "nodeType": "markdown_doc"
     },
@@ -1812,13 +1818,13 @@
     },
     {
       "id": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "name": "**The emergence of U(1)/SU(2) from Assembly Dynamics**",
+      "name": "Emergence of U(1)/SU(2)",
       "path": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "name": "Gauge Symmetries (Minimal Derivation Spine)",
+      "name": "Gauge Symmetries",
       "path": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-symmetries.md",
       "nodeType": "markdown_doc"
     },
@@ -1866,7 +1872,7 @@
     },
     {
       "id": "content/markdown/aaa/foundations/euclidean-void.md",
-      "name": "Notes for Alfa",
+      "name": "Euclidean Void",
       "path": "__markdown_doc__:content/markdown/aaa/foundations/euclidean-void.md",
       "nodeType": "markdown_doc"
     },
@@ -1974,7 +1980,7 @@
     },
     {
       "id": "content/markdown/aaa/quantum/collapse-problem.md",
-      "name": "The Measurement Problem and Wavefunction Collapse: Traditional vs. Architrino Assembly Architecture",
+      "name": "Measurement Problem and Collapse",
       "path": "__markdown_doc__:content/markdown/aaa/quantum/collapse-problem.md",
       "nodeType": "markdown_doc"
     },
@@ -2016,7 +2022,7 @@
     },
     {
       "id": "content/markdown/aaa/quantum/wavefunction-ontology.md",
-      "name": "Wavefunction Ontology and Effective State Dynamics",
+      "name": "Wavefunction Ontology",
       "path": "__markdown_doc__:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "nodeType": "markdown_doc"
     },
@@ -2051,26 +2057,26 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/spacetime/GR-phenomenology.md",
-      "name": "GR Phenomenology (Stub)",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "name": "General Relativity Observables",
+      "path": "__markdown_doc__:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/gravitational-waves.md",
-      "name": "Gravitational Waves (Minimal Derivation Spine)",
+      "name": "Gravitational Waves",
       "path": "__markdown_doc__:content/markdown/aaa/spacetime/gravitational-waves.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/ppn-parameters.md",
-      "name": "Ppn Parameters",
+      "name": "PPN Parameters",
       "path": "__markdown_doc__:content/markdown/aaa/spacetime/ppn-parameters.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
-      "name": "Proper Time and Time Dilation from Absolute Time",
+      "name": "Proper Time and Time Dilation",
       "path": "__markdown_doc__:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "nodeType": "markdown_doc"
     },
@@ -2094,7 +2100,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/failure-criteria.md",
-      "name": "Notes for Red",
+      "name": "Failure Criteria",
       "path": "__markdown_doc__:content/markdown/aaa/validation/failure-criteria.md",
       "nodeType": "markdown_doc"
     },
@@ -2255,12 +2261,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/validation/theory-health-dashboard.md",
-      "name": "Theory Health Dashboard",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/theory-health-dashboard.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/validation/validation-protocols.md",
       "name": "Validation Protocols",
       "path": "__markdown_doc__:content/markdown/aaa/validation/validation-protocols.md",
@@ -2302,6 +2302,15 @@
       "name": "Assemblies",
       "path": "content/scenes/assemblies/assemblies.json",
       "searchTarget": "content/scenes/assemblies/assemblies.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/bosons.json",
+      "nodeType": "scene",
+      "id": "bosons_assemblies",
+      "name": "Bosons",
+      "path": "content/scenes/assemblies/bosons.json",
+      "searchTarget": "content/scenes/assemblies/bosons.json",
       "implicit": false
     },
     {
@@ -3667,7 +3676,7 @@
       "nodeId": "scene:content/scenes/spacetime/gr_bridge_limits.json",
       "nodeType": "scene",
       "id": "spacetime_gr_bridge",
-      "name": "GR Bridge and Effective Limits",
+      "name": "General Relativity Bridge and Effective Limits",
       "path": "content/scenes/spacetime/gr_bridge_limits.json",
       "searchTarget": "content/scenes/spacetime/gr_bridge_limits.json",
       "implicit": false
@@ -3721,7 +3730,7 @@
       "nodeId": "scene:content/scenes/spacetime/wave_phenomenology_channel.json",
       "nodeType": "scene",
       "id": "spacetime_wave_channel",
-      "name": "Wave and Phenomenology Channel",
+      "name": "Wave and Observables Channel",
       "path": "content/scenes/spacetime/wave_phenomenology_channel.json",
       "searchTarget": "content/scenes/spacetime/wave_phenomenology_channel.json",
       "implicit": false
@@ -4535,7 +4544,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-      "name": "Color Charge and SU(3) from Tri‑Binary (“Noether Core”) Geometry",
+      "name": "Color Charge and SU(3)",
       "path": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "implicit": false
@@ -4589,7 +4598,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-      "name": "Weak Mixing (Flavor-Mass Basis Misalignment)",
+      "name": "Weak Mixing and CKM",
       "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "implicit": false
@@ -4724,7 +4733,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/effective-lagrangian.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/effective-lagrangian.md",
-      "name": "Effective Lagrangian and Action Principles",
+      "name": "Effective Lagrangian",
       "path": "content/markdown/aaa/dynamics/effective-lagrangian.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/effective-lagrangian.md",
       "implicit": false
@@ -4742,7 +4751,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "name": "**The emergence of U(1)/SU(2) from Assembly Dynamics**",
+      "name": "Emergence of U(1)/SU(2)",
       "path": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "implicit": false
@@ -4751,7 +4760,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/gauge-symmetries.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "name": "Gauge Symmetries (Minimal Derivation Spine)",
+      "name": "Gauge Symmetries",
       "path": "content/markdown/aaa/dynamics/gauge-symmetries.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-symmetries.md",
       "implicit": false
@@ -4823,7 +4832,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/euclidean-void.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/euclidean-void.md",
-      "name": "Notes for Alfa",
+      "name": "Euclidean Void",
       "path": "content/markdown/aaa/foundations/euclidean-void.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/foundations/euclidean-void.md",
       "implicit": false
@@ -4985,7 +4994,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/collapse-problem.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/collapse-problem.md",
-      "name": "The Measurement Problem and Wavefunction Collapse: Traditional vs. Architrino Assembly Architecture",
+      "name": "Measurement Problem and Collapse",
       "path": "content/markdown/aaa/quantum/collapse-problem.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/collapse-problem.md",
       "implicit": false
@@ -5048,7 +5057,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/wavefunction-ontology.md",
-      "name": "Wavefunction Ontology and Effective State Dynamics",
+      "name": "Wavefunction Ontology",
       "path": "content/markdown/aaa/quantum/wavefunction-ontology.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "implicit": false
@@ -5099,19 +5108,19 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/spacetime/GR-phenomenology.md",
-      "name": "GR Phenomenology (Stub)",
-      "path": "content/markdown/aaa/spacetime/GR-phenomenology.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "name": "General Relativity Observables",
+      "path": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "implicit": false
     },
     {
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/gravitational-waves.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/gravitational-waves.md",
-      "name": "Gravitational Waves (Minimal Derivation Spine)",
+      "name": "Gravitational Waves",
       "path": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/gravitational-waves.md",
       "implicit": false
@@ -5120,7 +5129,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/ppn-parameters.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/ppn-parameters.md",
-      "name": "Ppn Parameters",
+      "name": "PPN Parameters",
       "path": "content/markdown/aaa/spacetime/ppn-parameters.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/ppn-parameters.md",
       "implicit": false
@@ -5129,7 +5138,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
-      "name": "Proper Time and Time Dilation from Absolute Time",
+      "name": "Proper Time and Time Dilation",
       "path": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "implicit": false
@@ -5165,7 +5174,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/failure-criteria.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/failure-criteria.md",
-      "name": "Notes for Red",
+      "name": "Failure Criteria",
       "path": "content/markdown/aaa/validation/failure-criteria.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/failure-criteria.md",
       "implicit": false
@@ -5405,15 +5414,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/validation/theory-health-dashboard.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/validation/theory-health-dashboard.md",
-      "name": "Theory Health Dashboard",
-      "path": "content/markdown/aaa/validation/theory-health-dashboard.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/theory-health-dashboard.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/validation/validation-protocols.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/validation-protocols.md",
@@ -5493,6 +5493,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
       "field": "objects[7].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/bosons.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "objects[5].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -5619,6 +5626,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/star.json",
       "field": "objects[1].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/tensions_validation_coupling.json",
+      "to": "scene:content/scenes/validation/validation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/tensions_validation_coupling.json",
+      "field": "objects[4].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/universe.json",
@@ -8183,6 +8197,20 @@
       "field": "objects[2].subScenes[0]"
     },
     {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "objects[1].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/nuclear/atom.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "objects[2].subScenes[0]"
+    },
+    {
       "from": "scene:content/scenes/nuclear/nucleus.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
@@ -8209,6 +8237,20 @@
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/proton.json",
       "field": "objects[0].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "objects[0].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "objects[1].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
@@ -8243,6 +8285,13 @@
       "to": "scene:content/scenes/spacetime/wave_phenomenology_channel.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
+      "field": "objects[3].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/strong_field_horizons.json",
+      "to": "scene:content/scenes/spacetime/cosmic_censorship.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/strong_field_horizons.json",
       "field": "objects[3].subScenes[0]"
     },
     {
@@ -8499,6 +8548,13 @@
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "mesons_doc.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/noether-core.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/assemblies.json",
@@ -8709,7 +8765,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/gr_bridge_limits.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/gr_bridge_limits.json",
       "field": "gr_phenomenology_core.markdownPath"
@@ -8765,7 +8821,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/strong_field_horizons.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/strong_field_horizons.json",
       "field": "gr_phenomenology_high_curvature.markdownPath"
@@ -8786,7 +8842,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/wave_phenomenology_channel.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/wave_phenomenology_channel.json",
       "field": "gr_phenomenology_bridge.markdownPath"
@@ -9612,7 +9668,7 @@
     },
     {
       "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
@@ -9690,13 +9746,6 @@
     {
       "from": "markdown_index:content/markdown/aaa/validation",
       "to": "markdown_doc:content/markdown/aaa/validation/reaction-ledger.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/theory-health-dashboard.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
@@ -9867,6 +9916,13 @@
       "to": "markdown_index:content/markdown/aaa/assemblies",
       "edgeType": "markdown_index",
       "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.markdown.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/bosons.json",
+      "to": "markdown_index:content/markdown/aaa/assemblies/bosons",
+      "edgeType": "markdown_index",
+      "source": "content/scenes/assemblies/bosons.json",
       "field": "scene.markdown.source.path"
     },
     {

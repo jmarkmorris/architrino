@@ -1,4 +1,4 @@
-# Color Charge and SU(3) from Tri‑Binary (“Noether Core”) Geometry
+# Color Charge and SU(3)
 
 ---
 

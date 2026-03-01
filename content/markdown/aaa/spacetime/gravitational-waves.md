@@ -1,4 +1,4 @@
-# Gravitational Waves (Minimal Derivation Spine)
+# Gravitational Waves
 
 This chapter provides a minimal theorem-backed chain from the emergent-metric weak-field map to testable gravitational-wave observables.
 

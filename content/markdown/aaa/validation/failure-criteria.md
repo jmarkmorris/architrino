@@ -1,4 +1,4 @@
-# Notes for Red
+# Failure Criteria
 
 ## The Lorentzian Conspiracy Stop-Condition
 

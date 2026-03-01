@@ -1107,7 +1107,8 @@ const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "content/markdown/aaa/_meta/ideas/arch-api.md";
-const markdownGlowByteThreshold = 4096;
+const markdownDocIconByteThreshold = 1024;
+const markdownGlowByteThreshold = 2048;
 const cacheBustToken = Date.now().toString();
 let appDirector = null;
 const sceneIndexService = new SceneIndexService();
@@ -1625,6 +1626,7 @@ const sceneRepository = new SceneRepository({
   deriveMarkdownConfig,
   buildAutoMarkdownNodes,
   resolveMarkdownFileSize,
+  markdownDocIconMinBytes: markdownDocIconByteThreshold,
   markdownGlowMinBytes: markdownGlowByteThreshold,
 });
 const sceneBootstrapService = createSceneBootstrapService({

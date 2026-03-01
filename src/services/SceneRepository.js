@@ -10,6 +10,10 @@ export class SceneRepository {
     this.deriveMarkdownConfig = deps.deriveMarkdownConfig;
     this.buildAutoMarkdownNodes = deps.buildAutoMarkdownNodes;
     this.resolveMarkdownFileSize = deps.resolveMarkdownFileSize;
+    this.markdownDocIconMinBytes =
+      typeof deps.markdownDocIconMinBytes === "number"
+        ? deps.markdownDocIconMinBytes
+        : 1024;
     this.markdownGlowMinBytes =
       typeof deps.markdownGlowMinBytes === "number"
         ? deps.markdownGlowMinBytes
@@ -27,6 +31,8 @@ export class SceneRepository {
         if (!hasDirectMarkdown) {
           node.docDrillDownPreferred = false;
           node.markdownGlowEligible = false;
+          node.markdownDocIconEligible = false;
+          node.markdownDocIcon = false;
           return;
         }
 
@@ -37,11 +43,16 @@ export class SceneRepository {
         const isEligible =
           Number.isFinite(markdownByteSize) &&
           markdownByteSize >= this.markdownGlowMinBytes;
+        const isDocIconEligible =
+          Number.isFinite(markdownByteSize) &&
+          markdownByteSize >= this.markdownDocIconMinBytes;
 
         node.markdownByteSize = Number.isFinite(markdownByteSize)
           ? markdownByteSize
           : null;
         node.markdownGlowEligible = isEligible;
+        node.markdownDocIconEligible = isDocIconEligible;
+        node.markdownDocIcon = isDocIconEligible;
         node.docDrillDownPreferred = isEligible;
         node.glowRing = isEligible;
         if (isEligible) {

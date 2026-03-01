@@ -1,3 +1,5 @@
+# PPN Parameters
+
 ### Mapping to PPN Constraints
 
 1. **Shapiro Delay**: Must map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{eff}$ in a dense medium).

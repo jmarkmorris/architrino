@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime_wave_channel",
-    "name": "Wave and Phenomenology Channel",
+    "name": "Wave and Observables Channel",
     "units": "relative",
     "wrapLabels": true
   },
@@ -19,11 +19,11 @@
     },
     {
       "id": "gr_phenomenology_bridge",
-      "label": "GR Phenomenology",
+      "label": "General Relativity Observables",
       "radius": 1.65,
       "color": "#4a5f8a",
       "position": [0.0, -4.6, 0.0],
-      "markdownPath": "content/markdown/aaa/spacetime/GR-phenomenology.md",
+      "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
     }

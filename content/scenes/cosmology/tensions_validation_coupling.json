@@ -46,6 +46,17 @@
       "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
       "subScenes": [],
       "motion": { "type": "fixed" }
+    },
+    {
+      "id": "validation_bridge",
+      "label": "Validation Bridge",
+      "radius": 1.55,
+      "color": "#3f6a5a",
+      "position": [-4.6, -4.6, 0.0],
+      "subScenes": [
+        "content/scenes/validation/validation.json"
+      ],
+      "motion": { "type": "fixed" }
     }
   ]
 }

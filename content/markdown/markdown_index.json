@@ -115,7 +115,7 @@
     "content/markdown/aaa/reactions/pdg-solver-ideas.md",
     "content/markdown/aaa/reactions/synchrotron.md",
     "content/markdown/aaa/spacetime/emergent-metric.md",
-    "content/markdown/aaa/spacetime/GR-phenomenology.md",
+    "content/markdown/aaa/spacetime/gr-phenomenology.md",
     "content/markdown/aaa/spacetime/gravitational-waves.md",
     "content/markdown/aaa/spacetime/ppn-parameters.md",
     "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
@@ -149,7 +149,6 @@
     "content/markdown/aaa/validation/simulations/run-protocols.md",
     "content/markdown/aaa/validation/simulations/synthetic-observables.md",
     "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-    "content/markdown/aaa/validation/theory-health-dashboard.md",
     "content/markdown/aaa/validation/validation-protocols.md"
   ]
 }

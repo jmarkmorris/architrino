@@ -1,4 +1,4 @@
-# The Measurement Problem and Wavefunction Collapse: Traditional vs. Architrino Assembly Architecture
+# Measurement Problem and Collapse
 
 This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix.
 

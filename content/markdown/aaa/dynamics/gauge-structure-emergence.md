@@ -1,5 +1,4 @@
-
-# **The emergence of U(1)/SU(2) from Assembly Dynamics**
+# Emergence of U(1)/SU(2)
 
 ## The Physical Substrate: From Vacuum to "Noether Sea"
 

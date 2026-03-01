@@ -101,6 +101,38 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "bosons_scene",
+      "label": "Bosons",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        12.0,
+        6.0,
+        0.0
+      ],
+      "subScenes": [
+        "content/scenes/assemblies/bosons.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "mesons_doc",
+      "label": "Mesons",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        -12.0,
+        -6.0,
+        0.0
+      ],
+      "markdownPath": "content/markdown/aaa/assemblies/mesons/mesons.md",
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }
