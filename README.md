@@ -23,6 +23,21 @@ Then open `http://localhost:5173/`.
 - Element legend routing is generated from `content/graph/runtime_routes.json` into `runtimeRoutes.elementLegendTargets`.
 - Keep the manifest up to date after content changes.
 
+## Authoring Contract (Explicit Scene Network)
+- Source of truth is explicit scene files under `content/scenes/**/*.json`.
+- Authored navigation/content fields are:
+  - `objects[]`
+  - `objects[].subScenes[]`
+  - `objects[].markdownPath`
+  - `objects[].markdownSection`
+- Generated artifacts are not hand-authored:
+  - `content/scenes/scenes_index.json`
+  - `content/markdown/markdown_index.json`
+  - `content/graph/scene_graph.json`
+- After scene/markdown edits, regenerate artifacts before commit:
+  - `node scripts/validate-content.mjs --write`
+  - `node scripts/build-scene-graph.mjs --write`
+
 ## Content Validation
 Run these from the repo root:
 
