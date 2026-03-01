@@ -98,6 +98,22 @@
         "meta_settings": "Settings"
       }
     },
+    "content/scenes/nuclear/nuclear_atomic.json": {
+      "sceneId": "nuclear_atomic",
+      "sceneName": "Nuclear-Atomic",
+      "objects": {
+        "atom": "Atom",
+        "atomic_spectra": "Atomic Spectra",
+        "atomic_structure": "Atomic Structure",
+        "condensed_matter": "Condensed Matter",
+        "displacement_of_spacetime": "Displacement of Spacetime",
+        "leptogenesis": "Leptogenesis CP Sources",
+        "molecular_geometry": "Molecular Geometry",
+        "nuclear_binding": "Nuclear Binding",
+        "nucleon_structure": "Nucleon Structure",
+        "periodic_table": "Periodic Table"
+      }
+    },
     "content/scenes/philosophy_history/out_of_the_ashes.json": {
       "sceneId": "out_of_the_ashes",
       "sceneName": "Out of the Ashes",
@@ -172,6 +188,56 @@
         "proper_time_and_time_dilation": "Proper Time and Time Dilation",
         "singularity_resolution": "Singularity Resolution",
         "spacetime_assemblies": "Spacetime Assemblies"
+      }
+    },
+    "content/scenes/validation/action_energy.json": {
+      "sceneId": "validation_action_energy",
+      "sceneName": "Action-Energy",
+      "objects": {
+        "action_model": "Action Model",
+        "analytic_baselines": "Analytic Baselines",
+        "attraction": "Attraction",
+        "background_simple_action": "Background and Simple Action",
+        "causal_set_delay_geometry": "Causal Set and Delay Geometry",
+        "informational_ambiguity": "Informational Ambiguity",
+        "numerical_recipe_stability": "Numerical Recipe and Stability",
+        "radial_attraction": "Radial Attraction",
+        "receiver_velocity_work": "Receiver Velocity and Work",
+        "repulsion": "Repulsion",
+        "self_energy": "Self-Energy",
+        "self_interaction_switch": "Self-Interaction Switch",
+        "superposition_locality": "Superposition and Locality",
+        "units_constants": "Units and Constants",
+        "well_posedness_regularization": "Well-Posedness and Regularization"
+      }
+    },
+    "content/scenes/validation/simulations.json": {
+      "sceneId": "validation_simulations",
+      "sceneName": "Validation Simulations",
+      "objects": {
+        "action_energy": "Action-Energy",
+        "sim_architrino": "Architrino",
+        "sim_convergence_tests": "Convergence Tests",
+        "sim_perspective": "Perspective",
+        "sim_readme": "README",
+        "sim_run_protocols": "Run Protocols",
+        "sim_synthetic_observables": "Synthetic Observables",
+        "sim_unsolved_problems": "Unsolved Problems"
+      }
+    },
+    "content/scenes/validation/validation.json": {
+      "sceneId": "validation",
+      "sceneName": "Validation",
+      "objects": {
+        "architrino_si_base_units": "Architrino SI Base Units",
+        "constraint_ledger": "Constraint Ledger",
+        "failure_criteria": "Failure Criteria",
+        "known_tensions": "Known Tensions",
+        "no_go_theorems": "No Go Theorems",
+        "parameter_ledger": "Parameter Ledger",
+        "reaction_ledger": "Reaction Ledger",
+        "validation_protocols": "Validation Protocols",
+        "validation_simulations": "Simulations"
       }
     }
   }

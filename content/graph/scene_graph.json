@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 341,
-      "edges": 1129,
-      "scenes": 168,
+      "nodes": 342,
+      "edges": 1164,
+      "scenes": 169,
       "markdownIndexes": 23,
       "markdownDocs": 150,
       "runtimeEdges": 476,
@@ -1154,6 +1154,12 @@
       "id": "color_charge_su3",
       "name": "Color Charge SU3",
       "path": "content/scenes/standard-model-theory/color-charge-su3.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy",
+      "name": "Action-Energy",
+      "path": "content/scenes/validation/action_energy.json",
       "nodeType": "scene"
     },
     {
@@ -3640,6 +3646,15 @@
       "name": "Color Charge SU3",
       "path": "content/scenes/standard-model-theory/color-charge-su3.json",
       "searchTarget": "content/scenes/standard-model-theory/color-charge-su3.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/action_energy.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy",
+      "name": "Action-Energy",
+      "path": "content/scenes/validation/action_energy.json",
+      "searchTarget": "content/scenes/validation/action_energy.json",
       "implicit": false
     },
     {
@@ -8235,6 +8250,13 @@
       "field": "objects[1].subScenes[0]"
     },
     {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/action_energy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "objects[0].subScenes[0]"
+    },
+    {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/simulations.json",
       "edgeType": "subscene",
@@ -8529,6 +8551,55 @@
       "field": "meta_settings.markdownPath"
     },
     {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "atomic_spectra.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "atomic_structure.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "condensed_matter.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "displacement_of_spacetime.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "molecular_geometry.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "nuclear_binding.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "nucleon_structure.markdownPath"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "edgeType": "markdown_doc",
@@ -8695,6 +8766,216 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/standard-model-theory/color-charge-su3.json",
       "field": "scene.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "action_model.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "analytic_baselines.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "attraction.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "background_simple_action.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "causal_set_delay_geometry.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "informational_ambiguity.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "numerical_recipe_stability.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "radial_attraction.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "receiver_velocity_work.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "repulsion.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "self_energy.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "self_interaction_switch.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "superposition_locality.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "units_constants.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "well_posedness_regularization.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/architrino.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "sim_architrino.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/convergence-tests.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "sim_convergence_tests.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/perspective.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "sim_perspective.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/README.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "sim_readme.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/run-protocols.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "sim_run_protocols.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/synthetic-observables.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "sim_synthetic_observables.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/unsolved-problems.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "sim_unsolved_problems.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/architrino-si-base-units.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/validation.json",
+      "field": "architrino_si_base_units.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/constraint-ledger.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/validation.json",
+      "field": "constraint_ledger.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/failure-criteria.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/validation.json",
+      "field": "failure_criteria.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/known-tensions.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/validation.json",
+      "field": "known_tensions.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/no-go-theorems.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/validation.json",
+      "field": "no_go_theorems.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/parameter-ledger.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/validation.json",
+      "field": "parameter_ledger.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/reaction-ledger.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/validation.json",
+      "field": "reaction_ledger.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/validation-protocols.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/validation.json",
+      "field": "validation_protocols.markdownPath"
     },
     {
       "from": "markdown_index:content/markdown/aaa/_meta",
@@ -9745,27 +10026,6 @@
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
-    },
-    {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
-      "to": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.markdown.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "markdown_index:content/markdown/aaa/validation/simulations",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "scene.markdown.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/validation.json",
-      "to": "markdown_index:content/markdown/aaa/validation",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/validation/validation.json",
-      "field": "scene.markdown.source.path"
     },
     {
       "from": "scene:content/scenes/chemistry/periodic_table_scene.json",

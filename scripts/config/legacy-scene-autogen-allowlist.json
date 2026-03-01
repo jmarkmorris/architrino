@@ -1,8 +1,4 @@
 {
   "removeBy": "2026-06-30",
-  "scenes": [
-    "content/scenes/nuclear/nuclear_atomic.json",
-    "content/scenes/validation/simulations.json",
-    "content/scenes/validation/validation.json"
-  ]
+  "scenes": []
 }

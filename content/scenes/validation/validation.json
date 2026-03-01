@@ -4,23 +4,8 @@
     "id": "validation",
     "name": "Validation",
     "units": "relative",
-    "wrapLabels": true,
-    "autoSphereRing": true,
-    "markdown": {
-      "source": {
-        "type": "directory",
-        "path": "content/markdown/aaa/validation",
-        "subdirectories": false
-      },
-      "layout": {
-        "includeExisting": true,
-        "nodeRadius": 2.688,
-        "ringRadius": 12
-      },
-      "render": {
-        "defaultMode": "doc"
-      }
-    }
+    "layoutMode": "ring",
+    "wrapLabels": true
   },
   "objects": [
     {
@@ -28,17 +13,68 @@
       "label": "Simulations",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "position": [
-        0.0,
-        8.0,
-        0.0
-      ],
       "subScenes": [
         "content/scenes/validation/simulations.json"
       ],
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "architrino_si_base_units",
+      "label": "Architrino SI Base Units",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md"
+    },
+    {
+      "id": "constraint_ledger",
+      "label": "Constraint Ledger",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "markdownPath": "content/markdown/aaa/validation/constraint-ledger.md"
+    },
+    {
+      "id": "failure_criteria",
+      "label": "Failure Criteria",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "markdownPath": "content/markdown/aaa/validation/failure-criteria.md"
+    },
+    {
+      "id": "known_tensions",
+      "label": "Known Tensions",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "markdownPath": "content/markdown/aaa/validation/known-tensions.md"
+    },
+    {
+      "id": "no_go_theorems",
+      "label": "No Go Theorems",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md"
+    },
+    {
+      "id": "parameter_ledger",
+      "label": "Parameter Ledger",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md"
+    },
+    {
+      "id": "reaction_ledger",
+      "label": "Reaction Ledger",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md"
+    },
+    {
+      "id": "validation_protocols",
+      "label": "Validation Protocols",
+      "radius": 2.688,
+      "color": "#2c567a",
+      "markdownPath": "content/markdown/aaa/validation/validation-protocols.md"
     }
   ]
 }
