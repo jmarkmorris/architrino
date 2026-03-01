@@ -8,6 +8,36 @@ const MARKDOWN_DIR = "content/markdown";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
 const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
+const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.json";
+const LEGACY_AUTOGEN_ALLOWLIST_PATH =
+  "scripts/config/legacy-scene-autogen-allowlist.json";
+// Explicit-only migration policy:
+// Scene authoring should converge on explicit objects/subScenes/markdownPath links.
+// These legacy scene-level automation fields remain temporarily supported for migration.
+const LEGACY_AUTOGEN_SCENE_FIELDS = [
+  "autoSphereRing",
+  "markdown",
+  "autoMarkdownPath",
+  "autoMarkdownDirectory",
+  "autoMarkdownSection",
+  "autoMarkdownHeadingLevel",
+  "autoMarkdownIncludeExistingInLayout",
+  "autoMarkdownNodeRadius",
+  "autoMarkdownRingRadius",
+  "autoMarkdownMaxRingCount",
+  "autoMarkdownGridSpacing",
+  "autoMarkdownColumns",
+  "autoMarkdownColor",
+  "autoMarkdownSubdirectories",
+  "autoMarkdownExcludePaths",
+  "autoMarkdownIndexPaths",
+  "autoMarkdownPlainPaths",
+  "autoMarkdownPlainSectionPaths",
+  "autoMarkdownPalette",
+  "autoMarkdownDefaultIndex",
+  "autoMarkdownSectionDepth",
+  "autoMarkdownOverrides",
+];
 
 const args = new Set(process.argv.slice(2));
 const wantsWrite = args.has("--write");
@@ -592,6 +622,128 @@ function deriveMarkdownConfig(markdownPolicy) {
   return derived;
 }
 
+function collectLegacyAutogenSceneFields(scene) {
+  if (!scene || typeof scene !== "object") {
+    return [];
+  }
+  const present = [];
+  for (const field of LEGACY_AUTOGEN_SCENE_FIELDS) {
+    if (!(field in scene)) {
+      continue;
+    }
+    if (field === "autoSphereRing") {
+      if (scene.autoSphereRing === true) {
+        present.push(field);
+      }
+      continue;
+    }
+    if (field === "markdown") {
+      if (scene.markdown && typeof scene.markdown === "object") {
+        present.push(field);
+      }
+      continue;
+    }
+    if (Array.isArray(scene[field])) {
+      if (scene[field].length > 0) {
+        present.push(field);
+      }
+      continue;
+    }
+    if (scene[field] !== null && scene[field] !== undefined && scene[field] !== "") {
+      present.push(field);
+    }
+  }
+  return present;
+}
+
+function readLegacyAutogenAllowlist() {
+  const parsed = readJson(LEGACY_AUTOGEN_ALLOWLIST_PATH);
+  if (!parsed.ok) {
+    errors.push(
+      `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: failed to parse JSON (${parsed.error.message})`
+    );
+    return { scenes: new Set(), removeBy: null };
+  }
+  const entries = parsed.data?.scenes;
+  if (!Array.isArray(entries)) {
+    errors.push(`${LEGACY_AUTOGEN_ALLOWLIST_PATH}: expected { "scenes": [...] }`);
+    return { scenes: new Set(), removeBy: null };
+  }
+  const scenes = new Set();
+  entries.forEach((entry, index) => {
+    if (typeof entry !== "string") {
+      errors.push(
+        `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: scenes[${index}] must be a string`
+      );
+      return;
+    }
+    const normalized = normalizePath(entry);
+    if (!normalized) {
+      errors.push(
+        `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: scenes[${index}] must not be empty`
+      );
+      return;
+    }
+    scenes.add(normalized);
+  });
+  const removeBy =
+    typeof parsed.data?.removeBy === "string" && parsed.data.removeBy.trim()
+      ? parsed.data.removeBy.trim()
+      : null;
+  return { scenes, removeBy };
+}
+
+function readStableIdLabelLock() {
+  const parsed = readJson(STABLE_ID_LABEL_LOCK_PATH);
+  if (!parsed.ok) {
+    errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: failed to parse JSON (${parsed.error.message})`);
+    return { entries: new Map() };
+  }
+  const entriesRaw = parsed.data?.entries;
+  if (!entriesRaw || typeof entriesRaw !== "object" || Array.isArray(entriesRaw)) {
+    errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: expected { "entries": { ... } }`);
+    return { entries: new Map() };
+  }
+
+  const entries = new Map();
+  for (const [scenePathRaw, lock] of Object.entries(entriesRaw)) {
+    const scenePath = normalizePath(scenePathRaw);
+    if (!scenePath) {
+      errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: scene path key must not be empty`);
+      continue;
+    }
+    if (!lock || typeof lock !== "object" || Array.isArray(lock)) {
+      errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: ${scenePath}: lock entry must be an object`);
+      continue;
+    }
+    const sceneId = asText(lock.sceneId);
+    const sceneName = asText(lock.sceneName);
+    const objectsRaw = lock.objects;
+    if (!objectsRaw || typeof objectsRaw !== "object" || Array.isArray(objectsRaw)) {
+      errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: ${scenePath}: objects must be an object`);
+      continue;
+    }
+    const objectLabels = new Map();
+    for (const [objectIdRaw, labelRaw] of Object.entries(objectsRaw)) {
+      const objectId = asText(objectIdRaw);
+      if (!objectId) {
+        errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: ${scenePath}: object id key must not be empty`);
+        continue;
+      }
+      const label = asText(labelRaw);
+      if (!label) {
+        errors.push(
+          `${STABLE_ID_LABEL_LOCK_PATH}: ${scenePath}: object "${objectId}" label must be non-empty`
+        );
+        continue;
+      }
+      objectLabels.set(objectId, label);
+    }
+    entries.set(scenePath, { sceneId, sceneName, objectLabels });
+  }
+  return { entries };
+}
+
 function listMarkdownFilesInDirectory(directory, markdownFiles) {
   const normalizedDir = normalizePath(directory);
   if (!normalizedDir) {
@@ -837,10 +989,25 @@ if (!sceneSchemaResult.ok) {
 }
 
 const markdownTextByPath = new Map();
+const markdownHeadingKeyCountByPath = new Map();
 for (const markdownPath of allMarkdownFiles) {
   const absoluteMarkdownPath = path.join(rootDir, markdownPath);
   try {
-    markdownTextByPath.set(markdownPath, fs.readFileSync(absoluteMarkdownPath, "utf8"));
+    const markdownText = fs.readFileSync(absoluteMarkdownPath, "utf8");
+    markdownTextByPath.set(markdownPath, markdownText);
+    const headingCounts = new Map();
+    markdownText.split(/\r?\n/).forEach((line) => {
+      const heading = parseMarkdownHeading(line);
+      if (!heading || (heading.level !== 2 && heading.level !== 3)) {
+        return;
+      }
+      const key = normalizeMarkdownKey(heading.title);
+      if (!key) {
+        return;
+      }
+      headingCounts.set(key, (headingCounts.get(key) ?? 0) + 1);
+    });
+    markdownHeadingKeyCountByPath.set(markdownPath, headingCounts);
   } catch (error) {
     warnings.push(`${markdownPath}: failed to read markdown source (${error.message})`);
   }
@@ -979,11 +1146,72 @@ const markdownContext = {
   markdownDirectories: allMarkdownDirectories,
   markdownTextByPath,
 };
+const stableIdLabelLock = readStableIdLabelLock();
+const legacyAutogenAllowlist = readLegacyAutogenAllowlist();
+const legacyAutogenScenes = [];
+
+if (legacyAutogenAllowlist.scenes.size > 0) {
+  errors.push(
+    `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: migration allowlist must be empty now; remove entries instead of allowlisting legacy auto-generation fields`
+  );
+}
+
+if (stableIdLabelLock.entries.size) {
+  notes.push(`Stable ID/label lock coverage: ${stableIdLabelLock.entries.size} scene file(s).`);
+}
+stableIdLabelLock.entries.forEach((lock, scenePath) => {
+  const sceneData = sceneDataByPath.get(scenePath);
+  if (!sceneData) {
+    warnings.push(`${STABLE_ID_LABEL_LOCK_PATH}: locked scene not found (${scenePath})`);
+    return;
+  }
+  const scene = sceneData.scene ?? {};
+  const actualSceneId = asText(scene.id);
+  const actualSceneName = asText(scene.name);
+  if (lock.sceneId && actualSceneId !== lock.sceneId) {
+    errors.push(
+      `${scenePath}: scene.id changed from locked "${lock.sceneId}" to "${actualSceneId}"`
+    );
+  }
+  if (lock.sceneName && actualSceneName !== lock.sceneName) {
+    errors.push(
+      `${scenePath}: scene.name changed from locked "${lock.sceneName}" to "${actualSceneName}"`
+    );
+  }
+
+  const objects = Array.isArray(sceneData.objects) ? sceneData.objects : [];
+  const objectLabelById = new Map();
+  objects.forEach((obj) => {
+    const objectId = asText(obj?.id);
+    if (!objectId) {
+      return;
+    }
+    const objectLabel = asText(obj?.label) || objectId;
+    objectLabelById.set(objectId, objectLabel);
+  });
+
+  lock.objectLabels.forEach((expectedLabel, objectId) => {
+    if (!objectLabelById.has(objectId)) {
+      errors.push(`${scenePath}: locked object id missing "${objectId}"`);
+      return;
+    }
+    const actualLabel = objectLabelById.get(objectId);
+    if (actualLabel !== expectedLabel) {
+      errors.push(
+        `${scenePath}: object "${objectId}" label changed from locked "${expectedLabel}" to "${actualLabel}"`
+      );
+    }
+  });
+});
 
 for (const scenePath of sceneConfigs) {
   const data = sceneDataByPath.get(scenePath);
   const scene = data.scene || {};
   const objects = Array.isArray(data.objects) ? data.objects : [];
+  const legacyFields = collectLegacyAutogenSceneFields(scene);
+  if (legacyFields.length) {
+    legacyAutogenScenes.push({ scenePath, fields: legacyFields });
+  }
 
   if (sceneSchema) {
     validateSchemaValue(scenePath, data, sceneSchema, []);
@@ -1056,6 +1284,17 @@ for (const scenePath of sceneConfigs) {
         markdownFileLower
       );
     }
+    if (typeof obj?.markdownPath === "string" && typeof obj?.markdownSection === "string") {
+      const normalizedPath = normalizePath(obj.markdownPath);
+      const sectionKey = normalizeMarkdownKey(obj.markdownSection);
+      const headingCounts = markdownHeadingKeyCountByPath.get(normalizedPath);
+      const matches = headingCounts?.get(sectionKey) ?? 0;
+      if (matches > 1) {
+        warnings.push(
+          `${scenePath} -> ${objectLabel}.markdownSection: ambiguous section key "${obj.markdownSection}" in ${normalizedPath} (${matches} matching headings)`
+        );
+      }
+    }
     if (obj?.subScenes === undefined) {
       return;
     }
@@ -1080,6 +1319,38 @@ for (const scenePath of sceneConfigs) {
     });
   });
 }
+
+if (legacyAutogenScenes.length) {
+  const allowlistedCount = legacyAutogenScenes.filter((entry) =>
+    legacyAutogenAllowlist.scenes.has(entry.scenePath)
+  ).length;
+  notes.push(
+    `Explicit-only migration: ${legacyAutogenScenes.length} scene file(s) still use legacy auto-generation fields (${allowlistedCount} allowlisted).`
+  );
+  if (legacyAutogenAllowlist.removeBy) {
+    notes.push(
+      `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: remove allowlist by ${legacyAutogenAllowlist.removeBy}`
+    );
+  }
+  legacyAutogenScenes
+    .sort((a, b) => a.scenePath.localeCompare(b.scenePath))
+    .forEach((entry) => {
+      if (!legacyAutogenAllowlist.scenes.has(entry.scenePath)) {
+        errors.push(
+          `${entry.scenePath}: uses legacy auto-generation fields but is not allowlisted in ${LEGACY_AUTOGEN_ALLOWLIST_PATH}`
+        );
+      }
+      notes.push(`${entry.scenePath}: ${entry.fields.join(", ")}`);
+    });
+}
+
+legacyAutogenAllowlist.scenes.forEach((scenePath) => {
+  if (!sceneConfigSet.has(scenePath)) {
+    notes.push(
+      `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: allowlisted scene not found (${scenePath})`
+    );
+  }
+});
 
 const wroteFiles = [];
 if (mode === "write") {

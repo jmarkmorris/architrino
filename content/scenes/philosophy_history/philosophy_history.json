@@ -5,38 +5,7 @@
     "name": "Philosophy-History",
     "units": "relative",
     "wrapLabels": true,
-    "autoSphereRing": true,
-    "markdown": {
-      "source": {
-        "type": "directory",
-        "path": "content/markdown/aaa/philosophy-history",
-        "subdirectories": false
-      },
-      "layout": {
-        "includeExisting": true,
-        "nodeRadius": 2.688,
-        "ringRadius": 12
-      },
-      "render": {
-        "defaultMode": "index",
-        "headingLevel": 2,
-        "sectionDepth": 2
-      },
-      "overrides": [
-        {
-          "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-          "mode": "doc"
-        },
-        {
-          "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-          "sectionDepth": 1
-        },
-        {
-          "path": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
-          "mode": "doc"
-        }
-      ]
-    }
+    "layoutMode": "ring"
   },
   "objects": [
     {
@@ -44,11 +13,6 @@
       "label": "Out of the Ashes",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "position": [
-        8.0,
-        0.0,
-        0.0
-      ],
       "subScenes": [
         "content/scenes/philosophy_history/out_of_the_ashes.json"
       ],
@@ -61,14 +25,82 @@
       "label": "Unknowns & Paradoxes",
       "radius": 2.688,
       "color": "#5a3f73",
-      "position": [
-        -8.0,
-        0.0,
-        0.0
-      ],
       "subScenes": [
         "content/scenes/philosophy_history/unknowns_paradoxes.json"
       ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "crisis_in_physics",
+      "label": "Crisis in Physics",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "historical_context_missed_opportunities",
+      "label": "Historical Context and Missed Opportunities",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "lorentz_ether_comparison",
+      "label": "Lorentz Ether Comparison",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "markdownPath": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "major_thinkers",
+      "label": "Major Thinkers",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "markdownAutoIndex": false,
+      "subScenes": [
+        "content/scenes/philosophy_history/major_thinkers.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "religious_ontologies",
+      "label": "Religious Ontologies",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "theory_mapping",
+      "label": "Theory Mapping",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
       "motion": {
         "type": "fixed"
       }

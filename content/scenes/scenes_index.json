@@ -26,11 +26,6 @@
       "path": "content/scenes/chemistry/periodic_table_scene.json"
     },
     {
-      "id": "cosmology_background_dynamics",
-      "name": "Background Expansion Dynamics",
-      "path": "content/scenes/cosmology/background_expansion_dynamics.json"
-    },
-    {
       "id": "cosmology",
       "name": "Cosmology",
       "path": "content/scenes/cosmology/cosmology.json"
@@ -51,11 +46,6 @@
       "path": "content/scenes/cosmology/galaxy.json"
     },
     {
-      "id": "cosmology_growth_dark_sector",
-      "name": "Growth and Dark Sector",
-      "path": "content/scenes/cosmology/growth_dark_sector.json"
-    },
-    {
       "id": "intracluster_medium",
       "name": "Intracluster Medium",
       "path": "content/scenes/cosmology/intracluster_medium.json"
@@ -66,19 +56,9 @@
       "path": "content/scenes/cosmology/moon.json"
     },
     {
-      "id": "cosmology_observation_api",
-      "name": "Observation API and Ontology",
-      "path": "content/scenes/cosmology/observation_api_ontology.json"
-    },
-    {
       "id": "planet",
       "name": "Planet",
       "path": "content/scenes/cosmology/planet.json"
-    },
-    {
-      "id": "cosmology_early_regimes",
-      "name": "Primordial and Early Regimes",
-      "path": "content/scenes/cosmology/primordial_early_regimes.json"
     },
     {
       "id": "solar_system",
@@ -89,11 +69,6 @@
       "id": "star_interior",
       "name": "Star Interior",
       "path": "content/scenes/cosmology/star.json"
-    },
-    {
-      "id": "cosmology_tensions_validation",
-      "name": "Tensions and Validation Coupling",
-      "path": "content/scenes/cosmology/tensions_validation_coupling.json"
     },
     {
       "id": "universe",
@@ -766,44 +741,9 @@
       "path": "content/scenes/quantum/quantum.json"
     },
     {
-      "id": "cosmic_censorship",
-      "name": "Cosmic Censorship",
-      "path": "content/scenes/spacetime/cosmic_censorship.json"
-    },
-    {
-      "id": "spacetime_gr_bridge",
-      "name": "General Relativity Bridge and Effective Limits",
-      "path": "content/scenes/spacetime/gr_bridge_limits.json"
-    },
-    {
-      "id": "gravity",
-      "name": "Gravity",
-      "path": "content/scenes/spacetime/gravity.json"
-    },
-    {
-      "id": "spacetime_metric_clocks",
-      "name": "Metric Emergence and Clocks",
-      "path": "content/scenes/spacetime/metric_emergence_clocks.json"
-    },
-    {
-      "id": "spacetime_precision_tests",
-      "name": "Precision and Weak-Field Tests",
-      "path": "content/scenes/spacetime/precision_weak_field_tests.json"
-    },
-    {
       "id": "spacetime",
       "name": "Spacetime Assemblies",
       "path": "content/scenes/spacetime/spacetime.json"
-    },
-    {
-      "id": "spacetime_strong_field",
-      "name": "Strong Field and Horizons",
-      "path": "content/scenes/spacetime/strong_field_horizons.json"
-    },
-    {
-      "id": "spacetime_wave_channel",
-      "name": "Wave and Observables Channel",
-      "path": "content/scenes/spacetime/wave_phenomenology_channel.json"
     },
     {
       "id": "bottom",
@@ -876,11 +816,6 @@
       "path": "content/scenes/standard-model-particles/up_quark.json"
     },
     {
-      "id": "fermion_generation_color",
-      "name": "Fermion Generation and Color",
-      "path": "content/scenes/standard-model-theory/fermion_generation_color.json"
-    },
-    {
       "id": "validation_simulations",
       "name": "Validation Simulations",
       "path": "content/scenes/validation/simulations.json"
@@ -896,9 +831,49 @@
       "path": "content/scenes/assemblies/assemblies.json"
     },
     {
-      "id": "bosons_assemblies",
-      "name": "Bosons",
-      "path": "content/scenes/assemblies/bosons.json"
+      "id": "fermions",
+      "name": "Fermions",
+      "path": "content/scenes/assemblies/fermions.json"
+    },
+    {
+      "id": "color_charge_su3",
+      "name": "Color Charge SU3",
+      "path": "content/scenes/standard-model-theory/color-charge-su3.json"
+    },
+    {
+      "id": "validation_action_energy",
+      "name": "Action-Energy",
+      "path": "content/scenes/validation/action_energy.json"
+    },
+    {
+      "id": "major_thinkers_classical_modern",
+      "name": "Classical & Early Modern Metaphysics + Mechanism",
+      "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
+    },
+    {
+      "id": "major_thinkers_info_computation_science",
+      "name": "Information/Computation + Philosophy of Science",
+      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
+    },
+    {
+      "id": "major_thinkers_qft_standard_model",
+      "name": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)",
+      "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
+    },
+    {
+      "id": "major_thinkers_quantum_foundations",
+      "name": "Quantum Foundations & Hidden-Variable Landscape",
+      "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
+    },
+    {
+      "id": "major_thinkers_relativity_cosmology",
+      "name": "Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)",
+      "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json"
+    },
+    {
+      "id": "major_thinkers",
+      "name": "Major Thinkers",
+      "path": "content/scenes/philosophy_history/major_thinkers.json"
     }
   ]
 }

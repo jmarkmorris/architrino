@@ -5,22 +5,7 @@
     "name": "Quantum",
     "units": "relative",
     "wrapLabels": true,
-    "autoSphereRing": true,
-    "markdown": {
-      "source": {
-        "type": "directory",
-        "path": "content/markdown/aaa/quantum",
-        "subdirectories": false
-      },
-      "layout": {
-        "includeExisting": true,
-        "nodeRadius": 2.688,
-        "ringRadius": 12
-      },
-      "render": {
-        "defaultMode": "doc"
-      }
-    }
+    "layoutMode": "ring"
   },
   "objects": [
     {
@@ -29,10 +14,129 @@
       "radius": 2.688,
       "color": "#3a5f9f",
       "position": [
-        4.5,
-        0.0,
-        0.0
+        7.05,
+        9.71,
+        0
       ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
+      "label": "Bell's Theorem: QM Foundations vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [
+        11.41,
+        3.71,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "measurement_problem_and_collapse",
+      "label": "Measurement Problem and Collapse",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        11.41,
+        -3.71,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/quantum/collapse-problem.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
+      "label": "Entanglement and Nonlocality: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        7.05,
+        -9.71,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
+      "label": "Pilot-Wave Character: de Broglie\u2013Bohm (QM) vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        -7.05,
+        -9.71,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "reality_causality_and_navigation",
+      "label": "Reality, Causality, and Navigation",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "position": [
+        -11.41,
+        3.71,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "superposition_mechanism_traditional_vs_architrino_assembly_architecture",
+      "label": "Superposition Mechanism: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+      "radius": 2.688,
+      "color": "#1c2a4f",
+      "position": [
+        -7.05,
+        9.71,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/quantum/superposition-mechanism.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "wavefunction_ontology",
+      "label": "Wavefunction Ontology",
+      "radius": 2.688,
+      "color": "#3c6a7a",
+      "position": [
+        0,
+        12,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/quantum/wavefunction-ontology.md",
+      "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
         "type": "fixed"

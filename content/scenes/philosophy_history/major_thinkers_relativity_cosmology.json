@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "major_thinkers_relativity_cosmology",
+    "name": "Relativity, Gravity & Cosmology (Spacetime Ontology \u2192 Quantum Gravity)",
+    "units": "relative",
+    "wrapLabels": true,
+    "layoutMode": "ring"
+  },
+  "objects": [
+    {
+      "id": "thinker_ernst_mach_1838_1916",
+      "label": "Ernst Mach (1838\u20131916)",
+      "radius": 2.2,
+      "color": "#243d8f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Ernst Mach (1838\u20131916)"
+    },
+    {
+      "id": "thinker_hendrik_lorentz_1853_1928",
+      "label": "Hendrik Lorentz (1853\u20131928)",
+      "radius": 2.2,
+      "color": "#2f6b6f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Hendrik Lorentz (1853\u20131928)"
+    },
+    {
+      "id": "thinker_albert_einstein_1879_1955_special_relativity",
+      "label": "Albert Einstein (1879\u20131955) \u2014 Special Relativity",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Albert Einstein (1879\u20131955) \u2014 Special Relativity"
+    },
+    {
+      "id": "thinker_albert_einstein_1879_1955_general_relativity",
+      "label": "Albert Einstein (1879\u20131955) \u2014 General Relativity",
+      "radius": 2.2,
+      "color": "#4b0082",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Albert Einstein (1879\u20131955) \u2014 General Relativity"
+    },
+    {
+      "id": "thinker_andrei_sakharov_1921_1989_induced_gravity",
+      "label": "Andrei Sakharov (1921\u20131989) \u2014 Induced Gravity",
+      "radius": 2.2,
+      "color": "#3a5f9f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Andrei Sakharov (1921\u20131989) \u2014 Induced Gravity"
+    },
+    {
+      "id": "thinker_roger_penrose_1931_conformal_cyclic_cosmology_twistor_theory",
+      "label": "Roger Penrose (1931\u2013) \u2014 Conformal Cyclic Cosmology, Twistor Theory",
+      "radius": 2.2,
+      "color": "#2f4f7a",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Roger Penrose (1931\u2013) \u2014 Conformal Cyclic Cosmology, Twistor Theory"
+    },
+    {
+      "id": "thinker_alan_guth_1947_cosmic_inflation",
+      "label": "Alan Guth (1947\u2013) \u2014 Cosmic Inflation",
+      "radius": 2.2,
+      "color": "#3f6a5a",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Alan Guth (1947\u2013) \u2014 Cosmic Inflation"
+    },
+    {
+      "id": "thinker_loop_quantum_gravity_ashtekar_1949_smolin_1955_rovelli_1956",
+      "label": "Loop Quantum Gravity (Ashtekar 1949\u2013, Smolin 1955\u2013, Rovelli 1956\u2013)",
+      "radius": 2.2,
+      "color": "#6a3c3c",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Loop Quantum Gravity (Ashtekar 1949\u2013, Smolin 1955\u2013, Rovelli 1956\u2013)"
+    },
+    {
+      "id": "thinker_string_theory_witten_1951_polchinski_1954_2018_et_al",
+      "label": "String Theory (Witten 1951\u2013, Polchinski 1954\u20132018, et al.)",
+      "radius": 2.2,
+      "color": "#7a4a1f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "String Theory (Witten 1951\u2013, Polchinski 1954\u20132018, et al.)"
+    },
+    {
+      "id": "thinker_lee_smolin_1955_the_trouble_with_physics_temporal_naturalism",
+      "label": "Lee Smolin (1955\u2013) \u2014 The Trouble With Physics, Temporal Naturalism",
+      "radius": 2.2,
+      "color": "#355f9a",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Lee Smolin (1955\u2013) \u2014 The Trouble With Physics, Temporal Naturalism"
+    },
+    {
+      "id": "thinker_erik_verlinde_1962_entropic_gravity",
+      "label": "Erik Verlinde (1962\u2013) \u2014 Entropic Gravity",
+      "radius": 2.2,
+      "color": "#243d8f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Erik Verlinde (1962\u2013) \u2014 Entropic Gravity"
+    },
+    {
+      "id": "thinker_sabine_hossenfelder_1976_lost_in_math_critique_of_beauty",
+      "label": "Sabine Hossenfelder (1976\u2013) \u2014 Lost in Math, Critique of \"Beauty\"",
+      "radius": 2.2,
+      "color": "#2f6b6f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Sabine Hossenfelder (1976\u2013) \u2014 Lost in Math, Critique of \"Beauty\""
+    }
+  ]
+}

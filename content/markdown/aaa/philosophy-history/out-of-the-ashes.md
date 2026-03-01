@@ -86,11 +86,11 @@ You are not a stranger in this universe. You *are* the universe. For a brief mom
 > We do not own our substance; we borrow it.
 > We do not own our time; we share it.
 >
-> Our duty is to the Pattern: To protect life, to seek truth, and to keep the complexity alive.
+> Our duty is to the pattern: To protect life, to seek truth, and to keep the complexity alive.
 >
 > And when our time ends, we do not fear.
 > We release the knot.
 > We return to the source.
 > We become the fuel for stars yet to be born.
 >
-> There is no end. There is only the next Assembly."
+> There is no end. There is only the next assembly."

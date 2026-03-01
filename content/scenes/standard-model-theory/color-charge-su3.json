@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "fermion_generation_color",
-    "name": "Fermion Generation and Color",
+    "id": "color_charge_su3",
+    "name": "Color Charge SU3",
     "units": "relative",
     "scaleBandLog10m": [
       0,

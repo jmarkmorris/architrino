@@ -710,7 +710,7 @@ const orderedMarkdownDocNodes = [...markdownDocNodes].sort((a, b) =>
   a.path.localeCompare(b.path)
 );
 
-const searchEntries = [
+const rawSearchEntries = [
   ...orderedSceneNodes,
   ...orderedMarkdownIndexNodes,
   ...orderedMarkdownDocNodes,
@@ -722,6 +722,21 @@ const searchEntries = [
     path: node.searchTarget,
     nodeType: node.nodeType,
   }));
+
+// Avoid duplicate search hits when a scene and markdown directory share the same display name.
+const sceneSearchNames = new Set(
+  rawSearchEntries
+    .filter((entry) => entry.nodeType === "scene")
+    .map((entry) => String(entry.name || "").trim().toLowerCase())
+    .filter(Boolean)
+);
+const searchEntries = rawSearchEntries.filter((entry) => {
+  if (entry.nodeType !== "markdown_index") {
+    return true;
+  }
+  const normalizedName = String(entry.name || "").trim().toLowerCase();
+  return normalizedName ? !sceneSearchNames.has(normalizedName) : true;
+});
 
 for (const edge of edges) {
   if (!nodeById.has(edge.from)) {

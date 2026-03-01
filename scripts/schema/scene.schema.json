@@ -24,6 +24,11 @@
         "hideScaleLabels": { "type": "boolean" },
         "wrapLabels": { "type": "boolean" },
         "centerOn": { "type": "string" },
+        "layoutMode": {
+          "type": "string",
+          "enum": ["manual", "ring", "grid"]
+        },
+        "layoutColumns": { "type": "integer", "minimum": 1 },
         "markdownPath": { "type": "string" },
         "markdownSection": { "type": "string" },
         "markdownColumns": { "type": "number" },
@@ -150,6 +155,7 @@
             "maxItems": 3,
             "items": { "type": "number" }
           },
+          "fixedPosition": { "type": "boolean" },
           "subScenes": {
             "type": "array",
             "items": { "type": "string" }

@@ -1,4 +1,79 @@
 export function createSceneGraphRuntime(deps) {
+  function computeExplicitRingPositions(nodes) {
+    const count = Array.isArray(nodes) ? nodes.length : 0;
+    if (!count) {
+      return null;
+    }
+    if (count === 1) {
+      return [[0, 0, 0]];
+    }
+
+    const haloScale = 1.18;
+    const guardBandMin = 0.15;
+    const guardBandRatio = 0.08;
+    const startAngle = Math.PI / 2;
+    const maxNodeRadius = Math.max(
+      1,
+      ...nodes.map((node) =>
+        Number.isFinite(node?.radius) && node.radius > 0 ? node.radius : 1
+      )
+    );
+    const haloDiameter = maxNodeRadius * haloScale * 2;
+    const guardBand = Math.max(guardBandMin, haloDiameter * guardBandRatio);
+    const requiredChord = haloDiameter + guardBand;
+    const ringRadius = Math.max(6, requiredChord / (2 * Math.sin(Math.PI / count)));
+    const positions = [];
+
+    for (let i = 0; i < count; i += 1) {
+      const angle = (i / count) * Math.PI * 2 + startAngle;
+      positions.push([
+        Number((Math.cos(angle) * ringRadius).toFixed(2)),
+        Number((Math.sin(angle) * ringRadius).toFixed(2)),
+        0,
+      ]);
+    }
+    return positions;
+  }
+
+  function computeExplicitGridPositions(nodes, requestedColumns = null) {
+    const count = Array.isArray(nodes) ? nodes.length : 0;
+    if (!count) {
+      return null;
+    }
+    const maxNodeRadius = Math.max(
+      1,
+      ...nodes.map((node) =>
+        Number.isFinite(node?.radius) && node.radius > 0 ? node.radius : 1
+      )
+    );
+    // Match ring guard-band logic for grid packing so spheres can be larger
+    // while keeping a consistent non-touching halo gap.
+    const haloScale = 1.18;
+    const guardBandMin = 0.15;
+    const guardBandRatio = 0.08;
+    const haloDiameter = maxNodeRadius * haloScale * 2;
+    const guardBand = Math.max(guardBandMin, haloDiameter * guardBandRatio);
+    const spacing = Number((haloDiameter + guardBand).toFixed(2));
+    const columns =
+      Number.isInteger(requestedColumns) && requestedColumns > 0
+        ? requestedColumns
+        : Math.max(2, Math.ceil(Math.sqrt(count * 1.6)));
+    const rows = Math.ceil(count / columns);
+    const startX = -((columns - 1) * spacing) / 2;
+    const startY = ((rows - 1) * spacing) / 2;
+    const positions = [];
+    for (let i = 0; i < count; i += 1) {
+      const row = Math.floor(i / columns);
+      const col = i % columns;
+      positions.push([
+        Number((startX + col * spacing).toFixed(2)),
+        Number((startY - row * spacing).toFixed(2)),
+        0,
+      ]);
+    }
+    return positions;
+  }
+
   function buildLevel(levelId) {
     if (deps.levels.has(levelId)) {
       return deps.levels.get(levelId);
@@ -14,17 +89,32 @@ export function createSceneGraphRuntime(deps) {
     const ringTargetByMesh = new Map();
     let primaryBinaryNode = null;
 
-    const useAutoSphereRing =
+    const explicitLayoutMode =
+      typeof config.layoutMode === "string" ? config.layoutMode : null;
+    const useLegacyAutoSphereRing =
+      explicitLayoutMode !== "manual" &&
       !!config.autoSphereRing &&
       !config.autoMarkdownDirectory &&
       config.layout === "static";
-    const ringNodes = useAutoSphereRing
+    const useExplicitRingLayout =
+      config.layout === "static" && explicitLayoutMode === "ring";
+    const useExplicitGridLayout =
+      config.layout === "static" && explicitLayoutMode === "grid";
+    const useRingLayout = useLegacyAutoSphereRing || useExplicitRingLayout;
+    const useStructuredLayout = useRingLayout || useExplicitGridLayout;
+    const ringNodes = useStructuredLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
       : [];
-    const ringLayout = useAutoSphereRing ? deps.computeRingLayout(ringNodes) : null;
+    const ringLayout = useLegacyAutoSphereRing ? deps.computeRingLayout(ringNodes) : null;
+    const explicitRingPositions = useExplicitRingLayout
+      ? computeExplicitRingPositions(ringNodes)
+      : null;
+    const explicitGridPositions = useExplicitGridLayout
+      ? computeExplicitGridPositions(ringNodes, config.layoutColumns)
+      : null;
     const useClockwiseOrder =
       !!ringLayout &&
-      !!config.autoSphereRing &&
+      useLegacyAutoSphereRing &&
       (config.autoMarkdownPath || config.autoMarkdownDirectory || config.autoMarkdownSection);
     let ringIndex = 0;
 
@@ -38,7 +128,11 @@ export function createSceneGraphRuntime(deps) {
       if (nodeData.category === "legend") {
         return;
       }
-      if (ringLayout) {
+      if (config.labelDocIconOwnLine === true) {
+        nodeData.docIconOwnLine = true;
+      }
+      const usesFixedPosition = nodeData.fixedPosition === true;
+      if (ringLayout && !usesFixedPosition) {
         const positionIndex =
           useClockwiseOrder && ringIndex > 0
             ? ringLayout.positions.length - ringIndex
@@ -48,6 +142,18 @@ export function createSceneGraphRuntime(deps) {
           nodeData.position = [pos[0], pos[1], 0];
         }
         nodeData.radius = ringLayout.nodeRadius;
+        ringIndex += 1;
+      } else if (explicitRingPositions && !usesFixedPosition) {
+        const pos = explicitRingPositions[ringIndex];
+        if (pos) {
+          nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
+        }
+        ringIndex += 1;
+      } else if (explicitGridPositions && !usesFixedPosition) {
+        const pos = explicitGridPositions[ringIndex];
+        if (pos) {
+          nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
+        }
         ringIndex += 1;
       }
       const node = deps.createNode(nodeData);
@@ -220,12 +326,11 @@ export function createSceneGraphRuntime(deps) {
       ringTargetByMesh,
       primaryBinaryNode,
       layout: config.layout,
+      layoutMode: config.layoutMode ?? null,
       links: [],
     };
 
-    if (level.id === deps.rootScenePath) {
-      deps.layoutRootLevel(level);
-    }
+    deps.layoutRootLevel(level);
     level.nodes.forEach((node) => {
       node.basePosition = node.group.position.clone();
     });

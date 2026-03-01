@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "major_thinkers_qft_standard_model",
+    "name": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)",
+    "units": "relative",
+    "wrapLabels": true,
+    "layoutMode": "ring"
+  },
+  "objects": [
+    {
+      "id": "thinker_paul_dirac_1902_1984",
+      "label": "Paul Dirac (1902\u20131984)",
+      "radius": 2.2,
+      "color": "#243d8f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Paul Dirac (1902\u20131984)"
+    },
+    {
+      "id": "thinker_richard_feynman_1918_1988",
+      "label": "Richard Feynman (1918\u20131988)",
+      "radius": 2.2,
+      "color": "#2f6b6f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Richard Feynman (1918\u20131988)"
+    },
+    {
+      "id": "thinker_abdus_salam_1926_1996_sheldon_glashow_1932_steven_weinberg_1933_2021_electroweak_unification",
+      "label": "Abdus Salam (1926\u20131996), Sheldon Glashow (1932\u2013), Steven Weinberg (1933\u20132021) \u2014 Electroweak Unification",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Abdus Salam (1926\u20131996), Sheldon Glashow (1932\u2013), Steven Weinberg (1933\u20132021) \u2014 Electroweak Unification"
+    },
+    {
+      "id": "thinker_murray_gell_mann_1929_2019_and_the_quark_model",
+      "label": "Murray Gell-Mann (1929\u20132019) & the Quark Model",
+      "radius": 2.2,
+      "color": "#4b0082",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Murray Gell-Mann (1929\u20132019) & the Quark Model"
+    },
+    {
+      "id": "thinker_gerard_t_hooft_1946_deterministic_quantum_mechanics",
+      "label": "Gerard 't Hooft (1946\u2013) \u2014 Deterministic Quantum Mechanics",
+      "radius": 2.2,
+      "color": "#3a5f9f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Gerard 't Hooft (1946\u2013) \u2014 Deterministic Quantum Mechanics"
+    }
+  ]
+}

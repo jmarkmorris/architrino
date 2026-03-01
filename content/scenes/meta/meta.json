@@ -4,32 +4,76 @@
     "id": "meta",
     "name": "Archie",
     "units": "relative",
-    "autoSphereRing": true,
+    "layoutMode": "ring",
     "wrapLabels": true,
-    "hideScaleLabels": true,
-    "markdown": {
-      "source": {
-        "type": "directory",
-        "path": "content/markdown/aaa/archie"
-      },
-      "layout": {
-        "includeExisting": true
-      },
-      "render": {
-        "defaultMode": "doc",
-        "columns": 1
-      }
-    }
+    "hideScaleLabels": true
   },
   "objects": [
     {
       "id": "meta_composer",
       "label": "Composer",
-      "radius": 1.1,
+      "radius": 2.2,
       "color": "#7ee0d7",
       "subScenes": [
         "content/scenes/meta/composer.json"
       ]
+    },
+    {
+      "id": "meta_about",
+      "label": "About",
+      "radius": 2.2,
+      "color": "#243d8f",
+      "markdownPath": "content/markdown/aaa/archie/about.md"
+    },
+    {
+      "id": "meta_glossary",
+      "label": "Glossary",
+      "radius": 2.2,
+      "color": "#2f6b6f",
+      "markdownPath": "content/markdown/aaa/archie/glossary.md",
+      "markdownColumns": 1
+    },
+    {
+      "id": "meta_help",
+      "label": "Help",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "markdownPath": "content/markdown/aaa/archie/help.md"
+    },
+    {
+      "id": "meta_key",
+      "label": "Key",
+      "radius": 2.2,
+      "color": "#4b0082",
+      "markdownPath": "content/markdown/aaa/archie/key.md"
+    },
+    {
+      "id": "meta_mathematical_style_guide",
+      "label": "Mathematical Style Guide",
+      "radius": 2.2,
+      "color": "#3a5f9f",
+      "markdownPath": "content/markdown/aaa/archie/mathematical-style-guide.md"
+    },
+    {
+      "id": "meta_mathematical_terminology",
+      "label": "Mathematical Terminology",
+      "radius": 2.2,
+      "color": "#2f4f7a",
+      "markdownPath": "content/markdown/aaa/archie/mathematical-terminology.md"
+    },
+    {
+      "id": "meta_navigation",
+      "label": "Navigation",
+      "radius": 2.2,
+      "color": "#3f6a5a",
+      "markdownPath": "content/markdown/aaa/archie/navigation.md"
+    },
+    {
+      "id": "meta_settings",
+      "label": "Settings",
+      "radius": 2.2,
+      "color": "#6a3c3c",
+      "markdownPath": "content/markdown/aaa/archie/settings.md"
     }
   ]
 }

@@ -106,6 +106,7 @@ export class SceneRepository {
             radius: obj.radius ?? 1,
             color,
             position: obj.position ?? [0, 0, 0],
+            fixedPosition: obj.fixedPosition ?? false,
             category: obj.category,
             reaction: obj.reaction,
             details: obj.details ?? null,
@@ -114,6 +115,10 @@ export class SceneRepository {
             markdownSection: obj.markdownSection ?? null,
             markdownColumns: obj.markdownColumns ?? null,
             markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
+            markdownAutoIndex: obj.markdownAutoIndex ?? null,
+            markdownPlainSectionPaths: Array.isArray(obj.markdownPlainSectionPaths)
+              ? obj.markdownPlainSectionPaths
+              : [],
             binaryBands,
             glowRing: obj.glowRing ?? false,
             glowRingColor: obj.glowRingColor ?? null,
@@ -165,6 +170,12 @@ export class SceneRepository {
         const sceneId = data.scene?.id ?? null;
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
+          layoutMode:
+            typeof data.scene?.layoutMode === "string" ? data.scene.layoutMode : null,
+          layoutColumns:
+            Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
+              ? data.scene.layoutColumns
+              : null,
           nodes,
           links: Array.isArray(data.links) ? data.links : [],
           sceneName,
@@ -208,6 +219,7 @@ export class SceneRepository {
           autoMarkdownPlainSectionPaths: Array.isArray(markdownDerived?.autoMarkdownPlainSectionPaths)
             ? markdownDerived.autoMarkdownPlainSectionPaths
             : [],
+          labelDocIconOwnLine: data.scene?.labelDocIconOwnLine === true,
           autoMarkdownSectionDepth: markdownDerived?.autoMarkdownSectionDepth ?? null,
           autoMarkdownOverrides: markdownDerived?.autoMarkdownOverrides ?? null,
           autoMarkdownSubdirectories: markdownDerived?.autoMarkdownSubdirectories ?? false,

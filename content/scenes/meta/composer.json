@@ -4,7 +4,7 @@
     "id": "composer",
     "name": "Composer",
     "units": "relative",
-    "autoSphereRing": true,
+    "layoutMode": "ring",
     "wrapLabels": true,
     "hideScaleLabels": true
   },

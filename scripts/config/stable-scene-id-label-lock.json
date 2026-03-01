@@ -1,0 +1,244 @@
+{
+  "version": 1,
+  "entries": {
+    "content/scenes/assemblies/assemblies.json": {
+      "sceneId": "assemblies",
+      "sceneName": "Assemblies",
+      "objects": {
+        "electroweak_bosons": "Electroweak Bosons",
+        "fermions": "Fermions",
+        "gluons": "Gluons",
+        "mesons_doc": "Mesons",
+        "noether_core": "Noether Core",
+        "particle_masses": "Particle Masses",
+        "photons": "Photons",
+        "standard_model": "Standard Model Assemblies"
+      }
+    },
+    "content/scenes/assemblies/fermions.json": {
+      "sceneId": "fermions",
+      "sceneName": "Fermions",
+      "objects": {
+        "color_charge_su3": "Color Charge SU3",
+        "down_strange_bottom_quarks": "Down, Strange, Bottom Quarks",
+        "electron_muon_tau": "Electron, Muon, Tau",
+        "neutrinos": "Neutrinos",
+        "quantum_number_mapping": "Quantum Number Mapping",
+        "up_charm_top_quarks": "Up, Charm, Top Quarks",
+        "weak_mixing_ckm": "Weak Mixing CKM"
+      }
+    },
+    "content/scenes/cosmology/cosmology.json": {
+      "sceneId": "cosmology",
+      "sceneName": "Cosmology",
+      "objects": {
+        "bbn_constraints": "BBN Constraints",
+        "cmb": "CMB",
+        "cosmology_ontology": "Cosmology Ontology",
+        "dark_energy": "Dark Energy",
+        "dark_matter": "Dark Matter",
+        "expansion_mechanism": "Expansion Mechanism",
+        "hubble_s8_tensions": "Hubble and S8 Tensions",
+        "inflation_model": "Inflation Model",
+        "structure_formation": "Structure Formation"
+      }
+    },
+    "content/scenes/dynamics/dynamics.json": {
+      "sceneId": "dynamics",
+      "sceneName": "Dynamics",
+      "objects": {
+        "binary_dynamics": "Binary Dynamics",
+        "causal_action_functional": "Causal Action Functional",
+        "effective_lagrangian": "Effective Lagrangian",
+        "emergence_of_u_1_su_2": "Emergence of U(1)/SU(2)",
+        "gauge_symmetries": "Gauge Symmetries",
+        "kinetic_and_potential_energy": "Kinetic and Potential Energy",
+        "mapping_planck_scale": "Mapping Planck Scale",
+        "master_equation_of_motion": "Master Equation of Motion",
+        "mode_taxonomy": "Mode Taxonomy",
+        "quantum": "Quantum",
+        "tri_binary_dynamics": "Tri-Binary Dynamics"
+      }
+    },
+    "content/scenes/foundations/foundations.json": {
+      "sceneId": "foundations",
+      "sceneName": "Foundations",
+      "objects": {
+        "absolute_time_defense": "Absolute Time Defense",
+        "bootstrapping_the_absolute_frame": "Bootstrapping the Absolute Frame",
+        "emergence_of_structure": "Emergence of Structure",
+        "euclidean_void": "Euclidean Void",
+        "foundational_ontology": "Foundational Ontology"
+      }
+    },
+    "content/scenes/meta/composer.json": {
+      "sceneId": "composer",
+      "sceneName": "Composer",
+      "objects": {
+        "composer_export": "Export / Validate",
+        "composer_interactions": "Interactions",
+        "composer_orbit": "Orbit Editor",
+        "composer_path": "Path Editor",
+        "composer_preview": "Preview",
+        "composer_tree": "Scene Tree"
+      }
+    },
+    "content/scenes/meta/meta.json": {
+      "sceneId": "meta",
+      "sceneName": "Archie",
+      "objects": {
+        "meta_about": "About",
+        "meta_composer": "Composer",
+        "meta_glossary": "Glossary",
+        "meta_help": "Help",
+        "meta_key": "Key",
+        "meta_mathematical_style_guide": "Mathematical Style Guide",
+        "meta_mathematical_terminology": "Mathematical Terminology",
+        "meta_navigation": "Navigation",
+        "meta_settings": "Settings"
+      }
+    },
+    "content/scenes/nuclear/nuclear_atomic.json": {
+      "sceneId": "nuclear_atomic",
+      "sceneName": "Nuclear-Atomic",
+      "objects": {
+        "atom": "Atom",
+        "atomic_spectra": "Atomic Spectra",
+        "atomic_structure": "Atomic Structure",
+        "condensed_matter": "Condensed Matter",
+        "displacement_of_spacetime": "Displacement of Spacetime",
+        "leptogenesis": "Leptogenesis CP Sources",
+        "molecular_geometry": "Molecular Geometry",
+        "nuclear_binding": "Nuclear Binding",
+        "nucleon_structure": "Nucleon Structure",
+        "periodic_table": "Periodic Table"
+      }
+    },
+    "content/scenes/philosophy_history/out_of_the_ashes.json": {
+      "sceneId": "out_of_the_ashes",
+      "sceneName": "Out of the Ashes",
+      "objects": {}
+    },
+    "content/scenes/philosophy_history/philosophy_history.json": {
+      "sceneId": "philosophy_history",
+      "sceneName": "Philosophy-History",
+      "objects": {
+        "crisis_in_physics": "Crisis in Physics",
+        "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
+        "lorentz_ether_comparison": "Lorentz Ether Comparison",
+        "major_thinkers": "Major Thinkers",
+        "out_of_the_ashes_scene": "Out of the Ashes",
+        "religious_ontologies": "Religious Ontologies",
+        "theory_mapping": "Theory Mapping",
+        "unknowns_paradoxes_scene": "Unknowns & Paradoxes"
+      }
+    },
+    "content/scenes/philosophy_history/unknowns_paradoxes.json": {
+      "sceneId": "unknowns_paradoxes",
+      "sceneName": "Unknowns & Paradoxes",
+      "objects": {
+        "unknown_baryon_asymmetry": "Baryon Asymmetry",
+        "unknown_confinement_and_the_mass_gap": "Confinement and the Mass Gap",
+        "unknown_neutrino_mass_and_nature": "Neutrino Mass and Nature",
+        "unknown_proton_stability": "Proton Stability",
+        "unknown_quantum_gravity_and_renormalizability": "Quantum Gravity and Renormalizability",
+        "unknown_the_arrow_of_time": "The Arrow of Time",
+        "unknown_the_black_hole_information_paradox": "The Black Hole Information Paradox",
+        "unknown_the_cosmological_constant_problem": "The Cosmological Constant Problem",
+        "unknown_the_fermi_paradox": "The Fermi Paradox",
+        "unknown_the_flavor_problem": "The Flavor Problem",
+        "unknown_the_hierarchy_problem_naturalness": "The Hierarchy Problem",
+        "unknown_the_hubble_tension": "The Hubble Tension",
+        "unknown_the_identity_of_dark_matter": "The Identity of Dark Matter",
+        "unknown_the_lithium_problem": "The Lithium Problem",
+        "unknown_the_measurement_problem": "The Measurement Problem",
+        "unknown_the_mechanism_of_inflation": "The Mechanism of Inflation",
+        "unknown_the_muon_g_2_and_lepton_universality_anomalies": "Muon g-2 & Lepton Anomalies",
+        "unknown_the_nature_of_dark_energy": "The Nature of Dark Energy",
+        "unknown_the_s_8_structure_growth_tension": "Structure Growth Tension S8",
+        "unknown_the_strong_cp_problem": "The Strong CP Problem",
+        "unknown_the_trans_planckian_censorship_and_the_swampland": "Trans-Planckian Censorship",
+        "unknown_the_uv_catastrophe_blackbody_divergence": "The UV Catastrophe",
+        "unknown_vacuum_instability": "Vacuum Instability"
+      }
+    },
+    "content/scenes/quantum/quantum.json": {
+      "sceneId": "quantum",
+      "sceneName": "Quantum",
+      "objects": {
+        "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response": "Bell's Theorem: QM Foundations vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+        "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture": "Entanglement and Nonlocality: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+        "measurement_problem_and_collapse": "Measurement Problem and Collapse",
+        "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture": "Pilot-Wave Character: de Broglie\u2013Bohm (QM) vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+        "quantum_statistics": "Fermi-Dirac & Bose-Einstein Statistics",
+        "reality_causality_and_navigation": "Reality, Causality, and Navigation",
+        "superposition_mechanism_traditional_vs_architrino_assembly_architecture": "Superposition Mechanism: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+        "wavefunction_ontology": "Wavefunction Ontology"
+      }
+    },
+    "content/scenes/spacetime/spacetime.json": {
+      "sceneId": "spacetime",
+      "sceneName": "Spacetime",
+      "objects": {
+        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
+        "emergent_metric": "Emergent Metric",
+        "general_relativity_observables": "General Relativity",
+        "gravitational_waves": "Gravitational Waves",
+        "ppn_parameters": "PPN Parameters",
+        "proper_time_and_time_dilation": "Proper Time and Time Dilation",
+        "singularity_resolution": "Singularity Resolution",
+        "spacetime_assemblies": "Spacetime Assemblies"
+      }
+    },
+    "content/scenes/validation/action_energy.json": {
+      "sceneId": "validation_action_energy",
+      "sceneName": "Action-Energy",
+      "objects": {
+        "action_model": "Action Model",
+        "analytic_baselines": "Analytic Baselines",
+        "attraction": "Attraction",
+        "background_simple_action": "Background and Simple Action",
+        "causal_set_delay_geometry": "Causal Set and Delay Geometry",
+        "informational_ambiguity": "Informational Ambiguity",
+        "numerical_recipe_stability": "Numerical Recipe and Stability",
+        "radial_attraction": "Radial Attraction",
+        "receiver_velocity_work": "Receiver Velocity and Work",
+        "repulsion": "Repulsion",
+        "self_energy": "Self-Energy",
+        "self_interaction_switch": "Self-Interaction Switch",
+        "superposition_locality": "Superposition and Locality",
+        "units_constants": "Units and Constants",
+        "well_posedness_regularization": "Well-Posedness and Regularization"
+      }
+    },
+    "content/scenes/validation/simulations.json": {
+      "sceneId": "validation_simulations",
+      "sceneName": "Validation Simulations",
+      "objects": {
+        "action_energy": "Action-Energy",
+        "sim_architrino": "Architrino",
+        "sim_convergence_tests": "Convergence Tests",
+        "sim_perspective": "Perspective",
+        "sim_readme": "README",
+        "sim_run_protocols": "Run Protocols",
+        "sim_synthetic_observables": "Synthetic Observables",
+        "sim_unsolved_problems": "Unsolved Problems"
+      }
+    },
+    "content/scenes/validation/validation.json": {
+      "sceneId": "validation",
+      "sceneName": "Validation",
+      "objects": {
+        "architrino_si_base_units": "Architrino SI Base Units",
+        "constraint_ledger": "Constraint Ledger",
+        "failure_criteria": "Failure Criteria",
+        "known_tensions": "Known Tensions",
+        "no_go_theorems": "No Go Theorems",
+        "parameter_ledger": "Parameter Ledger",
+        "reaction_ledger": "Reaction Ledger",
+        "validation_protocols": "Validation Protocols",
+        "validation_simulations": "Simulations"
+      }
+    }
+  }
+}

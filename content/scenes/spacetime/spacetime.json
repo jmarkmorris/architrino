@@ -2,122 +2,135 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime",
-    "name": "Spacetime Assemblies",
+    "name": "Spacetime",
     "units": "relative",
     "wrapLabels": true,
-    "autoSphereRing": true,
-    "markdown": {
-      "source": {
-        "type": "directory",
-        "path": "content/markdown/aaa/spacetime",
-        "subdirectories": false
-      },
-      "layout": {
-        "includeExisting": true,
-        "nodeRadius": 2.688,
-        "ringRadius": 12
-      },
-      "render": {
-        "defaultMode": "doc"
-      }
-    }
+    "layoutMode": "ring"
   },
   "objects": [
     {
-      "id": "spacetime_metric_clocks",
-      "label": "Metric Emergence and Clocks",
+      "id": "emergent_metric",
+      "label": "Emergent Metric",
       "radius": 2.688,
-      "color": "#3c6a7a",
+      "color": "#243d8f",
       "position": [
-        0.0,
-        10.5,
-        0.0
+        -6.0,
+        -10.39,
+        0
       ],
-      "subScenes": [
-        "content/scenes/spacetime/metric_emergence_clocks.json"
-      ],
+      "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
       "motion": {
         "type": "fixed"
       }
     },
     {
-      "id": "spacetime_precision_tests",
-      "label": "Precision and Weak-Field Tests",
+      "id": "general_relativity_observables",
+      "label": "General Relativity",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        -10.39,
+        -6.0,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "gravitational_waves",
+      "label": "Gravitational Waves",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        -12.0,
+        0.0,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "ppn_parameters",
+      "label": "PPN Parameters",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "position": [
+        -10.39,
+        6.0,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proper_time_and_time_dilation",
+      "label": "Proper Time and Time Dilation",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        -6.0,
+        10.39,
+        0
+      ],
+      "markdownPath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "singularity_resolution",
+      "label": "Singularity Resolution",
       "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
-        9.1,
-        3.4,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/spacetime/precision_weak_field_tests.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "spacetime_strong_field",
-      "label": "Strong Field and Horizons",
-      "radius": 2.688,
-      "color": "#2c2c60",
-      "position": [
-        5.6,
-        -8.4,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/spacetime/strong_field_horizons.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "spacetime_wave_channel",
-      "label": "Wave and Observables Channel",
-      "radius": 2.688,
-      "color": "#5a3f73",
-      "position": [
-        -5.6,
-        -8.4,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/spacetime/wave_phenomenology_channel.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "spacetime_gr_bridge",
-      "label": "General Relativity Bridge and Effective Limits",
-      "radius": 2.688,
-      "color": "#2c6c7e",
-      "position": [
-        -9.1,
-        3.4,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/spacetime/gr_bridge_limits.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "spacetime_gravity",
-      "label": "Gravity",
-      "radius": 2.688,
-      "color": "#2a3b5a",
-      "position": [
         0.0,
-        -11.2,
-        0.0
+        12.0,
+        0
       ],
+      "markdownPath": "content/markdown/aaa/spacetime/singularity-resolution.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmic_censorship_holography",
+      "label": "Cosmic Censorship and Holography",
+      "radius": 2.688,
+      "color": "#355f9a",
+      "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
+      "markdownColumns": 1,
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "spacetime_assemblies",
+      "label": "Spacetime Assemblies",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
         "type": "fixed"
