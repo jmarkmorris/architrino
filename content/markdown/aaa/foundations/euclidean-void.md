@@ -1,4 +1,4 @@
-# Notes for Alfa
+# Euclidean Void
 
 ## The Aether Sea: Noether Core Occupancy
 

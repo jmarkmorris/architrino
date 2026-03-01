@@ -1,4 +1,4 @@
-# Weak Mixing (Flavor-Mass Basis Misalignment)
+# Weak Mixing and CKM
 
 ## Mapping weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ to the Standard Model
 

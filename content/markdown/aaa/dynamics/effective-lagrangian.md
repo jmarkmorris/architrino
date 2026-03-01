@@ -1,4 +1,4 @@
-# Effective Lagrangian and Action Principles
+# Effective Lagrangian
 
 This document formalizes the variational foundation of the Architrino Assembly Architecture. It bridges the exact, path-history-dependent microdynamics of discrete architrinos with the coarse-grained, effective field theories that govern macroscopic assembly behavior in the Noether Sea. 
 

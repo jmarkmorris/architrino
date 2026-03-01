@@ -1,4 +1,4 @@
-# Wavefunction Ontology and Effective State Dynamics
+# Wavefunction Ontology
 
 ## Purpose and Scope
 

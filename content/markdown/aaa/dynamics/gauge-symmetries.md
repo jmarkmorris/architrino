@@ -1,4 +1,4 @@
-# Gauge Symmetries (Minimal Derivation Spine)
+# Gauge Symmetries
 
 This chapter provides a minimal theorem-backed bridge from architrino/assembly dynamics to the effective gauge symmetry structure used elsewhere.
 
