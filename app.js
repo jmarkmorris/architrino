@@ -161,6 +161,27 @@ const autoMarkdownPalettes = {
     "#3f6a5a",
     "#6a3c3c",
   ],
+  spectrum19: [
+    "#7a1c1c",
+    "#8c2a1a",
+    "#9f3a18",
+    "#b45309",
+    "#c26a0a",
+    "#d97706",
+    "#a88c00",
+    "#8f9a0a",
+    "#5f8f1a",
+    "#2f7a1f",
+    "#1f8a3d",
+    "#0f766e",
+    "#0e7490",
+    "#1d4ed8",
+    "#1e40af",
+    "#3730a3",
+    "#5b21b6",
+    "#6d28d9",
+    "#7e22ce",
+  ],
   default: [
     "#1e3a8a",
     "#1f4fb2",
@@ -181,7 +202,7 @@ const autoMarkdownPalettes = {
   ],
 };
 const defaultAutoMarkdownPaletteName = "legacy";
-const defaultSphereColorSchemeName = "default";
+const defaultSphereColorSchemeName = "spectrum19";
 const defaultAutoMarkdownPalette =
   autoMarkdownPalettes[defaultAutoMarkdownPaletteName] ?? autoMarkdownPalettes.legacy;
 const linkStyle = {
