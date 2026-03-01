@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "universe",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Universe",
     "units": "relative",
     "scaleBandLog10m": [26, 27]

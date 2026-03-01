@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "major_thinkers",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Major Thinkers",
     "units": "relative",
     "wrapLabels": true,

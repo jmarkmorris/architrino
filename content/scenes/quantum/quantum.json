@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "quantum",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Quantum",
     "units": "relative",
     "wrapLabels": true,

@@ -13,6 +13,7 @@ const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
 const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.json";
 const LEGACY_AUTOGEN_ALLOWLIST_PATH =
   "scripts/config/legacy-scene-autogen-allowlist.json";
+const ALLOWED_SCENE_KINDS = new Set(["branching", "diagram", "markdown_split"]);
 // Explicit-only migration policy:
 // Scene authoring should converge on explicit objects/subScenes/markdownPath links.
 // These legacy scene-level automation fields remain temporarily supported for migration.
@@ -1223,6 +1224,20 @@ for (const scenePath of sceneConfigs) {
   const data = sceneDataByPath.get(scenePath);
   const scene = data.scene || {};
   const objects = Array.isArray(data.objects) ? data.objects : [];
+  const rawKind = asText(scene.kind);
+  if (!rawKind) {
+    errors.push(
+      `${scenePath}: scene.kind is required and must be one of ${[...ALLOWED_SCENE_KINDS].join(
+        ", "
+      )}`
+    );
+  } else if (!ALLOWED_SCENE_KINDS.has(rawKind)) {
+    errors.push(
+      `${scenePath}: scene.kind "${rawKind}" is not allowed (allowed: ${[
+        ...ALLOWED_SCENE_KINDS,
+      ].join(", ")})`
+    );
+  }
   const legacyFields = collectLegacyAutogenSceneFields(scene);
   if (legacyFields.length) {
     legacyAutogenScenes.push({ scenePath, fields: legacyFields });

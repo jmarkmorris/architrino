@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "galaxy_disk",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Galaxy Disk",
     "units": "relative",
     "scaleBandLog10m": [19, 21]

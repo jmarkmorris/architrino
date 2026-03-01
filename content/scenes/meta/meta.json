@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "meta",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Archie",
     "units": "relative",
     "layoutMode": "ring",

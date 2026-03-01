@@ -40,13 +40,7 @@ export class SceneRepository {
 
   resolveSceneKind(sceneData, nodes) {
     const rawKind = sceneData?.scene?.kind;
-    if (
-      rawKind === "index" ||
-      rawKind === "leaf" ||
-      rawKind === "hybrid" ||
-      rawKind === "diagram" ||
-      rawKind === "markdown_split"
-    ) {
+    if (rawKind === "branching" || rawKind === "diagram" || rawKind === "markdown_split") {
       return rawKind;
     }
     const list = Array.isArray(nodes) ? nodes : [];
@@ -64,18 +58,10 @@ export class SceneRepository {
           (typeof node.markdownPath === "string" && node.markdownPath.length > 0) ||
           node.markdownAutoIndex === false
       );
-    if (hasNavigation && hasLeafContent) {
-      return "hybrid";
+    if (hasNavigation || hasLeafContent) {
+      return "branching";
     }
-    if (hasNavigation) {
-      return "index";
-    }
-    if (hasLeafContent) {
-      return "leaf";
-    }
-    // If a scene has no outgoing navigation and no markdown content,
-    // treat it as terminal content by default.
-    return "leaf";
+    return "branching";
   }
 
   shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {

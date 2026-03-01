@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "foundations",
-    "kind": "index",
+    "kind": "branching",
     "name": "Foundations",
     "units": "relative",
     "wrapLabels": true,

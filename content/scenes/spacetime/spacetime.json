@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Spacetime",
     "units": "relative",
     "wrapLabels": true,

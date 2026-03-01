@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "galaxy",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Galaxy",
     "units": "relative",
     "scaleBandLog10m": [20, 22]

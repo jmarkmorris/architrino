@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "validation",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Validation",
     "units": "relative",
     "layoutMode": "ring",

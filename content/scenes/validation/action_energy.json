@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "validation_action_energy",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Action-Energy",
     "units": "relative",
     "layoutMode": "grid",

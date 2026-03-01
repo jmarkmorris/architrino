@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "nuclear_atomic",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Nuclear-Atomic",
     "units": "relative",
     "layoutMode": "ring",

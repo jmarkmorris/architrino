@@ -6,7 +6,7 @@
     "units": "relative",
     "wrapLabels": true,
     "layoutMode": "ring",
-    "kind": "hybrid"
+    "kind": "branching"
   },
   "objects": [
     {

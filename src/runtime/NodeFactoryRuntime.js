@@ -1,6 +1,7 @@
 export function createNodeFactory(deps) {
   const { THREE, CSS2DObject, binaryStyle } = deps;
   let haloSeed = 0;
+  const orbitRingLightenFactor = 0.2;
 
   function getRingStyle(nodeData) {
     const ringScale = nodeData.glowRingScale ?? 1.04;
@@ -112,6 +113,10 @@ export function createNodeFactory(deps) {
       middle: 2,
       inner: 4,
     };
+    const ringColor = new THREE.Color(nodeData.color).lerp(
+      new THREE.Color("#ffffff"),
+      orbitRingLightenFactor
+    );
     bandRadii.forEach((bandRadius, index) => {
       const ringGeometry = new THREE.TorusGeometry(
         bandRadius,
@@ -120,7 +125,7 @@ export function createNodeFactory(deps) {
         64
       );
       const ringMaterial = new THREE.MeshBasicMaterial({
-        color: nodeData.color,
+        color: ringColor,
         transparent: true,
         opacity: binaryStyle.ringOpacity,
         side: THREE.DoubleSide,

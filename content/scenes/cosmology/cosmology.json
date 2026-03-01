@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cosmology",
-    "kind": "hybrid",
+    "kind": "branching",
     "name": "Cosmology",
     "units": "relative",
     "wrapLabels": true,
