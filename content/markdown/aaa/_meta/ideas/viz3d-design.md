@@ -283,6 +283,40 @@ Special policy usage to retire:
 - `content/scenes/philosophy_history/out_of_the_ashes.json`
 - `content/scenes/philosophy_history/unknowns_paradoxes.json`
 
+### Step 4 classification (legacy inventory by migration type)
+
+Directory-source auto scenes (`scene.markdown.source.type = directory`) to convert to explicit objects:
+- `content/scenes/assemblies/assemblies.json`
+- `content/scenes/assemblies/bosons.json`
+- `content/scenes/cosmology/cosmology.json`
+- `content/scenes/dynamics/dynamics.json`
+- `content/scenes/foundations/foundations.json`
+- `content/scenes/meta/meta.json`
+- `content/scenes/nuclear/nuclear_atomic.json`
+- `content/scenes/philosophy_history/philosophy_history.json`
+- `content/scenes/quantum/quantum.json`
+- `content/scenes/spacetime/spacetime.json`
+- `content/scenes/validation/simulations.json`
+- `content/scenes/validation/validation.json`
+
+File-source section/heading auto scenes to convert to explicit markdown nodes:
+- `content/scenes/philosophy_history/out_of_the_ashes.json`
+- `content/scenes/philosophy_history/unknowns_paradoxes.json`
+
+Policy-heavy legacy scene (override/heading behavior):
+- `content/scenes/philosophy_history/philosophy_history.json`
+
+Non-markdown legacy scene using auto ring behavior only:
+- `content/scenes/meta/composer.json`
+
+Recommended migration batch order for today:
+1. Foundations + Dynamics + Quantum
+2. Spacetime + Cosmology
+3. Assemblies + Nuclear
+4. Validation (+ simulations child)
+5. Philosophy-History trilogy (`philosophy_history`, `out_of_the_ashes`, `unknowns_paradoxes`)
+6. Meta (`meta`, then `composer`)
+
 ### Generated files and when generation runs
 
 Generated artifacts:
