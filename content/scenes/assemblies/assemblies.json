@@ -5,39 +5,9 @@
     "name": "Assemblies",
     "units": "relative",
     "wrapLabels": true,
-    "autoSphereRing": true,
-    "markdown": {
-      "source": {
-        "type": "directory",
-        "path": "content/markdown/aaa/assemblies",
-        "subdirectories": true
-      },
-      "layout": {
-        "includeExisting": true,
-        "nodeRadius": 2.688,
-        "ringRadius": 12
-      },
-      "render": {
-        "defaultMode": "doc"
-      }
-    }
+    "layoutMode": "ring"
   },
   "objects": [
-    {
-      "id": "assembly_atlas",
-      "label": "Assembly Atlas",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "position": [
-        8.0,
-        0.0,
-        0.0
-      ],
-      "markdownPath": "content/markdown/aaa/assemblies/assembly-atlas.md",
-      "motion": {
-        "type": "fixed"
-      }
-    },
     {
       "id": "noether_core",
       "label": "Noether Core",

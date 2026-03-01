@@ -5,22 +5,28 @@
     "name": "Bosons",
     "units": "relative",
     "wrapLabels": true,
-    "autoSphereRing": true,
-    "markdown": {
-      "source": {
-        "type": "directory",
-        "path": "content/markdown/aaa/assemblies/bosons",
-        "subdirectories": false
-      },
-      "layout": {
-        "includeExisting": false,
-        "nodeRadius": 2.688,
-        "ringRadius": 12
-      },
-      "render": {
-        "defaultMode": "doc"
+    "layoutMode": "ring"
+  },
+  "objects": [
+    {
+      "id": "electroweak_bosons",
+      "label": "Electroweak Bosons",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "gluons",
+      "label": "Gluons",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "markdownPath": "content/markdown/aaa/assemblies/bosons/gluons.md",
+      "motion": {
+        "type": "fixed"
       }
     }
-  },
-  "objects": []
+  ]
 }

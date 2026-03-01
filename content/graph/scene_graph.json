@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 342,
-      "edges": 1118,
+      "nodes": 341,
+      "edges": 1116,
       "scenes": 168,
       "markdownIndexes": 23,
-      "markdownDocs": 151,
+      "markdownDocs": 150,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1586,12 +1586,6 @@
       "id": "content/markdown/aaa/archie/settings.md",
       "name": "Settings",
       "path": "__markdown_doc__:content/markdown/aaa/archie/settings.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/assemblies/assembly-atlas.md",
-      "name": "Assembly Atlas (Stub)",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/assembly-atlas.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4340,15 +4334,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/assemblies/assembly-atlas.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/assemblies/assembly-atlas.md",
-      "name": "Assembly Atlas (Stub)",
-      "path": "content/markdown/aaa/assemblies/assembly-atlas.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/assembly-atlas.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
@@ -5334,21 +5319,21 @@
       "to": "scene:content/scenes/assemblies/bosons.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "objects[5].subScenes[0]"
+      "field": "objects[4].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "objects[3].subScenes[0]"
+      "field": "objects[2].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/standard-model-theory/fermion_generation_color.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "objects[4].subScenes[0]"
+      "field": "objects[3].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/disk.json",
@@ -8292,13 +8277,6 @@
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/assembly-atlas.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "assembly_atlas.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/assemblies.json",
@@ -8317,6 +8295,20 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/assemblies.json",
       "field": "particle_masses.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/bosons.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/bosons.json",
+      "field": "electroweak_bosons.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/bosons.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/bosons/gluons.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/bosons.json",
+      "field": "gluons.markdownPath"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
@@ -8993,13 +8985,6 @@
     {
       "from": "markdown_index:content/markdown/aaa/archie",
       "to": "markdown_doc:content/markdown/aaa/archie/settings.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/assembly-atlas.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
@@ -9710,20 +9695,6 @@
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "markdown_index:content/markdown/aaa/assemblies",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.markdown.source.path"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/bosons.json",
-      "to": "markdown_index:content/markdown/aaa/assemblies/bosons",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/assemblies/bosons.json",
-      "field": "scene.markdown.source.path"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
