@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime",
-    "name": "Spacetime Assemblies",
+    "name": "Spacetime",
     "units": "relative",
     "wrapLabels": true,
     "layoutMode": "ring"
@@ -118,6 +118,18 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
       "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
       "markdownColumns": 1,
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "spacetime_assemblies",
+      "label": "Spacetime Assemblies",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {

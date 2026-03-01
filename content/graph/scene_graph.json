@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 341,
-      "edges": 1114,
+      "nodes": 342,
+      "edges": 1116,
       "scenes": 168,
       "markdownIndexes": 23,
-      "markdownDocs": 150,
+      "markdownDocs": 151,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2012,6 +2012,12 @@
       "id": "content/markdown/aaa/spacetime/singularity-resolution.md",
       "name": "Singularity Resolution",
       "path": "__markdown_doc__:content/markdown/aaa/spacetime/singularity-resolution.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "name": "Spacetime Assemblies",
+      "path": "__markdown_doc__:content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4970,6 +4976,15 @@
       "name": "Singularity Resolution",
       "path": "content/markdown/aaa/spacetime/singularity-resolution.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/singularity-resolution.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "name": "Spacetime Assemblies",
+      "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "implicit": false
     },
     {
@@ -8605,6 +8620,13 @@
       "field": "singularity_resolution.markdownPath"
     },
     {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "spacetime_assemblies.markdownPath"
+    },
+    {
       "from": "scene:content/scenes/standard-model-theory/fermion_generation_color.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "edgeType": "markdown_doc",
@@ -9447,6 +9469,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/spacetime",
       "to": "markdown_doc:content/markdown/aaa/spacetime/singularity-resolution.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/spacetime",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
