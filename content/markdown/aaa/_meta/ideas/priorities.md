@@ -10,6 +10,7 @@
   - list charge
   - list noether core type and generation
   - list role in assembly 
+- the P and N in the atoms are overlapping on boron and maybe others?
 
 
 
