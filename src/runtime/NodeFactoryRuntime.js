@@ -46,12 +46,13 @@ export function createNodeFactory(deps) {
       node.hideScaleLabel || !node.hasScale
         ? ""
         : `<div class="label-scale">10^${node.scale}</div>`;
+    const useOwnLineDocIcon = node.docIconOwnLine !== false;
     const inlineDocIconHtml =
-      node.markdownDocIcon && !node.docIconOwnLine
+      node.markdownDocIcon && !useOwnLineDocIcon
         ? ` <span class="label-doc-icon" aria-hidden="true">📚</span>`
         : "";
     const lineDocIconHtml =
-      node.markdownDocIcon && node.docIconOwnLine
+      node.markdownDocIcon && useOwnLineDocIcon
         ? `<div class="label-doc-icon-line" aria-hidden="true">📚</div>`
         : "";
     const tagHtml =
