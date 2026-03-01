@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 341,
-      "edges": 1122,
+      "edges": 1129,
       "scenes": 168,
       "markdownIndexes": 23,
       "markdownDocs": 150,
@@ -8473,6 +8473,62 @@
       "field": "foundational_ontology.markdownPath"
     },
     {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/about.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_about.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/glossary.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_glossary.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/help.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_help.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/key.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_key.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/mathematical-style-guide.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_mathematical_style_guide.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/mathematical-terminology.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_mathematical_terminology.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/navigation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_navigation.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/settings.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_settings.markdownPath"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "edgeType": "markdown_doc",
@@ -9689,13 +9745,6 @@
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "markdown_index:content/markdown/aaa/archie",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.markdown.source.path"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",

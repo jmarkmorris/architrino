@@ -1,8 +1,6 @@
 {
   "removeBy": "2026-06-30",
   "scenes": [
-    "content/scenes/meta/composer.json",
-    "content/scenes/meta/meta.json",
     "content/scenes/nuclear/nuclear_atomic.json",
     "content/scenes/validation/simulations.json",
     "content/scenes/validation/validation.json"
