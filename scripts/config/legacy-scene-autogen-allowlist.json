@@ -1,0 +1,20 @@
+{
+  "removeBy": "2026-06-30",
+  "scenes": [
+    "content/scenes/assemblies/assemblies.json",
+    "content/scenes/assemblies/bosons.json",
+    "content/scenes/cosmology/cosmology.json",
+    "content/scenes/dynamics/dynamics.json",
+    "content/scenes/foundations/foundations.json",
+    "content/scenes/meta/composer.json",
+    "content/scenes/meta/meta.json",
+    "content/scenes/nuclear/nuclear_atomic.json",
+    "content/scenes/philosophy_history/out_of_the_ashes.json",
+    "content/scenes/philosophy_history/philosophy_history.json",
+    "content/scenes/philosophy_history/unknowns_paradoxes.json",
+    "content/scenes/quantum/quantum.json",
+    "content/scenes/spacetime/spacetime.json",
+    "content/scenes/validation/simulations.json",
+    "content/scenes/validation/validation.json"
+  ]
+}

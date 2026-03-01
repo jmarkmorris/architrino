@@ -8,6 +8,35 @@ const MARKDOWN_DIR = "content/markdown";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
 const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
+const LEGACY_AUTOGEN_ALLOWLIST_PATH =
+  "scripts/config/legacy-scene-autogen-allowlist.json";
+// Explicit-only migration policy:
+// Scene authoring should converge on explicit objects/subScenes/markdownPath links.
+// These legacy scene-level automation fields remain temporarily supported for migration.
+const LEGACY_AUTOGEN_SCENE_FIELDS = [
+  "autoSphereRing",
+  "markdown",
+  "autoMarkdownPath",
+  "autoMarkdownDirectory",
+  "autoMarkdownSection",
+  "autoMarkdownHeadingLevel",
+  "autoMarkdownIncludeExistingInLayout",
+  "autoMarkdownNodeRadius",
+  "autoMarkdownRingRadius",
+  "autoMarkdownMaxRingCount",
+  "autoMarkdownGridSpacing",
+  "autoMarkdownColumns",
+  "autoMarkdownColor",
+  "autoMarkdownSubdirectories",
+  "autoMarkdownExcludePaths",
+  "autoMarkdownIndexPaths",
+  "autoMarkdownPlainPaths",
+  "autoMarkdownPlainSectionPaths",
+  "autoMarkdownPalette",
+  "autoMarkdownDefaultIndex",
+  "autoMarkdownSectionDepth",
+  "autoMarkdownOverrides",
+];
 
 const args = new Set(process.argv.slice(2));
 const wantsWrite = args.has("--write");
@@ -592,6 +621,77 @@ function deriveMarkdownConfig(markdownPolicy) {
   return derived;
 }
 
+function collectLegacyAutogenSceneFields(scene) {
+  if (!scene || typeof scene !== "object") {
+    return [];
+  }
+  const present = [];
+  for (const field of LEGACY_AUTOGEN_SCENE_FIELDS) {
+    if (!(field in scene)) {
+      continue;
+    }
+    if (field === "autoSphereRing") {
+      if (scene.autoSphereRing === true) {
+        present.push(field);
+      }
+      continue;
+    }
+    if (field === "markdown") {
+      if (scene.markdown && typeof scene.markdown === "object") {
+        present.push(field);
+      }
+      continue;
+    }
+    if (Array.isArray(scene[field])) {
+      if (scene[field].length > 0) {
+        present.push(field);
+      }
+      continue;
+    }
+    if (scene[field] !== null && scene[field] !== undefined && scene[field] !== "") {
+      present.push(field);
+    }
+  }
+  return present;
+}
+
+function readLegacyAutogenAllowlist() {
+  const parsed = readJson(LEGACY_AUTOGEN_ALLOWLIST_PATH);
+  if (!parsed.ok) {
+    errors.push(
+      `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: failed to parse JSON (${parsed.error.message})`
+    );
+    return { scenes: new Set(), removeBy: null };
+  }
+  const entries = parsed.data?.scenes;
+  if (!Array.isArray(entries)) {
+    errors.push(`${LEGACY_AUTOGEN_ALLOWLIST_PATH}: expected { "scenes": [...] }`);
+    return { scenes: new Set(), removeBy: null };
+  }
+  const scenes = new Set();
+  entries.forEach((entry, index) => {
+    if (typeof entry !== "string") {
+      errors.push(
+        `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: scenes[${index}] must be a string`
+      );
+      return;
+    }
+    const normalized = normalizePath(entry);
+    if (!normalized) {
+      errors.push(
+        `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: scenes[${index}] must not be empty`
+      );
+      return;
+    }
+    scenes.add(normalized);
+  });
+  const removeBy =
+    typeof parsed.data?.removeBy === "string" && parsed.data.removeBy.trim()
+      ? parsed.data.removeBy.trim()
+      : null;
+  return { scenes, removeBy };
+}
+
 function listMarkdownFilesInDirectory(directory, markdownFiles) {
   const normalizedDir = normalizePath(directory);
   if (!normalizedDir) {
@@ -979,11 +1079,17 @@ const markdownContext = {
   markdownDirectories: allMarkdownDirectories,
   markdownTextByPath,
 };
+const legacyAutogenAllowlist = readLegacyAutogenAllowlist();
+const legacyAutogenScenes = [];
 
 for (const scenePath of sceneConfigs) {
   const data = sceneDataByPath.get(scenePath);
   const scene = data.scene || {};
   const objects = Array.isArray(data.objects) ? data.objects : [];
+  const legacyFields = collectLegacyAutogenSceneFields(scene);
+  if (legacyFields.length) {
+    legacyAutogenScenes.push({ scenePath, fields: legacyFields });
+  }
 
   if (sceneSchema) {
     validateSchemaValue(scenePath, data, sceneSchema, []);
@@ -1080,6 +1186,38 @@ for (const scenePath of sceneConfigs) {
     });
   });
 }
+
+if (legacyAutogenScenes.length) {
+  const allowlistedCount = legacyAutogenScenes.filter((entry) =>
+    legacyAutogenAllowlist.scenes.has(entry.scenePath)
+  ).length;
+  notes.push(
+    `Explicit-only migration: ${legacyAutogenScenes.length} scene file(s) still use legacy auto-generation fields (${allowlistedCount} allowlisted).`
+  );
+  if (legacyAutogenAllowlist.removeBy) {
+    notes.push(
+      `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: remove allowlist by ${legacyAutogenAllowlist.removeBy}`
+    );
+  }
+  legacyAutogenScenes
+    .sort((a, b) => a.scenePath.localeCompare(b.scenePath))
+    .forEach((entry) => {
+      if (!legacyAutogenAllowlist.scenes.has(entry.scenePath)) {
+        errors.push(
+          `${entry.scenePath}: uses legacy auto-generation fields but is not allowlisted in ${LEGACY_AUTOGEN_ALLOWLIST_PATH}`
+        );
+      }
+      notes.push(`${entry.scenePath}: ${entry.fields.join(", ")}`);
+    });
+}
+
+legacyAutogenAllowlist.scenes.forEach((scenePath) => {
+  if (!sceneConfigSet.has(scenePath)) {
+    notes.push(
+      `${LEGACY_AUTOGEN_ALLOWLIST_PATH}: allowlisted scene not found (${scenePath})`
+    );
+  }
+});
 
 const wroteFiles = [];
 if (mode === "write") {
