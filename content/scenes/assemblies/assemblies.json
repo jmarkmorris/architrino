@@ -56,17 +56,12 @@
       }
     },
     {
-      "id": "fermion_generations",
-      "label": "Fermion Generation and Color",
+      "id": "fermions",
+      "label": "Fermions",
       "radius": 2.688,
       "color": "#5d3a9f",
-      "position": [
-        12.0,
-        -6.0,
-        0.0
-      ],
       "subScenes": [
-        "content/scenes/standard-model-theory/fermion_generation_color.json"
+        "content/scenes/assemblies/fermions.json"
       ],
       "motion": {
         "type": "fixed"

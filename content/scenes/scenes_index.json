@@ -816,11 +816,6 @@
       "path": "content/scenes/standard-model-particles/up_quark.json"
     },
     {
-      "id": "fermion_generation_color",
-      "name": "Fermion Generation and Color",
-      "path": "content/scenes/standard-model-theory/fermion_generation_color.json"
-    },
-    {
       "id": "validation_simulations",
       "name": "Validation Simulations",
       "path": "content/scenes/validation/simulations.json"
@@ -834,6 +829,16 @@
       "id": "assemblies",
       "name": "Assemblies",
       "path": "content/scenes/assemblies/assemblies.json"
+    },
+    {
+      "id": "fermions",
+      "name": "Fermions",
+      "path": "content/scenes/assemblies/fermions.json"
+    },
+    {
+      "id": "color_charge_su3",
+      "name": "Color Charge SU3",
+      "path": "content/scenes/standard-model-theory/color-charge-su3.json"
     }
   ]
 }

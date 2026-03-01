@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 340,
-      "edges": 1115,
-      "scenes": 167,
+      "nodes": 341,
+      "edges": 1122,
+      "scenes": 168,
       "markdownIndexes": 23,
       "markdownDocs": 150,
       "runtimeEdges": 476,
@@ -1127,12 +1127,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "fermion_generation_color",
-      "name": "Fermion Generation and Color",
-      "path": "content/scenes/standard-model-theory/fermion_generation_color.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "validation_simulations",
       "name": "Validation Simulations",
       "path": "content/scenes/validation/simulations.json",
@@ -1148,6 +1142,18 @@
       "id": "assemblies",
       "name": "Assemblies",
       "path": "content/scenes/assemblies/assemblies.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "fermions",
+      "name": "Fermions",
+      "path": "content/scenes/assemblies/fermions.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "color_charge_su3",
+      "name": "Color Charge SU3",
+      "path": "content/scenes/standard-model-theory/color-charge-su3.json",
       "nodeType": "scene"
     },
     {
@@ -2224,6 +2230,15 @@
       "name": "Assemblies",
       "path": "content/scenes/assemblies/assemblies.json",
       "searchTarget": "content/scenes/assemblies/assemblies.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/fermions.json",
+      "nodeType": "scene",
+      "id": "fermions",
+      "name": "Fermions",
+      "path": "content/scenes/assemblies/fermions.json",
+      "searchTarget": "content/scenes/assemblies/fermions.json",
       "implicit": false
     },
     {
@@ -3667,12 +3682,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/standard-model-theory/fermion_generation_color.json",
+      "nodeId": "scene:content/scenes/standard-model-theory/color-charge-su3.json",
       "nodeType": "scene",
-      "id": "fermion_generation_color",
-      "name": "Fermion Generation and Color",
-      "path": "content/scenes/standard-model-theory/fermion_generation_color.json",
-      "searchTarget": "content/scenes/standard-model-theory/fermion_generation_color.json",
+      "id": "color_charge_su3",
+      "name": "Color Charge SU3",
+      "path": "content/scenes/standard-model-theory/color-charge-su3.json",
+      "searchTarget": "content/scenes/standard-model-theory/color-charge-su3.json",
       "implicit": false
     },
     {
@@ -5301,17 +5316,17 @@
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/fermions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "objects[3].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
       "field": "objects[2].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "scene:content/scenes/standard-model-theory/fermion_generation_color.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "objects[3].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/disk.json",
@@ -8289,6 +8304,55 @@
       "field": "particle_masses.markdownPath"
     },
     {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "color_charge_su3.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/electron.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "electron.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "muon_tau.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/neutrinos.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "neutrinos.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "quantum_number_mapping.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/quarks.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "quarks.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "weak_mixing_ckm.markdownPath"
+    },
+    {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/BBN-constraints.md",
       "edgeType": "markdown_doc",
@@ -8618,10 +8682,10 @@
       "field": "spacetime_assemblies.markdownPath"
     },
     {
-      "from": "scene:content/scenes/standard-model-theory/fermion_generation_color.json",
+      "from": "scene:content/scenes/standard-model-theory/color-charge-su3.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/standard-model-theory/fermion_generation_color.json",
+      "source": "content/scenes/standard-model-theory/color-charge-su3.json",
       "field": "scene.markdownPath"
     },
     {
