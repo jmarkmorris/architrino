@@ -16,6 +16,10 @@
       "properties": {
         "id": { "type": "string", "minLength": 1 },
         "name": { "type": "string", "minLength": 1 },
+        "kind": {
+          "type": "string",
+          "enum": ["index", "leaf", "hybrid"]
+        },
         "units": { "type": "string" },
         "scaleBandLog10m": {
           "type": ["number", "array"],

@@ -38,6 +38,38 @@ export class SceneRepository {
     return Array.isArray(palette) && palette.length ? palette : null;
   }
 
+  resolveSceneKind(sceneData, nodes) {
+    const rawKind = sceneData?.scene?.kind;
+    if (rawKind === "index" || rawKind === "leaf" || rawKind === "hybrid") {
+      return rawKind;
+    }
+    const list = Array.isArray(nodes) ? nodes : [];
+    const hasNavigation =
+      list.some(
+        (node) =>
+          (typeof node.childScene === "string" && node.childScene.length > 0) ||
+          node.markdownAutoIndex === true
+      ) || sceneData?.scene?.autoSphereRing === true;
+    const hasLeafContent =
+      (typeof sceneData?.scene?.markdownPath === "string" &&
+        sceneData.scene.markdownPath.length > 0) ||
+      list.some(
+        (node) =>
+          (typeof node.markdownPath === "string" && node.markdownPath.length > 0) ||
+          node.markdownAutoIndex === false
+      );
+    if (hasNavigation && hasLeafContent) {
+      return "hybrid";
+    }
+    if (hasNavigation) {
+      return "index";
+    }
+    if (hasLeafContent) {
+      return "leaf";
+    }
+    return "index";
+  }
+
   shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
     const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
     const isStructuredLayout = layoutMode === "ring" || layoutMode === "grid";
@@ -269,6 +301,7 @@ export class SceneRepository {
         const sceneName =
           data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;
         const sceneId = data.scene?.id ?? null;
+        const sceneKind = this.resolveSceneKind(data, nodes);
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
           layoutMode:
@@ -281,6 +314,7 @@ export class SceneRepository {
           links: Array.isArray(data.links) ? data.links : [],
           sceneName,
           sceneId,
+          sceneKind,
           markdownPath: data.scene?.markdownPath ?? null,
           markdownSection: data.scene?.markdownSection ?? null,
           markdownColumns: data.scene?.markdownColumns ?? null,

@@ -312,6 +312,7 @@ export function createSceneGraphRuntime(deps) {
       id: levelId,
       name: config.sceneName ?? levelId,
       sceneId: config.sceneId ?? null,
+      sceneKind: config.sceneKind ?? null,
       markdownPath: config.markdownPath ?? null,
       markdownSection: config.markdownSection ?? null,
       markdownColumns: config.markdownColumns ?? null,
