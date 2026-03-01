@@ -2760,9 +2760,14 @@ function focusOnPointer(clientX, clientY) {
   if (prefersDocDrillDown) {
     closeDetailPanel();
     hideHoverTooltip();
-    const docSceneId = markdownSceneRegistry.ensureMarkdownDocScene(targetNode.data);
-    if (docSceneId) {
-      targetNode.data.childScene = docSceneId;
+    const hasSectionTarget =
+      typeof targetNode.data.markdownSection === "string" &&
+      targetNode.data.markdownSection.trim().length > 0;
+    const preferredSceneId = hasSectionTarget
+      ? markdownSceneRegistry.ensureMarkdownReaderScene(targetNode.data)
+      : markdownSceneRegistry.ensureMarkdownDocScene(targetNode.data);
+    if (preferredSceneId) {
+      targetNode.data.childScene = preferredSceneId;
       startLevelTransitionFromNode(targetNode);
       return true;
     }

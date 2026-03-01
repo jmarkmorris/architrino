@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 342,
-      "edges": 1164,
-      "scenes": 169,
+      "nodes": 348,
+      "edges": 1175,
+      "scenes": 175,
       "markdownIndexes": 23,
       "markdownDocs": 150,
       "runtimeEdges": 476,
@@ -1160,6 +1160,42 @@
       "id": "validation_action_energy",
       "name": "Action-Energy",
       "path": "content/scenes/validation/action_energy.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers_classical_modern",
+      "name": "Classical & Early Modern Metaphysics + Mechanism",
+      "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers_info_computation_science",
+      "name": "Information/Computation + Philosophy of Science",
+      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers_qft_standard_model",
+      "name": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)",
+      "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers_quantum_foundations",
+      "name": "Quantum Foundations & Hidden-Variable Landscape",
+      "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers_relativity_cosmology",
+      "name": "Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)",
+      "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers",
+      "name": "Major Thinkers",
+      "path": "content/scenes/philosophy_history/major_thinkers.json",
       "nodeType": "scene"
     },
     {
@@ -3466,6 +3502,60 @@
       "name": "Proton",
       "path": "content/scenes/nuclear/proton.json",
       "searchTarget": "content/scenes/nuclear/proton.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "nodeType": "scene",
+      "id": "major_thinkers_classical_modern",
+      "name": "Classical & Early Modern Metaphysics + Mechanism",
+      "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "nodeType": "scene",
+      "id": "major_thinkers_info_computation_science",
+      "name": "Information/Computation + Philosophy of Science",
+      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
+      "nodeType": "scene",
+      "id": "major_thinkers_qft_standard_model",
+      "name": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)",
+      "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
+      "nodeType": "scene",
+      "id": "major_thinkers_quantum_foundations",
+      "name": "Quantum Foundations & Hidden-Variable Landscape",
+      "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
+      "nodeType": "scene",
+      "id": "major_thinkers_relativity_cosmology",
+      "name": "Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)",
+      "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "nodeType": "scene",
+      "id": "major_thinkers",
+      "name": "Major Thinkers",
+      "path": "content/scenes/philosophy_history/major_thinkers.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers.json",
       "implicit": false
     },
     {
@@ -7998,6 +8088,48 @@
       "field": "objects[0].subScenes[0]"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "objects[1].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "objects[5].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "objects[4].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "objects[3].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "objects[2].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "objects[5].subScenes[0]"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
       "edgeType": "subscene",
@@ -8600,6 +8732,48 @@
       "field": "nucleon_structure.markdownPath"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "field": "thinker_heraclitus_c_535_475_bce.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "field": "thinker_alfred_north_whitehead_1861_1947.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
+      "field": "thinker_paul_dirac_1902_1984.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
+      "field": "thinker_ludwig_boltzmann_1844_1906.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
+      "field": "thinker_ernst_mach_1838_1916.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "major_thinkers_intro.markdownPath"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "edgeType": "markdown_doc",
@@ -8626,13 +8800,6 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "lorentz_ether_comparison.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "major_thinkers.markdownPath"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",

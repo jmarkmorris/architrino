@@ -844,6 +844,36 @@
       "id": "validation_action_energy",
       "name": "Action-Energy",
       "path": "content/scenes/validation/action_energy.json"
+    },
+    {
+      "id": "major_thinkers_classical_modern",
+      "name": "Classical & Early Modern Metaphysics + Mechanism",
+      "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
+    },
+    {
+      "id": "major_thinkers_info_computation_science",
+      "name": "Information/Computation + Philosophy of Science",
+      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
+    },
+    {
+      "id": "major_thinkers_qft_standard_model",
+      "name": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)",
+      "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
+    },
+    {
+      "id": "major_thinkers_quantum_foundations",
+      "name": "Quantum Foundations & Hidden-Variable Landscape",
+      "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
+    },
+    {
+      "id": "major_thinkers_relativity_cosmology",
+      "name": "Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)",
+      "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json"
+    },
+    {
+      "id": "major_thinkers",
+      "name": "Major Thinkers",
+      "path": "content/scenes/philosophy_history/major_thinkers.json"
     }
   ]
 }

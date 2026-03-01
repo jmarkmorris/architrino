@@ -73,9 +73,10 @@
       "label": "Major Thinkers",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownAutoIndex": false,
-      "subScenes": [],
+      "subScenes": [
+        "content/scenes/philosophy_history/major_thinkers.json"
+      ],
       "motion": {
         "type": "fixed"
       }
