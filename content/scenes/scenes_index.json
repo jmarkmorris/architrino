@@ -836,11 +836,6 @@
       "path": "content/scenes/assemblies/fermions.json"
     },
     {
-      "id": "color_charge_su3",
-      "name": "Color Charge SU3",
-      "path": "content/scenes/standard-model-theory/color-charge-su3.json"
-    },
-    {
       "id": "validation_action_energy",
       "name": "Action-Energy",
       "path": "content/scenes/validation/action_energy.json"

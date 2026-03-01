@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 348,
-      "edges": 1175,
-      "scenes": 175,
+      "nodes": 347,
+      "edges": 1174,
+      "scenes": 174,
       "markdownIndexes": 23,
       "markdownDocs": 150,
       "runtimeEdges": 476,
@@ -1148,12 +1148,6 @@
       "id": "fermions",
       "name": "Fermions",
       "path": "content/scenes/assemblies/fermions.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "color_charge_su3",
-      "name": "Color Charge SU3",
-      "path": "content/scenes/standard-model-theory/color-charge-su3.json",
       "nodeType": "scene"
     },
     {
@@ -3727,15 +3721,6 @@
       "name": "Up Quark",
       "path": "content/scenes/standard-model-particles/up_quark.json",
       "searchTarget": "content/scenes/standard-model-particles/up_quark.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/standard-model-theory/color-charge-su3.json",
-      "nodeType": "scene",
-      "id": "color_charge_su3",
-      "name": "Color Charge SU3",
-      "path": "content/scenes/standard-model-theory/color-charge-su3.json",
-      "searchTarget": "content/scenes/standard-model-theory/color-charge-su3.json",
       "implicit": false
     },
     {
@@ -8926,13 +8911,6 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "spacetime_assemblies.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/standard-model-theory/color-charge-su3.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/standard-model-theory/color-charge-su3.json",
-      "field": "scene.markdownPath"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
