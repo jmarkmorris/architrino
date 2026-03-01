@@ -16,11 +16,6 @@
       "path": "content/scenes/architrino-theory/positrino.json"
     },
     {
-      "id": "assemblies",
-      "name": "Assemblies",
-      "path": "content/scenes/assemblies/assemblies.json"
-    },
-    {
       "id": "molecule",
       "name": "Molecule",
       "path": "content/scenes/chemistry/molecule.json"
@@ -894,6 +889,16 @@
       "id": "validation",
       "name": "Validation",
       "path": "content/scenes/validation/validation.json"
+    },
+    {
+      "id": "assemblies",
+      "name": "Assemblies",
+      "path": "content/scenes/assemblies/assemblies.json"
+    },
+    {
+      "id": "bosons_assemblies",
+      "name": "Bosons",
+      "path": "content/scenes/assemblies/bosons.json"
     }
   ]
 }
