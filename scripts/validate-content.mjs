@@ -937,10 +937,25 @@ if (!sceneSchemaResult.ok) {
 }
 
 const markdownTextByPath = new Map();
+const markdownHeadingKeyCountByPath = new Map();
 for (const markdownPath of allMarkdownFiles) {
   const absoluteMarkdownPath = path.join(rootDir, markdownPath);
   try {
-    markdownTextByPath.set(markdownPath, fs.readFileSync(absoluteMarkdownPath, "utf8"));
+    const markdownText = fs.readFileSync(absoluteMarkdownPath, "utf8");
+    markdownTextByPath.set(markdownPath, markdownText);
+    const headingCounts = new Map();
+    markdownText.split(/\r?\n/).forEach((line) => {
+      const heading = parseMarkdownHeading(line);
+      if (!heading || (heading.level !== 2 && heading.level !== 3)) {
+        return;
+      }
+      const key = normalizeMarkdownKey(heading.title);
+      if (!key) {
+        return;
+      }
+      headingCounts.set(key, (headingCounts.get(key) ?? 0) + 1);
+    });
+    markdownHeadingKeyCountByPath.set(markdownPath, headingCounts);
   } catch (error) {
     warnings.push(`${markdownPath}: failed to read markdown source (${error.message})`);
   }
@@ -1161,6 +1176,17 @@ for (const scenePath of sceneConfigs) {
         markdownFileSet,
         markdownFileLower
       );
+    }
+    if (typeof obj?.markdownPath === "string" && typeof obj?.markdownSection === "string") {
+      const normalizedPath = normalizePath(obj.markdownPath);
+      const sectionKey = normalizeMarkdownKey(obj.markdownSection);
+      const headingCounts = markdownHeadingKeyCountByPath.get(normalizedPath);
+      const matches = headingCounts?.get(sectionKey) ?? 0;
+      if (matches > 1) {
+        warnings.push(
+          `${scenePath} -> ${objectLabel}.markdownSection: ambiguous section key "${obj.markdownSection}" in ${normalizedPath} (${matches} matching headings)`
+        );
+      }
     }
     if (obj?.subScenes === undefined) {
       return;

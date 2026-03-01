@@ -5,20 +5,8 @@
     "name": "Out of the Ashes",
     "units": "relative",
     "wrapLabels": true,
-    "autoSphereRing": true,
-    "markdown": {
-      "source": {
-        "type": "file",
-        "path": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md"
-      },
-      "layout": {
-        "nodeRadius": 2.2,
-        "ringRadius": 12
-      },
-      "render": {
-        "defaultMode": "doc"
-      }
-    }
+    "markdownPath": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
+    "markdownAutoOpen": true
   },
   "objects": []
 }

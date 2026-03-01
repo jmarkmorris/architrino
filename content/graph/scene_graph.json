@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 342,
-      "edges": 1116,
+      "edges": 1118,
       "scenes": 168,
       "markdownIndexes": 23,
       "markdownDocs": 151,
@@ -8491,35 +8491,56 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/out_of_the_ashes.json",
-      "field": "scene.markdown.source.path"
+      "field": "scene.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "crisis_in_physics.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "historical_context_missed_opportunities.markdownPath"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.markdown.overrides[0].path"
+      "field": "lorentz_ether_comparison.markdownPath"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.markdown.overrides[2].path"
+      "field": "major_thinkers.markdownPath"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.markdown.overrides[1].path"
+      "field": "religious_ontologies.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "theory_mapping.markdownPath"
     },
     {
       "from": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/unknowns_paradoxes.json",
-      "field": "scene.markdown.source.path"
+      "field": "unknown_the_nature_of_dark_energy.markdownPath"
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
@@ -9716,13 +9737,6 @@
       "to": "markdown_index:content/markdown/aaa/nuclear-atomic",
       "edgeType": "markdown_index",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.markdown.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "markdown_index:content/markdown/aaa/philosophy-history",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.markdown.source.path"
     },
     {
