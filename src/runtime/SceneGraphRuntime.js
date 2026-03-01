@@ -326,12 +326,11 @@ export function createSceneGraphRuntime(deps) {
       ringTargetByMesh,
       primaryBinaryNode,
       layout: config.layout,
+      layoutMode: config.layoutMode ?? null,
       links: [],
     };
 
-    if (level.id === deps.rootScenePath) {
-      deps.layoutRootLevel(level);
-    }
+    deps.layoutRootLevel(level);
     level.nodes.forEach((node) => {
       node.basePosition = node.group.position.clone();
     });

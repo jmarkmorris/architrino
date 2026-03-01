@@ -1850,18 +1850,71 @@ function resetNodeScale(node) {
 }
 
 function layoutRootLevel(level) {
-  if (!level || level.id !== rootScenePath) {
+  if (!level) {
     return;
   }
   const nodes = level.nodes;
   if (!nodes?.length) {
     return;
   }
+  const layoutMode =
+    typeof level.layoutMode === "string" ? level.layoutMode.toLowerCase() : "";
+  const useRingLayout = level.id === rootScenePath || layoutMode === "ring";
+  const useGridLayout = layoutMode === "grid";
+  if (!useRingLayout && !useGridLayout) {
+    return;
+  }
   nodes.forEach((node) => {
     if (node.data && typeof node.data.baseRadius !== "number") {
       node.data.baseRadius = node.data.radius ?? 0;
     }
+    if (node.data && !Array.isArray(node.data.basePosition)) {
+      node.data.basePosition = [node.group.position.x, node.group.position.y, node.group.position.z];
+    }
   });
+
+  if (useGridLayout) {
+    nodes.forEach((node) => {
+      const basePos = Array.isArray(node.data?.basePosition) ? node.data.basePosition : [0, 0, 0];
+      node.group.position.set(basePos[0] ?? 0, basePos[1] ?? 0, basePos[2] ?? 0);
+      node.group.scale.setScalar(1);
+      if (node.data?.baseRadius) {
+        node.data.radius = node.data.baseRadius;
+      }
+    });
+    const { size } = getLevelBoundsFromNodes(level);
+    if (!isFinite(size.x) || !isFinite(size.y) || size.lengthSq() === 0) {
+      return;
+    }
+    const { safeWidth, safeHeight } = getSafeViewportWorld();
+    const fitFactor = 0.9;
+    const scaleFactor = Math.min(
+      (safeWidth * fitFactor) / Math.max(size.x, 0.01),
+      (safeHeight * fitFactor) / Math.max(size.y, 0.01)
+    );
+    if (!Number.isFinite(scaleFactor) || scaleFactor <= 0) {
+      return;
+    }
+    nodes.forEach((node) => {
+      const basePos = Array.isArray(node.data?.basePosition) ? node.data.basePosition : [0, 0, 0];
+      node.group.position.set(
+        (basePos[0] ?? 0) * scaleFactor,
+        (basePos[1] ?? 0) * scaleFactor,
+        basePos[2] ?? 0
+      );
+      node.group.scale.setScalar(scaleFactor);
+      node.baseScale = scaleFactor;
+      if (node.data) {
+        node.data.baseScale = scaleFactor;
+      }
+      if (node.data?.baseRadius) {
+        node.data.radius = node.data.baseRadius * scaleFactor;
+      }
+      node.basePosition = node.group.position.clone();
+    });
+    return;
+  }
+
   const baseRadius = Math.max(
     ...nodes.map((node) => node.data?.baseRadius ?? node.data?.radius ?? 0)
   );
@@ -2906,7 +2959,7 @@ function onResize() {
   if (composerRenderer) {
     composerNeedsResize = true;
   }
-  if (currentLevel?.id === rootScenePath) {
+  if (currentLevel) {
     layoutRootLevel(currentLevel);
     fitCameraToLevel(currentLevel);
   }
@@ -2924,7 +2977,7 @@ async function init() {
   const initialScenePath = initialScene.scenePath;
   currentLevel = buildLevel(initialScenePath);
   worldGroup.add(currentLevel.group);
-  if (currentLevel.id === rootScenePath) {
+  if (currentLevel) {
     layoutRootLevel(currentLevel);
   }
   updateCamera();
