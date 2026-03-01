@@ -188,6 +188,7 @@ export function createMarkdownSceneRegistry(deps) {
       autoMarkdownGridSpacing: parentScene?.autoMarkdownGridSpacing,
       autoMarkdownColumns: parentScene?.autoMarkdownColumns,
       autoMarkdownPalette: parentScene?.autoMarkdownPalette,
+      autoMarkdownPaletteName: parentScene?.autoMarkdownPaletteName,
       autoMarkdownColor: parentScene?.autoMarkdownColor,
     };
     return sceneId;
@@ -221,6 +222,7 @@ export function createMarkdownSceneRegistry(deps) {
       autoMarkdownGridSpacing: parentScene?.autoMarkdownGridSpacing,
       autoMarkdownColumns: parentScene?.autoMarkdownColumns,
       autoMarkdownPalette: parentScene?.autoMarkdownPalette,
+      autoMarkdownPaletteName: parentScene?.autoMarkdownPaletteName,
       autoMarkdownColor: parentScene?.autoMarkdownColor,
     };
     return sceneId;

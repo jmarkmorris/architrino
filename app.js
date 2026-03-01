@@ -147,19 +147,43 @@ const colorTokens = {
   BLUE: "#0000ff",
   PURPLE: "#4b0082",
 };
-const defaultAutoMarkdownPalette = [
-  "#243d8f",
-  "#2f6b6f",
-  "#5a1f2e",
-  "#4b0082",
-  "#3a5f9f",
-  "#2f4f7a",
-  "#7a4a1f",
-  "#1c2a4f",
-  "#3c6a7a",
-  "#3f6a5a",
-  "#6a3c3c",
-];
+const autoMarkdownPalettes = {
+  legacy: [
+    "#243d8f",
+    "#2f6b6f",
+    "#5a1f2e",
+    "#4b0082",
+    "#3a5f9f",
+    "#2f4f7a",
+    "#7a4a1f",
+    "#1c2a4f",
+    "#3c6a7a",
+    "#3f6a5a",
+    "#6a3c3c",
+  ],
+  default: [
+    "#1e3a8a",
+    "#1f4fb2",
+    "#2563eb",
+    "#0f766e",
+    "#0d9488",
+    "#15803d",
+    "#4d7c0f",
+    "#a16207",
+    "#b45309",
+    "#9a3412",
+    "#7c2d12",
+    "#831843",
+    "#6b21a8",
+    "#4338ca",
+    "#334155",
+    "#374151",
+  ],
+};
+const defaultAutoMarkdownPaletteName = "legacy";
+const defaultSphereColorSchemeName = "default";
+const defaultAutoMarkdownPalette =
+  autoMarkdownPalettes[defaultAutoMarkdownPaletteName] ?? autoMarkdownPalettes.legacy;
 const linkStyle = {
   minLength: 0.7,
   tipClearance: 0.12,
@@ -1606,6 +1630,8 @@ const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   extractMarkdownDocumentTitle,
   compactMarkdownNodeLabel,
   colorTokens,
+  autoMarkdownPalettes,
+  defaultAutoMarkdownPaletteName,
   defaultAutoMarkdownPalette,
   computeRingLayout,
   maxRingNodeRadius,
@@ -1623,6 +1649,10 @@ const sceneRepository = new SceneRepository({
   levelConfigs,
   normalizeVelocity,
   colorTokens,
+  autoMarkdownPalettes,
+  defaultAutoMarkdownPaletteName,
+  defaultSphereColorSchemeName,
+  homeScenePath: rootScenePath,
   deriveMarkdownConfig,
   buildAutoMarkdownNodes,
   resolveMarkdownFileSize,

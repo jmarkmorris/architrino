@@ -29,6 +29,7 @@
           "enum": ["manual", "ring", "grid"]
         },
         "layoutColumns": { "type": "integer", "minimum": 1 },
+        "sphereColorScheme": { "type": "string" },
         "markdownPath": { "type": "string" },
         "markdownSection": { "type": "string" },
         "markdownColumns": { "type": "number" },
@@ -66,6 +67,7 @@
           "type": "array",
           "items": { "type": "string" }
         },
+        "autoMarkdownPaletteName": { "type": "string" },
         "markdown": {
           "type": "object",
           "additionalProperties": true,
@@ -95,6 +97,7 @@
                   "type": "array",
                   "items": { "type": "string" }
                 },
+                "paletteName": { "type": "string" },
                 "color": { "type": "string" }
               }
             },

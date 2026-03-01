@@ -34,6 +34,7 @@ const LEGACY_AUTOGEN_SCENE_FIELDS = [
   "autoMarkdownPlainPaths",
   "autoMarkdownPlainSectionPaths",
   "autoMarkdownPalette",
+  "autoMarkdownPaletteName",
   "autoMarkdownDefaultIndex",
   "autoMarkdownSectionDepth",
   "autoMarkdownOverrides",

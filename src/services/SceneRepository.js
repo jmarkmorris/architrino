@@ -7,6 +7,10 @@ export class SceneRepository {
     this.levelConfigs = deps.levelConfigs;
     this.normalizeVelocity = deps.normalizeVelocity;
     this.colorTokens = deps.colorTokens;
+    this.autoMarkdownPalettes = deps.autoMarkdownPalettes ?? {};
+    this.defaultAutoMarkdownPaletteName = deps.defaultAutoMarkdownPaletteName ?? "default";
+    this.defaultSphereColorSchemeName = deps.defaultSphereColorSchemeName ?? "default";
+    this.homeScenePath = deps.homeScenePath ?? null;
     this.deriveMarkdownConfig = deps.deriveMarkdownConfig;
     this.buildAutoMarkdownNodes = deps.buildAutoMarkdownNodes;
     this.resolveMarkdownFileSize = deps.resolveMarkdownFileSize;
@@ -18,6 +22,97 @@ export class SceneRepository {
       typeof deps.markdownGlowMinBytes === "number"
         ? deps.markdownGlowMinBytes
         : 4096;
+  }
+
+  resolveSphereColorPalette(sceneData) {
+    const scene = sceneData?.scene ?? {};
+    const schemeName =
+      typeof scene.sphereColorScheme === "string"
+        ? scene.sphereColorScheme
+        : this.defaultSphereColorSchemeName;
+    const palette =
+      Array.isArray(this.autoMarkdownPalettes[schemeName]) &&
+      this.autoMarkdownPalettes[schemeName].length
+        ? this.autoMarkdownPalettes[schemeName]
+        : this.autoMarkdownPalettes[this.defaultSphereColorSchemeName];
+    return Array.isArray(palette) && palette.length ? palette : null;
+  }
+
+  shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
+    const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
+    const isStructuredLayout = layoutMode === "ring" || layoutMode === "grid";
+    const isHomeScene =
+      typeof this.homeScenePath === "string" &&
+      this.homeScenePath.length > 0 &&
+      scenePath === this.homeScenePath;
+    if (!isStructuredLayout && !isHomeScene) {
+      return false;
+    }
+    if (typeof scenePath === "string") {
+      if (
+        scenePath.startsWith("__markdown_") ||
+        scenePath.startsWith("content/scenes/elements/") ||
+        scenePath === "content/scenes/chemistry/periodic_table_scene.json"
+      ) {
+        return false;
+      }
+    }
+    if (markdownDerived?.autoMarkdownPath || markdownDerived?.autoMarkdownDirectory) {
+      return false;
+    }
+    return true;
+  }
+
+  shouldUsePositionalPaletteOrder() {
+    return false;
+  }
+
+  applyStructuredSpherePalette(nodes, palette, options = {}) {
+    if (!Array.isArray(nodes) || !nodes.length || !Array.isArray(palette) || !palette.length) {
+      return;
+    }
+    const usePositionalOrder = options.usePositionalOrder === true;
+    const eligibleNodes = nodes.filter(
+      (node) => !!node && node.category !== "legend" && node.fixedPosition !== true
+    );
+    if (!eligibleNodes.length) {
+      return;
+    }
+    let orderedNodes = eligibleNodes;
+    if (usePositionalOrder) {
+      const positioned = eligibleNodes.filter(
+        (node) =>
+          Array.isArray(node.position) &&
+          node.position.length >= 2 &&
+          Number.isFinite(node.position[0]) &&
+          Number.isFinite(node.position[1])
+      );
+      if (positioned.length >= 3) {
+        const center = positioned.reduce(
+          (acc, node) => {
+            acc.x += node.position[0];
+            acc.y += node.position[1];
+            return acc;
+          },
+          { x: 0, y: 0 }
+        );
+        center.x /= positioned.length;
+        center.y /= positioned.length;
+        const startAngle = Math.PI / 2;
+        orderedNodes = [...positioned].sort((a, b) => {
+          const aAngle = Math.atan2(a.position[1] - center.y, a.position[0] - center.x);
+          const bAngle = Math.atan2(b.position[1] - center.y, b.position[0] - center.x);
+          const aOrder = (startAngle - aAngle + Math.PI * 2) % (Math.PI * 2);
+          const bOrder = (startAngle - bAngle + Math.PI * 2) % (Math.PI * 2);
+          return aOrder - bOrder;
+        });
+      }
+    }
+    let colorIndex = 0;
+    orderedNodes.forEach((node) => {
+      node.color = palette[colorIndex % palette.length];
+      colorIndex += 1;
+    });
   }
 
   async applyMarkdownDocEligibility(nodes) {
@@ -158,6 +253,12 @@ export class SceneRepository {
           }
           return node;
         });
+        const structuredPalette = this.resolveSphereColorPalette(data);
+        if (this.shouldApplyStructuredSpherePalette(scenePath, data, markdownDerived)) {
+          this.applyStructuredSpherePalette(nodes, structuredPalette, {
+            usePositionalOrder: this.shouldUsePositionalPaletteOrder(scenePath),
+          });
+        }
         const autoMarkdownScene = markdownDerived ? { ...data.scene, ...markdownDerived } : data.scene;
         const autoNodes = await this.buildAutoMarkdownNodes(autoMarkdownScene, nodes);
         if (autoNodes.length) {
@@ -204,6 +305,10 @@ export class SceneRepository {
             markdownDerived?.autoMarkdownColumns ?? null,
           autoMarkdownPalette:
             markdownDerived?.autoMarkdownPalette ?? null,
+          autoMarkdownPaletteName:
+            markdownDerived?.autoMarkdownPaletteName ??
+            data.scene?.autoMarkdownPaletteName ??
+            this.defaultAutoMarkdownPaletteName,
           autoMarkdownColor:
             markdownDerived?.autoMarkdownColor ?? null,
           autoMarkdownExcludePaths: Array.isArray(markdownDerived?.autoMarkdownExcludePaths)

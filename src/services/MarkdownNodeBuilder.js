@@ -11,6 +11,11 @@ export function createMarkdownNodeBuilder(deps) {
   const extractMarkdownDocumentTitle = deps.extractMarkdownDocumentTitle;
   const compactMarkdownNodeLabel = deps.compactMarkdownNodeLabel;
   const colorTokens = deps.colorTokens ?? {};
+  const autoMarkdownPalettes = deps.autoMarkdownPalettes ?? {};
+  const defaultAutoMarkdownPaletteName =
+    typeof deps.defaultAutoMarkdownPaletteName === "string"
+      ? deps.defaultAutoMarkdownPaletteName
+      : "default";
   const defaultAutoMarkdownPalette = Array.isArray(deps.defaultAutoMarkdownPalette)
     ? deps.defaultAutoMarkdownPalette
     : [];
@@ -168,10 +173,19 @@ export function createMarkdownNodeBuilder(deps) {
         )
       : 0;
     const layoutRadius = Math.max(baseRadius, existingMaxRadius);
+    const paletteName =
+      typeof scene.autoMarkdownPaletteName === "string"
+        ? scene.autoMarkdownPaletteName
+        : defaultAutoMarkdownPaletteName;
+    const paletteFromName =
+      Array.isArray(autoMarkdownPalettes[paletteName]) &&
+      autoMarkdownPalettes[paletteName].length
+        ? autoMarkdownPalettes[paletteName]
+        : null;
     const palette =
       Array.isArray(scene.autoMarkdownPalette) && scene.autoMarkdownPalette.length
         ? scene.autoMarkdownPalette
-        : defaultAutoMarkdownPalette;
+        : paletteFromName ?? defaultAutoMarkdownPalette;
     const baseColor = scene.autoMarkdownColor ?? null;
     const maxRingCount =
       typeof scene.autoMarkdownMaxRingCount === "number"
@@ -240,6 +254,12 @@ export function createMarkdownNodeBuilder(deps) {
       const col = index % columns;
       return [startX + col * gridSpacing, startY - row * gridSpacing];
     };
+    const colorIndexForLayoutIndex = (layoutIndex) => {
+      if (!useRing) {
+        return layoutIndex;
+      }
+      return layoutCount - 1 - layoutIndex;
+    };
 
     if (includeExisting) {
       currentNodes.forEach((node, index) => {
@@ -256,7 +276,8 @@ export function createMarkdownNodeBuilder(deps) {
         const { info, slug, id } = entry;
         const layoutIndex = includeExisting ? currentNodes.length + index : index;
         const [x, y] = positionForIndex(layoutIndex);
-        let color = baseColor ?? palette[index % palette.length] ?? "#3a5a8a";
+        const paletteIndex = colorIndexForLayoutIndex(layoutIndex);
+        let color = baseColor ?? palette[paletteIndex % palette.length] ?? "#3a5a8a";
         if (typeof color === "string" && colorTokens[color]) {
           color = colorTokens[color];
         }
