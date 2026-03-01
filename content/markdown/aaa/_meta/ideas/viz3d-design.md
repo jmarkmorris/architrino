@@ -157,4 +157,79 @@ Each short name is the label for the object shown as a sphere and is also the na
 - Electron (electron.json)
 - Neutrino (neutrino.json)
 
+## Operationalizing New Scenes (Current Code Reality)
+
+Based on the current implementation, scene-to-scene navigation is already **explicitly authored** in scene JSON files (via object `subScenes`), while search/graph manifests are generated from that authored content.
+
+### 1) New scene node that opens a markdown file (with label and 📚 icon)
+
+Current behavior:
+- Sphere label comes from object `label` (fallback is object `id`).
+- Click behavior priority is:
+1. If node has `childScene`, zoom to that scene.
+2. Else if node has `markdownPath`, create/open a markdown reader/index scene.
+- The 📚 icon is automatic for markdown-backed nodes when markdown file size crosses the doc-icon threshold (currently 1024 bytes).
+
+Practical recipe:
+1. Add/identify the target markdown file in `content/markdown/...`.
+2. In the parent scene JSON, add an object with:
+- `id`, `label`, `radius`, `color`, `position`
+- `markdownPath: "content/markdown/.../your-file.md"`
+- optionally `markdownSection`, `markdownColumns`
+3. If this should also zoom to a child scene, add `subScenes`, but note current runtime chooses only the first entry for click navigation.
+4. Run:
+- `node scripts/validate-content.mjs --write`
+- `node scripts/build-scene-graph.mjs --write`
+
+Important multi-link note:
+- You can declare multiple `subScenes` entries, and they appear in graph validation/manifest edges.
+- Runtime click navigation currently uses only `subScenes[0]` as the active `childScene`.
+- If one sphere truly needs multiple destinations, we need a UX/router change (chooser, modifier, radial menu, or explicit intermediate scene).
+
+### 2) New "scene-of-scenes" sphere (drill-down to another level)
+
+This is the primary existing pattern.
+
+Practical recipe:
+1. Create a child scene JSON with its own `scene` + `objects`.
+2. Add that child file to `content/scenes/...` (it will be indexed by validation).
+3. In the parent scene, add/update object `subScenes: ["content/scenes/.../child.json"]`.
+4. Clicking the parent object zooms into that child scene.
+
+For deeper nesting:
+- A child scene can itself contain objects with `subScenes`, producing unlimited levels.
+- A child scene can mix:
+- objects that open markdown (`markdownPath`)
+- objects that drill deeper (`subScenes`)
+- animated objects (via `motion`, `binaryBands`, etc.)
+
+### 3) Do we still need exclusion capability?
+
+Short answer: only if we keep auto-generated markdown node layouts.
+
+Current exclusion knobs (`markdown.exclude` / `autoMarkdownExcludePaths`) are used by auto-markdown expansion (`autoSphereRing` + markdown source file/directory). They do not affect explicitly-authored object lists.
+
+So:
+- If we move fully to explicit scene objects: exclusion is mostly unnecessary.
+- If we keep auto-markdown generation for convenience: exclusion remains useful to prune noise without hand-authoring every node.
+
+### 4) Other scene-network definition capabilities today (and whether to keep)
+
+Capabilities in use:
+- Explicit navigation edges: `objects[].subScenes` (core).
+- Direct markdown targets: `objects[].markdownPath` (+ section/columns).
+- Scene-level markdown policy:
+- `markdown.source` (file/directory)
+- `markdown.layout` (includeExisting, ring radius, palette, etc.)
+- `markdown.render` (doc vs index defaults, heading depth)
+- `markdown.overrides` and `markdown.exclude`
+- Visual semantic edges: scene `links[]` (rendered arrows; not click navigation).
+- Runtime-generated routes: periodic table and element legend routes (from manifest/runtime config).
+
+Recommendation:
+1. Keep explicit `subScenes` as the canonical navigation model.
+2. Keep direct `markdownPath` on objects.
+3. Treat markdown auto-generation as optional acceleration, not the core IA model.
+4. Decide if multi-destination nodes are a real requirement; if yes, design it explicitly (current runtime is single-destination on click).
+5. Keep runtime route config for special systems (periodic grid/legend), since those are intentionally non-generic.
 
