@@ -128,6 +128,9 @@ export function createSceneGraphRuntime(deps) {
       if (nodeData.category === "legend") {
         return;
       }
+      if (config.labelDocIconOwnLine === true) {
+        nodeData.docIconOwnLine = true;
+      }
       const usesFixedPosition = nodeData.fixedPosition === true;
       if (ringLayout && !usesFixedPosition) {
         const positionIndex =

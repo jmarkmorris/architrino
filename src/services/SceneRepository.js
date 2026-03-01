@@ -219,6 +219,7 @@ export class SceneRepository {
           autoMarkdownPlainSectionPaths: Array.isArray(markdownDerived?.autoMarkdownPlainSectionPaths)
             ? markdownDerived.autoMarkdownPlainSectionPaths
             : [],
+          labelDocIconOwnLine: data.scene?.labelDocIconOwnLine === true,
           autoMarkdownSectionDepth: markdownDerived?.autoMarkdownSectionDepth ?? null,
           autoMarkdownOverrides: markdownDerived?.autoMarkdownOverrides ?? null,
           autoMarkdownSubdirectories: markdownDerived?.autoMarkdownSubdirectories ?? false,

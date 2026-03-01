@@ -46,12 +46,17 @@ export function createNodeFactory(deps) {
       node.hideScaleLabel || !node.hasScale
         ? ""
         : `<div class="label-scale">10^${node.scale}</div>`;
-    const docIconHtml = node.markdownDocIcon
-      ? ` <span class="label-doc-icon" aria-hidden="true">📚</span>`
-      : "";
+    const inlineDocIconHtml =
+      node.markdownDocIcon && !node.docIconOwnLine
+        ? ` <span class="label-doc-icon" aria-hidden="true">📚</span>`
+        : "";
+    const lineDocIconHtml =
+      node.markdownDocIcon && node.docIconOwnLine
+        ? `<div class="label-doc-icon-line" aria-hidden="true">📚</div>`
+        : "";
     const tagHtml =
       node.category === "Reaction" ? `<div class="label-tag">RXN</div>` : "";
-    label.innerHTML = `<div class="label-title">${displayName}${docIconHtml}</div>${scaleHtml}${tagHtml}`;
+    label.innerHTML = `<div class="label-title">${displayName}${inlineDocIconHtml}</div>${lineDocIconHtml}${scaleHtml}${tagHtml}`;
     return new CSS2DObject(label);
   }
 

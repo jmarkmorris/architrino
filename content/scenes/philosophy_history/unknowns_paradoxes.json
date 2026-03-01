@@ -6,7 +6,8 @@
     "units": "relative",
     "wrapLabels": true,
     "layoutMode": "grid",
-    "layoutColumns": 6
+    "layoutColumns": 6,
+    "labelDocIconOwnLine": true
   },
   "objects": [
     {
