@@ -172,6 +172,10 @@ export class SceneRepository {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
           layoutMode:
             typeof data.scene?.layoutMode === "string" ? data.scene.layoutMode : null,
+          layoutColumns:
+            Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
+              ? data.scene.layoutColumns
+              : null,
           nodes,
           links: Array.isArray(data.links) ? data.links : [],
           sceneName,

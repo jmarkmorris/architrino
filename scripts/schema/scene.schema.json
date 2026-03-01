@@ -28,6 +28,7 @@
           "type": "string",
           "enum": ["manual", "ring", "grid"]
         },
+        "layoutColumns": { "type": "integer", "minimum": 1 },
         "markdownPath": { "type": "string" },
         "markdownSection": { "type": "string" },
         "markdownColumns": { "type": "number" },

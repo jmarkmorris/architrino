@@ -35,6 +35,38 @@ export function createSceneGraphRuntime(deps) {
     return positions;
   }
 
+  function computeExplicitGridPositions(nodes, requestedColumns = null) {
+    const count = Array.isArray(nodes) ? nodes.length : 0;
+    if (!count) {
+      return null;
+    }
+    const maxNodeRadius = Math.max(
+      1,
+      ...nodes.map((node) =>
+        Number.isFinite(node?.radius) && node.radius > 0 ? node.radius : 1
+      )
+    );
+    const spacing = Number((maxNodeRadius * 2.9).toFixed(2));
+    const columns =
+      Number.isInteger(requestedColumns) && requestedColumns > 0
+        ? requestedColumns
+        : Math.max(2, Math.ceil(Math.sqrt(count * 1.6)));
+    const rows = Math.ceil(count / columns);
+    const startX = -((columns - 1) * spacing) / 2;
+    const startY = ((rows - 1) * spacing) / 2;
+    const positions = [];
+    for (let i = 0; i < count; i += 1) {
+      const row = Math.floor(i / columns);
+      const col = i % columns;
+      positions.push([
+        Number((startX + col * spacing).toFixed(2)),
+        Number((startY - row * spacing).toFixed(2)),
+        0,
+      ]);
+    }
+    return positions;
+  }
+
   function buildLevel(levelId) {
     if (deps.levels.has(levelId)) {
       return deps.levels.get(levelId);
@@ -59,13 +91,19 @@ export function createSceneGraphRuntime(deps) {
       config.layout === "static";
     const useExplicitRingLayout =
       config.layout === "static" && explicitLayoutMode === "ring";
+    const useExplicitGridLayout =
+      config.layout === "static" && explicitLayoutMode === "grid";
     const useRingLayout = useLegacyAutoSphereRing || useExplicitRingLayout;
-    const ringNodes = useRingLayout
+    const useStructuredLayout = useRingLayout || useExplicitGridLayout;
+    const ringNodes = useStructuredLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
       : [];
     const ringLayout = useLegacyAutoSphereRing ? deps.computeRingLayout(ringNodes) : null;
     const explicitRingPositions = useExplicitRingLayout
       ? computeExplicitRingPositions(ringNodes)
+      : null;
+    const explicitGridPositions = useExplicitGridLayout
+      ? computeExplicitGridPositions(ringNodes, config.layoutColumns)
       : null;
     const useClockwiseOrder =
       !!ringLayout &&
@@ -97,6 +135,12 @@ export function createSceneGraphRuntime(deps) {
         ringIndex += 1;
       } else if (explicitRingPositions && !usesFixedPosition) {
         const pos = explicitRingPositions[ringIndex];
+        if (pos) {
+          nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
+        }
+        ringIndex += 1;
+      } else if (explicitGridPositions && !usesFixedPosition) {
+        const pos = explicitGridPositions[ringIndex];
         if (pos) {
           nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
         }
