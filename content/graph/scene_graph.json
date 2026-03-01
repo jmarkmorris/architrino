@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 348,
-      "edges": 1136,
+      "edges": 1134,
       "scenes": 175,
       "markdownIndexes": 23,
       "markdownDocs": 150,
@@ -8676,24 +8676,10 @@
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "markdown_doc:content/markdown/aaa/quantum/measurement-ontology.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "measurement_ontology.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/quantum/quantum.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/pilot-wave-character.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/quantum.json",
       "field": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "markdown_doc:content/markdown/aaa/quantum/quantum-summary.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "quantum_summary.markdownPath"
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",

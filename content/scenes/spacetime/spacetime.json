@@ -4,7 +4,8 @@
     "id": "spacetime",
     "name": "Spacetime Assemblies",
     "units": "relative",
-    "wrapLabels": true
+    "wrapLabels": true,
+    "layoutMode": "ring"
   },
   "objects": [
     {
