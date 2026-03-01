@@ -30,7 +30,8 @@
       "label": "Glossary",
       "radius": 2.2,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/archie/glossary.md"
+      "markdownPath": "content/markdown/aaa/archie/glossary.md",
+      "markdownColumns": 1
     },
     {
       "id": "meta_help",
