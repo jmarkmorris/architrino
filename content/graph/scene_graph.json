@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 352,
-      "edges": 1126,
-      "scenes": 179,
+      "nodes": 353,
+      "edges": 1129,
+      "scenes": 180,
       "markdownIndexes": 23,
       "markdownDocs": 150,
       "runtimeEdges": 476,
@@ -164,12 +164,6 @@
       "id": "positrino",
       "name": "Positrino",
       "path": "content/scenes/architrino-theory/positrino.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "assemblies",
-      "name": "Assemblies",
-      "path": "content/scenes/assemblies/assemblies.json",
       "nodeType": "scene"
     },
     {
@@ -1223,6 +1217,18 @@
       "nodeType": "scene"
     },
     {
+      "id": "assemblies",
+      "name": "Assemblies",
+      "path": "content/scenes/assemblies/assemblies.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "bosons_assemblies",
+      "name": "Bosons",
+      "path": "content/scenes/assemblies/bosons.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/_meta",
       "name": "Meta",
       "path": "__markdown_directory__:content/markdown/aaa/_meta",
@@ -1674,7 +1680,7 @@
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-      "name": "Color Charge and SU(3) from Tri‑Binary (“Noether Core”) Geometry",
+      "name": "Color Charge and SU(3)",
       "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "nodeType": "markdown_doc"
     },
@@ -1710,7 +1716,7 @@
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-      "name": "Weak Mixing (Flavor-Mass Basis Misalignment)",
+      "name": "Weak Mixing and CKM",
       "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "nodeType": "markdown_doc"
     },
@@ -1800,7 +1806,7 @@
     },
     {
       "id": "content/markdown/aaa/dynamics/effective-lagrangian.md",
-      "name": "Effective Lagrangian and Action Principles",
+      "name": "Effective Lagrangian",
       "path": "__markdown_doc__:content/markdown/aaa/dynamics/effective-lagrangian.md",
       "nodeType": "markdown_doc"
     },
@@ -1812,13 +1818,13 @@
     },
     {
       "id": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "name": "**The emergence of U(1)/SU(2) from Assembly Dynamics**",
+      "name": "Emergence of U(1)/SU(2)",
       "path": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "name": "Gauge Symmetries (Minimal Derivation Spine)",
+      "name": "Gauge Symmetries",
       "path": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-symmetries.md",
       "nodeType": "markdown_doc"
     },
@@ -1866,7 +1872,7 @@
     },
     {
       "id": "content/markdown/aaa/foundations/euclidean-void.md",
-      "name": "Notes for Alfa",
+      "name": "Euclidean Void",
       "path": "__markdown_doc__:content/markdown/aaa/foundations/euclidean-void.md",
       "nodeType": "markdown_doc"
     },
@@ -1974,7 +1980,7 @@
     },
     {
       "id": "content/markdown/aaa/quantum/collapse-problem.md",
-      "name": "The Measurement Problem and Wavefunction Collapse: Traditional vs. Architrino Assembly Architecture",
+      "name": "Measurement Problem and Collapse",
       "path": "__markdown_doc__:content/markdown/aaa/quantum/collapse-problem.md",
       "nodeType": "markdown_doc"
     },
@@ -2016,7 +2022,7 @@
     },
     {
       "id": "content/markdown/aaa/quantum/wavefunction-ontology.md",
-      "name": "Wavefunction Ontology and Effective State Dynamics",
+      "name": "Wavefunction Ontology",
       "path": "__markdown_doc__:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "nodeType": "markdown_doc"
     },
@@ -2296,6 +2302,15 @@
       "name": "Assemblies",
       "path": "content/scenes/assemblies/assemblies.json",
       "searchTarget": "content/scenes/assemblies/assemblies.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/bosons.json",
+      "nodeType": "scene",
+      "id": "bosons_assemblies",
+      "name": "Bosons",
+      "path": "content/scenes/assemblies/bosons.json",
+      "searchTarget": "content/scenes/assemblies/bosons.json",
       "implicit": false
     },
     {
@@ -4529,7 +4544,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-      "name": "Color Charge and SU(3) from Tri‑Binary (“Noether Core”) Geometry",
+      "name": "Color Charge and SU(3)",
       "path": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "implicit": false
@@ -4583,7 +4598,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-      "name": "Weak Mixing (Flavor-Mass Basis Misalignment)",
+      "name": "Weak Mixing and CKM",
       "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "implicit": false
@@ -4718,7 +4733,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/effective-lagrangian.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/effective-lagrangian.md",
-      "name": "Effective Lagrangian and Action Principles",
+      "name": "Effective Lagrangian",
       "path": "content/markdown/aaa/dynamics/effective-lagrangian.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/effective-lagrangian.md",
       "implicit": false
@@ -4736,7 +4751,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "name": "**The emergence of U(1)/SU(2) from Assembly Dynamics**",
+      "name": "Emergence of U(1)/SU(2)",
       "path": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "implicit": false
@@ -4745,7 +4760,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/gauge-symmetries.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "name": "Gauge Symmetries (Minimal Derivation Spine)",
+      "name": "Gauge Symmetries",
       "path": "content/markdown/aaa/dynamics/gauge-symmetries.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-symmetries.md",
       "implicit": false
@@ -4817,7 +4832,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/euclidean-void.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/euclidean-void.md",
-      "name": "Notes for Alfa",
+      "name": "Euclidean Void",
       "path": "content/markdown/aaa/foundations/euclidean-void.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/foundations/euclidean-void.md",
       "implicit": false
@@ -4979,7 +4994,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/collapse-problem.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/collapse-problem.md",
-      "name": "The Measurement Problem and Wavefunction Collapse: Traditional vs. Architrino Assembly Architecture",
+      "name": "Measurement Problem and Collapse",
       "path": "content/markdown/aaa/quantum/collapse-problem.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/collapse-problem.md",
       "implicit": false
@@ -5042,7 +5057,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/wavefunction-ontology.md",
-      "name": "Wavefunction Ontology and Effective State Dynamics",
+      "name": "Wavefunction Ontology",
       "path": "content/markdown/aaa/quantum/wavefunction-ontology.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "implicit": false
@@ -5478,6 +5493,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
       "field": "objects[7].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/bosons.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "objects[5].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -8526,6 +8548,13 @@
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "mesons_doc.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/noether-core.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/assemblies.json",
@@ -9887,6 +9916,13 @@
       "to": "markdown_index:content/markdown/aaa/assemblies",
       "edgeType": "markdown_index",
       "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.markdown.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/bosons.json",
+      "to": "markdown_index:content/markdown/aaa/assemblies/bosons",
+      "edgeType": "markdown_index",
+      "source": "content/scenes/assemblies/bosons.json",
       "field": "scene.markdown.source.path"
     },
     {
