@@ -8,6 +8,7 @@ const MARKDOWN_DIR = "content/markdown";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
 const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
+const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.json";
 const LEGACY_AUTOGEN_ALLOWLIST_PATH =
   "scripts/config/legacy-scene-autogen-allowlist.json";
 // Explicit-only migration policy:
@@ -692,6 +693,57 @@ function readLegacyAutogenAllowlist() {
   return { scenes, removeBy };
 }
 
+function readStableIdLabelLock() {
+  const parsed = readJson(STABLE_ID_LABEL_LOCK_PATH);
+  if (!parsed.ok) {
+    errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: failed to parse JSON (${parsed.error.message})`);
+    return { entries: new Map() };
+  }
+  const entriesRaw = parsed.data?.entries;
+  if (!entriesRaw || typeof entriesRaw !== "object" || Array.isArray(entriesRaw)) {
+    errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: expected { "entries": { ... } }`);
+    return { entries: new Map() };
+  }
+
+  const entries = new Map();
+  for (const [scenePathRaw, lock] of Object.entries(entriesRaw)) {
+    const scenePath = normalizePath(scenePathRaw);
+    if (!scenePath) {
+      errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: scene path key must not be empty`);
+      continue;
+    }
+    if (!lock || typeof lock !== "object" || Array.isArray(lock)) {
+      errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: ${scenePath}: lock entry must be an object`);
+      continue;
+    }
+    const sceneId = asText(lock.sceneId);
+    const sceneName = asText(lock.sceneName);
+    const objectsRaw = lock.objects;
+    if (!objectsRaw || typeof objectsRaw !== "object" || Array.isArray(objectsRaw)) {
+      errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: ${scenePath}: objects must be an object`);
+      continue;
+    }
+    const objectLabels = new Map();
+    for (const [objectIdRaw, labelRaw] of Object.entries(objectsRaw)) {
+      const objectId = asText(objectIdRaw);
+      if (!objectId) {
+        errors.push(`${STABLE_ID_LABEL_LOCK_PATH}: ${scenePath}: object id key must not be empty`);
+        continue;
+      }
+      const label = asText(labelRaw);
+      if (!label) {
+        errors.push(
+          `${STABLE_ID_LABEL_LOCK_PATH}: ${scenePath}: object "${objectId}" label must be non-empty`
+        );
+        continue;
+      }
+      objectLabels.set(objectId, label);
+    }
+    entries.set(scenePath, { sceneId, sceneName, objectLabels });
+  }
+  return { entries };
+}
+
 function listMarkdownFilesInDirectory(directory, markdownFiles) {
   const normalizedDir = normalizePath(directory);
   if (!normalizedDir) {
@@ -1094,8 +1146,57 @@ const markdownContext = {
   markdownDirectories: allMarkdownDirectories,
   markdownTextByPath,
 };
+const stableIdLabelLock = readStableIdLabelLock();
 const legacyAutogenAllowlist = readLegacyAutogenAllowlist();
 const legacyAutogenScenes = [];
+
+if (stableIdLabelLock.entries.size) {
+  notes.push(`Stable ID/label lock coverage: ${stableIdLabelLock.entries.size} scene file(s).`);
+}
+stableIdLabelLock.entries.forEach((lock, scenePath) => {
+  const sceneData = sceneDataByPath.get(scenePath);
+  if (!sceneData) {
+    warnings.push(`${STABLE_ID_LABEL_LOCK_PATH}: locked scene not found (${scenePath})`);
+    return;
+  }
+  const scene = sceneData.scene ?? {};
+  const actualSceneId = asText(scene.id);
+  const actualSceneName = asText(scene.name);
+  if (lock.sceneId && actualSceneId !== lock.sceneId) {
+    errors.push(
+      `${scenePath}: scene.id changed from locked "${lock.sceneId}" to "${actualSceneId}"`
+    );
+  }
+  if (lock.sceneName && actualSceneName !== lock.sceneName) {
+    errors.push(
+      `${scenePath}: scene.name changed from locked "${lock.sceneName}" to "${actualSceneName}"`
+    );
+  }
+
+  const objects = Array.isArray(sceneData.objects) ? sceneData.objects : [];
+  const objectLabelById = new Map();
+  objects.forEach((obj) => {
+    const objectId = asText(obj?.id);
+    if (!objectId) {
+      return;
+    }
+    const objectLabel = asText(obj?.label) || objectId;
+    objectLabelById.set(objectId, objectLabel);
+  });
+
+  lock.objectLabels.forEach((expectedLabel, objectId) => {
+    if (!objectLabelById.has(objectId)) {
+      errors.push(`${scenePath}: locked object id missing "${objectId}"`);
+      return;
+    }
+    const actualLabel = objectLabelById.get(objectId);
+    if (actualLabel !== expectedLabel) {
+      errors.push(
+        `${scenePath}: object "${objectId}" label changed from locked "${expectedLabel}" to "${actualLabel}"`
+      );
+    }
+  });
+});
 
 for (const scenePath of sceneConfigs) {
   const data = sceneDataByPath.get(scenePath);

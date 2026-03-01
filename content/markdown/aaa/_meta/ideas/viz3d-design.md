@@ -373,6 +373,7 @@ Implication:
 
 8. Preserve stable IDs and labels:
 - keep object `id`/`label` stable where possible to avoid search/history/nav churn.
+- implemented guardrail: `scripts/config/stable-scene-id-label-lock.json` + validator checks in `scripts/validate-content.mjs` now fail strict checks if locked scene IDs/names or locked object IDs/labels drift unintentionally.
 
 9. Remove legacy fields scene-by-scene after migration:
 - remove `scene.markdown` blocks
