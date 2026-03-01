@@ -233,3 +233,130 @@ Recommendation:
 4. Decide if multi-destination nodes are a real requirement; if yes, design it explicitly (current runtime is single-destination on click).
 5. Keep runtime route config for special systems (periodic grid/legend), since those are intentionally non-generic.
 
+## Architectural Revamp: Explicit-Only Scene Network
+
+### Target architecture
+
+Source of truth should be explicit `scene.json` content:
+- `objects[]` defines visible spheres and labels.
+- `objects[].subScenes[]` defines navigation edges.
+- `objects[].markdownPath` / `objects[].markdownSection` defines markdown destinations.
+
+Global manifests should be generated artifacts, never hand-authored:
+- authored scene files -> generated indexes/graph -> runtime search/routes.
+
+### Why this removes maintenance pain
+
+Current complexity comes from multiple overlapping authoring paths:
+- explicit scene objects and explicit subScenes (good, stable)
+- scene-level markdown policy auto-expansion (`scene.markdown`, `autoSphereRing`)
+- dynamic synthetic markdown reader/index scene IDs at runtime
+- runtime-generated route edges for special systems
+
+Making explicit scene files canonical reduces hidden behavior and edge cases:
+- no implicit node generation from directories/files
+- no policy-level exclude/override state to reason about
+- fewer runtime synthetic scene variants
+- easier review diffs and domain-by-domain ownership
+
+### Current migration inventory (from repo scan)
+
+Scenes still using `scene.markdown` policy blocks (need conversion to explicit objects):
+- `content/scenes/assemblies/assemblies.json`
+- `content/scenes/assemblies/bosons.json`
+- `content/scenes/cosmology/cosmology.json`
+- `content/scenes/dynamics/dynamics.json`
+- `content/scenes/foundations/foundations.json`
+- `content/scenes/meta/meta.json`
+- `content/scenes/nuclear/nuclear_atomic.json`
+- `content/scenes/philosophy_history/out_of_the_ashes.json`
+- `content/scenes/philosophy_history/philosophy_history.json`
+- `content/scenes/philosophy_history/unknowns_paradoxes.json`
+- `content/scenes/quantum/quantum.json`
+- `content/scenes/spacetime/spacetime.json`
+- `content/scenes/validation/simulations.json`
+- `content/scenes/validation/validation.json`
+
+Special policy usage to retire:
+- `markdown.overrides` and heading/section policy currently in `content/scenes/philosophy_history/philosophy_history.json`
+- file-source section auto behavior currently in:
+- `content/scenes/philosophy_history/out_of_the_ashes.json`
+- `content/scenes/philosophy_history/unknowns_paradoxes.json`
+
+### Generated files and when generation runs
+
+Generated artifacts:
+- `content/scenes/scenes_index.json`
+- `content/markdown/markdown_index.json`
+- `content/graph/scene_graph.json`
+
+Writers:
+- `node scripts/validate-content.mjs --write`
+- regenerates `content/scenes/scenes_index.json` and `content/markdown/markdown_index.json`
+- `node scripts/build-scene-graph.mjs --write`
+- regenerates `content/graph/scene_graph.json` from scene/markdown indexes plus runtime route inputs
+
+Automatic check gates (drift/fail, no write):
+- `.githooks/pre-commit` runs:
+- `node scripts/validate-content.mjs --check --strict`
+- `node scripts/build-scene-graph.mjs --check --strict`
+- `.githooks/pre-push` runs the same strict checks
+- `.github/workflows/content-integrity.yml` runs the same checks in CI plus `node scripts/smoke-option3.mjs`
+
+Implication:
+- any authored scene/markdown changes that affect generated artifacts must be followed by local `--write` regeneration and commit of changed generated files.
+
+### Step-by-step migration plan (explicit-only end state)
+
+1. Define and publish the contract:
+- scene authoring uses explicit `objects`, `subScenes`, `markdownPath`, `markdownSection`.
+- generated manifests are read-only build artifacts.
+
+2. Make explicit-only the default in docs and code review:
+- no new `scene.markdown` blocks.
+- no new auto directory/file expansion policy in authored scene configs.
+
+3. Add one temporary migration allowlist only if required:
+- centralized, explicit file listing remaining legacy scenes.
+- add removal date and owner.
+
+4. Inventory and classify remaining legacy scenes:
+- directory-based auto scenes
+- file-section auto scenes
+- override/heading policy scenes
+
+5. Migrate directory-based scenes in small batches:
+- replace generated nodes with explicit `objects[]`.
+- preserve existing labels/colors/positions where practical.
+
+6. Migrate scene-of-scenes patterns explicitly:
+- create concrete child `scene.json` files.
+- connect via `subScenes` in parent objects.
+
+7. Migrate file-section auto scenes:
+- add explicit nodes with `markdownPath` + `markdownSection`.
+- remove heading/section auto policy dependencies.
+
+8. Preserve stable IDs and labels:
+- keep object `id`/`label` stable where possible to avoid search/history/nav churn.
+
+9. Remove legacy fields scene-by-scene after migration:
+- remove `scene.markdown` blocks
+- remove `autoSphereRing` only where it is no longer needed for authored layout behavior
+- remove legacy policy fragments (`exclude`, `overrides`, heading defaults)
+
+10. Regenerate artifacts after each migration slice:
+- `node scripts/validate-content.mjs --write`
+- `node scripts/build-scene-graph.mjs --write`
+- verify no orphan `subScenes` references and no drift.
+
+11. Enforce with validation:
+- add validator failures for new `scene.markdown` or other retired auto-generation fields once migration starts.
+- optionally warn first, then flip to hard fail.
+
+12. Commit in domain batches:
+- one subtree at a time (for example one domain folder per batch).
+- one commit per batch to keep blast radius small and rollback clean.
+
+13. Final cleanup:
+- remove dead scene files, dead markdown routing assumptions, dynamic migration allowlist, and obsolete runtime branches tied only to legacy auto-generation.
