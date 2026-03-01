@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 348,
-      "edges": 1134,
-      "scenes": 175,
+      "nodes": 341,
+      "edges": 1114,
+      "scenes": 168,
       "markdownIndexes": 23,
       "markdownDocs": 150,
       "runtimeEdges": 476,
@@ -1037,51 +1037,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "cosmic_censorship",
-      "name": "Cosmic Censorship",
-      "path": "content/scenes/spacetime/cosmic_censorship.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "spacetime_gr_bridge",
-      "name": "General Relativity Bridge and Effective Limits",
-      "path": "content/scenes/spacetime/gr_bridge_limits.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "gravity",
-      "name": "Gravity",
-      "path": "content/scenes/spacetime/gravity.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "spacetime_metric_clocks",
-      "name": "Metric Emergence and Clocks",
-      "path": "content/scenes/spacetime/metric_emergence_clocks.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "spacetime_precision_tests",
-      "name": "Precision and Weak-Field Tests",
-      "path": "content/scenes/spacetime/precision_weak_field_tests.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "spacetime",
       "name": "Spacetime Assemblies",
       "path": "content/scenes/spacetime/spacetime.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "spacetime_strong_field",
-      "name": "Strong Field and Horizons",
-      "path": "content/scenes/spacetime/strong_field_horizons.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "spacetime_wave_channel",
-      "name": "Wave and Observables Channel",
-      "path": "content/scenes/spacetime/wave_phenomenology_channel.json",
       "nodeType": "scene"
     },
     {
@@ -3589,75 +3547,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/spacetime/cosmic_censorship.json",
-      "nodeType": "scene",
-      "id": "cosmic_censorship",
-      "name": "Cosmic Censorship",
-      "path": "content/scenes/spacetime/cosmic_censorship.json",
-      "searchTarget": "content/scenes/spacetime/cosmic_censorship.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/gr_bridge_limits.json",
-      "nodeType": "scene",
-      "id": "spacetime_gr_bridge",
-      "name": "General Relativity Bridge and Effective Limits",
-      "path": "content/scenes/spacetime/gr_bridge_limits.json",
-      "searchTarget": "content/scenes/spacetime/gr_bridge_limits.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/gravity.json",
-      "nodeType": "scene",
-      "id": "gravity",
-      "name": "Gravity",
-      "path": "content/scenes/spacetime/gravity.json",
-      "searchTarget": "content/scenes/spacetime/gravity.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/metric_emergence_clocks.json",
-      "nodeType": "scene",
-      "id": "spacetime_metric_clocks",
-      "name": "Metric Emergence and Clocks",
-      "path": "content/scenes/spacetime/metric_emergence_clocks.json",
-      "searchTarget": "content/scenes/spacetime/metric_emergence_clocks.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/precision_weak_field_tests.json",
-      "nodeType": "scene",
-      "id": "spacetime_precision_tests",
-      "name": "Precision and Weak-Field Tests",
-      "path": "content/scenes/spacetime/precision_weak_field_tests.json",
-      "searchTarget": "content/scenes/spacetime/precision_weak_field_tests.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/spacetime/spacetime.json",
       "nodeType": "scene",
       "id": "spacetime",
       "name": "Spacetime Assemblies",
       "path": "content/scenes/spacetime/spacetime.json",
       "searchTarget": "content/scenes/spacetime/spacetime.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/strong_field_horizons.json",
-      "nodeType": "scene",
-      "id": "spacetime_strong_field",
-      "name": "Strong Field and Horizons",
-      "path": "content/scenes/spacetime/strong_field_horizons.json",
-      "searchTarget": "content/scenes/spacetime/strong_field_horizons.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/wave_phenomenology_channel.json",
-      "nodeType": "scene",
-      "id": "spacetime_wave_channel",
-      "name": "Wave and Observables Channel",
-      "path": "content/scenes/spacetime/wave_phenomenology_channel.json",
-      "searchTarget": "content/scenes/spacetime/wave_phenomenology_channel.json",
       "implicit": false
     },
     {
@@ -8136,48 +8031,6 @@
       "field": "objects[1].subScenes[0]"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/gr_bridge_limits.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "objects[4].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/metric_emergence_clocks.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "objects[0].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/precision_weak_field_tests.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "objects[1].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/strong_field_horizons.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "objects[2].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/wave_phenomenology_channel.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "objects[3].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/strong_field_horizons.json",
-      "to": "scene:content/scenes/spacetime/cosmic_censorship.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/strong_field_horizons.json",
-      "field": "objects[3].subScenes[0]"
-    },
-    {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
@@ -8703,74 +8556,11 @@
       "field": "wavefunction_ontology.markdownPath"
     },
     {
-      "from": "scene:content/scenes/spacetime/cosmic_censorship.json",
+      "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/cosmic_censorship.json",
-      "field": "holography.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/gr_bridge_limits.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/emergent-metric.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/gr_bridge_limits.json",
-      "field": "metric_limit_map.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/gr_bridge_limits.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/gr_bridge_limits.json",
-      "field": "gr_phenomenology_core.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/gr_bridge_limits.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/ppn-parameters.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/gr_bridge_limits.json",
-      "field": "ppn_limit_map.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/gr_bridge_limits.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/singularity-resolution.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/gr_bridge_limits.json",
-      "field": "strong_field_limit_map.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/metric_emergence_clocks.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/emergent-metric.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/metric_emergence_clocks.json",
-      "field": "metric_emergence.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/metric_emergence_clocks.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/metric_emergence_clocks.json",
-      "field": "proper_time_map.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/precision_weak_field_tests.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/emergent-metric.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/precision_weak_field_tests.json",
-      "field": "weak_field_metric.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/precision_weak_field_tests.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/ppn-parameters.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/precision_weak_field_tests.json",
-      "field": "ppn_parameters.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/precision_weak_field_tests.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/precision_weak_field_tests.json",
-      "field": "clock_rate_tests.markdownPath"
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "cosmic_censorship_holography.markdownPath"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
@@ -8813,41 +8603,6 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "singularity_resolution.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/strong_field_horizons.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/strong_field_horizons.json",
-      "field": "gr_phenomenology_high_curvature.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/strong_field_horizons.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/gravitational-waves.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/strong_field_horizons.json",
-      "field": "wave_regime_link.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/strong_field_horizons.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/singularity-resolution.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/strong_field_horizons.json",
-      "field": "singularity_resolution.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/wave_phenomenology_channel.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/wave_phenomenology_channel.json",
-      "field": "gr_phenomenology_bridge.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/wave_phenomenology_channel.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/gravitational-waves.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/wave_phenomenology_channel.json",
-      "field": "gravitational_waves.markdownPath"
     },
     {
       "from": "scene:content/scenes/standard-model-theory/fermion_generation_color.json",

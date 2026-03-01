@@ -741,44 +741,9 @@
       "path": "content/scenes/quantum/quantum.json"
     },
     {
-      "id": "cosmic_censorship",
-      "name": "Cosmic Censorship",
-      "path": "content/scenes/spacetime/cosmic_censorship.json"
-    },
-    {
-      "id": "spacetime_gr_bridge",
-      "name": "General Relativity Bridge and Effective Limits",
-      "path": "content/scenes/spacetime/gr_bridge_limits.json"
-    },
-    {
-      "id": "gravity",
-      "name": "Gravity",
-      "path": "content/scenes/spacetime/gravity.json"
-    },
-    {
-      "id": "spacetime_metric_clocks",
-      "name": "Metric Emergence and Clocks",
-      "path": "content/scenes/spacetime/metric_emergence_clocks.json"
-    },
-    {
-      "id": "spacetime_precision_tests",
-      "name": "Precision and Weak-Field Tests",
-      "path": "content/scenes/spacetime/precision_weak_field_tests.json"
-    },
-    {
       "id": "spacetime",
       "name": "Spacetime Assemblies",
       "path": "content/scenes/spacetime/spacetime.json"
-    },
-    {
-      "id": "spacetime_strong_field",
-      "name": "Strong Field and Horizons",
-      "path": "content/scenes/spacetime/strong_field_horizons.json"
-    },
-    {
-      "id": "spacetime_wave_channel",
-      "name": "Wave and Observables Channel",
-      "path": "content/scenes/spacetime/wave_phenomenology_channel.json"
     },
     {
       "id": "bottom",

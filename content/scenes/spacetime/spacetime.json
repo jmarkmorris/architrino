@@ -9,106 +9,6 @@
   },
   "objects": [
     {
-      "id": "spacetime_metric_clocks",
-      "label": "Metric Emergence and Clocks",
-      "radius": 2.688,
-      "color": "#3c6a7a",
-      "position": [
-        6.0,
-        10.39,
-        0
-      ],
-      "subScenes": [
-        "content/scenes/spacetime/metric_emergence_clocks.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "spacetime_precision_tests",
-      "label": "Precision and Weak-Field Tests",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "position": [
-        10.39,
-        6.0,
-        0
-      ],
-      "subScenes": [
-        "content/scenes/spacetime/precision_weak_field_tests.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "spacetime_strong_field",
-      "label": "Strong Field and Horizons",
-      "radius": 2.688,
-      "color": "#2c2c60",
-      "position": [
-        12.0,
-        0.0,
-        0
-      ],
-      "subScenes": [
-        "content/scenes/spacetime/strong_field_horizons.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "spacetime_wave_channel",
-      "label": "Wave and Observables Channel",
-      "radius": 2.688,
-      "color": "#5a3f73",
-      "position": [
-        10.39,
-        -6.0,
-        0
-      ],
-      "subScenes": [
-        "content/scenes/spacetime/wave_phenomenology_channel.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "spacetime_gr_bridge",
-      "label": "General Relativity Bridge and Effective Limits",
-      "radius": 2.688,
-      "color": "#2c6c7e",
-      "position": [
-        6.0,
-        -10.39,
-        0
-      ],
-      "subScenes": [
-        "content/scenes/spacetime/gr_bridge_limits.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "spacetime_gravity",
-      "label": "Gravity",
-      "radius": 2.688,
-      "color": "#2a3b5a",
-      "position": [
-        0.0,
-        -12.0,
-        0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "emergent_metric",
       "label": "Emergent Metric",
       "radius": 2.688,
@@ -127,7 +27,7 @@
     },
     {
       "id": "general_relativity_observables",
-      "label": "General Relativity Observables",
+      "label": "General Relativity",
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
@@ -204,6 +104,20 @@
         0
       ],
       "markdownPath": "content/markdown/aaa/spacetime/singularity-resolution.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmic_censorship_holography",
+      "label": "Cosmic Censorship and Holography",
+      "radius": 2.688,
+      "color": "#355f9a",
+      "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
+      "markdownColumns": 1,
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
