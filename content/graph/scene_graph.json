@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 353,
-      "edges": 1150,
-      "scenes": 180,
+      "nodes": 348,
+      "edges": 1136,
+      "scenes": 175,
       "markdownIndexes": 23,
       "markdownDocs": 150,
       "runtimeEdges": 476,
@@ -179,12 +179,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "cosmology_background_dynamics",
-      "name": "Background Expansion Dynamics",
-      "path": "content/scenes/cosmology/background_expansion_dynamics.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "cosmology",
       "name": "Cosmology",
       "path": "content/scenes/cosmology/cosmology.json",
@@ -209,12 +203,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "cosmology_growth_dark_sector",
-      "name": "Growth and Dark Sector",
-      "path": "content/scenes/cosmology/growth_dark_sector.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "intracluster_medium",
       "name": "Intracluster Medium",
       "path": "content/scenes/cosmology/intracluster_medium.json",
@@ -227,21 +215,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "cosmology_observation_api",
-      "name": "Observation API and Ontology",
-      "path": "content/scenes/cosmology/observation_api_ontology.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "planet",
       "name": "Planet",
       "path": "content/scenes/cosmology/planet.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "cosmology_early_regimes",
-      "name": "Primordial and Early Regimes",
-      "path": "content/scenes/cosmology/primordial_early_regimes.json",
       "nodeType": "scene"
     },
     {
@@ -254,12 +230,6 @@
       "id": "star_interior",
       "name": "Star Interior",
       "path": "content/scenes/cosmology/star.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "cosmology_tensions_validation",
-      "name": "Tensions and Validation Coupling",
-      "path": "content/scenes/cosmology/tensions_validation_coupling.json",
       "nodeType": "scene"
     },
     {
@@ -2332,15 +2302,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/cosmology/background_expansion_dynamics.json",
-      "nodeType": "scene",
-      "id": "cosmology_background_dynamics",
-      "name": "Background Expansion Dynamics",
-      "path": "content/scenes/cosmology/background_expansion_dynamics.json",
-      "searchTarget": "content/scenes/cosmology/background_expansion_dynamics.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/cosmology/cosmology.json",
       "nodeType": "scene",
       "id": "cosmology",
@@ -2377,15 +2338,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/cosmology/growth_dark_sector.json",
-      "nodeType": "scene",
-      "id": "cosmology_growth_dark_sector",
-      "name": "Growth and Dark Sector",
-      "path": "content/scenes/cosmology/growth_dark_sector.json",
-      "searchTarget": "content/scenes/cosmology/growth_dark_sector.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/cosmology/intracluster_medium.json",
       "nodeType": "scene",
       "id": "intracluster_medium",
@@ -2404,30 +2356,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/cosmology/observation_api_ontology.json",
-      "nodeType": "scene",
-      "id": "cosmology_observation_api",
-      "name": "Observation API and Ontology",
-      "path": "content/scenes/cosmology/observation_api_ontology.json",
-      "searchTarget": "content/scenes/cosmology/observation_api_ontology.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/cosmology/planet.json",
       "nodeType": "scene",
       "id": "planet",
       "name": "Planet",
       "path": "content/scenes/cosmology/planet.json",
       "searchTarget": "content/scenes/cosmology/planet.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/cosmology/primordial_early_regimes.json",
-      "nodeType": "scene",
-      "id": "cosmology_early_regimes",
-      "name": "Primordial and Early Regimes",
-      "path": "content/scenes/cosmology/primordial_early_regimes.json",
-      "searchTarget": "content/scenes/cosmology/primordial_early_regimes.json",
       "implicit": false
     },
     {
@@ -2446,15 +2380,6 @@
       "name": "Star Interior",
       "path": "content/scenes/cosmology/star.json",
       "searchTarget": "content/scenes/cosmology/star.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/cosmology/tensions_validation_coupling.json",
-      "nodeType": "scene",
-      "id": "cosmology_tensions_validation",
-      "name": "Tensions and Validation Coupling",
-      "path": "content/scenes/cosmology/tensions_validation_coupling.json",
-      "searchTarget": "content/scenes/cosmology/tensions_validation_coupling.json",
       "implicit": false
     },
     {
@@ -5516,41 +5441,6 @@
       "field": "objects[4].subScenes[0]"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/background_expansion_dynamics.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "objects[4].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/growth_dark_sector.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "objects[2].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/observation_api_ontology.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "objects[0].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/primordial_early_regimes.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "objects[1].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/tensions_validation_coupling.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "objects[3].subScenes[0]"
-    },
-    {
       "from": "scene:content/scenes/cosmology/disk.json",
       "to": "scene:content/scenes/cosmology/solar_system.json",
       "edgeType": "subscene",
@@ -5626,13 +5516,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/star.json",
       "field": "objects[1].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/tensions_validation_coupling.json",
-      "to": "scene:content/scenes/validation/validation.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/tensions_validation_coupling.json",
-      "field": "objects[4].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/universe.json",
@@ -8568,151 +8451,67 @@
       "field": "particle_masses.markdownPath"
     },
     {
-      "from": "scene:content/scenes/cosmology/background_expansion_dynamics.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/CMB.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/background_expansion_dynamics.json",
-      "field": "cmb_background_link.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/background_expansion_dynamics.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/dark-energy.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/background_expansion_dynamics.json",
-      "field": "dark_energy_mapping.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/background_expansion_dynamics.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/expansion-mechanism.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/background_expansion_dynamics.json",
-      "field": "background_mechanism.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/background_expansion_dynamics.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/inflation-model.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/background_expansion_dynamics.json",
-      "field": "inflation_link.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/growth_dark_sector.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/CMB.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/growth_dark_sector.json",
-      "field": "cmb_growth_consistency.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/growth_dark_sector.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/dark-energy.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/growth_dark_sector.json",
-      "field": "dark_energy_link.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/growth_dark_sector.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/dark-matter.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/growth_dark_sector.json",
-      "field": "dark_matter_map.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/growth_dark_sector.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/structure-formation.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/growth_dark_sector.json",
-      "field": "structure_growth.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/observation_api_ontology.json",
+      "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/BBN-constraints.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/observation_api_ontology.json",
-      "field": "bbn_interface.markdownPath"
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "bbn_constraints.markdownPath"
     },
     {
-      "from": "scene:content/scenes/cosmology/observation_api_ontology.json",
+      "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/CMB.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/observation_api_ontology.json",
-      "field": "cmb_interface.markdownPath"
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "cmb.markdownPath"
     },
     {
-      "from": "scene:content/scenes/cosmology/observation_api_ontology.json",
+      "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/cosmology-ontology.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/observation_api_ontology.json",
-      "field": "ontology_anchor.markdownPath"
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "cosmology_ontology.markdownPath"
     },
     {
-      "from": "scene:content/scenes/cosmology/observation_api_ontology.json",
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "markdown_doc:content/markdown/aaa/cosmology/dark-energy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "dark_energy.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "markdown_doc:content/markdown/aaa/cosmology/dark-matter.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "dark_matter.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/expansion-mechanism.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/observation_api_ontology.json",
-      "field": "expansion_interface.markdownPath"
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "expansion_mechanism.markdownPath"
     },
     {
-      "from": "scene:content/scenes/cosmology/observation_api_ontology.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/structure-formation.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/observation_api_ontology.json",
-      "field": "growth_interface.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/primordial_early_regimes.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/BBN-constraints.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/primordial_early_regimes.json",
-      "field": "bbn_stage.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/primordial_early_regimes.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/CMB.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/primordial_early_regimes.json",
-      "field": "cmb_stage.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/primordial_early_regimes.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/expansion-mechanism.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/primordial_early_regimes.json",
-      "field": "expansion_stage.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/primordial_early_regimes.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/inflation-model.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/primordial_early_regimes.json",
-      "field": "inflation_stage.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/tensions_validation_coupling.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/CMB.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/tensions_validation_coupling.json",
-      "field": "cmb_anchor.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/tensions_validation_coupling.json",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/expansion-mechanism.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/tensions_validation_coupling.json",
-      "field": "expansion_diagnostics.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/tensions_validation_coupling.json",
+      "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/hubble-s8-tensions.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/tensions_validation_coupling.json",
-      "field": "h0_s8_tensions.markdownPath"
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "hubble_s8_tensions.markdownPath"
     },
     {
-      "from": "scene:content/scenes/cosmology/tensions_validation_coupling.json",
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "markdown_doc:content/markdown/aaa/cosmology/inflation-model.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "inflation_model.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/structure-formation.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/tensions_validation_coupling.json",
-      "field": "growth_diagnostics.markdownPath"
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "structure_formation.markdownPath"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -8986,6 +8785,48 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/precision_weak_field_tests.json",
       "field": "clock_rate_tests.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/emergent-metric.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "emergent_metric.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "general_relativity_observables.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/gravitational-waves.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "gravitational_waves.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/ppn-parameters.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "ppn_parameters.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "proper_time_and_time_dilation.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/singularity-resolution.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "singularity_resolution.markdownPath"
     },
     {
       "from": "scene:content/scenes/spacetime/strong_field_horizons.json",
@@ -10094,13 +9935,6 @@
       "field": "scene.markdown.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "markdown_index:content/markdown/aaa/cosmology",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.markdown.source.path"
-    },
-    {
       "from": "scene:content/scenes/meta/meta.json",
       "to": "markdown_index:content/markdown/aaa/archie",
       "edgeType": "markdown_index",
@@ -10119,13 +9953,6 @@
       "to": "markdown_index:content/markdown/aaa/philosophy-history",
       "edgeType": "markdown_index",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.markdown.source.path"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "markdown_index:content/markdown/aaa/spacetime",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.markdown.source.path"
     },
     {

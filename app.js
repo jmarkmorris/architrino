@@ -2715,7 +2715,12 @@ function focusOnPointer(clientX, clientY) {
     }
   }
 
-  if (targetNode.data.children || targetNode.data.childScene) {
+  const hasExplicitChildScene =
+    !!targetNode.data.children ||
+    (typeof targetNode.data.childScene === "string" &&
+      !targetNode.data.childScene.startsWith("__markdown_"));
+
+  if (hasExplicitChildScene) {
     closeDetailPanel();
     hideHoverTooltip();
     startLevelTransitionFromNode(targetNode);

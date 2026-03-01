@@ -26,11 +26,6 @@
       "path": "content/scenes/chemistry/periodic_table_scene.json"
     },
     {
-      "id": "cosmology_background_dynamics",
-      "name": "Background Expansion Dynamics",
-      "path": "content/scenes/cosmology/background_expansion_dynamics.json"
-    },
-    {
       "id": "cosmology",
       "name": "Cosmology",
       "path": "content/scenes/cosmology/cosmology.json"
@@ -51,11 +46,6 @@
       "path": "content/scenes/cosmology/galaxy.json"
     },
     {
-      "id": "cosmology_growth_dark_sector",
-      "name": "Growth and Dark Sector",
-      "path": "content/scenes/cosmology/growth_dark_sector.json"
-    },
-    {
       "id": "intracluster_medium",
       "name": "Intracluster Medium",
       "path": "content/scenes/cosmology/intracluster_medium.json"
@@ -66,19 +56,9 @@
       "path": "content/scenes/cosmology/moon.json"
     },
     {
-      "id": "cosmology_observation_api",
-      "name": "Observation API and Ontology",
-      "path": "content/scenes/cosmology/observation_api_ontology.json"
-    },
-    {
       "id": "planet",
       "name": "Planet",
       "path": "content/scenes/cosmology/planet.json"
-    },
-    {
-      "id": "cosmology_early_regimes",
-      "name": "Primordial and Early Regimes",
-      "path": "content/scenes/cosmology/primordial_early_regimes.json"
     },
     {
       "id": "solar_system",
@@ -89,11 +69,6 @@
       "id": "star_interior",
       "name": "Star Interior",
       "path": "content/scenes/cosmology/star.json"
-    },
-    {
-      "id": "cosmology_tensions_validation",
-      "name": "Tensions and Validation Coupling",
-      "path": "content/scenes/cosmology/tensions_validation_coupling.json"
     },
     {
       "id": "universe",

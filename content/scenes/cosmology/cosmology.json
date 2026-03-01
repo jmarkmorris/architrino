@@ -4,106 +4,158 @@
     "id": "cosmology",
     "name": "Cosmology",
     "units": "relative",
-    "wrapLabels": true,
-    "autoSphereRing": true,
-    "markdown": {
-      "source": {
-        "type": "directory",
-        "path": "content/markdown/aaa/cosmology",
-        "subdirectories": false
-      },
-      "layout": {
-        "includeExisting": true,
-        "nodeRadius": 2.688,
-        "ringRadius": 12
-      },
-      "render": {
-        "defaultMode": "doc"
-      }
-    }
+    "wrapLabels": true
   },
   "objects": [
     {
-      "id": "cosmology_observation_api",
-      "label": "Observation API and Ontology",
+      "id": "bbn_constraints",
+      "label": "BBN Constraints",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [
+        7.71,
+        9.19,
+        0.0
+      ],
+      "markdownPath": "content/markdown/aaa/cosmology/BBN-constraints.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cmb",
+      "label": "CMB",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        11.82,
+        2.08,
+        0.0
+      ],
+      "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmology_ontology",
+      "label": "Cosmology Ontology",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        10.39,
+        -6.0,
+        0.0
+      ],
+      "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "dark_energy",
+      "label": "Dark Energy",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "position": [
+        4.1,
+        -11.28,
+        0.0
+      ],
+      "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "dark_matter",
+      "label": "Dark Matter",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        -4.1,
+        -11.28,
+        0.0
+      ],
+      "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "expansion_mechanism",
+      "label": "Expansion Mechanism",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        -10.39,
+        -6.0,
+        0.0
+      ],
+      "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "hubble_s8_tensions",
+      "label": "Hubble and S8 Tensions",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "position": [
+        -11.82,
+        2.08,
+        0.0
+      ],
+      "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "inflation_model",
+      "label": "Inflation Model",
+      "radius": 2.688,
+      "color": "#1c2a4f",
+      "position": [
+        -7.71,
+        9.19,
+        0.0
+      ],
+      "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "structure_formation",
+      "label": "Structure Formation",
       "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
         0.0,
-        10.5,
+        12.0,
         0.0
       ],
-      "subScenes": [
-        "content/scenes/cosmology/observation_api_ontology.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "cosmology_early_regimes",
-      "label": "Primordial and Early Regimes",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "position": [
-        9.1,
-        3.4,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/cosmology/primordial_early_regimes.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "cosmology_growth_dark_sector",
-      "label": "Growth and Dark Sector",
-      "radius": 2.688,
-      "color": "#2c6c7e",
-      "position": [
-        5.6,
-        -8.4,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/cosmology/growth_dark_sector.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "cosmology_tensions_validation",
-      "label": "Tensions and Validation Coupling",
-      "radius": 2.688,
-      "color": "#5a3f73",
-      "position": [
-        -5.6,
-        -8.4,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/cosmology/tensions_validation_coupling.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "cosmology_background_dynamics",
-      "label": "Background Expansion Dynamics",
-      "radius": 2.688,
-      "color": "#2c2c60",
-      "position": [
-        -9.1,
-        3.4,
-        0.0
-      ],
-      "subScenes": [
-        "content/scenes/cosmology/background_expansion_dynamics.json"
-      ],
+      "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
       "motion": {
         "type": "fixed"
       }

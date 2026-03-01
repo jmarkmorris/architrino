@@ -114,6 +114,10 @@ export class SceneRepository {
             markdownSection: obj.markdownSection ?? null,
             markdownColumns: obj.markdownColumns ?? null,
             markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
+            markdownAutoIndex: obj.markdownAutoIndex ?? null,
+            markdownPlainSectionPaths: Array.isArray(obj.markdownPlainSectionPaths)
+              ? obj.markdownPlainSectionPaths
+              : [],
             binaryBands,
             glowRing: obj.glowRing ?? false,
             glowRingColor: obj.glowRingColor ?? null,
