@@ -106,6 +106,7 @@ export class SceneRepository {
             radius: obj.radius ?? 1,
             color,
             position: obj.position ?? [0, 0, 0],
+            fixedPosition: obj.fixedPosition ?? false,
             category: obj.category,
             reaction: obj.reaction,
             details: obj.details ?? null,
@@ -169,6 +170,8 @@ export class SceneRepository {
         const sceneId = data.scene?.id ?? null;
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
+          layoutMode:
+            typeof data.scene?.layoutMode === "string" ? data.scene.layoutMode : null,
           nodes,
           links: Array.isArray(data.links) ? data.links : [],
           sceneName,

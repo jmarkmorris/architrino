@@ -1,4 +1,40 @@
 export function createSceneGraphRuntime(deps) {
+  function computeExplicitRingPositions(nodes) {
+    const count = Array.isArray(nodes) ? nodes.length : 0;
+    if (!count) {
+      return null;
+    }
+    if (count === 1) {
+      return [[0, 0, 0]];
+    }
+
+    const haloScale = 1.18;
+    const guardBandMin = 0.15;
+    const guardBandRatio = 0.08;
+    const startAngle = Math.PI / 2;
+    const maxNodeRadius = Math.max(
+      1,
+      ...nodes.map((node) =>
+        Number.isFinite(node?.radius) && node.radius > 0 ? node.radius : 1
+      )
+    );
+    const haloDiameter = maxNodeRadius * haloScale * 2;
+    const guardBand = Math.max(guardBandMin, haloDiameter * guardBandRatio);
+    const requiredChord = haloDiameter + guardBand;
+    const ringRadius = Math.max(6, requiredChord / (2 * Math.sin(Math.PI / count)));
+    const positions = [];
+
+    for (let i = 0; i < count; i += 1) {
+      const angle = (i / count) * Math.PI * 2 + startAngle;
+      positions.push([
+        Number((Math.cos(angle) * ringRadius).toFixed(2)),
+        Number((Math.sin(angle) * ringRadius).toFixed(2)),
+        0,
+      ]);
+    }
+    return positions;
+  }
+
   function buildLevel(levelId) {
     if (deps.levels.has(levelId)) {
       return deps.levels.get(levelId);
@@ -14,17 +50,26 @@ export function createSceneGraphRuntime(deps) {
     const ringTargetByMesh = new Map();
     let primaryBinaryNode = null;
 
-    const useAutoSphereRing =
+    const explicitLayoutMode =
+      typeof config.layoutMode === "string" ? config.layoutMode : null;
+    const useLegacyAutoSphereRing =
+      explicitLayoutMode !== "manual" &&
       !!config.autoSphereRing &&
       !config.autoMarkdownDirectory &&
       config.layout === "static";
-    const ringNodes = useAutoSphereRing
+    const useExplicitRingLayout =
+      config.layout === "static" && explicitLayoutMode === "ring";
+    const useRingLayout = useLegacyAutoSphereRing || useExplicitRingLayout;
+    const ringNodes = useRingLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
       : [];
-    const ringLayout = useAutoSphereRing ? deps.computeRingLayout(ringNodes) : null;
+    const ringLayout = useLegacyAutoSphereRing ? deps.computeRingLayout(ringNodes) : null;
+    const explicitRingPositions = useExplicitRingLayout
+      ? computeExplicitRingPositions(ringNodes)
+      : null;
     const useClockwiseOrder =
       !!ringLayout &&
-      !!config.autoSphereRing &&
+      useLegacyAutoSphereRing &&
       (config.autoMarkdownPath || config.autoMarkdownDirectory || config.autoMarkdownSection);
     let ringIndex = 0;
 
@@ -38,7 +83,8 @@ export function createSceneGraphRuntime(deps) {
       if (nodeData.category === "legend") {
         return;
       }
-      if (ringLayout) {
+      const usesFixedPosition = nodeData.fixedPosition === true;
+      if (ringLayout && !usesFixedPosition) {
         const positionIndex =
           useClockwiseOrder && ringIndex > 0
             ? ringLayout.positions.length - ringIndex
@@ -48,6 +94,12 @@ export function createSceneGraphRuntime(deps) {
           nodeData.position = [pos[0], pos[1], 0];
         }
         nodeData.radius = ringLayout.nodeRadius;
+        ringIndex += 1;
+      } else if (explicitRingPositions && !usesFixedPosition) {
+        const pos = explicitRingPositions[ringIndex];
+        if (pos) {
+          nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
+        }
         ringIndex += 1;
       }
       const node = deps.createNode(nodeData);
