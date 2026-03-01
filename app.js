@@ -2701,7 +2701,8 @@ function focusOnPointer(clientX, clientY) {
 
   const prefersDocDrillDown =
     targetNode.data.docDrillDownPreferred === true &&
-    !!targetNode.data.markdownPath;
+    !!targetNode.data.markdownPath &&
+    targetNode.data.markdownDocIconEligible === true;
 
   if (prefersDocDrillDown) {
     closeDetailPanel();
@@ -2718,7 +2719,10 @@ function focusOnPointer(clientX, clientY) {
     closeDetailPanel();
     hideHoverTooltip();
     startLevelTransitionFromNode(targetNode);
-  } else if (targetNode.data.markdownPath) {
+  } else if (
+    targetNode.data.markdownPath &&
+    targetNode.data.markdownDocIconEligible === true
+  ) {
     closeDetailPanel();
     hideHoverTooltip();
     const readerSceneId = markdownSceneRegistry.ensureMarkdownReaderScene(targetNode.data);

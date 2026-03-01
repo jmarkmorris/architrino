@@ -4,23 +4,63 @@
     "id": "foundations",
     "name": "Foundations",
     "units": "relative",
-    "wrapLabels": true,
-    "autoSphereRing": true,
-    "markdown": {
-      "source": {
-        "type": "directory",
-        "path": "content/markdown/aaa/foundations",
-        "subdirectories": false
-      },
-      "layout": {
-        "includeExisting": true,
-        "nodeRadius": 2.688,
-        "ringRadius": 12
-      },
-      "render": {
-        "defaultMode": "doc"
-      }
-    }
+    "wrapLabels": true
   },
-  "objects": []
+  "objects": [
+    {
+      "id": "absolute_time_defense",
+      "label": "Absolute Time Defense",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [11.41, 3.71, 0],
+      "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "bootstrapping_the_absolute_frame",
+      "label": "Bootstrapping the Absolute Frame",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [7.05, -9.71, 0],
+      "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "emergence_of_structure",
+      "label": "Emergence of Structure",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [-7.05, -9.71, 0],
+      "markdownPath": "content/markdown/aaa/foundations/emergence.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "euclidean_void",
+      "label": "Euclidean Void",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "position": [-11.41, 3.71, 0],
+      "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "foundational_ontology",
+      "label": "Foundational Ontology",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [0, 12, 0],
+      "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    }
+  ]
 }

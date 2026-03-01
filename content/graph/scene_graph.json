@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 353,
-      "edges": 1129,
+      "edges": 1150,
       "scenes": 180,
       "markdownIndexes": 23,
       "markdownDocs": 150,
@@ -8715,6 +8715,111 @@
       "field": "growth_diagnostics.markdownPath"
     },
     {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/binary-dynamics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "binary_dynamics.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/causal-action-functional.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "causal_action_functional.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/effective-lagrangian.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "effective_lagrangian.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/energy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "kinetic_and_potential_energy.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "emergence_of_u_1_su_2.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/gauge-symmetries.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "gauge_symmetries.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "mapping_planck_scale.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "master_equation_of_motion.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/mode-taxonomy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "mode_taxonomy.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "tri_binary_dynamics.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "absolute_time_defense.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "bootstrapping_the_absolute_frame.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/emergence.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "emergence_of_structure.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/euclidean-void.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "euclidean_void.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/ontology.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "foundational_ontology.markdownPath"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "edgeType": "markdown_doc",
@@ -8748,6 +8853,69 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "field": "scene.markdown.source.path"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/bell-theorem.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/collapse-problem.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "measurement_problem_and_collapse.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/entanglement-nonlocality.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/measurement-ontology.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "measurement_ontology.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/pilot-wave-character.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/quantum-summary.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "quantum_summary.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/reality-quantum-causality.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "reality_causality_and_navigation.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/superposition-mechanism.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "superposition_mechanism_traditional_vs_architrino_assembly_architecture.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/wavefunction-ontology.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "wavefunction_ontology.markdownPath"
     },
     {
       "from": "scene:content/scenes/spacetime/cosmic_censorship.json",
@@ -9933,20 +10101,6 @@
       "field": "scene.markdown.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "markdown_index:content/markdown/aaa/dynamics",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.markdown.source.path"
-    },
-    {
-      "from": "scene:content/scenes/foundations/foundations.json",
-      "to": "markdown_index:content/markdown/aaa/foundations",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.markdown.source.path"
-    },
-    {
       "from": "scene:content/scenes/meta/meta.json",
       "to": "markdown_index:content/markdown/aaa/archie",
       "edgeType": "markdown_index",
@@ -9965,13 +10119,6 @@
       "to": "markdown_index:content/markdown/aaa/philosophy-history",
       "edgeType": "markdown_index",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.markdown.source.path"
-    },
-    {
-      "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "markdown_index:content/markdown/aaa/quantum",
-      "edgeType": "markdown_index",
-      "source": "content/scenes/quantum/quantum.json",
       "field": "scene.markdown.source.path"
     },
     {
