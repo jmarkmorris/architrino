@@ -51,11 +51,25 @@
       }
     },
     {
-      "id": "quarks",
-      "label": "Quarks",
+      "id": "down_strange_bottom_quarks",
+      "label": "Down, Strange, Bottom Quarks",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+      "subScenes": [
+        "content/scenes/standard-model-particles/down_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "up_charm_top_quarks",
+      "label": "Up, Charm, Top Quarks",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "subScenes": [
+        "content/scenes/standard-model-particles/up_quark.json"
+      ],
       "motion": {
         "type": "fixed"
       }

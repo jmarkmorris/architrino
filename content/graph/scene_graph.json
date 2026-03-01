@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 341,
-      "edges": 1121,
+      "edges": 1122,
       "scenes": 168,
       "markdownIndexes": 23,
       "markdownDocs": 150,
@@ -1199,51 +1199,15 @@
       "nodeType": "markdown_index"
     },
     {
-      "id": "content/markdown/aaa/archie",
-      "name": "Archie",
-      "path": "__markdown_directory__:content/markdown/aaa/archie",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/assemblies",
-      "name": "Assemblies",
-      "path": "__markdown_directory__:content/markdown/aaa/assemblies",
-      "nodeType": "markdown_index"
-    },
-    {
       "id": "content/markdown/aaa/assemblies/bosons",
       "name": "Bosons",
       "path": "__markdown_directory__:content/markdown/aaa/assemblies/bosons",
       "nodeType": "markdown_index"
     },
     {
-      "id": "content/markdown/aaa/assemblies/fermions",
-      "name": "Fermions",
-      "path": "__markdown_directory__:content/markdown/aaa/assemblies/fermions",
-      "nodeType": "markdown_index"
-    },
-    {
       "id": "content/markdown/aaa/assemblies/mesons",
       "name": "Mesons",
       "path": "__markdown_directory__:content/markdown/aaa/assemblies/mesons",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/cosmology",
-      "name": "Cosmology",
-      "path": "__markdown_directory__:content/markdown/aaa/cosmology",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/dynamics",
-      "name": "Dynamics",
-      "path": "__markdown_directory__:content/markdown/aaa/dynamics",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/foundations",
-      "name": "Foundations",
-      "path": "__markdown_directory__:content/markdown/aaa/foundations",
       "nodeType": "markdown_index"
     },
     {
@@ -1259,12 +1223,6 @@
       "nodeType": "markdown_index"
     },
     {
-      "id": "content/markdown/aaa/quantum",
-      "name": "Quantum",
-      "path": "__markdown_directory__:content/markdown/aaa/quantum",
-      "nodeType": "markdown_index"
-    },
-    {
       "id": "content/markdown/aaa/reactions",
       "name": "Reactions",
       "path": "__markdown_directory__:content/markdown/aaa/reactions",
@@ -1274,12 +1232,6 @@
       "id": "content/markdown/aaa/spacetime",
       "name": "Spacetime",
       "path": "__markdown_directory__:content/markdown/aaa/spacetime",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/validation",
-      "name": "Validation",
-      "path": "__markdown_directory__:content/markdown/aaa/validation",
       "nodeType": "markdown_index"
     },
     {
@@ -5330,10 +5282,24 @@
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/standard-model-particles/down_quark.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "objects[4].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "objects[1].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/standard-model-particles/up_quark.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "objects[5].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/disk.json",
@@ -8330,13 +8296,6 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "quantum_number_mapping.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/quarks.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/fermions.json",
-      "field": "quarks.markdownPath"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
