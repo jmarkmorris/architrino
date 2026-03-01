@@ -182,27 +182,27 @@ const autoMarkdownPalettes = {
     "#6d28d9",
     "#7e22ce",
   ],
-  default: [
-    "#1e3a8a",
-    "#1f4fb2",
-    "#2563eb",
-    "#0f766e",
-    "#0d9488",
-    "#15803d",
-    "#4d7c0f",
-    "#a16207",
-    "#b45309",
-    "#9a3412",
-    "#7c2d12",
+  jewel: [
+    "#5a0f1f",
+    "#6e0f2a",
+    "#7f1233",
+    "#9d174d",
     "#831843",
-    "#6b21a8",
-    "#4338ca",
-    "#334155",
-    "#374151",
+    "#a21caf",
+    "#7e22ce",
+    "#6d28d9",
+    "#4c1d95",
+    "#3730a3",
+    "#1e40af",
+    "#1d4ed8",
+    "#0f3a8a",
+    "#064e3b",
+    "#065f46",
+    "#166534",
   ],
 };
 const defaultAutoMarkdownPaletteName = "legacy";
-const defaultSphereColorSchemeName = "spectrum19";
+const defaultSphereColorSchemeName = "jewel";
 const defaultAutoMarkdownPalette =
   autoMarkdownPalettes[defaultAutoMarkdownPaletteName] ?? autoMarkdownPalettes.legacy;
 const linkStyle = {

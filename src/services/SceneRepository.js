@@ -8,8 +8,8 @@ export class SceneRepository {
     this.normalizeVelocity = deps.normalizeVelocity;
     this.colorTokens = deps.colorTokens;
     this.autoMarkdownPalettes = deps.autoMarkdownPalettes ?? {};
-    this.defaultAutoMarkdownPaletteName = deps.defaultAutoMarkdownPaletteName ?? "default";
-    this.defaultSphereColorSchemeName = deps.defaultSphereColorSchemeName ?? "default";
+    this.defaultAutoMarkdownPaletteName = deps.defaultAutoMarkdownPaletteName ?? "legacy";
+    this.defaultSphereColorSchemeName = deps.defaultSphereColorSchemeName ?? "jewel";
     this.homeScenePath = deps.homeScenePath ?? null;
     this.deriveMarkdownConfig = deps.deriveMarkdownConfig;
     this.buildAutoMarkdownNodes = deps.buildAutoMarkdownNodes;

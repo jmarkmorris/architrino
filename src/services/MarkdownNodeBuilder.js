@@ -15,7 +15,7 @@ export function createMarkdownNodeBuilder(deps) {
   const defaultAutoMarkdownPaletteName =
     typeof deps.defaultAutoMarkdownPaletteName === "string"
       ? deps.defaultAutoMarkdownPaletteName
-      : "default";
+      : "legacy";
   const defaultAutoMarkdownPalette = Array.isArray(deps.defaultAutoMarkdownPalette)
     ? deps.defaultAutoMarkdownPalette
     : [];

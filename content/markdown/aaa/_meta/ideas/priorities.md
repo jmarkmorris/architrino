@@ -5,6 +5,11 @@
 
 - we have Color Charge and SU(3) and Color Charge in the search index
 - search index does not go alpha first
+- under element for md and periodic table
+- add the slide out like on an atom scene to the architrinos and standard model assemblies.
+  - list charge
+  - list noether core type and generation
+  - list role in assembly 
 
 
 
