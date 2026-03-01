@@ -93,6 +93,65 @@ export class SceneRepository {
     return false;
   }
 
+  isPersonalityArchitrinoNode(node) {
+    if (!node || typeof node !== "object") {
+      return false;
+    }
+    const name = typeof node.name === "string" ? node.name.toLowerCase() : "";
+    const id = typeof node.id === "string" ? node.id.toLowerCase() : "";
+    const childScene =
+      typeof node.childScene === "string" ? node.childScene.toLowerCase() : "";
+    if (name === "electrino" || name === "positrino") {
+      return true;
+    }
+    if (id.startsWith("electrino_") || id.startsWith("positrino_")) {
+      return true;
+    }
+    return (
+      childScene === "content/scenes/architrino-theory/electrino.json" ||
+      childScene === "content/scenes/architrino-theory/positrino.json"
+    );
+  }
+
+  applyPersonalityArchitrinoSizing(nodes) {
+    if (!Array.isArray(nodes) || !nodes.length) {
+      return;
+    }
+    const hasBinaryCore = nodes.some(
+      (node) => node?.renderStyle === "binarySphere" || node?.renderStyle === "binaryShell"
+    );
+    if (!hasBinaryCore) {
+      return;
+    }
+
+    nodes.forEach((node) => {
+      if (!this.isPersonalityArchitrinoNode(node)) {
+        return;
+      }
+      if (!Array.isArray(node.position) || node.position.length < 2) {
+        return;
+      }
+
+      const radius = Number(node.radius);
+      if (!Number.isFinite(radius) || radius <= 0) {
+        return;
+      }
+
+      const x = Number(node.position[0]) || 0;
+      const y = Number(node.position[1]) || 0;
+      const z = Number(node.position[2]) || 0;
+      const radialDistance = Math.hypot(x, y);
+      if (radialDistance > 0) {
+        // Keep outer tangent unchanged: newCenterDistance = oldDistance - oldRadius
+        const inwardDistance = Math.max(0, radialDistance - radius);
+        const scale = inwardDistance / radialDistance;
+        node.position = [x * scale, y * scale, z];
+      }
+
+      node.radius = radius * 2;
+    });
+  }
+
   applyStructuredSpherePalette(nodes, palette, options = {}) {
     if (!Array.isArray(nodes) || !nodes.length || !Array.isArray(palette) || !palette.length) {
       return;
@@ -285,6 +344,7 @@ export class SceneRepository {
             usePositionalOrder: this.shouldUsePositionalPaletteOrder(scenePath),
           });
         }
+        this.applyPersonalityArchitrinoSizing(nodes);
         const autoMarkdownScene = markdownDerived ? { ...data.scene, ...markdownDerived } : data.scene;
         const autoNodes = await this.buildAutoMarkdownNodes(autoMarkdownScene, nodes);
         if (autoNodes.length) {
