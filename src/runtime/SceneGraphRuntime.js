@@ -309,6 +309,59 @@ export function createSceneGraphRuntime(deps) {
     });
   }
 
+  function buildRingClusterPositions(count, neighborDistance, startAngle = Math.PI / 2) {
+    if (count <= 0 || !Number.isFinite(neighborDistance) || neighborDistance <= 0) {
+      return [];
+    }
+    if (count === 1) {
+      return [new deps.THREE.Vector3(0, 0, 0)];
+    }
+    const ringRadius = neighborDistance / (2 * Math.sin(Math.PI / count));
+    const points = [];
+    for (let i = 0; i < count; i += 1) {
+      const angle = startAngle + (i / count) * Math.PI * 2;
+      points.push(
+        new deps.THREE.Vector3(
+          Math.cos(angle) * ringRadius,
+          Math.sin(angle) * ringRadius,
+          0
+        )
+      );
+    }
+    return points;
+  }
+
+  function buildCompactNucleonPositions(count, avgRadius) {
+    if (
+      !Number.isFinite(count) ||
+      count <= 0 ||
+      !Number.isFinite(avgRadius) ||
+      avgRadius <= 0
+    ) {
+      return null;
+    }
+
+    const neighborDistance = avgRadius * 1.9;
+    if (count === 1) {
+      return [new deps.THREE.Vector3(0, 0, 0)];
+    }
+    if (count <= 4) {
+      return buildRingClusterPositions(count, neighborDistance);
+    }
+    if (count <= 7) {
+      const outerCount = count - 1;
+      const outer = buildRingClusterPositions(outerCount, neighborDistance);
+      const outerRadius = outer.length ? outer[0].length() : 0;
+      const minOuterRadius = avgRadius * 1.65;
+      if (outerRadius > 0 && outerRadius < minOuterRadius) {
+        const scale = minOuterRadius / outerRadius;
+        outer.forEach((point) => point.multiplyScalar(scale));
+      }
+      return [new deps.THREE.Vector3(0, 0, 0), ...outer];
+    }
+    return null;
+  }
+
   function buildLevel(levelId) {
     if (deps.levels.has(levelId)) {
       return deps.levels.get(levelId);
@@ -412,24 +465,29 @@ export function createSceneGraphRuntime(deps) {
           e.outline.geometry = new deps.THREE.EdgesGeometry(e.mesh.geometry);
           refreshNodeRingGeometries(e);
         });
-        const golden = Math.PI * (3 - Math.sqrt(5));
-        const packRadius = Math.max(
-          avgRadius * 2.2,
-          Math.sqrt(nucleons.length) * avgRadius * 1.25
-        );
-        const positions = [];
-        for (let i = 0; i < nucleons.length; i++) {
-          const r = packRadius * Math.sqrt((i + 0.35) / nucleons.length);
-          const theta = i * golden;
-          positions.push(new deps.THREE.Vector3(Math.cos(theta) * r, Math.sin(theta) * r, 0));
-        }
-        if (positions.length) {
-          const centroid = positions
-            .reduce((acc, pos) => acc.add(pos), new deps.THREE.Vector3())
-            .multiplyScalar(1 / positions.length);
-          positions.forEach((pos) => {
-            pos.sub(centroid);
-          });
+        let positions = buildCompactNucleonPositions(nucleons.length, avgRadius);
+        if (!positions) {
+          const golden = Math.PI * (3 - Math.sqrt(5));
+          const packRadius = Math.max(
+            avgRadius * 2.2,
+            Math.sqrt(nucleons.length) * avgRadius * 1.25
+          );
+          positions = [];
+          for (let i = 0; i < nucleons.length; i++) {
+            const r = packRadius * Math.sqrt((i + 0.35) / nucleons.length);
+            const theta = i * golden;
+            positions.push(
+              new deps.THREE.Vector3(Math.cos(theta) * r, Math.sin(theta) * r, 0)
+            );
+          }
+          if (positions.length) {
+            const centroid = positions
+              .reduce((acc, pos) => acc.add(pos), new deps.THREE.Vector3())
+              .multiplyScalar(1 / positions.length);
+            positions.forEach((pos) => {
+              pos.sub(centroid);
+            });
+          }
         }
         const protons = nucleons.filter((n) => n.data.category === "proton");
         const neutrons = nucleons.filter((n) => n.data.category === "neutron");
@@ -443,8 +501,11 @@ export function createSceneGraphRuntime(deps) {
             node.group.position.copy(positions[idx]);
           }
         });
-
-        nucleusRadius = packRadius + avgRadius * 0.5;
+        const nucleusExtent = positions.reduce(
+          (maxDistance, pos) => Math.max(maxDistance, pos.length()),
+          0
+        );
+        nucleusRadius = nucleusExtent + avgRadius * 0.5;
       }
 
       const uniqueRadii = Array.from(
