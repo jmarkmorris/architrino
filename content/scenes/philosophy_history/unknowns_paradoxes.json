@@ -78,11 +78,11 @@
     },
     {
       "id": "unknown_the_hubble_tension",
-      "label": "The Hubble Tension",
+      "label": "Cosmological Tensions",
       "radius": 2.2,
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "markdownSection": "The Hubble Tension",
+      "markdownSection": "Cosmological Tensions",
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
@@ -200,19 +200,6 @@
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "markdownSection": "The Flavor Problem",
-      "markdownAutoIndex": false,
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "unknown_the_s_8_structure_growth_tension",
-      "label": "Structure Growth Tension S8",
-      "radius": 2.2,
-      "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "markdownSection": "The $S_8$ (Structure Growth) Tension",
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
