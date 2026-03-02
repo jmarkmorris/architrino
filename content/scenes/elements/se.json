@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "se",
+    "kind": "diagram",
     "name": "Selenium (Se)",
     "units": "relative",
     "scaleBandLog10m": [

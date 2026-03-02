@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ag",
+    "kind": "diagram",
     "name": "Silver (Ag)",
     "units": "relative",
     "scaleBandLog10m": [

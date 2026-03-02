@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cm",
+    "kind": "diagram",
     "name": "Curium (Cm)",
     "units": "relative",
     "scaleBandLog10m": [

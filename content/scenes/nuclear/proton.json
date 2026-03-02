@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "proton",
+    "kind": "diagram",
     "name": "Proton",
     "units": "relative",
     "scaleBandLog10m": [

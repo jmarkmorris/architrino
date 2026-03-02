@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "xe",
+    "kind": "diagram",
     "name": "Xenon (Xe)",
     "units": "relative",
     "scaleBandLog10m": [

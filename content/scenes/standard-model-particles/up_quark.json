@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "up_quark",
+    "kind": "diagram",
     "name": "Up Quark",
     "units": "relative",
     "scaleBandLog10m": [

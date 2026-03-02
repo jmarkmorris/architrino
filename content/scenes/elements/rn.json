@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "rn",
+    "kind": "diagram",
     "name": "Radon (Rn)",
     "units": "relative",
     "scaleBandLog10m": [

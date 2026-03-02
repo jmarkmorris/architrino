@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ge",
+    "kind": "diagram",
     "name": "Germanium (Ge)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "positrino",
+    "kind": "diagram",
     "name": "Positrino",
     "units": "relative",
     "scaleBandLog10m": [

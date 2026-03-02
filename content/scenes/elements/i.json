@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "i",
+    "kind": "diagram",
     "name": "Iodine (I)",
     "units": "relative",
     "scaleBandLog10m": [

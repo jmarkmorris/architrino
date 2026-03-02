@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "te",
+    "kind": "diagram",
     "name": "Tellurium (Te)",
     "units": "relative",
     "scaleBandLog10m": [

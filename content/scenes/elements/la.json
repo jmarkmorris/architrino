@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "la",
+    "kind": "diagram",
     "name": "Lanthanum (La)",
     "units": "relative",
     "scaleBandLog10m": [

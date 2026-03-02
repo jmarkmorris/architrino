@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "bottom",
+    "kind": "diagram",
     "name": "Bottom Quark",
     "units": "relative",
     "scaleBandLog10m": [

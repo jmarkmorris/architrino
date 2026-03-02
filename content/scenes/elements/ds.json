@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ds",
+    "kind": "diagram",
     "name": "Darmstadtium (Ds)",
     "units": "relative",
     "scaleBandLog10m": [

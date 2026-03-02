@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "mn",
+    "kind": "diagram",
     "name": "Manganese (Mn)",
     "units": "relative",
     "scaleBandLog10m": [

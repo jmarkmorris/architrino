@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "sb",
+    "kind": "diagram",
     "name": "Antimony (Sb)",
     "units": "relative",
     "scaleBandLog10m": [

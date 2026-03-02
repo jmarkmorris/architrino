@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "uue",
+    "kind": "diagram",
     "name": "Ununennium (Uue)",
     "units": "relative",
     "scaleBandLog10m": [

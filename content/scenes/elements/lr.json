@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "lr",
+    "kind": "diagram",
     "name": "Lawrencium (Lr)",
     "units": "relative",
     "scaleBandLog10m": [

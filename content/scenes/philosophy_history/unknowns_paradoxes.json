@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "unknowns_paradoxes",
+    "kind": "markdown_split",
     "name": "Unknowns & Paradoxes",
     "units": "relative",
     "wrapLabels": true,

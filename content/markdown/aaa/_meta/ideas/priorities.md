@@ -3,38 +3,22 @@
 
 ## Infrastructure
 
-electron on the fermion page needs a glow ring and link to the electron animation
+- we have Color Charge and SU(3) and Color Charge in the search index
+- search index does not go alpha first
+- under element for md and periodic table
+- add the slide out like on an atom scene to the architrinos and standard model assemblies.
+  - list charge
+  - list noether core type and generation
+  - list role in assembly 
+- the P and N in the atoms are overlapping on boron and maybe others?
+- if you zoom into a fermion, you can't back up
+- move meta material out of the md directory so it doesn't accidentally get loaded into the webapp.
+- the exit button is not working in composer. where should it go if it hits, errors. HOME.
+- composer should use the same frame elements in the corners.
+- i should change the 'panel' to be the largest possible sphere (circle)
+  - but also allow the animation to continue in the full rectangular panel
+  - this means all labels and controls and searches get pushed to the corners.
 
----
-
-trying to remove all the auto-walking of directories structure and move to explicit, currently via a manifest and the scene.json files.
-
-• You’re right on the target architecture, with one important nuance:
-
-  - Source of truth should be explicit scene.json files (objects + subScenes + markdownPath).
-  - The centralized manifests are generated artifacts, not authored by hand.
-
-  So: explicit scene network in scene files, derived global manifest for runtime/search.
-
-  1. Define the contract
-  2. Make “explicit-only” the standard: no scene.markdown, no directory auto-generation, no excludes/overrides policy blocks in scene configs.
-  3. Keep one exception list only if absolutely needed for migration, with a hard deadline to remove it.
-  4. Inventory remaining non-explicit scenes (directory-based, override/exclude-based, section auto-generation).
-  5. For each directory-based scene, replace auto nodes with explicit objects.
-  6. For each directory that currently behaves like a “scene of scenes,” create explicit child scene.json files and link via subScenes.
-  7. For each file-based section auto scene, replace with explicit section nodes (markdownPath + markdownSection) where needed.
-  8. Preserve stable IDs/labels where possible so links/search/history don’t break.
-  9. Remove legacy fields after each migration (scene.markdown, autoMarkdown*, exclude/override blocks).
-  10. Regenerate indexes/manifests after each slice and verify no orphan scene references.
-  11. Add a validator rule that fails builds if new scene.markdown/auto-generation fields are introduced.
-  12. Migrate in small domain batches (one subtree at a time), with one commit per batch to keep blast radius tight.
-  13. Final cleanup pass: delete dead scenes, dead markdown routes, and any migration allowlist.
-
-  If you want, tomorrow I can give you a strict batch order (lowest-risk to highest-risk) so each commit stays reviewable.
-
----
-
-on the assemblies page the glow rings are different sizes.
 
 
 ## Sorta Sorted List (i.e., non-linear)
@@ -96,7 +80,7 @@ go through cosmology documents on wordpress and put content in cosmology docs? T
   - absolute-time-defense.md
   - emergence.md
   - euclidean-void.md
-  - arch-api.md
+  - composer.md
   - design.md
   - displacement-of-spacetime.md
   - atomic-structure.md

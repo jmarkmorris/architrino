@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "down_quark",
+    "kind": "diagram",
     "name": "Down Quark",
     "units": "relative",
     "scaleBandLog10m": [

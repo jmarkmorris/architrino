@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "yb",
+    "kind": "diagram",
     "name": "Ytterbium (Yb)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ac",
+    "kind": "diagram",
     "name": "Actinium (Ac)",
     "units": "relative",
     "scaleBandLog10m": [

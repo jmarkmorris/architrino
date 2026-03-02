@@ -147,19 +147,64 @@ const colorTokens = {
   BLUE: "#0000ff",
   PURPLE: "#4b0082",
 };
-const defaultAutoMarkdownPalette = [
-  "#243d8f",
-  "#2f6b6f",
-  "#5a1f2e",
-  "#4b0082",
-  "#3a5f9f",
-  "#2f4f7a",
-  "#7a4a1f",
-  "#1c2a4f",
-  "#3c6a7a",
-  "#3f6a5a",
-  "#6a3c3c",
-];
+const autoMarkdownPalettes = {
+  legacy: [
+    "#243d8f",
+    "#2f6b6f",
+    "#5a1f2e",
+    "#4b0082",
+    "#3a5f9f",
+    "#2f4f7a",
+    "#7a4a1f",
+    "#1c2a4f",
+    "#3c6a7a",
+    "#3f6a5a",
+    "#6a3c3c",
+  ],
+  spectrum19: [
+    "#7a1c1c",
+    "#8c2a1a",
+    "#9f3a18",
+    "#b45309",
+    "#c26a0a",
+    "#d97706",
+    "#a88c00",
+    "#8f9a0a",
+    "#5f8f1a",
+    "#2f7a1f",
+    "#1f8a3d",
+    "#0f766e",
+    "#0e7490",
+    "#1d4ed8",
+    "#1e40af",
+    "#3730a3",
+    "#5b21b6",
+    "#6d28d9",
+    "#7e22ce",
+  ],
+  jewel: [
+    "#5a0f1f",
+    "#6e0f2a",
+    "#7f1233",
+    "#9d174d",
+    "#831843",
+    "#a21caf",
+    "#7e22ce",
+    "#6d28d9",
+    "#4c1d95",
+    "#3730a3",
+    "#1e40af",
+    "#1d4ed8",
+    "#0f3a8a",
+    "#064e3b",
+    "#065f46",
+    "#166534",
+  ],
+};
+const defaultAutoMarkdownPaletteName = "legacy";
+const defaultSphereColorSchemeName = "jewel";
+const defaultAutoMarkdownPalette =
+  autoMarkdownPalettes[defaultAutoMarkdownPaletteName] ?? autoMarkdownPalettes.legacy;
 const linkStyle = {
   minLength: 0.7,
   tipClearance: 0.12,
@@ -1106,7 +1151,7 @@ const composerSceneId = "composer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
-  "content/markdown/aaa/_meta/ideas/arch-api.md";
+  "content/markdown/aaa/assemblies/composer.md";
 const markdownDocIconByteThreshold = 1024;
 const markdownGlowByteThreshold = 2048;
 const cacheBustToken = Date.now().toString();
@@ -1606,6 +1651,8 @@ const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   extractMarkdownDocumentTitle,
   compactMarkdownNodeLabel,
   colorTokens,
+  autoMarkdownPalettes,
+  defaultAutoMarkdownPaletteName,
   defaultAutoMarkdownPalette,
   computeRingLayout,
   maxRingNodeRadius,
@@ -1623,6 +1670,10 @@ const sceneRepository = new SceneRepository({
   levelConfigs,
   normalizeVelocity,
   colorTokens,
+  autoMarkdownPalettes,
+  defaultAutoMarkdownPaletteName,
+  defaultSphereColorSchemeName,
+  homeScenePath: rootScenePath,
   deriveMarkdownConfig,
   buildAutoMarkdownNodes,
   resolveMarkdownFileSize,
@@ -2331,12 +2382,34 @@ function startLevelTransitionOut() {
   closeDetailPanel();
   hideHoverTooltip();
   markdownRuntime.hideMarkdownPanel();
-  const parentInfo = navigationStack[navigationStack.length - 1];
-  const parentLevel = buildLevel(parentInfo.levelId);
-  const parentNode =
-    parentLevel.nodeById.get(parentInfo.focusNodeId) ??
-    parentLevel.nodeByName.get(parentInfo.focusNodeId);
-  if (!parentNode) {
+  let parentInfo = null;
+  let parentLevel = null;
+  let parentNode = null;
+  while (navigationStack.length > 0) {
+    const candidate = navigationStack[navigationStack.length - 1];
+    if (!candidate?.levelId || !levelConfigs[candidate.levelId]) {
+      navigationStack.pop();
+      continue;
+    }
+    const level = buildLevel(candidate.levelId);
+    if (!level) {
+      navigationStack.pop();
+      continue;
+    }
+    const focusNode =
+      level.nodeById.get(candidate.focusNodeId) ??
+      level.nodeByName.get(candidate.focusNodeId);
+    if (!focusNode) {
+      navigationStack.pop();
+      continue;
+    }
+    parentInfo = candidate;
+    parentLevel = level;
+    parentNode = focusNode;
+    break;
+  }
+  if (!parentInfo || !parentLevel || !parentNode) {
+    updateNavButton();
     return;
   }
 
@@ -2992,10 +3065,15 @@ async function init() {
     requestedSceneState.parentFocusNodeId &&
     currentLevel.id !== rootScenePath
   ) {
-    navigationStack.push({
-      levelId: requestedSceneState.parentLevelId,
-      focusNodeId: requestedSceneState.parentFocusNodeId,
-    });
+    const parentConfig = await sceneBootstrapService.ensureSceneReady(
+      requestedSceneState.parentLevelId
+    );
+    if (parentConfig) {
+      navigationStack.push({
+        levelId: requestedSceneState.parentLevelId,
+        focusNodeId: requestedSceneState.parentFocusNodeId,
+      });
+    }
   }
   updateSceneLabel();
   updateSceneMarkdown();

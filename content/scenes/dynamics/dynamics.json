@@ -1,6 +1,7 @@
 {
   "scene": {
     "id": "dynamics",
+    "kind": "branching",
     "name": "Dynamics",
     "layoutMode": "ring"
   },

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ca",
+    "kind": "diagram",
     "name": "Calcium (Ca)",
     "units": "relative",
     "scaleBandLog10m": [

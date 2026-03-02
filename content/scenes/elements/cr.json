@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cr",
+    "kind": "diagram",
     "name": "Chromium (Cr)",
     "units": "relative",
     "scaleBandLog10m": [

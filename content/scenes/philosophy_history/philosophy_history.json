@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "philosophy_history",
+    "kind": "branching",
     "name": "Philosophy-History",
     "units": "relative",
     "wrapLabels": true,

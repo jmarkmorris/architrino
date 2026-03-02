@@ -78,7 +78,7 @@ export function createComposerUiRuntime(deps) {
       return;
     }
     showMarkdownPanel({
-      name: "Arch API",
+      name: "Composer Docs",
       markdownPath: composerDocsPath,
       markdownColumns: 2,
     });

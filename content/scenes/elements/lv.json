@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "lv",
+    "kind": "diagram",
     "name": "Livermorium (Lv)",
     "units": "relative",
     "scaleBandLog10m": [

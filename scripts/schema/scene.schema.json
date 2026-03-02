@@ -16,6 +16,10 @@
       "properties": {
         "id": { "type": "string", "minLength": 1 },
         "name": { "type": "string", "minLength": 1 },
+        "kind": {
+          "type": "string",
+          "enum": ["branching", "diagram", "markdown_split"]
+        },
         "units": { "type": "string" },
         "scaleBandLog10m": {
           "type": ["number", "array"],
@@ -29,6 +33,7 @@
           "enum": ["manual", "ring", "grid"]
         },
         "layoutColumns": { "type": "integer", "minimum": 1 },
+        "sphereColorScheme": { "type": "string" },
         "markdownPath": { "type": "string" },
         "markdownSection": { "type": "string" },
         "markdownColumns": { "type": "number" },
@@ -66,6 +71,7 @@
           "type": "array",
           "items": { "type": "string" }
         },
+        "autoMarkdownPaletteName": { "type": "string" },
         "markdown": {
           "type": "object",
           "additionalProperties": true,
@@ -95,6 +101,7 @@
                   "type": "array",
                   "items": { "type": "string" }
                 },
+                "paletteName": { "type": "string" },
                 "color": { "type": "string" }
               }
             },

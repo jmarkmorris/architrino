@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "lu",
+    "kind": "diagram",
     "name": "Lutetium (Lu)",
     "units": "relative",
     "scaleBandLog10m": [

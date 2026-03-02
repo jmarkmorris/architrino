@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "planet",
+    "kind": "branching",
     "name": "Planet",
     "units": "relative",
     "scaleBandLog10m": [6, 7]

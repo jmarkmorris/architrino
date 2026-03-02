@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cd",
+    "kind": "diagram",
     "name": "Cadmium (Cd)",
     "units": "relative",
     "scaleBandLog10m": [

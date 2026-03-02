@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "es",
+    "kind": "diagram",
     "name": "Einsteinium (Es)",
     "units": "relative",
     "scaleBandLog10m": [

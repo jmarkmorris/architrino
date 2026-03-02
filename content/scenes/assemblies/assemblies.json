@@ -5,7 +5,8 @@
     "name": "Assemblies",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "ring"
+    "layoutMode": "ring",
+    "kind": "branching"
   },
   "objects": [
     {
@@ -14,9 +15,9 @@
       "radius": 2.688,
       "color": "#3a5f9f",
       "position": [
-        0.0,
-        8.0,
-        0.0
+        0,
+        8,
+        0
       ],
       "markdownPath": "content/markdown/aaa/assemblies/noether-core.md",
       "motion": {
@@ -29,9 +30,9 @@
       "radius": 2.688,
       "color": "#5a1f2e",
       "position": [
-        -8.0,
-        0.0,
-        0.0
+        -8,
+        0,
+        0
       ],
       "markdownPath": "content/markdown/aaa/assemblies/particle-masses.md",
       "motion": {
@@ -44,9 +45,9 @@
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        0.0,
-        -8.0,
-        0.0
+        0,
+        -8,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/standard_model.json"
@@ -102,9 +103,9 @@
       "radius": 2.688,
       "color": "#3a5f9f",
       "position": [
-        -12.0,
-        -6.0,
-        0.0
+        -12,
+        -6,
+        0
       ],
       "markdownPath": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "motion": {

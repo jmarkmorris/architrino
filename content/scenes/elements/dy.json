@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "dy",
+    "kind": "diagram",
     "name": "Dysprosium (Dy)",
     "units": "relative",
     "scaleBandLog10m": [

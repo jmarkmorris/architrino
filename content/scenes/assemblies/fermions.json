@@ -5,7 +5,8 @@
     "name": "Fermions",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "ring"
+    "layoutMode": "ring",
+    "kind": "branching"
   },
   "objects": [
     {

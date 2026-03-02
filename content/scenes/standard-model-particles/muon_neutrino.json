@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "muon_neutrino",
+    "kind": "diagram",
     "name": "Muon Neutrino",
     "units": "relative",
     "scaleBandLog10m": [

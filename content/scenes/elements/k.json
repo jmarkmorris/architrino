@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "k",
+    "kind": "diagram",
     "name": "Potassium (K)",
     "units": "relative",
     "scaleBandLog10m": [

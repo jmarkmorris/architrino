@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "electron",
+    "kind": "diagram",
     "name": "Electron",
     "units": "relative",
     "scaleBandLog10m": [

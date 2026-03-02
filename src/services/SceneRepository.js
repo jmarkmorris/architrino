@@ -7,6 +7,10 @@ export class SceneRepository {
     this.levelConfigs = deps.levelConfigs;
     this.normalizeVelocity = deps.normalizeVelocity;
     this.colorTokens = deps.colorTokens;
+    this.autoMarkdownPalettes = deps.autoMarkdownPalettes ?? {};
+    this.defaultAutoMarkdownPaletteName = deps.defaultAutoMarkdownPaletteName ?? "legacy";
+    this.defaultSphereColorSchemeName = deps.defaultSphereColorSchemeName ?? "jewel";
+    this.homeScenePath = deps.homeScenePath ?? null;
     this.deriveMarkdownConfig = deps.deriveMarkdownConfig;
     this.buildAutoMarkdownNodes = deps.buildAutoMarkdownNodes;
     this.resolveMarkdownFileSize = deps.resolveMarkdownFileSize;
@@ -18,6 +22,182 @@ export class SceneRepository {
       typeof deps.markdownGlowMinBytes === "number"
         ? deps.markdownGlowMinBytes
         : 4096;
+  }
+
+  resolveSphereColorPalette(sceneData) {
+    const scene = sceneData?.scene ?? {};
+    const schemeName =
+      typeof scene.sphereColorScheme === "string"
+        ? scene.sphereColorScheme
+        : this.defaultSphereColorSchemeName;
+    const palette =
+      Array.isArray(this.autoMarkdownPalettes[schemeName]) &&
+      this.autoMarkdownPalettes[schemeName].length
+        ? this.autoMarkdownPalettes[schemeName]
+        : this.autoMarkdownPalettes[this.defaultSphereColorSchemeName];
+    return Array.isArray(palette) && palette.length ? palette : null;
+  }
+
+  resolveSceneKind(sceneData, nodes) {
+    const rawKind = sceneData?.scene?.kind;
+    if (rawKind === "branching" || rawKind === "diagram" || rawKind === "markdown_split") {
+      return rawKind;
+    }
+    const list = Array.isArray(nodes) ? nodes : [];
+    const hasNavigation =
+      list.some(
+        (node) =>
+          (typeof node.childScene === "string" && node.childScene.length > 0) ||
+          node.markdownAutoIndex === true
+      ) || sceneData?.scene?.autoSphereRing === true;
+    const hasLeafContent =
+      (typeof sceneData?.scene?.markdownPath === "string" &&
+        sceneData.scene.markdownPath.length > 0) ||
+      list.some(
+        (node) =>
+          (typeof node.markdownPath === "string" && node.markdownPath.length > 0) ||
+          node.markdownAutoIndex === false
+      );
+    if (hasNavigation || hasLeafContent) {
+      return "branching";
+    }
+    return "branching";
+  }
+
+  shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
+    const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
+    const isStructuredLayout = layoutMode === "ring" || layoutMode === "grid";
+    const isHomeScene =
+      typeof this.homeScenePath === "string" &&
+      this.homeScenePath.length > 0 &&
+      scenePath === this.homeScenePath;
+    if (!isStructuredLayout && !isHomeScene) {
+      return false;
+    }
+    if (typeof scenePath === "string") {
+      if (
+        scenePath.startsWith("__markdown_") ||
+        scenePath.startsWith("content/scenes/elements/") ||
+        scenePath === "content/scenes/chemistry/periodic_table_scene.json"
+      ) {
+        return false;
+      }
+    }
+    if (markdownDerived?.autoMarkdownPath || markdownDerived?.autoMarkdownDirectory) {
+      return false;
+    }
+    return true;
+  }
+
+  shouldUsePositionalPaletteOrder() {
+    return false;
+  }
+
+  isPersonalityArchitrinoNode(node) {
+    if (!node || typeof node !== "object") {
+      return false;
+    }
+    const name = typeof node.name === "string" ? node.name.toLowerCase() : "";
+    const id = typeof node.id === "string" ? node.id.toLowerCase() : "";
+    const childScene =
+      typeof node.childScene === "string" ? node.childScene.toLowerCase() : "";
+    if (name === "electrino" || name === "positrino") {
+      return true;
+    }
+    if (id.startsWith("electrino_") || id.startsWith("positrino_")) {
+      return true;
+    }
+    return (
+      childScene === "content/scenes/architrino-theory/electrino.json" ||
+      childScene === "content/scenes/architrino-theory/positrino.json"
+    );
+  }
+
+  applyPersonalityArchitrinoSizing(nodes) {
+    if (!Array.isArray(nodes) || !nodes.length) {
+      return;
+    }
+    const hasBinaryCore = nodes.some(
+      (node) => node?.renderStyle === "binarySphere" || node?.renderStyle === "binaryShell"
+    );
+    if (!hasBinaryCore) {
+      return;
+    }
+
+    nodes.forEach((node) => {
+      if (!this.isPersonalityArchitrinoNode(node)) {
+        return;
+      }
+      if (!Array.isArray(node.position) || node.position.length < 2) {
+        return;
+      }
+
+      const radius = Number(node.radius);
+      if (!Number.isFinite(radius) || radius <= 0) {
+        return;
+      }
+
+      const x = Number(node.position[0]) || 0;
+      const y = Number(node.position[1]) || 0;
+      const z = Number(node.position[2]) || 0;
+      const radialDistance = Math.hypot(x, y);
+      if (radialDistance > 0) {
+        // Keep outer tangent unchanged: newCenterDistance = oldDistance - oldRadius
+        const inwardDistance = Math.max(0, radialDistance - radius);
+        const scale = inwardDistance / radialDistance;
+        node.position = [x * scale, y * scale, z];
+      }
+
+      node.radius = radius * 2;
+    });
+  }
+
+  applyStructuredSpherePalette(nodes, palette, options = {}) {
+    if (!Array.isArray(nodes) || !nodes.length || !Array.isArray(palette) || !palette.length) {
+      return;
+    }
+    const usePositionalOrder = options.usePositionalOrder === true;
+    const eligibleNodes = nodes.filter(
+      (node) => !!node && node.category !== "legend" && node.fixedPosition !== true
+    );
+    if (!eligibleNodes.length) {
+      return;
+    }
+    let orderedNodes = eligibleNodes;
+    if (usePositionalOrder) {
+      const positioned = eligibleNodes.filter(
+        (node) =>
+          Array.isArray(node.position) &&
+          node.position.length >= 2 &&
+          Number.isFinite(node.position[0]) &&
+          Number.isFinite(node.position[1])
+      );
+      if (positioned.length >= 3) {
+        const center = positioned.reduce(
+          (acc, node) => {
+            acc.x += node.position[0];
+            acc.y += node.position[1];
+            return acc;
+          },
+          { x: 0, y: 0 }
+        );
+        center.x /= positioned.length;
+        center.y /= positioned.length;
+        const startAngle = Math.PI / 2;
+        orderedNodes = [...positioned].sort((a, b) => {
+          const aAngle = Math.atan2(a.position[1] - center.y, a.position[0] - center.x);
+          const bAngle = Math.atan2(b.position[1] - center.y, b.position[0] - center.x);
+          const aOrder = (startAngle - aAngle + Math.PI * 2) % (Math.PI * 2);
+          const bOrder = (startAngle - bAngle + Math.PI * 2) % (Math.PI * 2);
+          return aOrder - bOrder;
+        });
+      }
+    }
+    let colorIndex = 0;
+    orderedNodes.forEach((node) => {
+      node.color = palette[colorIndex % palette.length];
+      colorIndex += 1;
+    });
   }
 
   async applyMarkdownDocEligibility(nodes) {
@@ -158,6 +338,13 @@ export class SceneRepository {
           }
           return node;
         });
+        const structuredPalette = this.resolveSphereColorPalette(data);
+        if (this.shouldApplyStructuredSpherePalette(scenePath, data, markdownDerived)) {
+          this.applyStructuredSpherePalette(nodes, structuredPalette, {
+            usePositionalOrder: this.shouldUsePositionalPaletteOrder(scenePath),
+          });
+        }
+        this.applyPersonalityArchitrinoSizing(nodes);
         const autoMarkdownScene = markdownDerived ? { ...data.scene, ...markdownDerived } : data.scene;
         const autoNodes = await this.buildAutoMarkdownNodes(autoMarkdownScene, nodes);
         if (autoNodes.length) {
@@ -168,6 +355,7 @@ export class SceneRepository {
         const sceneName =
           data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;
         const sceneId = data.scene?.id ?? null;
+        const sceneKind = this.resolveSceneKind(data, nodes);
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
           layoutMode:
@@ -180,6 +368,7 @@ export class SceneRepository {
           links: Array.isArray(data.links) ? data.links : [],
           sceneName,
           sceneId,
+          sceneKind,
           markdownPath: data.scene?.markdownPath ?? null,
           markdownSection: data.scene?.markdownSection ?? null,
           markdownColumns: data.scene?.markdownColumns ?? null,
@@ -204,6 +393,10 @@ export class SceneRepository {
             markdownDerived?.autoMarkdownColumns ?? null,
           autoMarkdownPalette:
             markdownDerived?.autoMarkdownPalette ?? null,
+          autoMarkdownPaletteName:
+            markdownDerived?.autoMarkdownPaletteName ??
+            data.scene?.autoMarkdownPaletteName ??
+            this.defaultAutoMarkdownPaletteName,
           autoMarkdownColor:
             markdownDerived?.autoMarkdownColor ?? null,
           autoMarkdownExcludePaths: Array.isArray(markdownDerived?.autoMarkdownExcludePaths)

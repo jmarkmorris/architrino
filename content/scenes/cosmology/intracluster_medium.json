@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "intracluster_medium",
+    "kind": "branching",
     "name": "Intracluster Medium",
     "units": "relative",
     "hideScaleLabels": true

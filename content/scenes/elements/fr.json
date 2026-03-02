@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "fr",
+    "kind": "diagram",
     "name": "Francium (Fr)",
     "units": "relative",
     "scaleBandLog10m": [

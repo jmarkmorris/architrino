@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "br",
+    "kind": "diagram",
     "name": "Bromine (Br)",
     "units": "relative",
     "scaleBandLog10m": [

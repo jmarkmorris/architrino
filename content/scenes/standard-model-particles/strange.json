@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "strange",
+    "kind": "diagram",
     "name": "Strange Quark",
     "units": "relative",
     "scaleBandLog10m": [

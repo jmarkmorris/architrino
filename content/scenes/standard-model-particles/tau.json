@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "tau",
+    "kind": "diagram",
     "name": "Tau",
     "units": "relative",
     "scaleBandLog10m": [

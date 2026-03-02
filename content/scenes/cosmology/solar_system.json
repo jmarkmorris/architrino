@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "solar_system",
+    "kind": "branching",
     "name": "Solar System",
     "units": "relative",
     "scaleBandLog10m": [

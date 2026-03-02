@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "pr",
+    "kind": "diagram",
     "name": "Praseodymium (Pr)",
     "units": "relative",
     "scaleBandLog10m": [

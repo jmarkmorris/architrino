@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "li",
+    "kind": "diagram",
     "name": "Lithium (Li)",
     "units": "relative",
     "scaleBandLog10m": [

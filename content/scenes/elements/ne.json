@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ne",
+    "kind": "diagram",
     "name": "Neon (Ne)",
     "units": "relative",
     "scaleBandLog10m": [

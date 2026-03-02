@@ -7,10 +7,13 @@ const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
+const ROOT_SCENE_PATH = "content/scenes/architrino_assembly_architecture.json";
+const NO_INCOMING_LINK_REPORT_LIMIT = 25;
 const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
 const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.json";
 const LEGACY_AUTOGEN_ALLOWLIST_PATH =
   "scripts/config/legacy-scene-autogen-allowlist.json";
+const ALLOWED_SCENE_KINDS = new Set(["branching", "diagram", "markdown_split"]);
 // Explicit-only migration policy:
 // Scene authoring should converge on explicit objects/subScenes/markdownPath links.
 // These legacy scene-level automation fields remain temporarily supported for migration.
@@ -34,6 +37,7 @@ const LEGACY_AUTOGEN_SCENE_FIELDS = [
   "autoMarkdownPlainPaths",
   "autoMarkdownPlainSectionPaths",
   "autoMarkdownPalette",
+  "autoMarkdownPaletteName",
   "autoMarkdownDefaultIndex",
   "autoMarkdownSectionDepth",
   "autoMarkdownOverrides",
@@ -372,6 +376,17 @@ function validateDirectoryReference(sourcePath, field, refPath, exactSet, lowerM
   } else {
     addMissingRefError(sourcePath, field, normalized);
   }
+}
+
+function resolveKnownPath(refPath, exactSet, lowerMap) {
+  const normalized = normalizePath(refPath);
+  if (!normalized) {
+    return null;
+  }
+  if (exactSet.has(normalized)) {
+    return normalized;
+  }
+  return lowerMap.get(normalized.toLowerCase()) ?? null;
 }
 
 function schemaLocation(pathParts) {
@@ -1146,6 +1161,7 @@ const markdownContext = {
   markdownDirectories: allMarkdownDirectories,
   markdownTextByPath,
 };
+const incomingSceneRefCount = new Map(sceneConfigs.map((scenePath) => [scenePath, 0]));
 const stableIdLabelLock = readStableIdLabelLock();
 const legacyAutogenAllowlist = readLegacyAutogenAllowlist();
 const legacyAutogenScenes = [];
@@ -1208,6 +1224,20 @@ for (const scenePath of sceneConfigs) {
   const data = sceneDataByPath.get(scenePath);
   const scene = data.scene || {};
   const objects = Array.isArray(data.objects) ? data.objects : [];
+  const rawKind = asText(scene.kind);
+  if (!rawKind) {
+    errors.push(
+      `${scenePath}: scene.kind is required and must be one of ${[...ALLOWED_SCENE_KINDS].join(
+        ", "
+      )}`
+    );
+  } else if (!ALLOWED_SCENE_KINDS.has(rawKind)) {
+    errors.push(
+      `${scenePath}: scene.kind "${rawKind}" is not allowed (allowed: ${[
+        ...ALLOWED_SCENE_KINDS,
+      ].join(", ")})`
+    );
+  }
   const legacyFields = collectLegacyAutogenSceneFields(scene);
   if (legacyFields.length) {
     legacyAutogenScenes.push({ scenePath, fields: legacyFields });
@@ -1316,6 +1346,13 @@ for (const scenePath of sceneConfigs) {
         sceneConfigSet,
         sceneConfigLower
       );
+      const resolvedTarget = resolveKnownPath(subScenePath, sceneConfigSet, sceneConfigLower);
+      if (resolvedTarget) {
+        incomingSceneRefCount.set(
+          resolvedTarget,
+          (incomingSceneRefCount.get(resolvedTarget) ?? 0) + 1
+        );
+      }
     });
   });
 }
@@ -1351,6 +1388,26 @@ legacyAutogenAllowlist.scenes.forEach((scenePath) => {
     );
   }
 });
+
+const scenesWithNoIncomingLinks = sceneConfigs
+  .filter((scenePath) => scenePath !== ROOT_SCENE_PATH)
+  .filter((scenePath) => (incomingSceneRefCount.get(scenePath) ?? 0) === 0)
+  .sort((a, b) => a.localeCompare(b));
+if (scenesWithNoIncomingLinks.length) {
+  notes.push(
+    `No incoming scene links (${scenesWithNoIncomingLinks.length}) excluding root ${ROOT_SCENE_PATH}`
+  );
+  scenesWithNoIncomingLinks.slice(0, NO_INCOMING_LINK_REPORT_LIMIT).forEach((scenePath) => {
+    notes.push(`no-incoming-link: ${scenePath}`);
+  });
+  if (scenesWithNoIncomingLinks.length > NO_INCOMING_LINK_REPORT_LIMIT) {
+    notes.push(
+      `no-incoming-link: ... ${
+        scenesWithNoIncomingLinks.length - NO_INCOMING_LINK_REPORT_LIMIT
+      } more`
+    );
+  }
+}
 
 const wroteFiles = [];
 if (mode === "write") {

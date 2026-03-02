@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ce",
+    "kind": "diagram",
     "name": "Cerium (Ce)",
     "units": "relative",
     "scaleBandLog10m": [

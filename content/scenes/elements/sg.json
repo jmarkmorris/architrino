@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "sg",
+    "kind": "diagram",
     "name": "Seaborgium (Sg)",
     "units": "relative",
     "scaleBandLog10m": [

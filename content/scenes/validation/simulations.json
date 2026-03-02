@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "validation_simulations",
+    "kind": "branching",
     "name": "Validation Simulations",
     "units": "relative",
     "layoutMode": "ring",

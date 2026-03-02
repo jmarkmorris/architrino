@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "star_interior",
+    "kind": "branching",
     "name": "Star Interior",
     "units": "relative",
     "scaleBandLog10m": [8, 9]

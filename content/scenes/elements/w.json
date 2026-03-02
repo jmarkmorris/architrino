@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "w",
+    "kind": "diagram",
     "name": "Tungsten (W)",
     "units": "relative",
     "scaleBandLog10m": [

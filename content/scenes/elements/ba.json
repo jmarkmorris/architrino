@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ba",
+    "kind": "diagram",
     "name": "Barium (Ba)",
     "units": "relative",
     "scaleBandLog10m": [

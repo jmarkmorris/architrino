@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "tau_neutrino",
+    "kind": "diagram",
     "name": "Tau Neutrino",
     "units": "relative",
     "scaleBandLog10m": [

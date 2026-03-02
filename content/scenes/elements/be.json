@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "be",
+    "kind": "diagram",
     "name": "Beryllium (Be)",
     "units": "relative",
     "scaleBandLog10m": [

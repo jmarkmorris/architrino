@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cl",
+    "kind": "diagram",
     "name": "Chlorine (Cl)",
     "units": "relative",
     "scaleBandLog10m": [

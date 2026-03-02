@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "molecule",
+    "kind": "diagram",
     "name": "Molecule",
     "units": "relative",
     "scaleBandLog10m": [-9, -6]

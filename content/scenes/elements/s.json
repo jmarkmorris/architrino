@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "s",
+    "kind": "diagram",
     "name": "Sulfur (S)",
     "units": "relative",
     "scaleBandLog10m": [

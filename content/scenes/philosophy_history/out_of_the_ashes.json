@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "out_of_the_ashes",
+    "kind": "markdown_split",
     "name": "Out of the Ashes",
     "units": "relative",
     "wrapLabels": true,

@@ -50,6 +50,9 @@ export function deriveMarkdownConfig(markdownPolicy) {
   if (Array.isArray(layout.palette)) {
     derived.autoMarkdownPalette = layout.palette;
   }
+  if (typeof layout.paletteName === "string") {
+    derived.autoMarkdownPaletteName = layout.paletteName;
+  }
   if (typeof layout.color === "string") {
     derived.autoMarkdownColor = layout.color;
   }

@@ -2,6 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "pb",
+    "kind": "diagram",
     "name": "Lead (Pb)",
     "units": "relative",
     "scaleBandLog10m": [
