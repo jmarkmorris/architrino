@@ -3,7 +3,7 @@
   "scene": {
     "id": "major_thinkers_classical_modern",
     "kind": "markdown_split",
-    "name": "Classical & Early Modern Metaphysics + Mechanism",
+    "name": "Classical & Early Modern Metaphysics",
     "units": "relative",
     "wrapLabels": true,
     "layoutMode": "rings"

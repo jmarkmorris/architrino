@@ -21,13 +21,13 @@
     },
     {
       "id": "major_thinkers_classical_modern",
-      "label": "Classical & Early Modern Metaphysics + Mechanism",
+      "label": "Classical & Early Modern Metaphysics",
       "radius": 2.688,
       "color": "#2f6b6f",
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
       ],
-      "labelTitle": "Classical & Early Modern Metaphysics + Mechanism",
+      "labelTitle": "Classical & Early Modern Metaphysics",
       "labelBadge": "📚"
     },
     {
@@ -43,35 +43,35 @@
     },
     {
       "id": "major_thinkers_quantum_foundations",
-      "label": "Quantum Foundations & Hidden-Variable Landscape",
+      "label": "Quantum Foundations",
       "radius": 2.688,
       "color": "#4b0082",
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
       ],
-      "labelTitle": "Quantum Foundations & Hidden-Variable Landscape",
+      "labelTitle": "Quantum Foundations",
       "labelBadge": "📚"
     },
     {
       "id": "major_thinkers_qft_standard_model",
-      "label": "QFT & Standard Model Architecture",
+      "label": "Standard Model Architecture",
       "radius": 2.688,
       "color": "#3a5f9f",
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
       ],
-      "labelTitle": "QFT & Standard Model Architecture",
+      "labelTitle": "Standard Model Architecture",
       "labelBadge": "📚"
     },
     {
       "id": "major_thinkers_info_computation_science",
-      "label": "Information/Computation + Philosophy of Science",
+      "label": "Information + Philosophy of Science",
       "radius": 2.688,
       "color": "#2f4f7a",
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
       ],
-      "labelTitle": "Information/Computation + Philosophy of Science",
+      "labelTitle": "Information + Philosophy of Science",
       "labelBadge": "📚"
     },
     {

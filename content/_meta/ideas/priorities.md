@@ -10,9 +10,7 @@
   - list role in assembly 
 - the P and N in the atoms are overlapping on boron and maybe others?
 - composer should use the same frame elements in the corners.
-- change grid to ring of rings.
-- three lines for labels, with third line customizable for icons?
-- Hubble and S8 tensions in cosmo scene should be 'Cosmological Tensions' and md file should be merged into Unk and Pdx and retrieved from there.
+- should we have a zoom out button?
 
 ## Sorta Sorted List (i.e., non-linear)
 

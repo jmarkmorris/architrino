@@ -3,7 +3,7 @@
   "scene": {
     "id": "major_thinkers_qft_standard_model",
     "kind": "markdown_split",
-    "name": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)",
+    "name": "Standard Model Architecture",
     "units": "relative",
     "wrapLabels": true,
     "layoutMode": "rings"

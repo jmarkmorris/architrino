@@ -3,7 +3,7 @@
   "scene": {
     "id": "major_thinkers_quantum_foundations",
     "kind": "markdown_split",
-    "name": "Quantum Foundations & Hidden-Variable Landscape",
+    "name": "Quantum Foundations",
     "units": "relative",
     "wrapLabels": true,
     "layoutMode": "rings"

@@ -3,7 +3,7 @@
   "scene": {
     "id": "major_thinkers_info_computation_science",
     "kind": "markdown_split",
-    "name": "Information/Computation + Philosophy of Science",
+    "name": "Information + Philosophy of Science",
     "units": "relative",
     "wrapLabels": true,
     "layoutMode": "rings"
