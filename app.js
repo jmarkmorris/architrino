@@ -45,12 +45,14 @@ const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
 const sceneLabel = document.getElementById("scene-label");
+const sceneFocusSphere = document.getElementById("scene-focus-sphere");
 const sceneSearch = document.getElementById("scene-search");
 const sceneSearchToggle = document.getElementById("scene-search-toggle");
 const sceneSearchPanel = document.getElementById("scene-search-panel");
 const sceneSearchInput = document.getElementById("scene-search-input");
 const sceneSearchResults = document.getElementById("scene-search-results");
 const hoverTooltip = document.getElementById("hover-tooltip");
+const zoomToast = document.getElementById("zoom-toast");
 const detailPanel = document.getElementById("detail-panel");
 const detailTitle = document.getElementById("detail-title");
 const detailBody = document.getElementById("detail-body");
@@ -105,10 +107,9 @@ const composerCameraWaypointAdd = document.getElementById("composer-camera-waypo
 const composerCameraWaypointClear = document.getElementById("composer-camera-waypoint-clear");
 const composerCameraWaypointCount = document.getElementById("composer-camera-waypoint-count");
 const composerCameraFlightToggle = document.getElementById("composer-camera-flight-toggle");
-const hud = document.getElementById("hud");
-const infoDrawer = document.getElementById("info-drawer");
-const infoBody = document.getElementById("info-body");
-const rootLayoutMarginPx = { x: 160, y: 140 };
+const defaultRootLayoutMarginPx = { x: 160, y: 140 };
+const zoomToastDismissedKey = "architrino.zoomToastDismissed";
+let zoomToastTimeoutId = null;
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -503,6 +504,7 @@ function buildComposerSceneConfig(state) {
   }));
   return {
     layout: "static",
+    layoutMode: "ring",
     nodes,
     links: [],
     sceneName: `${state.name} (Preview)`,
@@ -512,7 +514,6 @@ function buildComposerSceneConfig(state) {
     markdownColumns: null,
     markdownAutoOpen: false,
     centerOn: null,
-    autoSphereRing: true,
     wrapLabels: true,
     hideScaleLabels: true,
   };
@@ -1144,7 +1145,6 @@ if (markdownRenderer) {
 }
 const markdownManifestPath = "content/markdown/markdown_index.json";
 const sceneGraphManifestPath = "content/graph/scene_graph.json";
-const infoMarkdownPath = "info.md";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const metaScenePath = "content/scenes/meta/meta.json";
 const composerSceneId = "composer";
@@ -1285,6 +1285,10 @@ const ringLayoutDefaults = {
 };
 const standardRingMaxCount = 14;
 
+function getRingStartAngle(count) {
+  return ringLayoutDefaults.startAngle;
+}
+
 function maxRingNodeRadius(ringRadius, count) {
   if (!Number.isFinite(ringRadius) || count <= 1) {
     return Infinity;
@@ -1295,6 +1299,69 @@ function maxRingNodeRadius(ringRadius, count) {
     chord * ringLayoutDefaults.guardBandRatio
   );
   return (chord - guardBand) / (2 * ringLayoutDefaults.haloScale);
+}
+
+function getNodeBoundsRadius(node) {
+  const baseRadius = Math.max(0, node?.data?.radius ?? 0);
+  const hasHalo =
+    node?.data?.glowRing ||
+    node?.data?.childScene ||
+    node?.data?.docDrillDownPreferred === true;
+  if (!hasHalo) {
+    return baseRadius;
+  }
+  return Math.max(baseRadius, baseRadius * ringLayoutDefaults.haloScale);
+}
+
+function solveRingFit(frameRadius, count) {
+  const maxFrameRadius = Math.max(0, frameRadius);
+  if (!Number.isFinite(maxFrameRadius) || maxFrameRadius <= 0) {
+    return { haloRadius: 0, ringRadius: 0, nodeRadius: 0 };
+  }
+  if (count <= 1) {
+    const haloRadius = maxFrameRadius;
+    return {
+      haloRadius,
+      ringRadius: 0,
+      nodeRadius: haloRadius / ringLayoutDefaults.haloScale,
+    };
+  }
+
+  const sinHalfStep = Math.sin(Math.PI / count);
+  if (!Number.isFinite(sinHalfStep) || sinHalfStep <= 0) {
+    return { haloRadius: 0, ringRadius: 0, nodeRadius: 0 };
+  }
+
+  const requiredRingRadiusForHalo = (haloRadius) => {
+    const haloDiameter = haloRadius * 2;
+    const guardBand = Math.max(
+      ringLayoutDefaults.guardBandMin,
+      haloDiameter * ringLayoutDefaults.guardBandRatio
+    );
+    const requiredChord = haloDiameter + guardBand;
+    return requiredChord / (2 * sinHalfStep);
+  };
+
+  let low = 0;
+  let high = maxFrameRadius;
+  for (let i = 0; i < 40; i += 1) {
+    const mid = (low + high) * 0.5;
+    const requiredRing = requiredRingRadiusForHalo(mid);
+    const fitsFrame = requiredRing + mid <= maxFrameRadius;
+    if (fitsFrame) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+
+  const haloRadius = low;
+  const ringRadius = Math.max(0, maxFrameRadius - haloRadius);
+  return {
+    haloRadius,
+    ringRadius,
+    nodeRadius: haloRadius / ringLayoutDefaults.haloScale,
+  };
 }
 
 function computeRingLayout(nodes) {
@@ -1311,12 +1378,13 @@ function computeRingLayout(nodes) {
     Math.min(count, standardRingMaxCount) * baseRadius * 1.4
   );
   const maxRadius = maxRingNodeRadius(ringRadius, count);
-  if (Number.isFinite(maxRadius) && maxRadius > 0) {
+  if (Number.isFinite(maxRadius) && maxRadius > 0 && maxRadius < baseRadius) {
     baseRadius = maxRadius;
   }
   const positions = [];
+  const startAngle = getRingStartAngle(count);
   for (let i = 0; i < count; i += 1) {
-    const angle = (i / count) * Math.PI * 2 + ringLayoutDefaults.startAngle;
+    const angle = (i / count) * Math.PI * 2 + startAngle;
     positions.push([
       Number((Math.cos(angle) * ringRadius).toFixed(2)),
       Number((Math.sin(angle) * ringRadius).toFixed(2)),
@@ -1384,6 +1452,13 @@ const transitionEngine = createTransitionEngine(transitionState, {
   getCurrentLevel: () => currentLevel,
   setCurrentLevel: (level) => {
     currentLevel = level;
+  },
+  shouldCenterLevelInFrame: (level) => {
+    return isCenteredRingLevel(level);
+  },
+  centerLevelInFrame: (level) => {
+    const center = getLevelFrameCenter(level);
+    worldGroup.position.set(-center.x, -center.y, 0);
   },
   now: () => performance.now(),
 });
@@ -1467,6 +1542,53 @@ function hideHoverTooltip() {
   hoverTooltipVisible = false;
 }
 
+function hasDismissedZoomToast() {
+  try {
+    return window.localStorage.getItem(zoomToastDismissedKey) === "1";
+  } catch (_error) {
+    return false;
+  }
+}
+
+function setZoomToastDismissed() {
+  try {
+    window.localStorage.setItem(zoomToastDismissedKey, "1");
+  } catch (_error) {
+    // Ignore storage failures.
+  }
+}
+
+function hideZoomToast() {
+  if (!zoomToast) {
+    return;
+  }
+  zoomToast.classList.remove("is-visible");
+  zoomToast.setAttribute("aria-hidden", "true");
+  if (zoomToastTimeoutId) {
+    window.clearTimeout(zoomToastTimeoutId);
+    zoomToastTimeoutId = null;
+  }
+}
+
+function dismissZoomToastPermanently() {
+  setZoomToastDismissed();
+  hideZoomToast();
+}
+
+function showZoomToastIfNeeded() {
+  if (!zoomToast || hasDismissedZoomToast()) {
+    return;
+  }
+  zoomToast.classList.add("is-visible");
+  zoomToast.setAttribute("aria-hidden", "false");
+  if (zoomToastTimeoutId) {
+    window.clearTimeout(zoomToastTimeoutId);
+  }
+  zoomToastTimeoutId = window.setTimeout(() => {
+    hideZoomToast();
+  }, 5200);
+}
+
 const markdownRuntime = createMarkdownRuntime({
   markdownPanel,
   markdownTitle,
@@ -1475,10 +1597,6 @@ const markdownRuntime = createMarkdownRuntime({
   markdownRenderer,
   markdownCache,
   markdownSectionCache,
-  infoBody,
-  infoMarkdownPath,
-  hud,
-  infoDrawer,
   extractMarkdownSection,
 });
 
@@ -1865,19 +1983,55 @@ function computeWarpScaleForLevel(level, overshoot = 1.25) {
   return Math.max(1.4, base * overshoot);
 }
 
+function getFocusSphereMetrics() {
+  if (sceneFocusSphere) {
+    const rect = sceneFocusSphere.getBoundingClientRect();
+    const diameter = Math.min(rect.width, rect.height);
+    if (Number.isFinite(diameter) && diameter > 0) {
+      return {
+        centerX: rect.left + rect.width / 2,
+        centerY: rect.top + rect.height / 2,
+        radius: diameter / 2,
+      };
+    }
+  }
+
+  const safeWidth = Math.max(2, window.innerWidth - defaultRootLayoutMarginPx.x * 2);
+  const safeHeight = Math.max(2, window.innerHeight - defaultRootLayoutMarginPx.y * 2);
+  const diameter = Math.min(safeWidth, safeHeight);
+  return {
+    centerX: window.innerWidth / 2,
+    centerY: window.innerHeight / 2,
+    radius: diameter / 2,
+  };
+}
+
+function isPointerWithinInteractiveViewport(clientX, clientY, paddingPx = 0) {
+  const { centerX, centerY, radius } = getFocusSphereMetrics();
+  const effectiveRadius = Math.max(0, radius - paddingPx);
+  const dx = clientX - centerX;
+  const dy = clientY - centerY;
+  return dx * dx + dy * dy <= effectiveRadius * effectiveRadius;
+}
+
 function getSafeViewportWorld() {
   const aspect = window.innerWidth / window.innerHeight;
   const viewWidth = baseViewHeight * aspect;
   const worldPerPixel = viewWidth / Math.max(window.innerWidth, 1);
-  const safeWidth = Math.max(
-    2,
-    viewWidth - 2 * (rootLayoutMarginPx.x * worldPerPixel)
-  );
-  const safeHeight = Math.max(
-    2,
-    baseViewHeight - 2 * (rootLayoutMarginPx.y * worldPerPixel)
-  );
+  const { radius } = getFocusSphereMetrics();
+  const safeDiameterPx = Math.max(2, radius * 2);
+  const safeWorldDiameter = safeDiameterPx * worldPerPixel;
+  const safeWidth = Math.max(2, safeWorldDiameter);
+  const safeHeight = Math.max(2, safeWorldDiameter);
   return { safeWidth, safeHeight };
+}
+
+function getFocusWorldCenter() {
+  const { centerX, centerY } = getFocusSphereMetrics();
+  const ndcX = (centerX / Math.max(window.innerWidth, 1)) * 2 - 1;
+  const ndcY = -((centerY / Math.max(window.innerHeight, 1)) * 2 - 1);
+  const world = new THREE.Vector3(ndcX, ndcY, 0).unproject(camera);
+  return new THREE.Vector3(world.x, world.y, 0);
 }
 
 function cloneNodeData(nodeData) {
@@ -1908,9 +2062,9 @@ function layoutRootLevel(level) {
   if (!nodes?.length) {
     return;
   }
-  const layoutMode =
-    typeof level.layoutMode === "string" ? level.layoutMode.toLowerCase() : "";
-  const useRingLayout = level.id === rootScenePath || layoutMode === "ring";
+  const layoutMode = getEffectiveLayoutMode(level);
+  const useRingLayout =
+    level.id === rootScenePath || layoutMode === "ring";
   const useGridLayout = layoutMode === "grid";
   if (!useRingLayout && !useGridLayout) {
     return;
@@ -1971,20 +2125,10 @@ function layoutRootLevel(level) {
   );
   const { safeWidth, safeHeight } = getSafeViewportWorld();
   const safeRadius = Math.max(2, Math.min(safeWidth, safeHeight) / 2);
-  let targetRadius = baseRadius;
-  if (nodes.length > 1) {
-    let r = baseRadius;
-    for (let i = 0; i < 6; i += 1) {
-      const candidateRing = Math.max(2, safeRadius - r);
-      const maxRadius = maxRingNodeRadius(candidateRing, nodes.length);
-      if (!Number.isFinite(maxRadius) || maxRadius <= 0) {
-        break;
-      }
-      r = Math.min(maxRadius, safeRadius - 2);
-    }
-    targetRadius = r;
-  }
-  const ringRadius = Math.max(2, safeRadius - targetRadius);
+  const frameRadius = safeRadius;
+  const solvedRing = solveRingFit(frameRadius, nodes.length);
+  const targetRadius = Math.max(0, solvedRing.nodeRadius);
+  const ringRadius = Math.max(0, solvedRing.ringRadius);
   const scaleFactor = baseRadius > 0 ? targetRadius / baseRadius : 1;
   if (Number.isFinite(scaleFactor)) {
     nodes.forEach((node) => {
@@ -2000,7 +2144,7 @@ function layoutRootLevel(level) {
   }
 
   const angleStep = (-Math.PI * 2) / nodes.length;
-  const startAngle = ringLayoutDefaults.startAngle;
+  const startAngle = getRingStartAngle(nodes.length);
   nodes.forEach((node, index) => {
     const angle = startAngle + angleStep * index;
     const x = Math.cos(angle) * ringRadius;
@@ -2014,18 +2158,68 @@ function getLevelBoundsLocal(level) {
   return getLevelBoundsFromNodes(level);
 }
 
+function isCenteredRingLevel(level) {
+  if (!level) {
+    return false;
+  }
+  const layoutMode = getEffectiveLayoutMode(level);
+  return level.id === rootScenePath || layoutMode === "ring";
+}
+
+function getEffectiveLayoutMode(level) {
+  if (!level) {
+    return "";
+  }
+  if (typeof level.layoutMode === "string" && level.layoutMode.trim()) {
+    return level.layoutMode.toLowerCase();
+  }
+  return "";
+}
+
+function getLevelFrameCenter(level) {
+  if (!level) {
+    return new THREE.Vector3();
+  }
+  if (isCenteredRingLevel(level) && Array.isArray(level.nodes) && level.nodes.length > 0) {
+    const center = new THREE.Vector3();
+    level.nodes.forEach((node) => {
+      center.add(node.group.position);
+    });
+    center.multiplyScalar(1 / level.nodes.length);
+    return center;
+  }
+  return getLevelCenter(level);
+}
+
 function computeFitZoomForLevel(level) {
+  if (isCenteredRingLevel(level)) {
+    const center = getLevelFrameCenter(level);
+    const { safeWidth, safeHeight } = getSafeViewportWorld();
+    const safeRadius = Math.max(1, Math.min(safeWidth, safeHeight) / 2);
+    let extentRadius = 0;
+    level.nodes.forEach((node) => {
+      if (node.data?.excludeFromBounds) {
+        return;
+      }
+      const nodeBoundsRadius = getNodeBoundsRadius(node);
+      const radialDistance = node.group.position.distanceTo(center);
+      extentRadius = Math.max(extentRadius, radialDistance + nodeBoundsRadius);
+    });
+    if (extentRadius <= 0) {
+      return camera.zoom;
+    }
+    return clampZoom(safeRadius / extentRadius);
+  }
+
   const { size } = getLevelBoundsFromNodes(level);
   if (!isFinite(size.x) || !isFinite(size.y) || size.lengthSq() === 0) {
     return camera.zoom;
   }
 
-  const aspect = window.innerWidth / window.innerHeight;
-  const viewHeight = baseViewHeight;
-  const viewWidth = baseViewHeight * aspect;
-  const marginFactor = 0.8;
-  const zoomX = (viewWidth * marginFactor) / Math.max(size.x, 0.01);
-  const zoomY = (viewHeight * marginFactor) / Math.max(size.y, 0.01);
+  const { safeWidth, safeHeight } = getSafeViewportWorld();
+  const marginFactor = 0.92;
+  const zoomX = (safeWidth * marginFactor) / Math.max(size.x, 0.01);
+  const zoomY = (safeHeight * marginFactor) / Math.max(size.y, 0.01);
   return clampZoom(Math.min(zoomX, zoomY));
 }
 
@@ -2035,7 +2229,7 @@ function fitCameraToLevel(level) {
     return;
   }
 
-  const center = getLevelCenter(level);
+  const center = getLevelFrameCenter(level);
   const nextZoom = computeFitZoomForLevel(level);
 
   zoomState.active = false;
@@ -2095,7 +2289,7 @@ function getLevelBoundsFromNodes(level) {
     if (node.data?.excludeFromBounds) {
       return;
     }
-    const radius = node.data.radius ?? 0;
+    const radius = getNodeBoundsRadius(node);
     if (node.data.orbit) {
       const orbit = node.data.orbit;
       const centerNode =
@@ -2268,12 +2462,19 @@ function setLevelLabelOpacity(level, labelOpacity) {
   levelRuntime.setLevelLabelOpacity(level, labelOpacity);
 }
 
-function setLevelOpacityWithFocus(level, focusId, focusOpacity, otherOpacity) {
+function setLevelOpacityWithFocus(
+  level,
+  focusId,
+  focusOpacity,
+  otherOpacity,
+  shellGuideOpacity = otherOpacity
+) {
   levelRuntime.setLevelOpacityWithFocus(
     level,
     focusId,
     focusOpacity,
-    otherOpacity
+    otherOpacity,
+    shellGuideOpacity
   );
 }
 
@@ -2282,14 +2483,47 @@ function setLevelOpacityWithFocusAndLabel(
   focusId,
   focusOpacity,
   otherOpacity,
-  labelOpacity
+  labelOpacity,
+  shellGuideOpacity = otherOpacity
 ) {
   levelRuntime.setLevelOpacityWithFocusAndLabel(
     level,
     focusId,
     focusOpacity,
     otherOpacity,
-    labelOpacity
+    labelOpacity,
+    shellGuideOpacity
+  );
+}
+
+function isAtomicParticleFocusTransition(level, targetNode) {
+  if (!level || !targetNode?.data) {
+    return false;
+  }
+  const levelId = typeof level.id === "string" ? level.id.toLowerCase() : "";
+  const sceneId = typeof level.sceneId === "string" ? level.sceneId.toLowerCase() : "";
+  const isAtomContext =
+    levelId.startsWith("content/scenes/elements/") ||
+    levelId.endsWith("/nuclear/atom.json") ||
+    sceneId === "atom";
+  if (!isAtomContext) {
+    return false;
+  }
+  const category =
+    typeof targetNode.data.category === "string"
+      ? targetNode.data.category.toLowerCase()
+      : "";
+  const label =
+    typeof targetNode.data.label === "string"
+      ? targetNode.data.label.toLowerCase()
+      : "";
+  return (
+    category === "proton" ||
+    category === "neutron" ||
+    category === "electron" ||
+    label === "p" ||
+    label === "n" ||
+    label === "e"
   );
 }
 
@@ -2320,13 +2554,21 @@ function beginLevelTransition(targetNode, childLevelId) {
   const targetWorld = new THREE.Vector3();
   targetNode.group.getWorldPosition(targetWorld);
   const targetPosition = targetWorld.sub(worldGroup.position);
-  const toLevelCenter = getLevelCenter(toLevel);
+  const toLevelCenter = getLevelFrameCenter(toLevel);
   const warpScale = computeWarpScale(targetNode.data.radius);
   const toStartScale = 0.5;
   const focusNodeId = targetNode.data.id ?? targetNode.data.name;
   const zoomTarget = computeFitZoomForLevel(toLevel);
   const panStart = worldGroup.position.clone();
-  const panTarget = new THREE.Vector3(-targetPosition.x, -targetPosition.y, 0);
+  const useAtomFocusTransition = isAtomicParticleFocusTransition(currentLevel, targetNode);
+  const focusWorldCenter = useAtomFocusTransition
+    ? getFocusWorldCenter()
+    : new THREE.Vector3();
+  const panTarget = new THREE.Vector3(
+    focusWorldCenter.x - targetPosition.x,
+    focusWorldCenter.y - targetPosition.y,
+    0
+  );
 
   zoomState.active = false;
   panTween.active = false;
@@ -2343,6 +2585,10 @@ function beginLevelTransition(targetNode, childLevelId) {
     toStartScale,
     panStart,
     panTarget,
+    transitionProfile: useAtomFocusTransition ? "atomFocusFadeThenWarp" : "default",
+    fadeOutEnd: 0.3,
+    motionStart: 0.3,
+    motionCenterEnd: 0.58,
   };
   transitionState.startTime = performance.now();
   transitionState.duration = 2250;
@@ -2351,8 +2597,13 @@ function beginLevelTransition(targetNode, childLevelId) {
   toLevel.group.scale.setScalar(toStartScale);
   setLevelOpacity(toLevel, 0);
   setLevelLabelOpacity(toLevel, 0);
-  setLevelOpacityWithFocus(currentLevel, focusNodeId, 1, 0);
-  setLevelLinkOpacity(currentLevel, 0);
+  if (useAtomFocusTransition) {
+    setLevelOpacityWithFocus(currentLevel, focusNodeId, 1, 1, 1);
+    setLevelLinkOpacity(currentLevel, 1);
+  } else {
+    setLevelOpacityWithFocus(currentLevel, focusNodeId, 1, 0);
+    setLevelLinkOpacity(currentLevel, 0);
+  }
 
   navigationStack.push({
     levelId: currentLevel.id,
@@ -2417,7 +2668,7 @@ function startLevelTransitionOut() {
     worldGroup.add(parentLevel.group);
   }
 
-  const parentCenter = getLevelCenter(parentLevel);
+  const parentCenter = getLevelFrameCenter(parentLevel);
   zoomState.active = false;
   panTween.active = false;
 
@@ -2703,7 +2954,6 @@ const sceneSearchUiRuntime = createSceneSearchUiRuntime({
 });
 const scenePanelUiRuntime = createScenePanelUiRuntime({
   docButton,
-  hud,
   detailClose,
   markdownClose,
   markdownDocButton,
@@ -2762,6 +3012,9 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
 
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
+    return false;
+  }
+  if (!isPointerWithinInteractiveViewport(clientX, clientY)) {
     return false;
   }
   const nextGenInfo = getNextGenerationInfo(currentLevel);
@@ -2876,6 +3129,9 @@ function updateDetailHover(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
     return;
   }
+  if (!isPointerWithinInteractiveViewport(clientX, clientY)) {
+    return;
+  }
   if (!detailPanel) {
     return;
   }
@@ -2904,6 +3160,10 @@ function updateDetailHover(clientX, clientY) {
 
 function updateDecayHover(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
+    return;
+  }
+  if (!isPointerWithinInteractiveViewport(clientX, clientY)) {
+    hideHoverTooltip();
     return;
   }
   const nextGenInfo = getNextGenerationInfo(currentLevel);
@@ -2952,6 +3212,8 @@ const interactionRuntime = createInteractionRuntime({
   focusOnPointer,
   updateDetailHover,
   updateDecayHover,
+  onSuccessfulSphereClick: dismissZoomToastPermanently,
+  isPointerWithinInteractiveViewport,
   setLastZoomGestureTime: (value) => {
     lastZoomGestureTime = value;
   },
@@ -3077,6 +3339,7 @@ async function init() {
   }
   updateSceneLabel();
   updateSceneMarkdown();
+  showZoomToastIfNeeded();
   animate();
 }
 

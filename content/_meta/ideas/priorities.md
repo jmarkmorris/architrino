@@ -3,22 +3,13 @@
 
 ## Infrastructure
 
-- we have Color Charge and SU(3) and Color Charge in the search index
 - search index does not go alpha first
-- under element for md and periodic table
 - add the slide out like on an atom scene to the architrinos and standard model assemblies.
   - list charge
   - list noether core type and generation
   - list role in assembly 
 - the P and N in the atoms are overlapping on boron and maybe others?
-- if you zoom into a fermion, you can't back up
-- move meta material out of the md directory so it doesn't accidentally get loaded into the webapp.
-- the exit button is not working in composer. where should it go if it hits, errors. HOME.
 - composer should use the same frame elements in the corners.
-- i should change the 'panel' to be the largest possible sphere (circle)
-  - but also allow the animation to continue in the full rectangular panel
-  - this means all labels and controls and searches get pushed to the corners.
-
 
 
 ## Sorta Sorted List (i.e., non-linear)
@@ -273,7 +264,7 @@ having a .ai domain is kinda cool though. don't give it up.
 ---
 
 - double click pins vscode tab
-- link a markdown file [text](../../prototype/markdown/file). Add note to system prompts.
+- link a markdown file [text](../../markdown/aaa/prototype/markdown/file). Add note to system prompts.
 - one H1 heading per md
 - branches are now alpha beta gamma delta omega in git
 - og entourage ids I should see in lmcouncil Jan 13ab/15ab/17a/24a

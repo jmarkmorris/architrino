@@ -44,12 +44,14 @@ export class SceneRepository {
       return rawKind;
     }
     const list = Array.isArray(nodes) ? nodes : [];
+    const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
+    const usesRingLayout = layoutMode === "ring";
     const hasNavigation =
       list.some(
         (node) =>
           (typeof node.childScene === "string" && node.childScene.length > 0) ||
           node.markdownAutoIndex === true
-      ) || sceneData?.scene?.autoSphereRing === true;
+      ) || usesRingLayout;
     const hasLeafContent =
       (typeof sceneData?.scene?.markdownPath === "string" &&
         sceneData.scene.markdownPath.length > 0) ||
@@ -67,6 +69,7 @@ export class SceneRepository {
   shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
     const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
     const isStructuredLayout = layoutMode === "ring" || layoutMode === "grid";
+    const sceneId = String(sceneData?.scene?.id ?? "").toLowerCase();
     const isHomeScene =
       typeof this.homeScenePath === "string" &&
       this.homeScenePath.length > 0 &&
@@ -77,11 +80,16 @@ export class SceneRepository {
     if (typeof scenePath === "string") {
       if (
         scenePath.startsWith("__markdown_") ||
+        scenePath === "content/scenes/nuclear/proton.json" ||
+        scenePath === "content/scenes/nuclear/neutron.json" ||
         scenePath.startsWith("content/scenes/elements/") ||
         scenePath === "content/scenes/chemistry/periodic_table_scene.json"
       ) {
         return false;
       }
+    }
+    if (sceneId === "proton" || sceneId === "neutron") {
+      return false;
     }
     if (markdownDerived?.autoMarkdownPath || markdownDerived?.autoMarkdownDirectory) {
       return false;
@@ -356,10 +364,11 @@ export class SceneRepository {
           data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;
         const sceneId = data.scene?.id ?? null;
         const sceneKind = this.resolveSceneKind(data, nodes);
+        const rawLayoutMode =
+          typeof data.scene?.layoutMode === "string" ? data.scene.layoutMode : null;
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
-          layoutMode:
-            typeof data.scene?.layoutMode === "string" ? data.scene.layoutMode : null,
+          layoutMode: rawLayoutMode,
           layoutColumns:
             Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
               ? data.scene.layoutColumns
@@ -374,7 +383,6 @@ export class SceneRepository {
           markdownColumns: data.scene?.markdownColumns ?? null,
           markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
           centerOn: data.scene?.centerOn ?? null,
-          autoSphereRing: data.scene?.autoSphereRing ?? false,
           autoMarkdownDirectory: markdownDerived?.autoMarkdownDirectory ?? null,
           autoMarkdownPath: markdownDerived?.autoMarkdownPath ?? null,
           autoMarkdownSection: markdownDerived?.autoMarkdownSection ?? null,
@@ -433,7 +441,15 @@ export class SceneRepository {
 
   async ensureDynamicSceneConfig(sceneId) {
     const config = this.levelConfigs[sceneId];
-    if (!config || !config.autoSphereRing) {
+    if (!config) {
+      return;
+    }
+    const layoutMode = String(config.layoutMode ?? "").toLowerCase();
+    const isRingLayout = layoutMode === "ring";
+    const hasAutoMarkdownSource =
+      (typeof config.autoMarkdownPath === "string" && config.autoMarkdownPath.length > 0) ||
+      (typeof config.autoMarkdownDirectory === "string" && config.autoMarkdownDirectory.length > 0);
+    if (!isRingLayout || !hasAutoMarkdownSource) {
       return;
     }
     if (!Array.isArray(config.nodes)) {

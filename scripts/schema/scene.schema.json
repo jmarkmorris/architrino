@@ -38,7 +38,6 @@
         "markdownSection": { "type": "string" },
         "markdownColumns": { "type": "number" },
         "markdownAutoOpen": { "type": "boolean" },
-        "autoSphereRing": { "type": "boolean" },
         "autoMarkdownPath": { "type": "string" },
         "autoMarkdownDirectory": { "type": "string" },
         "autoMarkdownSection": { "type": "string" },

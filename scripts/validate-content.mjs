@@ -18,7 +18,6 @@ const ALLOWED_SCENE_KINDS = new Set(["branching", "diagram", "markdown_split"]);
 // Scene authoring should converge on explicit objects/subScenes/markdownPath links.
 // These legacy scene-level automation fields remain temporarily supported for migration.
 const LEGACY_AUTOGEN_SCENE_FIELDS = [
-  "autoSphereRing",
   "markdown",
   "autoMarkdownPath",
   "autoMarkdownDirectory",
@@ -646,12 +645,6 @@ function collectLegacyAutogenSceneFields(scene) {
     if (!(field in scene)) {
       continue;
     }
-    if (field === "autoSphereRing") {
-      if (scene.autoSphereRing === true) {
-        present.push(field);
-      }
-      continue;
-    }
     if (field === "markdown") {
       if (scene.markdown && typeof scene.markdown === "object") {
         present.push(field);
@@ -865,7 +858,7 @@ function validateSceneIntegrity(scenePath, data, markdownContext) {
   const markdownDerived = deriveMarkdownConfig(scene.markdown);
   const autoScene = markdownDerived ? { ...scene, ...markdownDerived } : scene;
   if (
-    autoScene.autoSphereRing !== true ||
+    String(autoScene.layoutMode ?? "").toLowerCase() !== "ring" ||
     (!autoScene.autoMarkdownPath && !autoScene.autoMarkdownDirectory)
   ) {
     return;
@@ -956,6 +949,9 @@ function validateSceneIntegrity(scenePath, data, markdownContext) {
 
 const allSceneJson = walkFiles(SCENES_DIR, (name) => name.toLowerCase().endsWith(".json"));
 const allMarkdownFiles = walkFiles(MARKDOWN_DIR, (name) => name.toLowerCase().endsWith(".md"));
+const indexableMarkdownFiles = allMarkdownFiles.filter(
+  (markdownPath) => !normalizePath(markdownPath).includes("/_meta/")
+);
 const allMarkdownDirectories = walkDirs(MARKDOWN_DIR).map((d) => normalizePath(d));
 
 const sceneConfigs = [];
@@ -1005,7 +1001,7 @@ if (!sceneSchemaResult.ok) {
 
 const markdownTextByPath = new Map();
 const markdownHeadingKeyCountByPath = new Map();
-for (const markdownPath of allMarkdownFiles) {
+for (const markdownPath of indexableMarkdownFiles) {
   const absoluteMarkdownPath = path.join(rootDir, markdownPath);
   try {
     const markdownText = fs.readFileSync(absoluteMarkdownPath, "utf8");
@@ -1124,11 +1120,14 @@ const generatedScenesIndex = buildGeneratedScenesIndex(
 );
 
 const generatedMarkdownIndex = {
-  files: [...allMarkdownFiles],
+  files: [...indexableMarkdownFiles],
 };
 
 const sceneIndexDrift = summarizeIndexDrift(indexedScenePaths, sceneConfigs);
-const markdownIndexDrift = summarizeIndexDrift(indexedMarkdownPaths, allMarkdownFiles);
+const markdownIndexDrift = summarizeIndexDrift(
+  indexedMarkdownPaths,
+  indexableMarkdownFiles
+);
 
 if (
   sceneIndexDrift.stale.length ||

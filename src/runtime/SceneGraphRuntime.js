@@ -87,35 +87,27 @@ export function createSceneGraphRuntime(deps) {
     const motionNodes = [];
     const ringTargets = [];
     const ringTargetByMesh = new Map();
+    const shellGuides = [];
     let primaryBinaryNode = null;
 
     const explicitLayoutMode =
-      typeof config.layoutMode === "string" ? config.layoutMode : null;
-    const useLegacyAutoSphereRing =
-      explicitLayoutMode !== "manual" &&
-      !!config.autoSphereRing &&
-      !config.autoMarkdownDirectory &&
-      config.layout === "static";
+      typeof config.layoutMode === "string" && config.layoutMode.trim()
+        ? config.layoutMode.toLowerCase()
+        : null;
     const useExplicitRingLayout =
       config.layout === "static" && explicitLayoutMode === "ring";
     const useExplicitGridLayout =
       config.layout === "static" && explicitLayoutMode === "grid";
-    const useRingLayout = useLegacyAutoSphereRing || useExplicitRingLayout;
-    const useStructuredLayout = useRingLayout || useExplicitGridLayout;
+    const useStructuredLayout = useExplicitRingLayout || useExplicitGridLayout;
     const ringNodes = useStructuredLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
       : [];
-    const ringLayout = useLegacyAutoSphereRing ? deps.computeRingLayout(ringNodes) : null;
     const explicitRingPositions = useExplicitRingLayout
       ? computeExplicitRingPositions(ringNodes)
       : null;
     const explicitGridPositions = useExplicitGridLayout
       ? computeExplicitGridPositions(ringNodes, config.layoutColumns)
       : null;
-    const useClockwiseOrder =
-      !!ringLayout &&
-      useLegacyAutoSphereRing &&
-      (config.autoMarkdownPath || config.autoMarkdownDirectory || config.autoMarkdownSection);
     let ringIndex = 0;
 
     const spacing = config.spacing ?? 7;
@@ -132,18 +124,7 @@ export function createSceneGraphRuntime(deps) {
         nodeData.docIconOwnLine = true;
       }
       const usesFixedPosition = nodeData.fixedPosition === true;
-      if (ringLayout && !usesFixedPosition) {
-        const positionIndex =
-          useClockwiseOrder && ringIndex > 0
-            ? ringLayout.positions.length - ringIndex
-            : ringIndex;
-        const pos = ringLayout.positions[positionIndex];
-        if (pos) {
-          nodeData.position = [pos[0], pos[1], 0];
-        }
-        nodeData.radius = ringLayout.nodeRadius;
-        ringIndex += 1;
-      } else if (explicitRingPositions && !usesFixedPosition) {
+      if (explicitRingPositions && !usesFixedPosition) {
         const pos = explicitRingPositions[ringIndex];
         if (pos) {
           nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
@@ -272,16 +253,18 @@ export function createSceneGraphRuntime(deps) {
         const remappedRadii = uniqueRadii.map((r) => radiusMap.get(r) ?? r);
         remappedRadii.forEach((r) => {
           const guideGeo = new deps.THREE.RingGeometry(Math.max(0.01, r - 0.06), r + 0.06, 96);
+          const guideOpacity = 0.28;
           const guideMat = new deps.THREE.MeshBasicMaterial({
             color: "#8fa7ff",
             transparent: true,
-            opacity: 0.28,
+            opacity: guideOpacity,
             side: deps.THREE.DoubleSide,
             depthWrite: false,
           });
           const guide = new deps.THREE.Mesh(guideGeo, guideMat);
           guide.userData.excludeFromBounds = true;
           group.add(guide);
+          shellGuides.push({ mesh: guide, baseOpacity: guideOpacity });
         });
       }
     } else {
@@ -295,16 +278,18 @@ export function createSceneGraphRuntime(deps) {
       ).sort((a, b) => a - b);
       shellRadii.forEach((r) => {
         const guideGeo = new deps.THREE.RingGeometry(Math.max(0.01, r - 0.08), r + 0.08, 96);
+        const guideOpacity = 0.28;
         const guideMat = new deps.THREE.MeshBasicMaterial({
           color: "#8fa7ff",
           transparent: true,
-          opacity: 0.28,
+          opacity: guideOpacity,
           side: deps.THREE.DoubleSide,
           depthWrite: false,
         });
         const guide = new deps.THREE.Mesh(guideGeo, guideMat);
         guide.userData.excludeFromBounds = true;
         group.add(guide);
+        shellGuides.push({ mesh: guide, baseOpacity: guideOpacity });
       });
     }
 
@@ -325,6 +310,7 @@ export function createSceneGraphRuntime(deps) {
       motionNodes,
       ringTargets,
       ringTargetByMesh,
+      shellGuides,
       primaryBinaryNode,
       layout: config.layout,
       layoutMode: config.layoutMode ?? null,

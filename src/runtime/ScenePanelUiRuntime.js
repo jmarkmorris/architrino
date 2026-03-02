@@ -1,7 +1,6 @@
 export function createScenePanelUiRuntime(deps) {
   const {
     docButton,
-    hud,
     detailClose,
     markdownClose,
     markdownDocButton,
@@ -30,20 +29,6 @@ export function createScenePanelUiRuntime(deps) {
     if (docButton) {
       docButton.addEventListener("click", () => {
         openCurrentLevelDoc();
-      });
-    }
-
-    if (hud) {
-      hud.addEventListener("click", () => {
-        markdownRuntime.toggleInfoDrawer();
-      });
-      hud.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          markdownRuntime.toggleInfoDrawer();
-        } else if (event.key === "Escape" && markdownRuntime.isInfoDrawerOpen()) {
-          markdownRuntime.setInfoDrawer(false);
-        }
       });
     }
 

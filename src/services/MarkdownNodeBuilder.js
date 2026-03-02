@@ -27,7 +27,10 @@ export function createMarkdownNodeBuilder(deps) {
   const logger = deps.logger ?? console;
 
   return async function buildAutoMarkdownNodes(scene, existingNodes) {
-    if (!scene?.autoSphereRing || (!scene?.autoMarkdownDirectory && !scene?.autoMarkdownPath)) {
+    const layoutMode =
+      typeof scene?.layoutMode === "string" ? scene.layoutMode.toLowerCase() : "";
+    const usesRingLayout = layoutMode === "ring";
+    if (!usesRingLayout || (!scene?.autoMarkdownDirectory && !scene?.autoMarkdownPath)) {
       return [];
     }
     const currentNodes = Array.isArray(existingNodes) ? existingNodes : [];

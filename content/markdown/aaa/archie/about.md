@@ -30,3 +30,12 @@ This environment is actively evolving. Structure, labels, and content depth may 
 - Use scene search (`Cmd/Ctrl + K`) when you know a target name.
 - Use markdown in single- or two-column mode depending on reading preference.
 - Use `Back` for local navigation and `Home` for full reset.
+
+## Technologies
+
+- Three.js for WebGL rendering and CSS2D overlays.
+- KaTeX for TeX/LaTeX typesetting in scene notes.
+- markdown-it for Markdown rendering in the UI.
+- Periodic Table data sourced from https://github.com/Bowserinator/Periodic-Table-JSON.
+- CEO: Marko
+- Contact: inquiries@neoclassical.ai

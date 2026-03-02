@@ -1,4 +1,32 @@
 export function createTransitionEngine(transitionState, deps) {
+  function normalizeDisplayedLevelPosition(level) {
+    if (!level?.group) {
+      return;
+    }
+    const pos = level.group.position;
+    if (pos.x === 0 && pos.y === 0 && pos.z === 0) {
+      return;
+    }
+    // Preserve on-screen placement while normalizing cached level transform.
+    deps.worldGroup.position.add(pos);
+    level.group.position.set(0, 0, 0);
+  }
+
+  function maybeCenterLevelInFrame(level) {
+    if (!level) {
+      return;
+    }
+    if (
+      typeof deps.shouldCenterLevelInFrame === "function" &&
+      !deps.shouldCenterLevelInFrame(level)
+    ) {
+      return;
+    }
+    if (typeof deps.centerLevelInFrame === "function") {
+      deps.centerLevelInFrame(level);
+    }
+  }
+
   function getTransitionFocusNode(level) {
     if (!level) {
       return null;
@@ -19,8 +47,32 @@ export function createTransitionEngine(transitionState, deps) {
         }
         const elapsed = now - transitionState.startTime;
         const t = Math.min(1, elapsed / transitionState.duration);
-        const panProgress = deps.smoothstep(0, 0.35, t);
-        const scaleProgress = deps.smoothstep(0.35, 1, t);
+        const transitionProfile = payload.transitionProfile ?? "default";
+        const fadeOutEnd = Math.min(
+          0.9,
+          Math.max(0.05, Number.isFinite(payload.fadeOutEnd) ? payload.fadeOutEnd : 0.3)
+        );
+        const motionStart = Math.min(
+          0.95,
+          Math.max(fadeOutEnd, Number.isFinite(payload.motionStart) ? payload.motionStart : fadeOutEnd)
+        );
+        const motionCenterEnd = Math.min(
+          0.98,
+          Math.max(
+            motionStart + 0.05,
+            Number.isFinite(payload.motionCenterEnd)
+              ? payload.motionCenterEnd
+              : motionStart + 0.28
+          )
+        );
+        const panProgress =
+          transitionProfile === "atomFocusFadeThenWarp"
+            ? deps.smoothstep(motionStart, motionCenterEnd, t)
+            : deps.smoothstep(0, 0.35, t);
+        const scaleProgress =
+          transitionProfile === "atomFocusFadeThenWarp"
+            ? deps.smoothstep(motionCenterEnd, 1, t)
+            : deps.smoothstep(0.35, 1, t);
         const zoomProgress = scaleProgress;
 
         const nextZoom =
@@ -39,10 +91,25 @@ export function createTransitionEngine(transitionState, deps) {
         toLevel.group.scale.setScalar(toScale);
         deps.worldGroup.position.lerpVectors(payload.panStart, payload.panTarget, panProgress);
 
-        const focusFade = 1 - deps.smoothstep(0.55, 1, scaleProgress);
         const toFade = Math.pow(deps.smoothstep(0.2, 1, scaleProgress), 1.6);
-        deps.setLevelOpacityWithFocus(fromLevel, payload.focusNodeId, focusFade, 0);
-        deps.setLevelLinkOpacity(fromLevel, 0);
+        if (transitionProfile === "atomFocusFadeThenWarp") {
+          const fadePhase = deps.smoothstep(0, fadeOutEnd, t);
+          const focusFade = 1 - deps.smoothstep(0.55, 1, scaleProgress);
+          const otherFade = 1 - fadePhase;
+          const linkFade = 1 - fadePhase;
+          deps.setLevelOpacityWithFocus(
+            fromLevel,
+            payload.focusNodeId,
+            focusFade,
+            otherFade,
+            otherFade
+          );
+          deps.setLevelLinkOpacity(fromLevel, linkFade);
+        } else {
+          const focusFade = 1 - deps.smoothstep(0.55, 1, scaleProgress);
+          deps.setLevelOpacityWithFocus(fromLevel, payload.focusNodeId, focusFade, 0, 0);
+          deps.setLevelLinkOpacity(fromLevel, 0);
+        }
         deps.setLevelOpacityWithLabel(toLevel, toFade, 0);
         deps.setLevelLinkOpacity(toLevel, toFade);
         return t >= 1;
@@ -57,16 +124,19 @@ export function createTransitionEngine(transitionState, deps) {
           deps.resetNodeScale(fromFocus);
         }
         fromLevel.group.scale.setScalar(1);
+        fromLevel.group.position.set(0, 0, 0);
         deps.setLevelOpacity(fromLevel, 0);
         deps.setLevelLinkOpacity(fromLevel, 0);
         deps.worldGroup.remove(fromLevel.group);
 
         toLevel.group.scale.setScalar(1);
+        normalizeDisplayedLevelPosition(toLevel);
         deps.setLevelOpacity(toLevel, 1);
         deps.setLevelLabelOpacity(toLevel, 0);
         deps.setLevelLinkOpacity(toLevel, 1);
 
         deps.setCurrentLevel(toLevel);
+        maybeCenterLevelInFrame(toLevel);
         deps.zoomState.active = false;
         deps.panTween.active = false;
         deps.applyZoom(payload.zoomTarget ?? deps.camera.zoom);
@@ -118,6 +188,7 @@ export function createTransitionEngine(transitionState, deps) {
           return;
         }
         toLevel.group.scale.setScalar(1);
+        normalizeDisplayedLevelPosition(toLevel);
         deps.setLevelOpacity(toLevel, 1);
         deps.setLevelLabelOpacity(toLevel, 0);
         deps.setLevelLinkOpacity(toLevel, 1);
@@ -131,14 +202,17 @@ export function createTransitionEngine(transitionState, deps) {
           payload.fromPivot.remove(fromLevel.group);
           deps.worldGroup.remove(payload.fromPivot);
           payload.fromPivot = null;
+          fromLevel.group.position.set(0, 0, 0);
         } else {
           fromLevel.group.scale.setScalar(1);
+          fromLevel.group.position.set(0, 0, 0);
           deps.worldGroup.remove(fromLevel.group);
         }
         deps.setLevelOpacity(fromLevel, 0);
         deps.setLevelLinkOpacity(fromLevel, 0);
 
         deps.setCurrentLevel(toLevel);
+        maybeCenterLevelInFrame(toLevel);
         deps.navigationStack.pop();
         deps.zoomState.active = false;
         deps.panTween.active = false;
@@ -185,11 +259,13 @@ export function createTransitionEngine(transitionState, deps) {
           return;
         }
         if (fromLevel) {
+          fromLevel.group.position.set(0, 0, 0);
           deps.setLevelOpacity(fromLevel, 0);
           deps.setLevelLinkOpacity(fromLevel, 0);
           deps.worldGroup.remove(fromLevel.group);
         }
         toLevel.group.scale.setScalar(1);
+        normalizeDisplayedLevelPosition(toLevel);
         deps.setLevelOpacity(toLevel, 1);
         deps.setLevelLabelOpacity(toLevel, 0);
         deps.setLevelLinkOpacity(toLevel, 1);
@@ -197,6 +273,7 @@ export function createTransitionEngine(transitionState, deps) {
           deps.worldGroup.position.copy(payload.worldPanTarget);
         }
         deps.setCurrentLevel(toLevel);
+        maybeCenterLevelInFrame(toLevel);
         deps.applyZoom(payload.zoomTarget ?? deps.camera.zoom);
         deps.labelFadeState.active = true;
         deps.labelFadeState.level = deps.getCurrentLevel();
