@@ -337,60 +337,6 @@ export function createSceneGraphRuntime(deps) {
     return minScale + (1 - minScale) * Math.max(0, Math.min(1, t));
   }
 
-  function buildRingClusterPositions(count, centerDistance, startAngle = Math.PI / 2) {
-    if (count <= 0 || !Number.isFinite(centerDistance) || centerDistance <= 0) {
-      return [];
-    }
-    if (count === 1) {
-      return [new deps.THREE.Vector3(0, 0, 0)];
-    }
-    const ringRadius = centerDistance / (2 * Math.sin(Math.PI / count));
-    const points = [];
-    for (let i = 0; i < count; i += 1) {
-      const angle = startAngle + (i / count) * Math.PI * 2;
-      points.push(
-        new deps.THREE.Vector3(
-          Math.cos(angle) * ringRadius,
-          Math.sin(angle) * ringRadius,
-          0
-        )
-      );
-    }
-    return points;
-  }
-
-  function buildCompactNucleonPositions(count, minCenterDistance, avgRadius) {
-    if (
-      !Number.isFinite(count) ||
-      count <= 0 ||
-      !Number.isFinite(minCenterDistance) ||
-      minCenterDistance <= 0 ||
-      !Number.isFinite(avgRadius) ||
-      avgRadius <= 0
-    ) {
-      return null;
-    }
-
-    if (count === 1) {
-      return [new deps.THREE.Vector3(0, 0, 0)];
-    }
-    if (count <= 4) {
-      return buildRingClusterPositions(count, minCenterDistance);
-    }
-    if (count <= 7) {
-      const outerCount = count - 1;
-      const outer = buildRingClusterPositions(outerCount, minCenterDistance);
-      const outerRadius = outer.length ? outer[0].length() : 0;
-      const minOuterRadius = minCenterDistance;
-      if (outerRadius > 0 && outerRadius < minOuterRadius) {
-        const scale = minOuterRadius / outerRadius;
-        outer.forEach((point) => point.multiplyScalar(scale));
-      }
-      return [new deps.THREE.Vector3(0, 0, 0), ...outer];
-    }
-    return null;
-  }
-
   function buildHexPackedNucleonPositions(count, minCenterDistance) {
     if (
       !Number.isFinite(count) ||
@@ -412,16 +358,41 @@ export function createSceneGraphRuntime(deps) {
       [-1, 1],
       [0, 1],
     ];
+
+    const getMaxGapIndices = (totalSlots, selectedCount) => {
+      if (selectedCount <= 0) {
+        return [];
+      }
+      if (selectedCount >= totalSlots) {
+        return Array.from({ length: totalSlots }, (_, idx) => idx);
+      }
+      const indices = [];
+      for (let i = 0; i < selectedCount; i += 1) {
+        indices.push(Math.floor((i * totalSlots) / selectedCount));
+      }
+      return indices;
+    };
+
     for (let ring = 1; axialCoords.length < count; ring += 1) {
       let q = -ring;
       let r = ring;
-      for (let dir = 0; dir < directions.length && axialCoords.length < count; dir += 1) {
+      const ringCoords = [];
+      for (let dir = 0; dir < directions.length; dir += 1) {
         const [dq, dr] = directions[dir];
-        for (let step = 0; step < ring && axialCoords.length < count; step += 1) {
-          axialCoords.push([q, r]);
+        for (let step = 0; step < ring; step += 1) {
+          ringCoords.push([q, r]);
           q += dq;
           r += dr;
         }
+      }
+      const remaining = count - axialCoords.length;
+      if (remaining >= ringCoords.length) {
+        axialCoords.push(...ringCoords);
+        continue;
+      }
+      const selectedIndices = getMaxGapIndices(ringCoords.length, remaining);
+      for (let i = 0; i < selectedIndices.length; i += 1) {
+        axialCoords.push(ringCoords[selectedIndices[i]]);
       }
     }
 
@@ -435,14 +406,6 @@ export function createSceneGraphRuntime(deps) {
             0
           )
       );
-    if (positions.length) {
-      const centroid = positions
-        .reduce((acc, pos) => acc.add(pos), new deps.THREE.Vector3())
-        .multiplyScalar(1 / positions.length);
-      positions.forEach((pos) => {
-        pos.sub(centroid);
-      });
-    }
     return positions;
   }
 
@@ -565,20 +528,18 @@ export function createSceneGraphRuntime(deps) {
         electrons.forEach((e) => {
           resizeSphereNodeRadius(e, avgRadius);
         });
-        let positions = buildCompactNucleonPositions(
+        const positions = buildHexPackedNucleonPositions(
           nucleons.length,
-          minNucleonCenterDistance,
-          avgRadius
+          minNucleonCenterDistance
         );
-        if (!positions) {
-          positions = buildHexPackedNucleonPositions(
-            nucleons.length,
-            minNucleonCenterDistance
-          );
-        }
         const protons = nucleons.filter((n) => n.data.category === "proton");
         const neutrons = nucleons.filter((n) => n.data.category === "neutron");
         const ordered = [];
+        if (protons.length) {
+          ordered.push(protons.shift());
+        } else if (neutrons.length) {
+          ordered.push(neutrons.shift());
+        }
         while (protons.length || neutrons.length) {
           if (protons.length) ordered.push(protons.shift());
           if (neutrons.length) ordered.push(neutrons.shift());
