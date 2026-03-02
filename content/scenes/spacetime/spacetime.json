@@ -14,11 +14,6 @@
       "label": "Emergent Metric",
       "radius": 2.688,
       "color": "#243d8f",
-      "position": [
-        -6.0,
-        -10.39,
-        0
-      ],
       "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -31,11 +26,6 @@
       "label": "General Relativity",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        -10.39,
-        -6.0,
-        0
-      ],
       "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -48,11 +38,6 @@
       "label": "Gravitational Waves",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        -12.0,
-        0.0,
-        0
-      ],
       "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -65,11 +50,6 @@
       "label": "PPN Parameters",
       "radius": 2.688,
       "color": "#4b0082",
-      "position": [
-        -10.39,
-        6.0,
-        0
-      ],
       "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -82,11 +62,6 @@
       "label": "Proper Time and Time Dilation",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        -6.0,
-        10.39,
-        0
-      ],
       "markdownPath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -99,11 +74,6 @@
       "label": "Singularity Resolution",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "position": [
-        0.0,
-        12.0,
-        0
-      ],
       "markdownPath": "content/markdown/aaa/spacetime/singularity-resolution.md",
       "markdownAutoIndex": false,
       "subScenes": [],

@@ -14,11 +14,6 @@
       "label": "BBN Constraints",
       "radius": 2.688,
       "color": "#243d8f",
-      "position": [
-        7.71,
-        9.19,
-        0.0
-      ],
       "markdownPath": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -31,11 +26,6 @@
       "label": "CMB",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        11.82,
-        2.08,
-        0.0
-      ],
       "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -48,11 +38,6 @@
       "label": "Cosmology Ontology",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        10.39,
-        -6.0,
-        0.0
-      ],
       "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -65,11 +50,6 @@
       "label": "Dark Energy",
       "radius": 2.688,
       "color": "#4b0082",
-      "position": [
-        4.1,
-        -11.28,
-        0.0
-      ],
       "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -82,11 +62,6 @@
       "label": "Dark Matter",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        -4.1,
-        -11.28,
-        0.0
-      ],
       "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -99,11 +74,6 @@
       "label": "Expansion Mechanism",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "position": [
-        -10.39,
-        -6.0,
-        0.0
-      ],
       "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -116,11 +86,6 @@
       "label": "Hubble and S8 Tensions",
       "radius": 2.688,
       "color": "#7a4a1f",
-      "position": [
-        -11.82,
-        2.08,
-        0.0
-      ],
       "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -133,11 +98,6 @@
       "label": "Inflation Model",
       "radius": 2.688,
       "color": "#1c2a4f",
-      "position": [
-        -7.71,
-        9.19,
-        0.0
-      ],
       "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
       "markdownAutoIndex": false,
       "subScenes": [],
@@ -150,11 +110,6 @@
       "label": "Structure Formation",
       "radius": 2.688,
       "color": "#3c6a7a",
-      "position": [
-        0.0,
-        12.0,
-        0.0
-      ],
       "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
       "markdownAutoIndex": false,
       "subScenes": [],

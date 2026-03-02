@@ -14,11 +14,6 @@
       "label": "Noether Core",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        0,
-        8,
-        0
-      ],
       "markdownPath": "content/markdown/aaa/assemblies/noether-core.md",
       "motion": {
         "type": "fixed"
@@ -29,11 +24,6 @@
       "label": "Particle Masses",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        -8,
-        0,
-        0
-      ],
       "markdownPath": "content/markdown/aaa/assemblies/particle-masses.md",
       "motion": {
         "type": "fixed"
@@ -44,11 +34,6 @@
       "label": "Standard Model Assemblies",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        0,
-        -8,
-        0
-      ],
       "subScenes": [
         "content/scenes/standard-model-particles/standard_model.json"
       ],
@@ -102,11 +87,6 @@
       "label": "Mesons",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        -12,
-        -6,
-        0
-      ],
       "markdownPath": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "motion": {
         "type": "fixed"
