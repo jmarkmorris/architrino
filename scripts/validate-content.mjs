@@ -18,7 +18,6 @@ const ALLOWED_SCENE_KINDS = new Set(["branching", "diagram", "markdown_split"]);
 // Scene authoring should converge on explicit objects/subScenes/markdownPath links.
 // These legacy scene-level automation fields remain temporarily supported for migration.
 const LEGACY_AUTOGEN_SCENE_FIELDS = [
-  "autoSphereRing",
   "markdown",
   "autoMarkdownPath",
   "autoMarkdownDirectory",
@@ -646,12 +645,6 @@ function collectLegacyAutogenSceneFields(scene) {
     if (!(field in scene)) {
       continue;
     }
-    if (field === "autoSphereRing") {
-      if (scene.autoSphereRing === true) {
-        present.push(field);
-      }
-      continue;
-    }
     if (field === "markdown") {
       if (scene.markdown && typeof scene.markdown === "object") {
         present.push(field);
@@ -865,7 +858,7 @@ function validateSceneIntegrity(scenePath, data, markdownContext) {
   const markdownDerived = deriveMarkdownConfig(scene.markdown);
   const autoScene = markdownDerived ? { ...scene, ...markdownDerived } : scene;
   if (
-    autoScene.autoSphereRing !== true ||
+    String(autoScene.layoutMode ?? "").toLowerCase() !== "ring" ||
     (!autoScene.autoMarkdownPath && !autoScene.autoMarkdownDirectory)
   ) {
     return;

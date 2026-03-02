@@ -93,34 +93,21 @@ export function createSceneGraphRuntime(deps) {
     const explicitLayoutMode =
       typeof config.layoutMode === "string" && config.layoutMode.trim()
         ? config.layoutMode.toLowerCase()
-        : config.autoSphereRing === true
-          ? "ring"
-          : null;
-    const useLegacyAutoSphereRing =
-      explicitLayoutMode !== "manual" &&
-      !!config.autoSphereRing &&
-      !config.autoMarkdownDirectory &&
-      config.layout === "static";
+        : null;
     const useExplicitRingLayout =
       config.layout === "static" && explicitLayoutMode === "ring";
     const useExplicitGridLayout =
       config.layout === "static" && explicitLayoutMode === "grid";
-    const useRingLayout = useLegacyAutoSphereRing || useExplicitRingLayout;
-    const useStructuredLayout = useRingLayout || useExplicitGridLayout;
+    const useStructuredLayout = useExplicitRingLayout || useExplicitGridLayout;
     const ringNodes = useStructuredLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
       : [];
-    const ringLayout = useLegacyAutoSphereRing ? deps.computeRingLayout(ringNodes) : null;
     const explicitRingPositions = useExplicitRingLayout
       ? computeExplicitRingPositions(ringNodes)
       : null;
     const explicitGridPositions = useExplicitGridLayout
       ? computeExplicitGridPositions(ringNodes, config.layoutColumns)
       : null;
-    const useClockwiseOrder =
-      !!ringLayout &&
-      useLegacyAutoSphereRing &&
-      (config.autoMarkdownPath || config.autoMarkdownDirectory || config.autoMarkdownSection);
     let ringIndex = 0;
 
     const spacing = config.spacing ?? 7;
@@ -137,18 +124,7 @@ export function createSceneGraphRuntime(deps) {
         nodeData.docIconOwnLine = true;
       }
       const usesFixedPosition = nodeData.fixedPosition === true;
-      if (ringLayout && !usesFixedPosition) {
-        const positionIndex =
-          useClockwiseOrder && ringIndex > 0
-            ? ringLayout.positions.length - ringIndex
-            : ringIndex;
-        const pos = ringLayout.positions[positionIndex];
-        if (pos) {
-          nodeData.position = [pos[0], pos[1], 0];
-        }
-        nodeData.radius = ringLayout.nodeRadius;
-        ringIndex += 1;
-      } else if (explicitRingPositions && !usesFixedPosition) {
+      if (explicitRingPositions && !usesFixedPosition) {
         const pos = explicitRingPositions[ringIndex];
         if (pos) {
           nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
@@ -338,7 +314,6 @@ export function createSceneGraphRuntime(deps) {
       primaryBinaryNode,
       layout: config.layout,
       layoutMode: config.layoutMode ?? null,
-      autoSphereRing: config.autoSphereRing === true,
       links: [],
     };
 

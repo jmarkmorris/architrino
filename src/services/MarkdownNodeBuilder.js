@@ -29,7 +29,7 @@ export function createMarkdownNodeBuilder(deps) {
   return async function buildAutoMarkdownNodes(scene, existingNodes) {
     const layoutMode =
       typeof scene?.layoutMode === "string" ? scene.layoutMode.toLowerCase() : "";
-    const usesRingLayout = layoutMode === "ring" || scene?.autoSphereRing === true;
+    const usesRingLayout = layoutMode === "ring";
     if (!usesRingLayout || (!scene?.autoMarkdownDirectory && !scene?.autoMarkdownPath)) {
       return [];
     }

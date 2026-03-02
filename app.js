@@ -2173,7 +2173,7 @@ function getEffectiveLayoutMode(level) {
   if (typeof level.layoutMode === "string" && level.layoutMode.trim()) {
     return level.layoutMode.toLowerCase();
   }
-  return level.autoSphereRing === true ? "ring" : "";
+  return "";
 }
 
 function getLevelFrameCenter(level) {
