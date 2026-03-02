@@ -15,7 +15,10 @@
       "radius": 2.2,
       "color": "#243d8f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Alfred North Whitehead (1861–1947)"
+      "markdownSection": "Alfred North Whitehead (1861–1947)",
+      "labelTitle": "Alfred North Whitehead",
+      "labelDates": "(1861–1947)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_karl_popper_1902_1994_falsificationism",
@@ -23,7 +26,11 @@
       "radius": 2.2,
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Karl Popper (1902–1994) — Falsificationism"
+      "markdownSection": "Karl Popper (1902–1994) — Falsificationism",
+      "labelTitle": "Karl Popper",
+      "labelSubtitle": "Falsificationism",
+      "labelDates": "(1902–1994)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_john_archibald_wheeler_1911_2008_it_from_bit",
@@ -31,7 +38,11 @@
       "radius": 2.2,
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "John Archibald Wheeler (1911–2008) — \"It from Bit\""
+      "markdownSection": "John Archibald Wheeler (1911–2008) — \"It from Bit\"",
+      "labelTitle": "John Archibald Wheeler",
+      "labelSubtitle": "\"It from Bit\"",
+      "labelDates": "(1911–2008)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_thomas_kuhn_1922_1996_paradigm_shifts",
@@ -39,7 +50,11 @@
       "radius": 2.2,
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Thomas Kuhn (1922–1996) — Paradigm Shifts"
+      "markdownSection": "Thomas Kuhn (1922–1996) — Paradigm Shifts",
+      "labelTitle": "Thomas Kuhn",
+      "labelSubtitle": "Paradigm Shifts",
+      "labelDates": "(1922–1996)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_imre_lakatos_1922_1974_research_programmes",
@@ -47,7 +62,11 @@
       "radius": 2.2,
       "color": "#3a5f9f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Imre Lakatos (1922–1974) — Research Programmes"
+      "markdownSection": "Imre Lakatos (1922–1974) — Research Programmes",
+      "labelTitle": "Imre Lakatos",
+      "labelSubtitle": "Research Programmes",
+      "labelDates": "(1922–1974)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_nancy_cartwright_1944_the_dappled_world",
@@ -55,7 +74,11 @@
       "radius": 2.2,
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Nancy Cartwright (1944–) — The Dappled World"
+      "markdownSection": "Nancy Cartwright (1944–) — The Dappled World",
+      "labelTitle": "Nancy Cartwright",
+      "labelSubtitle": "The Dappled World",
+      "labelDates": "(1944–)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_stephen_wolfram_1959_a_new_kind_of_science_wolfram_physics_project",
@@ -63,7 +86,11 @@
       "radius": 2.2,
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project"
+      "markdownSection": "Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project",
+      "labelTitle": "Stephen Wolfram",
+      "labelSubtitle": "A New Kind of Science, Wolfram Physics Project",
+      "labelDates": "(1959–)",
+      "labelBadge": "📚"
     }
   ]
 }

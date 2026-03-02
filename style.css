@@ -1403,6 +1403,9 @@ body {
   --label-title-line-height: 1.15;
   --label-scale-size: 10px;
   --label-tag-size: 9px;
+  --label-subtitle-size: 11px;
+  --label-dates-size: 10px;
+  --label-badge-size: 14px;
   text-shadow:
     0 2px 8px rgba(0, 0, 0, 0.6),
     0 1px 2px rgba(0, 0, 0, 0.8);
@@ -1419,6 +1422,47 @@ body {
   white-space: normal;
   line-height: var(--label-title-line-height);
   overflow-wrap: break-word;
+}
+
+.label-subtitle {
+  font-size: var(--label-subtitle-size);
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  line-height: 1.12;
+  margin-top: 1px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  opacity: 0.96;
+}
+
+.label-dates {
+  font-size: var(--label-dates-size);
+  font-weight: 500;
+  line-height: 1.08;
+  margin-top: 1px;
+  white-space: nowrap;
+  opacity: 0.84;
+}
+
+.label-badge-line {
+  display: block;
+  margin-top: 2px;
+  line-height: 1;
+}
+
+.label-badge-symbol {
+  display: inline-block;
+  font-size: var(--label-badge-size);
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.label-badge-image {
+  display: inline-block;
+  width: var(--label-badge-size);
+  height: var(--label-badge-size);
+  object-fit: contain;
+  vertical-align: middle;
 }
 
 .label-doc-icon {

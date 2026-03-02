@@ -15,7 +15,10 @@
       "radius": 2.2,
       "color": "#243d8f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Ernst Mach (1838–1916)"
+      "markdownSection": "Ernst Mach (1838–1916)",
+      "labelTitle": "Ernst Mach",
+      "labelDates": "(1838–1916)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_hendrik_lorentz_1853_1928",
@@ -23,7 +26,10 @@
       "radius": 2.2,
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Hendrik Lorentz (1853–1928)"
+      "markdownSection": "Hendrik Lorentz (1853–1928)",
+      "labelTitle": "Hendrik Lorentz",
+      "labelDates": "(1853–1928)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_albert_einstein_1879_1955_special_relativity",
@@ -31,7 +37,11 @@
       "radius": 2.2,
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Albert Einstein (1879–1955) — Special Relativity"
+      "markdownSection": "Albert Einstein (1879–1955) — Special Relativity",
+      "labelTitle": "Albert Einstein",
+      "labelSubtitle": "Special Relativity",
+      "labelDates": "(1879–1955)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_albert_einstein_1879_1955_general_relativity",
@@ -39,7 +49,11 @@
       "radius": 2.2,
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Albert Einstein (1879–1955) — General Relativity"
+      "markdownSection": "Albert Einstein (1879–1955) — General Relativity",
+      "labelTitle": "Albert Einstein",
+      "labelSubtitle": "General Relativity",
+      "labelDates": "(1879–1955)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_andrei_sakharov_1921_1989_induced_gravity",
@@ -47,7 +61,11 @@
       "radius": 2.2,
       "color": "#3a5f9f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Andrei Sakharov (1921–1989) — Induced Gravity"
+      "markdownSection": "Andrei Sakharov (1921–1989) — Induced Gravity",
+      "labelTitle": "Andrei Sakharov",
+      "labelSubtitle": "Induced Gravity",
+      "labelDates": "(1921–1989)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_roger_penrose_1931_conformal_cyclic_cosmology_twistor_theory",
@@ -55,7 +73,11 @@
       "radius": 2.2,
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory"
+      "markdownSection": "Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory",
+      "labelTitle": "Roger Penrose",
+      "labelSubtitle": "Conformal Cyclic Cosmology, Twistor Theory",
+      "labelDates": "(1931–)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_alan_guth_1947_cosmic_inflation",
@@ -63,7 +85,11 @@
       "radius": 2.2,
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Alan Guth (1947–) — Cosmic Inflation"
+      "markdownSection": "Alan Guth (1947–) — Cosmic Inflation",
+      "labelTitle": "Alan Guth",
+      "labelSubtitle": "Cosmic Inflation",
+      "labelDates": "(1947–)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_loop_quantum_gravity_ashtekar_1949_smolin_1955_rovelli_1956",
@@ -71,7 +97,10 @@
       "radius": 2.2,
       "color": "#6a3c3c",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Loop Quantum Gravity (Ashtekar 1949–, Smolin 1955–, Rovelli 1956–)"
+      "markdownSection": "Loop Quantum Gravity (Ashtekar 1949–, Smolin 1955–, Rovelli 1956–)",
+      "labelTitle": "Loop Quantum Gravity",
+      "labelDates": "(Ashtekar 1949–, Smolin 1955–, Rovelli 1956–)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_string_theory_witten_1951_polchinski_1954_2018_et_al",
@@ -79,7 +108,10 @@
       "radius": 2.2,
       "color": "#7a4a1f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "String Theory (Witten 1951–, Polchinski 1954–2018, et al.)"
+      "markdownSection": "String Theory (Witten 1951–, Polchinski 1954–2018, et al.)",
+      "labelTitle": "String Theory",
+      "labelDates": "(Witten 1951–, Polchinski 1954–2018, et al.)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_lee_smolin_1955_the_trouble_with_physics_temporal_naturalism",
@@ -87,7 +119,11 @@
       "radius": 2.2,
       "color": "#355f9a",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Lee Smolin (1955–) — The Trouble With Physics, Temporal Naturalism"
+      "markdownSection": "Lee Smolin (1955–) — The Trouble With Physics, Temporal Naturalism",
+      "labelTitle": "Lee Smolin",
+      "labelSubtitle": "The Trouble With Physics, Temporal Naturalism",
+      "labelDates": "(1955–)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_erik_verlinde_1962_entropic_gravity",
@@ -95,7 +131,11 @@
       "radius": 2.2,
       "color": "#243d8f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Erik Verlinde (1962–) — Entropic Gravity"
+      "markdownSection": "Erik Verlinde (1962–) — Entropic Gravity",
+      "labelTitle": "Erik Verlinde",
+      "labelSubtitle": "Entropic Gravity",
+      "labelDates": "(1962–)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_sabine_hossenfelder_1976_lost_in_math_critique_of_beauty",
@@ -103,7 +143,11 @@
       "radius": 2.2,
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Sabine Hossenfelder (1976–) — Lost in Math, Critique of \"Beauty\""
+      "markdownSection": "Sabine Hossenfelder (1976–) — Lost in Math, Critique of \"Beauty\"",
+      "labelTitle": "Sabine Hossenfelder",
+      "labelSubtitle": "Lost in Math, Critique of \"Beauty\"",
+      "labelDates": "(1976–)",
+      "labelBadge": "📚"
     }
   ]
 }

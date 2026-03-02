@@ -2351,8 +2351,10 @@ function updateLevelLabelWrap(level) {
     }
 
     const labelName =
-      typeof node.data.shortName === "string" && node.data.shortName.trim()
-        ? node.data.shortName.trim()
+      typeof node.data.labelTitle === "string" && node.data.labelTitle.trim()
+        ? node.data.labelTitle.trim()
+        : typeof node.data.shortName === "string" && node.data.shortName.trim()
+          ? node.data.shortName.trim()
         : typeof node.data.name === "string"
           ? node.data.name
           : "";
@@ -2377,6 +2379,9 @@ function updateLevelLabelWrap(level) {
     const letterSpacing = titleSize <= 11.5 ? 0.01 : 0.02;
     const scaleSize = clamp(titleSize * 0.62, 8, 10);
     const tagSize = clamp(titleSize * 0.58, 8, 9);
+    const subtitleSize = titleSize;
+    const datesSize = titleSize;
+    const badgeSize = clamp(titleSize * 0.95, 11, 18);
     const typographyKey = [
       titleSize.toFixed(2),
       titleWeight,
@@ -2384,6 +2389,9 @@ function updateLevelLabelWrap(level) {
       letterSpacing.toFixed(2),
       scaleSize.toFixed(2),
       tagSize.toFixed(2),
+      subtitleSize.toFixed(2),
+      datesSize.toFixed(2),
+      badgeSize.toFixed(2),
     ].join("|");
 
     if (node.labelTypographyKey !== typographyKey) {
@@ -2398,6 +2406,9 @@ function updateLevelLabelWrap(level) {
       );
       labelStyle.setProperty("--label-scale-size", `${scaleSize.toFixed(2)}px`);
       labelStyle.setProperty("--label-tag-size", `${tagSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-subtitle-size", `${subtitleSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-dates-size", `${datesSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-badge-size", `${badgeSize.toFixed(2)}px`);
     }
   });
 }

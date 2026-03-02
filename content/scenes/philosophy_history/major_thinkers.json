@@ -15,7 +15,9 @@
       "radius": 2.688,
       "color": "#243d8f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Introduction"
+      "markdownSection": "Introduction",
+      "labelTitle": "Introduction",
+      "labelBadge": "📚"
     },
     {
       "id": "major_thinkers_classical_modern",
@@ -24,7 +26,9 @@
       "color": "#2f6b6f",
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
-      ]
+      ],
+      "labelTitle": "Classical & Early Modern Metaphysics + Mechanism",
+      "labelBadge": "📚"
     },
     {
       "id": "major_thinkers_relativity_cosmology",
@@ -33,7 +37,9 @@
       "color": "#5a1f2e",
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json"
-      ]
+      ],
+      "labelTitle": "Relativity, Gravity & Cosmology",
+      "labelBadge": "📚"
     },
     {
       "id": "major_thinkers_quantum_foundations",
@@ -42,7 +48,9 @@
       "color": "#4b0082",
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
-      ]
+      ],
+      "labelTitle": "Quantum Foundations & Hidden-Variable Landscape",
+      "labelBadge": "📚"
     },
     {
       "id": "major_thinkers_qft_standard_model",
@@ -51,7 +59,9 @@
       "color": "#3a5f9f",
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
-      ]
+      ],
+      "labelTitle": "QFT & Standard Model Architecture",
+      "labelBadge": "📚"
     },
     {
       "id": "major_thinkers_info_computation_science",
@@ -60,7 +70,9 @@
       "color": "#2f4f7a",
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
-      ]
+      ],
+      "labelTitle": "Information/Computation + Philosophy of Science",
+      "labelBadge": "📚"
     },
     {
       "id": "major_thinkers_summary_table",
@@ -68,7 +80,9 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Summary Table: Vindicated, Challenged, Transcended (Complete)"
+      "markdownSection": "Summary Table: Vindicated, Challenged, Transcended (Complete)",
+      "labelTitle": "Summary Table",
+      "labelBadge": "📚"
     },
     {
       "id": "major_thinkers_conclusion",
@@ -76,7 +90,9 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Conclusion: The Architrino Weltanschauung"
+      "markdownSection": "Conclusion: The Architrino Weltanschauung",
+      "labelTitle": "Conclusion",
+      "labelBadge": "📚"
     }
   ]
 }

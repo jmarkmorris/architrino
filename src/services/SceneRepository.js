@@ -303,6 +303,13 @@ export class SceneRepository {
           const node = {
             id: obj.id,
             name: obj.label || obj.id,
+            shortName: obj.shortName ?? null,
+            labelTitle: obj.labelTitle ?? null,
+            labelSubtitle: obj.labelSubtitle ?? null,
+            labelDates: obj.labelDates ?? null,
+            labelBadge: obj.labelBadge ?? null,
+            labelBadgeImage: obj.labelBadgeImage ?? null,
+            labelBadgeAlt: obj.labelBadgeAlt ?? null,
             scale: hasScale ? obj.scaleExponent : null,
             hasScale,
             radius: obj.radius ?? 1,

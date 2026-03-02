@@ -3,6 +3,19 @@ export function createNodeFactory(deps) {
   let haloSeed = 0;
   const orbitRingLightenFactor = 0.2;
 
+  function escapeHtml(text) {
+    return String(text ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function escapeAttr(text) {
+    return escapeHtml(text).replace(/\n/g, " ");
+  }
+
   function getRingStyle(nodeData) {
     const ringScale = nodeData.glowRingScale ?? 1.04;
     const ringThickness =
@@ -43,10 +56,42 @@ export function createNodeFactory(deps) {
       typeof node.shortName === "string" && node.shortName.trim()
         ? node.shortName.trim()
         : node.name;
+    const hasStructuredLabel =
+      (typeof node.labelTitle === "string" && node.labelTitle.trim().length > 0) ||
+      (typeof node.labelSubtitle === "string" && node.labelSubtitle.trim().length > 0) ||
+      (typeof node.labelDates === "string" && node.labelDates.trim().length > 0) ||
+      (typeof node.labelBadge === "string" && node.labelBadge.trim().length > 0) ||
+      (typeof node.labelBadgeImage === "string" && node.labelBadgeImage.trim().length > 0);
+    const labelTitle =
+      typeof node.labelTitle === "string" && node.labelTitle.trim().length > 0
+        ? node.labelTitle.trim()
+        : displayName;
+    const labelSubtitle =
+      typeof node.labelSubtitle === "string" && node.labelSubtitle.trim().length > 0
+        ? node.labelSubtitle.trim()
+        : "";
+    const labelDates =
+      typeof node.labelDates === "string" && node.labelDates.trim().length > 0
+        ? node.labelDates.trim()
+        : "";
+    const badgeSymbol =
+      typeof node.labelBadge === "string" && node.labelBadge.trim().length > 0
+        ? node.labelBadge.trim()
+        : node.markdownDocIcon
+          ? "📚"
+          : "";
+    const badgeImage =
+      typeof node.labelBadgeImage === "string" && node.labelBadgeImage.trim().length > 0
+        ? node.labelBadgeImage.trim()
+        : "";
+    const badgeAlt =
+      typeof node.labelBadgeAlt === "string" && node.labelBadgeAlt.trim().length > 0
+        ? node.labelBadgeAlt.trim()
+        : "Badge";
     const scaleHtml =
       node.hideScaleLabel || !node.hasScale
         ? ""
-        : `<div class="label-scale">10^${node.scale}</div>`;
+        : `<div class="label-scale">10^${escapeHtml(node.scale)}</div>`;
     const useOwnLineDocIcon = node.docIconOwnLine !== false;
     const inlineDocIconHtml =
       node.markdownDocIcon && !useOwnLineDocIcon
@@ -58,7 +103,30 @@ export function createNodeFactory(deps) {
         : "";
     const tagHtml =
       node.category === "Reaction" ? `<div class="label-tag">RXN</div>` : "";
-    label.innerHTML = `<div class="label-title">${displayName}${inlineDocIconHtml}</div>${lineDocIconHtml}${scaleHtml}${tagHtml}`;
+    if (hasStructuredLabel) {
+      const subtitleHtml = labelSubtitle
+        ? `<div class="label-subtitle">${escapeHtml(labelSubtitle)}</div>`
+        : "";
+      const datesHtml = labelDates
+        ? `<div class="label-dates">${escapeHtml(labelDates)}</div>`
+        : "";
+      const badgeHtml = badgeImage
+        ? `<div class="label-badge-line"><img class="label-badge-image" src="${escapeAttr(
+            badgeImage
+          )}" alt="${escapeAttr(badgeAlt)}" /></div>`
+        : badgeSymbol
+          ? `<div class="label-badge-line"><span class="label-badge-symbol" aria-hidden="true">${escapeHtml(
+              badgeSymbol
+            )}</span></div>`
+          : "";
+      label.innerHTML = `<div class="label-title">${escapeHtml(
+        labelTitle
+      )}</div>${subtitleHtml}${datesHtml}${badgeHtml}${scaleHtml}${tagHtml}`;
+    } else {
+      label.innerHTML = `<div class="label-title">${escapeHtml(
+        displayName
+      )}${inlineDocIconHtml}</div>${lineDocIconHtml}${scaleHtml}${tagHtml}`;
+    }
     return new CSS2DObject(label);
   }
 
