@@ -6,7 +6,7 @@
     "name": "Spacetime",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "ring"
+    "layoutMode": "rings"
   },
   "objects": [
     {

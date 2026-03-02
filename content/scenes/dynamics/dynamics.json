@@ -3,7 +3,7 @@
     "id": "dynamics",
     "kind": "branching",
     "name": "Dynamics",
-    "layoutMode": "ring"
+    "layoutMode": "rings"
   },
   "objects": [
     {

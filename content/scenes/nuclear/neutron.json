@@ -4,7 +4,7 @@
     "id": "neutron",
     "kind": "diagram",
     "name": "Neutron",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "units": "relative",
     "scaleBandLog10m": [
       -15,

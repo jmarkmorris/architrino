@@ -5,7 +5,7 @@
     "kind": "branching",
     "name": "Nuclear-Atomic",
     "units": "relative",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "wrapLabels": true
   },
   "objects": [

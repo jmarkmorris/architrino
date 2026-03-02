@@ -5,7 +5,7 @@
     "kind": "branching",
     "name": "Archie",
     "units": "relative",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "wrapLabels": true,
     "hideScaleLabels": true
   },

@@ -5,7 +5,7 @@
     "kind": "diagram",
     "name": "Composer",
     "units": "relative",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "wrapLabels": true,
     "hideScaleLabels": true
   },

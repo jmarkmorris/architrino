@@ -119,7 +119,7 @@ export function createMarkdownSceneRegistry(deps) {
       }
       levelConfigs[sceneId] = {
         layout: "static",
-        layoutMode: "ring",
+        layoutMode: "rings",
         nodes: [],
         links: [],
         sceneName,
@@ -172,7 +172,7 @@ export function createMarkdownSceneRegistry(deps) {
     }
     levelConfigs[sceneId] = {
       layout: "static",
-      layoutMode: "ring",
+      layoutMode: "rings",
       nodes: [],
       links: [],
       sceneName: markdownSection,
@@ -209,7 +209,7 @@ export function createMarkdownSceneRegistry(deps) {
     }
     levelConfigs[sceneId] = {
       layout: "static",
-      layoutMode: "ring",
+      layoutMode: "rings",
       nodes: [],
       links: [],
       sceneName: nodeName ?? titleFromSlug(directory.split("/").pop() ?? "Notes"),
@@ -280,7 +280,7 @@ export function createMarkdownSceneRegistry(deps) {
       const resolvedDocTitle = await resolveMarkdownDocumentTitle(markdownPath);
       levelConfigs[sceneId] = {
         layout: "static",
-        layoutMode: "ring",
+        layoutMode: "rings",
         nodes: [],
         links: [],
         sceneName: resolvedDocTitle || inferSceneNameFromMarkdownPath(markdownPath),
@@ -360,7 +360,7 @@ export function createMarkdownSceneRegistry(deps) {
       }
       levelConfigs[sceneId] = {
         layout: "static",
-        layoutMode: "ring",
+        layoutMode: "rings",
         nodes: [],
         links: [],
         sceneName: markdownSection,
@@ -386,7 +386,7 @@ export function createMarkdownSceneRegistry(deps) {
       }
       levelConfigs[sceneId] = {
         layout: "static",
-        layoutMode: "ring",
+        layoutMode: "rings",
         nodes: [],
         links: [],
         sceneName: titleFromSlug(directory.split("/").pop() || "Notes"),

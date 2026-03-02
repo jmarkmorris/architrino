@@ -45,7 +45,7 @@ export class SceneRepository {
     }
     const list = Array.isArray(nodes) ? nodes : [];
     const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
-    const usesRingLayout = layoutMode === "ring" || layoutMode === "rings";
+    const usesRingLayout = layoutMode === "rings";
     const hasNavigation =
       list.some(
         (node) =>
@@ -68,8 +68,7 @@ export class SceneRepository {
 
   shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
     const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
-    const isStructuredLayout =
-      layoutMode === "ring" || layoutMode === "rings" || layoutMode === "grid";
+    const isStructuredLayout = layoutMode === "rings";
     const sceneId = String(sceneData?.scene?.id ?? "").toLowerCase();
     const isHomeScene =
       typeof this.homeScenePath === "string" &&
@@ -460,7 +459,7 @@ export class SceneRepository {
       return;
     }
     const layoutMode = String(config.layoutMode ?? "").toLowerCase();
-    const isRingLayout = layoutMode === "ring" || layoutMode === "rings";
+    const isRingLayout = layoutMode === "rings";
     const hasAutoMarkdownSource =
       (typeof config.autoMarkdownPath === "string" && config.autoMarkdownPath.length > 0) ||
       (typeof config.autoMarkdownDirectory === "string" && config.autoMarkdownDirectory.length > 0);

@@ -4,7 +4,7 @@
     "id": "proton",
     "kind": "diagram",
     "name": "Proton",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "units": "relative",
     "scaleBandLog10m": [
       -15,

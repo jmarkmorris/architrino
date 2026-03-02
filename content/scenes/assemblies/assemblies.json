@@ -5,7 +5,7 @@
     "name": "Assemblies",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "kind": "branching"
   },
   "objects": [

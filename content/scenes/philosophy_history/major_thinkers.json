@@ -6,7 +6,7 @@
     "name": "Major Thinkers",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "ring"
+    "layoutMode": "rings"
   },
   "objects": [
     {

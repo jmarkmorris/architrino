@@ -5,7 +5,7 @@
     "kind": "branching",
     "name": "Validation",
     "units": "relative",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "wrapLabels": true
   },
   "objects": [

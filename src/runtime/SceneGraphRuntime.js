@@ -264,45 +264,6 @@ export function createSceneGraphRuntime(deps) {
     return positions;
   }
 
-  function computeExplicitGridPositions(nodes, requestedColumns = null) {
-    const count = Array.isArray(nodes) ? nodes.length : 0;
-    if (!count) {
-      return null;
-    }
-    const maxNodeRadius = Math.max(
-      1,
-      ...nodes.map((node) =>
-        Number.isFinite(node?.radius) && node.radius > 0 ? node.radius : 1
-      )
-    );
-    // Match ring guard-band logic for grid packing so spheres can be larger
-    // while keeping a consistent non-touching halo gap.
-    const haloScale = 1.18;
-    const guardBandMin = 0.15;
-    const guardBandRatio = 0.08;
-    const haloDiameter = maxNodeRadius * haloScale * 2;
-    const guardBand = Math.max(guardBandMin, haloDiameter * guardBandRatio);
-    const spacing = Number((haloDiameter + guardBand).toFixed(2));
-    const columns =
-      Number.isInteger(requestedColumns) && requestedColumns > 0
-        ? requestedColumns
-        : Math.max(2, Math.ceil(Math.sqrt(count * 1.6)));
-    const rows = Math.ceil(count / columns);
-    const startX = -((columns - 1) * spacing) / 2;
-    const startY = ((rows - 1) * spacing) / 2;
-    const positions = [];
-    for (let i = 0; i < count; i += 1) {
-      const row = Math.floor(i / columns);
-      const col = i % columns;
-      positions.push([
-        Number((startX + col * spacing).toFixed(2)),
-        Number((startY - row * spacing).toFixed(2)),
-        0,
-      ]);
-    }
-    return positions;
-  }
-
   function buildLevel(levelId) {
     if (deps.levels.has(levelId)) {
       return deps.levels.get(levelId);
@@ -323,25 +284,14 @@ export function createSceneGraphRuntime(deps) {
       typeof config.layoutMode === "string" && config.layoutMode.trim()
         ? config.layoutMode.toLowerCase()
         : null;
-    const useExplicitRingLayout =
-      config.layout === "static" && explicitLayoutMode === "ring";
     const useExplicitRingsLayout =
       config.layout === "static" && explicitLayoutMode === "rings";
-    const useExplicitGridLayout =
-      config.layout === "static" && explicitLayoutMode === "grid";
-    const useStructuredLayout =
-      useExplicitRingLayout || useExplicitRingsLayout || useExplicitGridLayout;
+    const useStructuredLayout = useExplicitRingsLayout;
     const ringNodes = useStructuredLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
       : [];
-    const explicitRingPositions = useExplicitRingLayout
-      ? computeExplicitRingPositions(ringNodes)
-      : null;
     const explicitRingsPositions = useExplicitRingsLayout
       ? computeExplicitRingsPositions(ringNodes, config.centerOn)
-      : null;
-    const explicitGridPositions = useExplicitGridLayout
-      ? computeExplicitGridPositions(ringNodes, config.layoutColumns)
       : null;
     let ringIndex = 0;
 
@@ -359,20 +309,8 @@ export function createSceneGraphRuntime(deps) {
         nodeData.docIconOwnLine = true;
       }
       const usesFixedPosition = nodeData.fixedPosition === true;
-      if (explicitRingPositions && !usesFixedPosition) {
-        const pos = explicitRingPositions[ringIndex];
-        if (pos) {
-          nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
-        }
-        ringIndex += 1;
-      } else if (explicitRingsPositions && !usesFixedPosition) {
+      if (explicitRingsPositions && !usesFixedPosition) {
         const pos = explicitRingsPositions[ringIndex];
-        if (pos) {
-          nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
-        }
-        ringIndex += 1;
-      } else if (explicitGridPositions && !usesFixedPosition) {
-        const pos = explicitGridPositions[ringIndex];
         if (pos) {
           nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
         }

@@ -5,8 +5,7 @@
     "kind": "branching",
     "name": "Action-Energy",
     "units": "relative",
-    "layoutMode": "grid",
-    "layoutColumns": 4,
+    "layoutMode": "rings",
     "wrapLabels": true
   },
   "objects": [
