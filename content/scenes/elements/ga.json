@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ga",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Gallium (Ga)",
     "units": "relative",
     "scaleBandLog10m": [

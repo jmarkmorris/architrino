@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ts",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Tennessine (Ts)",
     "units": "relative",
     "scaleBandLog10m": [

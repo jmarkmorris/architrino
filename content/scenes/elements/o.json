@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "o",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Oxygen (O)",
     "units": "relative",
     "scaleBandLog10m": [

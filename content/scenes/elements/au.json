@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "au",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Gold (Au)",
     "units": "relative",
     "scaleBandLog10m": [

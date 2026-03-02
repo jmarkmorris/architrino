@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "er",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Erbium (Er)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -45,7 +45,12 @@ export class SceneRepository {
 
   resolveSceneKind(sceneData, nodes) {
     const rawKind = sceneData?.scene?.kind;
-    if (rawKind === "branching" || rawKind === "diagram" || rawKind === "markdown_split") {
+    if (
+      rawKind === "branching" ||
+      rawKind === "diagram" ||
+      rawKind === "markdown_split" ||
+      rawKind === "element"
+    ) {
       return rawKind;
     }
     const list = Array.isArray(nodes) ? nodes : [];

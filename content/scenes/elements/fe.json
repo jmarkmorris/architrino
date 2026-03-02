@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "fe",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Iron (Fe)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "tc",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Technetium (Tc)",
     "units": "relative",
     "scaleBandLog10m": [

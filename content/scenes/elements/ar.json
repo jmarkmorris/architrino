@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ar",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Argon (Ar)",
     "units": "relative",
     "scaleBandLog10m": [

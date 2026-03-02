@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "tl",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Thallium (Tl)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -13,7 +13,7 @@ const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
 const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.json";
 const LEGACY_AUTOGEN_ALLOWLIST_PATH =
   "scripts/config/legacy-scene-autogen-allowlist.json";
-const ALLOWED_SCENE_KINDS = new Set(["branching", "diagram", "markdown_split"]);
+const ALLOWED_SCENE_KINDS = new Set(["branching", "diagram", "markdown_split", "element"]);
 // Explicit-only migration policy:
 // Scene authoring should converge on explicit objects/subScenes/markdownPath links.
 // These legacy scene-level automation fields remain temporarily supported for migration.

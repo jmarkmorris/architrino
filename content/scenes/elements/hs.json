@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "hs",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Hassium (Hs)",
     "units": "relative",
     "scaleBandLog10m": [

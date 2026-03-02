@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "in",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Indium (In)",
     "units": "relative",
     "scaleBandLog10m": [

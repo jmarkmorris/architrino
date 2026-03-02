@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "mc",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Moscovium (Mc)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "b",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Boron (B)",
     "units": "relative",
     "scaleBandLog10m": [

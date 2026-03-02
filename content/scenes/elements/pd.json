@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "pd",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Palladium (Pd)",
     "units": "relative",
     "scaleBandLog10m": [

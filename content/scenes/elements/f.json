@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "f",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Fluorine (F)",
     "units": "relative",
     "scaleBandLog10m": [

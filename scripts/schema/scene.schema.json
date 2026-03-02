@@ -18,7 +18,7 @@
         "name": { "type": "string", "minLength": 1 },
         "kind": {
           "type": "string",
-          "enum": ["branching", "diagram", "markdown_split"]
+          "enum": ["branching", "diagram", "markdown_split", "element"]
         },
         "units": { "type": "string" },
         "scaleBandLog10m": {

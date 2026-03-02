@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "si",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Silicon (Si)",
     "units": "relative",
     "scaleBandLog10m": [

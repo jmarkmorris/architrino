@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cf",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Californium (Cf)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "bk",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Berkelium (Bk)",
     "units": "relative",
     "scaleBandLog10m": [

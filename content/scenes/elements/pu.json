@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "pu",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Plutonium (Pu)",
     "units": "relative",
     "scaleBandLog10m": [
