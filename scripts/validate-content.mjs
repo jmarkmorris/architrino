@@ -949,6 +949,9 @@ function validateSceneIntegrity(scenePath, data, markdownContext) {
 
 const allSceneJson = walkFiles(SCENES_DIR, (name) => name.toLowerCase().endsWith(".json"));
 const allMarkdownFiles = walkFiles(MARKDOWN_DIR, (name) => name.toLowerCase().endsWith(".md"));
+const indexableMarkdownFiles = allMarkdownFiles.filter(
+  (markdownPath) => !normalizePath(markdownPath).includes("/_meta/")
+);
 const allMarkdownDirectories = walkDirs(MARKDOWN_DIR).map((d) => normalizePath(d));
 
 const sceneConfigs = [];
@@ -998,7 +1001,7 @@ if (!sceneSchemaResult.ok) {
 
 const markdownTextByPath = new Map();
 const markdownHeadingKeyCountByPath = new Map();
-for (const markdownPath of allMarkdownFiles) {
+for (const markdownPath of indexableMarkdownFiles) {
   const absoluteMarkdownPath = path.join(rootDir, markdownPath);
   try {
     const markdownText = fs.readFileSync(absoluteMarkdownPath, "utf8");
@@ -1117,11 +1120,14 @@ const generatedScenesIndex = buildGeneratedScenesIndex(
 );
 
 const generatedMarkdownIndex = {
-  files: [...allMarkdownFiles],
+  files: [...indexableMarkdownFiles],
 };
 
 const sceneIndexDrift = summarizeIndexDrift(indexedScenePaths, sceneConfigs);
-const markdownIndexDrift = summarizeIndexDrift(indexedMarkdownPaths, allMarkdownFiles);
+const markdownIndexDrift = summarizeIndexDrift(
+  indexedMarkdownPaths,
+  indexableMarkdownFiles
+);
 
 if (
   sceneIndexDrift.stale.length ||
