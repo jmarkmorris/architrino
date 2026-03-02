@@ -4,16 +4,12 @@
 ## Infrastructure
 
 - search index does not go alpha first
-- under element for md and periodic table
 - add the slide out like on an atom scene to the architrinos and standard model assemblies.
   - list charge
   - list noether core type and generation
   - list role in assembly 
 - the P and N in the atoms are overlapping on boron and maybe others?
-- if you zoom into a fermion, you can't back up
 - composer should use the same frame elements in the corners.
-
-
 
 
 ## Sorta Sorted List (i.e., non-linear)
