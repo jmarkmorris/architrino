@@ -1151,7 +1151,7 @@ const composerSceneId = "composer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
-  "content/markdown/aaa/_meta/ideas/arch-api.md";
+  "content/markdown/aaa/assemblies/composer.md";
 const markdownDocIconByteThreshold = 1024;
 const markdownGlowByteThreshold = 2048;
 const cacheBustToken = Date.now().toString();
@@ -2382,12 +2382,34 @@ function startLevelTransitionOut() {
   closeDetailPanel();
   hideHoverTooltip();
   markdownRuntime.hideMarkdownPanel();
-  const parentInfo = navigationStack[navigationStack.length - 1];
-  const parentLevel = buildLevel(parentInfo.levelId);
-  const parentNode =
-    parentLevel.nodeById.get(parentInfo.focusNodeId) ??
-    parentLevel.nodeByName.get(parentInfo.focusNodeId);
-  if (!parentNode) {
+  let parentInfo = null;
+  let parentLevel = null;
+  let parentNode = null;
+  while (navigationStack.length > 0) {
+    const candidate = navigationStack[navigationStack.length - 1];
+    if (!candidate?.levelId || !levelConfigs[candidate.levelId]) {
+      navigationStack.pop();
+      continue;
+    }
+    const level = buildLevel(candidate.levelId);
+    if (!level) {
+      navigationStack.pop();
+      continue;
+    }
+    const focusNode =
+      level.nodeById.get(candidate.focusNodeId) ??
+      level.nodeByName.get(candidate.focusNodeId);
+    if (!focusNode) {
+      navigationStack.pop();
+      continue;
+    }
+    parentInfo = candidate;
+    parentLevel = level;
+    parentNode = focusNode;
+    break;
+  }
+  if (!parentInfo || !parentLevel || !parentNode) {
+    updateNavButton();
     return;
   }
 
@@ -3043,10 +3065,15 @@ async function init() {
     requestedSceneState.parentFocusNodeId &&
     currentLevel.id !== rootScenePath
   ) {
-    navigationStack.push({
-      levelId: requestedSceneState.parentLevelId,
-      focusNodeId: requestedSceneState.parentFocusNodeId,
-    });
+    const parentConfig = await sceneBootstrapService.ensureSceneReady(
+      requestedSceneState.parentLevelId
+    );
+    if (parentConfig) {
+      navigationStack.push({
+        levelId: requestedSceneState.parentLevelId,
+        focusNodeId: requestedSceneState.parentFocusNodeId,
+      });
+    }
   }
   updateSceneLabel();
   updateSceneMarkdown();

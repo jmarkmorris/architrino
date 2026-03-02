@@ -11,6 +11,10 @@
   - list noether core type and generation
   - list role in assembly 
 - the P and N in the atoms are overlapping on boron and maybe others?
+- if you zoom into a fermion, you can't back up
+- move meta material out of the md directory so it doesn't accidentally get loaded into the webapp.
+- the exit button is not working in composer. where should it go if it hits, errors. HOME.
+- composer should use the same frame elements in the corners.
 
 
 
@@ -73,7 +77,7 @@ go through cosmology documents on wordpress and put content in cosmology docs? T
   - absolute-time-defense.md
   - emergence.md
   - euclidean-void.md
-  - arch-api.md
+  - composer.md
   - design.md
   - displacement-of-spacetime.md
   - atomic-structure.md

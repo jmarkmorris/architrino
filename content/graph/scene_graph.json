@@ -1415,12 +1415,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/_meta/ideas/arch-api.md",
-      "name": "Architrino Assembly Animation API",
-      "path": "__markdown_doc__:content/markdown/aaa/_meta/ideas/arch-api.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/_meta/ideas/chang.md",
       "name": "The Wave and the Binary: A Cautious Mapping of Chang's Matter Waves to $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "__markdown_doc__:content/markdown/aaa/_meta/ideas/chang.md",
@@ -1586,6 +1580,12 @@
       "id": "content/markdown/aaa/assemblies/bosons/gluons.md",
       "name": "Gluons and the Strong Force: Geometric Origins",
       "path": "__markdown_doc__:content/markdown/aaa/assemblies/bosons/gluons.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/assemblies/composer.md",
+      "name": "Architrino Assembly Animation API",
+      "path": "__markdown_doc__:content/markdown/aaa/assemblies/composer.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4133,15 +4133,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/_meta/ideas/arch-api.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/_meta/ideas/arch-api.md",
-      "name": "Architrino Assembly Animation API",
-      "path": "content/markdown/aaa/_meta/ideas/arch-api.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/_meta/ideas/arch-api.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/_meta/ideas/chang.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/_meta/ideas/chang.md",
@@ -4391,6 +4382,15 @@
       "name": "Gluons and the Strong Force: Geometric Origins",
       "path": "content/markdown/aaa/assemblies/bosons/gluons.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/bosons/gluons.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/assemblies/composer.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/assemblies/composer.md",
+      "name": "Architrino Assembly Animation API",
+      "path": "content/markdown/aaa/assemblies/composer.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/composer.md",
       "implicit": false
     },
     {
@@ -9278,13 +9278,6 @@
     },
     {
       "from": "markdown_index:content/markdown/aaa/_meta/ideas",
-      "to": "markdown_doc:content/markdown/aaa/_meta/ideas/arch-api.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/_meta/ideas",
       "to": "markdown_doc:content/markdown/aaa/_meta/ideas/chang.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
@@ -9461,6 +9454,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/archie",
       "to": "markdown_doc:content/markdown/aaa/archie/settings.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/assemblies",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/composer.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"

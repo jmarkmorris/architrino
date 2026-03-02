@@ -636,6 +636,9 @@ body {
 }
 
 #composer-docs-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   height: 28px;
   padding: 0 10px;
   border-radius: 6px;
@@ -645,6 +648,11 @@ body {
   font-size: 12px;
   letter-spacing: 0.01em;
   cursor: pointer;
+}
+
+.composer-docs-icon {
+  font-size: 0.95em;
+  line-height: 1;
 }
 
 #composer-exit-button {
@@ -1015,6 +1023,10 @@ body {
 #app.composer-mode #detail-panel,
 #app.composer-mode #scene-search {
   display: none;
+}
+
+#app.composer-mode #markdown-panel {
+  z-index: 30;
 }
 
 #element-legend {
