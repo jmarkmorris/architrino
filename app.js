@@ -1285,6 +1285,10 @@ const ringLayoutDefaults = {
 };
 const standardRingMaxCount = 14;
 
+function getRingStartAngle(count) {
+  return ringLayoutDefaults.startAngle;
+}
+
 function maxRingNodeRadius(ringRadius, count) {
   if (!Number.isFinite(ringRadius) || count <= 1) {
     return Infinity;
@@ -1295,6 +1299,69 @@ function maxRingNodeRadius(ringRadius, count) {
     chord * ringLayoutDefaults.guardBandRatio
   );
   return (chord - guardBand) / (2 * ringLayoutDefaults.haloScale);
+}
+
+function getNodeBoundsRadius(node) {
+  const baseRadius = Math.max(0, node?.data?.radius ?? 0);
+  const hasHalo =
+    node?.data?.glowRing ||
+    node?.data?.childScene ||
+    node?.data?.docDrillDownPreferred === true;
+  if (!hasHalo) {
+    return baseRadius;
+  }
+  return Math.max(baseRadius, baseRadius * ringLayoutDefaults.haloScale);
+}
+
+function solveRingFit(frameRadius, count) {
+  const maxFrameRadius = Math.max(0, frameRadius);
+  if (!Number.isFinite(maxFrameRadius) || maxFrameRadius <= 0) {
+    return { haloRadius: 0, ringRadius: 0, nodeRadius: 0 };
+  }
+  if (count <= 1) {
+    const haloRadius = maxFrameRadius;
+    return {
+      haloRadius,
+      ringRadius: 0,
+      nodeRadius: haloRadius / ringLayoutDefaults.haloScale,
+    };
+  }
+
+  const sinHalfStep = Math.sin(Math.PI / count);
+  if (!Number.isFinite(sinHalfStep) || sinHalfStep <= 0) {
+    return { haloRadius: 0, ringRadius: 0, nodeRadius: 0 };
+  }
+
+  const requiredRingRadiusForHalo = (haloRadius) => {
+    const haloDiameter = haloRadius * 2;
+    const guardBand = Math.max(
+      ringLayoutDefaults.guardBandMin,
+      haloDiameter * ringLayoutDefaults.guardBandRatio
+    );
+    const requiredChord = haloDiameter + guardBand;
+    return requiredChord / (2 * sinHalfStep);
+  };
+
+  let low = 0;
+  let high = maxFrameRadius;
+  for (let i = 0; i < 40; i += 1) {
+    const mid = (low + high) * 0.5;
+    const requiredRing = requiredRingRadiusForHalo(mid);
+    const fitsFrame = requiredRing + mid <= maxFrameRadius;
+    if (fitsFrame) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+
+  const haloRadius = low;
+  const ringRadius = Math.max(0, maxFrameRadius - haloRadius);
+  return {
+    haloRadius,
+    ringRadius,
+    nodeRadius: haloRadius / ringLayoutDefaults.haloScale,
+  };
 }
 
 function computeRingLayout(nodes) {
@@ -1315,8 +1382,9 @@ function computeRingLayout(nodes) {
     baseRadius = maxRadius;
   }
   const positions = [];
+  const startAngle = getRingStartAngle(count);
   for (let i = 0; i < count; i += 1) {
-    const angle = (i / count) * Math.PI * 2 + ringLayoutDefaults.startAngle;
+    const angle = (i / count) * Math.PI * 2 + startAngle;
     positions.push([
       Number((Math.cos(angle) * ringRadius).toFixed(2)),
       Number((Math.sin(angle) * ringRadius).toFixed(2)),
@@ -1386,7 +1454,7 @@ const transitionEngine = createTransitionEngine(transitionState, {
     currentLevel = level;
   },
   shouldCenterLevelInFrame: (level) => {
-    return isCenteredRingLevel(level);
+    return !!level;
   },
   centerLevelInFrame: (level) => {
     const center = getLevelFrameCenter(level);
@@ -2050,20 +2118,10 @@ function layoutRootLevel(level) {
   );
   const { safeWidth, safeHeight } = getSafeViewportWorld();
   const safeRadius = Math.max(2, Math.min(safeWidth, safeHeight) / 2);
-  let targetRadius = baseRadius;
-  if (nodes.length > 1) {
-    let r = baseRadius;
-    for (let i = 0; i < 6; i += 1) {
-      const candidateRing = Math.max(2, safeRadius - r);
-      const maxRadius = maxRingNodeRadius(candidateRing, nodes.length);
-      if (!Number.isFinite(maxRadius) || maxRadius <= 0) {
-        break;
-      }
-      r = Math.min(maxRadius, safeRadius - 2);
-    }
-    targetRadius = r;
-  }
-  const ringRadius = Math.max(2, safeRadius - targetRadius);
+  const frameRadius = safeRadius;
+  const solvedRing = solveRingFit(frameRadius, nodes.length);
+  const targetRadius = Math.max(0, solvedRing.nodeRadius);
+  const ringRadius = Math.max(0, solvedRing.ringRadius);
   const scaleFactor = baseRadius > 0 ? targetRadius / baseRadius : 1;
   if (Number.isFinite(scaleFactor)) {
     nodes.forEach((node) => {
@@ -2079,7 +2137,7 @@ function layoutRootLevel(level) {
   }
 
   const angleStep = (-Math.PI * 2) / nodes.length;
-  const startAngle = ringLayoutDefaults.startAngle;
+  const startAngle = getRingStartAngle(nodes.length);
   nodes.forEach((node, index) => {
     const angle = startAngle + angleStep * index;
     const x = Math.cos(angle) * ringRadius;
@@ -2118,6 +2176,25 @@ function getLevelFrameCenter(level) {
 }
 
 function computeFitZoomForLevel(level) {
+  if (isCenteredRingLevel(level)) {
+    const center = getLevelFrameCenter(level);
+    const { safeWidth, safeHeight } = getSafeViewportWorld();
+    const safeRadius = Math.max(1, Math.min(safeWidth, safeHeight) / 2);
+    let extentRadius = 0;
+    level.nodes.forEach((node) => {
+      if (node.data?.excludeFromBounds) {
+        return;
+      }
+      const nodeBoundsRadius = getNodeBoundsRadius(node);
+      const radialDistance = node.group.position.distanceTo(center);
+      extentRadius = Math.max(extentRadius, radialDistance + nodeBoundsRadius);
+    });
+    if (extentRadius <= 0) {
+      return camera.zoom;
+    }
+    return clampZoom(safeRadius / extentRadius);
+  }
+
   const { size } = getLevelBoundsFromNodes(level);
   if (!isFinite(size.x) || !isFinite(size.y) || size.lengthSq() === 0) {
     return camera.zoom;
@@ -2196,7 +2273,7 @@ function getLevelBoundsFromNodes(level) {
     if (node.data?.excludeFromBounds) {
       return;
     }
-    const radius = node.data.radius ?? 0;
+    const radius = getNodeBoundsRadius(node);
     if (node.data.orbit) {
       const orbit = node.data.orbit;
       const centerNode =

@@ -18,6 +18,7 @@
 - i should change the 'panel' to be the largest possible sphere (circle)
   - but also allow the animation to continue in the full rectangular panel
   - this means all labels and controls and searches get pushed to the corners.
+- quark rings should use red and blue only for their quarks
 
 
 
