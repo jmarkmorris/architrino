@@ -32,15 +32,39 @@
       "labelBadge": "📚"
     },
     {
-      "id": "thinker_abdus_salam_1926_1996_sheldon_glashow_1932_steven_weinberg_1933_2021_electroweak_unification",
-      "label": "Abdus Salam (1926–1996), Sheldon Glashow (1932–), Steven Weinberg (1933–2021) — Electroweak Unification",
+      "id": "thinker_abdus_salam_1926_1996_electroweak_unification",
+      "label": "Abdus Salam (1926–1996) — Electroweak Unification",
       "radius": 2.2,
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Abdus Salam (1926–1996), Sheldon Glashow (1932–), Steven Weinberg (1933–2021) — Electroweak Unification",
-      "labelTitle": "Abdus Salam , Sheldon Glashow (1932–), Steven Weinberg (1933–2021)",
+      "labelTitle": "Abdus Salam",
       "labelSubtitle": "Electroweak Unification",
       "labelDates": "(1926–1996)",
+      "labelBadge": "📚"
+    },
+    {
+      "id": "thinker_sheldon_glashow_1932_electroweak_unification",
+      "label": "Sheldon Glashow (1932–) — Electroweak Unification",
+      "radius": 2.2,
+      "color": "#4b0082",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Abdus Salam (1926–1996), Sheldon Glashow (1932–), Steven Weinberg (1933–2021) — Electroweak Unification",
+      "labelTitle": "Sheldon Glashow",
+      "labelSubtitle": "Electroweak Unification",
+      "labelDates": "(1932–)",
+      "labelBadge": "📚"
+    },
+    {
+      "id": "thinker_steven_weinberg_1933_2021_electroweak_unification",
+      "label": "Steven Weinberg (1933–2021) — Electroweak Unification",
+      "radius": 2.2,
+      "color": "#3a5f9f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Abdus Salam (1926–1996), Sheldon Glashow (1932–), Steven Weinberg (1933–2021) — Electroweak Unification",
+      "labelTitle": "Steven Weinberg",
+      "labelSubtitle": "Electroweak Unification",
+      "labelDates": "(1933–2021)",
       "labelBadge": "📚"
     },
     {

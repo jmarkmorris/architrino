@@ -260,7 +260,8 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
-### **Albert Einstein (1879–1955) — Special Relativity**
+### **Relativity**
+#### **Special Relativity**
 **Core belief**: 
 - No preferred frame. Lorentz symmetry is a **fundamental kinematic symmetry** of spacetime itself.
 - Relativity of simultaneity is **ontological** (not just perspectival).
@@ -278,7 +279,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
-### **Albert Einstein (1879–1955) — General Relativity**
+#### **General Relativity**
 **Core belief**: 
 - Gravity is **curvature of spacetime**.
 - Spacetime is a **dynamical entity**, not a fixed background.

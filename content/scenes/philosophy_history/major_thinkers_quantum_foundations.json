@@ -38,7 +38,8 @@
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Niels Bohr (1885–1962) & Copenhagen Interpretation",
-      "labelTitle": "Niels Bohr & Copenhagen Interpretation",
+      "labelTitle": "Niels Bohr",
+      "labelSubtitle": "Copenhagen Interpretation",
       "labelDates": "(1885–1962)",
       "labelBadge": "📚"
     },
@@ -122,15 +123,39 @@
       "labelBadge": "📚"
     },
     {
-      "id": "thinker_lucien_hardy_1966_rob_spekkens_1970_matthew_leifer_1975_quantum_foundations_operational_psi_epistemic",
-      "label": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
+      "id": "thinker_lucien_hardy_1966_quantum_foundations_operational_psi_epistemic",
+      "label": "Lucien Hardy (1966–) — Quantum Foundations",
       "radius": 2.2,
       "color": "#243d8f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
-      "labelTitle": "Lucien Hardy , Rob Spekkens (1970–), Matthew Leifer (1975–)",
-      "labelSubtitle": "Quantum Foundations (Operational/Psi-Epistemic)",
+      "labelTitle": "Lucien Hardy",
+      "labelSubtitle": "Quantum Foundations",
       "labelDates": "(1966–)",
+      "labelBadge": "📚"
+    },
+    {
+      "id": "thinker_rob_spekkens_1970_quantum_foundations_operational_psi_epistemic",
+      "label": "Rob Spekkens (1970–) — Quantum Foundations",
+      "radius": 2.2,
+      "color": "#2f6b6f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
+      "labelTitle": "Rob Spekkens",
+      "labelSubtitle": "Quantum Foundations",
+      "labelDates": "(1970–)",
+      "labelBadge": "📚"
+    },
+    {
+      "id": "thinker_matthew_leifer_1975_quantum_foundations_operational_psi_epistemic",
+      "label": "Matthew Leifer (1975–) — Quantum Foundations",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
+      "labelTitle": "Matthew Leifer",
+      "labelSubtitle": "Quantum Foundations",
+      "labelDates": "(1975–)",
       "labelBadge": "📚"
     }
   ]

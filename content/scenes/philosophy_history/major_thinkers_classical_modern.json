@@ -21,14 +21,27 @@
       "labelBadge": "📚"
     },
     {
-      "id": "thinker_democritus_c_460_370_bce_and_leucippus",
-      "label": "Democritus (c. 460–370 BCE) & Leucippus",
+      "id": "thinker_democritus_c_460_370_bce",
+      "label": "Democritus (c. 460–370 BCE)",
       "radius": 2.2,
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Democritus (c. 460–370 BCE) & Leucippus",
-      "labelTitle": "Democritus & Leucippus",
+      "labelTitle": "Democritus",
+      "labelSubtitle": "Atomism",
       "labelDates": "(c. 460–370 BCE)",
+      "labelBadge": "📚"
+    },
+    {
+      "id": "thinker_leucippus_fl_5th_century_bce",
+      "label": "Leucippus (fl. 5th century BCE)",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Democritus (c. 460–370 BCE) & Leucippus",
+      "labelTitle": "Leucippus",
+      "labelSubtitle": "Atomism",
+      "labelDates": "(fl. 5th century BCE)",
       "labelBadge": "📚"
     },
     {
