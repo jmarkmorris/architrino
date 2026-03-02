@@ -14,6 +14,11 @@ export class SceneRepository {
     this.deriveMarkdownConfig = deps.deriveMarkdownConfig;
     this.buildAutoMarkdownNodes = deps.buildAutoMarkdownNodes;
     this.resolveMarkdownFileSize = deps.resolveMarkdownFileSize;
+    this.resolveMarkdownFileCharacterCount = deps.resolveMarkdownFileCharacterCount;
+    this.markdownDocBadgeMinChars =
+      typeof deps.markdownDocBadgeMinChars === "number"
+        ? deps.markdownDocBadgeMinChars
+        : 128;
     this.markdownDocIconMinBytes =
       typeof deps.markdownDocIconMinBytes === "number"
         ? deps.markdownDocIconMinBytes
@@ -40,7 +45,12 @@ export class SceneRepository {
 
   resolveSceneKind(sceneData, nodes) {
     const rawKind = sceneData?.scene?.kind;
-    if (rawKind === "branching" || rawKind === "diagram" || rawKind === "markdown_split") {
+    if (
+      rawKind === "branching" ||
+      rawKind === "diagram" ||
+      rawKind === "markdown_split" ||
+      rawKind === "element"
+    ) {
       return rawKind;
     }
     const list = Array.isArray(nodes) ? nodes : [];
@@ -230,6 +240,8 @@ export class SceneRepository {
     await Promise.all(
       nodes.map(async (node) => {
         const hasDirectMarkdown = typeof node.markdownPath === "string" && node.markdownPath.length > 0;
+        const hasMarkdownSectionTarget =
+          typeof node.markdownSection === "string" && node.markdownSection.trim().length > 0;
         if (!hasDirectMarkdown) {
           node.docDrillDownPreferred = false;
           node.markdownGlowEligible = false;
@@ -242,15 +254,25 @@ export class SceneRepository {
         if (typeof this.resolveMarkdownFileSize === "function") {
           markdownByteSize = await this.resolveMarkdownFileSize(node.markdownPath);
         }
+        let markdownCharacterCount = null;
+        if (typeof this.resolveMarkdownFileCharacterCount === "function") {
+          markdownCharacterCount = await this.resolveMarkdownFileCharacterCount(
+            node.markdownPath
+          );
+        }
         const isEligible =
           Number.isFinite(markdownByteSize) &&
           markdownByteSize >= this.markdownGlowMinBytes;
         const isDocIconEligible =
-          Number.isFinite(markdownByteSize) &&
-          markdownByteSize >= this.markdownDocIconMinBytes;
+          hasMarkdownSectionTarget ||
+          (Number.isFinite(markdownCharacterCount) &&
+            markdownCharacterCount > this.markdownDocBadgeMinChars);
 
         node.markdownByteSize = Number.isFinite(markdownByteSize)
           ? markdownByteSize
+          : null;
+        node.markdownCharacterCount = Number.isFinite(markdownCharacterCount)
+          ? markdownCharacterCount
           : null;
         node.markdownGlowEligible = isEligible;
         node.markdownDocIconEligible = isDocIconEligible;

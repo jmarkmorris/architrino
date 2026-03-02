@@ -18,7 +18,7 @@
       "markdownSection": "Paul Dirac (1902–1984)",
       "labelTitle": "Paul Dirac",
       "labelDates": "(1902–1984)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Relativistic Quantum Mechanics"
     },
     {
@@ -30,7 +30,7 @@
       "markdownSection": "Richard Feynman (1918–1988)",
       "labelTitle": "Richard Feynman",
       "labelDates": "(1918–1988)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Path Integrals / QED"
     },
     {
@@ -43,7 +43,7 @@
       "labelTitle": "Abdus Salam",
       "labelSubtitle": "Electroweak Unification",
       "labelDates": "(1926–1996)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_sheldon_glashow_1932_electroweak_unification",
@@ -55,7 +55,7 @@
       "labelTitle": "Sheldon Glashow",
       "labelSubtitle": "Electroweak Unification",
       "labelDates": "(1932–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_steven_weinberg_1933_2021_electroweak_unification",
@@ -67,7 +67,7 @@
       "labelTitle": "Steven Weinberg",
       "labelSubtitle": "Electroweak Unification",
       "labelDates": "(1933–2021)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_murray_gell_mann_1929_2019_and_the_quark_model",
@@ -79,7 +79,7 @@
       "labelTitle": "Murray Gell-Mann",
       "labelSubtitle": "Quark Model",
       "labelDates": "(1929–2019)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_gerard_t_hooft_1946_deterministic_quantum_mechanics",
@@ -91,7 +91,7 @@
       "labelTitle": "Gerard 't Hooft",
       "labelSubtitle": "Deterministic Quantum Mechanics",
       "labelDates": "(1946–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

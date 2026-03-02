@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "og",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Oganesson (Og)",
     "units": "relative",
     "scaleBandLog10m": [

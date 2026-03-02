@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "rf",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Rutherfordium (Rf)",
     "units": "relative",
     "scaleBandLog10m": [

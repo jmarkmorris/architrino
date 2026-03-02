@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "fm",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Fermium (Fm)",
     "units": "relative",
     "scaleBandLog10m": [

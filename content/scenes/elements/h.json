@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "h",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Hydrogen (H)",
     "units": "relative",
     "scaleBandLog10m": [

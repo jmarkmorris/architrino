@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "bh",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Bohrium (Bh)",
     "units": "relative",
     "scaleBandLog10m": [

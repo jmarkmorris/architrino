@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ti",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Titanium (Ti)",
     "units": "relative",
     "scaleBandLog10m": [

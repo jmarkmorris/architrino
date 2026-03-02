@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "he",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Helium (He)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "pm",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Promethium (Pm)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -31,7 +31,7 @@
         "type": "fixed"
       },
       "labelTitle": "Binary Dynamics",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "causal_action_functional",
@@ -45,7 +45,7 @@
         "type": "fixed"
       },
       "labelTitle": "Causal Action Functional",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "effective_lagrangian",
@@ -59,7 +59,7 @@
         "type": "fixed"
       },
       "labelTitle": "Effective Lagrangian",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "kinetic_and_potential_energy",
@@ -73,7 +73,7 @@
         "type": "fixed"
       },
       "labelTitle": "Kinetic and Potential Energy",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "emergence_of_u_1_su_2",
@@ -88,7 +88,7 @@
       },
       "labelTitle": "Emergence of U /SU(2)",
       "labelDates": "(1)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "gauge_symmetries",
@@ -102,7 +102,7 @@
         "type": "fixed"
       },
       "labelTitle": "Gauge Symmetries",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "mapping_planck_scale",
@@ -116,7 +116,7 @@
         "type": "fixed"
       },
       "labelTitle": "Mapping Planck Scale",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "master_equation_of_motion",
@@ -130,7 +130,7 @@
         "type": "fixed"
       },
       "labelTitle": "Master Equation of Motion",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "mode_taxonomy",
@@ -144,7 +144,7 @@
         "type": "fixed"
       },
       "labelTitle": "Mode Taxonomy",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "tri_binary_dynamics",
@@ -158,7 +158,7 @@
         "type": "fixed"
       },
       "labelTitle": "Tri-Binary Dynamics",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

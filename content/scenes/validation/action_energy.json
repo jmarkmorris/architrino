@@ -16,7 +16,7 @@
       "color": "#3a5f9f",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "labelTitle": "Action Model",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "analytic_baselines",
@@ -25,7 +25,7 @@
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "labelTitle": "Analytic Baselines",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "attraction",
@@ -34,7 +34,7 @@
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "labelTitle": "Attraction",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "background_simple_action",
@@ -43,7 +43,7 @@
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
       "labelTitle": "Background and Simple Action",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "causal_set_delay_geometry",
@@ -52,7 +52,7 @@
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
       "labelTitle": "Causal Set and Delay Geometry",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "informational_ambiguity",
@@ -61,7 +61,7 @@
       "color": "#6a3c3c",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
       "labelTitle": "Informational Ambiguity",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "numerical_recipe_stability",
@@ -70,7 +70,7 @@
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
       "labelTitle": "Numerical Recipe and Stability",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "radial_attraction",
@@ -79,7 +79,7 @@
       "color": "#2c567a",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "labelTitle": "Radial Attraction",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "receiver_velocity_work",
@@ -88,7 +88,7 @@
       "color": "#3a5f9f",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
       "labelTitle": "Receiver Velocity and Work",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "repulsion",
@@ -97,7 +97,7 @@
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
       "labelTitle": "Repulsion",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "self_energy",
@@ -106,7 +106,7 @@
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "labelTitle": "Self-Energy",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "self_interaction_switch",
@@ -115,7 +115,7 @@
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
       "labelTitle": "Self-Interaction Switch",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "superposition_locality",
@@ -124,7 +124,7 @@
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
       "labelTitle": "Superposition and Locality",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "units_constants",
@@ -133,7 +133,7 @@
       "color": "#6a3c3c",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
       "labelTitle": "Units and Constants",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "well_posedness_regularization",
@@ -142,7 +142,7 @@
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
       "labelTitle": "Well-Posedness and Regularization",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

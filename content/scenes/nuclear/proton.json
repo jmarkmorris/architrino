@@ -24,7 +24,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "up quark"
+      "labelTitle": "up quark",
+      "labelBadge": "diagram"
     },
     {
       "id": "up_quark_2",
@@ -38,7 +39,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "up quark"
+      "labelTitle": "up quark",
+      "labelBadge": "diagram"
     },
     {
       "id": "down_quark",
@@ -52,7 +54,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "down quark"
+      "labelTitle": "down quark",
+      "labelBadge": "diagram"
     }
   ]
 }

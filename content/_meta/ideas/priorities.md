@@ -3,15 +3,11 @@
 
 ## Infrastructure
 
-- search index does not go alpha first
-- add the slide out like on an atom scene to the architrinos and standard model assemblies.
-  - list charge
-  - list noether core type and generation
-  - list role in assembly 
+
 - the P and N in the atoms are overlapping on boron and maybe others?
 - composer should use the same frame elements in the corners.
-- should we have a zoom out button?
-- new or changed icons?
+- disable the canvas circle
+
 
 ## Sorta Sorted List (i.e., non-linear)
 
@@ -31,9 +27,7 @@
 
 - i like this term 'wake'. It is better than field. Wake: the causal‑isochron residue left by architrino motion; a wake is the architrino‑native description of what appears as a field at the effective level.
 
----
 
-go through cosmology documents on wordpress and put content in cosmology docs? This will be a slog, because they are out of date.
 
 ---
 
@@ -85,59 +79,6 @@ go through cosmology documents on wordpress and put content in cosmology docs? T
   - AnalyticBaselines.md
   - perspective.md
   - what are all the docs in ./architrino-assembly-architecture/validation/simulations/action-energy
-
----
-
-Yes. Dynamics is not unique.
-
-  Scenes currently set up to autoserve markdown (auto-ring + markdown source) are:
-
-  - content/scenes/assemblies/assemblies.json
-  - content/scenes/cosmology/cosmology.json
-  - content/scenes/dynamics/dynamics.json
-  - content/scenes/foundations/foundations.json
-  - content/scenes/nuclear/nuclear_atomic.json
-  - content/scenes/philosophy_history/philosophy_history.json
-  - content/scenes/philosophy_history/unknowns_paradoxes.json
-  - content/scenes/philosophy_history/out_of_the_ashes.json
-  - content/scenes/quantum/quantum.json
-  - content/scenes/spacetime/spacetime.json
-  - content/scenes/validation/validation.json
-
-  Qualification rules (runtime):
-
-  - Autoserve runs only if autoSphereRing is true and there is a markdown source (autoMarkdownDirectory or autoMarkdownPath), see app.js:1378.
-  - Scene markdown policy is converted from scene.markdown.source into auto fields, see app.js:1788.
-  - Directory mode only picks top-level .md files (no nested paths unless using subdirectories: true), see app.js:1300 and app.js:1313.
-  - In directory mode, file must be non-empty after trim (text.trim().length > 0) to become a markdown node, see app.js:1495 and app.js:1645.
-  - Files are also dropped if slug/id is empty or collides with an existing node id, see app.js:1533.
-
-  So to your “more than empty?” question: yes, it’s more than just non-empty. It also must be discoverable as top-level .md, pass id uniqueness, and not be excluded by scene policy.
----
-
-• Assessment
-  Current architecture is a solid static, content-driven prototype with good authoring velocity, but it is now at the point where maintainability and content-loading robustness are the main risks.
-
-  What’s good
-
-  - Strong data/content separation: scenes in JSON + docs in Markdown, minimal coupling (content/scenes/dynamics/dynamics.json:1, content/markdown/aaa/dynamics/master-equation.md).
-  - Dynamic markdown scene generation is flexible (file index, section index, directory recursion) (app.js:2588, app.js:2694, app.js:2729).
-  - Caching exists for scene configs and markdown (app.js:1046, app.js:1048, app.js:2029).
-  - Math-protection pipeline to prevent markdown parsing from corrupting TeX is thoughtful (app.js:1950, app.js:2060).
-
-  Architectural pressure points
-
-  - app.js is a monolith (~174 KB) handling rendering, navigation, markdown, search, composer, periodic table, and dynamic scene synthesis in one file (app.js:1). This is the biggest long-term risk.
-  - Autoserve depends on parsing web-server directory listings (app.js:1284, app.js:1326). If directory listing behavior changes, autoserve breaks.
-  - Directory autoserve does N+1 fetches to test non-empty markdown files (app.js:1490, app.js:1495), which will scale poorly as docs grow.
-  - Search index is static (content/scenes/scenes_index.json) and can drift from actual scene files if not regenerated as part of workflow (app.js:4892).
-  - No automated tests for scene loading/rendering/markdown parsing regressions.
-
-  Operationally
-
-  - For a static-hosted research UI, this is pragmatic and works.
-  - For ongoing expansion (more scenes/docs, more contributors), the architecture is near the threshold where modularization and a deterministic content manifest pipeline become necessary to avoid fragile
-    behavior.
 
 ---
 

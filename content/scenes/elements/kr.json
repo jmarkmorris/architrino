@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "kr",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Krypton (Kr)",
     "units": "relative",
     "scaleBandLog10m": [

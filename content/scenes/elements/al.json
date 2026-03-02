@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "al",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Aluminium (Al)",
     "units": "relative",
     "scaleBandLog10m": [

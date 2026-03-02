@@ -1136,6 +1136,7 @@ const markdownCache = new Map();
 const markdownSectionCache = new Map();
 const markdownTitleCache = new Map();
 const markdownFileSizeCache = new Map();
+const markdownFileCharacterCountCache = new Map();
 const markdownRenderer =
   typeof window !== "undefined" && window.markdownit
     ? window.markdownit({ html: false, linkify: true, breaks: false })
@@ -1152,7 +1153,7 @@ const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "content/markdown/aaa/assemblies/composer.md";
-const markdownDocIconByteThreshold = 1024;
+const markdownDocBadgeCharacterThreshold = 128;
 const markdownGlowByteThreshold = 2048;
 const cacheBustToken = Date.now().toString();
 let appDirector = null;
@@ -1755,6 +1756,32 @@ async function resolveMarkdownFileSize(path) {
   return promise;
 }
 
+async function resolveMarkdownFileCharacterCount(path) {
+  if (!path) {
+    return null;
+  }
+  const normalizedPath = String(path);
+  if (markdownFileCharacterCountCache.has(normalizedPath)) {
+    return markdownFileCharacterCountCache.get(normalizedPath);
+  }
+
+  const promise = fetch(appendCacheBust(normalizedPath))
+    .then(async (response) => {
+      if (!response.ok) {
+        return null;
+      }
+      const text = await response.text();
+      return typeof text === "string" ? text.length : null;
+    })
+    .catch((error) => {
+      console.warn("Failed to resolve markdown character count", normalizedPath, error);
+      return null;
+    });
+
+  markdownFileCharacterCountCache.set(normalizedPath, promise);
+  return promise;
+}
+
 const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   fetchImpl: (...args) => fetch(...args),
   appendCacheBust,
@@ -1795,7 +1822,8 @@ const sceneRepository = new SceneRepository({
   deriveMarkdownConfig,
   buildAutoMarkdownNodes,
   resolveMarkdownFileSize,
-  markdownDocIconMinBytes: markdownDocIconByteThreshold,
+  resolveMarkdownFileCharacterCount,
+  markdownDocBadgeMinChars: markdownDocBadgeCharacterThreshold,
   markdownGlowMinBytes: markdownGlowByteThreshold,
 });
 const sceneBootstrapService = createSceneBootstrapService({
@@ -2064,7 +2092,8 @@ function layoutRootLevel(level) {
   }
   const layoutMode = getEffectiveLayoutMode(level);
   const useRootAutoLayout = level.id === rootScenePath && !layoutMode;
-  if (!useRootAutoLayout) {
+  const useRingsAutoSizing = layoutMode === "rings";
+  if (!useRootAutoLayout && !useRingsAutoSizing) {
     return;
   }
   nodes.forEach((node) => {
@@ -2076,37 +2105,112 @@ function layoutRootLevel(level) {
     }
   });
 
-  const baseRadius = Math.max(
-    ...nodes.map((node) => node.data?.baseRadius ?? node.data?.radius ?? 0)
-  );
-  const { safeWidth, safeHeight } = getSafeViewportWorld();
-  const safeRadius = Math.max(2, Math.min(safeWidth, safeHeight) / 2);
-  const frameRadius = safeRadius;
-  const solvedRing = solveRingFit(frameRadius, nodes.length);
-  const targetRadius = Math.max(0, solvedRing.nodeRadius);
-  const ringRadius = Math.max(0, solvedRing.ringRadius);
-  const scaleFactor = baseRadius > 0 ? targetRadius / baseRadius : 1;
-  if (Number.isFinite(scaleFactor)) {
-    nodes.forEach((node) => {
-      node.group.scale.setScalar(scaleFactor);
-      node.baseScale = scaleFactor;
-      if (node.data) {
-        node.data.baseScale = scaleFactor;
-      }
-      if (node.data?.baseRadius) {
-        node.data.radius = node.data.baseRadius * scaleFactor;
-      }
+  if (useRootAutoLayout) {
+    const baseRadius = Math.max(
+      ...nodes.map((node) => node.data?.baseRadius ?? node.data?.radius ?? 0)
+    );
+    const { safeWidth, safeHeight } = getSafeViewportWorld();
+    const safeRadius = Math.max(2, Math.min(safeWidth, safeHeight) / 2);
+    const frameRadius = safeRadius;
+    const solvedRing = solveRingFit(frameRadius, nodes.length);
+    const targetRadius = Math.max(0, solvedRing.nodeRadius);
+    const ringRadius = Math.max(0, solvedRing.ringRadius);
+    const scaleFactor = baseRadius > 0 ? targetRadius / baseRadius : 1;
+    if (Number.isFinite(scaleFactor)) {
+      nodes.forEach((node) => {
+        node.group.scale.setScalar(scaleFactor);
+        node.baseScale = scaleFactor;
+        if (node.data) {
+          node.data.baseScale = scaleFactor;
+        }
+        if (node.data?.baseRadius) {
+          node.data.radius = node.data.baseRadius * scaleFactor;
+        }
+      });
+    }
+
+    const angleStep = (-Math.PI * 2) / nodes.length;
+    const startAngle = getRingStartAngle(nodes.length);
+    nodes.forEach((node, index) => {
+      const angle = startAngle + angleStep * index;
+      const x = Math.cos(angle) * ringRadius;
+      const y = Math.sin(angle) * ringRadius;
+      node.group.position.set(x, y, node.group.position.z);
+      node.basePosition = node.group.position.clone();
     });
+    return;
   }
 
-  const angleStep = (-Math.PI * 2) / nodes.length;
-  const startAngle = getRingStartAngle(nodes.length);
-  nodes.forEach((node, index) => {
-    const angle = startAngle + angleStep * index;
-    const x = Math.cos(angle) * ringRadius;
-    const y = Math.sin(angle) * ringRadius;
-    node.group.position.set(x, y, node.group.position.z);
-    node.basePosition = node.group.position.clone();
+  const hasHaloForLayout = (node) =>
+    Boolean(
+      node?.data?.glowRing ||
+        node?.data?.childScene ||
+        node?.data?.docDrillDownPreferred === true
+    );
+  const baseBoundsRadius = (node) => {
+    const baseRadius = Math.max(0, node?.data?.baseRadius ?? node?.data?.radius ?? 0);
+    return baseRadius * (hasHaloForLayout(node) ? ringLayoutDefaults.haloScale : 1);
+  };
+
+  const { safeWidth, safeHeight } = getSafeViewportWorld();
+  const safeRadius = Math.max(1, Math.min(safeWidth, safeHeight) / 2);
+  const frameMargin = 0.94;
+  const center = new THREE.Vector3();
+  nodes.forEach((node) => {
+    center.add(node.group.position);
+  });
+  center.multiplyScalar(1 / nodes.length);
+
+  let scaleByFrame = Infinity;
+  nodes.forEach((node) => {
+    const baseRadius = baseBoundsRadius(node);
+    if (!(baseRadius > 0)) {
+      return;
+    }
+    const radialDistance = node.group.position.distanceTo(center);
+    const available = safeRadius * frameMargin - radialDistance;
+    scaleByFrame = Math.min(scaleByFrame, available / baseRadius);
+  });
+
+  let scaleBySpacing = Infinity;
+  for (let i = 0; i < nodes.length; i += 1) {
+    const nodeA = nodes[i];
+    const radiusA = baseBoundsRadius(nodeA);
+    if (!(radiusA > 0)) {
+      continue;
+    }
+    for (let j = i + 1; j < nodes.length; j += 1) {
+      const nodeB = nodes[j];
+      const radiusB = baseBoundsRadius(nodeB);
+      if (!(radiusB > 0)) {
+        continue;
+      }
+      const centerDistance = nodeA.group.position.distanceTo(nodeB.group.position);
+      const minGap = ringLayoutDefaults.guardBandMin;
+      const denominator = radiusA + radiusB;
+      if (denominator <= 0) {
+        continue;
+      }
+      scaleBySpacing = Math.min(
+        scaleBySpacing,
+        (centerDistance - minGap) / denominator
+      );
+    }
+  }
+
+  const unclampedScale = Math.min(scaleByFrame, scaleBySpacing);
+  const scaleFactor = Number.isFinite(unclampedScale)
+    ? Math.max(0.1, unclampedScale)
+    : 1;
+  nodes.forEach((node) => {
+    node.group.scale.setScalar(scaleFactor);
+    node.baseScale = scaleFactor;
+    if (node.data) {
+      node.data.baseScale = scaleFactor;
+    }
+    if (node.data?.baseRadius) {
+      node.data.radius = node.data.baseRadius * scaleFactor;
+    }
   });
 }
 
@@ -3036,14 +3140,7 @@ function focusOnPointer(clientX, clientY) {
   }
 
   const hasMarkdownPath = !!targetNode.data.markdownPath;
-  const hasManualDocBadge =
-    (typeof targetNode.data.labelBadge === "string" &&
-      targetNode.data.labelBadge.trim().length > 0) ||
-    (typeof targetNode.data.labelBadgeImage === "string" &&
-      targetNode.data.labelBadgeImage.trim().length > 0);
-  const canOpenMarkdown =
-    hasMarkdownPath &&
-    (targetNode.data.markdownDocIconEligible === true || hasManualDocBadge);
+  const canOpenMarkdown = hasMarkdownPath;
 
   if (currentLevel?.sceneId === composerSceneId) {
     const panelId = composerPanelMap.get(targetNode.data.id ?? "");

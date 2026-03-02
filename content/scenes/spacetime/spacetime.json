@@ -21,7 +21,7 @@
         "type": "fixed"
       },
       "labelTitle": "Emergent Metric",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "general_relativity_observables",
@@ -35,7 +35,7 @@
         "type": "fixed"
       },
       "labelTitle": "General Relativity",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "gravitational_waves",
@@ -49,7 +49,7 @@
         "type": "fixed"
       },
       "labelTitle": "Gravitational Waves",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "ppn_parameters",
@@ -63,7 +63,7 @@
         "type": "fixed"
       },
       "labelTitle": "PPN Parameters",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "proper_time_and_time_dilation",
@@ -77,7 +77,7 @@
         "type": "fixed"
       },
       "labelTitle": "Proper Time and Time Dilation",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "singularity_resolution",
@@ -91,7 +91,7 @@
         "type": "fixed"
       },
       "labelTitle": "Singularity Resolution",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "cosmic_censorship_holography",
@@ -107,7 +107,7 @@
         "type": "fixed"
       },
       "labelTitle": "Cosmic Censorship and Holography",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "spacetime_assemblies",
@@ -121,7 +121,7 @@
         "type": "fixed"
       },
       "labelTitle": "Spacetime Assemblies",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "mg",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Magnesium (Mg)",
     "units": "relative",
     "scaleBandLog10m": [

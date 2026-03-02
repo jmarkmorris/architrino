@@ -16,6 +16,47 @@ export function createNodeFactory(deps) {
     return escapeHtml(text).replace(/\n/g, " ");
   }
 
+  function getDefaultDocBadgeSvg() {
+    return (
+      '<svg class="label-badge-svg label-badge-doc" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path d="M5 3H14L19 8V21H5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/>' +
+      '<path d="M14 3V8H19Z" fill="currentColor"/>' +
+      '<path d="M7.5 12.6H16.5M7.5 16.1H16.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="butt"/>' +
+      "</svg>"
+    );
+  }
+
+  function getDiagramBadgeSvg() {
+    return (
+      '<svg class="label-badge-svg label-badge-diagram" viewBox="0 0 24 16" aria-hidden="true" focusable="false">' +
+      '<ellipse cx="12" cy="8" rx="7.2" ry="2.9" fill="none" stroke="currentColor" stroke-width="1.15"/>' +
+      '<ellipse cx="12" cy="8" rx="7.2" ry="2.9" transform="rotate(60 12 8)" fill="none" stroke="currentColor" stroke-width="1.15"/>' +
+      '<ellipse cx="12" cy="8" rx="7.2" ry="2.9" transform="rotate(-60 12 8)" fill="none" stroke="currentColor" stroke-width="1.15"/>' +
+      "</svg>"
+    );
+  }
+
+  function isDocBadgeToken(value) {
+    if (typeof value !== "string") {
+      return false;
+    }
+    const normalized = value.trim().toLowerCase();
+    return (
+      normalized === "doc" ||
+      normalized === "doc-svg" ||
+      normalized === "md" ||
+      normalized === "markdown"
+    );
+  }
+
+  function isDiagramBadgeToken(value) {
+    if (typeof value !== "string") {
+      return false;
+    }
+    const normalized = value.trim().toLowerCase();
+    return normalized === "diagram" || normalized === "branch";
+  }
+
   function parseStructuredLabel(displayName) {
     const raw = String(displayName ?? "").trim();
     let title = raw;
@@ -93,12 +134,12 @@ export function createNodeFactory(deps) {
       typeof node.labelDates === "string" && node.labelDates.trim().length > 0
         ? node.labelDates.trim()
         : parsed.dates;
-    const badgeSymbol =
+    const badgeToken =
       typeof node.labelBadge === "string" && node.labelBadge.trim().length > 0
         ? node.labelBadge.trim()
-        : node.markdownDocIcon
-          ? "📚"
-          : "";
+        : "";
+    const wantsDocSvgBadge = isDocBadgeToken(badgeToken);
+    const wantsDiagramSvgBadge = isDiagramBadgeToken(badgeToken);
     const badgeImage =
       typeof node.labelBadgeImage === "string" && node.labelBadgeImage.trim().length > 0
         ? node.labelBadgeImage.trim()
@@ -123,14 +164,14 @@ export function createNodeFactory(deps) {
       ? `<div class="label-badge-line"><img class="label-badge-image" src="${escapeAttr(
           badgeImage
         )}" alt="${escapeAttr(badgeAlt)}" /></div>`
-      : badgeSymbol
-        ? `<div class="label-badge-line"><span class="label-badge-symbol" aria-hidden="true">${escapeHtml(
-            badgeSymbol
-          )}</span></div>`
+      : wantsDocSvgBadge && node.markdownDocIconEligible === true && node.markdownPath
+        ? `<div class="label-badge-line">${getDefaultDocBadgeSvg()}</div>`
+      : wantsDiagramSvgBadge && node.childScene
+        ? `<div class="label-badge-line">${getDiagramBadgeSvg()}</div>`
         : "";
     label.innerHTML = `<div class="label-title">${escapeHtml(
       labelTitle
-    )}</div>${subtitleHtml}${datesHtml}${badgeHtml}${scaleHtml}${tagHtml}`;
+    )}</div>${subtitleHtml}${datesHtml}${scaleHtml}${tagHtml}${badgeHtml}`;
     return new CSS2DObject(label);
   }
 

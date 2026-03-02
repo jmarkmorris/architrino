@@ -28,7 +28,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "nucleus"
+      "labelTitle": "nucleus",
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_1",
@@ -47,7 +48,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "electron"
+      "labelTitle": "electron",
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_2",
@@ -66,7 +68,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "electron"
+      "labelTitle": "electron",
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_3",
@@ -85,7 +88,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "electron"
+      "labelTitle": "electron",
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_4",
@@ -104,7 +108,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "electron"
+      "labelTitle": "electron",
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_5",
@@ -123,7 +128,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "electron"
+      "labelTitle": "electron",
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_6",
@@ -142,7 +148,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "electron"
+      "labelTitle": "electron",
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_7",
@@ -161,7 +168,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "electron"
+      "labelTitle": "electron",
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_8",
@@ -180,7 +188,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "electron"
+      "labelTitle": "electron",
+      "labelBadge": "diagram"
     }
   ]
 }

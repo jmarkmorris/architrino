@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "hf",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Hafnium (Hf)",
     "units": "relative",
     "scaleBandLog10m": [

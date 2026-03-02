@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "sm",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Samarium (Sm)",
     "units": "relative",
     "scaleBandLog10m": [

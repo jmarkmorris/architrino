@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "ir",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Iridium (Ir)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "rb",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Rubidium (Rb)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "re",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Rhenium (Re)",
     "units": "relative",
     "scaleBandLog10m": [

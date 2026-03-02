@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "tm",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Thulium (Tm)",
     "units": "relative",
     "scaleBandLog10m": [

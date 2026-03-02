@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "np",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Neptunium (Np)",
     "units": "relative",
     "scaleBandLog10m": [

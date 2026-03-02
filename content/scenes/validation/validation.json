@@ -29,7 +29,7 @@
       "color": "#3a5f9f",
       "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "labelTitle": "Architrino SI Base Units",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "constraint_ledger",
@@ -38,7 +38,7 @@
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/validation/constraint-ledger.md",
       "labelTitle": "Constraint Ledger",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "failure_criteria",
@@ -47,7 +47,7 @@
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
       "labelTitle": "Failure Criteria",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "known_tensions",
@@ -55,8 +55,7 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
-      "labelTitle": "Known Tensions",
-      "labelBadge": "📚"
+      "labelTitle": "Known Tensions"
     },
     {
       "id": "no_go_theorems",
@@ -64,8 +63,7 @@
       "radius": 2.688,
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
-      "labelTitle": "No Go Theorems",
-      "labelBadge": "📚"
+      "labelTitle": "No Go Theorems"
     },
     {
       "id": "parameter_ledger",
@@ -74,7 +72,7 @@
       "color": "#6a3c3c",
       "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
       "labelTitle": "Parameter Ledger",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "reaction_ledger",
@@ -83,7 +81,7 @@
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
       "labelTitle": "Reaction Ledger",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "validation_protocols",
@@ -92,7 +90,7 @@
       "color": "#2c567a",
       "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
       "labelTitle": "Validation Protocols",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

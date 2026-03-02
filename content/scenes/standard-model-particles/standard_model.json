@@ -5,6 +5,7 @@
     "kind": "diagram",
     "name": "Standard Model",
     "units": "relative",
+    "layoutMode": "rings",
     "scaleBandLog10m": [
       -19,
       -17
@@ -17,10 +18,11 @@
       "radius": 1.1,
       "color": "RED",
       "position": [
-        -9,
-        8,
+        -3.5,
+        6.062,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/up_quark.json"
       ],
@@ -42,10 +44,11 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        -9,
-        4,
+        3.5,
+        -6.062,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/down_quark.json"
       ],
@@ -67,10 +70,11 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        -9,
-        -4,
+        -6.062,
+        -3.5,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
       ],
@@ -92,10 +96,11 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        -9,
+        -3.2,
         0,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/neutrino.json"
       ],
@@ -117,10 +122,11 @@
       "radius": 1.1,
       "color": "RED",
       "position": [
-        -3,
-        8,
+        0,
+        7,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/charm.json"
       ],
@@ -142,10 +148,11 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        -3,
-        4,
+        0,
+        -7,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/strange.json"
       ],
@@ -167,10 +174,11 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        -3,
-        -4,
+        -7,
+        0,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/muon.json"
       ],
@@ -192,10 +200,11 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        -3,
-        0,
+        -1.6,
+        -2.771,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/muon_neutrino.json"
       ],
@@ -217,10 +226,11 @@
       "radius": 1.1,
       "color": "RED",
       "position": [
-        3,
-        8,
+        3.5,
+        6.062,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/top.json"
       ],
@@ -242,10 +252,11 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        3,
-        4,
+        -3.5,
+        -6.062,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/bottom.json"
       ],
@@ -267,10 +278,11 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        3,
-        -4,
+        -6.062,
+        3.5,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/tau.json"
       ],
@@ -292,10 +304,11 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        3,
-        0,
+        -1.6,
+        2.771,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/tau_neutrino.json"
       ],
@@ -317,10 +330,11 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        15,
-        -4,
+        3.2,
+        0,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -339,10 +353,11 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        15,
-        4,
+        1.6,
+        2.771,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -361,10 +376,11 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        9,
+        7,
         0,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -383,10 +399,11 @@
       "radius": 1.1,
       "color": "RED",
       "position": [
-        9,
-        8,
+        6.062,
+        3.5,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -405,10 +422,11 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        9,
-        4,
+        6.062,
+        -3.5,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -427,10 +445,11 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        9,
-        -4,
+        1.6,
+        -2.771,
         0
       ],
+      "fixedPosition": true,
       "subScenes": [
         "content/scenes/standard-model-particles/higgs_boson.json"
       ],

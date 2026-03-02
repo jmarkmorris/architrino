@@ -52,7 +52,7 @@
       "color": "#3a5f9f",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "labelTitle": "Atomic Spectra",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "atomic_structure",
@@ -61,7 +61,7 @@
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
       "labelTitle": "Atomic Structure",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "condensed_matter",
@@ -70,7 +70,7 @@
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
       "labelTitle": "Condensed Matter",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "displacement_of_spacetime",
@@ -79,7 +79,7 @@
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "labelTitle": "Displacement of Spacetime",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "molecular_geometry",
@@ -87,8 +87,7 @@
       "radius": 2.688,
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
-      "labelTitle": "Molecular Geometry",
-      "labelBadge": "📚"
+      "labelTitle": "Molecular Geometry"
     },
     {
       "id": "nuclear_binding",
@@ -96,8 +95,7 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
-      "labelTitle": "Nuclear Binding",
-      "labelBadge": "📚"
+      "labelTitle": "Nuclear Binding"
     },
     {
       "id": "nucleon_structure",
@@ -105,8 +103,7 @@
       "radius": 2.688,
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-      "labelTitle": "Nucleon Structure",
-      "labelBadge": "📚"
+      "labelTitle": "Nucleon Structure"
     }
   ]
 }

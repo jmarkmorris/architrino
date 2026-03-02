@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "pa",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Protactinium (Pa)",
     "units": "relative",
     "scaleBandLog10m": [

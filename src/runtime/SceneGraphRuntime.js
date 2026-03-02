@@ -137,6 +137,10 @@ export function createSceneGraphRuntime(deps) {
     if (count === 1) {
       return [[0, 0, 0]];
     }
+    const singleRingMaxCount = 12;
+    if (count <= singleRingMaxCount) {
+      return computeExplicitRingPositions(nodes);
+    }
 
     const { maxNodeRadius, requiredChord } = getLayoutPackingMetrics(nodes);
     const maxOuterCount = 14;

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "am",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Americium (Am)",
     "units": "relative",
     "scaleBandLog10m": [

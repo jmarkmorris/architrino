@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "mo",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Molybdenum (Mo)",
     "units": "relative",
     "scaleBandLog10m": [

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "os",
-    "kind": "diagram",
+    "kind": "element",
     "name": "Osmium (Os)",
     "units": "relative",
     "scaleBandLog10m": [
