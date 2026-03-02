@@ -32,7 +32,7 @@
         "type": "fixed"
       },
       "labelTitle": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "measurement_problem_and_collapse",
@@ -46,7 +46,7 @@
         "type": "fixed"
       },
       "labelTitle": "Measurement Problem and Collapse",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
@@ -60,7 +60,7 @@
         "type": "fixed"
       },
       "labelTitle": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
@@ -75,7 +75,7 @@
       },
       "labelTitle": "Pilot-Wave Character: de Broglie–Bohm vs. 𝔸𝔸𝔸",
       "labelDates": "(QM)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "reality_causality_and_navigation",
@@ -89,7 +89,7 @@
         "type": "fixed"
       },
       "labelTitle": "Reality, Causality, and Navigation",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "superposition_mechanism_traditional_vs_architrino_assembly_architecture",
@@ -103,7 +103,7 @@
         "type": "fixed"
       },
       "labelTitle": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "wavefunction_ontology",
@@ -117,7 +117,7 @@
         "type": "fixed"
       },
       "labelTitle": "Wavefunction Ontology",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

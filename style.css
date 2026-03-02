@@ -1451,13 +1451,6 @@ body {
   line-height: 1;
 }
 
-.label-badge-symbol {
-  display: inline-block;
-  font-size: var(--label-badge-size);
-  line-height: 1;
-  vertical-align: middle;
-}
-
 .label-badge-image {
   display: inline-block;
   width: var(--label-badge-size);

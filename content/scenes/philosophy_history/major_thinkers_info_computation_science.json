@@ -18,7 +18,7 @@
       "markdownSection": "Alfred North Whitehead (1861–1947)",
       "labelTitle": "Alfred North Whitehead",
       "labelDates": "(1861–1947)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Process Philosophy"
     },
     {
@@ -31,7 +31,7 @@
       "labelTitle": "Karl Popper",
       "labelSubtitle": "Falsificationism",
       "labelDates": "(1902–1994)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_john_archibald_wheeler_1911_2008_it_from_bit",
@@ -43,7 +43,7 @@
       "labelTitle": "John Archibald Wheeler",
       "labelSubtitle": "\"It from Bit\"",
       "labelDates": "(1911–2008)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_thomas_kuhn_1922_1996_paradigm_shifts",
@@ -55,7 +55,7 @@
       "labelTitle": "Thomas Kuhn",
       "labelSubtitle": "Paradigm Shifts",
       "labelDates": "(1922–1996)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_imre_lakatos_1922_1974_research_programmes",
@@ -67,7 +67,7 @@
       "labelTitle": "Imre Lakatos",
       "labelSubtitle": "Research Programmes",
       "labelDates": "(1922–1974)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_nancy_cartwright_1944_the_dappled_world",
@@ -79,7 +79,7 @@
       "labelTitle": "Nancy Cartwright",
       "labelSubtitle": "The Dappled World",
       "labelDates": "(1944–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_stephen_wolfram_1959_a_new_kind_of_science_wolfram_physics_project",
@@ -90,7 +90,7 @@
       "markdownSection": "Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project",
       "labelTitle": "Stephen Wolfram",
       "labelDates": "(1959–)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Computational Universe"
     }
   ]

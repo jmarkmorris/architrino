@@ -1136,6 +1136,7 @@ const markdownCache = new Map();
 const markdownSectionCache = new Map();
 const markdownTitleCache = new Map();
 const markdownFileSizeCache = new Map();
+const markdownFileCharacterCountCache = new Map();
 const markdownRenderer =
   typeof window !== "undefined" && window.markdownit
     ? window.markdownit({ html: false, linkify: true, breaks: false })
@@ -1152,7 +1153,7 @@ const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "content/markdown/aaa/assemblies/composer.md";
-const markdownDocIconByteThreshold = 1024;
+const markdownDocBadgeCharacterThreshold = 128;
 const markdownGlowByteThreshold = 2048;
 const cacheBustToken = Date.now().toString();
 let appDirector = null;
@@ -1755,6 +1756,32 @@ async function resolveMarkdownFileSize(path) {
   return promise;
 }
 
+async function resolveMarkdownFileCharacterCount(path) {
+  if (!path) {
+    return null;
+  }
+  const normalizedPath = String(path);
+  if (markdownFileCharacterCountCache.has(normalizedPath)) {
+    return markdownFileCharacterCountCache.get(normalizedPath);
+  }
+
+  const promise = fetch(appendCacheBust(normalizedPath))
+    .then(async (response) => {
+      if (!response.ok) {
+        return null;
+      }
+      const text = await response.text();
+      return typeof text === "string" ? text.length : null;
+    })
+    .catch((error) => {
+      console.warn("Failed to resolve markdown character count", normalizedPath, error);
+      return null;
+    });
+
+  markdownFileCharacterCountCache.set(normalizedPath, promise);
+  return promise;
+}
+
 const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   fetchImpl: (...args) => fetch(...args),
   appendCacheBust,
@@ -1795,7 +1822,8 @@ const sceneRepository = new SceneRepository({
   deriveMarkdownConfig,
   buildAutoMarkdownNodes,
   resolveMarkdownFileSize,
-  markdownDocIconMinBytes: markdownDocIconByteThreshold,
+  resolveMarkdownFileCharacterCount,
+  markdownDocBadgeMinChars: markdownDocBadgeCharacterThreshold,
   markdownGlowMinBytes: markdownGlowByteThreshold,
 });
 const sceneBootstrapService = createSceneBootstrapService({

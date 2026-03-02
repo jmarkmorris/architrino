@@ -17,7 +17,7 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Introduction",
       "labelTitle": "Introduction",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "major_thinkers_classical_modern",
@@ -27,8 +27,7 @@
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
       ],
-      "labelTitle": "Classical & Early Modern Metaphysics",
-      "labelBadge": "📚"
+      "labelTitle": "Classical & Early Modern Metaphysics"
     },
     {
       "id": "major_thinkers_relativity_cosmology",
@@ -38,8 +37,7 @@
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json"
       ],
-      "labelTitle": "Relativity, Gravity & Cosmology",
-      "labelBadge": "📚"
+      "labelTitle": "Relativity, Gravity & Cosmology"
     },
     {
       "id": "major_thinkers_quantum_foundations",
@@ -49,8 +47,7 @@
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
       ],
-      "labelTitle": "Quantum Foundations",
-      "labelBadge": "📚"
+      "labelTitle": "Quantum Foundations"
     },
     {
       "id": "major_thinkers_qft_standard_model",
@@ -60,8 +57,7 @@
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
       ],
-      "labelTitle": "Standard Model Architecture",
-      "labelBadge": "📚"
+      "labelTitle": "Standard Model Architecture"
     },
     {
       "id": "major_thinkers_info_computation_science",
@@ -71,8 +67,7 @@
       "subScenes": [
         "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
       ],
-      "labelTitle": "Information + Philosophy of Science",
-      "labelBadge": "📚"
+      "labelTitle": "Information + Philosophy of Science"
     },
     {
       "id": "major_thinkers_summary_table",
@@ -82,7 +77,7 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Summary Table: Vindicated, Challenged, Transcended (Complete)",
       "labelTitle": "Summary Table",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "major_thinkers_conclusion",
@@ -92,7 +87,7 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Conclusion: The Architrino Weltanschauung",
       "labelTitle": "Conclusion",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

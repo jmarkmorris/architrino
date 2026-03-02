@@ -18,7 +18,7 @@
       "markdownSection": "Ernst Mach (1838–1916)",
       "labelTitle": "Ernst Mach",
       "labelDates": "(1838–1916)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Mach's Principle"
     },
     {
@@ -30,7 +30,7 @@
       "markdownSection": "Hendrik Lorentz (1853–1928)",
       "labelTitle": "Hendrik Lorentz",
       "labelDates": "(1853–1928)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Lorentz Ether Theory"
     },
     {
@@ -43,7 +43,7 @@
       "labelTitle": "Albert Einstein",
       "labelSubtitle": "Special and General Relativity",
       "labelDates": "(1879–1955)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_andrei_sakharov_1921_1989_induced_gravity",
@@ -55,7 +55,7 @@
       "labelTitle": "Andrei Sakharov",
       "labelSubtitle": "Induced Gravity",
       "labelDates": "(1921–1989)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_roger_penrose_1931_conformal_cyclic_cosmology_twistor_theory",
@@ -67,7 +67,7 @@
       "labelTitle": "Roger Penrose",
       "labelSubtitle": "CCC / Twistor Theory",
       "labelDates": "(1931–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_alan_guth_1947_cosmic_inflation",
@@ -79,7 +79,7 @@
       "labelTitle": "Alan Guth",
       "labelSubtitle": "Cosmic Inflation",
       "labelDates": "(1947–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_abhay_ashtekar_1949_loop_quantum_gravity",
@@ -91,7 +91,7 @@
       "labelTitle": "Abhay Ashtekar",
       "labelSubtitle": "Loop Quantum Gravity",
       "labelDates": "(1949–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_carlo_rovelli_1956_loop_quantum_gravity",
@@ -103,7 +103,7 @@
       "labelTitle": "Carlo Rovelli",
       "labelSubtitle": "Loop Quantum Gravity",
       "labelDates": "(1956–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_edward_witten_1951_string_theory",
@@ -115,7 +115,7 @@
       "labelTitle": "Edward Witten",
       "labelSubtitle": "String Theory",
       "labelDates": "(1951–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_joseph_polchinski_1954_2018_string_theory",
@@ -127,7 +127,7 @@
       "labelTitle": "Joseph Polchinski",
       "labelSubtitle": "String Theory",
       "labelDates": "(1954–2018)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_lee_smolin_1955_the_trouble_with_physics_temporal_naturalism",
@@ -139,7 +139,7 @@
       "labelTitle": "Lee Smolin",
       "labelSubtitle": "Temporal Naturalism / LQG",
       "labelDates": "(1955–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_erik_verlinde_1962_entropic_gravity",
@@ -151,7 +151,7 @@
       "labelTitle": "Erik Verlinde",
       "labelSubtitle": "Entropic Gravity",
       "labelDates": "(1962–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_sabine_hossenfelder_1976_lost_in_math_critique_of_beauty",
@@ -163,7 +163,7 @@
       "labelTitle": "Sabine Hossenfelder",
       "labelSubtitle": "Critique of Naturalness",
       "labelDates": "(1976–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

@@ -19,7 +19,7 @@
         "type": "fixed"
       },
       "labelTitle": "Noether Core",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "particle_masses",
@@ -31,7 +31,7 @@
         "type": "fixed"
       },
       "labelTitle": "Particle Masses",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "standard_model",
@@ -69,7 +69,7 @@
         "type": "fixed"
       },
       "labelTitle": "Electroweak Bosons",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "gluons",
@@ -81,7 +81,7 @@
         "type": "fixed"
       },
       "labelTitle": "Gluons",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "photons",
@@ -103,7 +103,7 @@
         "type": "fixed"
       },
       "labelTitle": "Mesons",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

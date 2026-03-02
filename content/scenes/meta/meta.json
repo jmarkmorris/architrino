@@ -27,7 +27,7 @@
       "color": "#243d8f",
       "markdownPath": "content/markdown/aaa/archie/about.md",
       "labelTitle": "About",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "meta_glossary",
@@ -37,7 +37,7 @@
       "markdownPath": "content/markdown/aaa/archie/glossary.md",
       "markdownColumns": 1,
       "labelTitle": "Glossary",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "meta_help",
@@ -46,7 +46,7 @@
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/archie/help.md",
       "labelTitle": "Help",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "meta_key",
@@ -55,7 +55,7 @@
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/archie/key.md",
       "labelTitle": "Key",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "meta_mathematical_style_guide",
@@ -64,7 +64,7 @@
       "color": "#3a5f9f",
       "markdownPath": "content/markdown/aaa/archie/mathematical-style-guide.md",
       "labelTitle": "Mathematical Style Guide",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "meta_mathematical_terminology",
@@ -73,7 +73,7 @@
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/archie/mathematical-terminology.md",
       "labelTitle": "Mathematical Terminology",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "meta_navigation",
@@ -82,7 +82,7 @@
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/archie/navigation.md",
       "labelTitle": "Navigation",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "meta_settings",
@@ -91,7 +91,7 @@
       "color": "#6a3c3c",
       "markdownPath": "content/markdown/aaa/archie/settings.md",
       "labelTitle": "Settings",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

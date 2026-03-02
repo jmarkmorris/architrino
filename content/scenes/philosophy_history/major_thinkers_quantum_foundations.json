@@ -18,7 +18,7 @@
       "markdownSection": "Ludwig Boltzmann (1844–1906)",
       "labelTitle": "Ludwig Boltzmann",
       "labelDates": "(1844–1906)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Statistical Mechanics"
     },
     {
@@ -30,7 +30,7 @@
       "markdownSection": "Max Planck (1858–1947)",
       "labelTitle": "Max Planck",
       "labelDates": "(1858–1947)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Quantum Hypothesis"
     },
     {
@@ -43,7 +43,7 @@
       "labelTitle": "Niels Bohr",
       "labelSubtitle": "Copenhagen Interpretation",
       "labelDates": "(1885–1962)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_erwin_schr_dinger_1887_1961",
@@ -54,7 +54,7 @@
       "markdownSection": "Erwin Schrödinger (1887–1961)",
       "labelTitle": "Erwin Schrödinger",
       "labelDates": "(1887–1961)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Wave Mechanics"
     },
     {
@@ -66,7 +66,7 @@
       "markdownSection": "Louis de Broglie (1892–1987)",
       "labelTitle": "Louis de Broglie",
       "labelDates": "(1892–1987)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Matter Waves"
     },
     {
@@ -78,7 +78,7 @@
       "markdownSection": "Werner Heisenberg (1901–1976)",
       "labelTitle": "Werner Heisenberg",
       "labelDates": "(1901–1976)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Uncertainty Principle"
     },
     {
@@ -90,7 +90,7 @@
       "markdownSection": "David Bohm (1917–1992)",
       "labelTitle": "David Bohm",
       "labelDates": "(1917–1992)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Pilot-Wave Theory"
     },
     {
@@ -102,7 +102,7 @@
       "markdownSection": "John Bell (1928–1990)",
       "labelTitle": "John Bell",
       "labelDates": "(1928–1990)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Bell's Theorem"
     },
     {
@@ -115,7 +115,7 @@
       "labelTitle": "Hugh Everett III",
       "labelSubtitle": "Many-Worlds Interpretation",
       "labelDates": "(1930–1982)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_antony_valentini_1965_quantum_nonequilibrium",
@@ -127,7 +127,7 @@
       "labelTitle": "Antony Valentini",
       "labelSubtitle": "Quantum Nonequilibrium",
       "labelDates": "(1965–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_lucien_hardy_1966_quantum_foundations_operational_psi_epistemic",
@@ -139,7 +139,7 @@
       "labelTitle": "Lucien Hardy",
       "labelSubtitle": "Operational Axioms",
       "labelDates": "(1966–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_rob_spekkens_1970_quantum_foundations_operational_psi_epistemic",
@@ -151,7 +151,7 @@
       "labelTitle": "Rob Spekkens",
       "labelSubtitle": "Psi-Epistemic Models",
       "labelDates": "(1970–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_matthew_leifer_1975_quantum_foundations_operational_psi_epistemic",
@@ -163,7 +163,7 @@
       "labelTitle": "Matthew Leifer",
       "labelSubtitle": "Psi-Epistemic Models",
       "labelDates": "(1975–)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     }
   ]
 }

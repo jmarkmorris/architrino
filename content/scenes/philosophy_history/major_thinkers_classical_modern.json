@@ -18,7 +18,7 @@
       "markdownSection": "Heraclitus (c. 535–475 BCE)",
       "labelTitle": "Heraclitus",
       "labelDates": "(c. 535–475 BCE)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Flux / Becoming"
     },
     {
@@ -31,7 +31,7 @@
       "labelTitle": "Democritus",
       "labelSubtitle": "Atomism",
       "labelDates": "(c. 460–370 BCE)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_leucippus_fl_5th_century_bce",
@@ -43,7 +43,7 @@
       "labelTitle": "Leucippus",
       "labelSubtitle": "Atomism",
       "labelDates": "(fl. 5th century BCE)",
-      "labelBadge": "📚"
+      "labelBadge": "doc"
     },
     {
       "id": "thinker_plato_428_348_bce",
@@ -54,7 +54,7 @@
       "markdownSection": "Plato (428–348 BCE)",
       "labelTitle": "Plato",
       "labelDates": "(428–348 BCE)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Theory of Forms"
     },
     {
@@ -66,7 +66,7 @@
       "markdownSection": "Aristotle (384–322 BCE)",
       "labelTitle": "Aristotle",
       "labelDates": "(384–322 BCE)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Hylomorphism"
     },
     {
@@ -78,7 +78,7 @@
       "markdownSection": "Epicurus (341–270 BCE)",
       "labelTitle": "Epicurus",
       "labelDates": "(341–270 BCE)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Atomism"
     },
     {
@@ -90,7 +90,7 @@
       "markdownSection": "René Descartes (1596–1650)",
       "labelTitle": "René Descartes",
       "labelDates": "(1596–1650)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Mind-Body Dualism"
     },
     {
@@ -102,7 +102,7 @@
       "markdownSection": "Baruch Spinoza (1632–1677)",
       "labelTitle": "Baruch Spinoza",
       "labelDates": "(1632–1677)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Substance Monism"
     },
     {
@@ -114,7 +114,7 @@
       "markdownSection": "Isaac Newton (1643–1727)",
       "labelTitle": "Isaac Newton",
       "labelDates": "(1643–1727)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Classical Mechanics"
     },
     {
@@ -126,7 +126,7 @@
       "markdownSection": "Gottfried Wilhelm Leibniz (1646–1716)",
       "labelTitle": "Gottfried Wilhelm Leibniz",
       "labelDates": "(1646–1716)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Monadology"
     },
     {
@@ -138,7 +138,7 @@
       "markdownSection": "David Hume (1711–1776)",
       "labelTitle": "David Hume",
       "labelDates": "(1711–1776)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Empiricism"
     },
     {
@@ -150,7 +150,7 @@
       "markdownSection": "Immanuel Kant (1724–1804)",
       "labelTitle": "Immanuel Kant",
       "labelDates": "(1724–1804)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Transcendental Idealism"
     },
     {
@@ -162,7 +162,7 @@
       "markdownSection": "Pierre-Simon Laplace (1749–1827)",
       "labelTitle": "Pierre-Simon Laplace",
       "labelDates": "(1749–1827)",
-      "labelBadge": "📚",
+      "labelBadge": "doc",
       "labelSubtitle": "Determinism"
     }
   ]
