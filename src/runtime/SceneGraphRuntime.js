@@ -271,6 +271,44 @@ export function createSceneGraphRuntime(deps) {
     return positions;
   }
 
+  function getNodeRingStyle(nodeData) {
+    const ringScale = nodeData.glowRingScale ?? 1.04;
+    const ringThickness =
+      nodeData.glowRingThickness ?? Math.max(0.028, nodeData.radius * 0.06);
+    return { ringScale, ringThickness };
+  }
+
+  function rebuildNodeRingGeometry(nodeData, ringMesh) {
+    if (!ringMesh?.geometry) {
+      return;
+    }
+    const style = getNodeRingStyle(nodeData);
+    ringMesh.geometry.dispose();
+    ringMesh.geometry = new deps.THREE.TorusGeometry(
+      nodeData.radius * style.ringScale,
+      style.ringThickness,
+      12,
+      64
+    );
+  }
+
+  function refreshNodeRingGeometries(node) {
+    if (!node?.data) {
+      return;
+    }
+    if (node.halo) {
+      rebuildNodeRingGeometry(node.data, node.halo);
+    }
+    if (!Array.isArray(node.extraMeshes)) {
+      return;
+    }
+    node.extraMeshes.forEach((entry) => {
+      if (entry?.mesh?.userData?.isGlowRing) {
+        rebuildNodeRingGeometry(node.data, entry.mesh);
+      }
+    });
+  }
+
   function buildLevel(levelId) {
     if (deps.levels.has(levelId)) {
       return deps.levels.get(levelId);
@@ -372,6 +410,7 @@ export function createSceneGraphRuntime(deps) {
           e.mesh.geometry = new deps.THREE.SphereGeometry(avgRadius, 32, 20);
           e.outline.geometry.dispose();
           e.outline.geometry = new deps.THREE.EdgesGeometry(e.mesh.geometry);
+          refreshNodeRingGeometries(e);
         });
         const golden = Math.PI * (3 - Math.sqrt(5));
         const packRadius = Math.max(
@@ -383,6 +422,14 @@ export function createSceneGraphRuntime(deps) {
           const r = packRadius * Math.sqrt((i + 0.35) / nucleons.length);
           const theta = i * golden;
           positions.push(new deps.THREE.Vector3(Math.cos(theta) * r, Math.sin(theta) * r, 0));
+        }
+        if (positions.length) {
+          const centroid = positions
+            .reduce((acc, pos) => acc.add(pos), new deps.THREE.Vector3())
+            .multiplyScalar(1 / positions.length);
+          positions.forEach((pos) => {
+            pos.sub(centroid);
+          });
         }
         const protons = nucleons.filter((n) => n.data.category === "proton");
         const neutrons = nucleons.filter((n) => n.data.category === "neutron");
