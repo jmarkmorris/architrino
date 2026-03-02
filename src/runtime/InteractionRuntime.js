@@ -35,6 +35,12 @@ export function createInteractionRuntime(deps) {
     if (deps.isTransitionActive()) {
       return;
     }
+    if (
+      typeof deps.isPointerWithinInteractiveViewport === "function" &&
+      !deps.isPointerWithinInteractiveViewport(event.clientX, event.clientY)
+    ) {
+      return;
+    }
     deps.canvas.setPointerCapture(event.pointerId);
     activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
 
@@ -127,6 +133,12 @@ export function createInteractionRuntime(deps) {
 
   function onWheel(event) {
     if (!event.ctrlKey || deps.isTransitionActive()) {
+      return;
+    }
+    if (
+      typeof deps.isPointerWithinInteractiveViewport === "function" &&
+      !deps.isPointerWithinInteractiveViewport(event.clientX, event.clientY)
+    ) {
       return;
     }
     event.preventDefault();

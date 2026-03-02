@@ -24,74 +24,89 @@
   </head>
   <body>
     <div id="app">
-      <canvas id="viz"></canvas>
-      <div id="scene-label"></div>
-      <button id="nav-up" type="button" aria-label="Go back">Back</button>
-      <div id="nav-controls">
-        <button id="doc-button" type="button" aria-label="Open scene notes" data-tooltip="Notes">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M7 4h7l4 4v12H7V4zm7 0v4h4"
-              stroke="currentColor"
-              stroke-width="2"
-              fill="none"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            ></path>
-          </svg>
-        </button>
-        <button id="home-button" type="button" aria-label="Go to home">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
-              stroke="currentColor"
-              stroke-width="2"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-          </svg>
-        </button>
-        <button
-          id="meta-button"
-          type="button"
-          aria-label="Open meta ring"
-          aria-pressed="false"
-          onclick="window.openMetaRing ? window.openMetaRing() : document.getElementById('home-button')?.click()"
-          style="width:32px;height:32px;border-radius:8px;border:1px solid rgba(160,170,220,0.25);background:rgba(8,10,18,0.75);color:#f5f7ff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            width="18"
-            height="18"
-            style="pointer-events:none;stroke:currentColor;stroke-width:2;fill:none;"
-          >
-            <circle cx="12" cy="12" r="7.5"></circle>
-            <circle cx="12" cy="12" r="3.5"></circle>
-            <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle>
-          </svg>
-        </button>
-      </div>
-      <div id="scene-search">
-        <button
-          id="scene-search-toggle"
-          type="button"
-          aria-label="Search scenes"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="6.5"></circle>
-            <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
-          </svg>
-        </button>
-        <div id="scene-search-panel" aria-hidden="true">
-          <input
-            id="scene-search-input"
-            type="text"
-            placeholder="Search scenes"
-            autocomplete="off"
-          />
-          <div id="scene-search-results"></div>
+      <div id="scene-layout">
+        <div id="scene-layer-ambient">
+          <canvas id="viz"></canvas>
+        </div>
+        <div id="scene-layer-focus" aria-hidden="true">
+          <div id="scene-focus-sphere"></div>
+        </div>
+        <div id="scene-layer-hud">
+          <div id="scene-hud-top">
+            <div id="scene-hud-left">
+              <div id="scene-label"></div>
+              <button id="nav-up" type="button" aria-label="Go back">Back</button>
+            </div>
+            <div id="scene-hud-right">
+              <div id="scene-search">
+                <button
+                  id="scene-search-toggle"
+                  type="button"
+                  aria-label="Search scenes"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5"></circle>
+                    <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+                  </svg>
+                </button>
+                <div id="scene-search-panel" aria-hidden="true">
+                  <input
+                    id="scene-search-input"
+                    type="text"
+                    placeholder="Search scenes"
+                    autocomplete="off"
+                  />
+                  <div id="scene-search-results"></div>
+                </div>
+              </div>
+              <div id="nav-controls">
+                <button id="doc-button" type="button" aria-label="Open scene notes" data-tooltip="Notes">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M7 4h7l4 4v12H7V4zm7 0v4h4"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linejoin="round"
+                      stroke-linecap="round"
+                    ></path>
+                  </svg>
+                </button>
+                <button id="home-button" type="button" aria-label="Go to home">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  id="meta-button"
+                  type="button"
+                  aria-label="Open meta ring"
+                  aria-pressed="false"
+                  onclick="window.openMetaRing ? window.openMetaRing() : document.getElementById('home-button')?.click()"
+                  style="width:32px;height:32px;border-radius:8px;border:1px solid rgba(160,170,220,0.25);background:rgba(8,10,18,0.75);color:#f5f7ff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    width="18"
+                    height="18"
+                    style="pointer-events:none;stroke:currentColor;stroke-width:2;fill:none;"
+                  >
+                    <circle cx="12" cy="12" r="7.5"></circle>
+                    <circle cx="12" cy="12" r="3.5"></circle>
+                    <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div id="detail-panel" aria-hidden="true">

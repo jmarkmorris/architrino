@@ -45,6 +45,7 @@ const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
 const sceneLabel = document.getElementById("scene-label");
+const sceneFocusSphere = document.getElementById("scene-focus-sphere");
 const sceneSearch = document.getElementById("scene-search");
 const sceneSearchToggle = document.getElementById("scene-search-toggle");
 const sceneSearchPanel = document.getElementById("scene-search-panel");
@@ -108,7 +109,7 @@ const composerCameraFlightToggle = document.getElementById("composer-camera-flig
 const hud = document.getElementById("hud");
 const infoDrawer = document.getElementById("info-drawer");
 const infoBody = document.getElementById("info-body");
-const rootLayoutMarginPx = { x: 160, y: 140 };
+const defaultRootLayoutMarginPx = { x: 160, y: 140 };
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -1865,18 +1866,46 @@ function computeWarpScaleForLevel(level, overshoot = 1.25) {
   return Math.max(1.4, base * overshoot);
 }
 
+function getFocusSphereMetrics() {
+  if (sceneFocusSphere) {
+    const rect = sceneFocusSphere.getBoundingClientRect();
+    const diameter = Math.min(rect.width, rect.height);
+    if (Number.isFinite(diameter) && diameter > 0) {
+      return {
+        centerX: rect.left + rect.width / 2,
+        centerY: rect.top + rect.height / 2,
+        radius: diameter / 2,
+      };
+    }
+  }
+
+  const safeWidth = Math.max(2, window.innerWidth - defaultRootLayoutMarginPx.x * 2);
+  const safeHeight = Math.max(2, window.innerHeight - defaultRootLayoutMarginPx.y * 2);
+  const diameter = Math.min(safeWidth, safeHeight);
+  return {
+    centerX: window.innerWidth / 2,
+    centerY: window.innerHeight / 2,
+    radius: diameter / 2,
+  };
+}
+
+function isPointerWithinInteractiveViewport(clientX, clientY, paddingPx = 0) {
+  const { centerX, centerY, radius } = getFocusSphereMetrics();
+  const effectiveRadius = Math.max(0, radius - paddingPx);
+  const dx = clientX - centerX;
+  const dy = clientY - centerY;
+  return dx * dx + dy * dy <= effectiveRadius * effectiveRadius;
+}
+
 function getSafeViewportWorld() {
   const aspect = window.innerWidth / window.innerHeight;
   const viewWidth = baseViewHeight * aspect;
   const worldPerPixel = viewWidth / Math.max(window.innerWidth, 1);
-  const safeWidth = Math.max(
-    2,
-    viewWidth - 2 * (rootLayoutMarginPx.x * worldPerPixel)
-  );
-  const safeHeight = Math.max(
-    2,
-    baseViewHeight - 2 * (rootLayoutMarginPx.y * worldPerPixel)
-  );
+  const { radius } = getFocusSphereMetrics();
+  const safeDiameterPx = Math.max(2, radius * 2);
+  const safeWorldDiameter = safeDiameterPx * worldPerPixel;
+  const safeWidth = Math.max(2, safeWorldDiameter);
+  const safeHeight = Math.max(2, safeWorldDiameter);
   return { safeWidth, safeHeight };
 }
 
@@ -2020,12 +2049,10 @@ function computeFitZoomForLevel(level) {
     return camera.zoom;
   }
 
-  const aspect = window.innerWidth / window.innerHeight;
-  const viewHeight = baseViewHeight;
-  const viewWidth = baseViewHeight * aspect;
-  const marginFactor = 0.8;
-  const zoomX = (viewWidth * marginFactor) / Math.max(size.x, 0.01);
-  const zoomY = (viewHeight * marginFactor) / Math.max(size.y, 0.01);
+  const { safeWidth, safeHeight } = getSafeViewportWorld();
+  const marginFactor = 0.92;
+  const zoomX = (safeWidth * marginFactor) / Math.max(size.x, 0.01);
+  const zoomY = (safeHeight * marginFactor) / Math.max(size.y, 0.01);
   return clampZoom(Math.min(zoomX, zoomY));
 }
 
@@ -2764,6 +2791,9 @@ function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
     return false;
   }
+  if (!isPointerWithinInteractiveViewport(clientX, clientY)) {
+    return false;
+  }
   const nextGenInfo = getNextGenerationInfo(currentLevel);
   if (nextGenInfo && currentLevel.ringTargets?.length) {
     const rect = canvas.getBoundingClientRect();
@@ -2876,6 +2906,9 @@ function updateDetailHover(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
     return;
   }
+  if (!isPointerWithinInteractiveViewport(clientX, clientY)) {
+    return;
+  }
   if (!detailPanel) {
     return;
   }
@@ -2904,6 +2937,10 @@ function updateDetailHover(clientX, clientY) {
 
 function updateDecayHover(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
+    return;
+  }
+  if (!isPointerWithinInteractiveViewport(clientX, clientY)) {
+    hideHoverTooltip();
     return;
   }
   const nextGenInfo = getNextGenerationInfo(currentLevel);
@@ -2952,6 +2989,7 @@ const interactionRuntime = createInteractionRuntime({
   focusOnPointer,
   updateDetailHover,
   updateDecayHover,
+  isPointerWithinInteractiveViewport,
   setLastZoomGestureTime: (value) => {
     lastZoomGestureTime = value;
   },
