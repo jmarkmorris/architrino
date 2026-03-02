@@ -26,6 +26,16 @@ export function createNodeFactory(deps) {
     );
   }
 
+  function getDiagramBadgeSvg() {
+    return (
+      '<svg class="label-badge-svg label-badge-diagram" viewBox="0 0 24 16" aria-hidden="true" focusable="false">' +
+      '<ellipse cx="12" cy="8" rx="7.2" ry="2.9" fill="none" stroke="currentColor" stroke-width="1.15"/>' +
+      '<ellipse cx="12" cy="8" rx="7.2" ry="2.9" transform="rotate(60 12 8)" fill="none" stroke="currentColor" stroke-width="1.15"/>' +
+      '<ellipse cx="12" cy="8" rx="7.2" ry="2.9" transform="rotate(-60 12 8)" fill="none" stroke="currentColor" stroke-width="1.15"/>' +
+      "</svg>"
+    );
+  }
+
   function isDocBadgeToken(value) {
     if (typeof value !== "string") {
       return false;
@@ -37,6 +47,14 @@ export function createNodeFactory(deps) {
       normalized === "md" ||
       normalized === "markdown"
     );
+  }
+
+  function isDiagramBadgeToken(value) {
+    if (typeof value !== "string") {
+      return false;
+    }
+    const normalized = value.trim().toLowerCase();
+    return normalized === "diagram" || normalized === "branch";
   }
 
   function parseStructuredLabel(displayName) {
@@ -121,6 +139,7 @@ export function createNodeFactory(deps) {
         ? node.labelBadge.trim()
         : "";
     const wantsDocSvgBadge = isDocBadgeToken(badgeToken);
+    const wantsDiagramSvgBadge = isDiagramBadgeToken(badgeToken);
     const badgeImage =
       typeof node.labelBadgeImage === "string" && node.labelBadgeImage.trim().length > 0
         ? node.labelBadgeImage.trim()
@@ -147,10 +166,12 @@ export function createNodeFactory(deps) {
         )}" alt="${escapeAttr(badgeAlt)}" /></div>`
       : wantsDocSvgBadge && node.markdownDocIconEligible === true && node.markdownPath
         ? `<div class="label-badge-line">${getDefaultDocBadgeSvg()}</div>`
+      : wantsDiagramSvgBadge && node.childScene
+        ? `<div class="label-badge-line">${getDiagramBadgeSvg()}</div>`
         : "";
     label.innerHTML = `<div class="label-title">${escapeHtml(
       labelTitle
-    )}</div>${subtitleHtml}${datesHtml}${badgeHtml}${scaleHtml}${tagHtml}`;
+    )}</div>${subtitleHtml}${datesHtml}${scaleHtml}${tagHtml}${badgeHtml}`;
     return new CSS2DObject(label);
   }
 

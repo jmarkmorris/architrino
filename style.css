@@ -1473,6 +1473,13 @@ body {
   height: calc(var(--label-badge-size) * 2.2);
 }
 
+.label-badge-diagram {
+  color: #eef4ff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.65));
+  width: calc(var(--label-badge-size) * 2.5);
+  height: calc(var(--label-badge-size) * 1.9);
+}
+
 .label-scale {
   font-size: var(--label-scale-size);
   opacity: 0.75;
