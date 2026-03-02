@@ -7,16 +7,11 @@ export function createMarkdownRuntime(deps) {
     markdownRenderer,
     markdownCache,
     markdownSectionCache,
-    infoBody,
-    infoMarkdownPath,
-    hud,
-    infoDrawer,
     extractMarkdownSection,
   } = deps;
 
   let activeMarkdownPath = null;
   let markdownTwoColumns = true;
-  let infoDrawerOpen = false;
 
   function escapeHtml(text) {
     return String(text)
@@ -180,70 +175,10 @@ export function createMarkdownRuntime(deps) {
     typesetMarkdown();
   }
 
-  async function renderInfoDrawer() {
-    if (!infoBody) {
-      return;
-    }
-    let html = markdownCache.get(infoMarkdownPath);
-    if (!html) {
-      try {
-        const response = await fetch(infoMarkdownPath);
-        if (!response.ok) {
-          throw new Error(`Failed to load info markdown: ${infoMarkdownPath}`);
-        }
-        const text = await response.text();
-        if (markdownRenderer) {
-          const { markdown: protectedMarkdown, protectedSegments } =
-            protectMathSegments(text);
-          html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
-        } else {
-          html = `<pre>${escapeHtml(text)}</pre>`;
-        }
-        markdownCache.set(infoMarkdownPath, html);
-      } catch (error) {
-        console.error(error);
-        html = `<p>Unable to load info.</p>`;
-      }
-    }
-    infoBody.innerHTML = html;
-  }
-
-  async function setInfoDrawer(open) {
-    if (!hud || !infoDrawer) {
-      return;
-    }
-    if (infoDrawerOpen === open) {
-      return;
-    }
-    infoDrawerOpen = open;
-    hud.classList.toggle("is-open", infoDrawerOpen);
-    hud.setAttribute("aria-expanded", infoDrawerOpen ? "true" : "false");
-    infoDrawer.classList.toggle("is-open", infoDrawerOpen);
-    infoDrawer.setAttribute("aria-hidden", infoDrawerOpen ? "false" : "true");
-    if (infoDrawerOpen) {
-      await renderInfoDrawer();
-    }
-  }
-
-  async function toggleInfoDrawer() {
-    if (!hud || !infoDrawer) {
-      return;
-    }
-    await setInfoDrawer(!infoDrawerOpen);
-  }
-
-  function isInfoDrawerOpen() {
-    return infoDrawerOpen;
-  }
-
   return {
     hideMarkdownPanel,
     applyMarkdownLayout,
     toggleMarkdownLayout,
     showMarkdownPanel,
-    renderInfoDrawer,
-    setInfoDrawer,
-    toggleInfoDrawer,
-    isInfoDrawerOpen,
   };
 }

@@ -106,9 +106,6 @@ const composerCameraWaypointAdd = document.getElementById("composer-camera-waypo
 const composerCameraWaypointClear = document.getElementById("composer-camera-waypoint-clear");
 const composerCameraWaypointCount = document.getElementById("composer-camera-waypoint-count");
 const composerCameraFlightToggle = document.getElementById("composer-camera-flight-toggle");
-const hud = document.getElementById("hud");
-const infoDrawer = document.getElementById("info-drawer");
-const infoBody = document.getElementById("info-body");
 const defaultRootLayoutMarginPx = { x: 160, y: 140 };
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
@@ -1145,7 +1142,6 @@ if (markdownRenderer) {
 }
 const markdownManifestPath = "content/markdown/markdown_index.json";
 const sceneGraphManifestPath = "content/graph/scene_graph.json";
-const infoMarkdownPath = "info.md";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const metaScenePath = "content/scenes/meta/meta.json";
 const composerSceneId = "composer";
@@ -1483,10 +1479,6 @@ const markdownRuntime = createMarkdownRuntime({
   markdownRenderer,
   markdownCache,
   markdownSectionCache,
-  infoBody,
-  infoMarkdownPath,
-  hud,
-  infoDrawer,
   extractMarkdownSection,
 });
 
@@ -2762,7 +2754,6 @@ const sceneSearchUiRuntime = createSceneSearchUiRuntime({
 });
 const scenePanelUiRuntime = createScenePanelUiRuntime({
   docButton,
-  hud,
   detailClose,
   markdownClose,
   markdownDocButton,
