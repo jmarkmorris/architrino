@@ -11,6 +11,7 @@
 - the P and N in the atoms are overlapping on boron and maybe others?
 - composer should use the same frame elements in the corners.
 - should we have a zoom out button?
+- new or changed icons?
 
 ## Sorta Sorted List (i.e., non-linear)
 

@@ -3035,6 +3035,16 @@ function focusOnPointer(clientX, clientY) {
     return false;
   }
 
+  const hasMarkdownPath = !!targetNode.data.markdownPath;
+  const hasManualDocBadge =
+    (typeof targetNode.data.labelBadge === "string" &&
+      targetNode.data.labelBadge.trim().length > 0) ||
+    (typeof targetNode.data.labelBadgeImage === "string" &&
+      targetNode.data.labelBadgeImage.trim().length > 0);
+  const canOpenMarkdown =
+    hasMarkdownPath &&
+    (targetNode.data.markdownDocIconEligible === true || hasManualDocBadge);
+
   if (currentLevel?.sceneId === composerSceneId) {
     const panelId = composerPanelMap.get(targetNode.data.id ?? "");
     if (panelId) {
@@ -3047,8 +3057,7 @@ function focusOnPointer(clientX, clientY) {
 
   const prefersDocDrillDown =
     targetNode.data.docDrillDownPreferred === true &&
-    !!targetNode.data.markdownPath &&
-    targetNode.data.markdownDocIconEligible === true;
+    canOpenMarkdown;
 
   if (prefersDocDrillDown) {
     closeDetailPanel();
@@ -3075,10 +3084,7 @@ function focusOnPointer(clientX, clientY) {
     closeDetailPanel();
     hideHoverTooltip();
     startLevelTransitionFromNode(targetNode);
-  } else if (
-    targetNode.data.markdownPath &&
-    targetNode.data.markdownDocIconEligible === true
-  ) {
+  } else if (canOpenMarkdown) {
     closeDetailPanel();
     hideHoverTooltip();
     const readerSceneId = markdownSceneRegistry.ensureMarkdownReaderScene(targetNode.data);
