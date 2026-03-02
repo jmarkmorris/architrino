@@ -16,7 +16,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Quantum"
     },
     {
       "id": "binary_dynamics",
@@ -28,7 +29,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Binary Dynamics",
+      "labelBadge": "📚"
     },
     {
       "id": "causal_action_functional",
@@ -40,7 +43,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Causal Action Functional",
+      "labelBadge": "📚"
     },
     {
       "id": "effective_lagrangian",
@@ -52,7 +57,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Effective Lagrangian",
+      "labelBadge": "📚"
     },
     {
       "id": "kinetic_and_potential_energy",
@@ -64,7 +71,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Kinetic and Potential Energy",
+      "labelBadge": "📚"
     },
     {
       "id": "emergence_of_u_1_su_2",
@@ -76,7 +85,10 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Emergence of U /SU(2)",
+      "labelDates": "(1)",
+      "labelBadge": "📚"
     },
     {
       "id": "gauge_symmetries",
@@ -88,7 +100,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Gauge Symmetries",
+      "labelBadge": "📚"
     },
     {
       "id": "mapping_planck_scale",
@@ -100,7 +114,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Mapping Planck Scale",
+      "labelBadge": "📚"
     },
     {
       "id": "master_equation_of_motion",
@@ -112,7 +128,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Master Equation of Motion",
+      "labelBadge": "📚"
     },
     {
       "id": "mode_taxonomy",
@@ -124,7 +142,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Mode Taxonomy",
+      "labelBadge": "📚"
     },
     {
       "id": "tri_binary_dynamics",
@@ -136,7 +156,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Tri-Binary Dynamics",
+      "labelBadge": "📚"
     }
   ]
 }

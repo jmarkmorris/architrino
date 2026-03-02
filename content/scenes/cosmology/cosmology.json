@@ -19,7 +19,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "BBN Constraints",
+      "labelBadge": "📚"
     },
     {
       "id": "cmb",
@@ -31,7 +33,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "CMB",
+      "labelBadge": "📚"
     },
     {
       "id": "cosmology_ontology",
@@ -43,7 +47,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Cosmology Ontology",
+      "labelBadge": "📚"
     },
     {
       "id": "dark_energy",
@@ -55,7 +61,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Dark Energy",
+      "labelBadge": "📚"
     },
     {
       "id": "dark_matter",
@@ -67,7 +75,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Dark Matter",
+      "labelBadge": "📚"
     },
     {
       "id": "expansion_mechanism",
@@ -79,7 +89,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Expansion Mechanism",
+      "labelBadge": "📚"
     },
     {
       "id": "hubble_s8_tensions",
@@ -91,7 +103,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Hubble and S8 Tensions",
+      "labelBadge": "📚"
     },
     {
       "id": "inflation_model",
@@ -103,7 +117,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Inflation Model",
+      "labelBadge": "📚"
     },
     {
       "id": "structure_formation",
@@ -115,7 +131,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Structure Formation",
+      "labelBadge": "📚"
     }
   ]
 }

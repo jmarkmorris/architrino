@@ -19,7 +19,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Emergent Metric",
+      "labelBadge": "📚"
     },
     {
       "id": "general_relativity_observables",
@@ -31,7 +33,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "General Relativity",
+      "labelBadge": "📚"
     },
     {
       "id": "gravitational_waves",
@@ -43,7 +47,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Gravitational Waves",
+      "labelBadge": "📚"
     },
     {
       "id": "ppn_parameters",
@@ -55,7 +61,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "PPN Parameters",
+      "labelBadge": "📚"
     },
     {
       "id": "proper_time_and_time_dilation",
@@ -67,7 +75,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Proper Time and Time Dilation",
+      "labelBadge": "📚"
     },
     {
       "id": "singularity_resolution",
@@ -79,7 +89,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Singularity Resolution",
+      "labelBadge": "📚"
     },
     {
       "id": "cosmic_censorship_holography",
@@ -93,7 +105,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Cosmic Censorship and Holography",
+      "labelBadge": "📚"
     },
     {
       "id": "spacetime_assemblies",
@@ -105,7 +119,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Spacetime Assemblies",
+      "labelBadge": "📚"
     }
   ]
 }

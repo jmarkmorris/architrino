@@ -18,16 +18,17 @@
       "radius": 1.4,
       "color": "#a50041",
       "position": [
-        0.0,
-        0.0,
-        0.0
+        0,
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/nucleus.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "nucleus"
     },
     {
       "id": "electron_1",
@@ -36,16 +37,17 @@
       "radius": 0.9,
       "color": "BLUE",
       "position": [
-        5.0,
-        0.0,
-        0.0
+        5,
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "electron"
     },
     {
       "id": "electron_2",
@@ -56,14 +58,15 @@
       "position": [
         3.536,
         3.536,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "electron"
     },
     {
       "id": "electron_3",
@@ -72,16 +75,17 @@
       "radius": 0.9,
       "color": "BLUE",
       "position": [
-        0.0,
-        5.0,
-        0.0
+        0,
+        5,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "electron"
     },
     {
       "id": "electron_4",
@@ -92,14 +96,15 @@
       "position": [
         -3.536,
         3.536,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "electron"
     },
     {
       "id": "electron_5",
@@ -108,16 +113,17 @@
       "radius": 0.9,
       "color": "BLUE",
       "position": [
-        -5.0,
-        0.0,
-        0.0
+        -5,
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "electron"
     },
     {
       "id": "electron_6",
@@ -128,14 +134,15 @@
       "position": [
         -3.536,
         -3.536,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "electron"
     },
     {
       "id": "electron_7",
@@ -144,16 +151,17 @@
       "radius": 0.9,
       "color": "BLUE",
       "position": [
-        -0.0,
-        -5.0,
-        0.0
+        0,
+        -5,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "electron"
     },
     {
       "id": "electron_8",
@@ -164,14 +172,15 @@
       "position": [
         3.536,
         -3.536,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "electron"
     }
   ]
 }

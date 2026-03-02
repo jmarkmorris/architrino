@@ -19,14 +19,15 @@
       "radius": 1.2,
       "color": "RED",
       "position": [
-        0.0,
-        0.0,
-        0.0
+        0,
+        0,
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Positrino"
     }
   ]
 }

@@ -5,7 +5,10 @@
     "kind": "diagram",
     "name": "Molecule",
     "units": "relative",
-    "scaleBandLog10m": [-9, -6]
+    "scaleBandLog10m": [
+      -9,
+      -6
+    ]
   },
   "objects": [
     {
@@ -14,9 +17,16 @@
       "scaleExponent": -8,
       "radius": 1.2,
       "color": "#3f5f8a",
-      "position": [4.5, 0.0, 0.0],
+      "position": [
+        4.5,
+        0,
+        0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "DNA"
     },
     {
       "id": "protein",
@@ -24,19 +34,33 @@
       "scaleExponent": -8,
       "radius": 1.1,
       "color": "#327a5e",
-      "position": [-2.25, 3.9, 0.0],
+      "position": [
+        -2.25,
+        3.9,
+        0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "protein"
     },
     {
       "id": "water",
       "label": "water",
       "scaleExponent": -9,
-      "radius": 1.0,
+      "radius": 1,
       "color": "#2c6c7e",
-      "position": [-2.25, -3.9, 0.0],
+      "position": [
+        -2.25,
+        -3.9,
+        0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "water"
     }
   ]
 }

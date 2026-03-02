@@ -19,14 +19,15 @@
       "radius": 1.2,
       "color": "BLUE",
       "position": [
-        0.0,
-        0.0,
-        0.0
+        0,
+        0,
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Electrino"
     }
   ]
 }

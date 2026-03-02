@@ -1465,21 +1465,6 @@ body {
   vertical-align: middle;
 }
 
-.label-doc-icon {
-  display: inline-block;
-  margin-right: 0.22em;
-  font-size: 0.84em;
-  vertical-align: 0.04em;
-  line-height: 1;
-}
-
-.label-doc-icon-line {
-  display: block;
-  margin-top: 2px;
-  font-size: 0.84em;
-  line-height: 1;
-}
-
 .label-scale {
   font-size: var(--label-scale-size);
   opacity: 0.75;

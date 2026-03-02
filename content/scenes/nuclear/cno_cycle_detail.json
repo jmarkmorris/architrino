@@ -142,14 +142,15 @@
       "radius": 1.3,
       "color": "#3a5f9f",
       "position": [
-        0.0,
+        0,
         8.12,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "C-12"
     },
     {
       "id": "n13",
@@ -161,12 +162,13 @@
       "position": [
         7.04,
         4.06,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "N-13"
     },
     {
       "id": "c13",
@@ -178,12 +180,13 @@
       "position": [
         7.04,
         -4.06,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "C-13"
     },
     {
       "id": "n14",
@@ -193,14 +196,15 @@
       "radius": 1.3,
       "color": "#3a5f9f",
       "position": [
-        0.0,
+        0,
         -8.12,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "N-14"
     },
     {
       "id": "o15",
@@ -212,12 +216,13 @@
       "position": [
         -7.04,
         -4.06,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "O-15"
     },
     {
       "id": "n15",
@@ -229,12 +234,13 @@
       "position": [
         -7.04,
         4.06,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "N-15"
     },
     {
       "id": "r1_c12_p_n13",
@@ -247,12 +253,13 @@
       "position": [
         3.19,
         5.53,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "C12 + p"
     },
     {
       "id": "r2_n13_decay",
@@ -264,13 +271,14 @@
       "color": "#7a4a1f",
       "position": [
         6.38,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "N13 decay"
     },
     {
       "id": "r3_c13_p_n14",
@@ -283,12 +291,13 @@
       "position": [
         3.19,
         -5.53,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "C13 + p"
     },
     {
       "id": "r4_n14_p_o15",
@@ -301,12 +310,13 @@
       "position": [
         -3.19,
         -5.53,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "N14 + p"
     },
     {
       "id": "r5_o15_decay",
@@ -318,13 +328,14 @@
       "color": "#7a4a1f",
       "position": [
         -6.38,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "O15 decay"
     },
     {
       "id": "r6_n15_p_c12_he4",
@@ -337,12 +348,13 @@
       "position": [
         -3.19,
         5.53,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "N15 + p"
     },
     {
       "id": "p1",
@@ -355,19 +367,21 @@
       "position": [
         3.66,
         8.6,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "H+",
+      "labelDates": "(proton)"
     },
     {
       "id": "gamma1",
-      "label": "\u03b3",
-      "shortName": "\u03b3",
+      "label": "γ",
+      "shortName": "γ",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -375,12 +389,13 @@
       "position": [
         5.93,
         7.64,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "γ"
     },
     {
       "id": "eplus2",
@@ -393,17 +408,18 @@
       "position": [
         9.44,
         1.28,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "e+"
     },
     {
       "id": "nu2",
-      "label": "\u03bd",
-      "shortName": "\u03bd",
+      "label": "ν",
+      "shortName": "ν",
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
@@ -411,14 +427,15 @@
       "position": [
         9.44,
         -1.28,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/neutrino.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "ν"
     },
     {
       "id": "p3",
@@ -431,19 +448,21 @@
       "position": [
         3.66,
         -8.6,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "H+",
+      "labelDates": "(proton)"
     },
     {
       "id": "gamma3",
-      "label": "\u03b3",
-      "shortName": "\u03b3",
+      "label": "γ",
+      "shortName": "γ",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -451,12 +470,13 @@
       "position": [
         5.93,
         -7.64,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "γ"
     },
     {
       "id": "p4",
@@ -469,19 +489,21 @@
       "position": [
         -3.66,
         -8.6,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "H+",
+      "labelDates": "(proton)"
     },
     {
       "id": "gamma4",
-      "label": "\u03b3",
-      "shortName": "\u03b3",
+      "label": "γ",
+      "shortName": "γ",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -489,12 +511,13 @@
       "position": [
         -5.93,
         -7.64,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "γ"
     },
     {
       "id": "eplus5",
@@ -507,17 +530,18 @@
       "position": [
         -9.44,
         1.28,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "e+"
     },
     {
       "id": "nu5",
-      "label": "\u03bd",
-      "shortName": "\u03bd",
+      "label": "ν",
+      "shortName": "ν",
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
@@ -525,14 +549,15 @@
       "position": [
         -9.44,
         -1.28,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/neutrino.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "ν"
     },
     {
       "id": "p6",
@@ -545,14 +570,16 @@
       "position": [
         -3.66,
         8.6,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "H+",
+      "labelDates": "(proton)"
     },
     {
       "id": "he4",
@@ -565,12 +592,13 @@
       "position": [
         -5.93,
         7.64,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "He-4"
     }
   ]
 }

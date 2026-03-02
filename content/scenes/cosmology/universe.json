@@ -5,7 +5,10 @@
     "kind": "branching",
     "name": "Universe",
     "units": "relative",
-    "scaleBandLog10m": [26, 27]
+    "scaleBandLog10m": [
+      26,
+      27
+    ]
   },
   "objects": [
     {
@@ -14,9 +17,18 @@
       "scaleExponent": 23,
       "radius": 1.6,
       "color": "#243d8f",
-      "position": [6.0, 0.0, 0.0],
-      "subScenes": ["content/scenes/cosmology/galaxy_cluster.json"],
-      "motion": { "type": "fixed" }
+      "position": [
+        6,
+        0,
+        0
+      ],
+      "subScenes": [
+        "content/scenes/cosmology/galaxy_cluster.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "galaxy cluster"
     },
     {
       "id": "cosmic_web",
@@ -24,9 +36,18 @@
       "scaleExponent": 25,
       "radius": 1.4,
       "color": "#2f4f7a",
-      "position": [-3.0, 5.2, 0.0],
-      "subScenes": ["content/scenes/cosmology/galaxy_cluster.json"],
-      "motion": { "type": "fixed" }
+      "position": [
+        -3,
+        5.2,
+        0
+      ],
+      "subScenes": [
+        "content/scenes/cosmology/galaxy_cluster.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "cosmic web"
     },
     {
       "id": "voids",
@@ -34,9 +55,16 @@
       "scaleExponent": 25,
       "radius": 1.4,
       "color": "#1c2a4f",
-      "position": [-3.0, -5.2, 0.0],
+      "position": [
+        -3,
+        -5.2,
+        0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "voids"
     }
   ]
 }

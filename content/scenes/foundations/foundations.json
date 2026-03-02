@@ -19,7 +19,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Absolute Time Defense",
+      "labelBadge": "📚"
     },
     {
       "id": "bootstrapping_the_absolute_frame",
@@ -31,7 +33,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Bootstrapping the Absolute Frame",
+      "labelBadge": "📚"
     },
     {
       "id": "emergence_of_structure",
@@ -43,7 +47,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Emergence of Structure",
+      "labelBadge": "📚"
     },
     {
       "id": "euclidean_void",
@@ -55,7 +61,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Euclidean Void",
+      "labelBadge": "📚"
     },
     {
       "id": "foundational_ontology",
@@ -67,7 +75,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Foundational Ontology",
+      "labelBadge": "📚"
     }
   ]
 }

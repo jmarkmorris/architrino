@@ -14,9 +14,9 @@
       "radius": 0.9,
       "color": "RED",
       "position": [
-        -6.0,
+        -6,
         4.6,
-        0.0
+        0
       ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
@@ -25,7 +25,9 @@
       },
       "subScenes": [
         "content/scenes/nuclear/proton.json"
-      ]
+      ],
+      "labelTitle": "Hydrogen",
+      "labelDates": "(H+)"
     },
     {
       "id": "helium_ion",
@@ -33,16 +35,18 @@
       "radius": 0.9,
       "color": "#365e75",
       "position": [
-        -2.0,
+        -2,
         4.6,
-        0.0
+        0
       ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^10-10^12 km^-3",
         "classification": "Ionized gas"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "Helium",
+      "labelDates": "(He2+)"
     },
     {
       "id": "thermal_electron",
@@ -50,9 +54,9 @@
       "radius": 0.9,
       "color": "BLUE",
       "position": [
-        2.0,
+        2,
         4.6,
-        0.0
+        0
       ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
@@ -61,7 +65,9 @@
       },
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
-      ]
+      ],
+      "labelTitle": "Electron",
+      "labelDates": "(thermal)"
     },
     {
       "id": "oxygen_ion",
@@ -69,16 +75,18 @@
       "radius": 0.9,
       "color": "#7b5a2c",
       "position": [
-        6.0,
+        6,
         4.6,
-        0.0
+        0
       ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^7-10^9 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "Oxygen",
+      "labelDates": "(O7+/O8+)"
     },
     {
       "id": "neon_ion",
@@ -86,16 +94,18 @@
       "radius": 0.9,
       "color": "#7b5a2c",
       "position": [
-        -6.0,
+        -6,
         1.5,
-        0.0
+        0
       ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^6-10^8 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "Neon",
+      "labelDates": "(Ne9+/Ne10+)"
     },
     {
       "id": "magnesium_ion",
@@ -103,16 +113,18 @@
       "radius": 0.9,
       "color": "#7b5a2c",
       "position": [
-        -2.0,
+        -2,
         1.5,
-        0.0
+        0
       ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^6-10^8 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "Magnesium",
+      "labelDates": "(Mg11+/Mg12+)"
     },
     {
       "id": "silicon_ion",
@@ -120,16 +132,18 @@
       "radius": 0.9,
       "color": "#7b5a2c",
       "position": [
-        2.0,
+        2,
         1.5,
-        0.0
+        0
       ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^6-10^8 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "Silicon",
+      "labelDates": "(Si13+/Si14+)"
     },
     {
       "id": "sulfur_ion",
@@ -137,16 +151,18 @@
       "radius": 0.9,
       "color": "#7b5a2c",
       "position": [
-        6.0,
+        6,
         1.5,
-        0.0
+        0
       ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^5-10^7 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "Sulfur",
+      "labelDates": "(S15+/S16+)"
     },
     {
       "id": "iron_ion",
@@ -154,16 +170,18 @@
       "radius": 0.9,
       "color": "#7b5a2c",
       "position": [
-        -6.0,
+        -6,
         -1.5,
-        0.0
+        0
       ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^5-10^7 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "Iron",
+      "labelDates": "(Fe23+-Fe26+)"
     },
     {
       "id": "cosmic_ray_proton",
@@ -171,9 +189,9 @@
       "radius": 0.9,
       "color": "RED",
       "position": [
-        -2.0,
+        -2,
         -1.5,
-        0.0
+        0
       ],
       "details": {
         "temperature": "~GeV-TeV",
@@ -182,7 +200,8 @@
       },
       "subScenes": [
         "content/scenes/nuclear/proton.json"
-      ]
+      ],
+      "labelTitle": "Cosmic-ray proton"
     },
     {
       "id": "cosmic_ray_electron",
@@ -190,9 +209,9 @@
       "radius": 0.9,
       "color": "BLUE",
       "position": [
-        2.0,
+        2,
         -1.5,
-        0.0
+        0
       ],
       "details": {
         "temperature": "~GeV",
@@ -201,7 +220,8 @@
       },
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
-      ]
+      ],
+      "labelTitle": "Cosmic-ray electron"
     },
     {
       "id": "cmb_neutrinos",
@@ -209,9 +229,9 @@
       "radius": 0.9,
       "color": "#2f6b7a",
       "position": [
-        6.0,
+        6,
         -1.5,
-        0.0
+        0
       ],
       "details": {
         "temperature": "1.95 K",
@@ -220,7 +240,9 @@
       },
       "subScenes": [
         "content/scenes/standard-model-particles/neutrino.json"
-      ]
+      ],
+      "labelTitle": "Neutrino",
+      "labelDates": "(CnuB)"
     },
     {
       "id": "astro_neutrinos",
@@ -228,9 +250,9 @@
       "radius": 0.9,
       "color": "#2f6b7a",
       "position": [
-        -6.0,
+        -6,
         -4.6,
-        0.0
+        0
       ],
       "details": {
         "temperature": "MeV-PeV",
@@ -239,7 +261,9 @@
       },
       "subScenes": [
         "content/scenes/standard-model-particles/neutrino.json"
-      ]
+      ],
+      "labelTitle": "Neutrino",
+      "labelDates": "(astrophysical)"
     },
     {
       "id": "cmb_photons",
@@ -247,16 +271,17 @@
       "radius": 0.9,
       "color": "#b08a3a",
       "position": [
-        -2.0,
+        -2,
         -4.6,
-        0.0
+        0
       ],
       "details": {
         "temperature": "2.725 K",
         "numberDensity": "~4x10^17 km^-3",
         "classification": "Passing radiation"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "CMB photons"
     },
     {
       "id": "optical_ir_photons",
@@ -264,16 +289,17 @@
       "radius": 0.9,
       "color": "#b08a3a",
       "position": [
-        2.0,
+        2,
         -4.6,
-        0.0
+        0
       ],
       "details": {
         "temperature": "~10^3-10^4 K (eff.)",
         "numberDensity": "~10^14-10^16 km^-3",
         "classification": "Passing radiation"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "Optical/IR background"
     },
     {
       "id": "xray_photons",
@@ -281,16 +307,18 @@
       "radius": 0.9,
       "color": "#b08a3a",
       "position": [
-        6.0,
+        6,
         -4.6,
-        0.0
+        0
       ],
       "details": {
         "temperature": "keV",
         "numberDensity": "<<10^9 km^-3",
         "classification": "Emitted radiation"
       },
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "X-ray photons",
+      "labelDates": "(ICM)"
     }
   ]
 }

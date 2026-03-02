@@ -18,16 +18,17 @@
       "radius": 0.32,
       "color": "RED",
       "position": [
-        0.0,
-        0.0,
-        0.0
+        0,
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_2",
@@ -37,15 +38,16 @@
       "color": "PURPLE",
       "position": [
         0.72,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_3",
@@ -56,14 +58,15 @@
       "position": [
         0.36,
         0.624,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_4",
@@ -74,14 +77,15 @@
       "position": [
         -0.36,
         0.624,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_5",
@@ -91,15 +95,16 @@
       "color": "RED",
       "position": [
         -0.72,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_6",
@@ -110,14 +115,15 @@
       "position": [
         -0.36,
         -0.624,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_7",
@@ -128,14 +134,15 @@
       "position": [
         0.36,
         -0.624,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_8",
@@ -145,15 +152,16 @@
       "color": "PURPLE",
       "position": [
         1.44,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_9",
@@ -164,14 +172,15 @@
       "position": [
         1.247,
         0.72,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_10",
@@ -182,14 +191,15 @@
       "position": [
         0.72,
         1.247,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_11",
@@ -198,16 +208,17 @@
       "radius": 0.32,
       "color": "RED",
       "position": [
-        0.0,
+        0,
         1.44,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_12",
@@ -218,14 +229,15 @@
       "position": [
         -0.72,
         1.247,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_13",
@@ -236,14 +248,15 @@
       "position": [
         -1.247,
         0.72,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_14",
@@ -253,15 +266,16 @@
       "color": "PURPLE",
       "position": [
         -1.44,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_15",
@@ -272,14 +286,15 @@
       "position": [
         -1.247,
         -0.72,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_16",
@@ -290,14 +305,15 @@
       "position": [
         -0.72,
         -1.247,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_17",
@@ -306,16 +322,17 @@
       "radius": 0.32,
       "color": "RED",
       "position": [
-        -0.0,
+        0,
         -1.44,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_18",
@@ -326,14 +343,15 @@
       "position": [
         0.72,
         -1.247,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_19",
@@ -344,14 +362,15 @@
       "position": [
         1.247,
         -0.72,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_20",
@@ -361,15 +380,16 @@
       "color": "PURPLE",
       "position": [
         2.16,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_21",
@@ -380,14 +400,15 @@
       "position": [
         2.03,
         0.739,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_22",
@@ -398,14 +419,15 @@
       "position": [
         1.655,
         1.388,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_23",
@@ -416,14 +438,15 @@
       "position": [
         1.08,
         1.871,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_24",
@@ -434,14 +457,15 @@
       "position": [
         0.375,
         2.127,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_25",
@@ -452,14 +476,15 @@
       "position": [
         -0.375,
         2.127,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_26",
@@ -470,14 +495,15 @@
       "position": [
         -1.08,
         1.871,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_27",
@@ -488,14 +514,15 @@
       "position": [
         -1.655,
         1.388,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_28",
@@ -506,14 +533,15 @@
       "position": [
         -2.03,
         0.739,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_29",
@@ -523,15 +551,16 @@
       "color": "RED",
       "position": [
         -2.16,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_30",
@@ -542,14 +571,15 @@
       "position": [
         -2.03,
         -0.739,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_31",
@@ -560,14 +590,15 @@
       "position": [
         -1.655,
         -1.388,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_32",
@@ -578,14 +609,15 @@
       "position": [
         -1.08,
         -1.871,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_33",
@@ -596,14 +628,15 @@
       "position": [
         -0.375,
         -2.127,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_34",
@@ -614,14 +647,15 @@
       "position": [
         0.375,
         -2.127,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_35",
@@ -632,14 +666,15 @@
       "position": [
         1.08,
         -1.871,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     },
     {
       "id": "neutron_36",
@@ -650,14 +685,15 @@
       "position": [
         1.655,
         -1.388,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "neutron"
     },
     {
       "id": "proton_37",
@@ -668,14 +704,15 @@
       "position": [
         2.03,
         -0.739,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "proton"
     }
   ]
 }

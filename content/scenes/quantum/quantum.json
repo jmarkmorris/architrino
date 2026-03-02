@@ -17,7 +17,8 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Fermi-Dirac & Bose-Einstein Statistics"
     },
     {
       "id": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
@@ -29,7 +30,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "labelBadge": "📚"
     },
     {
       "id": "measurement_problem_and_collapse",
@@ -41,7 +44,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Measurement Problem and Collapse",
+      "labelBadge": "📚"
     },
     {
       "id": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
@@ -53,7 +58,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "labelBadge": "📚"
     },
     {
       "id": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
@@ -65,7 +72,10 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Pilot-Wave Character: de Broglie–Bohm vs. 𝔸𝔸𝔸",
+      "labelDates": "(QM)",
+      "labelBadge": "📚"
     },
     {
       "id": "reality_causality_and_navigation",
@@ -77,7 +87,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Reality, Causality, and Navigation",
+      "labelBadge": "📚"
     },
     {
       "id": "superposition_mechanism_traditional_vs_architrino_assembly_architecture",
@@ -89,7 +101,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "labelBadge": "📚"
     },
     {
       "id": "wavefunction_ontology",
@@ -101,7 +115,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Wavefunction Ontology",
+      "labelBadge": "📚"
     }
   ]
 }

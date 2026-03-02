@@ -17,7 +17,9 @@
       "markdownPath": "content/markdown/aaa/assemblies/noether-core.md",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Noether Core",
+      "labelBadge": "📚"
     },
     {
       "id": "particle_masses",
@@ -27,7 +29,9 @@
       "markdownPath": "content/markdown/aaa/assemblies/particle-masses.md",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Particle Masses",
+      "labelBadge": "📚"
     },
     {
       "id": "standard_model",
@@ -39,7 +43,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Standard Model Assemblies"
     },
     {
       "id": "fermions",
@@ -51,7 +56,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Fermions"
     },
     {
       "id": "electroweak_bosons",
@@ -61,7 +67,9 @@
       "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Electroweak Bosons",
+      "labelBadge": "📚"
     },
     {
       "id": "gluons",
@@ -71,7 +79,9 @@
       "markdownPath": "content/markdown/aaa/assemblies/bosons/gluons.md",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Gluons",
+      "labelBadge": "📚"
     },
     {
       "id": "photons",
@@ -80,7 +90,8 @@
       "color": "#3f6a5a",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Photons"
     },
     {
       "id": "mesons_doc",
@@ -90,7 +101,9 @@
       "markdownPath": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Mesons",
+      "labelBadge": "📚"
     }
   ]
 }

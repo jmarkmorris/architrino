@@ -13,123 +13,134 @@
   "objects": [
     {
       "id": "decay_1",
-      "label": "b b\u0304 \u2248 58%",
+      "label": "b b̄ ≈ 58%",
       "radius": 1.2,
       "color": "#2f6b6f",
       "position": [
-        0.0,
+        0,
         7.5,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "b b̄ ≈ 58%"
     },
     {
       "id": "decay_2",
-      "label": "W\u207aW\u207b* \u2248 21% (one W off-shell)",
+      "label": "W⁺W⁻* ≈ 21% (one W off-shell)",
       "radius": 1.2,
       "color": "#7a4a1f",
       "position": [
         5.3,
         5.3,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "W⁺W⁻* ≈ 21%",
+      "labelDates": "(one W off-shell)"
     },
     {
       "id": "decay_3",
-      "label": "gg \u2248 8% (via top loop)",
+      "label": "gg ≈ 8% (via top loop)",
       "radius": 1.2,
       "color": "#3f5f8a",
       "position": [
         7.5,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "gg ≈ 8%",
+      "labelDates": "(via top loop)"
     },
     {
       "id": "decay_4",
-      "label": "\u03c4\u207a\u03c4\u207b \u2248 6%",
+      "label": "τ⁺τ⁻ ≈ 6%",
       "radius": 1.2,
       "color": "#5a1f2e",
       "position": [
         5.3,
         -5.3,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "τ⁺τ⁻ ≈ 6%"
     },
     {
       "id": "decay_5",
-      "label": "c c\u0304 \u2248 3%",
+      "label": "c c̄ ≈ 3%",
       "radius": 1.2,
       "color": "#4a4f7f",
       "position": [
-        0.0,
+        0,
         -7.5,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "c c̄ ≈ 3%"
     },
     {
       "id": "decay_6",
-      "label": "Z Z* \u2248 2.6%",
+      "label": "Z Z* ≈ 2.6%",
       "radius": 1.2,
       "color": "#2c567a",
       "position": [
         -5.3,
         -5.3,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Z Z* ≈ 2.6%"
     },
     {
       "id": "decay_7",
-      "label": "\u03b3\u03b3 \u2248 0.23% (loop-induced, rare but clean)",
+      "label": "γγ ≈ 0.23% (loop-induced, rare but clean)",
       "radius": 1.2,
       "color": "#d9b86c",
       "position": [
         -7.5,
-        -0.0,
-        0.0
+        0,
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "γγ ≈ 0.23%",
+      "labelDates": "(loop-induced, rare but clean)"
     },
     {
       "id": "decay_8",
-      "label": "Z\u03b3 \u2248 0.15%",
+      "label": "Zγ ≈ 0.15%",
       "radius": 1.2,
       "color": "#6a4d1b",
       "position": [
         -5.3,
         5.3,
-        0.0
+        0
       ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Zγ ≈ 0.15%"
     }
   ]
 }

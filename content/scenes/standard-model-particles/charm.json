@@ -19,16 +19,17 @@
       "radius": 1.68,
       "color": "PURPLE",
       "position": [
-        0.0,
-        0.0,
-        0.0
+        0,
+        0,
+        0
       ],
       "binaryBands": [
         "middle",
         "inner"
       ],
       "renderStyle": "binarySphere",
-      "subScenes": []
+      "subScenes": [],
+      "labelTitle": "Bi-binary Noether core"
     },
     {
       "id": "positrino_1",
@@ -36,16 +37,17 @@
       "radius": 0.45,
       "color": "RED",
       "position": [
-        4.0,
-        0.0,
-        0.0
+        4,
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Positrino"
     },
     {
       "id": "positrino_2",
@@ -53,16 +55,17 @@
       "radius": 0.45,
       "color": "RED",
       "position": [
-        2.0,
+        2,
         3.464,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Positrino"
     },
     {
       "id": "positrino_3",
@@ -70,16 +73,17 @@
       "radius": 0.45,
       "color": "RED",
       "position": [
-        -2.0,
+        -2,
         3.464,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Positrino"
     },
     {
       "id": "positrino_4",
@@ -87,16 +91,17 @@
       "radius": 0.45,
       "color": "RED",
       "position": [
-        -4.0,
-        0.0,
-        0.0
+        -4,
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Positrino"
     },
     {
       "id": "positrino_5",
@@ -104,16 +109,17 @@
       "radius": 0.45,
       "color": "RED",
       "position": [
-        -2.0,
+        -2,
         -3.464,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Positrino"
     },
     {
       "id": "electrino_1",
@@ -121,16 +127,17 @@
       "radius": 0.45,
       "color": "BLUE",
       "position": [
-        2.0,
+        2,
         -3.464,
-        0.0
+        0
       ],
       "subScenes": [
         "content/scenes/architrino-theory/electrino.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Electrino"
     }
   ]
 }

@@ -17,7 +17,9 @@
       "markdownPath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Color Charge SU3",
+      "labelBadge": "📚"
     },
     {
       "id": "electron_muon_tau",
@@ -29,7 +31,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Electron, Muon, Tau"
     },
     {
       "id": "neutrinos",
@@ -39,7 +42,9 @@
       "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Neutrinos",
+      "labelBadge": "📚"
     },
     {
       "id": "quantum_number_mapping",
@@ -49,7 +54,9 @@
       "markdownPath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Quantum Number Mapping",
+      "labelBadge": "📚"
     },
     {
       "id": "down_strange_bottom_quarks",
@@ -61,7 +68,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Down, Strange, Bottom Quarks"
     },
     {
       "id": "up_charm_top_quarks",
@@ -73,7 +81,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Up, Charm, Top Quarks"
     },
     {
       "id": "weak_mixing_ckm",
@@ -83,7 +92,9 @@
       "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Weak Mixing CKM",
+      "labelBadge": "📚"
     }
   ]
 }
