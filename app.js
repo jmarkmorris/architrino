@@ -1454,7 +1454,7 @@ const transitionEngine = createTransitionEngine(transitionState, {
     currentLevel = level;
   },
   shouldCenterLevelInFrame: (level) => {
-    return !!level;
+    return isCenteredRingLevel(level);
   },
   centerLevelInFrame: (level) => {
     const center = getLevelFrameCenter(level);
