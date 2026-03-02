@@ -15,6 +15,9 @@
 - move meta material out of the md directory so it doesn't accidentally get loaded into the webapp.
 - the exit button is not working in composer. where should it go if it hits, errors. HOME.
 - composer should use the same frame elements in the corners.
+- i should change the 'panel' to be the largest possible sphere (circle)
+  - but also allow the animation to continue in the full rectangular panel
+  - this means all labels and controls and searches get pushed to the corners.
 
 
 
