@@ -18,7 +18,8 @@
       "markdownSection": "Ernst Mach (1838–1916)",
       "labelTitle": "Ernst Mach",
       "labelDates": "(1838–1916)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Mach's Principle"
     },
     {
       "id": "thinker_hendrik_lorentz_1853_1928",
@@ -29,7 +30,8 @@
       "markdownSection": "Hendrik Lorentz (1853–1928)",
       "labelTitle": "Hendrik Lorentz",
       "labelDates": "(1853–1928)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Lorentz Ether Theory"
     },
     {
       "id": "thinker_albert_einstein_1879_1955_special_relativity",
@@ -63,7 +65,7 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory",
       "labelTitle": "Roger Penrose",
-      "labelSubtitle": "Conformal Cyclic Cosmology, Twistor Theory",
+      "labelSubtitle": "CCC / Twistor Theory",
       "labelDates": "(1931–)",
       "labelBadge": "📚"
     },
@@ -135,7 +137,7 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Lee Smolin (1955–) — The Trouble With Physics, Temporal Naturalism",
       "labelTitle": "Lee Smolin",
-      "labelSubtitle": "The Trouble With Physics, Temporal Naturalism, LQG",
+      "labelSubtitle": "Temporal Naturalism / LQG",
       "labelDates": "(1955–)",
       "labelBadge": "📚"
     },
@@ -159,7 +161,7 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Sabine Hossenfelder (1976–) — Lost in Math, Critique of \"Beauty\"",
       "labelTitle": "Sabine Hossenfelder",
-      "labelSubtitle": "Lost in Math, Critique of \"Beauty\"",
+      "labelSubtitle": "Critique of Naturalness",
       "labelDates": "(1976–)",
       "labelBadge": "📚"
     }

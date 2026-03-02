@@ -18,7 +18,8 @@
       "markdownSection": "Paul Dirac (1902–1984)",
       "labelTitle": "Paul Dirac",
       "labelDates": "(1902–1984)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Relativistic Quantum Mechanics"
     },
     {
       "id": "thinker_richard_feynman_1918_1988",
@@ -29,7 +30,8 @@
       "markdownSection": "Richard Feynman (1918–1988)",
       "labelTitle": "Richard Feynman",
       "labelDates": "(1918–1988)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Path Integrals / QED"
     },
     {
       "id": "thinker_abdus_salam_1926_1996_electroweak_unification",

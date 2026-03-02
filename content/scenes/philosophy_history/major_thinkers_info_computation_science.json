@@ -18,7 +18,8 @@
       "markdownSection": "Alfred North Whitehead (1861–1947)",
       "labelTitle": "Alfred North Whitehead",
       "labelDates": "(1861–1947)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Process Philosophy"
     },
     {
       "id": "thinker_karl_popper_1902_1994_falsificationism",
@@ -89,7 +90,8 @@
       "markdownSection": "Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project",
       "labelTitle": "Stephen Wolfram",
       "labelDates": "(1959–)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Computational Universe"
     }
   ]
 }

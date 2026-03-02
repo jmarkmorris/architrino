@@ -18,7 +18,8 @@
       "markdownSection": "Ludwig Boltzmann (1844–1906)",
       "labelTitle": "Ludwig Boltzmann",
       "labelDates": "(1844–1906)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Statistical Mechanics"
     },
     {
       "id": "thinker_max_planck_1858_1947",
@@ -29,7 +30,8 @@
       "markdownSection": "Max Planck (1858–1947)",
       "labelTitle": "Max Planck",
       "labelDates": "(1858–1947)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Quantum Hypothesis"
     },
     {
       "id": "thinker_niels_bohr_1885_1962_and_copenhagen_interpretation",
@@ -52,7 +54,8 @@
       "markdownSection": "Erwin Schrödinger (1887–1961)",
       "labelTitle": "Erwin Schrödinger",
       "labelDates": "(1887–1961)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Wave Mechanics"
     },
     {
       "id": "thinker_louis_de_broglie_1892_1987",
@@ -63,7 +66,8 @@
       "markdownSection": "Louis de Broglie (1892–1987)",
       "labelTitle": "Louis de Broglie",
       "labelDates": "(1892–1987)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Matter Waves"
     },
     {
       "id": "thinker_werner_heisenberg_1901_1976",
@@ -74,7 +78,8 @@
       "markdownSection": "Werner Heisenberg (1901–1976)",
       "labelTitle": "Werner Heisenberg",
       "labelDates": "(1901–1976)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Uncertainty Principle"
     },
     {
       "id": "thinker_david_bohm_1917_1992",
@@ -85,7 +90,8 @@
       "markdownSection": "David Bohm (1917–1992)",
       "labelTitle": "David Bohm",
       "labelDates": "(1917–1992)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Pilot-Wave Theory"
     },
     {
       "id": "thinker_john_bell_1928_1990",
@@ -96,7 +102,8 @@
       "markdownSection": "John Bell (1928–1990)",
       "labelTitle": "John Bell",
       "labelDates": "(1928–1990)",
-      "labelBadge": "📚"
+      "labelBadge": "📚",
+      "labelSubtitle": "Bell's Theorem"
     },
     {
       "id": "thinker_hugh_everett_iii_1930_1982_many_worlds_interpretation",
@@ -130,7 +137,7 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
       "labelTitle": "Lucien Hardy",
-      "labelSubtitle": "Quantum Foundations",
+      "labelSubtitle": "Operational Axioms",
       "labelDates": "(1966–)",
       "labelBadge": "📚"
     },
@@ -142,7 +149,7 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
       "labelTitle": "Rob Spekkens",
-      "labelSubtitle": "Quantum Foundations",
+      "labelSubtitle": "Psi-Epistemic Models",
       "labelDates": "(1970–)",
       "labelBadge": "📚"
     },
@@ -154,7 +161,7 @@
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
       "labelTitle": "Matthew Leifer",
-      "labelSubtitle": "Quantum Foundations",
+      "labelSubtitle": "Psi-Epistemic Models",
       "labelDates": "(1975–)",
       "labelBadge": "📚"
     }
