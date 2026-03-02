@@ -3036,14 +3036,7 @@ function focusOnPointer(clientX, clientY) {
   }
 
   const hasMarkdownPath = !!targetNode.data.markdownPath;
-  const hasManualDocBadge =
-    (typeof targetNode.data.labelBadge === "string" &&
-      targetNode.data.labelBadge.trim().length > 0) ||
-    (typeof targetNode.data.labelBadgeImage === "string" &&
-      targetNode.data.labelBadgeImage.trim().length > 0);
-  const canOpenMarkdown =
-    hasMarkdownPath &&
-    (targetNode.data.markdownDocIconEligible === true || hasManualDocBadge);
+  const canOpenMarkdown = hasMarkdownPath;
 
   if (currentLevel?.sceneId === composerSceneId) {
     const panelId = composerPanelMap.get(targetNode.data.id ?? "");

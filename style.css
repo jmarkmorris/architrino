@@ -1466,6 +1466,20 @@ body {
   vertical-align: middle;
 }
 
+.label-badge-svg {
+  display: inline-block;
+  width: var(--label-badge-size);
+  height: var(--label-badge-size);
+  vertical-align: middle;
+}
+
+.label-badge-doc {
+  color: #eef4ff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.65));
+  width: calc(var(--label-badge-size) * 2.2);
+  height: calc(var(--label-badge-size) * 2.2);
+}
+
 .label-scale {
   font-size: var(--label-scale-size);
   opacity: 0.75;

@@ -12,6 +12,8 @@
 - composer should use the same frame elements in the corners.
 - should we have a zoom out button?
 - new or changed icons?
+- the philosophy history fanout nodes have the book icon.  why?
+
 
 ## Sorta Sorted List (i.e., non-linear)
 

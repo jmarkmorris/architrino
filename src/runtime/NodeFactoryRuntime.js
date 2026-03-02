@@ -16,6 +16,16 @@ export function createNodeFactory(deps) {
     return escapeHtml(text).replace(/\n/g, " ");
   }
 
+  function getDefaultDocBadgeSvg() {
+    return (
+      '<svg class="label-badge-svg label-badge-doc" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path d="M5 3H14L19 8V21H5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/>' +
+      '<path d="M14 3V8H19Z" fill="currentColor"/>' +
+      '<path d="M7.5 12.6H16.5M7.5 16.1H16.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="butt"/>' +
+      "</svg>"
+    );
+  }
+
   function parseStructuredLabel(displayName) {
     const raw = String(displayName ?? "").trim();
     let title = raw;
@@ -96,9 +106,7 @@ export function createNodeFactory(deps) {
     const badgeSymbol =
       typeof node.labelBadge === "string" && node.labelBadge.trim().length > 0
         ? node.labelBadge.trim()
-        : node.markdownDocIcon
-          ? "📚"
-          : "";
+        : "";
     const badgeImage =
       typeof node.labelBadgeImage === "string" && node.labelBadgeImage.trim().length > 0
         ? node.labelBadgeImage.trim()
@@ -127,6 +135,8 @@ export function createNodeFactory(deps) {
         ? `<div class="label-badge-line"><span class="label-badge-symbol" aria-hidden="true">${escapeHtml(
             badgeSymbol
           )}</span></div>`
+        : node.markdownPath
+          ? `<div class="label-badge-line">${getDefaultDocBadgeSvg()}</div>`
         : "";
     label.innerHTML = `<div class="label-title">${escapeHtml(
       labelTitle

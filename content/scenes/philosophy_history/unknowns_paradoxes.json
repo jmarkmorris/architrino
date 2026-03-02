@@ -23,8 +23,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Nature of Dark Energy",
-      "labelBadge": "📚"
+      "labelTitle": "The Nature of Dark Energy"
     },
     {
       "id": "unknown_the_identity_of_dark_matter",
@@ -38,8 +37,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Identity of Dark Matter",
-      "labelBadge": "📚"
+      "labelTitle": "The Identity of Dark Matter"
     },
     {
       "id": "unknown_the_cosmological_constant_problem",
@@ -53,8 +51,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Cosmological Constant Problem",
-      "labelBadge": "📚"
+      "labelTitle": "The Cosmological Constant Problem"
     },
     {
       "id": "unknown_the_hierarchy_problem_naturalness",
@@ -68,8 +65,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Hierarchy Problem",
-      "labelBadge": "📚"
+      "labelTitle": "The Hierarchy Problem"
     },
     {
       "id": "unknown_the_uv_catastrophe_blackbody_divergence",
@@ -83,8 +79,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The UV Catastrophe",
-      "labelBadge": "📚"
+      "labelTitle": "The UV Catastrophe"
     },
     {
       "id": "unknown_the_hubble_tension",
@@ -98,8 +93,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Cosmological Tensions",
-      "labelBadge": "📚"
+      "labelTitle": "Cosmological Tensions"
     },
     {
       "id": "unknown_baryon_asymmetry",
@@ -113,8 +107,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Baryon Asymmetry",
-      "labelBadge": "📚"
+      "labelTitle": "Baryon Asymmetry"
     },
     {
       "id": "unknown_neutrino_mass_and_nature",
@@ -128,8 +121,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Neutrino Mass and Nature",
-      "labelBadge": "📚"
+      "labelTitle": "Neutrino Mass and Nature"
     },
     {
       "id": "unknown_the_strong_cp_problem",
@@ -143,8 +135,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Strong CP Problem",
-      "labelBadge": "📚"
+      "labelTitle": "The Strong CP Problem"
     },
     {
       "id": "unknown_quantum_gravity_and_renormalizability",
@@ -158,8 +149,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Quantum Gravity and Renormalizability",
-      "labelBadge": "📚"
+      "labelTitle": "Quantum Gravity and Renormalizability"
     },
     {
       "id": "unknown_the_black_hole_information_paradox",
@@ -173,8 +163,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Black Hole Information Paradox",
-      "labelBadge": "📚"
+      "labelTitle": "The Black Hole Information Paradox"
     },
     {
       "id": "unknown_the_fermi_paradox",
@@ -188,8 +177,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Fermi Paradox",
-      "labelBadge": "📚"
+      "labelTitle": "The Fermi Paradox"
     },
     {
       "id": "unknown_the_measurement_problem",
@@ -203,8 +191,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Measurement Problem",
-      "labelBadge": "📚"
+      "labelTitle": "The Measurement Problem"
     },
     {
       "id": "unknown_the_mechanism_of_inflation",
@@ -218,8 +205,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Mechanism of Inflation",
-      "labelBadge": "📚"
+      "labelTitle": "The Mechanism of Inflation"
     },
     {
       "id": "unknown_the_flavor_problem",
@@ -233,8 +219,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Flavor Problem",
-      "labelBadge": "📚"
+      "labelTitle": "The Flavor Problem"
     },
     {
       "id": "unknown_proton_stability",
@@ -248,8 +233,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Proton Stability",
-      "labelBadge": "📚"
+      "labelTitle": "Proton Stability"
     },
     {
       "id": "unknown_vacuum_instability",
@@ -263,8 +247,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Vacuum Instability",
-      "labelBadge": "📚"
+      "labelTitle": "Vacuum Instability"
     },
     {
       "id": "unknown_the_muon_g_2_and_lepton_universality_anomalies",
@@ -278,8 +261,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Muon g-2 & Lepton Anomalies",
-      "labelBadge": "📚"
+      "labelTitle": "Muon g-2 & Lepton Anomalies"
     },
     {
       "id": "unknown_the_lithium_problem",
@@ -293,8 +275,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Lithium Problem",
-      "labelBadge": "📚"
+      "labelTitle": "The Lithium Problem"
     },
     {
       "id": "unknown_confinement_and_the_mass_gap",
@@ -308,8 +289,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Confinement and the Mass Gap",
-      "labelBadge": "📚"
+      "labelTitle": "Confinement and the Mass Gap"
     },
     {
       "id": "unknown_the_arrow_of_time",
@@ -323,8 +303,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "The Arrow of Time",
-      "labelBadge": "📚"
+      "labelTitle": "The Arrow of Time"
     },
     {
       "id": "unknown_the_trans_planckian_censorship_and_the_swampland",
@@ -338,8 +317,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Trans-Planckian Censorship",
-      "labelBadge": "📚"
+      "labelTitle": "Trans-Planckian Censorship"
     }
   ]
 }
