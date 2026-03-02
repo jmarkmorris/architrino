@@ -309,14 +309,42 @@ export function createSceneGraphRuntime(deps) {
     });
   }
 
-  function buildRingClusterPositions(count, neighborDistance, startAngle = Math.PI / 2) {
-    if (count <= 0 || !Number.isFinite(neighborDistance) || neighborDistance <= 0) {
+  function resizeSphereNodeRadius(node, radius) {
+    if (!node?.mesh || !Number.isFinite(radius) || radius <= 0) {
+      return;
+    }
+    node.data.radius = radius;
+    if (node.mesh.geometry) {
+      node.mesh.geometry.dispose();
+    }
+    node.mesh.geometry = new deps.THREE.SphereGeometry(radius, 32, 20);
+    if (node.outline?.geometry) {
+      node.outline.geometry.dispose();
+      node.outline.geometry = new deps.THREE.EdgesGeometry(node.mesh.geometry);
+    }
+    refreshNodeRingGeometries(node);
+  }
+
+  function getLowCountNucleonScale(nucleonCount) {
+    if (!Number.isFinite(nucleonCount) || nucleonCount <= 0) {
+      return 1;
+    }
+    if (nucleonCount >= 10) {
+      return 1;
+    }
+    const minScale = 0.84;
+    const t = (nucleonCount - 1) / 9;
+    return minScale + (1 - minScale) * Math.max(0, Math.min(1, t));
+  }
+
+  function buildRingClusterPositions(count, centerDistance, startAngle = Math.PI / 2) {
+    if (count <= 0 || !Number.isFinite(centerDistance) || centerDistance <= 0) {
       return [];
     }
     if (count === 1) {
       return [new deps.THREE.Vector3(0, 0, 0)];
     }
-    const ringRadius = neighborDistance / (2 * Math.sin(Math.PI / count));
+    const ringRadius = centerDistance / (2 * Math.sin(Math.PI / count));
     const points = [];
     for (let i = 0; i < count; i += 1) {
       const angle = startAngle + (i / count) * Math.PI * 2;
@@ -331,28 +359,29 @@ export function createSceneGraphRuntime(deps) {
     return points;
   }
 
-  function buildCompactNucleonPositions(count, avgRadius) {
+  function buildCompactNucleonPositions(count, minCenterDistance, avgRadius) {
     if (
       !Number.isFinite(count) ||
       count <= 0 ||
+      !Number.isFinite(minCenterDistance) ||
+      minCenterDistance <= 0 ||
       !Number.isFinite(avgRadius) ||
       avgRadius <= 0
     ) {
       return null;
     }
 
-    const neighborDistance = avgRadius * 1.9;
     if (count === 1) {
       return [new deps.THREE.Vector3(0, 0, 0)];
     }
     if (count <= 4) {
-      return buildRingClusterPositions(count, neighborDistance);
+      return buildRingClusterPositions(count, minCenterDistance);
     }
     if (count <= 7) {
       const outerCount = count - 1;
-      const outer = buildRingClusterPositions(outerCount, neighborDistance);
+      const outer = buildRingClusterPositions(outerCount, minCenterDistance);
       const outerRadius = outer.length ? outer[0].length() : 0;
-      const minOuterRadius = avgRadius * 1.65;
+      const minOuterRadius = minCenterDistance;
       if (outerRadius > 0 && outerRadius < minOuterRadius) {
         const scale = minOuterRadius / outerRadius;
         outer.forEach((point) => point.multiplyScalar(scale));
@@ -360,6 +389,61 @@ export function createSceneGraphRuntime(deps) {
       return [new deps.THREE.Vector3(0, 0, 0), ...outer];
     }
     return null;
+  }
+
+  function buildHexPackedNucleonPositions(count, minCenterDistance) {
+    if (
+      !Number.isFinite(count) ||
+      count <= 0 ||
+      !Number.isFinite(minCenterDistance) ||
+      minCenterDistance <= 0
+    ) {
+      return [];
+    }
+    const axialCoords = [[0, 0]];
+    if (count === 1) {
+      return [new deps.THREE.Vector3(0, 0, 0)];
+    }
+    const directions = [
+      [1, 0],
+      [1, -1],
+      [0, -1],
+      [-1, 0],
+      [-1, 1],
+      [0, 1],
+    ];
+    for (let ring = 1; axialCoords.length < count; ring += 1) {
+      let q = -ring;
+      let r = ring;
+      for (let dir = 0; dir < directions.length && axialCoords.length < count; dir += 1) {
+        const [dq, dr] = directions[dir];
+        for (let step = 0; step < ring && axialCoords.length < count; step += 1) {
+          axialCoords.push([q, r]);
+          q += dq;
+          r += dr;
+        }
+      }
+    }
+
+    const positions = axialCoords
+      .slice(0, count)
+      .map(
+        ([q, r]) =>
+          new deps.THREE.Vector3(
+            minCenterDistance * (q + r * 0.5),
+            minCenterDistance * (Math.sqrt(3) * 0.5 * r),
+            0
+          )
+      );
+    if (positions.length) {
+      const centroid = positions
+        .reduce((acc, pos) => acc.add(pos), new deps.THREE.Vector3())
+        .multiplyScalar(1 / positions.length);
+      positions.forEach((pos) => {
+        pos.sub(centroid);
+      });
+    }
+    return positions;
   }
 
   function buildLevel(levelId) {
@@ -454,40 +538,43 @@ export function createSceneGraphRuntime(deps) {
       );
       const electrons = nodes.filter((n) => n.data.category === "electron");
       if (nucleons.length) {
+        const nucleonScale = getLowCountNucleonScale(nucleons.length);
+        if (nucleonScale !== 1) {
+          nucleons.forEach((nucleon) => {
+            const baseRadius = Number.isFinite(nucleon?.data?.radius)
+              ? nucleon.data.radius
+              : 0.3;
+            resizeSphereNodeRadius(nucleon, baseRadius * nucleonScale);
+          });
+        }
         const avgRadius =
           nucleons.reduce((s, n) => s + (n.data.radius ?? 0.3), 0) /
           nucleons.length;
+        const maxNucleonHaloExtent = nucleons.reduce((maxExtent, nucleon) => {
+          const radius = Number.isFinite(nucleon?.data?.radius) ? nucleon.data.radius : avgRadius;
+          const ringScale = nucleon?.data?.glowRingScale ?? 1.04;
+          const ringThickness =
+            nucleon?.data?.glowRingThickness ?? Math.max(0.028, radius * 0.06);
+          const haloExtent = radius * ringScale + ringThickness;
+          return Math.max(maxExtent, haloExtent, radius);
+        }, avgRadius);
+        const minNucleonCenterDistance = Math.max(
+          avgRadius * 2.05,
+          maxNucleonHaloExtent * 2 + avgRadius * 0.08
+        );
         electrons.forEach((e) => {
-          e.data.radius = avgRadius;
-          e.mesh.geometry.dispose();
-          e.mesh.geometry = new deps.THREE.SphereGeometry(avgRadius, 32, 20);
-          e.outline.geometry.dispose();
-          e.outline.geometry = new deps.THREE.EdgesGeometry(e.mesh.geometry);
-          refreshNodeRingGeometries(e);
+          resizeSphereNodeRadius(e, avgRadius);
         });
-        let positions = buildCompactNucleonPositions(nucleons.length, avgRadius);
+        let positions = buildCompactNucleonPositions(
+          nucleons.length,
+          minNucleonCenterDistance,
+          avgRadius
+        );
         if (!positions) {
-          const golden = Math.PI * (3 - Math.sqrt(5));
-          const packRadius = Math.max(
-            avgRadius * 2.2,
-            Math.sqrt(nucleons.length) * avgRadius * 1.25
+          positions = buildHexPackedNucleonPositions(
+            nucleons.length,
+            minNucleonCenterDistance
           );
-          positions = [];
-          for (let i = 0; i < nucleons.length; i++) {
-            const r = packRadius * Math.sqrt((i + 0.35) / nucleons.length);
-            const theta = i * golden;
-            positions.push(
-              new deps.THREE.Vector3(Math.cos(theta) * r, Math.sin(theta) * r, 0)
-            );
-          }
-          if (positions.length) {
-            const centroid = positions
-              .reduce((acc, pos) => acc.add(pos), new deps.THREE.Vector3())
-              .multiplyScalar(1 / positions.length);
-            positions.forEach((pos) => {
-              pos.sub(centroid);
-            });
-          }
         }
         const protons = nucleons.filter((n) => n.data.category === "proton");
         const neutrons = nucleons.filter((n) => n.data.category === "neutron");
@@ -505,7 +592,7 @@ export function createSceneGraphRuntime(deps) {
           (maxDistance, pos) => Math.max(maxDistance, pos.length()),
           0
         );
-        nucleusRadius = nucleusExtent + avgRadius * 0.5;
+        nucleusRadius = nucleusExtent + maxNucleonHaloExtent;
       }
 
       const uniqueRadii = Array.from(
