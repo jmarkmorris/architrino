@@ -5,7 +5,7 @@
     "kind": "branching",
     "name": "Validation Simulations",
     "units": "relative",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "wrapLabels": true
   },
   "objects": [
@@ -16,56 +16,71 @@
       "color": "#3a5f9f",
       "subScenes": [
         "content/scenes/validation/action_energy.json"
-      ]
+      ],
+      "labelTitle": "Action-Energy"
     },
     {
       "id": "sim_architrino",
       "label": "Architrino",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/validation/simulations/architrino.md"
+      "markdownPath": "content/markdown/aaa/validation/simulations/architrino.md",
+      "labelTitle": "Architrino",
+      "labelBadge": "📚"
     },
     {
       "id": "sim_convergence_tests",
       "label": "Convergence Tests",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/validation/simulations/convergence-tests.md"
+      "markdownPath": "content/markdown/aaa/validation/simulations/convergence-tests.md",
+      "labelTitle": "Convergence Tests",
+      "labelBadge": "📚"
     },
     {
       "id": "sim_perspective",
       "label": "Perspective",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md"
+      "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
+      "labelTitle": "Perspective",
+      "labelBadge": "📚"
     },
     {
       "id": "sim_readme",
       "label": "README",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/validation/simulations/README.md"
+      "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
+      "labelTitle": "README",
+      "labelBadge": "📚"
     },
     {
       "id": "sim_run_protocols",
       "label": "Run Protocols",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md"
+      "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+      "labelTitle": "Run Protocols",
+      "labelBadge": "📚"
     },
     {
       "id": "sim_synthetic_observables",
       "label": "Synthetic Observables",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/validation/simulations/synthetic-observables.md"
+      "markdownPath": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
+      "labelTitle": "Synthetic Observables",
+      "labelBadge": "📚"
     },
     {
       "id": "sim_unsolved_problems",
       "label": "Unsolved Problems",
       "radius": 2.688,
       "color": "#2c567a",
-      "markdownPath": "content/markdown/aaa/validation/simulations/unsolved-problems.md"
+      "markdownPath": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
+      "labelTitle": "Unsolved Problems",
+      "labelBadge": "📚"
     }
   ]
 }

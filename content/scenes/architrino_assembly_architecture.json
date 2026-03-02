@@ -27,7 +27,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Foundations"
     },
     {
       "id": "dynamics",
@@ -44,7 +45,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Dynamics"
     },
     {
       "id": "assemblies",
@@ -61,7 +63,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Assemblies"
     },
     {
       "id": "periodic_table",
@@ -78,7 +81,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Periodic Table"
     },
     {
       "id": "nuclear_atomic",
@@ -95,7 +99,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Nuclear-Atomic"
     },
     {
       "id": "spacetime",
@@ -112,7 +117,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Spacetime"
     },
     {
       "id": "cosmology",
@@ -129,7 +135,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Cosmology"
     },
     {
       "id": "validation",
@@ -146,7 +153,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Validation"
     },
     {
       "id": "philosophy_history",
@@ -163,7 +171,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Philosophy-History"
     },
     {
       "id": "universe",
@@ -181,7 +190,8 @@
       "motion": {
         "type": "fixed"
       },
-      "scaleExponent": 26
+      "scaleExponent": 26,
+      "labelTitle": "Universe"
     }
   ]
 }

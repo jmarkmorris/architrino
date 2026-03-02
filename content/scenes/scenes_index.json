@@ -842,27 +842,27 @@
     },
     {
       "id": "major_thinkers_classical_modern",
-      "name": "Classical & Early Modern Metaphysics + Mechanism",
+      "name": "Classical & Early Modern Metaphysics",
       "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
     },
     {
       "id": "major_thinkers_info_computation_science",
-      "name": "Information/Computation + Philosophy of Science",
+      "name": "Information + Philosophy of Science",
       "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
     },
     {
       "id": "major_thinkers_qft_standard_model",
-      "name": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)",
+      "name": "Standard Model Architecture",
       "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
     },
     {
       "id": "major_thinkers_quantum_foundations",
-      "name": "Quantum Foundations & Hidden-Variable Landscape",
+      "name": "Quantum Foundations",
       "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
     },
     {
       "id": "major_thinkers_relativity_cosmology",
-      "name": "Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)",
+      "name": "Relativity to Quantum Gravity",
       "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json"
     },
     {

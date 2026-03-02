@@ -1158,31 +1158,31 @@
     },
     {
       "id": "major_thinkers_classical_modern",
-      "name": "Classical & Early Modern Metaphysics + Mechanism",
+      "name": "Classical & Early Modern Metaphysics",
       "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
       "nodeType": "scene"
     },
     {
       "id": "major_thinkers_info_computation_science",
-      "name": "Information/Computation + Philosophy of Science",
+      "name": "Information + Philosophy of Science",
       "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "nodeType": "scene"
     },
     {
       "id": "major_thinkers_qft_standard_model",
-      "name": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)",
+      "name": "Standard Model Architecture",
       "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
       "nodeType": "scene"
     },
     {
       "id": "major_thinkers_quantum_foundations",
-      "name": "Quantum Foundations & Hidden-Variable Landscape",
+      "name": "Quantum Foundations",
       "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
       "nodeType": "scene"
     },
     {
       "id": "major_thinkers_relativity_cosmology",
-      "name": "Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)",
+      "name": "Relativity to Quantum Gravity",
       "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
       "nodeType": "scene"
     },
@@ -3220,7 +3220,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
       "nodeType": "scene",
       "id": "major_thinkers_classical_modern",
-      "name": "Classical & Early Modern Metaphysics + Mechanism",
+      "name": "Classical & Early Modern Metaphysics",
       "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
       "searchTarget": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
       "implicit": false
@@ -3229,7 +3229,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "nodeType": "scene",
       "id": "major_thinkers_info_computation_science",
-      "name": "Information/Computation + Philosophy of Science",
+      "name": "Information + Philosophy of Science",
       "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "searchTarget": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "implicit": false
@@ -3238,7 +3238,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
       "nodeType": "scene",
       "id": "major_thinkers_qft_standard_model",
-      "name": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)",
+      "name": "Standard Model Architecture",
       "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
       "searchTarget": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
       "implicit": false
@@ -3247,7 +3247,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
       "nodeType": "scene",
       "id": "major_thinkers_quantum_foundations",
-      "name": "Quantum Foundations & Hidden-Variable Landscape",
+      "name": "Quantum Foundations",
       "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
       "searchTarget": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
       "implicit": false
@@ -3256,7 +3256,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
       "nodeType": "scene",
       "id": "major_thinkers_relativity_cosmology",
-      "name": "Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)",
+      "name": "Relativity to Quantum Gravity",
       "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
       "searchTarget": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
       "implicit": false

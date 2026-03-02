@@ -5,7 +5,7 @@
     "kind": "diagram",
     "name": "Composer",
     "units": "relative",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "wrapLabels": true,
     "hideScaleLabels": true
   },
@@ -14,37 +14,43 @@
       "id": "composer_tree",
       "label": "Scene Tree",
       "radius": 1.1,
-      "color": "#243d8f"
+      "color": "#243d8f",
+      "labelTitle": "Scene Tree"
     },
     {
       "id": "composer_path",
       "label": "Path Editor",
       "radius": 1.1,
-      "color": "#2f6b6f"
+      "color": "#2f6b6f",
+      "labelTitle": "Path Editor"
     },
     {
       "id": "composer_orbit",
       "label": "Orbit Editor",
       "radius": 1.1,
-      "color": "#5a1f2e"
+      "color": "#5a1f2e",
+      "labelTitle": "Orbit Editor"
     },
     {
       "id": "composer_interactions",
       "label": "Interactions",
       "radius": 1.1,
-      "color": "#4b0082"
+      "color": "#4b0082",
+      "labelTitle": "Interactions"
     },
     {
       "id": "composer_preview",
       "label": "Preview",
       "radius": 1.1,
-      "color": "#3a5f9f"
+      "color": "#3a5f9f",
+      "labelTitle": "Preview"
     },
     {
       "id": "composer_export",
       "label": "Export / Validate",
       "radius": 1.1,
-      "color": "#2f4f7a"
+      "color": "#2f4f7a",
+      "labelTitle": "Export / Validate"
     }
   ]
 }

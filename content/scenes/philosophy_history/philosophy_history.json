@@ -6,7 +6,7 @@
     "name": "Philosophy-History",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "ring"
+    "layoutMode": "rings"
   },
   "objects": [
     {
@@ -19,7 +19,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Out of the Ashes"
     },
     {
       "id": "unknowns_paradoxes_scene",
@@ -31,7 +32,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Unknowns & Paradoxes"
     },
     {
       "id": "crisis_in_physics",
@@ -43,7 +45,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Crisis in Physics",
+      "labelBadge": "📚"
     },
     {
       "id": "historical_context_missed_opportunities",
@@ -55,7 +59,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Historical Context and Missed Opportunities",
+      "labelBadge": "📚"
     },
     {
       "id": "lorentz_ether_comparison",
@@ -67,7 +73,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Lorentz Ether Comparison",
+      "labelBadge": "📚"
     },
     {
       "id": "major_thinkers",
@@ -80,7 +88,9 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Major Thinkers",
+      "labelBadge": "📚"
     },
     {
       "id": "religious_ontologies",
@@ -92,7 +102,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Religious Ontologies",
+      "labelBadge": "📚"
     },
     {
       "id": "theory_mapping",
@@ -104,7 +116,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Theory Mapping",
+      "labelBadge": "📚"
     }
   ]
 }

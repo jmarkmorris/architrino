@@ -857,8 +857,9 @@ function validateSceneIntegrity(scenePath, data, markdownContext) {
 
   const markdownDerived = deriveMarkdownConfig(scene.markdown);
   const autoScene = markdownDerived ? { ...scene, ...markdownDerived } : scene;
+  const autoLayoutMode = String(autoScene.layoutMode ?? "").toLowerCase();
   if (
-    String(autoScene.layoutMode ?? "").toLowerCase() !== "ring" ||
+    autoLayoutMode !== "rings" ||
     (!autoScene.autoMarkdownPath && !autoScene.autoMarkdownDirectory)
   ) {
     return;

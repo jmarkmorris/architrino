@@ -4,7 +4,7 @@
     "id": "neutron",
     "kind": "diagram",
     "name": "Neutron",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "units": "relative",
     "scaleBandLog10m": [
       -15,
@@ -18,17 +18,13 @@
       "scaleExponent": -19,
       "radius": 0.9,
       "color": "BLUE",
-      "position": [
-        2.0,
-        0.0,
-        0.0
-      ],
       "subScenes": [
         "content/scenes/standard-model-particles/down_quark.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "down quark"
     },
     {
       "id": "down_quark_2",
@@ -36,17 +32,13 @@
       "scaleExponent": -19,
       "radius": 0.9,
       "color": "BLUE",
-      "position": [
-        -1.0,
-        1.7,
-        0.0
-      ],
       "subScenes": [
         "content/scenes/standard-model-particles/down_quark.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "down quark"
     },
     {
       "id": "up_quark",
@@ -54,17 +46,13 @@
       "scaleExponent": -19,
       "radius": 0.9,
       "color": "RED",
-      "position": [
-        -1.0,
-        -1.7,
-        0.0
-      ],
       "subScenes": [
         "content/scenes/standard-model-particles/up_quark.json"
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "up quark"
     }
   ]
 }

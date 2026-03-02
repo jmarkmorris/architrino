@@ -3,99 +3,167 @@
   "scene": {
     "id": "major_thinkers_quantum_foundations",
     "kind": "markdown_split",
-    "name": "Quantum Foundations & Hidden-Variable Landscape",
+    "name": "Quantum Foundations",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "ring"
+    "layoutMode": "rings"
   },
   "objects": [
     {
       "id": "thinker_ludwig_boltzmann_1844_1906",
-      "label": "Ludwig Boltzmann (1844\u20131906)",
+      "label": "Ludwig Boltzmann (1844–1906)",
       "radius": 2.2,
       "color": "#243d8f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Ludwig Boltzmann (1844\u20131906)"
+      "markdownSection": "Ludwig Boltzmann (1844–1906)",
+      "labelTitle": "Ludwig Boltzmann",
+      "labelDates": "(1844–1906)",
+      "labelBadge": "📚",
+      "labelSubtitle": "Statistical Mechanics"
     },
     {
       "id": "thinker_max_planck_1858_1947",
-      "label": "Max Planck (1858\u20131947)",
+      "label": "Max Planck (1858–1947)",
       "radius": 2.2,
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Max Planck (1858\u20131947)"
+      "markdownSection": "Max Planck (1858–1947)",
+      "labelTitle": "Max Planck",
+      "labelDates": "(1858–1947)",
+      "labelBadge": "📚",
+      "labelSubtitle": "Quantum Hypothesis"
     },
     {
       "id": "thinker_niels_bohr_1885_1962_and_copenhagen_interpretation",
-      "label": "Niels Bohr (1885\u20131962) & Copenhagen Interpretation",
+      "label": "Niels Bohr (1885–1962) & Copenhagen Interpretation",
       "radius": 2.2,
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Niels Bohr (1885\u20131962) & Copenhagen Interpretation"
+      "markdownSection": "Niels Bohr (1885–1962) & Copenhagen Interpretation",
+      "labelTitle": "Niels Bohr",
+      "labelSubtitle": "Copenhagen Interpretation",
+      "labelDates": "(1885–1962)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_erwin_schr_dinger_1887_1961",
-      "label": "Erwin Schr\u00f6dinger (1887\u20131961)",
+      "label": "Erwin Schrödinger (1887–1961)",
       "radius": 2.2,
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Erwin Schr\u00f6dinger (1887\u20131961)"
+      "markdownSection": "Erwin Schrödinger (1887–1961)",
+      "labelTitle": "Erwin Schrödinger",
+      "labelDates": "(1887–1961)",
+      "labelBadge": "📚",
+      "labelSubtitle": "Wave Mechanics"
     },
     {
       "id": "thinker_louis_de_broglie_1892_1987",
-      "label": "Louis de Broglie (1892\u20131987)",
+      "label": "Louis de Broglie (1892–1987)",
       "radius": 2.2,
       "color": "#3a5f9f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Louis de Broglie (1892\u20131987)"
+      "markdownSection": "Louis de Broglie (1892–1987)",
+      "labelTitle": "Louis de Broglie",
+      "labelDates": "(1892–1987)",
+      "labelBadge": "📚",
+      "labelSubtitle": "Matter Waves"
     },
     {
       "id": "thinker_werner_heisenberg_1901_1976",
-      "label": "Werner Heisenberg (1901\u20131976)",
+      "label": "Werner Heisenberg (1901–1976)",
       "radius": 2.2,
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Werner Heisenberg (1901\u20131976)"
+      "markdownSection": "Werner Heisenberg (1901–1976)",
+      "labelTitle": "Werner Heisenberg",
+      "labelDates": "(1901–1976)",
+      "labelBadge": "📚",
+      "labelSubtitle": "Uncertainty Principle"
     },
     {
       "id": "thinker_david_bohm_1917_1992",
-      "label": "David Bohm (1917\u20131992)",
+      "label": "David Bohm (1917–1992)",
       "radius": 2.2,
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "David Bohm (1917\u20131992)"
+      "markdownSection": "David Bohm (1917–1992)",
+      "labelTitle": "David Bohm",
+      "labelDates": "(1917–1992)",
+      "labelBadge": "📚",
+      "labelSubtitle": "Pilot-Wave Theory"
     },
     {
       "id": "thinker_john_bell_1928_1990",
-      "label": "John Bell (1928\u20131990)",
+      "label": "John Bell (1928–1990)",
       "radius": 2.2,
       "color": "#6a3c3c",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "John Bell (1928\u20131990)"
+      "markdownSection": "John Bell (1928–1990)",
+      "labelTitle": "John Bell",
+      "labelDates": "(1928–1990)",
+      "labelBadge": "📚",
+      "labelSubtitle": "Bell's Theorem"
     },
     {
       "id": "thinker_hugh_everett_iii_1930_1982_many_worlds_interpretation",
-      "label": "Hugh Everett III (1930\u20131982) \u2014 Many-Worlds Interpretation",
+      "label": "Hugh Everett III (1930–1982) — Many-Worlds Interpretation",
       "radius": 2.2,
       "color": "#7a4a1f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Hugh Everett III (1930\u20131982) \u2014 Many-Worlds Interpretation"
+      "markdownSection": "Hugh Everett III (1930–1982) — Many-Worlds Interpretation",
+      "labelTitle": "Hugh Everett III",
+      "labelSubtitle": "Many-Worlds Interpretation",
+      "labelDates": "(1930–1982)",
+      "labelBadge": "📚"
     },
     {
       "id": "thinker_antony_valentini_1965_quantum_nonequilibrium",
-      "label": "Antony Valentini (1965\u2013) \u2014 Quantum Nonequilibrium",
+      "label": "Antony Valentini (1965–) — Quantum Nonequilibrium",
       "radius": 2.2,
       "color": "#355f9a",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Antony Valentini (1965\u2013) \u2014 Quantum Nonequilibrium"
+      "markdownSection": "Antony Valentini (1965–) — Quantum Nonequilibrium",
+      "labelTitle": "Antony Valentini",
+      "labelSubtitle": "Quantum Nonequilibrium",
+      "labelDates": "(1965–)",
+      "labelBadge": "📚"
     },
     {
-      "id": "thinker_lucien_hardy_1966_rob_spekkens_1970_matthew_leifer_1975_quantum_foundations_operational_psi_epistemic",
-      "label": "Lucien Hardy (1966\u2013), Rob Spekkens (1970\u2013), Matthew Leifer (1975\u2013) \u2014 Quantum Foundations (Operational/Psi-Epistemic)",
+      "id": "thinker_lucien_hardy_1966_quantum_foundations_operational_psi_epistemic",
+      "label": "Lucien Hardy (1966–) — Quantum Foundations",
       "radius": 2.2,
       "color": "#243d8f",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Lucien Hardy (1966\u2013), Rob Spekkens (1970\u2013), Matthew Leifer (1975\u2013) \u2014 Quantum Foundations (Operational/Psi-Epistemic)"
+      "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
+      "labelTitle": "Lucien Hardy",
+      "labelSubtitle": "Operational Axioms",
+      "labelDates": "(1966–)",
+      "labelBadge": "📚"
+    },
+    {
+      "id": "thinker_rob_spekkens_1970_quantum_foundations_operational_psi_epistemic",
+      "label": "Rob Spekkens (1970–) — Quantum Foundations",
+      "radius": 2.2,
+      "color": "#2f6b6f",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
+      "labelTitle": "Rob Spekkens",
+      "labelSubtitle": "Psi-Epistemic Models",
+      "labelDates": "(1970–)",
+      "labelBadge": "📚"
+    },
+    {
+      "id": "thinker_matthew_leifer_1975_quantum_foundations_operational_psi_epistemic",
+      "label": "Matthew Leifer (1975–) — Quantum Foundations",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
+      "labelTitle": "Matthew Leifer",
+      "labelSubtitle": "Psi-Epistemic Models",
+      "labelDates": "(1975–)",
+      "labelBadge": "📚"
     }
   ]
 }

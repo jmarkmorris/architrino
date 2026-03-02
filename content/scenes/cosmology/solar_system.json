@@ -25,7 +25,8 @@
       ],
       "subScenes": [
         "content/scenes/cosmology/star.json"
-      ]
+      ],
+      "labelTitle": "Star"
     },
     {
       "id": "planet_a",
@@ -43,9 +44,10 @@
           "center": "star",
           "radius": 4.9,
           "speed": 0.25,
-          "phase": 0.0
+          "phase": 0
         }
-      }
+      },
+      "labelTitle": "Planet A"
     },
     {
       "id": "planet_b",
@@ -65,7 +67,8 @@
           "speed": 0.18,
           "phase": 2.094
         }
-      }
+      },
+      "labelTitle": "Planet B"
     },
     {
       "id": "planet_c",
@@ -85,7 +88,8 @@
           "speed": 0.12,
           "phase": 4.189
         }
-      }
+      },
+      "labelTitle": "Planet C"
     },
     {
       "id": "moon",
@@ -105,7 +109,8 @@
           "speed": 0.6,
           "phase": 0.6
         }
-      }
+      },
+      "labelTitle": "Moon"
     }
   ]
 }

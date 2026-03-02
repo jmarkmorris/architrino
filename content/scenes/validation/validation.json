@@ -5,7 +5,7 @@
     "kind": "branching",
     "name": "Validation",
     "units": "relative",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "wrapLabels": true
   },
   "objects": [
@@ -19,63 +19,80 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Simulations"
     },
     {
       "id": "architrino_si_base_units",
       "label": "Architrino SI Base Units",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md"
+      "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md",
+      "labelTitle": "Architrino SI Base Units",
+      "labelBadge": "📚"
     },
     {
       "id": "constraint_ledger",
       "label": "Constraint Ledger",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/validation/constraint-ledger.md"
+      "markdownPath": "content/markdown/aaa/validation/constraint-ledger.md",
+      "labelTitle": "Constraint Ledger",
+      "labelBadge": "📚"
     },
     {
       "id": "failure_criteria",
       "label": "Failure Criteria",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/validation/failure-criteria.md"
+      "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+      "labelTitle": "Failure Criteria",
+      "labelBadge": "📚"
     },
     {
       "id": "known_tensions",
       "label": "Known Tensions",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/validation/known-tensions.md"
+      "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
+      "labelTitle": "Known Tensions",
+      "labelBadge": "📚"
     },
     {
       "id": "no_go_theorems",
       "label": "No Go Theorems",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md"
+      "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
+      "labelTitle": "No Go Theorems",
+      "labelBadge": "📚"
     },
     {
       "id": "parameter_ledger",
       "label": "Parameter Ledger",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md"
+      "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+      "labelTitle": "Parameter Ledger",
+      "labelBadge": "📚"
     },
     {
       "id": "reaction_ledger",
       "label": "Reaction Ledger",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md"
+      "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
+      "labelTitle": "Reaction Ledger",
+      "labelBadge": "📚"
     },
     {
       "id": "validation_protocols",
       "label": "Validation Protocols",
       "radius": 2.688,
       "color": "#2c567a",
-      "markdownPath": "content/markdown/aaa/validation/validation-protocols.md"
+      "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
+      "labelTitle": "Validation Protocols",
+      "labelBadge": "📚"
     }
   ]
 }

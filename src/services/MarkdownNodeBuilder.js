@@ -29,7 +29,7 @@ export function createMarkdownNodeBuilder(deps) {
   return async function buildAutoMarkdownNodes(scene, existingNodes) {
     const layoutMode =
       typeof scene?.layoutMode === "string" ? scene.layoutMode.toLowerCase() : "";
-    const usesRingLayout = layoutMode === "ring";
+    const usesRingLayout = layoutMode === "rings";
     if (!usesRingLayout || (!scene?.autoMarkdownDirectory && !scene?.autoMarkdownPath)) {
       return [];
     }
@@ -257,11 +257,25 @@ export function createMarkdownNodeBuilder(deps) {
       const col = index % columns;
       return [startX + col * gridSpacing, startY - row * gridSpacing];
     };
-    const colorIndexForLayoutIndex = (layoutIndex) => {
-      if (!useRing) {
-        return layoutIndex;
+    let colorBag = Array.isArray(palette) && palette.length ? [...palette] : [];
+    const shuffleInPlace = (list) => {
+      for (let i = list.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [list[i], list[j]] = [list[j], list[i]];
       }
-      return layoutCount - 1 - layoutIndex;
+      return list;
+    };
+    if (colorBag.length > 1) {
+      shuffleInPlace(colorBag);
+    }
+    const drawPaletteColor = () => {
+      if (!colorBag.length) {
+        colorBag = Array.isArray(palette) ? [...palette] : [];
+        if (colorBag.length > 1) {
+          shuffleInPlace(colorBag);
+        }
+      }
+      return colorBag.pop();
     };
 
     if (includeExisting) {
@@ -279,8 +293,7 @@ export function createMarkdownNodeBuilder(deps) {
         const { info, slug, id } = entry;
         const layoutIndex = includeExisting ? currentNodes.length + index : index;
         const [x, y] = positionForIndex(layoutIndex);
-        const paletteIndex = colorIndexForLayoutIndex(layoutIndex);
-        let color = baseColor ?? palette[paletteIndex % palette.length] ?? "#3a5a8a";
+        let color = baseColor ?? drawPaletteColor() ?? "#3a5a8a";
         if (typeof color === "string" && colorTokens[color]) {
           color = colorTokens[color];
         }

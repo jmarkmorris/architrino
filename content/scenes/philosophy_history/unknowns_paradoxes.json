@@ -6,9 +6,9 @@
     "name": "Unknowns & Paradoxes",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "grid",
-    "layoutColumns": 6,
-    "labelDocIconOwnLine": true
+    "layoutMode": "rings",
+    "labelDocIconOwnLine": true,
+    "centerOn": "unknown_the_hubble_tension"
   },
   "objects": [
     {
@@ -22,7 +22,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Nature of Dark Energy",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_identity_of_dark_matter",
@@ -35,7 +37,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Identity of Dark Matter",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_cosmological_constant_problem",
@@ -48,7 +52,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Cosmological Constant Problem",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_hierarchy_problem_naturalness",
@@ -61,7 +67,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Hierarchy Problem",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_uv_catastrophe_blackbody_divergence",
@@ -74,20 +82,24 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The UV Catastrophe",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_hubble_tension",
-      "label": "The Hubble Tension",
+      "label": "Cosmological Tensions",
       "radius": 2.2,
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "markdownSection": "The Hubble Tension",
+      "markdownSection": "Cosmological Tensions",
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Cosmological Tensions",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_baryon_asymmetry",
@@ -100,7 +112,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Baryon Asymmetry",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_neutrino_mass_and_nature",
@@ -113,7 +127,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Neutrino Mass and Nature",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_strong_cp_problem",
@@ -126,7 +142,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Strong CP Problem",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_quantum_gravity_and_renormalizability",
@@ -139,7 +157,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Quantum Gravity and Renormalizability",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_black_hole_information_paradox",
@@ -152,7 +172,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Black Hole Information Paradox",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_fermi_paradox",
@@ -165,7 +187,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Fermi Paradox",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_measurement_problem",
@@ -178,7 +202,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Measurement Problem",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_mechanism_of_inflation",
@@ -191,7 +217,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Mechanism of Inflation",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_flavor_problem",
@@ -204,20 +232,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
-    },
-    {
-      "id": "unknown_the_s_8_structure_growth_tension",
-      "label": "Structure Growth Tension S8",
-      "radius": 2.2,
-      "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "markdownSection": "The $S_8$ (Structure Growth) Tension",
-      "markdownAutoIndex": false,
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
+      },
+      "labelTitle": "The Flavor Problem",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_proton_stability",
@@ -230,7 +247,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Proton Stability",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_vacuum_instability",
@@ -243,7 +262,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Vacuum Instability",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_muon_g_2_and_lepton_universality_anomalies",
@@ -256,7 +277,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Muon g-2 & Lepton Anomalies",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_lithium_problem",
@@ -269,7 +292,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Lithium Problem",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_confinement_and_the_mass_gap",
@@ -282,7 +307,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Confinement and the Mass Gap",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_arrow_of_time",
@@ -295,7 +322,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "The Arrow of Time",
+      "labelBadge": "📚"
     },
     {
       "id": "unknown_the_trans_planckian_censorship_and_the_swampland",
@@ -308,7 +337,9 @@
       "subScenes": [],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Trans-Planckian Censorship",
+      "labelBadge": "📚"
     }
   ]
 }

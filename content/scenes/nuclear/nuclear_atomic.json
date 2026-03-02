@@ -5,7 +5,7 @@
     "kind": "branching",
     "name": "Nuclear-Atomic",
     "units": "relative",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "wrapLabels": true
   },
   "objects": [
@@ -16,7 +16,8 @@
       "color": "#2c567a",
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Leptogenesis CP Sources"
     },
     {
       "id": "periodic_table",
@@ -28,7 +29,8 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Periodic Table"
     },
     {
       "id": "atom",
@@ -40,56 +42,71 @@
       ],
       "motion": {
         "type": "fixed"
-      }
+      },
+      "labelTitle": "Atom"
     },
     {
       "id": "atomic_spectra",
       "label": "Atomic Spectra",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md"
+      "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+      "labelTitle": "Atomic Spectra",
+      "labelBadge": "📚"
     },
     {
       "id": "atomic_structure",
       "label": "Atomic Structure",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md"
+      "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+      "labelTitle": "Atomic Structure",
+      "labelBadge": "📚"
     },
     {
       "id": "condensed_matter",
       "label": "Condensed Matter",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md"
+      "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+      "labelTitle": "Condensed Matter",
+      "labelBadge": "📚"
     },
     {
       "id": "displacement_of_spacetime",
       "label": "Displacement of Spacetime",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md"
+      "markdownPath": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "labelTitle": "Displacement of Spacetime",
+      "labelBadge": "📚"
     },
     {
       "id": "molecular_geometry",
       "label": "Molecular Geometry",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md"
+      "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+      "labelTitle": "Molecular Geometry",
+      "labelBadge": "📚"
     },
     {
       "id": "nuclear_binding",
       "label": "Nuclear Binding",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md"
+      "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+      "labelTitle": "Nuclear Binding",
+      "labelBadge": "📚"
     },
     {
       "id": "nucleon_structure",
       "label": "Nucleon Structure",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md"
+      "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+      "labelTitle": "Nucleon Structure",
+      "labelBadge": "📚"
     }
   ]
 }

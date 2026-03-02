@@ -504,7 +504,7 @@ function buildComposerSceneConfig(state) {
   }));
   return {
     layout: "static",
-    layoutMode: "ring",
+    layoutMode: "rings",
     nodes,
     links: [],
     sceneName: `${state.name} (Preview)`,
@@ -2063,10 +2063,8 @@ function layoutRootLevel(level) {
     return;
   }
   const layoutMode = getEffectiveLayoutMode(level);
-  const useRingLayout =
-    level.id === rootScenePath || layoutMode === "ring";
-  const useGridLayout = layoutMode === "grid";
-  if (!useRingLayout && !useGridLayout) {
+  const useRootAutoLayout = level.id === rootScenePath && !layoutMode;
+  if (!useRootAutoLayout) {
     return;
   }
   nodes.forEach((node) => {
@@ -2077,48 +2075,6 @@ function layoutRootLevel(level) {
       node.data.basePosition = [node.group.position.x, node.group.position.y, node.group.position.z];
     }
   });
-
-  if (useGridLayout) {
-    nodes.forEach((node) => {
-      const basePos = Array.isArray(node.data?.basePosition) ? node.data.basePosition : [0, 0, 0];
-      node.group.position.set(basePos[0] ?? 0, basePos[1] ?? 0, basePos[2] ?? 0);
-      node.group.scale.setScalar(1);
-      if (node.data?.baseRadius) {
-        node.data.radius = node.data.baseRadius;
-      }
-    });
-    const { size } = getLevelBoundsFromNodes(level);
-    if (!isFinite(size.x) || !isFinite(size.y) || size.lengthSq() === 0) {
-      return;
-    }
-    const { safeWidth, safeHeight } = getSafeViewportWorld();
-    const fitFactor = 0.9;
-    const scaleFactor = Math.min(
-      (safeWidth * fitFactor) / Math.max(size.x, 0.01),
-      (safeHeight * fitFactor) / Math.max(size.y, 0.01)
-    );
-    if (!Number.isFinite(scaleFactor) || scaleFactor <= 0) {
-      return;
-    }
-    nodes.forEach((node) => {
-      const basePos = Array.isArray(node.data?.basePosition) ? node.data.basePosition : [0, 0, 0];
-      node.group.position.set(
-        (basePos[0] ?? 0) * scaleFactor,
-        (basePos[1] ?? 0) * scaleFactor,
-        basePos[2] ?? 0
-      );
-      node.group.scale.setScalar(scaleFactor);
-      node.baseScale = scaleFactor;
-      if (node.data) {
-        node.data.baseScale = scaleFactor;
-      }
-      if (node.data?.baseRadius) {
-        node.data.radius = node.data.baseRadius * scaleFactor;
-      }
-      node.basePosition = node.group.position.clone();
-    });
-    return;
-  }
 
   const baseRadius = Math.max(
     ...nodes.map((node) => node.data?.baseRadius ?? node.data?.radius ?? 0)
@@ -2163,7 +2119,7 @@ function isCenteredRingLevel(level) {
     return false;
   }
   const layoutMode = getEffectiveLayoutMode(level);
-  return level.id === rootScenePath || layoutMode === "ring";
+  return level.id === rootScenePath || layoutMode === "rings";
 }
 
 function getEffectiveLayoutMode(level) {
@@ -2395,8 +2351,10 @@ function updateLevelLabelWrap(level) {
     }
 
     const labelName =
-      typeof node.data.shortName === "string" && node.data.shortName.trim()
-        ? node.data.shortName.trim()
+      typeof node.data.labelTitle === "string" && node.data.labelTitle.trim()
+        ? node.data.labelTitle.trim()
+        : typeof node.data.shortName === "string" && node.data.shortName.trim()
+          ? node.data.shortName.trim()
         : typeof node.data.name === "string"
           ? node.data.name
           : "";
@@ -2421,6 +2379,9 @@ function updateLevelLabelWrap(level) {
     const letterSpacing = titleSize <= 11.5 ? 0.01 : 0.02;
     const scaleSize = clamp(titleSize * 0.62, 8, 10);
     const tagSize = clamp(titleSize * 0.58, 8, 9);
+    const subtitleSize = titleSize;
+    const datesSize = titleSize;
+    const badgeSize = clamp(titleSize * 0.95, 11, 18);
     const typographyKey = [
       titleSize.toFixed(2),
       titleWeight,
@@ -2428,6 +2389,9 @@ function updateLevelLabelWrap(level) {
       letterSpacing.toFixed(2),
       scaleSize.toFixed(2),
       tagSize.toFixed(2),
+      subtitleSize.toFixed(2),
+      datesSize.toFixed(2),
+      badgeSize.toFixed(2),
     ].join("|");
 
     if (node.labelTypographyKey !== typographyKey) {
@@ -2442,6 +2406,9 @@ function updateLevelLabelWrap(level) {
       );
       labelStyle.setProperty("--label-scale-size", `${scaleSize.toFixed(2)}px`);
       labelStyle.setProperty("--label-tag-size", `${tagSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-subtitle-size", `${subtitleSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-dates-size", `${datesSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-badge-size", `${badgeSize.toFixed(2)}px`);
     }
   });
 }
@@ -3068,6 +3035,16 @@ function focusOnPointer(clientX, clientY) {
     return false;
   }
 
+  const hasMarkdownPath = !!targetNode.data.markdownPath;
+  const hasManualDocBadge =
+    (typeof targetNode.data.labelBadge === "string" &&
+      targetNode.data.labelBadge.trim().length > 0) ||
+    (typeof targetNode.data.labelBadgeImage === "string" &&
+      targetNode.data.labelBadgeImage.trim().length > 0);
+  const canOpenMarkdown =
+    hasMarkdownPath &&
+    (targetNode.data.markdownDocIconEligible === true || hasManualDocBadge);
+
   if (currentLevel?.sceneId === composerSceneId) {
     const panelId = composerPanelMap.get(targetNode.data.id ?? "");
     if (panelId) {
@@ -3080,8 +3057,7 @@ function focusOnPointer(clientX, clientY) {
 
   const prefersDocDrillDown =
     targetNode.data.docDrillDownPreferred === true &&
-    !!targetNode.data.markdownPath &&
-    targetNode.data.markdownDocIconEligible === true;
+    canOpenMarkdown;
 
   if (prefersDocDrillDown) {
     closeDetailPanel();
@@ -3108,10 +3084,7 @@ function focusOnPointer(clientX, clientY) {
     closeDetailPanel();
     hideHoverTooltip();
     startLevelTransitionFromNode(targetNode);
-  } else if (
-    targetNode.data.markdownPath &&
-    targetNode.data.markdownDocIconEligible === true
-  ) {
+  } else if (canOpenMarkdown) {
     closeDetailPanel();
     hideHoverTooltip();
     const readerSceneId = markdownSceneRegistry.ensureMarkdownReaderScene(targetNode.data);

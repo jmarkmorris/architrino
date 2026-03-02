@@ -17,9 +17,9 @@
       "radius": 0.3485,
       "color": "RED",
       "position": [
-        0.0,
-        0.0,
-        0.0
+        0,
+        0,
+        0
       ],
       "motion": {
         "type": "fixed"
@@ -27,7 +27,8 @@
       "category": "proton",
       "subScenes": [
         "content/scenes/nuclear/proton.json"
-      ]
+      ],
+      "labelTitle": "P"
     },
     {
       "id": "e1_1",
@@ -36,8 +37,8 @@
       "color": "BLUE",
       "position": [
         3.9,
-        0.0,
-        0.0
+        0,
+        0
       ],
       "motion": {
         "type": "orbit",
@@ -48,13 +49,14 @@
         ],
         "radius": 3.9,
         "speed": 0,
-        "phase": 0.0
+        "phase": 0
       },
       "category": "electron",
       "shell": 1,
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
-      ]
+      ],
+      "labelTitle": "e"
     },
     {
       "id": "legend_p",
@@ -64,7 +66,7 @@
       "position": [
         -5.9,
         5.9,
-        0.0
+        0
       ],
       "motion": {
         "type": "fixed"
@@ -72,7 +74,8 @@
       "category": "legend",
       "subScenes": [
         "content/scenes/nuclear/proton.json"
-      ]
+      ],
+      "labelTitle": "P"
     },
     {
       "id": "legend_n",
@@ -82,7 +85,7 @@
       "position": [
         -5.9,
         4.959,
-        0.0
+        0
       ],
       "motion": {
         "type": "fixed"
@@ -90,7 +93,8 @@
       "category": "legend",
       "subScenes": [
         "content/scenes/nuclear/neutron.json"
-      ]
+      ],
+      "labelTitle": "N"
     },
     {
       "id": "legend_e",
@@ -100,7 +104,7 @@
       "position": [
         -5.9,
         4.018,
-        0.0
+        0
       ],
       "motion": {
         "type": "fixed"
@@ -108,7 +112,8 @@
       "category": "legend",
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
-      ]
+      ],
+      "labelTitle": "e"
     }
   ]
 }

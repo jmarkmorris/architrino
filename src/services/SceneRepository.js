@@ -45,7 +45,7 @@ export class SceneRepository {
     }
     const list = Array.isArray(nodes) ? nodes : [];
     const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
-    const usesRingLayout = layoutMode === "ring";
+    const usesRingLayout = layoutMode === "rings";
     const hasNavigation =
       list.some(
         (node) =>
@@ -68,7 +68,7 @@ export class SceneRepository {
 
   shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
     const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
-    const isStructuredLayout = layoutMode === "ring" || layoutMode === "grid";
+    const isStructuredLayout = layoutMode === "rings";
     const sceneId = String(sceneData?.scene?.id ?? "").toLowerCase();
     const isHomeScene =
       typeof this.homeScenePath === "string" &&
@@ -201,10 +201,24 @@ export class SceneRepository {
         });
       }
     }
-    let colorIndex = 0;
+    const shuffledPalette = [...palette];
+    for (let i = shuffledPalette.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledPalette[i], shuffledPalette[j]] = [shuffledPalette[j], shuffledPalette[i]];
+    }
+    let colorBag = [...shuffledPalette];
+    const drawColor = () => {
+      if (!colorBag.length) {
+        colorBag = [...palette];
+        for (let i = colorBag.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [colorBag[i], colorBag[j]] = [colorBag[j], colorBag[i]];
+        }
+      }
+      return colorBag.pop();
+    };
     orderedNodes.forEach((node) => {
-      node.color = palette[colorIndex % palette.length];
-      colorIndex += 1;
+      node.color = drawColor();
     });
   }
 
@@ -289,6 +303,13 @@ export class SceneRepository {
           const node = {
             id: obj.id,
             name: obj.label || obj.id,
+            shortName: obj.shortName ?? null,
+            labelTitle: obj.labelTitle ?? null,
+            labelSubtitle: obj.labelSubtitle ?? null,
+            labelDates: obj.labelDates ?? null,
+            labelBadge: obj.labelBadge ?? null,
+            labelBadgeImage: obj.labelBadgeImage ?? null,
+            labelBadgeAlt: obj.labelBadgeAlt ?? null,
             scale: hasScale ? obj.scaleExponent : null,
             hasScale,
             radius: obj.radius ?? 1,
@@ -420,7 +441,6 @@ export class SceneRepository {
           autoMarkdownPlainSectionPaths: Array.isArray(markdownDerived?.autoMarkdownPlainSectionPaths)
             ? markdownDerived.autoMarkdownPlainSectionPaths
             : [],
-          labelDocIconOwnLine: data.scene?.labelDocIconOwnLine === true,
           autoMarkdownSectionDepth: markdownDerived?.autoMarkdownSectionDepth ?? null,
           autoMarkdownOverrides: markdownDerived?.autoMarkdownOverrides ?? null,
           autoMarkdownSubdirectories: markdownDerived?.autoMarkdownSubdirectories ?? false,
@@ -445,7 +465,7 @@ export class SceneRepository {
       return;
     }
     const layoutMode = String(config.layoutMode ?? "").toLowerCase();
-    const isRingLayout = layoutMode === "ring";
+    const isRingLayout = layoutMode === "rings";
     const hasAutoMarkdownSource =
       (typeof config.autoMarkdownPath === "string" && config.autoMarkdownPath.length > 0) ||
       (typeof config.autoMarkdownDirectory === "string" && config.autoMarkdownDirectory.length > 0);

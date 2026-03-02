@@ -17,9 +17,9 @@
       "radius": 1.1,
       "color": "RED",
       "position": [
-        -9.0,
-        8.0,
-        0.0
+        -9,
+        8,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/up_quark.json"
@@ -33,7 +33,8 @@
         "mass": "2.2 MeV",
         "spin": "1/2",
         "generation": "I"
-      }
+      },
+      "labelTitle": "up quark"
     },
     {
       "id": "down_quark",
@@ -41,9 +42,9 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        -9.0,
-        4.0,
-        0.0
+        -9,
+        4,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/down_quark.json"
@@ -57,7 +58,8 @@
         "mass": "4.7 MeV",
         "spin": "1/2",
         "generation": "I"
-      }
+      },
+      "labelTitle": "down quark"
     },
     {
       "id": "electron",
@@ -65,9 +67,9 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        -9.0,
-        -4.0,
-        0.0
+        -9,
+        -4,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/electron.json"
@@ -81,7 +83,8 @@
         "mass": "0.511 MeV",
         "spin": "1/2",
         "generation": "I"
-      }
+      },
+      "labelTitle": "electron"
     },
     {
       "id": "electron_neutrino",
@@ -89,9 +92,9 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        -9.0,
-        0.0,
-        0.0
+        -9,
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/neutrino.json"
@@ -105,7 +108,8 @@
         "mass": "unknown (< 1 eV)",
         "spin": "1/2",
         "generation": "I"
-      }
+      },
+      "labelTitle": "electron neutrino"
     },
     {
       "id": "charm_quark",
@@ -113,9 +117,9 @@
       "radius": 1.1,
       "color": "RED",
       "position": [
-        -3.0,
-        8.0,
-        0.0
+        -3,
+        8,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/charm.json"
@@ -129,7 +133,8 @@
         "mass": "1.27 GeV",
         "spin": "1/2",
         "generation": "II"
-      }
+      },
+      "labelTitle": "charm quark"
     },
     {
       "id": "strange_quark",
@@ -137,9 +142,9 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        -3.0,
-        4.0,
-        0.0
+        -3,
+        4,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/strange.json"
@@ -153,7 +158,8 @@
         "mass": "96 MeV",
         "spin": "1/2",
         "generation": "II"
-      }
+      },
+      "labelTitle": "strange quark"
     },
     {
       "id": "muon",
@@ -161,9 +167,9 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        -3.0,
-        -4.0,
-        0.0
+        -3,
+        -4,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/muon.json"
@@ -177,7 +183,8 @@
         "mass": "105.66 MeV",
         "spin": "1/2",
         "generation": "II"
-      }
+      },
+      "labelTitle": "muon"
     },
     {
       "id": "muon_neutrino",
@@ -185,9 +192,9 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        -3.0,
-        0.0,
-        0.0
+        -3,
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/muon_neutrino.json"
@@ -201,7 +208,8 @@
         "mass": "unknown (< 1 eV)",
         "spin": "1/2",
         "generation": "II"
-      }
+      },
+      "labelTitle": "muon neutrino"
     },
     {
       "id": "top_quark",
@@ -209,9 +217,9 @@
       "radius": 1.1,
       "color": "RED",
       "position": [
-        3.0,
-        8.0,
-        0.0
+        3,
+        8,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/top.json"
@@ -225,7 +233,8 @@
         "mass": "173 GeV",
         "spin": "1/2",
         "generation": "III"
-      }
+      },
+      "labelTitle": "top quark"
     },
     {
       "id": "bottom_quark",
@@ -233,9 +242,9 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        3.0,
-        4.0,
-        0.0
+        3,
+        4,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/bottom.json"
@@ -249,7 +258,8 @@
         "mass": "4.18 GeV",
         "spin": "1/2",
         "generation": "III"
-      }
+      },
+      "labelTitle": "bottom quark"
     },
     {
       "id": "tau",
@@ -257,9 +267,9 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        3.0,
-        -4.0,
-        0.0
+        3,
+        -4,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/tau.json"
@@ -273,7 +283,8 @@
         "mass": "1.777 GeV",
         "spin": "1/2",
         "generation": "III"
-      }
+      },
+      "labelTitle": "tau"
     },
     {
       "id": "tau_neutrino",
@@ -281,9 +292,9 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        3.0,
-        0.0,
-        0.0
+        3,
+        0,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/tau_neutrino.json"
@@ -297,7 +308,8 @@
         "mass": "unknown (< 1 eV)",
         "spin": "1/2",
         "generation": "III"
-      }
+      },
+      "labelTitle": "tau neutrino"
     },
     {
       "id": "photon",
@@ -305,9 +317,9 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        15.0,
-        -4.0,
-        0.0
+        15,
+        -4,
+        0
       ],
       "subScenes": [],
       "motion": {
@@ -318,7 +330,8 @@
         "charge": "0",
         "mass": "0",
         "spin": "1"
-      }
+      },
+      "labelTitle": "photon"
     },
     {
       "id": "gluon",
@@ -326,9 +339,9 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        15.0,
-        4.0,
-        0.0
+        15,
+        4,
+        0
       ],
       "subScenes": [],
       "motion": {
@@ -339,7 +352,8 @@
         "charge": "0",
         "mass": "0",
         "spin": "1"
-      }
+      },
+      "labelTitle": "gluon"
     },
     {
       "id": "z_boson",
@@ -347,9 +361,9 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        9.0,
-        0.0,
-        0.0
+        9,
+        0,
+        0
       ],
       "subScenes": [],
       "motion": {
@@ -360,7 +374,8 @@
         "charge": "0",
         "mass": "91.19 GeV",
         "spin": "1"
-      }
+      },
+      "labelTitle": "Z boson"
     },
     {
       "id": "w_plus",
@@ -368,9 +383,9 @@
       "radius": 1.1,
       "color": "RED",
       "position": [
-        9.0,
-        8.0,
-        0.0
+        9,
+        8,
+        0
       ],
       "subScenes": [],
       "motion": {
@@ -381,7 +396,8 @@
         "charge": "+1 e",
         "mass": "80.38 GeV",
         "spin": "1"
-      }
+      },
+      "labelTitle": "W+"
     },
     {
       "id": "w_minus",
@@ -389,9 +405,9 @@
       "radius": 1.1,
       "color": "BLUE",
       "position": [
-        9.0,
-        4.0,
-        0.0
+        9,
+        4,
+        0
       ],
       "subScenes": [],
       "motion": {
@@ -402,7 +418,8 @@
         "charge": "-1 e",
         "mass": "80.38 GeV",
         "spin": "1"
-      }
+      },
+      "labelTitle": "W-"
     },
     {
       "id": "higgs_boson",
@@ -410,9 +427,9 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        9.0,
-        -4.0,
-        0.0
+        9,
+        -4,
+        0
       ],
       "subScenes": [
         "content/scenes/standard-model-particles/higgs_boson.json"
@@ -425,7 +442,8 @@
         "charge": "0",
         "mass": "125.25 GeV",
         "spin": "0"
-      }
+      },
+      "labelTitle": "Higgs boson"
     }
   ]
 }

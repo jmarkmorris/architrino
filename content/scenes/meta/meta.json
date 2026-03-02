@@ -5,7 +5,7 @@
     "kind": "branching",
     "name": "Archie",
     "units": "relative",
-    "layoutMode": "ring",
+    "layoutMode": "rings",
     "wrapLabels": true,
     "hideScaleLabels": true
   },
@@ -17,14 +17,17 @@
       "color": "#7ee0d7",
       "subScenes": [
         "content/scenes/meta/composer.json"
-      ]
+      ],
+      "labelTitle": "Composer"
     },
     {
       "id": "meta_about",
       "label": "About",
       "radius": 2.2,
       "color": "#243d8f",
-      "markdownPath": "content/markdown/aaa/archie/about.md"
+      "markdownPath": "content/markdown/aaa/archie/about.md",
+      "labelTitle": "About",
+      "labelBadge": "📚"
     },
     {
       "id": "meta_glossary",
@@ -32,49 +35,63 @@
       "radius": 2.2,
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/archie/glossary.md",
-      "markdownColumns": 1
+      "markdownColumns": 1,
+      "labelTitle": "Glossary",
+      "labelBadge": "📚"
     },
     {
       "id": "meta_help",
       "label": "Help",
       "radius": 2.2,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/archie/help.md"
+      "markdownPath": "content/markdown/aaa/archie/help.md",
+      "labelTitle": "Help",
+      "labelBadge": "📚"
     },
     {
       "id": "meta_key",
       "label": "Key",
       "radius": 2.2,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/archie/key.md"
+      "markdownPath": "content/markdown/aaa/archie/key.md",
+      "labelTitle": "Key",
+      "labelBadge": "📚"
     },
     {
       "id": "meta_mathematical_style_guide",
       "label": "Mathematical Style Guide",
       "radius": 2.2,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/archie/mathematical-style-guide.md"
+      "markdownPath": "content/markdown/aaa/archie/mathematical-style-guide.md",
+      "labelTitle": "Mathematical Style Guide",
+      "labelBadge": "📚"
     },
     {
       "id": "meta_mathematical_terminology",
       "label": "Mathematical Terminology",
       "radius": 2.2,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/archie/mathematical-terminology.md"
+      "markdownPath": "content/markdown/aaa/archie/mathematical-terminology.md",
+      "labelTitle": "Mathematical Terminology",
+      "labelBadge": "📚"
     },
     {
       "id": "meta_navigation",
       "label": "Navigation",
       "radius": 2.2,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/archie/navigation.md"
+      "markdownPath": "content/markdown/aaa/archie/navigation.md",
+      "labelTitle": "Navigation",
+      "labelBadge": "📚"
     },
     {
       "id": "meta_settings",
       "label": "Settings",
       "radius": 2.2,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/archie/settings.md"
+      "markdownPath": "content/markdown/aaa/archie/settings.md",
+      "labelTitle": "Settings",
+      "labelBadge": "📚"
     }
   ]
 }
