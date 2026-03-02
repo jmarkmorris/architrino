@@ -1,4 +1,19 @@
 export function createTransitionEngine(transitionState, deps) {
+  function maybeCenterLevelInFrame(level) {
+    if (!level) {
+      return;
+    }
+    if (
+      typeof deps.shouldCenterLevelInFrame === "function" &&
+      !deps.shouldCenterLevelInFrame(level)
+    ) {
+      return;
+    }
+    if (typeof deps.centerLevelInFrame === "function") {
+      deps.centerLevelInFrame(level);
+    }
+  }
+
   function getTransitionFocusNode(level) {
     if (!level) {
       return null;
@@ -67,6 +82,7 @@ export function createTransitionEngine(transitionState, deps) {
         deps.setLevelLinkOpacity(toLevel, 1);
 
         deps.setCurrentLevel(toLevel);
+        maybeCenterLevelInFrame(toLevel);
         deps.zoomState.active = false;
         deps.panTween.active = false;
         deps.applyZoom(payload.zoomTarget ?? deps.camera.zoom);
@@ -139,6 +155,7 @@ export function createTransitionEngine(transitionState, deps) {
         deps.setLevelLinkOpacity(fromLevel, 0);
 
         deps.setCurrentLevel(toLevel);
+        maybeCenterLevelInFrame(toLevel);
         deps.navigationStack.pop();
         deps.zoomState.active = false;
         deps.panTween.active = false;
@@ -197,6 +214,7 @@ export function createTransitionEngine(transitionState, deps) {
           deps.worldGroup.position.copy(payload.worldPanTarget);
         }
         deps.setCurrentLevel(toLevel);
+        maybeCenterLevelInFrame(toLevel);
         deps.applyZoom(payload.zoomTarget ?? deps.camera.zoom);
         deps.labelFadeState.active = true;
         deps.labelFadeState.level = deps.getCurrentLevel();

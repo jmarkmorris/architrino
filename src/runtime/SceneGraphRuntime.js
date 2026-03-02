@@ -328,6 +328,7 @@ export function createSceneGraphRuntime(deps) {
       primaryBinaryNode,
       layout: config.layout,
       layoutMode: config.layoutMode ?? null,
+      autoSphereRing: config.autoSphereRing === true,
       links: [],
     };
 

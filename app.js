@@ -1312,7 +1312,7 @@ function computeRingLayout(nodes) {
     Math.min(count, standardRingMaxCount) * baseRadius * 1.4
   );
   const maxRadius = maxRingNodeRadius(ringRadius, count);
-  if (Number.isFinite(maxRadius) && maxRadius > 0) {
+  if (Number.isFinite(maxRadius) && maxRadius > 0 && maxRadius < baseRadius) {
     baseRadius = maxRadius;
   }
   const positions = [];
@@ -1385,6 +1385,13 @@ const transitionEngine = createTransitionEngine(transitionState, {
   getCurrentLevel: () => currentLevel,
   setCurrentLevel: (level) => {
     currentLevel = level;
+  },
+  shouldCenterLevelInFrame: (level) => {
+    return isCenteredRingLevel(level);
+  },
+  centerLevelInFrame: (level) => {
+    const center = getLevelFrameCenter(level);
+    worldGroup.position.set(-center.x, -center.y, 0);
   },
   now: () => performance.now(),
 });
@@ -1939,7 +1946,8 @@ function layoutRootLevel(level) {
   }
   const layoutMode =
     typeof level.layoutMode === "string" ? level.layoutMode.toLowerCase() : "";
-  const useRingLayout = level.id === rootScenePath || layoutMode === "ring";
+  const useRingLayout =
+    level.id === rootScenePath || layoutMode === "ring" || level.autoSphereRing === true;
   const useGridLayout = layoutMode === "grid";
   if (!useRingLayout && !useGridLayout) {
     return;
@@ -2043,6 +2051,30 @@ function getLevelBoundsLocal(level) {
   return getLevelBoundsFromNodes(level);
 }
 
+function isCenteredRingLevel(level) {
+  if (!level) {
+    return false;
+  }
+  const layoutMode =
+    typeof level.layoutMode === "string" ? level.layoutMode.toLowerCase() : "";
+  return level.id === rootScenePath || layoutMode === "ring" || level.autoSphereRing === true;
+}
+
+function getLevelFrameCenter(level) {
+  if (!level) {
+    return new THREE.Vector3();
+  }
+  if (isCenteredRingLevel(level) && Array.isArray(level.nodes) && level.nodes.length > 0) {
+    const center = new THREE.Vector3();
+    level.nodes.forEach((node) => {
+      center.add(node.group.position);
+    });
+    center.multiplyScalar(1 / level.nodes.length);
+    return center;
+  }
+  return getLevelCenter(level);
+}
+
 function computeFitZoomForLevel(level) {
   const { size } = getLevelBoundsFromNodes(level);
   if (!isFinite(size.x) || !isFinite(size.y) || size.lengthSq() === 0) {
@@ -2062,7 +2094,7 @@ function fitCameraToLevel(level) {
     return;
   }
 
-  const center = getLevelCenter(level);
+  const center = getLevelFrameCenter(level);
   const nextZoom = computeFitZoomForLevel(level);
 
   zoomState.active = false;
@@ -2347,7 +2379,7 @@ function beginLevelTransition(targetNode, childLevelId) {
   const targetWorld = new THREE.Vector3();
   targetNode.group.getWorldPosition(targetWorld);
   const targetPosition = targetWorld.sub(worldGroup.position);
-  const toLevelCenter = getLevelCenter(toLevel);
+  const toLevelCenter = getLevelFrameCenter(toLevel);
   const warpScale = computeWarpScale(targetNode.data.radius);
   const toStartScale = 0.5;
   const focusNodeId = targetNode.data.id ?? targetNode.data.name;
@@ -2444,7 +2476,7 @@ function startLevelTransitionOut() {
     worldGroup.add(parentLevel.group);
   }
 
-  const parentCenter = getLevelCenter(parentLevel);
+  const parentCenter = getLevelFrameCenter(parentLevel);
   zoomState.active = false;
   panTween.active = false;
 
