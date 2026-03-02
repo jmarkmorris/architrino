@@ -2155,54 +2155,43 @@ function layoutRootLevel(level) {
   const { safeWidth, safeHeight } = getSafeViewportWorld();
   const safeRadius = Math.max(1, Math.min(safeWidth, safeHeight) / 2);
   const frameMargin = 0.94;
-  const center = new THREE.Vector3();
+  const baseCenter = new THREE.Vector3();
+  const basePositions = new Map();
   nodes.forEach((node) => {
-    center.add(node.group.position);
+    const source = Array.isArray(node.data?.basePosition)
+      ? node.data.basePosition
+      : [node.group.position.x, node.group.position.y, node.group.position.z];
+    const basePos = new THREE.Vector3(source[0] ?? 0, source[1] ?? 0, source[2] ?? 0);
+    basePositions.set(node, basePos);
+    baseCenter.add(basePos);
   });
-  center.multiplyScalar(1 / nodes.length);
+  baseCenter.multiplyScalar(1 / nodes.length);
 
   let scaleByFrame = Infinity;
   nodes.forEach((node) => {
     const baseRadius = baseBoundsRadius(node);
-    if (!(baseRadius > 0)) {
+    const basePos = basePositions.get(node);
+    if (!basePos || baseRadius < 0) {
       return;
     }
-    const radialDistance = node.group.position.distanceTo(center);
-    const available = safeRadius * frameMargin - radialDistance;
-    scaleByFrame = Math.min(scaleByFrame, available / baseRadius);
+    const radialDistance = basePos.distanceTo(baseCenter);
+    const denominator = radialDistance + baseRadius;
+    if (denominator <= 0) {
+      return;
+    }
+    scaleByFrame = Math.min(scaleByFrame, (safeRadius * frameMargin) / denominator);
   });
 
-  let scaleBySpacing = Infinity;
-  for (let i = 0; i < nodes.length; i += 1) {
-    const nodeA = nodes[i];
-    const radiusA = baseBoundsRadius(nodeA);
-    if (!(radiusA > 0)) {
-      continue;
-    }
-    for (let j = i + 1; j < nodes.length; j += 1) {
-      const nodeB = nodes[j];
-      const radiusB = baseBoundsRadius(nodeB);
-      if (!(radiusB > 0)) {
-        continue;
-      }
-      const centerDistance = nodeA.group.position.distanceTo(nodeB.group.position);
-      const minGap = ringLayoutDefaults.guardBandMin;
-      const denominator = radiusA + radiusB;
-      if (denominator <= 0) {
-        continue;
-      }
-      scaleBySpacing = Math.min(
-        scaleBySpacing,
-        (centerDistance - minGap) / denominator
-      );
-    }
-  }
-
-  const unclampedScale = Math.min(scaleByFrame, scaleBySpacing);
-  const scaleFactor = Number.isFinite(unclampedScale)
-    ? Math.max(0.1, unclampedScale)
+  const scaleFactor = Number.isFinite(scaleByFrame)
+    ? Math.max(0.1, scaleByFrame)
     : 1;
   nodes.forEach((node) => {
+    const basePos = basePositions.get(node);
+    if (basePos) {
+      const scaledOffset = basePos.clone().sub(baseCenter).multiplyScalar(scaleFactor);
+      node.group.position.copy(baseCenter.clone().add(scaledOffset));
+      node.basePosition = node.group.position.clone();
+    }
     node.group.scale.setScalar(scaleFactor);
     node.baseScale = scaleFactor;
     if (node.data) {
