@@ -30,7 +30,7 @@
         "centerOn": { "type": "string" },
         "layoutMode": {
           "type": "string",
-          "enum": ["manual", "ring", "grid"]
+          "enum": ["manual", "ring", "rings", "grid"]
         },
         "layoutColumns": { "type": "integer", "minimum": 1 },
         "sphereColorScheme": { "type": "string" },

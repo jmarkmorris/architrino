@@ -2163,7 +2163,7 @@ function isCenteredRingLevel(level) {
     return false;
   }
   const layoutMode = getEffectiveLayoutMode(level);
-  return level.id === rootScenePath || layoutMode === "ring";
+  return level.id === rootScenePath || layoutMode === "ring" || layoutMode === "rings";
 }
 
 function getEffectiveLayoutMode(level) {

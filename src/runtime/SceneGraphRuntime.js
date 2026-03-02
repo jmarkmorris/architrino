@@ -1,4 +1,119 @@
 export function createSceneGraphRuntime(deps) {
+  function getLayoutPackingMetrics(nodes) {
+    const maxNodeRadius = Math.max(
+      1,
+      ...nodes.map((node) =>
+        Number.isFinite(node?.radius) && node.radius > 0 ? node.radius : 1
+      )
+    );
+    const haloScale = 1.18;
+    const guardBandMin = 0.15;
+    const guardBandRatio = 0.08;
+    const haloDiameter = maxNodeRadius * haloScale * 2;
+    const guardBand = Math.max(guardBandMin, haloDiameter * guardBandRatio);
+    const requiredChord = haloDiameter + guardBand;
+    return { maxNodeRadius, requiredChord };
+  }
+
+  function ringSelfRadius(count, requiredChord) {
+    if (count <= 1) {
+      return 0;
+    }
+    return requiredChord / (2 * Math.sin(Math.PI / count));
+  }
+
+  function buildRingPoints(count, radius, startAngle = Math.PI / 2, phaseOffset = 0) {
+    const points = [];
+    for (let i = 0; i < count; i += 1) {
+      const angle = (i / count) * Math.PI * 2 + startAngle + phaseOffset;
+      points.push([
+        Number((Math.cos(angle) * radius).toFixed(2)),
+        Number((Math.sin(angle) * radius).toFixed(2)),
+        0,
+      ]);
+    }
+    return points;
+  }
+
+  function minOuterInnerDistance(outerCount, outerRadius, innerCount, innerRadius, phaseOffset) {
+    let minDistance = Infinity;
+    for (let i = 0; i < outerCount; i += 1) {
+      const outerAngle = (i / outerCount) * Math.PI * 2;
+      const outerX = Math.cos(outerAngle) * outerRadius;
+      const outerY = Math.sin(outerAngle) * outerRadius;
+      for (let j = 0; j < innerCount; j += 1) {
+        const innerAngle = (j / innerCount) * Math.PI * 2 + phaseOffset;
+        const innerX = Math.cos(innerAngle) * innerRadius;
+        const innerY = Math.sin(innerAngle) * innerRadius;
+        const distance = Math.hypot(outerX - innerX, outerY - innerY);
+        if (distance < minDistance) {
+          minDistance = distance;
+        }
+      }
+    }
+    return minDistance;
+  }
+
+  function solveTwoRingOuterRadius(outerCount, innerCount, innerRadius, requiredChord) {
+    const phaseSamples = 720;
+    const feasibleAtRadius = (outerRadius) => {
+      let bestPhase = 0;
+      let bestDistance = -Infinity;
+      for (let sample = 0; sample < phaseSamples; sample += 1) {
+        const phase = (sample / phaseSamples) * Math.PI * 2;
+        const distance = minOuterInnerDistance(
+          outerCount,
+          outerRadius,
+          innerCount,
+          innerRadius,
+          phase
+        );
+        if (distance > bestDistance) {
+          bestDistance = distance;
+          bestPhase = phase;
+        }
+        if (distance >= requiredChord) {
+          return { ok: true, phase };
+        }
+      }
+      return { ok: false, phase: bestPhase };
+    };
+
+    let low = Math.max(
+      6,
+      ringSelfRadius(outerCount, requiredChord),
+      innerRadius + 0.01
+    );
+    let high = Math.max(low + requiredChord, low * 1.4);
+    let attempt = feasibleAtRadius(low);
+    if (attempt.ok) {
+      return { outerRadius: low, phase: attempt.phase };
+    }
+
+    let expansionSteps = 0;
+    while (!attempt.ok && expansionSteps < 20) {
+      high *= 1.35;
+      attempt = feasibleAtRadius(high);
+      expansionSteps += 1;
+    }
+    if (!attempt.ok) {
+      return null;
+    }
+
+    let bestPhase = attempt.phase;
+    for (let i = 0; i < 24; i += 1) {
+      const mid = (low + high) / 2;
+      const midAttempt = feasibleAtRadius(mid);
+      if (midAttempt.ok) {
+        high = mid;
+        bestPhase = midAttempt.phase;
+      } else {
+        low = mid;
+      }
+    }
+    return { outerRadius: high, phase: bestPhase };
+  }
+
   function computeExplicitRingPositions(nodes) {
     const count = Array.isArray(nodes) ? nodes.length : 0;
     if (!count) {
@@ -8,29 +123,143 @@ export function createSceneGraphRuntime(deps) {
       return [[0, 0, 0]];
     }
 
-    const haloScale = 1.18;
-    const guardBandMin = 0.15;
-    const guardBandRatio = 0.08;
+    const { requiredChord } = getLayoutPackingMetrics(nodes);
     const startAngle = Math.PI / 2;
-    const maxNodeRadius = Math.max(
-      1,
-      ...nodes.map((node) =>
-        Number.isFinite(node?.radius) && node.radius > 0 ? node.radius : 1
-      )
-    );
-    const haloDiameter = maxNodeRadius * haloScale * 2;
-    const guardBand = Math.max(guardBandMin, haloDiameter * guardBandRatio);
-    const requiredChord = haloDiameter + guardBand;
-    const ringRadius = Math.max(6, requiredChord / (2 * Math.sin(Math.PI / count)));
-    const positions = [];
+    const ringRadius = Math.max(6, ringSelfRadius(count, requiredChord));
+    return buildRingPoints(count, ringRadius, startAngle);
+  }
 
-    for (let i = 0; i < count; i += 1) {
-      const angle = (i / count) * Math.PI * 2 + startAngle;
-      positions.push([
-        Number((Math.cos(angle) * ringRadius).toFixed(2)),
-        Number((Math.sin(angle) * ringRadius).toFixed(2)),
-        0,
-      ]);
+  function computeExplicitRingsPositions(nodes, centerOn = null) {
+    const count = Array.isArray(nodes) ? nodes.length : 0;
+    if (!count) {
+      return null;
+    }
+    if (count === 1) {
+      return [[0, 0, 0]];
+    }
+
+    const { maxNodeRadius, requiredChord } = getLayoutPackingMetrics(nodes);
+    const maxOuterCount = 14;
+    const candidates = [];
+
+    if (count <= maxOuterCount) {
+      candidates.push({ outerCount: count, innerCount: 0, hasCenter: false });
+    }
+
+    [false, true].forEach((hasCenter) => {
+      const remaining = count - (hasCenter ? 1 : 0);
+      if (remaining < 2) {
+        return;
+      }
+      const maxInner = Math.floor(remaining / 2);
+      for (let innerCount = 1; innerCount <= maxInner; innerCount += 1) {
+        const outerCount = remaining - innerCount;
+        if (outerCount < innerCount || outerCount > maxOuterCount) {
+          continue;
+        }
+        candidates.push({ outerCount, innerCount, hasCenter });
+      }
+    });
+
+    if (!candidates.length) {
+      return computeExplicitRingPositions(nodes);
+    }
+
+    const scoredCandidates = [];
+    candidates.forEach((candidate) => {
+      if (candidate.innerCount === 0) {
+        const outerRadius = Math.max(6, ringSelfRadius(candidate.outerCount, requiredChord));
+        scoredCandidates.push({
+          ...candidate,
+          outerRadius,
+          innerRadius: 0,
+          innerPhase: 0,
+          extent: outerRadius + maxNodeRadius,
+        });
+        return;
+      }
+
+      const innerRadius = Math.max(requiredChord, ringSelfRadius(candidate.innerCount, requiredChord));
+      const outerFit = solveTwoRingOuterRadius(
+        candidate.outerCount,
+        candidate.innerCount,
+        innerRadius,
+        requiredChord
+      );
+      if (!outerFit) {
+        return;
+      }
+      scoredCandidates.push({
+        ...candidate,
+        outerRadius: outerFit.outerRadius,
+        innerRadius,
+        innerPhase: outerFit.phase,
+        extent: outerFit.outerRadius + maxNodeRadius,
+      });
+    });
+
+    if (!scoredCandidates.length) {
+      return computeExplicitRingPositions(nodes);
+    }
+
+    scoredCandidates.sort((a, b) => {
+      if (a.extent !== b.extent) {
+        return a.extent - b.extent;
+      }
+      if (a.hasCenter !== b.hasCenter) {
+        return a.hasCenter ? -1 : 1;
+      }
+      if (a.outerCount !== b.outerCount) {
+        return b.outerCount - a.outerCount;
+      }
+      return a.innerCount - b.innerCount;
+    });
+    const best = scoredCandidates[0];
+
+    const centerMatch =
+      typeof centerOn === "string" && centerOn.trim().length
+        ? centerOn.trim().toLowerCase()
+        : null;
+    let centerIndex = -1;
+    if (best.hasCenter) {
+      centerIndex = nodes.findIndex((node) => {
+        const id = String(node?.id ?? "").toLowerCase();
+        const name = String(node?.name ?? "").toLowerCase();
+        return centerMatch && (id === centerMatch || name === centerMatch);
+      });
+      if (centerIndex < 0) {
+        centerIndex = 0;
+      }
+    }
+
+    const positions = new Array(count);
+    const remainingIndices = [];
+    for (let index = 0; index < count; index += 1) {
+      if (index === centerIndex) {
+        continue;
+      }
+      remainingIndices.push(index);
+    }
+
+    const outerIndices = remainingIndices.slice(0, best.outerCount);
+    const innerIndices = remainingIndices.slice(best.outerCount, best.outerCount + best.innerCount);
+    const outerPoints = buildRingPoints(best.outerCount, best.outerRadius);
+    const innerPoints = buildRingPoints(best.innerCount, best.innerRadius, Math.PI / 2, best.innerPhase);
+
+    outerIndices.forEach((nodeIndex, i) => {
+      positions[nodeIndex] = outerPoints[i];
+    });
+    innerIndices.forEach((nodeIndex, i) => {
+      positions[nodeIndex] = innerPoints[i];
+    });
+    if (best.hasCenter && centerIndex >= 0) {
+      positions[centerIndex] = [0, 0, 0];
+    }
+
+    for (let index = 0; index < count; index += 1) {
+      if (!positions[index]) {
+        positions[index] = [0, 0, 0];
+      }
     }
     return positions;
   }
@@ -96,14 +325,20 @@ export function createSceneGraphRuntime(deps) {
         : null;
     const useExplicitRingLayout =
       config.layout === "static" && explicitLayoutMode === "ring";
+    const useExplicitRingsLayout =
+      config.layout === "static" && explicitLayoutMode === "rings";
     const useExplicitGridLayout =
       config.layout === "static" && explicitLayoutMode === "grid";
-    const useStructuredLayout = useExplicitRingLayout || useExplicitGridLayout;
+    const useStructuredLayout =
+      useExplicitRingLayout || useExplicitRingsLayout || useExplicitGridLayout;
     const ringNodes = useStructuredLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
       : [];
     const explicitRingPositions = useExplicitRingLayout
       ? computeExplicitRingPositions(ringNodes)
+      : null;
+    const explicitRingsPositions = useExplicitRingsLayout
+      ? computeExplicitRingsPositions(ringNodes, config.centerOn)
       : null;
     const explicitGridPositions = useExplicitGridLayout
       ? computeExplicitGridPositions(ringNodes, config.layoutColumns)
@@ -126,6 +361,12 @@ export function createSceneGraphRuntime(deps) {
       const usesFixedPosition = nodeData.fixedPosition === true;
       if (explicitRingPositions && !usesFixedPosition) {
         const pos = explicitRingPositions[ringIndex];
+        if (pos) {
+          nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
+        }
+        ringIndex += 1;
+      } else if (explicitRingsPositions && !usesFixedPosition) {
+        const pos = explicitRingsPositions[ringIndex];
         if (pos) {
           nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
         }

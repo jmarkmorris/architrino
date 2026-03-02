@@ -39,7 +39,7 @@ function isSceneConfig(data) {
 }
 
 function shouldStripPosition(layoutMode, objectData) {
-  if (layoutMode !== "ring" && layoutMode !== "grid") {
+  if (layoutMode !== "ring" && layoutMode !== "rings" && layoutMode !== "grid") {
     return false;
   }
   if (!objectData || typeof objectData !== "object") {
@@ -75,7 +75,7 @@ for (const filePath of jsonFiles) {
 
   inspectedScenes += 1;
   const layoutMode = String(data.scene.layoutMode || "").toLowerCase();
-  if (layoutMode !== "ring" && layoutMode !== "grid") {
+  if (layoutMode !== "ring" && layoutMode !== "rings" && layoutMode !== "grid") {
     continue;
   }
 

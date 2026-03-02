@@ -6,9 +6,9 @@
     "name": "Unknowns & Paradoxes",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "grid",
-    "layoutColumns": 6,
-    "labelDocIconOwnLine": true
+    "layoutMode": "rings",
+    "labelDocIconOwnLine": true,
+    "centerOn": "unknown_the_hubble_tension"
   },
   "objects": [
     {
