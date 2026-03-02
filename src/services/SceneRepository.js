@@ -201,10 +201,24 @@ export class SceneRepository {
         });
       }
     }
-    let colorIndex = 0;
+    const shuffledPalette = [...palette];
+    for (let i = shuffledPalette.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledPalette[i], shuffledPalette[j]] = [shuffledPalette[j], shuffledPalette[i]];
+    }
+    let colorBag = [...shuffledPalette];
+    const drawColor = () => {
+      if (!colorBag.length) {
+        colorBag = [...palette];
+        for (let i = colorBag.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [colorBag[i], colorBag[j]] = [colorBag[j], colorBag[i]];
+        }
+      }
+      return colorBag.pop();
+    };
     orderedNodes.forEach((node) => {
-      node.color = palette[colorIndex % palette.length];
-      colorIndex += 1;
+      node.color = drawColor();
     });
   }
 

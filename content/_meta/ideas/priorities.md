@@ -12,7 +12,6 @@
 - composer should use the same frame elements in the corners.
 - change grid to ring of rings.
 
-
 ## Sorta Sorted List (i.e., non-linear)
 
 - new architrino repository is live 20260217
