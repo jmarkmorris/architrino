@@ -74,7 +74,8 @@
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "markdownSection": "Murray Gell-Mann (1929–2019) & the Quark Model",
-      "labelTitle": "Murray Gell-Mann & the Quark Model",
+      "labelTitle": "Murray Gell-Mann",
+      "labelSubtitle": "Quark Model",
       "labelDates": "(1929–2019)",
       "labelBadge": "📚"
     },

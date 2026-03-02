@@ -151,6 +151,9 @@ export function createSceneGraphRuntime(deps) {
       if (remaining < 2) {
         return;
       }
+      if (hasCenter && remaining <= maxOuterCount) {
+        candidates.push({ outerCount: remaining, innerCount: 0, hasCenter: true });
+      }
       const maxInner = Math.floor(remaining / 2);
       for (let innerCount = 1; innerCount <= maxInner; innerCount += 1) {
         const outerCount = remaining - innerCount;
