@@ -4,7 +4,6 @@
 ## Infrastructure
 
 
-- the P and N in the atoms are overlapping on boron and maybe others?
 - composer should use the same frame elements in the corners.
 
 
