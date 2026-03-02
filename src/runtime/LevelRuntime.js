@@ -173,6 +173,19 @@ export function createLevelRuntime(deps) {
     });
   }
 
+  function setLevelShellGuideOpacity(level, opacity) {
+    if (!level?.shellGuides?.length) {
+      return;
+    }
+    level.shellGuides.forEach((entry) => {
+      if (!entry?.mesh?.material) {
+        return;
+      }
+      const baseOpacity = Number.isFinite(entry.baseOpacity) ? entry.baseOpacity : 1;
+      entry.mesh.material.opacity = baseOpacity * opacity;
+    });
+  }
+
   function setLevelOpacity(level, opacity) {
     level.nodes.forEach((node) => {
       node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
@@ -181,6 +194,7 @@ export function createLevelRuntime(deps) {
       node.haloIntensity = opacity;
       setNodeExtraOpacity(node, opacity);
     });
+    setLevelShellGuideOpacity(level, opacity);
   }
 
   function setLevelOpacityWithLabel(level, meshOpacity, labelOpacity) {
@@ -191,6 +205,7 @@ export function createLevelRuntime(deps) {
       node.haloIntensity = meshOpacity;
       setNodeExtraOpacity(node, meshOpacity);
     });
+    setLevelShellGuideOpacity(level, meshOpacity);
   }
 
   function setLevelLabelOpacity(level, labelOpacity) {
@@ -199,7 +214,13 @@ export function createLevelRuntime(deps) {
     });
   }
 
-  function setLevelOpacityWithFocus(level, focusId, focusOpacity, otherOpacity) {
+  function setLevelOpacityWithFocus(
+    level,
+    focusId,
+    focusOpacity,
+    otherOpacity,
+    shellGuideOpacity = otherOpacity
+  ) {
     level.nodes.forEach((node) => {
       const opacity =
         node.data.id === focusId || node.data.name === focusId
@@ -211,6 +232,7 @@ export function createLevelRuntime(deps) {
       node.haloIntensity = opacity;
       setNodeExtraOpacity(node, opacity);
     });
+    setLevelShellGuideOpacity(level, shellGuideOpacity);
   }
 
   function setLevelOpacityWithFocusAndLabel(
@@ -218,7 +240,8 @@ export function createLevelRuntime(deps) {
     focusId,
     focusOpacity,
     otherOpacity,
-    labelOpacity
+    labelOpacity,
+    shellGuideOpacity = otherOpacity
   ) {
     level.nodes.forEach((node) => {
       const opacity =
@@ -231,6 +254,7 @@ export function createLevelRuntime(deps) {
       node.haloIntensity = opacity;
       setNodeExtraOpacity(node, opacity);
     });
+    setLevelShellGuideOpacity(level, shellGuideOpacity);
   }
 
   function updateLevelHalo(level, timeSeconds) {

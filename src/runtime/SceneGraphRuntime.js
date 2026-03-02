@@ -87,6 +87,7 @@ export function createSceneGraphRuntime(deps) {
     const motionNodes = [];
     const ringTargets = [];
     const ringTargetByMesh = new Map();
+    const shellGuides = [];
     let primaryBinaryNode = null;
 
     const explicitLayoutMode =
@@ -276,16 +277,18 @@ export function createSceneGraphRuntime(deps) {
         const remappedRadii = uniqueRadii.map((r) => radiusMap.get(r) ?? r);
         remappedRadii.forEach((r) => {
           const guideGeo = new deps.THREE.RingGeometry(Math.max(0.01, r - 0.06), r + 0.06, 96);
+          const guideOpacity = 0.28;
           const guideMat = new deps.THREE.MeshBasicMaterial({
             color: "#8fa7ff",
             transparent: true,
-            opacity: 0.28,
+            opacity: guideOpacity,
             side: deps.THREE.DoubleSide,
             depthWrite: false,
           });
           const guide = new deps.THREE.Mesh(guideGeo, guideMat);
           guide.userData.excludeFromBounds = true;
           group.add(guide);
+          shellGuides.push({ mesh: guide, baseOpacity: guideOpacity });
         });
       }
     } else {
@@ -299,16 +302,18 @@ export function createSceneGraphRuntime(deps) {
       ).sort((a, b) => a - b);
       shellRadii.forEach((r) => {
         const guideGeo = new deps.THREE.RingGeometry(Math.max(0.01, r - 0.08), r + 0.08, 96);
+        const guideOpacity = 0.28;
         const guideMat = new deps.THREE.MeshBasicMaterial({
           color: "#8fa7ff",
           transparent: true,
-          opacity: 0.28,
+          opacity: guideOpacity,
           side: deps.THREE.DoubleSide,
           depthWrite: false,
         });
         const guide = new deps.THREE.Mesh(guideGeo, guideMat);
         guide.userData.excludeFromBounds = true;
         group.add(guide);
+        shellGuides.push({ mesh: guide, baseOpacity: guideOpacity });
       });
     }
 
@@ -329,6 +334,7 @@ export function createSceneGraphRuntime(deps) {
       motionNodes,
       ringTargets,
       ringTargetByMesh,
+      shellGuides,
       primaryBinaryNode,
       layout: config.layout,
       layoutMode: config.layoutMode ?? null,

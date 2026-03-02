@@ -2026,6 +2026,14 @@ function getSafeViewportWorld() {
   return { safeWidth, safeHeight };
 }
 
+function getFocusWorldCenter() {
+  const { centerX, centerY } = getFocusSphereMetrics();
+  const ndcX = (centerX / Math.max(window.innerWidth, 1)) * 2 - 1;
+  const ndcY = -((centerY / Math.max(window.innerHeight, 1)) * 2 - 1);
+  const world = new THREE.Vector3(ndcX, ndcY, 0).unproject(camera);
+  return new THREE.Vector3(world.x, world.y, 0);
+}
+
 function cloneNodeData(nodeData) {
   if (typeof structuredClone === "function") {
     return structuredClone(nodeData);
@@ -2454,12 +2462,19 @@ function setLevelLabelOpacity(level, labelOpacity) {
   levelRuntime.setLevelLabelOpacity(level, labelOpacity);
 }
 
-function setLevelOpacityWithFocus(level, focusId, focusOpacity, otherOpacity) {
+function setLevelOpacityWithFocus(
+  level,
+  focusId,
+  focusOpacity,
+  otherOpacity,
+  shellGuideOpacity = otherOpacity
+) {
   levelRuntime.setLevelOpacityWithFocus(
     level,
     focusId,
     focusOpacity,
-    otherOpacity
+    otherOpacity,
+    shellGuideOpacity
   );
 }
 
@@ -2468,14 +2483,47 @@ function setLevelOpacityWithFocusAndLabel(
   focusId,
   focusOpacity,
   otherOpacity,
-  labelOpacity
+  labelOpacity,
+  shellGuideOpacity = otherOpacity
 ) {
   levelRuntime.setLevelOpacityWithFocusAndLabel(
     level,
     focusId,
     focusOpacity,
     otherOpacity,
-    labelOpacity
+    labelOpacity,
+    shellGuideOpacity
+  );
+}
+
+function isAtomicParticleFocusTransition(level, targetNode) {
+  if (!level || !targetNode?.data) {
+    return false;
+  }
+  const levelId = typeof level.id === "string" ? level.id.toLowerCase() : "";
+  const sceneId = typeof level.sceneId === "string" ? level.sceneId.toLowerCase() : "";
+  const isAtomContext =
+    levelId.startsWith("content/scenes/elements/") ||
+    levelId.endsWith("/nuclear/atom.json") ||
+    sceneId === "atom";
+  if (!isAtomContext) {
+    return false;
+  }
+  const category =
+    typeof targetNode.data.category === "string"
+      ? targetNode.data.category.toLowerCase()
+      : "";
+  const label =
+    typeof targetNode.data.label === "string"
+      ? targetNode.data.label.toLowerCase()
+      : "";
+  return (
+    category === "proton" ||
+    category === "neutron" ||
+    category === "electron" ||
+    label === "p" ||
+    label === "n" ||
+    label === "e"
   );
 }
 
@@ -2512,7 +2560,15 @@ function beginLevelTransition(targetNode, childLevelId) {
   const focusNodeId = targetNode.data.id ?? targetNode.data.name;
   const zoomTarget = computeFitZoomForLevel(toLevel);
   const panStart = worldGroup.position.clone();
-  const panTarget = new THREE.Vector3(-targetPosition.x, -targetPosition.y, 0);
+  const useAtomFocusTransition = isAtomicParticleFocusTransition(currentLevel, targetNode);
+  const focusWorldCenter = useAtomFocusTransition
+    ? getFocusWorldCenter()
+    : new THREE.Vector3();
+  const panTarget = new THREE.Vector3(
+    focusWorldCenter.x - targetPosition.x,
+    focusWorldCenter.y - targetPosition.y,
+    0
+  );
 
   zoomState.active = false;
   panTween.active = false;
@@ -2529,6 +2585,10 @@ function beginLevelTransition(targetNode, childLevelId) {
     toStartScale,
     panStart,
     panTarget,
+    transitionProfile: useAtomFocusTransition ? "atomFocusFadeThenWarp" : "default",
+    fadeOutEnd: 0.3,
+    motionStart: 0.3,
+    motionCenterEnd: 0.58,
   };
   transitionState.startTime = performance.now();
   transitionState.duration = 2250;
@@ -2537,8 +2597,13 @@ function beginLevelTransition(targetNode, childLevelId) {
   toLevel.group.scale.setScalar(toStartScale);
   setLevelOpacity(toLevel, 0);
   setLevelLabelOpacity(toLevel, 0);
-  setLevelOpacityWithFocus(currentLevel, focusNodeId, 1, 0);
-  setLevelLinkOpacity(currentLevel, 0);
+  if (useAtomFocusTransition) {
+    setLevelOpacityWithFocus(currentLevel, focusNodeId, 1, 1, 1);
+    setLevelLinkOpacity(currentLevel, 1);
+  } else {
+    setLevelOpacityWithFocus(currentLevel, focusNodeId, 1, 0);
+    setLevelLinkOpacity(currentLevel, 0);
+  }
 
   navigationStack.push({
     levelId: currentLevel.id,
