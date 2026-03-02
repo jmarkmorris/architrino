@@ -119,6 +119,7 @@ export function createMarkdownSceneRegistry(deps) {
       }
       levelConfigs[sceneId] = {
         layout: "static",
+        layoutMode: "ring",
         nodes: [],
         links: [],
         sceneName,
@@ -129,7 +130,6 @@ export function createMarkdownSceneRegistry(deps) {
         markdownColumns: nodeData.markdownColumns ?? null,
         markdownAutoOpen: false,
         centerOn: null,
-        autoSphereRing: true,
         autoMarkdownPath: markdownPath,
         autoMarkdownHeadingLevel: headingLevel,
         autoMarkdownIncludeExistingInLayout: false,
@@ -172,6 +172,7 @@ export function createMarkdownSceneRegistry(deps) {
     }
     levelConfigs[sceneId] = {
       layout: "static",
+      layoutMode: "ring",
       nodes: [],
       links: [],
       sceneName: markdownSection,
@@ -182,7 +183,6 @@ export function createMarkdownSceneRegistry(deps) {
       markdownColumns: parentScene?.autoMarkdownColumns ?? null,
       markdownAutoOpen: false,
       centerOn: null,
-      autoSphereRing: true,
       autoMarkdownPath: markdownPath,
       autoMarkdownSection: markdownSection,
       autoMarkdownHeadingLevel: 3,
@@ -209,6 +209,7 @@ export function createMarkdownSceneRegistry(deps) {
     }
     levelConfigs[sceneId] = {
       layout: "static",
+      layoutMode: "ring",
       nodes: [],
       links: [],
       sceneName: nodeName ?? titleFromSlug(directory.split("/").pop() ?? "Notes"),
@@ -219,7 +220,6 @@ export function createMarkdownSceneRegistry(deps) {
       markdownColumns: null,
       markdownAutoOpen: false,
       centerOn: null,
-      autoSphereRing: true,
       autoMarkdownDirectory: directory,
       autoMarkdownIncludeExistingInLayout: false,
       autoMarkdownNodeRadius: parentScene?.autoMarkdownNodeRadius,
@@ -280,6 +280,7 @@ export function createMarkdownSceneRegistry(deps) {
       const resolvedDocTitle = await resolveMarkdownDocumentTitle(markdownPath);
       levelConfigs[sceneId] = {
         layout: "static",
+        layoutMode: "ring",
         nodes: [],
         links: [],
         sceneName: resolvedDocTitle || inferSceneNameFromMarkdownPath(markdownPath),
@@ -290,7 +291,6 @@ export function createMarkdownSceneRegistry(deps) {
         markdownColumns: inferRestoredMarkdownColumns(markdownPath),
         markdownAutoOpen: false,
         centerOn: null,
-        autoSphereRing: true,
         autoMarkdownPath: markdownPath,
         autoMarkdownHeadingLevel: headingLevel,
         autoMarkdownIncludeExistingInLayout: false,
@@ -360,6 +360,7 @@ export function createMarkdownSceneRegistry(deps) {
       }
       levelConfigs[sceneId] = {
         layout: "static",
+        layoutMode: "ring",
         nodes: [],
         links: [],
         sceneName: markdownSection,
@@ -370,7 +371,6 @@ export function createMarkdownSceneRegistry(deps) {
         markdownColumns: inferRestoredMarkdownColumns(markdownPath),
         markdownAutoOpen: false,
         centerOn: null,
-        autoSphereRing: true,
         autoMarkdownPath: markdownPath,
         autoMarkdownSection: markdownSection,
         autoMarkdownHeadingLevel: 3,
@@ -386,6 +386,7 @@ export function createMarkdownSceneRegistry(deps) {
       }
       levelConfigs[sceneId] = {
         layout: "static",
+        layoutMode: "ring",
         nodes: [],
         links: [],
         sceneName: titleFromSlug(directory.split("/").pop() || "Notes"),
@@ -396,7 +397,6 @@ export function createMarkdownSceneRegistry(deps) {
         markdownColumns: null,
         markdownAutoOpen: false,
         centerOn: null,
-        autoSphereRing: true,
         autoMarkdownDirectory: directory,
         autoMarkdownIncludeExistingInLayout: false,
       };

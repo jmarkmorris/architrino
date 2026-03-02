@@ -504,6 +504,7 @@ function buildComposerSceneConfig(state) {
   }));
   return {
     layout: "static",
+    layoutMode: "ring",
     nodes,
     links: [],
     sceneName: `${state.name} (Preview)`,
@@ -513,7 +514,6 @@ function buildComposerSceneConfig(state) {
     markdownColumns: null,
     markdownAutoOpen: false,
     centerOn: null,
-    autoSphereRing: true,
     wrapLabels: true,
     hideScaleLabels: true,
   };
@@ -2054,10 +2054,9 @@ function layoutRootLevel(level) {
   if (!nodes?.length) {
     return;
   }
-  const layoutMode =
-    typeof level.layoutMode === "string" ? level.layoutMode.toLowerCase() : "";
+  const layoutMode = getEffectiveLayoutMode(level);
   const useRingLayout =
-    level.id === rootScenePath || layoutMode === "ring" || level.autoSphereRing === true;
+    level.id === rootScenePath || layoutMode === "ring";
   const useGridLayout = layoutMode === "grid";
   if (!useRingLayout && !useGridLayout) {
     return;
@@ -2155,9 +2154,18 @@ function isCenteredRingLevel(level) {
   if (!level) {
     return false;
   }
-  const layoutMode =
-    typeof level.layoutMode === "string" ? level.layoutMode.toLowerCase() : "";
-  return level.id === rootScenePath || layoutMode === "ring" || level.autoSphereRing === true;
+  const layoutMode = getEffectiveLayoutMode(level);
+  return level.id === rootScenePath || layoutMode === "ring";
+}
+
+function getEffectiveLayoutMode(level) {
+  if (!level) {
+    return "";
+  }
+  if (typeof level.layoutMode === "string" && level.layoutMode.trim()) {
+    return level.layoutMode.toLowerCase();
+  }
+  return level.autoSphereRing === true ? "ring" : "";
 }
 
 function getLevelFrameCenter(level) {

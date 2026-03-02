@@ -44,12 +44,14 @@ export class SceneRepository {
       return rawKind;
     }
     const list = Array.isArray(nodes) ? nodes : [];
+    const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
+    const usesRingLayout = layoutMode === "ring" || sceneData?.scene?.autoSphereRing === true;
     const hasNavigation =
       list.some(
         (node) =>
           (typeof node.childScene === "string" && node.childScene.length > 0) ||
           node.markdownAutoIndex === true
-      ) || sceneData?.scene?.autoSphereRing === true;
+      ) || usesRingLayout;
     const hasLeafContent =
       (typeof sceneData?.scene?.markdownPath === "string" &&
         sceneData.scene.markdownPath.length > 0) ||
@@ -65,7 +67,10 @@ export class SceneRepository {
   }
 
   shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
-    const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
+    const layoutMode = String(
+      sceneData?.scene?.layoutMode ??
+        (sceneData?.scene?.autoSphereRing === true ? "ring" : "")
+    ).toLowerCase();
     const isStructuredLayout = layoutMode === "ring" || layoutMode === "grid";
     const isHomeScene =
       typeof this.homeScenePath === "string" &&
@@ -356,10 +361,13 @@ export class SceneRepository {
           data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;
         const sceneId = data.scene?.id ?? null;
         const sceneKind = this.resolveSceneKind(data, nodes);
+        const rawLayoutMode =
+          typeof data.scene?.layoutMode === "string" ? data.scene.layoutMode : null;
+        const effectiveLayoutMode =
+          rawLayoutMode ?? (data.scene?.autoSphereRing === true ? "ring" : null);
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
-          layoutMode:
-            typeof data.scene?.layoutMode === "string" ? data.scene.layoutMode : null,
+          layoutMode: effectiveLayoutMode,
           layoutColumns:
             Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
               ? data.scene.layoutColumns
@@ -433,7 +441,15 @@ export class SceneRepository {
 
   async ensureDynamicSceneConfig(sceneId) {
     const config = this.levelConfigs[sceneId];
-    if (!config || !config.autoSphereRing) {
+    if (!config) {
+      return;
+    }
+    const layoutMode = String(config.layoutMode ?? "").toLowerCase();
+    const isRingLayout = layoutMode === "ring" || config.autoSphereRing === true;
+    const hasAutoMarkdownSource =
+      (typeof config.autoMarkdownPath === "string" && config.autoMarkdownPath.length > 0) ||
+      (typeof config.autoMarkdownDirectory === "string" && config.autoMarkdownDirectory.length > 0);
+    if (!isRingLayout || !hasAutoMarkdownSource) {
       return;
     }
     if (!Array.isArray(config.nodes)) {

@@ -90,7 +90,11 @@ export function createSceneGraphRuntime(deps) {
     let primaryBinaryNode = null;
 
     const explicitLayoutMode =
-      typeof config.layoutMode === "string" ? config.layoutMode : null;
+      typeof config.layoutMode === "string" && config.layoutMode.trim()
+        ? config.layoutMode.toLowerCase()
+        : config.autoSphereRing === true
+          ? "ring"
+          : null;
     const useLegacyAutoSphereRing =
       explicitLayoutMode !== "manual" &&
       !!config.autoSphereRing &&
