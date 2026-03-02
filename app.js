@@ -52,6 +52,7 @@ const sceneSearchPanel = document.getElementById("scene-search-panel");
 const sceneSearchInput = document.getElementById("scene-search-input");
 const sceneSearchResults = document.getElementById("scene-search-results");
 const hoverTooltip = document.getElementById("hover-tooltip");
+const zoomToast = document.getElementById("zoom-toast");
 const detailPanel = document.getElementById("detail-panel");
 const detailTitle = document.getElementById("detail-title");
 const detailBody = document.getElementById("detail-body");
@@ -107,6 +108,8 @@ const composerCameraWaypointClear = document.getElementById("composer-camera-way
 const composerCameraWaypointCount = document.getElementById("composer-camera-waypoint-count");
 const composerCameraFlightToggle = document.getElementById("composer-camera-flight-toggle");
 const defaultRootLayoutMarginPx = { x: 160, y: 140 };
+const zoomToastDismissedKey = "architrino.zoomToastDismissed";
+let zoomToastTimeoutId = null;
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -1469,6 +1472,53 @@ function hideHoverTooltip() {
   hoverTooltip.classList.remove("is-visible");
   hoverTooltip.setAttribute("aria-hidden", "true");
   hoverTooltipVisible = false;
+}
+
+function hasDismissedZoomToast() {
+  try {
+    return window.localStorage.getItem(zoomToastDismissedKey) === "1";
+  } catch (_error) {
+    return false;
+  }
+}
+
+function setZoomToastDismissed() {
+  try {
+    window.localStorage.setItem(zoomToastDismissedKey, "1");
+  } catch (_error) {
+    // Ignore storage failures.
+  }
+}
+
+function hideZoomToast() {
+  if (!zoomToast) {
+    return;
+  }
+  zoomToast.classList.remove("is-visible");
+  zoomToast.setAttribute("aria-hidden", "true");
+  if (zoomToastTimeoutId) {
+    window.clearTimeout(zoomToastTimeoutId);
+    zoomToastTimeoutId = null;
+  }
+}
+
+function dismissZoomToastPermanently() {
+  setZoomToastDismissed();
+  hideZoomToast();
+}
+
+function showZoomToastIfNeeded() {
+  if (!zoomToast || hasDismissedZoomToast()) {
+    return;
+  }
+  zoomToast.classList.add("is-visible");
+  zoomToast.setAttribute("aria-hidden", "false");
+  if (zoomToastTimeoutId) {
+    window.clearTimeout(zoomToastTimeoutId);
+  }
+  zoomToastTimeoutId = window.setTimeout(() => {
+    hideZoomToast();
+  }, 5200);
 }
 
 const markdownRuntime = createMarkdownRuntime({
@@ -3012,6 +3062,7 @@ const interactionRuntime = createInteractionRuntime({
   focusOnPointer,
   updateDetailHover,
   updateDecayHover,
+  onSuccessfulSphereClick: dismissZoomToastPermanently,
   isPointerWithinInteractiveViewport,
   setLastZoomGestureTime: (value) => {
     lastZoomGestureTime = value;
@@ -3138,6 +3189,7 @@ async function init() {
   }
   updateSceneLabel();
   updateSceneMarkdown();
+  showZoomToastIfNeeded();
   animate();
 }
 

@@ -125,6 +125,9 @@ export function createInteractionRuntime(deps) {
             lastTapY = event.clientY;
           }
         } else {
+          if (typeof deps.onSuccessfulSphereClick === "function") {
+            deps.onSuccessfulSphereClick();
+          }
           lastTapTime = 0;
         }
       }

@@ -356,6 +356,29 @@ body {
   display: block;
 }
 
+#zoom-toast {
+  position: absolute;
+  right: 16px;
+  bottom: 20px;
+  transform: translateY(10px);
+  z-index: 10;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 170, 220, 0.3);
+  background: rgba(8, 10, 18, 0.86);
+  color: #f5f7ff;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+#zoom-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 #markdown-panel {
   position: absolute;
   top: 72px;
