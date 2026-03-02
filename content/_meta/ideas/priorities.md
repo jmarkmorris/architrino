@@ -6,7 +6,6 @@
 
 - the P and N in the atoms are overlapping on boron and maybe others?
 - composer should use the same frame elements in the corners.
-- disable the canvas circle
 
 
 ## Sorta Sorted List (i.e., non-linear)
