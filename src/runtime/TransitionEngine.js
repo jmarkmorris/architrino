@@ -1,4 +1,17 @@
 export function createTransitionEngine(transitionState, deps) {
+  function normalizeDisplayedLevelPosition(level) {
+    if (!level?.group) {
+      return;
+    }
+    const pos = level.group.position;
+    if (pos.x === 0 && pos.y === 0 && pos.z === 0) {
+      return;
+    }
+    // Preserve on-screen placement while normalizing cached level transform.
+    deps.worldGroup.position.add(pos);
+    level.group.position.set(0, 0, 0);
+  }
+
   function maybeCenterLevelInFrame(level) {
     if (!level) {
       return;
@@ -72,11 +85,13 @@ export function createTransitionEngine(transitionState, deps) {
           deps.resetNodeScale(fromFocus);
         }
         fromLevel.group.scale.setScalar(1);
+        fromLevel.group.position.set(0, 0, 0);
         deps.setLevelOpacity(fromLevel, 0);
         deps.setLevelLinkOpacity(fromLevel, 0);
         deps.worldGroup.remove(fromLevel.group);
 
         toLevel.group.scale.setScalar(1);
+        normalizeDisplayedLevelPosition(toLevel);
         deps.setLevelOpacity(toLevel, 1);
         deps.setLevelLabelOpacity(toLevel, 0);
         deps.setLevelLinkOpacity(toLevel, 1);
@@ -134,6 +149,7 @@ export function createTransitionEngine(transitionState, deps) {
           return;
         }
         toLevel.group.scale.setScalar(1);
+        normalizeDisplayedLevelPosition(toLevel);
         deps.setLevelOpacity(toLevel, 1);
         deps.setLevelLabelOpacity(toLevel, 0);
         deps.setLevelLinkOpacity(toLevel, 1);
@@ -147,8 +163,10 @@ export function createTransitionEngine(transitionState, deps) {
           payload.fromPivot.remove(fromLevel.group);
           deps.worldGroup.remove(payload.fromPivot);
           payload.fromPivot = null;
+          fromLevel.group.position.set(0, 0, 0);
         } else {
           fromLevel.group.scale.setScalar(1);
+          fromLevel.group.position.set(0, 0, 0);
           deps.worldGroup.remove(fromLevel.group);
         }
         deps.setLevelOpacity(fromLevel, 0);
@@ -202,11 +220,13 @@ export function createTransitionEngine(transitionState, deps) {
           return;
         }
         if (fromLevel) {
+          fromLevel.group.position.set(0, 0, 0);
           deps.setLevelOpacity(fromLevel, 0);
           deps.setLevelLinkOpacity(fromLevel, 0);
           deps.worldGroup.remove(fromLevel.group);
         }
         toLevel.group.scale.setScalar(1);
+        normalizeDisplayedLevelPosition(toLevel);
         deps.setLevelOpacity(toLevel, 1);
         deps.setLevelLabelOpacity(toLevel, 0);
         deps.setLevelLinkOpacity(toLevel, 1);
