@@ -27,9 +27,7 @@
 
 - i like this term 'wake'. It is better than field. Wake: the causal‑isochron residue left by architrino motion; a wake is the architrino‑native description of what appears as a field at the effective level.
 
----
 
-go through cosmology documents on wordpress and put content in cosmology docs? This will be a slog, because they are out of date.
 
 ---
 
@@ -81,13 +79,6 @@ go through cosmology documents on wordpress and put content in cosmology docs? T
   - AnalyticBaselines.md
   - perspective.md
   - what are all the docs in ./architrino-assembly-architecture/validation/simulations/action-energy
-
----
-
-
-
-
-
 
 ---
 
