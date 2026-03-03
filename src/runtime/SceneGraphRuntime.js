@@ -416,10 +416,12 @@ export function createSceneGraphRuntime(deps) {
       { head: null, heading: 180 },
       { head: null, heading: 0 },
     ];
+    const categorySnakeIndex = new Map();
 
     // Seed 1: center slot.
     place(0, 0, sortedNucleons[0]);
     snakes[0].head = { q: 0, r: 0 };
+    categorySnakeIndex.set(sortedNucleons[0], 0);
 
     // Seed 2: adjacent at 240 degrees from center.
     if (sortedNucleons.length > 1) {
@@ -438,6 +440,9 @@ export function createSceneGraphRuntime(deps) {
       if (second) {
         place(second.q, second.r, sortedNucleons[1]);
         snakes[1].head = { q: second.q, r: second.r };
+        if (!categorySnakeIndex.has(sortedNucleons[1])) {
+          categorySnakeIndex.set(sortedNucleons[1], 1);
+        }
       }
     }
 
@@ -480,12 +485,14 @@ export function createSceneGraphRuntime(deps) {
 
     for (let i = 2; i < sortedNucleons.length; i += 1) {
       const category = sortedNucleons[i];
-      const snakeIndex = i % 2;
-      let activeSnake = snakes[snakeIndex];
+      const preferredSnakeIndex = categorySnakeIndex.has(category)
+        ? categorySnakeIndex.get(category)
+        : i % 2;
+      let activeSnake = snakes[preferredSnakeIndex];
       if (!activeSnake.head) {
-        activeSnake = snakes[(snakeIndex + 1) % 2];
+        activeSnake = snakes[(preferredSnakeIndex + 1) % 2];
       }
-      if (!placeAlongSnake(activeSnake, category)) {
+      if (!activeSnake.head || !placeAlongSnake(activeSnake, category)) {
         break;
       }
     }
