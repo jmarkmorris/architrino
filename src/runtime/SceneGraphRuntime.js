@@ -1,4 +1,26 @@
 export function createSceneGraphRuntime(deps) {
+  const ELEMENT_FIRST_SHELL_OFFSET = 0.80;
+  const ELEMENT_SHELL_GAP = 0.8;
+  const HEAVY_PARTICLE_SCALE_START_NUCLEONS = 80;
+  const HEAVY_PARTICLE_SCALE_END_NUCLEONS = 250;
+  const HEAVY_PARTICLE_SCALE_MAX = 1.75;
+
+  function getHeavyElementParticleScale(nucleonCount) {
+    if (!Number.isFinite(nucleonCount) || nucleonCount <= HEAVY_PARTICLE_SCALE_START_NUCLEONS) {
+      return 1;
+    }
+    const span =
+      HEAVY_PARTICLE_SCALE_END_NUCLEONS - HEAVY_PARTICLE_SCALE_START_NUCLEONS;
+    if (span <= 0) {
+      return HEAVY_PARTICLE_SCALE_MAX;
+    }
+    const t = Math.max(
+      0,
+      Math.min(1, (nucleonCount - HEAVY_PARTICLE_SCALE_START_NUCLEONS) / span)
+    );
+    return 1 + (HEAVY_PARTICLE_SCALE_MAX - 1) * t;
+  }
+
   function getLayoutPackingMetrics(nodes) {
     const maxNodeRadius = Math.max(
       1,
@@ -271,6 +293,263 @@ export function createSceneGraphRuntime(deps) {
     return positions;
   }
 
+  function getNodeRingStyle(nodeData) {
+    const ringScale = nodeData.glowRingScale ?? 1.04;
+    const ringThickness =
+      nodeData.glowRingThickness ?? Math.max(0.028, nodeData.radius * 0.06);
+    return { ringScale, ringThickness };
+  }
+
+  function rebuildNodeRingGeometry(nodeData, ringMesh) {
+    if (!ringMesh?.geometry) {
+      return;
+    }
+    const style = getNodeRingStyle(nodeData);
+    ringMesh.geometry.dispose();
+    ringMesh.geometry = new deps.THREE.TorusGeometry(
+      nodeData.radius * style.ringScale,
+      style.ringThickness,
+      12,
+      64
+    );
+  }
+
+  function refreshNodeRingGeometries(node) {
+    if (!node?.data) {
+      return;
+    }
+    if (node.halo) {
+      rebuildNodeRingGeometry(node.data, node.halo);
+    }
+    if (!Array.isArray(node.extraMeshes)) {
+      return;
+    }
+    node.extraMeshes.forEach((entry) => {
+      if (entry?.mesh?.userData?.isGlowRing) {
+        rebuildNodeRingGeometry(node.data, entry.mesh);
+      }
+    });
+  }
+
+  function resizeSphereNodeRadius(node, radius) {
+    if (!node?.mesh || !Number.isFinite(radius) || radius <= 0) {
+      return;
+    }
+    node.data.radius = radius;
+    if (node.mesh.geometry) {
+      node.mesh.geometry.dispose();
+    }
+    node.mesh.geometry = new deps.THREE.SphereGeometry(radius, 32, 20);
+    if (node.outline?.geometry) {
+      node.outline.geometry.dispose();
+      node.outline.geometry = new deps.THREE.EdgesGeometry(node.mesh.geometry);
+    }
+    refreshNodeRingGeometries(node);
+  }
+
+  function getLowCountNucleonScale(nucleonCount) {
+    if (!Number.isFinite(nucleonCount) || nucleonCount <= 0) {
+      return 1;
+    }
+    if (nucleonCount >= 10) {
+      return 1;
+    }
+    const minScale = 0.84;
+    const t = (nucleonCount - 1) / 9;
+    return minScale + (1 - minScale) * Math.max(0, Math.min(1, t));
+  }
+
+  function buildHexSpiralCategoryLayout(protonCount, neutronCount, minCenterDistance) {
+    if (!Number.isFinite(minCenterDistance) || minCenterDistance <= 0) {
+      return [];
+    }
+
+    const desiredProtons = Math.max(0, Math.floor(protonCount));
+    const desiredNeutrons = Math.max(0, Math.floor(neutronCount));
+    const total = desiredProtons + desiredNeutrons;
+    if (total <= 0) {
+      return [];
+    }
+
+    const headingToDelta = {
+      0: [1, 0],
+      60: [0, 1],
+      120: [-1, 1],
+      180: [-1, 0],
+      240: [0, -1],
+      300: [1, -1],
+    };
+    const keyFor = (q, r) => `${q},${r}`;
+    const normalizeHeading = (heading) => {
+      const normalized = heading % 360;
+      return normalized < 0 ? normalized + 360 : normalized;
+    };
+    const nextCoord = (q, r, heading) => {
+      const normalized = normalizeHeading(heading);
+      const delta = headingToDelta[normalized];
+      if (!delta) {
+        return null;
+      }
+      return { q: q + delta[0], r: r + delta[1], heading: normalized };
+    };
+
+    const sortedNucleons = [];
+    if (desiredNeutrons <= 0) {
+      for (let i = 0; i < desiredProtons; i += 1) {
+        sortedNucleons.push("proton");
+      }
+    } else {
+      let remainingNeutrons = desiredNeutrons;
+      let remainingProtons = desiredProtons;
+      while (remainingNeutrons > 0 && remainingProtons > 0) {
+        sortedNucleons.push("neutron");
+        remainingNeutrons -= 1;
+        sortedNucleons.push("proton");
+        remainingProtons -= 1;
+      }
+      while (remainingNeutrons > 0) {
+        sortedNucleons.push("neutron");
+        remainingNeutrons -= 1;
+      }
+      while (remainingProtons > 0) {
+        sortedNucleons.push("proton");
+        remainingProtons -= 1;
+      }
+    }
+
+    if (!sortedNucleons.length) {
+      return [];
+    }
+    const pairedNucleonCount = Math.min(desiredNeutrons, desiredProtons) * 2;
+
+    const used = new Set();
+    const layoutSlots = [];
+    const place = (q, r, category) => {
+      const key = keyFor(q, r);
+      if (used.has(key)) {
+        return false;
+      }
+      used.add(key);
+      layoutSlots.push({ category, q, r });
+      return true;
+    };
+    const isFree = (q, r) => !used.has(keyFor(q, r));
+
+    const snakes = [
+      { head: null, heading: 180 },
+      { head: null, heading: 0 },
+    ];
+    const snakeCategories = [sortedNucleons[0] ?? null, sortedNucleons[1] ?? null];
+
+    // Seed 1: center slot.
+    place(0, 0, sortedNucleons[0]);
+    snakes[0].head = { q: 0, r: 0 };
+
+    // Seed 2: adjacent at 240 degrees from center.
+    if (sortedNucleons.length > 1) {
+      let second = nextCoord(0, 0, 240);
+      if (!second || !isFree(second.q, second.r)) {
+        const fallbackHeadings = [180, 120, 60, 0, 300];
+        second = null;
+        for (let i = 0; i < fallbackHeadings.length; i += 1) {
+          const candidate = nextCoord(0, 0, fallbackHeadings[i]);
+          if (candidate && isFree(candidate.q, candidate.r)) {
+            second = candidate;
+            break;
+          }
+        }
+      }
+      if (second) {
+        place(second.q, second.r, sortedNucleons[1]);
+        snakes[1].head = { q: second.q, r: second.r };
+      }
+    }
+
+    const placeAlongSnake = (snake, category) => {
+      if (!snake.head) {
+        return false;
+      }
+
+      const leftHeading = normalizeHeading(snake.heading + 60);
+      const leftCell = nextCoord(snake.head.q, snake.head.r, leftHeading);
+      if (leftCell && isFree(leftCell.q, leftCell.r)) {
+        place(leftCell.q, leftCell.r, category);
+        snake.head = { q: leftCell.q, r: leftCell.r };
+        snake.heading = leftHeading;
+        return true;
+      }
+
+      const straightCell = nextCoord(snake.head.q, snake.head.r, snake.heading);
+      if (straightCell && isFree(straightCell.q, straightCell.r)) {
+        place(straightCell.q, straightCell.r, category);
+        snake.head = { q: straightCell.q, r: straightCell.r };
+        snake.heading = normalizeHeading(snake.heading);
+        return true;
+      }
+
+      const rightHeading = normalizeHeading(snake.heading - 60);
+      const rightCell = nextCoord(snake.head.q, snake.head.r, rightHeading);
+      if (rightCell && isFree(rightCell.q, rightCell.r)) {
+        place(rightCell.q, rightCell.r, category);
+        snake.head = { q: rightCell.q, r: rightCell.r };
+        snake.heading = rightHeading;
+        return true;
+      }
+
+      return false;
+    };
+
+    for (let i = 2; i < sortedNucleons.length; i += 1) {
+      const category = sortedNucleons[i];
+      let preferredSnakeIndex = i % 2;
+      if (i >= pairedNucleonCount) {
+        const tailSnakeIndex = snakeCategories.indexOf(category);
+        if (tailSnakeIndex >= 0) {
+          preferredSnakeIndex = tailSnakeIndex;
+        }
+      }
+      let activeSnake = snakes[preferredSnakeIndex];
+      if (!activeSnake.head) {
+        activeSnake = snakes[(preferredSnakeIndex + 1) % 2];
+      }
+      if (!activeSnake.head || !placeAlongSnake(activeSnake, category)) {
+        break;
+      }
+    }
+
+    const positionedSlots = layoutSlots.map((slot) => ({
+      category: slot.category,
+      position: new deps.THREE.Vector3(
+        minCenterDistance * (slot.q + slot.r * 0.5),
+        minCenterDistance * (Math.sqrt(3) * 0.5 * slot.r),
+        0
+      ),
+    }));
+
+    if (!positionedSlots.length) {
+      return positionedSlots;
+    }
+
+    let minX = Infinity;
+    let maxX = -Infinity;
+    let minY = Infinity;
+    let maxY = -Infinity;
+    positionedSlots.forEach((slot) => {
+      minX = Math.min(minX, slot.position.x);
+      maxX = Math.max(maxX, slot.position.x);
+      minY = Math.min(minY, slot.position.y);
+      maxY = Math.max(maxY, slot.position.y);
+    });
+    const centerX = (minX + maxX) * 0.5;
+    const centerY = (minY + maxY) * 0.5;
+    positionedSlots.forEach((slot) => {
+      slot.position.x -= centerX;
+      slot.position.y -= centerY;
+    });
+
+    return positionedSlots;
+  }
+
   function buildLevel(levelId) {
     if (deps.levels.has(levelId)) {
       return deps.levels.get(levelId);
@@ -363,41 +642,58 @@ export function createSceneGraphRuntime(deps) {
       );
       const electrons = nodes.filter((n) => n.data.category === "electron");
       if (nucleons.length) {
+        const lowCountScale = getLowCountNucleonScale(nucleons.length);
+        const heavyElementScale = getHeavyElementParticleScale(nucleons.length);
+        const nucleonScale = lowCountScale * heavyElementScale;
+        if (nucleonScale !== 1) {
+          nucleons.forEach((nucleon) => {
+            const baseRadius = Number.isFinite(nucleon?.data?.radius)
+              ? nucleon.data.radius
+              : 0.3;
+            resizeSphereNodeRadius(nucleon, baseRadius * nucleonScale);
+          });
+        }
         const avgRadius =
           nucleons.reduce((s, n) => s + (n.data.radius ?? 0.3), 0) /
           nucleons.length;
-        electrons.forEach((e) => {
-          e.data.radius = avgRadius;
-          e.mesh.geometry.dispose();
-          e.mesh.geometry = new deps.THREE.SphereGeometry(avgRadius, 32, 20);
-          e.outline.geometry.dispose();
-          e.outline.geometry = new deps.THREE.EdgesGeometry(e.mesh.geometry);
-        });
-        const golden = Math.PI * (3 - Math.sqrt(5));
-        const packRadius = Math.max(
-          avgRadius * 2.2,
-          Math.sqrt(nucleons.length) * avgRadius * 1.25
+        const maxNucleonHaloExtent = nucleons.reduce((maxExtent, nucleon) => {
+          const radius = Number.isFinite(nucleon?.data?.radius) ? nucleon.data.radius : avgRadius;
+          const ringScale = nucleon?.data?.glowRingScale ?? 1.04;
+          const ringThickness =
+            nucleon?.data?.glowRingThickness ?? Math.max(0.028, radius * 0.06);
+          const haloExtent = radius * ringScale + ringThickness;
+          return Math.max(maxExtent, haloExtent, radius);
+        }, avgRadius);
+        const minNucleonCenterDistance = Math.max(
+          avgRadius * 2.05,
+          maxNucleonHaloExtent * 2 + avgRadius * 0.08
         );
-        const positions = [];
-        for (let i = 0; i < nucleons.length; i++) {
-          const r = packRadius * Math.sqrt((i + 0.35) / nucleons.length);
-          const theta = i * golden;
-          positions.push(new deps.THREE.Vector3(Math.cos(theta) * r, Math.sin(theta) * r, 0));
-        }
+        electrons.forEach((e) => {
+          resizeSphereNodeRadius(e, avgRadius);
+        });
         const protons = nucleons.filter((n) => n.data.category === "proton");
         const neutrons = nucleons.filter((n) => n.data.category === "neutron");
-        const ordered = [];
-        while (protons.length || neutrons.length) {
-          if (protons.length) ordered.push(protons.shift());
-          if (neutrons.length) ordered.push(neutrons.shift());
-        }
-        ordered.forEach((node, idx) => {
-          if (positions[idx]) {
-            node.group.position.copy(positions[idx]);
+        const layout = buildHexSpiralCategoryLayout(
+          protons.length,
+          neutrons.length,
+          minNucleonCenterDistance
+        );
+        layout.forEach((slot) => {
+          let node = null;
+          if (slot.category === "proton") {
+            node = protons.shift() ?? neutrons.shift() ?? null;
+          } else {
+            node = neutrons.shift() ?? protons.shift() ?? null;
+          }
+          if (node && slot.position) {
+            node.group.position.copy(slot.position);
           }
         });
-
-        nucleusRadius = packRadius + avgRadius * 0.5;
+        const nucleusExtent = layout.reduce(
+          (maxDistance, slot) => Math.max(maxDistance, slot.position.length()),
+          0
+        );
+        nucleusRadius = nucleusExtent + maxNucleonHaloExtent;
       }
 
       const uniqueRadii = Array.from(
@@ -409,8 +705,8 @@ export function createSceneGraphRuntime(deps) {
       ).sort((a, b) => a - b);
 
       if (uniqueRadii.length) {
-        const minShellRadius = nucleusRadius + 0.6;
-        const shellGap = 0.9;
+        const minShellRadius = nucleusRadius + ELEMENT_FIRST_SHELL_OFFSET;
+        const shellGap = ELEMENT_SHELL_GAP;
         const radiusMap = new Map();
         uniqueRadii.forEach((r, idx) => {
           radiusMap.set(r, minShellRadius + idx * shellGap);

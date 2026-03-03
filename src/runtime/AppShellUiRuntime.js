@@ -5,7 +5,10 @@ export function createAppShellUiRuntime(deps) {
     interactionRuntime,
     onResize,
     hideHoverTooltip,
+    sceneLabel,
     navUpButton,
+    navForwardButton,
+    detailInfoButton,
     homeButton,
     periodicOverlayRuntime,
     appDirector,
@@ -26,6 +29,50 @@ export function createAppShellUiRuntime(deps) {
       navUpButton.addEventListener("click", async () => {
         periodicOverlayRuntime.hidePeriodicOverlayImmediately();
         await appDirector?.goBack();
+      });
+    }
+
+    if (navForwardButton) {
+      navForwardButton.addEventListener("click", async () => {
+        periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+        await appDirector?.goForward();
+      });
+    }
+
+    if (detailInfoButton) {
+      detailInfoButton.addEventListener("click", async () => {
+        if (appDirector?.isTransitionActive?.()) {
+          return;
+        }
+        await periodicOverlayRuntime.updateElementInfoPanel();
+      });
+    }
+
+    if (sceneLabel) {
+      sceneLabel.addEventListener("click", async () => {
+        if (
+          appDirector?.isTransitionActive?.() ||
+          !sceneLabel.classList.contains("is-info-trigger")
+        ) {
+          return;
+        }
+        await periodicOverlayRuntime.updateElementInfoPanel();
+      });
+      sceneLabel.addEventListener("keydown", async (event) => {
+        if (
+          event.defaultPrevented ||
+          (event.key !== "Enter" && event.key !== " ")
+        ) {
+          return;
+        }
+        if (
+          appDirector?.isTransitionActive?.() ||
+          !sceneLabel.classList.contains("is-info-trigger")
+        ) {
+          return;
+        }
+        event.preventDefault();
+        await periodicOverlayRuntime.updateElementInfoPanel();
       });
     }
 

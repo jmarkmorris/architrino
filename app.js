@@ -44,6 +44,8 @@ import { createSceneSearchCoordinatorService } from "./src/services/SceneSearchC
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
+const navForwardButton = document.getElementById("nav-forward");
+const detailInfoButton = document.getElementById("detail-info-button");
 const sceneLabel = document.getElementById("scene-label");
 const sceneFocusSphere = document.getElementById("scene-focus-sphere");
 const sceneSearch = document.getElementById("scene-search");
@@ -73,6 +75,12 @@ const markdownDocButton = document.getElementById("markdown-doc-button");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
+const elementNavOverlay = document.getElementById("element-nav-overlay");
+const elementNavMini = document.getElementById("element-nav-mini");
+const elementNavUpButton = document.getElementById("element-nav-up");
+const elementNavDownButton = document.getElementById("element-nav-down");
+const elementNavLeftButton = document.getElementById("element-nav-left");
+const elementNavRightButton = document.getElementById("element-nav-right");
 const composerOverlay = document.getElementById("composer-overlay");
 const composerDocsButton = document.getElementById("composer-docs-button");
 const composerExitButton = document.getElementById("composer-exit-button");
@@ -110,6 +118,33 @@ const composerCameraFlightToggle = document.getElementById("composer-camera-flig
 const defaultRootLayoutMarginPx = { x: 160, y: 140 };
 const zoomToastDismissedKey = "architrino.zoomToastDismissed";
 let zoomToastTimeoutId = null;
+const periodicTableDataPath = "content/scenes/chemistry/periodic_table.json";
+const elementScenePathPattern = /content\/scenes\/elements\/([a-z0-9]+)\.json$/i;
+const elementNavDirectionByKey = {
+  ArrowUp: "up",
+  ArrowDown: "down",
+  ArrowLeft: "left",
+  ArrowRight: "right",
+};
+const elementNavButtons = {
+  up: elementNavUpButton,
+  down: elementNavDownButton,
+  left: elementNavLeftButton,
+  right: elementNavRightButton,
+};
+const elementNavigationState = {
+  ready: false,
+  loadingPromise: null,
+  navigationInFlight: false,
+  elementBySymbol: new Map(),
+  symbolByCoordinate: new Map(),
+  rowColumnsByY: new Map(),
+  columnRowsByX: new Map(),
+  scenePathBySymbol: new Map(),
+  miniCellBySymbol: new Map(),
+  miniHudBuilt: false,
+  updateToken: 0,
+};
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -1162,6 +1197,8 @@ const periodicTableService = new PeriodicTableService();
 const searchBackStack = [];
 const metaBackStack = [];
 const generationBackStack = [];
+const browserBackStack = [];
+const browserForwardStack = [];
 const resolveMarkdownDocumentTitle = createMarkdownDocumentTitleResolver({
   fetchImpl: (...args) => fetch(...args),
   appendCacheBust,
@@ -1499,6 +1536,7 @@ function closeDetailPanel() {
     return;
   }
   detailPanel.classList.remove("is-open");
+  detailPanel.classList.remove("is-element-info");
   detailPanel.setAttribute("aria-hidden", "true");
   detailPanel.inert = true;
   activeDetailNodeId = null;
@@ -1658,6 +1696,7 @@ function setDetailPanel(node) {
   if (!detailPanel || !detailTitle || !detailBody) {
     return;
   }
+  detailPanel.classList.remove("is-element-info");
   const details = node?.data?.details;
   if (!details) {
     closeDetailPanel();
@@ -1833,10 +1872,81 @@ const sceneBootstrapService = createSceneBootstrapService({
   rootScenePath,
 });
 
-async function resetToRootScene() {
+function cloneNavigationStackEntries(entries) {
+  if (!Array.isArray(entries)) {
+    return [];
+  }
+  return entries
+    .filter((entry) => entry && entry.levelId && entry.focusNodeId)
+    .map((entry) => ({
+      levelId: entry.levelId,
+      focusNodeId: entry.focusNodeId,
+    }));
+}
+
+function captureCurrentHistoryEntry() {
+  if (!currentLevel?.id) {
+    return null;
+  }
+  return {
+    levelId: currentLevel.id,
+    navigationStack: cloneNavigationStackEntries(navigationStack),
+  };
+}
+
+function areNavigationStacksEqual(a, b) {
+  if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {
+    return false;
+  }
+  for (let i = 0; i < a.length; i += 1) {
+    const left = a[i];
+    const right = b[i];
+    if (!left || !right) {
+      return false;
+    }
+    if (left.levelId !== right.levelId || left.focusNodeId !== right.focusNodeId) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function pushBrowserHistoryEntry(stack, entry) {
+  if (!Array.isArray(stack) || !entry?.levelId) {
+    return;
+  }
+  const normalizedEntry = {
+    levelId: entry.levelId,
+    navigationStack: cloneNavigationStackEntries(entry.navigationStack),
+  };
+  const lastEntry = stack[stack.length - 1];
+  if (
+    lastEntry &&
+    lastEntry.levelId === normalizedEntry.levelId &&
+    areNavigationStacksEqual(lastEntry.navigationStack, normalizedEntry.navigationStack)
+  ) {
+    return;
+  }
+  stack.push(normalizedEntry);
+}
+
+function recordBrowserBackHistory(options = {}) {
+  if (options.historyTraversal) {
+    return;
+  }
+  const entry = captureCurrentHistoryEntry();
+  if (!entry) {
+    return;
+  }
+  pushBrowserHistoryEntry(browserBackStack, entry);
+  browserForwardStack.length = 0;
+}
+
+async function resetToRootScene(options = {}) {
   if (transitionState.active) {
     return;
   }
+  recordBrowserBackHistory(options);
   const config = await sceneBootstrapService.loadSceneConfig(rootScenePath);
   if (!config) {
     return;
@@ -1854,6 +1964,9 @@ async function resetToRootScene() {
   navigationStack.length = 0;
   searchBackStack.length = 0;
   generationBackStack.length = 0;
+  if (!options.historyTraversal) {
+    browserForwardStack.length = 0;
+  }
   labelFadeState.active = true;
   labelFadeState.level = currentLevel;
   labelFadeState.startTime = performance.now();
@@ -1866,6 +1979,9 @@ async function resetToRootScene() {
 async function jumpToScene(scenePath, options = {}) {
   if (transitionState.active) {
     return;
+  }
+  if (scenePath !== currentLevel?.id) {
+    recordBrowserBackHistory(options);
   }
   const preservedWorldPosition = worldGroup.position.clone();
   const preservedLevelPosition = currentLevel
@@ -2155,54 +2271,43 @@ function layoutRootLevel(level) {
   const { safeWidth, safeHeight } = getSafeViewportWorld();
   const safeRadius = Math.max(1, Math.min(safeWidth, safeHeight) / 2);
   const frameMargin = 0.94;
-  const center = new THREE.Vector3();
+  const baseCenter = new THREE.Vector3();
+  const basePositions = new Map();
   nodes.forEach((node) => {
-    center.add(node.group.position);
+    const source = Array.isArray(node.data?.basePosition)
+      ? node.data.basePosition
+      : [node.group.position.x, node.group.position.y, node.group.position.z];
+    const basePos = new THREE.Vector3(source[0] ?? 0, source[1] ?? 0, source[2] ?? 0);
+    basePositions.set(node, basePos);
+    baseCenter.add(basePos);
   });
-  center.multiplyScalar(1 / nodes.length);
+  baseCenter.multiplyScalar(1 / nodes.length);
 
   let scaleByFrame = Infinity;
   nodes.forEach((node) => {
     const baseRadius = baseBoundsRadius(node);
-    if (!(baseRadius > 0)) {
+    const basePos = basePositions.get(node);
+    if (!basePos || baseRadius < 0) {
       return;
     }
-    const radialDistance = node.group.position.distanceTo(center);
-    const available = safeRadius * frameMargin - radialDistance;
-    scaleByFrame = Math.min(scaleByFrame, available / baseRadius);
+    const radialDistance = basePos.distanceTo(baseCenter);
+    const denominator = radialDistance + baseRadius;
+    if (denominator <= 0) {
+      return;
+    }
+    scaleByFrame = Math.min(scaleByFrame, (safeRadius * frameMargin) / denominator);
   });
 
-  let scaleBySpacing = Infinity;
-  for (let i = 0; i < nodes.length; i += 1) {
-    const nodeA = nodes[i];
-    const radiusA = baseBoundsRadius(nodeA);
-    if (!(radiusA > 0)) {
-      continue;
-    }
-    for (let j = i + 1; j < nodes.length; j += 1) {
-      const nodeB = nodes[j];
-      const radiusB = baseBoundsRadius(nodeB);
-      if (!(radiusB > 0)) {
-        continue;
-      }
-      const centerDistance = nodeA.group.position.distanceTo(nodeB.group.position);
-      const minGap = ringLayoutDefaults.guardBandMin;
-      const denominator = radiusA + radiusB;
-      if (denominator <= 0) {
-        continue;
-      }
-      scaleBySpacing = Math.min(
-        scaleBySpacing,
-        (centerDistance - minGap) / denominator
-      );
-    }
-  }
-
-  const unclampedScale = Math.min(scaleByFrame, scaleBySpacing);
-  const scaleFactor = Number.isFinite(unclampedScale)
-    ? Math.max(0.1, unclampedScale)
+  const scaleFactor = Number.isFinite(scaleByFrame)
+    ? Math.max(0.1, scaleByFrame)
     : 1;
   nodes.forEach((node) => {
+    const basePos = basePositions.get(node);
+    if (basePos) {
+      const scaledOffset = basePos.clone().sub(baseCenter).multiplyScalar(scaleFactor);
+      node.group.position.copy(baseCenter.clone().add(scaledOffset));
+      node.basePosition = node.group.position.clone();
+    }
     node.group.scale.setScalar(scaleFactor);
     node.baseScale = scaleFactor;
     if (node.data) {
@@ -2277,7 +2382,7 @@ function computeFitZoomForLevel(level) {
   }
 
   const { safeWidth, safeHeight } = getSafeViewportWorld();
-  const marginFactor = 0.92;
+  const marginFactor = 1.0;
   const zoomX = (safeWidth * marginFactor) / Math.max(size.x, 0.01);
   const zoomY = (safeHeight * marginFactor) / Math.max(size.y, 0.01);
   return clampZoom(Math.min(zoomX, zoomY));
@@ -2606,13 +2711,14 @@ function updateBinaryRingPulse(level, timeSeconds) {
   levelRuntime.updateBinaryRingPulse(level, timeSeconds);
 }
 
-function beginLevelTransition(targetNode, childLevelId) {
+function beginLevelTransition(targetNode, childLevelId, options = {}) {
   if (transitionState.active) {
     return;
   }
   if (!childLevelId) {
     return;
   }
+  recordBrowserBackHistory(options);
 
   closeDetailPanel();
   hideHoverTooltip();
@@ -2865,16 +2971,41 @@ function maybeAutoWarp(now) {
 }
 
 function updateNavButton() {
-  if (!navUpButton) {
-    return;
-  }
   if (transitionState.active) {
-    navUpButton.disabled = true;
+    if (navUpButton) {
+      navUpButton.disabled = true;
+    }
+    if (navForwardButton) {
+      navForwardButton.disabled = true;
+    }
+    if (detailInfoButton) {
+      detailInfoButton.disabled = true;
+    }
     updateDocButton();
     return;
   }
-  navUpButton.disabled =
-    navigationStack.length === 0 && searchBackStack.length === 0;
+  if (navUpButton) {
+    navUpButton.disabled = browserBackStack.length === 0;
+  }
+  if (navForwardButton) {
+    navForwardButton.disabled = browserForwardStack.length === 0;
+  }
+  if (sceneLabel) {
+    const canReopenInfo = isElementSceneLevel();
+    sceneLabel.classList.toggle("is-info-trigger", canReopenInfo);
+    if (canReopenInfo) {
+      sceneLabel.setAttribute("role", "button");
+      sceneLabel.setAttribute("tabindex", "0");
+      sceneLabel.setAttribute("aria-label", "Reopen element info panel");
+    } else {
+      sceneLabel.removeAttribute("role");
+      sceneLabel.removeAttribute("tabindex");
+      sceneLabel.removeAttribute("aria-label");
+    }
+  }
+  if (detailInfoButton) {
+    detailInfoButton.disabled = !isElementSceneLevel();
+  }
   updateDocButton();
 }
 
@@ -2901,6 +3032,455 @@ const periodicOverlayRuntime = createPeriodicOverlayRuntime({
   isTransitionActive: () => transitionState.active,
   fetchImpl: (...args) => fetch(...args),
 });
+
+function normalizeElementSymbol(value) {
+  return String(value ?? "").trim().toLowerCase();
+}
+
+function isElementSceneLevel(level = currentLevel) {
+  return !!(
+    level &&
+    typeof level.id === "string" &&
+    level.id.startsWith("content/scenes/elements/")
+  );
+}
+
+function extractElementSymbolFromLevel(level = currentLevel) {
+  if (!isElementSceneLevel(level)) {
+    return null;
+  }
+  const sceneId = normalizeElementSymbol(level.sceneId);
+  if (sceneId && elementNavigationState.elementBySymbol.has(sceneId)) {
+    return sceneId;
+  }
+  const match = normalizeElementSymbol(level.id).match(elementScenePathPattern);
+  if (match?.[1]) {
+    return match[1];
+  }
+  return sceneId || null;
+}
+
+async function ensureElementNavigationData() {
+  if (elementNavigationState.ready) {
+    return true;
+  }
+  if (elementNavigationState.loadingPromise) {
+    return elementNavigationState.loadingPromise;
+  }
+  elementNavigationState.loadingPromise = (async () => {
+    const periodicTable = await periodicTableService.ensure(
+      (...args) => fetch(...args),
+      periodicTableDataPath
+    );
+    if (!Array.isArray(periodicTable?.elements)) {
+      return false;
+    }
+
+    const rowColumnsByY = new Map();
+    const columnRowsByX = new Map();
+    elementNavigationState.elementBySymbol.clear();
+    elementNavigationState.symbolByCoordinate.clear();
+    elementNavigationState.rowColumnsByY.clear();
+    elementNavigationState.columnRowsByX.clear();
+    elementNavigationState.scenePathBySymbol.clear();
+    elementNavigationState.miniCellBySymbol.clear();
+    elementNavigationState.miniHudBuilt = false;
+
+    periodicTable.elements.forEach((element) => {
+      const symbol = normalizeElementSymbol(element?.symbol);
+      const x = Number(element?.xpos);
+      const y = Number(element?.ypos);
+      if (!symbol || !Number.isFinite(x) || !Number.isFinite(y)) {
+        return;
+      }
+      elementNavigationState.elementBySymbol.set(symbol, { symbol, x, y });
+      elementNavigationState.symbolByCoordinate.set(`${x},${y}`, symbol);
+      if (!rowColumnsByY.has(y)) {
+        rowColumnsByY.set(y, new Set());
+      }
+      if (!columnRowsByX.has(x)) {
+        columnRowsByX.set(x, new Set());
+      }
+      rowColumnsByY.get(y).add(x);
+      columnRowsByX.get(x).add(y);
+    });
+
+    rowColumnsByY.forEach((columns, y) => {
+      elementNavigationState.rowColumnsByY.set(
+        y,
+        [...columns].sort((a, b) => a - b)
+      );
+    });
+    columnRowsByX.forEach((rows, x) => {
+      elementNavigationState.columnRowsByX.set(
+        x,
+        [...rows].sort((a, b) => a - b)
+      );
+    });
+
+    const scenePathEntries = await Promise.all(
+      [...elementNavigationState.elementBySymbol.keys()].map(async (symbol) => {
+        let scenePath = null;
+        if (
+          sceneGraphManifestService &&
+          typeof sceneGraphManifestService.resolvePeriodicElementScenePath === "function"
+        ) {
+          scenePath = await sceneGraphManifestService.resolvePeriodicElementScenePath(symbol);
+        }
+        if (!scenePath) {
+          scenePath = `content/scenes/elements/${symbol}.json`;
+        }
+        return [symbol, scenePath];
+      })
+    );
+    scenePathEntries.forEach(([symbol, scenePath]) => {
+      elementNavigationState.scenePathBySymbol.set(symbol, scenePath);
+    });
+
+    elementNavigationState.ready = true;
+    return true;
+  })()
+    .catch((error) => {
+      console.warn("[ElementNavigation] Failed to initialize", error);
+      elementNavigationState.ready = false;
+      return false;
+    })
+    .finally(() => {
+      elementNavigationState.loadingPromise = null;
+    });
+  return elementNavigationState.loadingPromise;
+}
+
+function buildElementNavigationMiniHud() {
+  if (
+    !elementNavMini ||
+    !elementNavigationState.ready ||
+    elementNavigationState.miniHudBuilt
+  ) {
+    return;
+  }
+  elementNavMini.innerHTML = "";
+  elementNavigationState.miniCellBySymbol.clear();
+  const fragment = document.createDocumentFragment();
+  const orderedElements = [...elementNavigationState.elementBySymbol.values()].sort((a, b) => {
+    if (a.y !== b.y) {
+      return a.y - b.y;
+    }
+    if (a.x !== b.x) {
+      return a.x - b.x;
+    }
+    return a.symbol.localeCompare(b.symbol);
+  });
+  orderedElements.forEach((element) => {
+    const cell = document.createElement("div");
+    cell.className = "element-nav-mini-cell";
+    cell.style.gridColumn = String(element.x);
+    cell.style.gridRow = String(element.y);
+    cell.dataset.symbol = element.symbol;
+    cell.setAttribute("aria-hidden", "true");
+    fragment.appendChild(cell);
+    elementNavigationState.miniCellBySymbol.set(element.symbol, cell);
+  });
+  elementNavMini.appendChild(fragment);
+  elementNavigationState.miniHudBuilt = true;
+}
+
+function clearElementNavigationMiniHighlights() {
+  elementNavigationState.miniCellBySymbol.forEach((cell) => {
+    cell.classList.remove("is-current");
+    cell.classList.remove("is-neighbor");
+    cell.classList.remove("is-neighbor-up");
+    cell.classList.remove("is-neighbor-down");
+    cell.classList.remove("is-neighbor-left");
+    cell.classList.remove("is-neighbor-right");
+    cell.replaceChildren();
+  });
+}
+
+function addElementNavigationMiniDirectionIndicator(cell, direction) {
+  if (!(cell instanceof HTMLElement) || !direction) {
+    return;
+  }
+  const directionClass = `is-neighbor-${direction}`;
+  cell.classList.add("is-neighbor", directionClass);
+  if (cell.querySelector(`.element-nav-mini-indicator.dir-${direction}`)) {
+    return;
+  }
+  const indicator = document.createElement("span");
+  indicator.className = `element-nav-mini-indicator dir-${direction}`;
+  indicator.setAttribute("aria-hidden", "true");
+  cell.appendChild(indicator);
+}
+
+function getWrappedNeighbor(values, currentValue, direction) {
+  if (!Array.isArray(values) || values.length <= 1) {
+    return null;
+  }
+  const currentIndex = values.indexOf(currentValue);
+  if (currentIndex < 0) {
+    return null;
+  }
+  if (direction === "up" || direction === "left") {
+    return currentIndex > 0 ? values[currentIndex - 1] : values[values.length - 1];
+  }
+  if (direction === "down" || direction === "right") {
+    return currentIndex < values.length - 1 ? values[currentIndex + 1] : values[0];
+  }
+  return null;
+}
+
+function resolveElementNeighborSymbol(symbol, direction) {
+  const normalizedSymbol = normalizeElementSymbol(symbol);
+  const current = elementNavigationState.elementBySymbol.get(normalizedSymbol);
+  if (!current) {
+    return null;
+  }
+  if (direction === "left" || direction === "right") {
+    const rowColumns = elementNavigationState.rowColumnsByY.get(current.y);
+    const targetX = getWrappedNeighbor(rowColumns, current.x, direction);
+    if (!Number.isFinite(targetX)) {
+      return null;
+    }
+    return elementNavigationState.symbolByCoordinate.get(`${targetX},${current.y}`) ?? null;
+  }
+  if (direction === "up" || direction === "down") {
+    const columnRows = elementNavigationState.columnRowsByX.get(current.x);
+    const targetY = getWrappedNeighbor(columnRows, current.y, direction);
+    if (!Number.isFinite(targetY)) {
+      return null;
+    }
+    return elementNavigationState.symbolByCoordinate.get(`${current.x},${targetY}`) ?? null;
+  }
+  return null;
+}
+
+function resolveElementDirectionalTargets(symbol) {
+  return {
+    up: resolveElementNeighborSymbol(symbol, "up"),
+    down: resolveElementNeighborSymbol(symbol, "down"),
+    left: resolveElementNeighborSymbol(symbol, "left"),
+    right: resolveElementNeighborSymbol(symbol, "right"),
+  };
+}
+
+function setElementNavButtonTarget(direction, targetSymbol) {
+  const button = elementNavButtons[direction];
+  if (!button) {
+    return;
+  }
+  const canNavigate =
+    !!targetSymbol &&
+    !transitionState.active &&
+    elementNavigationState.navigationInFlight !== true;
+  button.disabled = !canNavigate;
+  button.dataset.targetSymbol = targetSymbol ?? "";
+}
+
+async function updateElementNavigationUi() {
+  if (!elementNavOverlay) {
+    return;
+  }
+  const updateToken = ++elementNavigationState.updateToken;
+  const isElementScene = isElementSceneLevel();
+  elementNavOverlay.classList.toggle("is-open", isElementScene);
+  elementNavOverlay.setAttribute("aria-hidden", isElementScene ? "false" : "true");
+  elementNavOverlay.inert = !isElementScene;
+  if (!isElementScene) {
+    clearElementNavigationMiniHighlights();
+    Object.keys(elementNavButtons).forEach((direction) => {
+      setElementNavButtonTarget(direction, null);
+    });
+    return;
+  }
+
+  const ready = await ensureElementNavigationData();
+  if (updateToken !== elementNavigationState.updateToken) {
+    return;
+  }
+  if (!ready) {
+    clearElementNavigationMiniHighlights();
+    Object.keys(elementNavButtons).forEach((direction) => {
+      setElementNavButtonTarget(direction, null);
+    });
+    return;
+  }
+
+  buildElementNavigationMiniHud();
+  clearElementNavigationMiniHighlights();
+
+  const currentSymbol = extractElementSymbolFromLevel();
+  if (!currentSymbol) {
+    Object.keys(elementNavButtons).forEach((direction) => {
+      setElementNavButtonTarget(direction, null);
+    });
+    return;
+  }
+
+  const currentCell = elementNavigationState.miniCellBySymbol.get(currentSymbol);
+  if (currentCell) {
+    currentCell.classList.add("is-current");
+  }
+
+  const directionalTargets = resolveElementDirectionalTargets(currentSymbol);
+  Object.entries(directionalTargets).forEach(([direction, targetSymbol]) => {
+    setElementNavButtonTarget(direction, targetSymbol);
+    const targetCell = targetSymbol
+      ? elementNavigationState.miniCellBySymbol.get(targetSymbol)
+      : null;
+    if (targetCell) {
+      addElementNavigationMiniDirectionIndicator(targetCell, direction);
+    }
+  });
+}
+
+function resolveNearestMiniCellSymbolFromPoint(clientX, clientY) {
+  if (!Number.isFinite(clientX) || !Number.isFinite(clientY)) {
+    return null;
+  }
+  let nearestSymbol = null;
+  let nearestDistanceSq = Number.POSITIVE_INFINITY;
+  elementNavigationState.miniCellBySymbol.forEach((cell, symbol) => {
+    if (!(cell instanceof HTMLElement)) {
+      return;
+    }
+    const rect = cell.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) {
+      return;
+    }
+    const centerX = rect.left + rect.width * 0.5;
+    const centerY = rect.top + rect.height * 0.5;
+    const dx = centerX - clientX;
+    const dy = centerY - clientY;
+    const distanceSq = dx * dx + dy * dy;
+    if (distanceSq < nearestDistanceSq) {
+      nearestDistanceSq = distanceSq;
+      nearestSymbol = symbol;
+    }
+  });
+  return nearestSymbol;
+}
+
+async function navigateToElementSymbol(targetSymbol) {
+  if (
+    !targetSymbol ||
+    transitionState.active ||
+    elementNavigationState.navigationInFlight === true ||
+    !isElementSceneLevel()
+  ) {
+    return false;
+  }
+  elementNavigationState.navigationInFlight = true;
+  updateElementNavigationUi();
+  try {
+    const ready = await ensureElementNavigationData();
+    if (!ready || transitionState.active || !isElementSceneLevel()) {
+      return false;
+    }
+    const normalizedSymbol = normalizeElementSymbol(targetSymbol);
+    const targetPath = elementNavigationState.scenePathBySymbol.get(normalizedSymbol);
+    if (!targetPath || targetPath === currentLevel?.id) {
+      return false;
+    }
+    closeDetailPanel();
+    hideHoverTooltip();
+    await jumpToScene(targetPath, { mode: "jump" });
+    return true;
+  } finally {
+    elementNavigationState.navigationInFlight = false;
+    updateElementNavigationUi();
+  }
+}
+
+async function navigateElementByDirection(direction) {
+  if (
+    !direction ||
+    transitionState.active ||
+    elementNavigationState.navigationInFlight === true ||
+    !isElementSceneLevel()
+  ) {
+    return false;
+  }
+  const ready = await ensureElementNavigationData();
+  if (!ready || transitionState.active || !isElementSceneLevel()) {
+    return false;
+  }
+  const currentSymbol = extractElementSymbolFromLevel();
+  if (!currentSymbol) {
+    return false;
+  }
+  const targetSymbol = resolveElementNeighborSymbol(currentSymbol, direction);
+  if (!targetSymbol) {
+    return false;
+  }
+  return await navigateToElementSymbol(targetSymbol);
+}
+
+function isEditingTextInput(target) {
+  if (!(target instanceof Element)) {
+    return false;
+  }
+  if (target.closest("input, textarea, select")) {
+    return true;
+  }
+  if (target.closest("[contenteditable=''], [contenteditable='true']")) {
+    return true;
+  }
+  return target.isContentEditable === true;
+}
+
+function wireElementNavigationControls() {
+  const onDirectionPress = async (direction) => {
+    const handled = await navigateElementByDirection(direction);
+    if (handled) {
+      updateElementNavigationUi();
+    }
+  };
+
+  Object.entries(elementNavButtons).forEach(([direction, button]) => {
+    if (!button) {
+      return;
+    }
+    button.addEventListener("click", () => {
+      onDirectionPress(direction);
+    });
+  });
+
+  if (elementNavMini) {
+    elementNavMini.addEventListener("click", async (event) => {
+      if (!isElementSceneLevel() || transitionState.active) {
+        return;
+      }
+      const targetSymbol = resolveNearestMiniCellSymbolFromPoint(
+        event.clientX,
+        event.clientY
+      );
+      if (!targetSymbol) {
+        return;
+      }
+      await navigateToElementSymbol(targetSymbol);
+    });
+  }
+
+  window.addEventListener("keydown", async (event) => {
+    const direction = elementNavDirectionByKey[event.key];
+    if (!direction) {
+      return;
+    }
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) {
+      return;
+    }
+    if (isEditingTextInput(event.target)) {
+      return;
+    }
+    if (sceneSearchRuntime?.isSearchOpen()) {
+      return;
+    }
+    const handled = await navigateElementByDirection(direction);
+    if (handled) {
+      event.preventDefault();
+    }
+  });
+}
 
 
 function updateDocButton() {
@@ -2969,6 +3549,7 @@ function updateSceneLabel() {
   periodicOverlayRuntime.updatePeriodicOverlay();
   periodicOverlayRuntime.updateElementLegend();
   periodicOverlayRuntime.updateElementInfoPanel();
+  updateElementNavigationUi();
 }
 
 function openMetaRing() {
@@ -3422,6 +4003,15 @@ appDirector = new AppDirector({
   jumpToScene,
   resetToRootScene,
   startLevelTransitionOut,
+  captureHistoryEntry: captureCurrentHistoryEntry,
+  popHistoryBackEntry: () => browserBackStack.pop() ?? null,
+  popHistoryForwardEntry: () => browserForwardStack.pop() ?? null,
+  pushHistoryBackEntry: (entry) => {
+    pushBrowserHistoryEntry(browserBackStack, entry);
+  },
+  pushHistoryForwardEntry: (entry) => {
+    pushBrowserHistoryEntry(browserForwardStack, entry);
+  },
   getTransitionState: () => transitionState,
   getNavigationStack: () => navigationStack,
   getSearchBackStack: () => searchBackStack,
@@ -3433,7 +4023,10 @@ const appShellUiRuntime = createAppShellUiRuntime({
   interactionRuntime,
   onResize,
   hideHoverTooltip,
+  sceneLabel,
   navUpButton,
+  navForwardButton,
+  detailInfoButton,
   homeButton,
   periodicOverlayRuntime,
   appDirector,
@@ -3444,3 +4037,5 @@ appShellUiRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
 composerControlsUiRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
+wireElementNavigationControls();
+ensureElementNavigationData();

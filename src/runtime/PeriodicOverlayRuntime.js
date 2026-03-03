@@ -67,10 +67,22 @@ export function createPeriodicOverlayRuntime(deps) {
     return periodicCategoryColors[key] || periodicCategoryColors.unknown;
   }
 
+  function formatTemperatureKelvin(value) {
+    if (value === undefined || value === null || value === "") {
+      return null;
+    }
+    const text = String(value).trim();
+    if (!text) {
+      return null;
+    }
+    return /\bk\b/iu.test(text) ? text : `${text} K`;
+  }
+
   function showPeriodicElementDetail(el) {
     if (!detailPanel || !detailTitle || !detailBody) {
       return;
     }
+    detailPanel.classList.remove("is-element-info");
     detailPanel.classList.add("is-open");
     detailPanel.setAttribute("aria-hidden", "false");
     detailPanel.inert = false;
@@ -83,8 +95,8 @@ export function createPeriodicOverlayRuntime(deps) {
       ["Electron config", el.electron_configuration_semantic],
       ["Electronegativity", el.electronegativity_pauling],
       ["Electron affinity", el.electron_affinity],
-      ["Melting point", el.melt],
-      ["Boiling point", el.boil],
+      ["Melting point", formatTemperatureKelvin(el.melt)],
+      ["Boiling point", formatTemperatureKelvin(el.boil)],
       ["Density", el.density],
       ["Block", el.block],
       ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
@@ -228,6 +240,7 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!isElement) {
       if (elementInfoPinned) {
         detailPanel.classList.remove("is-open");
+        detailPanel.classList.remove("is-element-info");
         detailPanel.setAttribute("aria-hidden", "true");
         detailPanel.inert = true;
         elementInfoPinned = false;
@@ -245,11 +258,12 @@ export function createPeriodicOverlayRuntime(deps) {
     }
 
     detailPanel.classList.add("is-open");
+    detailPanel.classList.add("is-element-info");
     detailPanel.setAttribute("aria-hidden", "false");
     detailPanel.inert = false;
     elementInfoPinned = true;
 
-    detailTitle.textContent = `${el.name} (${el.symbol})`;
+    detailTitle.textContent = "";
     const protons = el.number ?? 0;
     const neutrons = Math.max(0, Math.round(el.atomic_mass ?? 0) - protons);
     const electrons = protons;
@@ -264,8 +278,8 @@ export function createPeriodicOverlayRuntime(deps) {
       ["Phase", el.phase],
       ["Atomic mass", el.atomic_mass ? `${el.atomic_mass}` : null],
       ["Electron config", el.electron_configuration_semantic],
-      ["Melting point", el.melt],
-      ["Boiling point", el.boil],
+      ["Melting point", formatTemperatureKelvin(el.melt)],
+      ["Boiling point", formatTemperatureKelvin(el.boil)],
       ["Density", el.density],
       ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
       ["Protons", protons],
