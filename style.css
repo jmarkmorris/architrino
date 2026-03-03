@@ -1404,40 +1404,28 @@ body {
   top: -7.3394495413%;
   width: 113.6363636364%;
   height: 114.6788990826%;
+  display: block;
   z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(18, minmax(44px, 1fr));
-  grid-template-rows: repeat(10, minmax(36px, 1fr));
-  gap: clamp(1px, 0.18vw, 3px);
+  overflow: visible;
 }
 
-#hyde-periodic-grid .ptable-cell {
-  border-radius: 6px;
-  border: none;
-  background: transparent;
-  color: transparent;
-  padding: 0;
+#hyde-periodic-grid .hyde-hotspot {
+  cursor: pointer;
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 1.5;
   pointer-events: auto;
-  transition: background 0.1s ease, box-shadow 0.1s ease;
+  transition: fill 0.1s ease, stroke 0.1s ease;
 }
 
-#hyde-periodic-grid .ptable-cell:hover,
-#hyde-periodic-grid .ptable-cell:focus-visible {
-  border: none;
-  background: rgba(148, 191, 255, 0.12);
-  box-shadow: 0 0 0 1px rgba(196, 220, 255, 0.28);
+#hyde-periodic-grid .hyde-hotspot:hover,
+#hyde-periodic-grid .hyde-hotspot:focus-visible {
+  fill: rgba(148, 191, 255, 0.16);
+  stroke: rgba(196, 220, 255, 0.42);
 }
 
-#hyde-periodic-grid .ptable-number {
-  display: none;
-}
-
-#hyde-periodic-grid .ptable-symbol {
-  display: none;
-}
-
-#hyde-periodic-grid .ptable-name {
-  display: none;
+#hyde-periodic-grid .hyde-hotspot:focus-visible {
+  outline: none;
 }
 
 #hyde-periodic-legend {
