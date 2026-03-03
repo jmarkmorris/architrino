@@ -1,4 +1,26 @@
 export function createSceneGraphRuntime(deps) {
+  const ELEMENT_FIRST_SHELL_OFFSET = 0.80;
+  const ELEMENT_SHELL_GAP = 0.8;
+  const HEAVY_PARTICLE_SCALE_START_NUCLEONS = 80;
+  const HEAVY_PARTICLE_SCALE_END_NUCLEONS = 250;
+  const HEAVY_PARTICLE_SCALE_MAX = 1.75;
+
+  function getHeavyElementParticleScale(nucleonCount) {
+    if (!Number.isFinite(nucleonCount) || nucleonCount <= HEAVY_PARTICLE_SCALE_START_NUCLEONS) {
+      return 1;
+    }
+    const span =
+      HEAVY_PARTICLE_SCALE_END_NUCLEONS - HEAVY_PARTICLE_SCALE_START_NUCLEONS;
+    if (span <= 0) {
+      return HEAVY_PARTICLE_SCALE_MAX;
+    }
+    const t = Math.max(
+      0,
+      Math.min(1, (nucleonCount - HEAVY_PARTICLE_SCALE_START_NUCLEONS) / span)
+    );
+    return 1 + (HEAVY_PARTICLE_SCALE_MAX - 1) * t;
+  }
+
   function getLayoutPackingMetrics(nodes) {
     const maxNodeRadius = Math.max(
       1,
@@ -620,7 +642,9 @@ export function createSceneGraphRuntime(deps) {
       );
       const electrons = nodes.filter((n) => n.data.category === "electron");
       if (nucleons.length) {
-        const nucleonScale = getLowCountNucleonScale(nucleons.length);
+        const lowCountScale = getLowCountNucleonScale(nucleons.length);
+        const heavyElementScale = getHeavyElementParticleScale(nucleons.length);
+        const nucleonScale = lowCountScale * heavyElementScale;
         if (nucleonScale !== 1) {
           nucleons.forEach((nucleon) => {
             const baseRadius = Number.isFinite(nucleon?.data?.radius)
@@ -681,8 +705,8 @@ export function createSceneGraphRuntime(deps) {
       ).sort((a, b) => a - b);
 
       if (uniqueRadii.length) {
-        const minShellRadius = nucleusRadius + 0.6;
-        const shellGap = 0.9;
+        const minShellRadius = nucleusRadius + ELEMENT_FIRST_SHELL_OFFSET;
+        const shellGap = ELEMENT_SHELL_GAP;
         const radiusMap = new Map();
         uniqueRadii.forEach((r, idx) => {
           radiusMap.set(r, minShellRadius + idx * shellGap);

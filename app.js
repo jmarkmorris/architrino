@@ -2299,7 +2299,7 @@ function computeFitZoomForLevel(level) {
   }
 
   const { safeWidth, safeHeight } = getSafeViewportWorld();
-  const marginFactor = 0.92;
+  const marginFactor = 1.0;
   const zoomX = (safeWidth * marginFactor) / Math.max(size.x, 0.01);
   const zoomY = (safeHeight * marginFactor) / Math.max(size.y, 0.01);
   return clampZoom(Math.min(zoomX, zoomY));
