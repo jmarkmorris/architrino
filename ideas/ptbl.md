@@ -23,7 +23,6 @@ No arrow-key conflicts today:
 2. On-screen arrows (lower-right)
 - Four buttons in a diamond layout (rotated 2x2 visual), no grid lines.
 - Solid white triangular arrows.
-- Disabled state when no target exists.
 - Uses the same resolver as keyboard arrows.
 
 3. Mini periodic HUD
