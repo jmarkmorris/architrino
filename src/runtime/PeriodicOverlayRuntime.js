@@ -3,6 +3,11 @@ export function createPeriodicOverlayRuntime(deps) {
     periodicOverlay,
     periodicGrid,
     periodicLegend,
+    hydePeriodicOverlay,
+    hydePeriodicGrid,
+    hydePeriodicLegend,
+    periodicSceneId,
+    hydePeriodicSceneId,
     detailPanel,
     detailTitle,
     detailBody,
@@ -24,7 +29,14 @@ export function createPeriodicOverlayRuntime(deps) {
   } = deps;
 
   let periodicGridBuilt = false;
+  let hydePeriodicGridBuilt = false;
   let elementInfoPinned = false;
+  const activePeriodicSceneId =
+    typeof periodicSceneId === "string" && periodicSceneId ? periodicSceneId : "periodic_table";
+  const activeHydePeriodicSceneId =
+    typeof hydePeriodicSceneId === "string" && hydePeriodicSceneId
+      ? hydePeriodicSceneId
+      : "hyde_periodic_table";
 
   async function ensurePeriodicTable() {
     return periodicTableService.ensure(
@@ -122,12 +134,15 @@ export function createPeriodicOverlayRuntime(deps) {
     });
   }
 
-  function buildPeriodicGrid(data) {
-    if (!periodicGrid || !periodicLegend || !data?.elements) {
+  function buildPeriodicGrid(data, options = {}) {
+    const grid = options.grid ?? periodicGrid;
+    const legend = options.legend ?? periodicLegend;
+    const overlay = options.overlay ?? periodicOverlay;
+    if (!grid || !legend || !data?.elements) {
       return;
     }
-    periodicGrid.innerHTML = "";
-    periodicLegend.innerHTML = "";
+    grid.innerHTML = "";
+    legend.innerHTML = "";
     const frag = document.createDocumentFragment();
     const legendSet = new Map();
     data.elements.forEach((el) => {
@@ -140,6 +155,8 @@ export function createPeriodicOverlayRuntime(deps) {
       btn.style.borderColor = color;
       btn.dataset.symbol = el.symbol;
       btn.dataset.number = el.number;
+      btn.setAttribute("aria-label", `${el.name} (${el.symbol})`);
+      btn.title = `${el.number} ${el.name} (${el.symbol})`;
       btn.innerHTML = `
         <div class="ptable-number">${el.number}</div>
         <div class="ptable-symbol">${el.symbol}</div>
@@ -162,8 +179,8 @@ export function createPeriodicOverlayRuntime(deps) {
         if (!path) {
           return;
         }
-        if (periodicOverlay) {
-          periodicOverlay.classList.add("is-fading");
+        if (overlay) {
+          overlay.classList.add("is-fading");
         }
         jumpToScene(path, { mode: "jump", startScale: 0.35, duration: 2000 });
       });
@@ -174,7 +191,7 @@ export function createPeriodicOverlayRuntime(deps) {
         legendSet.set(legendKey, color);
       }
     });
-    periodicGrid.appendChild(frag);
+    grid.appendChild(frag);
     const legendFrag = document.createDocumentFragment();
     Array.from(legendSet.entries())
       .sort((a, b) => a[0].localeCompare(b[0]))
@@ -184,28 +201,62 @@ export function createPeriodicOverlayRuntime(deps) {
         item.innerHTML = `<span class="ptable-legend-swatch" style="background:${color}"></span>${label}`;
         legendFrag.appendChild(item);
       });
-    periodicLegend.appendChild(legendFrag);
-    periodicGridBuilt = true;
+    legend.appendChild(legendFrag);
+    if (options.onBuilt) {
+      options.onBuilt();
+    }
+  }
+
+  function setOverlayOpenState(overlay, isOpen) {
+    if (!overlay) {
+      return;
+    }
+    overlay.classList.toggle("is-open", !!isOpen);
+    overlay.setAttribute("aria-hidden", isOpen ? "false" : "true");
+    overlay.inert = !isOpen;
+    if (!isOpen) {
+      if (overlay.contains(document.activeElement)) {
+        (navUpButton ?? homeButton ?? sceneSearchToggle ?? document.body).focus();
+      }
+      overlay.classList.remove("is-fading");
+    }
   }
 
   async function updatePeriodicOverlay() {
-    if (!periodicOverlay) {
+    if (!periodicOverlay && !hydePeriodicOverlay) {
       return;
     }
-    const isPeriodic = getCurrentLevel()?.sceneId === "periodic_table";
-    periodicOverlay.classList.toggle("is-open", !!isPeriodic);
-    periodicOverlay.setAttribute("aria-hidden", isPeriodic ? "false" : "true");
-    periodicOverlay.inert = !isPeriodic;
-    if (!isPeriodic) {
-      if (periodicOverlay.contains(document.activeElement)) {
-        (navUpButton ?? homeButton ?? sceneSearchToggle ?? document.body).focus();
-      }
-      periodicOverlay.classList.remove("is-fading");
+    const sceneId = getCurrentLevel()?.sceneId;
+    const isPeriodic = sceneId === activePeriodicSceneId;
+    const isHydePeriodic = sceneId === activeHydePeriodicSceneId;
+
+    setOverlayOpenState(periodicOverlay, isPeriodic);
+    setOverlayOpenState(hydePeriodicOverlay, isHydePeriodic);
+
+    if (!isPeriodic && !isHydePeriodic) {
       return;
     }
+
     const data = await ensurePeriodicTable();
-    if (data && !periodicGridBuilt) {
-      buildPeriodicGrid(data);
+    if (data && isPeriodic && !periodicGridBuilt) {
+      buildPeriodicGrid(data, {
+        grid: periodicGrid,
+        legend: periodicLegend,
+        overlay: periodicOverlay,
+        onBuilt: () => {
+          periodicGridBuilt = true;
+        },
+      });
+    }
+    if (data && isHydePeriodic && !hydePeriodicGridBuilt) {
+      buildPeriodicGrid(data, {
+        grid: hydePeriodicGrid,
+        legend: hydePeriodicLegend,
+        overlay: hydePeriodicOverlay,
+        onBuilt: () => {
+          hydePeriodicGridBuilt = true;
+        },
+      });
     }
   }
 
@@ -395,13 +446,18 @@ export function createPeriodicOverlayRuntime(deps) {
   }
 
   function hidePeriodicOverlayImmediately() {
-    if (!periodicOverlay) {
-      return;
+    if (periodicOverlay) {
+      periodicOverlay.classList.remove("is-open");
+      periodicOverlay.classList.remove("is-fading");
+      periodicOverlay.setAttribute("aria-hidden", "true");
+      periodicOverlay.inert = true;
     }
-    periodicOverlay.classList.remove("is-open");
-    periodicOverlay.classList.remove("is-fading");
-    periodicOverlay.setAttribute("aria-hidden", "true");
-    periodicOverlay.inert = true;
+    if (hydePeriodicOverlay) {
+      hydePeriodicOverlay.classList.remove("is-open");
+      hydePeriodicOverlay.classList.remove("is-fading");
+      hydePeriodicOverlay.setAttribute("aria-hidden", "true");
+      hydePeriodicOverlay.inert = true;
+    }
   }
 
   return {

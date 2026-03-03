@@ -75,6 +75,9 @@ const markdownDocButton = document.getElementById("markdown-doc-button");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
+const hydePeriodicOverlay = document.getElementById("hyde-periodic-overlay");
+const hydePeriodicGrid = document.getElementById("hyde-periodic-grid");
+const hydePeriodicLegend = document.getElementById("hyde-periodic-legend");
 const elementNavOverlay = document.getElementById("element-nav-overlay");
 const elementNavMini = document.getElementById("element-nav-mini");
 const elementNavUpButton = document.getElementById("element-nav-up");
@@ -3093,6 +3096,11 @@ const periodicOverlayRuntime = createPeriodicOverlayRuntime({
   periodicOverlay,
   periodicGrid,
   periodicLegend,
+  hydePeriodicOverlay,
+  hydePeriodicGrid,
+  hydePeriodicLegend,
+  periodicSceneId: "periodic_table",
+  hydePeriodicSceneId: "hyde_periodic_table",
   detailPanel,
   detailTitle,
   detailBody,

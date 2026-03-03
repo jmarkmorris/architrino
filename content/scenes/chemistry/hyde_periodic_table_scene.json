@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "hyde_periodic_table",
+    "kind": "diagram",
+    "name": "Hyde Periodic Table",
+    "units": "relative",
+    "scaleBandLog10m": [
+      0,
+      0
+    ]
+  },
+  "objects": []
+}

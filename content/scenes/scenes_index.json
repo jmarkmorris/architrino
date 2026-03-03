@@ -16,6 +16,11 @@
       "path": "content/scenes/architrino-theory/positrino.json"
     },
     {
+      "id": "hyde_periodic_table",
+      "name": "Hyde Periodic Table",
+      "path": "content/scenes/chemistry/hyde_periodic_table_scene.json"
+    },
+    {
       "id": "molecule",
       "name": "Molecule",
       "path": "content/scenes/chemistry/molecule.json"

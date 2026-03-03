@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 298,
-      "edges": 1129,
-      "scenes": 174,
+      "nodes": 299,
+      "edges": 1130,
+      "scenes": 175,
       "markdownIndexes": 16,
       "markdownDocs": 108,
       "runtimeEdges": 476,
@@ -164,6 +164,12 @@
       "id": "positrino",
       "name": "Positrino",
       "path": "content/scenes/architrino-theory/positrino.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "hyde_periodic_table",
+      "name": "Hyde Periodic Table",
+      "path": "content/scenes/chemistry/hyde_periodic_table_scene.json",
       "nodeType": "scene"
     },
     {
@@ -1933,6 +1939,15 @@
       "name": "Fermions",
       "path": "content/scenes/assemblies/fermions.json",
       "searchTarget": "content/scenes/assemblies/fermions.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "nodeType": "scene",
+      "id": "hyde_periodic_table",
+      "name": "Hyde Periodic Table",
+      "path": "content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "searchTarget": "content/scenes/chemistry/hyde_periodic_table_scene.json",
       "implicit": false
     },
     {
@@ -7304,6 +7319,13 @@
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "objects[2].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
@@ -7314,7 +7336,7 @@
       "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[3].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/nucleus.json",
