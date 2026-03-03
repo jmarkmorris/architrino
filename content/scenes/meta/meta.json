@@ -30,6 +30,17 @@
       "labelBadge": "doc"
     },
     {
+      "id": "meta_licenses_attributions",
+      "label": "Licenses & Attributions",
+      "radius": 2.2,
+      "color": "#6a3c3c",
+      "markdownPath": "content/markdown/aaa/archie/licenses-attributions.md",
+      "markdownColumns": 1,
+      "markdownAutoIndex": false,
+      "labelTitle": "Licenses & Attributions",
+      "labelBadge": "doc"
+    },
+    {
       "id": "meta_glossary",
       "label": "Glossary",
       "radius": 2.2,

@@ -145,23 +145,30 @@ export function createPeriodicOverlayRuntime(deps) {
     legend.innerHTML = "";
     const frag = document.createDocumentFragment();
     const legendSet = new Map();
+    const showCellChrome = options.showCellChrome !== false;
     data.elements.forEach((el) => {
       const btn = document.createElement("button");
       btn.className = "ptable-cell";
       btn.style.gridColumn = el.xpos;
       btn.style.gridRow = el.ypos;
       const color = getPeriodicColor(el.category);
-      btn.style.background = `${color}22`;
-      btn.style.borderColor = color;
+      if (showCellChrome) {
+        btn.style.background = `${color}22`;
+        btn.style.borderColor = color;
+      } else {
+        btn.classList.add("ptable-hit-target");
+      }
       btn.dataset.symbol = el.symbol;
       btn.dataset.number = el.number;
       btn.setAttribute("aria-label", `${el.name} (${el.symbol})`);
       btn.title = `${el.number} ${el.name} (${el.symbol})`;
-      btn.innerHTML = `
-        <div class="ptable-number">${el.number}</div>
-        <div class="ptable-symbol">${el.symbol}</div>
-        <div class="ptable-name">${el.name}</div>
-      `;
+      if (showCellChrome) {
+        btn.innerHTML = `
+          <div class="ptable-number">${el.number}</div>
+          <div class="ptable-symbol">${el.symbol}</div>
+          <div class="ptable-name">${el.name}</div>
+        `;
+      }
       btn.addEventListener("click", async () => {
         showPeriodicElementDetail(el);
         const currentLevel = getCurrentLevel();
@@ -226,9 +233,15 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!periodicOverlay && !hydePeriodicOverlay) {
       return;
     }
-    const sceneId = getCurrentLevel()?.sceneId;
-    const isPeriodic = sceneId === activePeriodicSceneId;
-    const isHydePeriodic = sceneId === activeHydePeriodicSceneId;
+    const currentLevel = getCurrentLevel();
+    const sceneId = currentLevel?.sceneId;
+    const scenePath = typeof currentLevel?.id === "string" ? currentLevel.id : "";
+    const isPeriodic =
+      sceneId === activePeriodicSceneId ||
+      scenePath.endsWith("/periodic_table_scene.json");
+    const isHydePeriodic =
+      sceneId === activeHydePeriodicSceneId ||
+      scenePath.endsWith("/hyde_periodic_table_scene.json");
 
     setOverlayOpenState(periodicOverlay, isPeriodic);
     setOverlayOpenState(hydePeriodicOverlay, isHydePeriodic);
@@ -253,6 +266,7 @@ export function createPeriodicOverlayRuntime(deps) {
         grid: hydePeriodicGrid,
         legend: hydePeriodicLegend,
         overlay: hydePeriodicOverlay,
+        showCellChrome: false,
         onBuilt: () => {
           hydePeriodicGridBuilt = true;
         },

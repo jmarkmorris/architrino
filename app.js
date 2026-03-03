@@ -78,6 +78,7 @@ const periodicLegend = document.getElementById("periodic-legend");
 const hydePeriodicOverlay = document.getElementById("hyde-periodic-overlay");
 const hydePeriodicGrid = document.getElementById("hyde-periodic-grid");
 const hydePeriodicLegend = document.getElementById("hyde-periodic-legend");
+const hydePeriodicArtwork = document.getElementById("hyde-periodic-artwork");
 const elementNavOverlay = document.getElementById("element-nav-overlay");
 const elementNavMini = document.getElementById("element-nav-mini");
 const elementNavUpButton = document.getElementById("element-nav-up");
@@ -1849,6 +1850,10 @@ function purgeWorldState() {
 function appendCacheBust(path) {
   const separator = path.includes("?") ? "&" : "?";
   return `${path}${separator}v=${cacheBustToken}`;
+}
+
+if (hydePeriodicArtwork) {
+  hydePeriodicArtwork.src = appendCacheBust("content/assets/hyde_periodic_table.svg");
 }
 
 async function resolveMarkdownFileSize(path) {

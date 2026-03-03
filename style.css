@@ -1381,10 +1381,10 @@ body {
 
 #hyde-periodic-canvas {
   /* Alignment box for clickable element hit areas over the Hyde SVG. */
-  --hyde-map-left: 5.1%;
-  --hyde-map-top: 14.6%;
-  --hyde-map-width: 89.7%;
-  --hyde-map-height: 71.3%;
+  --hyde-map-left: 0%;
+  --hyde-map-top: 0%;
+  --hyde-map-width: 100%;
+  --hyde-map-height: 100%;
   position: relative;
   width: max(1220px, 100%);
   margin: 0 auto;
@@ -1406,47 +1406,36 @@ body {
   top: var(--hyde-map-top);
   width: var(--hyde-map-width);
   height: var(--hyde-map-height);
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(18, minmax(44px, 1fr));
   grid-template-rows: repeat(10, minmax(36px, 1fr));
-  gap: clamp(2px, 0.23vw, 4px);
+  gap: clamp(1px, 0.18vw, 3px);
 }
 
 #hyde-periodic-grid .ptable-cell {
   border-radius: 6px;
-  border: 2px solid rgba(115, 134, 202, 0.18);
-  background: rgba(5, 9, 20, 0.14);
+  border: none;
+  background: transparent;
   color: transparent;
   padding: 0;
-  transition: transform 0.1s ease, border-color 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
+  pointer-events: auto;
+  transition: background 0.1s ease, box-shadow 0.1s ease;
 }
 
 #hyde-periodic-grid .ptable-cell:hover,
 #hyde-periodic-grid .ptable-cell:focus-visible {
-  transform: translateY(-1px);
-  border-color: rgba(196, 220, 255, 0.85);
-  background: rgba(148, 191, 255, 0.18);
-  box-shadow: 0 0 0 1px rgba(196, 220, 255, 0.44);
+  border: none;
+  background: rgba(148, 191, 255, 0.12);
+  box-shadow: 0 0 0 1px rgba(196, 220, 255, 0.28);
 }
 
 #hyde-periodic-grid .ptable-number {
-  position: absolute;
-  top: 3px;
-  left: 4px;
-  font-size: 9px;
-  line-height: 1;
-  color: rgba(233, 242, 255, 0.85);
-  pointer-events: none;
+  display: none;
 }
 
 #hyde-periodic-grid .ptable-symbol {
-  font-size: clamp(12px, 0.92vw, 18px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  color: rgba(246, 250, 255, 0.95);
-  pointer-events: none;
-  align-self: center;
+  display: none;
 }
 
 #hyde-periodic-grid .ptable-name {
