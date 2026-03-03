@@ -96,8 +96,8 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        -3.2,
-        0,
+        -1.6,
+        -2.771,
         0
       ],
       "fixedPosition": true,
@@ -200,8 +200,8 @@
       "radius": 1.1,
       "color": "PURPLE",
       "position": [
-        -1.6,
-        -2.771,
+        -3.2,
+        0,
         0
       ],
       "fixedPosition": true,

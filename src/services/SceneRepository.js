@@ -18,7 +18,11 @@ export class SceneRepository {
     this.markdownDocBadgeMinChars =
       typeof deps.markdownDocBadgeMinChars === "number"
         ? deps.markdownDocBadgeMinChars
-        : 128;
+        : 512;
+    this.markdownOpenMinChars =
+      typeof deps.markdownOpenMinChars === "number"
+        ? deps.markdownOpenMinChars
+        : 512;
     this.markdownDocIconMinBytes =
       typeof deps.markdownDocIconMinBytes === "number"
         ? deps.markdownDocIconMinBytes
@@ -244,6 +248,7 @@ export class SceneRepository {
           typeof node.markdownSection === "string" && node.markdownSection.trim().length > 0;
         if (!hasDirectMarkdown) {
           node.docDrillDownPreferred = false;
+          node.markdownOpenEligible = false;
           node.markdownGlowEligible = false;
           node.markdownDocIconEligible = false;
           node.markdownDocIcon = false;
@@ -263,10 +268,14 @@ export class SceneRepository {
         const isEligible =
           Number.isFinite(markdownByteSize) &&
           markdownByteSize >= this.markdownGlowMinBytes;
+        const isOpenEligible =
+          Number.isFinite(markdownCharacterCount) &&
+          markdownCharacterCount >= this.markdownOpenMinChars;
         const isDocIconEligible =
-          hasMarkdownSectionTarget ||
+          isOpenEligible &&
+          (hasMarkdownSectionTarget ||
           (Number.isFinite(markdownCharacterCount) &&
-            markdownCharacterCount > this.markdownDocBadgeMinChars);
+            markdownCharacterCount >= this.markdownDocBadgeMinChars));
 
         node.markdownByteSize = Number.isFinite(markdownByteSize)
           ? markdownByteSize
@@ -274,6 +283,7 @@ export class SceneRepository {
         node.markdownCharacterCount = Number.isFinite(markdownCharacterCount)
           ? markdownCharacterCount
           : null;
+        node.markdownOpenEligible = isOpenEligible;
         node.markdownGlowEligible = isEligible;
         node.markdownDocIconEligible = isDocIconEligible;
         node.markdownDocIcon = isDocIconEligible;
@@ -424,6 +434,7 @@ export class SceneRepository {
           markdownPath: data.scene?.markdownPath ?? null,
           markdownSection: data.scene?.markdownSection ?? null,
           markdownColumns: data.scene?.markdownColumns ?? null,
+          markdownShowTitle: data.scene?.markdownShowTitle ?? true,
           markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
           centerOn: data.scene?.centerOn ?? null,
           autoMarkdownDirectory: markdownDerived?.autoMarkdownDirectory ?? null,

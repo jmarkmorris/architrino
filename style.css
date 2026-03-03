@@ -603,28 +603,12 @@ body {
   flex-direction: column;
 }
 
-.markdown-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 18px 16px 14px;
-  background: rgba(61, 0, 105, 0.95);
-  border-bottom: 1px solid rgba(160, 170, 220, 0.12);
-}
-
-.markdown-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
 #markdown-doc-button {
   width: 32px;
-  height: 28px;
-  border-radius: 6px;
+  height: 32px;
+  border-radius: 999px;
   border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(15, 18, 32, 0.8);
+  background: rgba(8, 10, 18, 0.75);
   color: #f5f7ff;
   display: inline-flex;
   align-items: center;
@@ -639,8 +623,7 @@ body {
 
 #markdown-doc-button:hover,
 #markdown-doc-button:focus-visible {
-  border-color: rgba(160, 170, 220, 0.55);
-  background: rgba(25, 30, 48, 0.9);
+  border-color: rgba(213, 220, 255, 0.6);
 }
 
 #markdown-doc-button.is-hidden {
@@ -654,15 +637,24 @@ body {
 
 #markdown-layout-toggle {
   width: 32px;
-  height: 28px;
-  border-radius: 6px;
+  height: 32px;
+  border-radius: 999px;
   border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(15, 18, 32, 0.8);
+  background: rgba(8, 10, 18, 0.75);
   color: #f5f7ff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+#markdown-layout-toggle:hover,
+#markdown-layout-toggle:focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+}
+
+#markdown-layout-toggle.is-hidden {
+  display: none;
 }
 
 #markdown-layout-toggle svg {
@@ -671,50 +663,17 @@ body {
   fill: currentColor;
 }
 
-#markdown-panel.two-columns .layout-icon-single {
-  display: none;
-}
-
-#markdown-panel.two-columns .layout-icon-double {
-  display: block;
-}
-
-#markdown-panel:not(.two-columns) .layout-icon-single {
-  display: block;
-}
-
-#markdown-panel:not(.two-columns) .layout-icon-double {
-  display: none;
-}
-
 #markdown-content {
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: 10px 16px 18px;
+  padding: 16px 16px 18px;
   font-size: 16px;
   line-height: 1.8;
 }
 
 #markdown-body {
   display: contents;
-}
-
-#markdown-title {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-#markdown-close {
-  border: 1px solid rgba(160, 170, 220, 0.25);
-  border-radius: 6px;
-  background: rgba(15, 18, 32, 0.8);
-  color: #f5f7ff;
-  font-size: 10px;
-  padding: 4px 6px;
-  cursor: pointer;
 }
 
 #markdown-content h1,
@@ -732,8 +691,7 @@ body {
 }
 
 #markdown-content h1:first-of-type {
-  text-align: center;
-  margin-top: 6px;
+  display: none;
 }
 
 #markdown-content h2 {

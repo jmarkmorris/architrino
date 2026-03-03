@@ -23,6 +23,10 @@ export function createScenePanelUiRuntime(deps) {
       ? { ...currentLevel, markdownSection: null }
       : currentLevel;
     markdownRuntime.showMarkdownPanel(docLevel);
+    if (markdownDocButton && docLevel.markdownSection == null) {
+      markdownDocButton.classList.add("is-hidden");
+      markdownDocButton.disabled = true;
+    }
   }
 
   function wireListeners() {

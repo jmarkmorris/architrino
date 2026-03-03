@@ -51,6 +51,7 @@
       "radius": 2.688,
       "color": "#3a5f9f",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+      "markdownAutoIndex": false,
       "labelTitle": "Atomic Spectra",
       "labelBadge": "doc"
     },
@@ -60,6 +61,7 @@
       "radius": 2.688,
       "color": "#2f6b6f",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+      "markdownAutoIndex": false,
       "labelTitle": "Atomic Structure",
       "labelBadge": "doc"
     },
@@ -69,6 +71,7 @@
       "radius": 2.688,
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+      "markdownAutoIndex": false,
       "labelTitle": "Condensed Matter",
       "labelBadge": "doc"
     },

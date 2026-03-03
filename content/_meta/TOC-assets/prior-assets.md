@@ -1,5 +1,3 @@
-
-
 Current blog TOC:
 
 Nature is a Trickster

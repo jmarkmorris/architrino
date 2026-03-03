@@ -162,7 +162,7 @@ export function createMarkdownRuntime(deps) {
       }
     }
     if (markdownTitle) {
-      markdownTitle.textContent = level.name ?? "Notes";
+      markdownTitle.textContent = level.markdownShowTitle === false ? "" : (level.name ?? "Notes");
     }
     if (markdownBody) {
       markdownBody.innerHTML = html;

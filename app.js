@@ -1188,7 +1188,8 @@ const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "content/markdown/aaa/assemblies/composer.md";
-const markdownDocBadgeCharacterThreshold = 128;
+const markdownDocBadgeCharacterThreshold = 512;
+const markdownOpenCharacterThreshold = 512;
 const markdownGlowByteThreshold = 2048;
 const cacheBustToken = Date.now().toString();
 let appDirector = null;
@@ -1226,6 +1227,83 @@ const resolveMarkdownSectionTitleByKey = createMarkdownSectionTitleResolver({
   logger: console,
 });
 
+const sceneIndexManifestPath = "content/scenes/scenes_index.json";
+const authoredMarkdownColumnsByPath = new Map();
+let authoredMarkdownColumnsLoadPromise = null;
+
+function normalizeColumnsPath(path) {
+  return normalizeMarkdownPath(path);
+}
+
+async function resolveMarkdownColumnsForPath(markdownPath) {
+  const normalizedTargetPath = normalizeColumnsPath(markdownPath);
+  if (!normalizedTargetPath) {
+    return null;
+  }
+  if (authoredMarkdownColumnsByPath.has(normalizedTargetPath)) {
+    return authoredMarkdownColumnsByPath.get(normalizedTargetPath);
+  }
+  if (!authoredMarkdownColumnsLoadPromise) {
+    authoredMarkdownColumnsLoadPromise = (async () => {
+      try {
+        const indexResponse = await fetch(appendCacheBust(sceneIndexManifestPath));
+        if (!indexResponse.ok) {
+          return;
+        }
+        const indexData = await indexResponse.json();
+        const sceneEntries = Array.isArray(indexData?.scenes) ? indexData.scenes : [];
+        for (const entry of sceneEntries) {
+          const scenePath =
+            typeof entry?.path === "string" && entry.path.trim().length
+              ? entry.path.trim()
+              : null;
+          if (!scenePath) {
+            continue;
+          }
+          try {
+            const sceneResponse = await fetch(appendCacheBust(scenePath));
+            if (!sceneResponse.ok) {
+              continue;
+            }
+            const sceneData = await sceneResponse.json();
+            const sceneMarkdownPath = sceneData?.scene?.markdownPath;
+            const sceneMarkdownColumns = sceneData?.scene?.markdownColumns;
+            if ((sceneMarkdownColumns === 1 || sceneMarkdownColumns === 2) && sceneMarkdownPath) {
+              authoredMarkdownColumnsByPath.set(
+                normalizeColumnsPath(sceneMarkdownPath),
+                sceneMarkdownColumns
+              );
+            }
+            const objects = Array.isArray(sceneData?.objects) ? sceneData.objects : [];
+            for (const obj of objects) {
+              const objectMarkdownPath = obj?.markdownPath;
+              const objectMarkdownColumns = obj?.markdownColumns;
+              if (
+                (objectMarkdownColumns === 1 || objectMarkdownColumns === 2) &&
+                typeof objectMarkdownPath === "string" &&
+                objectMarkdownPath.trim().length
+              ) {
+                authoredMarkdownColumnsByPath.set(
+                  normalizeColumnsPath(objectMarkdownPath),
+                  objectMarkdownColumns
+                );
+              }
+            }
+          } catch (_error) {
+            // Skip malformed or unavailable scene files while building the optional restore map.
+          }
+        }
+      } catch (_error) {
+        // Best-effort lookup only; fall back to default restoration rules on failure.
+      }
+    })();
+  }
+  await authoredMarkdownColumnsLoadPromise;
+  return authoredMarkdownColumnsByPath.has(normalizedTargetPath)
+    ? authoredMarkdownColumnsByPath.get(normalizedTargetPath)
+    : null;
+}
+
 const markdownSceneRegistry = createMarkdownSceneRegistry({
   levelConfigs,
   titleFromSlug,
@@ -1233,6 +1311,7 @@ const markdownSceneRegistry = createMarkdownSceneRegistry({
   normalizeMarkdownKey,
   resolveMarkdownDocumentTitle,
   resolveMarkdownSectionTitleByKey,
+  resolveMarkdownColumnsForPath,
 });
 
 const composerPanelMap = new Map([
@@ -1863,6 +1942,7 @@ const sceneRepository = new SceneRepository({
   resolveMarkdownFileSize,
   resolveMarkdownFileCharacterCount,
   markdownDocBadgeMinChars: markdownDocBadgeCharacterThreshold,
+  markdownOpenMinChars: markdownOpenCharacterThreshold,
   markdownGlowMinBytes: markdownGlowByteThreshold,
 });
 const sceneBootstrapService = createSceneBootstrapService({
@@ -3532,8 +3612,21 @@ function updateMarkdownDocButton() {
     return;
   }
   const hasDoc = !!currentLevel?.markdownPath;
-  markdownDocButton.classList.toggle("is-hidden", !hasDoc);
-  markdownDocButton.disabled = !hasDoc;
+  const hasSection = typeof currentLevel?.markdownSection === "string"
+    ? currentLevel.markdownSection.trim().length > 0
+    : !!currentLevel?.markdownSection;
+  const showDocButton = hasDoc && hasSection;
+  markdownDocButton.classList.toggle("is-hidden", !showDocButton);
+  markdownDocButton.disabled = !showDocButton;
+}
+
+function updateMarkdownLayoutToggleButton() {
+  if (!markdownLayoutToggle) {
+    return;
+  }
+  const hasDoc = !!currentLevel?.markdownPath;
+  markdownLayoutToggle.classList.toggle("is-hidden", !hasDoc);
+  markdownLayoutToggle.disabled = !hasDoc;
 }
 
 function updateSceneLabel() {
@@ -3544,6 +3637,7 @@ function updateSceneLabel() {
   sceneLabel.textContent = currentLevel?.name ?? "";
   updateDocButton();
   updateMetaButton();
+  updateMarkdownLayoutToggleButton();
   updateMarkdownDocButton();
   composerUiRuntime.updateComposerOverlay(currentLevel);
   periodicOverlayRuntime.updatePeriodicOverlay();
@@ -3721,7 +3815,8 @@ function focusOnPointer(clientX, clientY) {
   }
 
   const hasMarkdownPath = !!targetNode.data.markdownPath;
-  const canOpenMarkdown = hasMarkdownPath;
+  const canOpenMarkdown =
+    hasMarkdownPath && targetNode.data.markdownOpenEligible === true;
 
   if (currentLevel?.sceneId === composerSceneId) {
     const panelId = composerPanelMap.get(targetNode.data.id ?? "");

@@ -46,6 +46,7 @@
       "radius": 2.688,
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+      "markdownAutoIndex": false,
       "labelTitle": "Failure Criteria",
       "labelBadge": "doc"
     },
@@ -55,6 +56,7 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
+      "markdownAutoIndex": false,
       "labelTitle": "Known Tensions"
     },
     {
@@ -63,6 +65,7 @@
       "radius": 2.688,
       "color": "#4b0082",
       "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
+      "markdownAutoIndex": false,
       "labelTitle": "No Go Theorems"
     },
     {
@@ -71,6 +74,8 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+      "markdownAutoIndex": false,
+      "markdownColumns": 1,
       "labelTitle": "Parameter Ledger",
       "labelBadge": "doc"
     },
@@ -80,6 +85,7 @@
       "radius": 2.688,
       "color": "#2f4f7a",
       "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
+      "markdownColumns": 1,
       "labelTitle": "Reaction Ledger",
       "labelBadge": "doc"
     },
@@ -89,6 +95,7 @@
       "radius": 2.688,
       "color": "#2c567a",
       "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
+      "markdownAutoIndex": false,
       "labelTitle": "Validation Protocols",
       "labelBadge": "doc"
     }
