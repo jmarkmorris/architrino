@@ -91,11 +91,9 @@
         "meta_composer": "Composer",
         "meta_glossary": "Glossary",
         "meta_help": "Help",
-        "meta_key": "Key",
         "meta_mathematical_style_guide": "Mathematical Style Guide",
         "meta_mathematical_terminology": "Mathematical Terminology",
-        "meta_navigation": "Navigation",
-        "meta_settings": "Settings"
+        "meta_navigation": "Navigation"
       }
     },
     "content/scenes/nuclear/nuclear_atomic.json": {

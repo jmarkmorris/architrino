@@ -1,3 +1,5 @@
+# Mathematics
+
 # Mathematical Terminology (Canonical Dialect)
 
 This table lists the symbols and mathematical terms used across the Geometrical Model of Nature and explains their meaning in this project’s context.
@@ -68,3 +70,210 @@ Notes:
 - All speeds are nondimensional after choosing $L_0, T_0$ so that $v = L_0/T_0 = 1$.
 - Assemblies are dynamical geometries of architrino transceivers (not point particles). Their effective field/wave behavior is the net superposition of their constituent architrinos evolving under the equation of motion; any “emission/absorption” attributed to an assembly is shorthand for this superposed dynamics.
 - Vocabulary: Use “expanding causal isochrons” as the canonical term for emitted structures; “wavefront” may be included once as a parenthetical synonym at first use. Avoid generic “spheres” or “ridges” in technical statements (reserve “ridges” for analogies).
+
+---
+
+# Mathematical Style Guide (Canonical Dialect)
+
+Purpose: Define a single, canonical mathematical and geometrical dialect for the Geometrical Model of Nature. All technical documents should adhere to this guide. Equations are presented in display math for clarity where appropriate.
+
+---
+
+## Background spaces and sets
+
+- Timespace:
+  $$
+  \mathcal{M} = \mathbb{R}\times \mathbb{R}^3
+  $$
+  with coordinates $(t, x, y, z)$.
+  $$
+  \Sigma_t = \{t\}\times \mathbb{R}^3
+  $$
+  are simultaneity slices (Euclidean 3-space snapshots).
+- Vectors and norms:
+  - Spatial vectors are bold: $\mathbf{s}, \mathbf{v}, \mathbf{a}$.
+  - Unit vectors carry hats: $\hat{\mathbf{r}}$.
+  - Norms use double bars: $\|\cdot\|$.
+- Indices:
+  - Components indexed by $i, j \in \{1,2,3\}$ with $\delta_{ij}$.
+
+Plain language: One global clock t and ordinary 3D space; we write vectors in bold, unit directions with hats, and lengths with double bars.
+
+---
+
+## Kinematics (Newton–Cartan/Galilean background)
+
+- Absolute time $t$ is universal and oriented; durations are
+
+  $$
+  \Delta t = |\,t_2 - t_1\,|.
+  $$
+
+- Space is Euclidean with metric
+
+  $$
+  h_{ij} = \delta_{ij}\quad\text{on each slice }\Sigma_t.
+  $$
+
+  Notation: We use $h_{ij}$ exclusively for the spatial metric; do not use $g_{ij}$.
+
+  Here $\delta_{ij}$ is the Kronecker delta (identity). It defines the Euclidean dot product and norm:
+  $u\!\cdot\!v = h_{ij}u^i v^j$ and $\|v\|^2 = h_{ij}v^i v^j$. Raising/lowering is trivial with $h^{ij}=\delta^{ij}$.
+  In Cartesian frames, $\Gamma^{i}{}_{jk}=0$, so covariant derivatives equal partial derivatives and geodesics are straight; curvature vanishes identically. In curvilinear coordinates (e.g., spherical), $h_{ij}$ takes the flat-space form $\mathrm{diag}(1, r^2, r^2\sin^2\theta)$, still representing the same flat geometry.
+- There is no 4D non-degenerate metric; we do not mix time and space into a single line element.
+- Worldlines:
+  - $\mathbf{x}: I \subset \mathbb{R} \to \mathbb{R}^3,\ t \mapsto \mathbf{x}(t)$, absolutely continuous; $\mathbf{v} = d\mathbf{x}/dt$, $\mathbf{a} = d\mathbf{v}/dt$.
+
+Plain language: Objects move as dots in 3D through successive instants; speeds and distances are measured separately from time.
+
+---
+
+## Propagation and causal set (delayed-only)
+
+- Field speed is $v$; by default we non-dimensionalize to $v=1$.
+- Causal-time condition (CT):
+  $$
+  \tau = t - t_0,\quad r = \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\|,\quad r = v\,\tau
+  $$
+- Causal set:
+  $$
+  \mathcal{C}_j(t) = \{\, t_0 < t \mid \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\| = v\,(t - t_0) \,\}
+  $$
+- Conventions:
+  - $H(0)=0$ (no instantaneous self-kick).
+  - No $r=0$ causal roots beyond $\tau=0$: because $r = v(t - t_0)$, $r=0$ implies $\tau=0$; the $\tau=0$ case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
+
+Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach you.
+
+---
+
+## Distributions and regularization (causal wake surfaces)
+
+- Point emission at (t₀, s₀):
+  $$
+  \text{source} = q\,\delta(t - t_0)\,\delta^{(3)}(\mathbf{s} - \mathbf{s}_0)
+  $$
+-- Expanding causal wake surface at speed v:
+  $$
+  \rho(t,\mathbf{s}) = \frac{q}{4\pi r^2}\,\delta(r - v\,\tau)\,H(\tau),\quad r=\|\mathbf{s}-\mathbf{s}_0\|,\ \tau=t-t_0
+  $$
+  $$
+  \rho = \frac{q}{4\pi r^2}\,\delta_{S_{v\tau}}(\mathbf{s}-\mathbf{s}_0)\,H(\tau)
+  $$
+- Regularization:
+  $$
+  \delta(r - v\,\tau)\ \to\ \delta_\eta(r - v\,\tau) \;=\; \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(\!-\frac{(r - v\,\tau)^2}{2\,\eta^2}\Big)
+  $$
+  - Use $\eta$ > 0 when differentiability is required; take $\eta$ → 0 limits in the weak/integrated sense.
+
+Plain language: Each emission is a razor-thin causal wake surface; when needed, we thicken it slightly so calculus works smoothly.
+
+---
+
+## master equation of Motion (EOM; purely radial)
+
+Given a receiver o′ at time t and a source j at causal emission time t₀ ∈ 𝒞_j(t), let
+$$
+r = \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\|,\quad
+\hat{\mathbf{r}} = \frac{\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)}{r},\quad
+\sigma_{q_j q_{o'}} = \mathrm{sign}(q_j q_{o'}) \in \{+1,-1\}
+$$
+
+Canonical per-hit acceleration:
+$$
+a_{o′\leftarrow j}(t; t_0)
+= \kappa\,\sigma_{q_j q_{o′}}\,
+\frac{|q_j q_{o′}|}{r^2}\,\hat{\mathbf{r}}.
+$$
+
+Total acceleration:
+$$
+\mathbf{a}_{o′}(t) = \sum_{j}\ \sum_{t_0 \in \mathcal{C}_j(t)} a_{o′\leftarrow j}(t; t_0).
+$$
+
+DDE view: let state $x = (\mathbf{s}, \mathbf{v})$. With $\eta>0$ regularization, the dynamics admit a causal functional form
+$$
+\frac{d x}{d t} = F\big(x(t), \{x_j(t - \tau_j)\}_j, t\big),
+$$
+with $\tau_j$ determined implicitly by $\lVert \mathbf{s}(t) - \mathbf{s}_j(t - \tau_j)\rVert = v\,\tau_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
+
+Notes:
+- Emission cadence and per-wavefront amplitude are constant The receiver’s velocity influences only instantaneous power via $\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.
+- No cross products, no right-hand-rule magnetism; every per-hit action is along $\hat{\mathbf{r}}$.
+
+Plain language: For each past emission that can reach you now, push along the line back to where it came from, with 1/r² falloff only, then add all pushes.
+
+Receiver velocity decomposition (instantaneous):
+- Decompose the receiver velocity relative to $\hat{\mathbf{r}}$:
+  $$
+  \mathbf{v} = v_r\,\hat{\mathbf{r}} + \mathbf{v}_\perp,\qquad v_r = \mathbf{v}\cdot \hat{\mathbf{r}}
+  $$
+- Because $a_{o′\leftarrow j} \parallel \hat{\mathbf{r}}$, a single hit updates only the radial component:
+  $$
+  \frac{d}{dt}\mathbf{v}_\perp = 0,\qquad \frac{d}{dt}v_r = a_{o′\leftarrow j}\cdot \hat{\mathbf{r}}
+  $$
+- Local trend: inward motion ($v_r<0$) tends to strengthen subsequent per-hit contributions via the $1/r^2$ factor; outward ($v_r>0$) tends to weaken them, all else equal.
+
+Plain language: a hit changes only the along-the-line piece of your velocity right then; sideways motion is unchanged at that instant.
+
+---
+
+## Energetics
+
+-- Potential (mollified):
+  - $\Phi_\eta$ is defined using $\delta_\eta$ causal surfaces; at a point:
+    $$
+    U = q'\,\Phi_\eta
+    $$
+- Force relation:
+  - Holds pointwise for $\Phi_\eta$; as $\eta \to 0$, interpret in the weak sense over resolved intervals:
+    $$
+    \mathbf{F} = -\nabla U
+    $$
+- Work–energy:
+  $$
+  \Delta E_k \;=\; \int \mathbf{F}\cdot d\mathbf{s} \;=\; -\,\Delta U
+  $$
+
+Plain language: With slightly thick causal wake surfaces, the usual “force is minus gradient of potential” works; in the razor-thin limit it works after integrating over small time windows.
+
+---
+
+## Units and symbols
+
+- $v=1$ by default (dimensionless speed unit).
+- $\epsilon = |e|/6$ is the unit charge magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
+- $\kappa>0$ universal coupling.
+- $\eta>0$ mollifier width (regularization parameter).
+- Emission cadence and per-wavefront amplitude are constant. Receiver velocity affects only instantaneous power $\,\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.
+- $r$, $\hat{\mathbf{r}}$ as above; $H$ is the Heaviside step function with $H(0)=0$.
+
+Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic charge; emission cadence and per-wavefront amplitude are constant; receiver motion affects only instantaneous power.
+
+---
+
+## Exclusions and scope
+
+- No Lorentzian 4-vectors or Minkowski metric in the core specification.
+- No $\mathbf{v}\times\mathbf{B}$, no magnetic right-hand rule constructs; “magnetic-like” phenomena are emergent from causal path history geometry.
+- Keep alternate presentations (forms/differential geometry) in clearly marked appendices if needed.
+
+---
+
+## Editorial micro-style
+
+- After formal definitions, add a brief “Plain language” sentence.
+- Use consistent symbol set: $\mathcal{C}_j(t)$, $r$, $\hat{\mathbf{r}}$, $v$, $\epsilon$, $\kappa$.
+- Equation tags (optional): (CT) causal-time, (EOM) equation of motion, (REG) regularization, (ENER) energetics.
+- Emission cadence and per-wavefront amplitude are constant.
+- Notation for “now”: use $t_{\text{now}}$ for a fixed current evaluation time; use $t_{\text{obs}}$ for observation time. Avoid Tnow/`T_now`; keep $t$ as the running variable elsewhere.
+- Canonical universe-now notation: use $\mathbb{U}_{\text{now}} \equiv S(t)$ for the complete ontic universe state; do not substitute alternate labels or glyph variants. Definition source of truth: `_meta/entourage/mathematical-terminology.md`.
+- Emitters/receivers are individual architrinos; composite assemblies never emit or receive as wholes; their behavior emerges from constituent architrinos.
+- Use “surrogate location” to denote a stationary, hypothetical emitter placed on the receiver’s current unoriented line of action that reproduces the same instantaneous hit; use “surrogate-location recast” when referring to this rewriting.
+- On first occurrence in a doc: “We work in units with field speed v=1 unless stated otherwise.”
+
+- Notation lint (common mistakes):
+  - Use bold for vectors: $\mathbf{v}$, not plain v.
+  - Reserve $v$ for the field speed (scalar). Use $\|\mathbf{v}\|$ for speed magnitude.
+  - Emission cadence and per-wavefront amplitude are constant.
+  - Do not write mixed forms like $|v|$ to mean speed; bold the vector and take its norm.
