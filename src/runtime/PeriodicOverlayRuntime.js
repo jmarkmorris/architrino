@@ -67,6 +67,17 @@ export function createPeriodicOverlayRuntime(deps) {
     return periodicCategoryColors[key] || periodicCategoryColors.unknown;
   }
 
+  function formatTemperatureKelvin(value) {
+    if (value === undefined || value === null || value === "") {
+      return null;
+    }
+    const text = String(value).trim();
+    if (!text) {
+      return null;
+    }
+    return /\bk\b/iu.test(text) ? text : `${text} K`;
+  }
+
   function showPeriodicElementDetail(el) {
     if (!detailPanel || !detailTitle || !detailBody) {
       return;
@@ -83,8 +94,8 @@ export function createPeriodicOverlayRuntime(deps) {
       ["Electron config", el.electron_configuration_semantic],
       ["Electronegativity", el.electronegativity_pauling],
       ["Electron affinity", el.electron_affinity],
-      ["Melting point", el.melt],
-      ["Boiling point", el.boil],
+      ["Melting point", formatTemperatureKelvin(el.melt)],
+      ["Boiling point", formatTemperatureKelvin(el.boil)],
       ["Density", el.density],
       ["Block", el.block],
       ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
@@ -264,8 +275,8 @@ export function createPeriodicOverlayRuntime(deps) {
       ["Phase", el.phase],
       ["Atomic mass", el.atomic_mass ? `${el.atomic_mass}` : null],
       ["Electron config", el.electron_configuration_semantic],
-      ["Melting point", el.melt],
-      ["Boiling point", el.boil],
+      ["Melting point", formatTemperatureKelvin(el.melt)],
+      ["Boiling point", formatTemperatureKelvin(el.boil)],
       ["Density", el.density],
       ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
       ["Protons", protons],

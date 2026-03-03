@@ -7,6 +7,7 @@ export function createAppShellUiRuntime(deps) {
     hideHoverTooltip,
     navUpButton,
     navForwardButton,
+    detailInfoButton,
     homeButton,
     periodicOverlayRuntime,
     appDirector,
@@ -34,6 +35,15 @@ export function createAppShellUiRuntime(deps) {
       navForwardButton.addEventListener("click", async () => {
         periodicOverlayRuntime.hidePeriodicOverlayImmediately();
         await appDirector?.goForward();
+      });
+    }
+
+    if (detailInfoButton) {
+      detailInfoButton.addEventListener("click", async () => {
+        if (appDirector?.isTransitionActive?.()) {
+          return;
+        }
+        await periodicOverlayRuntime.updateElementInfoPanel();
       });
     }
 

@@ -382,6 +382,33 @@ body {
   cursor: default;
 }
 
+#detail-info-button {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  background: rgba(8, 10, 18, 0.75);
+  color: #f5f7ff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#detail-info-button:not(:disabled):hover,
+#detail-info-button:not(:disabled):focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+}
+
+#detail-info-button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
 #scene-search {
   position: relative;
   z-index: 1;

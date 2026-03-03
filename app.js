@@ -45,6 +45,7 @@ const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
 const navForwardButton = document.getElementById("nav-forward");
+const detailInfoButton = document.getElementById("detail-info-button");
 const sceneLabel = document.getElementById("scene-label");
 const sceneFocusSphere = document.getElementById("scene-focus-sphere");
 const sceneSearch = document.getElementById("scene-search");
@@ -2975,6 +2976,9 @@ function updateNavButton() {
     if (navForwardButton) {
       navForwardButton.disabled = true;
     }
+    if (detailInfoButton) {
+      detailInfoButton.disabled = true;
+    }
     updateDocButton();
     return;
   }
@@ -2983,6 +2987,9 @@ function updateNavButton() {
   }
   if (navForwardButton) {
     navForwardButton.disabled = browserForwardStack.length === 0;
+  }
+  if (detailInfoButton) {
+    detailInfoButton.disabled = !isElementSceneLevel();
   }
   updateDocButton();
 }
@@ -4003,6 +4010,7 @@ const appShellUiRuntime = createAppShellUiRuntime({
   hideHoverTooltip,
   navUpButton,
   navForwardButton,
+  detailInfoButton,
   homeButton,
   periodicOverlayRuntime,
   appDirector,
