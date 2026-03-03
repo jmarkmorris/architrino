@@ -398,6 +398,7 @@ export function createSceneGraphRuntime(deps) {
     if (!sortedNucleons.length) {
       return [];
     }
+    const pairedNucleonCount = Math.min(desiredNeutrons, desiredProtons) * 2;
 
     const used = new Set();
     const layoutSlots = [];
@@ -416,6 +417,7 @@ export function createSceneGraphRuntime(deps) {
       { head: null, heading: 180 },
       { head: null, heading: 0 },
     ];
+    const snakeCategories = [sortedNucleons[0] ?? null, sortedNucleons[1] ?? null];
 
     // Seed 1: center slot.
     place(0, 0, sortedNucleons[0]);
@@ -477,7 +479,13 @@ export function createSceneGraphRuntime(deps) {
 
     for (let i = 2; i < sortedNucleons.length; i += 1) {
       const category = sortedNucleons[i];
-      const preferredSnakeIndex = i % 2;
+      let preferredSnakeIndex = i % 2;
+      if (i >= pairedNucleonCount) {
+        const tailSnakeIndex = snakeCategories.indexOf(category);
+        if (tailSnakeIndex >= 0) {
+          preferredSnakeIndex = tailSnakeIndex;
+        }
+      }
       let activeSnake = snakes[preferredSnakeIndex];
       if (!activeSnake.head) {
         activeSnake = snakes[(preferredSnakeIndex + 1) % 2];
