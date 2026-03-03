@@ -1188,7 +1188,8 @@ const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "content/markdown/aaa/assemblies/composer.md";
-const markdownDocBadgeCharacterThreshold = 128;
+const markdownDocBadgeCharacterThreshold = 512;
+const markdownOpenCharacterThreshold = 512;
 const markdownGlowByteThreshold = 2048;
 const cacheBustToken = Date.now().toString();
 let appDirector = null;
@@ -1941,6 +1942,7 @@ const sceneRepository = new SceneRepository({
   resolveMarkdownFileSize,
   resolveMarkdownFileCharacterCount,
   markdownDocBadgeMinChars: markdownDocBadgeCharacterThreshold,
+  markdownOpenMinChars: markdownOpenCharacterThreshold,
   markdownGlowMinBytes: markdownGlowByteThreshold,
 });
 const sceneBootstrapService = createSceneBootstrapService({
@@ -3813,7 +3815,8 @@ function focusOnPointer(clientX, clientY) {
   }
 
   const hasMarkdownPath = !!targetNode.data.markdownPath;
-  const canOpenMarkdown = hasMarkdownPath;
+  const canOpenMarkdown =
+    hasMarkdownPath && targetNode.data.markdownOpenEligible === true;
 
   if (currentLevel?.sceneId === composerSceneId) {
     const panelId = composerPanelMap.get(targetNode.data.id ?? "");
