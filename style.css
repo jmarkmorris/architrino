@@ -105,18 +105,43 @@ body {
 }
 
 .element-nav-mini-cell {
+  position: relative;
   width: 8px;
   height: 8px;
   border-radius: 1px;
   background: rgba(130, 140, 180, 0.45);
+  overflow: hidden;
 }
 
 .element-nav-mini-cell.is-current {
-  background: #ffffff;
+  background: #e63b2e;
 }
 
 .element-nav-mini-cell.is-neighbor {
-  background: #a6ccff;
+  background: rgba(130, 140, 180, 0.45);
+}
+
+.element-nav-mini-indicator {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: #ffffff;
+}
+
+.element-nav-mini-indicator.dir-up {
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+.element-nav-mini-indicator.dir-down {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.element-nav-mini-indicator.dir-left {
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.element-nav-mini-indicator.dir-right {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
 #element-nav-dpad {

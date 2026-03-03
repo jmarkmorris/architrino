@@ -3080,7 +3080,27 @@ function clearElementNavigationMiniHighlights() {
   elementNavigationState.miniCellBySymbol.forEach((cell) => {
     cell.classList.remove("is-current");
     cell.classList.remove("is-neighbor");
+    cell.classList.remove("is-neighbor-up");
+    cell.classList.remove("is-neighbor-down");
+    cell.classList.remove("is-neighbor-left");
+    cell.classList.remove("is-neighbor-right");
+    cell.replaceChildren();
   });
+}
+
+function addElementNavigationMiniDirectionIndicator(cell, direction) {
+  if (!(cell instanceof HTMLElement) || !direction) {
+    return;
+  }
+  const directionClass = `is-neighbor-${direction}`;
+  cell.classList.add("is-neighbor", directionClass);
+  if (cell.querySelector(`.element-nav-mini-indicator.dir-${direction}`)) {
+    return;
+  }
+  const indicator = document.createElement("span");
+  indicator.className = `element-nav-mini-indicator dir-${direction}`;
+  indicator.setAttribute("aria-hidden", "true");
+  cell.appendChild(indicator);
 }
 
 function getWrappedNeighbor(values, currentValue, direction) {
@@ -3199,7 +3219,7 @@ async function updateElementNavigationUi() {
       ? elementNavigationState.miniCellBySymbol.get(targetSymbol)
       : null;
     if (targetCell) {
-      targetCell.classList.add("is-neighbor");
+      addElementNavigationMiniDirectionIndicator(targetCell, direction);
     }
   });
 }
