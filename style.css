@@ -254,11 +254,10 @@ body {
 #scene-nav-history {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  padding: 2px;
-  border-radius: 8px;
-  border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(8, 10, 18, 0.75);
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
 #scene-label {
@@ -295,7 +294,7 @@ body {
 #home-button {
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: 999px;
   border: 1px solid rgba(160, 170, 220, 0.25);
   background: rgba(8, 10, 18, 0.75);
   color: #f5f7ff;
@@ -315,7 +314,7 @@ body {
   appearance: none;
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: 999px;
   border: 1px solid rgba(160, 170, 220, 0.25);
   background: rgba(8, 10, 18, 0.75);
   color: #f5f7ff;
@@ -343,7 +342,7 @@ body {
   position: relative;
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: 999px;
   border: 1px solid rgba(160, 170, 220, 0.25);
   background: rgba(8, 10, 18, 0.75);
   color: #f5f7ff;
@@ -384,7 +383,9 @@ body {
 }
 
 #doc-button.is-hidden {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 #doc-button:disabled {
@@ -393,8 +394,8 @@ body {
 }
 
 #detail-info-button {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
   border: 1px solid rgba(160, 170, 220, 0.25);
   background: rgba(8, 10, 18, 0.75);
@@ -404,14 +405,19 @@ body {
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1;
 }
 
 #detail-info-button:not(:disabled):hover,
 #detail-info-button:not(:disabled):focus-visible {
   border-color: rgba(213, 220, 255, 0.6);
+}
+
+#detail-info-button svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
 }
 
 #detail-info-button:disabled {
@@ -1607,11 +1613,11 @@ body {
 
 #nav-up,
 #nav-forward {
-  width: 28px;
-  height: 28px;
-  border: none;
-  border-radius: 6px;
-  background: transparent;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 999px;
+  background: rgba(8, 10, 18, 0.75);
   color: #f5f7ff;
   display: inline-flex;
   align-items: center;
@@ -1622,18 +1628,18 @@ body {
 
 #nav-up svg,
 #nav-forward svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 2.5;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 #nav-up:not(:disabled):hover,
 #nav-forward:not(:disabled):hover {
-  background: rgba(245, 247, 255, 0.1);
+  border-color: rgba(213, 220, 255, 0.6);
 }
 
 #nav-up:disabled,
