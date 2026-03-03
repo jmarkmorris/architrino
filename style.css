@@ -353,28 +353,8 @@ body {
 }
 
 #doc-button::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: 50%;
-  right: 40px;
-  transform: translateY(-50%);
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(8, 10, 18, 0.9);
-  color: #f5f7ff;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s ease;
-  z-index: 6;
-}
-
-#doc-button:hover::after,
-#doc-button:focus-visible::after {
-  opacity: 1;
+  content: none;
+  display: none;
 }
 
 #doc-button svg {
@@ -1375,7 +1355,7 @@ body {
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: 8px 12px 10px;
+  padding: 0 12px 10px;
   background: radial-gradient(circle at top, rgba(164, 190, 255, 0.08), rgba(8, 10, 18, 0.95) 56%);
 }
 
@@ -1385,27 +1365,37 @@ body {
   --hyde-map-top: 0%;
   --hyde-map-width: 100%;
   --hyde-map-height: 100%;
+  --hyde-art-scale: 0.7;
   position: relative;
   width: max(1220px, 100%);
+  aspect-ratio: 1.3455657492;
   margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
+  transform: scale(var(--hyde-art-scale));
+  transform-origin: top center;
 }
 
 #hyde-periodic-artwork {
+  position: absolute;
+  top: -7.3394495413%;
+  left: -6.8181818182%;
+  width: 113.6363636364%;
+  height: 114.6788990826%;
   display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
+  border-radius: 0;
+  box-shadow: none;
   user-select: none;
   pointer-events: none;
 }
 
 #hyde-periodic-grid {
   position: absolute;
-  left: var(--hyde-map-left);
-  top: var(--hyde-map-top);
-  width: var(--hyde-map-width);
-  height: var(--hyde-map-height);
+  left: -6.8181818182%;
+  top: -7.3394495413%;
+  width: 113.6363636364%;
+  height: 114.6788990826%;
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(18, minmax(44px, 1fr));
