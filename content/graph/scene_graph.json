@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 300,
-      "edges": 1134,
+      "nodes": 301,
+      "edges": 1135,
       "scenes": 174,
       "markdownIndexes": 16,
-      "markdownDocs": 110,
+      "markdownDocs": 111,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1286,6 +1286,12 @@
       "id": "content/markdown/aaa/archie/settings.md",
       "name": "Settings",
       "path": "__markdown_doc__:content/markdown/aaa/archie/settings.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/textbook-file-structure.md",
+      "name": "Architrino Theory: Master Table of Contents",
+      "path": "__markdown_doc__:content/markdown/aaa/archie/textbook-file-structure.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3666,6 +3672,15 @@
       "name": "Settings",
       "path": "content/markdown/aaa/archie/settings.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/settings.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/textbook-file-structure.md",
+      "name": "Architrino Theory: Master Table of Contents",
+      "path": "content/markdown/aaa/archie/textbook-file-structure.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/textbook-file-structure.md",
       "implicit": false
     },
     {
@@ -8476,6 +8491,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/archie",
       "to": "markdown_doc:content/markdown/aaa/archie/settings.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/archie",
+      "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
