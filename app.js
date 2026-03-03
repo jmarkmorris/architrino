@@ -1536,6 +1536,7 @@ function closeDetailPanel() {
     return;
   }
   detailPanel.classList.remove("is-open");
+  detailPanel.classList.remove("is-element-info");
   detailPanel.setAttribute("aria-hidden", "true");
   detailPanel.inert = true;
   activeDetailNodeId = null;
@@ -1695,6 +1696,7 @@ function setDetailPanel(node) {
   if (!detailPanel || !detailTitle || !detailBody) {
     return;
   }
+  detailPanel.classList.remove("is-element-info");
   const details = node?.data?.details;
   if (!details) {
     closeDetailPanel();

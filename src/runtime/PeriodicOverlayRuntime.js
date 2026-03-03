@@ -82,6 +82,7 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!detailPanel || !detailTitle || !detailBody) {
       return;
     }
+    detailPanel.classList.remove("is-element-info");
     detailPanel.classList.add("is-open");
     detailPanel.setAttribute("aria-hidden", "false");
     detailPanel.inert = false;
@@ -239,6 +240,7 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!isElement) {
       if (elementInfoPinned) {
         detailPanel.classList.remove("is-open");
+        detailPanel.classList.remove("is-element-info");
         detailPanel.setAttribute("aria-hidden", "true");
         detailPanel.inert = true;
         elementInfoPinned = false;
@@ -256,6 +258,7 @@ export function createPeriodicOverlayRuntime(deps) {
     }
 
     detailPanel.classList.add("is-open");
+    detailPanel.classList.add("is-element-info");
     detailPanel.setAttribute("aria-hidden", "false");
     detailPanel.inert = false;
     elementInfoPinned = true;

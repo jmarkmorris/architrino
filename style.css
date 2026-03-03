@@ -1452,6 +1452,29 @@ body {
   margin-bottom: 8px;
 }
 
+#detail-panel.is-element-info .detail-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  z-index: 1;
+}
+
+#detail-panel.is-element-info #detail-title {
+  display: none;
+}
+
+#detail-panel.is-element-info {
+  overflow: visible;
+}
+
+#detail-panel.is-element-info #detail-body {
+  max-height: calc(100% - 2px);
+  overflow: auto;
+}
+
 #detail-title {
   font-size: 13px;
   font-weight: 600;
@@ -1467,6 +1490,30 @@ body {
   font-size: 10px;
   padding: 4px 6px;
   cursor: pointer;
+}
+
+#detail-panel.is-element-info #detail-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(38%, -38%);
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  padding: 0;
+  font-size: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  background: rgba(8, 10, 18, 0.95);
+}
+
+#detail-panel.is-element-info #detail-close::before {
+  content: "\00D7";
+  font-size: 18px;
+  font-weight: 500;
+  color: #f5f7ff;
 }
 
 .detail-row {
