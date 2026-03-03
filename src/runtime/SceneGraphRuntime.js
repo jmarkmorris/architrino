@@ -419,6 +419,7 @@ export function createSceneGraphRuntime(deps) {
     ) {
       return [];
     }
+
     const packedPositions = buildHexPackedNucleonPositions(total, minCenterDistance);
     if (!packedPositions.length) {
       return [];
@@ -426,6 +427,13 @@ export function createSceneGraphRuntime(deps) {
 
     const desiredProtons = Math.max(0, Math.min(total, Math.floor(protonCount)));
     const desiredNeutrons = total - desiredProtons;
+
+    if (desiredProtons <= 0) {
+      return packedPositions.map((position) => ({ category: "neutron", position }));
+    }
+    if (desiredNeutrons <= 0) {
+      return packedPositions.map((position) => ({ category: "proton", position }));
+    }
 
     const axialEntries = packedPositions.map((pos, index) => {
       const r = pos.y / (minCenterDistance * (Math.sqrt(3) * 0.5));
@@ -447,16 +455,16 @@ export function createSceneGraphRuntime(deps) {
       [-1, 1],
       [0, 1],
     ];
-    const neighborsByIndex = new Map();
+    const neighborMovesByIndex = new Map();
     axialEntries.forEach((entry) => {
-      const neighbors = [];
-      axialDirs.forEach(([dq, dr]) => {
+      const moves = [];
+      axialDirs.forEach(([dq, dr], dir) => {
         const next = entryByKey.get(keyFor(entry.q + dq, entry.r + dr));
         if (next) {
-          neighbors.push(next.index);
+          moves.push({ index: next.index, dir });
         }
       });
-      neighborsByIndex.set(entry.index, neighbors);
+      neighborMovesByIndex.set(entry.index, moves);
     });
 
     const centerEntry =
@@ -467,6 +475,7 @@ export function createSceneGraphRuntime(deps) {
     }
 
     const tau = Math.PI * 2;
+    const idealStep = Math.PI / 3;
     const wrapAngle = (value) => {
       let out = value % tau;
       if (out < 0) {
@@ -474,109 +483,85 @@ export function createSceneGraphRuntime(deps) {
       }
       return out;
     };
-    const smallestAngleDistance = (a, b) => {
+    const ccwAngleDelta = (next, prev) => wrapAngle(next - prev);
+    const shortestAngleDistance = (a, b) => {
       const d = Math.abs(wrapAngle(a - b));
       return Math.min(d, tau - d);
     };
-
-    const centerNeighbors = (neighborsByIndex.get(centerEntry.index) ?? []).slice().sort((a, b) => {
-      const pa = packedPositions[a];
-      const pb = packedPositions[b];
-      const aa = wrapAngle(Math.atan2(pa.y, pa.x));
-      const ab = wrapAngle(Math.atan2(pb.y, pb.x));
-      return aa - ab;
-    });
-    const seedCandidates = centerNeighbors.length ? centerNeighbors : [centerEntry.index];
-
-    const evaluateAssignments = (assignments) => {
-      if (!Array.isArray(assignments) || assignments.length !== total) {
-        return Number.NEGATIVE_INFINITY;
-      }
-      let sameEdges = 0;
-      let oppositeEdges = 0;
-      const seenEdges = new Set();
-      assignments.forEach((category, index) => {
-        const neighbors = neighborsByIndex.get(index) ?? [];
-        neighbors.forEach((next) => {
-          const edgeKey = index < next ? `${index}-${next}` : `${next}-${index}`;
-          if (seenEdges.has(edgeKey)) {
-            return;
-          }
-          seenEdges.add(edgeKey);
-          if (assignments[index] === assignments[next]) {
-            sameEdges += 1;
-          } else {
-            oppositeEdges += 1;
-          }
-        });
-      });
-
-      const componentPenaltyForColor = (color) => {
-        const nodes = [];
-        assignments.forEach((category, index) => {
-          if (category === color) {
-            nodes.push(index);
-          }
-        });
-        if (!nodes.length) {
-          return 80;
-        }
-        const nodeSet = new Set(nodes);
-        let components = 0;
-        let heavyBranch = 0;
-        let looseEnds = 0;
-        const visited = new Set();
-
-        nodes.forEach((index) => {
-          let degree = 0;
-          (neighborsByIndex.get(index) ?? []).forEach((next) => {
-            if (nodeSet.has(next)) {
-              degree += 1;
-            }
-          });
-          if (degree >= 4) {
-            heavyBranch += 1;
-          }
-          if (degree <= 1) {
-            looseEnds += 1;
-          }
-        });
-
-        nodes.forEach((start) => {
-          if (visited.has(start)) {
-            return;
-          }
-          components += 1;
-          const stack = [start];
-          visited.add(start);
-          while (stack.length) {
-            const current = stack.pop();
-            (neighborsByIndex.get(current) ?? []).forEach((next) => {
-              if (!nodeSet.has(next) || visited.has(next)) {
-                return;
-              }
-              visited.add(next);
-              stack.push(next);
-            });
-          }
-        });
-
-        return (components - 1) * 28 + heavyBranch * 4 + Math.abs(looseEnds - 2) * 1.2;
-      };
-
-      const componentPenalty =
-        componentPenaltyForColor("proton") + componentPenaltyForColor("neutron");
-
-      return oppositeEdges * 1.8 - sameEdges * 0.55 - componentPenalty;
+    const turnErrorFromHeading = (nextDir, headingDir) => {
+      const turn = (nextDir - headingDir + 6) % 6;
+      const cw = (turn - 1 + 6) % 6;
+      const ccw = (1 - turn + 6) % 6;
+      return Math.min(cw, ccw);
     };
 
-    const buildLayoutFromSeed = (firstPairNeighbor) => {
+    const seedCandidates = (neighborMovesByIndex.get(centerEntry.index) ?? [])
+      .map((move) => move.index)
+      .sort((a, b) => {
+        const pa = packedPositions[a];
+        const pb = packedPositions[b];
+        return wrapAngle(Math.atan2(pa.y, pa.x)) - wrapAngle(Math.atan2(pb.y, pb.x));
+      });
+
+    const continuityPenalty = (assignments, color) => {
+      const nodes = [];
+      assignments.forEach((category, index) => {
+        if (category === color) {
+          nodes.push(index);
+        }
+      });
+      if (nodes.length <= 1) {
+        return 0;
+      }
+      const nodeSet = new Set(nodes);
+      const visited = new Set();
+      let components = 0;
+      let branchNodes = 0;
+      let endNodes = 0;
+
+      nodes.forEach((index) => {
+        let degree = 0;
+        (neighborMovesByIndex.get(index) ?? []).forEach((move) => {
+          if (nodeSet.has(move.index)) {
+            degree += 1;
+          }
+        });
+        if (degree > 2) {
+          branchNodes += 1;
+        }
+        if (degree === 1) {
+          endNodes += 1;
+        }
+      });
+
+      nodes.forEach((start) => {
+        if (visited.has(start)) {
+          return;
+        }
+        components += 1;
+        const stack = [start];
+        visited.add(start);
+        while (stack.length) {
+          const current = stack.pop();
+          (neighborMovesByIndex.get(current) ?? []).forEach((move) => {
+            const next = move.index;
+            if (!nodeSet.has(next) || visited.has(next)) {
+              return;
+            }
+            visited.add(next);
+            stack.push(next);
+          });
+        }
+      });
+
+      return (components - 1) * 50 + branchNodes * 10 + Math.abs(endNodes - 2) * 2;
+    };
+
+    const simulateSeed = (seedIndex, initialHeadingP, initialHeadingN) => {
       const assignments = new Array(total).fill(null);
       const used = new Set();
-      const centerX =
-        (packedPositions[centerEntry.index].x + packedPositions[firstPairNeighbor].x) * 0.5;
-      const centerY =
-        (packedPositions[centerEntry.index].y + packedPositions[firstPairNeighbor].y) * 0.5;
+      const centerX = (packedPositions[centerEntry.index].x + packedPositions[seedIndex].x) * 0.5;
+      const centerY = (packedPositions[centerEntry.index].y + packedPositions[seedIndex].y) * 0.5;
 
       const angleFromCenter = (index) => {
         const pos = packedPositions[index];
@@ -586,12 +571,24 @@ export function createSceneGraphRuntime(deps) {
         const pos = packedPositions[index];
         return Math.hypot(pos.x - centerX, pos.y - centerY) / minCenterDistance;
       };
-      const ccwDelta = (nextAngle, prevAngle) => wrapAngle(nextAngle - prevAngle);
 
       let remainingProtons = desiredProtons;
       let remainingNeutrons = desiredNeutrons;
-      let prevP = null;
-      let prevN = null;
+
+      const laneP = {
+        current: null,
+        heading: initialHeadingP,
+        angle: 0,
+        radius: 0,
+      };
+      const laneN = {
+        current: null,
+        heading: initialHeadingN,
+        angle: 0,
+        radius: 0,
+      };
+
+      let rulePenalty = 0;
 
       const place = (index, category) => {
         if (index === null || index === undefined || used.has(index)) {
@@ -603,114 +600,94 @@ export function createSceneGraphRuntime(deps) {
           }
           assignments[index] = "proton";
           remainingProtons -= 1;
+          laneP.current = index;
+          laneP.angle = angleFromCenter(index);
+          laneP.radius = radiusFromCenter(index);
         } else {
           if (remainingNeutrons <= 0) {
             return false;
           }
           assignments[index] = "neutron";
           remainingNeutrons -= 1;
+          laneN.current = index;
+          laneN.angle = angleFromCenter(index);
+          laneN.radius = radiusFromCenter(index);
         }
         used.add(index);
         return true;
       };
 
+      // Fixed seed pair: first touching P-N pair.
       if (!place(centerEntry.index, "proton")) {
-        place(centerEntry.index, "neutron");
-      } else {
-        prevP = centerEntry.index;
+        return null;
+      }
+      if (!place(seedIndex, "neutron")) {
+        return null;
       }
 
-      if (firstPairNeighbor !== centerEntry.index) {
-        if (!place(firstPairNeighbor, "neutron")) {
-          place(firstPairNeighbor, "proton");
+      const candidateMovesForLane = (lane) => {
+        if (lane.current === null || lane.current === undefined) {
+          return [];
         }
-      }
-
-      if (assignments[centerEntry.index] === "proton") {
-        prevP = centerEntry.index;
-      } else if (assignments[centerEntry.index] === "neutron") {
-        prevN = centerEntry.index;
-      }
-      if (assignments[firstPairNeighbor] === "neutron") {
-        prevN = firstPairNeighbor;
-      } else if (assignments[firstPairNeighbor] === "proton" && prevP === null) {
-        prevP = firstPairNeighbor;
-      }
-
-      if (prevP === null && remainingProtons > 0) {
-        const fallback = axialEntries.find((entry) => !used.has(entry.index));
-        if (fallback) {
-          place(fallback.index, "proton");
-          prevP = fallback.index;
-        }
-      }
-      if (prevN === null && remainingNeutrons > 0) {
-        const fallback = axialEntries.find((entry) => !used.has(entry.index));
-        if (fallback) {
-          place(fallback.index, "neutron");
-          prevN = fallback.index;
-        }
-      }
-
-      let lastPAngle = prevP !== null ? angleFromCenter(prevP) : 0;
-      let lastNAngle = prevN !== null ? angleFromCenter(prevN) : wrapAngle(lastPAngle + Math.PI);
-      let lastPRadius = prevP !== null ? radiusFromCenter(prevP) : 0;
-      let lastNRadius = prevN !== null ? radiusFromCenter(prevN) : 0;
+        const moves = (neighborMovesByIndex.get(lane.current) ?? []).filter(
+          (move) => !used.has(move.index)
+        );
+        return moves
+          .map((move) => {
+            const nextAngle = angleFromCenter(move.index);
+            const nextRadius = radiusFromCenter(move.index);
+            const turnError = turnErrorFromHeading(move.dir, lane.heading);
+            const stepDelta = ccwAngleDelta(nextAngle, lane.angle);
+            const stepError = Math.abs(stepDelta - idealStep);
+            const inwardPenalty = nextRadius + 0.06 < lane.radius ? lane.radius - nextRadius : 0;
+            const score = turnError * 20 + stepError * 4.5 + inwardPenalty * 13;
+            return {
+              index: move.index,
+              dir: move.dir,
+              turnError,
+              stepError,
+              nextAngle,
+              nextRadius,
+              score,
+            };
+          })
+          .sort((a, b) => {
+            if (a.score !== b.score) {
+              return a.score - b.score;
+            }
+            if (a.turnError !== b.turnError) {
+              return a.turnError - b.turnError;
+            }
+            if (a.stepError !== b.stepError) {
+              return a.stepError - b.stepError;
+            }
+            return a.index - b.index;
+          });
+      };
 
       const pickBestPair = () => {
-        const pCandidates =
-          prevP !== null
-            ? (neighborsByIndex.get(prevP) ?? []).filter((idx) => !used.has(idx))
-            : [];
-        const nCandidates =
-          prevN !== null
-            ? (neighborsByIndex.get(prevN) ?? []).filter((idx) => !used.has(idx))
-            : [];
-        if (!pCandidates.length || !nCandidates.length) {
+        const pMoves = candidateMovesForLane(laneP);
+        const nMoves = candidateMovesForLane(laneN);
+        if (!pMoves.length || !nMoves.length) {
           return null;
         }
-
-        const idealStep = Math.PI / 3;
         let best = null;
-        pCandidates.forEach((pIdx) => {
-          const pAngle = angleFromCenter(pIdx);
-          const pRadius = radiusFromCenter(pIdx);
-          const pDelta = ccwDelta(pAngle, lastPAngle);
-          const pInwardPenalty = pRadius + 0.08 < lastPRadius ? lastPRadius - pRadius : 0;
-
-          nCandidates.forEach((nIdx) => {
-            if (nIdx === pIdx) {
+        pMoves.forEach((pMove) => {
+          nMoves.forEach((nMove) => {
+            if (pMove.index === nMove.index) {
               return;
             }
-            const nAngle = angleFromCenter(nIdx);
-            const nRadius = radiusFromCenter(nIdx);
-            const nDelta = ccwDelta(nAngle, lastNAngle);
-            const nInwardPenalty = nRadius + 0.08 < lastNRadius ? lastNRadius - nRadius : 0;
-
-            const stepError = Math.abs(pDelta - idealStep) + Math.abs(nDelta - idealStep);
-            const oppositionError = Math.abs(Math.PI - smallestAngleDistance(pAngle, nAngle));
-            const radialMismatch = Math.abs(pRadius - nRadius);
-            const radialStepMismatch = Math.abs((pRadius - lastPRadius) - (nRadius - lastNRadius));
-            const tinyProgressPenalty =
-              (pDelta < 0.08 ? 2.5 : 0) + (nDelta < 0.08 ? 2.5 : 0);
-
-            const score =
-              stepError * 2.4 +
-              oppositionError * 2.8 +
-              radialMismatch * 1.1 +
-              radialStepMismatch * 0.9 +
-              (pInwardPenalty + nInwardPenalty) * 4.2 +
-              tinyProgressPenalty;
-
-            if (!best || score < best.score) {
+            const oppositionError = Math.abs(
+              Math.PI - shortestAngleDistance(pMove.nextAngle, nMove.nextAngle)
+            );
+            const radialMismatch = Math.abs(pMove.nextRadius - nMove.nextRadius);
+            const pairScore =
+              pMove.score + nMove.score + oppositionError * 3.4 + radialMismatch * 1.35;
+            if (!best || pairScore < best.score) {
               best = {
-                score,
-                pIdx,
-                nIdx,
-                pAngle,
-                nAngle,
-                pRadius,
-                nRadius,
+                score: pairScore,
+                pMove,
+                nMove,
               };
             }
           });
@@ -719,133 +696,136 @@ export function createSceneGraphRuntime(deps) {
       };
 
       let guard = 0;
-      while (remainingProtons > 0 && remainingNeutrons > 0 && guard < total * 5) {
+      while (remainingProtons > 0 && remainingNeutrons > 0 && guard < total * 8) {
         const pair = pickBestPair();
         if (!pair) {
           break;
         }
-        if (!place(pair.pIdx, "proton")) {
+        if (!place(pair.pMove.index, "proton")) {
           break;
         }
-        if (!place(pair.nIdx, "neutron")) {
+        if (!place(pair.nMove.index, "neutron")) {
           break;
         }
-        prevP = pair.pIdx;
-        prevN = pair.nIdx;
-        lastPAngle = pair.pAngle;
-        lastNAngle = pair.nAngle;
-        lastPRadius = pair.pRadius;
-        lastNRadius = pair.nRadius;
+        laneP.heading = pair.pMove.dir;
+        laneN.heading = pair.nMove.dir;
+        rulePenalty += pair.pMove.turnError + pair.nMove.turnError;
         guard += 1;
       }
 
-      const extendLane = (category) => {
-        let prev = category === "proton" ? prevP : prevN;
-        if (prev === null || prev === undefined) {
-          prev = axialEntries.find((entry) => !used.has(entry.index))?.index ?? null;
-        }
-        const idealStep = Math.PI / 3;
+      const extendLane = (lane, category) => {
+        let localGuard = 0;
         while (
           (category === "proton" ? remainingProtons : remainingNeutrons) > 0 &&
-          used.size < total
+          used.size < total &&
+          localGuard < total * 8
         ) {
-          let candidates =
-            prev !== null
-              ? (neighborsByIndex.get(prev) ?? []).filter((idx) => !used.has(idx))
-              : [];
-          if (!candidates.length) {
-            candidates = axialEntries
-              .filter((entry) => !used.has(entry.index))
-              .map((entry) => entry.index);
-          }
-          if (!candidates.length) {
+          const moves = candidateMovesForLane(lane);
+          if (!moves.length) {
             break;
           }
-
-          const lastAngle = category === "proton" ? lastPAngle : lastNAngle;
-          const lastRadius = category === "proton" ? lastPRadius : lastNRadius;
-          const chosen = candidates
-            .slice()
-            .sort((a, b) => {
-              const aAngle = angleFromCenter(a);
-              const bAngle = angleFromCenter(b);
-              const aRadius = radiusFromCenter(a);
-              const bRadius = radiusFromCenter(b);
-              const aScore =
-                Math.abs(ccwDelta(aAngle, lastAngle) - idealStep) +
-                (aRadius + 0.08 < lastRadius ? (lastRadius - aRadius) * 3.5 : 0);
-              const bScore =
-                Math.abs(ccwDelta(bAngle, lastAngle) - idealStep) +
-                (bRadius + 0.08 < lastRadius ? (lastRadius - bRadius) * 3.5 : 0);
-              return aScore - bScore;
-            })[0];
-
-          if (!place(chosen, category)) {
+          const chosen = moves[0];
+          if (!place(chosen.index, category)) {
             break;
           }
-          prev = chosen;
-          if (category === "proton") {
-            lastPAngle = angleFromCenter(chosen);
-            lastPRadius = radiusFromCenter(chosen);
-          } else {
-            lastNAngle = angleFromCenter(chosen);
-            lastNRadius = radiusFromCenter(chosen);
-          }
-        }
-
-        if (category === "proton") {
-          prevP = prev;
-        } else {
-          prevN = prev;
+          lane.heading = chosen.dir;
+          rulePenalty += chosen.turnError;
+          localGuard += 1;
         }
       };
 
       if (remainingProtons > 0) {
-        extendLane("proton");
+        extendLane(laneP, "proton");
       }
       if (remainingNeutrons > 0) {
-        extendLane("neutron");
+        extendLane(laneN, "neutron");
       }
 
-      if (used.size < total) {
-        const unassigned = axialEntries
-          .filter((entry) => !used.has(entry.index))
-          .sort((a, b) => {
-            if (a.ring !== b.ring) {
-              return a.ring - b.ring;
-            }
-            return a.index - b.index;
-          });
-        unassigned.forEach((entry) => {
-          if (remainingProtons > 0) {
-            place(entry.index, "proton");
-          } else {
-            place(entry.index, "neutron");
-          }
-        });
-      }
+      const missing = remainingProtons + remainingNeutrons;
+      const placed = total - missing;
+      const continuity =
+        continuityPenalty(assignments, "proton") + continuityPenalty(assignments, "neutron");
 
-      return assignments.map((category) => (category === "proton" ? "proton" : "neutron"));
+      return {
+        assignments,
+        placed,
+        missing,
+        continuity,
+        rulePenalty,
+      };
     };
 
-    let bestAssignments = null;
-    let bestScore = Number.NEGATIVE_INFINITY;
+    let best = null;
+    const chooseBest = (candidate) => {
+      if (!candidate) {
+        return false;
+      }
+      if (!best) {
+        best = candidate;
+        return true;
+      }
+      if (candidate.missing !== best.missing) {
+        return candidate.missing < best.missing;
+      }
+      if (candidate.continuity !== best.continuity) {
+        return candidate.continuity < best.continuity;
+      }
+      if (candidate.rulePenalty !== best.rulePenalty) {
+        return candidate.rulePenalty < best.rulePenalty;
+      }
+      return candidate.placed > best.placed;
+    };
 
     seedCandidates.forEach((seedIndex) => {
-      const candidateAssignments = buildLayoutFromSeed(seedIndex);
-      const score = evaluateAssignments(candidateAssignments);
-      if (score > bestScore) {
-        bestScore = score;
-        bestAssignments = candidateAssignments;
+      for (let headingP = 0; headingP < 6; headingP += 1) {
+        for (let headingN = 0; headingN < 6; headingN += 1) {
+          const candidate = simulateSeed(seedIndex, headingP, headingN);
+          if (chooseBest(candidate)) {
+            best = candidate;
+          }
+        }
       }
     });
 
-    if (!bestAssignments) {
-      bestAssignments = buildLayoutFromSeed(seedCandidates[0]);
+    if (!best) {
+      return packedPositions.map((position, index) => ({
+        category: index < desiredProtons ? "proton" : "neutron",
+        position,
+      }));
     }
 
-    return packedPositions.map((position, index) => ({
-      category: bestAssignments[index] === "proton" ? "proton" : "neutron",
+    // Emergency fallback only for impossible traces: fill remaining cells deterministically by ring.
+    if (best.missing > 0) {
+      const used = new Set();
+      let pPlaced = 0;
+      best.assignments.forEach((category, index) => {
+        if (!category) {
+          return;
+        }
+        used.add(index);
+        if (category === "proton") {
+          pPlaced += 1;
+        }
+      });
+      let pRemaining = Math.max(0, desiredProtons - pPlaced);
+      axialEntries
+        .slice()
+        .sort((a, b) => a.ring - b.ring || a.index - b.index)
+        .forEach((entry) => {
+          if (used.has(entry.index)) {
+            return;
+          }
+          if (pRemaining > 0) {
+            best.assignments[entry.index] = "proton";
+            pRemaining -= 1;
+          } else {
+            best.assignments[entry.index] = "neutron";
+          }
+        });
+    }
+
+  return packedPositions.map((position, index) => ({
+      category: best.assignments[index] === "proton" ? "proton" : "neutron",
       position,
     }));
   }
