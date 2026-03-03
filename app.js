@@ -2990,6 +2990,19 @@ function updateNavButton() {
   if (navForwardButton) {
     navForwardButton.disabled = browserForwardStack.length === 0;
   }
+  if (sceneLabel) {
+    const canReopenInfo = isElementSceneLevel();
+    sceneLabel.classList.toggle("is-info-trigger", canReopenInfo);
+    if (canReopenInfo) {
+      sceneLabel.setAttribute("role", "button");
+      sceneLabel.setAttribute("tabindex", "0");
+      sceneLabel.setAttribute("aria-label", "Reopen element info panel");
+    } else {
+      sceneLabel.removeAttribute("role");
+      sceneLabel.removeAttribute("tabindex");
+      sceneLabel.removeAttribute("aria-label");
+    }
+  }
   if (detailInfoButton) {
     detailInfoButton.disabled = !isElementSceneLevel();
   }
@@ -4010,6 +4023,7 @@ const appShellUiRuntime = createAppShellUiRuntime({
   interactionRuntime,
   onResize,
   hideHoverTooltip,
+  sceneLabel,
   navUpButton,
   navForwardButton,
   detailInfoButton,

@@ -282,6 +282,16 @@ body {
   text-align: left;
 }
 
+#scene-label.is-info-trigger {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+#scene-label.is-info-trigger:hover,
+#scene-label.is-info-trigger:focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+}
+
 #home-button {
   width: 32px;
   height: 32px;

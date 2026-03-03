@@ -5,6 +5,7 @@ export function createAppShellUiRuntime(deps) {
     interactionRuntime,
     onResize,
     hideHoverTooltip,
+    sceneLabel,
     navUpButton,
     navForwardButton,
     detailInfoButton,
@@ -43,6 +44,34 @@ export function createAppShellUiRuntime(deps) {
         if (appDirector?.isTransitionActive?.()) {
           return;
         }
+        await periodicOverlayRuntime.updateElementInfoPanel();
+      });
+    }
+
+    if (sceneLabel) {
+      sceneLabel.addEventListener("click", async () => {
+        if (
+          appDirector?.isTransitionActive?.() ||
+          !sceneLabel.classList.contains("is-info-trigger")
+        ) {
+          return;
+        }
+        await periodicOverlayRuntime.updateElementInfoPanel();
+      });
+      sceneLabel.addEventListener("keydown", async (event) => {
+        if (
+          event.defaultPrevented ||
+          (event.key !== "Enter" && event.key !== " ")
+        ) {
+          return;
+        }
+        if (
+          appDirector?.isTransitionActive?.() ||
+          !sceneLabel.classList.contains("is-info-trigger")
+        ) {
+          return;
+        }
+        event.preventDefault();
         await periodicOverlayRuntime.updateElementInfoPanel();
       });
     }
