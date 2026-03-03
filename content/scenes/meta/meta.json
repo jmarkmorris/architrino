@@ -45,6 +45,8 @@
       "radius": 2.2,
       "color": "#5a1f2e",
       "markdownPath": "content/markdown/aaa/archie/help.md",
+      "markdownColumns": 2,
+      "markdownShowTitle": false,
       "labelTitle": "Help",
       "labelBadge": "doc"
     },

@@ -424,6 +424,7 @@ export class SceneRepository {
           markdownPath: data.scene?.markdownPath ?? null,
           markdownSection: data.scene?.markdownSection ?? null,
           markdownColumns: data.scene?.markdownColumns ?? null,
+          markdownShowTitle: data.scene?.markdownShowTitle ?? true,
           markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
           centerOn: data.scene?.centerOn ?? null,
           autoMarkdownDirectory: markdownDerived?.autoMarkdownDirectory ?? null,

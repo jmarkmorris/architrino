@@ -3532,8 +3532,21 @@ function updateMarkdownDocButton() {
     return;
   }
   const hasDoc = !!currentLevel?.markdownPath;
-  markdownDocButton.classList.toggle("is-hidden", !hasDoc);
-  markdownDocButton.disabled = !hasDoc;
+  const hasSection = typeof currentLevel?.markdownSection === "string"
+    ? currentLevel.markdownSection.trim().length > 0
+    : !!currentLevel?.markdownSection;
+  const showDocButton = hasDoc && hasSection;
+  markdownDocButton.classList.toggle("is-hidden", !showDocButton);
+  markdownDocButton.disabled = !showDocButton;
+}
+
+function updateMarkdownLayoutToggleButton() {
+  if (!markdownLayoutToggle) {
+    return;
+  }
+  const hasDoc = !!currentLevel?.markdownPath;
+  markdownLayoutToggle.classList.toggle("is-hidden", !hasDoc);
+  markdownLayoutToggle.disabled = !hasDoc;
 }
 
 function updateSceneLabel() {
@@ -3544,6 +3557,7 @@ function updateSceneLabel() {
   sceneLabel.textContent = currentLevel?.name ?? "";
   updateDocButton();
   updateMetaButton();
+  updateMarkdownLayoutToggleButton();
   updateMarkdownDocButton();
   composerUiRuntime.updateComposerOverlay(currentLevel);
   periodicOverlayRuntime.updatePeriodicOverlay();
