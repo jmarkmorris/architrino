@@ -78,6 +78,131 @@ body {
   gap: 18px;
 }
 
+#element-nav-overlay {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: none;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+}
+
+#element-nav-overlay.is-open {
+  display: inline-flex;
+}
+
+#element-nav-mini {
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 170, 220, 0.35);
+  background: rgba(8, 10, 18, 0.78);
+  display: grid;
+  grid-template-columns: repeat(18, 8px);
+  grid-template-rows: repeat(10, 8px);
+  gap: 1px;
+  pointer-events: none;
+}
+
+.element-nav-mini-cell {
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  background: rgba(130, 140, 180, 0.45);
+}
+
+.element-nav-mini-cell.is-current {
+  background: #ffffff;
+}
+
+.element-nav-mini-cell.is-neighbor {
+  background: #a6ccff;
+}
+
+#element-nav-dpad {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  pointer-events: none;
+}
+
+.element-nav-btn {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  pointer-events: auto;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.element-nav-btn .element-nav-triangle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+}
+
+.element-nav-btn.dir-up {
+  left: 31px;
+  top: 0;
+}
+
+.element-nav-btn.dir-up .element-nav-triangle {
+  border-width: 0 9px 15px 9px;
+  border-color: transparent transparent currentColor transparent;
+}
+
+.element-nav-btn.dir-down {
+  left: 31px;
+  bottom: 0;
+}
+
+.element-nav-btn.dir-down .element-nav-triangle {
+  border-width: 15px 9px 0 9px;
+  border-color: currentColor transparent transparent transparent;
+}
+
+.element-nav-btn.dir-left {
+  left: 0;
+  top: 31px;
+}
+
+.element-nav-btn.dir-left .element-nav-triangle {
+  border-width: 9px 15px 9px 0;
+  border-color: transparent currentColor transparent transparent;
+}
+
+.element-nav-btn.dir-right {
+  right: 0;
+  top: 31px;
+}
+
+.element-nav-btn.dir-right .element-nav-triangle {
+  border-width: 9px 0 9px 15px;
+  border-color: transparent transparent transparent currentColor;
+}
+
+.element-nav-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.element-nav-btn:not(:disabled):hover {
+  opacity: 0.88;
+}
+
+.element-nav-btn:focus-visible {
+  outline: 2px solid rgba(245, 247, 255, 0.8);
+  outline-offset: 2px;
+}
+
 #scene-hud-left,
 #scene-hud-right {
   display: inline-flex;
@@ -293,6 +418,16 @@ body {
 
   #scene-search-panel {
     right: 0;
+  }
+
+  #element-nav-mini {
+    grid-template-columns: repeat(18, 6px);
+    grid-template-rows: repeat(10, 6px);
+  }
+
+  .element-nav-mini-cell {
+    width: 6px;
+    height: 6px;
   }
 }
 
