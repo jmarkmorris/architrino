@@ -101,7 +101,7 @@ body {
   grid-template-columns: repeat(18, 8px);
   grid-template-rows: repeat(10, 8px);
   gap: 1px;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .element-nav-mini-cell {

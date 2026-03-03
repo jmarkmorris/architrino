@@ -3224,9 +3224,36 @@ async function updateElementNavigationUi() {
   });
 }
 
-async function navigateElementByDirection(direction) {
+function resolveNearestMiniCellSymbolFromPoint(clientX, clientY) {
+  if (!Number.isFinite(clientX) || !Number.isFinite(clientY)) {
+    return null;
+  }
+  let nearestSymbol = null;
+  let nearestDistanceSq = Number.POSITIVE_INFINITY;
+  elementNavigationState.miniCellBySymbol.forEach((cell, symbol) => {
+    if (!(cell instanceof HTMLElement)) {
+      return;
+    }
+    const rect = cell.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) {
+      return;
+    }
+    const centerX = rect.left + rect.width * 0.5;
+    const centerY = rect.top + rect.height * 0.5;
+    const dx = centerX - clientX;
+    const dy = centerY - clientY;
+    const distanceSq = dx * dx + dy * dy;
+    if (distanceSq < nearestDistanceSq) {
+      nearestDistanceSq = distanceSq;
+      nearestSymbol = symbol;
+    }
+  });
+  return nearestSymbol;
+}
+
+async function navigateToElementSymbol(targetSymbol) {
   if (
-    !direction ||
+    !targetSymbol ||
     transitionState.active ||
     elementNavigationState.navigationInFlight === true ||
     !isElementSceneLevel()
@@ -3240,15 +3267,8 @@ async function navigateElementByDirection(direction) {
     if (!ready || transitionState.active || !isElementSceneLevel()) {
       return false;
     }
-    const currentSymbol = extractElementSymbolFromLevel();
-    if (!currentSymbol) {
-      return false;
-    }
-    const targetSymbol = resolveElementNeighborSymbol(currentSymbol, direction);
-    if (!targetSymbol) {
-      return false;
-    }
-    const targetPath = elementNavigationState.scenePathBySymbol.get(targetSymbol);
+    const normalizedSymbol = normalizeElementSymbol(targetSymbol);
+    const targetPath = elementNavigationState.scenePathBySymbol.get(normalizedSymbol);
     if (!targetPath || targetPath === currentLevel?.id) {
       return false;
     }
@@ -3260,6 +3280,30 @@ async function navigateElementByDirection(direction) {
     elementNavigationState.navigationInFlight = false;
     updateElementNavigationUi();
   }
+}
+
+async function navigateElementByDirection(direction) {
+  if (
+    !direction ||
+    transitionState.active ||
+    elementNavigationState.navigationInFlight === true ||
+    !isElementSceneLevel()
+  ) {
+    return false;
+  }
+  const ready = await ensureElementNavigationData();
+  if (!ready || transitionState.active || !isElementSceneLevel()) {
+    return false;
+  }
+  const currentSymbol = extractElementSymbolFromLevel();
+  if (!currentSymbol) {
+    return false;
+  }
+  const targetSymbol = resolveElementNeighborSymbol(currentSymbol, direction);
+  if (!targetSymbol) {
+    return false;
+  }
+  return await navigateToElementSymbol(targetSymbol);
 }
 
 function isEditingTextInput(target) {
@@ -3291,6 +3335,22 @@ function wireElementNavigationControls() {
       onDirectionPress(direction);
     });
   });
+
+  if (elementNavMini) {
+    elementNavMini.addEventListener("click", async (event) => {
+      if (!isElementSceneLevel() || transitionState.active) {
+        return;
+      }
+      const targetSymbol = resolveNearestMiniCellSymbolFromPoint(
+        event.clientX,
+        event.clientY
+      );
+      if (!targetSymbol) {
+        return;
+      }
+      await navigateToElementSymbol(targetSymbol);
+    });
+  }
 
   window.addEventListener("keydown", async (event) => {
     const direction = elementNavDirectionByKey[event.key];
