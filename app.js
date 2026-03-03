@@ -44,6 +44,7 @@ import { createSceneSearchCoordinatorService } from "./src/services/SceneSearchC
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
+const navForwardButton = document.getElementById("nav-forward");
 const sceneLabel = document.getElementById("scene-label");
 const sceneFocusSphere = document.getElementById("scene-focus-sphere");
 const sceneSearch = document.getElementById("scene-search");
@@ -1195,6 +1196,8 @@ const periodicTableService = new PeriodicTableService();
 const searchBackStack = [];
 const metaBackStack = [];
 const generationBackStack = [];
+const browserBackStack = [];
+const browserForwardStack = [];
 const resolveMarkdownDocumentTitle = createMarkdownDocumentTitleResolver({
   fetchImpl: (...args) => fetch(...args),
   appendCacheBust,
@@ -1866,10 +1869,81 @@ const sceneBootstrapService = createSceneBootstrapService({
   rootScenePath,
 });
 
-async function resetToRootScene() {
+function cloneNavigationStackEntries(entries) {
+  if (!Array.isArray(entries)) {
+    return [];
+  }
+  return entries
+    .filter((entry) => entry && entry.levelId && entry.focusNodeId)
+    .map((entry) => ({
+      levelId: entry.levelId,
+      focusNodeId: entry.focusNodeId,
+    }));
+}
+
+function captureCurrentHistoryEntry() {
+  if (!currentLevel?.id) {
+    return null;
+  }
+  return {
+    levelId: currentLevel.id,
+    navigationStack: cloneNavigationStackEntries(navigationStack),
+  };
+}
+
+function areNavigationStacksEqual(a, b) {
+  if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {
+    return false;
+  }
+  for (let i = 0; i < a.length; i += 1) {
+    const left = a[i];
+    const right = b[i];
+    if (!left || !right) {
+      return false;
+    }
+    if (left.levelId !== right.levelId || left.focusNodeId !== right.focusNodeId) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function pushBrowserHistoryEntry(stack, entry) {
+  if (!Array.isArray(stack) || !entry?.levelId) {
+    return;
+  }
+  const normalizedEntry = {
+    levelId: entry.levelId,
+    navigationStack: cloneNavigationStackEntries(entry.navigationStack),
+  };
+  const lastEntry = stack[stack.length - 1];
+  if (
+    lastEntry &&
+    lastEntry.levelId === normalizedEntry.levelId &&
+    areNavigationStacksEqual(lastEntry.navigationStack, normalizedEntry.navigationStack)
+  ) {
+    return;
+  }
+  stack.push(normalizedEntry);
+}
+
+function recordBrowserBackHistory(options = {}) {
+  if (options.historyTraversal) {
+    return;
+  }
+  const entry = captureCurrentHistoryEntry();
+  if (!entry) {
+    return;
+  }
+  pushBrowserHistoryEntry(browserBackStack, entry);
+  browserForwardStack.length = 0;
+}
+
+async function resetToRootScene(options = {}) {
   if (transitionState.active) {
     return;
   }
+  recordBrowserBackHistory(options);
   const config = await sceneBootstrapService.loadSceneConfig(rootScenePath);
   if (!config) {
     return;
@@ -1887,6 +1961,9 @@ async function resetToRootScene() {
   navigationStack.length = 0;
   searchBackStack.length = 0;
   generationBackStack.length = 0;
+  if (!options.historyTraversal) {
+    browserForwardStack.length = 0;
+  }
   labelFadeState.active = true;
   labelFadeState.level = currentLevel;
   labelFadeState.startTime = performance.now();
@@ -1899,6 +1976,9 @@ async function resetToRootScene() {
 async function jumpToScene(scenePath, options = {}) {
   if (transitionState.active) {
     return;
+  }
+  if (scenePath !== currentLevel?.id) {
+    recordBrowserBackHistory(options);
   }
   const preservedWorldPosition = worldGroup.position.clone();
   const preservedLevelPosition = currentLevel
@@ -2628,13 +2708,14 @@ function updateBinaryRingPulse(level, timeSeconds) {
   levelRuntime.updateBinaryRingPulse(level, timeSeconds);
 }
 
-function beginLevelTransition(targetNode, childLevelId) {
+function beginLevelTransition(targetNode, childLevelId, options = {}) {
   if (transitionState.active) {
     return;
   }
   if (!childLevelId) {
     return;
   }
+  recordBrowserBackHistory(options);
 
   closeDetailPanel();
   hideHoverTooltip();
@@ -2887,16 +2968,22 @@ function maybeAutoWarp(now) {
 }
 
 function updateNavButton() {
-  if (!navUpButton) {
-    return;
-  }
   if (transitionState.active) {
-    navUpButton.disabled = true;
+    if (navUpButton) {
+      navUpButton.disabled = true;
+    }
+    if (navForwardButton) {
+      navForwardButton.disabled = true;
+    }
     updateDocButton();
     return;
   }
-  navUpButton.disabled =
-    navigationStack.length === 0 && searchBackStack.length === 0;
+  if (navUpButton) {
+    navUpButton.disabled = browserBackStack.length === 0;
+  }
+  if (navForwardButton) {
+    navForwardButton.disabled = browserForwardStack.length === 0;
+  }
   updateDocButton();
 }
 
@@ -3894,6 +3981,15 @@ appDirector = new AppDirector({
   jumpToScene,
   resetToRootScene,
   startLevelTransitionOut,
+  captureHistoryEntry: captureCurrentHistoryEntry,
+  popHistoryBackEntry: () => browserBackStack.pop() ?? null,
+  popHistoryForwardEntry: () => browserForwardStack.pop() ?? null,
+  pushHistoryBackEntry: (entry) => {
+    pushBrowserHistoryEntry(browserBackStack, entry);
+  },
+  pushHistoryForwardEntry: (entry) => {
+    pushBrowserHistoryEntry(browserForwardStack, entry);
+  },
   getTransitionState: () => transitionState,
   getNavigationStack: () => navigationStack,
   getSearchBackStack: () => searchBackStack,
@@ -3906,6 +4002,7 @@ const appShellUiRuntime = createAppShellUiRuntime({
   onResize,
   hideHoverTooltip,
   navUpButton,
+  navForwardButton,
   homeButton,
   periodicOverlayRuntime,
   appDirector,

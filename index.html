@@ -34,7 +34,6 @@
         <div id="scene-layer-hud">
           <div id="scene-hud-top">
             <div id="scene-hud-left">
-              <button id="nav-up" type="button" aria-label="Go back">Back</button>
               <div id="scene-label"></div>
             </div>
             <div id="scene-hud-right">
@@ -51,6 +50,18 @@
                     ></path>
                   </svg>
                 </button>
+                <div id="scene-nav-history" role="group" aria-label="Scene history">
+                  <button id="nav-up" type="button" aria-label="Go back">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <polyline points="15 5 8 12 15 19"></polyline>
+                    </svg>
+                  </button>
+                  <button id="nav-forward" type="button" aria-label="Go forward">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <polyline points="9 5 16 12 9 19"></polyline>
+                    </svg>
+                  </button>
+                </div>
                 <div id="scene-search">
                   <button
                     id="scene-search-toggle"

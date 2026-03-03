@@ -251,6 +251,16 @@ body {
   gap: 8px;
 }
 
+#scene-nav-history {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  background: rgba(8, 10, 18, 0.75);
+}
+
 #scene-label {
   position: relative;
   z-index: 1;
@@ -1220,6 +1230,7 @@ body {
 #app.composer-mode #viz,
 #app.composer-mode #scene-label,
 #app.composer-mode #nav-up,
+#app.composer-mode #nav-forward,
 #app.composer-mode #element-legend,
 #app.composer-mode #periodic-overlay,
 #app.composer-mode #detail-panel,
@@ -1509,21 +1520,39 @@ body {
   border-color: rgba(213, 220, 255, 0.6);
 }
 
-#nav-up {
-  position: relative;
-  z-index: 1;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(8, 10, 18, 0.75);
+#nav-up,
+#nav-forward {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
   color: #f5f7ff;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  padding: 0;
 }
 
-#nav-up:disabled {
+#nav-up svg,
+#nav-forward svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#nav-up:not(:disabled):hover,
+#nav-forward:not(:disabled):hover {
+  background: rgba(245, 247, 255, 0.1);
+}
+
+#nav-up:disabled,
+#nav-forward:disabled {
   opacity: 0.4;
   cursor: default;
 }

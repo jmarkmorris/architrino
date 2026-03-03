@@ -6,6 +6,7 @@ export function createAppShellUiRuntime(deps) {
     onResize,
     hideHoverTooltip,
     navUpButton,
+    navForwardButton,
     homeButton,
     periodicOverlayRuntime,
     appDirector,
@@ -26,6 +27,13 @@ export function createAppShellUiRuntime(deps) {
       navUpButton.addEventListener("click", async () => {
         periodicOverlayRuntime.hidePeriodicOverlayImmediately();
         await appDirector?.goBack();
+      });
+    }
+
+    if (navForwardButton) {
+      navForwardButton.addEventListener("click", async () => {
+        periodicOverlayRuntime.hidePeriodicOverlayImmediately();
+        await appDirector?.goForward();
       });
     }
 
