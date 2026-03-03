@@ -2,12 +2,12 @@
 
 ## Purpose
 Define a canonical JavaScript-facing interface for authoring and running AAA scenes consistently across:
-- fermions and multi-core assemblies
+- standard model particles, including single and multi-core assemblies
 - personality charges (electrino/positrino)
 - orbit families (circular + elliptical)
 - deforming Noether cores
 - 2D and 3D layouts
-- reactions between assemblies
+- reactions between assemblies with provenance of architrinos.
 
 This is a requirements and wireframe draft, not a final spec.
 
@@ -17,12 +17,10 @@ This is a requirements and wireframe draft, not a final spec.
 3. Stable IDs for all entities for linking, selection, and drill-down.
 4. Composable: core + charges + fields + reactions as reusable modules.
 5. Deterministic defaults with explicit overrides.
-6. Backward-compatible migration path from current scene JSON.
 
 ## Non-Goals (for now)
 1. Full physics solver in the spec.
 2. Tight coupling to Three.js internals.
-3. Replacing markdown content model in v1.
 
 ## Core Requirements
 1. **Scene Types**
