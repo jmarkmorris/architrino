@@ -446,7 +446,6 @@ export function createSceneGraphRuntime(deps) {
       }
     }
 
-    const fallbackOffsets = [120, 180, 240, 300];
     const placeAlongSnake = (snake, category) => {
       if (!snake.head) {
         return false;
@@ -469,15 +468,13 @@ export function createSceneGraphRuntime(deps) {
         return true;
       }
 
-      for (let i = 0; i < fallbackOffsets.length; i += 1) {
-        const fallbackHeading = normalizeHeading(snake.heading + fallbackOffsets[i]);
-        const fallbackCell = nextCoord(snake.head.q, snake.head.r, fallbackHeading);
-        if (fallbackCell && isFree(fallbackCell.q, fallbackCell.r)) {
-          place(fallbackCell.q, fallbackCell.r, category);
-          snake.head = { q: fallbackCell.q, r: fallbackCell.r };
-          snake.heading = fallbackHeading;
-          return true;
-        }
+      const rightHeading = normalizeHeading(snake.heading - 60);
+      const rightCell = nextCoord(snake.head.q, snake.head.r, rightHeading);
+      if (rightCell && isFree(rightCell.q, rightCell.r)) {
+        place(rightCell.q, rightCell.r, category);
+        snake.head = { q: rightCell.q, r: rightCell.r };
+        snake.heading = rightHeading;
+        return true;
       }
 
       return false;
