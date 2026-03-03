@@ -260,7 +260,7 @@ export function createPeriodicOverlayRuntime(deps) {
     detailPanel.inert = false;
     elementInfoPinned = true;
 
-    detailTitle.textContent = `${el.name} (${el.symbol})`;
+    detailTitle.textContent = "";
     const protons = el.number ?? 0;
     const neutrons = Math.max(0, Math.round(el.atomic_mass ?? 0) - protons);
     const electrons = protons;
