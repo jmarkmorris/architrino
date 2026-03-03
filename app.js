@@ -2971,6 +2971,8 @@ async function ensureElementNavigationData() {
     const columnRowsByX = new Map();
     elementNavigationState.elementBySymbol.clear();
     elementNavigationState.symbolByCoordinate.clear();
+    elementNavigationState.rowColumnsByY.clear();
+    elementNavigationState.columnRowsByX.clear();
     elementNavigationState.scenePathBySymbol.clear();
     elementNavigationState.miniCellBySymbol.clear();
     elementNavigationState.miniHudBuilt = false;
@@ -3211,26 +3213,25 @@ async function navigateElementByDirection(direction) {
   ) {
     return false;
   }
-  const ready = await ensureElementNavigationData();
-  if (!ready) {
-    return false;
-  }
-  const currentSymbol = extractElementSymbolFromLevel();
-  if (!currentSymbol) {
-    return false;
-  }
-  const targetSymbol = resolveElementNeighborSymbol(currentSymbol, direction);
-  if (!targetSymbol) {
-    return false;
-  }
-  const targetPath = elementNavigationState.scenePathBySymbol.get(targetSymbol);
-  if (!targetPath || targetPath === currentLevel?.id) {
-    return false;
-  }
-
   elementNavigationState.navigationInFlight = true;
   updateElementNavigationUi();
   try {
+    const ready = await ensureElementNavigationData();
+    if (!ready || transitionState.active || !isElementSceneLevel()) {
+      return false;
+    }
+    const currentSymbol = extractElementSymbolFromLevel();
+    if (!currentSymbol) {
+      return false;
+    }
+    const targetSymbol = resolveElementNeighborSymbol(currentSymbol, direction);
+    if (!targetSymbol) {
+      return false;
+    }
+    const targetPath = elementNavigationState.scenePathBySymbol.get(targetSymbol);
+    if (!targetPath || targetPath === currentLevel?.id) {
+      return false;
+    }
     closeDetailPanel();
     hideHoverTooltip();
     await jumpToScene(targetPath, { mode: "jump" });
