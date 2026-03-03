@@ -495,7 +495,7 @@ export function createSceneGraphRuntime(deps) {
       }
     }
 
-    return layoutSlots.map((slot) => ({
+    const positionedSlots = layoutSlots.map((slot) => ({
       category: slot.category,
       position: new deps.THREE.Vector3(
         minCenterDistance * (slot.q + slot.r * 0.5),
@@ -503,6 +503,29 @@ export function createSceneGraphRuntime(deps) {
         0
       ),
     }));
+
+    if (!positionedSlots.length) {
+      return positionedSlots;
+    }
+
+    let minX = Infinity;
+    let maxX = -Infinity;
+    let minY = Infinity;
+    let maxY = -Infinity;
+    positionedSlots.forEach((slot) => {
+      minX = Math.min(minX, slot.position.x);
+      maxX = Math.max(maxX, slot.position.x);
+      minY = Math.min(minY, slot.position.y);
+      maxY = Math.max(maxY, slot.position.y);
+    });
+    const centerX = (minX + maxX) * 0.5;
+    const centerY = (minY + maxY) * 0.5;
+    positionedSlots.forEach((slot) => {
+      slot.position.x -= centerX;
+      slot.position.y -= centerY;
+    });
+
+    return positionedSlots;
   }
 
   function buildLevel(levelId) {
