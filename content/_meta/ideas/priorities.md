@@ -6,6 +6,9 @@
 
 - composer should use the same frame elements in the corners.
 
+- pick up working on spiral algorithm for atoms. close now, but not perfect.
+  - try the number line idea. + = proton, - = neutron
+
 
 ## Sorta Sorted List (i.e., non-linear)
 
