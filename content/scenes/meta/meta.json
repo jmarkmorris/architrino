@@ -55,7 +55,8 @@
       "label": "Key",
       "radius": 2.2,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/archie/key.md",
+      "markdownPath": "content/markdown/aaa/archie/glossary.md",
+      "markdownSection": "Key Regime Terms",
       "labelTitle": "Key",
       "labelBadge": "doc"
     },

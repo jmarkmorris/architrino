@@ -1,5 +1,4 @@
 # Help
-
 ## Quick Start
 
 1. Click a glowing sphere to descend.
@@ -35,7 +34,7 @@
 When you are inside `content/scenes/elements/*.json` scenes:
 
 - Element navigation overlay appears automatically.
-- Use the on-screen d-pad (`Up/Down/Left/Right`) to move between elements.
+- Use the on-screen arrow icons (`Up/Down/Left/Right`) to move between elements.
 - Use keyboard arrows for the same directional navigation.
 - Click the mini periodic map to jump to the nearest element cell.
 - Current element and directional neighbors are highlighted in the mini map.
@@ -62,15 +61,7 @@ In element scenes, the legend pills (`P`, `N`, `e`) are interactive:
 
 Possible reasons:
 
-- The node is informational only (no child scene/doc target).
-- The linked file/path is missing or renamed.
-- The content index is stale after file renames.
-
-What to do:
-
-- Refresh the app.
-- Confirm the target markdown path exists.
-- Rebuild `content/markdown/markdown_index.json` after renaming files.
+- The node is informational only (no child scene/doc target). This is indicated by the absence of a glow halo.
 
 ### Back is disabled
 

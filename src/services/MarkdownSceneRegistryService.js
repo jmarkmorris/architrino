@@ -1,4 +1,10 @@
-function inferRestoredMarkdownColumns(markdownPath) {
+async function inferRestoredMarkdownColumns(markdownPath, resolveMarkdownColumnsForPath) {
+  if (typeof resolveMarkdownColumnsForPath === "function") {
+    const resolved = await resolveMarkdownColumnsForPath(markdownPath);
+    if (resolved === 1 || resolved === 2) {
+      return resolved;
+    }
+  }
   if (
     typeof markdownPath === "string" &&
     markdownPath.startsWith("content/markdown/aaa/archie/")
@@ -15,6 +21,7 @@ export function createMarkdownSceneRegistry(deps) {
   const normalizeMarkdownKey = deps.normalizeMarkdownKey;
   const resolveMarkdownDocumentTitle = deps.resolveMarkdownDocumentTitle;
   const resolveMarkdownSectionTitleByKey = deps.resolveMarkdownSectionTitleByKey;
+  const resolveMarkdownColumnsForPath = deps.resolveMarkdownColumnsForPath;
   const markdownReaderScenes = new Set();
 
   const markdownDocPrefix = "__markdown_doc__:";
@@ -254,7 +261,10 @@ export function createMarkdownSceneRegistry(deps) {
         sceneKind: "branching",
         markdownPath,
         markdownSection: null,
-        markdownColumns: inferRestoredMarkdownColumns(markdownPath),
+        markdownColumns: await inferRestoredMarkdownColumns(
+          markdownPath,
+          resolveMarkdownColumnsForPath
+        ),
         markdownAutoOpen: true,
         centerOn: null,
       };
@@ -288,7 +298,10 @@ export function createMarkdownSceneRegistry(deps) {
         sceneKind: "branching",
         markdownPath,
         markdownSection: null,
-        markdownColumns: inferRestoredMarkdownColumns(markdownPath),
+        markdownColumns: await inferRestoredMarkdownColumns(
+          markdownPath,
+          resolveMarkdownColumnsForPath
+        ),
         markdownAutoOpen: false,
         centerOn: null,
         autoMarkdownPath: markdownPath,
@@ -330,7 +343,10 @@ export function createMarkdownSceneRegistry(deps) {
         sceneKind: "branching",
         markdownPath,
         markdownSection,
-        markdownColumns: inferRestoredMarkdownColumns(markdownPath),
+        markdownColumns: await inferRestoredMarkdownColumns(
+          markdownPath,
+          resolveMarkdownColumnsForPath
+        ),
         markdownAutoOpen: true,
         centerOn: null,
       };
@@ -368,7 +384,10 @@ export function createMarkdownSceneRegistry(deps) {
         sceneKind: "branching",
         markdownPath,
         markdownSection,
-        markdownColumns: inferRestoredMarkdownColumns(markdownPath),
+        markdownColumns: await inferRestoredMarkdownColumns(
+          markdownPath,
+          resolveMarkdownColumnsForPath
+        ),
         markdownAutoOpen: false,
         centerOn: null,
         autoMarkdownPath: markdownPath,

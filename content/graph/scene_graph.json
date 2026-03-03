@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 301,
-      "edges": 1135,
+      "nodes": 300,
+      "edges": 1133,
       "scenes": 174,
       "markdownIndexes": 16,
-      "markdownDocs": 111,
+      "markdownDocs": 110,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1256,12 +1256,6 @@
       "id": "content/markdown/aaa/archie/help.md",
       "name": "Help",
       "path": "__markdown_doc__:content/markdown/aaa/archie/help.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/archie/key.md",
-      "name": "Key",
-      "path": "__markdown_doc__:content/markdown/aaa/archie/key.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3627,15 +3621,6 @@
       "name": "Help",
       "path": "content/markdown/aaa/archie/help.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/help.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/key.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/key.md",
-      "name": "Key",
-      "path": "content/markdown/aaa/archie/key.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/key.md",
       "implicit": false
     },
     {
@@ -7951,13 +7936,6 @@
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/key.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta.json",
-      "field": "meta_key.markdownPath"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
       "to": "markdown_doc:content/markdown/aaa/archie/mathematical-style-guide.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta.json",
@@ -8456,13 +8434,6 @@
     {
       "from": "markdown_index:content/markdown/aaa/archie",
       "to": "markdown_doc:content/markdown/aaa/archie/help.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/archie",
-      "to": "markdown_doc:content/markdown/aaa/archie/key.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
