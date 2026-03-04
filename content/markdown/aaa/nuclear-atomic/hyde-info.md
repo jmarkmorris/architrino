@@ -128,6 +128,8 @@ The two-lobed (peanut/lemniscate-like) morphology separates strongly electroposi
 
 Hyde’s explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.[2][7]
 
+In the AAA working interpretation, this axis corresponds to the radial tier where four outer tri-binaries can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
+
 ### 5.5 Branches and heavy-series treatment
 
 Historical Hyde-lineage forms use protrusions to avoid severe compression of lanthanides and to depict speculative superheavy continuations in a geometrically attached manner.[2]
@@ -159,22 +161,21 @@ The points below are collected as a framework-internal research program, not as 
 
 ### 7.3 Mechanism and Derivation Sketch
 
-- In this view, the 8/18/32 shell periodicity should emerge from physical packing limits of tri-binary assemblies near the nucleus.
-- Hyde’s spiral is interpreted as a geometric map of principal-shell continuity plus subshell bifurcation.
-- Radial expansion hypothesis: as nuclear core mass increases, the local Noether Sea density gradient steepens.
-- Electron tri-binaries settle into quantized stable radii from a balance of Coulombic attraction and aether-drag volume exclusion.
-- Hyde’s concentric loops are interpreted as these radial thresholds.
-- Subshell branching hypothesis ($s, p, d, f$): branching reflects availability of neutral-axis docking geometries.
-- Six polar decoration sites determine allowed angular states.
-- Pauli exclusion is reinterpreted as prohibition of overlap among precessing 3D ellipsoidal exclusion volumes.
-- 8/18/32 counts are interpreted as maximal non-overlapping precession-cone populations at each radial tier before forced occupation of a larger-radius shell.
-- Secondary-relationship hypothesis: Hyde-highlighted diagonal and secondary relationships (including transition-metal bridges and C/Si centrality) are interpreted as similarities in exposed neutral-axis geometry of outer tri-binaries.
-- Those similarities are proposed to govern covalent and metallic bonding angles.
+- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether core, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
+- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local aether-pressure gradient drops enough to stabilize an additional shell of precessing tri-binaries.
+- In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of tri-binary assemblies under these boundary conditions.
+- Volume-exclusion mechanism: each electron tri-binary displaces local spacetime aether, and overlap of two precessing ellipsoidal exclusion volumes generates a sharply rising displacement-pressure gradient.
+- Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
+- Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by aether-displacement pressure rather than only an abstract occupancy postulate.
+- Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar decoration sites.
+- Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer tri-binaries, which controls preferred bonding directions.
+- Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
 
 ### 7.4 Predictions and Observables
 
 - If shell structure is a packing phenomenon, ionization-energy trends along Hyde’s spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
-- The proposed source of deviation is finite-volume deformation of inner-shell tri-binaries under extreme aether-density gradients.
+- Mechanism for the deviation: increasing nuclear mass steepens the local aether-density gradient, geometrically compressing inner-shell tri-binaries and driving middle-binary velocities toward field-speed limits.
+- This inner-shell geometric strain changes the effective shielding potential seen by valence tri-binaries, producing measurable departures from standard relativistic-correction-only trends.
 
 ### 7.5 Failure Modes and Falsification Criteria
 
@@ -185,8 +186,10 @@ The points below are collected as a framework-internal research program, not as 
 ### 7.6 Immediate Next Steps
 
 - Translate Hyde’s 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal tri-binaries.
-- Run a first constrained benchmark at the Neon core ($Z=10$).
-- Test whether exactly eight electron assemblies can remain stable without intersection of precessing exclusion volumes.
+- Run a first constrained benchmark at the Neon core ($Z=10$) with explicit boundary conditions.
+- Neon boundary setup: an inner phase-locked pair at maximum curvature plus exactly eight outer tri-binaries.
+- Outer-shell success criterion: the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes aether-drag without exclusion-volume intersection.
+- Test whether this eight-body outer geometry is a dynamical attractor, not merely a manually tuned configuration.
 - Extend to higher-$Z$ shells only after Neon stability and node discreteness criteria are met.
 
 ---
