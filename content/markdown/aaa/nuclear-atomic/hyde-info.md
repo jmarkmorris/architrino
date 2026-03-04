@@ -112,47 +112,10 @@ Before drilling into atomic scenes, the periodic-table level can teach:
 
 ## 5. Historically Inaccurate or Time-Dependent Nuclear-Chemistry Issues
 
-This section lists issues that should be treated explicitly in the interface/documentation.
-
-### 5.1 Legacy transfermium naming in historical variants
-
-**Issue:** Older periodic charts and derivatives may use now-obsolete names/symbols for elements 104-109 (from the transfermium naming disputes era).
-
-**Evidence:** IUPAC finalized names/symbols for 101-109 in 1997 (Rf, Db, Sg, Bh, Hs, Mt among others), replacing provisional-era alternatives.[4]
-
-**Recommendation:** Show modern IUPAC names by default; optionally expose historical aliases in a “history” tooltip mode.
-
-### 5.2 Temporary systematic names vs approved names
-
-**Issue:** Temporary systematic names/symbols (e.g., Uut historically for 113) can persist in educational media long after formal naming.
-
-**Evidence:** IUPAC documents temporary naming rules and notes historical temporary usage before formal approval.[3][6] Formal names for 113, 115, 117, 118 were approved in 2016 (Nh, Mc, Ts, Og).[5]
-
-**Recommendation:** If historical labels are shown, mark them explicitly as temporary/deprecated.
-
-### 5.3 Element 119 status
-
-**Issue:** Any 119 entry is necessarily speculative pending validated discovery and naming.
-
-**Evidence:** Current IUPAC periodic releases are through element 118 and describe discovery-validation and naming procedures for future elements.[3]
-
-**Recommendation:** Keep 119 visually distinct (e.g., dashed frame and “predicted/placeholder” tag), with no implication of confirmed nuclear data.
-
-### 5.4 Isotope and atomic-weight drift relative to 1970s charts
-
-**Issue:** Atomic-weight and isotope conventions in vintage posters are historically important but not current reference data.
-
-**Evidence:** IUPAC’s modern table updates standard atomic weights and isotope presentation (e.g., bracketed longest-lived nuclide where needed).[3]
-
-**Recommendation:** Use current IUPAC/CIAAW values for all live metadata, even when preserving historical graphics.
-
-### 5.5 Group-3 and f-block boundary ambiguity
-
-**Issue:** Placement conventions around group 3 (Sc/Y/La/Ac vs Sc/Y/Lu/Lr) affect how branch geometry is interpreted.
-
-**Evidence:** IUPAC explicitly identifies this as a debated placement question.[3]
-
-**Recommendation:** State the chosen convention in a visible note; avoid presenting one geometry as uniquely authoritative.
+1. Older periodic charts and derivatives may use now-obsolete names/symbols for elements 104-109 (from the transfermium naming disputes era).
+2. Any 119 entry is necessarily speculative pending validated discovery and naming.
+3. Atomic-weight and isotope conventions in vintage posters are historically important but not current reference data.
+4. Placement conventions around group 3 (Sc/Y/La/Ac vs Sc/Y/Lu/Lr) affect how branch geometry is interpreted.
 
 ---
 
