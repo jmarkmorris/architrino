@@ -353,28 +353,8 @@ body {
 }
 
 #doc-button::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: 50%;
-  right: 40px;
-  transform: translateY(-50%);
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(8, 10, 18, 0.9);
-  color: #f5f7ff;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s ease;
-  z-index: 6;
-}
-
-#doc-button:hover::after,
-#doc-button:focus-visible::after {
-  opacity: 1;
+  content: none;
+  display: none;
 }
 
 #doc-button svg {
@@ -539,13 +519,15 @@ body {
   position: absolute;
   z-index: 8;
   display: none;
-  max-width: 220px;
-  padding: 6px 8px;
-  border-radius: 8px;
+  max-width: 300px;
+  padding: 9px 12px;
+  border-radius: 10px;
   background: rgba(8, 10, 18, 0.85);
   border: 1px solid rgba(160, 170, 220, 0.35);
   color: #f5f7ff;
-  font-size: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
   letter-spacing: 0.02em;
   pointer-events: none;
   white-space: normal;
@@ -1235,6 +1217,7 @@ body {
 #app.composer-mode #nav-forward,
 #app.composer-mode #element-legend,
 #app.composer-mode #periodic-overlay,
+#app.composer-mode #hyde-periodic-overlay,
 #app.composer-mode #detail-panel,
 #app.composer-mode #scene-search {
   display: none;
@@ -1339,6 +1322,196 @@ body {
 
 #periodic-overlay.is-fading {
   opacity: 0;
+}
+
+#periodic-hint {
+  width: fit-content;
+  margin: 10px auto 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 220, 255, 0.3);
+  background: rgba(14, 20, 38, 0.86);
+  color: rgba(236, 242, 255, 0.95);
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+  pointer-events: none;
+}
+
+#hyde-periodic-overlay {
+  --hyde-overlay-top-gap: 72px;
+  position: absolute;
+  top: var(--hyde-overlay-top-gap);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1700px, 99vw);
+  max-height: calc(100vh - var(--hyde-overlay-top-gap) - 8px);
+  display: none;
+  flex-direction: column;
+  z-index: 6;
+  padding: 0;
+  background: rgba(8, 10, 18, 0.94);
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-top: none;
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  color: #f5f7ff;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 1000ms ease;
+}
+
+@media (max-width: 980px) {
+  #hyde-periodic-overlay {
+    --hyde-overlay-top-gap: 116px;
+  }
+}
+
+#hyde-periodic-overlay.is-open {
+  display: flex;
+}
+
+#hyde-periodic-overlay.is-fading {
+  opacity: 0;
+}
+
+#hyde-periodic-stage {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0 12px 10px;
+  background: radial-gradient(circle at top, rgba(164, 190, 255, 0.08), rgba(8, 10, 18, 0.95) 56%);
+}
+
+#hyde-periodic-hint {
+  position: sticky;
+  top: 10px;
+  z-index: 3;
+  width: fit-content;
+  margin: 10px auto 12px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 220, 255, 0.36);
+  background: rgba(14, 20, 38, 0.88);
+  color: rgba(236, 242, 255, 0.95);
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+#hyde-periodic-canvas {
+  /* Alignment box for clickable element hit areas over the Hyde SVG. */
+  --hyde-map-left: 0%;
+  --hyde-map-top: 0%;
+  --hyde-map-width: 100%;
+  --hyde-map-height: 100%;
+  --hyde-art-scale: 0.7;
+  position: relative;
+  width: max(1220px, 100%);
+  aspect-ratio: 1.3455657492;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
+  transform: scale(var(--hyde-art-scale));
+  transform-origin: top center;
+}
+
+#hyde-periodic-artwork {
+  position: absolute;
+  top: -7.3394495413%;
+  left: -6.8181818182%;
+  width: 113.6363636364%;
+  height: 114.6788990826%;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+#hyde-periodic-grid {
+  position: absolute;
+  left: -6.8181818182%;
+  top: -7.3394495413%;
+  width: 113.6363636364%;
+  height: 114.6788990826%;
+  display: block;
+  z-index: 1;
+  overflow: visible;
+}
+
+#hyde-periodic-supplementals {
+  position: absolute;
+  left: -6.8181818182%;
+  top: -7.3394495413%;
+  width: 113.6363636364%;
+  height: 114.6788990826%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile {
+  position: absolute;
+  pointer-events: auto;
+  padding: 6px 4px;
+  justify-content: flex-start;
+  text-align: center;
+  color: #f5f7ff;
+  background: rgba(61, 48, 122, 0.92);
+  border-color: rgba(190, 178, 242, 0.72);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.34);
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile:hover,
+#hyde-periodic-supplementals .hyde-periodic-extra-tile:focus-visible {
+  background: rgba(72, 58, 138, 0.95);
+  border-color: rgba(212, 203, 248, 0.9);
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile .ptable-number {
+  top: 5px;
+  left: 5px;
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile .ptable-symbol {
+  margin-top: 20px;
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile .ptable-name {
+  margin-top: 2px;
+  line-height: 1.12;
+  font-size: 10px;
+}
+
+#hyde-periodic-grid .hyde-hotspot {
+  cursor: pointer;
+  fill: rgba(148, 191, 255, 0.06);
+  stroke: rgba(196, 220, 255, 0.28);
+  stroke-width: 1.5;
+  pointer-events: auto;
+  transition: fill 0.1s ease, stroke 0.1s ease;
+}
+
+#hyde-periodic-grid .hyde-hotspot:hover,
+#hyde-periodic-grid .hyde-hotspot:focus-visible {
+  fill: rgba(148, 191, 255, 0.16);
+  stroke: rgba(196, 220, 255, 0.42);
+}
+
+#hyde-periodic-grid .hyde-hotspot:focus-visible {
+  outline: none;
+}
+
+#hyde-periodic-grid .hyde-hotspot.is-unassigned {
+  cursor: default;
+  stroke: rgba(236, 192, 164, 0.24);
+}
+
+#hyde-periodic-legend {
+  display: none !important;
 }
 
 #periodic-grid {

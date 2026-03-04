@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 298,
-      "edges": 1129,
-      "scenes": 174,
+      "nodes": 301,
+      "edges": 1133,
+      "scenes": 175,
       "markdownIndexes": 16,
-      "markdownDocs": 108,
+      "markdownDocs": 110,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -164,6 +164,12 @@
       "id": "positrino",
       "name": "Positrino",
       "path": "content/scenes/architrino-theory/positrino.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "hyde_periodic_table",
+      "name": "Hyde Periodic Table",
+      "path": "content/scenes/chemistry/hyde_periodic_table_scene.json",
       "nodeType": "scene"
     },
     {
@@ -1259,6 +1265,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/archie/licenses-attributions.md",
+      "name": "Licenses & Attributions",
+      "path": "__markdown_doc__:content/markdown/aaa/archie/licenses-attributions.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/archie/mathematics.md",
       "name": "Mathematics",
       "path": "__markdown_doc__:content/markdown/aaa/archie/mathematics.md",
@@ -1520,6 +1532,12 @@
       "id": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "name": "Visualizing Volumes and Exclusion in the Universe",
       "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
+      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -1933,6 +1951,15 @@
       "name": "Fermions",
       "path": "content/scenes/assemblies/fermions.json",
       "searchTarget": "content/scenes/assemblies/fermions.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "nodeType": "scene",
+      "id": "hyde_periodic_table",
+      "name": "Hyde Periodic Table",
+      "path": "content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "searchTarget": "content/scenes/chemistry/hyde_periodic_table_scene.json",
       "implicit": false
     },
     {
@@ -3612,6 +3639,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/licenses-attributions.md",
+      "name": "Licenses & Attributions",
+      "path": "content/markdown/aaa/archie/licenses-attributions.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/licenses-attributions.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/mathematics.md",
@@ -4005,6 +4041,15 @@
       "name": "Visualizing Volumes and Exclusion in the Universe",
       "path": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
+      "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "implicit": false
     },
     {
@@ -4567,24 +4612,17 @@
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[3].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[6].subScenes[0]"
+      "field": "objects[5].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[9].subScenes[0]"
+      "field": "objects[8].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -4605,28 +4643,28 @@
       "to": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[4].subScenes[0]"
+      "field": "objects[3].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[8].subScenes[0]"
+      "field": "objects[7].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/spacetime/spacetime.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[5].subScenes[0]"
+      "field": "objects[4].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/validation/validation.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[7].subScenes[0]"
+      "field": "objects[6].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -7304,6 +7342,13 @@
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "objects[2].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
@@ -7314,7 +7359,7 @@
       "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[3].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/nucleus.json",
@@ -7716,6 +7761,13 @@
       "field": "weak_mixing_ckm.markdownPath"
     },
     {
+      "from": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "field": "scene.markdownPath"
+    },
+    {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/BBN-constraints.md",
       "edgeType": "markdown_doc",
@@ -7903,6 +7955,13 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta.json",
       "field": "meta_help.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_licenses_attributions.markdownPath"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
@@ -8396,6 +8455,13 @@
     },
     {
       "from": "markdown_index:content/markdown/aaa/archie",
+      "to": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/archie",
       "to": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
@@ -8698,6 +8764,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"

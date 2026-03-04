@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "hyde_periodic_table",
+    "kind": "diagram",
+    "name": "Hyde Periodic Table",
+    "units": "relative",
+    "markdownPath": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+    "markdownColumns": 2,
+    "markdownAutoOpen": false,
+    "scaleBandLog10m": [
+      0,
+      0
+    ]
+  },
+  "objects": []
+}

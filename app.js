@@ -75,6 +75,10 @@ const markdownDocButton = document.getElementById("markdown-doc-button");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
+const hydePeriodicOverlay = document.getElementById("hyde-periodic-overlay");
+const hydePeriodicGrid = document.getElementById("hyde-periodic-grid");
+const hydePeriodicLegend = document.getElementById("hyde-periodic-legend");
+const hydePeriodicArtwork = document.getElementById("hyde-periodic-artwork");
 const elementNavOverlay = document.getElementById("element-nav-overlay");
 const elementNavMini = document.getElementById("element-nav-mini");
 const elementNavUpButton = document.getElementById("element-nav-up");
@@ -1848,6 +1852,10 @@ function appendCacheBust(path) {
   return `${path}${separator}v=${cacheBustToken}`;
 }
 
+if (hydePeriodicArtwork) {
+  hydePeriodicArtwork.src = appendCacheBust("content/assets/hyde_periodic_table.svg");
+}
+
 async function resolveMarkdownFileSize(path) {
   if (!path) {
     return null;
@@ -3093,6 +3101,11 @@ const periodicOverlayRuntime = createPeriodicOverlayRuntime({
   periodicOverlay,
   periodicGrid,
   periodicLegend,
+  hydePeriodicOverlay,
+  hydePeriodicGrid,
+  hydePeriodicLegend,
+  periodicSceneId: "periodic_table",
+  hydePeriodicSceneId: "hyde_periodic_table",
   detailPanel,
   detailTitle,
   detailBody,
@@ -3110,6 +3123,8 @@ const periodicOverlayRuntime = createPeriodicOverlayRuntime({
   updateNavButton,
   jumpToScene,
   isTransitionActive: () => transitionState.active,
+  showHoverTooltip,
+  hideHoverTooltip,
   fetchImpl: (...args) => fetch(...args),
 });
 
@@ -3702,6 +3717,7 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   docButton,
   detailClose,
   markdownClose,
+  markdownPanel,
   markdownDocButton,
   markdownLayoutToggle,
   markdownRuntime,

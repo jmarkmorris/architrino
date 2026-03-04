@@ -67,24 +67,6 @@
       "labelTitle": "Assemblies"
     },
     {
-      "id": "periodic_table",
-      "label": "Periodic Table",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "position": [
-        14.81,
-        10.23,
-        0
-      ],
-      "subScenes": [
-        "content/scenes/chemistry/periodic_table_scene.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Periodic Table"
-    },
-    {
       "id": "nuclear_atomic",
       "label": "Nuclear-Atomic",
       "radius": 2.688,

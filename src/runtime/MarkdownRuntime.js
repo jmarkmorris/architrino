@@ -95,6 +95,21 @@ export function createMarkdownRuntime(deps) {
     activeMarkdownPath = null;
   }
 
+  function isMarkdownPanelOpen() {
+    return !!markdownPanel?.classList.contains("is-open");
+  }
+
+  function isActiveLevelMarkdown(level) {
+    if (!level?.markdownPath) {
+      return false;
+    }
+    const sectionKey = level.markdownSection ?? null;
+    const cacheKey = sectionKey
+      ? `${level.markdownPath}::${sectionKey}`
+      : level.markdownPath;
+    return isMarkdownPanelOpen() && activeMarkdownPath === cacheKey;
+  }
+
   function applyMarkdownLayout() {
     if (!markdownPanel || !markdownLayoutToggle) {
       return;
@@ -120,6 +135,7 @@ export function createMarkdownRuntime(deps) {
     const sectionKey = level.markdownSection ?? null;
     const cacheKey = sectionKey ? `${markdownPath}::${sectionKey}` : markdownPath;
     if (activeMarkdownPath === cacheKey && markdownPanel.classList.contains("is-open")) {
+      hideMarkdownPanel();
       return;
     }
     if (sectionKey) {
@@ -177,6 +193,8 @@ export function createMarkdownRuntime(deps) {
 
   return {
     hideMarkdownPanel,
+    isMarkdownPanelOpen,
+    isActiveLevelMarkdown,
     applyMarkdownLayout,
     toggleMarkdownLayout,
     showMarkdownPanel,

@@ -1,21 +1,41 @@
 # The #1 priority is the dynamics/math/geometry and the mapping
 
-## Infrastructure
+- Use my $50 entourages each month.
 
-- composer should use the same frame elements in the corners.
-
-## Sorta Sorted List (i.e., non-linear)
-
-- new architrino repository is live 20260217
-  - need to go back and clean up the old neoclassical.ai repo.
-- neoclassical.ai domain is not working
-
----
+- can Ai draw that cool periodic table diagram?
 
 - a 3d visualizer for the oblating Noether core. ellipsoid.md. paths, and other scenes (sphere, ...)
   - work on scene builder.
   - a language for describing animations
   - every scene will be ported to this format
+- composer should use the same frame elements in the corners.
+
+---
+
+- PDG solver
+  - provenance
+  - diagrams
+  - core disposition
+  - there is an api now
+  - look into madgraph for reactions as well
+  - use scene builder in api mode
+
+---
+
+- continue the ellipsoid work, aiming to understand time
+
+---
+
+- sim2rewrite.md has ideas for porting to architrino. wait until we have the scene builder working
+
+---
+
+- new architrino repository is live 20260217
+  - need to go back and clean up the old neoclassical.ai repo.
+- neoclassical.ai domain is not working
+- make a new subreddit server named architrino
+- rename my blog
+- having a .ai domain is kinda cool though. don't give it up.
 
 ---
 
@@ -77,30 +97,32 @@ Work on event horizon, curvature, and singularity. chatgpt is saying the singula
 
 ---
 
-- make a new subreddit server named architrino
-- rename my blog
-- having a .ai domain is kinda cool though. don't give it up.
 
 ### Best findings after reviewing the listed docs, focused on real theory advancement and provable GR/QM/LCDM mapping:
 
 - 2. Second breakthrough is closing the clock/ruler map and effective metric map.
   You already state the exact missing closure: derive dτ/dt = F(v,ρ,Φ) and the substrate-to-metric functional. This is the direct bridge to GR tests. See foundations/ontology.md:1305, spacetime/proper-time-and-time-dilation.md:5, spacetime/emergent-metric.md:43, spacetime/emergent-metric.md:125.
   This is where $\mathbb{A}\mathbb{A}\mathbb{A}$ can become quantitatively equivalent to GR in weak field, then diverge in strong-field regimes by prediction rather than assertion.
+
 - 5. QM interpretation is coherent, but Bell/Tsirelson remains the hard gate.
   Measurement/collapse-as-threshold is well-structured (quantum/reality-quantum-causality.md:383, quantum/reality-quantum-causality.md:397), but the docs explicitly mark Bell correlations as open (validation/simulations/perspective.md:242).
   Without this, $\mathbb{A}\mathbb{A}\mathbb{A}$ can reinterpret QM but not yet match its strongest nonlocal statistical benchmark.
+
 - 6. LCDM mapping is currently narrative-rich but equation-poor; needs transfer-function closure.
   The CMB timeline and tri-binary ladder idea are clear (cosmology/CMB.md:98, cosmology/CMB.md:105), but not yet reduced to a predictive peak-position/amplitude pipeline.
   This is where you can convert “interesting alternative” into direct CMB/H0/S8 comparison framework.
+
 - 6a. Decompose $\Lambda\mathrm{CDM}$ into independent observable components with explicit predicted API surfaces.
   Build per-component interfaces (background expansion, recombination/CMB transfer, BBN yields, growth/lensing, distance ladder calibration) so each module can stand on its own observationally.
   Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces, matches, or diverges from each component.
+
 - 7. Planck mapping is promising but still explicitly conjectural.
   dynamics/mapping-Planck-scale.md repeatedly labels key identifications as conjectured (dynamics/mapping-Planck-scale.md:28, dynamics/mapping-Planck-scale.md:194).
   Good news: this is honest and tractable if tied back to the master equation and validated numerically.
 
 - Well-posed dynamics + no-runaway package
   I can consolidate dynamics/master-equation.md + dynamics/binary-dynamics.md into a formal “if-assumptions-then-guarantees” section (η>0 regime): existence/uniqueness, continuation criteria, and no-runaway bounds.
+
 - Emergent metric weak-field closure
   I can derive a concrete weak-field map from hit-density/medium variables to g_eff constraints in spacetime/emergent-metric.md and spacetime/proper-time-and-time-dilation.md, including explicit pass/fail PPN-style checks.
 
@@ -149,20 +171,6 @@ Work on event horizon, curvature, and singularity. chatgpt is saying the singula
 
 ---
 
-- sim2rewrite.md has ideas for porting to architrino. wait until we have the scene builder working
-
----
-
-- PDG solver
-  - provenance
-  - diagrams
-  - core disposition
-  - there is an api now
-  - look into madgraph for reactions as well
-  - use scene builder in api mode
-
----
-
 # architrino Design Notes
 
 ## Goals
@@ -183,14 +191,6 @@ Work on event horizon, curvature, and singularity. chatgpt is saying the singula
 - Scripted navigation paths (sequence of zoom and focus actions) for smooth MP4 output.
 - Export presets for desktop (16:9) and mobile (9:16).
 - Defer formal narrative/export spec until core interaction flow is stable.
-
----
-
-- periodic table of the standard model ( have a basic one)
-
----
-
-- continue the ellipsoid work, aiming to understand time
 
 ---
 
@@ -241,26 +241,14 @@ Work on event horizon, curvature, and singularity. chatgpt is saying the singula
 3. Coupling rules to Gluons (which axes interact with which Color states).
 
 ---
-
-### Honorable Mentions (Defer for Now):
-- **`dynamics/effective-lagrangian.md` (0 bytes):** Important for theorists, but **not critical** until we have the mass spectrum and proper time working.
-- **`spacetime/emergent-metric.md` (8,133 bytes):** Partially done. Needs completion, but **Proper Time Derivation** is the more urgent prerequisite.
-
----
-
-## Charge Quantization from Tri-Binary Topology (Conceptual Clarity)
-**Why critical:** We *postulate* |e/6| but claim tri-binary geometry *explains* it. If we cannot show why only 0, ±e/3, ±2e/3, ±e are stable (and nothing else), this looks like fine-tuning dressed up as explanation.
-
----
-
-## Ontological Coherence Audit
-**Why critical:** We're mixing frameworks (absolute time + emergent Lorentz, discrete architrinos + continuous fields, deterministic multistability + effective quantum randomness). We need a **single coherent story** that doesn't collapse under scrutiny. Are we substantivalist or emergentist? Is the wavefunction real or epistemic? These aren't optional—they determine what predictions mean.
-
----
 1. Fill the quantum-number dictionary: derive full SU(3)×SU(2)×U(1) assignments (Q, Y, T3, B/L, spin/statistics) from the tri-binary geometry in particle-physics/fermion-mapping.md, particle-physics/charge-quantization.md, and assemblies/gluons.md; check anomaly cancellation and mixing angles against SM pulls.
+
 2. Populate the quantum interpretation suite: write the missing quantum/*.md with pilot-wave/self-hit mechanics, superposition, entanglement, and measurement pathways grounded in foundations/master-equation.md and foundations/self-hit-dynamics.md, plus testable predictions (double-slit, Bell/CHSH, collapse timescales).
+
 3. Derive the effective metric and PPN numbers: from spacetime/emergent-metric.md and spacetime/ppn-parameters.md, specify g_eff(ρ_core,Φ) and compute γ, β, α_i to Cassini/LLR precision; show Shapiro delay/light bending equivalence to GR to 1e-5 while respecting validation/failure-criteria.md.
+
 4. Nail self-hit/regularization numerics: implement tier-0/1 simulations per simulations/run-protocols.md and synthesis/action-energy/* to lock the maximum-curvature orbit, history resolution, and stability of binaries/tri-binaries; publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs.
+
 5. Complete the parameter ledger and couplings: populate foundations/parameter-ledger.md with κ, ε0/μ0 equivalents, density scales, and regularization widths; tie to foundations/action.md and foundations/architrino-si-base-units.md, then cross-check against validation/constraint-ledger.md for viability bounds.
 
 ---

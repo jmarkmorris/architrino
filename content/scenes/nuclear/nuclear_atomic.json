@@ -33,6 +33,19 @@
       "labelTitle": "Periodic Table"
     },
     {
+      "id": "hyde_periodic_table",
+      "label": "Hyde Periodic Table",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "subScenes": [
+        "content/scenes/chemistry/hyde_periodic_table_scene.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Hyde Periodic Table"
+    },
+    {
       "id": "atom",
       "label": "Atom",
       "radius": 2.688,
