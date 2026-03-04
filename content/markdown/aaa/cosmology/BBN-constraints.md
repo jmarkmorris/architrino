@@ -28,6 +28,10 @@
 - **Light-element origin:** From primordial relics of $t=0$ to ongoing nucleation products ejected from SMBH environments.
 - **Observational interpretation:** "Primordial" abundances reflect equilibrium distributions from continuous recycling, not a one-time cosmic event.
 
+### Local-Reactor Cosmology Positioning
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ shares non-one-time-origin logic with steady-state/cyclical families, but it is more constrained: light-element claims are accepted only when SMBH-local transport-and-freeze-out mappings satisfy the same yield closure standards used in standard BBN comparisons.
+
 ## Element Context
 
 In BBN, elements are not treated as isolated topics; they are one coupled yield system:
@@ -114,6 +118,14 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 
 - Homogeneity of observed abundances (low dispersion across cosmic volume) constrains how much local variation the SMBH process can tolerate.
 - This is a quantitative mapping objective: demonstrate that SMBH environments can produce sufficiently uniform outputs to match observations.
+
+## Model-Family Discriminator Checklist
+
+- Preserve deuterium survival through the bottleneck window without recirculation overburn.
+- Preserve narrow helium clustering (for example near $Y_p\approx0.245$ with low dispersion).
+- Preserve effective photon loading in the reaction window (BBN-compatible $\eta$ behavior).
+- Preserve effective neutrino-sector closure near three-species behavior (observer-level $N_{\text{eff}}$ compatibility).
+- Avoid per-source ad hoc retuning that breaks universality across SMBH populations.
 
 ## Observable-Mapping Goals (Interpretation-Scoped)
 

@@ -177,6 +177,10 @@ This mechanism is distinct from classical tired-light proposals. In tired light,
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve photon energy loss in transit. The photon assembly propagates through the Noether Sea without degradation (in the weak-field, low-density limit); the frequency difference arises from the evolving calibration of source and receiver clocks. This reproduces the standard $(1+z)$ time-dilation signature and is consistent with Tolman surface-brightness tests.
 
+### Why This Is Not a Static-Cosmology Claim
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ allows clock-comparison language for redshift interpretation, but still requires expansion-equivalent history closure across SN, BAO, CMB-distance, and ISW constraints. Purely static fits without this multi-probe closure are insufficient in the current framework.
+
 ## SMBH Recycling and Energy Flow
 
 Supermassive black holes process matter and radiation through their high-energy interiors. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ picture, this recycling has implications for the dark-energy sector:

@@ -14,6 +14,8 @@ This document frames $H_0$ and $S_8$ as linked conceptual problems inside a sing
 - $H_0$ is read through inhomogeneous medium evolution and region-dependent effective histories.
 - $S_8$ is read through growth behavior in baryonic and neutral assembly sectors with medium-coupled dynamics.
 
+This is conceptually adjacent to inhomogeneous/timescape interpretations, but implemented here through explicit Noether-sea state variables and module couplings.
+
 ## Unified Mechanism
 
 Both tensions are treated as different projections of one process: non-uniform relaxation of the Noether sea.

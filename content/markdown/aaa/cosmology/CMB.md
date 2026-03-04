@@ -13,6 +13,10 @@ The CMB timeline is presented as an effective observer-level chronology map that
 - Background and growth claims are kept in one shared medium-and-assembly ontology.
 - Epoch times below are an effective observer-level chronology map, not a claim of one literal global launch event in absolute-time ontology.
 
+## Chronology Mapping Note
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is conceptually adjacent to cyclical/recycling cosmology families, but its mechanism is explicitly SMBH-local source architecture in a fixed-void ontology.
+
 ## Pre-Cosmological Steady State ($\mathbb{A}\mathbb{A}\mathbb{A}$-Only)
 - Scope: $\mathbb{A}\mathbb{A}\mathbb{A}$-only steady-state background; $\Lambda\mathrm{CDM}$ does not define a pre-Big-Bang era.
 - Persistent galaxies and SMBHs exist in a long-lived recycling regime.
@@ -141,6 +145,14 @@ The CMB timeline is presented as an effective observer-level chronology map that
 **$\Lambda\mathrm{CDM}$ interpretation:** The Big Bang is a global origin of spacetime, setting the initial conditions for all subsequent evolution.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark photons and other outbound excitations from SMBH horizons (and associated jet/surface processes) propagate through the Noether sea, thermalize, and redshift into the observed CMB. The three intrinsic tri-binary energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB thus becomes a global record of steady-state recycling dynamics in a fixed void, not a singular origin event nor literal metric stretching of the container.
+
+### QSSC Contrast (Conceptual)
+
+| Axis | QSSC-like families | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation |
+|---|---|---|
+| Similarity | Distributed/recycling source logic over long history | Distributed/recycling source logic over long history |
+| Core difference | Phenomenological source and transport descriptions | Tri-binary medium microphysics with explicit module interfaces |
+| Closure standard | General background consistency goals | Hard closure targets: blackbody precision, $\Delta T/T$, and TT/TE/EE/damping coherence |
 
 ## Distributed-Emission Channels (Same Ontology)
 
