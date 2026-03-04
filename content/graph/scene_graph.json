@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 300,
-      "edges": 1132,
+      "nodes": 301,
+      "edges": 1133,
       "scenes": 175,
       "markdownIndexes": 16,
-      "markdownDocs": 109,
+      "markdownDocs": 110,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1532,6 +1532,12 @@
       "id": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "name": "Visualizing Volumes and Exclusion in the Universe",
       "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "name": "Hyde Periodic Table: Geometry, Chemistry, and Pedagogy",
+      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4035,6 +4041,15 @@
       "name": "Visualizing Volumes and Exclusion in the Universe",
       "path": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "name": "Hyde Periodic Table: Geometry, Chemistry, and Pedagogy",
+      "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "implicit": false
     },
     {
@@ -8749,6 +8764,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
