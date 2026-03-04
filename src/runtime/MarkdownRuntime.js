@@ -135,6 +135,7 @@ export function createMarkdownRuntime(deps) {
     const sectionKey = level.markdownSection ?? null;
     const cacheKey = sectionKey ? `${markdownPath}::${sectionKey}` : markdownPath;
     if (activeMarkdownPath === cacheKey && markdownPanel.classList.contains("is-open")) {
+      hideMarkdownPanel();
       return;
     }
     if (sectionKey) {
