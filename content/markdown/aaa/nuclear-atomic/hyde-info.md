@@ -37,6 +37,8 @@ That policy is important: Hyde’s layout is scientifically legitimate as a repr
 
 This section is an inference from the Hyde geometry plus periodic theory.
 
+Compared with the rigid rectangular block layout common in modern classroom tables, Hyde can be treated as a continuous topological embedding of the same atomic-number ordering. The representation changes the geometry of the map, not the underlying sequence of elements.
+
 ### 2.1 Topological model
 
 Treat the table as an embedded curve-like ordering:
@@ -58,7 +60,7 @@ The consequence is pedagogically strong: polarity in chemistry appears as a **ge
 
 ### 2.3 Why the $H \rightarrow C \rightarrow Si$ axis matters
 
-With hydrogen, carbon, and silicon collinear in the design narrative,[2] Hyde emphasizes:
+With hydrogen, carbon, and silicon arranged on/near the central axis in Hyde-oriented historical discussion,[2] the chart emphasizes:
 
 1. Hydrogen’s singularity (not cleanly “just alkali” in many chemical contexts).
 2. Carbon as biospheric backbone.
@@ -73,7 +75,8 @@ In rectangular tables, period transitions appear as line breaks. In Hyde’s for
 
 1. Increasing shell structure is read as geometric expansion.
 2. Repetition in valence patterns appears as rotational return in a deformed spiral.
-3. Block transitions (s/p/d/f behavior) can be taught as trajectory-regime changes along one continuous path.
+3. Block transitions ($s/p/d/f$ behavior) can be taught as trajectory-regime changes along one continuous path.
+4. Subshell branching is visually continuous rather than partitioned into disconnected rectangular blocks, which can make shell-to-subshell transitions easier to teach.
 
 ### 2.5 Lanthanoid/actinoid treatment
 
@@ -89,8 +92,9 @@ At graduate level, the key gain is not novelty of element order, but **novel sal
 
 1. **Continuity of trends**: monotone trends (size, ionization tendency, electronegativity tendency) are easier to frame as directional fields on a continuous map.
 2. **Boundary chemistry**: metalloids and intermediate behavior appear near geometric transition zones instead of seeming arbitrarily “on a staircase line.”
-3. **Family vs sequence tension**: fixed-family similarity and sequential-$Z$ progression can be shown simultaneously.
-4. **Heavy-element caution**: as one approaches transactinides, geometric continuity can remain while data confidence decreases (a useful didactic distinction).
+3. **Secondary and diagonal relationships**: transition-metal bridging behavior and cross-group analogies become more visually salient.
+4. **Family vs sequence tension**: fixed-family similarity and sequential-$Z$ progression can be shown simultaneously.
+5. **Heavy-element caution**: as one approaches transactinides, geometric continuity can remain while data confidence decreases (a useful didactic distinction).
 
 ---
 
@@ -161,6 +165,57 @@ This section lists issues that should be treated explicitly in the interface/doc
 5. **Separate “historical artifact fidelity” from “current scientific reference mode.”**
 
 This gives both historical integrity and scientific accuracy.
+
+---
+
+## 7. AAA Working Hypothesis Collection (Draft)
+
+The points below are collected as a framework-internal research program, not as established consensus chemistry.
+
+### 7.1 Central Claim
+
+- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of tri-binary assemblies.
+
+### 7.2 Assumptions
+
+- The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries decorated with 6E personality charges.
+- Electron tri-binaries are assumed to couple to a central nuclear Noether core through local spacetime-aether gradients.
+- Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
+
+### 7.3 Mechanism and Derivation Sketch
+
+- In this view, 8/18/32 shell periodicity should emerge from physical packing limits of tri-binary assemblies near the nucleus.
+- Hyde’s spiral is interpreted as a geometric map of principal-shell continuity plus subshell bifurcation.
+- Radial expansion hypothesis:
+- As nuclear core mass increases, the local Noether Sea density gradient steepens.
+- Electron tri-binaries settle into quantized stable radii from a balance of Coulombic attraction and aether-drag volume exclusion.
+- Hyde concentric loops are interpreted as these radial thresholds.
+- Subshell branching hypothesis ($s, p, d, f$):
+- Branching reflects availability of neutral-axis docking geometries.
+- Six polar decoration sites determine allowed angular states.
+- Pauli exclusion is reinterpreted as prohibition of overlap among precessing 3D ellipsoidal exclusion volumes.
+- 8/18/32 counts are interpreted as maximal non-overlapping precession-cone populations at each radial tier before forced occupation of a larger-radius shell.
+- Secondary-relationship hypothesis:
+- Hyde-highlighted diagonal and secondary relationships (including transition-metal bridges and C/Si centrality) are interpreted as similarities in exposed neutral-axis geometry of outer tri-binaries.
+- Those similarities are proposed to govern covalent and metallic bonding angles.
+
+### 7.4 Predictions and Observables
+
+- If shell structure is a packing phenomenon, ionization-energy trends along Hyde’s spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
+- The proposed source of deviation is finite-volume deformation of inner-shell tri-binaries under extreme aether-density gradients.
+
+### 7.5 Failure Modes and Falsification Criteria
+
+- If multi-body simulations of decorated tri-binaries do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
+- If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
+- If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
+
+### 7.6 Immediate Next Steps
+
+- Translate Hyde’s 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal tri-binaries.
+- Run a first constrained benchmark at the Neon core ($Z=10$).
+- Test whether exactly eight electron assemblies can remain stable without intersection of precessing exclusion volumes.
+- Extend to higher-$Z$ shells only after Neon stability and node discreteness criteria are met.
 
 ---
 
