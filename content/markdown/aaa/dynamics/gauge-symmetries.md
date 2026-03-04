@@ -93,6 +93,20 @@ where omitted terms are higher-order constitutive corrections from the Noether-s
 
 This is an emergent effective description, not a claim that gauge fields are ontologically fundamental.
 
+## Closure Interface: Gauge-Topology Compatibility
+
+For integration with the topological and metric closure programs, impose compatibility between gauge-covariant effective dynamics and topology-derived sector separation.
+
+Required consistency conditions:
+1. **Topology respect:** effective gauge transport must preserve the admissible axis-exceptionality sector decomposition used in confinement/topology chapters.
+2. **No leakage contradiction:** constitutive preferred-frame leakage terms (from spacetime closure) must not force leading-order gauge-breaking operators.
+3. **Energy-side compatibility:** gauge sector must admit open-vs-closed braid scaling laws without violating local covariance of the effective Lagrangian.
+
+Interface chapters:
+- topology and action invariants: `dynamics/causal-action-functional.md`
+- color structure and confinement geometry: `assemblies/fermions/color-charge-su3.md`
+- preferred-frame closure: `spacetime/ppn-parameters.md`
+
 ## Failure Conditions
 
 This gauge-emergence spine fails if any of the following occur in the calibrated low-energy regime:

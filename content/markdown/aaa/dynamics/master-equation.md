@@ -1929,6 +1929,26 @@ A secular drift indicates numerical asymmetry or a symmetry-breaking perturbatio
 
 These diagnostics operationalize the symmetry constraints and provide early warning of numerical artifacts or model inconsistencies.
 
+#### Closure Interface: Coarse-Graining Gate to Effective Quantum Envelope
+
+For integration with the quantum closure program, the master equation provides the microscopic gate:
+$$
+m_i\ddot{\mathbf{x}}_i(t)=\text{retarded causal-hit sum over }\mathcal{C}_j(t).
+$$
+
+The required next reduction is a controlled map to mesoscopic density dynamics:
+$$
+f(t,\mathbf{x},\mathbf{v})
+\Longrightarrow
+(\rho,\mathbf{u},S)
+\Longrightarrow
+\psi=\sqrt{\rho}\,e^{iS/\hbar_{\mathrm{eff}}}.
+$$
+
+Closure condition for this interface:
+- the same coarse-graining window that preserves validated dynamical invariants must recover the effective Schrödinger limit in the non-relativistic weak-field regime;
+- residual non-Markovian terms must be explicitly retained as correction operators, not absorbed into uncontrolled fitting.
+
 ---
 
 **End of Master Equation of Motion Document**

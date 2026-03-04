@@ -341,6 +341,35 @@ For each simulated orbit family:
 - **Topology needs precision:** Time is monotone; periodic motion yields a spatially closed path but a helical spacetime curve. Be explicit about which projection/linking notion defines the “topological class.”
 - **Cohomology language is aspirational:** A cochain complex over the moduli of periodic orbits is not yet constructed; treat “cohomology of causal interaction” as a research direction, not a result.
 
+### Closure Extension: Spin Bundle and Confinement Energy Law
+
+To complete the topological closure program, add two theorem targets on top of the existing causal-locus spine.
+
+#### (T5.1) Spinor lift target
+
+Construct a framed configuration bundle for tri-binary ordered axes and prove that physical orientation transport lifts through
+$$
+\widetilde{R}:SU(2)\simeq\mathrm{Spin}(3)\to SO(3),
+$$
+so the internal phase distinguishes 2$\pi$ and 4$\pi$ loops.
+
+#### (T5.2) Open-vs-closed braid energy target
+
+Define an effective color-braid energy law:
+$$
+E_{\mathrm{open}}(L)=\sigma_{\mathrm{eff}}L+E_0+\mathcal{O}(1/L),\qquad \sigma_{\mathrm{eff}}>0,
+$$
+$$
+E_{\mathrm{closed}}(L)\to E_{\infty}<\infty\quad (L\to\infty).
+$$
+Combined with causal-locus class constraints, this gives a quantitative separation between confined open sectors and screened singlet sectors.
+
+#### Integration map
+
+- causal-locus topology and bifurcation class invariants: **this chapter**
+- color-algebra and singlet braid structure: `assemblies/fermions/color-charge-su3.md`
+- gauge-covariant effective layer and failure criteria: `dynamics/gauge-symmetries.md`
+
 ### Summary and Status
 - We defined a causal self-action and total-action functional directly from the $1/r^2$ delayed kernel, plus its normalized form for periodic orbits.
 - Topology of the causal locus $\mathcal{L}_{\text{causal}}\subset T^2$ supplies discrete labels (winding, writhe, link type) that naturally segment orbit families.

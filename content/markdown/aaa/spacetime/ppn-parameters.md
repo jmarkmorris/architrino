@@ -161,3 +161,23 @@ $$
 and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
 The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
+
+### Closure Program Interface (observable decision layer)
+
+This chapter is the observable-side gate for the emergent-metric closure.
+
+Define the PPN decision vector:
+$$
+\mathbf{p}_{\mathrm{PPN}}=
+\bigl(\gamma_{\mathrm{eff}}-1,\ \beta_{\mathrm{eff}}-1,\ \alpha_1,\ \alpha_2,\ \alpha_3\bigr).
+$$
+The weak-field closure target is
+$$
+\mathbf{p}_{\mathrm{PPN}}\approx \mathbf{0}
+$$
+within the benchmark tolerances listed in the validation ledger.
+
+Cross-chapter integration:
+- constitutive map source: `spacetime/emergent-metric.md`
+- clock-law coefficient extraction: `spacetime/proper-time-and-time-dilation.md`
+- threshold enforcement: `validation/constraint-ledger.md`

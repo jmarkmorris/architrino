@@ -445,7 +445,25 @@ to derive nucleon–nucleon potentials and binding energies in the nuclear secti
 
 > Residual strong force emerges from the same axis/braid structure as color, via imperfect screening of H/M/L at finite nucleon separations.
 
+## Closure Interface: Confinement Energy Scaling
 
+The algebraic SU(3) closure above is necessary but not sufficient for full confinement closure.
+
+Energy-side target inherited from the topological program:
+$$
+E_{\mathrm{open}}(L)=\sigma_{\mathrm{eff}}L+E_0+\mathcal{O}(1/L),\qquad \sigma_{\mathrm{eff}}>0,
+$$
+for open color braids/flux sectors, while closed singlet sectors satisfy
+$$
+E_{\mathrm{closed}}(L)\to E_{\infty}<\infty
+$$
+and vanishing far-field color flux.
+
+This chapter therefore carries:
+- **already closed:** color Hilbert space, generator construction, and $\mathfrak{su}(3)$ algebra closure;
+- **to close quantitatively:** open-vs-closed energy scaling with explicit $\sigma_{\mathrm{eff}}$ extraction from medium shear/torsion.
+
+Primary topology spine: `dynamics/causal-action-functional.md`.
 
 ## Summary and Next Steps
 

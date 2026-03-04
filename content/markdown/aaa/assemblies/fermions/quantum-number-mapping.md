@@ -353,4 +353,25 @@ However, there are two nuances we should be aware of, though we don't necessaril
 **Verdict:**
 The table is sufficient. It connects the geometry to every parameter needed to calculate a scattering amplitude or a decay rate (except for Mass, which is a derived energy scale, not a quantum number).
 
+## Closure Interfaces (Integration Map)
+
+This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
+
+- **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in `assemblies/fermions/weak-mixing-ckm.md`.
+- **Lepton mixing (PMNS):** neutral-core phase Hamiltonian and oscillation map in `assemblies/fermions/neutrinos.md`.
+- **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in `dynamics/causal-action-functional.md` and `assemblies/fermions/color-charge-su3.md`.
+
+Minimal symbol map used across those closures:
+$$
+Q=T_3+\frac{Y}{2},\qquad
+V_{ij}=\langle j_m|i_w\rangle,\qquad
+|\nu_\alpha\rangle=\sum_i U_{\alpha i}|\nu_i\rangle.
+$$
+
+Spin closure target (formal, not yet proven):
+$$
+\widetilde{R}:SU(2)\simeq \mathrm{Spin}(3)\to SO(3),
+$$
+with tri-binary ordered-frame evolution transforming on the double cover so that 2$\pi$ and 4$\pi$ rotations are distinguished at the internal phase level.
+
 ---

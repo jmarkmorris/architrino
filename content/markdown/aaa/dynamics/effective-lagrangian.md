@@ -166,3 +166,17 @@ By defining an effective scalar potential $\Phi(\mathbf{x}, t)$ and a vector flo
 The effective Lagrangian restricts the allowed topological configurations of the architrino medium. Stable assemblies—such as the nested maximal-curvature orbits of tri-binaries—manifest as localized, phase-locked topological defects (vortices or knots) within the continuous flow fields.
 
 The stability of these assemblies is governed by the nonlinear self-hit feedback embedded in the interaction functional. When the internal circulation velocities exceed $c_f$, the resulting non-Markovian repulsion establishes a robust geometric attractor, providing a mass gap and fixing the spatial extent of the assembly. The effective Lagrangian thus isolates the discrete parameter space (e.g., $e/6$ polar site decorations) where these geometric attractors minimize the time-averaged path-history action.
+
+### Closure Interface: Action-to-Envelope Reduction
+
+This chapter supplies the variational bridge used by the quantum closure chain.
+
+From the regularized nonlocal action, derive a continuum effective action in terms of coarse fields $(\rho,\mathbf{j})$, then pass to a phase-amplitude representation:
+$$
+\rho=|\psi|^2,\qquad
+\mathbf{j}=\frac{\hbar_{\mathrm{eff}}}{m}\Im(\psi^*\nabla\psi)+\mathbf{j}_{\mathrm{mem}}.
+$$
+
+Closure requirement for this interface:
+- the Euler-Lagrange equations of the coarse action reproduce the effective envelope equation used in `quantum/pilot-wave-character.md`,
+- memory contributions $\mathbf{j}_{\mathrm{mem}}$ remain explicit as controlled correction terms rather than hidden parameter absorbs.
