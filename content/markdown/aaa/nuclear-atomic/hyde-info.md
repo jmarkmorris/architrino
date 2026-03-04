@@ -2,7 +2,7 @@
 
 ## Scope
 
-This document treats the periodic table as a scientific structure first, then analyzes how the Hyde format re-embeds that structure geometrically. The objective is technical clarity on:
+This document treats the periodic table as a scientific structure first, then analyzes how the Hyde format re-encodes that structure geometrically. The objective is technical clarity on:
 
 1. What periodic regularities are invariant across layouts.
 2. How those regularities arise from electronic structure.
@@ -15,7 +15,7 @@ This document treats the periodic table as a scientific structure first, then an
 
 ### 1.1 Atomic-number ordering
 
-The modern periodic law is indexed by atomic number $Z$ (nuclear charge), not atomic mass. Any valid table layout must preserve monotone ordering in $Z$ and recover family-level chemical recurrence.
+The modern periodic law is indexed by atomic number $Z$ (nuclear charge), not atomic mass. Any valid table layout must preserve monotonic ordering in $Z$ and recover family-level chemical recurrence.
 
 ### 1.2 Electronic shell and subshell capacities
 
@@ -23,7 +23,7 @@ For principal quantum number $n$, the shell capacity is
 
 $$N_{\text{shell}} = 2n^2.$$
 
-For subshell angular momentum $\ell$, capacity is
+For subshell angular momentum $\ell$, the capacity is
 
 $$N_{\ell} = 2(2\ell+1),$$
 
@@ -71,7 +71,7 @@ A technically rich periodic diagram typically carries multiple fields per elemen
 
 1. Atomic number $Z$.
 2. Symbol and element name.
-3. Standard atomic weight or most-relevant isotopic mass convention.
+3. Standard atomic weight or most relevant isotopic-mass convention.
 4. Common oxidation states.
 5. Often first ionization energy (historical charts frequently use eV-scale values).
 
@@ -83,7 +83,7 @@ In the Hyde artwork used in this project, small numeric annotations and labels a
 
 ### 4.1 Genealogy of the Hyde form
 
-The Benfey 2009 analysis gives an explicit lineage for the Hyde table.[2]
+The Benfey (2009) analysis gives an explicit lineage for the Hyde table.[2]
 
 1. Clark (1933): early oval/spiral periodic chart architecture.[3]
 2. Life (1949): high-visibility oval adaptation for a broad scientific audience.[4]
@@ -104,8 +104,6 @@ The same source records two distinct geometric modifications over time.[2]
 
 Hyde’s specific move was to place a horizontal axis through H, C, and Si, emphasizing C/Si centrality between electropositive and electronegative regions, with explicit biosphere/lithosphere framing in the historical account.[2][7]
 
-
-
 ### 4.4 Historical intent statement
 
 In Benfey’s own account, the spiral was designed to improve visibility of periodic pattern structure relative to fragmented rectangular presentations; it was not presented as a replacement for the underlying periodic law.[2]
@@ -116,7 +114,7 @@ In Benfey’s own account, the spiral was designed to improve visibility of peri
 
 ### 5.1 Continuous topological embedding
 
-Rectangular tables encode periodicity on a Cartesian grid with detached f-block rows. Hyde-style embedding keeps a near-continuous trajectory in $Z$, reducing topological breaks and emphasizing sequence continuity.
+Rectangular tables encode periodicity on a Cartesian grid with detached $f$-block rows. Hyde-style embedding keeps a near-continuous trajectory in $Z$, reducing topological breaks and emphasizing sequence continuity.
 
 ### 5.2 Radial/curvilinear shell progression
 
@@ -143,31 +141,29 @@ In technical reading, the Hyde linework can be interpreted as layered semantic s
 1. Outer/inner curved boundaries partition period and block neighborhoods.
 2. Subshell-style notations of the form $s^x p^y$ appear in some arcs, indicating valence-configuration classes.
 
-
 ---
 
-
-## 8. AAA Working Hypothesis Collection (Draft)
+## 7. AAA Working Hypothesis Collection (Draft)
 
 The points below are collected as a framework-internal research program, not as established consensus chemistry.
 
-### 8.1 Central Claim
+### 7.1 Central Claim
 
-- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of tri-binary assemblies.
+- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev-style table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of tri-binary assemblies.
 
-### 8.2 Assumptions
+### 7.2 Assumptions
 
-- The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries decorated with 6 personality charges.
+- The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries decorated with six personality charges.
 - Electron tri-binaries are assumed to couple to a central nuclear Noether core through local spacetime-aether gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
-### 8.3 Mechanism and Derivation Sketch
+### 7.3 Mechanism and Derivation Sketch
 
-- In this view, 8/18/32 shell periodicity should emerge from physical packing limits of tri-binary assemblies near the nucleus.
+- In this view, the 8/18/32 shell periodicity should emerge from physical packing limits of tri-binary assemblies near the nucleus.
 - Hyde’s spiral is interpreted as a geometric map of principal-shell continuity plus subshell bifurcation.
 - Radial expansion hypothesis: as nuclear core mass increases, the local Noether Sea density gradient steepens.
 - Electron tri-binaries settle into quantized stable radii from a balance of Coulombic attraction and aether-drag volume exclusion.
-- Hyde concentric loops are interpreted as these radial thresholds.
+- Hyde’s concentric loops are interpreted as these radial thresholds.
 - Subshell branching hypothesis ($s, p, d, f$): branching reflects availability of neutral-axis docking geometries.
 - Six polar decoration sites determine allowed angular states.
 - Pauli exclusion is reinterpreted as prohibition of overlap among precessing 3D ellipsoidal exclusion volumes.
@@ -175,18 +171,18 @@ The points below are collected as a framework-internal research program, not as 
 - Secondary-relationship hypothesis: Hyde-highlighted diagonal and secondary relationships (including transition-metal bridges and C/Si centrality) are interpreted as similarities in exposed neutral-axis geometry of outer tri-binaries.
 - Those similarities are proposed to govern covalent and metallic bonding angles.
 
-### 8.4 Predictions and Observables
+### 7.4 Predictions and Observables
 
 - If shell structure is a packing phenomenon, ionization-energy trends along Hyde’s spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
 - The proposed source of deviation is finite-volume deformation of inner-shell tri-binaries under extreme aether-density gradients.
 
-### 8.5 Failure Modes and Falsification Criteria
+### 7.5 Failure Modes and Falsification Criteria
 
 - If multi-body simulations of decorated tri-binaries do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
 - If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
 - If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
 
-### 8.6 Immediate Next Steps
+### 7.6 Immediate Next Steps
 
 - Translate Hyde’s 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal tri-binaries.
 - Run a first constrained benchmark at the Neon core ($Z=10$).
