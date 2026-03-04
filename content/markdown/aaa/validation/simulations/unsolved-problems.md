@@ -1,4 +1,4 @@
-# Unsolved Problems (Stub)
+# Unsolved Problems
 
 ## Planck-Scale Framing
 

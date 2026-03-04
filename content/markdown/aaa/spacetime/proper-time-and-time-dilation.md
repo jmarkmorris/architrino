@@ -300,7 +300,6 @@ Required bounds for weak-field acceptance:
 
 ### Direct Numerical Experiments
 
-Sol’s tasks (see `validation/simulations`):
 
 1. **Velocity Dilation Test:**
  - Simulate a tri‑binary clock at rest and at several velocities $v/c \in \{0.1, 0.3, 0.6, 0.9\}$ through a uniform Noether Sea.
@@ -367,4 +366,4 @@ This program fails—and the emergent‑metric project is likely untenable—if 
 ---
 
 **Deliverable of this document:** 
-A concrete, simulation‑ready definition of **how** to compute $\omega(v,\Phi_{\text{eff}},\rho_{\text{vac}})$ for a tri‑binary clock, a clear expression for $d\tau/dt$ in terms of those quantities, and an explicit test matrix to compare with SR/GR benchmarks.
+A concrete definition of **how** to compute $\omega(v,\Phi_{\text{eff}},\rho_{\text{vac}})$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.

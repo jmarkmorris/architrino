@@ -209,10 +209,7 @@ Observed low-metallicity gas and very old stars with BBN-like light-element patt
 - **Timing consistency:** Why does the effective freeze-out sequence (D $\to$ $^3$He $\to$ $^4$He) occur so uniformly?
 - **Neutrino sector:** How does local SMBH nucleation produce the observed $N_{\text{eff}} \approx 3$ signature?
 
-### Evaluation Standard
 
-- Standard BBN is a single-parameter fit (baryon-to-photon ratio) that works spectacularly well.
-- $\mathbb{A}\mathbb{A}\mathbb{A}$ should show that SMBH-averaged outputs can reproduce this success without ad hoc tuning of SMBH properties or recycling rates.
 
 ## Summary Table
 

@@ -168,17 +168,6 @@ Jet-transport scales in the Mpc class are treated as part of this channel family
 
 Isotropy in this branch is attributed to long-time averaging over many source populations following the same microphysical rules, not to one-time primordial causal contact.
 
-## Quantitative Closure Requirements
-
-Any distributed-emission account must match the same hard observables usually used to validate primordial-origin models:
-
-- blackbody precision near $T\approx 2.725\ \mathrm{K}$,
-- near-isotropy with anisotropy amplitude $\Delta T/T\sim 10^{-5}$,
-- TT/TE/EE peak structure and damping behavior.
-- explicit demonstration that source-population spectral superposition plus transport can converge to the observed near-perfect blackbody without unacceptable distortions.
-
-Until this closure is explicit, distributed-origin language remains a constrained working hypothesis.
-
 ## Consistency Anchors
 
 - Expansion wording here should remain consistent with `expansion-mechanism.md`.
@@ -243,7 +232,3 @@ So CMB temperature/redshift summaries remain usable while their mechanism is gro
 
 - Keep effective $N_{\text{eff}}$ language connected to neutrino/sea coupling history.
 - Keep baryon-loading and damping-tail language connected to the same reaction/transport background used in BBN framing.
-
-### Coherent Reading
-
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, peak spacing, odd/even loading, damping-tail behavior, polarization phase structure, and redshifted temperature readout are all interpreted as outputs of one medium-and-assembly history in a fixed Euclidean void.

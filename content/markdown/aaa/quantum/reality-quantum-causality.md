@@ -537,7 +537,6 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 
 ### Cost of Decision (Thermodynamics)
 
-**Red** insists we mention the cost:
 None of this is free. To move the Bias Unit, shift the frequency, or precess the axis requires **work**.
 *   The system must expend stored energy to change its configuration.
 *   **Agency = Energy dissipation.** You pay energy to change your sensitivity distribution.

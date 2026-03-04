@@ -280,28 +280,6 @@ In the modular cosmology architecture, this document provides:
 
 ---
 
-## Observables, Falsifiability, and Failure Modes
+## Synthesis
 
-**Claim:** Structure formation is governed by medium-response gravitational instability in a fixed Euclidean background, with $H$, $G_{\text{eff}}$, and the matter content determined by the internal dynamics of architrino assemblies.
-
-**Assumptions:**
-- Linear perturbation theory is valid for $|\delta| \ll 1$ at scales $\lambda \gg \bar{R}_{\text{core}}$.
-- The medium response is quasi-static on perturbation timescales.
-- Dark matter is realized as weakly coupled neutral assemblies (or, alternatively, as a purely medium-modification effect—scenarios must be distinguished).
-
-**Predictions:**
-- If $G_{\text{eff}}$ is epoch-dependent (medium compliance evolving), $f\sigma_8(z)$ deviates from the GR prediction $f \approx \Omega_m^{0.55}$ in a specific, computable way.
-- If $G_{\text{eff}}$ acquires $k$-dependence at galactic scales, rotation-curve systematics correlate with local medium density rather than with halo mass alone.
-- The $S_8$ tension is naturally addressed if $\mu(a_{\text{late}}, k_{\text{survey}}) < 0$ (late-time growth suppression from medium stiffening).
-
-**Failure modes:**
-- If combined CMB + lensing + galaxy-survey data require $|\mu| > 0.3$ at any well-constrained scale, the medium model demands extreme compliance variation and likely enters the fine-tuning regime (FTQ $> 10$).
-- If the Bullet Cluster offset and analogous systems categorically exclude particle-like dark matter, while galaxy rotation curves simultaneously exclude $G_{\text{eff}}$ modification, the framework has no viable dark-sector realization.
-- If the primordial power spectrum cannot be generated from any medium initial condition or inflation-equivalent process consistent with the CMB $TT$/$EE$ data, the framework fails at the input level regardless of growth dynamics.
-- If high-$z$ structure observations require growth rates exceeding the maximum permitted by any physical $G_{\text{eff}}(z)$ profile (even with early-time enhancement), the framework cannot accommodate the data.
-
-**Next steps:**
-- Calibrate the constitutive coefficients $\{K,S,\zeta,\eta,m_L,g_m\}(a)$ in the derived $\mu(a,k)$ map using linear-response simulations from `dynamics/effective-lagrangian.md`, then project to survey observables.
-- Compute $f\sigma_8(z)$ for a family of medium-compliance histories and compare against DESI, Euclid, and Rubin LSST data.
-- Simulate the nonlinear regime ($|\delta| \gtrsim 1$) using N-body methods with the modified $G_{\text{eff}}$ to produce halo mass functions and concentration–mass relations for comparison with cluster surveys.
-- Interface with `CMB.md` to verify that the primordial spectrum and lensing amplitude are jointly consistent.
+Structure formation is modeled here as medium-response gravitational instability in a fixed Euclidean background, with $H$, $G_{\text{eff}}$, and matter content determined by internal dynamics of architrino assemblies. The practical program is to derive the constitutive coefficients $\{K,S,\zeta,\eta,m_L,g_m\}(a)$, close $\mu(a,k)$ from the medium response equations, and propagate the resulting growth history through the coupled cosmology modules.
