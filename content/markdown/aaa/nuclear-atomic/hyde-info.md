@@ -196,21 +196,21 @@ The points below are collected as a framework-internal research program, not as 
 
 ## References
 
-[1] Science History Institute Digital Collections, *The Chemical Elements and Their Periodic Relationships* (J. F. Hyde, 1975):  
+[1] Science History Institute Digital Collections, *The Chemical Elements and Their Periodic Relationships* (J. F. Hyde, 1975):<br>
 https://digital.sciencehistory.org/works/8p58pf13g
 
-[2] O. T. Benfey, *The Biography of a Periodic Spiral: From Chemistry Magazine, via Industry, to a Foucault Pendulum*, *Bull. Hist. Chem.* 34(2), 141-145 (2009). Local copy:  
+[2] O. T. Benfey, *The Biography of a Periodic Spiral: From Chemistry Magazine, via Industry, to a Foucault Pendulum*, *Bull. Hist. Chem.* 34(2), 141-145 (2009). Local copy:<br>
 `content/assets/bhc2009v034p141.pdf`
 
 [3] J. D. Clark, “A New Periodic Chart,” *J. Chem. Educ.* 10 (1933) 675-677.
 
 [4] “The Atom: A Layman’s Primer on what the World is made of,” *Life*, May 16, 1949, 26(20), 68-88.
 
-[5] IUPAC, *Periodic Table of Elements* (policy context: group conventions, naming, updates):  
+[5] IUPAC, *Periodic Table of Elements* (policy context: group conventions, naming, updates):<br>
 https://iupac.org/what-we-do/periodic-table-of-elements/
 
-[6] IUPAC Recommendations on naming superheavy elements and naming procedures:  
-https://iupac.org/recommendation/names-and-symbols-of-the-elements-with-atomic-numbers-113-115-117-and-118/  
+[6] IUPAC Recommendations on naming superheavy elements and naming procedures:<br>
+https://iupac.org/recommendation/names-and-symbols-of-the-elements-with-atomic-numbers-113-115-117-and-118/<br>
 https://iupac.org/recommendation/how-to-name-new-chemical-elements/
 
 [7] J. F. Hyde, “A Newly Arranged Periodic Chart,” *Chemistry*, Sept 1976, 49(7), 15-18.
