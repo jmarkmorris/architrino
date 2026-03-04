@@ -39,93 +39,125 @@ export function createPeriodicOverlayRuntime(deps) {
       ? hydePeriodicSceneId
       : "hyde_periodic_table";
   const hydeArtworkPath = "content/assets/hyde_periodic_table.svg";
-  const hydeHotspotSymbolAssignments = {
-    1: "Si",
-    2: "Ge",
-    3: "As",
-    4: "Sn",
-    5: "Pb",
-    6: "Ti",
-    7: "Hf",
-    8: "Rf",
-    9: "Db",
-    18: "Zr",
-    19: "Nb",
-    21: "W",
-    22: "Mo",
-    23: "Tc",
-    24: "Re",
-    26: "Ir",
-    27: "Pt",
-    28: "Au",
-    29: "Cd",
-    30: "Hg",
-    36: "Co",
-    37: "Ni",
-    38: "Cu",
-    39: "Ga",
-    40: "Ru",
-    41: "Rn",
-    42: "Pd",
-    43: "Ag",
-    46: "Sb",
-    47: "Te",
-    33: "Cr",
-    34: "Mn",
-    35: "Fe",
-    45: "V",
-    48: "Ne",
-    49: "Se",
-    50: "Bi",
-    51: "Po",
-    52: "Ar",
-    53: "Kr",
-    54: "Xe",
-    55: "Rn",
-    56: "P",
-    57: "S",
-    58: "He",
-    60: "Br",
-    61: "I",
-    62: "At",
-    63: "N",
-    64: "B",
-    65: "Be",
-    66: "Mg",
-    67: "Na",
-    69: "Rb",
-    70: "Cs",
-    71: "Fr",
-    72: "Li",
-    73: "Ca",
-    74: "Sr",
-    75: "Ba",
-    31: "In",
-    78: "Sc",
-    79: "Y",
-    80: "La",
-    81: "Ac",
-    82: "C",
-    83: "O",
-    84: "F",
-    85: "H",
-    86: "Er",
-    94: "Sm",
-    95: "Pm",
-    98: "Nd",
-    99: "Pr",
-    101: "Th",
-    102: "Tm",
-    103: "Yb",
-    104: "Lu",
-    105: "Ce",
-    109: "Cn",
-    111: "Ds",
-    112: "Mt",
-    113: "Hs",
-    114: "Bh",
-    115: "Sg",
-    44: "Zn",
+  const hydeAtomicNumberToHotspotNumber = {
+    1: 85,
+    2: 58,
+    3: 72,
+    4: 65,
+    5: 64,
+    6: 82,
+    7: 63,
+    8: 83,
+    9: 84,
+    10: 48,
+    11: 67,
+    12: 66,
+    13: 77,
+    14: 1,
+    15: 56,
+    16: 57,
+    17: 59,
+    18: 52,
+    19: 68,
+    20: 73,
+    21: 78,
+    22: 6,
+    23: 45,
+    24: 33,
+    25: 34,
+    26: 35,
+    27: 36,
+    28: 37,
+    29: 38,
+    30: 44,
+    31: 39,
+    32: 2,
+    33: 3,
+    34: 49,
+    35: 60,
+    36: 53,
+    37: 69,
+    38: 74,
+    39: 79,
+    40: 18,
+    41: 19,
+    42: 22,
+    43: 23,
+    44: 40,
+    45: 41,
+    46: 42,
+    47: 43,
+    48: 29,
+    49: 31,
+    50: 4,
+    51: 46,
+    52: 47,
+    53: 61,
+    54: 54,
+    55: 70,
+    56: 75,
+    57: 80,
+    58: 105,
+    59: 99,
+    60: 98,
+    61: 95,
+    62: 94,
+    63: 92,
+    64: 90,
+    65: 89,
+    66: 88,
+    67: 87,
+    68: 86,
+    69: 102,
+    70: 103,
+    71: 104,
+    72: 7,
+    73: 20,
+    74: 21,
+    75: 24,
+    76: 25,
+    77: 26,
+    78: 27,
+    79: 28,
+    80: 30,
+    81: 32,
+    82: 5,
+    83: 50,
+    84: 51,
+    85: 62,
+    86: 55,
+    87: 71,
+    88: 76,
+    89: 81,
+    90: 101,
+    91: 100,
+    92: 97,
+    93: 96,
+    94: 93,
+    95: 91,
+    96: 17,
+    97: 16,
+    98: 15,
+    99: 14,
+    100: 13,
+    101: 12,
+    102: 11,
+    103: 10,
+    104: 8,
+    105: 9,
+    106: 115,
+    107: 114,
+    108: 113,
+    109: 112,
+    110: 111,
+    111: 110,
+    112: 109,
+    113: 107,
+    114: 106,
+    115: 108,
+    116: 116,
+    117: 117,
+    118: 118,
   };
   const hydeViewBoxWidth = 2592;
   const hydeViewBoxHeight = 1944;
@@ -1093,59 +1125,27 @@ export function createPeriodicOverlayRuntime(deps) {
     const elements = [...data.elements]
       .filter((el) => Number.isFinite(Number(el.number)))
       .sort((a, b) => Number(a.number) - Number(b.number));
-    const baselineCount = Math.min(hotspots.length, elements.length);
-    const distanceBetweenHotspots = (a, b) =>
-      Math.hypot(a.center.x - b.center.x, a.center.y - b.center.y);
-    const vectorBetweenHotspots = (from, to) => ({
-      x: to.center.x - from.center.x,
-      y: to.center.y - from.center.y,
-    });
-    const angleBetweenVectors = (a, b) => {
-      const magA = Math.hypot(a.x, a.y);
-      const magB = Math.hypot(b.x, b.y);
-      if (!magA || !magB) {
-        return 0;
-      }
-      const cosine = (a.x * b.x + a.y * b.y) / (magA * magB);
-      return Math.acos(Math.max(-1, Math.min(1, cosine)));
-    };
     const elementsByAtomicNumber = new Map(
       elements.map((element) => [Number(element.number), element])
-    );
-    const elementsBySymbol = new Map(
-      elements.map((element) => [String(element.symbol || "").toUpperCase(), element])
     );
     const assignedElements = new Array(hotspots.length).fill(null);
     const hotspotOrderByDisplayNumber = new Map(
       hotspots.map((hotspot, hotspotOrderIndex) => [hotspot.index + 1, hotspotOrderIndex])
     );
-    const fixedAtomicToDisplayNumber = new Map();
-    Object.entries(hydeHotspotSymbolAssignments).forEach(([displayNumberKey, assignmentSymbolRaw]) => {
-      const displayNumber = Number.parseInt(displayNumberKey, 10);
-      if (!Number.isFinite(displayNumber)) {
+    const usedHotspotOrders = new Set();
+    Object.entries(hydeAtomicNumberToHotspotNumber).forEach(([atomicNumberKey, displayNumberValue]) => {
+      const atomicNumber = Number.parseInt(atomicNumberKey, 10);
+      const displayNumber = Number.parseInt(displayNumberValue, 10);
+      if (!Number.isFinite(atomicNumber) || !Number.isFinite(displayNumber)) {
         return;
       }
-      const assignmentSymbol = String(assignmentSymbolRaw || "").trim().toUpperCase();
-      if (!assignmentSymbol) {
-        return;
-      }
-      const assignmentElement = elementsBySymbol.get(assignmentSymbol);
-      if (!assignmentElement) {
+      const element = elementsByAtomicNumber.get(atomicNumber);
+      if (!element) {
         console.warn(
-          `[PeriodicOverlayRuntime] Ignoring unknown Hyde assignment symbol "${assignmentSymbol}" for hotspot ${displayNumber}`
+          `[PeriodicOverlayRuntime] Ignoring Hyde assignment for unknown atomic number ${atomicNumber}`
         );
         return;
       }
-      const atomicNumber = Number(assignmentElement.number);
-      if (!Number.isFinite(atomicNumber) || atomicNumber < 1 || atomicNumber > baselineCount) {
-        return;
-      }
-      fixedAtomicToDisplayNumber.set(atomicNumber, displayNumber);
-    });
-
-    const fixedAtomicToOrder = new Map();
-    const fixedOrderToAtomic = new Map();
-    fixedAtomicToDisplayNumber.forEach((displayNumber, atomicNumber) => {
       const hotspotOrderIndex = hotspotOrderByDisplayNumber.get(displayNumber);
       if (hotspotOrderIndex === undefined) {
         console.warn(
@@ -1153,132 +1153,24 @@ export function createPeriodicOverlayRuntime(deps) {
         );
         return;
       }
-      const previousOrderForAtomic = fixedAtomicToOrder.get(atomicNumber);
-      if (Number.isFinite(previousOrderForAtomic) && previousOrderForAtomic !== hotspotOrderIndex) {
-        fixedOrderToAtomic.delete(previousOrderForAtomic);
-      }
-      const previousAtomicAtOrder = fixedOrderToAtomic.get(hotspotOrderIndex);
-      if (
-        Number.isFinite(previousAtomicAtOrder) &&
-        previousAtomicAtOrder !== atomicNumber &&
-        fixedAtomicToOrder.get(previousAtomicAtOrder) === hotspotOrderIndex
-      ) {
-        fixedAtomicToOrder.delete(previousAtomicAtOrder);
-      }
-      fixedAtomicToOrder.set(atomicNumber, hotspotOrderIndex);
-      fixedOrderToAtomic.set(hotspotOrderIndex, atomicNumber);
-    });
-
-    const atomicToOrder = new Map();
-    const usedOrders = new Set();
-    const assignedAtomicNumbers = new Set();
-    fixedAtomicToOrder.forEach((hotspotOrderIndex, atomicNumber) => {
-      const element = elementsByAtomicNumber.get(atomicNumber);
-      if (!element) {
+      if (usedHotspotOrders.has(hotspotOrderIndex)) {
+        console.warn(
+          `[PeriodicOverlayRuntime] Duplicate Hyde assignment for hotspot ${displayNumber}; keeping first`
+        );
         return;
       }
       assignedElements[hotspotOrderIndex] = element;
-      atomicToOrder.set(atomicNumber, hotspotOrderIndex);
-      usedOrders.add(hotspotOrderIndex);
-      assignedAtomicNumbers.add(atomicNumber);
+      usedHotspotOrders.add(hotspotOrderIndex);
     });
 
-    const fixedAtomicNumbers = [...fixedAtomicToOrder.keys()].sort((a, b) => a - b);
-    const remainingHotspotOrders = new Set();
-    for (let hotspotOrderIndex = 0; hotspotOrderIndex < hotspots.length; hotspotOrderIndex += 1) {
-      if (!usedOrders.has(hotspotOrderIndex)) {
-        remainingHotspotOrders.add(hotspotOrderIndex);
-      }
-    }
-    const remainingAtomicNumbers = elements
-      .map((element) => Number(element.number))
-      .filter(
-        (atomicNumber) =>
-          Number.isFinite(atomicNumber) &&
-          atomicNumber >= 1 &&
-          atomicNumber <= baselineCount &&
-          !assignedAtomicNumbers.has(atomicNumber)
-      )
-      .sort((a, b) => a - b);
-
-    const findNextFixedAtomic = (atomicNumber) => {
-      for (let index = 0; index < fixedAtomicNumbers.length; index += 1) {
-        const candidate = fixedAtomicNumbers[index];
-        if (candidate > atomicNumber) {
-          return candidate;
-        }
-      }
-      return null;
-    };
-
-    for (let atomicIndex = 0; atomicIndex < remainingAtomicNumbers.length; atomicIndex += 1) {
-      const atomicNumber = remainingAtomicNumbers[atomicIndex];
-      const element = elementsByAtomicNumber.get(atomicNumber);
-      if (!element) {
-        continue;
-      }
-      const prevOrder = atomicToOrder.get(atomicNumber - 1);
-      const prevPrevOrder = atomicToOrder.get(atomicNumber - 2);
-      const nextFixedAtomic = findNextFixedAtomic(atomicNumber);
-      const nextFixedOrder =
-        Number.isFinite(nextFixedAtomic) && fixedAtomicToOrder.has(nextFixedAtomic)
-          ? fixedAtomicToOrder.get(nextFixedAtomic)
-          : null;
-      let bestOrder = null;
-      let bestScore = Number.POSITIVE_INFINITY;
-      for (const hotspotOrderIndex of remainingHotspotOrders) {
-        const candidateHotspot = hotspots[hotspotOrderIndex];
-        let score = 0;
-        if (Number.isFinite(prevOrder)) {
-          const prevHotspot = hotspots[prevOrder];
-          const prevDistance = distanceBetweenHotspots(candidateHotspot, prevHotspot);
-          score += prevDistance;
-          if (prevDistance > 260) {
-            score += (prevDistance - 260) * 6;
-          }
-        }
-        if (Number.isFinite(nextFixedOrder)) {
-          const nextHotspot = hotspots[nextFixedOrder];
-          const nextDistance = distanceBetweenHotspots(candidateHotspot, nextHotspot);
-          if (Number.isFinite(prevOrder)) {
-            const prevHotspot = hotspots[prevOrder];
-            const prevToNextDistance = distanceBetweenHotspots(prevHotspot, nextHotspot);
-            const prevToCandidateDistance = distanceBetweenHotspots(prevHotspot, candidateHotspot);
-            score +=
-              Math.abs(prevToCandidateDistance + nextDistance - prevToNextDistance) * 1.2;
-            if (prevToCandidateDistance > prevToNextDistance + 30) {
-              score += (prevToCandidateDistance - prevToNextDistance - 30) * 5;
-            }
-          } else {
-            score += nextDistance;
-          }
-        }
-        if (Number.isFinite(prevOrder) && Number.isFinite(prevPrevOrder)) {
-          const prevPrevHotspot = hotspots[prevPrevOrder];
-          const prevHotspot = hotspots[prevOrder];
-          const incomingVector = vectorBetweenHotspots(prevPrevHotspot, prevHotspot);
-          const outgoingVector = vectorBetweenHotspots(prevHotspot, candidateHotspot);
-          score += angleBetweenVectors(incomingVector, outgoingVector) * 55;
-        }
-        if (score < bestScore) {
-          bestScore = score;
-          bestOrder = hotspotOrderIndex;
-        }
-      }
-      if (!Number.isFinite(bestOrder)) {
-        continue;
-      }
-      assignedElements[bestOrder] = element;
-      atomicToOrder.set(atomicNumber, bestOrder);
-      usedOrders.add(bestOrder);
-      assignedAtomicNumbers.add(atomicNumber);
-      remainingHotspotOrders.delete(bestOrder);
-    }
-
     const mappedCount = assignedElements.filter(Boolean).length;
-    if (mappedCount < elements.length) {
+    const expectedMappedCount = Math.min(
+      hotspots.length,
+      Object.keys(hydeAtomicNumberToHotspotNumber).length
+    );
+    if (mappedCount < expectedMappedCount) {
       console.warn(
-        `[PeriodicOverlayRuntime] Hyde has ${mappedCount} assigned hotspots for ${elements.length} elements`
+        `[PeriodicOverlayRuntime] Hyde has ${mappedCount} assigned hotspots for ${expectedMappedCount} configured elements`
       );
     }
     grid.innerHTML = "";
