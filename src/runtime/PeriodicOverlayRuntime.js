@@ -1119,18 +1119,10 @@ export function createPeriodicOverlayRuntime(deps) {
     const hotspotOrderByDisplayNumber = new Map(
       hotspots.map((hotspot, hotspotOrderIndex) => [hotspot.index + 1, hotspotOrderIndex])
     );
-    const fixedAtomicToOrder = new Map();
-    const fixedOrderToAtomic = new Map();
+    const fixedAtomicToDisplayNumber = new Map();
     Object.entries(hydeHotspotSymbolAssignments).forEach(([displayNumberKey, assignmentSymbolRaw]) => {
       const displayNumber = Number.parseInt(displayNumberKey, 10);
       if (!Number.isFinite(displayNumber)) {
-        return;
-      }
-      const hotspotOrderIndex = hotspotOrderByDisplayNumber.get(displayNumber);
-      if (hotspotOrderIndex === undefined) {
-        console.warn(
-          `[PeriodicOverlayRuntime] Ignoring Hyde assignment for unknown hotspot ${displayNumber}`
-        );
         return;
       }
       const assignmentSymbol = String(assignmentSymbolRaw || "").trim().toUpperCase();
@@ -1146,6 +1138,19 @@ export function createPeriodicOverlayRuntime(deps) {
       }
       const atomicNumber = Number(assignmentElement.number);
       if (!Number.isFinite(atomicNumber) || atomicNumber < 1 || atomicNumber > baselineCount) {
+        return;
+      }
+      fixedAtomicToDisplayNumber.set(atomicNumber, displayNumber);
+    });
+
+    const fixedAtomicToOrder = new Map();
+    const fixedOrderToAtomic = new Map();
+    fixedAtomicToDisplayNumber.forEach((displayNumber, atomicNumber) => {
+      const hotspotOrderIndex = hotspotOrderByDisplayNumber.get(displayNumber);
+      if (hotspotOrderIndex === undefined) {
+        console.warn(
+          `[PeriodicOverlayRuntime] Ignoring Hyde assignment for unknown hotspot ${displayNumber}`
+        );
         return;
       }
       const previousOrderForAtomic = fixedAtomicToOrder.get(atomicNumber);
@@ -1283,7 +1288,8 @@ export function createPeriodicOverlayRuntime(deps) {
     for (let index = 0; index < hotspots.length; index += 1) {
       const hotspot = hotspots[index];
       const element = assignedElements[index];
-      const displayNumber = hotspot.index + 1;
+      const hotspotDisplayNumber = hotspot.index + 1;
+      const atomicDisplayNumber = element ? Number(element.number) : hotspotDisplayNumber;
       const color = element ? getPeriodicColor(element.category) : "rgba(220, 230, 255, 0.24)";
       const circle = document.createElementNS(svgNamespace, "circle");
       circle.setAttribute("cx", `${hotspot.cx}`);
@@ -1304,16 +1310,19 @@ export function createPeriodicOverlayRuntime(deps) {
       circle.dataset.number = element ? `${element.number}` : "";
       circle.dataset.sequenceIndex = `${index}`;
       circle.dataset.hotspotIndex = `${hotspot.index}`;
-      circle.dataset.hotspotNumber = `${displayNumber}`;
+      circle.dataset.hotspotNumber = `${atomicDisplayNumber}`;
+      circle.dataset.sourceHotspotNumber = `${hotspotDisplayNumber}`;
       circle.setAttribute(
         "aria-label",
-        element ? `${element.name} (${element.symbol})` : `Hotspot ${displayNumber} (unassigned)`
+        element
+          ? `${element.name} (${element.symbol})`
+          : `Hotspot ${hotspotDisplayNumber} (unassigned)`
       );
       circle.setAttribute("aria-keyshortcuts", "ArrowLeft ArrowRight Enter Space");
       const title = document.createElementNS(svgNamespace, "title");
       title.textContent = element
-        ? `Hotspot ${displayNumber} - ${element.number} ${element.name} (${element.symbol})`
-        : `Hotspot ${displayNumber} - unassigned`;
+        ? `${element.number} ${element.name} (${element.symbol})`
+        : `Hotspot ${hotspotDisplayNumber} - unassigned`;
       circle.appendChild(title);
       if (element) {
         circle.addEventListener("click", () => {
@@ -1327,7 +1336,7 @@ export function createPeriodicOverlayRuntime(deps) {
         showHydeHotspotHoverLabel(
           hoverLabel,
           hotspot,
-          element ? `${displayNumber} ${element.symbol}` : displayNumber
+          element ? `${atomicDisplayNumber} ${element.symbol}` : hotspotDisplayNumber
         );
       });
       circle.addEventListener("mouseleave", () => hideHydeHotspotHoverLabel(hoverLabel));
@@ -1338,7 +1347,7 @@ export function createPeriodicOverlayRuntime(deps) {
         showHydeHotspotHoverLabel(
           hoverLabel,
           hotspot,
-          element ? `${displayNumber} ${element.symbol}` : displayNumber
+          element ? `${atomicDisplayNumber} ${element.symbol}` : hotspotDisplayNumber
         );
       });
       circle.addEventListener("blur", () => hideHydeHotspotHoverLabel(hoverLabel));
