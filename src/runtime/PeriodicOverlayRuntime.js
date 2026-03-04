@@ -25,6 +25,8 @@ export function createPeriodicOverlayRuntime(deps) {
     updateNavButton,
     jumpToScene,
     isTransitionActive,
+    showHoverTooltip,
+    hideHoverTooltip,
     fetchImpl,
   } = deps;
 
@@ -215,50 +217,6 @@ export function createPeriodicOverlayRuntime(deps) {
     return /\bk\b/iu.test(text) ? text : `${text} K`;
   }
 
-  function showPeriodicElementDetail(el) {
-    if (!detailPanel || !detailTitle || !detailBody) {
-      return;
-    }
-    detailPanel.classList.remove("is-element-info");
-    detailPanel.classList.add("is-open");
-    detailPanel.setAttribute("aria-hidden", "false");
-    detailPanel.inert = false;
-    detailTitle.textContent = `${el.symbol} — ${el.name}`;
-    const fields = [
-      ["Atomic #", el.number],
-      ["Category", el.category],
-      ["Phase", el.phase],
-      ["Atomic mass", el.atomic_mass ? `${el.atomic_mass}` : null],
-      ["Electron config", el.electron_configuration_semantic],
-      ["Electronegativity", el.electronegativity_pauling],
-      ["Electron affinity", el.electron_affinity],
-      ["Melting point", formatTemperatureKelvin(el.melt)],
-      ["Boiling point", formatTemperatureKelvin(el.boil)],
-      ["Density", el.density],
-      ["Block", el.block],
-      ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
-      ["Summary", el.summary],
-    ];
-    detailBody.innerHTML = "";
-    fields.forEach(([label, value]) => {
-      if (value === undefined || value === null || value === "") {
-        return;
-      }
-      const isSummary = label === "Summary";
-      const row = document.createElement("div");
-      row.className = "detail-row" + (isSummary ? " summary-row" : "");
-      const key = document.createElement("div");
-      key.className = "detail-key";
-      key.textContent = label;
-      const val = document.createElement("div");
-      val.className = "detail-value";
-      val.textContent = String(value);
-      row.appendChild(key);
-      row.appendChild(val);
-      detailBody.appendChild(row);
-    });
-  }
-
   function rememberCurrentLevelForReturn() {
     const currentLevel = getCurrentLevel();
     if (!currentLevel) {
@@ -275,7 +233,6 @@ export function createPeriodicOverlayRuntime(deps) {
   }
 
   async function openPeriodicElementScene(el, overlay) {
-    showPeriodicElementDetail(el);
     rememberCurrentLevelForReturn();
     const path = await resolveElementScenePath(el.symbol);
     if (!path) {
@@ -288,6 +245,9 @@ export function createPeriodicOverlayRuntime(deps) {
   }
 
   function renderPeriodicLegend(legend, legendSet) {
+    if (!(legend instanceof HTMLElement)) {
+      return;
+    }
     legend.innerHTML = "";
     const legendFrag = document.createDocumentFragment();
     Array.from(legendSet.entries())
@@ -301,63 +261,18 @@ export function createPeriodicOverlayRuntime(deps) {
     legend.appendChild(legendFrag);
   }
 
-  function createHydeHotspotHoverLabel(grid) {
-    const group = document.createElementNS(svgNamespace, "g");
-    group.classList.add("hyde-hotspot-label");
-    group.setAttribute("visibility", "hidden");
-    group.setAttribute("aria-hidden", "true");
-    group.style.pointerEvents = "none";
-
-    const background = document.createElementNS(svgNamespace, "rect");
-    background.classList.add("hyde-hotspot-label-bg");
-    background.setAttribute("rx", "7");
-    background.setAttribute("ry", "7");
-
-    const text = document.createElementNS(svgNamespace, "text");
-    text.classList.add("hyde-hotspot-label-text");
-    text.setAttribute("text-anchor", "middle");
-    text.setAttribute("dominant-baseline", "middle");
-
-    group.appendChild(background);
-    group.appendChild(text);
-    grid.appendChild(group);
-    return { group, background, text };
-  }
-
-  function hideHydeHotspotHoverLabel(label) {
-    if (!label?.group) {
+  function showPeriodicTooltip(text, anchorX, anchorY) {
+    if (typeof showHoverTooltip !== "function") {
       return;
     }
-    label.group.setAttribute("visibility", "hidden");
+    showHoverTooltip(text, anchorX, anchorY);
   }
 
-  function showHydeHotspotHoverLabel(label, hotspot, labelValue) {
-    if (!label?.group || !hotspot) {
+  function hidePeriodicTooltip() {
+    if (typeof hideHoverTooltip !== "function") {
       return;
     }
-    const textValue = `${labelValue}`;
-    const badgePaddingX = 9;
-    const badgeHeight = 24;
-    const badgeWidth = Math.max(28, textValue.length * 10 + badgePaddingX * 2);
-    const targetX = hotspot.center.x;
-    const targetY = hotspot.center.y - hotspot.r - 22;
-    const clampedX = Math.max(
-      badgeWidth / 2 + 4,
-      Math.min(hydeViewBoxWidth - badgeWidth / 2 - 4, targetX)
-    );
-    const clampedY = Math.max(
-      badgeHeight / 2 + 4,
-      Math.min(hydeViewBoxHeight - badgeHeight / 2 - 4, targetY)
-    );
-
-    label.text.textContent = textValue;
-    label.text.setAttribute("x", `${clampedX}`);
-    label.text.setAttribute("y", `${clampedY}`);
-    label.background.setAttribute("x", `${clampedX - badgeWidth / 2}`);
-    label.background.setAttribute("y", `${clampedY - badgeHeight / 2}`);
-    label.background.setAttribute("width", `${badgeWidth}`);
-    label.background.setAttribute("height", `${badgeHeight}`);
-    label.group.setAttribute("visibility", "visible");
+    hideHoverTooltip();
   }
 
   function ensureHydeSupplementalLayer(grid) {
@@ -431,7 +346,6 @@ export function createPeriodicOverlayRuntime(deps) {
     element,
     placement,
     overlay,
-    hoverLabel,
     leftFocusTarget,
   }) {
     if (!layer || !element || !placement) {
@@ -448,32 +362,34 @@ export function createPeriodicOverlayRuntime(deps) {
     button.dataset.number = `${element.number}`;
     button.setAttribute("aria-label", `${element.name} (${element.symbol})`);
     button.setAttribute("aria-keyshortcuts", "ArrowLeft Enter Space");
-    button.title = `${element.number} ${element.name} (${element.symbol})`;
+    const tooltipText = `${element.number} ${element.symbol} - ${element.name}`;
+    if (typeof showHoverTooltip !== "function") {
+      button.title = `${element.number} ${element.name} (${element.symbol})`;
+    }
     button.innerHTML = `
       <div class="ptable-number">${element.number}</div>
       <div class="ptable-symbol">${element.symbol}</div>
       <div class="ptable-name">${element.name}</div>
     `;
-    const hoverAnchor = {
-      center: {
-        x: placement.center.x,
-        y: placement.center.y,
-      },
-      r: Math.max(placement.width, placement.height) / 2,
-    };
     button.addEventListener("click", () => {
       openPeriodicElementScene(element, overlay);
     });
-    button.addEventListener("mouseenter", () => {
-      showPeriodicElementDetail(element);
-      showHydeHotspotHoverLabel(hoverLabel, hoverAnchor, `${element.number} ${element.symbol}`);
+    button.addEventListener("mouseenter", (event) => {
+      showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
     });
-    button.addEventListener("mouseleave", () => hideHydeHotspotHoverLabel(hoverLabel));
+    button.addEventListener("mousemove", (event) => {
+      showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
+    });
+    button.addEventListener("mouseleave", () => {
+      hidePeriodicTooltip();
+    });
     button.addEventListener("focus", () => {
-      showPeriodicElementDetail(element);
-      showHydeHotspotHoverLabel(hoverLabel, hoverAnchor, `${element.number} ${element.symbol}`);
+      const rect = button.getBoundingClientRect();
+      showPeriodicTooltip(tooltipText, rect.left + rect.width / 2, rect.top + rect.height / 2);
     });
-    button.addEventListener("blur", () => hideHydeHotspotHoverLabel(hoverLabel));
+    button.addEventListener("blur", () => {
+      hidePeriodicTooltip();
+    });
     button.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
@@ -1230,9 +1146,11 @@ export function createPeriodicOverlayRuntime(deps) {
 
   async function buildHydePeriodicMap(data, options = {}) {
     const grid = options.grid ?? hydePeriodicGrid;
-    const legend = options.legend ?? hydePeriodicLegend;
+    const legend = Object.prototype.hasOwnProperty.call(options, "legend")
+      ? options.legend
+      : hydePeriodicLegend;
     const overlay = options.overlay ?? hydePeriodicOverlay;
-    if (!grid || !legend || !data?.elements) {
+    if (!grid || !data?.elements) {
       return;
     }
     if (!(grid instanceof SVGElement)) {
@@ -1309,7 +1227,6 @@ export function createPeriodicOverlayRuntime(deps) {
     grid.innerHTML = "";
     const legendSet = new Map();
     const hotspotNodes = [];
-    const hoverLabel = createHydeHotspotHoverLabel(grid);
     for (let index = 0; index < hotspots.length; index += 1) {
       const hotspot = hotspots[index];
       const element = assignedElements[index];
@@ -1344,38 +1261,37 @@ export function createPeriodicOverlayRuntime(deps) {
           : `Hotspot ${hotspotDisplayNumber} (unassigned)`
       );
       circle.setAttribute("aria-keyshortcuts", "ArrowLeft ArrowRight Enter Space");
-      const title = document.createElementNS(svgNamespace, "title");
-      title.textContent = element
-        ? `${element.number} ${element.name} (${element.symbol})`
-        : `Hotspot ${hotspotDisplayNumber} - unassigned`;
-      circle.appendChild(title);
+      const tooltipText = element
+        ? `${element.number} ${element.symbol} - ${element.name}`
+        : `Hotspot ${hotspotDisplayNumber} (unassigned)`;
+      if (typeof showHoverTooltip !== "function") {
+        const title = document.createElementNS(svgNamespace, "title");
+        title.textContent = element
+          ? `${element.number} ${element.name} (${element.symbol})`
+          : `Hotspot ${hotspotDisplayNumber} (unassigned)`;
+        circle.appendChild(title);
+      }
       if (element) {
         circle.addEventListener("click", () => {
           openPeriodicElementScene(element, overlay);
         });
       }
-      circle.addEventListener("mouseenter", () => {
-        if (element) {
-          showPeriodicElementDetail(element);
-        }
-        showHydeHotspotHoverLabel(
-          hoverLabel,
-          hotspot,
-          element ? `${atomicDisplayNumber} ${element.symbol}` : hotspotDisplayNumber
-        );
+      circle.addEventListener("mouseenter", (event) => {
+        showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
       });
-      circle.addEventListener("mouseleave", () => hideHydeHotspotHoverLabel(hoverLabel));
+      circle.addEventListener("mousemove", (event) => {
+        showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
+      });
+      circle.addEventListener("mouseleave", () => {
+        hidePeriodicTooltip();
+      });
       circle.addEventListener("focus", () => {
-        if (element) {
-          showPeriodicElementDetail(element);
-        }
-        showHydeHotspotHoverLabel(
-          hoverLabel,
-          hotspot,
-          element ? `${atomicDisplayNumber} ${element.symbol}` : hotspotDisplayNumber
-        );
+        const rect = circle.getBoundingClientRect();
+        showPeriodicTooltip(tooltipText, rect.left + rect.width / 2, rect.top + rect.height / 2);
       });
-      circle.addEventListener("blur", () => hideHydeHotspotHoverLabel(hoverLabel));
+      circle.addEventListener("blur", () => {
+        hidePeriodicTooltip();
+      });
       circle.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
           if (!element) {
@@ -1426,7 +1342,6 @@ export function createPeriodicOverlayRuntime(deps) {
         element: element119,
         placement: tilePlacement,
         overlay,
-        hoverLabel,
         leftFocusTarget:
           Number.isInteger(hotspotOrder118) && hotspotNodes[hotspotOrder118]
             ? hotspotNodes[hotspotOrder118]
@@ -1488,7 +1403,6 @@ export function createPeriodicOverlayRuntime(deps) {
       btn.addEventListener("click", () => {
         openPeriodicElementScene(el, overlay);
       });
-      btn.addEventListener("mouseenter", () => showPeriodicElementDetail(el));
       frag.appendChild(btn);
       const legendKey = el.category || "Unknown";
       if (!legendSet.has(legendKey)) {
@@ -1514,7 +1428,17 @@ export function createPeriodicOverlayRuntime(deps) {
         (navUpButton ?? homeButton ?? sceneSearchToggle ?? document.body).focus();
       }
       overlay.classList.remove("is-fading");
+      hidePeriodicTooltip();
     }
+  }
+
+  function hideDetailPanelForPeriodicOverlay() {
+    if (!detailPanel || detailPanel.classList.contains("is-element-info")) {
+      return;
+    }
+    detailPanel.classList.remove("is-open");
+    detailPanel.setAttribute("aria-hidden", "true");
+    detailPanel.inert = true;
   }
 
   async function updatePeriodicOverlay() {
@@ -1533,6 +1457,9 @@ export function createPeriodicOverlayRuntime(deps) {
 
     setOverlayOpenState(periodicOverlay, isPeriodic);
     setOverlayOpenState(hydePeriodicOverlay, isHydePeriodic);
+    if (isPeriodic || isHydePeriodic) {
+      hideDetailPanelForPeriodicOverlay();
+    }
 
     if (!isPeriodic && !isHydePeriodic) {
       return;
@@ -1552,7 +1479,7 @@ export function createPeriodicOverlayRuntime(deps) {
     if (data && isHydePeriodic && !hydePeriodicGridBuilt) {
       await buildHydePeriodicMap(data, {
         grid: hydePeriodicGrid,
-        legend: hydePeriodicLegend,
+        legend: null,
         overlay: hydePeriodicOverlay,
         onBuilt: () => {
           hydePeriodicGridBuilt = true;

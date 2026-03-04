@@ -3123,6 +3123,8 @@ const periodicOverlayRuntime = createPeriodicOverlayRuntime({
   updateNavButton,
   jumpToScene,
   isTransitionActive: () => transitionState.active,
+  showHoverTooltip,
+  hideHoverTooltip,
   fetchImpl: (...args) => fetch(...args),
 });
 

@@ -519,13 +519,15 @@ body {
   position: absolute;
   z-index: 8;
   display: none;
-  max-width: 220px;
-  padding: 6px 8px;
-  border-radius: 8px;
+  max-width: 300px;
+  padding: 9px 12px;
+  border-radius: 10px;
   background: rgba(8, 10, 18, 0.85);
   border: 1px solid rgba(160, 170, 220, 0.35);
   color: #f5f7ff;
-  font-size: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
   letter-spacing: 0.02em;
   pointer-events: none;
   white-space: normal;
@@ -1322,6 +1324,20 @@ body {
   opacity: 0;
 }
 
+#periodic-hint {
+  width: fit-content;
+  margin: 10px auto 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 220, 255, 0.3);
+  background: rgba(14, 20, 38, 0.86);
+  color: rgba(236, 242, 255, 0.95);
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+  pointer-events: none;
+}
+
 #hyde-periodic-overlay {
   --hyde-overlay-top-gap: 72px;
   position: absolute;
@@ -1365,6 +1381,24 @@ body {
   overflow: auto;
   padding: 0 12px 10px;
   background: radial-gradient(circle at top, rgba(164, 190, 255, 0.08), rgba(8, 10, 18, 0.95) 56%);
+}
+
+#hyde-periodic-hint {
+  position: sticky;
+  top: 10px;
+  z-index: 3;
+  width: fit-content;
+  margin: 10px auto 12px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 220, 255, 0.36);
+  background: rgba(14, 20, 38, 0.88);
+  color: rgba(236, 242, 255, 0.95);
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
 }
 
 #hyde-periodic-canvas {
@@ -1454,8 +1488,8 @@ body {
 
 #hyde-periodic-grid .hyde-hotspot {
   cursor: pointer;
-  fill: transparent;
-  stroke: transparent;
+  fill: rgba(148, 191, 255, 0.06);
+  stroke: rgba(196, 220, 255, 0.28);
   stroke-width: 1.5;
   pointer-events: auto;
   transition: fill 0.1s ease, stroke 0.1s ease;
@@ -1476,30 +1510,8 @@ body {
   stroke: rgba(236, 192, 164, 0.24);
 }
 
-#hyde-periodic-grid .hyde-hotspot-label {
-  pointer-events: none;
-}
-
-#hyde-periodic-grid .hyde-hotspot-label-bg {
-  fill: rgba(8, 10, 18, 0.9);
-  stroke: rgba(196, 220, 255, 0.46);
-  stroke-width: 1;
-}
-
-#hyde-periodic-grid .hyde-hotspot-label-text {
-  fill: #f5f7ff;
-  font-size: 17px;
-  font-weight: 700;
-  font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
-}
-
 #hyde-periodic-legend {
-  padding: 10px 16px 14px;
-  border-top: 1px solid rgba(160, 170, 220, 0.15);
-  background: rgba(8, 10, 18, 0.95);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 8px 12px;
+  display: none !important;
 }
 
 #periodic-grid {
