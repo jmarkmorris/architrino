@@ -1536,7 +1536,7 @@
     },
     {
       "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "name": "Hyde Periodic Table: Geometry, Chemistry, and Pedagogy",
+      "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
       "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "nodeType": "markdown_doc"
     },
@@ -4047,7 +4047,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "name": "Hyde Periodic Table: Geometry, Chemistry, and Pedagogy",
+      "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
       "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "implicit": false
