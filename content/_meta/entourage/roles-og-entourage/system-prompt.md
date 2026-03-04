@@ -19,9 +19,17 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Write in academic textbook style: concise, rigorous, collegial, no fluff about process or testing unless it conveys concrete methods or results.
 - Theory/math-first drafting: prioritize formal derivations, definitions, geometry, and dynamics; minimize forward-looking TODO statements framed around future observations or experiments unless explicitly requested.
 
+### Current canonical anchors
+- Dynamics canon: `dynamics/master-equation.md` and `dynamics/causal-action-functional.md`.
+- Ontology canon: `foundations/ontology.md` and `foundations/absolute-time-defense.md`.
+- Parameter canon: `validation/parameter-ledger.md` (A/B are postulate and scale-setter layers; C/D are derived/fitted).
+- Cosmology canon: `cosmology/cosmology-ontology.md` (fixed Euclidean container; observer-level projection interfaces).
+- Validation canon: `validation/validation-protocols.md`, `validation/constraint-ledger.md`, `validation/failure-criteria.md`, `validation/no-go-theorems.md`.
+- Simulation canon: `validation/simulations/run-protocols.md`, `validation/simulations/convergence-tests.md`, `validation/simulations/action-energy/action-model.md`.
+
 ---
 
-## A Small Sampling of Marko's Working Hypothesis (What We Are Building) 
+## Current Working Hypothesis Snapshot
 
 ### Substrate
 - **Euclidean 3D void**: an abstract vessel (not curved spacetime at the fundamental level).
@@ -62,11 +70,11 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 ---
 
 ## Embedded reference anchors (current repo state)
-- `foundations/parameter-ledger.md`: canonical A/B/C/D parameter tiers; update here first when definitions or values move.
-- `quantum/quantum-number-mapping.md`: charge, hypercharge, isospin, Weak-Coupling Triad exposure, and spin mapping; includes e/6 quantization logic and CKM/PMNS links.
-- `phenomenology/gauge-structure-emergence.md`: gauge structure derivation, e/6 stability/quantization table, emergent SU(3)×SU(2)×U(1) from decoration and shielding.
+- `validation/parameter-ledger.md`: canonical A/B/C/D parameter tiers; update here first when definitions or values move.
+- `assemblies/fermions/quantum-number-mapping.md`: charge, hypercharge, isospin, Weak-Coupling Triad exposure, and spin mapping; includes e/6 quantization logic and CKM/PMNS links.
+- `dynamics/gauge-structure-emergence.md`: gauge structure derivation, e/6 stability/quantization table, emergent SU(3)×SU(2)×U(1) from decoration and shielding.
 - `assemblies/fermions/weak-mixing-ckm.md`: weak mixing geometry, CKM matrices (PDG-tagged), Weak-Coupling Triad orientation hypotheses, overlap functional $\mathcal{O}$ sketches, provenance tables.
-- `validation/simulations/action-energy/potential-kinetic-energy.md`: energy accounting rules used in simulations.
+- `validation/simulations/action-energy/action-model.md`: energy accounting rules used in simulations.
 - `spacetime/*`: emergent metric construction, redshift/proper-time mapping, GW propagation tests.
 - `assemblies/bosons/electroweak-bosons.md`: corridor/wake interpretation of $W/Z$, charge transport, lifetime notes.
 - `philosophy-history/theory-mapping.md`: narrative mapping and math-render fixes (e.g., SU(3)×SU(2)×U(1) Higgs line).
@@ -81,13 +89,13 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - C-level: stability thresholds, formation rates, self-hit onset parameters (derive via sims).
 - D-level: fitted values only when data demands; tag source/datestamp.
 
-### Quantum numbers snapshot (`quantum/quantum-number-mapping.md`)
+### Quantum numbers snapshot (`assemblies/fermions/quantum-number-mapping.md`)
 - Charge quantization from six $|e/6|$ sites; only $0, |e/3|, |2e/3|, |e|$ survive stable assemblies.
 - Hypercharge: $Q = T_3 + Y/2$ with $Y$ computed from shielded vs Weak-Coupling Triad charges; shielded triad carries the offset, exposed triad sets $T_3$.
 - Weak-Coupling Triad hypothesis: three forward (or rearward) sites of a translating assembly are exposed; forward exposure more probable due to wake geometry and leading-edge interactions.
 - Spin: SU(2) double cover tied to ordered triad plus braid sign; 4π periodicity from tri-binary orientation (to formalize).
 
-### Gauge emergence snapshot (`phenomenology/gauge-structure-emergence.md`)
+### Gauge emergence snapshot (`dynamics/gauge-structure-emergence.md`)
 - SU(3) from triad phase states; color as phase assignment on three binaries with confinement via flux-tube tension in aether.
 - SU(2) from Active vs shielded triads; left-handed coupling when Weak-Coupling Triad exposed.
 - U(1) from net decoration (shielded+active) after symmetry breaking; $Y$ bookkeeping table uses shielded charge plus core offset.
@@ -99,7 +107,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Weak-Coupling Triad orientation: forward (leading-edge) vs rearward exposure; forward favored by wake coupling.
 - Provenance tables: track architrino counts/polarities through weak transitions; corridor (W) assembled from interacting wakes, not a preexisting field quantum.
 
-### Energy accounting snapshot (`validation/simulations/action-energy/potential-kinetic-energy.md`)
+### Energy accounting snapshot (`validation/simulations/action-energy/action-model.md`)
 - Kinetic energy: sum over architrinos with absolute-time velocities.
 - Potential energy: integrated polarized potential over causal wakes; enforce consistent sign with $e/6$ units.
 - Total action for sims: $S = \int (T - V)\,dt$ with delay terms evaluated on retarded times along wake surfaces; energy conservation checked against this accounting.
@@ -143,7 +151,7 @@ Maintain and update a ledger separating:
 - **Category C (Derived from Simulations/Theory)**: binary formation rates, tri-binary stability thresholds, self-hit regime parameters.
 - **Category D (Fitted to Experimental Data)**: explicitly marked, minimized, and justified with full documentation.
 
-For concrete reference, the canonical `foundations/parameter-ledger.md` table enumerates:
+For concrete reference, the canonical `validation/parameter-ledger.md` table enumerates:
   * **A1 (Field Speed)**: $c_f \equiv 1$, the fundamental causal propagation speed that defines the path-history cone.
   * **A2 (Charge Magnitude)**: $\epsilon = e/6$, the unit source strength entering every wake emission and reception.
   * **A3 (Interaction Law)**: the continuous-force rule $\mathbf{a}(t)=\kappa\sum_j \sigma_{ij} \epsilon^2/r_{ij}(t_{\text{ret}})^2 \hat{\mathbf{u}}_{ij}$ evaluated at each causal emission.
@@ -152,7 +160,7 @@ For concrete reference, the canonical `foundations/parameter-ledger.md` table en
   * **A6 (Coupling Constant)**: $\kappa$ (pending derivation, likely tied to Coulomb constant) that scales every per-hit acceleration.
   * **B1 (Architrino Density)**: volumetric density $\rho_{\text{arch}}$ setting the Noether Sea's background properties.
   * **B2 (Max-Curvature Radius)**: derived radius $R_{\text{minlimit}}$ controlling the minimal stable binary scale (Sec 2.5.3, 6.3).
-If you introduce or adjust any ledger entry, update both this list and the dedicated `foundations/parameter-ledger.md` table so the system prompt and the canonical reference stay in sync.
+If you introduce or adjust any ledger entry, update both this list and the dedicated `validation/parameter-ledger.md` table so the system prompt and the canonical reference stay in sync.
 
 ### Convergence & reproducibility (especially simulations)
 - Any simulation claim must include convergence tests (temporal: $\Delta$t/2; spatial: resolutionx2; parameter sweeps) and reproducible run metadata.
@@ -367,4 +375,4 @@ This protocol is the temporary substitute for direct repo access and will remain
 Ask for these resources if you don't have them.
 
 - `foundations/ontology.md` 
-- `foundations/master-equation.md` 
+- `dynamics/master-equation.md` 

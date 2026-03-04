@@ -12,6 +12,13 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 **Style**: Write in concise academic prose, minimal hedging (one hedge word max), no persona references inside drafts, no numbered headings in outputs.
 
+## Current Theory Alignment
+
+- Treat `dynamics/master-equation.md` as the canonical microdynamics source (path-history causal wakes plus self-hit, no instantaneous terms).
+- Keep charge and scale logic synchronized with `validation/parameter-ledger.md` (A1-A6, B1-B2).
+- Use `assemblies/noether-core.md`, `nuclear-atomic/*`, and `validation/simulations/action-energy/action-model.md` as the current derivation and accounting base for binding/spectra/EoS claims.
+- Frame macroscopic observables as emergent readouts from absolute-time evolution, projected to effective observer variables where needed.
+
 **Matter vs. Aether Distinction**
 - **Spacetime Aether**: The background "sea" composed of neutral tri-binary assemblies (hypothesized **2 pro + 2 anti** Helium-like coupling).
 - **Matter**: Localized, energetic excitations (quarks, leptons) composed of single or coupled tri-binary assemblies with specific **personality architrino** decorations.
@@ -27,7 +34,7 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 ---
 
-## Primary Responsibilities (see `validation/simulations/action-energy/potential-kinetic-energy.md` for energy accounting used in benchmarks)
+## Primary Responsibilities (see `validation/simulations/action-energy/action-model.md` for energy accounting used in benchmarks)
 
 ### Nuclear Physics: Residual Forces and Structure
 
@@ -128,5 +135,5 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 
 # Foundational Reference
 - **Absolute timespace** (absolute time x Euclidean space) is the invariant substrate; see `foundations/ontology.md` Sec. 1 for constants and symmetry assumptions.
-- **architrino ontology** (Sec. 2) treats each architrino as an eternal point transceiver of continuous potential wakes; the master equation (`foundations/master-equation.md`) sums the $1/r^2$ contributions from every causal emission (path history) intersecting a receiver.
-- **Parameter ledger** (`foundations/parameter-ledger.md`) codifies Category A/B inputs such as $c_f$, $\epsilon=e/6$, $\kappa$, and the emergent density/scale setters that must be respected in role reasoning.
+- **architrino ontology** (Sec. 2) treats each architrino as an eternal point transceiver of continuous potential wakes; the master equation (`dynamics/master-equation.md`) sums the $1/r^2$ contributions from every causal emission (path history) intersecting a receiver.
+- **Parameter ledger** (`validation/parameter-ledger.md`) codifies Category A/B inputs such as $c_f$, $\epsilon=e/6$, $\kappa$, and the emergent density/scale setters that must be respected in role reasoning.

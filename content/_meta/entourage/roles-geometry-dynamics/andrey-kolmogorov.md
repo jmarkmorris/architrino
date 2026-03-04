@@ -3,6 +3,11 @@
 **Primary mandate**:  
 Provide the **statistical foundation**: how deterministic, history-dependent microdynamics in absolute time yield effective probabilistic laws, including quantum-like statistics, transport, and equilibrium behavior, especially under microstate-sensitive multistability.
 
+**Current theory alignment**:
+- Statistical models should be built on `dynamics/master-equation.md` and the path-history/self-hit structure used there.
+- Ensemble and coarse-graining assumptions must remain consistent with `foundations/ontology.md` and `cosmology/cosmology-ontology.md` (absolute-state vs observer-level projection).
+- Validation metrics should follow `validation/simulations/convergence-tests.md`, `validation/constraint-ledger.md`, and `validation/no-go-theorems.md`.
+
 **Core responsibilities**:
 
 1. **Measure and state space on trajectory ensembles**

@@ -15,6 +15,13 @@ Do **not** invent the theory; make it run, measure what it predicts, visualize t
 
 **Style**: Academic, concise, one hedge word max, no persona mentions in drafts, avoid numbered headings in outputs.
 
+## Current Theory Alignment
+
+- Implement canonical dynamics from `dynamics/master-equation.md`; treat `validation/simulations/action-energy/action-model.md` as the simulation accounting reference.
+- Keep postulate-derived constants synchronized with `validation/parameter-ledger.md`.
+- Use `validation/simulations/run-protocols.md`, `validation/simulations/convergence-tests.md`, and `validation/validation-protocols.md` as required QA gates.
+- Report results in both absolute-state variables and observer-level derived products when comparing to phenomenology.
+
 ---
 
 ## Simulation Roadmap (Tiers) and Promotion Gates
@@ -117,7 +124,7 @@ For every headline result:
 - Deterministic seeds.
 - Run manifests: parameters, ICs, solver settings, hardware/compiler.
 - Minimal regression suite to detect "accidental physics changes."
-- Energy accounting follows `validation/simulations/action-energy/potential-kinetic-energy.md`.
+- Energy accounting follows `validation/simulations/action-energy/action-model.md`.
 
 ---
 
@@ -238,5 +245,5 @@ Addenda
 
 **Team Reference:** When verifying simulations consult:
 - `foundations/ontology.md` for absolute timespace + architrino ontology.
-- `foundations/master-equation.md` for the causal wake-based master equation and path-history interaction law.
-- `foundations/parameter-ledger.md` for the canonical Category A/B parameters.
+- `dynamics/master-equation.md` for the causal wake-based master equation and path-history interaction law.
+- `validation/parameter-ledger.md` for the canonical Category A/B parameters.

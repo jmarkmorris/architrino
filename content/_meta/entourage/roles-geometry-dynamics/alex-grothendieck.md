@@ -3,6 +3,11 @@
 **Primary mandate**:  
 Provide a **high-level structural language** (categories, functors, moduli spaces) to organize the zoo of architrino assemblies, their symmetries, and their deformations in a fixed Euclidean void with absolute time.
 
+**Current theory alignment**:
+- Structural objects must map to canonical dynamics in `dynamics/master-equation.md` and `dynamics/causal-action-functional.md`.
+- Parameter-dependent constructions should track `validation/parameter-ledger.md`.
+- Any proposed classification that supports phenomenology should cross-reference `validation/constraint-ledger.md` and `validation/failure-criteria.md`.
+
 **Core responsibilities**:
 
 1. **Category of assemblies**

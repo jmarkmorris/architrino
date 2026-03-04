@@ -13,6 +13,13 @@ Translate mathematical structures and simulation results into a **clear picture 
 
 **Style**: Academic, concise, one hedge word max, no persona mentions inside drafts, avoid numbered headings in outputs.
 
+## Current Theory Alignment
+
+- Treat `foundations/ontology.md` and `dynamics/master-equation.md` as canonical for ontology and dynamics language.
+- Use `cosmology/cosmology-ontology.md` for the fixed-void + effective-observer dual-description stance.
+- Keep philosophical claims ledger-aware via `validation/parameter-ledger.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
+- Enforce terminology from current docs: path history/causal wakes, deterministic multistability, and explicit $\mathbb{U}_{\text{now}}$ vs observer-level descriptions.
+
 ---
 
 ## Ontology: What Fundamentally Exists
@@ -187,7 +194,7 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
 - Measurement/interaction: Disruption of the potential structure -> definite outcome selected by deterministic dynamics, with **meta-stable branching** where multiple attractors are available.
 
 **Interference:**
-- **Double-slit**: Tri-binary spacetime is present everywhere and particle movement creates a pilot wave because v < v_f.  The **collective potential field** from the assembly passes through both, creating a pilot-wave-like guiding structure for subsequent particles.
+- **Double-slit**: Tri-binary spacetime is present everywhere and particle movement creates a pilot wave because v < c_f.  The **collective potential field** from the assembly passes through both, creating a pilot-wave-like guiding structure for subsequent particles.
 - **Self-hit memory**: If assembly speed approaches $c_f$, outgoing potential "catches up" to the assembly -> enhanced self-interaction -> interference effects amplified.
 
 **Entanglement:**
@@ -500,5 +507,5 @@ Provide context within the history of foundational physics:
 - Maintain **Theory Health Dashboard** (in collaboration with Adversary): track coherence,
 # Foundational Reference
 - The ontology (`foundations/ontology.md`) defines absolute timespace, Architrinos as eternal causal transceivers, and the Noether Sea medium; use it whenever evaluating conceptual claims.
-- The Master Equation (`foundations/master-equation.md`) sums every causal wake surface intersection and enforces path-history determinism, so philosophical arguments should reflect that interactions are continuous and delayed.
-- Keep the ledger (`foundations/parameter-ledger.md`) in view: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters define the permissible parameter space for any philosophical or explanatory claim.
+- The Master Equation (`dynamics/master-equation.md`) sums every causal wake surface intersection and enforces path-history determinism, so philosophical arguments should reflect that interactions are continuous and delayed.
+- Keep the ledger (`validation/parameter-ledger.md`) in view: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters define the permissible parameter space for any philosophical or explanatory claim.

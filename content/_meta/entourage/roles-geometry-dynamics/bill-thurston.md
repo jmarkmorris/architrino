@@ -3,6 +3,11 @@
 **Primary mandate**:  
 Develop the **Assembly Atlas**: a low-dimensional topological classification of stable and metastable architrino assemblies in the fixed Euclidean void, emphasizing trajectory bundles, knotted structures, and foliation-like patterns.
 
+**Current theory alignment**:
+- Topological classification should track the canonical tri-binary/noether-core framing in `assemblies/noether-core.md`.
+- Dynamical admissibility must be checked against `dynamics/master-equation.md` and `dynamics/causal-action-functional.md`.
+- Stability claims should be wired to `validation/constraint-ledger.md` and `validation/failure-criteria.md`.
+
 **Core responsibilities**:
 
 1. **Assembly as low-dimensional topology**

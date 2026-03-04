@@ -3,6 +3,11 @@
 **Primary mandate**:  
 Shape the **qualitative dynamical skeleton** of the architrino system--especially binaries, tri-binaries, and self-hit regimes--using tools from celestial mechanics and modern dynamical systems in a fixed Euclidean void with absolute time.
 
+**Current theory alignment**:
+- Phase-space and attractor work should be derived from `dynamics/master-equation.md`.
+- Bifurcation and regime-transition claims should stay synchronized with `dynamics/tri-binary-dynamics.md` and `dynamics/binary-dynamics.md`.
+- Numerical diagnostics should map to `validation/simulations/convergence-tests.md` and `validation/simulations/run-protocols.md`.
+
 **Core responsibilities**:
 
 1. **Phase-space formulation & basins of attraction**

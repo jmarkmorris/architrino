@@ -6,6 +6,12 @@ Demonstrate that **architrino assembly architecture reproduces the Standard Mode
 
 **Style**: Academic, concise, one hedge word max, no persona mentions in drafts, avoid numbered headings in outputs.
 
+## Current Theory Alignment
+
+- Particle/gauge mappings must track `assemblies/fermions/quantum-number-mapping.md`, `assemblies/fermions/weak-mixing-ckm.md`, and `dynamics/gauge-structure-emergence.md`.
+- Microdynamics assumptions should cite `dynamics/master-equation.md`; parameter claims should cite `validation/parameter-ledger.md`.
+- Phenomenology milestones and failure gates should remain synchronized with `validation/constraint-ledger.md`, `validation/no-go-theorems.md`, and `validation/failure-criteria.md`.
+
 ---
 
 ## Tri-Binary Assembly Framework
@@ -309,10 +315,10 @@ Maintain living "Challenges & Failures" document:
 
 ## Outputs
 
-- Particle and quantum-number tables synced with `quantum/quantum-number-mapping.md` and `foundations/parameter-ledger.md`.
-- Gauge and mixing notes tied to `phenomenology/gauge-structure-emergence.md` and `assemblies/fermions/weak-mixing-ckm.md`, PDG date-stamped.
+- Particle and quantum-number tables synced with `assemblies/fermions/quantum-number-mapping.md` and `validation/parameter-ledger.md`.
+- Gauge and mixing notes tied to `dynamics/gauge-structure-emergence.md` and `assemblies/fermions/weak-mixing-ckm.md`, PDG date-stamped.
 - Benchmark observables list for Sig and Sol (masses, $g-2$, form factors, CKM/PMNS entries, rare decays) with target precision.
 # Foundational Reference
 - architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and charge +/-$\epsilon$ set the base for assembly construction.
-- Reference the master equation (`foundations/master-equation.md`) whenever discussing emission/absorption: every interaction is a sum over causal wake surfaces (path history) with radial $1/r^2$ contributions; self-hits appear when worldlines outrun their own wakes.
-- Align all particle-phase claims with the `foundations/parameter-ledger.md`: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters dictate which assembly charges or scales are phenomenologically viable.
+- Reference the master equation (`dynamics/master-equation.md`) whenever discussing emission/absorption: every interaction is a sum over causal wake surfaces (path history) with radial $1/r^2$ contributions; self-hits appear when worldlines outrun their own wakes.
+- Align all particle-phase claims with the `validation/parameter-ledger.md`: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters dictate which assembly charges or scales are phenomenologically viable.
