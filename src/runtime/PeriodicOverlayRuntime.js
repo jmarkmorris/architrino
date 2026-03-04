@@ -39,6 +39,96 @@ export function createPeriodicOverlayRuntime(deps) {
       ? hydePeriodicSceneId
       : "hyde_periodic_table";
   const hydeArtworkPath = "content/assets/hyde_periodic_table.svg";
+  const hydeHotspotSymbolAssignments = {
+    1: "Si",
+    2: "Ge",
+    3: "As",
+    4: "Sn",
+    5: "Pb",
+    6: "Ti",
+    7: "Hf",
+    8: "Rf",
+    9: "Db",
+    18: "Zr",
+    19: "Nb",
+    21: "W",
+    22: "Mo",
+    23: "Tc",
+    24: "Re",
+    26: "Ir",
+    27: "Pt",
+    28: "Au",
+    29: "Cd",
+    30: "Hg",
+    36: "Co",
+    37: "Ni",
+    38: "Cu",
+    39: "Ga",
+    40: "Ru",
+    41: "Rn",
+    42: "Pd",
+    43: "Ag",
+    46: "Sb",
+    47: "Te",
+    33: "Cr",
+    34: "Mn",
+    35: "Fe",
+    45: "V",
+    48: "Ne",
+    49: "Se",
+    50: "Bi",
+    51: "Po",
+    52: "Ar",
+    53: "Kr",
+    54: "Xe",
+    55: "Rn",
+    56: "P",
+    57: "S",
+    58: "He",
+    60: "Br",
+    61: "I",
+    62: "At",
+    63: "N",
+    64: "B",
+    65: "Be",
+    66: "Mg",
+    67: "Na",
+    69: "Rb",
+    70: "Cs",
+    71: "Fr",
+    72: "Li",
+    73: "Ca",
+    74: "Sr",
+    75: "Ba",
+    31: "In",
+    78: "Sc",
+    79: "Y",
+    80: "La",
+    81: "Ac",
+    82: "C",
+    83: "O",
+    84: "F",
+    85: "H",
+    86: "Er",
+    94: "Sm",
+    95: "Pm",
+    98: "Nd",
+    99: "Pr",
+    101: "Th",
+    102: "Tm",
+    103: "Yb",
+    104: "Lu",
+    105: "Ce",
+    109: "Cn",
+    111: "Ds",
+    112: "Mt",
+    113: "Hs",
+    114: "Bh",
+    115: "Sg",
+    44: "Zn",
+  };
+  const hydeViewBoxWidth = 2592;
+  const hydeViewBoxHeight = 1944;
   const svgNamespace = "http://www.w3.org/2000/svg";
 
   async function ensurePeriodicTable() {
@@ -179,6 +269,65 @@ export function createPeriodicOverlayRuntime(deps) {
     legend.appendChild(legendFrag);
   }
 
+  function createHydeHotspotHoverLabel(grid) {
+    const group = document.createElementNS(svgNamespace, "g");
+    group.classList.add("hyde-hotspot-label");
+    group.setAttribute("visibility", "hidden");
+    group.setAttribute("aria-hidden", "true");
+    group.style.pointerEvents = "none";
+
+    const background = document.createElementNS(svgNamespace, "rect");
+    background.classList.add("hyde-hotspot-label-bg");
+    background.setAttribute("rx", "7");
+    background.setAttribute("ry", "7");
+
+    const text = document.createElementNS(svgNamespace, "text");
+    text.classList.add("hyde-hotspot-label-text");
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("dominant-baseline", "middle");
+
+    group.appendChild(background);
+    group.appendChild(text);
+    grid.appendChild(group);
+    return { group, background, text };
+  }
+
+  function hideHydeHotspotHoverLabel(label) {
+    if (!label?.group) {
+      return;
+    }
+    label.group.setAttribute("visibility", "hidden");
+  }
+
+  function showHydeHotspotHoverLabel(label, hotspot, labelValue) {
+    if (!label?.group || !hotspot) {
+      return;
+    }
+    const textValue = `${labelValue}`;
+    const badgePaddingX = 9;
+    const badgeHeight = 24;
+    const badgeWidth = Math.max(28, textValue.length * 10 + badgePaddingX * 2);
+    const targetX = hotspot.center.x;
+    const targetY = hotspot.center.y - hotspot.r - 22;
+    const clampedX = Math.max(
+      badgeWidth / 2 + 4,
+      Math.min(hydeViewBoxWidth - badgeWidth / 2 - 4, targetX)
+    );
+    const clampedY = Math.max(
+      badgeHeight / 2 + 4,
+      Math.min(hydeViewBoxHeight - badgeHeight / 2 - 4, targetY)
+    );
+
+    label.text.textContent = textValue;
+    label.text.setAttribute("x", `${clampedX}`);
+    label.text.setAttribute("y", `${clampedY}`);
+    label.background.setAttribute("x", `${clampedX - badgeWidth / 2}`);
+    label.background.setAttribute("y", `${clampedY - badgeHeight / 2}`);
+    label.background.setAttribute("width", `${badgeWidth}`);
+    label.background.setAttribute("height", `${badgeHeight}`);
+    label.group.setAttribute("visibility", "visible");
+  }
+
   function multiplySvgMatrices(a, b) {
     return [
       a[0] * b[0] + a[2] * b[1],
@@ -250,6 +399,555 @@ export function createPeriodicOverlayRuntime(deps) {
     return matrix;
   }
 
+  function computeSvgBoundsFromPoints(points) {
+    if (!Array.isArray(points) || !points.length) {
+      return null;
+    }
+    let minX = Number.POSITIVE_INFINITY;
+    let minY = Number.POSITIVE_INFINITY;
+    let maxX = Number.NEGATIVE_INFINITY;
+    let maxY = Number.NEGATIVE_INFINITY;
+    points.forEach((point) => {
+      if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) {
+        return;
+      }
+      minX = Math.min(minX, point.x);
+      minY = Math.min(minY, point.y);
+      maxX = Math.max(maxX, point.x);
+      maxY = Math.max(maxY, point.y);
+    });
+    if (
+      !Number.isFinite(minX) ||
+      !Number.isFinite(minY) ||
+      !Number.isFinite(maxX) ||
+      !Number.isFinite(maxY)
+    ) {
+      return null;
+    }
+    return {
+      minX,
+      minY,
+      maxX,
+      maxY,
+      width: maxX - minX,
+      height: maxY - minY,
+      center: {
+        x: (minX + maxX) / 2,
+        y: (minY + maxY) / 2,
+      },
+    };
+  }
+
+  function applySvgMatrixToBounds(matrix, bounds) {
+    if (!Array.isArray(matrix) || matrix.length < 6 || !bounds) {
+      return bounds;
+    }
+    const transformed = [
+      applySvgMatrixToPoint(matrix, bounds.minX, bounds.minY),
+      applySvgMatrixToPoint(matrix, bounds.maxX, bounds.minY),
+      applySvgMatrixToPoint(matrix, bounds.maxX, bounds.maxY),
+      applySvgMatrixToPoint(matrix, bounds.minX, bounds.maxY),
+    ];
+    return computeSvgBoundsFromPoints(transformed);
+  }
+
+  function tokenizeSvgPathData(pathData) {
+    if (!pathData) {
+      return [];
+    }
+    const tokens = [];
+    const tokenPattern = /([a-zA-Z])|([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)/g;
+    let match = tokenPattern.exec(pathData);
+    while (match) {
+      if (match[1]) {
+        tokens.push({ type: "command", value: match[1] });
+      } else {
+        tokens.push({ type: "number", value: Number.parseFloat(match[2]) });
+      }
+      match = tokenPattern.exec(pathData);
+    }
+    return tokens;
+  }
+
+  function computeSvgPathBounds(pathData) {
+    const tokens = tokenizeSvgPathData(pathData);
+    if (!tokens.length) {
+      return null;
+    }
+    let tokenIndex = 0;
+    let command = null;
+    let currentX = 0;
+    let currentY = 0;
+    let startX = 0;
+    let startY = 0;
+    const points = [];
+
+    const markPoint = (x, y) => {
+      if (Number.isFinite(x) && Number.isFinite(y)) {
+        points.push({ x, y });
+      }
+    };
+
+    const takeNumber = () => {
+      if (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+        const value = tokens[tokenIndex].value;
+        tokenIndex += 1;
+        return value;
+      }
+      return null;
+    };
+
+    while (tokenIndex < tokens.length) {
+      if (tokens[tokenIndex].type === "command") {
+        command = tokens[tokenIndex].value;
+        tokenIndex += 1;
+      } else if (!command) {
+        tokenIndex += 1;
+        continue;
+      }
+
+      const relative = command === command.toLowerCase();
+      const upperCommand = command.toUpperCase();
+
+      if (upperCommand === "M") {
+        let firstPoint = true;
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x = takeNumber();
+          const y = takeNumber();
+          if (!Number.isFinite(x) || !Number.isFinite(y)) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+          if (firstPoint) {
+            startX = currentX;
+            startY = currentY;
+            firstPoint = false;
+          }
+        }
+      } else if (upperCommand === "L") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x = takeNumber();
+          const y = takeNumber();
+          if (!Number.isFinite(x) || !Number.isFinite(y)) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "H") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x = takeNumber();
+          if (!Number.isFinite(x)) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "V") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const y = takeNumber();
+          if (!Number.isFinite(y)) {
+            break;
+          }
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "C") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x1 = takeNumber();
+          const y1 = takeNumber();
+          const x2 = takeNumber();
+          const y2 = takeNumber();
+          const x = takeNumber();
+          const y = takeNumber();
+          if (
+            !Number.isFinite(x1) ||
+            !Number.isFinite(y1) ||
+            !Number.isFinite(x2) ||
+            !Number.isFinite(y2) ||
+            !Number.isFinite(x) ||
+            !Number.isFinite(y)
+          ) {
+            break;
+          }
+          const absX1 = relative ? currentX + x1 : x1;
+          const absY1 = relative ? currentY + y1 : y1;
+          const absX2 = relative ? currentX + x2 : x2;
+          const absY2 = relative ? currentY + y2 : y2;
+          const absX = relative ? currentX + x : x;
+          const absY = relative ? currentY + y : y;
+          markPoint(absX1, absY1);
+          markPoint(absX2, absY2);
+          markPoint(absX, absY);
+          currentX = absX;
+          currentY = absY;
+        }
+      } else if (upperCommand === "S") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x2 = takeNumber();
+          const y2 = takeNumber();
+          const x = takeNumber();
+          const y = takeNumber();
+          if (
+            !Number.isFinite(x2) ||
+            !Number.isFinite(y2) ||
+            !Number.isFinite(x) ||
+            !Number.isFinite(y)
+          ) {
+            break;
+          }
+          const absX2 = relative ? currentX + x2 : x2;
+          const absY2 = relative ? currentY + y2 : y2;
+          const absX = relative ? currentX + x : x;
+          const absY = relative ? currentY + y : y;
+          markPoint(absX2, absY2);
+          markPoint(absX, absY);
+          currentX = absX;
+          currentY = absY;
+        }
+      } else if (upperCommand === "Q") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x1 = takeNumber();
+          const y1 = takeNumber();
+          const x = takeNumber();
+          const y = takeNumber();
+          if (
+            !Number.isFinite(x1) ||
+            !Number.isFinite(y1) ||
+            !Number.isFinite(x) ||
+            !Number.isFinite(y)
+          ) {
+            break;
+          }
+          const absX1 = relative ? currentX + x1 : x1;
+          const absY1 = relative ? currentY + y1 : y1;
+          const absX = relative ? currentX + x : x;
+          const absY = relative ? currentY + y : y;
+          markPoint(absX1, absY1);
+          markPoint(absX, absY);
+          currentX = absX;
+          currentY = absY;
+        }
+      } else if (upperCommand === "T") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x = takeNumber();
+          const y = takeNumber();
+          if (!Number.isFinite(x) || !Number.isFinite(y)) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "A") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const radiusX = takeNumber();
+          const radiusY = takeNumber();
+          const rotation = takeNumber();
+          const largeArcFlag = takeNumber();
+          const sweepFlag = takeNumber();
+          const x = takeNumber();
+          const y = takeNumber();
+          if (
+            !Number.isFinite(radiusX) ||
+            !Number.isFinite(radiusY) ||
+            !Number.isFinite(rotation) ||
+            !Number.isFinite(largeArcFlag) ||
+            !Number.isFinite(sweepFlag) ||
+            !Number.isFinite(x) ||
+            !Number.isFinite(y)
+          ) {
+            break;
+          }
+          const absX = relative ? currentX + x : x;
+          const absY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+          markPoint(absX, absY);
+          markPoint(currentX + Math.abs(radiusX), currentY + Math.abs(radiusY));
+          markPoint(currentX - Math.abs(radiusX), currentY - Math.abs(radiusY));
+          markPoint(absX + Math.abs(radiusX), absY + Math.abs(radiusY));
+          markPoint(absX - Math.abs(radiusX), absY - Math.abs(radiusY));
+          currentX = absX;
+          currentY = absY;
+        }
+      } else if (upperCommand === "Z") {
+        currentX = startX;
+        currentY = startY;
+        markPoint(currentX, currentY);
+      } else {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          tokenIndex += 1;
+        }
+      }
+    }
+
+    return computeSvgBoundsFromPoints(points);
+  }
+
+  function extractSvgPathAnchorPoints(pathData) {
+    const tokens = tokenizeSvgPathData(pathData);
+    if (!tokens.length) {
+      return [];
+    }
+    let tokenIndex = 0;
+    let command = null;
+    let currentX = 0;
+    let currentY = 0;
+    let startX = 0;
+    let startY = 0;
+    const points = [];
+
+    const markPoint = (x, y) => {
+      if (Number.isFinite(x) && Number.isFinite(y)) {
+        points.push({ x, y });
+      }
+    };
+
+    const takeNumber = () => {
+      if (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+        const value = tokens[tokenIndex].value;
+        tokenIndex += 1;
+        return value;
+      }
+      return null;
+    };
+
+    while (tokenIndex < tokens.length) {
+      if (tokens[tokenIndex].type === "command") {
+        command = tokens[tokenIndex].value;
+        tokenIndex += 1;
+      } else if (!command) {
+        tokenIndex += 1;
+        continue;
+      }
+
+      const relative = command === command.toLowerCase();
+      const upperCommand = command.toUpperCase();
+
+      if (upperCommand === "M") {
+        let firstPoint = true;
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x = takeNumber();
+          const y = takeNumber();
+          if (!Number.isFinite(x) || !Number.isFinite(y)) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+          if (firstPoint) {
+            startX = currentX;
+            startY = currentY;
+            firstPoint = false;
+          }
+        }
+      } else if (upperCommand === "L") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x = takeNumber();
+          const y = takeNumber();
+          if (!Number.isFinite(x) || !Number.isFinite(y)) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "H") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x = takeNumber();
+          if (!Number.isFinite(x)) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "V") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const y = takeNumber();
+          if (!Number.isFinite(y)) {
+            break;
+          }
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "C") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x1 = takeNumber();
+          const y1 = takeNumber();
+          const x2 = takeNumber();
+          const y2 = takeNumber();
+          const x = takeNumber();
+          const y = takeNumber();
+          if (
+            !Number.isFinite(x1) ||
+            !Number.isFinite(y1) ||
+            !Number.isFinite(x2) ||
+            !Number.isFinite(y2) ||
+            !Number.isFinite(x) ||
+            !Number.isFinite(y)
+          ) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "S") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x2 = takeNumber();
+          const y2 = takeNumber();
+          const x = takeNumber();
+          const y = takeNumber();
+          if (
+            !Number.isFinite(x2) ||
+            !Number.isFinite(y2) ||
+            !Number.isFinite(x) ||
+            !Number.isFinite(y)
+          ) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "Q") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x1 = takeNumber();
+          const y1 = takeNumber();
+          const x = takeNumber();
+          const y = takeNumber();
+          if (
+            !Number.isFinite(x1) ||
+            !Number.isFinite(y1) ||
+            !Number.isFinite(x) ||
+            !Number.isFinite(y)
+          ) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "T") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const x = takeNumber();
+          const y = takeNumber();
+          if (!Number.isFinite(x) || !Number.isFinite(y)) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "A") {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          const radiusX = takeNumber();
+          const radiusY = takeNumber();
+          const rotation = takeNumber();
+          const largeArcFlag = takeNumber();
+          const sweepFlag = takeNumber();
+          const x = takeNumber();
+          const y = takeNumber();
+          if (
+            !Number.isFinite(radiusX) ||
+            !Number.isFinite(radiusY) ||
+            !Number.isFinite(rotation) ||
+            !Number.isFinite(largeArcFlag) ||
+            !Number.isFinite(sweepFlag) ||
+            !Number.isFinite(x) ||
+            !Number.isFinite(y)
+          ) {
+            break;
+          }
+          currentX = relative ? currentX + x : x;
+          currentY = relative ? currentY + y : y;
+          markPoint(currentX, currentY);
+        }
+      } else if (upperCommand === "Z") {
+        currentX = startX;
+        currentY = startY;
+        markPoint(currentX, currentY);
+      } else {
+        while (tokenIndex < tokens.length && tokens[tokenIndex].type === "number") {
+          tokenIndex += 1;
+        }
+      }
+    }
+
+    return points;
+  }
+
+  function isHydeFlowerGlyphPath(styleValue, pathData, bounds) {
+    if (styleValue !== "fill:none;stroke:#231f20;stroke-miterlimit:10" || !bounds) {
+      return false;
+    }
+    const commandCount = (pathData.match(/[A-Za-z]/g) || []).length;
+    if (commandCount < 8 || commandCount > 10) {
+      return false;
+    }
+    if (bounds.width < 55 || bounds.width > 85 || bounds.height < 55 || bounds.height > 85) {
+      return false;
+    }
+    const aspectRatio = bounds.width / bounds.height;
+    return aspectRatio > 0.74 && aspectRatio < 1.35;
+  }
+
+  function buildHydeFlowerHotspotTemplates(root) {
+    const flowerCandidates = Array.from(root.querySelectorAll("path"))
+      .map((path) => {
+        const styleValue = path.getAttribute("style") || "";
+        const pathData = path.getAttribute("d") || "";
+        if (!styleValue || !pathData) {
+          return null;
+        }
+        const rawBounds = computeSvgPathBounds(pathData);
+        if (!rawBounds) {
+          return null;
+        }
+        const anchorBounds = computeSvgBoundsFromPoints(extractSvgPathAnchorPoints(pathData));
+        const transform = path.getAttribute("transform");
+        const bounds = transform
+          ? applySvgMatrixToBounds(parseSvgTransformMatrix(transform), rawBounds)
+          : rawBounds;
+        const anchorBoundsWithTransform = transform
+          ? applySvgMatrixToBounds(parseSvgTransformMatrix(transform), anchorBounds)
+          : anchorBounds;
+        if (!isHydeFlowerGlyphPath(styleValue, pathData, bounds)) {
+          return null;
+        }
+        const centerBounds = anchorBoundsWithTransform || bounds;
+        const radius = Math.max(16, Math.min(28, Math.max(centerBounds.width, centerBounds.height) * 0.36));
+        return {
+          cx: centerBounds.center.x,
+          cy: centerBounds.center.y,
+          r: radius,
+          transform: null,
+          dashed: false,
+          center: {
+            x: centerBounds.center.x,
+            y: centerBounds.center.y,
+          },
+        };
+      })
+      .filter(Boolean);
+
+    const uniqueFlowers = [];
+    flowerCandidates.forEach((candidate) => {
+      const duplicate = uniqueFlowers.some(
+        (existing) =>
+          Math.hypot(existing.center.x - candidate.center.x, existing.center.y - candidate.center.y) <
+          18
+      );
+      if (!duplicate) {
+        uniqueFlowers.push(candidate);
+      }
+    });
+    return uniqueFlowers;
+  }
+
   function extractHydeHotspotTemplates(svgText) {
     const parser = new DOMParser();
     const parsed = parser.parseFromString(svgText, "image/svg+xml");
@@ -257,8 +955,8 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!root || root.tagName.toLowerCase() !== "svg") {
       return [];
     }
-    return Array.from(root.querySelectorAll("circle"))
-      .map((circle, index) => {
+    const circleTemplates = Array.from(root.querySelectorAll("circle"))
+      .map((circle) => {
         const cx = Number.parseFloat(circle.getAttribute("cx") || "");
         const cy = Number.parseFloat(circle.getAttribute("cy") || "");
         const r = Number.parseFloat(circle.getAttribute("r") || "");
@@ -270,7 +968,6 @@ export function createPeriodicOverlayRuntime(deps) {
           ? applySvgMatrixToPoint(parseSvgTransformMatrix(transform), cx, cy)
           : { x: cx, y: cy };
         return {
-          index,
           cx,
           cy,
           r,
@@ -280,6 +977,29 @@ export function createPeriodicOverlayRuntime(deps) {
         };
       })
       .filter(Boolean);
+
+    const connectedCircleTemplates = circleTemplates.filter((candidate, candidateIndex, allCircles) => {
+      let nearestDistance = Number.POSITIVE_INFINITY;
+      for (let index = 0; index < allCircles.length; index += 1) {
+        if (index === candidateIndex) {
+          continue;
+        }
+        const other = allCircles[index];
+        const distance = Math.hypot(
+          candidate.center.x - other.center.x,
+          candidate.center.y - other.center.y
+        );
+        nearestDistance = Math.min(nearestDistance, distance);
+      }
+      return nearestDistance <= 160;
+    });
+
+    const flowerTemplates = buildHydeFlowerHotspotTemplates(root);
+    const templates = [...connectedCircleTemplates, ...flowerTemplates];
+    return templates.map((template, index) => ({
+      ...template,
+      index,
+    }));
   }
 
   async function ensureHydeHotspotTemplates() {
@@ -373,19 +1093,198 @@ export function createPeriodicOverlayRuntime(deps) {
     const elements = [...data.elements]
       .filter((el) => Number.isFinite(Number(el.number)))
       .sort((a, b) => Number(a.number) - Number(b.number));
-    const mappedCount = Math.min(hotspots.length, elements.length);
+    const baselineCount = Math.min(hotspots.length, elements.length);
+    const distanceBetweenHotspots = (a, b) =>
+      Math.hypot(a.center.x - b.center.x, a.center.y - b.center.y);
+    const vectorBetweenHotspots = (from, to) => ({
+      x: to.center.x - from.center.x,
+      y: to.center.y - from.center.y,
+    });
+    const angleBetweenVectors = (a, b) => {
+      const magA = Math.hypot(a.x, a.y);
+      const magB = Math.hypot(b.x, b.y);
+      if (!magA || !magB) {
+        return 0;
+      }
+      const cosine = (a.x * b.x + a.y * b.y) / (magA * magB);
+      return Math.acos(Math.max(-1, Math.min(1, cosine)));
+    };
+    const elementsByAtomicNumber = new Map(
+      elements.map((element) => [Number(element.number), element])
+    );
+    const elementsBySymbol = new Map(
+      elements.map((element) => [String(element.symbol || "").toUpperCase(), element])
+    );
+    const assignedElements = new Array(hotspots.length).fill(null);
+    const hotspotOrderByDisplayNumber = new Map(
+      hotspots.map((hotspot, hotspotOrderIndex) => [hotspot.index + 1, hotspotOrderIndex])
+    );
+    const fixedAtomicToOrder = new Map();
+    const fixedOrderToAtomic = new Map();
+    Object.entries(hydeHotspotSymbolAssignments).forEach(([displayNumberKey, assignmentSymbolRaw]) => {
+      const displayNumber = Number.parseInt(displayNumberKey, 10);
+      if (!Number.isFinite(displayNumber)) {
+        return;
+      }
+      const hotspotOrderIndex = hotspotOrderByDisplayNumber.get(displayNumber);
+      if (hotspotOrderIndex === undefined) {
+        console.warn(
+          `[PeriodicOverlayRuntime] Ignoring Hyde assignment for unknown hotspot ${displayNumber}`
+        );
+        return;
+      }
+      const assignmentSymbol = String(assignmentSymbolRaw || "").trim().toUpperCase();
+      if (!assignmentSymbol) {
+        return;
+      }
+      const assignmentElement = elementsBySymbol.get(assignmentSymbol);
+      if (!assignmentElement) {
+        console.warn(
+          `[PeriodicOverlayRuntime] Ignoring unknown Hyde assignment symbol "${assignmentSymbol}" for hotspot ${displayNumber}`
+        );
+        return;
+      }
+      const atomicNumber = Number(assignmentElement.number);
+      if (!Number.isFinite(atomicNumber) || atomicNumber < 1 || atomicNumber > baselineCount) {
+        return;
+      }
+      const previousOrderForAtomic = fixedAtomicToOrder.get(atomicNumber);
+      if (Number.isFinite(previousOrderForAtomic) && previousOrderForAtomic !== hotspotOrderIndex) {
+        fixedOrderToAtomic.delete(previousOrderForAtomic);
+      }
+      const previousAtomicAtOrder = fixedOrderToAtomic.get(hotspotOrderIndex);
+      if (
+        Number.isFinite(previousAtomicAtOrder) &&
+        previousAtomicAtOrder !== atomicNumber &&
+        fixedAtomicToOrder.get(previousAtomicAtOrder) === hotspotOrderIndex
+      ) {
+        fixedAtomicToOrder.delete(previousAtomicAtOrder);
+      }
+      fixedAtomicToOrder.set(atomicNumber, hotspotOrderIndex);
+      fixedOrderToAtomic.set(hotspotOrderIndex, atomicNumber);
+    });
+
+    const atomicToOrder = new Map();
+    const usedOrders = new Set();
+    const assignedAtomicNumbers = new Set();
+    fixedAtomicToOrder.forEach((hotspotOrderIndex, atomicNumber) => {
+      const element = elementsByAtomicNumber.get(atomicNumber);
+      if (!element) {
+        return;
+      }
+      assignedElements[hotspotOrderIndex] = element;
+      atomicToOrder.set(atomicNumber, hotspotOrderIndex);
+      usedOrders.add(hotspotOrderIndex);
+      assignedAtomicNumbers.add(atomicNumber);
+    });
+
+    const fixedAtomicNumbers = [...fixedAtomicToOrder.keys()].sort((a, b) => a - b);
+    const remainingHotspotOrders = new Set();
+    for (let hotspotOrderIndex = 0; hotspotOrderIndex < hotspots.length; hotspotOrderIndex += 1) {
+      if (!usedOrders.has(hotspotOrderIndex)) {
+        remainingHotspotOrders.add(hotspotOrderIndex);
+      }
+    }
+    const remainingAtomicNumbers = elements
+      .map((element) => Number(element.number))
+      .filter(
+        (atomicNumber) =>
+          Number.isFinite(atomicNumber) &&
+          atomicNumber >= 1 &&
+          atomicNumber <= baselineCount &&
+          !assignedAtomicNumbers.has(atomicNumber)
+      )
+      .sort((a, b) => a - b);
+
+    const findNextFixedAtomic = (atomicNumber) => {
+      for (let index = 0; index < fixedAtomicNumbers.length; index += 1) {
+        const candidate = fixedAtomicNumbers[index];
+        if (candidate > atomicNumber) {
+          return candidate;
+        }
+      }
+      return null;
+    };
+
+    for (let atomicIndex = 0; atomicIndex < remainingAtomicNumbers.length; atomicIndex += 1) {
+      const atomicNumber = remainingAtomicNumbers[atomicIndex];
+      const element = elementsByAtomicNumber.get(atomicNumber);
+      if (!element) {
+        continue;
+      }
+      const prevOrder = atomicToOrder.get(atomicNumber - 1);
+      const prevPrevOrder = atomicToOrder.get(atomicNumber - 2);
+      const nextFixedAtomic = findNextFixedAtomic(atomicNumber);
+      const nextFixedOrder =
+        Number.isFinite(nextFixedAtomic) && fixedAtomicToOrder.has(nextFixedAtomic)
+          ? fixedAtomicToOrder.get(nextFixedAtomic)
+          : null;
+      let bestOrder = null;
+      let bestScore = Number.POSITIVE_INFINITY;
+      for (const hotspotOrderIndex of remainingHotspotOrders) {
+        const candidateHotspot = hotspots[hotspotOrderIndex];
+        let score = 0;
+        if (Number.isFinite(prevOrder)) {
+          const prevHotspot = hotspots[prevOrder];
+          const prevDistance = distanceBetweenHotspots(candidateHotspot, prevHotspot);
+          score += prevDistance;
+          if (prevDistance > 260) {
+            score += (prevDistance - 260) * 6;
+          }
+        }
+        if (Number.isFinite(nextFixedOrder)) {
+          const nextHotspot = hotspots[nextFixedOrder];
+          const nextDistance = distanceBetweenHotspots(candidateHotspot, nextHotspot);
+          if (Number.isFinite(prevOrder)) {
+            const prevHotspot = hotspots[prevOrder];
+            const prevToNextDistance = distanceBetweenHotspots(prevHotspot, nextHotspot);
+            const prevToCandidateDistance = distanceBetweenHotspots(prevHotspot, candidateHotspot);
+            score +=
+              Math.abs(prevToCandidateDistance + nextDistance - prevToNextDistance) * 1.2;
+            if (prevToCandidateDistance > prevToNextDistance + 30) {
+              score += (prevToCandidateDistance - prevToNextDistance - 30) * 5;
+            }
+          } else {
+            score += nextDistance;
+          }
+        }
+        if (Number.isFinite(prevOrder) && Number.isFinite(prevPrevOrder)) {
+          const prevPrevHotspot = hotspots[prevPrevOrder];
+          const prevHotspot = hotspots[prevOrder];
+          const incomingVector = vectorBetweenHotspots(prevPrevHotspot, prevHotspot);
+          const outgoingVector = vectorBetweenHotspots(prevHotspot, candidateHotspot);
+          score += angleBetweenVectors(incomingVector, outgoingVector) * 55;
+        }
+        if (score < bestScore) {
+          bestScore = score;
+          bestOrder = hotspotOrderIndex;
+        }
+      }
+      if (!Number.isFinite(bestOrder)) {
+        continue;
+      }
+      assignedElements[bestOrder] = element;
+      atomicToOrder.set(atomicNumber, bestOrder);
+      usedOrders.add(bestOrder);
+      assignedAtomicNumbers.add(atomicNumber);
+      remainingHotspotOrders.delete(bestOrder);
+    }
+
+    const mappedCount = assignedElements.filter(Boolean).length;
     if (mappedCount < elements.length) {
       console.warn(
-        `[PeriodicOverlayRuntime] Hyde hotspot count (${hotspots.length}) is lower than element count (${elements.length}); only the first ${mappedCount} elements were mapped`
+        `[PeriodicOverlayRuntime] Hyde has ${mappedCount} assigned hotspots for ${elements.length} elements`
       );
     }
     grid.innerHTML = "";
     const legendSet = new Map();
     const hotspotNodes = [];
-    for (let index = 0; index < mappedCount; index += 1) {
+    const hoverLabel = createHydeHotspotHoverLabel(grid);
+    for (let index = 0; index < hotspots.length; index += 1) {
       const hotspot = hotspots[index];
-      const element = elements[index];
-      const color = getPeriodicColor(element.category);
+      const element = assignedElements[index];
+      const displayNumber = hotspot.index + 1;
+      const color = element ? getPeriodicColor(element.category) : "rgba(220, 230, 255, 0.24)";
       const circle = document.createElementNS(svgNamespace, "circle");
       circle.setAttribute("cx", `${hotspot.cx}`);
       circle.setAttribute("cy", `${hotspot.cy}`);
@@ -394,25 +1293,60 @@ export function createPeriodicOverlayRuntime(deps) {
         circle.setAttribute("transform", hotspot.transform);
       }
       circle.classList.add("hyde-hotspot");
+      if (!element) {
+        circle.classList.add("is-unassigned");
+      }
       circle.setAttribute("fill", "transparent");
       circle.setAttribute("pointer-events", "all");
       circle.setAttribute("role", "button");
       circle.setAttribute("tabindex", "0");
-      circle.dataset.symbol = element.symbol;
-      circle.dataset.number = `${element.number}`;
+      circle.dataset.symbol = element?.symbol || "";
+      circle.dataset.number = element ? `${element.number}` : "";
       circle.dataset.sequenceIndex = `${index}`;
-      circle.setAttribute("aria-label", `${element.name} (${element.symbol})`);
+      circle.dataset.hotspotIndex = `${hotspot.index}`;
+      circle.dataset.hotspotNumber = `${displayNumber}`;
+      circle.setAttribute(
+        "aria-label",
+        element ? `${element.name} (${element.symbol})` : `Hotspot ${displayNumber} (unassigned)`
+      );
       circle.setAttribute("aria-keyshortcuts", "ArrowLeft ArrowRight Enter Space");
       const title = document.createElementNS(svgNamespace, "title");
-      title.textContent = `${element.number} ${element.name} (${element.symbol})`;
+      title.textContent = element
+        ? `Hotspot ${displayNumber} - ${element.number} ${element.name} (${element.symbol})`
+        : `Hotspot ${displayNumber} - unassigned`;
       circle.appendChild(title);
-      circle.addEventListener("click", () => {
-        openPeriodicElementScene(element, overlay);
+      if (element) {
+        circle.addEventListener("click", () => {
+          openPeriodicElementScene(element, overlay);
+        });
+      }
+      circle.addEventListener("mouseenter", () => {
+        if (element) {
+          showPeriodicElementDetail(element);
+        }
+        showHydeHotspotHoverLabel(
+          hoverLabel,
+          hotspot,
+          element ? `${displayNumber} ${element.symbol}` : displayNumber
+        );
       });
-      circle.addEventListener("mouseenter", () => showPeriodicElementDetail(element));
-      circle.addEventListener("focus", () => showPeriodicElementDetail(element));
+      circle.addEventListener("mouseleave", () => hideHydeHotspotHoverLabel(hoverLabel));
+      circle.addEventListener("focus", () => {
+        if (element) {
+          showPeriodicElementDetail(element);
+        }
+        showHydeHotspotHoverLabel(
+          hoverLabel,
+          hotspot,
+          element ? `${displayNumber} ${element.symbol}` : displayNumber
+        );
+      });
+      circle.addEventListener("blur", () => hideHydeHotspotHoverLabel(hoverLabel));
       circle.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
+          if (!element) {
+            return;
+          }
           event.preventDefault();
           openPeriodicElementScene(element, overlay);
           return;
@@ -435,9 +1369,11 @@ export function createPeriodicOverlayRuntime(deps) {
       });
       grid.appendChild(circle);
       hotspotNodes.push(circle);
-      const legendKey = element.category || "Unknown";
-      if (!legendSet.has(legendKey)) {
-        legendSet.set(legendKey, color);
+      if (element) {
+        const legendKey = element.category || "Unknown";
+        if (!legendSet.has(legendKey)) {
+          legendSet.set(legendKey, color);
+        }
       }
     }
     renderPeriodicLegend(legend, legendSet);

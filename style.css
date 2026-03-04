@@ -1428,6 +1428,28 @@ body {
   outline: none;
 }
 
+#hyde-periodic-grid .hyde-hotspot.is-unassigned {
+  cursor: default;
+  stroke: rgba(236, 192, 164, 0.24);
+}
+
+#hyde-periodic-grid .hyde-hotspot-label {
+  pointer-events: none;
+}
+
+#hyde-periodic-grid .hyde-hotspot-label-bg {
+  fill: rgba(8, 10, 18, 0.9);
+  stroke: rgba(196, 220, 255, 0.46);
+  stroke-width: 1;
+}
+
+#hyde-periodic-grid .hyde-hotspot-label-text {
+  fill: #f5f7ff;
+  font-size: 17px;
+  font-weight: 700;
+  font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
 #hyde-periodic-legend {
   padding: 10px 16px 14px;
   border-top: 1px solid rgba(160, 170, 220, 0.15);
