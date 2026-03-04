@@ -104,20 +104,9 @@ The same source records two distinct geometric modifications over time.[2]
 
 Hyde’s specific move was to place a horizontal axis through H, C, and Si, emphasizing C/Si centrality between electropositive and electronegative regions, with explicit biosphere/lithosphere framing in the historical account.[2][7]
 
-### 4.4 Source-criticism note (Mazurs/Janet/Stedman)
 
-Benfey reports that a commonly repeated attribution in later compilations is problematic: a protrusion spiral ascribed to Janet is argued to trace instead to Stedman-based lineage, with mirror-image and update effects in secondary reproductions.[2]
 
-### 4.5 Diffusion and adoption evidence
-
-The same historical paper documents dissemination beyond journal publication:[2]
-
-1. I2R calendar circulation and wall-chart production.
-2. Appearance in later textbook and reference contexts.
-3. Inclusion in broader chemistry-history visual culture.
-4. Installation beneath the Dresden Max Planck Foucault pendulum.
-
-### 4.6 Historical intent statement
+### 4.4 Historical intent statement
 
 In Benfey’s own account, the spiral was designed to improve visibility of periodic pattern structure relative to fragmented rectangular presentations; it was not presented as a replacement for the underlying periodic law.[2]
 
@@ -152,34 +141,11 @@ Historical Hyde-lineage forms use protrusions to avoid severe compression of lan
 In technical reading, the Hyde linework can be interpreted as layered semantic structure:
 
 1. Outer/inner curved boundaries partition period and block neighborhoods.
-2. Radial separators partition adjacent element sectors along increasing $Z$.
-3. Legacy family labels use Roman-numeral group notation (A/B-era style in parts of the chart).
-4. Subshell-style notations of the form $s^x p^y$ appear in some arcs, indicating valence-configuration classes.
-5. Small per-element numeric strings are consistent with compact property reporting (commonly oxidation-state sets and ionization-energy-type values in historical periodic charts).
+2. Subshell-style notations of the form $s^x p^y$ appear in some arcs, indicating valence-configuration classes.
 
-Because this is a historical chart style, notation conventions are mixed: modern IUPAC group numbering coexists imperfectly with legacy A/B labeling and older superheavy naming contexts.
 
 ---
 
-## 7. Scientific Status and Time-Dependent Cautions
-
-### 7.1 Representation versus derivation
-
-Hyde geometry is a representational transform of periodic order. It does not by itself derive shell structure; shell structure remains governed by quantum mechanics plus many-electron and relativistic corrections.
-
-### 7.2 Heavy-element uncertainty
-
-At high $Z$, relativistic effects, correlation, and short half-lives complicate trend extrapolation. Any geometric continuity into superheavy regions should be treated as structural mapping, not as evidence of equal data certainty.
-
-### 7.3 Nomenclature drift in historical media
-
-Historical charts may contain deprecated transfermium/superheavy labels. Current names/symbols should follow IUPAC recommendations.[5][6]
-
-### 7.4 Group-3 and f-block boundary convention
-
-Placement conventions around group 3 and f-block attachment remain debated in formal discussions; chart geometry should declare its convention explicitly.[5]
-
----
 
 ## 8. AAA Working Hypothesis Collection (Draft)
 
@@ -191,7 +157,7 @@ The points below are collected as a framework-internal research program, not as 
 
 ### 8.2 Assumptions
 
-- The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries decorated with 6E personality charges.
+- The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries decorated with 6 personality charges.
 - Electron tri-binaries are assumed to couple to a central nuclear Noether core through local spacetime-aether gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 

@@ -4612,24 +4612,17 @@
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[3].subScenes[0]"
-    },
-    {
-      "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[6].subScenes[0]"
+      "field": "objects[5].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[9].subScenes[0]"
+      "field": "objects[8].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -4650,28 +4643,28 @@
       "to": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[4].subScenes[0]"
+      "field": "objects[3].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[8].subScenes[0]"
+      "field": "objects[7].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/spacetime/spacetime.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[5].subScenes[0]"
+      "field": "objects[4].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/validation/validation.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[7].subScenes[0]"
+      "field": "objects[6].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -7766,6 +7759,13 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "weak_mixing_ckm.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/chemistry/hyde_periodic_table_scene.json",
+      "field": "scene.markdownPath"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",

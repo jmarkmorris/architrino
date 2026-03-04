@@ -3,6 +3,7 @@ export function createScenePanelUiRuntime(deps) {
     docButton,
     detailClose,
     markdownClose,
+    markdownPanel,
     markdownDocButton,
     markdownLayoutToggle,
     markdownRuntime,
@@ -29,10 +30,21 @@ export function createScenePanelUiRuntime(deps) {
     }
   }
 
+  function toggleCurrentLevelDoc() {
+    if (isTransitionActive()) {
+      return;
+    }
+    if (markdownPanel?.classList.contains("is-open")) {
+      markdownRuntime.hideMarkdownPanel();
+      return;
+    }
+    openCurrentLevelDoc();
+  }
+
   function wireListeners() {
     if (docButton) {
       docButton.addEventListener("click", () => {
-        openCurrentLevelDoc();
+        toggleCurrentLevelDoc();
       });
     }
 

@@ -3715,6 +3715,7 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   docButton,
   detailClose,
   markdownClose,
+  markdownPanel,
   markdownDocButton,
   markdownLayoutToggle,
   markdownRuntime,
