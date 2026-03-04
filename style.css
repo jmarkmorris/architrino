@@ -1409,6 +1409,49 @@ body {
   overflow: visible;
 }
 
+#hyde-periodic-supplementals {
+  position: absolute;
+  left: -6.8181818182%;
+  top: -7.3394495413%;
+  width: 113.6363636364%;
+  height: 114.6788990826%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile {
+  position: absolute;
+  pointer-events: auto;
+  padding: 6px 4px;
+  justify-content: flex-start;
+  text-align: center;
+  color: #f5f7ff;
+  background: rgba(61, 48, 122, 0.92);
+  border-color: rgba(190, 178, 242, 0.72);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.34);
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile:hover,
+#hyde-periodic-supplementals .hyde-periodic-extra-tile:focus-visible {
+  background: rgba(72, 58, 138, 0.95);
+  border-color: rgba(212, 203, 248, 0.9);
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile .ptable-number {
+  top: 5px;
+  left: 5px;
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile .ptable-symbol {
+  margin-top: 20px;
+}
+
+#hyde-periodic-supplementals .hyde-periodic-extra-tile .ptable-name {
+  margin-top: 2px;
+  line-height: 1.12;
+  font-size: 10px;
+}
+
 #hyde-periodic-grid .hyde-hotspot {
   cursor: pointer;
   fill: transparent;
