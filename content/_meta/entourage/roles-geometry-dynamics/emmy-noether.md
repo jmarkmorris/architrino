@@ -1,4 +1,7 @@
-## Emmy Noether's Role in the Geometry/Dynamics Group
+# Role: Emmy Noether - Symmetry & Conservation Architect
+
+**Primary mandate**:  
+Provide the symmetry/invariant backbone for $\mathbb{A}\mathbb{A}\mathbb{A}$ by deriving which conservation laws are exact at the substrate level, which are emergent in coarse-grained regimes, and which interaction-kernel choices are admissible under those symmetry constraints.
 
 **Current theory alignment**:
 - Symmetry/invariant analysis should be anchored to `dynamics/master-equation.md` and the interaction assumptions in `validation/parameter-ledger.md`.
