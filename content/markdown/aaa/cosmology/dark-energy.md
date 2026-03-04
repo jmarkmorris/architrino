@@ -213,6 +213,10 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ effective Friedmann equation must reproduce
 
 In the $\Lambda\mathrm{CDM}$ limit, all three are automatically consistent. Any deviation introduced by medium-state evolution (e.g., time-varying $w$, scale-dependent $G_{\mathrm{eff}}$, or source-term $\mathcal{S}_{\mathrm{relax}} \neq 0$) must remain within current statistical uncertainties or must improve tension metrics.
 
+### SN Systematics Degeneracy Control
+
+Acceleration claims must be stress-tested against supernova population-systematics channels before assigning residuals to medium-relaxation dynamics. At minimum, inference pipelines should include nuisance controls for host-population age, metallicity evolution, dust/extinction environment, and calibration drift, and then report whether the $\mathbb{A}\mathbb{A}\mathbb{A}$ expansion history remains preferred after those controls are applied.
+
 ### Integrated Sachs-Wolfe (ISW) Effect
 
 Late-time acceleration causes gravitational potentials to decay, producing a positive cross-correlation between CMB temperature and large-scale structure at $z < 1$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must reproduce the observed ISW signal amplitude. If the medium-response mechanism alters the rate of potential decay (through $G_{\mathrm{eff}}$ evolution or through the $\mathcal{S}_{\mathrm{relax}}$ coupling), the ISW prediction changes and can be compared to data.
@@ -252,11 +256,11 @@ GW events with electromagnetic counterparts provide luminosity-distance measurem
 
 In the modular cosmology architecture, this chapter provides:
 
-- **Output to `expansion-history.md`:** $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$ from the medium-relaxation model.
+- **Output to `expansion-mechanism.md`:** $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$ from the medium-relaxation model.
 - **Output to `CMB.md`:** late-time ISW contribution and distance to last scattering.
 - **Output to `structure-formation.md`:** potential evolution $\dot{\Phi}(z)$ entering the growth equation.
 - **Input from `dark-matter.md`:** $\Omega_m(z)$ and $G_{\mathrm{eff}}(a,k)$ for consistent Friedmann integration.
-- **Input from `BBN.md`:** early-universe constraints ensuring $\rho_{\mathrm{DE,eff}}(z_{\mathrm{BBN}})$ is negligible relative to radiation density.
+- **Input from `BBN-constraints.md`:** early-universe constraints ensuring $\rho_{\mathrm{DE,eff}}(z_{\mathrm{BBN}})$ is negligible relative to radiation density.
 - **Ontic variables passed:** $\rho_{\mathrm{NS}}(z)$, $\langle R_{\mathrm{outer}} \rangle(z)$, $\tau_{\mathrm{relax}}^{\mathrm{outer}}$, $\mathcal{S}_{\mathrm{relax}}(z)$.
 - **Effective outputs returned:** $w_{\mathrm{eff}}(z)$, $\rho_{\mathrm{DE,eff}}(z)$, $H(z)$.
 

@@ -39,6 +39,7 @@ For $H_0$:
 - local medium-state inhomogeneity (including void-like environments) can bias local-ladder inference relative to early-time inference,
 - late-time medium transition channels can shift low-$z$ inference without reintroducing ontology splits.
 - a non-zero environment-conditioned scatter in local $H$ inference is expected if medium-state gradients are physically relevant.
+- a diagnostic expectation is correlation between local inferred-$H$ scatter and bulk-flow/environment anisotropy indicators along the same sightlines.
 
 For $S_8$:
 

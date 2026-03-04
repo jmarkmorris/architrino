@@ -80,6 +80,14 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 - Medium response can address observed tensions at galaxy scale—the diversity of rotation-curve shapes, the radial-acceleration relation (RAR) tightness, and possible deviations from pure NFW profiles—without introducing additional free parameters per galaxy.
 - The two contributions arise from the same ontological substrate (tri-binary assemblies in Euclidean void with absolute time) and are coupled: neutral assemblies compress the Sea, which in turn responds non-linearly, feeding back on the effective potential.
 
+### Why Hybrid Is Required (Closure Summary)
+
+| Construction | Main strength | Main failure risk |
+|:---|:---|:---|
+| Pure neutral-assembly | Handles CMB loading, BAO/$P(k)$ shape, and cluster collisionless behavior | Can underperform on low-acceleration galaxy phenomenology without added response channels |
+| Pure medium-response | Captures MOND-like galaxy-scale behavior naturally | Struggles with Bullet-Cluster offsets and full CMB matter-loading closure |
+| Hybrid baseline | Combines cosmology-scale closure with galaxy-scale flexibility | Requires constitutive calibration discipline to avoid over-parameterized tuning |
+
 **Coupled equations (schematic).** Let $\rho_A(\mathbf{x},t)$ denote the neutral-assembly density and $\rho_{\mathrm{NS}}(\mathbf{x},t)$ the Noether-Sea density. In the Newtonian limit, the effective Poisson equation becomes:
 
 $$
@@ -197,8 +205,8 @@ In the modular cosmology architecture, this chapter connects to other modules th
 
 - **Input to `CMB.md`:** $\Omega_A h^2$, neutral-assembly equation of state $w_A(z)$ (expected: $w_A = 0$ for CDM-like behavior), and any $\Delta N_{\mathrm{eff}}$ contribution.
 - **Input to `structure-formation.md`:** $G_{\mathrm{eff}}(a,k)$ from medium-response constitutive relation; neutral-assembly self-interaction cross-section $\sigma(v)/m$.
-- **Input from `expansion-history.md`:** $H(z)$ and $\Omega_m(z)$ for growth-equation integration.
-- **Input from `BBN.md`:** $N_{\mathrm{eff}}$ bound constraining allowed neutral-assembly species at MeV temperatures.
+- **Input from `expansion-mechanism.md`:** $H(z)$ and $\Omega_m(z)$ for growth-equation integration.
+- **Input from `BBN-constraints.md`:** $N_{\mathrm{eff}}$ bound constraining allowed neutral-assembly species at MeV temperatures.
 
 All interfaces use the same absolute-time / Euclidean-space substrate and the same Noether-Sea state variables, ensuring ontological consistency across modules.
 
