@@ -59,13 +59,11 @@ inside the black hole
 
 ---
 
-
-
 # Ellipsoidal Deformation of Spacetime Assemblies and the Effective Metric
 
 ## Motivation
 
-In the architrino assembly architecture, every Noether core (tri-binary) occupies a physical exclusion volume that deforms continuously from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). Crucially, the assembly does not merely change shape — it also changes size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, together define the local state of the spacetime medium, from which the effective metric experienced by propagating signals and assembly-based observers must be extracted.
+In the architrino assembly architecture, every Noether core (tri-binary) occupies a physical exclusion volume that deforms continuously from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). Crucially, the assembly does not merely change shape - it also changes size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, together define the local state of the spacetime medium, from which the effective metric experienced by propagating signals and assembly-based observers must be extracted.
 
 This section surveys the standard GR constructions where ellipsoidal geometry plays a structural role, identifies what is absent from GR that the architrino framework supplies, and develops the two-parameter effective metric mapping in detail.
 
@@ -81,7 +79,7 @@ $$
 ds^2 = -\left(1 - \frac{r_s r}{\Sigma}\right)dt^2 - \frac{2r_s r a \sin^2\theta}{\Sigma}\,dt\,d\phi + \frac{\Sigma}{\Delta}\,dr^2 + \Sigma\,d\theta^2 + \left(r^2 + a^2 + \frac{r_s r a^2 \sin^2\theta}{\Sigma}\right)\sin^2\theta\,d\phi^2,
 $$
 
-where $\Sigma = r^2 + a^2\cos^2\theta$, $\Delta = r^2 - r_s r + a^2$, and $a = J/Mc$ is the spin parameter. The event horizon is not a sphere but an oblate spheroid whose flattening increases with $a$, and the ring singularity is a disk — the geometric endpoint of oblate deformation. The Kerr family encodes the full deformation sequence:
+where $\Sigma = r^2 + a^2\cos^2\theta$, $\Delta = r^2 - r_s r + a^2$, and $a = J/Mc$ is the spin parameter. The event horizon is not a sphere but an oblate spheroid whose flattening increases with $a$, and the ring singularity is a disk - the geometric endpoint of oblate deformation. The Kerr family encodes the full deformation sequence:
 
 $$
 \text{Schwarzschild (spherical)} \xrightarrow{a/M \to 1} \text{Kerr (oblate)} \xrightarrow{\text{ring singularity}} \text{planar disk}.
@@ -107,81 +105,17 @@ $$
 \tilde{g}^{\mu\nu} = g^{\mu\nu} + \left(1 - \frac{1}{n^2}\right) u^\mu u^\nu.
 $$
 
-If the medium has an oblate density profile — say, an ellipsoidal distribution of Noether cores — the optical metric inherits that oblateness. Light rays follow geodesics of $\tilde{g}_{\mu\nu}$, so the shape of the medium directly encodes the effective geometry experienced by signals. This is the closest standard-physics analogue to the architrino picture of gravity as propagation through a structured medium.
+If the medium has an oblate density profile - say, an ellipsoidal distribution of Noether cores - the optical metric inherits that oblateness. Light rays follow geodesics of $\tilde{g}_{\mu\nu}$, so the shape of the medium directly encodes the effective geometry experienced by signals. This is the closest standard-physics analogue to the architrino picture of gravity as propagation through a structured medium.
 
 ### Petrov Classification
 
 The algebraic type of the Weyl curvature tensor provides an abstract counterpart to the deformation sequence:
 
 - **Type O** (conformally flat): spherical symmetry, no preferred spatial directions.
-- **Type D**: two preferred null directions, axial symmetry — the algebraic structure behind Kerr.
-- **Type N**: a single degenerate null direction — the planar gravitational-wave limit.
+- **Type D**: two preferred null directions, axial symmetry - the algebraic structure behind Kerr.
+- **Type N**: a single degenerate null direction - the planar gravitational-wave limit.
 
 The trajectory through Petrov types $\text{O} \to \text{D} \to \text{N}$ mirrors the geometric deformation from sphere through oblate spheroid to plane, though it is not normally presented in those terms.
-
----
-
-## What Standard GR Does Not Provide
-
-Standard GR contains no single dynamical variable — an "oblateness parameter" — that smoothly interpolates between spherical and planar configurations as a universal, local degree of freedom of the spacetime medium. The ellipsoidal structure appears in specific solution classes (Kerr, rotating stars, perturbation theory), but it is not elevated to a fundamental field. GR is a tensor field theory on a manifold, not a theory of deformable bodies.
-
-More pointedly, in standard GR the *overall scale* of a horizon or fluid body is set independently by the mass $M$, while the *shape* is controlled by a separate parameter ($a/M$ for Kerr). These two quantities respond to different physical inputs and are not locked together by a single dynamical mechanism.
-
-The architrino framework proposes to fill both gaps: every spacetime assembly carries its own dynamical oblateness and its own dynamical scale, both governed by the same underlying delay-feedback dynamics.
-
----
-
-## The Two-Parameter Deformation in $\mathbb{A}\mathbb{A}\mathbb{A}$
-
-### Shape Deformation (Oblateness)
-
-For a Noether core translating at $\beta = v_{\text{trans}}/c_f$ or sitting in a gravitational gradient, the longitudinal axis compresses:
-
-$$
-R_\parallel = \frac{R_\perp}{\gamma}, \quad \gamma = \frac{1}{\sqrt{1 - \beta^2}}.
-$$
-
-The geometric origin is a right-triangle decomposition of the causal speed: $c_f^2 = v_{\text{trans}}^2 + v_\parallel^2$, so the longitudinal closure speed is $v_\parallel = c_f\sqrt{1-\beta^2}$. Mapping causal speed to closure length gives $R_\parallel = R_\perp(v_\parallel/c_f) = R_\perp/\gamma$.
-
-### Scale Change (Radius Rescaling)
-
-As the tri-binary gains energy — whether from translational kinetic energy, from falling deeper into a gravitational potential, or from absorbing radiation — the outer binary is driven toward higher frequency and smaller orbit:
-
-$$
-R_\perp = R_\perp(E), \quad \frac{dR_\perp}{dE} < 0.
-$$
-
-This is not present in standard GR analogues, where the horizon scale is set by $M$ independently of the deformation parameter $a/M$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the two are coupled: increasing energy simultaneously flattens and shrinks the core.
-
-### Combined Exclusion Volume
-
-The exclusion volume of a single core has two compression channels:
-
-$$
-V(\beta, E) = \frac{4\pi}{3}\,R_\perp(E)^2\,R_\parallel(E, \beta) = \frac{4\pi}{3}\,R_\perp(E)^3\,\sqrt{1 - \beta^2}.
-$$
-
-Both factors decrease as the assembly gains energy. At the Planck alignment state, $R_\perp \to R_{\text{align}} \approx \ell_P/(2\pi)$ and $\beta \to 1$ simultaneously.
-
-### Local State Variables
-
-Every spacetime point in the Noether Sea is characterized by at least two independent deformation parameters:
-
-$$
-\xi(x) = \frac{R_\parallel}{R_\perp} = \frac{1}{\gamma(x)} \quad \text{(shape: oblateness, ranging from 1 to 0)},
-$$
-
-$$
-\lambda(x) = \frac{R_\perp(x)}{R_{\perp,0}} \quad \text{(scale: fractional shrinkage from rest-state size)}.
-$$
-
-Together with the local number density $n(x)$ and the preferred-frame 4-velocity $\hat{u}(x)$, these specify the local state of the spacetime medium. The effective metric is a functional of all four:
-
-$$
-g_{\mu\nu}(x) = \mathcal{G}_{\mu\nu}\big[\xi(x),\;\lambda(x),\;n(x),\;\hat{u}(x)\big].
-$$
-
-In the homogeneous, isotropic rest limit ($\xi = 1$, $\lambda = 1$, $n = n_0$, $\hat{u} = (1,0,0,0)$), this reduces to a conformal factor times flat space — the Minkowski limit. Departures from this limit generate curvature.
 
 ---
 
@@ -240,13 +174,13 @@ As the universe cools and spacetime assemblies lose energy, $R_\perp$ grows (cor
 | Degrees of freedom per point | 10 metric components (constrained by symmetries, gauge) | $\xi$, $\lambda$, $n$, $\hat{u}$ (4 scalar fields + orientation) |
 | Shape deformation | Implicit in specific solutions (Kerr $a/M$) | Universal: every core has $\xi(x)$ |
 | Scale change | Set by source mass, not a local medium property | Universal: every core has $\lambda(x)$ |
-| Shape–scale coupling | Independent ($a$ and $M$ are separate parameters) | Locked: both driven by energy through delay-feedback |
+| Shape-scale coupling | Independent ($a$ and $M$ are separate parameters) | Locked: both driven by energy through delay-feedback |
 | Proper time | From $g_{00}$ directly | Derived from core oscillation rate depending on $\xi$ and $\lambda$ |
 | Gravitational lensing | From Christoffel symbols / geodesic equation | From refractive index gradients $\nabla\xi$, $\nabla\lambda$, $\nabla n$ |
 | Signal anisotropy | Encoded in off-diagonal metric components | From ellipsoidal packing and axis-dependent transit times |
 | Planck / horizon limit | Singularity or extremal Kerr limit | Co-termination: $\xi \to 0$, $\lambda \to \lambda_{\min}$ simultaneously |
 | Cosmological expansion | Scale factor $a(t)$ of the metric | Core relaxation: $R_\perp(t)$ grows, $\xi(t) \to 1$ |
-| Petrov type analogue | O (spherical) → D (oblate/axial) → N (planar wave) | $\xi = 1$ → $0 < \xi < 1$ → $\xi = 0$ |
+| Petrov type analogue | O (spherical) -> D (oblate/axial) -> N (planar wave) | $\xi = 1$ -> $0 < \xi < 1$ -> $\xi = 0$ |
 | Algebraic classification | Weyl tensor Petrov types | Oblateness + scale of local assembly |
 | Rotating-body analogue | Maclaurin/Jacobi/Dedekind sequences | Velocity/gravity-driven deformation of every core |
 
@@ -263,6 +197,7 @@ Turning this structural mapping into a quantitative effective metric requires fi
 **Step 3. Extract the effective metric.** Use the Gordon metric template to obtain $g_{\mu\nu}$ from $n_{\text{eff}}$ and the preferred-frame structure $\hat{u}$, specialized to a medium with two deformation parameters. Verify that the metric has Lorentzian signature and reduces to Minkowski in the homogeneous isotropic limit.
 
 **Step 4. Weak-field expansion and phenomenological tests.** Expand to linear order around the homogeneous background. Verify:
+
 - Newtonian limit (Poisson equation from density gradient of the medium),
 - PPN parameters $\gamma$, $\beta$ within experimental bounds,
 - GW propagation speed $|v_{\text{GW}} - c|/c < 10^{-15}$,
@@ -270,7 +205,4 @@ Turning this structural mapping into a quantitative effective metric requires fi
 
 **Step 5. Strong-field and cosmological limits.** Check that the $(\xi, \lambda)$ co-termination at the Planck alignment state reproduces horizon thermodynamics (area scaling, temperature) at least qualitatively. Verify that the cosmological relaxation of $R_\perp(t)$ and $\xi(t)$ yields an effective Friedmann equation consistent with observed expansion history, BBN, and CMB acoustic peak positions.
 
-The combined shape-plus-scale deformation is the structural feature that distinguishes this framework from a simple "gravity as refraction in a medium" story. The scale change introduces an additional degree of freedom that standard optical-metric analogies do not carry, and it is this extra channel that must ultimately account for the full richness of GR phenomenology — or fail in a clean, identifiable way.
-
-
-
+The combined shape-plus-scale deformation is the structural feature that distinguishes this framework from a simple "gravity as refraction in a medium" story. The scale change introduces an additional degree of freedom that standard optical-metric analogies do not carry, and it is this extra channel that must ultimately account for the full richness of GR phenomenology - or fail in a clean, identifiable way.

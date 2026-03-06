@@ -33,13 +33,13 @@ Given a translating bound assembly (binary and then tri-binary), derive:
 
 ## 2. Governing Microdynamics
 
-### 2.1 Retarded interaction form
+### 2.1 Causal path-history interaction form
 
 For architrino labels $i,j\in\{1,\dots,N\}$, with positions $\mathbf{x}_i(t)$ and masses $m_i$,
 $$
 m_i\ddot{\mathbf{x}}_i(t)=\sum_{j\neq i}\mathbf{F}_{ij}\!\left(\mathbf{x}_i(t),\mathbf{x}_j(t-\tau_{ij}(t)),\dot{\mathbf{x}}_j(t-\tau_{ij}(t))\right)+\mathbf{F}^{\text{self}}_i(t),
 $$
-with retardation delay
+with causal delay
 $$
 \tau_{ij}(t)=\frac{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau_{ij}(t))\|}{c_f}.
 $$
@@ -79,6 +79,127 @@ T(v)=\gamma(v)\,T_0\,[1+O(\epsilon_{\text{LV}})].
 $$
 Exact closure is the limit $\epsilon_{\text{LV}}\to 0$.
 
+### 3.4 Outer-binary transduction hypothesis (working)
+
+Assume the outer binary $L$ is the dominant transducer for energy exchange with passerby assemblies (non-locally coupled encounters). Under this hypothesis, the leading kinematic response is boundary-driven at $L$, then propagated inward through $M$ and $H$ couplings.
+
+For locally coupled assemblies (strong axial coupling), interaction pathways are distinct and should be modeled as a separate regime, not merged with passerby-transfer fits.
+
+### 3.5 State update map for single-quantum uptake
+
+For an assembly state
+$$
+\mathcal{S}=\{v_{\text{tr}}, f_H,f_M,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},\tau_{\text{op}}\},
+$$
+let one absorbed quantum $\Delta E_q$ induce
+$$
+\mathcal{S}\mapsto \mathcal{S}'=\mathcal{S}+\Delta\mathcal{S}(\Delta E_q),
+$$
+with the following structured components:
+
+1. Translational architrino speed increase: $\Delta v_{\text{tr}}>0$.
+2. Discrete frequency retuning of $H,M,L$: $\Delta f_k=n_k\,\delta f_k$, with $n_k\in\mathbb{Z}$ and $k\in\{H,M,L\}$.
+3. Tri-binary axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
+4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
+5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
+
+### 3.6 Open mapping: perceived time dilation in $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The human-observed "time dilation" channel is not yet fully mapped in substrate variables. The working interpretation in this document is:
+$$
+\tau_{\text{op}}=\tau_{\text{op}}(f_H,f_M,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},v_{\text{tr}}),
+$$
+where $\tau_{\text{op}}$ is an emergent clock functional of assembly internal frequencies, axis geometry, exclusion-zone shape, and translation state.
+
+The immediate task is to identify which subset dominates $\partial \tau_{\text{op}}/\partial E$ in the passerby-transfer regime, with the default prior that outer-binary $L$ mediated updates are first-order.
+
+### 3.7 Evolving scenario: exclusion-volume driven effective spacetime
+
+Working assumption:
+
+1. The outer precessing binary of a Noether core defines the effective exclusion volume boundary.
+2. Each tri-binary layer ($H,M,L$) has its own orbital axis.
+3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
+
+Proposed mechanism chain under applied force (acceleration of a Noether-core-based assembly):
+
+1. External forcing increases translational state.
+2. Axis coupling drives partial alignment of $H,M,L$ orbital axes.
+3. Alignment is accompanied by binary radius contraction across layers (with layer-dependent sensitivity).
+4. The exclusion volume changes shape and orientation because its boundary is set by the precessing outer binary $L$.
+5. Neighboring assemblies then see changed path-history geometry and interaction timing.
+6. At coarse scale, this appears as a modified effective kinematic/geometric background, i.e. an emergent spacetime response.
+
+This can be treated as a coupled state map:
+$$
+(\mathbf{v},\mathbf{A}_H,\mathbf{A}_M,\mathbf{A}_L,R_H,R_M,R_L,\mathcal{E}_{\text{excl}})
+\xrightarrow{\;\Delta \mathbf{p}\;}
+(\mathbf{v}',\mathbf{A}_H',\mathbf{A}_M',\mathbf{A}_L',R_H',R_M',R_L',\mathcal{E}_{\text{excl}}').
+$$
+
+Initial directional hypothesis for acceleration response:
+$$
+\|\mathbf{A}_H-\mathbf{A}_L\|,\ \|\mathbf{A}_M-\mathbf{A}_L\| \downarrow,\qquad
+R_H,R_M,R_L \downarrow,
+$$
+with the strongest transduction at $L$.
+
+Interpretive thesis:
+
+Einstein-like spacetime behavior may be recovered as the continuum limit of moving, deforming exclusion volumes of Noether cores under translation and local volume variation, rather than from fundamental geometric curvature at substrate level.
+
+Consistency checks required for this scenario:
+
+1. Contraction and alignment must satisfy conservation laws and admissible torque channels.
+2. The induced clock/ruler renormalization must reproduce Lorentz-like scaling to required accuracy.
+3. Residual anisotropy harmonics must remain below empirical bounds after observer construction.
+4. Local axial-coupling encounters must be modeled separately from passerby-transfer events.
+
+Status: scenario is a structured hypothesis, not yet a proved derivation. It is retained as an evolving design model for theorem and simulation development.
+
+### 3.8 Two-channel deformation: shape plus scale
+
+Relevant to Lorentzian closure, the core deformation is not only axis-ratio change. A working two-channel model is:
+
+1. Shape channel (oblateness): longitudinal compression relative to transverse radius.
+2. Scale channel (radius rescaling): transverse radius changes with energy state.
+
+Use
+$$
+R_\parallel=\frac{R_\perp}{\gamma},\qquad \gamma=\frac{1}{\sqrt{1-\beta^2}},\qquad \beta=\frac{v_{\text{tr}}}{c_f},
+$$
+and
+$$
+R_\perp=R_\perp(E),\qquad \frac{dR_\perp}{dE}<0
+$$
+as the default constitutive sign convention in energized regimes.
+
+The corresponding exclusion volume model is
+$$
+V(\beta,E)=\frac{4\pi}{3}R_\perp(E)^2R_\parallel(E,\beta)
+=\frac{4\pi}{3}R_\perp(E)^3\sqrt{1-\beta^2}.
+$$
+
+This gives a direct state-space channel from energy and translation into local medium geometry:
+$$
+(\beta,E)\longmapsto (R_\parallel,R_\perp,V).
+$$
+
+### 3.9 Local deformation fields and effective geometry handoff
+
+For coarse-grained modeling, define local fields
+$$
+\xi(x)=\frac{R_\parallel}{R_\perp}=\frac{1}{\gamma(x)},\qquad
+\lambda(x)=\frac{R_\perp(x)}{R_{\perp,0}},
+$$
+with $\xi\in(0,1]$ as shape and $\lambda$ as scale.
+
+Together with local assembly density $n(x)$ and preferred-frame flow/orientation $\hat{u}(x)$, these define a minimal handoff tuple
+$$
+(\xi,\lambda,n,\hat{u})_x
+$$
+for constructing effective kinematic and metric responses. The kinematic closure requirement is that observer-built rods/clocks from this medium recover Lorentz-consistent operational laws to bounded leakage.
+
 ## 4. Observer Construction and Operational Invariance
 
 ### 4.1 Assembly clocks and rods
@@ -97,7 +218,7 @@ uniformly in orientation $\theta$. This is the operational statement that maps s
 
 ### 5.1 Stage A: binary analytic benchmark
 
-Start with a single retarded binary under constant drift $\mathbf{v}$. Derive:
+Start with a single causal path-history binary under constant drift $\mathbf{v}$. Derive:
 
 1. Existence and stability of periodic or quasi-periodic attractors.
 2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(v)$.
@@ -118,6 +239,16 @@ $$
 \mathcal{K}_{\text{micro}} \Longrightarrow \mathcal{K}_{\text{eff}}(v,\rho,\nabla\rho,\dots),
 $$
 so local assembly kinematics and macroscopic refractive geometry are mathematically linked.
+
+### 5.4 Stage D: effective-medium and weak-field closure sequence
+
+To connect the two-channel deformation model to observables, use the following sequence:
+
+1. Single-core constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history tri-binary dynamics.
+2. Effective-medium propagation law: construct $n_{\text{eff}}(\xi,\lambda,n)$ for signal transport through deformed-core populations.
+3. Effective metric extraction: build $g_{\mu\nu}^{\text{eff}}$ from medium variables and preferred-frame structure.
+4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
+5. Strong-field/cosmology consistency checks: test horizon-adjacent and expansion-regime implications of the same constitutive channels.
 
 ## 6. Theorem Targets
 
@@ -180,4 +311,3 @@ Primary theory anchors:
 5. `spacetime/*`
 6. `validation/constraint-ledger.md`
 7. `validation/no-go-theorems.md`
-
