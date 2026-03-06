@@ -1,11 +1,11 @@
-# $\mathbb{A}\mathbb{A}\mathbb{A}$ Mathematics and Geometry Closure Scorecard
+# Mathematics and Geometry Closure Scorecard
 
 ## Reusable Assessment Prompt
 
 Use this prompt for each new assessment cycle:
 
 ```text
-Perform a full closure assessment of $\mathbb{A}\mathbb{A}\mathbb{A}$ mathematics and geometry.
+Perform a full closure assessment of theory, mathematics, and geometry of modern physics vs. architrino theory.
 Requirements:
 1) Do a full read of all markdown documents in content/markdown/aaa (including subdirectories).
 2) Evaluate each existing scorecard category in closure.md on a 0-100 scale.
@@ -18,33 +18,12 @@ Requirements:
 Scale: `0-100` (standard numeric grading scale).  
 Total score rule: equal-weight arithmetic mean of category scores.
 
-## Scoring Categories
-
-1. Axiom/notation closure
-2. Core dynamics closure (delay/local)
-3. Variational/conservation closure
-4. Lorentz closure formulas
-5. Mass-generation closure formulas
-6. Redshift and clock-rate closure
-7. Gravity-observable closure (PPN/weak-field where applicable)
-8. Detailed internal-core dynamics
-9. Charge-carrier dynamics
-10. Reaction dynamics and provenance
-11. Composite geometry formalization
-12. Parameter, coupling, and constant determination
-13. Validation and falsification closure
-14. Framework coverage completeness
-15. Ontic mechanism closure
-16. Cross-regime bridge closure
-17. UV/IR completion closure
-18. Architectural coherence (parsimony vs ad-hoc shim burden)
-
 ## Assessment Table
 
 Modern physics columns use the same categories for the effective-theory stack (`GR`, `QM`, `QED`, `QFT`, `QCD`, `SM`, `LCDM`): one operational/effective score and one mechanism/foundational score.
 
-| Category | Description | Modern Physics Operational (Score/100) | Modern Physics Mechanism (Score/100) | 2026-03-06 (Score/100) | Assessment +1 | Assessment +2 |
-| --- | --- | --- | --- | --- | --- | --- |
+| Category | Description | Modern Physics Operational (Score/100) | Modern Physics Mechanism (Score/100) | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-03-06 (Score/100) | Assessment +1 | Assessment +2 |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
 | Axiom+Notation | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 60 | 82 |  |  |
 | Core-Dynamics (Delay/Local) | Closure of core dynamical equations: path-history delayed framework in $\mathbb{A}\mathbb{A}\mathbb{A}$ and local equation closure in modern physics. | 88 | 62 | 80 |  |  |
 | Variational+Conservation | Action-level derivation quality and closure of energy/momentum/angular invariants in delayed/local dynamics. | 94 | 70 | 76 |  |  |

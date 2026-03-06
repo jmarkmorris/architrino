@@ -46,6 +46,7 @@
       "radius": 2.688,
       "color": "#4b5e2f",
       "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+      "markdownColumns": 1,
       "labelTitle": "Closure Scorecard",
       "labelBadge": "doc"
     },
