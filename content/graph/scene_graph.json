@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 302,
-      "edges": 1142,
+      "nodes": 303,
+      "edges": 1144,
       "scenes": 175,
       "markdownIndexes": 16,
-      "markdownDocs": 111,
+      "markdownDocs": 112,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1736,6 +1736,12 @@
       "id": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "name": "Architrino Framework and SI Base Units: Deep Intersection Analysis",
       "path": "__markdown_doc__:content/markdown/aaa/validation/architrino-si-base-units.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/closure-scorecard.md",
+      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mathematics and Geometry Closure Scorecard",
+      "path": "__markdown_doc__:content/markdown/aaa/validation/closure-scorecard.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4353,6 +4359,15 @@
       "name": "Architrino Framework and SI Base Units: Deep Intersection Analysis",
       "path": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/architrino-si-base-units.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/closure-scorecard.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/closure-scorecard.md",
+      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mathematics and Geometry Closure Scorecard",
+      "path": "content/markdown/aaa/validation/closure-scorecard.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/closure-scorecard.md",
       "implicit": false
     },
     {
@@ -8456,6 +8471,13 @@
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/closure-scorecard.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/validation.json",
+      "field": "closure_scorecard.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
       "to": "markdown_doc:content/markdown/aaa/validation/constraint-ledger.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/validation.json",
@@ -9073,6 +9095,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/validation",
       "to": "markdown_doc:content/markdown/aaa/validation/architrino-si-base-units.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/validation",
+      "to": "markdown_doc:content/markdown/aaa/validation/closure-scorecard.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
