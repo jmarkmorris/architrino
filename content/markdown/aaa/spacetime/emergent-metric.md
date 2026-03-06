@@ -1,6 +1,8 @@
-### Emergent Metric: Absolute Frame vs. Effective Geometry
+# Emergent Metric
 
-#### Ontological Picture
+## Absolute Frame vs. Effective Geometry
+
+## Ontological Picture
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $t$. Coordinates $(x,y,z)$ never move or curve.
 - **Medium**: A pervasive sea of coupled pro/anti Noether cores (tri-binary assemblies) that we call the *spacetime medium* or *Noether-core sea*.
@@ -13,7 +15,7 @@ From this vantage point, there is only:
 - Flat Euclidean geometry $\delta_{ij}$,
 - A dynamic medium (Noether cores) moving and rearranging in that geometry.
 
-#### Canonical Symbols (Spacetime)
+## Canonical Symbols (Spacetime)
 
 Use the following symbols consistently across spacetime chapters:
 
@@ -23,7 +25,7 @@ Use the following symbols consistently across spacetime chapters:
 - $\Phi_N(x,t)$: Newtonian benchmark potential used for weak-field matching.
 - $U\equiv -\Phi_N>0$: positive weak-field PPN potential variable.
 
-#### What “Metric” Means Here
+## What “Metric” Means Here
 
 - **Effective metric $g^{\text{eff}}_{\mu\nu}(x)$** is *not* a fundamental property of the void. It is a derived description of:
   - How assembly-based clocks tick,
@@ -38,7 +40,7 @@ The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps:
 
 $(\delta_{ij}, n(x,t), \Phi_{\text{eff}}(x,t), \nabla\Phi_{\text{eff}}(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
 
-#### Refraction vs. Curvature
+## Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Light and gravity-like perturbations travel on straight lines in $(x,y,z)$,
@@ -57,7 +59,7 @@ The core task of this document will be to:
 2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:
    $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c^2}\right), \quad g^{\text{eff}}_{ij} \approx \delta_{ij}\left(1 - \frac{2\Phi_N}{c^2}\right).$
 
-#### Minimal Weak-Field Constitutive Map (for PPN Matching)
+## Minimal Weak-Field Constitutive Map (for PPN Matching)
 
 To make the mapping functional explicit at first post-Newtonian order, use:
 $$
@@ -87,9 +89,9 @@ $$
 (\delta_{ij},n,\text{stress},\Phi_N)\mapsto g^{\text{eff}}_{\mu\nu},
 $$
 with $\gamma_{\text{eff}}$ the observable refraction/space-curvature coefficient to be fitted from Shapiro-delay data.  
-Implementation of the corresponding one-way delay integral is given in [PPN-parameters](./PPN-parameters.md#explicit-weak-field-refractive-shapiro-map-ppn-gamma).
+Implementation of the corresponding one-way delay integral is given in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-refractive-shapiro-map-ppn-gamma).
 
-### Closure Program Interface (metric constitutive map)
+## Closure Program Interface (metric constitutive map)
 
 This chapter is the constitutive anchor for the gravity-side closure:
 $$
@@ -106,7 +108,7 @@ Minimal closure condition:
 1. Eikonal path-time extremals in the refractive picture match null geodesics of $g^{\text{eff}}_{\mu\nu}$ in weak field.
 2. The same constitutive coefficients predict Shapiro delay, lensing, and redshift without re-fitting per observable.
 
-### Weak-Field Geodesic Handoff (Constitutive Subclass)
+## Weak-Field Geodesic Handoff (Constitutive Subclass)
 
 For the local medium-rest frame $\hat{u}^\mu=(1,0,0,0)$, use
 $$

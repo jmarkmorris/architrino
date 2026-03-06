@@ -691,11 +691,11 @@ A_i(\beta)=A_i(0)\left(\frac{K_i(0)}{K_i(\beta)}\right)^{1/4}.
 $$
 This provides a Noether-constrained route from stiffness expansion to the coefficient extraction in Sec. 3.2.2.
 
-For translation $\mathbf{v}=v\hat{\mathbf{e}}_{\parallel}$ with $\beta=v/c_f$, use the retarded potential form
+For translation $\mathbf{v}=v\hat{\mathbf{e}}_{\parallel}$ with $\beta=v/c_f$, use the causal-delay potential form
 $$
 \mathcal{U}_{\text{eff}}(\mathbf{r};\beta)
 =
-\frac{\kappa\,\epsilon^2}{r_{\text{ret}}\!\left(1-\boldsymbol{\beta}\cdot \hat{\mathbf{n}}_{\text{ret}}\right)},
+\frac{\kappa\,\epsilon^2}{r_{\text{cd}}\!\left(1-\boldsymbol{\beta}\cdot \hat{\mathbf{n}}_{\text{cd}}\right)},
 \qquad
 \boldsymbol{\beta}\equiv \frac{\mathbf{v}}{c_f}.
 $$
@@ -707,7 +707,7 @@ K_{ab}(\beta)
 \frac{\partial^2 \mathcal{U}_{\text{eff}}}{\partial r_a\partial r_b}
 \right\rangle_{\text{cyc}}.
 $$
-Expanding the retarded delay closure
+Expanding the causal-delay closure
 $$
 \tau=\frac{\|\mathbf{r}+\mathbf{v}\tau\|}{c_f}
 $$

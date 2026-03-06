@@ -212,9 +212,9 @@ $$
 
 ---
 
-## Derivation Strategy and Simulation Plan
+## Derivation Interface and Coefficient Map
 
-Because closed‑form analytic solutions are unlikely, we will combine **perturbative analysis** with **numerical simulation**.
+This chapter keeps only the symbolic/numeric coefficient interface needed to bridge clock microdynamics to PPN observables.
 
 ### Perturbative Expansion (Weak‑field, Low‑velocity)
 
@@ -282,69 +282,10 @@ $$
 
 The mixed coefficient $C_{Uv}$ is treated as a leakage diagnostic at this order.
 
-### Benchmark Error Bounds (Pass/Fail)
+Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are defined in:
 
-Define coefficient errors
-$$
-\epsilon_{A_U}=|\hat{A}_U-1|,\quad
-\epsilon_{A_v}=|\hat{A}_v-\tfrac{1}{2}|,\quad
-\epsilon_\beta=|\hat{\beta}_{\mathrm{eff}}-1|,
-\quad
-\epsilon_{Uv}=|\hat{C}_{Uv}|.
-$$
-
-Required bounds for weak-field acceptance:
-
-1. $\epsilon_{A_U}\le 10^{-5}$.
-2. $\epsilon_{A_v}\le 10^{-5}$.
-3. $\epsilon_\beta\le 10^{-5}$.
-4. $\epsilon_{Uv}\le 10^{-5}$.
-5. Fit residual RMS: $\sqrt{\frac{1}{N}\sum_j (y_j-(X\hat{\mathbf{c}})_j)^2}\le 10^{-6}$.
-6. Statistical confidence: each bound above must hold at $2\sigma$, using $\mathrm{Cov}(\hat{\mathbf{c}})$.
-
-### Direct Numerical Experiments
-
-
-1. **Velocity Dilation Test:**
- - Simulate a tri‑binary clock at rest and at several velocities $v/c \in \{0.1, 0.3, 0.6, 0.9\}$ through a uniform Noether Sea.
- - Measure periods $T(v)$ in absolute time $t$.
- - Fit $T(v)/T_0$ to $1/\sqrt{1 - v^2/c^2}$ and quantify deviations.
-
-2. **Gravitational Dilation Test:**
- - Introduce a background Noether Sea density profile $n(r)$ corresponding to a Newtonian potential $\Phi_N(r)$ from a massive body (using our emergent‑metric model).
- - Place identical clocks at radii $r_1$ and $r_2$.
- - Measure frequency ratio and compare to
- $$
- \frac{\omega(r_2)}{\omega(r_1)} \approx 1 + \frac{\Phi_N(r_2) - \Phi_N(r_1)}{c_f^2}.
- $$
-
-3. **Isotropy Test:**
- - Run boosted clock simulations in orthogonal directions relative to some fiducial lattice orientation.
- - Verify that $T(v)$ depends on $|\mathbf{v}|$ only, not on direction, to below $10^{-16}$ fractional anisotropy (matching clock‑comparison bounds).
-
-4. **Robustness to Clock Design:**
- - Repeat tests for different internal assemblies (different tri‑binary decoration patterns) to show that $d\tau/dt$ is **universal** for all reasonable clock designs—an embodiment of the Einstein Equivalence Principle at the emergent level.
-
----
-
-## Observational Targets and Benchmarks
-
-To claim success, the derived $d\tau/dt$ must reproduce:
-
-1. **Special‑Relativistic Time Dilation:**
- - Muon lifetime dilation in storage rings → $\tau = \gamma \tau_0$ with $\gamma = 1/\sqrt{1 - v^2/c^2}$ to within experimental errors ($\lesssim 10^{-3}$).
-
-2. **Gravitational Redshift:**
- - Pound–Rebka and modern optical clock tests: 
- $\Delta\nu/\nu = gh/c^2$ for small height $h$ in Earth’s field, at the $10^{-15}$–$10^{-18}$ level.
-
-3. **GPS Satellite Clocks:**
- - Combined kinematic + gravitational shift $\sim 38\ \mu$s/day at orbital altitude, matching within a few parts in $10^{14}$.
-
-4. **Weak‑field PPN Parameters:**
- - Effective metric inferred from $d\tau/dt$ should yield PPN parameters $\gamma$ and $\beta$ within $|\gamma-1|, |\beta-1| \lesssim 10^{-5}$.
-
-These are encoded in `validation/experiments/*` and `validation/constraint-ledger.md`.
+1. `validation/experiments/*`
+2. `validation/constraint-ledger.md`
 
 ---
 
