@@ -29,9 +29,9 @@ Markdown is only one media type.
 
 The taxonomy should not be organized primarily around markdown-derived behavior, because that leaks an implementation detail into the ontology. A scene may present markdown, diagrams, animation, or future media types, but those are presentation-scene capabilities, not the main organizing principle of the taxonomy.
 
-So the scene model should de-emphasize markdown in its naming and emphasize scene role and scene kind instead.
+So the scene model should de-emphasize markdown in its naming and emphasize scene role and scene type instead.
 
-### 3. There is one scene-of-scenes kind: Scene-Index
+### 3. There is one scene-of-scenes type: Scene-Index
 
 A scene whose main job is to organize other scenes will be called a `Scene-Index`.
 
@@ -44,13 +44,13 @@ This gives the hierarchy a clean recursive structure. It also separates structur
 
 Links, hotspots, and other cross-scene references may still connect any scene to any other scene. Those links are not the same thing as structural child membership.
 
-### 4. There are many presentation-scene kinds
+### 4. There are many presentation-scene types
 
 Presentation scenes are scenes whose primary job is to present or interact with content rather than structurally organize child scenes.
 
 A presentation scene may still link to other scenes through hotspots, links, controls, or embedded navigation. What makes it a presentation scene is its primary role, not the absence of outgoing connections.
 
-The system should support multiple presentation-scene kinds, and more can be added as the webapp develops.
+The system should support multiple presentation-scene types, and more can be added as the webapp develops.
 
 ---
 
@@ -130,7 +130,7 @@ Responsibilities:
 - optionally expose links to other scenes,
 - support diagram-native interaction rather than document reading.
 
-This kind should be used when the diagram is the primary content object, not just an illustration embedded inside another scene.
+This type should be used when the diagram is the primary content object, not just an illustration embedded inside another scene.
 
 ### Scene-Animation
 
@@ -142,7 +142,7 @@ Responsibilities:
 - support time-based presentation as the core content mode,
 - permit links to related scenes where useful.
 
-This kind should be used when motion is the primary content object.
+This type should be used when motion is the primary content object.
 
 ---
 
@@ -153,7 +153,7 @@ This kind should be used when motion is the primary content object.
 The ontology should answer these questions in order:
 
 1. Is this a `Scene-Index` or a presentation scene?
-2. If it is a presentation scene, what kind of presentation scene is it?
+2. If it is a presentation scene, what type of presentation scene is it?
 3. What layout template or controls does it use?
 
 This keeps the top-level taxonomy stable even as more media types appear.
@@ -186,7 +186,7 @@ This is a significant cleanup from the current mixed model where layout radius a
 
 ### Common scene controls
 
-There will likely be controls shared across multiple scene kinds.
+There will likely be controls shared across multiple scene types.
 
 Examples may include:
 
@@ -196,7 +196,7 @@ Examples may include:
 - media-specific display controls,
 - graph or backlink controls.
 
-These common controls should be layered onto scene kinds without confusing the ontology itself.
+These common controls should be layered onto scene types without confusing the ontology itself.
 
 ---
 
@@ -214,8 +214,8 @@ Those terms were trying to describe real implementation behavior, but they colla
 
 The new ontology is simpler:
 
-- one explicit scene-of-scenes kind: `Scene-Index`,
-- many explicit presentation-scene kinds,
+- one explicit scene-of-scenes type: `Scene-Index`,
+- many explicit presentation-scene types,
 - explicit declaration instead of directory discovery,
 - explicit distinction between hierarchy and cross-links,
 - layout templates separated from ontology,
@@ -237,7 +237,7 @@ The current runtime encodes scene categories into special scene IDs such as:
 - `__markdown_section_index__:*`
 - `__markdown_directory__:*`
 
-That means taxonomy is currently carried partly by scene-ID syntax instead of by explicit scene objects. In the new ontology, scene kind should come from declared scene data, not from parsing a prefixed identifier.
+That means taxonomy is currently carried partly by scene-ID syntax instead of by explicit scene objects. In the new ontology, scene type should come from declared scene data, not from parsing a prefixed identifier.
 
 ### 2. Dynamic scene restoration
 
@@ -246,7 +246,7 @@ The current bootstrap path can reconstruct scene configs dynamically from those 
 That behavior should be removed. In the new ontology:
 
 - bootstrap should resolve explicitly declared scenes,
-- scene loading should not infer scene kind from an ID token,
+- scene loading should not infer scene type from an ID token,
 - runtime restoration should not manufacture scene structure on demand from markdown-derived categories.
 
 Removing directory walking is not enough by itself. The generated-scene restoration path also has to go.
@@ -267,7 +267,7 @@ Examples include fields such as:
 Those fields reflect an older model in which markdown behavior leaked into the generic scene-object schema. In the new ontology:
 
 - generic scene structure should stay generic,
-- media-specific configuration should live inside the appropriate presentation-scene kind,
+- media-specific configuration should live inside the appropriate presentation-scene type,
 - scene role, media source, and layout configuration should be separated cleanly.
 
 ### 4. Generic node schema assumes authored radius/color
@@ -279,7 +279,7 @@ That assumption does not fit the new ring-template model for `Scene-Index` and `
 So the conversion should remove the assumption that all node sizing and coloring are authored per object. Those should instead be handled by:
 
 - template defaults,
-- scene-kind defaults,
+- scene-type defaults,
 - explicit per-node overrides only when needed.
 
 ### 5. Media parsing, scene generation, and layout are entangled
@@ -348,7 +348,7 @@ They should not depend on directory-derived inference or markdown-derived scene 
 
 Values like `sceneKind: "branching"` belong to the old model and should not be carried forward as compatibility baggage.
 
-The new scene-kind vocabulary should replace older generic labels entirely.
+The new scene-type vocabulary should replace older generic labels entirely.
 
 ### 10. Existing content families need classification, not preservation
 
@@ -370,7 +370,7 @@ In particular, the element scenes are presentation scenes with links, not a sepa
 
 ### Phase 1. Freeze the ontology
 
-Define the new scene-kind vocabulary and use it consistently in notes, code comments, and implementation planning.
+Define the new scene-type vocabulary and use it consistently in notes, code comments, and implementation planning.
 
 Initial kinds:
 
@@ -410,7 +410,7 @@ At minimum:
 
 - a base scene schema,
 - a `Scene-Index` schema,
-- one schema per presentation-scene kind,
+- one schema per presentation-scene type,
 - shared schema fragments for layout templates and common controls.
 
 Important design direction:
@@ -418,7 +418,7 @@ Important design direction:
 - do not preserve old field names merely for compatibility,
 - rename fields when the new ontology needs cleaner language,
 - separate content source fields from layout fields,
-- separate scene-kind fields from media configuration fields,
+- separate scene-type fields from media configuration fields,
 - separate structural child relationships from cross-links,
 - remove generic markdown-specific fields from the base scene/object schema.
 
@@ -452,7 +452,7 @@ This classification pass should include existing hand-authored scene families as
 
 ### Phase 6. Replace old runtime paths completely
 
-After explicit scene data and new scene kinds are in place:
+After explicit scene data and new scene types are in place:
 
 - remove directory-walking runtime paths,
 - remove generated-scene ID parsing and restoration,
@@ -486,8 +486,8 @@ That work should answer:
 
 - which current scene JSON files become `Scene-Index`,
 - which current scene JSON files become presentation scenes,
-- which presentation-scene kinds are sufficient for the first conversion,
-- which additional presentation-scene kinds need to be introduced early,
+- which presentation-scene types are sufficient for the first conversion,
+- which additional presentation-scene types need to be introduced early,
 - which current per-node authored fields become template overrides versus obsolete legacy fields.
 
 The important point is that this is a classification problem, not a compatibility problem. The goal is to map the current working system into a cleaner ontology, not to preserve the old terminology or runtime generation behavior.
@@ -508,7 +508,7 @@ Directory walking reduced authoring effort, but it also hid structure and repeat
 For this system, the better long-term practice is:
 
 - explicit scene declaration,
-- stable scene kinds,
+- stable scene types,
 - template-based layout,
 - media-aware presentation scenes,
 - no hidden provenance.
@@ -528,7 +528,7 @@ Every scene should have a small common base.
 Suggested base fields:
 
 - `id`: stable scene identifier
-- `kind`: scene kind such as `Scene-Index`, `Scene-Markdown-View`, `Scene-Markdown-Split`, `Scene-Diagram`, `Scene-Animation`
+- `type`: canonical scene-type discriminator such as `Scene-Index`, `Scene-Markdown-View`, `Scene-Markdown-Split`, `Scene-Diagram`, `Scene-Animation`
 - `title`: primary display title
 - `subtitle`: optional secondary label
 - `summary`: optional short description
@@ -546,6 +546,10 @@ Base-scene principles:
 ### 2. Structural hierarchy fields
 
 Structural hierarchy should be explicit and separate from ordinary links.
+
+Structural children should use child-reference objects, not bare strings. That is the better design because it gives the hierarchy room for slot hints, label overrides, badges, future state, and eventual spatial metadata without changing the core shape later.
+
+Even though the current UI is effectively 2D and everything is displayed as a sphere, the child-reference shape should stay compatible with a future 3D scene model.
 
 Suggested structural fields for scenes that organize children:
 
@@ -573,7 +577,7 @@ Important distinction:
 
 Suggested fields:
 
-- `kind: Scene-Index`
+- `type: Scene-Index`
 - `children`: required structural child scene references
 - `template`: required template configuration
 - `entryBehavior`: optional initial navigation behavior
@@ -590,23 +594,23 @@ Presentation scenes should share a small common base beyond the generic scene ba
 
 Suggested fields:
 
-- `kind`: one of the presentation-scene kinds
+- `type`: one of the presentation-scene types
 - `source`: optional media source configuration
 - `view`: optional presentation/view configuration
 - `hotspots`: optional interactive in-scene targets
-- `template`: optional display template when the scene kind uses one
+- `template`: optional display template when the scene type uses one
 
 Presentation-scene principles:
 
 - presentation scenes are defined by primary role, not by lack of links,
 - a presentation scene may still link to or launch other scenes,
-- scene-specific media configuration should live inside the presentation-scene kind rather than the global base schema.
+- scene-specific media configuration should live inside the presentation-scene type rather than the global base schema.
 
 ### 5. Scene-Markdown-View
 
 Suggested fields:
 
-- `kind: Scene-Markdown-View`
+- `type: Scene-Markdown-View`
 - `source.path`: markdown file path
 - `view.columns`: one-column or two-column mode
 - `view.autoOpen`: optional initial document-open behavior
@@ -614,7 +618,7 @@ Suggested fields:
 
 Design direction:
 
-- this scene kind presents one markdown document,
+- this scene type presents one markdown document,
 - it should not generate hierarchy from headings,
 - it may still expose links or hotspots,
 - markdown-specific settings belong here rather than in the base scene schema.
@@ -623,7 +627,7 @@ Design direction:
 
 Suggested fields:
 
-- `kind: Scene-Markdown-Split`
+- `type: Scene-Markdown-Split`
 - `source.path`: markdown file path
 - `source.split`: split configuration
 - `template`: required ring template
@@ -635,11 +639,11 @@ Suggested split configuration:
 - `headingLevel`: primary heading level to split on
 - `sectionDepth`: optional descendant depth
 - `includeIntro`: optional handling for pre-heading content
-- `sectionPresentationKind`: optional scene kind used for generated section nodes
+- `sectionPresentationType`: optional scene type used for generated section nodes
 
 Design direction:
 
-- this scene kind parses one declared markdown source,
+- this scene type parses one declared markdown source,
 - it may generate section nodes from that declared source,
 - it should not discover new files by walking directories,
 - section generation is a scene behavior, not a taxonomy root.
@@ -648,7 +652,7 @@ Design direction:
 
 Suggested fields:
 
-- `kind: Scene-Diagram`
+- `type: Scene-Diagram`
 - `source`: diagram source or diagram program definition
 - `view`: diagram-specific viewing configuration
 - `hotspots`: optional diagram hotspots linking to scenes
@@ -656,15 +660,15 @@ Suggested fields:
 
 Design direction:
 
-- this scene kind is for diagrams as primary content,
+- this scene type is for diagrams as primary content,
 - links may exist, but hierarchy remains separate,
-- diagram-specific configuration should not spill into unrelated scene kinds.
+- diagram-specific configuration should not spill into unrelated scene types.
 
 ### 8. Scene-Animation
 
 Suggested fields:
 
-- `kind: Scene-Animation`
+- `type: Scene-Animation`
 - `source`: animation source, asset reference, or app-defined animation program
 - `view`: playback and display configuration
 - `controls`: animation controls
@@ -672,12 +676,14 @@ Suggested fields:
 
 Design direction:
 
-- this scene kind is for motion-first content,
+- this scene type is for motion-first content,
 - playback settings belong here rather than in a generic scene base.
 
 ### 9. Ring template
 
-The ring template should be defined once and reused by scene kinds that need it.
+The ring template should be defined once and reused by scene types that need it.
+
+The template should not assume a permanently 2D ontology. It may currently resolve positions into a 2D plane, but its data model should allow later extension to 3D placement without requiring a redesign of child references or relationship structure.
 
 Suggested template fields:
 
@@ -741,7 +747,7 @@ The new schema should make overrides explicit.
 
 Suggested rule:
 
-- scene kind defines capabilities,
+- scene type defines capabilities,
 - template defines layout defaults,
 - node or child references may override specific template behavior,
 - overrides should be optional and sparse.
@@ -771,7 +777,7 @@ These are illustrative examples for ontology review. They are not final implemen
 ```json
 {
   "id": "assemblies",
-  "kind": "Scene-Index",
+  "type": "Scene-Index",
   "title": "Assemblies",
   "summary": "Structural index for assembly-related scenes.",
   "template": {
@@ -818,7 +824,7 @@ These are illustrative examples for ontology review. They are not final implemen
 ```json
 {
   "id": "weak_mixing_angle",
-  "kind": "Scene-Markdown-View",
+  "type": "Scene-Markdown-View",
   "title": "Weak Mixing Angle",
   "source": {
     "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md"
@@ -842,7 +848,7 @@ These are illustrative examples for ontology review. They are not final implemen
 ```json
 {
   "id": "fermion_overview_sections",
-  "kind": "Scene-Markdown-Split",
+  "type": "Scene-Markdown-Split",
   "title": "Fermion Overview",
   "source": {
     "path": "content/markdown/aaa/assemblies/fermions/overview.md",
@@ -875,7 +881,7 @@ These are illustrative examples for ontology review. They are not final implemen
 ```json
 {
   "id": "hydrogen_atom_diagram",
-  "kind": "Scene-Diagram",
+  "type": "Scene-Diagram",
   "title": "Hydrogen Atom",
   "source": {
     "diagramId": "hydrogen-atom-v1"
@@ -923,10 +929,10 @@ These are illustrative examples for ontology review. They are not final implemen
 
 These examples make several intended rules concrete:
 
-- hierarchy is declared through `children`,
+- hierarchy is declared through `children` child-reference objects,
 - cross-scene connectivity is declared through `links` and `hotspots`,
 - ring-template behavior is configured through `template`,
-- markdown-specific configuration lives only inside markdown scene kinds,
+- markdown-specific configuration lives only inside markdown scene types,
 - presentation scenes may link outward freely without becoming `Scene-Index` scenes.
 
 They also show that explicit scene declaration remains compatible with rich navigation. The ontology does not restrict connectivity. It only separates structural hierarchy from ordinary cross-scene references.
