@@ -145,7 +145,22 @@ $$
 
 ### 3.2 Effective shape law
 
-Define principal semiaxes $(a_{\parallel},a_{\perp,1},a_{\perp,2})$ from the second moment tensor of relative coordinates. The Lorentzian conspiracy requires
+Define the cycle-averaged shape tensor on the translating attractor:
+$$
+Q_{ab}(v)\equiv
+\frac{1}{M}
+\left\langle
+\sum_i m_i\,r_{i,a}r_{i,b}
+\right\rangle_{\text{cyc}},
+\qquad
+M\equiv \sum_i m_i.
+$$
+Let $q_{\parallel}(v),q_{\perp,1}(v),q_{\perp,2}(v)$ be principal-frame eigenvalues of $Q(v)$, with principal axis chosen along drift for $q_{\parallel}$. Define semiaxes
+$$
+a_{\parallel}(v)\equiv \sqrt{q_{\parallel}(v)},\qquad
+a_{\perp}(v)\equiv \sqrt{\frac{q_{\perp,1}(v)+q_{\perp,2}(v)}{2}}.
+$$
+The Lorentzian conspiracy then requires
 $$
 \frac{a_{\parallel}(v)}{a_{\perp}(v)}=\frac{1}{\gamma(v)}+O(\epsilon_{\text{LV}}),
 $$
@@ -632,6 +647,126 @@ $$
 \sup_{0\le \beta\le \beta_\star}|\mathcal{A}_{2m}(\beta)|\le C_m\epsilon_{\text{LV}}.
 $$
 
+### 5.6 Analytic derivation of kinematic closure coefficients
+
+On the circular benchmark branch, take the rest-frame attractor $\boldsymbol{\rho}^\star(s;0)$ as a stable planar orbit of radius $r_0$ and frequency $\omega_0$. For translation $\mathbf{v}=v\hat{\mathbf{e}}_{\parallel}$ with $\beta=v/c_f$, use the retarded potential form
+$$
+\mathcal{U}_{\text{eff}}(\mathbf{r};\beta)
+=
+\frac{\kappa\,\epsilon^2}{r_{\text{ret}}\!\left(1-\boldsymbol{\beta}\cdot \hat{\mathbf{n}}_{\text{ret}}\right)},
+\qquad
+\boldsymbol{\beta}\equiv \frac{\mathbf{v}}{c_f}.
+$$
+Define stiffness by cycle-averaged Hessian evaluation on $\boldsymbol{\rho}^\star(s;\beta)$:
+$$
+K_{ab}(\beta)
+=
+\left\langle
+\frac{\partial^2 \mathcal{U}_{\text{eff}}}{\partial r_a\partial r_b}
+\right\rangle_{\text{cyc}}.
+$$
+Expanding the retarded delay closure
+$$
+\tau=\frac{\|\mathbf{r}+\mathbf{v}\tau\|}{c_f}
+$$
+and projecting longitudinal/transverse channels gives dimensionless integrals
+$$
+\mathcal{I}_{\parallel}(\beta)
+=
+\mathcal{I}_0\left[
+1-\frac{1}{3}\beta^2-\frac{1}{9}\beta^4+O(\beta^6)
+\right],
+$$
+$$
+\mathcal{I}_{\perp}(\beta)
+=
+\mathcal{I}_0\left[
+1-\frac{4}{3}\beta^2+\frac{2}{9}\beta^4+O(\beta^6)
+\right].
+$$
+Using the Sec. 3.2.2 extraction rules,
+$$
+k_2=
+\frac{\partial_{\beta}^2\mathcal{I}_{\parallel}\big|_{\beta=0}}
+{2\,\mathcal{I}_{\parallel}(0)},
+\quad
+\ell_2=
+\frac{\partial_{\beta}^2\mathcal{I}_{\perp}\big|_{\beta=0}}
+{2\,\mathcal{I}_{\perp}(0)},
+$$
+$$
+k_4=
+\frac{\partial_{\beta}^4\mathcal{I}_{\parallel}\big|_{\beta=0}}
+{24\,\mathcal{I}_{\parallel}(0)},
+\quad
+\ell_4=
+\frac{\partial_{\beta}^4\mathcal{I}_{\perp}\big|_{\beta=0}}
+{24\,\mathcal{I}_{\perp}(0)},
+$$
+hence
+$$
+(k_2,\ell_2,k_4,\ell_4)
+=
+\left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right).
+$$
+So the $O(\beta^4)$ closure coefficients are obtained directly from the causal path-history Hessian on the circular benchmark branch.
+
+### 5.7 Tri-binary adiabatic decoupling bound
+
+Let
+$$
+\mathbf{c}^{(2)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{binary}},
+\qquad
+\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{tri-binary}},
+$$
+and define
+$$
+\mathcal{D}_{23}\equiv
+\left\|
+\mathbf{c}^{(3)}-\mathbf{c}^{(2)}
+\right\|_W,
+\qquad
+\|x\|_W^2\equiv x^\top W x,\ W\succ 0.
+$$
+For nested layers $(H,M,L)$, decompose the outer-channel stiffness as
+$$
+K_{ab}^{(3)}
+=
+K_{ab}^{(L)}
++
+\left\langle \frac{\partial^2\mathcal{U}_{L\leftrightarrow M}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
++
+\left\langle \frac{\partial^2\mathcal{U}_{L\leftrightarrow H}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}.
+$$
+Under hierarchical separation
+$$
+\omega_H\gg \omega_M\gg \omega_L,\qquad
+r_H\ll r_M\ll r_L,
+$$
+fast-time averaging makes inner-layer couplings adiabatic at $L$ scale. The monopole part renormalizes $\mathcal{I}_0$ only; the leading anisotropic correction is quadrupolar and scales as $(r_M/r_L)^2$. Therefore
+$$
+\mathcal{D}_{23}
+\le
+C_Q\left(\frac{r_M}{r_L}\right)^2
++O\!\left(\left(\frac{r_H}{r_L}\right)^2\right).
+$$
+A sufficient closure condition is
+$$
+\left(\frac{r_M}{r_L}\right)^2\le C_{23}\epsilon_{\text{LV}},
+$$
+which yields
+$$
+\mathcal{D}_{23}\le C_{23}\epsilon_{\text{LV}}.
+$$
+
+### 5.8 Spectral-decoupling vulnerability criterion
+
+The adiabatic bound in Sec. 5.7 assumes nonresonant spectral separation between $L$ and inner layers. If integers $(m,n)$ satisfy
+$$
+|m\omega_L-n\omega_M|\lesssim \delta\omega_{\text{nl}},
+$$
+for nonlinear coupling width $\delta\omega_{\text{nl}}$, averaging can fail and coefficient drift can exceed the quadrupole estimate. In that regime, local preferred-frame leakage can rise above $O(\epsilon_{\text{LV}})$ even when geometric hierarchy is large.
+
 ## 6. Theorem Targets
 
 ### Theorem A (attractor existence under drift)
@@ -685,6 +820,24 @@ $$
 $$
 the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_{\perp},T/T_0)$ data up to the leakage scale $O(\epsilon_{\text{LV}})$.
 
+### Theorem F (cross-regime universality of closure coefficients)
+
+If binary and tri-binary attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
+$$
+\omega_H\gg \omega_M\gg \omega_L,\qquad
+|m\omega_L-n\omega_M|\ge \delta\omega_{\min}\ \ \forall\ m,n\in\mathbb{Z}_{>0},
+$$
+then their extracted closure vectors satisfy
+$$
+\left\|
+\mathbf{c}^{(3)}-\mathbf{c}^{(2)}
+\right\|_{W}
+\le
+C_Q\left(\frac{r_M}{r_L}\right)^2
++O\!\left(\left(\frac{r_H}{r_L}\right)^2\right).
+$$
+In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
+
 ## 7. Observable Interface
 
 Key outputs to pass into validation and simulation layers:
@@ -703,6 +856,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
+6. Spectral decoupling fails (near-resonance between outer and inner layer frequencies), invalidating the adiabatic mismatch bound used in Sec. 5.7.
 
 ## 9. Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
 
