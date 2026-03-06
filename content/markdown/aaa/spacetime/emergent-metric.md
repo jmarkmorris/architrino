@@ -152,7 +152,9 @@ $$
 $$
 Hence, in weak field ($\xi\to 1$),
 $$
-\frac{d^2\mathbf{x}}{dt^2}=-\nabla\Phi_{\text{eff}},
+\frac{d^2\mathbf{x}}{dt^2}
+=-\nabla\Phi_{\text{eff}}
++O\!\left(\left|1-\xi^{-2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|\right),
 $$
 which is the Newtonian limit.
 

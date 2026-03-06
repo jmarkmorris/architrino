@@ -611,8 +611,14 @@ $$
 Then the nonrelativistic geodesic limit becomes
 $$
 \frac{d^2\mathbf{x}}{dt^2}
+=-\xi^{-2}\nabla \Phi_{\text{eff}}
++O\!\left(\frac{|\mathbf{v}|^2}{c_f^2},\epsilon_{\text{LV}}\right)
 =-\nabla \Phi_{\text{eff}}
-+O\!\left(\frac{|\mathbf{v}|^2}{c_f^2},\epsilon_{\text{LV}}\right),
++O\!\left(
+\left|1-\xi^{-2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|,
+\frac{|\mathbf{v}|^2}{c_f^2},
+\epsilon_{\text{LV}}
+\right),
 $$
 with explicit source channels
 $$
