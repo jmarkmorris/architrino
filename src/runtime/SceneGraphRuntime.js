@@ -238,6 +238,13 @@ export function createSceneGraphRuntime(deps) {
       if (a.hasCenter !== b.hasCenter) {
         return a.hasCenter ? -1 : 1;
       }
+      const aBalance =
+        a.innerCount > 0 ? Math.abs(a.outerCount - a.innerCount) : Number.POSITIVE_INFINITY;
+      const bBalance =
+        b.innerCount > 0 ? Math.abs(b.outerCount - b.innerCount) : Number.POSITIVE_INFINITY;
+      if (aBalance !== bBalance) {
+        return aBalance - bBalance;
+      }
       if (a.outerCount !== b.outerCount) {
         return b.outerCount - a.outerCount;
       }
