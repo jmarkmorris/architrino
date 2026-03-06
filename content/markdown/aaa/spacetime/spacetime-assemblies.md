@@ -11,19 +11,23 @@ In the current framing, the basic spacetime carrier is a tri-binary assembly wit
 
 In this project framing, pro-Noether cores are associated with pro-particle assemblies, and anti-Noether cores are associated with anti-particle assemblies. The key claim is that stable large-scale medium behavior emerges when both orientations coexist and couple, so the medium remains dynamically balanced rather than drifting into a single-sign ordering.
 
-At the field level, we can represent local core density as two coupled components,
+At the field level, represent local core density with canonical symbols
+$(\rho_{\text{core}}, n)$ as two coupled components:
 
 $$
-\rho(x,t) = \rho_{+}(x,t) + \rho_{-}(x,t),
+\rho_{\text{core}}(x,t) = \rho_{+}(x,t) + \rho_{-}(x,t),
+$$
+$$
+n(x,t)\equiv \frac{\rho_{\text{core}}(x,t)}{\rho_{\text{core},0}},
 $$
 
 with a bounded imbalance
 
 $$
-\Delta\rho(x,t) = \rho_{+}(x,t) - \rho_{-}(x,t),
+\Delta\rho_{\text{core}}(x,t) = \rho_{+}(x,t) - \rho_{-}(x,t),
 $$
 
-where long-lived spacetime regions require $|\Delta\rho|$ to remain below a stability threshold set by the local coupling regime.
+where long-lived spacetime regions require $|\Delta\rho_{\text{core}}|$ to remain below a stability threshold set by the local coupling regime.
 
 ## 2 Pro + 2 Anti Coupling Hypothesis
 
@@ -46,7 +50,7 @@ Instead, the model uses the helium-like picture as a design intuition for why a 
 
 If the local medium is assembled from balanced pro/anti core populations, then curvature-like behavior can be interpreted as collective reconfiguration of assembly states rather than purely geometric deformation of an otherwise structureless manifold. In that interpretation:
 
-- weak-field behavior tracks smooth perturbations in coupled assembly density,
+- weak-field behavior tracks smooth perturbations in normalized density $n$,
 - strong-field behavior tracks approach to alignment and saturation limits,
 - wave channels track propagating phase disturbances through the coupled lattice.
 

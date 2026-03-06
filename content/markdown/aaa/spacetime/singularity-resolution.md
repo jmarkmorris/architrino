@@ -2,6 +2,16 @@
 
 This section frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture.
 
+## Canonical Strong-Field Alignment Condition
+
+This chapter is the canonical source for the strong-field event-horizon alignment condition used across spacetime documents.
+
+Use the following regime definition near the horizon:
+$$
+v_M=c_f,\qquad v_O\to c_f,
+$$
+with middle/outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
+
 ## Maximal Curvature vs Planck Scale
 
 The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **variable radius and frequency**; it serves as the **energy-storage fulcrum** for transfers across the tri-binary.

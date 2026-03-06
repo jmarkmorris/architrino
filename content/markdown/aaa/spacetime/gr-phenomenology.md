@@ -2,4 +2,6 @@
 
 ## Strong-Field Deviations
 
-Deviations from general relativity should be framed in terms of **event-horizon alignment conditions** in the tri-binary architecture: as the outer binary approaches $v=c_f$ and the middle binary remains at $v=c_f$, the system aligns coplanar/co-linear with the inner binary and precession ceases. Strong-field departures should be interpreted through that alignment condition.
+Use the canonical event-horizon alignment condition defined in
+[singularity-resolution](./singularity-resolution.md#canonical-strong-field-alignment-condition).
+Strong-field departures from GR should be interpreted through that single alignment map.

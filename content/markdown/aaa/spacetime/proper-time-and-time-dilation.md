@@ -131,7 +131,9 @@ For definitions and interpretation, see [Effective Energy-Momentum Closure](../d
 
 ### Strong-Field / Horizon Alignment Note
 
-In this framework, **Planck-scale** references are tied to an **event-horizon alignment condition**. As a tri-binary approaches an event horizon, the **outer binary velocity approaches $v=c_f$** while the **middle binary remains at $v=c_f$** with shifting radius/frequency. At the horizon, the **middle and outer binaries become coplanar and co-linear with the inner binary**, and precession ceases. Any strong-field deviation in clock rates should be interpreted through that alignment condition.
+For strong-field interpretation, use the canonical event-horizon alignment condition from
+[singularity-resolution](./singularity-resolution.md#canonical-strong-field-alignment-condition).
+In this chapter, Planck-scale references inherit that same alignment definition.
 
 ---
 
