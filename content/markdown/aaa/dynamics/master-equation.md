@@ -78,7 +78,7 @@ where
 
 The delta collapses the time integral to the causal set $\mathcal{C}_j(t)$ (see Section 1.3), so the integrand is evaluated at the **path-history time** $t_0$ determined by the causal constraint $r_{ij}(t; t_0) = c_f(t - t_0)$. This is the causal path-history potential law: acceleration at $t$ depends on the $1/r^2$ contributions from each emission selected by the causal history (rather than any future or instantaneous value). The Euclidean analog of the Liénard–Wiechert potential thus emerges as a **path-history integral** whose kernel is purely radial.
 
-Numerical implementations (Sol) discretize this integral by sampling discrete emission times, producing the familiar picture of summing over “spherical wake surfaces.” That discrete wake surface sum is therefore **a numerical approximation** of the continuous path-history integral, not a separate physical mechanism. The underlying physics remains the continuous causal flux of potential.
+Numerical implementations discretize this integral by sampling discrete emission times, producing the familiar picture of summing over “spherical wake surfaces.” That discrete wake surface sum is therefore **a numerical approximation** of the continuous path-history integral, not a separate physical mechanism. The underlying physics remains the continuous causal flux of potential.
 
 ---
 
@@ -825,10 +825,6 @@ Hence as $J_{ii}\to 0^+$ the ideal (unregularized) response diverges, producing 
 - **Analytic:** Existence of the Jacobian-null boundary and its singular restoring scaling in the exact kernel.
 - **Numeric still required:** Basin size, global attractivity, and long-time capture probability for realistic multi-body assemblies.
 
-**Failure mode:** If converged $\eta\to 0$ simulations exhibit trajectories crossing the $J=0$ boundary into collapse, or persistent radial divergence without capture, then the MCB-as-separatrix mechanism is falsified or incomplete.
-
-
-
 ### Informational Ambiguity at the Receiver
 
 #### Limited Information Per Hit
@@ -877,8 +873,6 @@ This limited, unoriented, and source-ambiguous information at the hit level is a
 - **Wavefunction as potential distribution**: The "wavefunction" $\psi$ may be interpreted as a **coarse-grained representation** of the superposed potential field (see TOC Ch. 29).
 - **Measurement as interaction**: "Measurement" is simply a complex assembly interaction; the "outcome" is determined by which causal hits occur (see TOC Ch. 30).
 - **Uncertainty**: Not fundamental indeterminacy, but **informational ambiguity** from the receiver's limited perspective.
-
-**Open question (High Priority):** Does the informational ambiguity in Section 3.4.2-3.4.4, when statistically averaged over many similar configurations, **reproduce the Born rule** ($P \propto |\psi|^2$)? This requires: (1) Ensemble simulations of identically prepared systems, (2) Statistical analysis of hit patterns, (3) Comparison to QM predictions. See Action: "Born Rule Derivation" (TBD).
 
 ## Parameters and Numerical Implementation
 
@@ -948,22 +942,6 @@ The Master EOM is a **state-dependent DDE** (delay depends on the solution itsel
 
 **Stability:** Ensure $\Delta t < \eta / c_f$ (resolve mollified wake surface width); adjust $\eta$ and $\Delta t$ together in convergence tests.
 
-#### Convergence and Validation
-
-**Convergence tests (required):**
-
-1. **Temporal**: Halve $\Delta t$ → solution converges?
-2. **Spatial (regularization)**: Halve $\eta$ → solution converges to $\eta \to 0$ limit?
-3. **History buffer depth**: Extend lookback window → no change in recent evolution?
-
-**Validation protocols:**
-
-- **Two-body baselines**: Compare to analytic solutions (radial fall, circular orbits with known parameters).
-- **Energy conservation**: Track total energy $E = \sum_i E_{k,i} + U$ (potential energy from summed interactions).
- - **Failure criterion (Tier-2)**: Energy drift **must** be $< 10^{-6}$ per orbit; exceeding this threshold flags simulation instability or unphysical dynamics.
- - **Special attention during $v \to c_f$ transitions** (self-hit activation): if energy spikes $> 10^{-4}$ instantaneously, integrator is unstable.
-- **Symmetry preservation**: If initial conditions have symmetry (e.g., reflection, rotation), check that solution respects it.
-
 #### Provenance Tracking (Emission Event → Receiver → Response)
 
 **For debugging and interpretation:**
@@ -982,23 +960,6 @@ At each hit, log:
 - Identify self-hit events and winding numbers
 - Trace energy transfer pathways
 - Validate superposition (sum of logged forces = total acceleration?)
-
-#### Numerical Parameter Baseline
-
-To ensure reproducibility across all simulation runs, the following **baseline parameter values** are recommended:
-
-| **Parameter** | **Recommended Value** | **Rationale** | **Adjust if...** |
-|:--------------|:----------------------|:--------------|:-----------------|
-| Time step | $\Delta t < \eta / c_f$ | Resolve mollified wake surface width | Instability detected (energy spikes) |
-| Regularization width | $\eta \in [10^{-3}, 10^{-2}]$ (dimensionless) | Balance between convergence and stability | Convergence test shows $\eta$-dependence |
-| Root-finding tolerance | $\epsilon_{\text{root}} = 10^{-12}$ | Machine precision for double floats | Higher precision needed for long-time runs |
-| History buffer depth | $T_{\text{history}} \geq 10 / c_f$ | Capture at least 10 field-crossing times | Self-hit requires longer lookback |
-| Energy drift tolerance | $\langle \Delta E / E \rangle < 10^{-6}$ per orbit | Tier-2 failure criterion | Higher accuracy needed for stability proofs |
-
-**Notes:**
-- All runs must cite these baseline values or explicit deviations with justification.
-- Convergence tests (halving $\Delta t$, halving $\eta$) must be performed for any new physical regime.
-- Parameter sweeps (varying $\eta$ over $[10^{-4}, 10^{-1}]$) required to verify physical results are not numerical artifacts.
 
 ## Analytic Regimes and Research Roadmap
 
@@ -1967,6 +1928,26 @@ $$
 A secular drift indicates numerical asymmetry or a symmetry-breaking perturbation.
 
 These diagnostics operationalize the symmetry constraints and provide early warning of numerical artifacts or model inconsistencies.
+
+#### Closure Interface: Coarse-Graining Gate to Effective Quantum Envelope
+
+For integration with the quantum closure program, the master equation provides the microscopic gate:
+$$
+m_i\ddot{\mathbf{x}}_i(t)=\text{retarded causal-hit sum over }\mathcal{C}_j(t).
+$$
+
+The required next reduction is a controlled map to mesoscopic density dynamics:
+$$
+f(t,\mathbf{x},\mathbf{v})
+\Longrightarrow
+(\rho,\mathbf{u},S)
+\Longrightarrow
+\psi=\sqrt{\rho}\,e^{iS/\hbar_{\mathrm{eff}}}.
+$$
+
+Closure condition for this interface:
+- the same coarse-graining window that preserves validated dynamical invariants must recover the effective Schrödinger limit in the non-relativistic weak-field regime;
+- residual non-Markovian terms must be explicitly retained as correction operators, not absorbed into uncontrolled fitting.
 
 ---
 

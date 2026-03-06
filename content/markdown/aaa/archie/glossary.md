@@ -72,6 +72,18 @@
 
 ---
 
+## Cosmology Lineage Terms
+
+| Term | Meaning in current docs | Scope note |
+| --- | --- | --- |
+| QSSC-like | Eternal/recycling cosmology motif with repeated source history rather than one unique global origin. | Conceptual lineage marker only; not a full ontology import. |
+| Cyclical-like | Repeated effective epochs in observer chronology mapping. | Used to orient chronology language; mechanism remains SMBH-local in $\mathbb{A}\mathbb{A}\mathbb{A}$. |
+| Timescape-like | Environment-conditioned clock calibration affecting inferred background history. | Descriptive bridge only; implemented through explicit Noether-sea variables. |
+| Distributed CMB sourcing | CMB source interpretation as long-time accumulated source + transport + thermalization channels. | Must still satisfy blackbody and TT/TE/EE closure constraints. |
+| Tired-light (excluded in $\mathbb{A}\mathbb{A}\mathbb{A}$ core) | Generic scattering-loss redshift hypothesis. | Excluded when it violates image sharpness or $(1+z)$ time-dilation consistency. |
+
+---
+
 ## Key Regime Terms
 
 Three-column map of $\mathbb{A}\mathbb{A}\mathbb{A}$ terminology across the tri-binary regimes.

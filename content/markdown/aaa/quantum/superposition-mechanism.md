@@ -41,3 +41,19 @@ Treating superposition as a dynamically maintained metastability rather than a f
 *   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether Sea. 
 *   **Failure Mode**: Observation of strictly instantaneous state updates across space-like separated macroscopic distances—without mediation by previously correlated local hidden variables in the shared path history—falsifies the mechanism.
 *   **Next Steps**: Simulation of the Master Equation for a metastable outer binary subjected to modeled Noether Sea noise is required to derive the Born rule ($P_n = |c_n|^2$) analytically from the fractional phase-space volumes of the competing attractors.
+
+### Closure Interface: Finite-Time Separatrix Law
+
+In the integrated quantum closure program, this chapter contributes the threshold-time component.
+
+Let $\Sigma(X)=0$ define the separatrix in reduced state coordinates $X$. For trajectory $X_t$, define first-passage collapse time
+$$
+\tau_c=\inf\{t>0:\Sigma(X_t)=0\}.
+$$
+
+Closure requirement:
+- $\tau_c$ is finite in measurement-strength regimes that produce records,
+- the distribution of $\tau_c$ is consistent with the same coarse-grained model that yields the outcome weights $P_n$,
+- no instantaneous-update limit appears once finite $c_f$ and interaction extent are enforced.
+
+Primary synthesis location: `quantum/pilot-wave-character.md`.

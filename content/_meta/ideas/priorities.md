@@ -2,8 +2,6 @@
 
 - Use my $50 entourages each month.
 
-- can Ai draw that cool periodic table diagram?
-
 - a 3d visualizer for the oblating Noether core. ellipsoid.md. paths, and other scenes (sphere, ...)
   - work on scene builder.
   - a language for describing animations

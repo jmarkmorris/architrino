@@ -14,6 +14,12 @@ Develop **gravity and cosmology** as **effective emergent physics** of architrin
   - **Field-speed regimes**: $v<c_f$, $v=c_f$, $v>c_f$
 - **Style**: Academic textbook tone, one hedge word max, no persona callouts, no numbered headings in outputs.
 
+## Current Theory Alignment
+
+- Anchor cosmology ontology in `cosmology/cosmology-ontology.md`: fixed Euclidean container, evolving medium, and observer-level projection interfaces.
+- Keep gravity derivations tied to `spacetime/*` plus `dynamics/master-equation.md` and `validation/parameter-ledger.md`.
+- Use `validation/validation-protocols.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md` as hard-wall benchmarking and stop-condition sources.
+
 ---
 
 ## Non-Negotiable Empirical Targets
@@ -77,7 +83,7 @@ There are three vastly different energy levels in a tri-binary.
 
 - finite field-speed interactions ($v$ w.r.t. aether),
 - local aether density/curvature.
-- **Marko notes**: there is a relation between the ellipsoid and going entirely planar. This is the v and c relationship in beta. It feels as if trigonometry should be involved as the energy density gradient makes the Noether core more oblate and trending towards planar. This is also why the event horizon is the photon boundary. That is where v = v_f. Velocity equals the field speed of potential.
+- **Marko notes**: there is a relation between the ellipsoid and going entirely planar. This is the v and c relationship in beta. It feels as if trigonometry should be involved as the energy density gradient makes the Noether core more oblate and trending towards planar. This is also why the event horizon is the photon boundary. That is where v = c_f. Velocity equals the field speed of potential.
 
 **Tasks/Deliverables:**
 
@@ -138,7 +144,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
   - Give explicit effective Friedmann-like equations derived from aether dynamics: $H^2 = \frac{8\pi G_{\rm eff}}{3}\rho_{\rm eff} + \dots$ with clear identification of matter, radiation, and effective dark-energy terms.
   - Ensure BBN-era expansion rate yields realistic $Y_p$, D/H, $N_{\rm eff}$.
 - Ch. 39:
-  - Tie black hole jetting, recycling, emission of potential "dark photons from the v > v_f regime? This adds potential DM alternatives to the metric/aether picture.
+  - Tie black hole jetting, recycling, emission of potential "dark photons from the v > c_f regime? This adds potential DM alternatives to the metric/aether picture.
 - Ch. 40:
   - Provide the gravitational/aether side of the CMB story:
     - acoustic horizon scale,
@@ -267,10 +273,10 @@ Trigger a **red-team review** if:
 ## Outputs
 
 - Effective metric and stress-energy derivations for Sol and Sig.
-- Constraint ledger entries for gravity/cosmology benchmarks synced to `foundations/parameter-ledger.md`.
-- Reference pack pointers: `spacetime/*` for metric/redshift/GW, `validation/simulations/action-energy/potential-kinetic-energy.md` for energy accounting.
+- Constraint ledger entries for gravity/cosmology benchmarks synced to `validation/parameter-ledger.md`.
+- Reference pack pointers: `spacetime/*` for metric/redshift/GW, `validation/simulations/action-energy/action-model.md` for energy accounting.
 
 # Foundational Reference
 - The absolute substrate is absolute time x Euclidean space; see `foundations/ontology.md` Sec. 1.1-1.3 for the foliation, Newton-Cartan data, and Galilean symmetry context that grounds cosmology.
-- Every architrino emits continuous causal wake surfaces; the path-history master equation (`foundations/master-equation.md`) sums their radial $1/r^2$ impact, so cosmological reasoning must respect causal delays and wake superposition.
-- Reference the `foundations/parameter-ledger.md` table when invoking postulated inputs (e.g., $c_f$, $\epsilon=e/6$, $\kappa$, density scales) to keep cosmology aligned with the canonical ledger.
+- Every architrino emits continuous causal wake surfaces; the path-history master equation (`dynamics/master-equation.md`) sums their radial $1/r^2$ impact, so cosmological reasoning must respect causal delays and wake superposition.
+- Reference the `validation/parameter-ledger.md` table when invoking postulated inputs (e.g., $c_f$, $\epsilon=e/6$, $\kappa$, density scales) to keep cosmology aligned with the canonical ledger.

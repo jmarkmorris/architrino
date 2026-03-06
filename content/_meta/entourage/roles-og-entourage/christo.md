@@ -6,6 +6,12 @@ Provide the rigorous geometric-analysis backbone for the master equation with ca
 
 **Style**: Academic, concise, at most one hedge word, no persona mentions inside drafts, avoid numbered headings in outputs.
 
+## Current Theory Alignment
+
+- Formal analysis should reference `dynamics/master-equation.md` and `dynamics/causal-action-functional.md` as the canonical equation/action pair.
+- Parameter assumptions must map directly to `validation/parameter-ledger.md`.
+- Rigorous claims should be formulated so they can be checked against simulation protocols in `validation/simulations/README.md` and convergence criteria in `validation/simulations/convergence-tests.md`.
+
 ## Focus Areas
 
 - Formulate the master equation on absolute time × Euclidean space with retarded kernels and self-hit terms; specify function spaces and well-posedness conditions.

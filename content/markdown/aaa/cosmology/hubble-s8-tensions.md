@@ -14,6 +14,8 @@ This document frames $H_0$ and $S_8$ as linked conceptual problems inside a sing
 - $H_0$ is read through inhomogeneous medium evolution and region-dependent effective histories.
 - $S_8$ is read through growth behavior in baryonic and neutral assembly sectors with medium-coupled dynamics.
 
+This is conceptually adjacent to inhomogeneous/timescape interpretations, but implemented here through explicit Noether-sea state variables and module couplings.
+
 ## Unified Mechanism
 
 Both tensions are treated as different projections of one process: non-uniform relaxation of the Noether sea.
@@ -37,6 +39,7 @@ For $H_0$:
 - local medium-state inhomogeneity (including void-like environments) can bias local-ladder inference relative to early-time inference,
 - late-time medium transition channels can shift low-$z$ inference without reintroducing ontology splits.
 - a non-zero environment-conditioned scatter in local $H$ inference is expected if medium-state gradients are physically relevant.
+- a diagnostic expectation is correlation between local inferred-$H$ scatter and bulk-flow/environment anisotropy indicators along the same sightlines.
 
 For $S_8$:
 

@@ -8,9 +8,8 @@ This chapter is organized in three layers:
 
 1. **Standard baseline:** what is already established (mechanism, emissivity, scaling laws).
 2. **$\mathbb{A}\mathbb{A}\mathbb{A}$ mapping layer:** how the same observables are re-expressed in assembly-language terms.
-3. **Validation layer:** what can be tested now with logic, simulation, and archival datasets.
 
-Read left-to-right as: baseline physics $\rightarrow$ ontology mapping $\rightarrow$ falsifiable workflow.
+Read left-to-right as: baseline physics $\rightarrow$ ontology mapping.
 
 Terminology in this chapter follows [mode-taxonomy.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/dynamics/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
 
@@ -44,7 +43,6 @@ Status convention used below:
 
 - **Baseline:** established standard-physics relation retained unchanged.
 - **Provisional map:** working $\mathbb{A}\mathbb{A}\mathbb{A}$ parameterization pending derivation.
-- **Requirement:** condition that must be satisfied for compatibility with known observables.
 
 ### Wake Shock Definition (Ontology-Level)
 
@@ -99,7 +97,7 @@ Status and handling:
 - If fit is required before derivation, parameter count and uncertainty ranges are tracked explicitly as theory-cost items, rather than treated as hidden freedom.
 - Parsimony assessment is therefore provisional until derivation quality is established in the foundations track.
 
-For gravity integration (Cos Ch. 32-34), the same source terms must be expressible through the emergent metric fields that govern local geodesics, so the closure target is
+For gravity integration, the same source terms can be expressed through the emergent metric fields that govern local geodesics:
 
 $$
 \mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\mathrm{aether}}\right).
@@ -130,7 +128,7 @@ $$
 
 For high-energy scattering language, the differential yield is tracked with $d\sigma/dk$ (photon energy $k$), including screening and Coulomb corrections in the target.
 
-Baseline takeaway: these equations are the standard observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping must reproduce in validated regimes.
+Baseline takeaway: these equations are the standard observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is built to recover in its low-energy continuum limit.
 
 ## Core Channels (Inclusion Rule)
 
@@ -148,13 +146,6 @@ Associated pair/Compton channels are included when they exceed the same contribu
 - **Positron analog:** same wake-threshold logic with sign-reversed charge trajectory in observer-level kinematics.
 - **Thermal ensemble:** macroscopic free-free emissivity is the aggregate of many local planar-mode nucleation events under screened Coulomb transport.
 
-## Observer-Level Closure Checks
-
-- Differential-yield closure: recover standard `d\sigma/dk` behavior with screening/Coulomb corrections in validated regimes.
-- Scaling closure: recover $Z^2$ coherence limit and form-factor/screening breakdown structure at high $q$.
-- Energy-momentum closure: maintain event-level balance with explicit recoil and medium channels.
-- Inclusive-IR closure: any $E_{\gamma,\min}$ hypothesis must remain compatible with inclusive-QED tested observables.
-
 ## IR Regularization as a Stability Floor
 
 Standard soft-photon emission produces infrared-divergent exclusive rates, handled by inclusive observables and resummation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation, an additional hypothesis is available: stable planar photon assemblies exist only above a minimum nucleation energy $E_{\gamma,\min}$.
@@ -164,18 +155,14 @@ This implies a channel bifurcation:
 - **If $\Delta E > E_{\gamma,\min}$:** wake shock locks into a planar mode and emits a photon.
 - **If $\Delta E < E_{\gamma,\min}$:** no stable planar mode forms, and energy dissipates as non-radiative heating/turbulence in the local medium.
 
-If validated, this gives a physical low-energy floor for discrete photon output while preserving standard inclusive observables in measured bands.
-
-Compatibility requirement with tested QED is strict: any nonzero $E_{\gamma,\min}$ must keep inclusive-rate deviations below current precision in relevant beam windows. Operationally, this document treats the floor as a bounded hypothesis, with a conservative working ceiling in the far-IR regime, until a dedicated global fit is completed.
+This gives a physical low-energy floor for discrete photon output while preserving the inclusive-observable interpretation.
 
 Interpretation split used in this draft:
 
 - **Epistemic reinterpretation (default-safe):** sub-threshold energy loss is attributed to local medium heating rather than resolved soft-photon quanta, while inclusive observables remain QED-standard in tested regimes.
 - **Ontic prediction (conditional):** if $E_{\gamma,\min}$ is above current soft-photon sensitivity, the model predicts a measurable low-frequency turnover at $\nu_{\min}=E_{\gamma,\min}/h$.
 
-Current status: this chapter treats the claim as epistemic by default and promotes ontic turnover as a conditional test target only after explicit data-bounded calibration.
-
-Requirement takeaway: any ontic IR-floor claim is subordinate to inclusive-QED consistency.
+Current status: this chapter treats the claim as epistemic by default and promotes ontic turnover as a conditional extension.
 
 ## $Z^2$ Scaling and Finite-Geometry Resolution
 
@@ -194,8 +181,6 @@ $$
 
 where $\delta_g$ parameterizes local metric/aether corrections. For standard nuclei in laboratory regimes, $\delta_g$ is expected to be subdominant; the term is retained so compact-object surface applications can be treated in one formalism.
 
-Mapping takeaway: $Z^2$ breakdown is anchored to form-factor physics first, with metric/aether correction treated as higher-order unless regime warrants otherwise.
-
 ## Momentum-Flux Closure at Emission
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping enforces local momentum-flux balance at the emission vertex:
@@ -205,8 +190,6 @@ $$
 $$
 
 Photon emission angle is therefore constrained by incident electron momentum, target potential geometry, and local wake transfer into planar mode plus recoil channel. For isolated heavy targets, momentum closure is dominated by $\Delta \mathbf{p}_{\mathrm{recoil}}$ with negligible recoil energy; medium momentum terms are reserved for explicit collective-excitation environments. This is the micro-level closure condition behind macroscopic angular spectra.
-
-Requirement takeaway: recoil must stay kinematically closed at vertex level before any medium-excitation interpretation is accepted.
 
 ## Time Parameterization (Absolute vs Proper Time)
 
@@ -226,9 +209,7 @@ $$
 
 with $\gamma(v_e)=1/\sqrt{1-v_e^2/c^2}$ and $|\delta_{\rho}|,|\delta_{\Phi}|\ll 1$ in laboratory and weak-field astrophysical regimes where standard relativistic timing is already validated. The full derivation and regime-dependent corrections are delegated to the metric/time foundations chapter; this file uses the above form as a controlled working map.
 
-The mapping requirement is to keep this conversion explicit in relativistic plasma and compact-object applications, so cooling in proper time and substrate evolution in absolute time remain consistent.
-
-Mapping takeaway: time-coordinate conversion is explicit and controlled, not implicit.
+This keeps cooling in proper time and substrate evolution in absolute time explicitly connected.
 
 ## Cosmological Propagation and Redshift Map
 
@@ -238,9 +219,7 @@ $$
 \epsilon_\nu^{\mathrm{obs}}(z_{\mathrm{obs}}) = (1+z)^{-4}\,\epsilon_{\nu(1+z)}^{\mathrm{ff}}(z_{\mathrm{em}})\,\mathcal{T}(\nu, z_{\mathrm{em}}\to z_{\mathrm{obs}}),
 $$
 
-with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the transfer factor (absorption/scattering in plasma and any aether-specific opacity). Consistency condition: when aether evolution reproduces $\Lambda$CDM background expansion and negligible extra opacity, this reduces to standard cosmological redshift transport.
-
-Requirement takeaway: propagation mapping must collapse to standard redshift transport in the validated limit.
+with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the transfer factor (absorption/scattering in plasma and any aether-specific opacity).
 
 ## Thermal Equilibrium Assumptions in Evolving Medium
 
@@ -253,9 +232,7 @@ $$
 - **$\chi \ll 1$:** assembly-medium coupling is fast, LTE emissivity is valid with instantaneous state variables.
 - **$\chi \gtrsim 1$:** non-equilibrium corrections are required; emissivity must be computed from evolving distribution functions rather than a single local $T$.
 
-This ratio is a required diagnostic in cosmology-facing uses (reionization, cluster outskirts, early-structure transport).
-
-Requirement takeaway: LTE usage is conditional on $\chi \ll 1$ and must be checked, not assumed.
+This ratio provides a diagnostic for when LTE-based closure is expected to hold.
 
 ## Geodesics and Lensing Consistency
 
@@ -265,9 +242,7 @@ $$
 ds^2 = 0,\qquad k^\mu \nabla_\mu k^\nu = 0.
 $$
 
-Therefore the default requirement is recovery of tested lensing behavior (magnification, profile distortion, time-delay structure) in regimes where $\mathbb{A}\mathbb{A}\mathbb{A}$ metric solutions match GR limits. Any residual lensing deviation is treated as a falsifiable beyond-GR prediction, not as a free reinterpretation.
-
-Requirement takeaway: lensing is a hard consistency gate for metric-sector claims.
+This keeps transport treatment aligned with the same geometric sector used across the spacetime mapping.
 
 ## Photon Ontology Note
 
@@ -294,61 +269,3 @@ In AAA ontology, the photon is fundamentally a planar tri-binary assembly propag
 ## Standard Interpretation vs $\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation
 
 In standard plasma and astrophysical modeling, bremsstrahlung is treated as a local radiative process inside a given source geometry and transport model. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ program, the same reaction physics is retained at network level, while interpretation changes at background level: bremsstrahlung constrains how assembly transport, compression, and outflow map to observable photon continua.
-
-## Theoretical Virtue Trade-offs
-
-- **Cost (current):** provisional parameter overhead from mapping ansatz terms ($A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*,E_{\gamma,\min}$) plus correction structure in $\Gamma_{\mathrm{eff}}$.
-- **Benefit (target):** single ontology spanning radiation process, medium coupling, and emergent metric transport; explicit micro-to-macro mapping handles for simulation; possible principled IR-floor interpretation.
-- **Reduction path:** derive ansatz structure from Master Equation dynamics and collapse phenomenological degrees of freedom into shared substrate parameters reused across chapters.
-- **Net status:** **Yellow (provisional)** until parameter reduction and cross-chapter closure are demonstrated in the mapping/simulation pipeline.
-
-## $\mathbb{A}\mathbb{A}\mathbb{A}$ Observable-Mapping Goals
-
-- Recover measured continuum spectra and angular distributions without altering QED cross-sections in validated regimes.
-- Demonstrate consistency between inferred source density from bremsstrahlung normalization and assembly-level density evolution.
-- Show that bremsstrahlung cooling timescales can be embedded in SMBH-local nucleation/outflow histories used in cosmology-facing modules.
-- Quantify when bremsstrahlung dominates photon production versus synchrotron cascades in the same transport zone.
-- Identify whether a finite $E_{\gamma,\min}$ can regularize low-energy discrete-photon emission while remaining consistent with inclusive QED limits.
-- Quantify transition scales where $Z^2$ coherence weakens as target internal geometry is resolved.
-- Map the $Z^2 \rightarrow Z$ crossover to explicit nuclear form-factor observables $F(q^2)$ and screening-length scales.
-- Compute vertex-level momentum partition predictions for planar-mode directionality and compare with differential scattering data.
-- Derive or fit the provisional nucleation map $P_{\mathrm{nuc}}(\mathcal{S}_{\mathrm{wake}},\Delta E)$ from Master Equation dynamics.
-- Bound $E_{\gamma,\min}$ by inclusive soft-photon datasets so QED-tested regimes are automatically recovered.
-- Propagate source emissivity to observer spectra with explicit $\mathcal{T}$ and verify recovery of standard redshift limits.
-- Quantify when metric/aether corrections $\delta_g$ to form-factor scaling are negligible versus measurable.
-- Track $\tau_{\mathrm{couple}}/\tau_{\mathrm{cool}}$ across regimes to separate LTE-valid from non-equilibrium modeling zones.
-- Verify lensing observables from bremsstrahlung continua against null-geodesic predictions in the effective metric.
-
-## Learning Checkpoint
-
-If this chapter is coherent, a reader should be able to do three things:
-
-1. Write the standard bremsstrahlung observables and identify which pieces are unchanged.
-2. State the $\mathbb{A}\mathbb{A}\mathbb{A}$ additions as provisional maps versus hard compatibility requirements.
-3. Design a simulation-and-archival-data validation path without invoking new observations.
-
-## Falsifiable Checks
-
-- **Scope constraint:** validation in this track is limited to logical consistency, simulation, and reanalysis of existing/public datasets; no requirement for new observations.
-- **Low-energy turnover test:** constrain suppression ratio
-  $$
-  R_{\mathrm{IR}}(\nu) \equiv \frac{\Phi_{\nu,\mathrm{obs}}}{\Phi_{\nu,\mathrm{QED}}}
-  $$
-  in soft-photon bands from archival datasets; working benchmark is $R_{\mathrm{IR}}(\nu)\approx 1$ above instrumental floor, with any persistent downturn used to bound or fit $E_{\gamma,\min}$.
-- **$Z^2$ residual test:** at fixed beam energy, measure
-  $$
-  R_Z(k) \equiv \frac{(d\sigma/dk)_{\mathrm{obs}}}{(d\sigma/dk)_{Z^2\text{-scaled}}}
-  $$
-  for representative targets $Z=\{6,13,29,82\}$ using published fixed-target data, and map deviations versus momentum transfer to identify the $Z^2\rightarrow Z$ transition scale.
-- **Angular-correlation closure:** fit photon-angle distributions in fixed-target $e$-$A$ bremsstrahlung and test whether one momentum-partition model closes both energy and angle residuals within experimental uncertainty.
-- **Recoil/medium partition test:** in dense targets, jointly infer $\Delta \mathbf{p}_{\mathrm{recoil}}$ and $\Delta \mathbf{p}_{\mathrm{med}}$ from kinematic closure; reject mappings that require unphysical recoil-energy budgets.
-- **Soft-photon compatibility bound:** require any fitted $E_{\gamma,\min}$ to remain below empirical sensitivity of the soft-photon datasets used in the fit, so inclusive QED-tested observables are preserved by construction.
-- **High-$z$ propagation test:** compare reconstructed bremsstrahlung backgrounds against
-  $$
-  \epsilon_\nu^{\mathrm{obs}}=(1+z)^{-4}\epsilon_{\nu(1+z)}^{\mathrm{ff}}\mathcal{T}
-  $$
-  with and without additional aether-opacity terms using existing background synthesis catalogs; treat statistically preferred excess opacity as a direct falsifiable signal.
-- **Lensing transport test:** cross-check cluster/AGN continuum magnification and profile distortions against null-geodesic transport in the same effective metric sector.
-- **Simulation identifiability test:** generate synthetic spectra/angles from both baseline QED and $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping variants, then verify whether parameter inference can distinguish models without degeneracy under current measurement noise.
-
-These numerical targets are initial benchmarking values for mapping/simulation pipelines and will be tightened with uncertainty budgets in the Sig-led validation pass.

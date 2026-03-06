@@ -50,3 +50,30 @@ We require that the proposed mechanical slowing induced by Noether Core density 
 
 * **Constraint** – reproduce GPS clock offsets (38 μs/day) and the Pound–Rebka redshift.
 * **Mechanism** – mechanical slowing of tri-binary orbital frequencies couples to the local Noether Core density, generating the observed dilation.
+
+### Closure Program Tracking Hooks
+
+Use this ledger as the acceptance layer for the five integrated closure programs:
+
+| Program | Primary chapters | Ledger gate |
+| --- | --- | --- |
+| CKM holonomy closure | `assemblies/fermions/weak-mixing-ckm.md` | CKM hierarchy and CP-phase consistency with propagated uncertainty |
+| PMNS neutral-core closure | `assemblies/fermions/neutrinos.md` | Oscillation pattern consistency across $L/E$ and medium regimes |
+| Emergent metric / PPN closure | `spacetime/emergent-metric.md`, `spacetime/ppn-parameters.md`, `spacetime/proper-time-and-time-dilation.md` | Lorentz leakage, PPN, redshift, Shapiro, GW-speed bounds |
+| Schrödinger + Born closure | `quantum/pilot-wave-character.md`, `quantum/wavefunction-ontology.md`, `quantum/superposition-mechanism.md` | Effective wave equation + statistical outcome consistency |
+| Topological spin/confinement closure | `dynamics/causal-action-functional.md`, `assemblies/fermions/color-charge-su3.md` | 4$\pi$ spin structure and open-vs-closed color-energy scaling |
+
+Cross-program acceptance principle:
+$$
+\mathcal{C}_{\mathrm{CKM}}
+\cap
+\mathcal{C}_{\mathrm{PMNS}}
+\cap
+\mathcal{C}_{\mathrm{PPN/GR}}
+\cap
+\mathcal{C}_{\mathrm{QM}}
+\cap
+\mathcal{C}_{\mathrm{Topo}}
+\neq \varnothing.
+$$
+If the intersection is empty after uncertainty propagation, the integrated model version is rejected.

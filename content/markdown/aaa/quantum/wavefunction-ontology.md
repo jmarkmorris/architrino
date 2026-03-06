@@ -64,3 +64,24 @@ If the wavefunction is an effective description of threshold dynamics rather tha
 **Failure Modes and Experimental Signatures:**
 *   **Ultrafast Decoherence Deviations:** At timescales shorter than the local Lyapunov time of the Noether Sea interactions, the statistical assumptions yielding the Born rule should weaken. Very high-frequency, weak-measurement probes may reveal non-Markovian hysteresis in the state transition process, violating strictly predicted QM transition rates.
 *   **Macro-Realism:** If experiments demonstrate that collapse occurs instantaneously with absolutely zero dynamical transition time (violating finite $c_f$ delay limits), this ontology is falsified.
+
+## Closure Interface: Basin-Measure Formalization
+
+For integration with the quantum closure program, formalize Born emergence through a transfer-operator framework.
+
+Let $\mathcal{M}$ be the reduced metastable manifold, $\Phi_t$ the deterministic coarse-grained flow, and $\mathcal{P}$ the associated Perron-Frobenius operator (with medium-driven perturbation kernel included where required):
+$$
+\mathcal{P}\mu_*=\mu_*.
+$$
+For attractor basins $\{B_n\}$,
+$$
+P_n=\mu_*(B_n).
+$$
+
+The closure target for this chapter is:
+$$
+\mu_*(B_n)=\int_{B_n}|\psi_n|^2\,d\Gamma
+$$
+in the same regime where the envelope dynamics reduce to effective Schrödinger evolution.
+
+Primary synthesis location: `quantum/pilot-wave-character.md`.

@@ -300,7 +300,6 @@ Required bounds for weak-field acceptance:
 
 ### Direct Numerical Experiments
 
-Sol’s tasks (see `validation/simulations`):
 
 1. **Velocity Dilation Test:**
  - Simulate a tri‑binary clock at rest and at several velocities $v/c \in \{0.1, 0.3, 0.6, 0.9\}$ through a uniform Noether Sea.
@@ -367,4 +366,32 @@ This program fails—and the emergent‑metric project is likely untenable—if 
 ---
 
 **Deliverable of this document:** 
-A concrete, simulation‑ready definition of **how** to compute $\omega(v,\Phi_{\text{eff}},\rho_{\text{vac}})$ for a tri‑binary clock, a clear expression for $d\tau/dt$ in terms of those quantities, and an explicit test matrix to compare with SR/GR benchmarks.
+A concrete definition of **how** to compute $\omega(v,\Phi_{\text{eff}},\rho_{\text{vac}})$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.
+
+### Closure Program Interface (clock-to-PPN bridge)
+
+This chapter supplies the fitted coefficient bridge between microscopic clock dynamics and PPN observables.
+
+Given extracted coefficients
+$$
+\hat{\mathbf{c}}=(\hat A_U,\hat A_v,\hat C_2,\hat C_{Uv},\hat C_{v4}),
+$$
+map to
+$$
+\hat\beta_{\mathrm{eff}}=\frac{1+2\hat C_2}{2},
+$$
+and forward to the PPN decision vector in `spacetime/ppn-parameters.md`.
+
+A compact closure statistic is:
+$$
+\chi^2_{\mathrm{closure}}=
+(\hat{\mathbf{q}}-\mathbf{q}_\star)^\top
+\Sigma_q^{-1}
+(\hat{\mathbf{q}}-\mathbf{q}_\star),
+$$
+with
+$$
+\hat{\mathbf{q}}=(\hat A_U,\hat A_v,\hat\beta_{\mathrm{eff}},\hat C_{Uv}),\qquad
+\mathbf{q}_\star=(1,\tfrac12,1,0).
+$$
+Low $\chi^2_{\mathrm{closure}}$ with no preferred-direction leakage is the acceptance condition for the clock-law sector.

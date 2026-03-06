@@ -242,7 +242,7 @@ Because every fermion personality fills six sites with $\pm e/6$, the only stabl
 - **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ core with shielded/Weak-Coupling Triads fully symmetric; it would couple only via mixing terms (Dirac/Majorana choice left open).
 - **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be metastable; continual micro reconfiguration exposes its three nearby mass eigenstates, giving oscillations. Other fermions have much stiffer cores (full or partly shielded binaries) so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
-- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and decoration pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (Weak-Coupling Triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters is still a TODO.
+- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and decoration pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (Weak-Coupling Triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
 
 ## The Generation Mechanism (Mass Hierarchy)
 
@@ -352,5 +352,26 @@ However, there are two nuances we should be aware of, though we don't necessaril
 
 **Verdict:**
 The table is sufficient. It connects the geometry to every parameter needed to calculate a scattering amplitude or a decay rate (except for Mass, which is a derived energy scale, not a quantum number).
+
+## Closure Interfaces (Integration Map)
+
+This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
+
+- **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in `assemblies/fermions/weak-mixing-ckm.md`.
+- **Lepton mixing (PMNS):** neutral-core phase Hamiltonian and oscillation map in `assemblies/fermions/neutrinos.md`.
+- **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in `dynamics/causal-action-functional.md` and `assemblies/fermions/color-charge-su3.md`.
+
+Minimal symbol map used across those closures:
+$$
+Q=T_3+\frac{Y}{2},\qquad
+V_{ij}=\langle j_m|i_w\rangle,\qquad
+|\nu_\alpha\rangle=\sum_i U_{\alpha i}|\nu_i\rangle.
+$$
+
+Spin closure target (formal, not yet proven):
+$$
+\widetilde{R}:SU(2)\simeq \mathrm{Spin}(3)\to SO(3),
+$$
+with tri-binary ordered-frame evolution transforming on the double cover so that 2$\pi$ and 4$\pi$ rotations are distinguished at the internal phase level.
 
 ---

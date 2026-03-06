@@ -126,6 +126,10 @@ Reports of massive, mature galaxies at $z > 10$ (from JWST and successors) test 
 - If $G_{\text{eff}}$ was larger at early times (medium more compliant when hotter/denser), early structure formation is enhanced relative to standard $\Lambda$CDM—potentially explaining surprisingly massive high-$z$ systems without exotic physics.
 - Conversely, if $G_{\text{eff}}$ was constant, the same tension present in standard cosmology persists and must be addressed through astrophysical channels (early star formation efficiency, AGN feedback).
 
+### Top-Down vs Bottom-Up Discriminator
+
+The framework should be evaluated on whether early-time growth behaves predominantly as hierarchical buildup (bottom-up), fragmentation-dominant assembly (top-down), or a mixed regime across scale and epoch. In practice, this is read from the joint evolution of the high-$z$ halo mass function, merger statistics, and large-scale filament maturity under one calibrated $G_{\text{eff}}(a,k)$ history.
+
 ### Largest Structures
 
 The existence of very large coherent structures (giant arcs, walls, and voids at $\gtrsim 200$ Mpc scales) tests the homogeneity assumption and the age of the universe. In a framework where the Euclidean void is eternal and the medium history may differ from the standard $13.8$ Gyr narrative:
@@ -276,28 +280,6 @@ In the modular cosmology architecture, this document provides:
 
 ---
 
-## Observables, Falsifiability, and Failure Modes
+## Synthesis
 
-**Claim:** Structure formation is governed by medium-response gravitational instability in a fixed Euclidean background, with $H$, $G_{\text{eff}}$, and the matter content determined by the internal dynamics of architrino assemblies.
-
-**Assumptions:**
-- Linear perturbation theory is valid for $|\delta| \ll 1$ at scales $\lambda \gg \bar{R}_{\text{core}}$.
-- The medium response is quasi-static on perturbation timescales.
-- Dark matter is realized as weakly coupled neutral assemblies (or, alternatively, as a purely medium-modification effect—scenarios must be distinguished).
-
-**Predictions:**
-- If $G_{\text{eff}}$ is epoch-dependent (medium compliance evolving), $f\sigma_8(z)$ deviates from the GR prediction $f \approx \Omega_m^{0.55}$ in a specific, computable way.
-- If $G_{\text{eff}}$ acquires $k$-dependence at galactic scales, rotation-curve systematics correlate with local medium density rather than with halo mass alone.
-- The $S_8$ tension is naturally addressed if $\mu(a_{\text{late}}, k_{\text{survey}}) < 0$ (late-time growth suppression from medium stiffening).
-
-**Failure modes:**
-- If combined CMB + lensing + galaxy-survey data require $|\mu| > 0.3$ at any well-constrained scale, the medium model demands extreme compliance variation and likely enters the fine-tuning regime (FTQ $> 10$).
-- If the Bullet Cluster offset and analogous systems categorically exclude particle-like dark matter, while galaxy rotation curves simultaneously exclude $G_{\text{eff}}$ modification, the framework has no viable dark-sector realization.
-- If the primordial power spectrum cannot be generated from any medium initial condition or inflation-equivalent process consistent with the CMB $TT$/$EE$ data, the framework fails at the input level regardless of growth dynamics.
-- If high-$z$ structure observations require growth rates exceeding the maximum permitted by any physical $G_{\text{eff}}(z)$ profile (even with early-time enhancement), the framework cannot accommodate the data.
-
-**Next steps:**
-- Calibrate the constitutive coefficients $\{K,S,\zeta,\eta,m_L,g_m\}(a)$ in the derived $\mu(a,k)$ map using linear-response simulations from `dynamics/effective-lagrangian.md`, then project to survey observables.
-- Compute $f\sigma_8(z)$ for a family of medium-compliance histories and compare against DESI, Euclid, and Rubin LSST data.
-- Simulate the nonlinear regime ($|\delta| \gtrsim 1$) using N-body methods with the modified $G_{\text{eff}}$ to produce halo mass functions and concentration–mass relations for comparison with cluster surveys.
-- Interface with `CMB.md` to verify that the primordial spectrum and lensing amplitude are jointly consistent.
+Structure formation is modeled here as medium-response gravitational instability in a fixed Euclidean background, with $H$, $G_{\text{eff}}$, and matter content determined by internal dynamics of architrino assemblies. The practical program is to derive the constitutive coefficients $\{K,S,\zeta,\eta,m_L,g_m\}(a)$, close $\mu(a,k)$ from the medium response equations, and propagate the resulting growth history through the coupled cosmology modules.

@@ -10,6 +10,16 @@ Inflation-like behavior is treated as a local or regional process (especially in
 
 Under long-lived recycling assumptions, this implies a continuously operating population of inflation-like regions rather than a unique early-universe episode.
 
+## Cyclical vs Recycling Clarification
+
+Inflation-like segments in $\mathbb{A}\mathbb{A}\mathbb{A}$ are recurring local release-relaxation episodes, not mandatory global cycle boundaries.
+
+This keeps conceptual overlap with cyclical-universe intuitions while preserving the model's local-process commitment:
+
+- recurrence comes from persistent SMBH-core source classes,
+- chronology remains an observer-level map of many local histories,
+- no single global reset event is required.
+
 ## SMBH-Core Mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$)
 
 1. Inner assemblies enter a high-energy self-hit domain near maximal curvature.

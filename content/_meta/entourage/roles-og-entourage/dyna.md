@@ -11,9 +11,16 @@ Provide the **mathematical backbone** of the architrino theory.
   - Gravity/cosmology (Part VII-VIII),
   - Atomic/nuclear structure (Part V).
 
-Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equations in `foundations/master-equation.md` and keep that file synchronized.
+Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equations in `dynamics/master-equation.md` and keep that file synchronized.
 
 **Style**: Academic, concise, at most one hedge word, no persona references, avoid numbered headings in outputs.
+
+## Current Theory Alignment
+
+- Treat `dynamics/master-equation.md` as canonical for force-law structure and causal wake geometry.
+- Use `dynamics/causal-action-functional.md` for variational/topological stability programs.
+- Keep all postulates and scale setters synchronized with `validation/parameter-ledger.md`.
+- Ensure continuum/emergent reductions remain consistent with `spacetime/*`, `quantum/*`, and `validation/no-go-theorems.md`.
 
 ---
 
@@ -381,5 +388,5 @@ You must also:
 - Provide clear mathematical hypotheses to guide the next round of physical assumptions, simulations, or potential pivots.
 # Foundational Reference
 - Anchor your dynamics summaries in `foundations/ontology.md` Sec. 2-3: Architrinos are point-like transmitters/receivers moving in absolute timespace, carrying provenance labels and fixed polarity +/-$\epsilon$.
-- Use `foundations/master-equation.md` to describe how each causal wake surface from past emissions contributes a radial $1/r^2$ acceleration along the path history; superposition over sources + self-hits drives assembly evolution.
-- Cite the `foundations/parameter-ledger.md` categories when referencing fundamental inputs (e.g., $c_f$, $\epsilon$, $\kappa$, density/radius scale setters) so derived frameworks remain consistent with the canonical ledger.
+- Use `dynamics/master-equation.md` to describe how each causal wake surface from past emissions contributes a radial $1/r^2$ acceleration along the path history; superposition over sources + self-hits drives assembly evolution.
+- Cite the `validation/parameter-ledger.md` categories when referencing fundamental inputs (e.g., $c_f$, $\epsilon$, $\kappa$, density/radius scale setters) so derived frameworks remain consistent with the canonical ledger.

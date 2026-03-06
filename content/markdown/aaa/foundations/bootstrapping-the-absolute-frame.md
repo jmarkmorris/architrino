@@ -356,9 +356,9 @@ The Euclidean void has no preferred origin, no painted axes, and no intrinsic no
 
 The bootstrapping process we have outlined is purely for **our benefit**:
 - To write down the master equation in component form
-- To run numerical simulations (Sol needs explicit $x_i(t), y_i(t), z_i(t)$ arrays)
-- To communicate results (Sig needs to report "the particle moved 3.7 nm in the $+\hat{x}$ direction")
-- To compare frames (Cos needs to transform between the aether rest frame and an observer's local frame)
+- To run numerical simulations (explicit $x_i(t), y_i(t), z_i(t)$ arrays)
+- To communicate results (for example, displacement and direction in a fixed basis)
+- To compare frames (for example, transformations between preferred-frame and local observer coordinates)
 
 The laws of physics are **coordinate-invariant**. A left-handed coordinate system and a right-handed one will produce identical predictions for all measurable quantities, differing only in the signs of pseudovectors (which cancel in physical observables like energy, momentum magnitude, and scattering cross-sections).
 
@@ -406,7 +406,7 @@ The table above can be expanded to show which aspects of our theoretical and com
 ## Operational vs. Fundamental Distinction
 
 **For the $\mathbb{U}_{\text{now}}$ universe-state perspective (Simulation Engine):** 
-The bootstrapping procedure is straightforward. Sol has access to all architrino positions and can compute wake geometries exactly. The coordinate system is simply a data structure: three orthonormal vectors and an origin offset.
+The bootstrapping procedure is straightforward. The simulation has access to all architrino positions and can compute wake geometries exactly. The coordinate system is simply a data structure: three orthonormal vectors and an origin offset.
 
 **For Operational Observers (Made of Assemblies):** 
 We cannot directly measure the concentric wake geometry or identify an absolutely stationary architrino. Our rulers and clocks are themselves assemblies, distorted by motion and coupling to the aether. We measure:

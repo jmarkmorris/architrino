@@ -3,24 +3,9 @@
 
 ## Scope and Purpose
 
-Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 27% of the present energy budget to cold dark matter (CDM)—a pressureless, non-baryonic component that clusters gravitationally but couples negligibly to electromagnetic radiation. This chapter maps dark-matter phenomenology onto the architrino assembly architecture, identifies the candidate substrates, defines the observational benchmarks each candidate must satisfy, and states explicit failure conditions.
+Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 27% of the present energy budget to cold dark matter (CDM)—a pressureless, non-baryonic component that clusters gravitationally but couples negligibly to electromagnetic radiation. This chapter maps dark-matter phenomenology onto the architrino assembly architecture and identifies candidate substrates.
 
 Throughout, "dark matter" refers to the set of phenomena conventionally attributed to CDM: flat galaxy rotation curves, cluster lensing offsets, the third acoustic peak of the CMB, large-scale structure growth, and BBN-consistent $\Omega_b$. The task is to explain this phenomenology within one ontology—Euclidean void, absolute time, architrinos, and tri-binary assemblies—without importing new fundamental fields or ad hoc modifications to gravity.
-
-## Observational Constraint Summary
-
-Any $\mathbb{A}\mathbb{A}\mathbb{A}$ dark-matter account must simultaneously satisfy the following targets, drawn from current data:
-
-| Observable | Constraint | Reference regime |
-|:---|:---|:---|
-| $\Omega_{\mathrm{DM}} h^2$ | $0.120 \pm 0.001$ | CMB (Planck 2018) |
-| Galaxy rotation curves | Flat $v(r)$ to $\gtrsim 5 R_d$ | Milky Way, external spirals |
-| Bullet Cluster offset | DM centroid leads gas centroid by $\sim 100$ kpc after merger | Cluster lensing + X-ray |
-| CMB third peak ratio | $\ell_3/\ell_1$ height ratio fixes $\Omega_{\mathrm{DM}}/\Omega_b$ | $z \sim 1100$ |
-| BBN baryon fraction | $\Omega_b h^2 \approx 0.0224$; excess gravitating matter not baryonic | $T \sim 0.1$–$1$ MeV |
-| Matter power spectrum | $P(k)$ shape through BAO wiggles and turnover | $0.01 \lesssim k \lesssim 0.3\;h\,\mathrm{Mpc}^{-1}$ |
-| Lensing amplitude $S_8$ | $S_8 = \sigma_8 (\Omega_m/0.3)^{0.5} \approx 0.77$–$0.83$ | Weak lensing surveys |
-| Direct detection | No confirmed WIMP signal above $\sigma_{\mathrm{SI}} \sim 10^{-47}\;\mathrm{cm}^2$ at 30 GeV | Laboratory bounds |
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
@@ -32,7 +17,7 @@ Massive composite assemblies (protons, atoms, stars) are tri-binary configuratio
 
 ### What Counts as "Dark" in this Ontology
 
-A dark-matter candidate in $\mathbb{A}\mathbb{A}\mathbb{A}$ must satisfy two conditions:
+A dark-matter candidate in $\mathbb{A}\mathbb{A}\mathbb{A}$ is characterized by two conditions:
 
 - **Gravitational coupling:** The candidate must compress the Noether Sea (contribute to effective $\rho_{\mathrm{NS}}$ gradients) and therefore deflect light and accelerate baryonic matter.
 - **Electromagnetic transparency:** The candidate must couple negligibly to photon-mode assemblies so that it neither emits, absorbs, nor scatters electromagnetic radiation at detectable levels.
@@ -53,7 +38,7 @@ Two substrate-level mechanisms can satisfy these conditions, either separately o
 
 **Behavior.** These assemblies are pressureless at late times (kinetic energy $\ll$ rest energy), cluster gravitationally, and are collisionless on galactic scales because their interaction cross-section with baryonic and electromagnetic assemblies is negligible (no exposed charge → no long-range dipole coupling). They therefore reproduce the canonical CDM clustering phenomenology: hierarchical structure formation, flat rotation curves from halo profiles, and the correct matter-loading signature in the CMB.
 
-**Bullet Cluster test.** In a cluster merger, neutral assemblies pass through each other (collisionless), while baryonic gas assemblies interact electromagnetically and decelerate. This produces the observed lensing-centroid / X-ray-centroid offset. A pure medium-response account (Candidate B alone) must reproduce this offset without invoking a separate collisionless component—a stringent requirement.
+In a cluster-merger interpretation, neutral assemblies remain collisionless while baryonic gas assemblies decelerate electromagnetically, yielding natural separation between gravitating and X-ray-bright components.
 
 ### Candidate B — Noether-Sea Medium Response
 
@@ -64,9 +49,9 @@ Two substrate-level mechanisms can satisfy these conditions, either separately o
 **Characteristic scale.** The MOND acceleration $a_0 \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to $c H_0 / (2\pi)$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this coincidence could reflect a connection between the outer-binary expansion/contraction timescale (set by the cosmological evolution of the Noether Sea) and the local stiffness threshold. This is a mapping target, not a derived result.
 
 **Limitations.** A pure medium-response account faces well-documented difficulties:
-- Reproducing the Bullet Cluster offset without a collisionless component.
-- Matching the CMB third-peak height ratio, which in $\Lambda\mathrm{CDM}$ directly measures $\Omega_{\mathrm{DM}}/\Omega_b$ through baryon loading of acoustic oscillations.
-- Producing the correct shape of the matter power spectrum $P(k)$ on scales $k \sim 0.01$–$0.1\;h\,\mathrm{Mpc}^{-1}$, where CDM clustering sets the turnover.
+- Reproducing cluster-scale lensing/gas centroid separation without a collisionless component.
+- Matching acoustic-peak matter loading in pre-decoupling dynamics.
+- Producing the correct large-scale transfer-function shape in $P(k)$.
 
 These difficulties motivate retaining Candidate A as the primary dark-matter substrate, with Candidate B contributing corrections.
 
@@ -79,6 +64,14 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 - Neutral assemblies handle the heavy lifting: CMB matter loading, large-scale power spectrum, Bullet Cluster collisionless behavior, and BBN consistency ($\Omega_b$ remains small).
 - Medium response can address observed tensions at galaxy scale—the diversity of rotation-curve shapes, the radial-acceleration relation (RAR) tightness, and possible deviations from pure NFW profiles—without introducing additional free parameters per galaxy.
 - The two contributions arise from the same ontological substrate (tri-binary assemblies in Euclidean void with absolute time) and are coupled: neutral assemblies compress the Sea, which in turn responds non-linearly, feeding back on the effective potential.
+
+### Why Hybrid Is Required (Closure Summary)
+
+| Construction | Main strength | Main failure risk |
+|:---|:---|:---|
+| Pure neutral-assembly | Handles CMB loading, BAO/$P(k)$ shape, and cluster collisionless behavior | Can underperform on low-acceleration galaxy phenomenology without added response channels |
+| Pure medium-response | Captures MOND-like galaxy-scale behavior naturally | Struggles with Bullet-Cluster offsets and full CMB matter-loading closure |
+| Hybrid baseline | Combines cosmology-scale closure with galaxy-scale flexibility | Requires constitutive calibration discipline to avoid over-parameterized tuning |
 
 **Coupled equations (schematic).** Let $\rho_A(\mathbf{x},t)$ denote the neutral-assembly density and $\rho_{\mathrm{NS}}(\mathbf{x},t)$ the Noether-Sea density. In the Newtonian limit, the effective Poisson equation becomes:
 
@@ -118,9 +111,9 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, supermassive black holes (SMBHs) 
 
 The neutral-assembly mass is not a free parameter to be fitted post hoc; it must emerge from the binding energy of the assembly's core and its drag coupling to the Noether Sea. Candidate mass ranges, mapped to observational constraints:
 
-- $m \sim$ eV: warm dark matter; suppresses small-scale structure (Lyman-$\alpha$ forest constrains $m > 5.3$ keV for thermal relics, so eV-scale thermal candidates are ruled out unless production is non-thermal).
+- $m \sim$ eV: warm dark matter; suppresses small-scale structure.
 - $m \sim$ keV–GeV: canonical cold dark matter window.
-- $m \sim$ GeV–TeV: WIMP-like; direct-detection null results constrain cross-sections tightly.
+- $m \sim$ GeV–TeV: WIMP-like regime.
 - $m \gg$ TeV: superheavy; must be produced non-thermally (e.g., gravitational production or SMBH-related formation in early epochs).
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not currently predict a unique mass; deriving the mass spectrum from first-principles tri-binary binding energies and formation rates is a high-priority simulation target.
@@ -130,9 +123,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not currently predict a uniq
 Neutral assemblies interact with each other and with baryonic matter only through:
 
 - **Gravitational coupling** (Noether-Sea compression): always present; sets halo profiles.
-- **Residual short-range coupling:** If the neutral assembly has any non-zero higher-multipole moment (e.g., a quadrupole from internal binary precession), there is a short-range van-der-Waals-like interaction scaling as $r^{-7}$ or steeper. This must satisfy:
-  - Self-interaction: $\sigma/m < 1\;\mathrm{cm}^2\,\mathrm{g}^{-1}$ at cluster scales (Bullet Cluster bound), while $\sigma/m \sim 0.1$–$10\;\mathrm{cm}^2\,\mathrm{g}^{-1}$ at dwarf-galaxy scales is observationally permitted and could address core-vs-cusp tension.
-  - Baryonic interaction: $\sigma_{\mathrm{SI}} < 10^{-47}\;\mathrm{cm}^2$ at $m \sim 30$ GeV (LZ/XENON bounds for spin-independent scattering).
+- **Residual short-range coupling:** If the neutral assembly has any non-zero higher-multipole moment (e.g., a quadrupole from internal binary precession), there is a short-range van-der-Waals-like interaction scaling as $r^{-7}$ or steeper. The self-interaction sector can then carry nontrivial velocity dependence.
 
 ### Stability
 
@@ -148,7 +139,7 @@ $$
 \Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.25.
 $$
 
-Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the CMB power spectrum: suppression of odd peaks (baryon loading) with the overall amplitude and peak-height ratios set by $\Omega_A/\Omega_b$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ model must reproduce the Planck TT power spectrum through the third acoustic peak to within $\sim 5\%$ in $C_\ell$ residuals.
+Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the CMB power spectrum: suppression of odd peaks (baryon loading) with the overall amplitude and peak-height ratios set by $\Omega_A/\Omega_b$.
 
 ### Post-Decoupling Growth
 
@@ -162,34 +153,14 @@ where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependen
 
 ### BAO and Matter Power Spectrum
 
-The matter power spectrum $P(k)$ encodes the transfer function through matter-radiation equality and the BAO wiggles imprinted at decoupling. The neutral-assembly contribution sets the shape of $P(k)$ on scales $k > k_{\mathrm{eq}}$, where $k_{\mathrm{eq}} \propto \Omega_m h^2$. $\mathbb{A}\mathbb{A}\mathbb{A}$ must match the observed $P(k)$ from galaxy surveys (BOSS, DESI) to within the statistical precision of those measurements.
+The matter power spectrum $P(k)$ encodes the transfer function through matter-radiation equality and the BAO wiggles imprinted at decoupling. The neutral-assembly contribution sets the shape of $P(k)$ on scales $k > k_{\mathrm{eq}}$, where $k_{\mathrm{eq}} \propto \Omega_m h^2$.
 
 ### $H_0$ and $S_8$ Tensions
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid baseline offers two potential handles on current cosmological tensions:
 
-- **$H_0$ tension ($67.4$ vs $73.0\;\mathrm{km\,s}^{-1}\,\mathrm{Mpc}^{-1}$):** If neutral-assembly properties (e.g., a non-zero but small self-interaction or a late-time decay channel) modify the distance ladder or sound horizon differently from pure CDM, the inferred $H_0$ could shift. This requires explicit computation of $r_s$ and $D_L(z)$ within the $\mathbb{A}\mathbb{A}\mathbb{A}$ expansion history.
-- **$S_8$ tension ($\sim 2$–$3\sigma$ between CMB and weak lensing):** The scale-dependent medium response could suppress late-time growth at $k \sim 0.1$–$1\;h\,\mathrm{Mpc}^{-1}$, lowering $\sigma_8$ relative to the CMB-inferred value while leaving the CMB itself unchanged. This is a quantitative prediction that can be tested once $G_{\mathrm{eff}}(a,k)$ is derived from Noether-Sea constitutive relations.
-
-## Falsifiability and Failure Modes
-
-### Tier-1 Failures (Theory-Killing)
-
-- **Bullet Cluster:** If the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework cannot produce a collisionless dark component that leads the baryonic gas after a cluster merger, the neutral-assembly hypothesis fails, and the theory must rely entirely on medium response—which faces its own Bullet-Cluster problem.
-- **CMB third peak:** If no neutral-assembly population with the correct $\Omega_A h^2$ can be identified from the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly spectrum, the CMB matter-loading constraint is violated.
-- **BBN consistency:** If neutral assemblies interact strongly enough to alter the neutron-to-proton ratio at $T \sim 1$ MeV, light-element abundances are disrupted. Bound: any new species contributing to $N_{\mathrm{eff}}$ at BBN must satisfy $\Delta N_{\mathrm{eff}} < 0.4$ (95% CL).
-
-### Tier-2 Failures (Require Revision)
-
-- **Rotation-curve diversity:** If the medium-response correction cannot explain the scatter in rotation-curve shapes at fixed $v_{\mathrm{max}}$ without galaxy-by-galaxy fitting, the hybrid model loses its advantage over pure CDM + baryonic feedback.
-- **$P(k)$ shape:** If the $\mathbb{A}\mathbb{A}\mathbb{A}$ $P(k)$ deviates from $\Lambda\mathrm{CDM}$ by more than $\sim 5\%$ at $k < 0.2\;h\,\mathrm{Mpc}^{-1}$ without improving tension metrics, the model performs worse than the baseline.
-- **Direct detection:** If the predicted residual coupling of neutral assemblies exceeds current direct-detection bounds, the candidate is experimentally excluded at that mass scale.
-
-### Tier-3 Predictions (Discriminating)
-
-- **Self-interaction scale dependence:** The hybrid model predicts velocity-dependent self-interaction ($\sigma/m$ larger at lower collision velocities), distinguishing it from vanilla CDM. This is testable through galaxy-cluster vs dwarf-galaxy density profiles.
-- **SMBH–halo correlation:** If SMBH recycling processes neutral assemblies, a (weak) anti-correlation between SMBH mass and central dark-matter density at fixed halo mass could emerge. This is testable with kinematic surveys of central galaxies.
-- **Medium-response signature in weak lensing:** If $G_{\mathrm{eff}}$ is scale-dependent, the lensing convergence power spectrum $C_\ell^{\kappa\kappa}$ would deviate from $\Lambda\mathrm{CDM}$ at $\ell \sim 100$–$1000$ in a characteristic pattern distinct from simple $\sigma_8$ rescaling.
+- **$H_0$ tension:** If neutral-assembly properties (e.g., a non-zero but small self-interaction or a late-time decay channel) modify distance-ladder or sound-horizon inference differently from pure CDM, the inferred $H_0$ can shift through one mechanism family.
+- **$S_8$ tension:** Scale-dependent medium response can suppress late-time growth at $k \sim 0.1$–$1\;h\,\mathrm{Mpc}^{-1}$, lowering $\sigma_8$ relative to early-time inference while leaving pre-decoupling structure largely unchanged.
 
 ## Growth-Module Interface
 
@@ -197,8 +168,8 @@ In the modular cosmology architecture, this chapter connects to other modules th
 
 - **Input to `CMB.md`:** $\Omega_A h^2$, neutral-assembly equation of state $w_A(z)$ (expected: $w_A = 0$ for CDM-like behavior), and any $\Delta N_{\mathrm{eff}}$ contribution.
 - **Input to `structure-formation.md`:** $G_{\mathrm{eff}}(a,k)$ from medium-response constitutive relation; neutral-assembly self-interaction cross-section $\sigma(v)/m$.
-- **Input from `expansion-history.md`:** $H(z)$ and $\Omega_m(z)$ for growth-equation integration.
-- **Input from `BBN.md`:** $N_{\mathrm{eff}}$ bound constraining allowed neutral-assembly species at MeV temperatures.
+- **Input from `expansion-mechanism.md`:** $H(z)$ and $\Omega_m(z)$ for growth-equation integration.
+- **Input from `BBN-constraints.md`:** $N_{\mathrm{eff}}$ bound constraining allowed neutral-assembly species at MeV temperatures.
 
 All interfaces use the same absolute-time / Euclidean-space substrate and the same Noether-Sea state variables, ensuring ontological consistency across modules.
 
@@ -209,4 +180,4 @@ Dark-matter phenomenology in the architrino assembly architecture is attributed 
 - **Neutral assemblies** (Candidate A): electromagnetically transparent tri-binary configurations that cluster gravitationally, reproducing CDM-like behavior at cluster and cosmological scales.
 - **Noether-Sea medium response** (Candidate B): non-linear elastic corrections to effective gravity at low accelerations, providing scale-dependent modifications relevant to galaxy-scale phenomenology.
 
-The working baseline is the hybrid (Candidate C), with neutral assemblies carrying the dominant mass fraction and medium response supplying corrections. This framework must match the full suite of cosmological and astrophysical dark-matter constraints; explicit failure conditions are defined above. Deriving the neutral-assembly mass spectrum, interaction cross-sections, and medium constitutive relations from the master equation is the critical open program.
+The working baseline is the hybrid (Candidate C), with neutral assemblies carrying the dominant mass fraction and medium response supplying corrections. Deriving the neutral-assembly mass spectrum, interaction cross-sections, and medium constitutive relations from the master equation is the critical open program.

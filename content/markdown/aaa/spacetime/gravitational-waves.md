@@ -5,7 +5,6 @@ This chapter provides a minimal theorem-backed chain from the emergent-metric we
 Interface chapters:
 - Effective metric map: [emergent-metric](./emergent-metric.md)
 - PPN closure and refractive weak field: [ppn-parameters](./ppn-parameters.md)
-- Constraint target: [constraint-ledger](../validation/constraint-ledger.md)
 
 ## Weak-Field Setup
 
@@ -76,16 +75,3 @@ $$
 \left\langle \dot h_+^2+\dot h_\times^2\right\rangle.
 $$
 This is the quantity used for binary-orbit energy-loss consistency checks.
-
-## Validation and Failure Conditions
-
-Required closure checks:
-- **Speed:** 
-$$
-\left|\frac{v_{\text{GW}}-c}{c}\right|<10^{-15}
-$$
-in the calibrated weak-field regime (per constraint ledger).
-- **Polarization:** no dominant extra scalar/vector modes in events consistent with GR-like tensor templates.
-- **Backreaction consistency:** inferred flux from waveform amplitude must match source-energy accounting within stated numerical tolerance.
-
-Failure of any item above breaks the minimal emergent-GW spine and requires revision of the constitutive map.

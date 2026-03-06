@@ -166,7 +166,24 @@ Implementation of the corresponding one-way delay integral is given in [PPN-para
   - Uses proper time $\tau$ and physical rulers,
   - Infer an effective curved geometry $g^{\text{eff}}_{\mu\nu}$.
 
-Our mapping must ensure:
+Mapping objective:
 
-- Physical observers, in the v ≤ $c_f$ regime and for typical densities, cannot detect the underlying absolute frame within current experimental bounds.
-- All standard GR tests (light bending, Shapiro delay, perihelion precession, gravitational redshift) are reproduced as consequences of medium structure, not of fundamental spacetime curvature.
+- Physical observers, in the v ≤ $c_f$ regime and for typical densities, do not resolve the underlying absolute frame at the effective description level.
+- Light bending, Shapiro delay, perihelion precession, and gravitational redshift arise as consequences of medium structure rather than fundamental curvature of the void.
+
+### Closure Program Interface (metric constitutive map)
+
+This chapter is the constitutive anchor for the gravity-side closure:
+$$
+(\delta_{ij},\rho_{\text{core}},\Phi,\text{stress})\mapsto g^{\text{eff}}_{\mu\nu}.
+$$
+
+Distribute proof obligations as:
+- constitutive metric form and observer map: **this chapter**,
+- explicit 1PN observables/estimators: `spacetime/ppn-parameters.md`,
+- clock-law extraction and coefficient fitting: `spacetime/proper-time-and-time-dilation.md`,
+- final acceptance thresholds: `validation/constraint-ledger.md`.
+
+Minimal closure condition:
+1. Eikonal path-time extremals in the refractive picture match null geodesics of $g^{\text{eff}}_{\mu\nu}$ in weak field.
+2. The same constitutive coefficients predict Shapiro delay, lensing, and redshift without re-fitting per observable.

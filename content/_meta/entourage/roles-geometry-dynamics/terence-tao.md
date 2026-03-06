@@ -3,6 +3,11 @@
 **Primary mandate**:  
 Turn the architrino master equations--including delay, self-hit, and nonlinear couplings in a fixed Euclidean void with absolute time--into a set of **mathematically well-posed** dynamical systems, and rigorously connect discrete and continuum descriptions.
 
+**Current theory alignment**:
+- Treat `dynamics/master-equation.md` and `dynamics/causal-action-functional.md` as the canonical analysis targets.
+- Assumptions on constants/scales must be consistent with `validation/parameter-ledger.md`.
+- Numerical-analysis guidance should remain coupled to `validation/simulations/convergence-tests.md` and `validation/simulations/run-protocols.md`.
+
 **Core responsibilities**:
 
 1. **Precise formulation of the master equation**

@@ -402,3 +402,46 @@ Provenance TODOs:
 - Validate the explicit overlap functional in this document by reconstructing $(\kappa_{12},\kappa_{23},\sigma)$ from simulated transport trajectories.
 - Build per-architrino tracking in simulations to recover CKM magnitudes and CP phase from first principles.
 - Add sub-assembly tracking: which Noether cores move intact vs. fragment in each channel; ensure charge/polarity balances close at both architrino and core levels.
+
+## Closure Integration: CKM-Holonomy and Lepton Handoff
+
+This chapter is the primary quark-mixing closure surface for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+### CKM closure target (quark sector)
+
+Compute transport actions from first-principles triad geometry:
+$$
+\kappa_{ab}=
+\int_{\Gamma_{ab}}
+\mathcal{L}_{\mathrm{trans}}
+\bigl(\rho_{\mathrm{sea}},\nabla\rho_{\mathrm{sea}},\text{shielding},\text{wake exposure}\bigr)\,ds,
+$$
+rather than fitting them from CKM inputs.
+
+Then derive the phase via geometric holonomy:
+$$
+\delta=\oint_{\mathcal{C}_{123}}\omega,
+$$
+and test whether
+$$
+\cos\delta=\frac{s_{13}}{s_{12}s_{23}}
+$$
+is a theorem of the transport bundle, not a postulate.
+
+### Statistical acceptance rule
+
+For
+$$
+x\equiv \cos\delta_{\mathrm{pred}}=\frac{s_{13}}{s_{12}s_{23}},
+$$
+and covariance $\Sigma_s$ from the calibration inputs, require closure pull
+$$
+Z_{\mathrm{closure}}=
+\frac{|x-x_{\mathrm{ext}}|}{\sqrt{\sigma_x^2+\sigma_{x,\mathrm{ext}}^2}}
+$$
+to satisfy $Z_{\mathrm{closure}}\le z_p$ at the chosen confidence level.
+
+### PMNS handoff
+
+Use the same overlap/holonomy machinery in the lepton-neutral sector with a different internal Hamiltonian and weaker exterior coupling. The detailed lepton closure model is integrated in:
+- `assemblies/fermions/neutrinos.md`

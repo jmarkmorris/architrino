@@ -2,8 +2,8 @@
 
 ### Mapping to PPN Constraints
 
-1. **Shapiro Delay**: Must map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{eff}$ in a dense medium).
-2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether Sea density gradient around the Sun. Target accuracy: $10^{-5}$.
+1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{eff}$ in a dense medium).
+2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether Sea density gradient around the Sun.
 3. **Geodetic Precession**: Derived from the interaction of the assembly's angular momentum with the gradient of the Noether Sea's potential.
 
 
@@ -11,7 +11,7 @@
 
 1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the $\mathbb{U}_{\text{now}}$ universe-state grid.
 2. **Architrino Model**: Signal follows a straight Euclidean line. Delay is caused by **increased density of the Noether core sea** near the Sun (Refractive Index change).
-3. **Validation**: $\Delta t_{architrino}$ must match $\Delta t_{GR}$ to within $10^{-5}$.
+3. **Comparison**: Contrast $\Delta t_{architrino}$ with the GR weak-field form.
 4. **$\mathbb{U}_{\text{now}}$ Role**: $\mathbb{U}_{\text{now}}$ provides the "straight line" benchmark against which the "curved path" of GR is compared.
 
 ### Explicit Weak-Field Refractive Shapiro Map (PPN $\gamma$)
@@ -62,14 +62,14 @@ $$
 $$
 with $\Delta t_{\text{obs}}=t_{\text{obs}}-R/c_f$.
 
-Validation target: in the weak-field solar-system regime, $\gamma_{\text{eff}}$ must match the Cassini-level bound in this framework's fitted convention.
+In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refractive-space-curvature map parameter.
 
 ### PPN Parameters and the Euclidean Anchor
 
 #### Parameter $\gamma$ (Space Curvature / Refraction)
 * **GR Context:** Measures the amount of space curvature produced by unit rest mass.
 * **Architrino Interpretation:** Measures the "Refractive Index" of the Sea of Noether Cores. A massive body increases local assembly density, slowing the effective speed of light $c$ relative to the field speed $c_f$.
-* **Observable:** Shapiro delay coefficient in the explicit refractive integral above. The inferred $\gamma_{\text{eff}}$ must satisfy the Cassini-level constraint around unity.
+* **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
 
 #### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
@@ -160,4 +160,24 @@ $$
 $$
 and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
-Operationally, extract $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ from boosted weak-field simulations in orthogonal directions; passing requires consistency with the Tier-1 isotropy/leakage thresholds in `validation/constraint-ledger.md`.
+The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
+
+### Closure Program Interface (observable decision layer)
+
+This chapter is the observable-side gate for the emergent-metric closure.
+
+Define the PPN decision vector:
+$$
+\mathbf{p}_{\mathrm{PPN}}=
+\bigl(\gamma_{\mathrm{eff}}-1,\ \beta_{\mathrm{eff}}-1,\ \alpha_1,\ \alpha_2,\ \alpha_3\bigr).
+$$
+The weak-field closure target is
+$$
+\mathbf{p}_{\mathrm{PPN}}\approx \mathbf{0}
+$$
+within the benchmark tolerances listed in the validation ledger.
+
+Cross-chapter integration:
+- constitutive map source: `spacetime/emergent-metric.md`
+- clock-law coefficient extraction: `spacetime/proper-time-and-time-dilation.md`
+- threshold enforcement: `validation/constraint-ledger.md`

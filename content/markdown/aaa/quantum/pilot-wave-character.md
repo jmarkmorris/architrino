@@ -219,3 +219,31 @@ This is the wake-field analog of the Bohr-Sommerfeld quantization condition, der
 - Simulate ensembles of identically prepared assemblies under the Master Equation with controlled Noether Sea noise; extract the statistical distribution of outcomes and compare against $|\psi|^2$.
 - Compute the phase-locking conditions for a single tri-binary assembly in a Coulomb-like confining potential (hydrogen analog) and extract the predicted energy spectrum.
 - Characterize the non-Markovian corrections to guidance (self-hit memory effects) and identify experimental signatures that distinguish $\mathbb{A}\mathbb{A}\mathbb{A}$ guidance from standard dBB in regimes where the two frameworks diverge.
+
+## Closure Program Integration (quantum chain)
+
+This chapter is the primary synthesis for quantum closure in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+Three linked gates:
+1. **Envelope gate (effective wave equation):** derive the coarse-grained evolution law from the master-delay dynamics and recover Schrödinger form in the non-relativistic weak-field limit.
+2. **Statistics gate (Born):** derive basin-measure probabilities as an invariant measure of the coarse-grained dynamics.
+3. **Threshold gate (collapse/decoherence):** model finite-time separatrix crossing and record-making irreversibility.
+
+Minimal mathematical spine:
+$$
+\text{master delay dynamics}\ \Longrightarrow\ \text{kinetic closure for }f(t,\mathbf{x},\mathbf{v})
+\Longrightarrow\ \psi=\sqrt{\rho}\,e^{iS/\hbar_{\mathrm{eff}}},
+$$
+$$
+i\hbar_{\mathrm{eff}}\partial_t\psi=
+\left(-\frac{\hbar_{\mathrm{eff}}^2}{2m}\nabla^2+V_{\mathrm{eff}}\right)\psi
+\quad (\text{in closure regime}),
+$$
+$$
+P_n=\mu_*(B_n)\stackrel{?}{=}\int_{B_n}|\psi_n|^2\,d\Gamma.
+$$
+
+Detailed interface chapters:
+- ontology/statistics side: `quantum/wavefunction-ontology.md`
+- metastability/separatrix side: `quantum/superposition-mechanism.md`
+- dynamical substrate side: `dynamics/master-equation.md`, `dynamics/effective-lagrangian.md`

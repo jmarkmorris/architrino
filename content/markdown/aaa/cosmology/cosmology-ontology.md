@@ -31,6 +31,26 @@ All cosmological observables are computed from absolute-state evolution and then
 - `dark-matter.md`: dark-sector mechanism mapping in a unified medium-and-assembly frame.
 - `dark-energy.md`: acceleration mechanism mapping in the same fixed-void ontology.
 
+## Historical Lineage (Conceptual, Not Identical)
+
+- **QSSC-like motif:** eternal background plus recurring creation/reprocessing channels.
+- **Cyclical-like motif:** repeated effective epochs without requiring one absolute beginning event.
+- **Timescape-like motif:** environment-conditioned clock calibration affecting inferred expansion history.
+- **Static-family caution:** retain only clock/medium insight channels; exclude generic tired-light scattering-loss mechanisms.
+
+## Classification Axes (AAA Position)
+
+| Axis | $\mathbb{A}\mathbb{A}\mathbb{A}$ Position |
+|---|---|
+| Gravity driver | Medium-response gravity from Noether-sea state, with GR-like behavior as an effective limit |
+| Expansion status | Fixed Euclidean container; expansion variables are effective medium-state summaries |
+| Universe age stance | Eternal background with no mandatory one-time global origin event |
+| Redshift mechanism | Medium evolution plus clock-rate comparison and transport contributions |
+| CMB origin mode | Source + transport + thermalization + decoupling in one medium-and-assembly ontology |
+| Nucleosynthesis mode | Recurring local reactor-style channels (SMBH-linked) mapped to observer-level primordial diagnostics |
+| Homogeneity stance | Statistical large-scale homogeneity from repeated local processes with allowed local inhomogeneity |
+| Growth mode | Coupled medium-and-assembly instability with scale/epoch-dependent effective response |
+
 ## Working Principle
 
 Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies) must be reproducible from absolute-frame medium dynamics, with GR/$\Lambda\mathrm{CDM}$ behavior appearing as effective limits where applicable.
@@ -64,6 +84,15 @@ Each observational component exposes explicit interface variables for cross-theo
 $\mathbb{A}\mathbb{A}\mathbb{A}$ maps to each observation component directly through these interfaces. Agreement or divergence from $\Lambda\mathrm{CDM}$ is evaluated per component, not as all-or-nothing acceptance of a single interpretational package.
 
 Historical correspondences (steady-state, quasi-steady-state, bounce/cyclic, SMBH-centered recycling) are tracked as lineage context, while microphysical commitments remain specific to $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ may borrow explanatory motifs from QSSC/cyclical/inhomogeneous traditions, but it does not import external ontologies by default.
+
+### Boundary Conditions Against Nearby Families
+
+- No hypersphere geometry import as a default cosmology substrate.
+- No electromagnetic-force-dominant replacement of gravity at cosmological baseline.
+- No generic tired-light scattering-loss redshift mechanisms in core interpretation.
+- No split ontology where background expansion and growth are treated as unrelated physics.
 
 ## Origin and Global History Stance
 

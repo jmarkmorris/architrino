@@ -61,6 +61,8 @@ In this reading, effective redshift accumulation may depend on photon energy, tr
 
 Line-of-sight medium flow and local contraction/expansion regions can, in principle, contribute signed shifts, so local blueward and redward biases should be treated within one transport kernel rather than as disconnected exceptions.
 
+Propagation channels must preserve image sharpness and $(1+z)$ time-dilation consistency; models requiring generic scattering-loss redshift are excluded.
+
 ## Dissipation and Rescaling Picture
 
 Apparent expansion is interpreted as relaxation of medium state:
@@ -92,6 +94,14 @@ In this framing, $H_0$ is not expected to be strictly universal at all environme
 
 Quasar redshift distributions are interpreted in the same transport-and-source framework, separating source-population evolution from path-history accumulation within one model.
 
+## Timescape-Style Bridge, $\mathbb{A}\mathbb{A}\mathbb{A}$ Mechanism
+
+Conceptually, this layer is adjacent to inhomogeneous/clock-calibration cosmologies, but the implementation here remains one explicit medium-state model:
+
+- clock-rate mapping is computed from shared Noether-sea state variables,
+- expansion-like inference shifts are environment-conditioned readouts, not ontology splits,
+- local-ladder versus early-time differences are modeled as distinct sampling of one evolving medium.
+
 ## Effective Friedmann Bridge (Comparison Layer)
 
 For data-comparison work, one may retain a Friedmann-like summary:
@@ -109,7 +119,3 @@ In the modular cosmology map, this page provides:
 - ontic inputs: medium density/stress state, clock-rate map, and transport environment,
 - effective outputs: inferred $a(t)$, $H(z)$, and redshift-distance behavior,
 - shared bridge variables used by `dark-energy.md`, `hubble-s8-tensions.md`, and `CMB.md`.
-
-## Coherent Reading
-
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, expansion/redshift observables are effective readouts of medium evolution, transport, and clock-rate mapping in a fixed Euclidean void; one ontology supports both early- and late-time inference layers.
