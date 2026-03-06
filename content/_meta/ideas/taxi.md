@@ -78,9 +78,9 @@ Display model:
 
 - `Scene-Index` displays one or more rings of spheres,
 - placement and sizing are automatic by default,
-- individual nodes may still declare placement hints such as `center`, `ring1-3`, `ring2-4`, and similar template locations.
+- individual nodes may still declare placement hints such as `center`, `ring1-3`, `ring2-4`, and similar layout locations.
 
-This means the template computes the layout, while authored hints can override node role within that template.
+This means the layout computes placement automatically, while authored hints can override node role within that layout.
 
 ### Scene-Markdown-View
 
@@ -113,7 +113,7 @@ Display model:
 
 - `Scene-Markdown-Split` displays one or more rings of spheres,
 - placement and sizing are fully automatic by default,
-- individual nodes may still declare placement hints such as `center`, `ring1-3`, `ring2-4`, and similar template locations.
+- individual nodes may still declare placement hints such as `center`, `ring1-3`, `ring2-4`, and similar layout locations.
 
 This is distinct from `Scene-Index`:
 
@@ -154,7 +154,7 @@ The ontology should answer these questions in order:
 
 1. Is this a `Scene-Index` or a presentation scene?
 2. If it is a presentation scene, what type of presentation scene is it?
-3. What layout template or controls does it use?
+3. What layout layout or controls does it use?
 
 This keeps the top-level taxonomy stable even as more media types appear.
 
@@ -173,14 +173,14 @@ A runtime may still transform declared data, but it should not invent scene stru
 
 ### Template-driven layout
 
-Layout should be a template concern, not a taxonomy concern.
+Layout should be a layout concern, not a taxonomy concern.
 
 For the new ontology:
 
-- `Scene-Index` and `Scene-Markdown-Split` both use ring-based display templates,
-- those templates should compute placement and sizing automatically,
-- authored node hints may adjust template slots,
-- the template should not require authored radius values as a core design assumption.
+- `Scene-Index` and `Scene-Markdown-Split` both use ring-based display layouts,
+- those layouts should compute placement and sizing automatically,
+- authored node hints may adjust layout slots,
+- the layout should not require authored radius values as a core design assumption.
 
 This is a significant cleanup from the current mixed model where layout radius and node radius are both called "radius" and where authored and computed sizing are interleaved.
 
@@ -218,7 +218,7 @@ The new ontology is simpler:
 - many explicit presentation-scene types,
 - explicit declaration instead of directory discovery,
 - explicit distinction between hierarchy and cross-links,
-- layout templates separated from ontology,
+- layout separated from ontology,
 - media type handled where it belongs.
 
 ---
@@ -274,11 +274,11 @@ Those fields reflect an older model in which markdown behavior leaked into the g
 
 The current schema requires object-level fields such as `radius` and `color` broadly across scene data.
 
-That assumption does not fit the new ring-template model for `Scene-Index` and `Scene-Markdown-Split`, where placement and sizing should be automatic by default.
+That assumption does not fit the new ring-layout model for `Scene-Index` and `Scene-Markdown-Split`, where placement and sizing should be automatic by default.
 
 So the conversion should remove the assumption that all node sizing and coloring are authored per object. Those should instead be handled by:
 
-- template defaults,
+- layout defaults,
 - scene-type defaults,
 - explicit per-node overrides only when needed.
 
@@ -315,7 +315,7 @@ The current implementation uses the word `radius` for more than one meaning:
 That should be split into explicit concepts in the new model. At minimum, the ontology and schema should distinguish:
 
 - rendered node scale,
-- template sizing input,
+- layout sizing input,
 - ring orbit radius,
 - slot hint or slot placement.
 
@@ -373,7 +373,7 @@ Implementation checklist:
 - [ ] schema redesign
 - [ ] bootstrap rewrite
 - [ ] markdown registry removal
-- [ ] ring-template extraction
+- [ ] ring-layout extraction
 - [ ] migration tool
 - [ ] graph/index rebuild
 - [ ] validator rewrite
@@ -390,9 +390,9 @@ Initial kinds:
 - `Scene-Diagram`
 - `Scene-Animation`
 
-Also define the first shared template/control concepts:
+Also define the first shared layout/control concepts:
 
-- ring template,
+- ring layout,
 - automatic sizing,
 - automatic placement,
 - optional slot hints,
@@ -421,7 +421,7 @@ At minimum:
 - a base scene schema,
 - a `Scene-Index` schema,
 - one schema per presentation-scene type,
-- shared schema fragments for layout templates and common controls.
+- shared schema fragments for layouts and common controls.
 
 Important design direction:
 
@@ -432,9 +432,9 @@ Important design direction:
 - separate structural child relationships from cross-links,
 - remove generic markdown-specific fields from the base scene/object schema.
 
-### Phase 4. Build the new ring template system
+### Phase 4. Build the new ring layout system
 
-Implement a ring-template layout system used by `Scene-Index` and `Scene-Markdown-Split`.
+Implement a ring-layout system used by `Scene-Index` and `Scene-Markdown-Split`.
 
 Requirements:
 
@@ -442,7 +442,7 @@ Requirements:
 - fully automatic ring placement by default,
 - support one or more rings,
 - allow optional node slot hints such as `center`, `ring1-3`, `ring2-4`, and similar positions,
-- keep template logic separate from scene ontology.
+- keep layout logic separate from scene ontology.
 
 This is the right place to eliminate the current ambiguity around rendered node size, packing inputs, and ring orbit radius.
 
@@ -498,7 +498,7 @@ That work should answer:
 - which current scene JSON files become presentation scenes,
 - which presentation-scene types are sufficient for the first conversion,
 - which additional presentation-scene types need to be introduced early,
-- which current per-node authored fields become template overrides versus obsolete legacy fields.
+- which current per-node authored fields become layout overrides versus obsolete legacy fields.
 
 The important point is that this is a classification problem, not a compatibility problem. The goal is to map the current working system into a cleaner ontology, not to preserve the old terminology or runtime generation behavior.
 
@@ -519,11 +519,26 @@ For this system, the better long-term practice is:
 
 - explicit scene declaration,
 - stable scene types,
-- template-based layout,
+- layout-based presentation,
 - media-aware presentation scenes,
 - no hidden provenance.
 
 That should make the model easier to teach, easier to debug, and easier to extend as the webapp gains more scene types.
+
+---
+
+## Non-goals
+
+This revision does not attempt to preserve legacy behavior for its own sake.
+
+Non-goals:
+
+- preserving compatibility with legacy generated scene IDs,
+- preserving runtime directory walking after conversion,
+- preserving generic markdown-specific fields in the base scene schema,
+- preserving required per-node `radius` and `color` in generic scene data,
+- writing resolved layout placement back into authored scene data,
+- carrying forward obsolete taxonomy labels merely because they exist in the current implementation.
 
 ---
 
@@ -549,8 +564,9 @@ Suggested base fields:
 Base-scene principles:
 
 - the base should not contain markdown-specific fields,
-- the base should not contain ring-template-specific fields,
+- the base should not contain layout-specific fields,
 - the base should not assume structural children,
+- `controls` remain available without introducing a new scene-type restriction,
 - `links` may exist on any scene type,
 - the base should not require visual node radius or color.
 
@@ -571,7 +587,7 @@ Suggested structural fields for scenes that organize children:
 A child reference may eventually need fields such as:
 
 - `sceneId`: target child scene
-- `slot`: optional template slot hint such as `center`, `ring1-3`, `ring2-4`
+- `slot`: optional layout slot hint such as `center`, `ring1-3`, `ring2-4`
 - `label`: optional navigation label override
 - `badge`: optional visual badge override
 
@@ -584,19 +600,20 @@ Important distinction:
 
 ### 3. Scene-Index
 
-`Scene-Index` should extend the base scene with hierarchy and template configuration.
+`Scene-Index` should extend the base scene with hierarchy and layout configuration.
 
 Suggested fields:
 
 - `type: Scene-Index`
 - `children`: required structural child scene references
-- `template`: required template configuration
+- `layout`: required layout configuration
 - `entryBehavior`: optional initial navigation behavior
 
 Suggested constraints:
 
 - every structural child must resolve to either another `Scene-Index` or a presentation scene,
 - `children` should exist only on `Scene-Index`,
+- `Scene-Index` view behavior should derive from layout by default rather than from authored `view` state,
 - `Scene-Index` should not require direct media-source configuration,
 - `Scene-Index` should not derive children from a filesystem path.
 
@@ -610,7 +627,7 @@ Suggested fields:
 - `source`: optional media source configuration
 - `view`: optional presentation/view configuration
 - `hotspots`: optional interactive in-scene targets, available only on presentation scenes
-- `template`: optional display template when the scene type uses one
+- `layout`: optional display layout when the scene type uses one
 
 Presentation-scene principles:
 
@@ -633,9 +650,12 @@ Suggested fields:
 Design direction:
 
 - this scene type presents one markdown document,
+- it may open directly to a section anchor,
 - it should not generate hierarchy from headings,
 - it may still expose links or hotspots,
 - markdown-specific settings belong here rather than in the base scene schema.
+
+`Scene-Markdown-View` and `Scene-Markdown-Split` should remain separate scene types. They may share the same source medium, but they differ in primary behavior: document presentation versus section-based generated navigation.
 
 ### 6. Scene-Markdown-Split
 
@@ -645,7 +665,7 @@ Suggested fields:
 - `source.type: markdown`
 - `source.path`: markdown file path
 - `source.split`: split configuration
-- `template`: required ring template
+- `layout`: required ring layout
 - `generatedNodes`: optional runtime-derived section-node data
 
 Suggested split configuration:
@@ -700,20 +720,20 @@ Design direction:
 - this scene type is for motion-first content,
 - playback settings belong here rather than in a generic scene base.
 
-### 9. Ring template
+### 9. Ring layout
 
-The ring template should be defined once and reused by scene types that need it.
+The ring layout should be defined once and reused by scene types that need it.
 
-The template should not assume a permanently 2D ontology. It may currently resolve positions into a 2D plane, but its data model should allow later extension to 3D placement without requiring a redesign of child references or relationship structure.
+The layout should not assume a permanently 2D ontology. It may currently resolve positions into a 2D plane, but its data model should allow later extension to 3D placement without requiring a redesign of child references or relationship structure.
 
-Suggested template fields:
+Suggested layout fields:
 
-- `template.kind`: template identifier such as `rings`
-- `template.ringCount`: optional maximum or desired ring count
-- `template.sizing`: automatic sizing configuration
-- `template.placement`: automatic placement configuration
-- `template.slotPolicy`: rules for slot hints and collision handling
-- `template.style`: optional shared visual styling
+- `layout.type`: layout identifier such as `rings`
+- `layout.ringCount`: optional maximum or desired ring count
+- `layout.sizing`: automatic sizing configuration
+- `layout.placement`: automatic placement configuration
+- `layout.slotPolicy`: rules for slot hints and collision handling
+- `layout.style`: optional shared visual styling
 
 Suggested sizing fields:
 
@@ -725,14 +745,14 @@ Suggested sizing fields:
 Suggested placement fields:
 
 - `mode`: automatic by default
-- `startAngle`: optional template phase
+- `startAngle`: optional layout phase
 - `centerPolicy`: optional rule for center occupancy
 - `ringBalance`: optional balancing policy across rings
 
 Suggested slot-hint behavior:
 
 - a node may request a slot such as `center`, `ring1-3`, `ring2-4`,
-- the template may honor the hint exactly or best-effort,
+- the layout may honor the hint exactly or best-effort,
 - the schema should distinguish requested slot from resolved slot.
 
 This is the place to replace the old overloaded `radius` language with cleaner terms.
@@ -773,8 +793,8 @@ The new schema should make overrides explicit.
 Suggested rule:
 
 - scene type defines capabilities,
-- template defines layout defaults,
-- node or child references may override specific template behavior,
+- layout defines layout defaults,
+- node or child references may override specific layout behavior,
 - overrides should be optional and sparse.
 
 That will keep authored scene data compact while still allowing exceptions where they matter.
@@ -805,8 +825,8 @@ These are illustrative examples for ontology review. They are not final implemen
   "type": "Scene-Index",
   "title": "Assemblies",
   "summary": "Structural index for assembly-related scenes.",
-  "template": {
-    "kind": "rings",
+  "layout": {
+    "type": "rings",
     "sizing": {
       "mode": "auto",
       "minNodeScale": 1.2,
@@ -884,11 +904,11 @@ These are illustrative examples for ontology review. They are not final implemen
       "headingLevel": 2,
       "sectionDepth": 1,
       "includeIntro": true,
-      "sectionPresentationKind": "Scene-Markdown-View"
+      "sectionPresentationType": "Scene-Markdown-View"
     }
   },
-  "template": {
-    "kind": "rings",
+  "layout": {
+    "type": "rings",
     "sizing": {
       "mode": "auto"
     },
@@ -959,7 +979,7 @@ These examples make several intended rules concrete:
 
 - hierarchy is declared through `children` child-reference objects,
 - cross-scene connectivity is declared through `links` and `hotspots`,
-- ring-template behavior is configured through `template`,
+- ring-layout behavior is configured through `layout`,
 - markdown-specific configuration lives only inside markdown scene types,
 - presentation scenes may link outward freely without becoming `Scene-Index` scenes.
 
