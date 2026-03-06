@@ -41,6 +41,16 @@
       "labelBadge": "doc"
     },
     {
+      "id": "closure_scorecard",
+      "label": "Closure Scorecard",
+      "radius": 2.688,
+      "color": "#4b5e2f",
+      "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+      "markdownColumns": 1,
+      "labelTitle": "Closure Scorecard",
+      "labelBadge": "doc"
+    },
+    {
       "id": "failure_criteria",
       "label": "Failure Criteria",
       "radius": 2.688,

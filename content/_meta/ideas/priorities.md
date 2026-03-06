@@ -24,6 +24,27 @@
 
 ---
 
+Based on the current AAA scores in the scorecard, the next focus should be:
+
+  1. Coverage (44)
+     Fastest lift: fill empty/thin chapters with formal minimums (definitions, governing equations, closure target, falsification gate).
+  2. Parameter Closure (49)
+     High leverage: convert TBD constants into bounded parameters with extraction equations and observable links.
+  3. Mass Formulas (55)
+     Move from roadmap to one closed mass map (even if first-pass), then test against electron/muon/tau or hadron constraints.
+  4. Internal-Core Dynamics (58) and Charge-Carrier Dynamics (59)
+     These are central mechanism gaps; formalize regime equations, stability conditions, and interaction/docking rules.
+  5. Cross-Regime Bridge (60)
+     Unify micro dynamics to Lorentz/PPN/redshift/reaction outputs with a single parameter vector (no per-observable re-fit).
+  6. UV/IR Completion (45)
+     Harder but critical: explicit regularization, singularity handling, and asymptotic behavior at both ends.
+
+  If you want fastest total-score increase first, do Coverage + Parameter Closure first. If you want strongest foundational credibility increase, do Mass + Internal-Core/Charge-Carrier + Cross-Regime + UV/IR.
+
+  Rule of thumb: each +10 points in one category adds about +0.56 to the total (18-category mean).
+
+---
+
 - sim2rewrite.md has ideas for porting to architrino. wait until we have the scene builder working
 
 ---

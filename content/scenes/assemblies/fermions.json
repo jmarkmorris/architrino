@@ -85,6 +85,18 @@
       "labelTitle": "Up, Charm, Top Quarks"
     },
     {
+      "id": "weak_mixing_angle",
+      "label": "Weak Mixing Angle",
+      "radius": 2.688,
+      "color": "#7a5a2f",
+      "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Weak Mixing Angle",
+      "labelBadge": "doc"
+    },
+    {
       "id": "weak_mixing_ckm",
       "label": "Weak Mixing CKM",
       "radius": 2.688,
