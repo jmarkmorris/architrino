@@ -80,6 +80,32 @@ where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kine
 2. Spectral stability of the monodromy operator (all nontrivial Floquet multipliers inside the unit disk).
 3. Smooth coefficient maps for axis and period renormalization extracted from $\boldsymbol{\rho}^\star$.
 
+### 2.4 Exact substrate symmetries and delay currents
+
+At action level, use a causal path-history functional
+$$
+S=\int dt\left[
+\sum_i \frac{1}{2}m_i\dot{\mathbf{x}}_i^2
+-\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
+\mathcal{L}_{\text{int}}\!\left(\mathbf{x}_i(t),\mathbf{x}_j(t-\tau)\right)
+\right].
+$$
+The exact substrate symmetry group is
+$$
+G_{\text{fund}}=E(3)\times \mathbb{R},
+$$
+so Noether currents in delay form give conserved totals including wake channels:
+$$
+\mathbf{P}_{\text{tot}}
+=
+\sum_i m_i\dot{\mathbf{x}}_i+\mathbf{P}_{\text{wake}},
+\qquad
+E_{\text{tot}}
+=
+\sum_i \frac{1}{2}m_i\dot{\mathbf{x}}_i^2+E_{\text{wake}}.
+$$
+Therefore an isolated translating assembly admits a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift $\mathbf{v}=\mathbf{P}_{\text{tot}}/M_{\text{tot}}$.
+
 ## 3. Emergent Kinematics from Delay Anisotropy
 
 ### 3.1 Directional delay asymmetry
@@ -649,7 +675,17 @@ $$
 
 ### 5.6 Analytic derivation of kinematic closure coefficients
 
-On the circular benchmark branch, take the rest-frame attractor $\boldsymbol{\rho}^\star(s;0)$ as a stable planar orbit of radius $r_0$ and frequency $\omega_0$. For translation $\mathbf{v}=v\hat{\mathbf{e}}_{\parallel}$ with $\beta=v/c_f$, use the retarded potential form
+On the circular benchmark branch, take the rest-frame attractor $\boldsymbol{\rho}^\star(s;0)$ as a stable planar orbit of radius $r_0$ and frequency $\omega_0$. The cycle carries emergent phase symmetry $\phi\mapsto \phi+\text{const}$ with adiabatic invariant
+$$
+J=\oint \mathbf{p}_{\text{eff}}\cdot d\mathbf{r}.
+$$
+For each principal oscillator channel, $J_i\propto \sqrt{K_i}\,A_i^2$, so adiabatic drift retuning implies
+$$
+A_i(\beta)=A_i(0)\left(\frac{K_i(0)}{K_i(\beta)}\right)^{1/4}.
+$$
+This provides a Noether-constrained route from stiffness expansion to the coefficient extraction in Sec. 3.2.2.
+
+For translation $\mathbf{v}=v\hat{\mathbf{e}}_{\parallel}$ with $\beta=v/c_f$, use the retarded potential form
 $$
 \mathcal{U}_{\text{eff}}(\mathbf{r};\beta)
 =
@@ -669,21 +705,24 @@ Expanding the retarded delay closure
 $$
 \tau=\frac{\|\mathbf{r}+\mathbf{v}\tau\|}{c_f}
 $$
-and projecting longitudinal/transverse channels gives dimensionless integrals
+and projecting longitudinal/transverse channels gives
 $$
 \mathcal{I}_{\parallel}(\beta)
 =
-\mathcal{I}_0\left[
-1-\frac{1}{3}\beta^2-\frac{1}{9}\beta^4+O(\beta^6)
-\right],
+\mathcal{I}_0\int_0^{2\pi}\frac{d\theta}{2\pi}
+\frac{\cos^2\theta}{(1-\beta\cos\theta)^3}
+=
+\mathcal{I}_0\left[1-\frac{1}{3}\beta^2-\frac{1}{9}\beta^4+O(\beta^6)\right],
 $$
 $$
 \mathcal{I}_{\perp}(\beta)
 =
-\mathcal{I}_0\left[
-1-\frac{4}{3}\beta^2+\frac{2}{9}\beta^4+O(\beta^6)
-\right].
+\mathcal{I}_0\int_0^{2\pi}\frac{d\theta}{2\pi}
+\frac{\sin^2\theta}{(1-\beta\cos\theta)^3}
+=
+\mathcal{I}_0\left[1-\frac{4}{3}\beta^2+\frac{2}{9}\beta^4+O(\beta^6)\right].
 $$
+The exact Noether route and the Sec. 3.2.2 derivative route are equivalent once both are expanded on the same branch.
 Using the Sec. 3.2.2 extraction rules,
 $$
 k_2=
@@ -709,7 +748,7 @@ $$
 =
 \left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right).
 $$
-So the $O(\beta^4)$ closure coefficients are obtained directly from the causal path-history Hessian on the circular benchmark branch.
+So the $O(\beta^4)$ closure coefficients are obtained directly from the causal path-history Hessian on the circular benchmark branch and are not fit parameters.
 
 ### 5.7 Tri-binary adiabatic decoupling bound
 
@@ -743,7 +782,7 @@ $$
 \omega_H\gg \omega_M\gg \omega_L,\qquad
 r_H\ll r_M\ll r_L,
 $$
-fast-time averaging makes inner-layer couplings adiabatic at $L$ scale. The monopole part renormalizes $\mathcal{I}_0$ only; the leading anisotropic correction is quadrupolar and scales as $(r_M/r_L)^2$. Therefore
+apply Hamiltonian averaging (Lie-Deprit transform) to eliminate fast phases. The monopole part renormalizes $\mathcal{I}_0$ only; the dipole contribution vanishes in the inner-layer center-of-mass frame; the leading anisotropic correction is quadrupolar and scales as $(r_M/r_L)^2$. Therefore
 $$
 \mathcal{D}_{23}
 \le
@@ -761,11 +800,21 @@ $$
 
 ### 5.8 Spectral-decoupling vulnerability criterion
 
-The adiabatic bound in Sec. 5.7 assumes nonresonant spectral separation between $L$ and inner layers. If integers $(m,n)$ satisfy
+The adiabatic bound in Sec. 5.7 assumes Diophantine nonresonance:
+$$
+|m\omega_L-n\omega_M|
+\ge
+\frac{\gamma_D}{(|m|+|n|)^{\tau_D}}
+\quad
+\forall\,m,n\in\mathbb{Z}\setminus\{0\},
+\qquad
+\gamma_D>0,\ \tau_D>1.
+$$
+If this condition is violated so that
 $$
 |m\omega_L-n\omega_M|\lesssim \delta\omega_{\text{nl}},
 $$
-for nonlinear coupling width $\delta\omega_{\text{nl}}$, averaging can fail and coefficient drift can exceed the quadrupole estimate. In that regime, local preferred-frame leakage can rise above $O(\epsilon_{\text{LV}})$ even when geometric hierarchy is large.
+for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}}$, then small divisors invalidate the homological equations of the Lie transform. The resulting secular resonance destroys adiabatic decoupling, can break KAM tori, and drives $O(1)$ interlayer energy exchange. In that regime, coefficient drift can exceed the quadrupole estimate and local preferred-frame leakage can rise above $O(\epsilon_{\text{LV}})$ even when geometric hierarchy is large.
 
 ## 6. Theorem Targets
 
@@ -825,7 +874,12 @@ the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_
 If binary and tri-binary attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
 $$
 \omega_H\gg \omega_M\gg \omega_L,\qquad
-|m\omega_L-n\omega_M|\ge \delta\omega_{\min}\ \ \forall\ m,n\in\mathbb{Z}_{>0},
+|m\omega_L-n\omega_M|
+\ge
+\frac{\gamma_D}{(|m|+|n|)^{\tau_D}}
+\ \ \forall\ m,n\in\mathbb{Z}\setminus\{0\},
+\qquad
+\gamma_D>0,\ \tau_D>1,
 $$
 then their extracted closure vectors satisfy
 $$
@@ -856,7 +910,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
-6. Spectral decoupling fails (near-resonance between outer and inner layer frequencies), invalidating the adiabatic mismatch bound used in Sec. 5.7.
+6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in Sec. 5.7.
 
 ## 9. Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
 
