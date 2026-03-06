@@ -302,7 +302,7 @@ export function createSceneGraphRuntime(deps) {
 
     const outerIndices = remainingIndices.slice(0, best.outerCount);
     const innerIndices = remainingIndices.slice(best.outerCount, best.outerCount + best.innerCount);
-    const outerPoints = buildRingPoints(best.outerCount, best.outerRadius);
+    const outerPoints = buildRingPoints(best.outerCount, best.outerRadius, Math.PI / 2);
     const innerPoints = buildRingPoints(best.innerCount, best.innerRadius, Math.PI / 2, best.innerPhase);
 
     outerIndices.forEach((nodeIndex, i) => {

@@ -21,9 +21,6 @@
       "subScenes": [
         "content/scenes/cosmology/galaxy_cluster.json"
       ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "galaxy cluster"
     },
     {
@@ -35,9 +32,6 @@
       "subScenes": [
         "content/scenes/cosmology/galaxy_cluster.json"
       ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "cosmic web"
     },
     {
@@ -47,9 +41,6 @@
       "radius": 1.4,
       "color": "#1c2a4f",
       "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "voids"
     }
   ]
