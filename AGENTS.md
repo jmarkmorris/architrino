@@ -7,6 +7,8 @@
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Use causal-delay terminology in prose (`causal`, `delayed`, `path-history`) and avoid `retard`/`retarded` wording outside literal quotations or code identifiers.
 - Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
+- When giving the user step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one ELI5 step at a time.
+- When asking the user questions needed to proceed, ask them one at a time and phrase each question in ELI5 terms.
 
 ## Commit Audits (Run Every Turn Before Commit)
 
