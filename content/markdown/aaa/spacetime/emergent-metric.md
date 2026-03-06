@@ -187,3 +187,103 @@ Distribute proof obligations as:
 Minimal closure condition:
 1. Eikonal path-time extremals in the refractive picture match null geodesics of $g^{\text{eff}}_{\mu\nu}$ in weak field.
 2. The same constitutive coefficients predict Shapiro delay, lensing, and redshift without re-fitting per observable.
+
+### Weak-Field Geodesic and PPN Extraction (Constitutive Subclass)
+
+For the local medium-rest frame $\hat{u}^\mu=(1,0,0,0)$, use
+$$
+g_{\mu\nu}^{\text{eff}}(x)
+=
+\Omega^{-2}(n,\lambda)\left[
+\eta_{\mu\nu}
++
+\left(1-\xi^{-2}(x)\right)\hat{u}_\mu\hat{u}_\nu
+\right].
+$$
+Then
+$$
+g_{00}^{\text{eff}}=-\Omega^{-2}\xi^{-2},
+\qquad
+g_{ij}^{\text{eff}}=\Omega^{-2}\delta_{ij}.
+$$
+
+Define the clock-channel potential
+$$
+\Phi_{\text{eff}}(x)\equiv -c_f^2\ln\!\big(\Omega(x)\xi(x)\big),
+\qquad
+\Omega(x)\xi(x)=e^{-\Phi_{\text{eff}}(x)/c_f^2}.
+$$
+
+For a slowly moving test assembly in a stationary medium, the dominant connection piece is
+$$
+\Gamma^i_{00}
+=
+-\frac{1}{2}g_{\text{eff}}^{ij}\partial_j g_{00}^{\text{eff}}
+=
+-\xi^{-2}\,\partial^i\ln(\Omega\xi)
+=
+\xi^{-2}\frac{\partial^i\Phi_{\text{eff}}}{c_f^2}.
+$$
+Using $dx^0/dt\approx c_f$, the spatial geodesic equation gives
+$$
+\frac{d^2x^i}{dt^2}
+\approx
+-\Gamma^i_{00}\left(\frac{dx^0}{dt}\right)^2
+=
+-\xi^{-2}\nabla^i\Phi_{\text{eff}}.
+$$
+Hence, in weak field ($\xi\to 1$),
+$$
+\frac{d^2\mathbf{x}}{dt^2}=-\nabla\Phi_{\text{eff}},
+$$
+which is the Newtonian limit.
+
+#### PPN Coefficients from the Same Subclass
+
+Let $U\equiv -\Phi_{\text{eff}}>0$.
+
+Time-time channel:
+$$
+g_{00}^{\text{eff}}
+=
+-(\Omega\xi)^{-2}
+=
+-e^{2\Phi_{\text{eff}}/c_f^2}
+=
+-1+2\frac{U}{c_f^2}-2\frac{U^2}{c_f^4}+O(c_f^{-6}).
+$$
+Comparing to
+$$
+g_{00}^{\text{PPN}}
+=
+-1+2\frac{U}{c_f^2}-2\beta_{\text{PPN}}\frac{U^2}{c_f^4}+\cdots
+$$
+yields
+$$
+\beta_{\text{PPN}}=1
+$$
+for this exponential clock-law subclass.
+
+Spatial channel:
+$$
+g_{ij}^{\text{eff}}=\Omega^{-2}\delta_{ij}
+\stackrel{!}{=}
+\left(1+2\gamma_{\text{PPN}}\frac{U}{c_f^2}\right)\delta_{ij}
+=
+\left(1-2\gamma_{\text{PPN}}\frac{\Phi_{\text{eff}}}{c_f^2}\right)\delta_{ij}.
+$$
+Write
+$$
+\Omega=1+\omega_1\frac{\Phi_{\text{eff}}}{c_f^2}+O(c_f^{-4}),
+\qquad
+\xi=1+\xi_1\frac{\Phi_{\text{eff}}}{c_f^2}+O(c_f^{-4}).
+$$
+Then
+$$
+\omega_1+\xi_1=-1
+$$
+from $\Omega\xi=e^{-\Phi_{\text{eff}}/c_f^2}$, and
+$$
+\gamma_{\text{PPN}}=\omega_1=-1-\xi_1.
+$$
+So $\gamma_{\text{PPN}}$ is fixed by first-order partitioning of the clock channel between volumetric scaling ($\Omega$) and shape scaling ($\xi$).

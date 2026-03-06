@@ -112,6 +112,30 @@ $$
 $$
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
+#### Exponential clock-law subclass (direct map)
+
+If the constitutive clock channel is exactly
+$$
+\Omega\xi=e^{-\Phi_{\text{eff}}/c_f^2},
+\qquad
+g_{00}=-(\Omega\xi)^{-2},
+$$
+then with $U\equiv -\Phi_{\text{eff}}$:
+$$
+g_{00}
+=
+-e^{2\Phi_{\text{eff}}/c_f^2}
+=
+-1+2\frac{U}{c_f^2}-2\frac{U^2}{c_f^4}+O(c_f^{-6}),
+$$
+so this subclass yields
+$$
+\boxed{\beta_{\text{PPN}}=1}
+$$
+without additional fit freedom.
+
+The general $C_2(a,k)$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
+
 #### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).
 * **Constitutive leakage ansatz:** Let $\mathbf{w}$ be the medium drift velocity relative to the barycentric frame. Write the lowest-order drift terms as
@@ -161,6 +185,20 @@ $$
 and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
 The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
+
+### Weak-Field Constraint Table (Decision Layer)
+
+Use this table to close the constitutive loop against modern benchmarks.
+
+| Channel | Model estimator | GR/PPN target | Closure requirement |
+| --- | --- | --- | --- |
+| Time nonlinearity | $\beta_{\text{PPN}}$ from $g_{00}$ expansion | $\beta_{\text{PPN}}=1$ | Residual inside ledger tolerance |
+| Space curvature/refraction | $\gamma_{\text{eff}}$ from Shapiro estimator | $\gamma_{\text{PPN}}=1$ | Residual inside ledger tolerance |
+| Preferred-frame leakage | $(\alpha_1,\alpha_2,\alpha_3)$ from $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ | all $\approx 0$ | No significant nonzero leakage |
+| Newtonian limit | $\mathbf{a}=-\nabla\Phi_{\text{eff}}$ (weak field) | exact leading-order recovery | No constitutive contradiction |
+| Cross-observable consistency | same constitutive coefficients across delay, redshift, precession, lensing | single-parameter-set closure | No per-observable re-fit |
+
+Numeric pass/fail thresholds are taken from `validation/constraint-ledger.md`.
 
 ### Closure Program Interface (observable decision layer)
 

@@ -97,3 +97,98 @@ $$
 Q\in\left\{-e,-\frac{2e}{3},-\frac{e}{3},0,\frac{e}{3},\frac{2e}{3},e\right\}.
 $$
 No other values are possible. Different permutations with the same $(N_+,N_-)$ have identical total $Q$; they only change micro-geometry, not net charge.
+
+## Observer-Level Electroweak Closure Map (Working)
+
+To connect microdynamics to observer-sector electroweak equations, start from the causal path-history action:
+$$
+S_{\text{fund}}
+=
+\int dt\left[
+\sum_i \frac{1}{2}m_i\dot{\mathbf{x}}_i^2
+-\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
+\frac{\kappa \epsilon^2}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2}\,W_{ij}
+\right].
+$$
+After fast-mode averaging of inner and middle binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_M^2$, the minimal observer-level action is written as
+$$
+\mathcal{L}_{\text{eff}}
+=
+\bar{\Psi}\left(i\gamma^\mu D_\mu-\mathcal{M}\right)\Psi
+-\frac{1}{4}\mathcal{F}_{\mu\nu}\mathcal{F}^{\mu\nu}
+-\frac{1}{4}\mathcal{W}_{\mu\nu}^a\mathcal{W}^{a\mu\nu}
++\mathcal{L}_{\text{comp}},
+$$
+with
+$$
+D_\mu=\partial_\mu-i g\frac{\tau^a}{2}W_\mu^a-i g'Y B_\mu.
+$$
+The leading composite correction is modeled as
+$$
+\mathcal{L}_{\text{comp}}
+=
+\frac{R_L^2}{2}\,\bar{\Psi}\gamma^\mu D^\nu\mathcal{F}_{\mu\nu}\Psi
++O(R_L^4),
+$$
+where $R_L$ is the outer-binary scale.
+
+### Parameter Dictionary (Substrate -> Electroweak)
+
+Use the working map:
+$$
+e = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
+$$
+where $Z_e$ is the coarse-graining normalization factor ($Z_e=1$ under canonical normalization choice).
+
+Weak mixing is represented as a geometric overlap functional:
+$$
+\sin^2\theta_W
+=
+\frac{g'^2}{g^2+g'^2}
+=
+\mathcal{O}_{\text{shield}}+\Delta_{\text{wake}}.
+$$
+
+Mass channels are mapped by
+$$
+m_W^2=\frac{1}{4}g^2 v_{\text{eff}}^2,\qquad
+m_Z^2=\frac{1}{4}(g^2+g'^2)\,v_{\text{eff}}^2,
+$$
+so
+$$
+\frac{m_W}{m_Z}=\cos\theta_W.
+$$
+Fermion masses are cycle-averaged attractor energies:
+$$
+m_f = c_f^{-2}\,\langle T+V\rangle_f.
+$$
+
+### Precision Interface to Measured Quantities
+
+The closure observables are:
+$$
+\sin^2\theta_W(m_Z),\quad \frac{m_W}{m_Z},\quad a_e,\quad a_\mu,\quad \sigma(e^+e^-\to\mu^+\mu^-;s).
+$$
+
+Composite magnetic-moment shift:
+$$
+a_\ell^{\text{model}}
+=
+a_\ell^{\text{SM,ref}}
++\mathcal{C}_\ell\,(m_\ell R_L)^2
++O(R_L^4).
+$$
+
+In natural units ($\hbar=c=1$), the leading form factor correction for lepton-pair production is
+$$
+F(s)=1-\frac{sR_L^2}{4},
+\qquad
+\sigma_{\text{model}}(s)=\sigma_{\text{SM}}(s)\,|F(s)|^2.
+$$
+For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at both $\sqrt{s}=10.58\,\text{GeV}$ and $\sqrt{s}=91.19\,\text{GeV}$ relative to current luminosity/systematic floors.
+
+### Falsification Gates for This Map
+
+1. If the $R_L$ needed to fit $\Delta a_\mu$ implies $|\Delta\sigma/\sigma|>10^{-3}$ near the LEP $Z$ pole, the composite correction map is ruled out.
+2. If the required hierarchy violates nonresonance and destabilizes closure in the kinematic sector, the electroweak map is not self-consistent with Lorentz closure.
+3. If charge reconstruction from six-pole averaging acquires drift-dependent leakage (non-integer multiples of $e/3$), the quantization map fails.

@@ -374,4 +374,64 @@ $$
 $$
 with tri-binary ordered-frame evolution transforming on the double cover so that 2$\pi$ and 4$\pi$ rotations are distinguished at the internal phase level.
 
+## Weak-Mixing and Composite-Observable Closure Hooks
+
+This chapter fixes the geometry-to-quantum-number dictionary used by the observer-level electroweak closure map in `dynamics/gauge-structure-emergence.md`.
+
+### Weak mixing from six-pole geometry
+
+At bare geometric level (three active Weak-Coupling sites out of six total personality sites),
+$$
+\sin^2\theta_W^{\text{bare}}=\frac{1}{4}.
+$$
+The measurable value is represented as
+$$
+\sin^2\theta_W(m_Z)=\sin^2\theta_W^{\text{bare}}+\Delta_{\text{wake}}(m_Z),
+$$
+where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the Noether Sea at the electroweak scale.
+
+### Charge normalization hook
+
+Using the six-site decoration rule and substrate parameters:
+$$
+e = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
+$$
+with $Z_e$ fixed by canonical field normalization when mapping to observer-level kinetic terms.
+
+### Lepton magnetic moments
+
+The leading finite-size correction is encoded as
+$$
+a_\ell^{\text{model}}
+=
+a_\ell^{\text{SM,ref}}
++\mathcal{C}_\ell\,(m_\ell R_L)^2
++O(R_L^4).
+$$
+Channel scaling then gives
+$$
+\frac{\Delta a_e}{\Delta a_\mu}
+\approx
+\frac{\mathcal{C}_e}{\mathcal{C}_\mu}
+\left(\frac{m_e}{m_\mu}\right)^2,
+$$
+which keeps electron-channel corrections highly suppressed when $\mathcal{C}_e\sim \mathcal{C}_\mu$.
+
+### Lepton-pair production form factor
+
+In natural units ($\hbar=c=1$),
+$$
+F(s)=1-\frac{sR_L^2}{4},
+\qquad
+\sigma_{\text{model}}(e^+e^-\to \mu^+\mu^-;s)
+=
+\sigma_{\text{SM}}(s)\,|F(s)|^2.
+$$
+
+### Closure and failure checks linked to this dictionary
+
+1. The same $R_L$ that fits $\Delta a_\mu$ must keep $|\Delta\sigma/\sigma|$ below electroweak precision limits at $\sqrt{s}=91.19\,\text{GeV}$.
+2. The geometric mixing channel must reproduce $m_W/m_Z=\cos\theta_W$ with residuals inside the precision ledger.
+3. Six-pole charge arithmetic must remain exact under allowed drift/deformation, preserving only $Q\in\{0,\pm 1/3,\pm 2/3,\pm 1\}$.
+
 ---
