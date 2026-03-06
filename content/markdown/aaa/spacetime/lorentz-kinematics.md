@@ -192,6 +192,58 @@ $$
 4(\ell_4-k_4)+3k_2^2-2k_2\ell_2-\ell_2^2=-1.
 $$
 
+### 3.2.2 Stiffness tensor from causal-wake surface integrals
+
+To anchor coefficient matching in the microdynamics, define the pairwise causal-wake potential on a translating attractor $\boldsymbol{\rho}^\star(s;\beta)$:
+$$
+\mathcal{U}_{ij}(t;\beta)\equiv
+\int_{\Sigma_{ij}^{\text{wake}}(t)}
+\frac{\kappa\,\epsilon^2}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2}\,
+W_{ij}(t,\sigma;\eta)\,d^2\sigma,
+$$
+where $W_{ij}$ is the regularized causal kernel weight and $\eta>0$ is the regularization scale.
+Set
+$$
+U_{\text{eff}}(t;\beta)\equiv \sum_{i<j}\mathcal{U}_{ij}(t;\beta),
+\qquad
+K_{ab}(\beta)\equiv
+\left\langle
+\frac{\partial^2 U_{\text{eff}}}{\partial r_a\partial r_b}
+\right\rangle_{\text{cyc}},
+$$
+with cycle average $\langle\cdot\rangle_{\text{cyc}}$ taken on $\boldsymbol{\rho}^\star$.
+Project to principal channels:
+$$
+K_{\parallel}=\hat{e}_{\parallel}^a K_{ab}\hat{e}_{\parallel}^b,\qquad
+K_{\perp}=\frac{1}{2}(\delta^{ab}-\hat{e}_{\parallel}^a\hat{e}_{\parallel}^b)K_{ab}.
+$$
+
+Dimensionless factorization exposes Category A coupling:
+$$
+K_i(\beta)=\frac{\kappa\,\epsilon^2}{a_0^3}\,\mathcal{I}_i(\beta,\chi,\eta,\dots),
+\qquad i\in\{\parallel,\perp\}.
+$$
+Hence
+$$
+k_2=
+\frac{\partial_{\beta}^2\mathcal{I}_{\parallel}\big|_{\beta=0}}
+{2\,\mathcal{I}_{\parallel}(0)},
+\qquad
+\ell_2=
+\frac{\partial_{\beta}^2\mathcal{I}_{\perp}\big|_{\beta=0}}
+{2\,\mathcal{I}_{\perp}(0)},
+$$
+$$
+k_4=
+\frac{\partial_{\beta}^4\mathcal{I}_{\parallel}\big|_{\beta=0}}
+{24\,\mathcal{I}_{\parallel}(0)},
+\qquad
+\ell_4=
+\frac{\partial_{\beta}^4\mathcal{I}_{\perp}\big|_{\beta=0}}
+{24\,\mathcal{I}_{\perp}(0)}.
+$$
+Therefore the Lorentz-matching constraints in Sec. 3.2.1 and Sec. 3.3.1 become explicit derivative identities on $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ evaluated on the delay-Floquet attractor.
+
 ### 3.3 Period renormalization
 
 Let $T(v)$ be the fundamental oscillation period of the assembly attractor in absolute time. Operational proper-time behavior requires
@@ -362,6 +414,41 @@ $$
 $$
 for constructing effective kinematic and metric responses. The kinematic closure requirement is that observer-built rods/clocks from this medium recover Lorentz-consistent operational laws to bounded leakage.
 
+### 3.9.1 Algebraic effective metric map from the handoff tuple
+
+To make Stage D constructive, introduce an observer-sector pseudo-Riemannian template
+$$
+\eta^{\mu\nu}=\mathrm{diag}(-1,1,1,1),
+$$
+used only as an operational constitutive object (not as substrate ontology). Let $\hat{u}^\mu$ be the unit medium-flow 4-field with
+$$
+\eta_{\mu\nu}\hat{u}^\mu\hat{u}^\nu=-1.
+$$
+Define the disformal inverse metric
+$$
+g_{\text{eff}}^{\mu\nu}(x)=
+\Omega^2(n,\lambda)\left[
+\eta^{\mu\nu}
++\left(1-\xi^2(x)\right)\hat{u}^\mu\hat{u}^\nu
+\right].
+$$
+Its covariant form is
+$$
+g_{\mu\nu}^{\text{eff}}(x)=
+\Omega^{-2}(n,\lambda)\left[
+\eta_{\mu\nu}
++\left(1-\xi^{-2}(x)\right)\hat{u}_{\mu}\hat{u}_{\nu}
+\right].
+$$
+Hence microscopic shape closure $\xi=1/\gamma$ is injected directly into $g_{\mu\nu}^{\text{eff}}$.
+
+In the local medium-rest frame ($\hat{u}^\mu=(1,0,0,0)$), with $x^0=c_f t$:
+$$
+ds_{\text{eff}}^2=g_{\mu\nu}^{\text{eff}}dx^\mu dx^\nu
+=\Omega^{-2}\left[-\xi^{-2}(dx^0)^2+d\mathbf{x}^2\right].
+$$
+Therefore the clock channel is governed by $\Omega^{-1}\xi^{-1}$ and the spatial ruler channel by $\Omega^{-1}$, matching the two-channel deformation interpretation.
+
 ## 4. Observer Construction and Operational Invariance
 
 ### 4.1 Assembly clocks and rods
@@ -456,6 +543,54 @@ To connect the two-channel deformation model to observables, use the following s
 3. Effective metric extraction: build $g_{\mu\nu}^{\text{eff}}$ from medium variables and preferred-frame structure.
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
 5. Strong-field/cosmology consistency checks: test horizon-adjacent and expansion-regime implications of the same constitutive channels.
+
+### 5.4.1 Effective connection and geodesic emergence
+
+Given $g_{\mu\nu}^{\text{eff}}$ from Sec. 3.9.1, define
+$$
+\Gamma^\lambda_{\mu\nu}
+=\frac{1}{2}g^{\lambda\rho}_{\text{eff}}
+\left(
+\partial_\mu g_{\rho\nu}^{\text{eff}}
++\partial_\nu g_{\rho\mu}^{\text{eff}}
+-\partial_\rho g_{\mu\nu}^{\text{eff}}
+\right).
+$$
+Geodesic flow in the observer sector is
+$$
+\frac{d^2x^\lambda}{d\tau^2}
++\Gamma^\lambda_{\mu\nu}
+\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau}=0.
+$$
+
+For weak drift, slowly varying medium flow, and quasi-static fields in a local medium-rest frame, define
+$$
+\Phi_{\text{eff}}(x)\equiv -c_f^2\ln\!\big(\Omega(n,\lambda)\,\xi\big).
+$$
+Then the nonrelativistic geodesic limit becomes
+$$
+\frac{d^2\mathbf{x}}{dt^2}
+=-\nabla \Phi_{\text{eff}}
++O\!\left(\frac{|\mathbf{v}|^2}{c_f^2},\epsilon_{\text{LV}}\right),
+$$
+with explicit source channels
+$$
+\nabla \Phi_{\text{eff}}
+=-c_f^2\left[
+\partial_{\ln n}\ln\Omega\ \nabla\ln n
++\partial_{\ln \lambda}\ln\Omega\ \nabla\ln \lambda
++\nabla\ln\xi
+\right].
+$$
+Thus gradients of $n$ and $\lambda$ (and kinematic $\xi$ gradients) enter the affine structure as the apparent-gravity source terms.
+
+The eikonal/least-time handoff is then:
+$$
+\delta\!\int_{\Gamma} n_{\text{eff}}(x)\,ds=0
+\quad\Longleftrightarrow\quad
+\nabla_{\dot{x}}\dot{x}=0\ \text{under}\ g_{\mu\nu}^{\text{eff}}
+$$
+in the weak-field refractive regime.
 
 ### 5.5 Coefficient-extraction and closure estimators
 
@@ -567,6 +702,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 2. Required contraction or period scaling appears only by fine tuning.
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
+5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
 
 ## 9. Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
 
