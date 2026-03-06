@@ -53,15 +53,95 @@ $$
 $$
 The closure task is to solve for bounded relative motion $\mathbf{r}_i(t)$ under translation $|\mathbf{v}|<c_f$ and extract period and geometry renormalization.
 
+### 2.3 Dimensionless drift-delay form and variational closure
+
+Fix a rest-attractor length scale $a_0$ and period $T_0$, and define
+$$
+\beta\equiv \frac{v}{c_f},\qquad s\equiv \frac{t}{T_0},\qquad
+\boldsymbol{\rho}_i(s)\equiv \frac{\mathbf{r}_i(t)}{a_0},\qquad
+\chi\equiv \frac{c_f T_0}{a_0}.
+$$
+Then delay closure in co-moving coordinates is
+$$
+\hat{\tau}_{ij}(s)=\frac{1}{\chi}\left\|
+\boldsymbol{\rho}_i(s)-\boldsymbol{\rho}_j\!\left(s-\hat{\tau}_{ij}(s)\right)
++\chi\beta\,\hat{\mathbf{e}}_{\parallel}\hat{\tau}_{ij}(s)
+\right\|,
+$$
+with $\hat{\tau}_{ij}\equiv \tau_{ij}/T_0$.
+
+Let $\boldsymbol{\rho}^\star(s;\beta)$ be a $P(\beta)$-periodic translating attractor. Linearization gives a delay-Floquet system
+$$
+\delta\dot{\mathbf{y}}(s)=A_0(s;\beta)\,\delta\mathbf{y}(s)+\sum_{n=1}^{N_d}A_n(s;\beta)\,\delta\mathbf{y}\!\left(s-\hat{\tau}_n^\star\right),
+$$
+where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kinematic closure requires:
+
+1. Existence of $\boldsymbol{\rho}^\star(s;\beta)$ for $\beta\in[0,\beta_{\max})$.
+2. Spectral stability of the monodromy operator (all nontrivial Floquet multipliers inside the unit disk).
+3. Smooth coefficient maps for axis and period renormalization extracted from $\boldsymbol{\rho}^\star$.
+
 ## 3. Emergent Kinematics from Delay Anisotropy
 
 ### 3.1 Directional delay asymmetry
 
-With translation along $\hat{\mathbf{e}}_{\parallel}$, effective forward and backward causal lags differ. This induces anisotropic interaction stiffness:
+For a benchmark drifting binary with instantaneous separation vector $\mathbf{r}=r\,\hat{\mathbf{n}}$ and center drift $\mathbf{v}=v\,\hat{\mathbf{e}}_{\parallel}$, causal-delay closure satisfies
 $$
-K_{\parallel}(v)\neq K_{\perp}(v),
+\tau=\frac{\|\mathbf{r}+\mathbf{v}\tau\|}{c_f}.
 $$
-which deforms the assembly from isotropic rest geometry.
+With $\mu\equiv \hat{\mathbf{n}}\cdot\hat{\mathbf{e}}_{\parallel}$ and $\beta=v/c_f$, the two directional roots are
+$$
+\tau_{\pm}(r,\mu;\beta)
+=\frac{r}{c_f}\,
+\frac{\sqrt{1-\beta^2(1-\mu^2)}\pm \beta\mu}{1-\beta^2}.
+$$
+Special orientations recover standard forms:
+$$
+\mu=1:\quad
+\tau_{+}=\frac{r}{c_f-v},\qquad
+\tau_{-}=\frac{r}{c_f+v},
+$$
+$$
+\mu=0:\quad
+\tau_{+}=\tau_{-}=\frac{r}{\sqrt{c_f^2-v^2}}.
+$$
+The symmetric delay channel and associated causal-rate proxy are
+$$
+\bar{\tau}(\mu;\beta)\equiv \frac{\tau_{+}+\tau_{-}}{2}
+=\frac{r}{c_f}\,
+\frac{\sqrt{1-\beta^2(1-\mu^2)}}{1-\beta^2},
+$$
+$$
+\nu(\mu;\beta)\equiv \frac{1}{\bar{\tau}(\mu;\beta)}.
+$$
+Since $\bar{\tau}$ depends on $\mu$, interaction response is anisotropic and induces
+$$
+K_{\parallel}(v)\neq K_{\perp}(v).
+$$
+
+### 3.1.1 Weak-velocity expansion to $O(\beta^4)$
+
+Direct expansion of the symmetric lag gives
+$$
+\bar{\tau}(\mu;\beta)=\frac{r}{c_f}\left[
+1+\frac{1+\mu^2}{2}\beta^2
++\frac{3+6\mu^2-\mu^4}{8}\beta^4
++O(\beta^6)
+\right],
+$$
+and thus
+$$
+\nu(\mu;\beta)=\frac{c_f}{r}\left[
+1-\frac{1+\mu^2}{2}\beta^2
++\frac{-1-2\mu^2+3\mu^4}{8}\beta^4
++O(\beta^6)
+\right].
+$$
+Two anchor limits are:
+$$
+\mu=1:\ \bar{\tau}=\frac{r}{c_f}\gamma^2,\ \nu=\frac{c_f}{r}(1-\beta^2),
+\qquad
+\mu=0:\ \bar{\tau}=\frac{r}{c_f}\gamma,\ \nu=\frac{c_f}{r}\frac{1}{\gamma}.
+$$
 
 ### 3.2 Effective shape law
 
@@ -71,6 +151,47 @@ $$
 $$
 with $\epsilon_{\text{LV}}$ the preferred-frame leakage scale.
 
+### 3.2.1 Quadratic closure and coefficient constraints
+
+On the attracting manifold, use principal-frame quadratic closure
+$$
+U_{\text{eff}}=\frac{1}{2}K_{\parallel}(v)\,r_{\parallel}^2+\frac{1}{2}K_{\perp}(v)\left(r_{\perp,1}^2+r_{\perp,2}^2\right).
+$$
+For fixed action shell, semiaxes scale as $a_i\propto K_i^{-1/2}$, hence
+$$
+\frac{a_{\parallel}}{a_{\perp}}=\sqrt{\frac{K_{\perp}}{K_{\parallel}}}.
+$$
+Write
+$$
+\frac{K_{\parallel}}{K_0}=1+k_2\beta^2+k_4\beta^4+O(\beta^6)+\Delta_{\parallel}^{\text{LV}},
+$$
+$$
+\frac{K_{\perp}}{K_0}=1+\ell_2\beta^2+\ell_4\beta^4+O(\beta^6)+\Delta_{\perp}^{\text{LV}},
+$$
+with $|\Delta_i^{\text{LV}}|\le C_i\epsilon_{\text{LV}}$. Then
+$$
+\frac{a_{\parallel}}{a_{\perp}}
+=1+\frac{\ell_2-k_2}{2}\beta^2
++\left[
+\frac{\ell_4-k_4}{2}
++\frac{3k_2^2}{8}
+-\frac{k_2\ell_2}{4}
+-\frac{\ell_2^2}{8}
+\right]\beta^4
++O(\beta^6)+O(\epsilon_{\text{LV}}).
+$$
+Matching to
+$$
+\frac{1}{\gamma}=1-\frac{1}{2}\beta^2-\frac{1}{8}\beta^4+O(\beta^6)
+$$
+imposes
+$$
+\ell_2-k_2=-1,
+$$
+$$
+4(\ell_4-k_4)+3k_2^2-2k_2\ell_2-\ell_2^2=-1.
+$$
+
 ### 3.3 Period renormalization
 
 Let $T(v)$ be the fundamental oscillation period of the assembly attractor in absolute time. Operational proper-time behavior requires
@@ -78,6 +199,47 @@ $$
 T(v)=\gamma(v)\,T_0\,[1+O(\epsilon_{\text{LV}})].
 $$
 Exact closure is the limit $\epsilon_{\text{LV}}\to 0$.
+
+### 3.3.1 Clock-channel expansion and minimal closure solution
+
+Use a symmetric clock-frequency aggregator
+$$
+\omega_{\text{clk}}(v)\equiv \omega_0\left(\frac{K_{\parallel}K_{\perp}^2}{K_0^3}\right)^{1/6},
+\qquad
+\frac{T(v)}{T_0}=\frac{\omega_0}{\omega_{\text{clk}}(v)}.
+$$
+Then
+$$
+\frac{T(v)}{T_0}
+=1-\frac{k_2+2\ell_2}{6}\beta^2
++\left[
+\frac{7}{72}(k_2+2\ell_2)^2
+-\frac{k_4+\ell_2^2+2\ell_4+2k_2\ell_2}{6}
+\right]\beta^4
++O(\beta^6)+O(\epsilon_{\text{LV}}).
+$$
+Matching to
+$$
+\gamma=1+\frac{1}{2}\beta^2+\frac{3}{8}\beta^4+O(\beta^6)
+$$
+gives the clock constraints
+$$
+k_2+2\ell_2=-3,
+$$
+$$
+\frac{7}{72}(k_2+2\ell_2)^2
+-\frac{k_4+\ell_2^2+2\ell_4+2k_2\ell_2}{6}
+=\frac{3}{8}.
+$$
+Combining with shape closure yields a minimal matched coefficient set
+$$
+k_2=-\frac{1}{3},\qquad \ell_2=-\frac{4}{3},
+$$
+and, at $O(\beta^4)$,
+$$
+k_4=-\frac{1}{9},\qquad \ell_4=\frac{2}{9},
+$$
+before leakage terms are added.
 
 ### 3.4 Outer-binary transduction hypothesis (working)
 
@@ -214,6 +376,51 @@ c_{2w}(\theta,v)=c_{\text{iso}}+O(\epsilon_{\text{LV}}),
 $$
 uniformly in orientation $\theta$. This is the operational statement that maps substrate anisotropy into effective Lorentz symmetry at observer scale.
 
+### 4.3 Round-trip anisotropy cancellation through $O(\beta^4)$
+
+Let arm lengths in the preferred frame be
+$$
+\frac{L_{\parallel}}{L_0}=1+\alpha_2\beta^2+\alpha_4\beta^4+O(\beta^6),\qquad
+\frac{L_{\perp}}{L_0}=1+b_2\beta^2+b_4\beta^4+O(\beta^6).
+$$
+Round-trip absolute times are
+$$
+t_{\parallel}
+=\frac{2L_{\parallel}c_f}{c_f^2-v^2}
+=\frac{2L_0}{c_f}\left[
+1+(1+\alpha_2)\beta^2+(1+\alpha_2+\alpha_4)\beta^4+O(\beta^6)
+\right],
+$$
+$$
+t_{\perp}
+=\frac{2L_{\perp}}{\sqrt{c_f^2-v^2}}
+=\frac{2L_0}{c_f}\left[
+1+\left(b_2+\frac{1}{2}\right)\beta^2
++\left(b_4+\frac{b_2}{2}+\frac{3}{8}\right)\beta^4
++O(\beta^6)
+\right].
+$$
+Define the normalized anisotropy mismatch
+$$
+\Delta_{\text{tw}}(\beta)\equiv \frac{t_{\parallel}-t_{\perp}}{2L_0/c_f}
+=A_2\beta^2+A_4\beta^4+O(\beta^6),
+$$
+with
+$$
+A_2=\alpha_2-b_2+\frac{1}{2},
+\qquad
+A_4=\alpha_4-b_4+\alpha_2-\frac{b_2}{2}+\frac{5}{8}.
+$$
+Operational isotropy through $O(\beta^4)$ requires
+$$
+A_2=0,\qquad A_4=0.
+$$
+In the transverse-gauge choice $b_2=b_4=0$, this yields
+$$
+\alpha_2=-\frac{1}{2},\qquad \alpha_4=-\frac{1}{8},
+$$
+which is precisely $L_{\parallel}=L_0/\gamma+O(\beta^6)$.
+
 ## 5. Derivation Program
 
 ### 5.1 Stage A: binary analytic benchmark
@@ -250,6 +457,46 @@ To connect the two-channel deformation model to observables, use the following s
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
 5. Strong-field/cosmology consistency checks: test horizon-adjacent and expansion-regime implications of the same constitutive channels.
 
+### 5.5 Coefficient-extraction and closure estimators
+
+For each simulated drift speed $\beta_j$, extract from long-window attractor statistics:
+$$
+\hat{\alpha}_j\equiv \frac{a_{\parallel}(\beta_j)}{a_{\perp}(\beta_j)},\qquad
+\hat{\tau}_j\equiv \frac{T(\beta_j)}{T_0}.
+$$
+Fit even-power truncations
+$$
+\hat{\alpha}(\beta)=1+\hat{\alpha}_2\beta^2+\hat{\alpha}_4\beta^4,\qquad
+\hat{\tau}(\beta)=1+\hat{\tau}_2\beta^2+\hat{\tau}_4\beta^4.
+$$
+Lorentz closure at this order requires
+$$
+\hat{\alpha}_2=-\frac{1}{2},\quad \hat{\alpha}_4=-\frac{1}{8},\qquad
+\hat{\tau}_2=\frac{1}{2},\quad \hat{\tau}_4=\frac{3}{8}.
+$$
+Define sup-norm closure defects on a calibration band $\beta\in[0,\beta_\star]$:
+$$
+\mathcal{E}_{\text{shape}}
+\equiv
+\sup_{0\le \beta\le \beta_\star}
+\left|\hat{\alpha}(\beta)-\frac{1}{\gamma(\beta)}\right|,
+$$
+$$
+\mathcal{E}_{\text{clock}}
+\equiv
+\sup_{0\le \beta\le \beta_\star}
+\left|\hat{\tau}(\beta)-\gamma(\beta)\right|.
+$$
+For two-way anisotropy, fit
+$$
+\Delta_{\text{tw}}(\beta,\theta)
+=\sum_{m\ge 1}\mathcal{A}_{2m}(\beta)\cos(2m\theta),
+$$
+and enforce
+$$
+\sup_{0\le \beta\le \beta_\star}|\mathcal{A}_{2m}(\beta)|\le C_m\epsilon_{\text{LV}}.
+$$
+
 ## 6. Theorem Targets
 
 ### Theorem A (attractor existence under drift)
@@ -260,19 +507,48 @@ For admissible coupling and regularization parameters, there exists a bounded tr
 
 On the attracting manifold, principal-axis deformation obeys
 $$
-a_{\parallel}/a_{\perp}=1/\gamma + R_1,\qquad |R_1|\le C_1\epsilon_{\text{LV}}.
+\frac{a_{\parallel}}{a_{\perp}}
+=1-\frac{1}{2}\beta^2-\frac{1}{8}\beta^4+R_1(\beta),
+\qquad
+|R_1(\beta)|\le C_1\epsilon_{\text{LV}}\,\beta^2,
+$$
+equivalently
+$$
+\frac{a_{\parallel}}{a_{\perp}}=\frac{1}{\gamma}+R_1(\beta).
 $$
 
 ### Theorem C (clock renormalization law)
 
 Fundamental period satisfies
 $$
-T(v)/T_0=\gamma + R_2,\qquad |R_2|\le C_2\epsilon_{\text{LV}}.
+\frac{T(v)}{T_0}
+=1+\frac{1}{2}\beta^2+\frac{3}{8}\beta^4+R_2(\beta),
+\qquad
+|R_2(\beta)|\le C_2\epsilon_{\text{LV}}\,\beta^2,
+$$
+equivalently
+$$
+\frac{T(v)}{T_0}=\gamma+R_2(\beta).
 $$
 
 ### Theorem D (operational Lorentz closure)
 
-For composite observers formed from this assembly class, two-way kinematic observables are Lorentz-consistent up to $O(\epsilon_{\text{LV}})$, with explicit bounds on anisotropy harmonics.
+For composite observers formed from this assembly class, two-way kinematic observables satisfy
+$$
+\Delta_{\text{tw}}(\beta,\theta)
+=\sum_{m\ge 1}\mathcal{A}_{2m}(\beta)\cos(2m\theta),
+\qquad
+|\mathcal{A}_{2m}(\beta)|\le C_m\epsilon_{\text{LV}},
+$$
+uniformly on $\beta\in[0,\beta_\star]$.
+
+### Theorem E (coefficient identifiability from attractor statistics)
+
+Given smooth attracting branches and nondegenerate Jacobian of the map
+$$
+(k_2,\ell_2,k_4,\ell_4)\mapsto (\alpha_2,\alpha_4,\tau_2,\tau_4),
+$$
+the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_{\perp},T/T_0)$ data up to the leakage scale $O(\epsilon_{\text{LV}})$.
 
 ## 7. Observable Interface
 
