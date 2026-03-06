@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 303,
-      "edges": 1144,
+      "nodes": 304,
+      "edges": 1146,
       "scenes": 175,
       "markdownIndexes": 16,
-      "markdownDocs": 112,
+      "markdownDocs": 113,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1340,6 +1340,12 @@
       "id": "content/markdown/aaa/assemblies/fermions/quarks.md",
       "name": "Quarks",
       "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/quarks.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "name": "Weak Mixing Angle",
+      "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3765,6 +3771,15 @@
       "name": "Quarks",
       "path": "content/markdown/aaa/assemblies/fermions/quarks.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/quarks.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "name": "Weak Mixing Angle",
+      "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
       "implicit": false
     },
     {
@@ -7834,6 +7849,13 @@
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "weak_mixing_angle.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/fermions.json",
@@ -8647,6 +8669,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/quarks.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"
