@@ -27,8 +27,14 @@ This table lists the symbols and mathematical terms used across the Geometrical 
 | $\delta_\eta(\cdot)$ | Mollified (Gaussian) causal surface with width $\eta > 0$ for smooth dynamics. | A Gaussian mollifier of width $\eta$ that preserves total mass and regularizes forces to be continuous in time; limits are taken in the weak sense as $\eta\to 0$. |
 | $H(\tau)$ | Heaviside step; convention $H(0)=0$ (no instantaneous self-kick). | Enforces causality (no advanced effects). With $H(0)=0$ it removes coincident-time self-kicks; in distributions it gates support to $\tau>0$. |
 | $\Phi,\ \Phi_\eta$ | Potential and mollified potential from superposed causal wake surfaces. | Potential from superposing all wake surface contributions; $\Phi_\eta$ smooths the distribution so $\nabla\Phi_\eta$ exists pointwise and can be used to verify energy identities over resolved windows. |
-| $U = q'\,\Phi_\eta$ | Potential energy at a point (mollified; weak limit as $\eta\to 0$). | Scalar potential energy for a receiver in a mollified field. With $\mathbf{F}=-\nabla U$, work satisfies $\Delta E_k=-\Delta U$ on intervals that resolve the mollifier. |
-| $\mathbf{F} = -\nabla U$ | Force from the potential (pointwise for $\Phi_\eta$). | Equivalent to the per-hit law after integrating across a thin causal wake surface. Exact pointwise equality holds for $\Phi_\eta$; for $\eta\to 0$ it is interpreted in the distributional/integrated sense. |
+| $c_f$ | Field propagation speed in dimensional spacetime chapters; equivalent to $v$ after nondimensionalization. | Spacetime chapters often write $c_f$ to compare with modern-relativity notation; in canonical nondimensional units used here, $c_f=v=1$. |
+| $\rho_{\text{core}}(\mathbf{x},t)$ | Physical Noether-core density field. | Mass/number density of the spacetime medium in physical units. In spacetime chapters this is commonly normalized to $n$. |
+| $n(\mathbf{x},t)\equiv \rho_{\text{core}}(\mathbf{x},t)/\rho_{\text{core},0}$ | Canonical normalized Noether-core density. | Dimensionless density used in constitutive maps and effective metric handoff. Recover physical density by multiplying by the reference value $\rho_{\text{core},0}$. |
+| $\Phi_N$ | Newtonian benchmark potential used for weak-field matching. | External/source potential used for 1PN/PPN comparison formulas (e.g., Shapiro delay, redshift, precession benchmarks). |
+| $\Phi_{\text{eff}}$ | Constitutive effective potential inferred from clock and metric channels. | Defined in spacetime closure as $\Phi_{\text{eff}}=-c_f^2\ln(\Omega\xi)$; governs weak-field geodesic acceleration in the observer sector. |
+| $U\equiv-\Phi_N,\quad U_{\Phi}\equiv-\Phi_{\text{eff}}$ | Positive potential conventions for expansions. | Use $U$ for PPN benchmark expansions and $U_{\Phi}$ when expanding directly in constitutive potential. In weak-field closure, $U_{\Phi}=U+O(U^2/c_f^2)$. |
+| $U_{\text{pot}} = q'\,\Phi_\eta$ | Local potential-energy variable in the dynamics sector (mollified; weak limit as $\eta\to 0$). | Scalar potential energy for a receiver in a mollified field. With $\mathbf{F}=-\nabla U_{\text{pot}}$, work satisfies $\Delta E_k=-\Delta U_{\text{pot}}$ on intervals that resolve the mollifier. |
+| $\mathbf{F} = -\nabla U_{\text{pot}}$ | Force from the potential (pointwise for $\Phi_\eta$). | Equivalent to the per-hit law after integrating across a thin causal wake surface. Exact pointwise equality holds for $\Phi_\eta$; for $\eta\to 0$ it is interpreted in the distributional/integrated sense. |
 | $a_{o'\leftarrow j}(t; t_0)$ | Per-hit acceleration from source $j$ emitted at $t_0$ (purely radial, $\propto 1/r^2$). | The contribution from a single causal root: purely radial, falling as $1/r^2$. The total acceleration sums these over all $j$ and all $t_0\in\mathcal{C}_j(t)$. |
 | $v_r,\, v_\perp$ | Radial and transverse components of receiver velocity relative to $\hat{\mathbf{r}}$. | Decompose $\mathbf{v}$ by orthogonal projection onto $\hat{\mathbf{r}}$. Only $v_r$ changes instantaneously at a hit; instantaneous power is $\mathbf{a}\cdot\mathbf{v}$ equal to the magnitude of $\mathbf{a}$ times $v_r$. |
 | $d_0,\, t_0$ (emergent) | Minimal binary radius and characteristic fastest period from dynamics. | Emergent scales set by balance of delayed attraction and self-repulsion. They depend on $\kappa\,\epsilon^2$ and motion details but act as robust attractors in symmetric binaries. |
@@ -223,16 +229,16 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
 -- Potential (mollified):
   - $\Phi_\eta$ is defined using $\delta_\eta$ causal surfaces; at a point:
     $$
-    U = q'\,\Phi_\eta
+    U_{\text{pot}} = q'\,\Phi_\eta
     $$
 - Force relation:
   - Holds pointwise for $\Phi_\eta$; as $\eta \to 0$, interpret in the weak sense over resolved intervals:
     $$
-    \mathbf{F} = -\nabla U
+    \mathbf{F} = -\nabla U_{\text{pot}}
     $$
 - Work–energy:
   $$
-  \Delta E_k \;=\; \int \mathbf{F}\cdot d\mathbf{s} \;=\; -\,\Delta U
+  \Delta E_k \;=\; \int \mathbf{F}\cdot d\mathbf{s} \;=\; -\,\Delta U_{\text{pot}}
   $$
 
 Plain language: With slightly thick causal wake surfaces, the usual “force is minus gradient of potential” works; in the razor-thin limit it works after integrating over small time windows.

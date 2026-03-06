@@ -449,7 +449,7 @@ $$
 $$
 with $\xi\in(0,1]$ as shape and $\lambda$ as scale.
 
-Together with local assembly density $n(x)$ and preferred-frame flow/orientation $\hat{u}(x)$, these define a minimal handoff tuple
+Together with local assembly density $n(x)$ (with $\rho_{\text{core}}(x)=\rho_{\text{core},0}n(x)$) and preferred-frame flow/orientation $\hat{u}(x)$, these define a minimal handoff tuple
 $$
 (\xi,\lambda,n,\hat{u})_x
 $$
@@ -571,7 +571,7 @@ Promote to nested tri-binary with coupled orbital scales. Establish:
 
 Derive coarse-grained kinematic constitutive relations used by effective metric models:
 $$
-\mathcal{K}_{\text{micro}} \Longrightarrow \mathcal{K}_{\text{eff}}(v,\rho,\nabla\rho,\dots),
+\mathcal{K}_{\text{micro}} \Longrightarrow \mathcal{K}_{\text{eff}}(v,n,\nabla n,\dots),
 $$
 so local assembly kinematics and macroscopic refractive geometry are mathematically linked.
 

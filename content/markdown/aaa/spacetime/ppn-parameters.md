@@ -3,6 +3,14 @@
 This chapter is the canonical home for weak-field/PPN expansion details used by
 the spacetime constitutive map.
 
+### Canonical Symbols
+
+- $n$: normalized Noether-core density, with $\rho_{\text{core}}=\rho_{\text{core},0}n$.
+- $\Phi_N$: Newtonian benchmark potential.
+- $\Phi_{\text{eff}}$: constitutive effective potential from the clock channel.
+- $U\equiv -\Phi_N>0$: positive PPN expansion variable (default).
+- $U_{\Phi}\equiv -\Phi_{\text{eff}}>0$: constitutive-channel variant used when expanding directly in $\Phi_{\text{eff}}$.
+
 ### Mapping to PPN Constraints
 
 1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{eff}$ in a dense medium).
@@ -123,13 +131,13 @@ $$
 \qquad
 g_{00}=-(\Omega\xi)^{-2},
 $$
-then with $U\equiv -\Phi_{\text{eff}}$:
+then with $U_{\Phi}\equiv -\Phi_{\text{eff}}$:
 $$
 g_{00}
 =
 -e^{2\Phi_{\text{eff}}/c_f^2}
 =
--1+2\frac{U}{c_f^2}-2\frac{U^2}{c_f^4}+O(c_f^{-6}),
+-1+2\frac{U_{\Phi}}{c_f^2}-2\frac{U_{\Phi}^2}{c_f^4}+O(c_f^{-6}),
 $$
 so this subclass yields
 $$
@@ -138,6 +146,7 @@ $$
 without additional fit freedom.
 
 The general $C_2(a,k)$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
+When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_f^2)$, one has $U_{\Phi}=U+O(U^2/c_f^2)$ at weak field.
 
 #### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).

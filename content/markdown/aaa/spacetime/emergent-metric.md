@@ -7,11 +7,21 @@
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual observer in the absolute frame who knows:
   - The full architrino microstate $S(t)$,
   - The instantaneous state of the Noether-core sea (density $\rho_{\text{core}}(x,t)$, alignment, stress),
-  - The potential field $\Phi(x,t)$ and its gradients.
+  - The effective potential field $\Phi_{\text{eff}}(x,t)$ and its gradients.
 
 From this vantage point, there is only:
 - Flat Euclidean geometry $\delta_{ij}$,
 - A dynamic medium (Noether cores) moving and rearranging in that geometry.
+
+#### Canonical Symbols (Spacetime)
+
+Use the following symbols consistently across spacetime chapters:
+
+- $n(x,t)$: normalized Noether-core density.
+- $\rho_{\text{core}}(x,t)=\rho_{\text{core},0}\,n(x,t)$: physical core density.
+- $\Phi_{\text{eff}}(x,t)$: constitutive potential inferred from the clock channel.
+- $\Phi_N(x,t)$: Newtonian benchmark potential used for weak-field matching.
+- $U\equiv -\Phi_N>0$: positive weak-field PPN potential variable.
 
 #### What “Metric” Means Here
 
@@ -26,7 +36,7 @@ We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps:
 
-$(\delta_{ij}, \rho_{\text{core}}(x,t), \Phi(x,t), \nabla\Phi(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
+$(\delta_{ij}, n(x,t), \Phi_{\text{eff}}(x,t), \nabla\Phi_{\text{eff}}(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
 
 #### Refraction vs. Curvature
 
@@ -41,9 +51,9 @@ $(\delta_{ij}, \rho_{\text{core}}(x,t), \Phi(x,t), \nabla\Phi(x,t), \text{medium
 The core task of this document will be to:
 
 1. Specify the functional dependence of $g^{\text{eff}}_{\mu\nu}(x)$ on:
-   - $\rho_{\text{core}}(x)$ (Noether-core sea density),
+   - $n(x)$ (equivalently $\rho_{\text{core}}(x)$),
    - Stress/strain of the medium,
-   - Potential $\Phi(x)$ from matter assemblies.
+   - Potential $\Phi_{\text{eff}}(x)$ from matter assemblies.
 2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:
    $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c^2}\right), \quad g^{\text{eff}}_{ij} \approx \delta_{ij}\left(1 - \frac{2\Phi_N}{c^2}\right).$
 
@@ -74,7 +84,7 @@ $$
 
 This is the concrete first-order realization of
 $$
-(\delta_{ij},\rho_{\text{core}},\text{stress},\Phi_N)\mapsto g^{\text{eff}}_{\mu\nu},
+(\delta_{ij},n,\text{stress},\Phi_N)\mapsto g^{\text{eff}}_{\mu\nu},
 $$
 with $\gamma_{\text{eff}}$ the observable refraction/space-curvature coefficient to be fitted from Shapiro-delay data.  
 Implementation of the corresponding one-way delay integral is given in [PPN-parameters](./PPN-parameters.md#explicit-weak-field-refractive-shapiro-map-ppn-gamma).
@@ -83,7 +93,7 @@ Implementation of the corresponding one-way delay integral is given in [PPN-para
 
 This chapter is the constitutive anchor for the gravity-side closure:
 $$
-(\delta_{ij},\rho_{\text{core}},\Phi,\text{stress})\mapsto g^{\text{eff}}_{\mu\nu}.
+(\delta_{ij},n,\Phi_{\text{eff}},\text{stress})\mapsto g^{\text{eff}}_{\mu\nu}.
 $$
 
 Distribute proof obligations as:
