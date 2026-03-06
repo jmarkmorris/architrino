@@ -19,9 +19,9 @@ GUARD_BAND_MIN = 0.15
 GUARD_BAND_RATIO = 0.08
 MAX_NODE_RADIUS = 1.0
 
-SINGLE_RING_MAX_COUNT = 12
-MIN_OUTER_RADIUS = 6.0
+MIN_OUTER_RADIUS = 0.0
 PHASE_SAMPLES = 720
+RADIUS_TIE_EPS = 1e-6
 
 
 @dataclass(frozen=True)
@@ -181,25 +181,14 @@ def solve_for_n(n: int) -> Candidate:
 
     if n <= 0:
         return Candidate(0, 0, False, 0.0, 0.0)
-    if n == 1:
-        return Candidate(0, 0, True, 0.0, max_node_radius)
-
-    # Runtime behavior: single ring is forced up through N=12.
-    if n <= SINGLE_RING_MAX_COUNT:
-        return evaluate_candidate(
-            outer_count=n,
-            inner_count=0,
-            has_center=False,
-            max_node_radius=max_node_radius,
-            required_chord=required_chord,
-        )
 
     raw_candidates: list[tuple[int, int, bool]] = []
 
     # Single ring (no center) is always allowed.
     raw_candidates.append((n, 0, False))
 
-    for has_center in (False, True):
+    center_modes = (False, True) if n > 6 else (False,)
+    for has_center in center_modes:
         remaining = n - (1 if has_center else 0)
         if remaining < 2:
             continue
@@ -237,7 +226,33 @@ def solve_for_n(n: int) -> Candidate:
         )
 
     scored.sort(key=candidate_sort_key)
-    return scored[0]
+    best = scored[0]
+
+    # Preference override requested by user:
+    # If 6 < y < 12, try m/6/{0,1} where m = N - 6 - z.
+    # If any such option yields the same radius (same extent), use it.
+    if 6 < best.inner_count < 12:
+      preferred_candidates: list[Candidate] = []
+      for z in (0, 1):
+          outer_count = n - 6 - z
+          if outer_count < 6:
+              continue
+          candidate = evaluate_candidate(
+              outer_count=outer_count,
+              inner_count=6,
+              has_center=(z == 1),
+              max_node_radius=max_node_radius,
+              required_chord=required_chord,
+          )
+          if candidate is None:
+              continue
+          if math.isclose(candidate.extent, best.extent, abs_tol=RADIUS_TIE_EPS):
+              preferred_candidates.append(candidate)
+      if preferred_candidates:
+          preferred_candidates.sort(key=candidate_sort_key)
+          return preferred_candidates[0]
+
+    return best
 
 
 def main() -> None:

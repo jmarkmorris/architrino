@@ -4,6 +4,7 @@ export function createSceneGraphRuntime(deps) {
   const HEAVY_PARTICLE_SCALE_START_NUCLEONS = 80;
   const HEAVY_PARTICLE_SCALE_END_NUCLEONS = 250;
   const HEAVY_PARTICLE_SCALE_MAX = 1.75;
+  const RING_RADIUS_TIE_EPS = 1e-6;
 
   function getHeavyElementParticleScale(nucleonCount) {
     if (!Number.isFinite(nucleonCount) || nucleonCount <= HEAVY_PARTICLE_SCALE_START_NUCLEONS) {
@@ -58,22 +59,27 @@ export function createSceneGraphRuntime(deps) {
   }
 
   function minOuterInnerDistance(outerCount, outerRadius, innerCount, innerRadius, phaseOffset) {
-    let minDistance = Infinity;
-    for (let i = 0; i < outerCount; i += 1) {
-      const outerAngle = (i / outerCount) * Math.PI * 2;
-      const outerX = Math.cos(outerAngle) * outerRadius;
-      const outerY = Math.sin(outerAngle) * outerRadius;
-      for (let j = 0; j < innerCount; j += 1) {
-        const innerAngle = (j / innerCount) * Math.PI * 2 + phaseOffset;
-        const innerX = Math.cos(innerAngle) * innerRadius;
-        const innerY = Math.sin(innerAngle) * innerRadius;
-        const distance = Math.hypot(outerX - innerX, outerY - innerY);
-        if (distance < minDistance) {
-          minDistance = distance;
-        }
+    const gcd = (a, b) => {
+      let x = Math.abs(a);
+      let y = Math.abs(b);
+      while (y !== 0) {
+        const t = x % y;
+        x = y;
+        y = t;
       }
-    }
-    return minDistance;
+      return x || 1;
+    };
+    const lcm = Math.abs(outerCount * innerCount) / gcd(outerCount, innerCount);
+    const phaseFraction = ((phaseOffset / (Math.PI * 2)) % 1 + 1) % 1;
+    const t = phaseFraction * lcm;
+    const nearestIndex = Math.floor(t + 0.5);
+    const fracSteps = Math.abs(t - nearestIndex);
+    const minDelta = (Math.PI * 2 * fracSteps) / lcm;
+    return Math.sqrt(
+      outerRadius * outerRadius +
+        innerRadius * innerRadius -
+        2 * outerRadius * innerRadius * Math.cos(minDelta)
+    );
   }
 
   function solveTwoRingOuterRadius(outerCount, innerCount, innerRadius, requiredChord) {
@@ -101,11 +107,7 @@ export function createSceneGraphRuntime(deps) {
       return { ok: false, phase: bestPhase };
     };
 
-    let low = Math.max(
-      6,
-      ringSelfRadius(outerCount, requiredChord),
-      innerRadius + 0.01
-    );
+    let low = Math.max(ringSelfRadius(outerCount, requiredChord), innerRadius + 0.01);
     let high = Math.max(low + requiredChord, low * 1.4);
     let attempt = feasibleAtRadius(low);
     if (attempt.ok) {
@@ -147,7 +149,7 @@ export function createSceneGraphRuntime(deps) {
 
     const { requiredChord } = getLayoutPackingMetrics(nodes);
     const startAngle = Math.PI / 2;
-    const ringRadius = Math.max(6, ringSelfRadius(count, requiredChord));
+    const ringRadius = ringSelfRadius(count, requiredChord);
     return buildRingPoints(count, ringRadius, startAngle);
   }
 
@@ -159,31 +161,24 @@ export function createSceneGraphRuntime(deps) {
     if (count === 1) {
       return [[0, 0, 0]];
     }
-    const singleRingMaxCount = 12;
-    if (count <= singleRingMaxCount) {
-      return computeExplicitRingPositions(nodes);
-    }
-
     const { maxNodeRadius, requiredChord } = getLayoutPackingMetrics(nodes);
-    const maxOuterCount = 14;
     const candidates = [];
+    candidates.push({ outerCount: count, innerCount: 0, hasCenter: false });
 
-    if (count <= maxOuterCount) {
-      candidates.push({ outerCount: count, innerCount: 0, hasCenter: false });
-    }
-
-    [false, true].forEach((hasCenter) => {
+    const centerAllowed = count > 6;
+    const centerModes = centerAllowed ? [false, true] : [false];
+    centerModes.forEach((hasCenter) => {
       const remaining = count - (hasCenter ? 1 : 0);
       if (remaining < 2) {
         return;
       }
-      if (hasCenter && remaining <= maxOuterCount) {
+      if (hasCenter) {
         candidates.push({ outerCount: remaining, innerCount: 0, hasCenter: true });
       }
       const maxInner = Math.floor(remaining / 2);
       for (let innerCount = 1; innerCount <= maxInner; innerCount += 1) {
         const outerCount = remaining - innerCount;
-        if (outerCount < innerCount || outerCount > maxOuterCount) {
+        if (outerCount < innerCount) {
           continue;
         }
         candidates.push({ outerCount, innerCount, hasCenter });
@@ -194,18 +189,16 @@ export function createSceneGraphRuntime(deps) {
       return computeExplicitRingPositions(nodes);
     }
 
-    const scoredCandidates = [];
-    candidates.forEach((candidate) => {
+    const scoreCandidate = (candidate) => {
       if (candidate.innerCount === 0) {
-        const outerRadius = Math.max(6, ringSelfRadius(candidate.outerCount, requiredChord));
-        scoredCandidates.push({
+        const outerRadius = ringSelfRadius(candidate.outerCount, requiredChord);
+        return {
           ...candidate,
           outerRadius,
           innerRadius: 0,
           innerPhase: 0,
           extent: outerRadius + maxNodeRadius,
-        });
-        return;
+        };
       }
 
       const innerRadius = Math.max(requiredChord, ringSelfRadius(candidate.innerCount, requiredChord));
@@ -216,22 +209,18 @@ export function createSceneGraphRuntime(deps) {
         requiredChord
       );
       if (!outerFit) {
-        return;
+        return null;
       }
-      scoredCandidates.push({
+      return {
         ...candidate,
         outerRadius: outerFit.outerRadius,
         innerRadius,
         innerPhase: outerFit.phase,
         extent: outerFit.outerRadius + maxNodeRadius,
-      });
-    });
+      };
+    };
 
-    if (!scoredCandidates.length) {
-      return computeExplicitRingPositions(nodes);
-    }
-
-    scoredCandidates.sort((a, b) => {
+    const compareScoredCandidates = (a, b) => {
       if (a.extent !== b.extent) {
         return a.extent - b.extent;
       }
@@ -249,8 +238,42 @@ export function createSceneGraphRuntime(deps) {
         return b.outerCount - a.outerCount;
       }
       return a.innerCount - b.innerCount;
-    });
-    const best = scoredCandidates[0];
+    };
+
+    const scoredCandidates = candidates.map(scoreCandidate).filter(Boolean);
+
+    if (!scoredCandidates.length) {
+      return computeExplicitRingPositions(nodes);
+    }
+
+    scoredCandidates.sort(compareScoredCandidates);
+    let best = scoredCandidates[0];
+
+    // If 6 < y < 12, prefer m/6/{0,1} when radius ties.
+    if (best.innerCount > 6 && best.innerCount < 12) {
+      const preferred = [];
+      [0, 1].forEach((z) => {
+        const outerCount = count - 6 - z;
+        if (outerCount < 6) {
+          return;
+        }
+        const scored = scoreCandidate({
+          outerCount,
+          innerCount: 6,
+          hasCenter: z === 1,
+        });
+        if (!scored) {
+          return;
+        }
+        if (Math.abs(scored.extent - best.extent) <= RING_RADIUS_TIE_EPS) {
+          preferred.push(scored);
+        }
+      });
+      if (preferred.length) {
+        preferred.sort(compareScoredCandidates);
+        [best] = preferred;
+      }
+    }
 
     const centerMatch =
       typeof centerOn === "string" && centerOn.trim().length
