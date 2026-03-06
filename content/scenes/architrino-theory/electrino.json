@@ -5,6 +5,7 @@
     "kind": "diagram",
     "name": "Electrino",
     "units": "relative",
+    "layoutMode": "rings",
     "scaleBandLog10m": [
       -20,
       -18
@@ -18,11 +19,6 @@
       "hideScaleLabel": true,
       "radius": 1.2,
       "color": "BLUE",
-      "position": [
-        0,
-        0,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"

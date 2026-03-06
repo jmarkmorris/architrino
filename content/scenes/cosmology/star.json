@@ -8,7 +8,8 @@
     "scaleBandLog10m": [
       8,
       9
-    ]
+    ],
+    "layoutMode": "rings"
   },
   "objects": [
     {
@@ -18,11 +19,6 @@
       "reaction": "4p -> He-4 + 2e+ + 2nu_e + gamma",
       "radius": 1.2,
       "color": "#325d9b",
-      "position": [
-        7,
-        0,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -36,11 +32,6 @@
       "reaction": "4p -> He-4 (C, N, O catalysts)",
       "radius": 1.2,
       "color": "#325d9b",
-      "position": [
-        5.36,
-        4.5,
-        0
-      ],
       "subScenes": [
         "content/scenes/nuclear/cno_cycle_detail.json"
       ],
@@ -56,11 +47,6 @@
       "reaction": "3 x He-4 -> C-12 + gamma",
       "radius": 1.2,
       "color": "#325d9b",
-      "position": [
-        1.22,
-        6.89,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -74,11 +60,6 @@
       "reaction": "C-12 + C-12 -> Ne-20 + alpha / Na-23 + p / Mg isotopes",
       "radius": 1.2,
       "color": "#7a4a1f",
-      "position": [
-        -3.5,
-        6.06,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -92,11 +73,6 @@
       "reaction": "gamma + Ne-20 -> O-16 + alpha -> alpha captures",
       "radius": 1.2,
       "color": "#7a4a1f",
-      "position": [
-        -6.58,
-        2.39,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -110,11 +86,6 @@
       "reaction": "O-16 + O-16 -> Si, S, P, Mg isotopes",
       "radius": 1.2,
       "color": "#7a4a1f",
-      "position": [
-        -6.58,
-        -2.39,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -128,11 +99,6 @@
       "reaction": "NSE: gamma rearrangement -> Ni-56 -> Fe-56",
       "radius": 1.2,
       "color": "#7a4a1f",
-      "position": [
-        -3.5,
-        -6.06,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -146,11 +112,6 @@
       "reaction": "slow (n,gamma) + beta- decay along stability valley",
       "radius": 1.2,
       "color": "#6a2f6f",
-      "position": [
-        1.22,
-        -6.89,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -164,11 +125,6 @@
       "reaction": "rapid (n,gamma) far from stability + beta- decay back",
       "radius": 1.2,
       "color": "#6a2f6f",
-      "position": [
-        5.36,
-        -4.5,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"

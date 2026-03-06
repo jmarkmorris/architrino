@@ -32,7 +32,7 @@
       "id": "planet_a",
       "label": "Planet A",
       "scaleExponent": 6,
-      "radius": 1.25,
+      "radius": 1.0625,
       "color": "#327a5e",
       "subScenes": [
         "content/scenes/cosmology/planet.json"
@@ -53,7 +53,7 @@
       "id": "planet_b",
       "label": "Planet B",
       "scaleExponent": 6,
-      "radius": 1.1,
+      "radius": 0.935,
       "color": "#2c6c7e",
       "subScenes": [
         "content/scenes/cosmology/planet.json"
@@ -84,7 +84,7 @@
         "orbit": {
           "shape": "circular",
           "center": "star",
-          "radius": 13.8,
+          "radius": 10.54,
           "speed": 0.12,
           "phase": 4.189
         }
@@ -95,7 +95,7 @@
       "id": "moon",
       "label": "Moon",
       "scaleExponent": 5,
-      "radius": 0.9,
+      "radius": 0.45,
       "color": "#9ea6bf",
       "subScenes": [
         "content/scenes/cosmology/moon.json"
@@ -105,7 +105,7 @@
         "orbit": {
           "shape": "circular",
           "center": "planet_c",
-          "radius": 2.9,
+          "radius": 1.87,
           "speed": 0.6,
           "phase": 0.6
         }

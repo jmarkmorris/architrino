@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 302,
-      "edges": 1135,
+      "edges": 1142,
       "scenes": 175,
       "markdownIndexes": 16,
       "markdownDocs": 111,
@@ -4743,6 +4743,55 @@
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/galaxy.json",
       "field": "objects[2].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/intracluster_medium.json",
+      "to": "scene:content/scenes/elements/fe.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/intracluster_medium.json",
+      "field": "objects[8].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/intracluster_medium.json",
+      "to": "scene:content/scenes/elements/he.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/intracluster_medium.json",
+      "field": "objects[1].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/intracluster_medium.json",
+      "to": "scene:content/scenes/elements/mg.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/intracluster_medium.json",
+      "field": "objects[5].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/intracluster_medium.json",
+      "to": "scene:content/scenes/elements/ne.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/intracluster_medium.json",
+      "field": "objects[4].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/intracluster_medium.json",
+      "to": "scene:content/scenes/elements/o.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/intracluster_medium.json",
+      "field": "objects[3].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/intracluster_medium.json",
+      "to": "scene:content/scenes/elements/s.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/intracluster_medium.json",
+      "field": "objects[7].subScenes[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/intracluster_medium.json",
+      "to": "scene:content/scenes/elements/si.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/intracluster_medium.json",
+      "field": "objects[6].subScenes[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",

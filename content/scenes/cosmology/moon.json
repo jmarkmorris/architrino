@@ -8,7 +8,8 @@
     "scaleBandLog10m": [
       5,
       6
-    ]
+    ],
+    "layoutMode": "rings"
   },
   "objects": [
     {
@@ -17,11 +18,6 @@
       "scaleExponent": 5,
       "radius": 1.1,
       "color": "#6a4d1b",
-      "position": [
-        3.5,
-        0,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -34,11 +30,6 @@
       "scaleExponent": 6,
       "radius": 1,
       "color": "#7a4a1f",
-      "position": [
-        0,
-        3.5,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -51,11 +42,6 @@
       "scaleExponent": 5,
       "radius": 0.95,
       "color": "#8a6a3a",
-      "position": [
-        -3.5,
-        0,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"
@@ -68,11 +54,6 @@
       "scaleExponent": 5,
       "radius": 0.95,
       "color": "#9ea6bf",
-      "position": [
-        0,
-        -3.5,
-        0
-      ],
       "subScenes": [],
       "motion": {
         "type": "fixed"

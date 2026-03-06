@@ -2537,42 +2537,87 @@ function getLevelBoundsFromNodes(level) {
   const min = new THREE.Vector3(Infinity, Infinity, Infinity);
   const max = new THREE.Vector3(-Infinity, -Infinity, -Infinity);
   let hasNode = false;
+  const centerBoundsCache = new Map();
+
+  const pointBounds = (x = 0, y = 0, z = 0) => ({
+    minX: x,
+    maxX: x,
+    minY: y,
+    maxY: y,
+    minZ: z,
+    maxZ: z,
+  });
+
+  const getOrbitCenterNode = (orbitCenter) =>
+    level.nodeByName.get(orbitCenter) ?? level.nodeById.get(orbitCenter) ?? null;
+
+  const getNodeCenterBounds = (node, visiting = new Set()) => {
+    if (!node) {
+      return pointBounds(0, 0, 0);
+    }
+    if (centerBoundsCache.has(node)) {
+      return centerBoundsCache.get(node);
+    }
+
+    if (visiting.has(node)) {
+      const pos = node.group?.position ?? new THREE.Vector3();
+      return pointBounds(pos.x, pos.y, pos.z);
+    }
+    visiting.add(node);
+
+    let bounds;
+    if (node.data.orbit) {
+      const orbit = node.data.orbit;
+      const orbitRadiusX = Math.abs(Number(orbit.radius) || 0);
+      const rawYScale = orbit.shape === "ellipsoid" ? orbit.yScale ?? 0.85 : 1;
+      const yScale = Number.isFinite(rawYScale) ? Math.abs(rawYScale) : 1;
+      const orbitRadiusY = orbitRadiusX * yScale;
+      const centerNode = getOrbitCenterNode(orbit.center);
+
+      let centerBounds;
+      if (centerNode) {
+        centerBounds = getNodeCenterBounds(centerNode, visiting);
+      } else if (Array.isArray(orbit.center)) {
+        centerBounds = pointBounds(
+          orbit.center[0] ?? 0,
+          orbit.center[1] ?? 0,
+          orbit.center[2] ?? 0
+        );
+      } else {
+        const pos = node.group?.position ?? new THREE.Vector3();
+        centerBounds = pointBounds(pos.x, pos.y, pos.z);
+      }
+
+      bounds = {
+        minX: centerBounds.minX - orbitRadiusX,
+        maxX: centerBounds.maxX + orbitRadiusX,
+        minY: centerBounds.minY - orbitRadiusY,
+        maxY: centerBounds.maxY + orbitRadiusY,
+        minZ: centerBounds.minZ,
+        maxZ: centerBounds.maxZ,
+      };
+    } else {
+      const pos = node.group?.position ?? new THREE.Vector3();
+      bounds = pointBounds(pos.x, pos.y, pos.z);
+    }
+
+    visiting.delete(node);
+    centerBoundsCache.set(node, bounds);
+    return bounds;
+  };
 
   level.nodes.forEach((node) => {
     if (node.data?.excludeFromBounds) {
       return;
     }
     const radius = getNodeBoundsRadius(node);
-    if (node.data.orbit) {
-      const orbit = node.data.orbit;
-      const centerNode =
-        level.nodeByName.get(orbit.center) ?? level.nodeById.get(orbit.center);
-      const centerPos = centerNode
-        ? centerNode.group.position
-        : Array.isArray(orbit.center)
-          ? new THREE.Vector3(
-              orbit.center[0] ?? 0,
-              orbit.center[1] ?? 0,
-              orbit.center[2] ?? 0
-            )
-          : node.group.position;
-      const orbitRadius = orbit.radius ?? 0;
-      const yScale = orbit.shape === "ellipsoid" ? orbit.yScale ?? 0.85 : 1;
-      min.x = Math.min(min.x, centerPos.x - orbitRadius - radius);
-      max.x = Math.max(max.x, centerPos.x + orbitRadius + radius);
-      min.y = Math.min(min.y, centerPos.y - orbitRadius * yScale - radius);
-      max.y = Math.max(max.y, centerPos.y + orbitRadius * yScale + radius);
-      min.z = Math.min(min.z, centerPos.z - radius);
-      max.z = Math.max(max.z, centerPos.z + radius);
-    } else {
-      const pos = node.group.position;
-      min.x = Math.min(min.x, pos.x - radius);
-      min.y = Math.min(min.y, pos.y - radius);
-      min.z = Math.min(min.z, pos.z - radius);
-      max.x = Math.max(max.x, pos.x + radius);
-      max.y = Math.max(max.y, pos.y + radius);
-      max.z = Math.max(max.z, pos.z + radius);
-    }
+    const centerBounds = getNodeCenterBounds(node);
+    min.x = Math.min(min.x, centerBounds.minX - radius);
+    max.x = Math.max(max.x, centerBounds.maxX + radius);
+    min.y = Math.min(min.y, centerBounds.minY - radius);
+    max.y = Math.max(max.y, centerBounds.maxY + radius);
+    min.z = Math.min(min.z, centerBounds.minZ - radius);
+    max.z = Math.max(max.z, centerBounds.maxZ + radius);
     hasNode = true;
   });
 
