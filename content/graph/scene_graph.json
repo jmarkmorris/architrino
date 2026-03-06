@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 301,
-      "edges": 1133,
+      "nodes": 302,
+      "edges": 1135,
       "scenes": 175,
       "markdownIndexes": 16,
-      "markdownDocs": 110,
+      "markdownDocs": 111,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1700,6 +1700,12 @@
       "id": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "name": "Gravitational Waves",
       "path": "__markdown_doc__:content/markdown/aaa/spacetime/gravitational-waves.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "name": "Lorentzian Conspiracy and Emergent Lorentz Kinematics",
+      "path": "__markdown_doc__:content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4293,6 +4299,15 @@
       "name": "Gravitational Waves",
       "path": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/gravitational-waves.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "name": "Lorentzian Conspiracy and Emergent Lorentz Kinematics",
+      "path": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "implicit": false
     },
     {
@@ -8196,6 +8211,13 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "lorentz_kinematics.markdownPath"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/ppn-parameters.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/spacetime.json",
@@ -8960,6 +8982,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/spacetime",
       "to": "markdown_doc:content/markdown/aaa/spacetime/gravitational-waves.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/spacetime",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"

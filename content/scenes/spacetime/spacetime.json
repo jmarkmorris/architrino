@@ -80,6 +80,20 @@
       "labelBadge": "doc"
     },
     {
+      "id": "lorentz_kinematics",
+      "label": "Lorentz Kinematics",
+      "radius": 2.688,
+      "color": "#3657a6",
+      "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "markdownAutoIndex": false,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Lorentz Kinematics",
+      "labelBadge": "doc"
+    },
+    {
       "id": "singularity_resolution",
       "label": "Singularity Resolution",
       "radius": 2.688,
