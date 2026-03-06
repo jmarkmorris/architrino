@@ -231,3 +231,86 @@ Cross-chapter integration:
 - constitutive map source: `spacetime/emergent-metric.md`
 - clock-law coefficient extraction: `spacetime/proper-time-and-time-dilation.md`
 - threshold enforcement: `validation/constraint-ledger.md`
+
+### Numeric Closure Pipeline and Global Objective
+
+To enforce cross-observable closure without parameter bloat, use a single constitutive vector and a fixed projection to the PPN decision manifold.
+
+Define
+$$
+\mathbf{\theta}
+\equiv
+\begin{pmatrix}
+\gamma_{\text{eff}}\\
+C_2\\
+\Xi_1\\
+\Xi_2\\
+\Xi_3
+\end{pmatrix},
+\qquad
+\mathbf{p}_{\mathrm{PPN}}
+\equiv
+\begin{pmatrix}
+\gamma_{\mathrm{PPN}}-1\\
+\beta_{\mathrm{PPN}}-1\\
+\alpha_1\\
+\alpha_2\\
+\alpha_3
+\end{pmatrix}.
+$$
+Using
+$$
+\beta_{\mathrm{PPN}}-1=\left(\frac{1+2C_2}{2}\right)-1=C_2-\frac12,
+\qquad
+\alpha_1=\Xi_1,\ \alpha_2=\Xi_2,\ \alpha_3=\Xi_1-\Xi_2-\Xi_3,
+$$
+the map is the exact linear projection
+$$
+\mathbf{p}_{\mathrm{PPN}}=\mathbf{J}\mathbf{\theta}-\mathbf{p}_0,
+$$
+with
+$$
+\mathbf{p}_0=
+\begin{pmatrix}
+1\\[2pt]
+\frac12\\[2pt]
+0\\
+0\\
+0
+\end{pmatrix},
+\qquad
+\mathbf{J}
+=
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0\\
+0 & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & -1 & -1
+\end{pmatrix}.
+$$
+
+If $\Sigma_\theta$ is the covariance of the constitutive fit from micro-simulations, propagate uncertainty by
+$$
+\Sigma_{\mathrm{PPN}}=\mathbf{J}\Sigma_\theta\mathbf{J}^{\mathsf T}.
+$$
+
+Define the single Tier-1 weighted closure objective
+$$
+\mathcal{L}(\mathbf{\theta})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}},
+$$
+where $\mathbf{W}$ is the precision matrix from ledger tolerances.
+With representative Tier-1 bounds
+$|\gamma_{\mathrm{PPN}}-1|,\ |\beta_{\mathrm{PPN}}-1|\lesssim 10^{-5}$ and
+$|\alpha_i|\lesssim 10^{-17}$,
+$$
+\mathbf{W}
+=
+\operatorname{diag}\!\left(10^{10},\,10^{10},\,10^{34},\,10^{34},\,10^{34}\right).
+$$
+
+Forward-only evaluation rule:
+1. Calibrate $\mathbf{\theta}$ and $\Sigma_\theta$ from micro-scale clock/refraction simulations.
+2. Project once to $(\mathbf{p}_{\mathrm{PPN}},\Sigma_{\mathrm{PPN}})$ and evaluate $\mathcal{L}(\mathbf{\theta})$.
+3. Predict macroscopic observables (Shapiro, precession, redshift, lensing) with this fixed parameter set.
+4. If any observable fails its ledger gate, reject the constitutive map; do not refit per observable.
