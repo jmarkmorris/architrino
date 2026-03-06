@@ -658,6 +658,8 @@ Design direction:
 - it should not discover new files by walking directories,
 - section generation is a scene behavior, not a taxonomy root.
 
+Generated section nodes should use deterministic derived IDs that remain stable across rebuilds as long as the source path and section heading key remain unchanged.
+
 ### 7. Scene-Diagram
 
 Suggested fields:
