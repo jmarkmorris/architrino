@@ -467,7 +467,7 @@ $$
 $$
 the constitutive map fails this gate and must be replaced rather than re-fit per observable.
 
-### Real-Data Joint Likelihood (Bill Benchmark Inputs)
+### Real-Data Joint Likelihood (Benchmark Inputs)
 
 Using the forward map above, define the joint likelihood
 $$
@@ -484,7 +484,7 @@ $$
 \left(\gamma_{\text{eff}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}.
 $$
 
-Bill's benchmark observable inputs for the classical weak-field suite are:
+Benchmark observable inputs for the classical weak-field suite are:
 1. Cassini Shapiro: $\gamma_{\text{obs}}-1=(2.1\pm2.3)\times 10^{-5}$.
 2. VLBI solar deflection: $\gamma_{\text{obs}}-1=(-0.8\pm1.2)\times 10^{-4}$.
 3. Mercury precession combination: $(2\gamma_{\text{obs}}-\beta_{\text{obs}})=1\pm 3.0\times 10^{-5}$.
@@ -502,7 +502,7 @@ $$
 $$
 so the Fisher matrix is rank-2 in this fit and $(\Xi_1,\Xi_2,\Xi_3)$ remain unconstrained by this subset alone.
 
-Reducing to $\mathbf{\theta}_{\text{red}}=(\gamma_{\text{eff}},C_2)^{\mathsf T}$, Bill reports
+Reducing to $\mathbf{\theta}_{\text{red}}=(\gamma_{\text{eff}},C_2)^{\mathsf T}$, the inferred covariance is
 $$
 \Sigma_{\theta_{\text{red}}}
 =
@@ -527,7 +527,7 @@ Interpretation for closure:
 2. Preferred-frame channels require additional drift-sensitive observables (LLR, pulsar timing, dedicated anisotropy tests) to close $(\Xi_1,\Xi_2,\Xi_3)$.
 3. The positive $\gamma_{\text{eff}}$-$C_2$ covariance defines the accepted trade-off direction when matching precession jointly with refractive observables.
 
-### Preferred-Frame Parameter Degeneracy Resolution (Andrey Augmentation)
+### Preferred-Frame Parameter Degeneracy Resolution (Augmented Likelihood)
 
 Define the preferred-frame constitutive vector
 $$
@@ -548,7 +548,7 @@ $$
 \mathcal{I}_{\Xi,\text{base}}\hat n=\mathbf{0}.
 $$
 
-Minimal augmentation proposed by Andrey:
+Minimal augmentation:
 1. Binary-pulsar eccentricity drift channel $\dot e$ (orbital polarization sensitivity).
 2. Solitary millisecond-pulsar spin channel $\dot P$ (self-acceleration sensitivity).
 
