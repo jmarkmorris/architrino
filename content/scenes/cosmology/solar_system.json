@@ -84,7 +84,7 @@
         "orbit": {
           "shape": "circular",
           "center": "star",
-          "radius": 13.8,
+          "radius": 11.66,
           "speed": 0.12,
           "phase": 4.189
         }
