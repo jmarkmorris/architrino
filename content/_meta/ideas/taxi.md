@@ -56,7 +56,7 @@ The system should support multiple presentation-scene types, and more can be add
 
 The migration should not drift through a long half-legacy, half-new state if that can be avoided.
 
-Because compatibility is not a goal, the safer approach is still to use explicit phase gates:
+Because compatibility is not a goal, the migration should still use explicit phase gates:
 
 - define the target ontology first,
 - convert authored data into the new shape,
@@ -167,7 +167,7 @@ The ontology should answer these questions in order:
 
 1. Is this a `Scene-Index` or a presentation scene?
 2. If it is a presentation scene, what type of presentation scene is it?
-3. What layout layout or controls does it use?
+3. What layout or controls does it use?
 
 This keeps the top-level taxonomy stable even as more media types appear.
 
@@ -184,7 +184,7 @@ That means:
 
 A runtime may still transform declared data, but it should not invent scene structure by discovering files on its own.
 
-### Template-driven layout
+### Layout-driven presentation
 
 Layout should be a layout concern, not a taxonomy concern.
 
@@ -427,13 +427,13 @@ Implementation checklist:
 - [ ] graph/index rebuild
 - [ ] validator rewrite
 
-Migration safety rules:
+Migration principles:
 
-- maintain one canonical source of truth for scene declarations during each phase,
-- do not preserve legacy and new loaders for longer than necessary,
-- require explicit phase-completion criteria before deleting old paths,
-- prefer deterministic generation over heuristic inference,
-- keep generated artifacts rebuildable from declared scene data.
+- prefer explicit declarations over inference,
+- keep generated behavior local and deterministic,
+- avoid long-lived dual runtime models,
+- keep converted data reviewable,
+- remove obsolete runtime recovery paths once the new path is working.
 
 ### Phase 1. Freeze the ontology
 
@@ -455,13 +455,6 @@ Also define the first shared layout/control concepts:
 - optional slot hints,
 - common scene controls.
 
-Phase-1 completion criteria:
-
-- the scene-type vocabulary is fixed,
-- hierarchy versus cross-link semantics are fixed,
-- base-field names are fixed,
-- no unresolved naming conflict remains between ontology, media source, and layout.
-
 ### Phase 2. Remove filesystem discovery from the design
 
 Before writing code, identify every place where scene structure is currently inferred by walking markdown files or directories.
@@ -475,12 +468,6 @@ Target result:
 - no runtime taxonomy depends on directory traversal.
 
 Directory walking may still be used one time during migration to generate the first explicit scene declarations. The same migration pass should also eliminate generated-scene ID restoration as a source of runtime scene creation.
-
-Phase-2 completion criteria:
-
-- every current runtime discovery path is inventoried,
-- every inventoried path has a declared replacement,
-- every generated-scene ID family has a removal target.
 
 ### Phase 3. Define explicit scene schemas
 
@@ -502,13 +489,6 @@ Important design direction:
 - separate structural child relationships from cross-links,
 - remove generic markdown-specific fields from the base scene/object schema.
 
-Phase-3 completion criteria:
-
-- the base scene schema is minimal and stable,
-- `Scene-Index` is the only hierarchy-owning scene type,
-- presentation-scene schemas carry their own media-specific fields,
-- no legacy generic markdown field remains in the base schema.
-
 ### Phase 4. Build the new ring layout system
 
 Implement a ring-layout system used by `Scene-Index` and `Scene-Markdown-Split`.
@@ -522,12 +502,6 @@ Requirements:
 - keep layout logic separate from scene ontology.
 
 This is the right place to eliminate the current ambiguity around rendered node size, packing inputs, and ring orbit radius.
-
-Phase-4 completion criteria:
-
-- requested slot and resolved slot are clearly separated,
-- ring placement can be rebuilt deterministically from authored scene data,
-- layout does not depend on legacy authored per-node radius values as a default assumption.
 
 ### Phase 5. Convert existing content into explicit scenes
 
@@ -543,19 +517,6 @@ The conversion should produce authored scene data that can be reviewed directly.
 
 This classification pass should include existing hand-authored scene families as well, including presentation scenes with links such as the element scenes.
 
-Migration output requirements:
-
-- every converted scene has an explicit `type`,
-- every structural parent-child edge is authored explicitly,
-- every remaining runtime-generated node family is tied to one declaring scene type,
-- conversion output is reviewable as ordinary authored data.
-
-Phase-5 completion criteria:
-
-- no required scene remains discoverable only by directory walking,
-- every current scene family has a target type assignment,
-- converted data is sufficient to rebuild graph and index artifacts.
-
 ### Phase 6. Replace old runtime paths completely
 
 After explicit scene data and new scene types are in place:
@@ -567,12 +528,6 @@ After explicit scene data and new scene types are in place:
 - remove compatibility layers that preserve the old ontology.
 
 Because compatibility is not required, the code should be cleaned decisively rather than carrying both models.
-
-Phase-6 completion criteria:
-
-- runtime scene loading uses only explicit scene declarations plus allowed local generation behaviors,
-- no special scene-ID taxonomy remains in bootstrap or repository code,
-- no runtime directory walk remains in the scene-loading path.
 
 ### Phase 7. Rebuild graph, validation, and editor assumptions
 
@@ -587,12 +542,6 @@ This includes:
 - any UI labels that still expose old taxonomy terms.
 
 The graph should be driven by explicit scene relationships, not by directory-derived inference.
-
-Phase-7 completion criteria:
-
-- validation operates on the new schema only,
-- graph generation depends only on explicit hierarchy, links, hotspots, and declared media references,
-- editor and composer terminology matches the new ontology.
 
 ---
 
@@ -609,35 +558,6 @@ That work should answer:
 - which current per-node authored fields become layout overrides versus obsolete legacy fields.
 
 The important point is that this is a classification problem, not a compatibility problem. The goal is to map the current working system into a cleaner ontology, not to preserve the old terminology or runtime generation behavior.
-
-## Migration risk controls
-
-The highest-risk failure mode is silent ambiguity during the cutover. The same content could appear to work while still being interpreted by two different models.
-
-The migration should therefore enforce these controls:
-
-- one loading path at a time for production behavior,
-- explicit inventory of legacy entry points before removal,
-- deterministic conversion outputs that can be regenerated,
-- explicit ownership of IDs, hierarchy edges, and link edges,
-- explicit distinction between authored scenes and runtime-generated nodes,
-- deletion of obsolete runtime recovery paths as a planned phase, not as incidental cleanup.
-
-A second risk is schema drift during conversion. To control that:
-
-- freeze naming early,
-- avoid carrying legacy field names for convenience,
-- keep examples aligned with the schema sketch,
-- treat migration tooling as disposable conversion infrastructure rather than permanent runtime logic.
-
-A third risk is over-broad first implementation. To control that:
-
-- convert the smallest complete set of scene types first,
-- keep additional presentation-scene types additive,
-- avoid solving every future media type in the first schema revision,
-- require each new scene type to justify why it is not just a `source.type` variant of an existing presentation scene.
-
----
 
 ## Best-practice position
 
@@ -716,7 +636,6 @@ Even though the current UI is effectively 2D and everything is displayed as a sp
 Suggested structural fields for scenes that organize children:
 
 - `children`: ordered list of structural child scene references
-- `childOrder`: optional explicit ordering control if separate from `children`
 - `defaultChild`: optional default scene to enter from an index scene
 
 A child reference may eventually need fields such as:
@@ -801,7 +720,6 @@ Suggested fields:
 - `source.path`: markdown file path
 - `source.split`: split configuration
 - `layout`: required ring layout
-- `generatedNodes`: optional runtime-derived section-node data
 
 Suggested split configuration:
 
