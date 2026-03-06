@@ -4,13 +4,15 @@
 
 We seek a map
 $$
-\frac{d\tau}{dt} = F\big(\mathbf{v}, \rho_{\text{vac}}(\mathbf{x}), \Phi_{\text{eff}}(\mathbf{x}), \text{clock geometry}\big)
+\frac{d\tau}{dt} = F\big(\mathbf{v}, n(\mathbf{x}), \Phi_{\text{eff}}(\mathbf{x}), \text{clock geometry}\big)
 $$
 that reproduces, in the appropriate regime,
 $$
 \frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c^2} - \frac{v^2}{c^2}}
 $$
 and generalizes to strong‑field / high‑velocity conditions.
+
+Notation convention used in this chapter: $n(\mathbf{x})\equiv \rho_{\text{core}}(\mathbf{x})/\rho_{\text{core},0}$ is the canonical medium-density variable.
 
 ---
 
@@ -38,7 +40,7 @@ A clock is any assembly with a **stable, countable internal cycle**:
 - Minimal model: a tri‑binary Noether core where one binary (typically the middle) serves as the “pendulum.”
 - Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
  - Clock **at rest** in the absolute frame,
- - In a region of homogeneous Noether Sea density $\rho_{\text{vac,0}}$ and negligible external gradients.
+ - In a region of homogeneous Noether Sea density $n=1$ and negligible external gradients.
 
 Proper time is then defined operationally as:
 $$
@@ -46,7 +48,7 @@ d\tau = \frac{\omega(\text{state})}{\omega_0}\, dt
 $$
 where $\omega(\text{state})$ is the instantaneous internal oscillation frequency in the actual kinematic and environmental state.
 
-The central problem is to compute $\omega(\mathbf{v},\rho_{\text{vac}},\Phi_{\text{eff}})$ from the master dynamics.
+The central problem is to compute $\omega(\mathbf{v},n,\Phi_{\text{eff}})$ from the master dynamics.
 
 ---
 
@@ -72,7 +74,7 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
 
 **Kinematic hypothesis:**
 $$
-\omega(v, \rho_{\text{vac,0}}) \approx \omega_0 \sqrt{1 - \frac{v^2}{c_f^2}}
+\omega(v, n=1) \approx \omega_0 \sqrt{1 - \frac{v^2}{c_f^2}}
 \quad \Rightarrow\quad
 \frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{v^2}{c_f^2}}
 $$
@@ -82,7 +84,7 @@ in the regime where the clock’s motion does not significantly disturb the loca
 
 Massive assemblies polarize and densify the surrounding Noether Sea. A clock deeper in this polarized region experiences:
 
-1. **Higher local Noether density $\rho_{\text{vac}}(\mathbf{x})$:** 
+1. **Higher local Noether density $n(\mathbf{x})$ (equivalently higher $\rho_{\text{core}}$):** 
  Interaction delays with the medium (and between internal architrinos via the medium) increase. This acts like an **index of refraction** for all internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf{x}) < c_f$:**
@@ -90,7 +92,7 @@ Massive assemblies polarize and densify the surrounding Noether Sea. A clock dee
  - From the clock’s perspective, every internal force arrives “later” in $t$.
 
 3. **Tidal distortion of tri‑binary geometry:** 
- Gradients in $\rho_{\text{vac}}$ and the effective potential $\Phi_{\text{eff}}$ compress the tri‑binary differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
+ Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the tri‑binary differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
 
 **Gravitational hypothesis:**
 To first order in the Newtonian potential $\Phi_N(\mathbf{x})$,
@@ -106,7 +108,7 @@ with the sign convention chosen so that $\Phi_N < 0$ (deeper potential) yields *
 In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether Sea, we conjecture:
 $$
 \frac{d\tau}{dt} 
-= \frac{\omega(v,\Phi_N,\rho_{\text{vac}})}{\omega_0}
+= \frac{\omega(v,\Phi_N,n)}{\omega_0}
 \approx \sqrt{1 + \frac{2\Phi_N}{c_f^2} - \frac{v^2}{c_f^2}}
 $$
 in the weak‑field, low‑velocity limit, with higher‑order corrections ($v^4/c_f^4$, $\Phi_N^2/c_f^4$, cross‑terms) determined by the detailed tri‑binary response. We set $c_f = c$ (SI) when matching to GR benchmarks.
@@ -129,7 +131,9 @@ For definitions and interpretation, see [Effective Energy-Momentum Closure](../d
 
 ### Strong-Field / Horizon Alignment Note
 
-In this framework, **Planck-scale** references are tied to an **event-horizon alignment condition**. As a tri-binary approaches an event horizon, the **outer binary velocity approaches $v=c_f$** while the **middle binary remains at $v=c_f$** with shifting radius/frequency. At the horizon, the **middle and outer binaries become coplanar and co-linear with the inner binary**, and precession ceases. Any strong-field deviation in clock rates should be interpreted through that alignment condition.
+For strong-field interpretation, use the canonical event-horizon alignment condition from
+[singularity-resolution](./singularity-resolution.md#canonical-strong-field-alignment-condition).
+In this chapter, Planck-scale references inherit that same alignment definition.
 
 ---
 
@@ -208,9 +212,9 @@ $$
 
 ---
 
-## Derivation Strategy and Simulation Plan
+## Derivation Interface and Coefficient Map
 
-Because closed‑form analytic solutions are unlikely, we will combine **perturbative analysis** with **numerical simulation**.
+This chapter keeps only the symbolic/numeric coefficient interface needed to bridge clock microdynamics to PPN observables.
 
 ### Perturbative Expansion (Weak‑field, Low‑velocity)
 
@@ -278,69 +282,10 @@ $$
 
 The mixed coefficient $C_{Uv}$ is treated as a leakage diagnostic at this order.
 
-### Benchmark Error Bounds (Pass/Fail)
+Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are defined in:
 
-Define coefficient errors
-$$
-\epsilon_{A_U}=|\hat{A}_U-1|,\quad
-\epsilon_{A_v}=|\hat{A}_v-\tfrac{1}{2}|,\quad
-\epsilon_\beta=|\hat{\beta}_{\mathrm{eff}}-1|,
-\quad
-\epsilon_{Uv}=|\hat{C}_{Uv}|.
-$$
-
-Required bounds for weak-field acceptance:
-
-1. $\epsilon_{A_U}\le 10^{-5}$.
-2. $\epsilon_{A_v}\le 10^{-5}$.
-3. $\epsilon_\beta\le 10^{-5}$.
-4. $\epsilon_{Uv}\le 10^{-5}$.
-5. Fit residual RMS: $\sqrt{\frac{1}{N}\sum_j (y_j-(X\hat{\mathbf{c}})_j)^2}\le 10^{-6}$.
-6. Statistical confidence: each bound above must hold at $2\sigma$, using $\mathrm{Cov}(\hat{\mathbf{c}})$.
-
-### Direct Numerical Experiments
-
-
-1. **Velocity Dilation Test:**
- - Simulate a tri‑binary clock at rest and at several velocities $v/c \in \{0.1, 0.3, 0.6, 0.9\}$ through a uniform Noether Sea.
- - Measure periods $T(v)$ in absolute time $t$.
- - Fit $T(v)/T_0$ to $1/\sqrt{1 - v^2/c^2}$ and quantify deviations.
-
-2. **Gravitational Dilation Test:**
- - Introduce a background Noether Sea density profile corresponding to a Newtonian potential $\Phi_N(r)$ from a massive body (using our emergent‑metric model).
- - Place identical clocks at radii $r_1$ and $r_2$.
- - Measure frequency ratio and compare to
- $$
- \frac{\omega(r_2)}{\omega(r_1)} \approx 1 + \frac{\Phi_N(r_2) - \Phi_N(r_1)}{c_f^2}.
- $$
-
-3. **Isotropy Test:**
- - Run boosted clock simulations in orthogonal directions relative to some fiducial lattice orientation.
- - Verify that $T(v)$ depends on $|\mathbf{v}|$ only, not on direction, to below $10^{-16}$ fractional anisotropy (matching clock‑comparison bounds).
-
-4. **Robustness to Clock Design:**
- - Repeat tests for different internal assemblies (different tri‑binary decoration patterns) to show that $d\tau/dt$ is **universal** for all reasonable clock designs—an embodiment of the Einstein Equivalence Principle at the emergent level.
-
----
-
-## Observational Targets and Benchmarks
-
-To claim success, the derived $d\tau/dt$ must reproduce:
-
-1. **Special‑Relativistic Time Dilation:**
- - Muon lifetime dilation in storage rings → $\tau = \gamma \tau_0$ with $\gamma = 1/\sqrt{1 - v^2/c^2}$ to within experimental errors ($\lesssim 10^{-3}$).
-
-2. **Gravitational Redshift:**
- - Pound–Rebka and modern optical clock tests: 
- $\Delta\nu/\nu = gh/c^2$ for small height $h$ in Earth’s field, at the $10^{-15}$–$10^{-18}$ level.
-
-3. **GPS Satellite Clocks:**
- - Combined kinematic + gravitational shift $\sim 38\ \mu$s/day at orbital altitude, matching within a few parts in $10^{14}$.
-
-4. **Weak‑field PPN Parameters:**
- - Effective metric inferred from $d\tau/dt$ should yield PPN parameters $\gamma$ and $\beta$ within $|\gamma-1|, |\beta-1| \lesssim 10^{-5}$.
-
-These are encoded in `validation/experiments/*` and `validation/constraint-ledger.md`.
+1. `validation/experiments/*`
+2. `validation/constraint-ledger.md`
 
 ---
 
@@ -361,12 +306,12 @@ This program fails—and the emergent‑metric project is likely untenable—if 
  - If different reasonable clock designs (different internal assemblies) yield different $d\tau/dt$ at the same $(v,\Phi_N)$ beyond experimental bounds, the emergent Equivalence Principle fails.
 
 5. **Parameter bloat:** 
- - If matching these effects requires introducing many independent medium parameters ($\rho_{\text{vac}}$ profiles, ad hoc drag coefficients), the theory’s naturalness score collapses (see).
+ - If matching these effects requires introducing many independent medium parameters ($n$ profiles, ad hoc drag coefficients), the theory’s naturalness score collapses (see).
 
 ---
 
 **Deliverable of this document:** 
-A concrete definition of **how** to compute $\omega(v,\Phi_{\text{eff}},\rho_{\text{vac}})$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.
+A concrete definition of **how** to compute $\omega(v,\Phi_{\text{eff}},n)$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.
 
 ### Closure Program Interface (clock-to-PPN bridge)
 
