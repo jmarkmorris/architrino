@@ -368,6 +368,16 @@ In particular, the element scenes are presentation scenes with links, not a sepa
 
 ## Conversion plan
 
+Implementation checklist:
+
+- [ ] schema redesign
+- [ ] bootstrap rewrite
+- [ ] markdown registry removal
+- [ ] ring-template extraction
+- [ ] migration tool
+- [ ] graph/index rebuild
+- [ ] validator rewrite
+
 ### Phase 1. Freeze the ontology
 
 Define the new scene-type vocabulary and use it consistently in notes, code comments, and implementation planning.
@@ -719,6 +729,8 @@ This is the place to replace the old overloaded `radius` language with cleaner t
 ### 10. Links and hotspots
 
 Links and hotspots should be first-class relationship mechanisms, separate from hierarchy.
+
+Hotspots are a separate top-level field. They are not just a specialized link kind.
 
 Suggested link fields:
 
