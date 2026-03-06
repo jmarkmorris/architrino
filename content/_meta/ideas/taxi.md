@@ -551,6 +551,7 @@ Base-scene principles:
 - the base should not contain markdown-specific fields,
 - the base should not contain ring-template-specific fields,
 - the base should not assume structural children,
+- `links` may exist on any scene type,
 - the base should not require visual node radius or color.
 
 ### 2. Structural hierarchy fields
@@ -595,6 +596,7 @@ Suggested fields:
 Suggested constraints:
 
 - every structural child must resolve to either another `Scene-Index` or a presentation scene,
+- `children` should exist only on `Scene-Index`,
 - `Scene-Index` should not require direct media-source configuration,
 - `Scene-Index` should not derive children from a filesystem path.
 
@@ -607,13 +609,14 @@ Suggested fields:
 - `type`: one of the presentation-scene types
 - `source`: optional media source configuration
 - `view`: optional presentation/view configuration
-- `hotspots`: optional interactive in-scene targets
+- `hotspots`: optional interactive in-scene targets, available only on presentation scenes
 - `template`: optional display template when the scene type uses one
 
 Presentation-scene principles:
 
 - presentation scenes are defined by primary role, not by lack of links,
 - a presentation scene may still link to or launch other scenes,
+- `source.type` should explicitly classify the media source when a source is present,
 - scene-specific media configuration should live inside the presentation-scene type rather than the global base schema.
 
 ### 5. Scene-Markdown-View
@@ -621,6 +624,7 @@ Presentation-scene principles:
 Suggested fields:
 
 - `type: Scene-Markdown-View`
+- `source.type: markdown`
 - `source.path`: markdown file path
 - `view.columns`: one-column or two-column mode
 - `view.autoOpen`: optional initial document-open behavior
@@ -638,6 +642,7 @@ Design direction:
 Suggested fields:
 
 - `type: Scene-Markdown-Split`
+- `source.type: markdown`
 - `source.path`: markdown file path
 - `source.split`: split configuration
 - `template`: required ring template
@@ -660,11 +665,14 @@ Design direction:
 
 Generated section nodes should use deterministic derived IDs that remain stable across rebuilds as long as the source path and section heading key remain unchanged.
 
+The initial implementation should treat generated section nodes as lightweight generated nodes rather than full standalone scenes, while still giving them stable derived IDs.
+
 ### 7. Scene-Diagram
 
 Suggested fields:
 
 - `type: Scene-Diagram`
+- `source.type: diagram`
 - `source`: diagram source or diagram program definition
 - `view`: diagram-specific viewing configuration
 - `hotspots`: optional diagram hotspots linking to scenes
@@ -681,6 +689,7 @@ Design direction:
 Suggested fields:
 
 - `type: Scene-Animation`
+- `source.type: animation`
 - `source`: animation source, asset reference, or app-defined animation program
 - `view`: playback and display configuration
 - `controls`: animation controls
@@ -727,6 +736,8 @@ Suggested slot-hint behavior:
 - the schema should distinguish requested slot from resolved slot.
 
 This is the place to replace the old overloaded `radius` language with cleaner terms.
+
+Authored scene data should store requested slot intent only. Resolved slot placement should remain runtime-only and should not be written back into authored scene data unless a future editing workflow actually requires layout freezing or inspection.
 
 ### 10. Links and hotspots
 
@@ -841,6 +852,7 @@ These are illustrative examples for ontology review. They are not final implemen
   "type": "Scene-Markdown-View",
   "title": "Weak Mixing Angle",
   "source": {
+    "type": "markdown",
     "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md"
   },
   "view": {
@@ -865,6 +877,7 @@ These are illustrative examples for ontology review. They are not final implemen
   "type": "Scene-Markdown-Split",
   "title": "Fermion Overview",
   "source": {
+    "type": "markdown",
     "path": "content/markdown/aaa/assemblies/fermions/overview.md",
     "split": {
       "mode": "headings",
@@ -898,6 +911,7 @@ These are illustrative examples for ontology review. They are not final implemen
   "type": "Scene-Diagram",
   "title": "Hydrogen Atom",
   "source": {
+    "type": "diagram",
     "diagramId": "hydrogen-atom-v1"
   },
   "view": {
