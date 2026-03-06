@@ -314,3 +314,153 @@ Forward-only evaluation rule:
 2. Project once to $(\mathbf{p}_{\mathrm{PPN}},\Sigma_{\mathrm{PPN}})$ and evaluate $\mathcal{L}(\mathbf{\theta})$.
 3. Predict macroscopic observables (Shapiro, precession, redshift, lensing) with this fixed parameter set.
 4. If any observable fails its ledger gate, reject the constitutive map; do not refit per observable.
+
+### Forward Observable Projection (Weak-Field Classical Set)
+
+To force cross-observable closure in a single forward pass, define
+$$
+\mathbf{O}(\mathbf{\theta})
+\equiv
+\begin{pmatrix}
+\Delta t_{\text{Shap}}\\
+\Delta\phi_{\text{Def}}\\
+\Delta\omega_{\text{Prec}}\\
+z_{\text{Red}}
+\end{pmatrix}.
+$$
+Using the weak-field constitutive map of $\mathbb{A}\mathbb{A}\mathbb{A}$:
+
+1. Shapiro delay:
+$$
+O_1(\mathbf{\theta})=K_{\text{Shap}}(1+\gamma_{\text{eff}}),
+\qquad
+K_{\text{Shap}}=
+\frac{GM}{c_f^3}
+\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right).
+$$
+2. Light deflection:
+$$
+O_2(\mathbf{\theta})=K_{\text{Def}}(1+\gamma_{\text{eff}}),
+\qquad
+K_{\text{Def}}=\frac{2GM}{b\,c_f^2}.
+$$
+3. Perihelion precession per orbit:
+$$
+O_3(\mathbf{\theta})
+=
+K_{\text{Prec}}\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
+=
+K_{\text{Prec}}\left(1.5+2\gamma_{\text{eff}}-C_2\right),
+$$
+$$
+K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_f^2}.
+$$
+4. Gravitational redshift (to retained order):
+$$
+O_4(\mathbf{\theta})
+=
+K_{\text{Red1}}-K_{\text{Red2}}C_2,
+\qquad
+K_{\text{Red1}}=\frac{\Delta U}{c_f^2},
+\quad
+K_{\text{Red2}}=\frac{\Delta(U^2)}{c_f^4}.
+$$
+
+First-order observable sensitivities are
+$$
+\mathbf{J}_O
+\equiv
+\frac{\partial\mathbf{O}}{\partial\mathbf{\theta}}
+=
+\begin{pmatrix}
+K_{\text{Shap}} & 0 & 0 & 0 & 0\\
+K_{\text{Def}} & 0 & 0 & 0 & 0\\
+2K_{\text{Prec}} & -K_{\text{Prec}} & 0 & 0 & 0\\
+0 & -K_{\text{Red2}} & 0 & 0 & 0
+\end{pmatrix},
+$$
+and the propagated covariance is
+$$
+\Sigma_O=\mathbf{J}_O\Sigma_\theta\mathbf{J}_O^{\mathsf T}.
+$$
+For this spherically symmetric classical set, preferred-frame channels $(\Xi_1,\Xi_2,\Xi_3)$ decouple at leading order; they are constrained by dedicated drift/leakage observables.
+
+### Worked Solar-System Reference Pass (Synthetic Calibration Example)
+
+Use
+$$
+\frac{GM_\odot}{c_f^2}=1.4766\times 10^3\ \mathrm{m},
+\qquad
+\frac{GM_\odot}{c_f^3}=4.925\times 10^{-6}\ \mathrm{s},
+$$
+with reference kernels
+$$
+K_{\text{Shap}}=70.4\ \mu\mathrm{s},
+\quad
+K_{\text{Def}}=0.875'' ,
+\quad
+K_{\text{Prec}}=14.3''/\mathrm{cy},
+\quad
+K_{\text{Red1}}=2.12\times 10^{-6},
+\quad
+K_{\text{Red2}}=4.50\times 10^{-12}.
+$$
+Take a synthetic constitutive fit
+$$
+\mathbf{\theta}
+=
+\begin{pmatrix}
+1+1.2\times 10^{-5}\\
+0.5+0.8\times 10^{-5}\\
+10^{-18}\\
+-0.5\times 10^{-18}\\
+0.2\times 10^{-18}
+\end{pmatrix},
+$$
+$$
+\Sigma_\theta=
+\operatorname{diag}\!\left(
+0.25\times 10^{-10},
+0.16\times 10^{-10},
+10^{-36},
+10^{-36},
+10^{-36}
+\right).
+$$
+
+Projection to decision space gives
+$$
+\gamma_{\mathrm{PPN}}-1=1.2\times 10^{-5},
+\quad
+\beta_{\mathrm{PPN}}-1=0.8\times 10^{-5},
+\quad
+(\alpha_1,\alpha_2,\alpha_3)=\left(10^{-18},-0.5\times 10^{-18},1.3\times 10^{-18}\right).
+$$
+Forward observables are
+$$
+\Delta t_{\text{Shap}}=140.80084\ \mu\mathrm{s},
+\quad
+\Delta\phi_{\text{Def}}=1.75001'',
+\quad
+\Delta\omega_{\text{Prec}}=42.9002''/\mathrm{cy},
+$$
+$$
+z_{\text{Red}}\approx 2.119997\times 10^{-6}.
+$$
+Propagated $1\sigma$ scales (diagonal approximation) are
+$$
+\sigma_{\text{Shap}}\approx 3.5\times 10^{-4}\ \mu\mathrm{s},
+\quad
+\sigma_{\text{Def}}\approx 4.3\times 10^{-6}'',
+\quad
+\sigma_{\text{Prec}}\approx 1.5\times 10^{-4}''/\mathrm{cy},
+\quad
+\sigma_{\text{Red}}\approx 1.8\times 10^{-17}.
+$$
+
+Failure rule for this closure layer:
+if any observed value lies outside
+$$
+\mathbf{O}(\mathbf{\theta})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)},
+$$
+the constitutive map fails this gate and must be replaced rather than re-fit per observable.
