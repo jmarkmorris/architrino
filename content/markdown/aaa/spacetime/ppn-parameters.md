@@ -466,3 +466,63 @@ $$
 \mathbf{O}(\mathbf{\theta})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)},
 $$
 the constitutive map fails this gate and must be replaced rather than re-fit per observable.
+
+### Real-Data Joint Likelihood (Bill Benchmark Inputs)
+
+Using the forward map above, define the joint likelihood
+$$
+\ln \mathcal{L}(\mathbf{\theta})
+=
+-\frac{1}{2}
+\bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr)^{\mathsf T}
+\Sigma_{\text{obs}}^{-1}
+\bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr),
+$$
+with
+$$
+\mathbf{\theta}=
+\left(\gamma_{\text{eff}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}.
+$$
+
+Bill's benchmark observable inputs for the classical weak-field suite are:
+1. Cassini Shapiro: $\gamma_{\text{obs}}-1=(2.1\pm2.3)\times 10^{-5}$.
+2. VLBI solar deflection: $\gamma_{\text{obs}}-1=(-0.8\pm1.2)\times 10^{-4}$.
+3. Mercury precession combination: $(2\gamma_{\text{obs}}-\beta_{\text{obs}})=1\pm 3.0\times 10^{-5}$.
+4. Galileo/GPA redshift channel: first-order limit $\sim 2.5\times 10^{-5}$ with weak second-order sensitivity to $C_2$.
+
+For this spherical classical set, the Jacobian structure satisfies
+$$
+\frac{\partial \mathbf{O}}{\partial \Xi_1}
+=
+\frac{\partial \mathbf{O}}{\partial \Xi_2}
+=
+\frac{\partial \mathbf{O}}{\partial \Xi_3}
+=
+\mathbf{0},
+$$
+so the Fisher matrix is rank-2 in this fit and $(\Xi_1,\Xi_2,\Xi_3)$ remain unconstrained by this subset alone.
+
+Reducing to $\mathbf{\theta}_{\text{red}}=(\gamma_{\text{eff}},C_2)^{\mathsf T}$, Bill reports
+$$
+\Sigma_{\theta_{\text{red}}}
+=
+\begin{pmatrix}
+5.1\times 10^{-10} & 1.02\times 10^{-9}\\
+1.02\times 10^{-9} & 2.94\times 10^{-9}
+\end{pmatrix},
+$$
+with maximum-likelihood point
+$$
+\gamma_{\text{eff}}=1+(2.03\pm2.26)\times 10^{-5},
+\qquad
+C_2=0.5+(4.06\pm5.42)\times 10^{-5},
+$$
+and correlation
+$$
+\rho(\gamma_{\text{eff}},C_2)=+0.83.
+$$
+
+Interpretation for closure:
+1. A single constitutive vector can fit the selected classical observables without per-observable retuning.
+2. Preferred-frame channels require additional drift-sensitive observables (LLR, pulsar timing, dedicated anisotropy tests) to close $(\Xi_1,\Xi_2,\Xi_3)$.
+3. The positive $\gamma_{\text{eff}}$-$C_2$ covariance defines the accepted trade-off direction when matching precession jointly with refractive observables.
