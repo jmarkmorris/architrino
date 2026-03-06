@@ -526,3 +526,69 @@ Interpretation for closure:
 1. A single constitutive vector can fit the selected classical observables without per-observable retuning.
 2. Preferred-frame channels require additional drift-sensitive observables (LLR, pulsar timing, dedicated anisotropy tests) to close $(\Xi_1,\Xi_2,\Xi_3)$.
 3. The positive $\gamma_{\text{eff}}$-$C_2$ covariance defines the accepted trade-off direction when matching precession jointly with refractive observables.
+
+### Preferred-Frame Parameter Degeneracy Resolution (Andrey Augmentation)
+
+Define the preferred-frame constitutive vector
+$$
+\boldsymbol{\Xi}\equiv(\Xi_1,\Xi_2,\Xi_3)^{\mathsf T}.
+$$
+For the spherical classical set above, $\boldsymbol{\Xi}$ is unconstrained. For an expanded drift-sensitive baseline (ephemerides + LLR + anisotropy channels), treat the preferred-frame Fisher block as
+$$
+\mathcal{I}_{\Xi,\text{base}}
+=
+-\mathbb{E}\!\left[
+\nabla_{\boldsymbol{\Xi}}
+\nabla_{\boldsymbol{\Xi}}^{\mathsf T}
+\ln \mathcal{L}_{\text{base}}
+\right],
+$$
+with rank-2 degeneracy and null direction $\hat n$:
+$$
+\mathcal{I}_{\Xi,\text{base}}\hat n=\mathbf{0}.
+$$
+
+Minimal augmentation proposed by Andrey:
+1. Binary-pulsar eccentricity drift channel $\dot e$ (orbital polarization sensitivity).
+2. Solitary millisecond-pulsar spin channel $\dot P$ (self-acceleration sensitivity).
+
+Use joint likelihood
+$$
+\ln \mathcal{L}_{\text{joint}}(\boldsymbol{\Xi}\mid\mathcal{D})
+=
+\ln \mathcal{L}_{\text{base}}
++\ln \mathcal{L}_{\dot e}
++\ln \mathcal{L}_{\dot P}.
+$$
+The augmented Fisher matrix is
+$$
+\mathcal{I}_{\Xi,\text{total}}
+=
+\mathcal{I}_{\Xi,\text{base}}
++\frac{1}{\sigma_{\dot e}^2}
+\left(\nabla_{\boldsymbol{\Xi}}\dot e\right)\!
+\left(\nabla_{\boldsymbol{\Xi}}\dot e\right)^{\mathsf T}
++\frac{1}{\sigma_{\dot P}^2}
+\left(\nabla_{\boldsymbol{\Xi}}\dot P\right)\!
+\left(\nabla_{\boldsymbol{\Xi}}\dot P\right)^{\mathsf T}.
+$$
+
+Degeneracy-lift criterion:
+$$
+\det\!\left(\mathcal{I}_{\Xi,\text{total}}\right)>0
+$$
+which is equivalent to nonzero projection of the added gradient span onto the null direction $\hat n$.
+
+Operational closure consequence:
+if this criterion is met with real timing data, the posterior over $(\Xi_1,\Xi_2,\Xi_3)$ closes to a bounded ellipsoid instead of a flat valley.
+
+Failure mode for the constitutive cosmology map:
+if the inferred $\boldsymbol{\Xi}$ is significantly nonzero and incompatible with the independently inferred medium-drift direction from the CMB dipole, the single preferred-frame mapping in $\mathbb{A}\mathbb{A}\mathbb{A}$ is broken.
+
+Simulation-to-data interface requirement:
+populate
+$$
+\nabla_{\boldsymbol{\Xi}}\dot e,\qquad
+\nabla_{\boldsymbol{\Xi}}\dot P
+$$
+from tri-binary continuum simulations before final numerical acceptance testing.
