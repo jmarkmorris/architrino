@@ -38,7 +38,7 @@ All cosmological observables are computed from absolute-state evolution and then
 - **Timescape-like motif:** environment-conditioned clock calibration affecting inferred expansion history.
 - **Static-family caution:** retain only clock/medium insight channels; exclude generic tired-light scattering-loss mechanisms.
 
-## Classification Axes (AAA Position)
+## Classification Axes ($\mathbb{A}\mathbb{A}\mathbb{A}$ Position)
 
 | Axis | $\mathbb{A}\mathbb{A}\mathbb{A}$ Position |
 |---|---|

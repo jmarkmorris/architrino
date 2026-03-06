@@ -198,6 +198,7 @@ On the attracting manifold, use principal-frame quadratic closure
 $$
 U_{\text{eff}}=\frac{1}{2}K_{\parallel}(v)\,r_{\parallel}^2+\frac{1}{2}K_{\perp}(v)\left(r_{\perp,1}^2+r_{\perp,2}^2\right).
 $$
+Notation guardrail: in this chapter, $U_{\text{eff}}$ denotes the cycle-averaged mechanical potential on the translating attractor; it is distinct from the positive weak-field PPN variables $U$ and $U_{\Phi}$ used in `spacetime/ppn-parameters.md`.
 For fixed action shell, semiaxes scale as $a_i\propto K_i^{-1/2}$, hence
 $$
 \frac{a_{\parallel}}{a_{\perp}}=\sqrt{\frac{K_{\perp}}{K_{\parallel}}}.

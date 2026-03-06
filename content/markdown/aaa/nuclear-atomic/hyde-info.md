@@ -128,7 +128,7 @@ The two-lobed (peanut/lemniscate-like) morphology separates strongly electroposi
 
 Hyde’s explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.[2][7]
 
-In the AAA working interpretation, this axis corresponds to the radial tier where four outer tri-binaries can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four outer tri-binaries can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
 
 ### 5.5 Branches and heavy-series treatment
 
@@ -145,7 +145,7 @@ In technical reading, the Hyde linework can be interpreted as layered semantic s
 
 ---
 
-## 7. AAA Working Hypothesis Collection (Draft)
+## 7. $\mathbb{A}\mathbb{A}\mathbb{A}$ Working Hypothesis Collection (Draft)
 
 The points below are collected as a framework-internal research program, not as established consensus chemistry.
 

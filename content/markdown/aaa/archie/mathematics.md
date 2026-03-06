@@ -33,6 +33,23 @@ This table lists the symbols and mathematical terms used across the Geometrical 
 | $\Phi_N$ | Newtonian benchmark potential used for weak-field matching. | External/source potential used for 1PN/PPN comparison formulas (e.g., Shapiro delay, redshift, precession benchmarks). |
 | $\Phi_{\text{eff}}$ | Constitutive effective potential inferred from clock and metric channels. | Defined in spacetime closure as $\Phi_{\text{eff}}=-c_f^2\ln(\Omega\xi)$; governs weak-field geodesic acceleration in the observer sector. |
 | $U\equiv-\Phi_N,\quad U_{\Phi}\equiv-\Phi_{\text{eff}}$ | Positive potential conventions for expansions. | Use $U$ for PPN benchmark expansions and $U_{\Phi}$ when expanding directly in constitutive potential. In weak-field closure, $U_{\Phi}=U+O(U^2/c_f^2)$. |
+| $\beta\equiv v/c_f,\ \gamma\equiv(1-\beta^2)^{-1/2}$ | Drift-speed parameter and Lorentz factor in emergent-kinematics closure. | In spacetime closure chapters, $v$ denotes assembly drift speed and $c_f$ denotes field speed; in core nondimensional dynamics one often sets $c_f=1$. |
+| $\xi\equiv 1/\gamma,\ \lambda$ | Shape and scale deformation channels for moving assemblies. | $\xi$ controls directional contraction of effective exclusion geometry; $\lambda$ controls isotropic scale response. Together with $n$ they feed the constitutive metric map. |
+| $\Omega(n,\lambda)$ | Conformal constitutive factor in the effective metric map. | Encodes density/scale response of the Noether-core medium and multiplies clock/ruler channels in $g_{\mu\nu}^{\text{eff}}$. |
+| $\hat{u}^\mu$ | Local medium 4-velocity label used in effective-metric constitutive formulas. | Bookkeeping vector for observer-sector metric construction; it is not a fundamental substrate 4-vector ontology. |
+| $g_{\mu\nu}^{\text{eff}},\ g_{\text{eff}}^{\mu\nu}$ | Effective observer metric and its inverse. | Derived constitutive object mapping medium state to operational clocks/rulers and null propagation; not a fundamental metric of the Euclidean void. |
+| $\Gamma^\lambda_{\mu\nu}(g^{\text{eff}})$ | Effective affine connection built from $g_{\mu\nu}^{\text{eff}}$. | Governs observer-sector geodesic equations and weak-field acceleration extraction in emergent-gravity chapters. |
+| $U_{\text{eff}}$ | Effective cycle-averaged potential on an attractor branch. | In kinematics closure it is the potential whose Hessian yields $K_{\parallel},K_{\perp}$; distinct from weak-field PPN variables $U,U_{\Phi}$ and from local dynamics energy $U_{\text{pot}}$. |
+| $K_{\parallel},K_{\perp}$ | Longitudinal/transverse stiffness channels of translating attractors. | Cycle-averaged Hessian projections of the causal-wake potential; their ratio determines anisotropic shape response. |
+| $(k_2,\ell_2,k_4,\ell_4)$ | Quadratic/quartic closure coefficients in the $\beta$ expansion of stiffness channels. | Matched set used for $O(\beta^4)$ Lorentz-kinematics closure; deviations map directly to preferred-frame leakage diagnostics. |
+| $\epsilon_{\text{LV}},\ \Delta_{\text{tw}}(\beta)$ | Preferred-frame leakage scale and two-way anisotropy mismatch diagnostic. | $\epsilon_{\text{LV}}$ bounds non-Lorentz residual terms; $\Delta_{\text{tw}}$ is the measurable round-trip anisotropy proxy. |
+| $\gamma_{\text{PPN}},\ \beta_{\text{PPN}},\ (\alpha_1,\alpha_2,\alpha_3)$ | Standard weak-field PPN parameters used for observational closure. | $\gamma_{\text{PPN}}$ controls refraction/space-curvature response, $\beta_{\text{PPN}}$ nonlinear clock channel, and $\alpha_i$ preferred-frame leakage. |
+| $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ | Constitutive preferred-frame leakage coefficients in weak-field metric expansion. | Map to $(\alpha_1,\alpha_2,\alpha_3)$ in `spacetime/ppn-parameters.md`; all must vanish for zero-leakage closure. |
+| $(H,M,L),\ (r_H,r_M,r_L),\ (\omega_H,\omega_M,\omega_L)$ | Tri-binary layer labels with characteristic radii and frequencies. | Used in adiabatic-decoupling arguments; closure assumes strong hierarchy $r_H\ll r_M\ll r_L$ and $\omega_H\gg\omega_M\gg\omega_L$. |
+| $\mathcal{D}_{23}\equiv\|\mathbf{c}^{(3)}-\mathbf{c}^{(2)}\|_W$ | Binary-vs-tri-binary closure mismatch norm. | Quantifies universality of Lorentz closure coefficients under hierarchy averaging; bounded by quadrupole scaling in the closure program. |
+| $\mathcal{L}_{\text{eff}}$ | Effective coarse-grained Lagrangian density after averaging fast modes. | Used in dynamics/gauge chapters to encode observer-scale field behavior induced by causal-wake microdynamics. |
+| $a(t),\ H(t)=\dot a/a,\ \Omega_m,\ \Omega_\Lambda$ | Effective cosmology summary variables (observer side). | In this framework these are coarse-grained descriptors of medium evolution, not fundamental geometry variables of the Euclidean container. |
+| $D_\mu,\ g,\ g',\ \theta_W,\ Y$ | Effective electroweak gauge-sector symbols in assembly-level closure mappings. | $D_\mu$ is the covariant derivative; $(g,g',\theta_W,Y)$ follow Standard-Model notation when mapping architrino assemblies to observer-level gauge phenomenology. |
 | $U_{\text{pot}} = q'\,\Phi_\eta$ | Local potential-energy variable in the dynamics sector (mollified; weak limit as $\eta\to 0$). | Scalar potential energy for a receiver in a mollified field. With $\mathbf{F}=-\nabla U_{\text{pot}}$, work satisfies $\Delta E_k=-\Delta U_{\text{pot}}$ on intervals that resolve the mollifier. |
 | $\mathbf{F} = -\nabla U_{\text{pot}}$ | Force from the potential (pointwise for $\Phi_\eta$). | Equivalent to the per-hit law after integrating across a thin causal wake surface. Exact pointwise equality holds for $\Phi_\eta$; for $\eta\to 0$ it is interpreted in the distributional/integrated sense. |
 | $a_{o'\leftarrow j}(t; t_0)$ | Per-hit acceleration from source $j$ emitted at $t_0$ (purely radial, $\propto 1/r^2$). | The contribution from a single causal root: purely radial, falling as $1/r^2$. The total acceleration sums these over all $j$ and all $t_0\in\mathcal{C}_j(t)$. |
@@ -76,6 +93,7 @@ Notes:
 - All speeds are nondimensional after choosing $L_0, T_0$ so that $v = L_0/T_0 = 1$.
 - Assemblies are dynamical geometries of architrino transceivers (not point particles). Their effective field/wave behavior is the net superposition of their constituent architrinos evolving under the equation of motion; any “emission/absorption” attributed to an assembly is shorthand for this superposed dynamics.
 - Vocabulary: Use “expanding causal isochrons” as the canonical term for emitted structures; “wavefront” may be included once as a parenthetical synonym at first use. Avoid generic “spheres” or “ridges” in technical statements (reserve “ridges” for analogies).
+- This glossary canonicalizes cross-chapter symbols. Specialized chapter-local symbols (e.g., CKM matrix entries, isotope labels, detector-specific nuisance parameters) should be defined at first use in their own documents.
 
 ---
 
@@ -247,7 +265,8 @@ Plain language: With slightly thick causal wake surfaces, the usual “force is 
 
 ## Units and symbols
 
-- $v=1$ by default (dimensionless speed unit).
+- Core dynamics chapters often set field speed to $v=1$ (equivalently $c_f=1$).
+- In spacetime closure chapters, keep $c_f$ explicit and use $v$ for drift speed only through $\beta=v/c_f$.
 - $\epsilon = |e|/6$ is the unit charge magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - $\kappa>0$ universal coupling.
 - $\eta>0$ mollifier width (regularization parameter).
@@ -280,6 +299,7 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 
 - Notation lint (common mistakes):
   - Use bold for vectors: $\mathbf{v}$, not plain v.
-  - Reserve $v$ for the field speed (scalar). Use $\|\mathbf{v}\|$ for speed magnitude.
+  - In core dynamics derivations, reserve $v$ for field speed; in spacetime closure derivations, reserve $c_f$ for field speed and use $v$ only as drift magnitude in $\beta=v/c_f$.
+  - Use $\|\mathbf{v}\|$ for speed magnitude of a vector velocity.
   - Emission cadence and per-wavefront amplitude are constant.
   - Do not write mixed forms like $|v|$ to mean speed; bold the vector and take its norm.
