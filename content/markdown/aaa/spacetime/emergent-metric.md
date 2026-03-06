@@ -96,7 +96,7 @@ Minimal closure condition:
 1. Eikonal path-time extremals in the refractive picture match null geodesics of $g^{\text{eff}}_{\mu\nu}$ in weak field.
 2. The same constitutive coefficients predict Shapiro delay, lensing, and redshift without re-fitting per observable.
 
-### Weak-Field Geodesic and PPN Extraction (Constitutive Subclass)
+### Weak-Field Geodesic Handoff (Constitutive Subclass)
 
 For the local medium-rest frame $\hat{u}^\mu=(1,0,0,0)$, use
 $$
@@ -146,52 +146,14 @@ $$
 $$
 which is the Newtonian limit.
 
-#### PPN Coefficients from the Same Subclass
+PPN extraction for this constitutive subclass is defined canonically in
+[ppn-parameters](./ppn-parameters.md#ppn-parameters-and-the-euclidean-anchor),
+including the full $g_{00}$/$g_{ij}$ expansions, preferred-frame leakage map,
+and weak-field closure vector.
 
-Let $U\equiv -\Phi_{\text{eff}}>0$.
-
-Time-time channel:
-$$
-g_{00}^{\text{eff}}
-=
--(\Omega\xi)^{-2}
-=
--e^{2\Phi_{\text{eff}}/c_f^2}
-=
--1+2\frac{U}{c_f^2}-2\frac{U^2}{c_f^4}+O(c_f^{-6}).
-$$
-Comparing to
-$$
-g_{00}^{\text{PPN}}
-=
--1+2\frac{U}{c_f^2}-2\beta_{\text{PPN}}\frac{U^2}{c_f^4}+\cdots
-$$
-yields
+In that canonical map:
 $$
 \beta_{\text{PPN}}=1
 $$
-for this exponential clock-law subclass.
-
-Spatial channel:
-$$
-g_{ij}^{\text{eff}}=\Omega^{-2}\delta_{ij}
-\stackrel{!}{=}
-\left(1+2\gamma_{\text{PPN}}\frac{U}{c_f^2}\right)\delta_{ij}
-=
-\left(1-2\gamma_{\text{PPN}}\frac{\Phi_{\text{eff}}}{c_f^2}\right)\delta_{ij}.
-$$
-Write
-$$
-\Omega=1+\omega_1\frac{\Phi_{\text{eff}}}{c_f^2}+O(c_f^{-4}),
-\qquad
-\xi=1+\xi_1\frac{\Phi_{\text{eff}}}{c_f^2}+O(c_f^{-4}).
-$$
-Then
-$$
-\omega_1+\xi_1=-1
-$$
-from $\Omega\xi=e^{-\Phi_{\text{eff}}/c_f^2}$, and
-$$
-\gamma_{\text{PPN}}=\omega_1=-1-\xi_1.
-$$
-So $\gamma_{\text{PPN}}$ is fixed by first-order partitioning of the clock channel between volumetric scaling ($\Omega$) and shape scaling ($\xi$).
+for the exponential clock-law channel, while $\gamma_{\text{PPN}}$ is fixed by
+first-order clock-channel partitioning between $\Omega$ and $\xi$.

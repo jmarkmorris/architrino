@@ -1,5 +1,8 @@
 # PPN Parameters
 
+This chapter is the canonical home for weak-field/PPN expansion details used by
+the spacetime constitutive map.
+
 ### Mapping to PPN Constraints
 
 1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{eff}$ in a dense medium).
