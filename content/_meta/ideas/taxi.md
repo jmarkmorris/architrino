@@ -48,7 +48,7 @@ Links, hotspots, and other cross-scene references may still connect any scene to
 
 Presentation scenes are scenes whose primary job is to present or interact with content rather than structurally organize child scenes.
 
-A presentation scene may still link to other scenes through hotspots, links, controls, or embedded navigation. What makes it a presentation scene is its primary role, not the absence of outgoing connections.
+A presentation scene may still link to other scenes through hotspots, links, controls, or embedded navigation. What makes it a presentation scene is its primary role, not whether it has outgoing connections.
 
 The system should support multiple presentation-scene types, and more can be added as the webapp develops.
 
@@ -93,7 +93,7 @@ Display model:
 - placement and sizing are automatic by default,
 - individual nodes may still declare placement hints such as `center`, `ring1-3`, `ring2-4`, and similar layout locations.
 
-This means the layout computes placement automatically, while authored hints can override node role within that layout.
+This means the layout computes placement automatically, while authored hints can still influence node role within that layout.
 
 ### Scene-Markdown-View
 
@@ -108,7 +108,7 @@ Responsibilities:
 Notes:
 
 - this is a presentation scene,
-- the ontology name is still specific because this scene directly presents markdown as a medium,
+- the name is specific because this scene directly presents markdown as a medium,
 - the taxonomy remains media-aware at the presentation-scene level without making markdown the whole taxonomy.
 
 ### Scene-Markdown-Split
@@ -169,7 +169,7 @@ The ontology should answer these questions in order:
 2. If it is a presentation scene, what type of presentation scene is it?
 3. What layout or controls does it use?
 
-This keeps the top-level taxonomy stable even as more media types appear.
+This keeps the top-level taxonomy stable as more media types appear.
 
 ### Explicit provenance
 
@@ -195,7 +195,7 @@ For the new ontology:
 - authored node hints may adjust layout slots,
 - the layout should not require authored radius values as a core design assumption.
 
-This is a significant cleanup from the current mixed model where layout radius and node radius are both called "radius" and where authored and computed sizing are interleaved.
+This is a significant cleanup from the current mixed model, where layout radius and node radius are both called "radius" and authored and computed sizing are interleaved.
 
 ### Common scene controls
 
@@ -222,11 +222,11 @@ That means:
 - generated section-node IDs are derived deterministically from declared source data,
 - runtime layout resolution does not create new identity classes.
 
-This matters because migration risk rises sharply when identity comes from multiple places at once. The new model should have one answer to the question "where does this scene or node get its identity?"
+This matters because migration risk rises sharply when identity comes from multiple places at once. The new model should have one clear answer to the question "where does this scene or node get its identity?"
 
 ### One-way generation
 
-During the conversion, generation may be used to help produce explicit scene data. After conversion, runtime generation should be limited to behaviors already declared by a scene type.
+During conversion, generation may be used to help produce explicit scene data. After conversion, runtime generation should be limited to behaviors already declared by a scene type.
 
 Examples:
 
@@ -259,7 +259,7 @@ The new ontology replaces the older mental model built from terms like:
 - directory walking scene,
 - ring scene as a provenance category.
 
-Those terms were trying to describe real implementation behavior, but they collapsed too many dimensions together.
+Those terms were trying to describe real implementation behavior, but they collapsed too many concerns together.
 
 The new ontology is simpler:
 
@@ -401,7 +401,7 @@ The new scene-type vocabulary should replace older generic labels entirely.
 
 ### 10. Existing content families need classification, not preservation
 
-The conversion should classify existing scene families into the new ontology rather than trying to preserve legacy mechanics.
+The conversion should classify existing scene families into the new ontology rather than preserve legacy mechanics.
 
 This includes large hand-authored scene families such as:
 
@@ -505,7 +505,7 @@ This is the right place to eliminate the current ambiguity around rendered node 
 
 ### Phase 5. Convert existing content into explicit scenes
 
-Use the current directory-walking logic only as a migration tool.
+Use the current directory-walking logic only as a migration aid.
 
 Migration goal:
 
@@ -561,7 +561,7 @@ The important point is that this is a classification problem, not a compatibilit
 
 ## Best-practice position
 
-The best practice here is to optimize for explicit ontology, not for short-term convenience.
+The best practice here is to optimize for explicit ontology rather than short-term convenience.
 
 Directory walking reduced authoring effort, but it also hid structure and repeatedly blurred the distinction between:
 
@@ -578,7 +578,7 @@ For this system, the better long-term practice is:
 - media-aware presentation scenes,
 - no hidden provenance.
 
-That should make the model easier to teach, easier to debug, and easier to extend as the webapp gains more scene types.
+That should make the model easier to teach, debug, and extend as the webapp gains more scene types.
 
 ---
 
@@ -599,7 +599,7 @@ Non-goals:
 
 ## Schema sketch
 
-This is not a final schema. It is a design sketch meant to make the ontology concrete enough to review before implementation.
+This is not a final schema. It is a design sketch meant to make the ontology concrete enough for review before implementation.
 
 ### 1. Base scene
 
@@ -614,7 +614,6 @@ Suggested base fields:
 - `summary`: optional short description
 - `controls`: optional common scene controls
 - `links`: optional cross-scene references
-- `metadata`: optional non-visual authored metadata
 
 Base-scene principles:
 
@@ -629,9 +628,9 @@ Base-scene principles:
 
 Structural hierarchy should be explicit and separate from ordinary links.
 
-Structural children should use child-reference objects, not bare strings. That is the better design because it gives the hierarchy room for slot hints, label overrides, badges, future state, and eventual spatial metadata without changing the core shape later.
+Structural children should use child-reference objects, not bare strings. That is the better design because it gives the hierarchy room for slot hints, label overrides, badges, future state, and eventual spatial metadata without changing the core shape.
 
-Even though the current UI is effectively 2D and everything is displayed as a sphere, the child-reference shape should stay compatible with a future 3D scene model.
+Even though the current UI is effectively 2D and everything is displayed as a sphere, the child-reference shape should remain compatible with a future 3D scene model.
 
 Suggested structural fields for scenes that organize children:
 
@@ -673,7 +672,7 @@ Suggested constraints:
 
 ### 4. Presentation-scene base
 
-Presentation scenes should share a small common base beyond the generic scene base.
+Presentation scenes should share a small common layer beyond the generic scene base.
 
 Suggested fields:
 
@@ -709,7 +708,7 @@ Design direction:
 - it may still expose links or hotspots,
 - markdown-specific settings belong here rather than in the base scene schema.
 
-`Scene-Markdown-View` and `Scene-Markdown-Split` should remain separate scene types. They may share the same source medium, but they differ in primary behavior: document presentation versus section-based generated navigation.
+`Scene-Markdown-View` and `Scene-Markdown-Split` should remain separate scene types. They may share the same source medium, but they differ in primary behavior: document presentation versus generated section navigation.
 
 ### 6. Scene-Markdown-Split
 
@@ -850,7 +849,7 @@ Suggested rule:
 - node or child references may override specific layout behavior,
 - overrides should be optional and sparse.
 
-That will keep authored scene data compact while still allowing exceptions where they matter.
+That keeps authored scene data compact while still allowing exceptions where they matter.
 
 ### 12. What should disappear from the base schema
 
