@@ -338,6 +338,7 @@ K_{\text{Shap}}=
 \frac{GM}{c_f^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right).
 $$
+For two-way radar-style Shapiro measurements, apply the same kernel on each leg and sum the two one-way contributions.
 2. Light deflection:
 $$
 O_2(\mathbf{\theta})=K_{\text{Def}}(1+\gamma_{\text{eff}}),
@@ -385,7 +386,7 @@ $$
 $$
 For this spherically symmetric classical set, preferred-frame channels $(\Xi_1,\Xi_2,\Xi_3)$ decouple at leading order; they are constrained by dedicated drift/leakage observables.
 
-### Worked Solar-System Reference Pass (Synthetic Calibration Example)
+### Worked Solar-System Reference Projection (Synthetic Calibration Example)
 
 Use
 $$
@@ -427,6 +428,7 @@ $$
 10^{-36}
 \right).
 $$
+This block is an internal consistency projection example, not a claim of experimental pass/fail by itself.
 
 Projection to decision space gives
 $$
