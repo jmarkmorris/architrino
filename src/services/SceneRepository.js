@@ -51,43 +51,26 @@ export class SceneRepository {
     if (typeof sceneMeta?.layout?.type === "string") {
       return sceneMeta.layout.type;
     }
-    if (typeof sceneMeta?.layoutMode === "string") {
-      return sceneMeta.layoutMode;
-    }
     return null;
   }
 
   resolveDisplayTitle(entry) {
-    return entry?.label ?? entry?.title ?? entry?.name ?? entry?.id ?? null;
+    return entry?.label ?? entry?.title ?? entry?.id ?? null;
   }
 
   resolveMarkdownConfig(entry) {
     const source = entry?.source ?? null;
     const view = entry?.view ?? null;
     const markdownPath =
-      typeof entry?.markdownPath === "string"
-        ? entry.markdownPath
-        : source?.type === "markdown" && typeof source.path === "string"
-          ? source.path
-          : null;
+      source?.type === "markdown" && typeof source.path === "string"
+        ? source.path
+        : null;
     const markdownSection =
-      typeof entry?.markdownSection === "string"
-        ? entry.markdownSection
-        : typeof view?.section === "string"
-          ? view.section
-          : null;
+      typeof view?.section === "string" ? view.section : null;
     const markdownColumns =
-      typeof entry?.markdownColumns === "number"
-        ? entry.markdownColumns
-        : typeof view?.columns === "number"
-          ? view.columns
-          : null;
+      typeof view?.columns === "number" ? view.columns : null;
     const markdownAutoOpen =
-      typeof entry?.markdownAutoOpen === "boolean"
-        ? entry.markdownAutoOpen
-        : typeof view?.autoOpen === "boolean"
-          ? view.autoOpen
-          : null;
+      typeof view?.autoOpen === "boolean" ? view.autoOpen : null;
     return {
       markdownPath,
       markdownSection,
@@ -106,9 +89,6 @@ export class SceneRepository {
       (typeof childRef.scenePath === "string" || typeof childRef.sceneId === "string")
     ) {
       return childRef.scenePath ?? childRef.sceneId;
-    }
-    if (Array.isArray(entry?.subScenes) && entry.subScenes.length > 0) {
-      return entry.subScenes[0];
     }
     return null;
   }
@@ -233,7 +213,6 @@ export class SceneRepository {
   }
 
   resolveSceneKind(sceneData, nodes) {
-    const rawKind = sceneData?.scene?.kind;
     const sceneType = sceneData?.scene?.type;
     const typeKind = this.resolveSceneKindFromType(sceneType);
     if (typeKind) {
@@ -242,14 +221,6 @@ export class SceneRepository {
     const inferredKind = this.inferSceneKindFromStructure(sceneData?.scene, nodes);
     if (inferredKind) {
       return inferredKind;
-    }
-    if (
-      rawKind === "branching" ||
-      rawKind === "diagram" ||
-      rawKind === "markdown_split" ||
-      rawKind === "element"
-    ) {
-      return rawKind;
     }
     return "branching";
   }
