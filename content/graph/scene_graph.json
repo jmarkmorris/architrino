@@ -7866,7 +7866,7 @@
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/chemistry/hyde_periodic_table_scene.json",
-      "field": "scene.markdownPath"
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
@@ -8174,7 +8174,7 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/out_of_the_ashes.json",
-      "field": "scene.markdownPath"
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",

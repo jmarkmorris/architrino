@@ -99,6 +99,26 @@ function asText(value) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function resolveAuthoredMarkdownPath(entry) {
+  if (typeof entry?.markdownPath === "string") {
+    return entry.markdownPath;
+  }
+  if (entry?.source?.type === "markdown" && typeof entry?.source?.path === "string") {
+    return entry.source.path;
+  }
+  return null;
+}
+
+function resolveAuthoredMarkdownSection(entry) {
+  if (typeof entry?.markdownSection === "string") {
+    return entry.markdownSection;
+  }
+  if (typeof entry?.view?.section === "string") {
+    return entry.view.section;
+  }
+  return null;
+}
+
 function titleFromSlug(slug) {
   return String(slug)
     .replace(/\.json$/i, "")
@@ -1261,20 +1281,12 @@ for (const scenePath of sceneConfigs) {
   }
   validateSceneIntegrity(scenePath, data, markdownContext);
 
-  if (typeof scene.markdownPath === "string") {
-    validateFileReference(
-      scenePath,
-      "scene.markdownPath",
-      scene.markdownPath,
-      markdownFileSet,
-      markdownFileLower
-    );
-  }
-  if (scene.source && typeof scene.source === "object" && scene.source.type === "markdown") {
+  const sceneMarkdownPath = resolveAuthoredMarkdownPath(scene);
+  if (typeof sceneMarkdownPath === "string") {
     validateFileReference(
       scenePath,
       "scene.source.path",
-      scene.source.path,
+      sceneMarkdownPath,
       markdownFileSet,
       markdownFileLower
     );
@@ -1327,18 +1339,8 @@ for (const scenePath of sceneConfigs) {
 
   objects.forEach((obj, index) => {
     const objectLabel = typeof obj?.id === "string" && obj.id ? obj.id : `objects[${index}]`;
-    const objectMarkdownPath =
-      typeof obj?.markdownPath === "string"
-        ? obj.markdownPath
-        : obj?.source?.type === "markdown" && typeof obj?.source?.path === "string"
-          ? obj.source.path
-          : null;
-    const objectMarkdownSection =
-      typeof obj?.markdownSection === "string"
-        ? obj.markdownSection
-        : typeof obj?.view?.section === "string"
-          ? obj.view.section
-          : null;
+    const objectMarkdownPath = resolveAuthoredMarkdownPath(obj);
+    const objectMarkdownSection = resolveAuthoredMarkdownSection(obj);
     if (typeof objectMarkdownPath === "string") {
       validateFileReference(
         scenePath,

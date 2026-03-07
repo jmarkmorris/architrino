@@ -152,6 +152,16 @@ function inferSourceType(sourcePath, declaredType) {
   return sourcePath.toLowerCase().endsWith(".md") ? "file" : "directory";
 }
 
+function resolveAuthoredMarkdownPath(entry) {
+  if (typeof entry?.markdownPath === "string") {
+    return entry.markdownPath;
+  }
+  if (entry?.source?.type === "markdown" && typeof entry?.source?.path === "string") {
+    return entry.source.path;
+  }
+  return null;
+}
+
 function getParentDirectory(filePath) {
   const dir = normalizePath(path.posix.dirname(filePath));
   return dir === "." ? "" : dir;
@@ -477,11 +487,9 @@ for (const sceneEntry of sceneEntries) {
   const scene = data.scene || {};
   const objects = Array.isArray(data.objects) ? data.objects : [];
 
-  if (typeof scene.markdownPath === "string") {
-    addMarkdownDocEdge(scenePath, scene.markdownPath, "scene.markdownPath");
-  }
-  if (scene.source && typeof scene.source === "object" && scene.source.type === "markdown") {
-    addMarkdownDocEdge(scenePath, scene.source.path, "scene.source.path");
+  const sceneMarkdownPath = resolveAuthoredMarkdownPath(scene);
+  if (typeof sceneMarkdownPath === "string") {
+    addMarkdownDocEdge(scenePath, sceneMarkdownPath, "scene.source.path");
   }
   if (typeof scene.autoMarkdownPath === "string") {
     addMarkdownDocEdge(scenePath, scene.autoMarkdownPath, "scene.autoMarkdownPath");
@@ -539,12 +547,7 @@ for (const sceneEntry of sceneEntries) {
   }
 
   objects.forEach((obj, objectIndex) => {
-    const objectMarkdownPath =
-      typeof obj?.markdownPath === "string"
-        ? obj.markdownPath
-        : obj?.source?.type === "markdown" && typeof obj?.source?.path === "string"
-          ? obj.source.path
-          : null;
+    const objectMarkdownPath = resolveAuthoredMarkdownPath(obj);
     if (typeof objectMarkdownPath === "string") {
       const objectId = asText(obj.id) || `objects[${objectIndex}]`;
       addMarkdownDocEdge(scenePath, objectMarkdownPath, `${objectId}.source.path`);
