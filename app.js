@@ -1270,8 +1270,19 @@ async function resolveMarkdownColumnsForPath(markdownPath) {
               continue;
             }
             const sceneData = await sceneResponse.json();
-            const sceneMarkdownPath = sceneData?.scene?.markdownPath;
-            const sceneMarkdownColumns = sceneData?.scene?.markdownColumns;
+            const sceneMarkdownPath =
+              typeof sceneData?.scene?.markdownPath === "string"
+                ? sceneData.scene.markdownPath
+                : sceneData?.scene?.source?.type === "markdown" &&
+                    typeof sceneData?.scene?.source?.path === "string"
+                  ? sceneData.scene.source.path
+                  : null;
+            const sceneMarkdownColumns =
+              sceneData?.scene?.markdownColumns === 1 || sceneData?.scene?.markdownColumns === 2
+                ? sceneData.scene.markdownColumns
+                : sceneData?.scene?.view?.columns === 1 || sceneData?.scene?.view?.columns === 2
+                  ? sceneData.scene.view.columns
+                  : null;
             if ((sceneMarkdownColumns === 1 || sceneMarkdownColumns === 2) && sceneMarkdownPath) {
               authoredMarkdownColumnsByPath.set(
                 normalizeColumnsPath(sceneMarkdownPath),
@@ -1280,8 +1291,18 @@ async function resolveMarkdownColumnsForPath(markdownPath) {
             }
             const objects = Array.isArray(sceneData?.objects) ? sceneData.objects : [];
             for (const obj of objects) {
-              const objectMarkdownPath = obj?.markdownPath;
-              const objectMarkdownColumns = obj?.markdownColumns;
+              const objectMarkdownPath =
+                typeof obj?.markdownPath === "string"
+                  ? obj.markdownPath
+                  : obj?.source?.type === "markdown" && typeof obj?.source?.path === "string"
+                    ? obj.source.path
+                    : null;
+              const objectMarkdownColumns =
+                obj?.markdownColumns === 1 || obj?.markdownColumns === 2
+                  ? obj.markdownColumns
+                  : obj?.view?.columns === 1 || obj?.view?.columns === 2
+                    ? obj.view.columns
+                    : null;
               if (
                 (objectMarkdownColumns === 1 || objectMarkdownColumns === 2) &&
                 typeof objectMarkdownPath === "string" &&
