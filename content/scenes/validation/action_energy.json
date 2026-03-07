@@ -2,145 +2,192 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "validation_action_energy",
-    "kind": "branching",
-    "name": "Action-Energy",
+    "title": "Action-Energy",
+    "type": "Scene-Index",
     "units": "relative",
-    "layoutMode": "rings",
+    "layout": {
+      "type": "rings"
+    },
     "wrapLabels": true
   },
   "objects": [
     {
       "id": "action_model",
-      "label": "Action Model",
+      "title": "Action Model",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/action-model.md"
+      },
       "labelTitle": "Action Model",
       "labelBadge": "doc"
     },
     {
       "id": "analytic_baselines",
-      "label": "Analytic Baselines",
+      "title": "Analytic Baselines",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md"
+      },
       "labelTitle": "Analytic Baselines",
       "labelBadge": "doc"
     },
     {
       "id": "attraction",
-      "label": "Attraction",
+      "title": "Attraction",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/attraction.md"
+      },
       "labelTitle": "Attraction",
       "labelBadge": "doc"
     },
     {
       "id": "background_simple_action",
-      "label": "Background and Simple Action",
+      "title": "Background and Simple Action",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md"
+      },
       "labelTitle": "Background and Simple Action",
       "labelBadge": "doc"
     },
     {
       "id": "causal_set_delay_geometry",
-      "label": "Causal Set and Delay Geometry",
+      "title": "Causal Set and Delay Geometry",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md"
+      },
       "labelTitle": "Causal Set and Delay Geometry",
       "labelBadge": "doc"
     },
     {
       "id": "informational_ambiguity",
-      "label": "Informational Ambiguity",
+      "title": "Informational Ambiguity",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md"
+      },
       "labelTitle": "Informational Ambiguity",
       "labelBadge": "doc"
     },
     {
       "id": "numerical_recipe_stability",
-      "label": "Numerical Recipe and Stability",
+      "title": "Numerical Recipe and Stability",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md"
+      },
       "labelTitle": "Numerical Recipe and Stability",
       "labelBadge": "doc"
     },
     {
       "id": "radial_attraction",
-      "label": "Radial Attraction",
+      "title": "Radial Attraction",
       "radius": 2.688,
       "color": "#2c567a",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md"
+      },
       "labelTitle": "Radial Attraction",
       "labelBadge": "doc"
     },
     {
       "id": "receiver_velocity_work",
-      "label": "Receiver Velocity and Work",
+      "title": "Receiver Velocity and Work",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md"
+      },
       "labelTitle": "Receiver Velocity and Work",
       "labelBadge": "doc"
     },
     {
       "id": "repulsion",
-      "label": "Repulsion",
+      "title": "Repulsion",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md"
+      },
       "labelTitle": "Repulsion",
       "labelBadge": "doc"
     },
     {
       "id": "self_energy",
-      "label": "Self-Energy",
+      "title": "Self-Energy",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md"
+      },
       "labelTitle": "Self-Energy",
       "labelBadge": "doc"
     },
     {
       "id": "self_interaction_switch",
-      "label": "Self-Interaction Switch",
+      "title": "Self-Interaction Switch",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md"
+      },
       "labelTitle": "Self-Interaction Switch",
       "labelBadge": "doc"
     },
     {
       "id": "superposition_locality",
-      "label": "Superposition and Locality",
+      "title": "Superposition and Locality",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md"
+      },
       "labelTitle": "Superposition and Locality",
       "labelBadge": "doc"
     },
     {
       "id": "units_constants",
-      "label": "Units and Constants",
+      "title": "Units and Constants",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md"
+      },
       "labelTitle": "Units and Constants",
       "labelBadge": "doc"
     },
     {
       "id": "well_posedness_regularization",
-      "label": "Well-Posedness and Regularization",
+      "title": "Well-Posedness and Regularization",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md"
+      },
       "labelTitle": "Well-Posedness and Regularization",
       "labelBadge": "doc"
     }

@@ -7782,7 +7782,7 @@
       "to": "scene:content/scenes/validation/action_energy.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
