@@ -10406,7 +10406,7 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "field": "thinker_heraclitus_c_535_475_bce.source.path"
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
@@ -10420,7 +10420,7 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "field": "thinker_alfred_north_whitehead_1861_1947.source.path"
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
@@ -10434,21 +10434,21 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "field": "thinker_paul_dirac_1902_1984.source.path"
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "field": "thinker_ludwig_boltzmann_1844_1906.source.path"
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "field": "thinker_ernst_mach_1838_1916.source.path"
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
@@ -10483,7 +10483,7 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/unknowns_paradoxes.json",
-      "field": "unknown_the_nature_of_dark_energy.source.path"
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",

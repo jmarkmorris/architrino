@@ -601,6 +601,37 @@ function readStableIdLabelLock() {
   return { entries };
 }
 
+function collectStableObjectLabels(sceneData) {
+  const labels = new Map();
+  const objects = Array.isArray(sceneData?.objects) ? sceneData.objects : [];
+  objects.forEach((obj) => {
+    const objectId = asText(obj?.id);
+    if (!objectId) {
+      return;
+    }
+    const objectLabel = asText(obj?.labelTitle) || asText(obj?.label) || asText(obj?.title) || objectId;
+    labels.set(objectId, objectLabel);
+  });
+
+  const splitOverrides = sceneData?.scene?.source?.split?.overrides;
+  if (splitOverrides && typeof splitOverrides === "object" && !Array.isArray(splitOverrides)) {
+    Object.values(splitOverrides).forEach((override) => {
+      if (!override || typeof override !== "object" || Array.isArray(override)) {
+        return;
+      }
+      const objectId = asText(override.id);
+      if (!objectId || labels.has(objectId)) {
+        return;
+      }
+      const objectLabel =
+        asText(override.labelTitle) || asText(override.title) || asText(override.label) || objectId;
+      labels.set(objectId, objectLabel);
+    });
+  }
+
+  return labels;
+}
+
 function validateSceneIntegrity(scenePath, data, markdownContext) {
   const scene = data.scene ?? {};
   const objects = Array.isArray(data.objects) ? data.objects : [];
@@ -910,16 +941,7 @@ stableIdLabelLock.entries.forEach((lock, scenePath) => {
     );
   }
 
-  const objects = Array.isArray(sceneData.objects) ? sceneData.objects : [];
-  const objectLabelById = new Map();
-  objects.forEach((obj) => {
-    const objectId = asText(obj?.id);
-    if (!objectId) {
-      return;
-    }
-    const objectLabel = asText(obj?.label) || asText(obj?.title) || objectId;
-    objectLabelById.set(objectId, objectLabel);
-  });
+  const objectLabelById = collectStableObjectLabels(sceneData);
 
   lock.objectLabels.forEach((expectedLabel, objectId) => {
     if (!objectLabelById.has(objectId)) {

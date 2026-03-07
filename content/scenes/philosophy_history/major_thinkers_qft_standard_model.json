@@ -8,127 +8,60 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "split": {
+        "mode": "headings",
+        "headingLevel": 3,
+        "sectionDepth": 1,
+        "sectionPresentationType": "Scene-Markdown-View",
+        "overrides": {
+          "paul dirac 1902 1984": {
+            "id": "thinker_paul_dirac_1902_1984",
+            "labelTitle": "Paul Dirac",
+            "labelSubtitle": "Relativistic Quantum Mechanics",
+            "labelDates": "(1902–1984)",
+            "labelBadge": "doc",
+            "color": "#243d8f"
+          },
+          "richard feynman 1918 1988": {
+            "id": "thinker_richard_feynman_1918_1988",
+            "labelTitle": "Richard Feynman",
+            "labelSubtitle": "Path Integrals / QED",
+            "labelDates": "(1918–1988)",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          },
+          "abdus salam 1926 1996 sheldon glashow 1932 steven weinberg 1933 2021 electroweak unification": {
+            "id": "thinker_steven_weinberg_1933_2021_electroweak_unification",
+            "labelTitle": "Steven Weinberg",
+            "labelSubtitle": "Electroweak Unification",
+            "labelDates": "(1933–2021)",
+            "labelBadge": "doc",
+            "color": "#3a5f9f"
+          },
+          "murray gell mann 1929 2019 the quark model": {
+            "id": "thinker_murray_gell_mann_1929_2019_and_the_quark_model",
+            "labelTitle": "Murray Gell-Mann",
+            "labelSubtitle": "Quark Model",
+            "labelDates": "(1929–2019)",
+            "labelBadge": "doc",
+            "color": "#4b0082"
+          },
+          "gerard t hooft 1946 deterministic quantum mechanics": {
+            "id": "thinker_gerard_t_hooft_1946_deterministic_quantum_mechanics",
+            "labelTitle": "Gerard 't Hooft",
+            "labelSubtitle": "Deterministic Quantum Mechanics",
+            "labelDates": "(1946–)",
+            "labelBadge": "doc",
+            "color": "#3a5f9f"
+          }
+        },
+        "section": "QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)"
+      }
     }
   },
-  "objects": [
-    {
-      "id": "thinker_paul_dirac_1902_1984",
-      "label": "Paul Dirac (1902\u20131984)",
-      "radius": 2.2,
-      "color": "#243d8f",
-      "labelTitle": "Paul Dirac",
-      "labelDates": "(1902\u20131984)",
-      "labelBadge": "doc",
-      "labelSubtitle": "Relativistic Quantum Mechanics",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Paul Dirac (1902\u20131984)"
-      }
-    },
-    {
-      "id": "thinker_richard_feynman_1918_1988",
-      "label": "Richard Feynman (1918\u20131988)",
-      "radius": 2.2,
-      "color": "#2f6b6f",
-      "labelTitle": "Richard Feynman",
-      "labelDates": "(1918\u20131988)",
-      "labelBadge": "doc",
-      "labelSubtitle": "Path Integrals / QED",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Richard Feynman (1918\u20131988)"
-      }
-    },
-    {
-      "id": "thinker_abdus_salam_1926_1996_electroweak_unification",
-      "label": "Abdus Salam (1926\u20131996) \u2014 Electroweak Unification",
-      "radius": 2.2,
-      "color": "#5a1f2e",
-      "labelTitle": "Abdus Salam",
-      "labelSubtitle": "Electroweak Unification",
-      "labelDates": "(1926\u20131996)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Abdus Salam (1926\u20131996), Sheldon Glashow (1932\u2013), Steven Weinberg (1933\u20132021) \u2014 Electroweak Unification"
-      }
-    },
-    {
-      "id": "thinker_sheldon_glashow_1932_electroweak_unification",
-      "label": "Sheldon Glashow (1932\u2013) \u2014 Electroweak Unification",
-      "radius": 2.2,
-      "color": "#4b0082",
-      "labelTitle": "Sheldon Glashow",
-      "labelSubtitle": "Electroweak Unification",
-      "labelDates": "(1932\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Abdus Salam (1926\u20131996), Sheldon Glashow (1932\u2013), Steven Weinberg (1933\u20132021) \u2014 Electroweak Unification"
-      }
-    },
-    {
-      "id": "thinker_steven_weinberg_1933_2021_electroweak_unification",
-      "label": "Steven Weinberg (1933\u20132021) \u2014 Electroweak Unification",
-      "radius": 2.2,
-      "color": "#3a5f9f",
-      "labelTitle": "Steven Weinberg",
-      "labelSubtitle": "Electroweak Unification",
-      "labelDates": "(1933\u20132021)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Abdus Salam (1926\u20131996), Sheldon Glashow (1932\u2013), Steven Weinberg (1933\u20132021) \u2014 Electroweak Unification"
-      }
-    },
-    {
-      "id": "thinker_murray_gell_mann_1929_2019_and_the_quark_model",
-      "label": "Murray Gell-Mann (1929\u20132019) & the Quark Model",
-      "radius": 2.2,
-      "color": "#4b0082",
-      "labelTitle": "Murray Gell-Mann",
-      "labelSubtitle": "Quark Model",
-      "labelDates": "(1929\u20132019)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Murray Gell-Mann (1929\u20132019) & the Quark Model"
-      }
-    },
-    {
-      "id": "thinker_gerard_t_hooft_1946_deterministic_quantum_mechanics",
-      "label": "Gerard 't Hooft (1946\u2013) \u2014 Deterministic Quantum Mechanics",
-      "radius": 2.2,
-      "color": "#3a5f9f",
-      "labelTitle": "Gerard 't Hooft",
-      "labelSubtitle": "Deterministic Quantum Mechanics",
-      "labelDates": "(1946\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Gerard 't Hooft (1946\u2013) \u2014 Deterministic Quantum Mechanics"
-      }
-    }
-  ]
+  "objects": []
 }

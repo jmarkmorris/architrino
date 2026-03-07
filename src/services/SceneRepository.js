@@ -81,6 +81,7 @@ export class SceneRepository {
   resolveSplitSceneConfig(sceneMeta) {
     const sceneType = sceneMeta?.type;
     const source = sceneMeta?.source ?? null;
+    const split = source?.split ?? null;
     const view = sceneMeta?.view ?? null;
     const usesTypedSplitSource =
       sceneType === "Scene-Markdown-Split" &&
@@ -91,12 +92,14 @@ export class SceneRepository {
       splitSourcePath: usesTypedSplitSource
         ? source.path
         : null,
-      splitSection:
-        typeof view?.section === "string"
+      splitSection: typeof split?.section === "string"
+        ? split.section
+        : typeof view?.section === "string"
           ? view.section
           : null,
-      splitHeadingLevel:
-        typeof view?.headingLevel === "number"
+      splitHeadingLevel: typeof split?.headingLevel === "number"
+        ? split.headingLevel
+        : typeof view?.headingLevel === "number"
           ? view.headingLevel
           : usesTypedSplitSource
             ? 2
@@ -105,11 +108,12 @@ export class SceneRepository {
         view?.columns === 1 || view?.columns === 2
           ? view.columns
             : null,
-      splitSectionDepth:
-        typeof view?.sectionDepth === "number"
+      splitSectionDepth: typeof split?.sectionDepth === "number"
+        ? split.sectionDepth
+        : typeof view?.sectionDepth === "number"
           ? view.sectionDepth
-            : null,
-      splitIncludeExistingInLayout: false,
+          : null,
+      splitIncludeExistingInLayout: split?.includeExistingInLayout === true,
       splitNodeRadius: null,
       splitRingRadius: null,
       splitMaxRingCount: null,
@@ -123,6 +127,10 @@ export class SceneRepository {
       splitIndexPaths: [],
       splitPlainSectionPaths: [],
       splitOverrides: null,
+      splitSectionOverrides:
+        split?.overrides && typeof split.overrides === "object"
+          ? split.overrides
+          : null,
     };
   }
 
@@ -534,9 +542,18 @@ export class SceneRepository {
 
   async createConfigFromSceneData(scenePath, data) {
     const sceneMeta = data.scene ?? {};
-    const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
-    const splitScene = this.resolveSplitSceneConfig(sceneMeta);
     const sceneType = typeof sceneMeta.type === "string" ? sceneMeta.type : null;
+    const rawSceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
+    const sceneMarkdown =
+      sceneType === "Scene-Markdown-Split"
+        ? {
+            markdownPath: null,
+            markdownSection: null,
+            markdownColumns: null,
+            markdownAutoOpen: null,
+          }
+        : rawSceneMarkdown;
+    const splitScene = this.resolveSplitSceneConfig(sceneMeta);
     const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
@@ -605,6 +622,7 @@ export class SceneRepository {
       splitPlainSectionPaths: splitScene.splitPlainSectionPaths,
       splitSectionDepth: splitScene.splitSectionDepth,
       splitOverrides: splitScene.splitOverrides,
+      splitSectionOverrides: splitScene.splitSectionOverrides,
     };
     this.levelConfigs[scenePath] = config;
     this.sceneConfigCache.set(scenePath, config);

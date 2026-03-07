@@ -27,6 +27,7 @@ import {
 } from "./src/services/MarkdownNamingService.js";
 import {
   extractMarkdownSection,
+  normalizeMarkdownKey,
   normalizeMarkdownPath,
   parseMarkdownHeading,
 } from "./src/services/MarkdownPolicyService.js";
@@ -1901,6 +1902,7 @@ const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   appendCacheBust,
   parseMarkdownHeading,
   extractMarkdownSection,
+  normalizeMarkdownKey,
   normalizeMarkdownPath,
   titleFromSlug,
   stripWalkthroughStepPrefix,
