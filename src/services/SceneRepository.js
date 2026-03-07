@@ -47,6 +47,154 @@ export class SceneRepository {
     return Array.isArray(palette) && palette.length ? palette : null;
   }
 
+  resolveLayoutMode(sceneMeta) {
+    if (typeof sceneMeta?.layout?.type === "string") {
+      return sceneMeta.layout.type;
+    }
+    if (typeof sceneMeta?.layoutMode === "string") {
+      return sceneMeta.layoutMode;
+    }
+    return null;
+  }
+
+  resolveDisplayTitle(entry) {
+    return entry?.label ?? entry?.title ?? entry?.name ?? entry?.id ?? null;
+  }
+
+  resolveMarkdownConfig(entry) {
+    const source = entry?.source ?? null;
+    const view = entry?.view ?? null;
+    const markdownPath =
+      typeof entry?.markdownPath === "string"
+        ? entry.markdownPath
+        : source?.type === "markdown" && typeof source.path === "string"
+          ? source.path
+          : null;
+    const markdownSection =
+      typeof entry?.markdownSection === "string"
+        ? entry.markdownSection
+        : typeof view?.section === "string"
+          ? view.section
+          : null;
+    const markdownColumns =
+      typeof entry?.markdownColumns === "number"
+        ? entry.markdownColumns
+        : typeof view?.columns === "number"
+          ? view.columns
+          : null;
+    const markdownAutoOpen =
+      typeof entry?.markdownAutoOpen === "boolean"
+        ? entry.markdownAutoOpen
+        : typeof view?.autoOpen === "boolean"
+          ? view.autoOpen
+          : null;
+    return {
+      markdownPath,
+      markdownSection,
+      markdownColumns,
+      markdownAutoOpen,
+    };
+  }
+
+  resolveChildSceneTarget(entry) {
+    const childRef =
+      Array.isArray(entry?.children) && entry.children.length > 0 && entry.children[0]
+        ? entry.children[0]
+        : null;
+    if (
+      childRef &&
+      (typeof childRef.scenePath === "string" || typeof childRef.sceneId === "string")
+    ) {
+      return childRef.scenePath ?? childRef.sceneId;
+    }
+    if (Array.isArray(entry?.subScenes) && entry.subScenes.length > 0) {
+      return entry.subScenes[0];
+    }
+    return null;
+  }
+
+  resolveNodeColor(entry) {
+    let color = entry?.color ?? "#3a5a8a";
+    if (typeof color === "string" && this.colorTokens[color]) {
+      color = this.colorTokens[color];
+    }
+    return color;
+  }
+
+  buildRuntimeNode(obj, context = {}) {
+    const markdown = this.resolveMarkdownConfig(obj);
+    const nodeTitle = this.resolveDisplayTitle(obj) ?? obj.id;
+    const hasScale = obj.scaleExponent !== undefined && obj.scaleExponent !== null;
+    const binaryBands = Array.isArray(obj.binaryBands) ? obj.binaryBands : null;
+    const node = {
+      id: obj.id,
+      name: nodeTitle,
+      shortName: obj.shortName ?? null,
+      labelTitle: obj.labelTitle ?? obj.title ?? null,
+      labelSubtitle: obj.labelSubtitle ?? null,
+      labelDates: obj.labelDates ?? null,
+      labelBadge: obj.labelBadge ?? null,
+      labelBadgeImage: obj.labelBadgeImage ?? null,
+      labelBadgeAlt: obj.labelBadgeAlt ?? null,
+      scale: hasScale ? obj.scaleExponent : null,
+      hasScale,
+      radius: obj.radius ?? 1,
+      color: this.resolveNodeColor(obj),
+      position: obj.position ?? [0, 0, 0],
+      fixedPosition: obj.fixedPosition ?? false,
+      category: obj.category,
+      reaction: obj.reaction,
+      details: obj.details ?? null,
+      renderStyle: obj.renderStyle ?? null,
+      markdownPath: markdown.markdownPath,
+      markdownSection: markdown.markdownSection,
+      markdownColumns: markdown.markdownColumns,
+      markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
+      markdownAutoIndex: obj.markdownAutoIndex ?? null,
+      markdownPlainSectionPaths: Array.isArray(obj.markdownPlainSectionPaths)
+        ? obj.markdownPlainSectionPaths
+        : [],
+      binaryBands,
+      glowRing: obj.glowRing ?? false,
+      glowRingColor: obj.glowRingColor ?? null,
+      glowRingOpacity: obj.glowRingOpacity ?? null,
+      glowRingThickness: obj.glowRingThickness ?? null,
+      glowRingScale: obj.glowRingScale ?? null,
+      baseOpacity: obj.baseOpacity ?? null,
+      hideScaleLabel: obj.hideScaleLabel ?? context.hideScaleLabels ?? false,
+      wrapLabel: obj.wrapLabel ?? context.wrapLabels ?? true,
+    };
+    const childScene = this.resolveChildSceneTarget(obj);
+    if (typeof childScene === "string" && childScene.length > 0) {
+      node.childScene = childScene;
+    }
+    if (obj.motion && obj.motion.type === "orbit") {
+      const orbit = obj.motion.orbit || obj.motion;
+      const centerLabel = context.idMap?.get(orbit.center) ?? orbit.center;
+      node.orbit = {
+        center: centerLabel,
+        radius: orbit.radius ?? 1,
+        speed: orbit.speed ?? 0,
+        phase: orbit.phase ?? 0,
+        shape: orbit.shape ?? "circular",
+        yScale: orbit.yScale,
+      };
+      node.motionType = "orbit";
+    }
+    if (obj.motion && obj.motion.type === "translate") {
+      const translate = obj.motion.translate || obj.motion;
+      const velocity = this.normalizeVelocity(
+        translate.groupVelocity ?? translate.velocity ?? translate.v
+      );
+      node.translation = { velocity };
+      node.motionType = "translate";
+    }
+    if (binaryBands && binaryBands.length > 0) {
+      node.motionType = node.motionType ?? "binaryOrbit";
+    }
+    return node;
+  }
+
   resolveSceneKind(sceneData, nodes) {
     const rawKind = sceneData?.scene?.kind;
     const sceneType = sceneData?.scene?.type;
@@ -68,15 +216,9 @@ export class SceneRepository {
       return "diagram";
     }
     const list = Array.isArray(nodes) ? nodes : [];
-    const layoutMode = String(
-      sceneData?.scene?.layout?.type ?? sceneData?.scene?.layoutMode ?? ""
-    ).toLowerCase();
+    const layoutMode = String(this.resolveLayoutMode(sceneData?.scene) ?? "").toLowerCase();
     const usesRingLayout = layoutMode === "rings";
-    const sceneSource = sceneData?.scene?.source;
-    const sceneSourcePath =
-      sceneSource?.type === "markdown" && typeof sceneSource.path === "string"
-        ? sceneSource.path
-        : null;
+    const sceneMarkdown = this.resolveMarkdownConfig(sceneData?.scene);
     const hasNavigation =
       list.some(
         (node) =>
@@ -86,7 +228,7 @@ export class SceneRepository {
     const hasLeafContent =
       (typeof sceneData?.scene?.markdownPath === "string" &&
         sceneData.scene.markdownPath.length > 0) ||
-      (typeof sceneSourcePath === "string" && sceneSourcePath.length > 0) ||
+      (typeof sceneMarkdown.markdownPath === "string" && sceneMarkdown.markdownPath.length > 0) ||
       list.some(
         (node) =>
           (typeof node.markdownPath === "string" && node.markdownPath.length > 0) ||
@@ -99,9 +241,7 @@ export class SceneRepository {
   }
 
   shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
-    const layoutMode = String(
-      sceneData?.scene?.layout?.type ?? sceneData?.scene?.layoutMode ?? ""
-    ).toLowerCase();
+    const layoutMode = String(this.resolveLayoutMode(sceneData?.scene) ?? "").toLowerCase();
     const isStructuredLayout = layoutMode === "rings";
     const sceneId = String(sceneData?.scene?.id ?? "").toLowerCase();
     const isHomeScene =
@@ -339,121 +479,20 @@ export class SceneRepository {
       })
       .then(async (data) => {
         const sceneMeta = data.scene ?? {};
-        const sceneSource = sceneMeta.source ?? null;
-        const sceneView = sceneMeta.view ?? null;
-        const hideScaleLabels = Boolean(data.scene?.hideScaleLabels);
-        const wrapLabels = data.scene?.wrapLabels ?? true;
+        const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
+        const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
+        const wrapLabels = sceneMeta.wrapLabels ?? true;
         const markdownDerived = this.deriveMarkdownConfig(data.scene?.markdown);
         const idMap = new Map(
-          data.objects.map((obj) => [obj.id, obj.label || obj.title || obj.id])
+          data.objects.map((obj) => [obj.id, this.resolveDisplayTitle(obj) ?? obj.id])
         );
-        let nodes = data.objects.map((obj) => {
-          const nodeSource = obj.source ?? null;
-          const nodeView = obj.view ?? null;
-          const nodeTitle = obj.label || obj.title || obj.id;
-          const markdownPath =
-            typeof obj.markdownPath === "string"
-              ? obj.markdownPath
-              : nodeSource?.type === "markdown" && typeof nodeSource.path === "string"
-                ? nodeSource.path
-                : null;
-          const markdownSection =
-            typeof obj.markdownSection === "string"
-              ? obj.markdownSection
-              : typeof nodeView?.section === "string"
-                ? nodeView.section
-                : null;
-          const markdownColumns =
-            typeof obj.markdownColumns === "number"
-              ? obj.markdownColumns
-              : typeof nodeView?.columns === "number"
-                ? nodeView.columns
-                : null;
-          const childRef =
-            Array.isArray(obj.children) && obj.children.length > 0 && obj.children[0]
-              ? obj.children[0]
-              : null;
-          const hasScale =
-            obj.scaleExponent !== undefined && obj.scaleExponent !== null;
-          const binaryBands = Array.isArray(obj.binaryBands)
-            ? obj.binaryBands
-            : null;
-          let color = obj.color ?? "#3a5a8a";
-          if (typeof color === "string" && this.colorTokens[color]) {
-            color = this.colorTokens[color];
-          }
-          const node = {
-            id: obj.id,
-            name: nodeTitle,
-            shortName: obj.shortName ?? null,
-            labelTitle: obj.labelTitle ?? obj.title ?? null,
-            labelSubtitle: obj.labelSubtitle ?? null,
-            labelDates: obj.labelDates ?? null,
-            labelBadge: obj.labelBadge ?? null,
-            labelBadgeImage: obj.labelBadgeImage ?? null,
-            labelBadgeAlt: obj.labelBadgeAlt ?? null,
-            scale: hasScale ? obj.scaleExponent : null,
-            hasScale,
-            radius: obj.radius ?? 1,
-            color,
-            position: obj.position ?? [0, 0, 0],
-            fixedPosition: obj.fixedPosition ?? false,
-            category: obj.category,
-            reaction: obj.reaction,
-            details: obj.details ?? null,
-            renderStyle: obj.renderStyle ?? null,
-            markdownPath,
-            markdownSection,
-            markdownColumns,
-            markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
-            markdownAutoIndex: obj.markdownAutoIndex ?? null,
-            markdownPlainSectionPaths: Array.isArray(obj.markdownPlainSectionPaths)
-              ? obj.markdownPlainSectionPaths
-              : [],
-            binaryBands,
-            glowRing: obj.glowRing ?? false,
-            glowRingColor: obj.glowRingColor ?? null,
-            glowRingOpacity: obj.glowRingOpacity ?? null,
-            glowRingThickness: obj.glowRingThickness ?? null,
-            glowRingScale: obj.glowRingScale ?? null,
-            baseOpacity: obj.baseOpacity ?? null,
-            hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
-            wrapLabel: obj.wrapLabel ?? wrapLabels,
-          };
-          if (
-            childRef &&
-            (typeof childRef.scenePath === "string" || typeof childRef.sceneId === "string")
-          ) {
-            node.childScene = childRef.scenePath ?? childRef.sceneId;
-          } else if (Array.isArray(obj.subScenes) && obj.subScenes.length > 0) {
-            node.childScene = obj.subScenes[0];
-          }
-          if (obj.motion && obj.motion.type === "orbit") {
-            const orbit = obj.motion.orbit || obj.motion;
-            const centerLabel = idMap.get(orbit.center) ?? orbit.center;
-            node.orbit = {
-              center: centerLabel,
-              radius: orbit.radius ?? 1,
-              speed: orbit.speed ?? 0,
-              phase: orbit.phase ?? 0,
-              shape: orbit.shape ?? "circular",
-              yScale: orbit.yScale,
-            };
-            node.motionType = "orbit";
-          }
-          if (obj.motion && obj.motion.type === "translate") {
-            const translate = obj.motion.translate || obj.motion;
-            const velocity = this.normalizeVelocity(
-              translate.groupVelocity ?? translate.velocity ?? translate.v
-            );
-            node.translation = { velocity };
-            node.motionType = "translate";
-          }
-          if (binaryBands && binaryBands.length > 0) {
-            node.motionType = node.motionType ?? "binaryOrbit";
-          }
-          return node;
-        });
+        let nodes = data.objects.map((obj) =>
+          this.buildRuntimeNode(obj, {
+            hideScaleLabels,
+            wrapLabels,
+            idMap,
+          })
+        );
         const structuredPalette = this.resolveSphereColorPalette(data);
         if (this.shouldApplyStructuredSpherePalette(scenePath, data, markdownDerived)) {
           this.applyStructuredSpherePalette(nodes, structuredPalette, {
@@ -468,33 +507,10 @@ export class SceneRepository {
         }
         await this.applyMarkdownDocEligibility(nodes);
 
-        const sceneName = sceneMeta.title ?? sceneMeta.name ?? sceneMeta.id ?? scenePath;
+        const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
         const sceneId = sceneMeta.id ?? null;
         const sceneKind = this.resolveSceneKind(data, nodes);
-        const rawLayoutMode =
-          typeof sceneMeta.layout?.type === "string"
-            ? sceneMeta.layout.type
-            : typeof sceneMeta.layoutMode === "string"
-              ? sceneMeta.layoutMode
-              : null;
-        const topLevelMarkdownPath =
-          typeof sceneMeta.markdownPath === "string"
-            ? sceneMeta.markdownPath
-            : sceneSource?.type === "markdown" && typeof sceneSource.path === "string"
-              ? sceneSource.path
-              : null;
-        const topLevelMarkdownSection =
-          typeof sceneMeta.markdownSection === "string"
-            ? sceneMeta.markdownSection
-            : typeof sceneView?.section === "string"
-              ? sceneView.section
-              : null;
-        const topLevelMarkdownColumns =
-          typeof sceneMeta.markdownColumns === "number"
-            ? sceneMeta.markdownColumns
-            : typeof sceneView?.columns === "number"
-              ? sceneView.columns
-              : null;
+        const rawLayoutMode = this.resolveLayoutMode(sceneMeta);
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
           layoutMode: rawLayoutMode,
@@ -507,16 +523,11 @@ export class SceneRepository {
           sceneName,
           sceneId,
           sceneKind,
-          markdownPath: topLevelMarkdownPath,
-          markdownSection: topLevelMarkdownSection,
-          markdownColumns: topLevelMarkdownColumns,
+          markdownPath: sceneMarkdown.markdownPath,
+          markdownSection: sceneMarkdown.markdownSection,
+          markdownColumns: sceneMarkdown.markdownColumns,
           markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
-          markdownAutoOpen:
-            typeof sceneMeta.markdownAutoOpen === "boolean"
-              ? sceneMeta.markdownAutoOpen
-              : typeof sceneView?.autoOpen === "boolean"
-                ? sceneView.autoOpen
-                : true,
+          markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
           centerOn: sceneMeta.centerOn ?? null,
           autoMarkdownDirectory: markdownDerived?.autoMarkdownDirectory ?? null,
           autoMarkdownPath: markdownDerived?.autoMarkdownPath ?? null,
