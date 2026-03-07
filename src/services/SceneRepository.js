@@ -195,17 +195,7 @@ export class SceneRepository {
     return node;
   }
 
-  resolveSceneKind(sceneData, nodes) {
-    const rawKind = sceneData?.scene?.kind;
-    const sceneType = sceneData?.scene?.type;
-    if (
-      rawKind === "branching" ||
-      rawKind === "diagram" ||
-      rawKind === "markdown_split" ||
-      rawKind === "element"
-    ) {
-      return rawKind;
-    }
+  resolveSceneKindFromType(sceneType) {
     if (sceneType === "Scene-Index" || sceneType === "Scene-Markdown-View") {
       return "branching";
     }
@@ -215,10 +205,14 @@ export class SceneRepository {
     if (sceneType === "Scene-Diagram" || sceneType === "Scene-Animation") {
       return "diagram";
     }
+    return null;
+  }
+
+  inferSceneKindFromStructure(sceneMeta, nodes) {
     const list = Array.isArray(nodes) ? nodes : [];
-    const layoutMode = String(this.resolveLayoutMode(sceneData?.scene) ?? "").toLowerCase();
+    const layoutMode = String(this.resolveLayoutMode(sceneMeta) ?? "").toLowerCase();
     const usesRingLayout = layoutMode === "rings";
-    const sceneMarkdown = this.resolveMarkdownConfig(sceneData?.scene);
+    const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
     const hasNavigation =
       list.some(
         (node) =>
@@ -226,8 +220,6 @@ export class SceneRepository {
           node.markdownAutoIndex === true
       ) || usesRingLayout;
     const hasLeafContent =
-      (typeof sceneData?.scene?.markdownPath === "string" &&
-        sceneData.scene.markdownPath.length > 0) ||
       (typeof sceneMarkdown.markdownPath === "string" && sceneMarkdown.markdownPath.length > 0) ||
       list.some(
         (node) =>
@@ -236,6 +228,28 @@ export class SceneRepository {
       );
     if (hasNavigation || hasLeafContent) {
       return "branching";
+    }
+    return null;
+  }
+
+  resolveSceneKind(sceneData, nodes) {
+    const rawKind = sceneData?.scene?.kind;
+    const sceneType = sceneData?.scene?.type;
+    const typeKind = this.resolveSceneKindFromType(sceneType);
+    if (typeKind) {
+      return typeKind;
+    }
+    const inferredKind = this.inferSceneKindFromStructure(sceneData?.scene, nodes);
+    if (inferredKind) {
+      return inferredKind;
+    }
+    if (
+      rawKind === "branching" ||
+      rawKind === "diagram" ||
+      rawKind === "markdown_split" ||
+      rawKind === "element"
+    ) {
+      return rawKind;
     }
     return "branching";
   }
