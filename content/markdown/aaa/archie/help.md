@@ -7,7 +7,7 @@
 4. Open notes with the document icon when available.
 5. Use `Archie` to open/toggle the meta ring.
 
-## Main Controls (HUD)
+## Interface Controls
 
 - `Back`: step backward in history
 - `Forward`: step forward in history
@@ -17,17 +17,17 @@
 - `Archie` (ring): open/toggle meta ring
 - `Notes` (document): open scene notes for current scene
 
-## Search and Keyboard
-
-- Open/close search: `Cmd/Ctrl + K`
-- Execute first result: `Enter`
-- Close search: `Escape`
-
 ## Markdown Panel
 
 - Toggle layout (1/2 column): layout icon in notes header
 - Open full document from section/index: document icon in notes header
 - Close notes panel: `Close`
+
+## Search and Keyboard
+
+- Open or close search: `Cmd/Ctrl + K`
+- Execute first result: `Enter`
+- Close search: `Escape`
 
 ## Element Scene Controls
 

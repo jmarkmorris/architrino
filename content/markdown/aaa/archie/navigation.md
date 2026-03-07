@@ -94,5 +94,5 @@ Information controls:
 1. Start from `Home`.
 2. Descend sphere-by-sphere into your topic.
 3. Open notes when you need context.
-4. Toggle markdown layout based on reading preference.
+4. Shift between section reading and full-document reading as needed.
 5. Use `Back` for local context changes, `Home` for global reset, and `Archie` for meta/tooling space.

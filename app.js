@@ -1709,6 +1709,7 @@ const markdownRuntime = createMarkdownRuntime({
   markdownCache,
   markdownSectionCache,
   extractMarkdownSection,
+  appendCacheBust,
 });
 
 function updateSceneMarkdown() {

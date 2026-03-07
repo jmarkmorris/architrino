@@ -8,6 +8,7 @@ export function createMarkdownRuntime(deps) {
     markdownCache,
     markdownSectionCache,
     extractMarkdownSection,
+    appendCacheBust,
   } = deps;
 
   let activeMarkdownPath = null;
@@ -192,7 +193,9 @@ export function createMarkdownRuntime(deps) {
     let html = sectionCache.get(cacheKey);
     if (!html) {
       try {
-        const response = await fetch(markdownPath);
+        const fetchPath =
+          typeof appendCacheBust === "function" ? appendCacheBust(markdownPath) : markdownPath;
+        const response = await fetch(fetchPath);
         if (!response.ok) {
           throw new Error(`Failed to load markdown: ${markdownPath}`);
         }
