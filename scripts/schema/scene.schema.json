@@ -5,6 +5,32 @@
   "type": "object",
   "required": ["scene", "objects"],
   "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "scene": {
+            "type": "object",
+            "required": ["type"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "objects": {
+            "items": {
+              "not": {
+                "anyOf": [
+                  { "required": ["subScenes"] },
+                  { "required": ["markdownPath"] }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
   "properties": {
     "schemaVersion": {
       "type": ["string", "number"]

@@ -16,7 +16,6 @@
       "title": "Fermi-Dirac & Bose-Einstein Statistics",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -32,7 +31,6 @@
         "path": "content/markdown/aaa/quantum/bell-theorem.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -49,7 +47,6 @@
         "path": "content/markdown/aaa/quantum/collapse-problem.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -66,7 +63,6 @@
         "path": "content/markdown/aaa/quantum/entanglement-nonlocality.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -83,7 +79,6 @@
         "path": "content/markdown/aaa/quantum/pilot-wave-character.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -101,7 +96,6 @@
         "path": "content/markdown/aaa/quantum/reality-quantum-causality.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -118,7 +112,6 @@
         "path": "content/markdown/aaa/quantum/superposition-mechanism.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -135,7 +128,6 @@
         "path": "content/markdown/aaa/quantum/wavefunction-ontology.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },

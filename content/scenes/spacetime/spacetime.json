@@ -21,7 +21,6 @@
         "path": "content/markdown/aaa/spacetime/emergent-metric.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -38,7 +37,6 @@
         "path": "content/markdown/aaa/spacetime/gr-phenomenology.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -55,7 +53,6 @@
         "path": "content/markdown/aaa/spacetime/gravitational-waves.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -72,7 +69,6 @@
         "path": "content/markdown/aaa/spacetime/ppn-parameters.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -89,7 +85,6 @@
         "path": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -106,7 +101,6 @@
         "path": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -123,7 +117,6 @@
         "path": "content/markdown/aaa/spacetime/singularity-resolution.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -144,7 +137,6 @@
         "columns": 1
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -161,7 +153,6 @@
         "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },

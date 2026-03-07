@@ -21,7 +21,6 @@
         "path": "content/markdown/aaa/foundations/absolute-time-defense.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -38,7 +37,6 @@
         "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -55,7 +53,6 @@
         "path": "content/markdown/aaa/foundations/emergence.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -72,7 +69,6 @@
         "path": "content/markdown/aaa/foundations/euclidean-void.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -89,7 +85,6 @@
         "path": "content/markdown/aaa/foundations/ontology.md"
       },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },

@@ -7390,7 +7390,7 @@
       "to": "scene:content/scenes/meta/composer.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -7439,21 +7439,21 @@
       "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "objects[3].subScenes[0]"
+      "field": "objects[3].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/nucleus.json",
@@ -7523,21 +7523,21 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "objects[5].subScenes[0]"
+      "field": "objects[5].children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",

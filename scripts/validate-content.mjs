@@ -1345,6 +1345,14 @@ for (const scenePath of sceneConfigs) {
 
   objects.forEach((obj, index) => {
     const objectLabel = typeof obj?.id === "string" && obj.id ? obj.id : `objects[${index}]`;
+    if (rawType && obj && typeof obj === "object") {
+      if (Object.prototype.hasOwnProperty.call(obj, "subScenes")) {
+        errors.push(`${scenePath} -> ${objectLabel}: typed scenes must not declare legacy object.subScenes`);
+      }
+      if (Object.prototype.hasOwnProperty.call(obj, "markdownPath")) {
+        errors.push(`${scenePath} -> ${objectLabel}: typed scenes must not declare legacy object.markdownPath`);
+      }
+    }
     const objectMarkdownPath = resolveAuthoredMarkdownPath(obj);
     const objectMarkdownSection = resolveAuthoredMarkdownSection(obj);
     if (typeof objectMarkdownPath === "string") {
