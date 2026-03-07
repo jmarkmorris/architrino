@@ -17,6 +17,33 @@
       },
       "then": {
         "properties": {
+          "scene": {
+            "not": {
+              "anyOf": [
+                { "required": ["kind"] },
+                { "required": ["layoutMode"] },
+                { "required": ["autoMarkdownPath"] },
+                { "required": ["autoMarkdownSection"] },
+                { "required": ["autoMarkdownHeadingLevel"] },
+                { "required": ["autoMarkdownColumns"] },
+                { "required": ["autoMarkdownSectionDepth"] },
+                { "required": ["autoMarkdownIncludeExistingInLayout"] },
+                { "required": ["autoMarkdownNodeRadius"] },
+                { "required": ["autoMarkdownRingRadius"] },
+                { "required": ["autoMarkdownMaxRingCount"] },
+                { "required": ["autoMarkdownGridSpacing"] },
+                { "required": ["autoMarkdownPalette"] },
+                { "required": ["autoMarkdownPaletteName"] },
+                { "required": ["autoMarkdownColor"] },
+                { "required": ["autoMarkdownExcludePaths"] },
+                { "required": ["autoMarkdownPlainPaths"] },
+                { "required": ["autoMarkdownDefaultIndex"] },
+                { "required": ["autoMarkdownIndexPaths"] },
+                { "required": ["autoMarkdownPlainSectionPaths"] },
+                { "required": ["autoMarkdownOverrides"] }
+              ]
+            }
+          },
           "objects": {
             "items": {
               "not": {

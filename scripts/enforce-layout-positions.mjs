@@ -38,8 +38,8 @@ function isSceneConfig(data) {
   );
 }
 
-function shouldStripPosition(layoutMode, objectData) {
-  if (layoutMode !== "rings") {
+function shouldStripPosition(layoutType, objectData) {
+  if (layoutType !== "rings") {
     return false;
   }
   if (!objectData || typeof objectData !== "object") {
@@ -74,14 +74,14 @@ for (const filePath of jsonFiles) {
   }
 
   inspectedScenes += 1;
-  const layoutMode = String(data.scene.layoutMode || "").toLowerCase();
-  if (layoutMode !== "rings") {
+  const layoutType = String(data.scene?.layout?.type || "").toLowerCase();
+  if (layoutType !== "rings") {
     continue;
   }
 
   let localStrips = 0;
   for (const objectData of data.objects) {
-    if (shouldStripPosition(layoutMode, objectData)) {
+    if (shouldStripPosition(layoutType, objectData)) {
       delete objectData.position;
       localStrips += 1;
     }

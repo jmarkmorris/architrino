@@ -950,6 +950,35 @@ for (const scenePath of sceneConfigs) {
     );
   }
 
+  const legacySceneFields = [
+    "kind",
+    "layoutMode",
+    "autoMarkdownPath",
+    "autoMarkdownSection",
+    "autoMarkdownHeadingLevel",
+    "autoMarkdownColumns",
+    "autoMarkdownSectionDepth",
+    "autoMarkdownIncludeExistingInLayout",
+    "autoMarkdownNodeRadius",
+    "autoMarkdownRingRadius",
+    "autoMarkdownMaxRingCount",
+    "autoMarkdownGridSpacing",
+    "autoMarkdownPalette",
+    "autoMarkdownPaletteName",
+    "autoMarkdownColor",
+    "autoMarkdownExcludePaths",
+    "autoMarkdownPlainPaths",
+    "autoMarkdownDefaultIndex",
+    "autoMarkdownIndexPaths",
+    "autoMarkdownPlainSectionPaths",
+    "autoMarkdownOverrides",
+  ];
+  legacySceneFields.forEach((field) => {
+    if (Object.prototype.hasOwnProperty.call(scene, field)) {
+      errors.push(`${scenePath}: legacy scene field "${field}" is not allowed`);
+    }
+  });
+
   if (sceneSchema) {
     validateSchemaValue(scenePath, data, sceneSchema, []);
   }

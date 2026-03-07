@@ -540,7 +540,7 @@ function buildComposerSceneConfig(state) {
   }));
   return {
     layout: "static",
-    layoutMode: "rings",
+    layoutType: "rings",
     nodes,
     links: [],
     sceneName: `${state.name} (Preview)`,
@@ -2410,9 +2410,6 @@ function getEffectiveLayoutMode(level) {
   }
   if (typeof level.layoutType === "string" && level.layoutType.trim()) {
     return level.layoutType.toLowerCase();
-  }
-  if (typeof level.layoutMode === "string" && level.layoutMode.trim()) {
-    return level.layoutMode.toLowerCase();
   }
   return "";
 }

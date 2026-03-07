@@ -46,7 +46,7 @@ export class SceneRepository {
     return Array.isArray(palette) && palette.length ? palette : null;
   }
 
-  resolveLayoutMode(sceneMeta) {
+  resolveLayoutType(sceneMeta) {
     if (typeof sceneMeta?.layout?.type === "string") {
       return sceneMeta.layout.type;
     }
@@ -90,78 +90,39 @@ export class SceneRepository {
     return {
       splitSourcePath: usesTypedSplitSource
         ? source.path
-        : typeof sceneMeta?.autoMarkdownPath === "string"
-          ? sceneMeta.autoMarkdownPath
-          : null,
+        : null,
       splitSection:
         typeof view?.section === "string"
           ? view.section
-          : typeof sceneMeta?.autoMarkdownSection === "string"
-            ? sceneMeta.autoMarkdownSection
-            : null,
+          : null,
       splitHeadingLevel:
         typeof view?.headingLevel === "number"
           ? view.headingLevel
           : usesTypedSplitSource
             ? 2
-          : typeof sceneMeta?.autoMarkdownHeadingLevel === "number"
-            ? sceneMeta.autoMarkdownHeadingLevel
             : null,
       splitColumns:
         view?.columns === 1 || view?.columns === 2
           ? view.columns
-          : sceneMeta?.autoMarkdownColumns === 1 || sceneMeta?.autoMarkdownColumns === 2
-            ? sceneMeta.autoMarkdownColumns
             : null,
       splitSectionDepth:
         typeof view?.sectionDepth === "number"
           ? view.sectionDepth
-          : typeof sceneMeta?.autoMarkdownSectionDepth === "number"
-            ? sceneMeta.autoMarkdownSectionDepth
             : null,
-      splitIncludeExistingInLayout:
-        sceneMeta?.autoMarkdownIncludeExistingInLayout === true,
-      splitNodeRadius:
-        typeof sceneMeta?.autoMarkdownNodeRadius === "number"
-          ? sceneMeta.autoMarkdownNodeRadius
-          : null,
-      splitRingRadius:
-        typeof sceneMeta?.autoMarkdownRingRadius === "number"
-          ? sceneMeta.autoMarkdownRingRadius
-          : null,
-      splitMaxRingCount:
-        typeof sceneMeta?.autoMarkdownMaxRingCount === "number"
-          ? sceneMeta.autoMarkdownMaxRingCount
-          : null,
-      splitGridSpacing:
-        typeof sceneMeta?.autoMarkdownGridSpacing === "number"
-          ? sceneMeta.autoMarkdownGridSpacing
-          : null,
-      splitPalette:
-        Array.isArray(sceneMeta?.autoMarkdownPalette) ? sceneMeta.autoMarkdownPalette : null,
-      splitPaletteName:
-        typeof sceneMeta?.autoMarkdownPaletteName === "string"
-          ? sceneMeta.autoMarkdownPaletteName
-          : this.defaultAutoMarkdownPaletteName,
-      splitColor:
-        typeof sceneMeta?.autoMarkdownColor === "string" ? sceneMeta.autoMarkdownColor : null,
-      splitExcludePaths: Array.isArray(sceneMeta?.autoMarkdownExcludePaths)
-        ? sceneMeta.autoMarkdownExcludePaths
-        : [],
-      splitPlainPaths: Array.isArray(sceneMeta?.autoMarkdownPlainPaths)
-        ? sceneMeta.autoMarkdownPlainPaths
-        : [],
-      splitDefaultIndex: sceneMeta?.autoMarkdownDefaultIndex === true,
-      splitIndexPaths: Array.isArray(sceneMeta?.autoMarkdownIndexPaths)
-        ? sceneMeta.autoMarkdownIndexPaths
-        : [],
-      splitPlainSectionPaths: Array.isArray(sceneMeta?.autoMarkdownPlainSectionPaths)
-        ? sceneMeta.autoMarkdownPlainSectionPaths
-        : [],
-      splitOverrides:
-        sceneMeta?.autoMarkdownOverrides && typeof sceneMeta.autoMarkdownOverrides === "object"
-          ? sceneMeta.autoMarkdownOverrides
-          : null,
+      splitIncludeExistingInLayout: false,
+      splitNodeRadius: null,
+      splitRingRadius: null,
+      splitMaxRingCount: null,
+      splitGridSpacing: null,
+      splitPalette: null,
+      splitPaletteName: this.defaultAutoMarkdownPaletteName,
+      splitColor: null,
+      splitExcludePaths: [],
+      splitPlainPaths: [],
+      splitDefaultIndex: false,
+      splitIndexPaths: [],
+      splitPlainSectionPaths: [],
+      splitOverrides: null,
     };
   }
 
@@ -261,59 +222,9 @@ export class SceneRepository {
     return node;
   }
 
-  resolveSceneKindFromType(sceneType) {
-    if (sceneType === "Scene-Index" || sceneType === "Scene-Markdown-View") {
-      return "branching";
-    }
-    if (sceneType === "Scene-Markdown-Split") {
-      return "markdown_split";
-    }
-    if (sceneType === "Scene-Diagram" || sceneType === "Scene-Animation") {
-      return "diagram";
-    }
-    return null;
-  }
-
-  inferSceneKindFromStructure(sceneMeta, nodes) {
-    const list = Array.isArray(nodes) ? nodes : [];
-    const layoutMode = String(this.resolveLayoutMode(sceneMeta) ?? "").toLowerCase();
-    const usesRingLayout = layoutMode === "rings";
-    const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
-    const hasNavigation =
-      list.some(
-        (node) =>
-          (typeof node.childScene === "string" && node.childScene.length > 0) ||
-          node.markdownAutoIndex === true
-      ) || usesRingLayout;
-    const hasLeafContent =
-      (typeof sceneMarkdown.markdownPath === "string" && sceneMarkdown.markdownPath.length > 0) ||
-      list.some(
-        (node) =>
-          (typeof node.markdownPath === "string" && node.markdownPath.length > 0) ||
-          node.markdownAutoIndex === false
-      );
-    if (hasNavigation || hasLeafContent) {
-      return "branching";
-    }
-    return null;
-  }
-
-  resolveSceneKind(sceneData, nodes) {
-    const sceneType = sceneData?.scene?.type;
-    const typeKind = this.resolveSceneKindFromType(sceneType);
-    if (typeKind) {
-      return typeKind;
-    }
-    const inferredKind = this.inferSceneKindFromStructure(sceneData?.scene, nodes);
-    if (inferredKind) {
-      return inferredKind;
-    }
-    return "branching";
-  }
-
   shouldApplyStructuredSpherePalette(scenePath, sceneData) {
-    const layoutMode = String(this.resolveLayoutMode(sceneData?.scene) ?? "").toLowerCase();
-    const isStructuredLayout = layoutMode === "rings";
+    const layoutType = String(this.resolveLayoutType(sceneData?.scene) ?? "").toLowerCase();
+    const isStructuredLayout = layoutType === "rings";
     const sceneId = String(sceneData?.scene?.id ?? "").toLowerCase();
     const isHomeScene =
       typeof this.homeScenePath === "string" &&
@@ -577,13 +488,10 @@ export class SceneRepository {
 
         const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
         const sceneId = sceneMeta.id ?? null;
-        const sceneKind = this.resolveSceneKind(data, nodes);
-        const rawLayoutMode = this.resolveLayoutMode(sceneMeta);
-        const legacyLayoutMode = sceneMeta?.type ? null : rawLayoutMode;
+        const rawLayoutType = this.resolveLayoutType(sceneMeta);
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
-          layoutType: rawLayoutMode,
-          layoutMode: legacyLayoutMode,
+          layoutType: rawLayoutType,
           layoutColumns:
             Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
               ? data.scene.layoutColumns
@@ -592,7 +500,6 @@ export class SceneRepository {
           links: Array.isArray(data.links) ? data.links : [],
           sceneName,
           sceneId,
-          sceneKind,
           markdownPath: sceneMarkdown.markdownPath,
           markdownSection: sceneMarkdown.markdownSection,
           markdownColumns: sceneMarkdown.markdownColumns,
@@ -638,8 +545,8 @@ export class SceneRepository {
     if (!config) {
       return;
     }
-    const layoutMode = String(config.layoutType ?? config.layoutMode ?? "").toLowerCase();
-    const isRingLayout = layoutMode === "rings";
+    const layoutType = String(config.layoutType ?? "").toLowerCase();
+    const isRingLayout = layoutType === "rings";
     const hasSplitSource =
       typeof config.splitSourcePath === "string" && config.splitSourcePath.length > 0;
     if (!isRingLayout || !hasSplitSource) {
