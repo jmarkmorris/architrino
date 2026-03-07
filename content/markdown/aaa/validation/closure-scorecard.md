@@ -22,7 +22,7 @@ Total score rule: equal-weight arithmetic mean of category scores.
 
 Modern physics columns use the same categories for the effective-theory stack (`GR`, `QM`, `QED`, `QFT`, `QCD`, `SM`, `LCDM`): one operational/effective score and one mechanism/foundational score.
 
-| Category | Description | Modern Physics Operational (Score/100) | Modern Physics Mechanism (Score/100) | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-03-06 (Score/100) |
+| Category | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-03-06 |
 | :--- | :--- | :---: | :---: | :---: |
 | Axiom+Notation | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 60 | 82 |
 | Core-Dynamics (Delay/Local) | Closure of core dynamical equations: path-history delayed framework in $\mathbb{A}\mathbb{A}\mathbb{A}$ and local equation closure in modern physics. | 88 | 62 | 80 |

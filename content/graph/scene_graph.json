@@ -4884,7 +4884,7 @@
       "to": "scene:content/scenes/quantum/quantum.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
@@ -7789,7 +7789,7 @@
       "to": "scene:content/scenes/validation/simulations.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",

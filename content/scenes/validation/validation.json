@@ -2,20 +2,24 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "validation",
-    "kind": "branching",
-    "name": "Validation",
+    "title": "Validation",
+    "type": "Scene-Index",
     "units": "relative",
-    "layoutMode": "rings",
+    "layout": {
+      "type": "rings"
+    },
     "wrapLabels": true
   },
   "objects": [
     {
       "id": "validation_simulations",
-      "label": "Simulations",
+      "title": "Simulations",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "subScenes": [
-        "content/scenes/validation/simulations.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/validation/simulations.json"
+        }
       ],
       "motion": {
         "type": "fixed"
@@ -24,87 +28,120 @@
     },
     {
       "id": "architrino_si_base_units",
-      "label": "Architrino SI Base Units",
+      "title": "Architrino SI Base Units",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/architrino-si-base-units.md"
+      },
       "labelTitle": "Architrino SI Base Units",
       "labelBadge": "doc"
     },
     {
       "id": "constraint_ledger",
-      "label": "Constraint Ledger",
+      "title": "Constraint Ledger",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/validation/constraint-ledger.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/constraint-ledger.md"
+      },
       "labelTitle": "Constraint Ledger",
       "labelBadge": "doc"
     },
     {
       "id": "closure_scorecard",
-      "label": "Closure Scorecard",
+      "title": "Closure Scorecard",
       "radius": 2.688,
       "color": "#4b5e2f",
-      "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-      "markdownColumns": 1,
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/closure-scorecard.md"
+      },
+      "view": {
+        "columns": 1
+      },
       "labelTitle": "Closure Scorecard",
       "labelBadge": "doc"
     },
     {
       "id": "failure_criteria",
-      "label": "Failure Criteria",
+      "title": "Failure Criteria",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/failure-criteria.md"
+      },
       "markdownAutoIndex": false,
       "labelTitle": "Failure Criteria",
       "labelBadge": "doc"
     },
     {
       "id": "known_tensions",
-      "label": "Known Tensions",
+      "title": "Known Tensions",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/known-tensions.md"
+      },
       "markdownAutoIndex": false,
       "labelTitle": "Known Tensions"
     },
     {
       "id": "no_go_theorems",
-      "label": "No Go Theorems",
+      "title": "No Go Theorems",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/no-go-theorems.md"
+      },
       "markdownAutoIndex": false,
       "labelTitle": "No Go Theorems"
     },
     {
       "id": "parameter_ledger",
-      "label": "Parameter Ledger",
+      "title": "Parameter Ledger",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/parameter-ledger.md"
+      },
       "markdownAutoIndex": false,
-      "markdownColumns": 1,
+      "view": {
+        "columns": 1
+      },
       "labelTitle": "Parameter Ledger",
       "labelBadge": "doc"
     },
     {
       "id": "reaction_ledger",
-      "label": "Reaction Ledger",
+      "title": "Reaction Ledger",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
-      "markdownColumns": 1,
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/reaction-ledger.md"
+      },
+      "view": {
+        "columns": 1
+      },
       "labelTitle": "Reaction Ledger",
       "labelBadge": "doc"
     },
     {
       "id": "validation_protocols",
-      "label": "Validation Protocols",
+      "title": "Validation Protocols",
       "radius": 2.688,
       "color": "#2c567a",
-      "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/validation/validation-protocols.md"
+      },
       "markdownAutoIndex": false,
       "labelTitle": "Validation Protocols",
       "labelBadge": "doc"
