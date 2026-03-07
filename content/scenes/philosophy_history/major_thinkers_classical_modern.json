@@ -2,168 +2,235 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "major_thinkers_classical_modern",
-    "kind": "markdown_split",
-    "name": "Classical & Early Modern Metaphysics",
+    "title": "Classical & Early Modern Metaphysics",
+    "type": "Scene-Markdown-Split",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "rings"
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
       "id": "thinker_heraclitus_c_535_475_bce",
-      "label": "Heraclitus (c. 535–475 BCE)",
+      "label": "Heraclitus (c. 535\u2013475 BCE)",
       "radius": 2.2,
       "color": "#243d8f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Heraclitus (c. 535–475 BCE)",
       "labelTitle": "Heraclitus",
-      "labelDates": "(c. 535–475 BCE)",
+      "labelDates": "(c. 535\u2013475 BCE)",
       "labelBadge": "doc",
-      "labelSubtitle": "Flux / Becoming"
+      "labelSubtitle": "Flux / Becoming",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Heraclitus (c. 535\u2013475 BCE)"
+      }
     },
     {
       "id": "thinker_democritus_c_460_370_bce",
-      "label": "Democritus (c. 460–370 BCE)",
+      "label": "Democritus (c. 460\u2013370 BCE)",
       "radius": 2.2,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Democritus (c. 460–370 BCE) & Leucippus",
       "labelTitle": "Democritus",
       "labelSubtitle": "Atomism",
-      "labelDates": "(c. 460–370 BCE)",
-      "labelBadge": "doc"
+      "labelDates": "(c. 460\u2013370 BCE)",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Democritus (c. 460\u2013370 BCE) & Leucippus"
+      }
     },
     {
       "id": "thinker_leucippus_fl_5th_century_bce",
       "label": "Leucippus (fl. 5th century BCE)",
       "radius": 2.2,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Democritus (c. 460–370 BCE) & Leucippus",
       "labelTitle": "Leucippus",
       "labelSubtitle": "Atomism",
       "labelDates": "(fl. 5th century BCE)",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Democritus (c. 460\u2013370 BCE) & Leucippus"
+      }
     },
     {
       "id": "thinker_plato_428_348_bce",
-      "label": "Plato (428–348 BCE)",
+      "label": "Plato (428\u2013348 BCE)",
       "radius": 2.2,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Plato (428–348 BCE)",
       "labelTitle": "Plato",
-      "labelDates": "(428–348 BCE)",
+      "labelDates": "(428\u2013348 BCE)",
       "labelBadge": "doc",
-      "labelSubtitle": "Theory of Forms"
+      "labelSubtitle": "Theory of Forms",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Plato (428\u2013348 BCE)"
+      }
     },
     {
       "id": "thinker_aristotle_384_322_bce",
-      "label": "Aristotle (384–322 BCE)",
+      "label": "Aristotle (384\u2013322 BCE)",
       "radius": 2.2,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Aristotle (384–322 BCE)",
       "labelTitle": "Aristotle",
-      "labelDates": "(384–322 BCE)",
+      "labelDates": "(384\u2013322 BCE)",
       "labelBadge": "doc",
-      "labelSubtitle": "Hylomorphism"
+      "labelSubtitle": "Hylomorphism",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Aristotle (384\u2013322 BCE)"
+      }
     },
     {
       "id": "thinker_epicurus_341_270_bce",
-      "label": "Epicurus (341–270 BCE)",
+      "label": "Epicurus (341\u2013270 BCE)",
       "radius": 2.2,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Epicurus (341–270 BCE)",
       "labelTitle": "Epicurus",
-      "labelDates": "(341–270 BCE)",
+      "labelDates": "(341\u2013270 BCE)",
       "labelBadge": "doc",
-      "labelSubtitle": "Atomism"
+      "labelSubtitle": "Atomism",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Epicurus (341\u2013270 BCE)"
+      }
     },
     {
       "id": "thinker_ren_descartes_1596_1650",
-      "label": "René Descartes (1596–1650)",
+      "label": "Ren\u00e9 Descartes (1596\u20131650)",
       "radius": 2.2,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "René Descartes (1596–1650)",
-      "labelTitle": "René Descartes",
-      "labelDates": "(1596–1650)",
+      "labelTitle": "Ren\u00e9 Descartes",
+      "labelDates": "(1596\u20131650)",
       "labelBadge": "doc",
-      "labelSubtitle": "Mind-Body Dualism"
+      "labelSubtitle": "Mind-Body Dualism",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Ren\u00e9 Descartes (1596\u20131650)"
+      }
     },
     {
       "id": "thinker_baruch_spinoza_1632_1677",
-      "label": "Baruch Spinoza (1632–1677)",
+      "label": "Baruch Spinoza (1632\u20131677)",
       "radius": 2.2,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Baruch Spinoza (1632–1677)",
       "labelTitle": "Baruch Spinoza",
-      "labelDates": "(1632–1677)",
+      "labelDates": "(1632\u20131677)",
       "labelBadge": "doc",
-      "labelSubtitle": "Substance Monism"
+      "labelSubtitle": "Substance Monism",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Baruch Spinoza (1632\u20131677)"
+      }
     },
     {
       "id": "thinker_isaac_newton_1643_1727",
-      "label": "Isaac Newton (1643–1727)",
+      "label": "Isaac Newton (1643\u20131727)",
       "radius": 2.2,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Isaac Newton (1643–1727)",
       "labelTitle": "Isaac Newton",
-      "labelDates": "(1643–1727)",
+      "labelDates": "(1643\u20131727)",
       "labelBadge": "doc",
-      "labelSubtitle": "Classical Mechanics"
+      "labelSubtitle": "Classical Mechanics",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Isaac Newton (1643\u20131727)"
+      }
     },
     {
       "id": "thinker_gottfried_wilhelm_leibniz_1646_1716",
-      "label": "Gottfried Wilhelm Leibniz (1646–1716)",
+      "label": "Gottfried Wilhelm Leibniz (1646\u20131716)",
       "radius": 2.2,
       "color": "#7a4a1f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Gottfried Wilhelm Leibniz (1646–1716)",
       "labelTitle": "Gottfried Wilhelm Leibniz",
-      "labelDates": "(1646–1716)",
+      "labelDates": "(1646\u20131716)",
       "labelBadge": "doc",
-      "labelSubtitle": "Monadology"
+      "labelSubtitle": "Monadology",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Gottfried Wilhelm Leibniz (1646\u20131716)"
+      }
     },
     {
       "id": "thinker_david_hume_1711_1776",
-      "label": "David Hume (1711–1776)",
+      "label": "David Hume (1711\u20131776)",
       "radius": 2.2,
       "color": "#355f9a",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "David Hume (1711–1776)",
       "labelTitle": "David Hume",
-      "labelDates": "(1711–1776)",
+      "labelDates": "(1711\u20131776)",
       "labelBadge": "doc",
-      "labelSubtitle": "Empiricism"
+      "labelSubtitle": "Empiricism",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "David Hume (1711\u20131776)"
+      }
     },
     {
       "id": "thinker_immanuel_kant_1724_1804",
-      "label": "Immanuel Kant (1724–1804)",
+      "label": "Immanuel Kant (1724\u20131804)",
       "radius": 2.2,
       "color": "#243d8f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Immanuel Kant (1724–1804)",
       "labelTitle": "Immanuel Kant",
-      "labelDates": "(1724–1804)",
+      "labelDates": "(1724\u20131804)",
       "labelBadge": "doc",
-      "labelSubtitle": "Transcendental Idealism"
+      "labelSubtitle": "Transcendental Idealism",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Immanuel Kant (1724\u20131804)"
+      }
     },
     {
       "id": "thinker_pierre_simon_laplace_1749_1827",
-      "label": "Pierre-Simon Laplace (1749–1827)",
+      "label": "Pierre-Simon Laplace (1749\u20131827)",
       "radius": 2.2,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Pierre-Simon Laplace (1749–1827)",
       "labelTitle": "Pierre-Simon Laplace",
-      "labelDates": "(1749–1827)",
+      "labelDates": "(1749\u20131827)",
       "labelBadge": "doc",
-      "labelSubtitle": "Determinism"
+      "labelSubtitle": "Determinism",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Pierre-Simon Laplace (1749\u20131827)"
+      }
     }
   ]
 }

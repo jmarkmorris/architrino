@@ -2,14 +2,16 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "planet",
-    "kind": "branching",
-    "name": "Planet",
+    "title": "Planet",
+    "type": "Scene-Diagram",
     "units": "relative",
     "scaleBandLog10m": [
       6,
       7
     ],
-    "layoutMode": "rings"
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
@@ -18,7 +20,6 @@
       "scaleExponent": 6,
       "radius": 1.2,
       "color": "#6a4d1b",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -30,7 +31,6 @@
       "scaleExponent": 6,
       "radius": 1.1,
       "color": "#7a4a1f",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -42,7 +42,6 @@
       "scaleExponent": 6,
       "radius": 1,
       "color": "#8a6a3a",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -54,7 +53,6 @@
       "scaleExponent": 6,
       "radius": 1,
       "color": "#2c6c7e",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -66,7 +64,6 @@
       "scaleExponent": 6,
       "radius": 1,
       "color": "#3f5f8a",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -78,7 +75,6 @@
       "scaleExponent": 6,
       "radius": 1,
       "color": "#9ea6bf",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },

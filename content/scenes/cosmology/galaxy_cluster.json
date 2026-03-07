@@ -2,14 +2,16 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "galaxy_cluster",
-    "kind": "branching",
-    "name": "Galaxy Cluster",
+    "title": "Galaxy Cluster",
+    "type": "Scene-Index",
     "units": "relative",
     "scaleBandLog10m": [
       22,
       24
     ],
-    "layoutMode": "rings"
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
@@ -18,13 +20,15 @@
       "scaleExponent": 21,
       "radius": 1.3,
       "color": "#3f5f8a",
-      "subScenes": [
-        "content/scenes/cosmology/galaxy.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "galaxy"
+      "labelTitle": "galaxy",
+      "children": [
+        {
+          "scenePath": "content/scenes/cosmology/galaxy.json"
+        }
+      ]
     },
     {
       "id": "intracluster_medium",
@@ -32,13 +36,15 @@
       "scaleExponent": 23,
       "radius": 1.2,
       "color": "#2a3b5a",
-      "subScenes": [
-        "content/scenes/cosmology/intracluster_medium.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "intracluster medium"
+      "labelTitle": "intracluster medium",
+      "children": [
+        {
+          "scenePath": "content/scenes/cosmology/intracluster_medium.json"
+        }
+      ]
     }
   ]
 }

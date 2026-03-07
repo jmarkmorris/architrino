@@ -2,96 +2,133 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "major_thinkers_info_computation_science",
-    "kind": "markdown_split",
-    "name": "Information + Philosophy of Science",
+    "title": "Information + Philosophy of Science",
+    "type": "Scene-Markdown-Split",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "rings"
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
       "id": "thinker_alfred_north_whitehead_1861_1947",
-      "label": "Alfred North Whitehead (1861–1947)",
+      "label": "Alfred North Whitehead (1861\u20131947)",
       "radius": 2.2,
       "color": "#243d8f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Alfred North Whitehead (1861–1947)",
       "labelTitle": "Alfred North Whitehead",
-      "labelDates": "(1861–1947)",
+      "labelDates": "(1861\u20131947)",
       "labelBadge": "doc",
-      "labelSubtitle": "Process Philosophy"
+      "labelSubtitle": "Process Philosophy",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Alfred North Whitehead (1861\u20131947)"
+      }
     },
     {
       "id": "thinker_karl_popper_1902_1994_falsificationism",
-      "label": "Karl Popper (1902–1994) — Falsificationism",
+      "label": "Karl Popper (1902\u20131994) \u2014 Falsificationism",
       "radius": 2.2,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Karl Popper (1902–1994) — Falsificationism",
       "labelTitle": "Karl Popper",
       "labelSubtitle": "Falsificationism",
-      "labelDates": "(1902–1994)",
-      "labelBadge": "doc"
+      "labelDates": "(1902\u20131994)",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Karl Popper (1902\u20131994) \u2014 Falsificationism"
+      }
     },
     {
       "id": "thinker_john_archibald_wheeler_1911_2008_it_from_bit",
-      "label": "John Archibald Wheeler (1911–2008) — \"It from Bit\"",
+      "label": "John Archibald Wheeler (1911\u20132008) \u2014 \"It from Bit\"",
       "radius": 2.2,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "John Archibald Wheeler (1911–2008) — \"It from Bit\"",
       "labelTitle": "John Archibald Wheeler",
       "labelSubtitle": "\"It from Bit\"",
-      "labelDates": "(1911–2008)",
-      "labelBadge": "doc"
+      "labelDates": "(1911\u20132008)",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "John Archibald Wheeler (1911\u20132008) \u2014 \"It from Bit\""
+      }
     },
     {
       "id": "thinker_thomas_kuhn_1922_1996_paradigm_shifts",
-      "label": "Thomas Kuhn (1922–1996) — Paradigm Shifts",
+      "label": "Thomas Kuhn (1922\u20131996) \u2014 Paradigm Shifts",
       "radius": 2.2,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Thomas Kuhn (1922–1996) — Paradigm Shifts",
       "labelTitle": "Thomas Kuhn",
       "labelSubtitle": "Paradigm Shifts",
-      "labelDates": "(1922–1996)",
-      "labelBadge": "doc"
+      "labelDates": "(1922\u20131996)",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Thomas Kuhn (1922\u20131996) \u2014 Paradigm Shifts"
+      }
     },
     {
       "id": "thinker_imre_lakatos_1922_1974_research_programmes",
-      "label": "Imre Lakatos (1922–1974) — Research Programmes",
+      "label": "Imre Lakatos (1922\u20131974) \u2014 Research Programmes",
       "radius": 2.2,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Imre Lakatos (1922–1974) — Research Programmes",
       "labelTitle": "Imre Lakatos",
       "labelSubtitle": "Research Programmes",
-      "labelDates": "(1922–1974)",
-      "labelBadge": "doc"
+      "labelDates": "(1922\u20131974)",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Imre Lakatos (1922\u20131974) \u2014 Research Programmes"
+      }
     },
     {
       "id": "thinker_nancy_cartwright_1944_the_dappled_world",
-      "label": "Nancy Cartwright (1944–) — The Dappled World",
+      "label": "Nancy Cartwright (1944\u2013) \u2014 The Dappled World",
       "radius": 2.2,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Nancy Cartwright (1944–) — The Dappled World",
       "labelTitle": "Nancy Cartwright",
       "labelSubtitle": "The Dappled World",
-      "labelDates": "(1944–)",
-      "labelBadge": "doc"
+      "labelDates": "(1944\u2013)",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Nancy Cartwright (1944\u2013) \u2014 The Dappled World"
+      }
     },
     {
       "id": "thinker_stephen_wolfram_1959_a_new_kind_of_science_wolfram_physics_project",
-      "label": "Stephen Wolfram (1959–)",
+      "label": "Stephen Wolfram (1959\u2013)",
       "radius": 2.2,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "markdownSection": "Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project",
       "labelTitle": "Stephen Wolfram",
-      "labelDates": "(1959–)",
+      "labelDates": "(1959\u2013)",
       "labelBadge": "doc",
-      "labelSubtitle": "Computational Universe"
+      "labelSubtitle": "Computational Universe",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      },
+      "view": {
+        "section": "Stephen Wolfram (1959\u2013) \u2014 A New Kind of Science, Wolfram Physics Project"
+      }
     }
   ]
 }

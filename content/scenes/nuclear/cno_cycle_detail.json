@@ -2,14 +2,17 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "cno_cycle_detail",
-    "kind": "diagram",
-    "name": "CNO Cycle Detail",
+    "title": "CNO Cycle Detail",
+    "type": "Scene-Diagram",
     "units": "relative",
     "scaleBandLog10m": [
       0,
       1
     ],
-    "hideScaleLabels": true
+    "hideScaleLabels": true,
+    "layout": {
+      "type": "manual"
+    }
   },
   "links": [
     {
@@ -146,7 +149,6 @@
         8.12,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -164,7 +166,6 @@
         4.06,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -182,7 +183,6 @@
         -4.06,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -200,7 +200,6 @@
         -8.12,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -218,7 +217,6 @@
         -4.06,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -236,7 +234,6 @@
         4.06,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -255,7 +252,6 @@
         5.53,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -274,7 +270,6 @@
         0,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -293,7 +288,6 @@
         -5.53,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -312,7 +306,6 @@
         -5.53,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -331,7 +324,6 @@
         0,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -350,7 +342,6 @@
         5.53,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -369,19 +360,21 @@
         8.6,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "H+",
-      "labelDates": "(proton)"
+      "labelDates": "(proton)",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "gamma1",
-      "label": "γ",
-      "shortName": "γ",
+      "label": "\u03b3",
+      "shortName": "\u03b3",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -391,11 +384,10 @@
         7.64,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "γ"
+      "labelTitle": "\u03b3"
     },
     {
       "id": "eplus2",
@@ -410,7 +402,6 @@
         1.28,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -418,8 +409,8 @@
     },
     {
       "id": "nu2",
-      "label": "ν",
-      "shortName": "ν",
+      "label": "\u03bd",
+      "shortName": "\u03bd",
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
@@ -429,13 +420,15 @@
         -1.28,
         0
       ],
-      "subScenes": [
-        "content/scenes/standard-model-particles/neutrino.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "ν"
+      "labelTitle": "\u03bd",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/neutrino.json"
+        }
+      ]
     },
     {
       "id": "p3",
@@ -450,19 +443,21 @@
         -8.6,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "H+",
-      "labelDates": "(proton)"
+      "labelDates": "(proton)",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "gamma3",
-      "label": "γ",
-      "shortName": "γ",
+      "label": "\u03b3",
+      "shortName": "\u03b3",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -472,11 +467,10 @@
         -7.64,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "γ"
+      "labelTitle": "\u03b3"
     },
     {
       "id": "p4",
@@ -491,19 +485,21 @@
         -8.6,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "H+",
-      "labelDates": "(proton)"
+      "labelDates": "(proton)",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "gamma4",
-      "label": "γ",
-      "shortName": "γ",
+      "label": "\u03b3",
+      "shortName": "\u03b3",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -513,11 +509,10 @@
         -7.64,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "γ"
+      "labelTitle": "\u03b3"
     },
     {
       "id": "eplus5",
@@ -532,7 +527,6 @@
         1.28,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -540,8 +534,8 @@
     },
     {
       "id": "nu5",
-      "label": "ν",
-      "shortName": "ν",
+      "label": "\u03bd",
+      "shortName": "\u03bd",
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
@@ -551,13 +545,15 @@
         -1.28,
         0
       ],
-      "subScenes": [
-        "content/scenes/standard-model-particles/neutrino.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "ν"
+      "labelTitle": "\u03bd",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/neutrino.json"
+        }
+      ]
     },
     {
       "id": "p6",
@@ -572,14 +568,16 @@
         8.6,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "H+",
-      "labelDates": "(proton)"
+      "labelDates": "(proton)",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "he4",
@@ -594,7 +592,6 @@
         7.64,
         0
       ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },

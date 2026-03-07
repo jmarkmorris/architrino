@@ -4751,133 +4751,133 @@
       "to": "scene:content/scenes/cosmology/solar_system.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/disk.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/galaxy_cluster.json",
       "to": "scene:content/scenes/cosmology/galaxy.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/galaxy_cluster.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/galaxy_cluster.json",
       "to": "scene:content/scenes/cosmology/intracluster_medium.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/galaxy_cluster.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/galaxy.json",
       "to": "scene:content/scenes/cosmology/disk.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/galaxy.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/fe.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[8].subScenes[0]"
+      "field": "objects[8].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/he.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/mg.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[5].subScenes[0]"
+      "field": "objects[5].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/ne.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[4].subScenes[0]"
+      "field": "objects[4].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/o.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[3].subScenes[0]"
+      "field": "objects[3].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/s.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[7].subScenes[0]"
+      "field": "objects[7].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/si.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[6].subScenes[0]"
+      "field": "objects[6].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/standard-model-particles/neutrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[11].subScenes[0]"
+      "field": "objects[11].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/solar_system.json",
       "to": "scene:content/scenes/cosmology/moon.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/solar_system.json",
-      "field": "objects[4].subScenes[0]"
+      "field": "objects[4].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/solar_system.json",
       "to": "scene:content/scenes/cosmology/planet.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/solar_system.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/solar_system.json",
       "to": "scene:content/scenes/cosmology/star.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/solar_system.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/star.json",
       "to": "scene:content/scenes/nuclear/cno_cycle_detail.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/star.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/universe.json",
       "to": "scene:content/scenes/cosmology/galaxy_cluster.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -7397,42 +7397,42 @@
       "to": "scene:content/scenes/nuclear/nucleus.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/atom.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/atom.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/cno_cycle_detail.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/cno_cycle_detail.json",
-      "field": "objects[12].subScenes[0]"
+      "field": "objects[12].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/cno_cycle_detail.json",
       "to": "scene:content/scenes/standard-model-particles/neutrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/cno_cycle_detail.json",
-      "field": "objects[15].subScenes[0]"
+      "field": "objects[15].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/neutron.json",
       "to": "scene:content/scenes/standard-model-particles/down_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/neutron.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/neutron.json",
       "to": "scene:content/scenes/standard-model-particles/up_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/neutron.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
@@ -7460,63 +7460,63 @@
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nucleus.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/nucleus.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nucleus.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/proton.json",
       "to": "scene:content/scenes/standard-model-particles/down_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/proton.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/proton.json",
       "to": "scene:content/scenes/standard-model-particles/up_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/proton.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[5].subScenes[0]"
+      "field": "objects[5].children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[4].subScenes[0]"
+      "field": "objects[4].children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[3].subScenes[0]"
+      "field": "objects[3].children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -7544,238 +7544,238 @@
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/bottom.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",
       "to": "scene:content/scenes/architrino-theory/positrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/bottom.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/charm.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/charm.json",
-      "field": "objects[6].subScenes[0]"
+      "field": "objects[6].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/charm.json",
       "to": "scene:content/scenes/architrino-theory/positrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/charm.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/down_quark.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/down_quark.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/down_quark.json",
       "to": "scene:content/scenes/architrino-theory/positrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/down_quark.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/electron.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/electron.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/muon_neutrino.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/muon_neutrino.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/muon_neutrino.json",
       "to": "scene:content/scenes/architrino-theory/positrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/muon_neutrino.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/muon.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/muon.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/neutrino.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/neutrino.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/neutrino.json",
       "to": "scene:content/scenes/architrino-theory/positrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/neutrino.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/bottom.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[9].subScenes[0]"
+      "field": "objects[9].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/charm.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[4].subScenes[0]"
+      "field": "objects[4].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/down_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/higgs_boson.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[17].subScenes[0]"
+      "field": "objects[17].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/muon_neutrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[7].subScenes[0]"
+      "field": "objects[7].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/muon.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[6].subScenes[0]"
+      "field": "objects[6].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/neutrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[3].subScenes[0]"
+      "field": "objects[3].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/strange.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[5].subScenes[0]"
+      "field": "objects[5].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/tau_neutrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[11].subScenes[0]"
+      "field": "objects[11].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/tau.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[10].subScenes[0]"
+      "field": "objects[10].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/top.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[8].subScenes[0]"
+      "field": "objects[8].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/standard_model.json",
       "to": "scene:content/scenes/standard-model-particles/up_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/standard_model.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/strange.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/strange.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/strange.json",
       "to": "scene:content/scenes/architrino-theory/positrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/strange.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/tau_neutrino.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/tau_neutrino.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/tau_neutrino.json",
       "to": "scene:content/scenes/architrino-theory/positrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/tau_neutrino.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/tau.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/tau.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/top.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/top.json",
-      "field": "objects[6].subScenes[0]"
+      "field": "objects[6].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/top.json",
       "to": "scene:content/scenes/architrino-theory/positrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/top.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/up_quark.json",
       "to": "scene:content/scenes/architrino-theory/electrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/up_quark.json",
-      "field": "objects[6].subScenes[0]"
+      "field": "objects[6].children[0]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/up_quark.json",
       "to": "scene:content/scenes/architrino-theory/positrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/up_quark.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/validation/simulations.json",

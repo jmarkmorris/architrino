@@ -2,14 +2,16 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "positrino",
-    "kind": "diagram",
-    "name": "Positrino",
+    "title": "Positrino",
+    "type": "Scene-Diagram",
     "units": "relative",
-    "layoutMode": "rings",
     "scaleBandLog10m": [
       -20,
       -18
-    ]
+    ],
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
@@ -19,7 +21,6 @@
       "hideScaleLabel": true,
       "radius": 1.2,
       "color": "RED",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },

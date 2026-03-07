@@ -2,13 +2,16 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "nucleus",
-    "kind": "diagram",
-    "name": "Nucleus",
+    "title": "Nucleus",
+    "type": "Scene-Diagram",
     "units": "relative",
     "scaleBandLog10m": [
       -15,
       -14
-    ]
+    ],
+    "layout": {
+      "type": "manual"
+    }
   },
   "objects": [
     {
@@ -22,13 +25,15 @@
         0,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_2",
@@ -41,13 +46,15 @@
         0,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_3",
@@ -60,13 +67,15 @@
         0.624,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_4",
@@ -79,13 +88,15 @@
         0.624,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_5",
@@ -98,13 +109,15 @@
         0,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_6",
@@ -117,13 +130,15 @@
         -0.624,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_7",
@@ -136,13 +151,15 @@
         -0.624,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_8",
@@ -155,13 +172,15 @@
         0,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_9",
@@ -174,13 +193,15 @@
         0.72,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_10",
@@ -193,13 +214,15 @@
         1.247,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_11",
@@ -212,13 +235,15 @@
         1.44,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_12",
@@ -231,13 +256,15 @@
         1.247,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_13",
@@ -250,13 +277,15 @@
         0.72,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_14",
@@ -269,13 +298,15 @@
         0,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_15",
@@ -288,13 +319,15 @@
         -0.72,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_16",
@@ -307,13 +340,15 @@
         -1.247,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_17",
@@ -326,13 +361,15 @@
         -1.44,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_18",
@@ -345,13 +382,15 @@
         -1.247,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_19",
@@ -364,13 +403,15 @@
         -0.72,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_20",
@@ -383,13 +424,15 @@
         0,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_21",
@@ -402,13 +445,15 @@
         0.739,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_22",
@@ -421,13 +466,15 @@
         1.388,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_23",
@@ -440,13 +487,15 @@
         1.871,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_24",
@@ -459,13 +508,15 @@
         2.127,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_25",
@@ -478,13 +529,15 @@
         2.127,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_26",
@@ -497,13 +550,15 @@
         1.871,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_27",
@@ -516,13 +571,15 @@
         1.388,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_28",
@@ -535,13 +592,15 @@
         0.739,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_29",
@@ -554,13 +613,15 @@
         0,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_30",
@@ -573,13 +634,15 @@
         -0.739,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_31",
@@ -592,13 +655,15 @@
         -1.388,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_32",
@@ -611,13 +676,15 @@
         -1.871,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_33",
@@ -630,13 +697,15 @@
         -2.127,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_34",
@@ -649,13 +718,15 @@
         -2.127,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_35",
@@ -668,13 +739,15 @@
         -1.871,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "neutron_36",
@@ -687,13 +760,15 @@
         -1.388,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "neutron"
+      "labelTitle": "neutron",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
+      ]
     },
     {
       "id": "proton_37",
@@ -706,13 +781,15 @@
         -0.739,
         0
       ],
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "proton"
+      "labelTitle": "proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     }
   ]
 }
