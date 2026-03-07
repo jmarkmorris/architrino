@@ -73,7 +73,7 @@ The taxonomy distinguishes:
 
 Reason:
 
-- the current authored scene families do not require a general hotspot model to define the taxonomy,
+- the taxonomy does not require a general hotspot model in order to remain coherent,
 - hotspot behavior already exists in some domain-specific UI paths,
 - and a generic hotspot schema should wait until a concrete authored use case needs it.
 
@@ -209,7 +209,7 @@ For this ontology:
 - authored hints may adjust layout slots,
 - the layout should not require authored radius values as a core design assumption.
 
-This replaces the older mixed model in which layout radius and node radius were interleaved under the same language.
+Layout terminology should distinguish clearly between rendered node scale and layout placement scale.
 
 ### Common scene controls
 
@@ -261,34 +261,11 @@ That distinction should be visible in both schema design and implementation:
 
 ---
 
-## What this replaces
-
-The ontology replaces older mental models built from terms like:
-
-- authored scene,
-- markdown-derived scene,
-- markdown directory scene,
-- directory walking scene,
-- ring scene as a provenance category.
-
-Those terms were trying to describe implementation behavior, but they collapsed too many concerns together.
-
-The replacement is simpler:
-
-- one explicit scene-of-scenes type: `Scene-Index`,
-- many explicit presentation-scene types,
-- explicit declaration instead of directory discovery,
-- explicit distinction between hierarchy and cross-links,
-- layout separated from ontology,
-- media type handled where it belongs.
-
----
-
 ## Design position
 
 The best practice here is to optimize for explicit ontology rather than short-term convenience.
 
-Directory walking reduced authoring effort, but it also hid structure and repeatedly blurred the distinction between:
+Directory walking hides structure and blurs the distinction between:
 
 - scene hierarchy,
 - media source,
@@ -307,18 +284,16 @@ That makes the model easier to teach, debug, and extend as the webapp gains more
 
 ---
 
-## Non-goals
+## Scope boundaries
 
-This specification does not preserve older behavior for its own sake.
+This specification excludes the following from the core scene ontology:
 
-Non-goals:
-
-- preserving compatibility with generated scene IDs as part of authored ontology,
-- preserving runtime directory walking,
-- preserving generic markdown-specific fields in the base scene schema,
-- preserving required per-node `radius` and `color` in generic scene data,
+- generated scene IDs as part of authored ontology,
+- runtime directory walking,
+- generic markdown-specific fields in the base scene schema,
+- required per-node `radius` and `color` in generic scene data,
 - writing resolved layout placement back into authored scene data,
-- carrying forward obsolete taxonomy labels merely because they exist in the implementation.
+- obsolete taxonomy labels that do not describe scene role, structure, or presentation behavior.
 
 ---
 
@@ -355,7 +330,7 @@ Structural hierarchy should be explicit and separate from ordinary links.
 
 Structural children should use child-reference objects, not bare strings. That is the better design because it gives the hierarchy room for slot hints, label overrides, badges, future state, and eventual spatial metadata without changing the core shape.
 
-Even though the current UI is effectively 2D and everything is displayed as a sphere, the child-reference shape should remain compatible with a future 3D scene model.
+Even though the present UI is effectively 2D and everything is displayed as a sphere, the child-reference shape should remain compatible with a future 3D scene model.
 
 Suggested structural fields for scenes that organize children:
 
@@ -506,7 +481,7 @@ Design direction:
 
 The ring layout should be defined once and reused by scene types that need it.
 
-The layout should not assume a permanently 2D ontology. It may currently resolve positions into a 2D plane, but its data model should allow later extension to 3D placement without requiring a redesign of child references or relationship structure.
+The layout should not assume a permanently 2D ontology. It may resolve positions into a 2D plane at first, but its data model should allow later extension to 3D placement without requiring a redesign of child references or relationship structure.
 
 Suggested layout fields:
 
@@ -537,7 +512,7 @@ Suggested slot-hint behavior:
 - the layout may honor the hint exactly or best-effort,
 - the schema should distinguish requested slot from resolved slot.
 
-This is the place to replace the old overloaded `radius` language with cleaner terms.
+This is the place to use cleaner terms than a single overloaded `radius` concept.
 
 Authored scene data should store requested slot intent only. Resolved slot placement should remain runtime-only and should not be written back into authored scene data unless a future editing workflow actually requires layout freezing or inspection.
 
@@ -584,7 +559,7 @@ That keeps authored scene data compact while still allowing exceptions where the
 
 ### 12. What should disappear from the base schema
 
-The new base schema should not carry forward these legacy assumptions:
+The base schema should exclude these assumptions:
 
 - generic markdown-specific fields in every scene object,
 - required per-node `radius`,
