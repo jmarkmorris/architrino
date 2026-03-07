@@ -4589,77 +4589,77 @@
       "to": "scene:content/scenes/assemblies/assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[2].children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[5].children[0]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[8].children[0]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/dynamics/dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[1].children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/foundations/foundations.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[3].children[0]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[7].children[0]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/spacetime/spacetime.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[4].children[0]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/validation/validation.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "objects[6].children[0]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/fermions.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "objects[3].children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "objects[2].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
@@ -4820,7 +4820,7 @@
       "to": "scene:content/scenes/quantum/quantum.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",

@@ -8,7 +8,17 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "standard_model",
+        "scenePath": "content/scenes/standard-model-particles/standard_model.json"
+      },
+      {
+        "nodeId": "fermions",
+        "scenePath": "content/scenes/assemblies/fermions.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -46,11 +56,6 @@
       "title": "Standard Model Assemblies",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/standard_model.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -61,11 +66,6 @@
       "title": "Fermions",
       "radius": 2.688,
       "color": "#5d3a9f",
-      "children": [
-        {
-          "scenePath": "content/scenes/assemblies/fermions.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },

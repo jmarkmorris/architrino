@@ -5,7 +5,13 @@
     "type": "Scene-Index",
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "quantum",
+        "scenePath": "content/scenes/quantum/quantum.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -13,11 +19,6 @@
       "title": "Quantum",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "children": [
-        {
-          "scenePath": "content/scenes/quantum/quantum.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
