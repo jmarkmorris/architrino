@@ -2408,6 +2408,9 @@ function getEffectiveLayoutMode(level) {
   if (!level) {
     return "";
   }
+  if (typeof level.layoutType === "string" && level.layoutType.trim()) {
+    return level.layoutType.toLowerCase();
+  }
   if (typeof level.layoutMode === "string" && level.layoutMode.trim()) {
     return level.layoutMode.toLowerCase();
   }
