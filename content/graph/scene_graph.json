@@ -4891,2499 +4891,2499 @@
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ac.json",
-      "field": "objects[89].subScenes[0]"
+      "field": "objects[89].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ac.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ac.json",
-      "field": "objects[227].subScenes[0]"
+      "field": "objects[227].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ag.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ag.json",
-      "field": "objects[47].subScenes[0]"
+      "field": "objects[47].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ag.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ag.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ag.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ag.json",
-      "field": "objects[108].subScenes[0]"
+      "field": "objects[108].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/al.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/al.json",
-      "field": "objects[13].subScenes[0]"
+      "field": "objects[13].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/al.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/al.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/al.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/al.json",
-      "field": "objects[27].subScenes[0]"
+      "field": "objects[27].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/am.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/am.json",
-      "field": "objects[95].subScenes[0]"
+      "field": "objects[95].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/am.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/am.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/am.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/am.json",
-      "field": "objects[243].subScenes[0]"
+      "field": "objects[243].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ar.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ar.json",
-      "field": "objects[18].subScenes[0]"
+      "field": "objects[18].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ar.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ar.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ar.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ar.json",
-      "field": "objects[40].subScenes[0]"
+      "field": "objects[40].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/as.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/as.json",
-      "field": "objects[33].subScenes[0]"
+      "field": "objects[33].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/as.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/as.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/as.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/as.json",
-      "field": "objects[75].subScenes[0]"
+      "field": "objects[75].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/at.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/at.json",
-      "field": "objects[85].subScenes[0]"
+      "field": "objects[85].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/at.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/at.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/at.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/at.json",
-      "field": "objects[210].subScenes[0]"
+      "field": "objects[210].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/au.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/au.json",
-      "field": "objects[79].subScenes[0]"
+      "field": "objects[79].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/au.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/au.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/au.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/au.json",
-      "field": "objects[197].subScenes[0]"
+      "field": "objects[197].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/b.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/b.json",
-      "field": "objects[5].subScenes[0]"
+      "field": "objects[5].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/b.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/b.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/b.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/b.json",
-      "field": "objects[11].subScenes[0]"
+      "field": "objects[11].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ba.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ba.json",
-      "field": "objects[56].subScenes[0]"
+      "field": "objects[56].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ba.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ba.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ba.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ba.json",
-      "field": "objects[137].subScenes[0]"
+      "field": "objects[137].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/be.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/be.json",
-      "field": "objects[4].subScenes[0]"
+      "field": "objects[4].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/be.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/be.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/be.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/be.json",
-      "field": "objects[9].subScenes[0]"
+      "field": "objects[9].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/bh.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/bh.json",
-      "field": "objects[107].subScenes[0]"
+      "field": "objects[107].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/bh.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/bh.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/bh.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/bh.json",
-      "field": "objects[270].subScenes[0]"
+      "field": "objects[270].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/bi.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/bi.json",
-      "field": "objects[83].subScenes[0]"
+      "field": "objects[83].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/bi.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/bi.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/bi.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/bi.json",
-      "field": "objects[209].subScenes[0]"
+      "field": "objects[209].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/bk.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/bk.json",
-      "field": "objects[97].subScenes[0]"
+      "field": "objects[97].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/bk.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/bk.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/bk.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/bk.json",
-      "field": "objects[247].subScenes[0]"
+      "field": "objects[247].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/br.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/br.json",
-      "field": "objects[35].subScenes[0]"
+      "field": "objects[35].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/br.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/br.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/br.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/br.json",
-      "field": "objects[80].subScenes[0]"
+      "field": "objects[80].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/c.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/c.json",
-      "field": "objects[6].subScenes[0]"
+      "field": "objects[6].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/c.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/c.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/c.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/c.json",
-      "field": "objects[12].subScenes[0]"
+      "field": "objects[12].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ca.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ca.json",
-      "field": "objects[20].subScenes[0]"
+      "field": "objects[20].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ca.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ca.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ca.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ca.json",
-      "field": "objects[40].subScenes[0]"
+      "field": "objects[40].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cd.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cd.json",
-      "field": "objects[48].subScenes[0]"
+      "field": "objects[48].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cd.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cd.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cd.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cd.json",
-      "field": "objects[112].subScenes[0]"
+      "field": "objects[112].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ce.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ce.json",
-      "field": "objects[58].subScenes[0]"
+      "field": "objects[58].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ce.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ce.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ce.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ce.json",
-      "field": "objects[140].subScenes[0]"
+      "field": "objects[140].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cf.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cf.json",
-      "field": "objects[98].subScenes[0]"
+      "field": "objects[98].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cf.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cf.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cf.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cf.json",
-      "field": "objects[251].subScenes[0]"
+      "field": "objects[251].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cl.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cl.json",
-      "field": "objects[17].subScenes[0]"
+      "field": "objects[17].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cl.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cl.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cl.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cl.json",
-      "field": "objects[35].subScenes[0]"
+      "field": "objects[35].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cm.json",
-      "field": "objects[96].subScenes[0]"
+      "field": "objects[96].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cm.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cm.json",
-      "field": "objects[247].subScenes[0]"
+      "field": "objects[247].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cn.json",
-      "field": "objects[112].subScenes[0]"
+      "field": "objects[112].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cn.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cn.json",
-      "field": "objects[285].subScenes[0]"
+      "field": "objects[285].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/co.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/co.json",
-      "field": "objects[27].subScenes[0]"
+      "field": "objects[27].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/co.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/co.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/co.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/co.json",
-      "field": "objects[59].subScenes[0]"
+      "field": "objects[59].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cr.json",
-      "field": "objects[24].subScenes[0]"
+      "field": "objects[24].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cr.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cr.json",
-      "field": "objects[52].subScenes[0]"
+      "field": "objects[52].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cs.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cs.json",
-      "field": "objects[55].subScenes[0]"
+      "field": "objects[55].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cs.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cs.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cs.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cs.json",
-      "field": "objects[133].subScenes[0]"
+      "field": "objects[133].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cu.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cu.json",
-      "field": "objects[29].subScenes[0]"
+      "field": "objects[29].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cu.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cu.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/cu.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/cu.json",
-      "field": "objects[64].subScenes[0]"
+      "field": "objects[64].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/db.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/db.json",
-      "field": "objects[105].subScenes[0]"
+      "field": "objects[105].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/db.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/db.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/db.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/db.json",
-      "field": "objects[268].subScenes[0]"
+      "field": "objects[268].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ds.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ds.json",
-      "field": "objects[110].subScenes[0]"
+      "field": "objects[110].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ds.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ds.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ds.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ds.json",
-      "field": "objects[281].subScenes[0]"
+      "field": "objects[281].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/dy.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/dy.json",
-      "field": "objects[66].subScenes[0]"
+      "field": "objects[66].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/dy.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/dy.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/dy.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/dy.json",
-      "field": "objects[163].subScenes[0]"
+      "field": "objects[163].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/er.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/er.json",
-      "field": "objects[68].subScenes[0]"
+      "field": "objects[68].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/er.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/er.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/er.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/er.json",
-      "field": "objects[167].subScenes[0]"
+      "field": "objects[167].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/es.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/es.json",
-      "field": "objects[99].subScenes[0]"
+      "field": "objects[99].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/es.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/es.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/es.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/es.json",
-      "field": "objects[252].subScenes[0]"
+      "field": "objects[252].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/eu.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/eu.json",
-      "field": "objects[63].subScenes[0]"
+      "field": "objects[63].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/eu.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/eu.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/eu.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/eu.json",
-      "field": "objects[152].subScenes[0]"
+      "field": "objects[152].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/f.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/f.json",
-      "field": "objects[9].subScenes[0]"
+      "field": "objects[9].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/f.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/f.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/f.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/f.json",
-      "field": "objects[19].subScenes[0]"
+      "field": "objects[19].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fe.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fe.json",
-      "field": "objects[26].subScenes[0]"
+      "field": "objects[26].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fe.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fe.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fe.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fe.json",
-      "field": "objects[56].subScenes[0]"
+      "field": "objects[56].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fl.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fl.json",
-      "field": "objects[114].subScenes[0]"
+      "field": "objects[114].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fl.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fl.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fl.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fl.json",
-      "field": "objects[289].subScenes[0]"
+      "field": "objects[289].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fm.json",
-      "field": "objects[100].subScenes[0]"
+      "field": "objects[100].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fm.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fm.json",
-      "field": "objects[257].subScenes[0]"
+      "field": "objects[257].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fr.json",
-      "field": "objects[87].subScenes[0]"
+      "field": "objects[87].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fr.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/fr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/fr.json",
-      "field": "objects[223].subScenes[0]"
+      "field": "objects[223].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ga.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ga.json",
-      "field": "objects[31].subScenes[0]"
+      "field": "objects[31].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ga.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ga.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ga.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ga.json",
-      "field": "objects[70].subScenes[0]"
+      "field": "objects[70].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/gd.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/gd.json",
-      "field": "objects[64].subScenes[0]"
+      "field": "objects[64].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/gd.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/gd.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/gd.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/gd.json",
-      "field": "objects[157].subScenes[0]"
+      "field": "objects[157].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ge.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ge.json",
-      "field": "objects[32].subScenes[0]"
+      "field": "objects[32].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ge.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ge.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ge.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ge.json",
-      "field": "objects[73].subScenes[0]"
+      "field": "objects[73].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/h.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/h.json",
-      "field": "objects[3].subScenes[0]"
+      "field": "objects[3].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/h.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/h.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/h.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/h.json",
-      "field": "objects[1].subScenes[0]"
+      "field": "objects[1].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/he.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/he.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/he.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/he.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/he.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/he.json",
-      "field": "objects[4].subScenes[0]"
+      "field": "objects[4].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/hf.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/hf.json",
-      "field": "objects[72].subScenes[0]"
+      "field": "objects[72].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/hf.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/hf.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/hf.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/hf.json",
-      "field": "objects[178].subScenes[0]"
+      "field": "objects[178].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/hg.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/hg.json",
-      "field": "objects[80].subScenes[0]"
+      "field": "objects[80].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/hg.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/hg.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/hg.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/hg.json",
-      "field": "objects[201].subScenes[0]"
+      "field": "objects[201].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ho.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ho.json",
-      "field": "objects[67].subScenes[0]"
+      "field": "objects[67].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ho.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ho.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ho.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ho.json",
-      "field": "objects[165].subScenes[0]"
+      "field": "objects[165].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/hs.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/hs.json",
-      "field": "objects[108].subScenes[0]"
+      "field": "objects[108].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/hs.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/hs.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/hs.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/hs.json",
-      "field": "objects[269].subScenes[0]"
+      "field": "objects[269].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/i.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/i.json",
-      "field": "objects[53].subScenes[0]"
+      "field": "objects[53].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/i.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/i.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/i.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/i.json",
-      "field": "objects[127].subScenes[0]"
+      "field": "objects[127].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/in.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/in.json",
-      "field": "objects[49].subScenes[0]"
+      "field": "objects[49].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/in.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/in.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/in.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/in.json",
-      "field": "objects[115].subScenes[0]"
+      "field": "objects[115].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ir.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ir.json",
-      "field": "objects[77].subScenes[0]"
+      "field": "objects[77].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ir.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ir.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ir.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ir.json",
-      "field": "objects[192].subScenes[0]"
+      "field": "objects[192].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/k.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/k.json",
-      "field": "objects[19].subScenes[0]"
+      "field": "objects[19].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/k.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/k.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/k.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/k.json",
-      "field": "objects[39].subScenes[0]"
+      "field": "objects[39].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/kr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/kr.json",
-      "field": "objects[36].subScenes[0]"
+      "field": "objects[36].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/kr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/kr.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/kr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/kr.json",
-      "field": "objects[84].subScenes[0]"
+      "field": "objects[84].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/la.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/la.json",
-      "field": "objects[57].subScenes[0]"
+      "field": "objects[57].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/la.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/la.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/la.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/la.json",
-      "field": "objects[139].subScenes[0]"
+      "field": "objects[139].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/li.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/li.json",
-      "field": "objects[3].subScenes[0]"
+      "field": "objects[3].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/li.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/li.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/li.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/li.json",
-      "field": "objects[7].subScenes[0]"
+      "field": "objects[7].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/lr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/lr.json",
-      "field": "objects[103].subScenes[0]"
+      "field": "objects[103].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/lr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/lr.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/lr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/lr.json",
-      "field": "objects[266].subScenes[0]"
+      "field": "objects[266].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/lu.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/lu.json",
-      "field": "objects[71].subScenes[0]"
+      "field": "objects[71].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/lu.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/lu.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/lu.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/lu.json",
-      "field": "objects[175].subScenes[0]"
+      "field": "objects[175].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/lv.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/lv.json",
-      "field": "objects[116].subScenes[0]"
+      "field": "objects[116].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/lv.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/lv.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/lv.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/lv.json",
-      "field": "objects[293].subScenes[0]"
+      "field": "objects[293].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mc.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mc.json",
-      "field": "objects[115].subScenes[0]"
+      "field": "objects[115].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mc.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mc.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mc.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mc.json",
-      "field": "objects[289].subScenes[0]"
+      "field": "objects[289].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/md.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/md.json",
-      "field": "objects[101].subScenes[0]"
+      "field": "objects[101].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/md.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/md.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/md.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/md.json",
-      "field": "objects[258].subScenes[0]"
+      "field": "objects[258].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mg.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mg.json",
-      "field": "objects[12].subScenes[0]"
+      "field": "objects[12].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mg.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mg.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mg.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mg.json",
-      "field": "objects[24].subScenes[0]"
+      "field": "objects[24].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mn.json",
-      "field": "objects[25].subScenes[0]"
+      "field": "objects[25].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mn.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mn.json",
-      "field": "objects[55].subScenes[0]"
+      "field": "objects[55].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mo.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mo.json",
-      "field": "objects[42].subScenes[0]"
+      "field": "objects[42].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mo.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mo.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mo.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mo.json",
-      "field": "objects[96].subScenes[0]"
+      "field": "objects[96].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mt.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mt.json",
-      "field": "objects[109].subScenes[0]"
+      "field": "objects[109].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mt.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mt.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/mt.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/mt.json",
-      "field": "objects[278].subScenes[0]"
+      "field": "objects[278].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/n.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/n.json",
-      "field": "objects[7].subScenes[0]"
+      "field": "objects[7].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/n.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/n.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/n.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/n.json",
-      "field": "objects[14].subScenes[0]"
+      "field": "objects[14].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/na.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/na.json",
-      "field": "objects[11].subScenes[0]"
+      "field": "objects[11].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/na.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/na.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/na.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/na.json",
-      "field": "objects[23].subScenes[0]"
+      "field": "objects[23].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/nb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/nb.json",
-      "field": "objects[41].subScenes[0]"
+      "field": "objects[41].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/nb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/nb.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/nb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/nb.json",
-      "field": "objects[93].subScenes[0]"
+      "field": "objects[93].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/nd.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/nd.json",
-      "field": "objects[60].subScenes[0]"
+      "field": "objects[60].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/nd.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/nd.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/nd.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/nd.json",
-      "field": "objects[144].subScenes[0]"
+      "field": "objects[144].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ne.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ne.json",
-      "field": "objects[10].subScenes[0]"
+      "field": "objects[10].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ne.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ne.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ne.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ne.json",
-      "field": "objects[20].subScenes[0]"
+      "field": "objects[20].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/nh.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/nh.json",
-      "field": "objects[113].subScenes[0]"
+      "field": "objects[113].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/nh.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/nh.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/nh.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/nh.json",
-      "field": "objects[286].subScenes[0]"
+      "field": "objects[286].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ni.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ni.json",
-      "field": "objects[28].subScenes[0]"
+      "field": "objects[28].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ni.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ni.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ni.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ni.json",
-      "field": "objects[59].subScenes[0]"
+      "field": "objects[59].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/no.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/no.json",
-      "field": "objects[102].subScenes[0]"
+      "field": "objects[102].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/no.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/no.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/no.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/no.json",
-      "field": "objects[259].subScenes[0]"
+      "field": "objects[259].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/np.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/np.json",
-      "field": "objects[93].subScenes[0]"
+      "field": "objects[93].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/np.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/np.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/np.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/np.json",
-      "field": "objects[237].subScenes[0]"
+      "field": "objects[237].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/o.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/o.json",
-      "field": "objects[8].subScenes[0]"
+      "field": "objects[8].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/o.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/o.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/o.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/o.json",
-      "field": "objects[16].subScenes[0]"
+      "field": "objects[16].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/og.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/og.json",
-      "field": "objects[118].subScenes[0]"
+      "field": "objects[118].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/og.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/og.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/og.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/og.json",
-      "field": "objects[294].subScenes[0]"
+      "field": "objects[294].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/os.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/os.json",
-      "field": "objects[76].subScenes[0]"
+      "field": "objects[76].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/os.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/os.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/os.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/os.json",
-      "field": "objects[190].subScenes[0]"
+      "field": "objects[190].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/p.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/p.json",
-      "field": "objects[15].subScenes[0]"
+      "field": "objects[15].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/p.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/p.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/p.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/p.json",
-      "field": "objects[31].subScenes[0]"
+      "field": "objects[31].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pa.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pa.json",
-      "field": "objects[91].subScenes[0]"
+      "field": "objects[91].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pa.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pa.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pa.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pa.json",
-      "field": "objects[231].subScenes[0]"
+      "field": "objects[231].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pb.json",
-      "field": "objects[82].subScenes[0]"
+      "field": "objects[82].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pb.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pb.json",
-      "field": "objects[207].subScenes[0]"
+      "field": "objects[207].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pd.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pd.json",
-      "field": "objects[46].subScenes[0]"
+      "field": "objects[46].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pd.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pd.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pd.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pd.json",
-      "field": "objects[106].subScenes[0]"
+      "field": "objects[106].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pm.json",
-      "field": "objects[61].subScenes[0]"
+      "field": "objects[61].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pm.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pm.json",
-      "field": "objects[145].subScenes[0]"
+      "field": "objects[145].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/po.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/po.json",
-      "field": "objects[84].subScenes[0]"
+      "field": "objects[84].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/po.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/po.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/po.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/po.json",
-      "field": "objects[209].subScenes[0]"
+      "field": "objects[209].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pr.json",
-      "field": "objects[59].subScenes[0]"
+      "field": "objects[59].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pr.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pr.json",
-      "field": "objects[141].subScenes[0]"
+      "field": "objects[141].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pt.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pt.json",
-      "field": "objects[78].subScenes[0]"
+      "field": "objects[78].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pt.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pt.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pt.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pt.json",
-      "field": "objects[195].subScenes[0]"
+      "field": "objects[195].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pu.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pu.json",
-      "field": "objects[94].subScenes[0]"
+      "field": "objects[94].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pu.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pu.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/pu.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/pu.json",
-      "field": "objects[244].subScenes[0]"
+      "field": "objects[244].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ra.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ra.json",
-      "field": "objects[88].subScenes[0]"
+      "field": "objects[88].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ra.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ra.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ra.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ra.json",
-      "field": "objects[226].subScenes[0]"
+      "field": "objects[226].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rb.json",
-      "field": "objects[37].subScenes[0]"
+      "field": "objects[37].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rb.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rb.json",
-      "field": "objects[85].subScenes[0]"
+      "field": "objects[85].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/re.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/re.json",
-      "field": "objects[75].subScenes[0]"
+      "field": "objects[75].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/re.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/re.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/re.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/re.json",
-      "field": "objects[186].subScenes[0]"
+      "field": "objects[186].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rf.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rf.json",
-      "field": "objects[104].subScenes[0]"
+      "field": "objects[104].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rf.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rf.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rf.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rf.json",
-      "field": "objects[267].subScenes[0]"
+      "field": "objects[267].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rg.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rg.json",
-      "field": "objects[111].subScenes[0]"
+      "field": "objects[111].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rg.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rg.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rg.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rg.json",
-      "field": "objects[282].subScenes[0]"
+      "field": "objects[282].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rh.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rh.json",
-      "field": "objects[45].subScenes[0]"
+      "field": "objects[45].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rh.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rh.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rh.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rh.json",
-      "field": "objects[103].subScenes[0]"
+      "field": "objects[103].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rn.json",
-      "field": "objects[86].subScenes[0]"
+      "field": "objects[86].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rn.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/rn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/rn.json",
-      "field": "objects[222].subScenes[0]"
+      "field": "objects[222].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ru.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ru.json",
-      "field": "objects[44].subScenes[0]"
+      "field": "objects[44].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ru.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ru.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ru.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ru.json",
-      "field": "objects[101].subScenes[0]"
+      "field": "objects[101].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/s.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/s.json",
-      "field": "objects[16].subScenes[0]"
+      "field": "objects[16].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/s.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/s.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/s.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/s.json",
-      "field": "objects[32].subScenes[0]"
+      "field": "objects[32].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sb.json",
-      "field": "objects[51].subScenes[0]"
+      "field": "objects[51].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sb.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sb.json",
-      "field": "objects[122].subScenes[0]"
+      "field": "objects[122].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sc.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sc.json",
-      "field": "objects[21].subScenes[0]"
+      "field": "objects[21].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sc.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sc.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sc.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sc.json",
-      "field": "objects[45].subScenes[0]"
+      "field": "objects[45].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/se.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/se.json",
-      "field": "objects[34].subScenes[0]"
+      "field": "objects[34].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/se.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/se.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/se.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/se.json",
-      "field": "objects[79].subScenes[0]"
+      "field": "objects[79].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sg.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sg.json",
-      "field": "objects[106].subScenes[0]"
+      "field": "objects[106].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sg.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sg.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sg.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sg.json",
-      "field": "objects[269].subScenes[0]"
+      "field": "objects[269].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/si.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/si.json",
-      "field": "objects[14].subScenes[0]"
+      "field": "objects[14].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/si.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/si.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/si.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/si.json",
-      "field": "objects[28].subScenes[0]"
+      "field": "objects[28].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sm.json",
-      "field": "objects[62].subScenes[0]"
+      "field": "objects[62].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sm.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sm.json",
-      "field": "objects[150].subScenes[0]"
+      "field": "objects[150].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sn.json",
-      "field": "objects[50].subScenes[0]"
+      "field": "objects[50].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sn.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sn.json",
-      "field": "objects[119].subScenes[0]"
+      "field": "objects[119].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sr.json",
-      "field": "objects[38].subScenes[0]"
+      "field": "objects[38].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sr.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/sr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/sr.json",
-      "field": "objects[88].subScenes[0]"
+      "field": "objects[88].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ta.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ta.json",
-      "field": "objects[73].subScenes[0]"
+      "field": "objects[73].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ta.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ta.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ta.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ta.json",
-      "field": "objects[181].subScenes[0]"
+      "field": "objects[181].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tb.json",
-      "field": "objects[65].subScenes[0]"
+      "field": "objects[65].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tb.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tb.json",
-      "field": "objects[159].subScenes[0]"
+      "field": "objects[159].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tc.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tc.json",
-      "field": "objects[43].subScenes[0]"
+      "field": "objects[43].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tc.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tc.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tc.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tc.json",
-      "field": "objects[98].subScenes[0]"
+      "field": "objects[98].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/te.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/te.json",
-      "field": "objects[52].subScenes[0]"
+      "field": "objects[52].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/te.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/te.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/te.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/te.json",
-      "field": "objects[128].subScenes[0]"
+      "field": "objects[128].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/th.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/th.json",
-      "field": "objects[90].subScenes[0]"
+      "field": "objects[90].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/th.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/th.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/th.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/th.json",
-      "field": "objects[232].subScenes[0]"
+      "field": "objects[232].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ti.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ti.json",
-      "field": "objects[22].subScenes[0]"
+      "field": "objects[22].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ti.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ti.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ti.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ti.json",
-      "field": "objects[48].subScenes[0]"
+      "field": "objects[48].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tl.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tl.json",
-      "field": "objects[81].subScenes[0]"
+      "field": "objects[81].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tl.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tl.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tl.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tl.json",
-      "field": "objects[204].subScenes[0]"
+      "field": "objects[204].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tm.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tm.json",
-      "field": "objects[69].subScenes[0]"
+      "field": "objects[69].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tm.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tm.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/tm.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/tm.json",
-      "field": "objects[169].subScenes[0]"
+      "field": "objects[169].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ts.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ts.json",
-      "field": "objects[117].subScenes[0]"
+      "field": "objects[117].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ts.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ts.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/ts.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/ts.json",
-      "field": "objects[294].subScenes[0]"
+      "field": "objects[294].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/u.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/u.json",
-      "field": "objects[92].subScenes[0]"
+      "field": "objects[92].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/u.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/u.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/u.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/u.json",
-      "field": "objects[238].subScenes[0]"
+      "field": "objects[238].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/uue.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/uue.json",
-      "field": "objects[119].subScenes[0]"
+      "field": "objects[119].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/uue.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/uue.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/uue.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/uue.json",
-      "field": "objects[315].subScenes[0]"
+      "field": "objects[315].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/v.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/v.json",
-      "field": "objects[23].subScenes[0]"
+      "field": "objects[23].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/v.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/v.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/v.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/v.json",
-      "field": "objects[51].subScenes[0]"
+      "field": "objects[51].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/w.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/w.json",
-      "field": "objects[74].subScenes[0]"
+      "field": "objects[74].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/w.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/w.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/w.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/w.json",
-      "field": "objects[184].subScenes[0]"
+      "field": "objects[184].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/xe.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/xe.json",
-      "field": "objects[54].subScenes[0]"
+      "field": "objects[54].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/xe.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/xe.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/xe.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/xe.json",
-      "field": "objects[131].subScenes[0]"
+      "field": "objects[131].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/y.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/y.json",
-      "field": "objects[39].subScenes[0]"
+      "field": "objects[39].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/y.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/y.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/y.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/y.json",
-      "field": "objects[89].subScenes[0]"
+      "field": "objects[89].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/yb.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/yb.json",
-      "field": "objects[70].subScenes[0]"
+      "field": "objects[70].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/yb.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/yb.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/yb.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/yb.json",
-      "field": "objects[173].subScenes[0]"
+      "field": "objects[173].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/zn.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/zn.json",
-      "field": "objects[30].subScenes[0]"
+      "field": "objects[30].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/zn.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/zn.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/zn.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/zn.json",
-      "field": "objects[65].subScenes[0]"
+      "field": "objects[65].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/zr.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/zr.json",
-      "field": "objects[40].subScenes[0]"
+      "field": "objects[40].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/zr.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/zr.json",
-      "field": "objects[0].subScenes[0]"
+      "field": "objects[0].children[0]"
     },
     {
       "from": "scene:content/scenes/elements/zr.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/elements/zr.json",
-      "field": "objects[91].subScenes[0]"
+      "field": "objects[91].children[0]"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
