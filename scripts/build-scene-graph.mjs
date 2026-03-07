@@ -480,6 +480,9 @@ for (const sceneEntry of sceneEntries) {
   if (typeof scene.markdownPath === "string") {
     addMarkdownDocEdge(scenePath, scene.markdownPath, "scene.markdownPath");
   }
+  if (scene.source && typeof scene.source === "object" && scene.source.type === "markdown") {
+    addMarkdownDocEdge(scenePath, scene.source.path, "scene.source.path");
+  }
   if (typeof scene.autoMarkdownPath === "string") {
     addMarkdownDocEdge(scenePath, scene.autoMarkdownPath, "scene.autoMarkdownPath");
   }
@@ -536,9 +539,44 @@ for (const sceneEntry of sceneEntries) {
   }
 
   objects.forEach((obj, objectIndex) => {
-    if (typeof obj?.markdownPath === "string") {
+    const objectMarkdownPath =
+      typeof obj?.markdownPath === "string"
+        ? obj.markdownPath
+        : obj?.source?.type === "markdown" && typeof obj?.source?.path === "string"
+          ? obj.source.path
+          : null;
+    if (typeof objectMarkdownPath === "string") {
       const objectId = asText(obj.id) || `objects[${objectIndex}]`;
-      addMarkdownDocEdge(scenePath, obj.markdownPath, `${objectId}.markdownPath`);
+      addMarkdownDocEdge(scenePath, objectMarkdownPath, `${objectId}.source.path`);
+    }
+    if (Array.isArray(obj?.children)) {
+      obj.children.forEach((childRef, childIndex) => {
+        const childTarget =
+          typeof childRef?.scenePath === "string"
+            ? childRef.scenePath
+            : typeof childRef?.sceneId === "string"
+              ? childRef.sceneId
+              : null;
+        if (!childTarget) {
+          return;
+        }
+        const normalizedSubScenePath = normalizePath(childTarget);
+        if (!scenePathSet.has(normalizedSubScenePath)) {
+          warnings.push(
+            `${scenePath} -> objects[${objectIndex}].children[${childIndex}]: target scene missing from index (${normalizedSubScenePath})`
+          );
+        }
+        const from = ensureSceneNode(scenePath);
+        const to = ensureSceneNode(normalizedSubScenePath);
+        addEdge({
+          from,
+          to,
+          edgeType: "subscene",
+          source: scenePath,
+          field: `objects[${objectIndex}].children[${childIndex}]`,
+        });
+      });
+      return;
     }
     if (!Array.isArray(obj?.subScenes)) {
       return;

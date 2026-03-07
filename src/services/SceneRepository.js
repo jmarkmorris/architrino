@@ -49,6 +49,7 @@ export class SceneRepository {
 
   resolveSceneKind(sceneData, nodes) {
     const rawKind = sceneData?.scene?.kind;
+    const sceneType = sceneData?.scene?.type;
     if (
       rawKind === "branching" ||
       rawKind === "diagram" ||
@@ -57,9 +58,25 @@ export class SceneRepository {
     ) {
       return rawKind;
     }
+    if (sceneType === "Scene-Index" || sceneType === "Scene-Markdown-View") {
+      return "branching";
+    }
+    if (sceneType === "Scene-Markdown-Split") {
+      return "markdown_split";
+    }
+    if (sceneType === "Scene-Diagram" || sceneType === "Scene-Animation") {
+      return "diagram";
+    }
     const list = Array.isArray(nodes) ? nodes : [];
-    const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
+    const layoutMode = String(
+      sceneData?.scene?.layout?.type ?? sceneData?.scene?.layoutMode ?? ""
+    ).toLowerCase();
     const usesRingLayout = layoutMode === "rings";
+    const sceneSource = sceneData?.scene?.source;
+    const sceneSourcePath =
+      sceneSource?.type === "markdown" && typeof sceneSource.path === "string"
+        ? sceneSource.path
+        : null;
     const hasNavigation =
       list.some(
         (node) =>
@@ -69,6 +86,7 @@ export class SceneRepository {
     const hasLeafContent =
       (typeof sceneData?.scene?.markdownPath === "string" &&
         sceneData.scene.markdownPath.length > 0) ||
+      (typeof sceneSourcePath === "string" && sceneSourcePath.length > 0) ||
       list.some(
         (node) =>
           (typeof node.markdownPath === "string" && node.markdownPath.length > 0) ||
@@ -81,7 +99,9 @@ export class SceneRepository {
   }
 
   shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
-    const layoutMode = String(sceneData?.scene?.layoutMode ?? "").toLowerCase();
+    const layoutMode = String(
+      sceneData?.scene?.layout?.type ?? sceneData?.scene?.layoutMode ?? ""
+    ).toLowerCase();
     const isStructuredLayout = layoutMode === "rings";
     const sceneId = String(sceneData?.scene?.id ?? "").toLowerCase();
     const isHomeScene =
@@ -318,11 +338,41 @@ export class SceneRepository {
         return response.json();
       })
       .then(async (data) => {
+        const sceneMeta = data.scene ?? {};
+        const sceneSource = sceneMeta.source ?? null;
+        const sceneView = sceneMeta.view ?? null;
         const hideScaleLabels = Boolean(data.scene?.hideScaleLabels);
         const wrapLabels = data.scene?.wrapLabels ?? true;
         const markdownDerived = this.deriveMarkdownConfig(data.scene?.markdown);
-        const idMap = new Map(data.objects.map((obj) => [obj.id, obj.label || obj.id]));
+        const idMap = new Map(
+          data.objects.map((obj) => [obj.id, obj.label || obj.title || obj.id])
+        );
         let nodes = data.objects.map((obj) => {
+          const nodeSource = obj.source ?? null;
+          const nodeView = obj.view ?? null;
+          const nodeTitle = obj.label || obj.title || obj.id;
+          const markdownPath =
+            typeof obj.markdownPath === "string"
+              ? obj.markdownPath
+              : nodeSource?.type === "markdown" && typeof nodeSource.path === "string"
+                ? nodeSource.path
+                : null;
+          const markdownSection =
+            typeof obj.markdownSection === "string"
+              ? obj.markdownSection
+              : typeof nodeView?.section === "string"
+                ? nodeView.section
+                : null;
+          const markdownColumns =
+            typeof obj.markdownColumns === "number"
+              ? obj.markdownColumns
+              : typeof nodeView?.columns === "number"
+                ? nodeView.columns
+                : null;
+          const childRef =
+            Array.isArray(obj.children) && obj.children.length > 0 && obj.children[0]
+              ? obj.children[0]
+              : null;
           const hasScale =
             obj.scaleExponent !== undefined && obj.scaleExponent !== null;
           const binaryBands = Array.isArray(obj.binaryBands)
@@ -334,9 +384,9 @@ export class SceneRepository {
           }
           const node = {
             id: obj.id,
-            name: obj.label || obj.id,
+            name: nodeTitle,
             shortName: obj.shortName ?? null,
-            labelTitle: obj.labelTitle ?? null,
+            labelTitle: obj.labelTitle ?? obj.title ?? null,
             labelSubtitle: obj.labelSubtitle ?? null,
             labelDates: obj.labelDates ?? null,
             labelBadge: obj.labelBadge ?? null,
@@ -352,9 +402,9 @@ export class SceneRepository {
             reaction: obj.reaction,
             details: obj.details ?? null,
             renderStyle: obj.renderStyle ?? null,
-            markdownPath: obj.markdownPath ?? null,
-            markdownSection: obj.markdownSection ?? null,
-            markdownColumns: obj.markdownColumns ?? null,
+            markdownPath,
+            markdownSection,
+            markdownColumns,
             markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
             markdownAutoIndex: obj.markdownAutoIndex ?? null,
             markdownPlainSectionPaths: Array.isArray(obj.markdownPlainSectionPaths)
@@ -370,7 +420,12 @@ export class SceneRepository {
             hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
             wrapLabel: obj.wrapLabel ?? wrapLabels,
           };
-          if (Array.isArray(obj.subScenes) && obj.subScenes.length > 0) {
+          if (
+            childRef &&
+            (typeof childRef.scenePath === "string" || typeof childRef.sceneId === "string")
+          ) {
+            node.childScene = childRef.scenePath ?? childRef.sceneId;
+          } else if (Array.isArray(obj.subScenes) && obj.subScenes.length > 0) {
             node.childScene = obj.subScenes[0];
           }
           if (obj.motion && obj.motion.type === "orbit") {
@@ -413,12 +468,33 @@ export class SceneRepository {
         }
         await this.applyMarkdownDocEligibility(nodes);
 
-        const sceneName =
-          data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;
-        const sceneId = data.scene?.id ?? null;
+        const sceneName = sceneMeta.title ?? sceneMeta.name ?? sceneMeta.id ?? scenePath;
+        const sceneId = sceneMeta.id ?? null;
         const sceneKind = this.resolveSceneKind(data, nodes);
         const rawLayoutMode =
-          typeof data.scene?.layoutMode === "string" ? data.scene.layoutMode : null;
+          typeof sceneMeta.layout?.type === "string"
+            ? sceneMeta.layout.type
+            : typeof sceneMeta.layoutMode === "string"
+              ? sceneMeta.layoutMode
+              : null;
+        const topLevelMarkdownPath =
+          typeof sceneMeta.markdownPath === "string"
+            ? sceneMeta.markdownPath
+            : sceneSource?.type === "markdown" && typeof sceneSource.path === "string"
+              ? sceneSource.path
+              : null;
+        const topLevelMarkdownSection =
+          typeof sceneMeta.markdownSection === "string"
+            ? sceneMeta.markdownSection
+            : typeof sceneView?.section === "string"
+              ? sceneView.section
+              : null;
+        const topLevelMarkdownColumns =
+          typeof sceneMeta.markdownColumns === "number"
+            ? sceneMeta.markdownColumns
+            : typeof sceneView?.columns === "number"
+              ? sceneView.columns
+              : null;
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
           layoutMode: rawLayoutMode,
@@ -431,12 +507,17 @@ export class SceneRepository {
           sceneName,
           sceneId,
           sceneKind,
-          markdownPath: data.scene?.markdownPath ?? null,
-          markdownSection: data.scene?.markdownSection ?? null,
-          markdownColumns: data.scene?.markdownColumns ?? null,
-          markdownShowTitle: data.scene?.markdownShowTitle ?? true,
-          markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
-          centerOn: data.scene?.centerOn ?? null,
+          markdownPath: topLevelMarkdownPath,
+          markdownSection: topLevelMarkdownSection,
+          markdownColumns: topLevelMarkdownColumns,
+          markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
+          markdownAutoOpen:
+            typeof sceneMeta.markdownAutoOpen === "boolean"
+              ? sceneMeta.markdownAutoOpen
+              : typeof sceneView?.autoOpen === "boolean"
+                ? sceneView.autoOpen
+                : true,
+          centerOn: sceneMeta.centerOn ?? null,
           autoMarkdownDirectory: markdownDerived?.autoMarkdownDirectory ?? null,
           autoMarkdownPath: markdownDerived?.autoMarkdownPath ?? null,
           autoMarkdownSection: markdownDerived?.autoMarkdownSection ?? null,

@@ -14,6 +14,13 @@ const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.jso
 const LEGACY_AUTOGEN_ALLOWLIST_PATH =
   "scripts/config/legacy-scene-autogen-allowlist.json";
 const ALLOWED_SCENE_KINDS = new Set(["branching", "diagram", "markdown_split", "element"]);
+const ALLOWED_SCENE_TYPES = new Set([
+  "Scene-Index",
+  "Scene-Markdown-View",
+  "Scene-Markdown-Split",
+  "Scene-Diagram",
+  "Scene-Animation",
+]);
 // Explicit-only migration policy:
 // Scene authoring should converge on explicit objects/subScenes/markdownPath links.
 // These legacy scene-level automation fields remain temporarily supported for migration.
@@ -1183,7 +1190,7 @@ stableIdLabelLock.entries.forEach((lock, scenePath) => {
   }
   const scene = sceneData.scene ?? {};
   const actualSceneId = asText(scene.id);
-  const actualSceneName = asText(scene.name);
+  const actualSceneName = asText(scene.name) || asText(scene.title);
   if (lock.sceneId && actualSceneId !== lock.sceneId) {
     errors.push(
       `${scenePath}: scene.id changed from locked "${lock.sceneId}" to "${actualSceneId}"`
@@ -1202,7 +1209,7 @@ stableIdLabelLock.entries.forEach((lock, scenePath) => {
     if (!objectId) {
       return;
     }
-    const objectLabel = asText(obj?.label) || objectId;
+    const objectLabel = asText(obj?.label) || asText(obj?.title) || objectId;
     objectLabelById.set(objectId, objectLabel);
   });
 
@@ -1225,16 +1232,22 @@ for (const scenePath of sceneConfigs) {
   const scene = data.scene || {};
   const objects = Array.isArray(data.objects) ? data.objects : [];
   const rawKind = asText(scene.kind);
-  if (!rawKind) {
+  const rawType = asText(scene.type);
+  if (!rawKind && !rawType) {
     errors.push(
-      `${scenePath}: scene.kind is required and must be one of ${[...ALLOWED_SCENE_KINDS].join(
-        ", "
-      )}`
+      `${scenePath}: scene.kind or scene.type is required`
     );
-  } else if (!ALLOWED_SCENE_KINDS.has(rawKind)) {
+  } else if (rawKind && !ALLOWED_SCENE_KINDS.has(rawKind)) {
     errors.push(
       `${scenePath}: scene.kind "${rawKind}" is not allowed (allowed: ${[
         ...ALLOWED_SCENE_KINDS,
+      ].join(", ")})`
+    );
+  }
+  if (rawType && !ALLOWED_SCENE_TYPES.has(rawType)) {
+    errors.push(
+      `${scenePath}: scene.type "${rawType}" is not allowed (allowed: ${[
+        ...ALLOWED_SCENE_TYPES,
       ].join(", ")})`
     );
   }
@@ -1253,6 +1266,15 @@ for (const scenePath of sceneConfigs) {
       scenePath,
       "scene.markdownPath",
       scene.markdownPath,
+      markdownFileSet,
+      markdownFileLower
+    );
+  }
+  if (scene.source && typeof scene.source === "object" && scene.source.type === "markdown") {
+    validateFileReference(
+      scenePath,
+      "scene.source.path",
+      scene.source.path,
       markdownFileSet,
       markdownFileLower
     );
@@ -1305,25 +1327,72 @@ for (const scenePath of sceneConfigs) {
 
   objects.forEach((obj, index) => {
     const objectLabel = typeof obj?.id === "string" && obj.id ? obj.id : `objects[${index}]`;
-    if (typeof obj?.markdownPath === "string") {
+    const objectMarkdownPath =
+      typeof obj?.markdownPath === "string"
+        ? obj.markdownPath
+        : obj?.source?.type === "markdown" && typeof obj?.source?.path === "string"
+          ? obj.source.path
+          : null;
+    const objectMarkdownSection =
+      typeof obj?.markdownSection === "string"
+        ? obj.markdownSection
+        : typeof obj?.view?.section === "string"
+          ? obj.view.section
+          : null;
+    if (typeof objectMarkdownPath === "string") {
       validateFileReference(
         scenePath,
-        `${objectLabel}.markdownPath`,
-        obj.markdownPath,
+        `${objectLabel}.source.path`,
+        objectMarkdownPath,
         markdownFileSet,
         markdownFileLower
       );
     }
-    if (typeof obj?.markdownPath === "string" && typeof obj?.markdownSection === "string") {
-      const normalizedPath = normalizePath(obj.markdownPath);
-      const sectionKey = normalizeMarkdownKey(obj.markdownSection);
+    if (typeof objectMarkdownPath === "string" && typeof objectMarkdownSection === "string") {
+      const normalizedPath = normalizePath(objectMarkdownPath);
+      const sectionKey = normalizeMarkdownKey(objectMarkdownSection);
       const headingCounts = markdownHeadingKeyCountByPath.get(normalizedPath);
       const matches = headingCounts?.get(sectionKey) ?? 0;
       if (matches > 1) {
         warnings.push(
-          `${scenePath} -> ${objectLabel}.markdownSection: ambiguous section key "${obj.markdownSection}" in ${normalizedPath} (${matches} matching headings)`
+          `${scenePath} -> ${objectLabel}.view.section: ambiguous section key "${objectMarkdownSection}" in ${normalizedPath} (${matches} matching headings)`
         );
       }
+    }
+    if (Array.isArray(obj?.children)) {
+      obj.children.forEach((childRef, childIndex) => {
+        if (!childRef || typeof childRef !== "object") {
+          errors.push(`${scenePath} -> ${objectLabel}.children[${childIndex}]: expected object`);
+          return;
+        }
+        const childTarget =
+          typeof childRef.scenePath === "string"
+            ? childRef.scenePath
+            : typeof childRef.sceneId === "string"
+              ? childRef.sceneId
+              : "";
+        if (!childTarget) {
+          errors.push(
+            `${scenePath} -> ${objectLabel}.children[${childIndex}]: expected scenePath or sceneId`
+          );
+          return;
+        }
+        validateFileReference(
+          scenePath,
+          `${objectLabel}.children[${childIndex}]`,
+          childTarget,
+          sceneConfigSet,
+          sceneConfigLower
+        );
+        const resolvedTarget = resolveKnownPath(childTarget, sceneConfigSet, sceneConfigLower);
+        if (resolvedTarget) {
+          incomingSceneRefCount.set(
+            resolvedTarget,
+            (incomingSceneRefCount.get(resolvedTarget) ?? 0) + 1
+          );
+        }
+      });
+      return;
     }
     if (obj?.subScenes === undefined) {
       return;

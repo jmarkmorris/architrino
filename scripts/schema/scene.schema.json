@@ -11,11 +11,30 @@
     },
     "scene": {
       "type": "object",
-      "required": ["id", "name"],
       "additionalProperties": true,
+      "allOf": [
+        { "required": ["id"] },
+        {
+          "anyOf": [
+            { "required": ["name"] },
+            { "required": ["title"] }
+          ]
+        }
+      ],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
         "name": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Scene-Index",
+            "Scene-Markdown-View",
+            "Scene-Markdown-Split",
+            "Scene-Diagram",
+            "Scene-Animation"
+          ]
+        },
         "kind": {
           "type": "string",
           "enum": ["branching", "diagram", "markdown_split", "element"]
@@ -140,6 +159,30 @@
               }
             }
           }
+        },
+        "layout": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "type": { "type": "string" }
+          }
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "type": { "type": "string" },
+            "path": { "type": "string" }
+          }
+        },
+        "view": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "columns": { "type": "number" },
+            "autoOpen": { "type": "boolean" },
+            "section": { "type": "string" }
+          }
         }
       }
     },
@@ -147,11 +190,20 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "label", "radius", "color"],
         "additionalProperties": true,
+        "allOf": [
+          { "required": ["id"] },
+          {
+            "anyOf": [
+              { "required": ["label"] },
+              { "required": ["title"] }
+            ]
+          }
+        ],
         "properties": {
           "id": { "type": "string", "minLength": 1 },
           "label": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
           "shortName": { "type": "string" },
           "labelTitle": { "type": "string" },
           "labelSubtitle": { "type": "string" },
@@ -172,9 +224,38 @@
             "type": "array",
             "items": { "type": "string" }
           },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "sceneId": { "type": "string" },
+                "scenePath": { "type": "string" },
+                "slot": { "type": "string" }
+              }
+            }
+          },
           "markdownPath": { "type": "string" },
           "markdownSection": { "type": "string" },
           "markdownColumns": { "type": "number" },
+          "source": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "type": { "type": "string" },
+              "path": { "type": "string" }
+            }
+          },
+          "view": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "columns": { "type": "number" },
+              "section": { "type": "string" },
+              "autoOpen": { "type": "boolean" }
+            }
+          },
           "markdownHeadingLevel": { "type": "number" },
           "markdownAutoIndex": { "type": "boolean" },
           "markdownPlainSectionPaths": {
