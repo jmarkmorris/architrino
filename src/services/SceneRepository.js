@@ -527,6 +527,7 @@ export class SceneRepository {
         const rawLayoutMode = this.resolveLayoutMode(sceneMeta);
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
+          layoutType: rawLayoutMode,
           layoutMode: rawLayoutMode,
           layoutColumns:
             Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
@@ -603,7 +604,7 @@ export class SceneRepository {
     if (!config) {
       return;
     }
-    const layoutMode = String(config.layoutMode ?? "").toLowerCase();
+    const layoutMode = String(config.layoutType ?? config.layoutMode ?? "").toLowerCase();
     const isRingLayout = layoutMode === "rings";
     const hasAutoMarkdownSource =
       (typeof config.autoMarkdownPath === "string" && config.autoMarkdownPath.length > 0) ||

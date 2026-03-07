@@ -597,9 +597,11 @@ export function createSceneGraphRuntime(deps) {
     let primaryBinaryNode = null;
 
     const explicitLayoutMode =
-      typeof config.layoutMode === "string" && config.layoutMode.trim()
-        ? config.layoutMode.toLowerCase()
-        : null;
+      typeof config.layoutType === "string" && config.layoutType.trim()
+        ? config.layoutType.toLowerCase()
+        : typeof config.layoutMode === "string" && config.layoutMode.trim()
+          ? config.layoutMode.toLowerCase()
+          : null;
     const useExplicitRingsLayout =
       config.layout === "static" && explicitLayoutMode === "rings";
     const useStructuredLayout = useExplicitRingsLayout;
@@ -823,6 +825,7 @@ export function createSceneGraphRuntime(deps) {
       shellGuides,
       primaryBinaryNode,
       layout: config.layout,
+      layoutType: config.layoutType ?? config.layoutMode ?? null,
       layoutMode: config.layoutMode ?? null,
       links: [],
     };
