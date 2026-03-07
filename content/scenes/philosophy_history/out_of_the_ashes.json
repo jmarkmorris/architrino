@@ -3,11 +3,11 @@
   "scene": {
     "id": "out_of_the_ashes",
     "title": "Out of the Ashes",
-    "type": "Scene-Markdown-Split",
+    "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "static"
     },
     "source": {
       "type": "markdown",

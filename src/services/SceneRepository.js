@@ -78,6 +78,93 @@ export class SceneRepository {
     };
   }
 
+  resolveSplitSceneConfig(sceneMeta) {
+    const sceneType = sceneMeta?.type;
+    const source = sceneMeta?.source ?? null;
+    const view = sceneMeta?.view ?? null;
+    const usesTypedSplitSource =
+      sceneType === "Scene-Markdown-Split" &&
+      source?.type === "markdown" &&
+      typeof source.path === "string" &&
+      source.path.length > 0;
+    return {
+      autoMarkdownPath: usesTypedSplitSource
+        ? source.path
+        : typeof sceneMeta?.autoMarkdownPath === "string"
+          ? sceneMeta.autoMarkdownPath
+          : null,
+      autoMarkdownSection:
+        typeof view?.section === "string"
+          ? view.section
+          : typeof sceneMeta?.autoMarkdownSection === "string"
+            ? sceneMeta.autoMarkdownSection
+            : null,
+      autoMarkdownHeadingLevel:
+        typeof view?.headingLevel === "number"
+          ? view.headingLevel
+          : usesTypedSplitSource
+            ? 2
+          : typeof sceneMeta?.autoMarkdownHeadingLevel === "number"
+            ? sceneMeta.autoMarkdownHeadingLevel
+            : null,
+      autoMarkdownColumns:
+        view?.columns === 1 || view?.columns === 2
+          ? view.columns
+          : sceneMeta?.autoMarkdownColumns === 1 || sceneMeta?.autoMarkdownColumns === 2
+            ? sceneMeta.autoMarkdownColumns
+            : null,
+      autoMarkdownSectionDepth:
+        typeof view?.sectionDepth === "number"
+          ? view.sectionDepth
+          : typeof sceneMeta?.autoMarkdownSectionDepth === "number"
+            ? sceneMeta.autoMarkdownSectionDepth
+            : null,
+      autoMarkdownIncludeExistingInLayout:
+        sceneMeta?.autoMarkdownIncludeExistingInLayout === true,
+      autoMarkdownNodeRadius:
+        typeof sceneMeta?.autoMarkdownNodeRadius === "number"
+          ? sceneMeta.autoMarkdownNodeRadius
+          : null,
+      autoMarkdownRingRadius:
+        typeof sceneMeta?.autoMarkdownRingRadius === "number"
+          ? sceneMeta.autoMarkdownRingRadius
+          : null,
+      autoMarkdownMaxRingCount:
+        typeof sceneMeta?.autoMarkdownMaxRingCount === "number"
+          ? sceneMeta.autoMarkdownMaxRingCount
+          : null,
+      autoMarkdownGridSpacing:
+        typeof sceneMeta?.autoMarkdownGridSpacing === "number"
+          ? sceneMeta.autoMarkdownGridSpacing
+          : null,
+      autoMarkdownPalette:
+        Array.isArray(sceneMeta?.autoMarkdownPalette) ? sceneMeta.autoMarkdownPalette : null,
+      autoMarkdownPaletteName:
+        typeof sceneMeta?.autoMarkdownPaletteName === "string"
+          ? sceneMeta.autoMarkdownPaletteName
+          : this.defaultAutoMarkdownPaletteName,
+      autoMarkdownColor:
+        typeof sceneMeta?.autoMarkdownColor === "string" ? sceneMeta.autoMarkdownColor : null,
+      autoMarkdownExcludePaths: Array.isArray(sceneMeta?.autoMarkdownExcludePaths)
+        ? sceneMeta.autoMarkdownExcludePaths
+        : [],
+      autoMarkdownPlainPaths: Array.isArray(sceneMeta?.autoMarkdownPlainPaths)
+        ? sceneMeta.autoMarkdownPlainPaths
+        : [],
+      autoMarkdownDefaultIndex: sceneMeta?.autoMarkdownDefaultIndex === true,
+      autoMarkdownIndexPaths: Array.isArray(sceneMeta?.autoMarkdownIndexPaths)
+        ? sceneMeta.autoMarkdownIndexPaths
+        : [],
+      autoMarkdownPlainSectionPaths: Array.isArray(sceneMeta?.autoMarkdownPlainSectionPaths)
+        ? sceneMeta.autoMarkdownPlainSectionPaths
+        : [],
+      autoMarkdownOverrides:
+        sceneMeta?.autoMarkdownOverrides && typeof sceneMeta.autoMarkdownOverrides === "object"
+          ? sceneMeta.autoMarkdownOverrides
+          : null,
+    };
+  }
+
   resolveChildSceneTarget(entry) {
     const childRef =
       Array.isArray(entry?.children) && entry.children.length > 0 && entry.children[0]
@@ -461,6 +548,7 @@ export class SceneRepository {
       .then(async (data) => {
         const sceneMeta = data.scene ?? {};
         const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
+        const splitScene = this.resolveSplitSceneConfig(sceneMeta);
         const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
         const wrapLabels = sceneMeta.wrapLabels ?? true;
         const idMap = new Map(
@@ -480,7 +568,7 @@ export class SceneRepository {
           });
         }
         this.applyPersonalityArchitrinoSizing(nodes);
-        const autoMarkdownScene = data.scene;
+        const autoMarkdownScene = { ...data.scene, ...splitScene };
         const autoNodes = await this.buildAutoMarkdownNodes(autoMarkdownScene, nodes);
         if (autoNodes.length) {
           nodes = nodes.concat(autoNodes);
@@ -511,65 +599,26 @@ export class SceneRepository {
           markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
           markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
           centerOn: sceneMeta.centerOn ?? null,
-          autoMarkdownPath:
-            typeof sceneMeta.autoMarkdownPath === "string" ? sceneMeta.autoMarkdownPath : null,
-          autoMarkdownSection:
-            typeof sceneMeta.autoMarkdownSection === "string" ? sceneMeta.autoMarkdownSection : null,
-          autoMarkdownHeadingLevel:
-            typeof sceneMeta.autoMarkdownHeadingLevel === "number"
-              ? sceneMeta.autoMarkdownHeadingLevel
-              : null,
+          autoMarkdownPath: splitScene.autoMarkdownPath,
+          autoMarkdownSection: splitScene.autoMarkdownSection,
+          autoMarkdownHeadingLevel: splitScene.autoMarkdownHeadingLevel,
           autoMarkdownIncludeExistingInLayout:
-            sceneMeta.autoMarkdownIncludeExistingInLayout === true,
-          autoMarkdownNodeRadius:
-            typeof sceneMeta.autoMarkdownNodeRadius === "number"
-              ? sceneMeta.autoMarkdownNodeRadius
-              : null,
-          autoMarkdownRingRadius:
-            typeof sceneMeta.autoMarkdownRingRadius === "number"
-              ? sceneMeta.autoMarkdownRingRadius
-              : null,
-          autoMarkdownMaxRingCount:
-            typeof sceneMeta.autoMarkdownMaxRingCount === "number"
-              ? sceneMeta.autoMarkdownMaxRingCount
-              : null,
-          autoMarkdownGridSpacing:
-            typeof sceneMeta.autoMarkdownGridSpacing === "number"
-              ? sceneMeta.autoMarkdownGridSpacing
-              : null,
-          autoMarkdownColumns:
-            sceneMeta.autoMarkdownColumns === 1 || sceneMeta.autoMarkdownColumns === 2
-              ? sceneMeta.autoMarkdownColumns
-              : null,
-          autoMarkdownPalette:
-            Array.isArray(sceneMeta.autoMarkdownPalette) ? sceneMeta.autoMarkdownPalette : null,
-          autoMarkdownPaletteName:
-            typeof sceneMeta.autoMarkdownPaletteName === "string"
-              ? sceneMeta.autoMarkdownPaletteName
-              : this.defaultAutoMarkdownPaletteName,
-          autoMarkdownColor:
-            typeof sceneMeta.autoMarkdownColor === "string" ? sceneMeta.autoMarkdownColor : null,
-          autoMarkdownExcludePaths: Array.isArray(sceneMeta.autoMarkdownExcludePaths)
-            ? sceneMeta.autoMarkdownExcludePaths
-            : [],
-          autoMarkdownPlainPaths: Array.isArray(sceneMeta.autoMarkdownPlainPaths)
-            ? sceneMeta.autoMarkdownPlainPaths
-            : [],
-          autoMarkdownDefaultIndex: sceneMeta.autoMarkdownDefaultIndex === true,
-          autoMarkdownIndexPaths: Array.isArray(sceneMeta.autoMarkdownIndexPaths)
-            ? sceneMeta.autoMarkdownIndexPaths
-            : [],
-          autoMarkdownPlainSectionPaths: Array.isArray(sceneMeta.autoMarkdownPlainSectionPaths)
-            ? sceneMeta.autoMarkdownPlainSectionPaths
-            : [],
-          autoMarkdownSectionDepth:
-            typeof sceneMeta.autoMarkdownSectionDepth === "number"
-              ? sceneMeta.autoMarkdownSectionDepth
-              : null,
-          autoMarkdownOverrides:
-            sceneMeta.autoMarkdownOverrides && typeof sceneMeta.autoMarkdownOverrides === "object"
-              ? sceneMeta.autoMarkdownOverrides
-              : null,
+            splitScene.autoMarkdownIncludeExistingInLayout,
+          autoMarkdownNodeRadius: splitScene.autoMarkdownNodeRadius,
+          autoMarkdownRingRadius: splitScene.autoMarkdownRingRadius,
+          autoMarkdownMaxRingCount: splitScene.autoMarkdownMaxRingCount,
+          autoMarkdownGridSpacing: splitScene.autoMarkdownGridSpacing,
+          autoMarkdownColumns: splitScene.autoMarkdownColumns,
+          autoMarkdownPalette: splitScene.autoMarkdownPalette,
+          autoMarkdownPaletteName: splitScene.autoMarkdownPaletteName,
+          autoMarkdownColor: splitScene.autoMarkdownColor,
+          autoMarkdownExcludePaths: splitScene.autoMarkdownExcludePaths,
+          autoMarkdownPlainPaths: splitScene.autoMarkdownPlainPaths,
+          autoMarkdownDefaultIndex: splitScene.autoMarkdownDefaultIndex,
+          autoMarkdownIndexPaths: splitScene.autoMarkdownIndexPaths,
+          autoMarkdownPlainSectionPaths: splitScene.autoMarkdownPlainSectionPaths,
+          autoMarkdownSectionDepth: splitScene.autoMarkdownSectionDepth,
+          autoMarkdownOverrides: splitScene.autoMarkdownOverrides,
         };
         this.levelConfigs[scenePath] = config;
         this.sceneConfigCache.set(scenePath, config);

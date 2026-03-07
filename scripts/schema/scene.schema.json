@@ -85,7 +85,9 @@
           "properties": {
             "columns": { "type": "number" },
             "autoOpen": { "type": "boolean" },
-            "section": { "type": "string" }
+            "section": { "type": "string" },
+            "headingLevel": { "type": "number" },
+            "sectionDepth": { "type": "number" }
           }
         }
       }
