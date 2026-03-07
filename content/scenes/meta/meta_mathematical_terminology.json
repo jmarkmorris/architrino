@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "meta__meta_mathematical_terminology",
+    "title": "Mathematical Terminology",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/mathematics.md"
+    },
+    "view": {
+      "section": "Mathematical Terminology (Canonical Dialect)",
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

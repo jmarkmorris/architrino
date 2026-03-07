@@ -8,7 +8,41 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "out_of_the_ashes_scene",
+        "scenePath": "content/scenes/philosophy_history/out_of_the_ashes.json"
+      },
+      {
+        "nodeId": "unknowns_paradoxes_scene",
+        "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
+      },
+      {
+        "nodeId": "crisis_in_physics",
+        "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json"
+      },
+      {
+        "nodeId": "historical_context_missed_opportunities",
+        "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
+      },
+      {
+        "nodeId": "lorentz_ether_comparison",
+        "scenePath": "content/scenes/philosophy_history/lorentz_ether_comparison.json"
+      },
+      {
+        "nodeId": "major_thinkers",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
+      },
+      {
+        "nodeId": "religious_ontologies",
+        "scenePath": "content/scenes/philosophy_history/religious_ontologies.json"
+      },
+      {
+        "nodeId": "theory_mapping",
+        "scenePath": "content/scenes/philosophy_history/theory_mapping.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -16,11 +50,6 @@
       "title": "Out of the Ashes",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/out_of_the_ashes.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -31,11 +60,6 @@
       "title": "Unknowns & Paradoxes",
       "radius": 2.688,
       "color": "#5a3f73",
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -46,11 +70,6 @@
       "title": "Crisis in Physics",
       "radius": 2.688,
       "color": "#243d8f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -61,11 +80,6 @@
       "title": "Historical Context and Missed Opportunities",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -77,11 +91,6 @@
       "title": "Lorentz Ether Comparison",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -93,12 +102,6 @@
       "title": "Major Thinkers",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownAutoIndex": false,
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -109,11 +112,6 @@
       "title": "Religious Ontologies",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -125,11 +123,6 @@
       "title": "Theory Mapping",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/theory-mapping.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },

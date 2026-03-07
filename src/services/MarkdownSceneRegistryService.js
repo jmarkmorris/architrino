@@ -4,6 +4,9 @@ export function createMarkdownSceneRegistry(deps) {
   const resolveMarkdownDocumentTitle = deps.resolveMarkdownDocumentTitle;
   const resolveMarkdownColumnsForPath = deps.resolveMarkdownColumnsForPath;
 
+  // Runtime markdown scenes are intentionally internal helper scenes.
+  // Authored scene files should reference markdown content by path/source,
+  // while the app may materialize these helper IDs for reading/navigation state.
   const runtimeMarkdownPrefix = "runtime:markdown:";
   const markdownDocPrefix = `${runtimeMarkdownPrefix}doc:`;
   const markdownIndexPrefix = `${runtimeMarkdownPrefix}index:`;

@@ -11,7 +11,33 @@
     ],
     "layout": {
       "type": "manual"
-    }
+    },
+    "children": [
+      {
+        "scenePath": "content/scenes/architrino-theory/positrino.json",
+        "nodeId": "positrino_1"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/positrino.json",
+        "nodeId": "positrino_2"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/positrino.json",
+        "nodeId": "positrino_3"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/positrino.json",
+        "nodeId": "positrino_4"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/positrino.json",
+        "nodeId": "positrino_5"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/electrino.json",
+        "nodeId": "electrino_1"
+      }
+    ]
   },
   "objects": [
     {
@@ -47,12 +73,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Positrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/positrino.json"
-        }
-      ]
+      "labelTitle": "Positrino"
     },
     {
       "id": "positrino_2",
@@ -67,12 +88,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Positrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/positrino.json"
-        }
-      ]
+      "labelTitle": "Positrino"
     },
     {
       "id": "positrino_3",
@@ -87,12 +103,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Positrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/positrino.json"
-        }
-      ]
+      "labelTitle": "Positrino"
     },
     {
       "id": "positrino_4",
@@ -107,12 +118,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Positrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/positrino.json"
-        }
-      ]
+      "labelTitle": "Positrino"
     },
     {
       "id": "positrino_5",
@@ -127,12 +133,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Positrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/positrino.json"
-        }
-      ]
+      "labelTitle": "Positrino"
     },
     {
       "id": "electrino_1",
@@ -147,12 +148,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Electrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/electrino.json"
-        }
-      ]
+      "labelTitle": "Electrino"
     }
   ]
 }

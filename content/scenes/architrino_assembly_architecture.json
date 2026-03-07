@@ -13,7 +13,45 @@
     "layout": {
       "type": "rings"
     },
-    "centerOn": "foundations"
+    "centerOn": "foundations",
+    "children": [
+      {
+        "nodeId": "foundations",
+        "scenePath": "content/scenes/foundations/foundations.json"
+      },
+      {
+        "nodeId": "dynamics",
+        "scenePath": "content/scenes/dynamics/dynamics.json"
+      },
+      {
+        "nodeId": "assemblies",
+        "scenePath": "content/scenes/assemblies/assemblies.json"
+      },
+      {
+        "nodeId": "nuclear_atomic",
+        "scenePath": "content/scenes/nuclear/nuclear_atomic.json"
+      },
+      {
+        "nodeId": "spacetime",
+        "scenePath": "content/scenes/spacetime/spacetime.json"
+      },
+      {
+        "nodeId": "cosmology",
+        "scenePath": "content/scenes/cosmology/cosmology.json"
+      },
+      {
+        "nodeId": "validation",
+        "scenePath": "content/scenes/validation/validation.json"
+      },
+      {
+        "nodeId": "philosophy_history",
+        "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
+      },
+      {
+        "nodeId": "universe",
+        "scenePath": "content/scenes/cosmology/universe.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -25,11 +63,6 @@
         0,
         0,
         0
-      ],
-      "children": [
-        {
-          "scenePath": "content/scenes/foundations/foundations.json"
-        }
       ],
       "motion": {
         "type": "fixed"
@@ -47,11 +80,6 @@
         8.95,
         0
       ],
-      "children": [
-        {
-          "scenePath": "content/scenes/dynamics/dynamics.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -67,11 +95,6 @@
         -6.33,
         6.33,
         0
-      ],
-      "children": [
-        {
-          "scenePath": "content/scenes/assemblies/assemblies.json"
-        }
       ],
       "motion": {
         "type": "fixed"
@@ -89,11 +112,6 @@
         0,
         0
       ],
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/nuclear_atomic.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -109,11 +127,6 @@
         -6.33,
         -6.33,
         0
-      ],
-      "children": [
-        {
-          "scenePath": "content/scenes/spacetime/spacetime.json"
-        }
       ],
       "motion": {
         "type": "fixed"
@@ -131,11 +144,6 @@
         -8.95,
         0
       ],
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/cosmology.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -151,11 +159,6 @@
         6.33,
         -6.33,
         0
-      ],
-      "children": [
-        {
-          "scenePath": "content/scenes/validation/validation.json"
-        }
       ],
       "motion": {
         "type": "fixed"
@@ -173,11 +176,6 @@
         0,
         0
       ],
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -193,11 +191,6 @@
         6.33,
         6.33,
         0
-      ],
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/universe.json"
-        }
       ],
       "motion": {
         "type": "fixed"

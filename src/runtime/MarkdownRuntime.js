@@ -12,6 +12,7 @@ export function createMarkdownRuntime(deps) {
 
   let activeMarkdownPath = null;
   let markdownTwoColumns = true;
+  // These IDs are runtime-only helper scene identities, not authored scene IDs.
   const runtimeMarkdownPrefix = "runtime:markdown:";
   const runtimeMarkdownDocPrefix = `${runtimeMarkdownPrefix}doc:`;
   const runtimeMarkdownReaderPrefix = `${runtimeMarkdownPrefix}reader:`;

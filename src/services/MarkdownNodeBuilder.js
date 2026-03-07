@@ -3,6 +3,7 @@ export function createMarkdownNodeBuilder(deps) {
   const appendCacheBust = deps.appendCacheBust;
   const parseMarkdownHeading = deps.parseMarkdownHeading;
   const extractMarkdownSection = deps.extractMarkdownSection;
+  const normalizeMarkdownKey = deps.normalizeMarkdownKey ?? ((value) => value);
   const normalizeMarkdownPath = deps.normalizeMarkdownPath;
   const titleFromSlug = deps.titleFromSlug;
   const stripWalkthroughStepPrefix = deps.stripWalkthroughStepPrefix;
@@ -121,6 +122,10 @@ export function createMarkdownNodeBuilder(deps) {
     const pathOverrides =
       scene.splitOverrides && typeof scene.splitOverrides === "object"
         ? scene.splitOverrides
+        : null;
+    const sectionOverrides =
+      scene.splitSectionOverrides && typeof scene.splitSectionOverrides === "object"
+        ? scene.splitSectionOverrides
         : null;
 
     if (!entries.length && !includeExisting) {
@@ -278,9 +283,23 @@ export function createMarkdownNodeBuilder(deps) {
     return autoEntries
       .map((entry, index) => {
         const { info, slug, id } = entry;
+        const sectionOverrideKey =
+          scene.splitSourcePath && info.title ? normalizeMarkdownKey(info.title) : null;
+        const sectionOverride =
+          sectionOverrideKey && sectionOverrides ? sectionOverrides[sectionOverrideKey] : null;
+        const nodeId =
+          typeof sectionOverride?.id === "string" && sectionOverride.id.trim().length > 0
+            ? sectionOverride.id.trim()
+            : id;
         const layoutIndex = includeExisting ? currentNodes.length + index : index;
         const [x, y] = positionForIndex(layoutIndex);
         let color = baseColor ?? drawPaletteColor() ?? "#3a5a8a";
+        if (
+          typeof sectionOverride?.color === "string" &&
+          sectionOverride.color.trim().length > 0
+        ) {
+          color = sectionOverride.color.trim();
+        }
         if (typeof color === "string" && colorTokens[color]) {
           color = colorTokens[color];
         }
@@ -288,7 +307,7 @@ export function createMarkdownNodeBuilder(deps) {
           ? info.title ?? titleFromSlug(slug)
           : info.title ?? titleFromSlug(slug);
         const node = {
-          id,
+          id: nodeId,
           name: nodeName,
           shortName: compactMarkdownNodeLabel(nodeName),
           radius: baseRadius,
@@ -296,6 +315,21 @@ export function createMarkdownNodeBuilder(deps) {
           color,
           wrapLabel: scene.wrapLabels ?? true,
         };
+        if (typeof sectionOverride?.labelTitle === "string") {
+          node.labelTitle = sectionOverride.labelTitle;
+        }
+        if (typeof sectionOverride?.labelSubtitle === "string") {
+          node.labelSubtitle = sectionOverride.labelSubtitle;
+        }
+        if (typeof sectionOverride?.labelDates === "string") {
+          node.labelDates = sectionOverride.labelDates;
+        }
+        if (typeof sectionOverride?.labelBadge === "string") {
+          node.labelBadge = sectionOverride.labelBadge;
+        }
+        if (typeof sectionOverride?.shortName === "string") {
+          node.shortName = sectionOverride.shortName;
+        }
         if (scene.splitSourcePath) {
           const override = pathOverrides
             ? pathOverrides[normalizeMarkdownPath(scene.splitSourcePath)]

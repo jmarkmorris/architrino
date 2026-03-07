@@ -8,7 +8,37 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "noether_core",
+        "scenePath": "content/scenes/assemblies/noether_core.json"
+      },
+      {
+        "nodeId": "particle_masses",
+        "scenePath": "content/scenes/assemblies/particle_masses.json"
+      },
+      {
+        "nodeId": "standard_model",
+        "scenePath": "content/scenes/standard-model-particles/standard_model.json"
+      },
+      {
+        "nodeId": "fermions",
+        "scenePath": "content/scenes/assemblies/fermions.json"
+      },
+      {
+        "nodeId": "electroweak_bosons",
+        "scenePath": "content/scenes/assemblies/electroweak_bosons.json"
+      },
+      {
+        "nodeId": "gluons",
+        "scenePath": "content/scenes/assemblies/gluons.json"
+      },
+      {
+        "nodeId": "mesons_doc",
+        "scenePath": "content/scenes/assemblies/mesons_doc.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -16,10 +46,6 @@
       "title": "Noether Core",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/noether-core.md"
-      },
       "motion": {
         "type": "fixed"
       },
@@ -31,10 +57,6 @@
       "title": "Particle Masses",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/particle-masses.md"
-      },
       "motion": {
         "type": "fixed"
       },
@@ -46,11 +68,6 @@
       "title": "Standard Model Assemblies",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/standard_model.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -61,11 +78,6 @@
       "title": "Fermions",
       "radius": 2.688,
       "color": "#5d3a9f",
-      "children": [
-        {
-          "scenePath": "content/scenes/assemblies/fermions.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -76,10 +88,6 @@
       "title": "Electroweak Bosons",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md"
-      },
       "motion": {
         "type": "fixed"
       },
@@ -91,10 +99,6 @@
       "title": "Gluons",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/bosons/gluons.md"
-      },
       "motion": {
         "type": "fixed"
       },
@@ -116,10 +120,6 @@
       "title": "Mesons",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/mesons/mesons.md"
-      },
       "motion": {
         "type": "fixed"
       },

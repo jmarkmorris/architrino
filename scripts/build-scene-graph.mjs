@@ -474,11 +474,40 @@ for (const sceneEntry of sceneEntries) {
     continue;
   }
   const scene = data.scene || {};
+  const sceneType = asText(scene.type);
   const objects = Array.isArray(data.objects) ? data.objects : [];
 
   const sceneMarkdownPath = resolveAuthoredMarkdownPath(scene);
   if (typeof sceneMarkdownPath === "string") {
     addMarkdownDocEdge(scenePath, sceneMarkdownPath, "scene.source.path");
+  }
+  if (Array.isArray(scene.children)) {
+    scene.children.forEach((childRef, childIndex) => {
+      const childTarget =
+        typeof childRef?.scenePath === "string"
+          ? childRef.scenePath
+          : typeof childRef?.sceneId === "string"
+            ? childRef.sceneId
+            : null;
+      if (!childTarget) {
+        return;
+      }
+      const normalizedSubScenePath = normalizePath(childTarget);
+      if (!scenePathSet.has(normalizedSubScenePath)) {
+        warnings.push(
+          `${scenePath} -> scene.children[${childIndex}]: target scene missing from index (${normalizedSubScenePath})`
+        );
+      }
+      const from = ensureSceneNode(scenePath);
+      const to = ensureSceneNode(normalizedSubScenePath);
+      addEdge({
+        from,
+        to,
+        edgeType: "subscene",
+        source: scenePath,
+        field: `scene.children[${childIndex}]`,
+      });
+    });
   }
 
   objects.forEach((obj, objectIndex) => {
@@ -486,34 +515,6 @@ for (const sceneEntry of sceneEntries) {
     if (typeof objectMarkdownPath === "string") {
       const objectId = asText(obj.id) || `objects[${objectIndex}]`;
       addMarkdownDocEdge(scenePath, objectMarkdownPath, `${objectId}.source.path`);
-    }
-    if (Array.isArray(obj?.children)) {
-      obj.children.forEach((childRef, childIndex) => {
-        const childTarget =
-          typeof childRef?.scenePath === "string"
-            ? childRef.scenePath
-            : typeof childRef?.sceneId === "string"
-              ? childRef.sceneId
-              : null;
-        if (!childTarget) {
-          return;
-        }
-        const normalizedSubScenePath = normalizePath(childTarget);
-        if (!scenePathSet.has(normalizedSubScenePath)) {
-          warnings.push(
-            `${scenePath} -> objects[${objectIndex}].children[${childIndex}]: target scene missing from index (${normalizedSubScenePath})`
-          );
-        }
-        const from = ensureSceneNode(scenePath);
-        const to = ensureSceneNode(normalizedSubScenePath);
-        addEdge({
-          from,
-          to,
-          edgeType: "subscene",
-          source: scenePath,
-          field: `objects[${objectIndex}].children[${childIndex}]`,
-        });
-      });
     }
   });
 }

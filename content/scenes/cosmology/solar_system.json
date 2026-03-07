@@ -12,7 +12,29 @@
     "centerOn": "star",
     "layout": {
       "type": "manual"
-    }
+    },
+    "children": [
+      {
+        "scenePath": "content/scenes/cosmology/star.json",
+        "nodeId": "star"
+      },
+      {
+        "scenePath": "content/scenes/cosmology/planet.json",
+        "nodeId": "planet_a"
+      },
+      {
+        "scenePath": "content/scenes/cosmology/planet.json",
+        "nodeId": "planet_b"
+      },
+      {
+        "scenePath": "content/scenes/cosmology/planet.json",
+        "nodeId": "planet_c"
+      },
+      {
+        "scenePath": "content/scenes/cosmology/moon.json",
+        "nodeId": "moon"
+      }
+    ]
   },
   "objects": [
     {
@@ -26,12 +48,7 @@
         0,
         0
       ],
-      "labelTitle": "Star",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/star.json"
-        }
-      ]
+      "labelTitle": "Star"
     },
     {
       "id": "planet_a",
@@ -49,12 +66,7 @@
           "phase": 0
         }
       },
-      "labelTitle": "Planet A",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/planet.json"
-        }
-      ]
+      "labelTitle": "Planet A"
     },
     {
       "id": "planet_b",
@@ -72,12 +84,7 @@
           "phase": 2.094
         }
       },
-      "labelTitle": "Planet B",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/planet.json"
-        }
-      ]
+      "labelTitle": "Planet B"
     },
     {
       "id": "planet_c",
@@ -95,12 +102,7 @@
           "phase": 4.189
         }
       },
-      "labelTitle": "Planet C",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/planet.json"
-        }
-      ]
+      "labelTitle": "Planet C"
     },
     {
       "id": "moon",
@@ -118,12 +120,7 @@
           "phase": 0.6
         }
       },
-      "labelTitle": "Moon",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/moon.json"
-        }
-      ]
+      "labelTitle": "Moon"
     }
   ]
 }

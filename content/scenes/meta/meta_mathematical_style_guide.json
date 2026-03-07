@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "meta__meta_mathematical_style_guide",
+    "title": "Mathematical Style Guide",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/mathematics.md"
+    },
+    "view": {
+      "section": "Mathematical Style Guide (Canonical Dialect)",
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

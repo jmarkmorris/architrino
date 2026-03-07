@@ -11,7 +11,21 @@
     ],
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "scenePath": "content/scenes/standard-model-particles/down_quark.json",
+        "nodeId": "down_quark_1"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/down_quark.json",
+        "nodeId": "down_quark_2"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/up_quark.json",
+        "nodeId": "up_quark"
+      }
+    ]
   },
   "objects": [
     {
@@ -24,12 +38,7 @@
         "type": "fixed"
       },
       "labelTitle": "down quark",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/down_quark.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "down_quark_2",
@@ -41,12 +50,7 @@
         "type": "fixed"
       },
       "labelTitle": "down quark",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/down_quark.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "up_quark",
@@ -58,12 +62,7 @@
         "type": "fixed"
       },
       "labelTitle": "up quark",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/up_quark.json"
-        }
-      ]
+      "labelBadge": "diagram"
     }
   ]
 }

@@ -11,7 +11,45 @@
     ],
     "layout": {
       "type": "manual"
-    }
+    },
+    "children": [
+      {
+        "scenePath": "content/scenes/nuclear/nucleus.json",
+        "nodeId": "nucleus"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "electron_1"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "electron_2"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "electron_3"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "electron_4"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "electron_5"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "electron_6"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "electron_7"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "electron_8"
+      }
+    ]
   },
   "objects": [
     {
@@ -29,12 +67,7 @@
         "type": "fixed"
       },
       "labelTitle": "nucleus",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/nucleus.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_1",
@@ -51,12 +84,7 @@
         "type": "fixed"
       },
       "labelTitle": "electron",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_2",
@@ -73,12 +101,7 @@
         "type": "fixed"
       },
       "labelTitle": "electron",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_3",
@@ -95,12 +118,7 @@
         "type": "fixed"
       },
       "labelTitle": "electron",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_4",
@@ -117,12 +135,7 @@
         "type": "fixed"
       },
       "labelTitle": "electron",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_5",
@@ -139,12 +152,7 @@
         "type": "fixed"
       },
       "labelTitle": "electron",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_6",
@@ -161,12 +169,7 @@
         "type": "fixed"
       },
       "labelTitle": "electron",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_7",
@@ -183,12 +186,7 @@
         "type": "fixed"
       },
       "labelTitle": "electron",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ]
+      "labelBadge": "diagram"
     },
     {
       "id": "electron_8",
@@ -205,12 +203,7 @@
         "type": "fixed"
       },
       "labelTitle": "electron",
-      "labelBadge": "diagram",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ]
+      "labelBadge": "diagram"
     }
   ]
 }

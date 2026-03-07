@@ -5,7 +5,53 @@
     "type": "Scene-Index",
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "quantum",
+        "scenePath": "content/scenes/quantum/quantum.json"
+      },
+      {
+        "nodeId": "binary_dynamics",
+        "scenePath": "content/scenes/dynamics/binary_dynamics.json"
+      },
+      {
+        "nodeId": "causal_action_functional",
+        "scenePath": "content/scenes/dynamics/causal_action_functional.json"
+      },
+      {
+        "nodeId": "effective_lagrangian",
+        "scenePath": "content/scenes/dynamics/effective_lagrangian.json"
+      },
+      {
+        "nodeId": "kinetic_and_potential_energy",
+        "scenePath": "content/scenes/dynamics/kinetic_and_potential_energy.json"
+      },
+      {
+        "nodeId": "emergence_of_u_1_su_2",
+        "scenePath": "content/scenes/dynamics/emergence_of_u_1_su_2.json"
+      },
+      {
+        "nodeId": "gauge_symmetries",
+        "scenePath": "content/scenes/dynamics/gauge_symmetries.json"
+      },
+      {
+        "nodeId": "mapping_planck_scale",
+        "scenePath": "content/scenes/dynamics/mapping_planck_scale.json"
+      },
+      {
+        "nodeId": "master_equation_of_motion",
+        "scenePath": "content/scenes/dynamics/master_equation_of_motion.json"
+      },
+      {
+        "nodeId": "mode_taxonomy",
+        "scenePath": "content/scenes/dynamics/mode_taxonomy.json"
+      },
+      {
+        "nodeId": "tri_binary_dynamics",
+        "scenePath": "content/scenes/dynamics/tri_binary_dynamics.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -13,11 +59,6 @@
       "title": "Quantum",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "children": [
-        {
-          "scenePath": "content/scenes/quantum/quantum.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -28,11 +69,6 @@
       "title": "Binary Dynamics",
       "radius": 2.688,
       "color": "#243d8f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/binary-dynamics.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -44,11 +80,6 @@
       "title": "Causal Action Functional",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/causal-action-functional.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -60,11 +91,6 @@
       "title": "Effective Lagrangian",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/effective-lagrangian.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -76,11 +102,6 @@
       "title": "Kinetic and Potential Energy",
       "radius": 2.688,
       "color": "#4b0082",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/energy.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -92,15 +113,10 @@
       "title": "Emergence of U(1)/SU(2)",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/gauge-structure-emergence.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Emergence of U /SU(2)",
+      "labelTitle": "Emergence of U(1)/SU(2)",
       "labelDates": "(1)",
       "labelBadge": "doc"
     },
@@ -109,11 +125,6 @@
       "title": "Gauge Symmetries",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/gauge-symmetries.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -125,11 +136,6 @@
       "title": "Mapping Planck Scale",
       "radius": 2.688,
       "color": "#7a4a1f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/mapping-Planck-scale.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -141,11 +147,6 @@
       "title": "Master Equation of Motion",
       "radius": 2.688,
       "color": "#1c2a4f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/master-equation.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -157,11 +158,6 @@
       "title": "Mode Taxonomy",
       "radius": 2.688,
       "color": "#3c6a7a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/mode-taxonomy.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -173,11 +169,6 @@
       "title": "Tri-Binary Dynamics",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/dynamics/tri-binary-dynamics.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },

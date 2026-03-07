@@ -11,7 +11,17 @@
     ],
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "galaxy",
+        "scenePath": "content/scenes/cosmology/galaxy.json"
+      },
+      {
+        "nodeId": "intracluster_medium",
+        "scenePath": "content/scenes/cosmology/intracluster_medium.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -23,12 +33,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "galaxy",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/galaxy.json"
-        }
-      ]
+      "labelTitle": "galaxy"
     },
     {
       "id": "intracluster_medium",
@@ -39,12 +44,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "intracluster medium",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/intracluster_medium.json"
-        }
-      ]
+      "labelTitle": "intracluster medium"
     }
   ]
 }

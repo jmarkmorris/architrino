@@ -12,7 +12,33 @@
     "hideScaleLabels": true,
     "layout": {
       "type": "manual"
-    }
+    },
+    "children": [
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p1"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/neutrino.json",
+        "nodeId": "nu2"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p3"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p4"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/neutrino.json",
+        "nodeId": "nu5"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p6"
+      }
+    ]
   },
   "links": [
     {
@@ -364,17 +390,12 @@
         "type": "fixed"
       },
       "labelTitle": "H+",
-      "labelDates": "(proton)",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ]
+      "labelDates": "(proton)"
     },
     {
       "id": "gamma1",
-      "label": "\u03b3",
-      "shortName": "\u03b3",
+      "label": "γ",
+      "shortName": "γ",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -387,7 +408,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "\u03b3"
+      "labelTitle": "γ"
     },
     {
       "id": "eplus2",
@@ -409,8 +430,8 @@
     },
     {
       "id": "nu2",
-      "label": "\u03bd",
-      "shortName": "\u03bd",
+      "label": "ν",
+      "shortName": "ν",
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
@@ -423,12 +444,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "\u03bd",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/neutrino.json"
-        }
-      ]
+      "labelTitle": "ν"
     },
     {
       "id": "p3",
@@ -447,17 +463,12 @@
         "type": "fixed"
       },
       "labelTitle": "H+",
-      "labelDates": "(proton)",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ]
+      "labelDates": "(proton)"
     },
     {
       "id": "gamma3",
-      "label": "\u03b3",
-      "shortName": "\u03b3",
+      "label": "γ",
+      "shortName": "γ",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -470,7 +481,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "\u03b3"
+      "labelTitle": "γ"
     },
     {
       "id": "p4",
@@ -489,17 +500,12 @@
         "type": "fixed"
       },
       "labelTitle": "H+",
-      "labelDates": "(proton)",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ]
+      "labelDates": "(proton)"
     },
     {
       "id": "gamma4",
-      "label": "\u03b3",
-      "shortName": "\u03b3",
+      "label": "γ",
+      "shortName": "γ",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -512,7 +518,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "\u03b3"
+      "labelTitle": "γ"
     },
     {
       "id": "eplus5",
@@ -534,8 +540,8 @@
     },
     {
       "id": "nu5",
-      "label": "\u03bd",
-      "shortName": "\u03bd",
+      "label": "ν",
+      "shortName": "ν",
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
@@ -548,12 +554,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "\u03bd",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/neutrino.json"
-        }
-      ]
+      "labelTitle": "ν"
     },
     {
       "id": "p6",
@@ -572,12 +573,7 @@
         "type": "fixed"
       },
       "labelTitle": "H+",
-      "labelDates": "(proton)",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ]
+      "labelDates": "(proton)"
     },
     {
       "id": "he4",

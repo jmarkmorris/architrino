@@ -11,7 +11,17 @@
     ],
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "galaxy_cluster",
+        "scenePath": "content/scenes/cosmology/galaxy_cluster.json"
+      },
+      {
+        "nodeId": "cosmic_web",
+        "scenePath": "content/scenes/cosmology/galaxy_cluster.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -20,12 +30,7 @@
       "scaleExponent": 23,
       "radius": 1.6,
       "color": "#243d8f",
-      "labelTitle": "galaxy cluster",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/galaxy_cluster.json"
-        }
-      ]
+      "labelTitle": "galaxy cluster"
     },
     {
       "id": "cosmic_web",
@@ -33,12 +38,7 @@
       "scaleExponent": 25,
       "radius": 1.4,
       "color": "#2f4f7a",
-      "labelTitle": "cosmic web",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/galaxy_cluster.json"
-        }
-      ]
+      "labelTitle": "cosmic web"
     },
     {
       "id": "voids",

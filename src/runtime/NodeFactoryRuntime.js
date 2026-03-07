@@ -164,7 +164,7 @@ export function createNodeFactory(deps) {
       ? `<div class="label-badge-line"><img class="label-badge-image" src="${escapeAttr(
           badgeImage
         )}" alt="${escapeAttr(badgeAlt)}" /></div>`
-      : wantsDocSvgBadge && node.markdownDocIconEligible === true && node.markdownPath
+      : wantsDocSvgBadge
         ? `<div class="label-badge-line">${getDefaultDocBadgeSvg()}</div>`
       : wantsDiagramSvgBadge && node.childScene
         ? `<div class="label-badge-line">${getDiagramBadgeSvg()}</div>`

@@ -81,6 +81,7 @@ export class SceneRepository {
   resolveSplitSceneConfig(sceneMeta) {
     const sceneType = sceneMeta?.type;
     const source = sceneMeta?.source ?? null;
+    const split = source?.split ?? null;
     const view = sceneMeta?.view ?? null;
     const usesTypedSplitSource =
       sceneType === "Scene-Markdown-Split" &&
@@ -91,12 +92,14 @@ export class SceneRepository {
       splitSourcePath: usesTypedSplitSource
         ? source.path
         : null,
-      splitSection:
-        typeof view?.section === "string"
+      splitSection: typeof split?.section === "string"
+        ? split.section
+        : typeof view?.section === "string"
           ? view.section
           : null,
-      splitHeadingLevel:
-        typeof view?.headingLevel === "number"
+      splitHeadingLevel: typeof split?.headingLevel === "number"
+        ? split.headingLevel
+        : typeof view?.headingLevel === "number"
           ? view.headingLevel
           : usesTypedSplitSource
             ? 2
@@ -105,11 +108,12 @@ export class SceneRepository {
         view?.columns === 1 || view?.columns === 2
           ? view.columns
             : null,
-      splitSectionDepth:
-        typeof view?.sectionDepth === "number"
+      splitSectionDepth: typeof split?.sectionDepth === "number"
+        ? split.sectionDepth
+        : typeof view?.sectionDepth === "number"
           ? view.sectionDepth
-            : null,
-      splitIncludeExistingInLayout: false,
+          : null,
+      splitIncludeExistingInLayout: split?.includeExistingInLayout === true,
       splitNodeRadius: null,
       splitRingRadius: null,
       splitMaxRingCount: null,
@@ -123,14 +127,31 @@ export class SceneRepository {
       splitIndexPaths: [],
       splitPlainSectionPaths: [],
       splitOverrides: null,
+      splitSectionOverrides:
+        split?.overrides && typeof split.overrides === "object"
+          ? split.overrides
+          : null,
     };
   }
 
-  resolveChildSceneTarget(entry) {
-    const childRef =
-      Array.isArray(entry?.children) && entry.children.length > 0 && entry.children[0]
-        ? entry.children[0]
-        : null;
+  buildSceneChildRefMap(sceneMeta) {
+    const refs = Array.isArray(sceneMeta?.children) ? sceneMeta.children : [];
+    const map = new Map();
+    refs.forEach((ref) => {
+      if (!ref || typeof ref !== "object") {
+        return;
+      }
+      const nodeId = typeof ref.nodeId === "string" ? ref.nodeId : "";
+      if (!nodeId || map.has(nodeId)) {
+        return;
+      }
+      map.set(nodeId, ref);
+    });
+    return map;
+  }
+
+  resolveChildSceneTarget(entry, sceneChildRef = null, context = {}) {
+    const childRef = sceneChildRef;
     if (
       childRef &&
       (typeof childRef.scenePath === "string" || typeof childRef.sceneId === "string")
@@ -138,6 +159,54 @@ export class SceneRepository {
       return childRef.scenePath ?? childRef.sceneId;
     }
     return null;
+  }
+
+  resolveSceneChildDisplay(entry, sceneChildRef = null) {
+    return {
+      title:
+        typeof sceneChildRef?.title === "string" && sceneChildRef.title.trim().length > 0
+          ? sceneChildRef.title
+          : null,
+      labelBadge:
+        typeof sceneChildRef?.labelBadge === "string" && sceneChildRef.labelBadge.trim().length > 0
+          ? sceneChildRef.labelBadge
+          : null,
+      color:
+        typeof sceneChildRef?.color === "string" && sceneChildRef.color.trim().length > 0
+          ? sceneChildRef.color
+          : null,
+      slot:
+        typeof sceneChildRef?.slot === "string" && sceneChildRef.slot.trim().length > 0
+          ? sceneChildRef.slot
+          : null,
+    };
+  }
+
+  resolveNodeEntryColor(entry, sceneChildRef = null) {
+    const sceneChildDisplay = this.resolveSceneChildDisplay(entry, sceneChildRef);
+    if (typeof sceneChildDisplay.color === "string") {
+      return sceneChildDisplay.color;
+    }
+    return entry?.color ?? "#3a5a8a";
+  }
+
+  resolveNodeTitle(entry, sceneChildRef = null) {
+    const sceneChildDisplay = this.resolveSceneChildDisplay(entry, sceneChildRef);
+    return sceneChildDisplay.title ?? this.resolveDisplayTitle(entry) ?? entry?.id ?? null;
+  }
+
+  resolveNodeBadge(entry, sceneChildRef = null) {
+    const sceneChildDisplay = this.resolveSceneChildDisplay(entry, sceneChildRef);
+    return sceneChildDisplay.labelBadge ?? entry?.labelBadge ?? null;
+  }
+
+  resolveNodeLayoutSlot(entry, sceneChildRef = null) {
+    const sceneChildDisplay = this.resolveSceneChildDisplay(entry, sceneChildRef);
+    return sceneChildDisplay.slot ?? null;
+  }
+
+  resolveNodeChildRef(entry, context = {}) {
+    return context.sceneChildRefByNodeId?.get(entry?.id) ?? null;
   }
 
   resolveNodeColor(entry) {
@@ -150,23 +219,27 @@ export class SceneRepository {
 
   buildRuntimeNode(obj, context = {}) {
     const markdown = this.resolveMarkdownConfig(obj);
-    const nodeTitle = this.resolveDisplayTitle(obj) ?? obj.id;
+    const sceneChildRef = this.resolveNodeChildRef(obj, context);
+    const nodeTitle = this.resolveNodeTitle(obj, sceneChildRef) ?? obj.id;
     const hasScale = obj.scaleExponent !== undefined && obj.scaleExponent !== null;
     const binaryBands = Array.isArray(obj.binaryBands) ? obj.binaryBands : null;
     const node = {
       id: obj.id,
       name: nodeTitle,
       shortName: obj.shortName ?? null,
-      labelTitle: obj.labelTitle ?? obj.title ?? null,
+      labelTitle: obj.labelTitle ?? nodeTitle,
       labelSubtitle: obj.labelSubtitle ?? null,
       labelDates: obj.labelDates ?? null,
-      labelBadge: obj.labelBadge ?? null,
+      labelBadge: this.resolveNodeBadge(obj, sceneChildRef),
       labelBadgeImage: obj.labelBadgeImage ?? null,
       labelBadgeAlt: obj.labelBadgeAlt ?? null,
       scale: hasScale ? obj.scaleExponent : null,
       hasScale,
       radius: obj.radius ?? 1,
-      color: this.resolveNodeColor(obj),
+      color: this.resolveNodeColor({
+        ...obj,
+        color: this.resolveNodeEntryColor(obj, sceneChildRef),
+      }),
       position: obj.position ?? [0, 0, 0],
       fixedPosition: obj.fixedPosition ?? false,
       category: obj.category,
@@ -190,8 +263,9 @@ export class SceneRepository {
       baseOpacity: obj.baseOpacity ?? null,
       hideScaleLabel: obj.hideScaleLabel ?? context.hideScaleLabels ?? false,
       wrapLabel: obj.wrapLabel ?? context.wrapLabels ?? true,
+      layoutSlot: this.resolveNodeLayoutSlot(obj, sceneChildRef),
     };
-    const childScene = this.resolveChildSceneTarget(obj);
+    const childScene = this.resolveChildSceneTarget(obj, sceneChildRef, context);
     if (typeof childScene === "string" && childScene.length > 0) {
       node.childScene = childScene;
     }
@@ -236,6 +310,8 @@ export class SceneRepository {
     if (typeof scenePath === "string") {
       if (
         scenePath.startsWith("runtime:markdown:") ||
+        scenePath === "content/scenes/architrino-theory/electrino.json" ||
+        scenePath === "content/scenes/architrino-theory/positrino.json" ||
         scenePath === "content/scenes/nuclear/proton.json" ||
         scenePath === "content/scenes/nuclear/neutron.json" ||
         scenePath.startsWith("content/scenes/elements/") ||
@@ -244,7 +320,12 @@ export class SceneRepository {
         return false;
       }
     }
-    if (sceneId === "proton" || sceneId === "neutron") {
+    if (
+      sceneId === "electrino" ||
+      sceneId === "positrino" ||
+      sceneId === "proton" ||
+      sceneId === "neutron"
+    ) {
       return false;
     }
     return true;
@@ -441,6 +522,112 @@ export class SceneRepository {
     return nodes;
   }
 
+  isAuthoredSceneData(data) {
+    return !!(
+      data &&
+      typeof data === "object" &&
+      data.scene &&
+      typeof data.scene === "object" &&
+      Array.isArray(data.objects)
+    );
+  }
+
+  async createConfigFromSceneData(scenePath, data) {
+    const sceneMeta = data.scene ?? {};
+    const sceneType = typeof sceneMeta.type === "string" ? sceneMeta.type : null;
+    const rawSceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
+    const sceneMarkdown =
+      sceneType === "Scene-Markdown-Split"
+        ? {
+            markdownPath: null,
+            markdownSection: null,
+            markdownColumns: null,
+            markdownAutoOpen: null,
+          }
+        : rawSceneMarkdown;
+    const splitScene = this.resolveSplitSceneConfig(sceneMeta);
+    const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
+    const wrapLabels = sceneMeta.wrapLabels ?? true;
+    const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
+    const idMap = new Map(
+      data.objects.map((obj) => [obj.id, this.resolveDisplayTitle(obj) ?? obj.id])
+    );
+    let nodes = data.objects.map((obj) =>
+      this.buildRuntimeNode(obj, {
+        hideScaleLabels,
+        wrapLabels,
+        idMap,
+        sceneChildRefByNodeId,
+        sceneType,
+      })
+    );
+    const structuredPalette = this.resolveSphereColorPalette(data);
+    if (this.shouldApplyStructuredSpherePalette(scenePath, data)) {
+      this.applyStructuredSpherePalette(nodes, structuredPalette, {
+        usePositionalOrder: this.shouldUsePositionalPaletteOrder(scenePath),
+      });
+    }
+    this.applyPersonalityArchitrinoSizing(nodes);
+    const splitRuntimeScene = { ...data.scene, ...splitScene };
+    const autoNodes = await this.buildAutoMarkdownNodes(splitRuntimeScene, nodes);
+    if (autoNodes.length) {
+      nodes = nodes.concat(autoNodes);
+    }
+    await this.applyMarkdownDocEligibility(nodes);
+
+    const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
+    const sceneId = sceneMeta.id ?? null;
+    const rawLayoutType = this.resolveLayoutType(sceneMeta);
+    const config = {
+      layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
+      layoutType: rawLayoutType,
+      layoutColumns:
+        Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
+          ? data.scene.layoutColumns
+          : null,
+      nodes,
+      links: Array.isArray(data.links) ? data.links : [],
+      sceneName,
+      sceneId,
+      markdownPath: sceneMarkdown.markdownPath,
+      markdownSection: sceneMarkdown.markdownSection,
+      markdownColumns: sceneMarkdown.markdownColumns,
+      markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
+      markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
+      centerOn: sceneMeta.centerOn ?? null,
+      splitSourcePath: splitScene.splitSourcePath,
+      splitSection: splitScene.splitSection,
+      splitHeadingLevel: splitScene.splitHeadingLevel,
+      splitIncludeExistingInLayout: splitScene.splitIncludeExistingInLayout,
+      splitNodeRadius: splitScene.splitNodeRadius,
+      splitRingRadius: splitScene.splitRingRadius,
+      splitMaxRingCount: splitScene.splitMaxRingCount,
+      splitGridSpacing: splitScene.splitGridSpacing,
+      splitColumns: splitScene.splitColumns,
+      splitPalette: splitScene.splitPalette,
+      splitPaletteName: splitScene.splitPaletteName,
+      splitColor: splitScene.splitColor,
+      splitExcludePaths: splitScene.splitExcludePaths,
+      splitPlainPaths: splitScene.splitPlainPaths,
+      splitDefaultIndex: splitScene.splitDefaultIndex,
+      splitIndexPaths: splitScene.splitIndexPaths,
+      splitPlainSectionPaths: splitScene.splitPlainSectionPaths,
+      splitSectionDepth: splitScene.splitSectionDepth,
+      splitOverrides: splitScene.splitOverrides,
+      splitSectionOverrides: splitScene.splitSectionOverrides,
+    };
+    this.levelConfigs[scenePath] = config;
+    this.sceneConfigCache.set(scenePath, config);
+    return config;
+  }
+
+  async normalizeInlineSceneConfig(scenePath, configOrData) {
+    if (!this.isAuthoredSceneData(configOrData)) {
+      return configOrData;
+    }
+    return this.createConfigFromSceneData(scenePath, configOrData);
+  }
+
   async loadSceneConfig(scenePath) {
     if (this.sceneConfigCache.has(scenePath)) {
       return this.sceneConfigCache.get(scenePath);
@@ -456,80 +643,7 @@ export class SceneRepository {
         }
         return response.json();
       })
-      .then(async (data) => {
-        const sceneMeta = data.scene ?? {};
-        const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
-        const splitScene = this.resolveSplitSceneConfig(sceneMeta);
-        const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
-        const wrapLabels = sceneMeta.wrapLabels ?? true;
-        const idMap = new Map(
-          data.objects.map((obj) => [obj.id, this.resolveDisplayTitle(obj) ?? obj.id])
-        );
-        let nodes = data.objects.map((obj) =>
-          this.buildRuntimeNode(obj, {
-            hideScaleLabels,
-            wrapLabels,
-            idMap,
-          })
-        );
-        const structuredPalette = this.resolveSphereColorPalette(data);
-        if (this.shouldApplyStructuredSpherePalette(scenePath, data)) {
-          this.applyStructuredSpherePalette(nodes, structuredPalette, {
-            usePositionalOrder: this.shouldUsePositionalPaletteOrder(scenePath),
-          });
-        }
-        this.applyPersonalityArchitrinoSizing(nodes);
-        const splitRuntimeScene = { ...data.scene, ...splitScene };
-        const autoNodes = await this.buildAutoMarkdownNodes(splitRuntimeScene, nodes);
-        if (autoNodes.length) {
-          nodes = nodes.concat(autoNodes);
-        }
-        await this.applyMarkdownDocEligibility(nodes);
-
-        const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
-        const sceneId = sceneMeta.id ?? null;
-        const rawLayoutType = this.resolveLayoutType(sceneMeta);
-        const config = {
-          layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
-          layoutType: rawLayoutType,
-          layoutColumns:
-            Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
-              ? data.scene.layoutColumns
-              : null,
-          nodes,
-          links: Array.isArray(data.links) ? data.links : [],
-          sceneName,
-          sceneId,
-          markdownPath: sceneMarkdown.markdownPath,
-          markdownSection: sceneMarkdown.markdownSection,
-          markdownColumns: sceneMarkdown.markdownColumns,
-          markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
-          markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
-          centerOn: sceneMeta.centerOn ?? null,
-          splitSourcePath: splitScene.splitSourcePath,
-          splitSection: splitScene.splitSection,
-          splitHeadingLevel: splitScene.splitHeadingLevel,
-          splitIncludeExistingInLayout: splitScene.splitIncludeExistingInLayout,
-          splitNodeRadius: splitScene.splitNodeRadius,
-          splitRingRadius: splitScene.splitRingRadius,
-          splitMaxRingCount: splitScene.splitMaxRingCount,
-          splitGridSpacing: splitScene.splitGridSpacing,
-          splitColumns: splitScene.splitColumns,
-          splitPalette: splitScene.splitPalette,
-          splitPaletteName: splitScene.splitPaletteName,
-          splitColor: splitScene.splitColor,
-          splitExcludePaths: splitScene.splitExcludePaths,
-          splitPlainPaths: splitScene.splitPlainPaths,
-          splitDefaultIndex: splitScene.splitDefaultIndex,
-          splitIndexPaths: splitScene.splitIndexPaths,
-          splitPlainSectionPaths: splitScene.splitPlainSectionPaths,
-          splitSectionDepth: splitScene.splitSectionDepth,
-          splitOverrides: splitScene.splitOverrides,
-        };
-        this.levelConfigs[scenePath] = config;
-        this.sceneConfigCache.set(scenePath, config);
-        return config;
-      })
+      .then((data) => this.createConfigFromSceneData(scenePath, data))
       .catch((error) => {
         console.error(error);
         this.sceneLoadPromises.delete(scenePath);

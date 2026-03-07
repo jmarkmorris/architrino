@@ -8,229 +8,108 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "split": {
+        "mode": "headings",
+        "headingLevel": 3,
+        "sectionDepth": 1,
+        "sectionPresentationType": "Scene-Markdown-View",
+        "overrides": {
+          "ernst mach 1838 1916": {
+            "id": "thinker_ernst_mach_1838_1916",
+            "labelTitle": "Ernst Mach",
+            "labelSubtitle": "Mach's Principle",
+            "labelDates": "(1838–1916)",
+            "labelBadge": "doc",
+            "color": "#243d8f"
+          },
+          "hendrik lorentz 1853 1928": {
+            "id": "thinker_hendrik_lorentz_1853_1928",
+            "labelTitle": "Hendrik Lorentz",
+            "labelSubtitle": "Lorentz Ether Theory",
+            "labelDates": "(1853–1928)",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          },
+          "relativity": {
+            "id": "thinker_albert_einstein_1879_1955_special_relativity",
+            "labelTitle": "Albert Einstein",
+            "labelSubtitle": "Special and General Relativity",
+            "labelDates": "(1879–1955)",
+            "labelBadge": "doc",
+            "color": "#5a1f2e"
+          },
+          "andrei sakharov 1921 1989 induced gravity": {
+            "id": "thinker_andrei_sakharov_1921_1989_induced_gravity",
+            "labelTitle": "Andrei Sakharov",
+            "labelSubtitle": "Induced Gravity",
+            "labelDates": "(1921–1989)",
+            "labelBadge": "doc",
+            "color": "#3a5f9f"
+          },
+          "roger penrose 1931 conformal cyclic cosmology twistor theory": {
+            "id": "thinker_roger_penrose_1931_conformal_cyclic_cosmology_twistor_theory",
+            "labelTitle": "Roger Penrose",
+            "labelSubtitle": "CCC / Twistor Theory",
+            "labelDates": "(1931–)",
+            "labelBadge": "doc",
+            "color": "#2f4f7a"
+          },
+          "alan guth 1947 cosmic inflation": {
+            "id": "thinker_alan_guth_1947_cosmic_inflation",
+            "labelTitle": "Alan Guth",
+            "labelSubtitle": "Cosmic Inflation",
+            "labelDates": "(1947–)",
+            "labelBadge": "doc",
+            "color": "#3f6a5a"
+          },
+          "loop quantum gravity ashtekar 1949 smolin 1955 rovelli 1956": {
+            "id": "thinker_carlo_rovelli_1956_loop_quantum_gravity",
+            "labelTitle": "Carlo Rovelli",
+            "labelSubtitle": "Loop Quantum Gravity",
+            "labelDates": "(1956–)",
+            "labelBadge": "doc",
+            "color": "#355f9a"
+          },
+          "string theory witten 1951 polchinski 1954 2018 et al": {
+            "id": "thinker_joseph_polchinski_1954_2018_string_theory",
+            "labelTitle": "Joseph Polchinski",
+            "labelSubtitle": "String Theory",
+            "labelDates": "(1954–2018)",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          },
+          "lee smolin 1955 the trouble with physics temporal naturalism": {
+            "id": "thinker_lee_smolin_1955_the_trouble_with_physics_temporal_naturalism",
+            "labelTitle": "Lee Smolin",
+            "labelSubtitle": "Temporal Naturalism / LQG",
+            "labelDates": "(1955–)",
+            "labelBadge": "doc",
+            "color": "#355f9a"
+          },
+          "erik verlinde 1962 entropic gravity": {
+            "id": "thinker_erik_verlinde_1962_entropic_gravity",
+            "labelTitle": "Erik Verlinde",
+            "labelSubtitle": "Entropic Gravity",
+            "labelDates": "(1962–)",
+            "labelBadge": "doc",
+            "color": "#243d8f"
+          },
+          "sabine hossenfelder 1976 lost in math critique of beauty": {
+            "id": "thinker_sabine_hossenfelder_1976_lost_in_math_critique_of_beauty",
+            "labelTitle": "Sabine Hossenfelder",
+            "labelSubtitle": "Critique of Naturalness",
+            "labelDates": "(1976–)",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          }
+        },
+        "section": "Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)"
+      }
     }
   },
-  "objects": [
-    {
-      "id": "thinker_ernst_mach_1838_1916",
-      "label": "Ernst Mach (1838\u20131916)",
-      "radius": 2.2,
-      "color": "#243d8f",
-      "labelTitle": "Ernst Mach",
-      "labelDates": "(1838\u20131916)",
-      "labelBadge": "doc",
-      "labelSubtitle": "Mach's Principle",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Ernst Mach (1838\u20131916)"
-      }
-    },
-    {
-      "id": "thinker_hendrik_lorentz_1853_1928",
-      "label": "Hendrik Lorentz (1853\u20131928)",
-      "radius": 2.2,
-      "color": "#2f6b6f",
-      "labelTitle": "Hendrik Lorentz",
-      "labelDates": "(1853\u20131928)",
-      "labelBadge": "doc",
-      "labelSubtitle": "Lorentz Ether Theory",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Hendrik Lorentz (1853\u20131928)"
-      }
-    },
-    {
-      "id": "thinker_albert_einstein_1879_1955_special_relativity",
-      "label": "Albert Einstein (1879\u20131955) \u2014 Special and General Relativity",
-      "radius": 2.2,
-      "color": "#5a1f2e",
-      "labelTitle": "Albert Einstein",
-      "labelSubtitle": "Special and General Relativity",
-      "labelDates": "(1879\u20131955)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Relativity"
-      }
-    },
-    {
-      "id": "thinker_andrei_sakharov_1921_1989_induced_gravity",
-      "label": "Andrei Sakharov (1921\u20131989) \u2014 Induced Gravity",
-      "radius": 2.2,
-      "color": "#3a5f9f",
-      "labelTitle": "Andrei Sakharov",
-      "labelSubtitle": "Induced Gravity",
-      "labelDates": "(1921\u20131989)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Andrei Sakharov (1921\u20131989) \u2014 Induced Gravity"
-      }
-    },
-    {
-      "id": "thinker_roger_penrose_1931_conformal_cyclic_cosmology_twistor_theory",
-      "label": "Roger Penrose (1931\u2013) \u2014 Conformal Cyclic Cosmology, Twistor Theory",
-      "radius": 2.2,
-      "color": "#2f4f7a",
-      "labelTitle": "Roger Penrose",
-      "labelSubtitle": "CCC / Twistor Theory",
-      "labelDates": "(1931\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Roger Penrose (1931\u2013) \u2014 Conformal Cyclic Cosmology, Twistor Theory"
-      }
-    },
-    {
-      "id": "thinker_alan_guth_1947_cosmic_inflation",
-      "label": "Alan Guth (1947\u2013) \u2014 Cosmic Inflation",
-      "radius": 2.2,
-      "color": "#3f6a5a",
-      "labelTitle": "Alan Guth",
-      "labelSubtitle": "Cosmic Inflation",
-      "labelDates": "(1947\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Alan Guth (1947\u2013) \u2014 Cosmic Inflation"
-      }
-    },
-    {
-      "id": "thinker_abhay_ashtekar_1949_loop_quantum_gravity",
-      "label": "Abhay Ashtekar (1949\u2013) \u2014 Loop Quantum Gravity",
-      "radius": 2.2,
-      "color": "#6a3c3c",
-      "labelTitle": "Abhay Ashtekar",
-      "labelSubtitle": "Loop Quantum Gravity",
-      "labelDates": "(1949\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Loop Quantum Gravity (Ashtekar 1949\u2013, Smolin 1955\u2013, Rovelli 1956\u2013)"
-      }
-    },
-    {
-      "id": "thinker_carlo_rovelli_1956_loop_quantum_gravity",
-      "label": "Carlo Rovelli (1956\u2013) \u2014 Loop Quantum Gravity",
-      "radius": 2.2,
-      "color": "#355f9a",
-      "labelTitle": "Carlo Rovelli",
-      "labelSubtitle": "Loop Quantum Gravity",
-      "labelDates": "(1956\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Loop Quantum Gravity (Ashtekar 1949\u2013, Smolin 1955\u2013, Rovelli 1956\u2013)"
-      }
-    },
-    {
-      "id": "thinker_edward_witten_1951_string_theory",
-      "label": "Edward Witten (1951\u2013) \u2014 String Theory",
-      "radius": 2.2,
-      "color": "#243d8f",
-      "labelTitle": "Edward Witten",
-      "labelSubtitle": "String Theory",
-      "labelDates": "(1951\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "String Theory (Witten 1951\u2013, Polchinski 1954\u20132018, et al.)"
-      }
-    },
-    {
-      "id": "thinker_joseph_polchinski_1954_2018_string_theory",
-      "label": "Joseph Polchinski (1954\u20132018) \u2014 String Theory",
-      "radius": 2.2,
-      "color": "#2f6b6f",
-      "labelTitle": "Joseph Polchinski",
-      "labelSubtitle": "String Theory",
-      "labelDates": "(1954\u20132018)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "String Theory (Witten 1951\u2013, Polchinski 1954\u20132018, et al.)"
-      }
-    },
-    {
-      "id": "thinker_lee_smolin_1955_the_trouble_with_physics_temporal_naturalism",
-      "label": "Lee Smolin (1955\u2013) \u2014 The Trouble With Physics, Temporal Naturalism, LQG",
-      "radius": 2.2,
-      "color": "#355f9a",
-      "labelTitle": "Lee Smolin",
-      "labelSubtitle": "Temporal Naturalism / LQG",
-      "labelDates": "(1955\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Lee Smolin (1955\u2013) \u2014 The Trouble With Physics, Temporal Naturalism"
-      }
-    },
-    {
-      "id": "thinker_erik_verlinde_1962_entropic_gravity",
-      "label": "Erik Verlinde (1962\u2013) \u2014 Entropic Gravity",
-      "radius": 2.2,
-      "color": "#243d8f",
-      "labelTitle": "Erik Verlinde",
-      "labelSubtitle": "Entropic Gravity",
-      "labelDates": "(1962\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Erik Verlinde (1962\u2013) \u2014 Entropic Gravity"
-      }
-    },
-    {
-      "id": "thinker_sabine_hossenfelder_1976_lost_in_math_critique_of_beauty",
-      "label": "Sabine Hossenfelder (1976\u2013) \u2014 Lost in Math, Critique of \"Beauty\"",
-      "radius": 2.2,
-      "color": "#2f6b6f",
-      "labelTitle": "Sabine Hossenfelder",
-      "labelSubtitle": "Critique of Naturalness",
-      "labelDates": "(1976\u2013)",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Sabine Hossenfelder (1976\u2013) \u2014 Lost in Math, Critique of \"Beauty\""
-      }
-    }
-  ]
+  "objects": []
 }

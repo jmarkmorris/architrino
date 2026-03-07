@@ -27,6 +27,7 @@ import {
 } from "./src/services/MarkdownNamingService.js";
 import {
   extractMarkdownSection,
+  normalizeMarkdownKey,
   normalizeMarkdownPath,
   parseMarkdownHeading,
 } from "./src/services/MarkdownPolicyService.js";
@@ -481,7 +482,9 @@ function readComposerFormState() {
   return { id, name, nodeCount, labels };
 }
 
-function buildComposerSceneSpec(state) {
+function buildComposerSceneData(state, options = {}) {
+  const sceneId = options.sceneId ?? state.id;
+  const sceneTitle = options.sceneTitle ?? state.name;
   if (!composerPathState.points.length) {
     resetComposerPathPoints();
   }
@@ -502,56 +505,51 @@ function buildComposerSceneSpec(state) {
       Number(waypoint.lookAt.z.toFixed(3)),
     ],
   }));
-  return {
-    schemaVersion: "0.1.0",
-    name: state.id,
-    units: { length: "scene", angle: "degrees", time: "seconds" },
-    frame: { space: "relative", relativeTo: "parent" },
-    path: {
-      kind: "points",
-      frame: { space: "relative", relativeTo: "parent" },
-      payload: {
-        points: pathPoints,
-        interpolate: composerPathState.interpolate,
-        closed: composerPathState.closed,
-      },
-    },
-    cameraPath: cameraWaypoints.length
-      ? {
-          mode: "waypoints",
-          frame: { space: "relative", relativeTo: "parent" },
-          smooth: "spline",
-          points: cameraWaypoints,
-        }
-      : undefined,
-    annotations: { label: state.name },
-    children: [],
-  };
-}
-
-function buildComposerSceneConfig(state) {
-  const nodes = state.labels.map((label, index) => ({
+  const objects = state.labels.map((label, index) => ({
     id: `node_${index + 1}`,
-    name: label,
+    title: label,
     radius: 1.1,
     color: composerPalette[index % composerPalette.length],
     position: [0, 0, 0],
     wrapLabel: true,
   }));
   return {
-    layout: "static",
-    layoutType: "rings",
-    nodes,
+    schemaVersion: "0.1",
+    scene: {
+      id: sceneId,
+      title: sceneTitle,
+      type: "Scene-Diagram",
+      units: "relative",
+      wrapLabels: true,
+      hideScaleLabels: true,
+      layout: {
+        type: "rings",
+      },
+      composer: {
+        schemaVersion: "0.1.0",
+        frame: { space: "relative", relativeTo: "parent" },
+        path: {
+          kind: "points",
+          frame: { space: "relative", relativeTo: "parent" },
+          payload: {
+            points: pathPoints,
+            interpolate: composerPathState.interpolate,
+            closed: composerPathState.closed,
+          },
+        },
+        cameraPath: cameraWaypoints.length
+          ? {
+              mode: "waypoints",
+              frame: { space: "relative", relativeTo: "parent" },
+              smooth: "spline",
+              points: cameraWaypoints,
+            }
+          : undefined,
+        annotations: { label: state.name },
+      },
+    },
+    objects,
     links: [],
-    sceneName: `${state.name} (Preview)`,
-    sceneId: composerPreviewSceneId,
-    markdownPath: null,
-    markdownSection: null,
-    markdownColumns: null,
-    markdownAutoOpen: false,
-    centerOn: null,
-    wrapLabels: true,
-    hideScaleLabels: true,
   };
 }
 
@@ -560,8 +558,8 @@ function renderComposerJsonPreview() {
     return;
   }
   const state = readComposerFormState();
-  const spec = buildComposerSceneSpec(state);
-  composerJsonPreview.textContent = JSON.stringify(spec, null, 2);
+  const sceneData = buildComposerSceneData(state);
+  composerJsonPreview.textContent = JSON.stringify(sceneData, null, 2);
 }
 
 function setComposerStatus(message) {
@@ -1904,6 +1902,7 @@ const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   appendCacheBust,
   parseMarkdownHeading,
   extractMarkdownSection,
+  normalizeMarkdownKey,
   normalizeMarkdownPath,
   titleFromSlug,
   stripWalkthroughStepPrefix,
@@ -2907,7 +2906,7 @@ function beginLevelTransition(targetNode, childLevelId, options = {}) {
 }
 
 async function startLevelTransitionFromNode(targetNode) {
-  const childLevelId = targetNode.data.children || targetNode.data.childScene;
+  const childLevelId = targetNode.data.childScene;
   if (!childLevelId) {
     return;
   }
@@ -3079,8 +3078,7 @@ function maybeAutoWarp(now) {
   }
 
   if (candidate.radiusPx >= autoWarpThresholds.inPx && candidate.isInside) {
-    const childLevelId =
-      candidate.node.data.children || candidate.node.data.childScene;
+    const childLevelId = candidate.node.data.childScene;
     if (childLevelId) {
       autoWarpThresholds.lastAt = now;
       startLevelTransitionFromNode(candidate.node);
@@ -3643,8 +3641,7 @@ const composerUiRuntime = createComposerUiRuntime({
   stopComposerCameraFlightPreview,
   showMarkdownPanel: (level) => markdownRuntime.showMarkdownPanel(level),
   readComposerFormState,
-  buildComposerSceneConfig,
-  buildComposerSceneSpec,
+  buildComposerSceneData,
   jumpToScene,
   setComposerStatus,
   setComposerNeedsResize: (value) => {
@@ -3897,9 +3894,8 @@ function focusOnPointer(clientX, clientY) {
   }
 
   const hasExplicitChildScene =
-    !!targetNode.data.children ||
-    (typeof targetNode.data.childScene === "string" &&
-      !markdownSceneRegistry.isRuntimeMarkdownTarget(targetNode.data.childScene));
+    typeof targetNode.data.childScene === "string" &&
+    !markdownSceneRegistry.isRuntimeMarkdownTarget(targetNode.data.childScene);
 
   if (hasExplicitChildScene) {
     closeDetailPanel();
@@ -3908,7 +3904,12 @@ function focusOnPointer(clientX, clientY) {
   } else if (canOpenMarkdown) {
     closeDetailPanel();
     hideHoverTooltip();
-    const readerSceneId = markdownSceneRegistry.ensureMarkdownReaderScene(targetNode.data);
+    const hasSectionTarget =
+      typeof targetNode.data.markdownSection === "string" &&
+      targetNode.data.markdownSection.trim().length > 0;
+    const readerSceneId = hasSectionTarget
+      ? markdownSceneRegistry.ensureMarkdownReaderScene(targetNode.data)
+      : markdownSceneRegistry.ensureMarkdownDocScene(targetNode.data);
     if (readerSceneId) {
       targetNode.data.childScene = readerSceneId;
       startLevelTransitionFromNode(targetNode);

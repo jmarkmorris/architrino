@@ -11,7 +11,13 @@
     ],
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "disk",
+        "scenePath": "content/scenes/cosmology/disk.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -45,12 +51,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "disk",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/disk.json"
-        }
-      ]
+      "labelTitle": "disk"
     },
     {
       "id": "spiral_arms",

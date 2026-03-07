@@ -11,7 +11,61 @@
     ],
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "scenePath": "content/scenes/standard-model-particles/up_quark.json",
+        "nodeId": "up_quark"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/down_quark.json",
+        "nodeId": "down_quark"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "electron"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/neutrino.json",
+        "nodeId": "electron_neutrino"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/charm.json",
+        "nodeId": "charm_quark"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/strange.json",
+        "nodeId": "strange_quark"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/muon.json",
+        "nodeId": "muon"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/muon_neutrino.json",
+        "nodeId": "muon_neutrino"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/top.json",
+        "nodeId": "top_quark"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/bottom.json",
+        "nodeId": "bottom_quark"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/tau.json",
+        "nodeId": "tau"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/tau_neutrino.json",
+        "nodeId": "tau_neutrino"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/higgs_boson.json",
+        "nodeId": "higgs_boson"
+      }
+    ]
   },
   "objects": [
     {
@@ -35,12 +89,7 @@
         "spin": "1/2",
         "generation": "I"
       },
-      "labelTitle": "up quark",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/up_quark.json"
-        }
-      ]
+      "labelTitle": "up quark"
     },
     {
       "id": "down_quark",
@@ -63,12 +112,7 @@
         "spin": "1/2",
         "generation": "I"
       },
-      "labelTitle": "down quark",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/down_quark.json"
-        }
-      ]
+      "labelTitle": "down quark"
     },
     {
       "id": "electron",
@@ -91,12 +135,7 @@
         "spin": "1/2",
         "generation": "I"
       },
-      "labelTitle": "electron",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ]
+      "labelTitle": "electron"
     },
     {
       "id": "electron_neutrino",
@@ -119,12 +158,7 @@
         "spin": "1/2",
         "generation": "I"
       },
-      "labelTitle": "electron neutrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/neutrino.json"
-        }
-      ]
+      "labelTitle": "electron neutrino"
     },
     {
       "id": "charm_quark",
@@ -147,12 +181,7 @@
         "spin": "1/2",
         "generation": "II"
       },
-      "labelTitle": "charm quark",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/charm.json"
-        }
-      ]
+      "labelTitle": "charm quark"
     },
     {
       "id": "strange_quark",
@@ -175,12 +204,7 @@
         "spin": "1/2",
         "generation": "II"
       },
-      "labelTitle": "strange quark",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/strange.json"
-        }
-      ]
+      "labelTitle": "strange quark"
     },
     {
       "id": "muon",
@@ -203,12 +227,7 @@
         "spin": "1/2",
         "generation": "II"
       },
-      "labelTitle": "muon",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/muon.json"
-        }
-      ]
+      "labelTitle": "muon"
     },
     {
       "id": "muon_neutrino",
@@ -231,12 +250,7 @@
         "spin": "1/2",
         "generation": "II"
       },
-      "labelTitle": "muon neutrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/muon_neutrino.json"
-        }
-      ]
+      "labelTitle": "muon neutrino"
     },
     {
       "id": "top_quark",
@@ -259,12 +273,7 @@
         "spin": "1/2",
         "generation": "III"
       },
-      "labelTitle": "top quark",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/top.json"
-        }
-      ]
+      "labelTitle": "top quark"
     },
     {
       "id": "bottom_quark",
@@ -287,12 +296,7 @@
         "spin": "1/2",
         "generation": "III"
       },
-      "labelTitle": "bottom quark",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/bottom.json"
-        }
-      ]
+      "labelTitle": "bottom quark"
     },
     {
       "id": "tau",
@@ -315,12 +319,7 @@
         "spin": "1/2",
         "generation": "III"
       },
-      "labelTitle": "tau",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/tau.json"
-        }
-      ]
+      "labelTitle": "tau"
     },
     {
       "id": "tau_neutrino",
@@ -343,12 +342,7 @@
         "spin": "1/2",
         "generation": "III"
       },
-      "labelTitle": "tau neutrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/tau_neutrino.json"
-        }
-      ]
+      "labelTitle": "tau neutrino"
     },
     {
       "id": "photon",
@@ -480,12 +474,7 @@
         "mass": "125.25 GeV",
         "spin": "0"
       },
-      "labelTitle": "Higgs boson",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/higgs_boson.json"
-        }
-      ]
+      "labelTitle": "Higgs boson"
     }
   ]
 }

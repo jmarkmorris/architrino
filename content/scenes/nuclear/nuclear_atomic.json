@@ -8,7 +8,49 @@
     "layout": {
       "type": "rings"
     },
-    "wrapLabels": true
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "periodic_table",
+        "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
+      },
+      {
+        "nodeId": "hyde_periodic_table",
+        "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
+      },
+      {
+        "nodeId": "atom",
+        "scenePath": "content/scenes/nuclear/atom.json"
+      },
+      {
+        "nodeId": "atomic_spectra",
+        "scenePath": "content/scenes/nuclear/atomic_spectra.json"
+      },
+      {
+        "nodeId": "atomic_structure",
+        "scenePath": "content/scenes/nuclear/atomic_structure.json"
+      },
+      {
+        "nodeId": "condensed_matter",
+        "scenePath": "content/scenes/nuclear/condensed_matter.json"
+      },
+      {
+        "nodeId": "displacement_of_spacetime",
+        "scenePath": "content/scenes/nuclear/displacement_of_spacetime.json"
+      },
+      {
+        "nodeId": "molecular_geometry",
+        "scenePath": "content/scenes/nuclear/molecular_geometry.json"
+      },
+      {
+        "nodeId": "nuclear_binding",
+        "scenePath": "content/scenes/nuclear/nuclear_binding.json"
+      },
+      {
+        "nodeId": "nucleon_structure",
+        "scenePath": "content/scenes/nuclear/nucleon_structure.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -26,11 +68,6 @@
       "title": "Periodic Table",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "children": [
-        {
-          "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -41,11 +78,6 @@
       "title": "Hyde Periodic Table",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "children": [
-        {
-          "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -56,11 +88,6 @@
       "title": "Atom",
       "radius": 2.688,
       "color": "#a50041",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/atom.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -71,11 +98,6 @@
       "title": "Atomic Spectra",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md"
-      },
-      "markdownAutoIndex": false,
       "labelTitle": "Atomic Spectra",
       "labelBadge": "doc"
     },
@@ -84,11 +106,6 @@
       "title": "Atomic Structure",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/nuclear-atomic/atomic-structure.md"
-      },
-      "markdownAutoIndex": false,
       "labelTitle": "Atomic Structure",
       "labelBadge": "doc"
     },
@@ -97,11 +114,6 @@
       "title": "Condensed Matter",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/nuclear-atomic/condensed-matter.md"
-      },
-      "markdownAutoIndex": false,
       "labelTitle": "Condensed Matter",
       "labelBadge": "doc"
     },
@@ -110,10 +122,6 @@
       "title": "Displacement of Spacetime",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md"
-      },
       "labelTitle": "Displacement of Spacetime",
       "labelBadge": "doc"
     },
@@ -122,10 +130,6 @@
       "title": "Molecular Geometry",
       "radius": 2.688,
       "color": "#4b0082",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md"
-      },
       "labelTitle": "Molecular Geometry"
     },
     {
@@ -133,10 +137,6 @@
       "title": "Nuclear Binding",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md"
-      },
       "labelTitle": "Nuclear Binding"
     },
     {
@@ -144,10 +144,6 @@
       "title": "Nucleon Structure",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md"
-      },
       "labelTitle": "Nucleon Structure"
     }
   ]

@@ -8,7 +8,41 @@
     "layout": {
       "type": "rings"
     },
-    "wrapLabels": true
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "action_energy",
+        "scenePath": "content/scenes/validation/action_energy.json"
+      },
+      {
+        "nodeId": "sim_architrino",
+        "scenePath": "content/scenes/validation/sim_architrino.json"
+      },
+      {
+        "nodeId": "sim_convergence_tests",
+        "scenePath": "content/scenes/validation/sim_convergence_tests.json"
+      },
+      {
+        "nodeId": "sim_perspective",
+        "scenePath": "content/scenes/validation/sim_perspective.json"
+      },
+      {
+        "nodeId": "sim_readme",
+        "scenePath": "content/scenes/validation/sim_readme.json"
+      },
+      {
+        "nodeId": "sim_run_protocols",
+        "scenePath": "content/scenes/validation/sim_run_protocols.json"
+      },
+      {
+        "nodeId": "sim_synthetic_observables",
+        "scenePath": "content/scenes/validation/sim_synthetic_observables.json"
+      },
+      {
+        "nodeId": "sim_unsolved_problems",
+        "scenePath": "content/scenes/validation/sim_unsolved_problems.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -16,11 +50,6 @@
       "title": "Action-Energy",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "children": [
-        {
-          "scenePath": "content/scenes/validation/action_energy.json"
-        }
-      ],
       "labelTitle": "Action-Energy"
     },
     {
@@ -28,10 +57,6 @@
       "title": "Architrino",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/simulations/architrino.md"
-      },
       "labelTitle": "Architrino",
       "labelBadge": "doc"
     },
@@ -40,10 +65,6 @@
       "title": "Convergence Tests",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/simulations/convergence-tests.md"
-      },
       "labelTitle": "Convergence Tests",
       "labelBadge": "doc"
     },
@@ -52,10 +73,6 @@
       "title": "Perspective",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/simulations/perspective.md"
-      },
       "labelTitle": "Perspective",
       "labelBadge": "doc"
     },
@@ -64,10 +81,6 @@
       "title": "README",
       "radius": 2.688,
       "color": "#4b0082",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/simulations/README.md"
-      },
       "labelTitle": "README",
       "labelBadge": "doc"
     },
@@ -76,10 +89,6 @@
       "title": "Run Protocols",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/simulations/run-protocols.md"
-      },
       "labelTitle": "Run Protocols",
       "labelBadge": "doc"
     },
@@ -88,10 +97,6 @@
       "title": "Synthetic Observables",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/simulations/synthetic-observables.md"
-      },
       "labelTitle": "Synthetic Observables",
       "labelBadge": "doc"
     },
@@ -100,10 +105,6 @@
       "title": "Unsolved Problems",
       "radius": 2.688,
       "color": "#2c567a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/simulations/unsolved-problems.md"
-      },
       "labelTitle": "Unsolved Problems",
       "labelBadge": "doc"
     }

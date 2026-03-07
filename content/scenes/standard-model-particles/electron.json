@@ -11,7 +11,33 @@
     ],
     "layout": {
       "type": "manual"
-    }
+    },
+    "children": [
+      {
+        "scenePath": "content/scenes/architrino-theory/electrino.json",
+        "nodeId": "electrino_1"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/electrino.json",
+        "nodeId": "electrino_2"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/electrino.json",
+        "nodeId": "electrino_3"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/electrino.json",
+        "nodeId": "electrino_4"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/electrino.json",
+        "nodeId": "electrino_5"
+      },
+      {
+        "scenePath": "content/scenes/architrino-theory/electrino.json",
+        "nodeId": "electrino_6"
+      }
+    ]
   },
   "objects": [
     {
@@ -51,12 +77,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Electrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/electrino.json"
-        }
-      ]
+      "labelTitle": "Electrino"
     },
     {
       "id": "electrino_2",
@@ -71,12 +92,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Electrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/electrino.json"
-        }
-      ]
+      "labelTitle": "Electrino"
     },
     {
       "id": "electrino_3",
@@ -91,12 +107,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Electrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/electrino.json"
-        }
-      ]
+      "labelTitle": "Electrino"
     },
     {
       "id": "electrino_4",
@@ -111,12 +122,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Electrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/electrino.json"
-        }
-      ]
+      "labelTitle": "Electrino"
     },
     {
       "id": "electrino_5",
@@ -131,12 +137,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Electrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/electrino.json"
-        }
-      ]
+      "labelTitle": "Electrino"
     },
     {
       "id": "electrino_6",
@@ -151,12 +152,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Electrino",
-      "children": [
-        {
-          "scenePath": "content/scenes/architrino-theory/electrino.json"
-        }
-      ]
+      "labelTitle": "Electrino"
     }
   ]
 }

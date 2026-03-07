@@ -6,12 +6,20 @@ export function createSceneBootstrapService(deps = {}) {
 
   async function loadSceneConfig(scenePath) {
     if (levelConfigs[scenePath]) {
+      if (
+        sceneRepository &&
+        typeof sceneRepository.normalizeInlineSceneConfig === "function"
+      ) {
+        return sceneRepository.normalizeInlineSceneConfig(scenePath, levelConfigs[scenePath]);
+      }
       return levelConfigs[scenePath];
     }
     if (
       markdownSceneRegistry &&
       typeof markdownSceneRegistry.ensureRuntimeMarkdownScene === "function"
     ) {
+      // Plain markdown paths and runtime:markdown:* IDs are resolved here into
+      // internal helper scenes rather than authored scene configs.
       const resolvedTarget = await markdownSceneRegistry.ensureRuntimeMarkdownScene(scenePath);
       if (typeof resolvedTarget === "string" && levelConfigs[resolvedTarget]) {
         return levelConfigs[resolvedTarget];

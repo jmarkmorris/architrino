@@ -8,7 +8,41 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "major_thinkers_intro",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_intro.json"
+      },
+      {
+        "nodeId": "major_thinkers_classical_modern",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
+      },
+      {
+        "nodeId": "major_thinkers_relativity_cosmology",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json"
+      },
+      {
+        "nodeId": "major_thinkers_quantum_foundations",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
+      },
+      {
+        "nodeId": "major_thinkers_qft_standard_model",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
+      },
+      {
+        "nodeId": "major_thinkers_info_computation_science",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
+      },
+      {
+        "nodeId": "major_thinkers_summary_table",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_summary_table.json"
+      },
+      {
+        "nodeId": "major_thinkers_conclusion",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_conclusion.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -17,74 +51,42 @@
       "radius": 2.688,
       "color": "#243d8f",
       "labelTitle": "Introduction",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Introduction"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "major_thinkers_classical_modern",
       "label": "Classical & Early Modern Metaphysics",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "labelTitle": "Classical & Early Modern Metaphysics",
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
-        }
-      ]
+      "labelTitle": "Classical & Early Modern Metaphysics"
     },
     {
       "id": "major_thinkers_relativity_cosmology",
       "label": "Relativity, Gravity & Cosmology",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "labelTitle": "Relativity, Gravity & Cosmology",
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json"
-        }
-      ]
+      "labelTitle": "Relativity, Gravity & Cosmology"
     },
     {
       "id": "major_thinkers_quantum_foundations",
       "label": "Quantum Foundations",
       "radius": 2.688,
       "color": "#4b0082",
-      "labelTitle": "Quantum Foundations",
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
-        }
-      ]
+      "labelTitle": "Quantum Foundations"
     },
     {
       "id": "major_thinkers_qft_standard_model",
       "label": "Standard Model Architecture",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "labelTitle": "Standard Model Architecture",
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
-        }
-      ]
+      "labelTitle": "Standard Model Architecture"
     },
     {
       "id": "major_thinkers_info_computation_science",
       "label": "Information + Philosophy of Science",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "labelTitle": "Information + Philosophy of Science",
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
-        }
-      ]
+      "labelTitle": "Information + Philosophy of Science"
     },
     {
       "id": "major_thinkers_summary_table",
@@ -92,14 +94,7 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "labelTitle": "Summary Table",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Summary Table: Vindicated, Challenged, Transcended (Complete)"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "major_thinkers_conclusion",
@@ -107,14 +102,7 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "labelTitle": "Conclusion",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Conclusion: The Architrino Weltanschauung"
-      }
+      "labelBadge": "doc"
     }
   ]
 }
