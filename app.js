@@ -2907,7 +2907,7 @@ function beginLevelTransition(targetNode, childLevelId, options = {}) {
 }
 
 async function startLevelTransitionFromNode(targetNode) {
-  const childLevelId = targetNode.data.children || targetNode.data.childScene;
+  const childLevelId = targetNode.data.childScene;
   if (!childLevelId) {
     return;
   }
@@ -3079,8 +3079,7 @@ function maybeAutoWarp(now) {
   }
 
   if (candidate.radiusPx >= autoWarpThresholds.inPx && candidate.isInside) {
-    const childLevelId =
-      candidate.node.data.children || candidate.node.data.childScene;
+    const childLevelId = candidate.node.data.childScene;
     if (childLevelId) {
       autoWarpThresholds.lastAt = now;
       startLevelTransitionFromNode(candidate.node);
@@ -3897,9 +3896,8 @@ function focusOnPointer(clientX, clientY) {
   }
 
   const hasExplicitChildScene =
-    !!targetNode.data.children ||
-    (typeof targetNode.data.childScene === "string" &&
-      !markdownSceneRegistry.isRuntimeMarkdownTarget(targetNode.data.childScene));
+    typeof targetNode.data.childScene === "string" &&
+    !markdownSceneRegistry.isRuntimeMarkdownTarget(targetNode.data.childScene);
 
   if (hasExplicitChildScene) {
     closeDetailPanel();

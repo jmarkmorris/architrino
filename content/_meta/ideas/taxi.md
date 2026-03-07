@@ -276,21 +276,18 @@ The new ontology is simpler:
 
 Most of the format conversion is now complete. The remaining work is about bringing the implementation into tighter alignment with the ontology.
 
-### 1. Structural hierarchy still lives on clickable nodes
+### 1. Scene-Index hierarchy migration is complete
 
-The current app still stores hierarchy on object nodes through `objects[].children`.
+`Scene-Index` hierarchy now lives at the scene level through `scene.children`.
 
 That means:
 
-- the sphere node still owns the child target,
-- the scene does not yet own a separate structural child list,
-- hierarchy and presentation are still coupled more tightly than the ontology intends.
+- `Scene-Index` owns the structural child list,
+- sphere nodes are the clickable rendering layer,
+- `objects[].children` is no longer part of `Scene-Index` authored hierarchy,
+- node-owned child targets remain valid only for presentation scenes such as `Scene-Diagram`.
 
-The target model is:
-
-- `Scene-Index` owns structural `children` at the scene level,
-- sphere nodes are one rendering of that hierarchy,
-- node display hints remain possible without making the node the source of truth.
+The next work is not the hierarchy move itself. The next work is to build on top of that result.
 
 ### 2. Hotspots are still mostly an ontology concept, not a first-class generic feature
 
@@ -339,7 +336,6 @@ That is not a blocker for the conversion, but it is a remaining mismatch between
 
 Implementation checklist:
 
-- [ ] move structural hierarchy to scene-level `children`
 - [ ] decide and implement the generic `hotspots` model
 - [ ] decide whether `runtime:markdown:*` remains permanent internal machinery
 - [ ] align composer/export flows with the typed scene model
@@ -352,18 +348,7 @@ Migration principles:
 - keep converted data reviewable,
 - remove obsolete runtime recovery paths once the new path is working.
 
-### Phase 1. Move hierarchy to the scene level
-
-Make `Scene-Index` own the structural child list directly.
-
-Target result:
-
-- `scene.children` becomes the source of truth for hierarchy,
-- node-level sphere data becomes a rendering of that hierarchy,
-- node display hints can still override labels, badges, colors, or slot placement,
-- `objects[].children` disappears from authored scene files.
-
-### Phase 2. Add the generic relationship split
+### Phase 1. Add the generic relationship split
 
 Make the schema and runtime distinction explicit:
 
@@ -373,7 +358,7 @@ Make the schema and runtime distinction explicit:
 
 This should remove the remaining ambiguity about which edges are structural and which are merely navigational.
 
-### Phase 3. Decide the fate of runtime markdown helper scenes
+### Phase 2. Decide the fate of runtime markdown helper scenes
 
 The current runtime markdown helper path is much cleaner than the old one, but it is still generated state.
 
@@ -384,7 +369,7 @@ This phase should answer:
 
 Either answer can be valid, but it should be deliberate.
 
-### Phase 4. Align preview and editor outputs with the authored model
+### Phase 3. Align preview and editor outputs with the authored model
 
 Internal preview and authoring-related flows should move toward emitting the same conceptual model used by authored scenes.
 
@@ -398,33 +383,27 @@ This includes:
 
 If work resumes tomorrow, start here:
 
-1. Move `Scene-Index` hierarchy from `objects[].children` to `scene.children`.
-2. Keep sphere nodes as the clickable rendering layer, but stop making them the source of truth for hierarchy.
-3. Introduce child-reference display hints for the rendered node layer:
-   - label override
-   - badge override
-   - slot hint
-   - optional color override
-4. Update schema, validator, graph build, and runtime together in one pass so there is only one hierarchy model.
+1. Decide whether `hotspots` become a first-class generic scene feature now.
+2. If yes, add them consistently to:
+   - schema
+   - validator
+   - runtime
+   - one small authored example
+3. In parallel or immediately after, decide whether `runtime:markdown:*` stays as internal machinery or gets further reduced.
+4. Then align composer preview/export with the authored scene model.
 
 Immediate code targets:
 
 - `scripts/schema/scene.schema.json`
 - `scripts/validate-content.mjs`
-- `scripts/build-scene-graph.mjs`
-- `src/services/SceneRepository.js`
-- `app.js`
-
-Immediate authored-data target:
-
-- convert one `Scene-Index` subtree first, not the whole repo at once
-- best first subtree: `content/scenes/philosophy_history`
+- whichever runtime module owns hotspot behavior,
+- `src/services/MarkdownSceneRegistryService.js` if the markdown-helper decision is addressed,
+- composer-related runtime/export code when preview alignment starts.
 
 Success condition for this next pass:
 
-- `Scene-Index` owns hierarchy at the scene level,
-- clickable spheres still work,
-- `objects[].children` is no longer needed for the converted subtree,
+- the next remaining seam is resolved cleanly rather than worked around,
+- the ontology and implementation move closer together,
 - strict validation and graph checks still pass.
 
 ---
