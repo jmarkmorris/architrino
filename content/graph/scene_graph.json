@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 305,
-      "edges": 1148,
-      "scenes": 175,
+      "nodes": 409,
+      "edges": 1255,
+      "scenes": 279,
       "markdownIndexes": 16,
       "markdownDocs": 114,
       "runtimeEdges": 476,
@@ -1199,6 +1199,630 @@
       "nodeType": "scene"
     },
     {
+      "id": "fermions__color_charge_su3",
+      "name": "Color Charge SU3",
+      "path": "content/scenes/assemblies/color_charge_su3.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies__electroweak_bosons",
+      "name": "Electroweak Bosons",
+      "path": "content/scenes/assemblies/electroweak_bosons.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies__gluons",
+      "name": "Gluons",
+      "path": "content/scenes/assemblies/gluons.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies__mesons_doc",
+      "name": "Mesons",
+      "path": "content/scenes/assemblies/mesons_doc.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "fermions__neutrinos",
+      "name": "Neutrinos",
+      "path": "content/scenes/assemblies/neutrinos.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies__noether_core",
+      "name": "Noether Core",
+      "path": "content/scenes/assemblies/noether_core.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies__particle_masses",
+      "name": "Particle Masses",
+      "path": "content/scenes/assemblies/particle_masses.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "fermions__quantum_number_mapping",
+      "name": "Quantum Number Mapping",
+      "path": "content/scenes/assemblies/quantum_number_mapping.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "fermions__weak_mixing_angle",
+      "name": "Weak Mixing Angle",
+      "path": "content/scenes/assemblies/weak_mixing_angle.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "fermions__weak_mixing_ckm",
+      "name": "Weak Mixing CKM",
+      "path": "content/scenes/assemblies/weak_mixing_ckm.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__bbn_constraints",
+      "name": "BBN Constraints",
+      "path": "content/scenes/cosmology/bbn_constraints.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__cmb",
+      "name": "CMB",
+      "path": "content/scenes/cosmology/cmb.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__cosmology_ontology",
+      "name": "Cosmology Ontology",
+      "path": "content/scenes/cosmology/cosmology_ontology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__dark_energy",
+      "name": "Dark Energy",
+      "path": "content/scenes/cosmology/dark_energy.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__dark_matter",
+      "name": "Dark Matter",
+      "path": "content/scenes/cosmology/dark_matter.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__expansion_mechanism",
+      "name": "Expansion Mechanism",
+      "path": "content/scenes/cosmology/expansion_mechanism.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__hubble_s8_tensions",
+      "name": "Hubble and S8 Tensions",
+      "path": "content/scenes/cosmology/hubble_s8_tensions.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__inflation_model",
+      "name": "Inflation Model",
+      "path": "content/scenes/cosmology/inflation_model.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__structure_formation",
+      "name": "Structure Formation",
+      "path": "content/scenes/cosmology/structure_formation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__binary_dynamics",
+      "name": "Binary Dynamics",
+      "path": "content/scenes/dynamics/binary_dynamics.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__causal_action_functional",
+      "name": "Causal Action Functional",
+      "path": "content/scenes/dynamics/causal_action_functional.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__effective_lagrangian",
+      "name": "Effective Lagrangian",
+      "path": "content/scenes/dynamics/effective_lagrangian.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__emergence_of_u_1_su_2",
+      "name": "Emergence of U(1)/SU(2)",
+      "path": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__gauge_symmetries",
+      "name": "Gauge Symmetries",
+      "path": "content/scenes/dynamics/gauge_symmetries.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__kinetic_and_potential_energy",
+      "name": "Kinetic and Potential Energy",
+      "path": "content/scenes/dynamics/kinetic_and_potential_energy.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__mapping_planck_scale",
+      "name": "Mapping Planck Scale",
+      "path": "content/scenes/dynamics/mapping_planck_scale.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__master_equation_of_motion",
+      "name": "Master Equation of Motion",
+      "path": "content/scenes/dynamics/master_equation_of_motion.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__mode_taxonomy",
+      "name": "Mode Taxonomy",
+      "path": "content/scenes/dynamics/mode_taxonomy.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__tri_binary_dynamics",
+      "name": "Tri-Binary Dynamics",
+      "path": "content/scenes/dynamics/tri_binary_dynamics.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "foundations__absolute_time_defense",
+      "name": "Absolute Time Defense",
+      "path": "content/scenes/foundations/absolute_time_defense.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "foundations__bootstrapping_the_absolute_frame",
+      "name": "Bootstrapping the Absolute Frame",
+      "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "foundations__emergence_of_structure",
+      "name": "Emergence of Structure",
+      "path": "content/scenes/foundations/emergence_of_structure.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "foundations__euclidean_void",
+      "name": "Euclidean Void",
+      "path": "content/scenes/foundations/euclidean_void.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "foundations__foundational_ontology",
+      "name": "Foundational Ontology",
+      "path": "content/scenes/foundations/foundational_ontology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_about",
+      "name": "About",
+      "path": "content/scenes/meta/meta_about.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_glossary",
+      "name": "Glossary",
+      "path": "content/scenes/meta/meta_glossary.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_help",
+      "name": "Help",
+      "path": "content/scenes/meta/meta_help.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_licenses_attributions",
+      "name": "Licenses & Attributions",
+      "path": "content/scenes/meta/meta_licenses_attributions.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_mathematical_style_guide",
+      "name": "Mathematical Style Guide",
+      "path": "content/scenes/meta/meta_mathematical_style_guide.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_mathematical_terminology",
+      "name": "Mathematical Terminology",
+      "path": "content/scenes/meta/meta_mathematical_terminology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_navigation",
+      "name": "Navigation",
+      "path": "content/scenes/meta/meta_navigation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_scene_taxonomy",
+      "name": "Scene Taxonomy",
+      "path": "content/scenes/meta/meta_scene_taxonomy.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "nuclear_atomic__atomic_spectra",
+      "name": "Atomic Spectra",
+      "path": "content/scenes/nuclear/atomic_spectra.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "nuclear_atomic__atomic_structure",
+      "name": "Atomic Structure",
+      "path": "content/scenes/nuclear/atomic_structure.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "nuclear_atomic__condensed_matter",
+      "name": "Condensed Matter",
+      "path": "content/scenes/nuclear/condensed_matter.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "nuclear_atomic__displacement_of_spacetime",
+      "name": "Displacement of Spacetime",
+      "path": "content/scenes/nuclear/displacement_of_spacetime.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "nuclear_atomic__molecular_geometry",
+      "name": "Molecular Geometry",
+      "path": "content/scenes/nuclear/molecular_geometry.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "nuclear_atomic__nuclear_binding",
+      "name": "Nuclear Binding",
+      "path": "content/scenes/nuclear/nuclear_binding.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "nuclear_atomic__nucleon_structure",
+      "name": "Nucleon Structure",
+      "path": "content/scenes/nuclear/nucleon_structure.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__crisis_in_physics",
+      "name": "Crisis in Physics",
+      "path": "content/scenes/philosophy_history/crisis_in_physics.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__historical_context_missed_opportunities",
+      "name": "Historical Context and Missed Opportunities",
+      "path": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__lorentz_ether_comparison",
+      "name": "Lorentz Ether Comparison",
+      "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers__major_thinkers_conclusion",
+      "name": "Conclusion",
+      "path": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers__major_thinkers_intro",
+      "name": "Introduction",
+      "path": "content/scenes/philosophy_history/major_thinkers_intro.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers__major_thinkers_summary_table",
+      "name": "Summary Table",
+      "path": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__religious_ontologies",
+      "name": "Religious Ontologies",
+      "path": "content/scenes/philosophy_history/religious_ontologies.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__theory_mapping",
+      "name": "Theory Mapping",
+      "path": "content/scenes/philosophy_history/theory_mapping.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
+      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
+      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__measurement_problem_and_collapse",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/scenes/quantum/measurement_problem_and_collapse.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
+      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__reality_causality_and_navigation",
+      "name": "Reality, Causality, and Navigation",
+      "path": "content/scenes/quantum/reality_causality_and_navigation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__superposition_mechanism_traditional_vs_architrino_assembly_architecture",
+      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__wavefunction_ontology",
+      "name": "Wavefunction Ontology",
+      "path": "content/scenes/quantum/wavefunction_ontology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__cosmic_censorship_holography",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/scenes/spacetime/cosmic_censorship_holography.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__emergent_metric",
+      "name": "Emergent Metric",
+      "path": "content/scenes/spacetime/emergent_metric.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__general_relativity_observables",
+      "name": "General Relativity",
+      "path": "content/scenes/spacetime/general_relativity_observables.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__gravitational_waves",
+      "name": "Gravitational Waves",
+      "path": "content/scenes/spacetime/gravitational_waves.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__lorentz_kinematics",
+      "name": "Lorentz Kinematics",
+      "path": "content/scenes/spacetime/lorentz_kinematics.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__ppn_parameters",
+      "name": "PPN Parameters",
+      "path": "content/scenes/spacetime/ppn_parameters.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__proper_time_and_time_dilation",
+      "name": "Proper Time and Time Dilation",
+      "path": "content/scenes/spacetime/proper_time_and_time_dilation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__singularity_resolution",
+      "name": "Singularity Resolution",
+      "path": "content/scenes/spacetime/singularity_resolution.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__spacetime_assemblies",
+      "name": "Spacetime Assemblies",
+      "path": "content/scenes/spacetime/spacetime_assemblies.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__action_model",
+      "name": "Action Model",
+      "path": "content/scenes/validation/action_model.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__analytic_baselines",
+      "name": "Analytic Baselines",
+      "path": "content/scenes/validation/analytic_baselines.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__architrino_si_base_units",
+      "name": "Architrino SI Base Units",
+      "path": "content/scenes/validation/architrino_si_base_units.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__attraction",
+      "name": "Attraction",
+      "path": "content/scenes/validation/attraction.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__background_simple_action",
+      "name": "Background and Simple Action",
+      "path": "content/scenes/validation/background_simple_action.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__causal_set_delay_geometry",
+      "name": "Causal Set and Delay Geometry",
+      "path": "content/scenes/validation/causal_set_delay_geometry.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__closure_scorecard",
+      "name": "Closure Scorecard",
+      "path": "content/scenes/validation/closure_scorecard.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__constraint_ledger",
+      "name": "Constraint Ledger",
+      "path": "content/scenes/validation/constraint_ledger.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__failure_criteria",
+      "name": "Failure Criteria",
+      "path": "content/scenes/validation/failure_criteria.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__informational_ambiguity",
+      "name": "Informational Ambiguity",
+      "path": "content/scenes/validation/informational_ambiguity.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__known_tensions",
+      "name": "Known Tensions",
+      "path": "content/scenes/validation/known_tensions.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__no_go_theorems",
+      "name": "No Go Theorems",
+      "path": "content/scenes/validation/no_go_theorems.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__numerical_recipe_stability",
+      "name": "Numerical Recipe and Stability",
+      "path": "content/scenes/validation/numerical_recipe_stability.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__parameter_ledger",
+      "name": "Parameter Ledger",
+      "path": "content/scenes/validation/parameter_ledger.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__radial_attraction",
+      "name": "Radial Attraction",
+      "path": "content/scenes/validation/radial_attraction.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__reaction_ledger",
+      "name": "Reaction Ledger",
+      "path": "content/scenes/validation/reaction_ledger.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__receiver_velocity_work",
+      "name": "Receiver Velocity and Work",
+      "path": "content/scenes/validation/receiver_velocity_work.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__repulsion",
+      "name": "Repulsion",
+      "path": "content/scenes/validation/repulsion.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__self_energy",
+      "name": "Self-Energy",
+      "path": "content/scenes/validation/self_energy.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__self_interaction_switch",
+      "name": "Self-Interaction Switch",
+      "path": "content/scenes/validation/self_interaction_switch.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_simulations__sim_architrino",
+      "name": "Architrino",
+      "path": "content/scenes/validation/sim_architrino.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_simulations__sim_convergence_tests",
+      "name": "Convergence Tests",
+      "path": "content/scenes/validation/sim_convergence_tests.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_simulations__sim_perspective",
+      "name": "Perspective",
+      "path": "content/scenes/validation/sim_perspective.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_simulations__sim_readme",
+      "name": "README",
+      "path": "content/scenes/validation/sim_readme.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_simulations__sim_run_protocols",
+      "name": "Run Protocols",
+      "path": "content/scenes/validation/sim_run_protocols.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_simulations__sim_synthetic_observables",
+      "name": "Synthetic Observables",
+      "path": "content/scenes/validation/sim_synthetic_observables.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_simulations__sim_unsolved_problems",
+      "name": "Unsolved Problems",
+      "path": "content/scenes/validation/sim_unsolved_problems.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__superposition_locality",
+      "name": "Superposition and Locality",
+      "path": "content/scenes/validation/superposition_locality.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__units_constants",
+      "name": "Units and Constants",
+      "path": "content/scenes/validation/units_constants.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__validation_protocols",
+      "name": "Validation Protocols",
+      "path": "content/scenes/validation/validation_protocols.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_action_energy__well_posedness_regularization",
+      "name": "Well-Posedness and Regularization",
+      "path": "content/scenes/validation/well_posedness_regularization.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about.md",
       "name": "About",
       "path": "content/markdown/aaa/archie/about.md",
@@ -1921,12 +2545,102 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/assemblies/color_charge_su3.json",
+      "nodeType": "scene",
+      "id": "fermions__color_charge_su3",
+      "name": "Color Charge SU3",
+      "path": "content/scenes/assemblies/color_charge_su3.json",
+      "searchTarget": "content/scenes/assemblies/color_charge_su3.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/electroweak_bosons.json",
+      "nodeType": "scene",
+      "id": "assemblies__electroweak_bosons",
+      "name": "Electroweak Bosons",
+      "path": "content/scenes/assemblies/electroweak_bosons.json",
+      "searchTarget": "content/scenes/assemblies/electroweak_bosons.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/assemblies/fermions.json",
       "nodeType": "scene",
       "id": "fermions",
       "name": "Fermions",
       "path": "content/scenes/assemblies/fermions.json",
       "searchTarget": "content/scenes/assemblies/fermions.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/gluons.json",
+      "nodeType": "scene",
+      "id": "assemblies__gluons",
+      "name": "Gluons",
+      "path": "content/scenes/assemblies/gluons.json",
+      "searchTarget": "content/scenes/assemblies/gluons.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/mesons_doc.json",
+      "nodeType": "scene",
+      "id": "assemblies__mesons_doc",
+      "name": "Mesons",
+      "path": "content/scenes/assemblies/mesons_doc.json",
+      "searchTarget": "content/scenes/assemblies/mesons_doc.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/neutrinos.json",
+      "nodeType": "scene",
+      "id": "fermions__neutrinos",
+      "name": "Neutrinos",
+      "path": "content/scenes/assemblies/neutrinos.json",
+      "searchTarget": "content/scenes/assemblies/neutrinos.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/noether_core.json",
+      "nodeType": "scene",
+      "id": "assemblies__noether_core",
+      "name": "Noether Core",
+      "path": "content/scenes/assemblies/noether_core.json",
+      "searchTarget": "content/scenes/assemblies/noether_core.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/particle_masses.json",
+      "nodeType": "scene",
+      "id": "assemblies__particle_masses",
+      "name": "Particle Masses",
+      "path": "content/scenes/assemblies/particle_masses.json",
+      "searchTarget": "content/scenes/assemblies/particle_masses.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/quantum_number_mapping.json",
+      "nodeType": "scene",
+      "id": "fermions__quantum_number_mapping",
+      "name": "Quantum Number Mapping",
+      "path": "content/scenes/assemblies/quantum_number_mapping.json",
+      "searchTarget": "content/scenes/assemblies/quantum_number_mapping.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/weak_mixing_angle.json",
+      "nodeType": "scene",
+      "id": "fermions__weak_mixing_angle",
+      "name": "Weak Mixing Angle",
+      "path": "content/scenes/assemblies/weak_mixing_angle.json",
+      "searchTarget": "content/scenes/assemblies/weak_mixing_angle.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/weak_mixing_ckm.json",
+      "nodeType": "scene",
+      "id": "fermions__weak_mixing_ckm",
+      "name": "Weak Mixing CKM",
+      "path": "content/scenes/assemblies/weak_mixing_ckm.json",
+      "searchTarget": "content/scenes/assemblies/weak_mixing_ckm.json",
       "implicit": false
     },
     {
@@ -1957,6 +2671,33 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/cosmology/bbn_constraints.json",
+      "nodeType": "scene",
+      "id": "cosmology__bbn_constraints",
+      "name": "BBN Constraints",
+      "path": "content/scenes/cosmology/bbn_constraints.json",
+      "searchTarget": "content/scenes/cosmology/bbn_constraints.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/cosmology/cmb.json",
+      "nodeType": "scene",
+      "id": "cosmology__cmb",
+      "name": "CMB",
+      "path": "content/scenes/cosmology/cmb.json",
+      "searchTarget": "content/scenes/cosmology/cmb.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/cosmology/cosmology_ontology.json",
+      "nodeType": "scene",
+      "id": "cosmology__cosmology_ontology",
+      "name": "Cosmology Ontology",
+      "path": "content/scenes/cosmology/cosmology_ontology.json",
+      "searchTarget": "content/scenes/cosmology/cosmology_ontology.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/cosmology/cosmology.json",
       "nodeType": "scene",
       "id": "cosmology",
@@ -1966,12 +2707,39 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/cosmology/dark_energy.json",
+      "nodeType": "scene",
+      "id": "cosmology__dark_energy",
+      "name": "Dark Energy",
+      "path": "content/scenes/cosmology/dark_energy.json",
+      "searchTarget": "content/scenes/cosmology/dark_energy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/cosmology/dark_matter.json",
+      "nodeType": "scene",
+      "id": "cosmology__dark_matter",
+      "name": "Dark Matter",
+      "path": "content/scenes/cosmology/dark_matter.json",
+      "searchTarget": "content/scenes/cosmology/dark_matter.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/cosmology/disk.json",
       "nodeType": "scene",
       "id": "galaxy_disk",
       "name": "Galaxy Disk",
       "path": "content/scenes/cosmology/disk.json",
       "searchTarget": "content/scenes/cosmology/disk.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/cosmology/expansion_mechanism.json",
+      "nodeType": "scene",
+      "id": "cosmology__expansion_mechanism",
+      "name": "Expansion Mechanism",
+      "path": "content/scenes/cosmology/expansion_mechanism.json",
+      "searchTarget": "content/scenes/cosmology/expansion_mechanism.json",
       "implicit": false
     },
     {
@@ -1990,6 +2758,24 @@
       "name": "Galaxy",
       "path": "content/scenes/cosmology/galaxy.json",
       "searchTarget": "content/scenes/cosmology/galaxy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/cosmology/hubble_s8_tensions.json",
+      "nodeType": "scene",
+      "id": "cosmology__hubble_s8_tensions",
+      "name": "Hubble and S8 Tensions",
+      "path": "content/scenes/cosmology/hubble_s8_tensions.json",
+      "searchTarget": "content/scenes/cosmology/hubble_s8_tensions.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/cosmology/inflation_model.json",
+      "nodeType": "scene",
+      "id": "cosmology__inflation_model",
+      "name": "Inflation Model",
+      "path": "content/scenes/cosmology/inflation_model.json",
+      "searchTarget": "content/scenes/cosmology/inflation_model.json",
       "implicit": false
     },
     {
@@ -2038,6 +2824,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/cosmology/structure_formation.json",
+      "nodeType": "scene",
+      "id": "cosmology__structure_formation",
+      "name": "Structure Formation",
+      "path": "content/scenes/cosmology/structure_formation.json",
+      "searchTarget": "content/scenes/cosmology/structure_formation.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/cosmology/universe.json",
       "nodeType": "scene",
       "id": "universe",
@@ -2047,12 +2842,102 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/dynamics/binary_dynamics.json",
+      "nodeType": "scene",
+      "id": "dynamics__binary_dynamics",
+      "name": "Binary Dynamics",
+      "path": "content/scenes/dynamics/binary_dynamics.json",
+      "searchTarget": "content/scenes/dynamics/binary_dynamics.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/causal_action_functional.json",
+      "nodeType": "scene",
+      "id": "dynamics__causal_action_functional",
+      "name": "Causal Action Functional",
+      "path": "content/scenes/dynamics/causal_action_functional.json",
+      "searchTarget": "content/scenes/dynamics/causal_action_functional.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/dynamics/dynamics.json",
       "nodeType": "scene",
       "id": "dynamics",
       "name": "Dynamics",
       "path": "content/scenes/dynamics/dynamics.json",
       "searchTarget": "content/scenes/dynamics/dynamics.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/effective_lagrangian.json",
+      "nodeType": "scene",
+      "id": "dynamics__effective_lagrangian",
+      "name": "Effective Lagrangian",
+      "path": "content/scenes/dynamics/effective_lagrangian.json",
+      "searchTarget": "content/scenes/dynamics/effective_lagrangian.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/emergence_of_u_1_su_2.json",
+      "nodeType": "scene",
+      "id": "dynamics__emergence_of_u_1_su_2",
+      "name": "Emergence of U(1)/SU(2)",
+      "path": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
+      "searchTarget": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/gauge_symmetries.json",
+      "nodeType": "scene",
+      "id": "dynamics__gauge_symmetries",
+      "name": "Gauge Symmetries",
+      "path": "content/scenes/dynamics/gauge_symmetries.json",
+      "searchTarget": "content/scenes/dynamics/gauge_symmetries.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
+      "nodeType": "scene",
+      "id": "dynamics__kinetic_and_potential_energy",
+      "name": "Kinetic and Potential Energy",
+      "path": "content/scenes/dynamics/kinetic_and_potential_energy.json",
+      "searchTarget": "content/scenes/dynamics/kinetic_and_potential_energy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/mapping_planck_scale.json",
+      "nodeType": "scene",
+      "id": "dynamics__mapping_planck_scale",
+      "name": "Mapping Planck Scale",
+      "path": "content/scenes/dynamics/mapping_planck_scale.json",
+      "searchTarget": "content/scenes/dynamics/mapping_planck_scale.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/master_equation_of_motion.json",
+      "nodeType": "scene",
+      "id": "dynamics__master_equation_of_motion",
+      "name": "Master Equation of Motion",
+      "path": "content/scenes/dynamics/master_equation_of_motion.json",
+      "searchTarget": "content/scenes/dynamics/master_equation_of_motion.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/mode_taxonomy.json",
+      "nodeType": "scene",
+      "id": "dynamics__mode_taxonomy",
+      "name": "Mode Taxonomy",
+      "path": "content/scenes/dynamics/mode_taxonomy.json",
+      "searchTarget": "content/scenes/dynamics/mode_taxonomy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
+      "nodeType": "scene",
+      "id": "dynamics__tri_binary_dynamics",
+      "name": "Tri-Binary Dynamics",
+      "path": "content/scenes/dynamics/tri_binary_dynamics.json",
+      "searchTarget": "content/scenes/dynamics/tri_binary_dynamics.json",
       "implicit": false
     },
     {
@@ -3127,6 +4012,51 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/foundations/absolute_time_defense.json",
+      "nodeType": "scene",
+      "id": "foundations__absolute_time_defense",
+      "name": "Absolute Time Defense",
+      "path": "content/scenes/foundations/absolute_time_defense.json",
+      "searchTarget": "content/scenes/foundations/absolute_time_defense.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "nodeType": "scene",
+      "id": "foundations__bootstrapping_the_absolute_frame",
+      "name": "Bootstrapping the Absolute Frame",
+      "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "searchTarget": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/foundations/emergence_of_structure.json",
+      "nodeType": "scene",
+      "id": "foundations__emergence_of_structure",
+      "name": "Emergence of Structure",
+      "path": "content/scenes/foundations/emergence_of_structure.json",
+      "searchTarget": "content/scenes/foundations/emergence_of_structure.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/foundations/euclidean_void.json",
+      "nodeType": "scene",
+      "id": "foundations__euclidean_void",
+      "name": "Euclidean Void",
+      "path": "content/scenes/foundations/euclidean_void.json",
+      "searchTarget": "content/scenes/foundations/euclidean_void.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/foundations/foundational_ontology.json",
+      "nodeType": "scene",
+      "id": "foundations__foundational_ontology",
+      "name": "Foundational Ontology",
+      "path": "content/scenes/foundations/foundational_ontology.json",
+      "searchTarget": "content/scenes/foundations/foundational_ontology.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/foundations/foundations.json",
       "nodeType": "scene",
       "id": "foundations",
@@ -3142,6 +4072,78 @@
       "name": "Composer",
       "path": "content/scenes/meta/composer.json",
       "searchTarget": "content/scenes/meta/composer.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/meta/meta_about.json",
+      "nodeType": "scene",
+      "id": "meta__meta_about",
+      "name": "About",
+      "path": "content/scenes/meta/meta_about.json",
+      "searchTarget": "content/scenes/meta/meta_about.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/meta/meta_glossary.json",
+      "nodeType": "scene",
+      "id": "meta__meta_glossary",
+      "name": "Glossary",
+      "path": "content/scenes/meta/meta_glossary.json",
+      "searchTarget": "content/scenes/meta/meta_glossary.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/meta/meta_help.json",
+      "nodeType": "scene",
+      "id": "meta__meta_help",
+      "name": "Help",
+      "path": "content/scenes/meta/meta_help.json",
+      "searchTarget": "content/scenes/meta/meta_help.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/meta/meta_licenses_attributions.json",
+      "nodeType": "scene",
+      "id": "meta__meta_licenses_attributions",
+      "name": "Licenses & Attributions",
+      "path": "content/scenes/meta/meta_licenses_attributions.json",
+      "searchTarget": "content/scenes/meta/meta_licenses_attributions.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
+      "nodeType": "scene",
+      "id": "meta__meta_mathematical_style_guide",
+      "name": "Mathematical Style Guide",
+      "path": "content/scenes/meta/meta_mathematical_style_guide.json",
+      "searchTarget": "content/scenes/meta/meta_mathematical_style_guide.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/meta/meta_mathematical_terminology.json",
+      "nodeType": "scene",
+      "id": "meta__meta_mathematical_terminology",
+      "name": "Mathematical Terminology",
+      "path": "content/scenes/meta/meta_mathematical_terminology.json",
+      "searchTarget": "content/scenes/meta/meta_mathematical_terminology.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/meta/meta_navigation.json",
+      "nodeType": "scene",
+      "id": "meta__meta_navigation",
+      "name": "Navigation",
+      "path": "content/scenes/meta/meta_navigation.json",
+      "searchTarget": "content/scenes/meta/meta_navigation.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/meta/meta_scene_taxonomy.json",
+      "nodeType": "scene",
+      "id": "meta__meta_scene_taxonomy",
+      "name": "Scene Taxonomy",
+      "path": "content/scenes/meta/meta_scene_taxonomy.json",
+      "searchTarget": "content/scenes/meta/meta_scene_taxonomy.json",
       "implicit": false
     },
     {
@@ -3163,12 +4165,57 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/nuclear/atomic_spectra.json",
+      "nodeType": "scene",
+      "id": "nuclear_atomic__atomic_spectra",
+      "name": "Atomic Spectra",
+      "path": "content/scenes/nuclear/atomic_spectra.json",
+      "searchTarget": "content/scenes/nuclear/atomic_spectra.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/nuclear/atomic_structure.json",
+      "nodeType": "scene",
+      "id": "nuclear_atomic__atomic_structure",
+      "name": "Atomic Structure",
+      "path": "content/scenes/nuclear/atomic_structure.json",
+      "searchTarget": "content/scenes/nuclear/atomic_structure.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/nuclear/cno_cycle_detail.json",
       "nodeType": "scene",
       "id": "cno_cycle_detail",
       "name": "CNO Cycle Detail",
       "path": "content/scenes/nuclear/cno_cycle_detail.json",
       "searchTarget": "content/scenes/nuclear/cno_cycle_detail.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/nuclear/condensed_matter.json",
+      "nodeType": "scene",
+      "id": "nuclear_atomic__condensed_matter",
+      "name": "Condensed Matter",
+      "path": "content/scenes/nuclear/condensed_matter.json",
+      "searchTarget": "content/scenes/nuclear/condensed_matter.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/nuclear/displacement_of_spacetime.json",
+      "nodeType": "scene",
+      "id": "nuclear_atomic__displacement_of_spacetime",
+      "name": "Displacement of Spacetime",
+      "path": "content/scenes/nuclear/displacement_of_spacetime.json",
+      "searchTarget": "content/scenes/nuclear/displacement_of_spacetime.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/nuclear/molecular_geometry.json",
+      "nodeType": "scene",
+      "id": "nuclear_atomic__molecular_geometry",
+      "name": "Molecular Geometry",
+      "path": "content/scenes/nuclear/molecular_geometry.json",
+      "searchTarget": "content/scenes/nuclear/molecular_geometry.json",
       "implicit": false
     },
     {
@@ -3190,6 +4237,24 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/nuclear/nuclear_binding.json",
+      "nodeType": "scene",
+      "id": "nuclear_atomic__nuclear_binding",
+      "name": "Nuclear Binding",
+      "path": "content/scenes/nuclear/nuclear_binding.json",
+      "searchTarget": "content/scenes/nuclear/nuclear_binding.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/nuclear/nucleon_structure.json",
+      "nodeType": "scene",
+      "id": "nuclear_atomic__nucleon_structure",
+      "name": "Nucleon Structure",
+      "path": "content/scenes/nuclear/nucleon_structure.json",
+      "searchTarget": "content/scenes/nuclear/nucleon_structure.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/nuclear/nucleus.json",
       "nodeType": "scene",
       "id": "nucleus",
@@ -3208,6 +4273,33 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__crisis_in_physics",
+      "name": "Crisis in Physics",
+      "path": "content/scenes/philosophy_history/crisis_in_physics.json",
+      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__historical_context_missed_opportunities",
+      "name": "Historical Context and Missed Opportunities",
+      "path": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+      "searchTarget": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__lorentz_ether_comparison",
+      "name": "Lorentz Ether Comparison",
+      "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "searchTarget": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
       "nodeType": "scene",
       "id": "major_thinkers_classical_modern",
@@ -3217,12 +4309,30 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
+      "nodeType": "scene",
+      "id": "major_thinkers__major_thinkers_conclusion",
+      "name": "Conclusion",
+      "path": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "nodeType": "scene",
       "id": "major_thinkers_info_computation_science",
       "name": "Information + Philosophy of Science",
       "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "searchTarget": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
+      "nodeType": "scene",
+      "id": "major_thinkers__major_thinkers_intro",
+      "name": "Introduction",
+      "path": "content/scenes/philosophy_history/major_thinkers_intro.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_intro.json",
       "implicit": false
     },
     {
@@ -3253,6 +4363,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
+      "nodeType": "scene",
+      "id": "major_thinkers__major_thinkers_summary_table",
+      "name": "Summary Table",
+      "path": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "nodeType": "scene",
       "id": "major_thinkers",
@@ -3280,6 +4399,24 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/religious_ontologies.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__religious_ontologies",
+      "name": "Religious Ontologies",
+      "path": "content/scenes/philosophy_history/religious_ontologies.json",
+      "searchTarget": "content/scenes/philosophy_history/religious_ontologies.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_mapping.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__theory_mapping",
+      "name": "Theory Mapping",
+      "path": "content/scenes/philosophy_history/theory_mapping.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_mapping.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "nodeType": "scene",
       "id": "unknowns_paradoxes",
@@ -3289,12 +4426,156 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
+      "nodeType": "scene",
+      "id": "quantum__bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
+      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
+      "searchTarget": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
+      "nodeType": "scene",
+      "id": "quantum__entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
+      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
+      "searchTarget": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/quantum/measurement_problem_and_collapse.json",
+      "nodeType": "scene",
+      "id": "quantum__measurement_problem_and_collapse",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/scenes/quantum/measurement_problem_and_collapse.json",
+      "searchTarget": "content/scenes/quantum/measurement_problem_and_collapse.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
+      "nodeType": "scene",
+      "id": "quantum__pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
+      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
+      "searchTarget": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/quantum/quantum.json",
       "nodeType": "scene",
       "id": "quantum",
       "name": "Quantum",
       "path": "content/scenes/quantum/quantum.json",
       "searchTarget": "content/scenes/quantum/quantum.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/quantum/reality_causality_and_navigation.json",
+      "nodeType": "scene",
+      "id": "quantum__reality_causality_and_navigation",
+      "name": "Reality, Causality, and Navigation",
+      "path": "content/scenes/quantum/reality_causality_and_navigation.json",
+      "searchTarget": "content/scenes/quantum/reality_causality_and_navigation.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
+      "nodeType": "scene",
+      "id": "quantum__superposition_mechanism_traditional_vs_architrino_assembly_architecture",
+      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
+      "searchTarget": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/quantum/wavefunction_ontology.json",
+      "nodeType": "scene",
+      "id": "quantum__wavefunction_ontology",
+      "name": "Wavefunction Ontology",
+      "path": "content/scenes/quantum/wavefunction_ontology.json",
+      "searchTarget": "content/scenes/quantum/wavefunction_ontology.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/cosmic_censorship_holography.json",
+      "nodeType": "scene",
+      "id": "spacetime__cosmic_censorship_holography",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/scenes/spacetime/cosmic_censorship_holography.json",
+      "searchTarget": "content/scenes/spacetime/cosmic_censorship_holography.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/emergent_metric.json",
+      "nodeType": "scene",
+      "id": "spacetime__emergent_metric",
+      "name": "Emergent Metric",
+      "path": "content/scenes/spacetime/emergent_metric.json",
+      "searchTarget": "content/scenes/spacetime/emergent_metric.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/general_relativity_observables.json",
+      "nodeType": "scene",
+      "id": "spacetime__general_relativity_observables",
+      "name": "General Relativity",
+      "path": "content/scenes/spacetime/general_relativity_observables.json",
+      "searchTarget": "content/scenes/spacetime/general_relativity_observables.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/gravitational_waves.json",
+      "nodeType": "scene",
+      "id": "spacetime__gravitational_waves",
+      "name": "Gravitational Waves",
+      "path": "content/scenes/spacetime/gravitational_waves.json",
+      "searchTarget": "content/scenes/spacetime/gravitational_waves.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/lorentz_kinematics.json",
+      "nodeType": "scene",
+      "id": "spacetime__lorentz_kinematics",
+      "name": "Lorentz Kinematics",
+      "path": "content/scenes/spacetime/lorentz_kinematics.json",
+      "searchTarget": "content/scenes/spacetime/lorentz_kinematics.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/ppn_parameters.json",
+      "nodeType": "scene",
+      "id": "spacetime__ppn_parameters",
+      "name": "PPN Parameters",
+      "path": "content/scenes/spacetime/ppn_parameters.json",
+      "searchTarget": "content/scenes/spacetime/ppn_parameters.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/proper_time_and_time_dilation.json",
+      "nodeType": "scene",
+      "id": "spacetime__proper_time_and_time_dilation",
+      "name": "Proper Time and Time Dilation",
+      "path": "content/scenes/spacetime/proper_time_and_time_dilation.json",
+      "searchTarget": "content/scenes/spacetime/proper_time_and_time_dilation.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/singularity_resolution.json",
+      "nodeType": "scene",
+      "id": "spacetime__singularity_resolution",
+      "name": "Singularity Resolution",
+      "path": "content/scenes/spacetime/singularity_resolution.json",
+      "searchTarget": "content/scenes/spacetime/singularity_resolution.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/spacetime_assemblies.json",
+      "nodeType": "scene",
+      "id": "spacetime__spacetime_assemblies",
+      "name": "Spacetime Assemblies",
+      "path": "content/scenes/spacetime/spacetime_assemblies.json",
+      "searchTarget": "content/scenes/spacetime/spacetime_assemblies.json",
       "implicit": false
     },
     {
@@ -3442,6 +4723,249 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/validation/action_model.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__action_model",
+      "name": "Action Model",
+      "path": "content/scenes/validation/action_model.json",
+      "searchTarget": "content/scenes/validation/action_model.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/analytic_baselines.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__analytic_baselines",
+      "name": "Analytic Baselines",
+      "path": "content/scenes/validation/analytic_baselines.json",
+      "searchTarget": "content/scenes/validation/analytic_baselines.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/architrino_si_base_units.json",
+      "nodeType": "scene",
+      "id": "validation__architrino_si_base_units",
+      "name": "Architrino SI Base Units",
+      "path": "content/scenes/validation/architrino_si_base_units.json",
+      "searchTarget": "content/scenes/validation/architrino_si_base_units.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/attraction.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__attraction",
+      "name": "Attraction",
+      "path": "content/scenes/validation/attraction.json",
+      "searchTarget": "content/scenes/validation/attraction.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/background_simple_action.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__background_simple_action",
+      "name": "Background and Simple Action",
+      "path": "content/scenes/validation/background_simple_action.json",
+      "searchTarget": "content/scenes/validation/background_simple_action.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/causal_set_delay_geometry.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__causal_set_delay_geometry",
+      "name": "Causal Set and Delay Geometry",
+      "path": "content/scenes/validation/causal_set_delay_geometry.json",
+      "searchTarget": "content/scenes/validation/causal_set_delay_geometry.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/closure_scorecard.json",
+      "nodeType": "scene",
+      "id": "validation__closure_scorecard",
+      "name": "Closure Scorecard",
+      "path": "content/scenes/validation/closure_scorecard.json",
+      "searchTarget": "content/scenes/validation/closure_scorecard.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/constraint_ledger.json",
+      "nodeType": "scene",
+      "id": "validation__constraint_ledger",
+      "name": "Constraint Ledger",
+      "path": "content/scenes/validation/constraint_ledger.json",
+      "searchTarget": "content/scenes/validation/constraint_ledger.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/failure_criteria.json",
+      "nodeType": "scene",
+      "id": "validation__failure_criteria",
+      "name": "Failure Criteria",
+      "path": "content/scenes/validation/failure_criteria.json",
+      "searchTarget": "content/scenes/validation/failure_criteria.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/informational_ambiguity.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__informational_ambiguity",
+      "name": "Informational Ambiguity",
+      "path": "content/scenes/validation/informational_ambiguity.json",
+      "searchTarget": "content/scenes/validation/informational_ambiguity.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/known_tensions.json",
+      "nodeType": "scene",
+      "id": "validation__known_tensions",
+      "name": "Known Tensions",
+      "path": "content/scenes/validation/known_tensions.json",
+      "searchTarget": "content/scenes/validation/known_tensions.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/no_go_theorems.json",
+      "nodeType": "scene",
+      "id": "validation__no_go_theorems",
+      "name": "No Go Theorems",
+      "path": "content/scenes/validation/no_go_theorems.json",
+      "searchTarget": "content/scenes/validation/no_go_theorems.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/numerical_recipe_stability.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__numerical_recipe_stability",
+      "name": "Numerical Recipe and Stability",
+      "path": "content/scenes/validation/numerical_recipe_stability.json",
+      "searchTarget": "content/scenes/validation/numerical_recipe_stability.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/parameter_ledger.json",
+      "nodeType": "scene",
+      "id": "validation__parameter_ledger",
+      "name": "Parameter Ledger",
+      "path": "content/scenes/validation/parameter_ledger.json",
+      "searchTarget": "content/scenes/validation/parameter_ledger.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/radial_attraction.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__radial_attraction",
+      "name": "Radial Attraction",
+      "path": "content/scenes/validation/radial_attraction.json",
+      "searchTarget": "content/scenes/validation/radial_attraction.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/reaction_ledger.json",
+      "nodeType": "scene",
+      "id": "validation__reaction_ledger",
+      "name": "Reaction Ledger",
+      "path": "content/scenes/validation/reaction_ledger.json",
+      "searchTarget": "content/scenes/validation/reaction_ledger.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/receiver_velocity_work.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__receiver_velocity_work",
+      "name": "Receiver Velocity and Work",
+      "path": "content/scenes/validation/receiver_velocity_work.json",
+      "searchTarget": "content/scenes/validation/receiver_velocity_work.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/repulsion.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__repulsion",
+      "name": "Repulsion",
+      "path": "content/scenes/validation/repulsion.json",
+      "searchTarget": "content/scenes/validation/repulsion.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/self_energy.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__self_energy",
+      "name": "Self-Energy",
+      "path": "content/scenes/validation/self_energy.json",
+      "searchTarget": "content/scenes/validation/self_energy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/self_interaction_switch.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__self_interaction_switch",
+      "name": "Self-Interaction Switch",
+      "path": "content/scenes/validation/self_interaction_switch.json",
+      "searchTarget": "content/scenes/validation/self_interaction_switch.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/sim_architrino.json",
+      "nodeType": "scene",
+      "id": "validation_simulations__sim_architrino",
+      "name": "Architrino",
+      "path": "content/scenes/validation/sim_architrino.json",
+      "searchTarget": "content/scenes/validation/sim_architrino.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/sim_convergence_tests.json",
+      "nodeType": "scene",
+      "id": "validation_simulations__sim_convergence_tests",
+      "name": "Convergence Tests",
+      "path": "content/scenes/validation/sim_convergence_tests.json",
+      "searchTarget": "content/scenes/validation/sim_convergence_tests.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/sim_perspective.json",
+      "nodeType": "scene",
+      "id": "validation_simulations__sim_perspective",
+      "name": "Perspective",
+      "path": "content/scenes/validation/sim_perspective.json",
+      "searchTarget": "content/scenes/validation/sim_perspective.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/sim_readme.json",
+      "nodeType": "scene",
+      "id": "validation_simulations__sim_readme",
+      "name": "README",
+      "path": "content/scenes/validation/sim_readme.json",
+      "searchTarget": "content/scenes/validation/sim_readme.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/sim_run_protocols.json",
+      "nodeType": "scene",
+      "id": "validation_simulations__sim_run_protocols",
+      "name": "Run Protocols",
+      "path": "content/scenes/validation/sim_run_protocols.json",
+      "searchTarget": "content/scenes/validation/sim_run_protocols.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/sim_synthetic_observables.json",
+      "nodeType": "scene",
+      "id": "validation_simulations__sim_synthetic_observables",
+      "name": "Synthetic Observables",
+      "path": "content/scenes/validation/sim_synthetic_observables.json",
+      "searchTarget": "content/scenes/validation/sim_synthetic_observables.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/sim_unsolved_problems.json",
+      "nodeType": "scene",
+      "id": "validation_simulations__sim_unsolved_problems",
+      "name": "Unsolved Problems",
+      "path": "content/scenes/validation/sim_unsolved_problems.json",
+      "searchTarget": "content/scenes/validation/sim_unsolved_problems.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/validation/simulations.json",
       "nodeType": "scene",
       "id": "validation_simulations",
@@ -3451,12 +4975,48 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/validation/superposition_locality.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__superposition_locality",
+      "name": "Superposition and Locality",
+      "path": "content/scenes/validation/superposition_locality.json",
+      "searchTarget": "content/scenes/validation/superposition_locality.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/units_constants.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__units_constants",
+      "name": "Units and Constants",
+      "path": "content/scenes/validation/units_constants.json",
+      "searchTarget": "content/scenes/validation/units_constants.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/validation_protocols.json",
+      "nodeType": "scene",
+      "id": "validation__validation_protocols",
+      "name": "Validation Protocols",
+      "path": "content/scenes/validation/validation_protocols.json",
+      "searchTarget": "content/scenes/validation/validation_protocols.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/validation/validation.json",
       "nodeType": "scene",
       "id": "validation",
       "name": "Validation",
       "path": "content/scenes/validation/validation.json",
       "searchTarget": "content/scenes/validation/validation.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/well_posedness_regularization.json",
+      "nodeType": "scene",
+      "id": "validation_action_energy__well_posedness_regularization",
+      "name": "Well-Posedness and Regularization",
+      "path": "content/scenes/validation/well_posedness_regularization.json",
+      "searchTarget": "content/scenes/validation/well_posedness_regularization.json",
       "implicit": false
     },
     {
@@ -4664,7 +6224,42 @@
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/electroweak_bosons.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/fermions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/gluons.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/mesons_doc.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/noether_core.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/particle_masses.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
       "field": "scene.children[1]"
@@ -4674,28 +6269,126 @@
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/assemblies/color_charge_su3.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/assemblies/neutrinos.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/assemblies/quantum_number_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/assemblies/weak_mixing_angle.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/assemblies/weak_mixing_ckm.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/standard-model-particles/down_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/standard-model-particles/up_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/bbn_constraints.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/cmb.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/cosmology_ontology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
       "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/dark_energy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/dark_matter.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/expansion_mechanism.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/hubble_s8_tensions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/inflation_model.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/structure_formation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/cosmology/disk.json",
@@ -4829,6 +6522,76 @@
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/binary_dynamics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/causal_action_functional.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/emergence_of_u_1_su_2.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/gauge_symmetries.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/mapping_planck_scale.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/master_equation_of_motion.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/mode_taxonomy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -7337,11 +9100,102 @@
       "field": "objects[91].children[0]"
     },
     {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/absolute_time_defense.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/emergence_of_structure.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/euclidean_void.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/foundational_ontology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[4]"
+    },
+    {
       "from": "scene:content/scenes/meta/meta.json",
       "to": "scene:content/scenes/meta/composer.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_about.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_glossary.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_help.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_licenses_attributions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_mathematical_terminology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_navigation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_scene_taxonomy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -7407,6 +9261,55 @@
       "field": "scene.children[2]"
     },
     {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/nuclear/atomic_spectra.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/nuclear/atomic_structure.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/nuclear/condensed_matter.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/nuclear/displacement_of_spacetime.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/nuclear/molecular_geometry.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/nuclear/nuclear_binding.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/nuclear/nucleon_structure.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "scene.children[9]"
+    },
+    {
       "from": "scene:content/scenes/nuclear/nucleus.json",
       "to": "scene:content/scenes/nuclear/neutron.json",
       "edgeType": "subscene",
@@ -7439,42 +9342,84 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -7485,10 +9430,136 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/measurement_problem_and_collapse.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/reality_causality_and_navigation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/wavefunction_ontology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/cosmic_censorship_holography.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/emergent_metric.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/general_relativity_observables.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/gravitational_waves.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/lorentz_kinematics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/ppn_parameters.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/proper_time_and_time_dilation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/singularity_resolution.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/spacetime_assemblies.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",
@@ -7729,11 +9800,221 @@
       "field": "objects[1].children[0]"
     },
     {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/action_model.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/analytic_baselines.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/attraction.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/background_simple_action.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/causal_set_delay_geometry.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/informational_ambiguity.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/numerical_recipe_stability.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/radial_attraction.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/receiver_velocity_work.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/repulsion.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/self_energy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/self_interaction_switch.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/superposition_locality.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[12]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/units_constants.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[13]"
+    },
+    {
+      "from": "scene:content/scenes/validation/action_energy.json",
+      "to": "scene:content/scenes/validation/well_posedness_regularization.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/action_energy.json",
+      "field": "scene.children[14]"
+    },
+    {
       "from": "scene:content/scenes/validation/simulations.json",
       "to": "scene:content/scenes/validation/action_energy.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_architrino.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_convergence_tests.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_perspective.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_readme.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_run_protocols.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_synthetic_observables.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_unsolved_problems.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/architrino_si_base_units.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/closure_scorecard.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/constraint_ledger.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/failure_criteria.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/known_tensions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/no_go_theorems.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/parameter_ledger.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/reaction_ledger.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
@@ -7743,74 +10024,81 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "electroweak_bosons.source.path"
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/validation_protocols.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[9]"
     },
     {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/bosons/gluons.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "gluons.source.path"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "mesons_doc.source.path"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/noether-core.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "noether_core.source.path"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/particle-masses.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "particle_masses.source.path"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/fermions.json",
+      "from": "scene:content/scenes/assemblies/color_charge_su3.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/fermions.json",
-      "field": "color_charge_su3.source.path"
+      "source": "content/scenes/assemblies/color_charge_su3.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/assemblies/fermions.json",
+      "from": "scene:content/scenes/assemblies/electroweak_bosons.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/electroweak_bosons.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/gluons.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/bosons/gluons.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/gluons.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/mesons_doc.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/mesons_doc.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/neutrinos.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/neutrinos.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/fermions.json",
-      "field": "neutrinos.source.path"
+      "source": "content/scenes/assemblies/neutrinos.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/assemblies/fermions.json",
+      "from": "scene:content/scenes/assemblies/noether_core.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/noether-core.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/noether_core.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/particle_masses.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/particle-masses.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/particle_masses.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/quantum_number_mapping.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/fermions.json",
-      "field": "quantum_number_mapping.source.path"
+      "source": "content/scenes/assemblies/quantum_number_mapping.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/assemblies/fermions.json",
+      "from": "scene:content/scenes/assemblies/weak_mixing_angle.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/fermions.json",
-      "field": "weak_mixing_angle.source.path"
+      "source": "content/scenes/assemblies/weak_mixing_angle.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/assemblies/fermions.json",
+      "from": "scene:content/scenes/assemblies/weak_mixing_ckm.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/fermions.json",
-      "field": "weak_mixing_ckm.source.path"
+      "source": "content/scenes/assemblies/weak_mixing_ckm.json",
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
@@ -7820,270 +10108,298 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "from": "scene:content/scenes/cosmology/bbn_constraints.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/BBN-constraints.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "bbn_constraints.source.path"
+      "source": "content/scenes/cosmology/bbn_constraints.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "from": "scene:content/scenes/cosmology/cmb.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/CMB.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "cmb.source.path"
+      "source": "content/scenes/cosmology/cmb.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "from": "scene:content/scenes/cosmology/cosmology_ontology.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/cosmology-ontology.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "cosmology_ontology.source.path"
+      "source": "content/scenes/cosmology/cosmology_ontology.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "from": "scene:content/scenes/cosmology/dark_energy.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/dark-energy.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "dark_energy.source.path"
+      "source": "content/scenes/cosmology/dark_energy.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "from": "scene:content/scenes/cosmology/dark_matter.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/dark-matter.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "dark_matter.source.path"
+      "source": "content/scenes/cosmology/dark_matter.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "from": "scene:content/scenes/cosmology/expansion_mechanism.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/expansion-mechanism.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "expansion_mechanism.source.path"
+      "source": "content/scenes/cosmology/expansion_mechanism.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "from": "scene:content/scenes/cosmology/hubble_s8_tensions.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/hubble-s8-tensions.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "hubble_s8_tensions.source.path"
+      "source": "content/scenes/cosmology/hubble_s8_tensions.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "from": "scene:content/scenes/cosmology/inflation_model.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/inflation-model.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "inflation_model.source.path"
+      "source": "content/scenes/cosmology/inflation_model.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "from": "scene:content/scenes/cosmology/structure_formation.json",
       "to": "markdown_doc:content/markdown/aaa/cosmology/structure-formation.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "structure_formation.source.path"
+      "source": "content/scenes/cosmology/structure_formation.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "from": "scene:content/scenes/dynamics/binary_dynamics.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/binary-dynamics.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "binary_dynamics.source.path"
+      "source": "content/scenes/dynamics/binary_dynamics.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "from": "scene:content/scenes/dynamics/causal_action_functional.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/causal-action-functional.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "causal_action_functional.source.path"
+      "source": "content/scenes/dynamics/causal_action_functional.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "from": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/effective-lagrangian.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "effective_lagrangian.source.path"
+      "source": "content/scenes/dynamics/effective_lagrangian.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/energy.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "kinetic_and_potential_energy.source.path"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "from": "scene:content/scenes/dynamics/emergence_of_u_1_su_2.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "emergence_of_u_1_su_2.source.path"
+      "source": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "from": "scene:content/scenes/dynamics/gauge_symmetries.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/gauge-symmetries.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "gauge_symmetries.source.path"
+      "source": "content/scenes/dynamics/gauge_symmetries.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "from": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/energy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/kinetic_and_potential_energy.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/mapping_planck_scale.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/mapping-Planck-scale.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "mapping_planck_scale.source.path"
+      "source": "content/scenes/dynamics/mapping_planck_scale.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "from": "scene:content/scenes/dynamics/master_equation_of_motion.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "master_equation_of_motion.source.path"
+      "source": "content/scenes/dynamics/master_equation_of_motion.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "from": "scene:content/scenes/dynamics/mode_taxonomy.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/mode-taxonomy.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "mode_taxonomy.source.path"
+      "source": "content/scenes/dynamics/mode_taxonomy.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "from": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-dynamics.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "tri_binary_dynamics.source.path"
+      "source": "content/scenes/dynamics/tri_binary_dynamics.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/foundations/foundations.json",
+      "from": "scene:content/scenes/foundations/absolute_time_defense.json",
       "to": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/foundations/foundations.json",
-      "field": "absolute_time_defense.source.path"
+      "source": "content/scenes/foundations/absolute_time_defense.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/foundations/foundations.json",
+      "from": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "to": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/foundations/foundations.json",
-      "field": "bootstrapping_the_absolute_frame.source.path"
+      "source": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/foundations/foundations.json",
+      "from": "scene:content/scenes/foundations/emergence_of_structure.json",
       "to": "markdown_doc:content/markdown/aaa/foundations/emergence.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/foundations/foundations.json",
-      "field": "emergence_of_structure.source.path"
+      "source": "content/scenes/foundations/emergence_of_structure.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/foundations/foundations.json",
+      "from": "scene:content/scenes/foundations/euclidean_void.json",
       "to": "markdown_doc:content/markdown/aaa/foundations/euclidean-void.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/foundations/foundations.json",
-      "field": "euclidean_void.source.path"
+      "source": "content/scenes/foundations/euclidean_void.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/foundations/foundations.json",
+      "from": "scene:content/scenes/foundations/foundational_ontology.json",
       "to": "markdown_doc:content/markdown/aaa/foundations/ontology.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/foundations/foundations.json",
-      "field": "foundational_ontology.source.path"
+      "source": "content/scenes/foundations/foundational_ontology.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/meta/meta.json",
+      "from": "scene:content/scenes/meta/meta_about.json",
       "to": "markdown_doc:content/markdown/aaa/archie/about.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta.json",
-      "field": "meta_about.source.path"
+      "source": "content/scenes/meta/meta_about.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/meta/meta.json",
+      "from": "scene:content/scenes/meta/meta_glossary.json",
       "to": "markdown_doc:content/markdown/aaa/archie/glossary.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta.json",
-      "field": "meta_glossary.source.path"
+      "source": "content/scenes/meta/meta_glossary.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/meta/meta.json",
+      "from": "scene:content/scenes/meta/meta_help.json",
       "to": "markdown_doc:content/markdown/aaa/archie/help.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta.json",
-      "field": "meta_help.source.path"
+      "source": "content/scenes/meta/meta_help.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/meta/meta.json",
+      "from": "scene:content/scenes/meta/meta_licenses_attributions.json",
       "to": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta.json",
-      "field": "meta_licenses_attributions.source.path"
+      "source": "content/scenes/meta/meta_licenses_attributions.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/meta/meta.json",
+      "from": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
       "to": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta.json",
-      "field": "meta_mathematical_style_guide.source.path"
+      "source": "content/scenes/meta/meta_mathematical_style_guide.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/meta/meta.json",
+      "from": "scene:content/scenes/meta/meta_mathematical_terminology.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta_mathematical_terminology.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta_navigation.json",
       "to": "markdown_doc:content/markdown/aaa/archie/navigation.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta.json",
-      "field": "meta_navigation.source.path"
+      "source": "content/scenes/meta/meta_navigation.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/meta/meta.json",
+      "from": "scene:content/scenes/meta/meta_scene_taxonomy.json",
       "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta.json",
-      "field": "meta_scene_taxonomy.source.path"
+      "source": "content/scenes/meta/meta_scene_taxonomy.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "from": "scene:content/scenes/nuclear/atomic_spectra.json",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "atomic_spectra.source.path"
+      "source": "content/scenes/nuclear/atomic_spectra.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "from": "scene:content/scenes/nuclear/atomic_structure.json",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/atomic-structure.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "atomic_structure.source.path"
+      "source": "content/scenes/nuclear/atomic_structure.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "from": "scene:content/scenes/nuclear/condensed_matter.json",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/condensed-matter.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "condensed_matter.source.path"
+      "source": "content/scenes/nuclear/condensed_matter.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "from": "scene:content/scenes/nuclear/displacement_of_spacetime.json",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "displacement_of_spacetime.source.path"
+      "source": "content/scenes/nuclear/displacement_of_spacetime.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "from": "scene:content/scenes/nuclear/molecular_geometry.json",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "molecular_geometry.source.path"
+      "source": "content/scenes/nuclear/molecular_geometry.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "from": "scene:content/scenes/nuclear/nuclear_binding.json",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "nuclear_binding.source.path"
+      "source": "content/scenes/nuclear/nuclear_binding.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "from": "scene:content/scenes/nuclear/nucleon_structure.json",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "nucleon_structure.source.path"
+      "source": "content/scenes/nuclear/nucleon_structure.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
@@ -8093,11 +10409,25 @@
       "field": "thinker_heraclitus_c_535_475_bce.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "field": "thinker_alfred_north_whitehead_1861_1947.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/major_thinkers_intro.json",
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
@@ -8121,11 +10451,11 @@
       "field": "thinker_ernst_mach_1838_1916.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "major_thinkers_intro.source.path"
+      "source": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
@@ -8135,39 +10465,18 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "crisis_in_physics.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "historical_context_missed_opportunities.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "lorentz_ether_comparison.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "from": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "religious_ontologies.source.path"
+      "source": "content/scenes/philosophy_history/religious_ontologies.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "from": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "theory_mapping.source.path"
+      "source": "content/scenes/philosophy_history/theory_mapping.json",
+      "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
@@ -8177,333 +10486,333 @@
       "field": "unknown_the_nature_of_dark_energy.source.path"
     },
     {
-      "from": "scene:content/scenes/quantum/quantum.json",
+      "from": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/bell-theorem.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.source.path"
+      "source": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "markdown_doc:content/markdown/aaa/quantum/collapse-problem.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "measurement_problem_and_collapse.source.path"
-    },
-    {
-      "from": "scene:content/scenes/quantum/quantum.json",
+      "from": "scene:content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/entanglement-nonlocality.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.source.path"
+      "source": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/quantum/quantum.json",
+      "from": "scene:content/scenes/quantum/measurement_problem_and_collapse.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/collapse-problem.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/measurement_problem_and_collapse.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/pilot-wave-character.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.source.path"
+      "source": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/quantum/quantum.json",
+      "from": "scene:content/scenes/quantum/reality_causality_and_navigation.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/reality-quantum-causality.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "reality_causality_and_navigation.source.path"
+      "source": "content/scenes/quantum/reality_causality_and_navigation.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/quantum/quantum.json",
+      "from": "scene:content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/superposition-mechanism.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "superposition_mechanism_traditional_vs_architrino_assembly_architecture.source.path"
+      "source": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/quantum/quantum.json",
+      "from": "scene:content/scenes/quantum/wavefunction_ontology.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "wavefunction_ontology.source.path"
+      "source": "content/scenes/quantum/wavefunction_ontology.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "from": "scene:content/scenes/spacetime/cosmic_censorship_holography.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "cosmic_censorship_holography.source.path"
+      "source": "content/scenes/spacetime/cosmic_censorship_holography.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "from": "scene:content/scenes/spacetime/emergent_metric.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/emergent-metric.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "emergent_metric.source.path"
+      "source": "content/scenes/spacetime/emergent_metric.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "from": "scene:content/scenes/spacetime/general_relativity_observables.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "general_relativity_observables.source.path"
+      "source": "content/scenes/spacetime/general_relativity_observables.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "from": "scene:content/scenes/spacetime/gravitational_waves.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/gravitational-waves.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "gravitational_waves.source.path"
+      "source": "content/scenes/spacetime/gravitational_waves.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "from": "scene:content/scenes/spacetime/lorentz_kinematics.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "lorentz_kinematics.source.path"
+      "source": "content/scenes/spacetime/lorentz_kinematics.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "from": "scene:content/scenes/spacetime/ppn_parameters.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/ppn-parameters.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "ppn_parameters.source.path"
+      "source": "content/scenes/spacetime/ppn_parameters.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "from": "scene:content/scenes/spacetime/proper_time_and_time_dilation.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "proper_time_and_time_dilation.source.path"
+      "source": "content/scenes/spacetime/proper_time_and_time_dilation.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "from": "scene:content/scenes/spacetime/singularity_resolution.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/singularity-resolution.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "singularity_resolution.source.path"
+      "source": "content/scenes/spacetime/singularity_resolution.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "from": "scene:content/scenes/spacetime/spacetime_assemblies.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "spacetime_assemblies.source.path"
+      "source": "content/scenes/spacetime/spacetime_assemblies.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/action_energy.json",
+      "from": "scene:content/scenes/validation/action_model.json",
       "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "action_model.source.path"
+      "source": "content/scenes/validation/action_model.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/action_energy.json",
+      "from": "scene:content/scenes/validation/analytic_baselines.json",
       "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "analytic_baselines.source.path"
+      "source": "content/scenes/validation/analytic_baselines.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/attraction.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "attraction.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "background_simple_action.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "causal_set_delay_geometry.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "informational_ambiguity.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "numerical_recipe_stability.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "radial_attraction.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "receiver_velocity_work.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "repulsion.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "self_energy.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "self_interaction_switch.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "superposition_locality.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "units_constants.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/action_energy.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/action_energy.json",
-      "field": "well_posedness_regularization.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/architrino.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "sim_architrino.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/convergence-tests.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "sim_convergence_tests.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/perspective.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "sim_perspective.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/README.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "sim_readme.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/run-protocols.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "sim_run_protocols.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/synthetic-observables.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "sim_synthetic_observables.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/unsolved-problems.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "sim_unsolved_problems.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/validation.json",
+      "from": "scene:content/scenes/validation/architrino_si_base_units.json",
       "to": "markdown_doc:content/markdown/aaa/validation/architrino-si-base-units.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/validation.json",
-      "field": "architrino_si_base_units.source.path"
+      "source": "content/scenes/validation/architrino_si_base_units.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/validation.json",
+      "from": "scene:content/scenes/validation/attraction.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/attraction.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/background_simple_action.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/background_simple_action.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/causal_set_delay_geometry.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/causal_set_delay_geometry.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/closure_scorecard.json",
       "to": "markdown_doc:content/markdown/aaa/validation/closure-scorecard.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/validation.json",
-      "field": "closure_scorecard.source.path"
+      "source": "content/scenes/validation/closure_scorecard.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/validation.json",
+      "from": "scene:content/scenes/validation/constraint_ledger.json",
       "to": "markdown_doc:content/markdown/aaa/validation/constraint-ledger.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/validation.json",
-      "field": "constraint_ledger.source.path"
+      "source": "content/scenes/validation/constraint_ledger.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/validation.json",
+      "from": "scene:content/scenes/validation/failure_criteria.json",
       "to": "markdown_doc:content/markdown/aaa/validation/failure-criteria.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/validation.json",
-      "field": "failure_criteria.source.path"
+      "source": "content/scenes/validation/failure_criteria.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/validation.json",
+      "from": "scene:content/scenes/validation/informational_ambiguity.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/informational_ambiguity.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/known_tensions.json",
       "to": "markdown_doc:content/markdown/aaa/validation/known-tensions.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/validation.json",
-      "field": "known_tensions.source.path"
+      "source": "content/scenes/validation/known_tensions.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/validation.json",
+      "from": "scene:content/scenes/validation/no_go_theorems.json",
       "to": "markdown_doc:content/markdown/aaa/validation/no-go-theorems.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/validation.json",
-      "field": "no_go_theorems.source.path"
+      "source": "content/scenes/validation/no_go_theorems.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/validation.json",
+      "from": "scene:content/scenes/validation/numerical_recipe_stability.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/numerical_recipe_stability.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/parameter_ledger.json",
       "to": "markdown_doc:content/markdown/aaa/validation/parameter-ledger.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/validation.json",
-      "field": "parameter_ledger.source.path"
+      "source": "content/scenes/validation/parameter_ledger.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/validation.json",
+      "from": "scene:content/scenes/validation/radial_attraction.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/radial_attraction.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/reaction_ledger.json",
       "to": "markdown_doc:content/markdown/aaa/validation/reaction-ledger.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/validation.json",
-      "field": "reaction_ledger.source.path"
+      "source": "content/scenes/validation/reaction_ledger.json",
+      "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/validation.json",
+      "from": "scene:content/scenes/validation/receiver_velocity_work.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/receiver_velocity_work.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/repulsion.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/repulsion.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/self_energy.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/self_energy.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/self_interaction_switch.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/self_interaction_switch.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/sim_architrino.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/architrino.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/sim_architrino.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/sim_convergence_tests.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/convergence-tests.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/sim_convergence_tests.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/sim_perspective.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/perspective.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/sim_perspective.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/sim_readme.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/README.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/sim_readme.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/sim_run_protocols.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/run-protocols.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/sim_run_protocols.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/sim_synthetic_observables.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/synthetic-observables.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/sim_synthetic_observables.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/sim_unsolved_problems.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/unsolved-problems.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/sim_unsolved_problems.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/superposition_locality.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/superposition_locality.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/units_constants.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/units_constants.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation_protocols.json",
       "to": "markdown_doc:content/markdown/aaa/validation/validation-protocols.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/validation.json",
-      "field": "validation_protocols.source.path"
+      "source": "content/scenes/validation/validation_protocols.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/well_posedness_regularization.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/well_posedness_regularization.json",
+      "field": "scene.source.path"
     },
     {
       "from": "markdown_index:content/markdown/aaa/archie",

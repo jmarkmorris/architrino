@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "cosmology__hubble_s8_tensions",
+    "title": "Hubble and S8 Tensions",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/cosmology/hubble-s8-tensions.md"
+    },
+    "view": {
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

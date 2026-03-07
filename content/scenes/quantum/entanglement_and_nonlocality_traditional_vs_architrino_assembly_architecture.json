@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "quantum__entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
+    "title": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/quantum/entanglement-nonlocality.md"
+    },
+    "view": {
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

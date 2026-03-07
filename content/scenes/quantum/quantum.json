@@ -8,7 +8,37 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
+        "scenePath": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json"
+      },
+      {
+        "nodeId": "measurement_problem_and_collapse",
+        "scenePath": "content/scenes/quantum/measurement_problem_and_collapse.json"
+      },
+      {
+        "nodeId": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
+        "scenePath": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json"
+      },
+      {
+        "nodeId": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
+        "scenePath": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json"
+      },
+      {
+        "nodeId": "reality_causality_and_navigation",
+        "scenePath": "content/scenes/quantum/reality_causality_and_navigation.json"
+      },
+      {
+        "nodeId": "superposition_mechanism_traditional_vs_architrino_assembly_architecture",
+        "scenePath": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json"
+      },
+      {
+        "nodeId": "wavefunction_ontology",
+        "scenePath": "content/scenes/quantum/wavefunction_ontology.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -26,11 +56,6 @@
       "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
       "radius": 2.688,
       "color": "#243d8f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/quantum/bell-theorem.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -42,11 +67,6 @@
       "title": "Measurement Problem and Collapse",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/quantum/collapse-problem.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -58,11 +78,6 @@
       "title": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/quantum/entanglement-nonlocality.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -74,11 +89,6 @@
       "title": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/quantum/pilot-wave-character.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -91,11 +101,6 @@
       "title": "Reality, Causality, and Navigation",
       "radius": 2.688,
       "color": "#7a4a1f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/quantum/reality-quantum-causality.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -107,11 +112,6 @@
       "title": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
       "radius": 2.688,
       "color": "#1c2a4f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/quantum/superposition-mechanism.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -123,11 +123,6 @@
       "title": "Wavefunction Ontology",
       "radius": 2.688,
       "color": "#3c6a7a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/quantum/wavefunction-ontology.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "nuclear_atomic__displacement_of_spacetime",
+    "title": "Displacement of Spacetime",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md"
+    },
+    "view": {
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

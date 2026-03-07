@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "meta__meta_help",
+    "title": "Help",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/help.md"
+    },
+    "view": {
+      "columns": 2,
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

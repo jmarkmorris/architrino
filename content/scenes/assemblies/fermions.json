@@ -11,8 +11,20 @@
     },
     "children": [
       {
+        "nodeId": "color_charge_su3",
+        "scenePath": "content/scenes/assemblies/color_charge_su3.json"
+      },
+      {
         "nodeId": "electron_muon_tau",
         "scenePath": "content/scenes/standard-model-particles/electron.json"
+      },
+      {
+        "nodeId": "neutrinos",
+        "scenePath": "content/scenes/assemblies/neutrinos.json"
+      },
+      {
+        "nodeId": "quantum_number_mapping",
+        "scenePath": "content/scenes/assemblies/quantum_number_mapping.json"
       },
       {
         "nodeId": "down_strange_bottom_quarks",
@@ -21,6 +33,14 @@
       {
         "nodeId": "up_charm_top_quarks",
         "scenePath": "content/scenes/standard-model-particles/up_quark.json"
+      },
+      {
+        "nodeId": "weak_mixing_angle",
+        "scenePath": "content/scenes/assemblies/weak_mixing_angle.json"
+      },
+      {
+        "nodeId": "weak_mixing_ckm",
+        "scenePath": "content/scenes/assemblies/weak_mixing_ckm.json"
       }
     ]
   },
@@ -30,10 +50,6 @@
       "title": "Color Charge SU3",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md"
-      },
       "motion": {
         "type": "fixed"
       },
@@ -55,10 +71,6 @@
       "title": "Neutrinos",
       "radius": 2.688,
       "color": "#4b0082",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/fermions/neutrinos.md"
-      },
       "motion": {
         "type": "fixed"
       },
@@ -70,10 +82,6 @@
       "title": "Quantum Number Mapping",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md"
-      },
       "motion": {
         "type": "fixed"
       },
@@ -105,10 +113,6 @@
       "title": "Weak Mixing Angle",
       "radius": 2.688,
       "color": "#7a5a2f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md"
-      },
       "motion": {
         "type": "fixed"
       },
@@ -120,10 +124,6 @@
       "title": "Weak Mixing CKM",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md"
-      },
       "motion": {
         "type": "fixed"
       },

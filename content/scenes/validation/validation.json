@@ -13,6 +13,42 @@
       {
         "nodeId": "validation_simulations",
         "scenePath": "content/scenes/validation/simulations.json"
+      },
+      {
+        "nodeId": "architrino_si_base_units",
+        "scenePath": "content/scenes/validation/architrino_si_base_units.json"
+      },
+      {
+        "nodeId": "constraint_ledger",
+        "scenePath": "content/scenes/validation/constraint_ledger.json"
+      },
+      {
+        "nodeId": "closure_scorecard",
+        "scenePath": "content/scenes/validation/closure_scorecard.json"
+      },
+      {
+        "nodeId": "failure_criteria",
+        "scenePath": "content/scenes/validation/failure_criteria.json"
+      },
+      {
+        "nodeId": "known_tensions",
+        "scenePath": "content/scenes/validation/known_tensions.json"
+      },
+      {
+        "nodeId": "no_go_theorems",
+        "scenePath": "content/scenes/validation/no_go_theorems.json"
+      },
+      {
+        "nodeId": "parameter_ledger",
+        "scenePath": "content/scenes/validation/parameter_ledger.json"
+      },
+      {
+        "nodeId": "reaction_ledger",
+        "scenePath": "content/scenes/validation/reaction_ledger.json"
+      },
+      {
+        "nodeId": "validation_protocols",
+        "scenePath": "content/scenes/validation/validation_protocols.json"
       }
     ]
   },
@@ -32,10 +68,6 @@
       "title": "Architrino SI Base Units",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/architrino-si-base-units.md"
-      },
       "labelTitle": "Architrino SI Base Units",
       "labelBadge": "doc"
     },
@@ -44,10 +76,6 @@
       "title": "Constraint Ledger",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/constraint-ledger.md"
-      },
       "labelTitle": "Constraint Ledger",
       "labelBadge": "doc"
     },
@@ -56,13 +84,6 @@
       "title": "Closure Scorecard",
       "radius": 2.688,
       "color": "#4b5e2f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/closure-scorecard.md"
-      },
-      "view": {
-        "columns": 1
-      },
       "labelTitle": "Closure Scorecard",
       "labelBadge": "doc"
     },
@@ -71,11 +92,6 @@
       "title": "Failure Criteria",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/failure-criteria.md"
-      },
-      "markdownAutoIndex": false,
       "labelTitle": "Failure Criteria",
       "labelBadge": "doc"
     },
@@ -84,11 +100,6 @@
       "title": "Known Tensions",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/known-tensions.md"
-      },
-      "markdownAutoIndex": false,
       "labelTitle": "Known Tensions"
     },
     {
@@ -96,11 +107,6 @@
       "title": "No Go Theorems",
       "radius": 2.688,
       "color": "#4b0082",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/no-go-theorems.md"
-      },
-      "markdownAutoIndex": false,
       "labelTitle": "No Go Theorems"
     },
     {
@@ -108,14 +114,6 @@
       "title": "Parameter Ledger",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/parameter-ledger.md"
-      },
-      "markdownAutoIndex": false,
-      "view": {
-        "columns": 1
-      },
       "labelTitle": "Parameter Ledger",
       "labelBadge": "doc"
     },
@@ -124,13 +122,6 @@
       "title": "Reaction Ledger",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/reaction-ledger.md"
-      },
-      "view": {
-        "columns": 1
-      },
       "labelTitle": "Reaction Ledger",
       "labelBadge": "doc"
     },
@@ -139,11 +130,6 @@
       "title": "Validation Protocols",
       "radius": 2.688,
       "color": "#2c567a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/validation/validation-protocols.md"
-      },
-      "markdownAutoIndex": false,
       "labelTitle": "Validation Protocols",
       "labelBadge": "doc"
     }

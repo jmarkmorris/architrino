@@ -8,7 +8,45 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "bbn_constraints",
+        "scenePath": "content/scenes/cosmology/bbn_constraints.json"
+      },
+      {
+        "nodeId": "cmb",
+        "scenePath": "content/scenes/cosmology/cmb.json"
+      },
+      {
+        "nodeId": "cosmology_ontology",
+        "scenePath": "content/scenes/cosmology/cosmology_ontology.json"
+      },
+      {
+        "nodeId": "dark_energy",
+        "scenePath": "content/scenes/cosmology/dark_energy.json"
+      },
+      {
+        "nodeId": "dark_matter",
+        "scenePath": "content/scenes/cosmology/dark_matter.json"
+      },
+      {
+        "nodeId": "expansion_mechanism",
+        "scenePath": "content/scenes/cosmology/expansion_mechanism.json"
+      },
+      {
+        "nodeId": "hubble_s8_tensions",
+        "scenePath": "content/scenes/cosmology/hubble_s8_tensions.json"
+      },
+      {
+        "nodeId": "inflation_model",
+        "scenePath": "content/scenes/cosmology/inflation_model.json"
+      },
+      {
+        "nodeId": "structure_formation",
+        "scenePath": "content/scenes/cosmology/structure_formation.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -16,144 +54,99 @@
       "label": "BBN Constraints",
       "radius": 2.688,
       "color": "#243d8f",
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "BBN Constraints",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/cosmology/BBN-constraints.md"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "cmb",
       "label": "CMB",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "CMB",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/cosmology/CMB.md"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "cosmology_ontology",
       "label": "Cosmology Ontology",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Cosmology Ontology",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/cosmology/cosmology-ontology.md"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "dark_energy",
       "label": "Dark Energy",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Dark Energy",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/cosmology/dark-energy.md"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "dark_matter",
       "label": "Dark Matter",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Dark Matter",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/cosmology/dark-matter.md"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "expansion_mechanism",
       "label": "Expansion Mechanism",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Expansion Mechanism",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/cosmology/expansion-mechanism.md"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "hubble_s8_tensions",
       "label": "Hubble and S8 Tensions",
       "radius": 2.688,
       "color": "#7a4a1f",
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Hubble and S8 Tensions",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/cosmology/hubble-s8-tensions.md"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "inflation_model",
       "label": "Inflation Model",
       "radius": 2.688,
       "color": "#1c2a4f",
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Inflation Model",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/cosmology/inflation-model.md"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "structure_formation",
       "label": "Structure Formation",
       "radius": 2.688,
       "color": "#3c6a7a",
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Structure Formation",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/cosmology/structure-formation.md"
-      }
+      "labelBadge": "doc"
     }
   ]
 }

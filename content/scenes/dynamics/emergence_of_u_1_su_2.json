@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "dynamics__emergence_of_u_1_su_2",
+    "title": "Emergence of U(1)/SU(2)",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/dynamics/gauge-structure-emergence.md"
+    },
+    "view": {
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

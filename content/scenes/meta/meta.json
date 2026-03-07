@@ -14,6 +14,38 @@
       {
         "nodeId": "meta_composer",
         "scenePath": "content/scenes/meta/composer.json"
+      },
+      {
+        "nodeId": "meta_about",
+        "scenePath": "content/scenes/meta/meta_about.json"
+      },
+      {
+        "nodeId": "meta_licenses_attributions",
+        "scenePath": "content/scenes/meta/meta_licenses_attributions.json"
+      },
+      {
+        "nodeId": "meta_glossary",
+        "scenePath": "content/scenes/meta/meta_glossary.json"
+      },
+      {
+        "nodeId": "meta_help",
+        "scenePath": "content/scenes/meta/meta_help.json"
+      },
+      {
+        "nodeId": "meta_mathematical_style_guide",
+        "scenePath": "content/scenes/meta/meta_mathematical_style_guide.json"
+      },
+      {
+        "nodeId": "meta_mathematical_terminology",
+        "scenePath": "content/scenes/meta/meta_mathematical_terminology.json"
+      },
+      {
+        "nodeId": "meta_navigation",
+        "scenePath": "content/scenes/meta/meta_navigation.json"
+      },
+      {
+        "nodeId": "meta_scene_taxonomy",
+        "scenePath": "content/scenes/meta/meta_scene_taxonomy.json"
       }
     ]
   },
@@ -30,10 +62,6 @@
       "title": "About",
       "radius": 2.2,
       "color": "#243d8f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/archie/about.md"
-      },
       "labelTitle": "About",
       "labelBadge": "doc"
     },
@@ -42,14 +70,6 @@
       "title": "Licenses & Attributions",
       "radius": 2.2,
       "color": "#6a3c3c",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/archie/licenses-attributions.md"
-      },
-      "view": {
-        "columns": 1
-      },
-      "markdownAutoIndex": false,
       "labelTitle": "Licenses & Attributions",
       "labelBadge": "doc"
     },
@@ -58,13 +78,6 @@
       "title": "Glossary",
       "radius": 2.2,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/archie/glossary.md"
-      },
-      "view": {
-        "columns": 1
-      },
       "labelTitle": "Glossary",
       "labelBadge": "doc"
     },
@@ -73,14 +86,6 @@
       "title": "Help",
       "radius": 2.2,
       "color": "#5a1f2e",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/archie/help.md"
-      },
-      "view": {
-        "columns": 2
-      },
-      "markdownShowTitle": false,
       "labelTitle": "Help",
       "labelBadge": "doc"
     },
@@ -89,13 +94,6 @@
       "title": "Mathematical Style Guide",
       "radius": 2.2,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/archie/mathematics.md"
-      },
-      "view": {
-        "section": "Mathematical Style Guide (Canonical Dialect)"
-      },
       "labelTitle": "Mathematical Style Guide",
       "labelBadge": "doc"
     },
@@ -104,13 +102,6 @@
       "title": "Mathematical Terminology",
       "radius": 2.2,
       "color": "#2f4f7a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/archie/mathematics.md"
-      },
-      "view": {
-        "section": "Mathematical Terminology (Canonical Dialect)"
-      },
       "labelTitle": "Mathematical Terminology",
       "labelBadge": "doc"
     },
@@ -119,10 +110,6 @@
       "title": "Navigation",
       "radius": 2.2,
       "color": "#3f6a5a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/archie/navigation.md"
-      },
       "labelTitle": "Navigation",
       "labelBadge": "doc"
     },
@@ -131,13 +118,6 @@
       "title": "Scene Taxonomy",
       "radius": 2.2,
       "color": "#6a5a8f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/archie/scene-taxonomy.md"
-      },
-      "view": {
-        "columns": 1
-      },
       "labelTitle": "Scene Taxonomy",
       "labelBadge": "doc"
     }

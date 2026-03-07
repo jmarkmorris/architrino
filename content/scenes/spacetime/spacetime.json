@@ -8,7 +8,45 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "emergent_metric",
+        "scenePath": "content/scenes/spacetime/emergent_metric.json"
+      },
+      {
+        "nodeId": "general_relativity_observables",
+        "scenePath": "content/scenes/spacetime/general_relativity_observables.json"
+      },
+      {
+        "nodeId": "gravitational_waves",
+        "scenePath": "content/scenes/spacetime/gravitational_waves.json"
+      },
+      {
+        "nodeId": "ppn_parameters",
+        "scenePath": "content/scenes/spacetime/ppn_parameters.json"
+      },
+      {
+        "nodeId": "proper_time_and_time_dilation",
+        "scenePath": "content/scenes/spacetime/proper_time_and_time_dilation.json"
+      },
+      {
+        "nodeId": "lorentz_kinematics",
+        "scenePath": "content/scenes/spacetime/lorentz_kinematics.json"
+      },
+      {
+        "nodeId": "singularity_resolution",
+        "scenePath": "content/scenes/spacetime/singularity_resolution.json"
+      },
+      {
+        "nodeId": "cosmic_censorship_holography",
+        "scenePath": "content/scenes/spacetime/cosmic_censorship_holography.json"
+      },
+      {
+        "nodeId": "spacetime_assemblies",
+        "scenePath": "content/scenes/spacetime/spacetime_assemblies.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -16,11 +54,6 @@
       "title": "Emergent Metric",
       "radius": 2.688,
       "color": "#243d8f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/spacetime/emergent-metric.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -32,11 +65,6 @@
       "title": "General Relativity",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/spacetime/gr-phenomenology.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -48,11 +76,6 @@
       "title": "Gravitational Waves",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/spacetime/gravitational-waves.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -64,11 +87,6 @@
       "title": "PPN Parameters",
       "radius": 2.688,
       "color": "#4b0082",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/spacetime/ppn-parameters.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -80,11 +98,6 @@
       "title": "Proper Time and Time Dilation",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -96,11 +109,6 @@
       "title": "Lorentz Kinematics",
       "radius": 2.688,
       "color": "#3657a6",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -112,11 +120,6 @@
       "title": "Singularity Resolution",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/spacetime/singularity-resolution.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -128,15 +131,6 @@
       "title": "Cosmic Censorship and Holography",
       "radius": 2.688,
       "color": "#355f9a",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/theory-mapping.md"
-      },
-      "view": {
-        "section": "Cosmic Censorship / Holographic Principle / AdS-CFT",
-        "columns": 1
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },
@@ -148,11 +142,6 @@
       "title": "Spacetime Assemblies",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md"
-      },
-      "markdownAutoIndex": false,
       "motion": {
         "type": "fixed"
       },

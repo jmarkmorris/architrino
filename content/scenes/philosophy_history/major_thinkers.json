@@ -11,6 +11,10 @@
     },
     "children": [
       {
+        "nodeId": "major_thinkers_intro",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_intro.json"
+      },
+      {
         "nodeId": "major_thinkers_classical_modern",
         "scenePath": "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
       },
@@ -29,6 +33,14 @@
       {
         "nodeId": "major_thinkers_info_computation_science",
         "scenePath": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
+      },
+      {
+        "nodeId": "major_thinkers_summary_table",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_summary_table.json"
+      },
+      {
+        "nodeId": "major_thinkers_conclusion",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_conclusion.json"
       }
     ]
   },
@@ -39,14 +51,7 @@
       "radius": 2.688,
       "color": "#243d8f",
       "labelTitle": "Introduction",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Introduction"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "major_thinkers_classical_modern",
@@ -89,14 +94,7 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "labelTitle": "Summary Table",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Summary Table: Vindicated, Challenged, Transcended (Complete)"
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "major_thinkers_conclusion",
@@ -104,14 +102,7 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "labelTitle": "Conclusion",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/major-thinkers.md"
-      },
-      "view": {
-        "section": "Conclusion: The Architrino Weltanschauung"
-      }
+      "labelBadge": "doc"
     }
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "spacetime__cosmic_censorship_holography",
+    "title": "Cosmic Censorship and Holography",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+    },
+    "view": {
+      "section": "Cosmic Censorship / Holographic Principle / AdS-CFT",
+      "columns": 1,
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}
