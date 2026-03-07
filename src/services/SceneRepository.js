@@ -11,7 +11,6 @@ export class SceneRepository {
     this.defaultAutoMarkdownPaletteName = deps.defaultAutoMarkdownPaletteName ?? "legacy";
     this.defaultSphereColorSchemeName = deps.defaultSphereColorSchemeName ?? "jewel";
     this.homeScenePath = deps.homeScenePath ?? null;
-    this.deriveMarkdownConfig = deps.deriveMarkdownConfig;
     this.buildAutoMarkdownNodes = deps.buildAutoMarkdownNodes;
     this.resolveMarkdownFileSize = deps.resolveMarkdownFileSize;
     this.resolveMarkdownFileCharacterCount = deps.resolveMarkdownFileCharacterCount;
@@ -225,7 +224,7 @@ export class SceneRepository {
     return "branching";
   }
 
-  shouldApplyStructuredSpherePalette(scenePath, sceneData, markdownDerived) {
+  shouldApplyStructuredSpherePalette(scenePath, sceneData) {
     const layoutMode = String(this.resolveLayoutMode(sceneData?.scene) ?? "").toLowerCase();
     const isStructuredLayout = layoutMode === "rings";
     const sceneId = String(sceneData?.scene?.id ?? "").toLowerCase();
@@ -238,7 +237,7 @@ export class SceneRepository {
     }
     if (typeof scenePath === "string") {
       if (
-        scenePath.startsWith("__markdown_") ||
+        scenePath.startsWith("runtime:markdown:") ||
         scenePath === "content/scenes/nuclear/proton.json" ||
         scenePath === "content/scenes/nuclear/neutron.json" ||
         scenePath.startsWith("content/scenes/elements/") ||
@@ -248,9 +247,6 @@ export class SceneRepository {
       }
     }
     if (sceneId === "proton" || sceneId === "neutron") {
-      return false;
-    }
-    if (markdownDerived?.autoMarkdownPath || markdownDerived?.autoMarkdownDirectory) {
       return false;
     }
     return true;
@@ -467,7 +463,6 @@ export class SceneRepository {
         const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
         const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
         const wrapLabels = sceneMeta.wrapLabels ?? true;
-        const markdownDerived = this.deriveMarkdownConfig(data.scene?.markdown);
         const idMap = new Map(
           data.objects.map((obj) => [obj.id, this.resolveDisplayTitle(obj) ?? obj.id])
         );
@@ -479,13 +474,13 @@ export class SceneRepository {
           })
         );
         const structuredPalette = this.resolveSphereColorPalette(data);
-        if (this.shouldApplyStructuredSpherePalette(scenePath, data, markdownDerived)) {
+        if (this.shouldApplyStructuredSpherePalette(scenePath, data)) {
           this.applyStructuredSpherePalette(nodes, structuredPalette, {
             usePositionalOrder: this.shouldUsePositionalPaletteOrder(scenePath),
           });
         }
         this.applyPersonalityArchitrinoSizing(nodes);
-        const autoMarkdownScene = markdownDerived ? { ...data.scene, ...markdownDerived } : data.scene;
+        const autoMarkdownScene = data.scene;
         const autoNodes = await this.buildAutoMarkdownNodes(autoMarkdownScene, nodes);
         if (autoNodes.length) {
           nodes = nodes.concat(autoNodes);
@@ -516,46 +511,65 @@ export class SceneRepository {
           markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
           markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
           centerOn: sceneMeta.centerOn ?? null,
-          autoMarkdownDirectory: markdownDerived?.autoMarkdownDirectory ?? null,
-          autoMarkdownPath: markdownDerived?.autoMarkdownPath ?? null,
-          autoMarkdownSection: markdownDerived?.autoMarkdownSection ?? null,
-          autoMarkdownHeadingLevel: markdownDerived?.autoMarkdownHeadingLevel ?? null,
+          autoMarkdownPath:
+            typeof sceneMeta.autoMarkdownPath === "string" ? sceneMeta.autoMarkdownPath : null,
+          autoMarkdownSection:
+            typeof sceneMeta.autoMarkdownSection === "string" ? sceneMeta.autoMarkdownSection : null,
+          autoMarkdownHeadingLevel:
+            typeof sceneMeta.autoMarkdownHeadingLevel === "number"
+              ? sceneMeta.autoMarkdownHeadingLevel
+              : null,
           autoMarkdownIncludeExistingInLayout:
-            markdownDerived?.autoMarkdownIncludeExistingInLayout ?? false,
+            sceneMeta.autoMarkdownIncludeExistingInLayout === true,
           autoMarkdownNodeRadius:
-            markdownDerived?.autoMarkdownNodeRadius ?? null,
+            typeof sceneMeta.autoMarkdownNodeRadius === "number"
+              ? sceneMeta.autoMarkdownNodeRadius
+              : null,
           autoMarkdownRingRadius:
-            markdownDerived?.autoMarkdownRingRadius ?? null,
+            typeof sceneMeta.autoMarkdownRingRadius === "number"
+              ? sceneMeta.autoMarkdownRingRadius
+              : null,
           autoMarkdownMaxRingCount:
-            markdownDerived?.autoMarkdownMaxRingCount ?? null,
+            typeof sceneMeta.autoMarkdownMaxRingCount === "number"
+              ? sceneMeta.autoMarkdownMaxRingCount
+              : null,
           autoMarkdownGridSpacing:
-            markdownDerived?.autoMarkdownGridSpacing ?? null,
+            typeof sceneMeta.autoMarkdownGridSpacing === "number"
+              ? sceneMeta.autoMarkdownGridSpacing
+              : null,
           autoMarkdownColumns:
-            markdownDerived?.autoMarkdownColumns ?? null,
+            sceneMeta.autoMarkdownColumns === 1 || sceneMeta.autoMarkdownColumns === 2
+              ? sceneMeta.autoMarkdownColumns
+              : null,
           autoMarkdownPalette:
-            markdownDerived?.autoMarkdownPalette ?? null,
+            Array.isArray(sceneMeta.autoMarkdownPalette) ? sceneMeta.autoMarkdownPalette : null,
           autoMarkdownPaletteName:
-            markdownDerived?.autoMarkdownPaletteName ??
-            data.scene?.autoMarkdownPaletteName ??
-            this.defaultAutoMarkdownPaletteName,
+            typeof sceneMeta.autoMarkdownPaletteName === "string"
+              ? sceneMeta.autoMarkdownPaletteName
+              : this.defaultAutoMarkdownPaletteName,
           autoMarkdownColor:
-            markdownDerived?.autoMarkdownColor ?? null,
-          autoMarkdownExcludePaths: Array.isArray(markdownDerived?.autoMarkdownExcludePaths)
-            ? markdownDerived.autoMarkdownExcludePaths
+            typeof sceneMeta.autoMarkdownColor === "string" ? sceneMeta.autoMarkdownColor : null,
+          autoMarkdownExcludePaths: Array.isArray(sceneMeta.autoMarkdownExcludePaths)
+            ? sceneMeta.autoMarkdownExcludePaths
             : [],
-          autoMarkdownPlainPaths: Array.isArray(markdownDerived?.autoMarkdownPlainPaths)
-            ? markdownDerived.autoMarkdownPlainPaths
+          autoMarkdownPlainPaths: Array.isArray(sceneMeta.autoMarkdownPlainPaths)
+            ? sceneMeta.autoMarkdownPlainPaths
             : [],
-          autoMarkdownDefaultIndex: markdownDerived?.autoMarkdownDefaultIndex ?? null,
-          autoMarkdownIndexPaths: Array.isArray(markdownDerived?.autoMarkdownIndexPaths)
-            ? markdownDerived.autoMarkdownIndexPaths
+          autoMarkdownDefaultIndex: sceneMeta.autoMarkdownDefaultIndex === true,
+          autoMarkdownIndexPaths: Array.isArray(sceneMeta.autoMarkdownIndexPaths)
+            ? sceneMeta.autoMarkdownIndexPaths
             : [],
-          autoMarkdownPlainSectionPaths: Array.isArray(markdownDerived?.autoMarkdownPlainSectionPaths)
-            ? markdownDerived.autoMarkdownPlainSectionPaths
+          autoMarkdownPlainSectionPaths: Array.isArray(sceneMeta.autoMarkdownPlainSectionPaths)
+            ? sceneMeta.autoMarkdownPlainSectionPaths
             : [],
-          autoMarkdownSectionDepth: markdownDerived?.autoMarkdownSectionDepth ?? null,
-          autoMarkdownOverrides: markdownDerived?.autoMarkdownOverrides ?? null,
-          autoMarkdownSubdirectories: markdownDerived?.autoMarkdownSubdirectories ?? false,
+          autoMarkdownSectionDepth:
+            typeof sceneMeta.autoMarkdownSectionDepth === "number"
+              ? sceneMeta.autoMarkdownSectionDepth
+              : null,
+          autoMarkdownOverrides:
+            sceneMeta.autoMarkdownOverrides && typeof sceneMeta.autoMarkdownOverrides === "object"
+              ? sceneMeta.autoMarkdownOverrides
+              : null,
         };
         this.levelConfigs[scenePath] = config;
         this.sceneConfigCache.set(scenePath, config);
@@ -579,8 +593,7 @@ export class SceneRepository {
     const layoutMode = String(config.layoutType ?? config.layoutMode ?? "").toLowerCase();
     const isRingLayout = layoutMode === "rings";
     const hasAutoMarkdownSource =
-      (typeof config.autoMarkdownPath === "string" && config.autoMarkdownPath.length > 0) ||
-      (typeof config.autoMarkdownDirectory === "string" && config.autoMarkdownDirectory.length > 0);
+      typeof config.autoMarkdownPath === "string" && config.autoMarkdownPath.length > 0;
     if (!isRingLayout || !hasAutoMarkdownSource) {
       return;
     }

@@ -26,9 +26,7 @@ import {
   titleFromSlug,
 } from "./src/services/MarkdownNamingService.js";
 import {
-  deriveMarkdownConfig,
   extractMarkdownSection,
-  normalizeMarkdownKey,
   normalizeMarkdownPath,
   parseMarkdownHeading,
 } from "./src/services/MarkdownPolicyService.js";
@@ -37,7 +35,6 @@ import { createMarkdownSceneRegistry } from "./src/services/MarkdownSceneRegistr
 import { createMarkdownNodeBuilder } from "./src/services/MarkdownNodeBuilder.js";
 import { createSceneGraphManifestService } from "./src/services/SceneGraphManifestService.js";
 import { createSceneStateHashService } from "./src/services/SceneStateHashService.js";
-import { createMarkdownSectionTitleResolver } from "./src/services/MarkdownSectionTitleService.js";
 import { createSceneBootstrapService } from "./src/services/SceneBootstrapService.js";
 import { createSceneSearchCoordinatorService } from "./src/services/SceneSearchCoordinatorService.js";
 
@@ -1223,13 +1220,6 @@ const sceneGraphManifestService = createSceneGraphManifestService({
   manifestPath: sceneGraphManifestPath,
   logger: console,
 });
-const resolveMarkdownSectionTitleByKey = createMarkdownSectionTitleResolver({
-  fetchImpl: (...args) => fetch(...args),
-  appendCacheBust,
-  parseMarkdownHeading,
-  normalizeMarkdownKey,
-  logger: console,
-});
 
 const sceneIndexManifestPath = "content/scenes/scenes_index.json";
 const authoredMarkdownColumnsByPath = new Map();
@@ -1315,10 +1305,7 @@ async function resolveMarkdownColumnsForPath(markdownPath) {
 const markdownSceneRegistry = createMarkdownSceneRegistry({
   levelConfigs,
   titleFromSlug,
-  stripWalkthroughStepPrefix,
-  normalizeMarkdownKey,
   resolveMarkdownDocumentTitle,
-  resolveMarkdownSectionTitleByKey,
   resolveMarkdownColumnsForPath,
 });
 
@@ -1917,9 +1904,6 @@ const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   appendCacheBust,
   parseMarkdownHeading,
   extractMarkdownSection,
-  listMarkdownFilesInDir: (directory) => markdownManifestService.listFilesInDir(directory),
-  listMarkdownDirectoriesInDir: (directory) =>
-    markdownManifestService.listDirectoriesInDir(directory),
   normalizeMarkdownPath,
   titleFromSlug,
   stripWalkthroughStepPrefix,
@@ -1932,8 +1916,6 @@ const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   computeRingLayout,
   maxRingNodeRadius,
   ringLayoutDefaults,
-  ensureMarkdownSectionIndexScene: markdownSceneRegistry.ensureMarkdownSectionIndexScene,
-  ensureMarkdownDirectoryScene: markdownSceneRegistry.ensureMarkdownDirectoryScene,
   logger: console,
 });
 
@@ -1949,7 +1931,6 @@ const sceneRepository = new SceneRepository({
   defaultAutoMarkdownPaletteName,
   defaultSphereColorSchemeName,
   homeScenePath: rootScenePath,
-  deriveMarkdownConfig,
   buildAutoMarkdownNodes,
   resolveMarkdownFileSize,
   resolveMarkdownFileCharacterCount,
@@ -3918,7 +3899,7 @@ function focusOnPointer(clientX, clientY) {
   const hasExplicitChildScene =
     !!targetNode.data.children ||
     (typeof targetNode.data.childScene === "string" &&
-      !targetNode.data.childScene.startsWith("__markdown_"));
+      !markdownSceneRegistry.isRuntimeMarkdownTarget(targetNode.data.childScene));
 
   if (hasExplicitChildScene) {
     closeDetailPanel();

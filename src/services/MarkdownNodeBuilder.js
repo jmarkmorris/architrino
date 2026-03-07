@@ -3,8 +3,6 @@ export function createMarkdownNodeBuilder(deps) {
   const appendCacheBust = deps.appendCacheBust;
   const parseMarkdownHeading = deps.parseMarkdownHeading;
   const extractMarkdownSection = deps.extractMarkdownSection;
-  const listMarkdownFilesInDir = deps.listMarkdownFilesInDir;
-  const listMarkdownDirectoriesInDir = deps.listMarkdownDirectoriesInDir;
   const normalizeMarkdownPath = deps.normalizeMarkdownPath;
   const titleFromSlug = deps.titleFromSlug;
   const stripWalkthroughStepPrefix = deps.stripWalkthroughStepPrefix;
@@ -22,22 +20,18 @@ export function createMarkdownNodeBuilder(deps) {
   const computeRingLayout = deps.computeRingLayout;
   const maxRingNodeRadius = deps.maxRingNodeRadius;
   const ringLayoutDefaults = deps.ringLayoutDefaults ?? { startAngle: Math.PI / 2 };
-  const ensureMarkdownSectionIndexScene = deps.ensureMarkdownSectionIndexScene;
-  const ensureMarkdownDirectoryScene = deps.ensureMarkdownDirectoryScene;
   const logger = deps.logger ?? console;
 
   return async function buildAutoMarkdownNodes(scene, existingNodes) {
-    const layoutMode =
-      typeof scene?.layoutMode === "string" ? scene.layoutMode.toLowerCase() : "";
-    const usesRingLayout = layoutMode === "rings";
-    if (!usesRingLayout || (!scene?.autoMarkdownDirectory && !scene?.autoMarkdownPath)) {
+    const layoutType = typeof scene?.layoutType === "string" ? scene.layoutType.toLowerCase() : "";
+    const usesRingLayout = layoutType === "rings";
+    if (!usesRingLayout || !scene?.autoMarkdownPath) {
       return [];
     }
     const currentNodes = Array.isArray(existingNodes) ? existingNodes : [];
     const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
     const sectionKey = scene.autoMarkdownSection ?? null;
     let entries = [];
-    let useDirectories = false;
     let usedHeadingLevel =
       typeof scene.autoMarkdownHeadingLevel === "number"
         ? scene.autoMarkdownHeadingLevel
@@ -101,11 +95,6 @@ export function createMarkdownNodeBuilder(deps) {
           logger.warn("Failed to read markdown file", scene.autoMarkdownPath, error);
         }
       }
-    } else {
-      useDirectories = scene.autoMarkdownSubdirectories === true;
-      entries = useDirectories
-        ? (await listMarkdownDirectoriesInDir(scene.autoMarkdownDirectory)).sort()
-        : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
     }
 
     if (Array.isArray(scene.autoMarkdownExcludePaths) && scene.autoMarkdownExcludePaths.length) {
@@ -141,30 +130,28 @@ export function createMarkdownNodeBuilder(deps) {
       ? entries.map((entry) => ({
           title: stripWalkthroughStepPrefix(entry.title) || entry.title,
         }))
-      : useDirectories
-        ? entries.map((path) => ({ path, isNonEmpty: false }))
-        : await Promise.all(
-            entries.map(async (path) => {
-              try {
-                const response = await fetchImpl(appendCacheBust(path));
-                if (!response.ok) {
-                  return { path, isNonEmpty: false };
-                }
-                const text = await response.text();
-                const headingTitle = extractMarkdownDocumentTitle(text);
-                return {
-                  path,
-                  isNonEmpty: text.trim().length > 0,
-                  title: headingTitle,
-                };
-              } catch (error) {
-                if (typeof logger?.warn === "function") {
-                  logger.warn("Failed to read markdown file", path, error);
-                }
+      : await Promise.all(
+          entries.map(async (path) => {
+            try {
+              const response = await fetchImpl(appendCacheBust(path));
+              if (!response.ok) {
                 return { path, isNonEmpty: false };
               }
-            })
-          );
+              const text = await response.text();
+              const headingTitle = extractMarkdownDocumentTitle(text);
+              return {
+                path,
+                isNonEmpty: text.trim().length > 0,
+                title: headingTitle,
+              };
+            } catch (error) {
+              if (typeof logger?.warn === "function") {
+                logger.warn("Failed to read markdown file", path, error);
+              }
+              return { path, isNonEmpty: false };
+            }
+          })
+        );
     const usedIds = new Set(currentNodes.map((node) => node.id));
     const hasCustomNodeRadius = typeof scene.autoMarkdownNodeRadius === "number";
     const hasCustomRingRadius = typeof scene.autoMarkdownRingRadius === "number";
@@ -197,7 +184,7 @@ export function createMarkdownNodeBuilder(deps) {
     const autoEntries = [];
     fileInfos.forEach((info) => {
       const entryName = info.title ?? info.path?.split("/").pop() ?? "";
-      const slug = useDirectories || info.title ? entryName : entryName.replace(/\.md$/i, "");
+      const slug = info.title ? entryName : entryName.replace(/\.md$/i, "");
       const id = slug
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "_")
@@ -313,36 +300,20 @@ export function createMarkdownNodeBuilder(deps) {
           const override = pathOverrides
             ? pathOverrides[normalizeMarkdownPath(scene.autoMarkdownPath)]
             : null;
-          const sectionDepth =
-            typeof override?.sectionDepth === "number" ? override.sectionDepth : defaultSectionDepth;
-          const allowSectionIndex =
-            sectionDepth >= 2 &&
-            !(plainSectionPaths && plainSectionPaths.has(normalizeMarkdownPath(scene.autoMarkdownPath)));
-          const hasSubheadings =
-            isTwoLevelRoot && info.title
-              ? sectionSubheadings?.get(info.title) === true
-              : false;
-          if (isTwoLevelRoot && info.title && hasSubheadings && allowSectionIndex) {
-            const childScene = ensureMarkdownSectionIndexScene(
-              scene.autoMarkdownPath,
-              info.title,
-              scene
-            );
-            if (childScene) {
-              node.childScene = childScene;
+          node.markdownPath = scene.autoMarkdownPath;
+          node.markdownSection = info.title ?? null;
+          if (
+            isTwoLevelRoot &&
+            info.title &&
+            sectionSubheadings?.get(info.title) === true &&
+            !(plainSectionPaths && plainSectionPaths.has(normalizeMarkdownPath(scene.autoMarkdownPath)))
+          ) {
+            node.markdownAutoIndex = true;
+            if (typeof override?.headingLevel === "number") {
+              node.markdownHeadingLevel = override.headingLevel;
+            } else {
+              node.markdownHeadingLevel = 3;
             }
-          } else {
-            node.markdownPath = scene.autoMarkdownPath;
-            node.markdownSection = info.title ?? null;
-          }
-        } else if (useDirectories) {
-          const childScene = ensureMarkdownDirectoryScene(
-            info.path,
-            scene,
-            node.name
-          );
-          if (childScene) {
-            node.childScene = childScene;
           }
         } else if (info.isNonEmpty) {
           const normalizedPath = normalizeMarkdownPath(info.path);

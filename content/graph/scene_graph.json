@@ -1199,729 +1199,681 @@
       "nodeType": "scene"
     },
     {
-      "id": "content/markdown/aaa/assemblies/bosons",
-      "name": "Bosons",
-      "path": "__markdown_directory__:content/markdown/aaa/assemblies/bosons",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/assemblies/mesons",
-      "name": "Mesons",
-      "path": "__markdown_directory__:content/markdown/aaa/assemblies/mesons",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/nuclear-atomic",
-      "name": "Nuclear Atomic",
-      "path": "__markdown_directory__:content/markdown/aaa/nuclear-atomic",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history",
-      "name": "Philosophy History",
-      "path": "__markdown_directory__:content/markdown/aaa/philosophy-history",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/reactions",
-      "name": "Reactions",
-      "path": "__markdown_directory__:content/markdown/aaa/reactions",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/spacetime",
-      "name": "Spacetime",
-      "path": "__markdown_directory__:content/markdown/aaa/spacetime",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/validation/simulations",
-      "name": "Simulations",
-      "path": "__markdown_directory__:content/markdown/aaa/validation/simulations",
-      "nodeType": "markdown_index"
-    },
-    {
-      "id": "content/markdown/aaa/validation/simulations/action-energy",
-      "name": "Action Energy",
-      "path": "__markdown_directory__:content/markdown/aaa/validation/simulations/action-energy",
-      "nodeType": "markdown_index"
-    },
-    {
       "id": "content/markdown/aaa/archie/about.md",
       "name": "About",
-      "path": "__markdown_doc__:content/markdown/aaa/archie/about.md",
+      "path": "content/markdown/aaa/archie/about.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/archie/glossary.md",
       "name": "Glossary",
-      "path": "__markdown_doc__:content/markdown/aaa/archie/glossary.md",
+      "path": "content/markdown/aaa/archie/glossary.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/archie/help.md",
       "name": "Help",
-      "path": "__markdown_doc__:content/markdown/aaa/archie/help.md",
+      "path": "content/markdown/aaa/archie/help.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
       "name": "Licenses & Attributions",
-      "path": "__markdown_doc__:content/markdown/aaa/archie/licenses-attributions.md",
+      "path": "content/markdown/aaa/archie/licenses-attributions.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/archie/mathematics.md",
       "name": "Mathematics",
-      "path": "__markdown_doc__:content/markdown/aaa/archie/mathematics.md",
+      "path": "content/markdown/aaa/archie/mathematics.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/archie/navigation.md",
       "name": "Navigation",
-      "path": "__markdown_doc__:content/markdown/aaa/archie/navigation.md",
+      "path": "content/markdown/aaa/archie/navigation.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
       "name": "Architrino Theory: Master Table of Contents",
-      "path": "__markdown_doc__:content/markdown/aaa/archie/textbook-file-structure.md",
+      "path": "content/markdown/aaa/archie/textbook-file-structure.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "name": "Electroweak Bosons: Photons, W/Z, and Higgs",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "path": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/bosons/gluons.md",
       "name": "Gluons and the Strong Force: Geometric Origins",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/bosons/gluons.md",
+      "path": "content/markdown/aaa/assemblies/bosons/gluons.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/composer.md",
       "name": "Architrino Assembly Animation API",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/composer.md",
+      "path": "content/markdown/aaa/assemblies/composer.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "name": "Color Charge and SU(3)",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
+      "path": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/electron.md",
       "name": "Electron",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/electron.md",
+      "path": "content/markdown/aaa/assemblies/fermions/electron.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "name": "Muon Tau",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/muon-tau.md",
+      "path": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
       "name": "Neutrinos",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/neutrinos.md",
+      "path": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
       "name": "Quantum Number Mapping: Architrino Geometry to Standard Model",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+      "path": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/quarks.md",
       "name": "Quarks",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/quarks.md",
+      "path": "content/markdown/aaa/assemblies/fermions/quarks.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
       "name": "Weak Mixing Angle",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "name": "Weak Mixing and CKM",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
+      "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "name": "Transient Hadrons: Mesons and Δ Resonances",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/mesons/mesons.md",
+      "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/noether-core.md",
       "name": "Nested Binaries and the Noether Core",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/noether-core.md",
+      "path": "content/markdown/aaa/assemblies/noether-core.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/assemblies/particle-masses.md",
       "name": "Particle Masses: Emergent Inertia in the Noether Sea",
-      "path": "__markdown_doc__:content/markdown/aaa/assemblies/particle-masses.md",
+      "path": "content/markdown/aaa/assemblies/particle-masses.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "name": "BBN in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Framework",
-      "path": "__markdown_doc__:content/markdown/aaa/cosmology/BBN-constraints.md",
+      "path": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/cosmology/CMB.md",
       "name": "CMB in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Cosmology",
-      "path": "__markdown_doc__:content/markdown/aaa/cosmology/CMB.md",
+      "path": "content/markdown/aaa/cosmology/CMB.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "name": "Cosmology Ontology",
-      "path": "__markdown_doc__:content/markdown/aaa/cosmology/cosmology-ontology.md",
+      "path": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/cosmology/dark-energy.md",
       "name": "Dark Energy in the Architrino Assembly Architecture",
-      "path": "__markdown_doc__:content/markdown/aaa/cosmology/dark-energy.md",
+      "path": "content/markdown/aaa/cosmology/dark-energy.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/cosmology/dark-matter.md",
       "name": "Dark Matter in the Architrino Assembly Architecture",
-      "path": "__markdown_doc__:content/markdown/aaa/cosmology/dark-matter.md",
+      "path": "content/markdown/aaa/cosmology/dark-matter.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/cosmology/expansion-mechanism.md",
       "name": "Expansion Mechanism",
-      "path": "__markdown_doc__:content/markdown/aaa/cosmology/expansion-mechanism.md",
+      "path": "content/markdown/aaa/cosmology/expansion-mechanism.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
       "name": "Hubble and $S_8$ Tensions",
-      "path": "__markdown_doc__:content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+      "path": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/cosmology/inflation-model.md",
       "name": "Inflation Model",
-      "path": "__markdown_doc__:content/markdown/aaa/cosmology/inflation-model.md",
+      "path": "content/markdown/aaa/cosmology/inflation-model.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/cosmology/structure-formation.md",
       "name": "Structure Formation",
-      "path": "__markdown_doc__:content/markdown/aaa/cosmology/structure-formation.md",
+      "path": "content/markdown/aaa/cosmology/structure-formation.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/binary-dynamics.md",
       "name": "Binary Dynamics",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/binary-dynamics.md",
+      "path": "content/markdown/aaa/dynamics/binary-dynamics.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "name": "Causal Action Functional",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/causal-action-functional.md",
+      "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/effective-lagrangian.md",
       "name": "Effective Lagrangian",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/effective-lagrangian.md",
+      "path": "content/markdown/aaa/dynamics/effective-lagrangian.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/energy.md",
       "name": "Kinetic and Potential Energy",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/energy.md",
+      "path": "content/markdown/aaa/dynamics/energy.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "name": "Emergence of U(1)/SU(2)",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
+      "path": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/gauge-symmetries.md",
       "name": "Gauge Symmetries",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-symmetries.md",
+      "path": "content/markdown/aaa/dynamics/gauge-symmetries.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
       "name": "Mapping Planck Scale",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+      "path": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/master-equation.md",
       "name": "Master Equation of Motion",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/master-equation.md",
+      "path": "content/markdown/aaa/dynamics/master-equation.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/mode-taxonomy.md",
       "name": "Mode Taxonomy",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/mode-taxonomy.md",
+      "path": "content/markdown/aaa/dynamics/mode-taxonomy.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
       "name": "Tri-Binary Dynamics",
-      "path": "__markdown_doc__:content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+      "path": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/foundations/absolute-time-defense.md",
       "name": "Absolute Time Defense",
-      "path": "__markdown_doc__:content/markdown/aaa/foundations/absolute-time-defense.md",
+      "path": "content/markdown/aaa/foundations/absolute-time-defense.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "name": "Bootstrapping the Absolute Frame",
-      "path": "__markdown_doc__:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/foundations/emergence.md",
       "name": "Emergence of Structure",
-      "path": "__markdown_doc__:content/markdown/aaa/foundations/emergence.md",
+      "path": "content/markdown/aaa/foundations/emergence.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/foundations/euclidean-void.md",
       "name": "Euclidean Void",
-      "path": "__markdown_doc__:content/markdown/aaa/foundations/euclidean-void.md",
+      "path": "content/markdown/aaa/foundations/euclidean-void.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/foundations/ontology.md",
       "name": "Foundational Ontology",
-      "path": "__markdown_doc__:content/markdown/aaa/foundations/ontology.md",
+      "path": "content/markdown/aaa/foundations/ontology.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "name": "Atomic Spectra",
-      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+      "path": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
       "name": "Atomic Structure",
-      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+      "path": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
       "name": "Condensed Matter",
-      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+      "path": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "name": "Visualizing Volumes and Exclusion in the Universe",
-      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "path": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
-      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
       "name": "Molecular Geometry",
-      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+      "path": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
       "name": "Nuclear Binding",
-      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+      "path": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "name": "Nucleon Structure",
-      "path": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+      "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "name": "Crisis In Physics",
-      "path": "__markdown_doc__:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "name": "Historical Context and Missed Opportunities",
-      "path": "__markdown_doc__:content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "name": "Lorentz Ether Comparison",
-      "path": "__markdown_doc__:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
+      "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "name": "Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework",
-      "path": "__markdown_doc__:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "name": "The Way of the Assembly: A Guide to Existence in a Renewable Universe",
-      "path": "__markdown_doc__:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
+      "path": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "name": "Major Religious Cosmologies and Foundational Ontologies",
-      "path": "__markdown_doc__:content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/theory-mapping.md",
       "name": "Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)",
-      "path": "__markdown_doc__:content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "path": "content/markdown/aaa/philosophy-history/theory-mapping.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "name": "Unknowns Paradoxes",
-      "path": "__markdown_doc__:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+      "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/bell-theorem.md",
       "name": "Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response",
-      "path": "__markdown_doc__:content/markdown/aaa/quantum/bell-theorem.md",
+      "path": "content/markdown/aaa/quantum/bell-theorem.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/collapse-problem.md",
       "name": "Measurement Problem and Collapse",
-      "path": "__markdown_doc__:content/markdown/aaa/quantum/collapse-problem.md",
+      "path": "content/markdown/aaa/quantum/collapse-problem.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
       "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
-      "path": "__markdown_doc__:content/markdown/aaa/quantum/entanglement-nonlocality.md",
+      "path": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/measurement-ontology.md",
       "name": "Measurement Ontology",
-      "path": "__markdown_doc__:content/markdown/aaa/quantum/measurement-ontology.md",
+      "path": "content/markdown/aaa/quantum/measurement-ontology.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/pilot-wave-character.md",
       "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
-      "path": "__markdown_doc__:content/markdown/aaa/quantum/pilot-wave-character.md",
+      "path": "content/markdown/aaa/quantum/pilot-wave-character.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/quantum-summary.md",
       "name": "Quantum Summary",
-      "path": "__markdown_doc__:content/markdown/aaa/quantum/quantum-summary.md",
+      "path": "content/markdown/aaa/quantum/quantum-summary.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/reality-quantum-causality.md",
       "name": "Reality, Causality, and Navigation",
-      "path": "__markdown_doc__:content/markdown/aaa/quantum/reality-quantum-causality.md",
+      "path": "content/markdown/aaa/quantum/reality-quantum-causality.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/superposition-mechanism.md",
       "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
-      "path": "__markdown_doc__:content/markdown/aaa/quantum/superposition-mechanism.md",
+      "path": "content/markdown/aaa/quantum/superposition-mechanism.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/wavefunction-ontology.md",
       "name": "Wavefunction Ontology",
-      "path": "__markdown_doc__:content/markdown/aaa/quantum/wavefunction-ontology.md",
+      "path": "content/markdown/aaa/quantum/wavefunction-ontology.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/reactions/bremsstrahlung.md",
       "name": "Bremsstrahlung",
-      "path": "__markdown_doc__:content/markdown/aaa/reactions/bremsstrahlung.md",
+      "path": "content/markdown/aaa/reactions/bremsstrahlung.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/reactions/pdg-api.md",
       "name": "PDG Python API (pdg package)",
-      "path": "__markdown_doc__:content/markdown/aaa/reactions/pdg-api.md",
+      "path": "content/markdown/aaa/reactions/pdg-api.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
       "name": "ARL ideas v1 (essence)",
-      "path": "__markdown_doc__:content/markdown/aaa/reactions/pdg-solver-ideas.md",
+      "path": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/reactions/synchrotron.md",
       "name": "Synchrotron Cascades",
-      "path": "__markdown_doc__:content/markdown/aaa/reactions/synchrotron.md",
+      "path": "content/markdown/aaa/reactions/synchrotron.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/emergent-metric.md",
       "name": "Emergent Metric",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/emergent-metric.md",
+      "path": "content/markdown/aaa/spacetime/emergent-metric.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
       "name": "General Relativity Observables",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "path": "content/markdown/aaa/spacetime/gr-phenomenology.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "name": "Gravitational Waves",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/gravitational-waves.md",
+      "path": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "name": "Lorentzian Conspiracy and Emergent Lorentz Kinematics",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "path": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/ppn-parameters.md",
       "name": "PPN Parameters",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/ppn-parameters.md",
+      "path": "content/markdown/aaa/spacetime/ppn-parameters.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "name": "Proper Time and Time Dilation",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "path": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/singularity-resolution.md",
       "name": "Singularity Resolution",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/singularity-resolution.md",
+      "path": "content/markdown/aaa/spacetime/singularity-resolution.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "name": "Spacetime Assemblies",
-      "path": "__markdown_doc__:content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "name": "Architrino Framework and SI Base Units: Deep Intersection Analysis",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/architrino-si-base-units.md",
+      "path": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/closure-scorecard.md",
       "name": "Mathematics and Geometry Closure Scorecard",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/closure-scorecard.md",
+      "path": "content/markdown/aaa/validation/closure-scorecard.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/constraint-ledger.md",
       "name": "Constraint Ledger",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/constraint-ledger.md",
+      "path": "content/markdown/aaa/validation/constraint-ledger.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/failure-criteria.md",
       "name": "Failure Criteria",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/failure-criteria.md",
+      "path": "content/markdown/aaa/validation/failure-criteria.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/known-tensions.md",
       "name": "Known Tensions",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/known-tensions.md",
+      "path": "content/markdown/aaa/validation/known-tensions.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/no-go-theorems.md",
       "name": "No Go Theorems",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/no-go-theorems.md",
+      "path": "content/markdown/aaa/validation/no-go-theorems.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/parameter-ledger.md",
       "name": "Parameter Ledger",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/parameter-ledger.md",
+      "path": "content/markdown/aaa/validation/parameter-ledger.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/reaction-ledger.md",
       "name": "Reaction Ledger: Point Potential Provenance",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/reaction-ledger.md",
+      "path": "content/markdown/aaa/validation/reaction-ledger.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "name": "Revisiting our Action Model — Comparative modeling frameworks for delayed, radial action",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "name": "Delay-Only Formulations (Exact Statements)",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "name": "Opposite Charges From Rest at Large Separation",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
       "name": "Background and Simple Action",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
       "name": "Causal set and delay geometry",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
       "name": "Informational ambiguity",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
       "name": "Numerical recipe and stability",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "name": "Radial Fall to Fixed Center (Test Particle)",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
       "name": "Receiver velocity and work",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
       "name": "Equal-Charge Symmetric Repulsion",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "name": "Self-energy and regularization notes",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
       "name": "Self-interaction switch",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
       "name": "Superposition and locality",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
       "name": "Units and Constants",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
       "name": "Well-posedness and regularization",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+      "path": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/architrino.md",
       "name": "Architrino",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/architrino.md",
+      "path": "content/markdown/aaa/validation/simulations/architrino.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/convergence-tests.md",
       "name": "Convergence Tests",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/convergence-tests.md",
+      "path": "content/markdown/aaa/validation/simulations/convergence-tests.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/perspective.md",
       "name": "Perspective: Why This Model Maps So Well",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/perspective.md",
+      "path": "content/markdown/aaa/validation/simulations/perspective.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/README.md",
       "name": "README",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/README.md",
+      "path": "content/markdown/aaa/validation/simulations/README.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/run-protocols.md",
       "name": "Run Protocols",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/run-protocols.md",
+      "path": "content/markdown/aaa/validation/simulations/run-protocols.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "name": "Synthetic Observables",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/synthetic-observables.md",
+      "path": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
       "name": "Unsolved Problems",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/simulations/unsolved-problems.md",
+      "path": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/validation-protocols.md",
       "name": "Validation Protocols",
-      "path": "__markdown_doc__:content/markdown/aaa/validation/validation-protocols.md",
+      "path": "content/markdown/aaa/validation/validation-protocols.md",
       "nodeType": "markdown_doc"
     }
   ],
@@ -3506,128 +3458,112 @@
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/archie",
       "name": "Archie",
-      "path": "content/markdown/aaa/archie",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/archie"
+      "path": "content/markdown/aaa/archie"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/assemblies",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/assemblies",
       "name": "Assemblies",
-      "path": "content/markdown/aaa/assemblies",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/assemblies"
+      "path": "content/markdown/aaa/assemblies"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/assemblies/bosons",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/assemblies/bosons",
       "name": "Bosons",
-      "path": "content/markdown/aaa/assemblies/bosons",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/assemblies/bosons"
+      "path": "content/markdown/aaa/assemblies/bosons"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/assemblies/fermions",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/assemblies/fermions",
       "name": "Fermions",
-      "path": "content/markdown/aaa/assemblies/fermions",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/assemblies/fermions"
+      "path": "content/markdown/aaa/assemblies/fermions"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/assemblies/mesons",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/assemblies/mesons",
       "name": "Mesons",
-      "path": "content/markdown/aaa/assemblies/mesons",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/assemblies/mesons"
+      "path": "content/markdown/aaa/assemblies/mesons"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/cosmology",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/cosmology",
       "name": "Cosmology",
-      "path": "content/markdown/aaa/cosmology",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/cosmology"
+      "path": "content/markdown/aaa/cosmology"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/dynamics",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/dynamics",
       "name": "Dynamics",
-      "path": "content/markdown/aaa/dynamics",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/dynamics"
+      "path": "content/markdown/aaa/dynamics"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/foundations",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/foundations",
       "name": "Foundations",
-      "path": "content/markdown/aaa/foundations",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/foundations"
+      "path": "content/markdown/aaa/foundations"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/nuclear-atomic",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/nuclear-atomic",
       "name": "Nuclear Atomic",
-      "path": "content/markdown/aaa/nuclear-atomic",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/nuclear-atomic"
+      "path": "content/markdown/aaa/nuclear-atomic"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/philosophy-history",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/philosophy-history",
       "name": "Philosophy History",
-      "path": "content/markdown/aaa/philosophy-history",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/philosophy-history"
+      "path": "content/markdown/aaa/philosophy-history"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/quantum",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/quantum",
       "name": "Quantum",
-      "path": "content/markdown/aaa/quantum",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/quantum"
+      "path": "content/markdown/aaa/quantum"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/reactions",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/reactions",
       "name": "Reactions",
-      "path": "content/markdown/aaa/reactions",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/reactions"
+      "path": "content/markdown/aaa/reactions"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/spacetime",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/spacetime",
       "name": "Spacetime",
-      "path": "content/markdown/aaa/spacetime",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/spacetime"
+      "path": "content/markdown/aaa/spacetime"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/validation",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/validation",
       "name": "Validation",
-      "path": "content/markdown/aaa/validation",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/validation"
+      "path": "content/markdown/aaa/validation"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/validation/simulations",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/validation/simulations",
       "name": "Simulations",
-      "path": "content/markdown/aaa/validation/simulations",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/validation/simulations"
+      "path": "content/markdown/aaa/validation/simulations"
     },
     {
       "nodeId": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
       "nodeType": "markdown_index",
       "id": "content/markdown/aaa/validation/simulations/action-energy",
       "name": "Action Energy",
-      "path": "content/markdown/aaa/validation/simulations/action-energy",
-      "searchTarget": "__markdown_directory__:content/markdown/aaa/validation/simulations/action-energy"
+      "path": "content/markdown/aaa/validation/simulations/action-energy"
     },
     {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/about.md",
@@ -3635,7 +3571,7 @@
       "id": "content/markdown/aaa/archie/about.md",
       "name": "About",
       "path": "content/markdown/aaa/archie/about.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/about.md",
+      "searchTarget": "content/markdown/aaa/archie/about.md",
       "implicit": false
     },
     {
@@ -3644,7 +3580,7 @@
       "id": "content/markdown/aaa/archie/glossary.md",
       "name": "Glossary",
       "path": "content/markdown/aaa/archie/glossary.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/glossary.md",
+      "searchTarget": "content/markdown/aaa/archie/glossary.md",
       "implicit": false
     },
     {
@@ -3653,7 +3589,7 @@
       "id": "content/markdown/aaa/archie/help.md",
       "name": "Help",
       "path": "content/markdown/aaa/archie/help.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/help.md",
+      "searchTarget": "content/markdown/aaa/archie/help.md",
       "implicit": false
     },
     {
@@ -3662,7 +3598,7 @@
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
       "name": "Licenses & Attributions",
       "path": "content/markdown/aaa/archie/licenses-attributions.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/licenses-attributions.md",
+      "searchTarget": "content/markdown/aaa/archie/licenses-attributions.md",
       "implicit": false
     },
     {
@@ -3671,7 +3607,7 @@
       "id": "content/markdown/aaa/archie/mathematics.md",
       "name": "Mathematics",
       "path": "content/markdown/aaa/archie/mathematics.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/mathematics.md",
+      "searchTarget": "content/markdown/aaa/archie/mathematics.md",
       "implicit": false
     },
     {
@@ -3680,7 +3616,7 @@
       "id": "content/markdown/aaa/archie/navigation.md",
       "name": "Navigation",
       "path": "content/markdown/aaa/archie/navigation.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/navigation.md",
+      "searchTarget": "content/markdown/aaa/archie/navigation.md",
       "implicit": false
     },
     {
@@ -3689,7 +3625,7 @@
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
       "name": "Architrino Theory: Master Table of Contents",
       "path": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/archie/textbook-file-structure.md",
+      "searchTarget": "content/markdown/aaa/archie/textbook-file-structure.md",
       "implicit": false
     },
     {
@@ -3698,7 +3634,7 @@
       "id": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "name": "Electroweak Bosons: Photons, W/Z, and Higgs",
       "path": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "searchTarget": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "implicit": false
     },
     {
@@ -3707,7 +3643,7 @@
       "id": "content/markdown/aaa/assemblies/bosons/gluons.md",
       "name": "Gluons and the Strong Force: Geometric Origins",
       "path": "content/markdown/aaa/assemblies/bosons/gluons.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/bosons/gluons.md",
+      "searchTarget": "content/markdown/aaa/assemblies/bosons/gluons.md",
       "implicit": false
     },
     {
@@ -3716,7 +3652,7 @@
       "id": "content/markdown/aaa/assemblies/composer.md",
       "name": "Architrino Assembly Animation API",
       "path": "content/markdown/aaa/assemblies/composer.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/composer.md",
+      "searchTarget": "content/markdown/aaa/assemblies/composer.md",
       "implicit": false
     },
     {
@@ -3725,7 +3661,7 @@
       "id": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "name": "Color Charge and SU(3)",
       "path": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
+      "searchTarget": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "implicit": false
     },
     {
@@ -3734,7 +3670,7 @@
       "id": "content/markdown/aaa/assemblies/fermions/electron.md",
       "name": "Electron",
       "path": "content/markdown/aaa/assemblies/fermions/electron.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/electron.md",
+      "searchTarget": "content/markdown/aaa/assemblies/fermions/electron.md",
       "implicit": false
     },
     {
@@ -3743,7 +3679,7 @@
       "id": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "name": "Muon Tau",
       "path": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/muon-tau.md",
+      "searchTarget": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "implicit": false
     },
     {
@@ -3752,7 +3688,7 @@
       "id": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
       "name": "Neutrinos",
       "path": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/neutrinos.md",
+      "searchTarget": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
       "implicit": false
     },
     {
@@ -3761,7 +3697,7 @@
       "id": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
       "name": "Quantum Number Mapping: Architrino Geometry to Standard Model",
       "path": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+      "searchTarget": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
       "implicit": false
     },
     {
@@ -3770,7 +3706,7 @@
       "id": "content/markdown/aaa/assemblies/fermions/quarks.md",
       "name": "Quarks",
       "path": "content/markdown/aaa/assemblies/fermions/quarks.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/quarks.md",
+      "searchTarget": "content/markdown/aaa/assemblies/fermions/quarks.md",
       "implicit": false
     },
     {
@@ -3779,7 +3715,7 @@
       "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
       "name": "Weak Mixing Angle",
       "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "searchTarget": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
       "implicit": false
     },
     {
@@ -3788,7 +3724,7 @@
       "id": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "name": "Weak Mixing and CKM",
       "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
+      "searchTarget": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
       "implicit": false
     },
     {
@@ -3797,7 +3733,7 @@
       "id": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "name": "Transient Hadrons: Mesons and Δ Resonances",
       "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/mesons/mesons.md",
+      "searchTarget": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "implicit": false
     },
     {
@@ -3806,7 +3742,7 @@
       "id": "content/markdown/aaa/assemblies/noether-core.md",
       "name": "Nested Binaries and the Noether Core",
       "path": "content/markdown/aaa/assemblies/noether-core.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/noether-core.md",
+      "searchTarget": "content/markdown/aaa/assemblies/noether-core.md",
       "implicit": false
     },
     {
@@ -3815,7 +3751,7 @@
       "id": "content/markdown/aaa/assemblies/particle-masses.md",
       "name": "Particle Masses: Emergent Inertia in the Noether Sea",
       "path": "content/markdown/aaa/assemblies/particle-masses.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/assemblies/particle-masses.md",
+      "searchTarget": "content/markdown/aaa/assemblies/particle-masses.md",
       "implicit": false
     },
     {
@@ -3824,7 +3760,7 @@
       "id": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "name": "BBN in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Framework",
       "path": "content/markdown/aaa/cosmology/BBN-constraints.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/BBN-constraints.md",
+      "searchTarget": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "implicit": false
     },
     {
@@ -3833,7 +3769,7 @@
       "id": "content/markdown/aaa/cosmology/CMB.md",
       "name": "CMB in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Cosmology",
       "path": "content/markdown/aaa/cosmology/CMB.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/CMB.md",
+      "searchTarget": "content/markdown/aaa/cosmology/CMB.md",
       "implicit": false
     },
     {
@@ -3842,7 +3778,7 @@
       "id": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "name": "Cosmology Ontology",
       "path": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/cosmology-ontology.md",
+      "searchTarget": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "implicit": false
     },
     {
@@ -3851,7 +3787,7 @@
       "id": "content/markdown/aaa/cosmology/dark-energy.md",
       "name": "Dark Energy in the Architrino Assembly Architecture",
       "path": "content/markdown/aaa/cosmology/dark-energy.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/dark-energy.md",
+      "searchTarget": "content/markdown/aaa/cosmology/dark-energy.md",
       "implicit": false
     },
     {
@@ -3860,7 +3796,7 @@
       "id": "content/markdown/aaa/cosmology/dark-matter.md",
       "name": "Dark Matter in the Architrino Assembly Architecture",
       "path": "content/markdown/aaa/cosmology/dark-matter.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/dark-matter.md",
+      "searchTarget": "content/markdown/aaa/cosmology/dark-matter.md",
       "implicit": false
     },
     {
@@ -3869,7 +3805,7 @@
       "id": "content/markdown/aaa/cosmology/expansion-mechanism.md",
       "name": "Expansion Mechanism",
       "path": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/expansion-mechanism.md",
+      "searchTarget": "content/markdown/aaa/cosmology/expansion-mechanism.md",
       "implicit": false
     },
     {
@@ -3878,7 +3814,7 @@
       "id": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
       "name": "Hubble and $S_8$ Tensions",
       "path": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+      "searchTarget": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
       "implicit": false
     },
     {
@@ -3887,7 +3823,7 @@
       "id": "content/markdown/aaa/cosmology/inflation-model.md",
       "name": "Inflation Model",
       "path": "content/markdown/aaa/cosmology/inflation-model.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/inflation-model.md",
+      "searchTarget": "content/markdown/aaa/cosmology/inflation-model.md",
       "implicit": false
     },
     {
@@ -3896,7 +3832,7 @@
       "id": "content/markdown/aaa/cosmology/structure-formation.md",
       "name": "Structure Formation",
       "path": "content/markdown/aaa/cosmology/structure-formation.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/cosmology/structure-formation.md",
+      "searchTarget": "content/markdown/aaa/cosmology/structure-formation.md",
       "implicit": false
     },
     {
@@ -3905,7 +3841,7 @@
       "id": "content/markdown/aaa/dynamics/binary-dynamics.md",
       "name": "Binary Dynamics",
       "path": "content/markdown/aaa/dynamics/binary-dynamics.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/binary-dynamics.md",
+      "searchTarget": "content/markdown/aaa/dynamics/binary-dynamics.md",
       "implicit": false
     },
     {
@@ -3914,7 +3850,7 @@
       "id": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "name": "Causal Action Functional",
       "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/causal-action-functional.md",
+      "searchTarget": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "implicit": false
     },
     {
@@ -3923,7 +3859,7 @@
       "id": "content/markdown/aaa/dynamics/effective-lagrangian.md",
       "name": "Effective Lagrangian",
       "path": "content/markdown/aaa/dynamics/effective-lagrangian.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/effective-lagrangian.md",
+      "searchTarget": "content/markdown/aaa/dynamics/effective-lagrangian.md",
       "implicit": false
     },
     {
@@ -3932,7 +3868,7 @@
       "id": "content/markdown/aaa/dynamics/energy.md",
       "name": "Kinetic and Potential Energy",
       "path": "content/markdown/aaa/dynamics/energy.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/energy.md",
+      "searchTarget": "content/markdown/aaa/dynamics/energy.md",
       "implicit": false
     },
     {
@@ -3941,7 +3877,7 @@
       "id": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "name": "Emergence of U(1)/SU(2)",
       "path": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
+      "searchTarget": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
       "implicit": false
     },
     {
@@ -3950,7 +3886,7 @@
       "id": "content/markdown/aaa/dynamics/gauge-symmetries.md",
       "name": "Gauge Symmetries",
       "path": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/gauge-symmetries.md",
+      "searchTarget": "content/markdown/aaa/dynamics/gauge-symmetries.md",
       "implicit": false
     },
     {
@@ -3959,7 +3895,7 @@
       "id": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
       "name": "Mapping Planck Scale",
       "path": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+      "searchTarget": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
       "implicit": false
     },
     {
@@ -3968,7 +3904,7 @@
       "id": "content/markdown/aaa/dynamics/master-equation.md",
       "name": "Master Equation of Motion",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/master-equation.md",
+      "searchTarget": "content/markdown/aaa/dynamics/master-equation.md",
       "implicit": false
     },
     {
@@ -3977,7 +3913,7 @@
       "id": "content/markdown/aaa/dynamics/mode-taxonomy.md",
       "name": "Mode Taxonomy",
       "path": "content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/mode-taxonomy.md",
+      "searchTarget": "content/markdown/aaa/dynamics/mode-taxonomy.md",
       "implicit": false
     },
     {
@@ -3986,7 +3922,7 @@
       "id": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
       "name": "Tri-Binary Dynamics",
       "path": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+      "searchTarget": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
       "implicit": false
     },
     {
@@ -3995,7 +3931,7 @@
       "id": "content/markdown/aaa/foundations/absolute-time-defense.md",
       "name": "Absolute Time Defense",
       "path": "content/markdown/aaa/foundations/absolute-time-defense.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/foundations/absolute-time-defense.md",
+      "searchTarget": "content/markdown/aaa/foundations/absolute-time-defense.md",
       "implicit": false
     },
     {
@@ -4004,7 +3940,7 @@
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "name": "Bootstrapping the Absolute Frame",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "searchTarget": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "implicit": false
     },
     {
@@ -4013,7 +3949,7 @@
       "id": "content/markdown/aaa/foundations/emergence.md",
       "name": "Emergence of Structure",
       "path": "content/markdown/aaa/foundations/emergence.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/foundations/emergence.md",
+      "searchTarget": "content/markdown/aaa/foundations/emergence.md",
       "implicit": false
     },
     {
@@ -4022,7 +3958,7 @@
       "id": "content/markdown/aaa/foundations/euclidean-void.md",
       "name": "Euclidean Void",
       "path": "content/markdown/aaa/foundations/euclidean-void.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/foundations/euclidean-void.md",
+      "searchTarget": "content/markdown/aaa/foundations/euclidean-void.md",
       "implicit": false
     },
     {
@@ -4031,7 +3967,7 @@
       "id": "content/markdown/aaa/foundations/ontology.md",
       "name": "Foundational Ontology",
       "path": "content/markdown/aaa/foundations/ontology.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/foundations/ontology.md",
+      "searchTarget": "content/markdown/aaa/foundations/ontology.md",
       "implicit": false
     },
     {
@@ -4040,7 +3976,7 @@
       "id": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "name": "Atomic Spectra",
       "path": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "implicit": false
     },
     {
@@ -4049,7 +3985,7 @@
       "id": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
       "name": "Atomic Structure",
       "path": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
       "implicit": false
     },
     {
@@ -4058,7 +3994,7 @@
       "id": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
       "name": "Condensed Matter",
       "path": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
       "implicit": false
     },
     {
@@ -4067,7 +4003,7 @@
       "id": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "name": "Visualizing Volumes and Exclusion in the Universe",
       "path": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "implicit": false
     },
     {
@@ -4076,7 +4012,7 @@
       "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
       "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
       "implicit": false
     },
     {
@@ -4085,7 +4021,7 @@
       "id": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
       "name": "Molecular Geometry",
       "path": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
       "implicit": false
     },
     {
@@ -4094,7 +4030,7 @@
       "id": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
       "name": "Nuclear Binding",
       "path": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
       "implicit": false
     },
     {
@@ -4103,7 +4039,7 @@
       "id": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "name": "Nucleon Structure",
       "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "implicit": false
     },
     {
@@ -4112,7 +4048,7 @@
       "id": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "name": "Crisis In Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "implicit": false
     },
     {
@@ -4121,7 +4057,7 @@
       "id": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "name": "Historical Context and Missed Opportunities",
       "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "implicit": false
     },
     {
@@ -4130,7 +4066,7 @@
       "id": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "name": "Lorentz Ether Comparison",
       "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "implicit": false
     },
     {
@@ -4139,7 +4075,7 @@
       "id": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "name": "Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework",
       "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "implicit": false
     },
     {
@@ -4148,7 +4084,7 @@
       "id": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "name": "The Way of the Assembly: A Guide to Existence in a Renewable Universe",
       "path": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
       "implicit": false
     },
     {
@@ -4157,7 +4093,7 @@
       "id": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "name": "Major Religious Cosmologies and Foundational Ontologies",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "implicit": false
     },
     {
@@ -4166,7 +4102,7 @@
       "id": "content/markdown/aaa/philosophy-history/theory-mapping.md",
       "name": "Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)",
       "path": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-mapping.md",
       "implicit": false
     },
     {
@@ -4175,7 +4111,7 @@
       "id": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "name": "Unknowns Paradoxes",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "implicit": false
     },
     {
@@ -4184,7 +4120,7 @@
       "id": "content/markdown/aaa/quantum/bell-theorem.md",
       "name": "Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response",
       "path": "content/markdown/aaa/quantum/bell-theorem.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/bell-theorem.md",
+      "searchTarget": "content/markdown/aaa/quantum/bell-theorem.md",
       "implicit": false
     },
     {
@@ -4193,7 +4129,7 @@
       "id": "content/markdown/aaa/quantum/collapse-problem.md",
       "name": "Measurement Problem and Collapse",
       "path": "content/markdown/aaa/quantum/collapse-problem.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/collapse-problem.md",
+      "searchTarget": "content/markdown/aaa/quantum/collapse-problem.md",
       "implicit": false
     },
     {
@@ -4202,7 +4138,7 @@
       "id": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
       "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
       "path": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/entanglement-nonlocality.md",
+      "searchTarget": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
       "implicit": false
     },
     {
@@ -4211,7 +4147,7 @@
       "id": "content/markdown/aaa/quantum/measurement-ontology.md",
       "name": "Measurement Ontology",
       "path": "content/markdown/aaa/quantum/measurement-ontology.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/measurement-ontology.md",
+      "searchTarget": "content/markdown/aaa/quantum/measurement-ontology.md",
       "implicit": false
     },
     {
@@ -4220,7 +4156,7 @@
       "id": "content/markdown/aaa/quantum/pilot-wave-character.md",
       "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
       "path": "content/markdown/aaa/quantum/pilot-wave-character.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/pilot-wave-character.md",
+      "searchTarget": "content/markdown/aaa/quantum/pilot-wave-character.md",
       "implicit": false
     },
     {
@@ -4229,7 +4165,7 @@
       "id": "content/markdown/aaa/quantum/quantum-summary.md",
       "name": "Quantum Summary",
       "path": "content/markdown/aaa/quantum/quantum-summary.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/quantum-summary.md",
+      "searchTarget": "content/markdown/aaa/quantum/quantum-summary.md",
       "implicit": false
     },
     {
@@ -4238,7 +4174,7 @@
       "id": "content/markdown/aaa/quantum/reality-quantum-causality.md",
       "name": "Reality, Causality, and Navigation",
       "path": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/reality-quantum-causality.md",
+      "searchTarget": "content/markdown/aaa/quantum/reality-quantum-causality.md",
       "implicit": false
     },
     {
@@ -4247,7 +4183,7 @@
       "id": "content/markdown/aaa/quantum/superposition-mechanism.md",
       "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
       "path": "content/markdown/aaa/quantum/superposition-mechanism.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/superposition-mechanism.md",
+      "searchTarget": "content/markdown/aaa/quantum/superposition-mechanism.md",
       "implicit": false
     },
     {
@@ -4256,7 +4192,7 @@
       "id": "content/markdown/aaa/quantum/wavefunction-ontology.md",
       "name": "Wavefunction Ontology",
       "path": "content/markdown/aaa/quantum/wavefunction-ontology.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/quantum/wavefunction-ontology.md",
+      "searchTarget": "content/markdown/aaa/quantum/wavefunction-ontology.md",
       "implicit": false
     },
     {
@@ -4265,7 +4201,7 @@
       "id": "content/markdown/aaa/reactions/bremsstrahlung.md",
       "name": "Bremsstrahlung",
       "path": "content/markdown/aaa/reactions/bremsstrahlung.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/reactions/bremsstrahlung.md",
+      "searchTarget": "content/markdown/aaa/reactions/bremsstrahlung.md",
       "implicit": false
     },
     {
@@ -4274,7 +4210,7 @@
       "id": "content/markdown/aaa/reactions/pdg-api.md",
       "name": "PDG Python API (pdg package)",
       "path": "content/markdown/aaa/reactions/pdg-api.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/reactions/pdg-api.md",
+      "searchTarget": "content/markdown/aaa/reactions/pdg-api.md",
       "implicit": false
     },
     {
@@ -4283,7 +4219,7 @@
       "id": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
       "name": "ARL ideas v1 (essence)",
       "path": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/reactions/pdg-solver-ideas.md",
+      "searchTarget": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
       "implicit": false
     },
     {
@@ -4292,7 +4228,7 @@
       "id": "content/markdown/aaa/reactions/synchrotron.md",
       "name": "Synchrotron Cascades",
       "path": "content/markdown/aaa/reactions/synchrotron.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/reactions/synchrotron.md",
+      "searchTarget": "content/markdown/aaa/reactions/synchrotron.md",
       "implicit": false
     },
     {
@@ -4301,7 +4237,7 @@
       "id": "content/markdown/aaa/spacetime/emergent-metric.md",
       "name": "Emergent Metric",
       "path": "content/markdown/aaa/spacetime/emergent-metric.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/emergent-metric.md",
+      "searchTarget": "content/markdown/aaa/spacetime/emergent-metric.md",
       "implicit": false
     },
     {
@@ -4310,7 +4246,7 @@
       "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
       "name": "General Relativity Observables",
       "path": "content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "searchTarget": "content/markdown/aaa/spacetime/gr-phenomenology.md",
       "implicit": false
     },
     {
@@ -4319,7 +4255,7 @@
       "id": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "name": "Gravitational Waves",
       "path": "content/markdown/aaa/spacetime/gravitational-waves.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/gravitational-waves.md",
+      "searchTarget": "content/markdown/aaa/spacetime/gravitational-waves.md",
       "implicit": false
     },
     {
@@ -4328,7 +4264,7 @@
       "id": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "name": "Lorentzian Conspiracy and Emergent Lorentz Kinematics",
       "path": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "searchTarget": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "implicit": false
     },
     {
@@ -4337,7 +4273,7 @@
       "id": "content/markdown/aaa/spacetime/ppn-parameters.md",
       "name": "PPN Parameters",
       "path": "content/markdown/aaa/spacetime/ppn-parameters.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/ppn-parameters.md",
+      "searchTarget": "content/markdown/aaa/spacetime/ppn-parameters.md",
       "implicit": false
     },
     {
@@ -4346,7 +4282,7 @@
       "id": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "name": "Proper Time and Time Dilation",
       "path": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "searchTarget": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "implicit": false
     },
     {
@@ -4355,7 +4291,7 @@
       "id": "content/markdown/aaa/spacetime/singularity-resolution.md",
       "name": "Singularity Resolution",
       "path": "content/markdown/aaa/spacetime/singularity-resolution.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/singularity-resolution.md",
+      "searchTarget": "content/markdown/aaa/spacetime/singularity-resolution.md",
       "implicit": false
     },
     {
@@ -4364,7 +4300,7 @@
       "id": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "name": "Spacetime Assemblies",
       "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "searchTarget": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "implicit": false
     },
     {
@@ -4373,7 +4309,7 @@
       "id": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "name": "Architrino Framework and SI Base Units: Deep Intersection Analysis",
       "path": "content/markdown/aaa/validation/architrino-si-base-units.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/architrino-si-base-units.md",
+      "searchTarget": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "implicit": false
     },
     {
@@ -4382,7 +4318,7 @@
       "id": "content/markdown/aaa/validation/closure-scorecard.md",
       "name": "Mathematics and Geometry Closure Scorecard",
       "path": "content/markdown/aaa/validation/closure-scorecard.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/closure-scorecard.md",
+      "searchTarget": "content/markdown/aaa/validation/closure-scorecard.md",
       "implicit": false
     },
     {
@@ -4391,7 +4327,7 @@
       "id": "content/markdown/aaa/validation/constraint-ledger.md",
       "name": "Constraint Ledger",
       "path": "content/markdown/aaa/validation/constraint-ledger.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/constraint-ledger.md",
+      "searchTarget": "content/markdown/aaa/validation/constraint-ledger.md",
       "implicit": false
     },
     {
@@ -4400,7 +4336,7 @@
       "id": "content/markdown/aaa/validation/failure-criteria.md",
       "name": "Failure Criteria",
       "path": "content/markdown/aaa/validation/failure-criteria.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/failure-criteria.md",
+      "searchTarget": "content/markdown/aaa/validation/failure-criteria.md",
       "implicit": false
     },
     {
@@ -4409,7 +4345,7 @@
       "id": "content/markdown/aaa/validation/known-tensions.md",
       "name": "Known Tensions",
       "path": "content/markdown/aaa/validation/known-tensions.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/known-tensions.md",
+      "searchTarget": "content/markdown/aaa/validation/known-tensions.md",
       "implicit": false
     },
     {
@@ -4418,7 +4354,7 @@
       "id": "content/markdown/aaa/validation/no-go-theorems.md",
       "name": "No Go Theorems",
       "path": "content/markdown/aaa/validation/no-go-theorems.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/no-go-theorems.md",
+      "searchTarget": "content/markdown/aaa/validation/no-go-theorems.md",
       "implicit": false
     },
     {
@@ -4427,7 +4363,7 @@
       "id": "content/markdown/aaa/validation/parameter-ledger.md",
       "name": "Parameter Ledger",
       "path": "content/markdown/aaa/validation/parameter-ledger.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/parameter-ledger.md",
+      "searchTarget": "content/markdown/aaa/validation/parameter-ledger.md",
       "implicit": false
     },
     {
@@ -4436,7 +4372,7 @@
       "id": "content/markdown/aaa/validation/reaction-ledger.md",
       "name": "Reaction Ledger: Point Potential Provenance",
       "path": "content/markdown/aaa/validation/reaction-ledger.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/reaction-ledger.md",
+      "searchTarget": "content/markdown/aaa/validation/reaction-ledger.md",
       "implicit": false
     },
     {
@@ -4445,7 +4381,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "name": "Revisiting our Action Model — Comparative modeling frameworks for delayed, radial action",
       "path": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "implicit": false
     },
     {
@@ -4454,7 +4390,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "name": "Delay-Only Formulations (Exact Statements)",
       "path": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "implicit": false
     },
     {
@@ -4463,7 +4399,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "name": "Opposite Charges From Rest at Large Separation",
       "path": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "implicit": false
     },
     {
@@ -4472,7 +4408,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
       "name": "Background and Simple Action",
       "path": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
       "implicit": false
     },
     {
@@ -4481,7 +4417,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
       "name": "Causal set and delay geometry",
       "path": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
       "implicit": false
     },
     {
@@ -4490,7 +4426,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
       "name": "Informational ambiguity",
       "path": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
       "implicit": false
     },
     {
@@ -4499,7 +4435,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
       "name": "Numerical recipe and stability",
       "path": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
       "implicit": false
     },
     {
@@ -4508,7 +4444,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "name": "Radial Fall to Fixed Center (Test Particle)",
       "path": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "implicit": false
     },
     {
@@ -4517,7 +4453,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
       "name": "Receiver velocity and work",
       "path": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
       "implicit": false
     },
     {
@@ -4526,7 +4462,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
       "name": "Equal-Charge Symmetric Repulsion",
       "path": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
       "implicit": false
     },
     {
@@ -4535,7 +4471,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "name": "Self-energy and regularization notes",
       "path": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
       "implicit": false
     },
     {
@@ -4544,7 +4480,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
       "name": "Self-interaction switch",
       "path": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
       "implicit": false
     },
     {
@@ -4553,7 +4489,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
       "name": "Superposition and locality",
       "path": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
       "implicit": false
     },
     {
@@ -4562,7 +4498,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
       "name": "Units and Constants",
       "path": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
       "implicit": false
     },
     {
@@ -4571,7 +4507,7 @@
       "id": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
       "name": "Well-posedness and regularization",
       "path": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
       "implicit": false
     },
     {
@@ -4580,7 +4516,7 @@
       "id": "content/markdown/aaa/validation/simulations/architrino.md",
       "name": "Architrino",
       "path": "content/markdown/aaa/validation/simulations/architrino.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/architrino.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/architrino.md",
       "implicit": false
     },
     {
@@ -4589,7 +4525,7 @@
       "id": "content/markdown/aaa/validation/simulations/convergence-tests.md",
       "name": "Convergence Tests",
       "path": "content/markdown/aaa/validation/simulations/convergence-tests.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/convergence-tests.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/convergence-tests.md",
       "implicit": false
     },
     {
@@ -4598,7 +4534,7 @@
       "id": "content/markdown/aaa/validation/simulations/perspective.md",
       "name": "Perspective: Why This Model Maps So Well",
       "path": "content/markdown/aaa/validation/simulations/perspective.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/perspective.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/perspective.md",
       "implicit": false
     },
     {
@@ -4607,7 +4543,7 @@
       "id": "content/markdown/aaa/validation/simulations/README.md",
       "name": "README",
       "path": "content/markdown/aaa/validation/simulations/README.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/README.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/README.md",
       "implicit": false
     },
     {
@@ -4616,7 +4552,7 @@
       "id": "content/markdown/aaa/validation/simulations/run-protocols.md",
       "name": "Run Protocols",
       "path": "content/markdown/aaa/validation/simulations/run-protocols.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/run-protocols.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/run-protocols.md",
       "implicit": false
     },
     {
@@ -4625,7 +4561,7 @@
       "id": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "name": "Synthetic Observables",
       "path": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/synthetic-observables.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "implicit": false
     },
     {
@@ -4634,7 +4570,7 @@
       "id": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
       "name": "Unsolved Problems",
       "path": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/simulations/unsolved-problems.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
       "implicit": false
     },
     {
@@ -4643,7 +4579,7 @@
       "id": "content/markdown/aaa/validation/validation-protocols.md",
       "name": "Validation Protocols",
       "path": "content/markdown/aaa/validation/validation-protocols.md",
-      "searchTarget": "__markdown_doc__:content/markdown/aaa/validation/validation-protocols.md",
+      "searchTarget": "content/markdown/aaa/validation/validation-protocols.md",
       "implicit": false
     }
   ],

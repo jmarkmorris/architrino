@@ -1,11 +1,21 @@
 export function createSceneBootstrapService(deps = {}) {
   const levelConfigs = deps.levelConfigs ?? {};
   const sceneRepository = deps.sceneRepository;
+  const markdownSceneRegistry = deps.markdownSceneRegistry;
   const rootScenePath = deps.rootScenePath;
 
   async function loadSceneConfig(scenePath) {
     if (levelConfigs[scenePath]) {
       return levelConfigs[scenePath];
+    }
+    if (
+      markdownSceneRegistry &&
+      typeof markdownSceneRegistry.ensureRuntimeMarkdownScene === "function"
+    ) {
+      const resolvedTarget = await markdownSceneRegistry.ensureRuntimeMarkdownScene(scenePath);
+      if (typeof resolvedTarget === "string" && levelConfigs[resolvedTarget]) {
+        return levelConfigs[resolvedTarget];
+      }
     }
     if (!sceneRepository || typeof sceneRepository.loadSceneConfig !== "function") {
       return null;

@@ -1,13 +1,37 @@
 export function createMarkdownSceneRegistry(deps) {
   const levelConfigs = deps.levelConfigs ?? {};
   const titleFromSlug = deps.titleFromSlug;
-  const normalizeMarkdownKey = deps.normalizeMarkdownKey;
+  const resolveMarkdownDocumentTitle = deps.resolveMarkdownDocumentTitle;
+  const resolveMarkdownColumnsForPath = deps.resolveMarkdownColumnsForPath;
 
-  const markdownDocPrefix = "__markdown_doc__:";
-  const markdownIndexPrefix = "__markdown_index__:";
-  const markdownReaderPrefix = "__markdown_reader__:";
-  const markdownSectionIndexPrefix = "__markdown_section_index__:";
-  const markdownDirectoryPrefix = "__markdown_directory__:";
+  const runtimeMarkdownPrefix = "runtime:markdown:";
+  const markdownDocPrefix = `${runtimeMarkdownPrefix}doc:`;
+  const markdownIndexPrefix = `${runtimeMarkdownPrefix}index:`;
+  const markdownReaderPrefix = `${runtimeMarkdownPrefix}reader:`;
+
+  function inferSceneNameFromMarkdownPath(markdownPath) {
+    const leaf = String(markdownPath || "").split("/").pop() || "";
+    const slug = leaf.replace(/\.md$/i, "");
+    return slug ? titleFromSlug(slug) : "Notes";
+  }
+
+  async function resolveRuntimeMarkdownTitle(markdownPath) {
+    if (typeof resolveMarkdownDocumentTitle === "function") {
+      const resolved = await resolveMarkdownDocumentTitle(markdownPath);
+      if (typeof resolved === "string" && resolved.trim().length > 0) {
+        return resolved;
+      }
+    }
+    return inferSceneNameFromMarkdownPath(markdownPath);
+  }
+
+  async function resolveRuntimeMarkdownColumns(markdownPath) {
+    if (typeof resolveMarkdownColumnsForPath !== "function") {
+      return null;
+    }
+    const resolved = await resolveMarkdownColumnsForPath(markdownPath);
+    return resolved === 1 || resolved === 2 ? resolved : null;
+  }
 
   function resolveNodeMarkdownConfig(nodeData) {
     return {
@@ -56,28 +80,18 @@ export function createMarkdownSceneRegistry(deps) {
 
   function getMarkdownReaderSceneId(markdownPath, markdownSection) {
     if (!markdownSection) {
-      return `__markdown_reader__:${markdownPath}`;
+      return `${markdownReaderPrefix}${markdownPath}`;
     }
-    const normalized = normalizeMarkdownKey(markdownSection);
-    return `__markdown_reader__:${markdownPath}::${normalized}`;
+    return `${markdownReaderPrefix}${markdownPath}::${encodeURIComponent(markdownSection)}`;
   }
 
   function getMarkdownIndexSceneId(markdownPath, headingLevel) {
     const levelToken = typeof headingLevel === "number" ? `::h${headingLevel}` : "";
-    return `__markdown_index__:${markdownPath}${levelToken}`;
+    return `${markdownIndexPrefix}${markdownPath}${levelToken}`;
   }
 
   function getMarkdownDocSceneId(markdownPath) {
-    return `__markdown_doc__:${markdownPath}`;
-  }
-
-  function getMarkdownSectionIndexSceneId(markdownPath, markdownSection) {
-    const normalized = normalizeMarkdownKey(markdownSection);
-    return `__markdown_section_index__:${markdownPath}::${normalized}`;
-  }
-
-  function getMarkdownDirectorySceneId(directory) {
-    return `__markdown_directory__:${directory}`;
+    return `${markdownDocPrefix}${markdownPath}`;
   }
 
   function ensureMarkdownDocScene(nodeData) {
@@ -171,82 +185,99 @@ export function createMarkdownSceneRegistry(deps) {
     return sceneId;
   }
 
-  function ensureMarkdownSectionIndexScene(markdownPath, markdownSection, parentScene) {
-    if (!markdownPath || !markdownSection) {
+  async function ensureRuntimeMarkdownScene(target) {
+    if (typeof target !== "string" || !target.trim()) {
       return null;
     }
-    const sceneId = getMarkdownSectionIndexSceneId(markdownPath, markdownSection);
-    if (levelConfigs[sceneId]) {
-      return sceneId;
+    if (levelConfigs[target]) {
+      return target;
     }
-    levelConfigs[sceneId] = {
-      layout: "static",
-      layoutType: "rings",
-      nodes: [],
-      links: [],
-      sceneName: markdownSection,
-      sceneId,
-      sceneKind: "branching",
-      markdownPath,
-      markdownSection,
-      markdownColumns: parentScene?.autoMarkdownColumns ?? null,
-      markdownAutoOpen: false,
-      centerOn: null,
-      autoMarkdownPath: markdownPath,
-      autoMarkdownSection: markdownSection,
-      autoMarkdownHeadingLevel: 3,
-      autoMarkdownIncludeExistingInLayout: false,
-      autoMarkdownNodeRadius: parentScene?.autoMarkdownNodeRadius,
-      autoMarkdownRingRadius: parentScene?.autoMarkdownRingRadius,
-      autoMarkdownMaxRingCount: parentScene?.autoMarkdownMaxRingCount,
-      autoMarkdownGridSpacing: parentScene?.autoMarkdownGridSpacing,
-      autoMarkdownColumns: parentScene?.autoMarkdownColumns,
-      autoMarkdownPalette: parentScene?.autoMarkdownPalette,
-      autoMarkdownPaletteName: parentScene?.autoMarkdownPaletteName,
-      autoMarkdownColor: parentScene?.autoMarkdownColor,
-    };
-    return sceneId;
-  }
 
-  function ensureMarkdownDirectoryScene(directory, parentScene, nodeName) {
-    if (!directory) {
-      return null;
+    if (target.startsWith(markdownDocPrefix)) {
+      const markdownPath = target.slice(markdownDocPrefix.length);
+      if (!markdownPath) {
+        return null;
+      }
+      const sceneName = await resolveRuntimeMarkdownTitle(markdownPath);
+      const markdownColumns = await resolveRuntimeMarkdownColumns(markdownPath);
+      return ensureMarkdownDocScene({
+        markdownPath,
+        name: sceneName,
+        markdownColumns,
+      });
     }
-    const sceneId = getMarkdownDirectorySceneId(directory);
-    if (levelConfigs[sceneId]) {
-      return sceneId;
+
+    if (target.startsWith(markdownReaderPrefix)) {
+      const raw = target.slice(markdownReaderPrefix.length);
+      if (!raw) {
+        return null;
+      }
+      const sectionSep = raw.indexOf("::");
+      const markdownPath = sectionSep === -1 ? raw : raw.slice(0, sectionSep);
+      const encodedSection = sectionSep === -1 ? null : raw.slice(sectionSep + 2);
+      const markdownSection = encodedSection ? decodeURIComponent(encodedSection) : null;
+      if (!markdownPath) {
+        return null;
+      }
+      const sceneName = markdownSection || (await resolveRuntimeMarkdownTitle(markdownPath));
+      const markdownColumns = await resolveRuntimeMarkdownColumns(markdownPath);
+      return ensureMarkdownReaderScene({
+        markdownPath,
+        markdownSection,
+        name: sceneName,
+        markdownColumns,
+        markdownAutoIndex: markdownSection ? false : undefined,
+      });
     }
-    levelConfigs[sceneId] = {
-      layout: "static",
-      layoutType: "rings",
-      nodes: [],
-      links: [],
-      sceneName: nodeName ?? titleFromSlug(directory.split("/").pop() ?? "Notes"),
-      sceneId,
-      sceneKind: "branching",
-      markdownPath: null,
-      markdownSection: null,
-      markdownColumns: null,
-      markdownAutoOpen: false,
-      centerOn: null,
-      autoMarkdownDirectory: directory,
-      autoMarkdownIncludeExistingInLayout: false,
-      autoMarkdownNodeRadius: parentScene?.autoMarkdownNodeRadius,
-      autoMarkdownRingRadius: parentScene?.autoMarkdownRingRadius,
-      autoMarkdownMaxRingCount: parentScene?.autoMarkdownMaxRingCount,
-      autoMarkdownGridSpacing: parentScene?.autoMarkdownGridSpacing,
-      autoMarkdownColumns: parentScene?.autoMarkdownColumns,
-      autoMarkdownPalette: parentScene?.autoMarkdownPalette,
-      autoMarkdownPaletteName: parentScene?.autoMarkdownPaletteName,
-      autoMarkdownColor: parentScene?.autoMarkdownColor,
-    };
-    return sceneId;
+
+    if (target.startsWith(markdownIndexPrefix)) {
+      const raw = target.slice(markdownIndexPrefix.length);
+      if (!raw) {
+        return null;
+      }
+      let markdownPath = raw;
+      let headingLevel = 2;
+      const headingTokenIndex = raw.lastIndexOf("::h");
+      if (headingTokenIndex > -1) {
+        const maybePath = raw.slice(0, headingTokenIndex);
+        const maybeLevel = Number(raw.slice(headingTokenIndex + 3));
+        if (maybePath && Number.isFinite(maybeLevel)) {
+          markdownPath = maybePath;
+          headingLevel = maybeLevel;
+        }
+      }
+      const sceneName = await resolveRuntimeMarkdownTitle(markdownPath);
+      return ensureMarkdownReaderScene({
+        markdownPath,
+        markdownHeadingLevel: headingLevel,
+        markdownAutoIndex: true,
+        name: sceneName,
+      });
+    }
+
+    if (target.endsWith(".md")) {
+      const sceneName = await resolveRuntimeMarkdownTitle(target);
+      const markdownColumns = await resolveRuntimeMarkdownColumns(target);
+      const sceneId = ensureMarkdownDocScene({
+        markdownPath: target,
+        name: sceneName,
+        markdownColumns,
+      });
+      if (sceneId && !levelConfigs[target]) {
+        levelConfigs[target] = levelConfigs[sceneId];
+      }
+      return sceneId ? target : null;
+    }
+
+    return null;
   }
 
   return {
+    runtimeMarkdownPrefix,
+    isRuntimeMarkdownTarget: (target) =>
+      typeof target === "string" && target.startsWith(runtimeMarkdownPrefix),
+    ensureRuntimeMarkdownScene,
     ensureMarkdownDocScene,
     ensureMarkdownReaderScene,
-    ensureMarkdownSectionIndexScene,
-    ensureMarkdownDirectoryScene,
   };
 }

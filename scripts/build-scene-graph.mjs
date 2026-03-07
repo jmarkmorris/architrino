@@ -372,7 +372,7 @@ function ensureMarkdownDocNode(markdownPath) {
       id: normalizedPath,
       name: inferMarkdownName(normalizedPath, resolvedTitle),
       path: normalizedPath,
-      searchTarget: `__markdown_doc__:${normalizedPath}`,
+      searchTarget: normalizedPath,
       implicit: !markdownFileSet.has(normalizedPath),
     });
   }
@@ -392,7 +392,6 @@ function ensureMarkdownIndexNode(directoryPath) {
       id: normalizedPath,
       name: inferDirectoryName(normalizedPath),
       path: normalizedPath,
-      searchTarget: `__markdown_directory__:${normalizedPath}`,
     });
   }
   return nodeId;
