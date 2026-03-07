@@ -39,30 +39,10 @@
       "type": "object",
       "additionalProperties": true,
       "allOf": [
-        { "required": ["id"] },
-        {
-          "anyOf": [
-            { "required": ["name"] },
-            { "required": ["title"] }
-          ]
-        },
-        {
-          "if": {
-            "required": ["type"]
-          },
-          "then": {
-            "not": {
-              "anyOf": [
-                { "required": ["kind"] },
-                { "required": ["layoutMode"] }
-              ]
-            }
-          }
-        }
+        { "required": ["id", "title", "type", "layout"] }
       ],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
-        "name": { "type": "string", "minLength": 1 },
         "title": { "type": "string", "minLength": 1 },
         "type": {
           "type": "string",
@@ -74,10 +54,6 @@
             "Scene-Animation"
           ]
         },
-        "kind": {
-          "type": "string",
-          "enum": ["branching", "diagram", "markdown_split", "element"]
-        },
         "units": { "type": "string" },
         "scaleBandLog10m": {
           "type": ["number", "array"],
@@ -86,119 +62,8 @@
         "hideScaleLabels": { "type": "boolean" },
         "wrapLabels": { "type": "boolean" },
         "centerOn": { "type": "string" },
-        "layoutMode": {
-          "type": "string",
-          "enum": ["manual", "rings"]
-        },
         "layoutColumns": { "type": "integer", "minimum": 1 },
         "sphereColorScheme": { "type": "string" },
-        "markdownPath": { "type": "string" },
-        "markdownSection": { "type": "string" },
-        "markdownColumns": { "type": "number" },
-        "markdownAutoOpen": { "type": "boolean" },
-        "autoMarkdownPath": { "type": "string" },
-        "autoMarkdownDirectory": { "type": "string" },
-        "autoMarkdownSection": { "type": "string" },
-        "autoMarkdownHeadingLevel": { "type": "number" },
-        "autoMarkdownIncludeExistingInLayout": { "type": "boolean" },
-        "autoMarkdownNodeRadius": { "type": "number" },
-        "autoMarkdownRingRadius": { "type": "number" },
-        "autoMarkdownMaxRingCount": { "type": "number" },
-        "autoMarkdownGridSpacing": { "type": "number" },
-        "autoMarkdownColumns": { "type": "number" },
-        "autoMarkdownColor": { "type": "string" },
-        "autoMarkdownSubdirectories": { "type": "boolean" },
-        "autoMarkdownExcludePaths": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "autoMarkdownIndexPaths": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "autoMarkdownPlainPaths": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "autoMarkdownPlainSectionPaths": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "autoMarkdownPalette": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "autoMarkdownPaletteName": { "type": "string" },
-        "markdown": {
-          "type": "object",
-          "additionalProperties": true,
-          "properties": {
-            "source": {
-              "type": "object",
-              "additionalProperties": true,
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "enum": ["file", "directory"]
-                },
-                "path": { "type": "string" },
-                "subdirectories": { "type": "boolean" }
-              }
-            },
-            "layout": {
-              "type": "object",
-              "additionalProperties": true,
-              "properties": {
-                "includeExisting": { "type": "boolean" },
-                "nodeRadius": { "type": "number" },
-                "ringRadius": { "type": "number" },
-                "maxRingCount": { "type": "number" },
-                "gridSpacing": { "type": "number" },
-                "palette": {
-                  "type": "array",
-                  "items": { "type": "string" }
-                },
-                "paletteName": { "type": "string" },
-                "color": { "type": "string" }
-              }
-            },
-            "render": {
-              "type": "object",
-              "additionalProperties": true,
-              "properties": {
-                "defaultMode": {
-                  "type": "string",
-                  "enum": ["doc", "index"]
-                },
-                "headingLevel": { "type": "number" },
-                "sectionDepth": { "type": "number" },
-                "columns": { "type": "number" }
-              }
-            },
-            "exclude": {
-              "type": "array",
-              "items": { "type": "string" }
-            },
-            "overrides": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": ["path"],
-                "additionalProperties": true,
-                "properties": {
-                  "path": { "type": "string" },
-                  "mode": {
-                    "type": "string",
-                    "enum": ["doc", "index"]
-                  },
-                  "headingLevel": { "type": "number" },
-                  "sectionDepth": { "type": "number" },
-                  "columns": { "type": "number" }
-                }
-              }
-            }
-          }
-        },
         "layout": {
           "type": "object",
           "additionalProperties": true,
@@ -259,10 +124,6 @@
             "items": { "type": "number" }
           },
           "fixedPosition": { "type": "boolean" },
-          "subScenes": {
-            "type": "array",
-            "items": { "type": "string" }
-          },
           "children": {
             "type": "array",
             "items": {
@@ -275,9 +136,6 @@
               }
             }
           },
-          "markdownPath": { "type": "string" },
-          "markdownSection": { "type": "string" },
-          "markdownColumns": { "type": "number" },
           "source": {
             "type": "object",
             "additionalProperties": true,

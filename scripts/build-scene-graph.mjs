@@ -145,17 +145,7 @@ function markdownIndexNodeId(directoryPath) {
   return `markdown_index:${directoryPath}`;
 }
 
-function inferSourceType(sourcePath, declaredType) {
-  if (declaredType === "file" || declaredType === "directory") {
-    return declaredType;
-  }
-  return sourcePath.toLowerCase().endsWith(".md") ? "file" : "directory";
-}
-
 function resolveAuthoredMarkdownPath(entry) {
-  if (typeof entry?.markdownPath === "string") {
-    return entry.markdownPath;
-  }
   if (entry?.source?.type === "markdown" && typeof entry?.source?.path === "string") {
     return entry.source.path;
   }
@@ -491,60 +481,6 @@ for (const sceneEntry of sceneEntries) {
   if (typeof sceneMarkdownPath === "string") {
     addMarkdownDocEdge(scenePath, sceneMarkdownPath, "scene.source.path");
   }
-  if (typeof scene.autoMarkdownPath === "string") {
-    addMarkdownDocEdge(scenePath, scene.autoMarkdownPath, "scene.autoMarkdownPath");
-  }
-  if (typeof scene.autoMarkdownDirectory === "string") {
-    addMarkdownIndexEdge(
-      scenePath,
-      scene.autoMarkdownDirectory,
-      "scene.autoMarkdownDirectory"
-    );
-  }
-
-  [
-    "autoMarkdownExcludePaths",
-    "autoMarkdownIndexPaths",
-    "autoMarkdownPlainPaths",
-    "autoMarkdownPlainSectionPaths",
-  ].forEach((field) => {
-    const values = scene[field];
-    if (!Array.isArray(values)) {
-      return;
-    }
-    values.forEach((value, index) => {
-      if (typeof value === "string") {
-        addMarkdownDocEdge(scenePath, value, `scene.${field}[${index}]`);
-      }
-    });
-  });
-
-  const markdownPolicy = scene.markdown;
-  if (markdownPolicy && typeof markdownPolicy === "object") {
-    const source = markdownPolicy.source;
-    if (source && typeof source === "object" && typeof source.path === "string") {
-      const sourceType = inferSourceType(source.path, source.type);
-      if (sourceType === "file") {
-        addMarkdownDocEdge(scenePath, source.path, "scene.markdown.source.path");
-      } else {
-        addMarkdownIndexEdge(scenePath, source.path, "scene.markdown.source.path");
-      }
-    }
-    if (Array.isArray(markdownPolicy.exclude)) {
-      markdownPolicy.exclude.forEach((value, index) => {
-        if (typeof value === "string") {
-          addMarkdownDocEdge(scenePath, value, `scene.markdown.exclude[${index}]`);
-        }
-      });
-    }
-    if (Array.isArray(markdownPolicy.overrides)) {
-      markdownPolicy.overrides.forEach((override, index) => {
-        if (override && typeof override.path === "string") {
-          addMarkdownDocEdge(scenePath, override.path, `scene.markdown.overrides[${index}].path`);
-        }
-      });
-    }
-  }
 
   objects.forEach((obj, objectIndex) => {
     const objectMarkdownPath = resolveAuthoredMarkdownPath(obj);
@@ -579,31 +515,7 @@ for (const sceneEntry of sceneEntries) {
           field: `objects[${objectIndex}].children[${childIndex}]`,
         });
       });
-      return;
     }
-    if (!Array.isArray(obj?.subScenes)) {
-      return;
-    }
-    obj.subScenes.forEach((subScenePath, subSceneIndex) => {
-      if (typeof subScenePath !== "string") {
-        return;
-      }
-      const normalizedSubScenePath = normalizePath(subScenePath);
-      if (!scenePathSet.has(normalizedSubScenePath)) {
-        warnings.push(
-          `${scenePath} -> objects[${objectIndex}].subScenes[${subSceneIndex}]: target scene missing from index (${normalizedSubScenePath})`
-        );
-      }
-      const from = ensureSceneNode(scenePath);
-      const to = ensureSceneNode(normalizedSubScenePath);
-      addEdge({
-        from,
-        to,
-        edgeType: "subscene",
-        source: scenePath,
-        field: `objects[${objectIndex}].subScenes[${subSceneIndex}]`,
-      });
-    });
   });
 }
 

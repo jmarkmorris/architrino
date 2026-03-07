@@ -1240,9 +1240,6 @@ function normalizeColumnsPath(path) {
 }
 
 function resolveAuthoredMarkdownPath(entry) {
-  if (typeof entry?.markdownPath === "string") {
-    return entry.markdownPath;
-  }
   if (entry?.source?.type === "markdown" && typeof entry?.source?.path === "string") {
     return entry.source.path;
   }
@@ -1250,9 +1247,6 @@ function resolveAuthoredMarkdownPath(entry) {
 }
 
 function resolveAuthoredMarkdownColumns(entry) {
-  if (entry?.markdownColumns === 1 || entry?.markdownColumns === 2) {
-    return entry.markdownColumns;
-  }
   if (entry?.view?.columns === 1 || entry?.view?.columns === 2) {
     return entry.view.columns;
   }
