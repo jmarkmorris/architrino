@@ -525,10 +525,11 @@ export class SceneRepository {
         const sceneId = sceneMeta.id ?? null;
         const sceneKind = this.resolveSceneKind(data, nodes);
         const rawLayoutMode = this.resolveLayoutMode(sceneMeta);
+        const legacyLayoutMode = sceneMeta?.type ? null : rawLayoutMode;
         const config = {
           layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
           layoutType: rawLayoutMode,
-          layoutMode: rawLayoutMode,
+          layoutMode: legacyLayoutMode,
           layoutColumns:
             Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
               ? data.scene.layoutColumns

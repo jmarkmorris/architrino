@@ -1271,6 +1271,12 @@ for (const scenePath of sceneConfigs) {
       ].join(", ")})`
     );
   }
+  if (rawType && rawKind) {
+    errors.push(`${scenePath}: typed scenes must not declare legacy scene.kind`);
+  }
+  if (rawType && typeof scene.layoutMode === "string" && scene.layoutMode.trim().length > 0) {
+    errors.push(`${scenePath}: typed scenes must not declare legacy scene.layoutMode`);
+  }
   const legacyFields = collectLegacyAutogenSceneFields(scene);
   if (legacyFields.length) {
     legacyAutogenScenes.push({ scenePath, fields: legacyFields });

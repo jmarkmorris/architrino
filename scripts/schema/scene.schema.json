@@ -19,6 +19,19 @@
             { "required": ["name"] },
             { "required": ["title"] }
           ]
+        },
+        {
+          "if": {
+            "required": ["type"]
+          },
+          "then": {
+            "not": {
+              "anyOf": [
+                { "required": ["kind"] },
+                { "required": ["layoutMode"] }
+              ]
+            }
+          }
         }
       ],
       "properties": {
