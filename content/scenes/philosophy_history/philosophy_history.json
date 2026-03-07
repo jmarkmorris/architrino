@@ -53,7 +53,8 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Out of the Ashes"
+      "labelTitle": "Out of the Ashes",
+      "labelBadge": "doc"
     },
     {
       "id": "unknowns_paradoxes_scene",
