@@ -4716,14 +4716,14 @@
       "to": "scene:content/scenes/assemblies/fermions.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "objects[3].subScenes[0]"
+      "field": "objects[3].children[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "objects[2].subScenes[0]"
+      "field": "objects[2].children[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
