@@ -1,3 +1,13 @@
+## Navigation Model
+
+A sphere represents a node in the scene hierarchy.
+
+- Selecting a sphere can open a child scene or content.
+- `Back` returns one step in your navigation history.
+- `Forward` moves one step forward in history when available.
+- `Home` returns to the root scene.
+- `Archie` opens or toggles the meta ring space.
+
 ## UI: Hierarchy of Universe Structure 
 
 This interface uses a sphere metaphor for selecting a scene in the hierarchy:
@@ -21,6 +31,23 @@ A sphere can resolve to different content types, not only text:
 - Hybrid combinations of the above
 
 So the sphere system is a navigation shell over mixed media, not a markdown-only structure.
+
+## Interface Controls
+
+Top HUD controls include:
+
+- `Back` and `Forward` history buttons
+- `Home` reset button
+- Scene search toggle
+- Info reopen button for the detail panel
+- `Archie` meta-ring button
+- Notes button for scene notes when available
+
+Markdown panel controls include:
+
+- Open full document from section view
+- Toggle `1-column` / `2-column` layout
+- Close notes panel
 
 ## Markdown Behavior
 
@@ -50,11 +77,17 @@ Information controls:
 
 - HUD/info bar (`hud`): toggles the info drawer.
 
-## Useful Shortcuts
+## Search and Shortcuts
 
 - `Cmd/Ctrl + K`: open/close scene search.
 - `Enter` in search: jump to the first result.
 - `Escape`: close search (and close info drawer if focused there).
+
+## Camera and Interaction
+
+- Click or tap a sphere to descend.
+- Drag to pan.
+- Wheel or pinch to zoom.
 
 ## Practical Navigation Pattern
 
