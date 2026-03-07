@@ -2,19 +2,24 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "foundations",
-    "kind": "branching",
-    "name": "Foundations",
+    "title": "Foundations",
+    "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "rings"
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
       "id": "absolute_time_defense",
-      "label": "Absolute Time Defense",
+      "title": "Absolute Time Defense",
       "radius": 2.688,
       "color": "#243d8f",
-      "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/foundations/absolute-time-defense.md"
+      },
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
@@ -25,10 +30,13 @@
     },
     {
       "id": "bootstrapping_the_absolute_frame",
-      "label": "Bootstrapping the Absolute Frame",
+      "title": "Bootstrapping the Absolute Frame",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md"
+      },
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
@@ -39,10 +47,13 @@
     },
     {
       "id": "emergence_of_structure",
-      "label": "Emergence of Structure",
+      "title": "Emergence of Structure",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/foundations/emergence.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/foundations/emergence.md"
+      },
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
@@ -53,10 +64,13 @@
     },
     {
       "id": "euclidean_void",
-      "label": "Euclidean Void",
+      "title": "Euclidean Void",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/foundations/euclidean-void.md"
+      },
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
@@ -67,10 +81,13 @@
     },
     {
       "id": "foundational_ontology",
-      "label": "Foundational Ontology",
+      "title": "Foundational Ontology",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/foundations/ontology.md"
+      },
       "markdownAutoIndex": false,
       "subScenes": [],
       "motion": {
