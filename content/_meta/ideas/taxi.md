@@ -289,7 +289,7 @@ That means:
 
 The next work is not the hierarchy move itself. The next work is to build on top of that result.
 
-### 2. Hotspots are still mostly an ontology concept, not a first-class generic feature
+### 2. Hotspots are intentionally deferred
 
 The ontology now distinguishes:
 
@@ -299,10 +299,15 @@ The ontology now distinguishes:
 
 The app has some domain-specific hotspot behavior, but not yet a general scene-level hotspot model that matches the taxonomy.
 
-So one remaining step is to decide whether:
+That work is now explicitly deferred.
 
-- hotspots become a first-class generic feature soon, or
-- hotspots stay deferred and are removed from the near-term implementation target.
+Reason:
+
+- no current authored scene family requires a general hotspot model to complete the conversion,
+- the periodic overlay remains a domain-specific interaction system,
+- forcing a generic hotspot schema now would add scope without a clear authored use case.
+
+So hotspots remain part of the ontology, but they are no longer part of the near-term conversion target.
 
 ### 3. Runtime markdown helper scenes are an accepted internal mechanism
 
@@ -340,7 +345,6 @@ That is not a blocker for the conversion, but it is a remaining mismatch between
 
 Implementation checklist:
 
-- [ ] decide and implement the generic `hotspots` model
 - [ ] align composer/export flows with the typed scene model
 
 Migration principles:
@@ -351,17 +355,7 @@ Migration principles:
 - keep converted data reviewable,
 - remove obsolete runtime recovery paths once the new path is working.
 
-### Phase 1. Add the generic relationship split
-
-Make the schema and runtime distinction explicit:
-
-- `children` for hierarchy,
-- `links` for cross-scene references,
-- `hotspots` for in-scene anchors.
-
-This should remove the remaining ambiguity about which edges are structural and which are merely navigational.
-
-### Phase 2. Align preview and editor outputs with the authored model
+### Phase 1. Align preview and editor outputs with the authored model
 
 Internal preview and authoring-related flows should move toward emitting the same conceptual model used by authored scenes.
 
@@ -375,20 +369,13 @@ This includes:
 
 If work resumes tomorrow, start here:
 
-1. Decide whether `hotspots` become a first-class generic scene feature now.
-2. If yes, add them consistently to:
-   - schema
-   - validator
-   - runtime
-   - one small authored example
-3. Then align composer preview/export with the authored scene model.
+1. Align composer preview/export with the authored scene model.
+2. Keep hotspots deferred until a concrete authored scene needs them.
 
 Immediate code targets:
 
-- `scripts/schema/scene.schema.json`
-- `scripts/validate-content.mjs`
-- whichever runtime module owns hotspot behavior,
-- composer-related runtime/export code when preview alignment starts.
+- composer-related runtime/export code
+- any bootstrap/runtime path that still assumes preview scenes are already normalized runtime configs
 
 Success condition for this next pass:
 
@@ -404,7 +391,6 @@ The main classification pass is complete. Remaining classification work is narro
 
 - which current node-level hierarchy fields become scene-level structural fields,
 - which node display fields remain valid as child-reference overrides,
-- which domain-specific hotspot systems should be generalized into the main scene model,
 - which preview/editor outputs should become authored-scene-like first.
 
 ## Best-practice position

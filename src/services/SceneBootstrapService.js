@@ -6,6 +6,12 @@ export function createSceneBootstrapService(deps = {}) {
 
   async function loadSceneConfig(scenePath) {
     if (levelConfigs[scenePath]) {
+      if (
+        sceneRepository &&
+        typeof sceneRepository.normalizeInlineSceneConfig === "function"
+      ) {
+        return sceneRepository.normalizeInlineSceneConfig(scenePath, levelConfigs[scenePath]);
+      }
       return levelConfigs[scenePath];
     }
     if (

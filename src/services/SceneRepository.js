@@ -522,6 +522,102 @@ export class SceneRepository {
     return nodes;
   }
 
+  isAuthoredSceneData(data) {
+    return !!(
+      data &&
+      typeof data === "object" &&
+      data.scene &&
+      typeof data.scene === "object" &&
+      Array.isArray(data.objects)
+    );
+  }
+
+  async createConfigFromSceneData(scenePath, data) {
+    const sceneMeta = data.scene ?? {};
+    const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
+    const splitScene = this.resolveSplitSceneConfig(sceneMeta);
+    const sceneType = typeof sceneMeta.type === "string" ? sceneMeta.type : null;
+    const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
+    const wrapLabels = sceneMeta.wrapLabels ?? true;
+    const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
+    const idMap = new Map(
+      data.objects.map((obj) => [obj.id, this.resolveDisplayTitle(obj) ?? obj.id])
+    );
+    let nodes = data.objects.map((obj) =>
+      this.buildRuntimeNode(obj, {
+        hideScaleLabels,
+        wrapLabels,
+        idMap,
+        sceneChildRefByNodeId,
+        sceneType,
+      })
+    );
+    const structuredPalette = this.resolveSphereColorPalette(data);
+    if (this.shouldApplyStructuredSpherePalette(scenePath, data)) {
+      this.applyStructuredSpherePalette(nodes, structuredPalette, {
+        usePositionalOrder: this.shouldUsePositionalPaletteOrder(scenePath),
+      });
+    }
+    this.applyPersonalityArchitrinoSizing(nodes);
+    const splitRuntimeScene = { ...data.scene, ...splitScene };
+    const autoNodes = await this.buildAutoMarkdownNodes(splitRuntimeScene, nodes);
+    if (autoNodes.length) {
+      nodes = nodes.concat(autoNodes);
+    }
+    await this.applyMarkdownDocEligibility(nodes);
+
+    const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
+    const sceneId = sceneMeta.id ?? null;
+    const rawLayoutType = this.resolveLayoutType(sceneMeta);
+    const config = {
+      layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
+      layoutType: rawLayoutType,
+      layoutColumns:
+        Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
+          ? data.scene.layoutColumns
+          : null,
+      nodes,
+      links: Array.isArray(data.links) ? data.links : [],
+      sceneName,
+      sceneId,
+      markdownPath: sceneMarkdown.markdownPath,
+      markdownSection: sceneMarkdown.markdownSection,
+      markdownColumns: sceneMarkdown.markdownColumns,
+      markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
+      markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
+      centerOn: sceneMeta.centerOn ?? null,
+      splitSourcePath: splitScene.splitSourcePath,
+      splitSection: splitScene.splitSection,
+      splitHeadingLevel: splitScene.splitHeadingLevel,
+      splitIncludeExistingInLayout: splitScene.splitIncludeExistingInLayout,
+      splitNodeRadius: splitScene.splitNodeRadius,
+      splitRingRadius: splitScene.splitRingRadius,
+      splitMaxRingCount: splitScene.splitMaxRingCount,
+      splitGridSpacing: splitScene.splitGridSpacing,
+      splitColumns: splitScene.splitColumns,
+      splitPalette: splitScene.splitPalette,
+      splitPaletteName: splitScene.splitPaletteName,
+      splitColor: splitScene.splitColor,
+      splitExcludePaths: splitScene.splitExcludePaths,
+      splitPlainPaths: splitScene.splitPlainPaths,
+      splitDefaultIndex: splitScene.splitDefaultIndex,
+      splitIndexPaths: splitScene.splitIndexPaths,
+      splitPlainSectionPaths: splitScene.splitPlainSectionPaths,
+      splitSectionDepth: splitScene.splitSectionDepth,
+      splitOverrides: splitScene.splitOverrides,
+    };
+    this.levelConfigs[scenePath] = config;
+    this.sceneConfigCache.set(scenePath, config);
+    return config;
+  }
+
+  async normalizeInlineSceneConfig(scenePath, configOrData) {
+    if (!this.isAuthoredSceneData(configOrData)) {
+      return configOrData;
+    }
+    return this.createConfigFromSceneData(scenePath, configOrData);
+  }
+
   async loadSceneConfig(scenePath) {
     if (this.sceneConfigCache.has(scenePath)) {
       return this.sceneConfigCache.get(scenePath);
@@ -537,84 +633,7 @@ export class SceneRepository {
         }
         return response.json();
       })
-      .then(async (data) => {
-        const sceneMeta = data.scene ?? {};
-        const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
-        const splitScene = this.resolveSplitSceneConfig(sceneMeta);
-        const sceneType = typeof sceneMeta.type === "string" ? sceneMeta.type : null;
-        const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
-        const wrapLabels = sceneMeta.wrapLabels ?? true;
-        const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
-        const idMap = new Map(
-          data.objects.map((obj) => [obj.id, this.resolveDisplayTitle(obj) ?? obj.id])
-        );
-        let nodes = data.objects.map((obj) =>
-          this.buildRuntimeNode(obj, {
-            hideScaleLabels,
-            wrapLabels,
-            idMap,
-            sceneChildRefByNodeId,
-            sceneType,
-          })
-        );
-        const structuredPalette = this.resolveSphereColorPalette(data);
-        if (this.shouldApplyStructuredSpherePalette(scenePath, data)) {
-          this.applyStructuredSpherePalette(nodes, structuredPalette, {
-            usePositionalOrder: this.shouldUsePositionalPaletteOrder(scenePath),
-          });
-        }
-        this.applyPersonalityArchitrinoSizing(nodes);
-        const splitRuntimeScene = { ...data.scene, ...splitScene };
-        const autoNodes = await this.buildAutoMarkdownNodes(splitRuntimeScene, nodes);
-        if (autoNodes.length) {
-          nodes = nodes.concat(autoNodes);
-        }
-        await this.applyMarkdownDocEligibility(nodes);
-
-        const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
-        const sceneId = sceneMeta.id ?? null;
-        const rawLayoutType = this.resolveLayoutType(sceneMeta);
-        const config = {
-          layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
-          layoutType: rawLayoutType,
-          layoutColumns:
-            Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
-              ? data.scene.layoutColumns
-              : null,
-          nodes,
-          links: Array.isArray(data.links) ? data.links : [],
-          sceneName,
-          sceneId,
-          markdownPath: sceneMarkdown.markdownPath,
-          markdownSection: sceneMarkdown.markdownSection,
-          markdownColumns: sceneMarkdown.markdownColumns,
-          markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
-          markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
-          centerOn: sceneMeta.centerOn ?? null,
-          splitSourcePath: splitScene.splitSourcePath,
-          splitSection: splitScene.splitSection,
-          splitHeadingLevel: splitScene.splitHeadingLevel,
-          splitIncludeExistingInLayout: splitScene.splitIncludeExistingInLayout,
-          splitNodeRadius: splitScene.splitNodeRadius,
-          splitRingRadius: splitScene.splitRingRadius,
-          splitMaxRingCount: splitScene.splitMaxRingCount,
-          splitGridSpacing: splitScene.splitGridSpacing,
-          splitColumns: splitScene.splitColumns,
-          splitPalette: splitScene.splitPalette,
-          splitPaletteName: splitScene.splitPaletteName,
-          splitColor: splitScene.splitColor,
-          splitExcludePaths: splitScene.splitExcludePaths,
-          splitPlainPaths: splitScene.splitPlainPaths,
-          splitDefaultIndex: splitScene.splitDefaultIndex,
-          splitIndexPaths: splitScene.splitIndexPaths,
-          splitPlainSectionPaths: splitScene.splitPlainSectionPaths,
-          splitSectionDepth: splitScene.splitSectionDepth,
-          splitOverrides: splitScene.splitOverrides,
-        };
-        this.levelConfigs[scenePath] = config;
-        this.sceneConfigCache.set(scenePath, config);
-        return config;
-      })
+      .then((data) => this.createConfigFromSceneData(scenePath, data))
       .catch((error) => {
         console.error(error);
         this.sceneLoadPromises.delete(scenePath);

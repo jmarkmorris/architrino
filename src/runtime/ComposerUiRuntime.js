@@ -15,8 +15,7 @@ export function createComposerUiRuntime(deps) {
     stopComposerCameraFlightPreview,
     showMarkdownPanel,
     readComposerFormState,
-    buildComposerSceneConfig,
-    buildComposerSceneSpec,
+    buildComposerSceneData,
     jumpToScene,
     setComposerStatus,
   } = deps;
@@ -89,8 +88,11 @@ export function createComposerUiRuntime(deps) {
       return;
     }
     const state = readComposerFormState();
-    const config = buildComposerSceneConfig(state);
-    levelConfigs[composerPreviewScenePath] = config;
+    const sceneData = buildComposerSceneData(state, {
+      sceneId: composerPreviewSceneId,
+      sceneTitle: `${state.name} (Preview)`,
+    });
+    levelConfigs[composerPreviewScenePath] = sceneData;
     levels.delete(composerPreviewScenePath);
     composerActivePanel = "preview";
     setComposerPanel("preview");
@@ -104,8 +106,8 @@ export function createComposerUiRuntime(deps) {
 
   function exportComposerScene() {
     const state = readComposerFormState();
-    const spec = buildComposerSceneSpec(state);
-    const json = JSON.stringify(spec, null, 2);
+    const sceneData = buildComposerSceneData(state);
+    const json = JSON.stringify(sceneData, null, 2);
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
