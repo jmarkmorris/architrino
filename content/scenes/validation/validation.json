@@ -8,7 +8,13 @@
     "layout": {
       "type": "rings"
     },
-    "wrapLabels": true
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "validation_simulations",
+        "scenePath": "content/scenes/validation/simulations.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -16,11 +22,6 @@
       "title": "Simulations",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "children": [
-        {
-          "scenePath": "content/scenes/validation/simulations.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },

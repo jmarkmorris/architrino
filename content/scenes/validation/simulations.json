@@ -8,7 +8,13 @@
     "layout": {
       "type": "rings"
     },
-    "wrapLabels": true
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "action_energy",
+        "scenePath": "content/scenes/validation/action_energy.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -16,11 +22,6 @@
       "title": "Action-Energy",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "children": [
-        {
-          "scenePath": "content/scenes/validation/action_energy.json"
-        }
-      ],
       "labelTitle": "Action-Energy"
     },
     {

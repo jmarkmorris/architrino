@@ -7718,14 +7718,14 @@
       "to": "scene:content/scenes/validation/action_energy.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/simulations.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",

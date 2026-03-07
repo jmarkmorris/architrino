@@ -3908,7 +3908,12 @@ function focusOnPointer(clientX, clientY) {
   } else if (canOpenMarkdown) {
     closeDetailPanel();
     hideHoverTooltip();
-    const readerSceneId = markdownSceneRegistry.ensureMarkdownReaderScene(targetNode.data);
+    const hasSectionTarget =
+      typeof targetNode.data.markdownSection === "string" &&
+      targetNode.data.markdownSection.trim().length > 0;
+    const readerSceneId = hasSectionTarget
+      ? markdownSceneRegistry.ensureMarkdownReaderScene(targetNode.data)
+      : markdownSceneRegistry.ensureMarkdownDocScene(targetNode.data);
     if (readerSceneId) {
       targetNode.data.childScene = readerSceneId;
       startLevelTransitionFromNode(targetNode);
