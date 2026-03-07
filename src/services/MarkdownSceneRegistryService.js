@@ -36,6 +36,50 @@ export function createMarkdownSceneRegistry(deps) {
     return slug ? stripWalkthroughStepPrefix(titleFromSlug(slug)) : "Notes";
   }
 
+  function resolveNodeMarkdownConfig(nodeData) {
+    return {
+      markdownPath:
+        typeof nodeData?.markdownPath === "string" && nodeData.markdownPath.trim().length > 0
+          ? nodeData.markdownPath
+          : null,
+      markdownSection:
+        typeof nodeData?.markdownSection === "string" && nodeData.markdownSection.trim().length > 0
+          ? nodeData.markdownSection
+          : null,
+      markdownColumns: nodeData?.markdownColumns ?? null,
+      markdownHeadingLevel:
+        typeof nodeData?.markdownHeadingLevel === "number" ? nodeData.markdownHeadingLevel : 2,
+      markdownAutoIndex: nodeData?.markdownAutoIndex,
+      markdownPlainSectionPaths: Array.isArray(nodeData?.markdownPlainSectionPaths)
+        ? nodeData.markdownPlainSectionPaths
+        : [],
+      sceneName: nodeData?.name ?? "Notes",
+    };
+  }
+
+  function createMarkdownReaderConfig({
+    sceneName,
+    sceneId,
+    markdownPath,
+    markdownSection = null,
+    markdownColumns = null,
+    markdownAutoOpen = true,
+  }) {
+    return {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName,
+      sceneId,
+      sceneKind: "branching",
+      markdownPath,
+      markdownSection,
+      markdownColumns,
+      markdownAutoOpen,
+      centerOn: null,
+    };
+  }
+
   function getMarkdownReaderSceneId(markdownPath, markdownSection) {
     if (!markdownSection) {
       return `__markdown_reader__:${markdownPath}`;
@@ -63,7 +107,8 @@ export function createMarkdownSceneRegistry(deps) {
   }
 
   function ensureMarkdownDocScene(nodeData) {
-    const markdownPath = nodeData?.markdownPath;
+    const { markdownPath, markdownSection, markdownColumns, sceneName } =
+      resolveNodeMarkdownConfig(nodeData);
     if (!markdownPath) {
       return null;
     }
@@ -71,52 +116,46 @@ export function createMarkdownSceneRegistry(deps) {
     if (levelConfigs[sceneId]) {
       return sceneId;
     }
-    levelConfigs[sceneId] = {
-      layout: "static",
-      nodes: [],
-      links: [],
-      sceneName: nodeData.name ?? "Notes",
+    levelConfigs[sceneId] = createMarkdownReaderConfig({
+      sceneName,
       sceneId,
-      sceneKind: "branching",
       markdownPath,
-      markdownSection: nodeData.markdownSection ?? null,
-      markdownColumns: nodeData.markdownColumns ?? null,
+      markdownSection,
+      markdownColumns,
       markdownAutoOpen: true,
-      centerOn: null,
-    };
+    });
     markdownReaderScenes.add(sceneId);
     return sceneId;
   }
 
   function ensureMarkdownReaderScene(nodeData) {
-    const markdownPath = nodeData.markdownPath;
+    const {
+      markdownPath,
+      markdownSection,
+      markdownColumns,
+      markdownHeadingLevel: headingLevel,
+      markdownAutoIndex,
+      markdownPlainSectionPaths,
+      sceneName,
+    } = resolveNodeMarkdownConfig(nodeData);
     if (!markdownPath) {
       return null;
     }
-    const sceneName = nodeData.name ?? "Notes";
-    const markdownSection = nodeData.markdownSection ?? null;
-    const headingLevel =
-      typeof nodeData.markdownHeadingLevel === "number" ? nodeData.markdownHeadingLevel : 2;
 
     if (!markdownSection) {
-      if (nodeData.markdownAutoIndex === false) {
+      if (markdownAutoIndex === false) {
         const sceneId = getMarkdownDocSceneId(markdownPath);
         if (levelConfigs[sceneId]) {
           return sceneId;
         }
-        levelConfigs[sceneId] = {
-          layout: "static",
-          nodes: [],
-          links: [],
+        levelConfigs[sceneId] = createMarkdownReaderConfig({
           sceneName,
           sceneId,
-          sceneKind: "branching",
           markdownPath,
           markdownSection: null,
-          markdownColumns: nodeData.markdownColumns ?? null,
+          markdownColumns,
           markdownAutoOpen: true,
-          centerOn: null,
-        };
+        });
         markdownReaderScenes.add(sceneId);
         return sceneId;
       }
@@ -134,15 +173,13 @@ export function createMarkdownSceneRegistry(deps) {
         sceneKind: "branching",
         markdownPath,
         markdownSection: null,
-        markdownColumns: nodeData.markdownColumns ?? null,
+        markdownColumns,
         markdownAutoOpen: false,
         centerOn: null,
         autoMarkdownPath: markdownPath,
         autoMarkdownHeadingLevel: headingLevel,
         autoMarkdownIncludeExistingInLayout: false,
-        autoMarkdownPlainSectionPaths: Array.isArray(nodeData.markdownPlainSectionPaths)
-          ? nodeData.markdownPlainSectionPaths
-          : [],
+        autoMarkdownPlainSectionPaths: markdownPlainSectionPaths,
       };
       markdownReaderScenes.add(sceneId);
       return sceneId;
@@ -152,19 +189,14 @@ export function createMarkdownSceneRegistry(deps) {
     if (levelConfigs[sceneId]) {
       return sceneId;
     }
-    levelConfigs[sceneId] = {
-      layout: "static",
-      nodes: [],
-      links: [],
+    levelConfigs[sceneId] = createMarkdownReaderConfig({
       sceneName,
       sceneId,
-      sceneKind: "branching",
       markdownPath,
       markdownSection,
-      markdownColumns: nodeData.markdownColumns ?? null,
+      markdownColumns,
       markdownAutoOpen: true,
-      centerOn: null,
-    };
+    });
     markdownReaderScenes.add(sceneId);
     return sceneId;
   }

@@ -3885,9 +3885,11 @@ function focusOnPointer(clientX, clientY) {
     return false;
   }
 
-  const hasMarkdownPath = !!targetNode.data.markdownPath;
+  const hasMarkdownTarget =
+    typeof targetNode?.data?.markdownPath === "string" &&
+    targetNode.data.markdownPath.trim().length > 0;
   const canOpenMarkdown =
-    hasMarkdownPath && targetNode.data.markdownOpenEligible === true;
+    hasMarkdownTarget && targetNode.data.markdownOpenEligible === true;
 
   if (currentLevel?.sceneId === composerSceneId) {
     const panelId = composerPanelMap.get(targetNode.data.id ?? "");
