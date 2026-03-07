@@ -11,7 +11,13 @@
     ],
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "solar_system",
+        "scenePath": "content/scenes/cosmology/solar_system.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -23,12 +29,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "solar system",
-      "children": [
-        {
-          "scenePath": "content/scenes/cosmology/solar_system.json"
-        }
-      ]
+      "labelTitle": "solar system"
     },
     {
       "id": "stellar_black_hole",

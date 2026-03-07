@@ -142,12 +142,16 @@ export class SceneRepository {
     return map;
   }
 
-  resolveChildSceneTarget(entry, sceneChildRef = null) {
-    const childRef =
-      sceneChildRef ||
-      (Array.isArray(entry?.children) && entry.children.length > 0 && entry.children[0]
+  resolveChildSceneTarget(entry, sceneChildRef = null, context = {}) {
+    const sceneType = typeof context.sceneType === "string" ? context.sceneType : null;
+    const childRef = sceneChildRef || (
+      sceneType !== "Scene-Index" &&
+      Array.isArray(entry?.children) &&
+      entry.children.length > 0 &&
+      entry.children[0]
         ? entry.children[0]
-        : null);
+        : null
+    );
     if (
       childRef &&
       (typeof childRef.scenePath === "string" || typeof childRef.sceneId === "string")
@@ -261,7 +265,7 @@ export class SceneRepository {
       wrapLabel: obj.wrapLabel ?? context.wrapLabels ?? true,
       layoutSlot: this.resolveNodeLayoutSlot(obj, sceneChildRef),
     };
-    const childScene = this.resolveChildSceneTarget(obj, sceneChildRef);
+    const childScene = this.resolveChildSceneTarget(obj, sceneChildRef, context);
     if (typeof childScene === "string" && childScene.length > 0) {
       node.childScene = childScene;
     }
@@ -306,6 +310,8 @@ export class SceneRepository {
     if (typeof scenePath === "string") {
       if (
         scenePath.startsWith("runtime:markdown:") ||
+        scenePath === "content/scenes/architrino-theory/electrino.json" ||
+        scenePath === "content/scenes/architrino-theory/positrino.json" ||
         scenePath === "content/scenes/nuclear/proton.json" ||
         scenePath === "content/scenes/nuclear/neutron.json" ||
         scenePath.startsWith("content/scenes/elements/") ||
@@ -314,7 +320,12 @@ export class SceneRepository {
         return false;
       }
     }
-    if (sceneId === "proton" || sceneId === "neutron") {
+    if (
+      sceneId === "electrino" ||
+      sceneId === "positrino" ||
+      sceneId === "proton" ||
+      sceneId === "neutron"
+    ) {
       return false;
     }
     return true;
@@ -530,6 +541,7 @@ export class SceneRepository {
         const sceneMeta = data.scene ?? {};
         const sceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
         const splitScene = this.resolveSplitSceneConfig(sceneMeta);
+        const sceneType = typeof sceneMeta.type === "string" ? sceneMeta.type : null;
         const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
         const wrapLabels = sceneMeta.wrapLabels ?? true;
         const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
@@ -542,6 +554,7 @@ export class SceneRepository {
             wrapLabels,
             idMap,
             sceneChildRefByNodeId,
+            sceneType,
           })
         );
         const structuredPalette = this.resolveSphereColorPalette(data);

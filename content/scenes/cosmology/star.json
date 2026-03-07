@@ -11,7 +11,13 @@
     ],
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "cno_cycle",
+        "scenePath": "content/scenes/nuclear/cno_cycle_detail.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -36,12 +42,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "CNO cycle",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/cno_cycle_detail.json"
-        }
-      ]
+      "labelTitle": "CNO cycle"
     },
     {
       "id": "triple_alpha",

@@ -8,7 +8,21 @@
     "layout": {
       "type": "rings"
     },
-    "wrapLabels": true
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "periodic_table",
+        "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
+      },
+      {
+        "nodeId": "hyde_periodic_table",
+        "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
+      },
+      {
+        "nodeId": "atom",
+        "scenePath": "content/scenes/nuclear/atom.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -26,11 +40,6 @@
       "title": "Periodic Table",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "children": [
-        {
-          "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -41,11 +50,6 @@
       "title": "Hyde Periodic Table",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "children": [
-        {
-          "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -56,11 +60,6 @@
       "title": "Atom",
       "radius": 2.688,
       "color": "#a50041",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/atom.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },

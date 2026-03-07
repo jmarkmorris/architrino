@@ -9,7 +9,13 @@
       "type": "rings"
     },
     "wrapLabels": true,
-    "hideScaleLabels": true
+    "hideScaleLabels": true,
+    "children": [
+      {
+        "nodeId": "meta_composer",
+        "scenePath": "content/scenes/meta/composer.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -17,11 +23,6 @@
       "title": "Composer",
       "radius": 2.2,
       "color": "#7ee0d7",
-      "children": [
-        {
-          "scenePath": "content/scenes/meta/composer.json"
-        }
-      ],
       "labelTitle": "Composer"
     },
     {

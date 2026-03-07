@@ -8,7 +8,21 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "electron_muon_tau",
+        "scenePath": "content/scenes/standard-model-particles/electron.json"
+      },
+      {
+        "nodeId": "down_strange_bottom_quarks",
+        "scenePath": "content/scenes/standard-model-particles/down_quark.json"
+      },
+      {
+        "nodeId": "up_charm_top_quarks",
+        "scenePath": "content/scenes/standard-model-particles/up_quark.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -31,11 +45,6 @@
       "title": "Electron, Muon, Tau",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -76,11 +85,6 @@
       "title": "Down, Strange, Bottom Quarks",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/down_quark.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -91,11 +95,6 @@
       "title": "Up, Charm, Top Quarks",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/up_quark.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },

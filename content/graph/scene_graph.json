@@ -4666,119 +4666,119 @@
       "to": "scene:content/scenes/standard-model-particles/down_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "objects[4].children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "objects[1].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/standard-model-particles/up_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "objects[5].children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/cosmology/disk.json",
       "to": "scene:content/scenes/cosmology/solar_system.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/disk.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/galaxy_cluster.json",
       "to": "scene:content/scenes/cosmology/galaxy.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/galaxy_cluster.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/galaxy_cluster.json",
       "to": "scene:content/scenes/cosmology/intracluster_medium.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/galaxy_cluster.json",
-      "field": "objects[1].children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/cosmology/galaxy.json",
       "to": "scene:content/scenes/cosmology/disk.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/galaxy.json",
-      "field": "objects[2].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/fe.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[8].children[0]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/he.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[1].children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/mg.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[5].children[0]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/ne.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[4].children[0]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/o.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[3].children[0]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/s.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[7].children[0]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/elements/si.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[6].children[0]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/nuclear/proton.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/standard-model-particles/electron.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[2].children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/cosmology/intracluster_medium.json",
       "to": "scene:content/scenes/standard-model-particles/neutrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/intracluster_medium.json",
-      "field": "objects[11].children[0]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/cosmology/solar_system.json",
@@ -4806,14 +4806,14 @@
       "to": "scene:content/scenes/nuclear/cno_cycle_detail.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/star.json",
-      "field": "objects[1].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/universe.json",
       "to": "scene:content/scenes/cosmology/galaxy_cluster.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -7326,7 +7326,7 @@
       "to": "scene:content/scenes/meta/composer.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -7375,21 +7375,21 @@
       "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "objects[2].children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "objects[1].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "objects[3].children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/nuclear/nucleus.json",

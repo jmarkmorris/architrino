@@ -1047,6 +1047,11 @@ for (const scenePath of sceneConfigs) {
 
   objects.forEach((obj, index) => {
     const objectLabel = typeof obj?.id === "string" && obj.id ? obj.id : `objects[${index}]`;
+    if (rawType === "Scene-Index" && Array.isArray(obj?.children) && obj.children.length > 0) {
+      errors.push(
+        `${scenePath} -> ${objectLabel}.children: Scene-Index hierarchy must live in scene.children`
+      );
+    }
     const objectMarkdownPath = resolveAuthoredMarkdownPath(obj);
     const objectMarkdownSection = resolveAuthoredMarkdownSection(obj);
     if (typeof objectMarkdownPath === "string") {

@@ -474,6 +474,7 @@ for (const sceneEntry of sceneEntries) {
     continue;
   }
   const scene = data.scene || {};
+  const sceneType = asText(scene.type);
   const objects = Array.isArray(data.objects) ? data.objects : [];
 
   const sceneMarkdownPath = resolveAuthoredMarkdownPath(scene);
@@ -515,7 +516,7 @@ for (const sceneEntry of sceneEntries) {
       const objectId = asText(obj.id) || `objects[${objectIndex}]`;
       addMarkdownDocEdge(scenePath, objectMarkdownPath, `${objectId}.source.path`);
     }
-    if (Array.isArray(obj?.children)) {
+    if (sceneType !== "Scene-Index" && Array.isArray(obj?.children)) {
       obj.children.forEach((childRef, childIndex) => {
         const childTarget =
           typeof childRef?.scenePath === "string"
