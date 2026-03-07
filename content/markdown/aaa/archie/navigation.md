@@ -1,21 +1,19 @@
 ## Navigation Model
 
-A sphere represents a node in the scene hierarchy.
+A sphere represents a node in the scene hierarchy and acts as a portal into the next layer of structure.
 
 - Selecting a sphere can open a child scene or content.
 - `Back` returns one step in your navigation history.
-- `Forward` moves one step forward in history when available.
+- `Forward` moves one step forward when that history exists.
 - `Home` returns to the root scene.
 - `Archie` opens or toggles the meta ring space.
 
-## UI: Hierarchy of Universe Structure 
+## Hierarchy Structure
 
 This interface uses a sphere metaphor for selecting a scene in the hierarchy:
 
 - Each sphere is a node in the knowledge graph.
 - Clicking a glowing/active sphere descends into that node's child scene.
-- `Back` climbs one level up the path you took.
-- `Home` returns to the root scene.
 
 You can treat each scene as a chapter, and each sphere as a section or portal.
 
@@ -32,56 +30,13 @@ A sphere can resolve to different content types, not only text:
 
 So the sphere system is a navigation shell over mixed media, not a markdown-only structure.
 
-## Interface Controls
-
-Top HUD controls include:
-
-- `Back` and `Forward` history buttons
-- `Home` reset button
-- Scene search toggle
-- Info reopen button for the detail panel
-- `Archie` meta-ring button
-- Notes button for scene notes when available
-
-Markdown panel controls include:
-
-- Open full document from section view
-- Toggle `1-column` / `2-column` layout
-- Close notes panel
-
-## Markdown Behavior
+## Reading Modes
 
 When a sphere maps to markdown, notes open in the markdown panel.
 
-- Use the layout icon in the notes header to switch between `1-column` and `2-column` modes.
-- Use the document icon in the notes header to jump to the full document when viewing a section/index.
-- Use `Close` to hide the notes panel.
-
-## UI Icons and Controls
-
-Top controls:
-
-- `Back` (`nav-up`): return to parent scene.
-- `Notes` document icon (`doc-button`): open notes for the current scene when available.
-- `Home` house icon (`home-button`): jump to root.
-- `Archie` ring icon (`meta-button`): open the Archie meta scene (and toggle back).
-- `Search` magnifier (`scene-search-toggle`): open scene search.
-
-Markdown panel controls:
-
-- Document icon (`markdown-doc-button`): open full document.
-- Layout icon (`markdown-layout-toggle`): toggle one/two column rendering.
-- `Close` (`markdown-close`): hide notes panel.
-
-Information controls:
-
-- HUD/info bar (`hud`): toggles the info drawer.
-
-## Search and Shortcuts
-
-- `Cmd/Ctrl + K`: open/close scene search.
-- `Enter` in search: jump to the first result.
-- `Escape`: close search (and close info drawer if focused there).
+- A node can open a section view or a full document view.
+- Section views provide local context inside a larger document.
+- Full document views support longer-form reading across the whole text.
 
 ## Camera and Interaction
 
@@ -95,4 +50,4 @@ Information controls:
 2. Descend sphere-by-sphere into your topic.
 3. Open notes when you need context.
 4. Shift between section reading and full-document reading as needed.
-5. Use `Back` for local context changes, `Home` for global reset, and `Archie` for meta/tooling space.
+5. Use history for local path changes and the meta ring for orientation or tooling context.
