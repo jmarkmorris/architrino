@@ -995,6 +995,56 @@ for (const scenePath of sceneConfigs) {
     );
   }
 
+  const objectIdSet = new Set(
+    objects
+      .map((obj) => (typeof obj?.id === "string" ? obj.id : null))
+      .filter((value) => typeof value === "string" && value.length > 0)
+  );
+  if (Array.isArray(scene.children)) {
+    scene.children.forEach((childRef, childIndex) => {
+      if (!childRef || typeof childRef !== "object") {
+        errors.push(`${scenePath} -> scene.children[${childIndex}]: expected object`);
+        return;
+      }
+      const nodeId = typeof childRef.nodeId === "string" ? childRef.nodeId : "";
+      if (!nodeId) {
+        errors.push(`${scenePath} -> scene.children[${childIndex}]: expected nodeId`);
+        return;
+      }
+      if (!objectIdSet.has(nodeId)) {
+        errors.push(
+          `${scenePath} -> scene.children[${childIndex}]: nodeId "${nodeId}" does not match any object id`
+        );
+      }
+      const childTarget =
+        typeof childRef.scenePath === "string"
+          ? childRef.scenePath
+          : typeof childRef.sceneId === "string"
+            ? childRef.sceneId
+            : "";
+      if (!childTarget) {
+        errors.push(
+          `${scenePath} -> scene.children[${childIndex}]: expected scenePath or sceneId`
+        );
+        return;
+      }
+      validateFileReference(
+        scenePath,
+        `scene.children[${childIndex}]`,
+        childTarget,
+        sceneConfigSet,
+        sceneConfigLower
+      );
+      const resolvedTarget = resolveKnownPath(childTarget, sceneConfigSet, sceneConfigLower);
+      if (resolvedTarget) {
+        incomingSceneRefCount.set(
+          resolvedTarget,
+          (incomingSceneRefCount.get(resolvedTarget) ?? 0) + 1
+        );
+      }
+    });
+  }
+
   objects.forEach((obj, index) => {
     const objectLabel = typeof obj?.id === "string" && obj.id ? obj.id : `objects[${index}]`;
     const objectMarkdownPath = resolveAuthoredMarkdownPath(obj);

@@ -8,7 +8,21 @@
     "wrapLabels": true,
     "layout": {
       "type": "rings"
-    }
+    },
+    "children": [
+      {
+        "nodeId": "out_of_the_ashes_scene",
+        "scenePath": "content/scenes/philosophy_history/out_of_the_ashes.json"
+      },
+      {
+        "nodeId": "unknowns_paradoxes_scene",
+        "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
+      },
+      {
+        "nodeId": "major_thinkers",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
+      }
+    ]
   },
   "objects": [
     {
@@ -16,11 +30,6 @@
       "title": "Out of the Ashes",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/out_of_the_ashes.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -31,11 +40,6 @@
       "title": "Unknowns & Paradoxes",
       "radius": 2.688,
       "color": "#5a3f73",
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -94,11 +98,6 @@
       "radius": 2.688,
       "color": "#4b0082",
       "markdownAutoIndex": false,
-      "children": [
-        {
-          "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
-        }
-      ],
       "motion": {
         "type": "fixed"
       },

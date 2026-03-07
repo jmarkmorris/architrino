@@ -126,11 +126,28 @@ export class SceneRepository {
     };
   }
 
-  resolveChildSceneTarget(entry) {
+  buildSceneChildRefMap(sceneMeta) {
+    const refs = Array.isArray(sceneMeta?.children) ? sceneMeta.children : [];
+    const map = new Map();
+    refs.forEach((ref) => {
+      if (!ref || typeof ref !== "object") {
+        return;
+      }
+      const nodeId = typeof ref.nodeId === "string" ? ref.nodeId : "";
+      if (!nodeId || map.has(nodeId)) {
+        return;
+      }
+      map.set(nodeId, ref);
+    });
+    return map;
+  }
+
+  resolveChildSceneTarget(entry, sceneChildRef = null) {
     const childRef =
-      Array.isArray(entry?.children) && entry.children.length > 0 && entry.children[0]
+      sceneChildRef ||
+      (Array.isArray(entry?.children) && entry.children.length > 0 && entry.children[0]
         ? entry.children[0]
-        : null;
+        : null);
     if (
       childRef &&
       (typeof childRef.scenePath === "string" || typeof childRef.sceneId === "string")
@@ -138,6 +155,54 @@ export class SceneRepository {
       return childRef.scenePath ?? childRef.sceneId;
     }
     return null;
+  }
+
+  resolveSceneChildDisplay(entry, sceneChildRef = null) {
+    return {
+      title:
+        typeof sceneChildRef?.title === "string" && sceneChildRef.title.trim().length > 0
+          ? sceneChildRef.title
+          : null,
+      labelBadge:
+        typeof sceneChildRef?.labelBadge === "string" && sceneChildRef.labelBadge.trim().length > 0
+          ? sceneChildRef.labelBadge
+          : null,
+      color:
+        typeof sceneChildRef?.color === "string" && sceneChildRef.color.trim().length > 0
+          ? sceneChildRef.color
+          : null,
+      slot:
+        typeof sceneChildRef?.slot === "string" && sceneChildRef.slot.trim().length > 0
+          ? sceneChildRef.slot
+          : null,
+    };
+  }
+
+  resolveNodeEntryColor(entry, sceneChildRef = null) {
+    const sceneChildDisplay = this.resolveSceneChildDisplay(entry, sceneChildRef);
+    if (typeof sceneChildDisplay.color === "string") {
+      return sceneChildDisplay.color;
+    }
+    return entry?.color ?? "#3a5a8a";
+  }
+
+  resolveNodeTitle(entry, sceneChildRef = null) {
+    const sceneChildDisplay = this.resolveSceneChildDisplay(entry, sceneChildRef);
+    return sceneChildDisplay.title ?? this.resolveDisplayTitle(entry) ?? entry?.id ?? null;
+  }
+
+  resolveNodeBadge(entry, sceneChildRef = null) {
+    const sceneChildDisplay = this.resolveSceneChildDisplay(entry, sceneChildRef);
+    return sceneChildDisplay.labelBadge ?? entry?.labelBadge ?? null;
+  }
+
+  resolveNodeLayoutSlot(entry, sceneChildRef = null) {
+    const sceneChildDisplay = this.resolveSceneChildDisplay(entry, sceneChildRef);
+    return sceneChildDisplay.slot ?? null;
+  }
+
+  resolveNodeChildRef(entry, context = {}) {
+    return context.sceneChildRefByNodeId?.get(entry?.id) ?? null;
   }
 
   resolveNodeColor(entry) {
@@ -150,23 +215,27 @@ export class SceneRepository {
 
   buildRuntimeNode(obj, context = {}) {
     const markdown = this.resolveMarkdownConfig(obj);
-    const nodeTitle = this.resolveDisplayTitle(obj) ?? obj.id;
+    const sceneChildRef = this.resolveNodeChildRef(obj, context);
+    const nodeTitle = this.resolveNodeTitle(obj, sceneChildRef) ?? obj.id;
     const hasScale = obj.scaleExponent !== undefined && obj.scaleExponent !== null;
     const binaryBands = Array.isArray(obj.binaryBands) ? obj.binaryBands : null;
     const node = {
       id: obj.id,
       name: nodeTitle,
       shortName: obj.shortName ?? null,
-      labelTitle: obj.labelTitle ?? obj.title ?? null,
+      labelTitle: obj.labelTitle ?? nodeTitle,
       labelSubtitle: obj.labelSubtitle ?? null,
       labelDates: obj.labelDates ?? null,
-      labelBadge: obj.labelBadge ?? null,
+      labelBadge: this.resolveNodeBadge(obj, sceneChildRef),
       labelBadgeImage: obj.labelBadgeImage ?? null,
       labelBadgeAlt: obj.labelBadgeAlt ?? null,
       scale: hasScale ? obj.scaleExponent : null,
       hasScale,
       radius: obj.radius ?? 1,
-      color: this.resolveNodeColor(obj),
+      color: this.resolveNodeColor({
+        ...obj,
+        color: this.resolveNodeEntryColor(obj, sceneChildRef),
+      }),
       position: obj.position ?? [0, 0, 0],
       fixedPosition: obj.fixedPosition ?? false,
       category: obj.category,
@@ -190,8 +259,9 @@ export class SceneRepository {
       baseOpacity: obj.baseOpacity ?? null,
       hideScaleLabel: obj.hideScaleLabel ?? context.hideScaleLabels ?? false,
       wrapLabel: obj.wrapLabel ?? context.wrapLabels ?? true,
+      layoutSlot: this.resolveNodeLayoutSlot(obj, sceneChildRef),
     };
-    const childScene = this.resolveChildSceneTarget(obj);
+    const childScene = this.resolveChildSceneTarget(obj, sceneChildRef);
     if (typeof childScene === "string" && childScene.length > 0) {
       node.childScene = childScene;
     }
@@ -462,6 +532,7 @@ export class SceneRepository {
         const splitScene = this.resolveSplitSceneConfig(sceneMeta);
         const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
         const wrapLabels = sceneMeta.wrapLabels ?? true;
+        const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
         const idMap = new Map(
           data.objects.map((obj) => [obj.id, this.resolveDisplayTitle(obj) ?? obj.id])
         );
@@ -470,6 +541,7 @@ export class SceneRepository {
             hideScaleLabels,
             wrapLabels,
             idMap,
+            sceneChildRefByNodeId,
           })
         );
         const structuredPalette = this.resolveSphereColorPalette(data);

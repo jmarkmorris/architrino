@@ -116,6 +116,27 @@
             "headingLevel": { "type": "number" },
             "sectionDepth": { "type": "number" }
           }
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["nodeId"],
+            "anyOf": [
+              { "required": ["scenePath"] },
+              { "required": ["sceneId"] }
+            ],
+            "properties": {
+              "nodeId": { "type": "string", "minLength": 1 },
+              "sceneId": { "type": "string" },
+              "scenePath": { "type": "string" },
+              "title": { "type": "string" },
+              "labelBadge": { "type": "string" },
+              "slot": { "type": "string" },
+              "color": { "type": "string" }
+            }
+          }
         }
       }
     },

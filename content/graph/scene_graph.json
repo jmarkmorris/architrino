@@ -7424,56 +7424,56 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[1].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[5].children[0]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[4].children[0]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[3].children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "objects[2].children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "objects[5].children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "objects[0].children[0]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "objects[1].children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",
