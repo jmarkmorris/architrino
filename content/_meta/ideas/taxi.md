@@ -304,7 +304,7 @@ So one remaining step is to decide whether:
 - hotspots become a first-class generic feature soon, or
 - hotspots stay deferred and are removed from the near-term implementation target.
 
-### 3. Runtime markdown helper scenes still exist as an internal mechanism
+### 3. Runtime markdown helper scenes are an accepted internal mechanism
 
 The old `__markdown_*` path is gone, and the current helper namespace is narrower and explicit:
 
@@ -312,12 +312,16 @@ The old `__markdown_*` path is gone, and the current helper namespace is narrowe
 - `runtime:markdown:index:*`
 - `runtime:markdown:reader:*`
 
-This is much cleaner than the prior system, but it is still runtime-generated helper state.
+This is runtime-generated helper state, but it is now accepted as a permanent internal implementation detail rather than as migration scaffolding.
 
-So a remaining architectural decision is whether:
+The important boundaries are:
 
-- this runtime helper mechanism is accepted as a permanent internal implementation detail, or
-- it is eventually replaced by a more explicit authored or state-model-driven approach.
+- authored scene files do not use `runtime:markdown:*` IDs,
+- search and authored references may still point at plain markdown paths,
+- the runtime may translate those paths into helper scenes when needed,
+- helper scenes remain internal navigation/read-state machinery rather than authored ontology.
+
+So the remaining work here is not to replace the helper namespace. The remaining work is only to keep its boundaries clear and avoid leaking it back into authored scene data.
 
 ### 4. Some UI/editor paths still emit internal runtime configs rather than authored scene data
 
@@ -337,7 +341,6 @@ That is not a blocker for the conversion, but it is a remaining mismatch between
 Implementation checklist:
 
 - [ ] decide and implement the generic `hotspots` model
-- [ ] decide whether `runtime:markdown:*` remains permanent internal machinery
 - [ ] align composer/export flows with the typed scene model
 
 Migration principles:
@@ -358,18 +361,7 @@ Make the schema and runtime distinction explicit:
 
 This should remove the remaining ambiguity about which edges are structural and which are merely navigational.
 
-### Phase 2. Decide the fate of runtime markdown helper scenes
-
-The current runtime markdown helper path is much cleaner than the old one, but it is still generated state.
-
-This phase should answer:
-
-- do `runtime:markdown:*` helper scenes remain as a permanent internal implementation detail,
-- or do they get replaced by a more explicit authored or state-model-driven mechanism?
-
-Either answer can be valid, but it should be deliberate.
-
-### Phase 3. Align preview and editor outputs with the authored model
+### Phase 2. Align preview and editor outputs with the authored model
 
 Internal preview and authoring-related flows should move toward emitting the same conceptual model used by authored scenes.
 
@@ -389,15 +381,13 @@ If work resumes tomorrow, start here:
    - validator
    - runtime
    - one small authored example
-3. In parallel or immediately after, decide whether `runtime:markdown:*` stays as internal machinery or gets further reduced.
-4. Then align composer preview/export with the authored scene model.
+3. Then align composer preview/export with the authored scene model.
 
 Immediate code targets:
 
 - `scripts/schema/scene.schema.json`
 - `scripts/validate-content.mjs`
 - whichever runtime module owns hotspot behavior,
-- `src/services/MarkdownSceneRegistryService.js` if the markdown-helper decision is addressed,
 - composer-related runtime/export code when preview alignment starts.
 
 Success condition for this next pass:

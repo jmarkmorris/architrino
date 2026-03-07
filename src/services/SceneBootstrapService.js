@@ -12,6 +12,8 @@ export function createSceneBootstrapService(deps = {}) {
       markdownSceneRegistry &&
       typeof markdownSceneRegistry.ensureRuntimeMarkdownScene === "function"
     ) {
+      // Plain markdown paths and runtime:markdown:* IDs are resolved here into
+      // internal helper scenes rather than authored scene configs.
       const resolvedTarget = await markdownSceneRegistry.ensureRuntimeMarkdownScene(scenePath);
       if (typeof resolvedTarget === "string" && levelConfigs[resolvedTarget]) {
         return levelConfigs[resolvedTarget];
