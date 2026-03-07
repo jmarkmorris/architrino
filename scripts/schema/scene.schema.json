@@ -62,9 +62,6 @@
         "properties": {
           "scene": {
             "type": "object",
-            "properties": {
-              "type": { "const": "Scene-Index" }
-            },
             "required": ["type"]
           }
         }

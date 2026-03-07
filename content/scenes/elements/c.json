@@ -11,7 +11,93 @@
     ],
     "layout": {
       "type": "manual"
-    }
+    },
+    "children": [
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p1"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p2"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p3"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p4"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p5"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "p6"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/neutron.json",
+        "nodeId": "n1"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/neutron.json",
+        "nodeId": "n2"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/neutron.json",
+        "nodeId": "n3"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/neutron.json",
+        "nodeId": "n4"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/neutron.json",
+        "nodeId": "n5"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/neutron.json",
+        "nodeId": "n6"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "e1_1"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "e1_2"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "e2_1"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "e2_2"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "e2_3"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "e2_4"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/proton.json",
+        "nodeId": "legend_p"
+      },
+      {
+        "scenePath": "content/scenes/nuclear/neutron.json",
+        "nodeId": "legend_n"
+      },
+      {
+        "scenePath": "content/scenes/standard-model-particles/electron.json",
+        "nodeId": "legend_e"
+      }
+    ]
   },
   "objects": [
     {
@@ -28,11 +114,6 @@
         "type": "fixed"
       },
       "category": "proton",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ],
       "labelTitle": "P"
     },
     {
@@ -49,11 +130,6 @@
         "type": "fixed"
       },
       "category": "proton",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ],
       "labelTitle": "P"
     },
     {
@@ -70,11 +146,6 @@
         "type": "fixed"
       },
       "category": "proton",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ],
       "labelTitle": "P"
     },
     {
@@ -91,11 +162,6 @@
         "type": "fixed"
       },
       "category": "proton",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ],
       "labelTitle": "P"
     },
     {
@@ -112,11 +178,6 @@
         "type": "fixed"
       },
       "category": "proton",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ],
       "labelTitle": "P"
     },
     {
@@ -133,11 +194,6 @@
         "type": "fixed"
       },
       "category": "proton",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ],
       "labelTitle": "P"
     },
     {
@@ -154,11 +210,6 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/neutron.json"
-        }
-      ],
       "labelTitle": "N"
     },
     {
@@ -175,11 +226,6 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/neutron.json"
-        }
-      ],
       "labelTitle": "N"
     },
     {
@@ -196,11 +242,6 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/neutron.json"
-        }
-      ],
       "labelTitle": "N"
     },
     {
@@ -217,11 +258,6 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/neutron.json"
-        }
-      ],
       "labelTitle": "N"
     },
     {
@@ -238,11 +274,6 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/neutron.json"
-        }
-      ],
       "labelTitle": "N"
     },
     {
@@ -259,11 +290,6 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/neutron.json"
-        }
-      ],
       "labelTitle": "N"
     },
     {
@@ -289,11 +315,6 @@
       },
       "category": "electron",
       "shell": 1,
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ],
       "labelTitle": "e"
     },
     {
@@ -319,11 +340,6 @@
       },
       "category": "electron",
       "shell": 1,
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ],
       "labelTitle": "e"
     },
     {
@@ -349,11 +365,6 @@
       },
       "category": "electron",
       "shell": 2,
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ],
       "labelTitle": "e"
     },
     {
@@ -379,11 +390,6 @@
       },
       "category": "electron",
       "shell": 2,
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ],
       "labelTitle": "e"
     },
     {
@@ -409,11 +415,6 @@
       },
       "category": "electron",
       "shell": 2,
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ],
       "labelTitle": "e"
     },
     {
@@ -439,11 +440,6 @@
       },
       "category": "electron",
       "shell": 2,
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ],
       "labelTitle": "e"
     },
     {
@@ -460,11 +456,6 @@
         "type": "fixed"
       },
       "category": "legend",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/proton.json"
-        }
-      ],
       "labelTitle": "P"
     },
     {
@@ -481,11 +472,6 @@
         "type": "fixed"
       },
       "category": "legend",
-      "children": [
-        {
-          "scenePath": "content/scenes/nuclear/neutron.json"
-        }
-      ],
       "labelTitle": "N"
     },
     {
@@ -502,11 +488,6 @@
         "type": "fixed"
       },
       "category": "legend",
-      "children": [
-        {
-          "scenePath": "content/scenes/standard-model-particles/electron.json"
-        }
-      ],
       "labelTitle": "e"
     }
   ]

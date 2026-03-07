@@ -1069,9 +1069,9 @@ for (const scenePath of sceneConfigs) {
 
   objects.forEach((obj, index) => {
     const objectLabel = typeof obj?.id === "string" && obj.id ? obj.id : `objects[${index}]`;
-    if (rawType === "Scene-Index" && Array.isArray(obj?.children) && obj.children.length > 0) {
+    if (Array.isArray(obj?.children) && obj.children.length > 0) {
       errors.push(
-        `${scenePath} -> ${objectLabel}.children: Scene-Index hierarchy must live in scene.children`
+        `${scenePath} -> ${objectLabel}.children: child-scene refs must live in scene.children`
       );
     }
     const objectMarkdownPath = resolveAuthoredMarkdownPath(obj);
@@ -1095,40 +1095,6 @@ for (const scenePath of sceneConfigs) {
           `${scenePath} -> ${objectLabel}.view.section: ambiguous section key "${objectMarkdownSection}" in ${normalizedPath} (${matches} matching headings)`
         );
       }
-    }
-    if (Array.isArray(obj?.children)) {
-      obj.children.forEach((childRef, childIndex) => {
-        if (!childRef || typeof childRef !== "object") {
-          errors.push(`${scenePath} -> ${objectLabel}.children[${childIndex}]: expected object`);
-          return;
-        }
-        const childTarget =
-          typeof childRef.scenePath === "string"
-            ? childRef.scenePath
-            : typeof childRef.sceneId === "string"
-              ? childRef.sceneId
-              : "";
-        if (!childTarget) {
-          errors.push(
-            `${scenePath} -> ${objectLabel}.children[${childIndex}]: expected scenePath or sceneId`
-          );
-          return;
-        }
-        validateFileReference(
-          scenePath,
-          `${objectLabel}.children[${childIndex}]`,
-          childTarget,
-          sceneConfigSet,
-          sceneConfigLower
-        );
-        const resolvedTarget = resolveKnownPath(childTarget, sceneConfigSet, sceneConfigLower);
-        if (resolvedTarget) {
-          incomingSceneRefCount.set(
-            resolvedTarget,
-            (incomingSceneRefCount.get(resolvedTarget) ?? 0) + 1
-          );
-        }
-      });
     }
   });
 }

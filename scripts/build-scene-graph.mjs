@@ -516,34 +516,6 @@ for (const sceneEntry of sceneEntries) {
       const objectId = asText(obj.id) || `objects[${objectIndex}]`;
       addMarkdownDocEdge(scenePath, objectMarkdownPath, `${objectId}.source.path`);
     }
-    if (sceneType !== "Scene-Index" && Array.isArray(obj?.children)) {
-      obj.children.forEach((childRef, childIndex) => {
-        const childTarget =
-          typeof childRef?.scenePath === "string"
-            ? childRef.scenePath
-            : typeof childRef?.sceneId === "string"
-              ? childRef.sceneId
-              : null;
-        if (!childTarget) {
-          return;
-        }
-        const normalizedSubScenePath = normalizePath(childTarget);
-        if (!scenePathSet.has(normalizedSubScenePath)) {
-          warnings.push(
-            `${scenePath} -> objects[${objectIndex}].children[${childIndex}]: target scene missing from index (${normalizedSubScenePath})`
-          );
-        }
-        const from = ensureSceneNode(scenePath);
-        const to = ensureSceneNode(normalizedSubScenePath);
-        addEdge({
-          from,
-          to,
-          edgeType: "subscene",
-          source: scenePath,
-          field: `objects[${objectIndex}].children[${childIndex}]`,
-        });
-      });
-    }
   });
 }
 

@@ -151,15 +151,7 @@ export class SceneRepository {
   }
 
   resolveChildSceneTarget(entry, sceneChildRef = null, context = {}) {
-    const sceneType = typeof context.sceneType === "string" ? context.sceneType : null;
-    const childRef = sceneChildRef || (
-      sceneType !== "Scene-Index" &&
-      Array.isArray(entry?.children) &&
-      entry.children.length > 0 &&
-      entry.children[0]
-        ? entry.children[0]
-        : null
-    );
+    const childRef = sceneChildRef;
     if (
       childRef &&
       (typeof childRef.scenePath === "string" || typeof childRef.sceneId === "string")

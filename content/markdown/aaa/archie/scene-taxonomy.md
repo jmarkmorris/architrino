@@ -51,7 +51,7 @@ A `Scene-Index` may contain only structural child scenes, and each structural ch
 
 This gives the hierarchy a clean recursive structure.
 
-Links, hotspots, and other cross-scene references may still connect any scene to any other scene. Those references are not structural child membership.
+Links, hotspots, and other cross-scene references may still connect any scene to any other scene. Presentation scenes may also declare scene-owned drill-down targets through `children`, but those targets are not structural child membership.
 
 ### 4. There are many presentation-scene types
 
@@ -65,7 +65,7 @@ The taxonomy should support multiple presentation-scene types, and more can be a
 
 The taxonomy distinguishes:
 
-- `children` for hierarchy,
+- `children` for scene-owned child-scene references,
 - `links` for cross-scene references,
 - `hotspots` for in-scene interaction anchors.
 
@@ -194,7 +194,7 @@ That means:
 - no hidden scene creation from directory traversal,
 - no ambiguity about whether a scene is authored or generated,
 - no filesystem structure acting as an invisible part of ontology,
-- explicit distinction between structural child relationships and ordinary links.
+- explicit distinction between structural child relationships, scene-owned drill-down targets, and ordinary links.
 
 A runtime may still transform declared data, but it should not invent scene structure by discovering files on its own.
 
@@ -326,15 +326,15 @@ Base-scene principles:
 
 ### 2. Structural hierarchy fields
 
-Structural hierarchy should be explicit and separate from ordinary links.
+Scene-owned child-scene references should be explicit and separate from ordinary links.
 
-Structural children should use child-reference objects, not bare strings. That is the better design because it gives the hierarchy room for slot hints, label overrides, badges, future state, and eventual spatial metadata without changing the core shape.
+Child references should use child-reference objects, not bare strings. That is the better design because it gives both hierarchy and drill-down navigation room for slot hints, label overrides, badges, future state, and eventual spatial metadata without changing the core shape.
 
 Even though the present UI is effectively 2D and everything is displayed as a sphere, the child-reference shape should remain compatible with a future 3D scene model.
 
-Suggested structural fields for scenes that organize children:
+Suggested child-reference fields for scenes that need scene-owned child-scene targets:
 
-- `children`: ordered list of structural child scene references
+- `children`: ordered list of scene-owned child-scene references
 - `defaultChild`: optional default scene to enter from an index scene
 
 A child reference may eventually need fields such as:
@@ -346,10 +346,11 @@ A child reference may eventually need fields such as:
 
 Important distinction:
 
-- `children` defines the scene hierarchy,
+- `children` defines either scene hierarchy or scene-owned drill-down targets depending on scene type,
 - `links` defines cross-scene connectivity,
 - a scene may have links without having children,
-- a presentation scene may link to many scenes without becoming a `Scene-Index`.
+- a presentation scene may link to many scenes without becoming a `Scene-Index`,
+- a presentation scene may also use `children` for node-bound drill-down without becoming a `Scene-Index`.
 
 ### 3. Scene-Index
 
@@ -365,7 +366,7 @@ Suggested fields:
 Suggested constraints:
 
 - every structural child must resolve to either another `Scene-Index` or a presentation scene,
-- `children` should exist only on `Scene-Index`,
+- `children` is required on `Scene-Index`,
 - `Scene-Index` view behavior should derive from layout by default rather than from authored `view` state,
 - `Scene-Index` should not require direct media-source configuration,
 - `Scene-Index` should not derive children from a filesystem path.
@@ -452,13 +453,14 @@ Suggested fields:
 - `source.type: diagram`
 - `source`: diagram source or diagram program definition
 - `view`: diagram-specific viewing configuration
+- `children`: optional scene-owned drill-down targets keyed by `nodeId`
 - `hotspots`: optional diagram hotspots linking to scenes
 - `controls`: optional interactive diagram controls
 
 Design direction:
 
 - this scene type is for diagrams as primary content,
-- links may exist, but hierarchy remains separate,
+- links may exist, and node-bound drill-down should live on `scene.children` rather than on the node object,
 - diagram-specific configuration should not spill into unrelated scene types.
 
 ### 8. Scene-Animation
@@ -735,7 +737,7 @@ These are illustrative examples for ontology review. They are not final implemen
 
 These examples make several intended rules concrete:
 
-- hierarchy is declared through `children` child-reference objects,
+- hierarchy and node-bound drill-down are declared through `children` child-reference objects,
 - cross-scene connectivity is declared through `links` and `hotspots`,
 - ring-layout behavior is configured through `layout`,
 - markdown-specific configuration lives only inside markdown scene types,
