@@ -2,14 +2,17 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "solar_system",
-    "kind": "branching",
-    "name": "Solar System",
+    "title": "Solar System",
+    "type": "Scene-Diagram",
     "units": "relative",
     "scaleBandLog10m": [
       13,
       15
     ],
-    "centerOn": "star"
+    "centerOn": "star",
+    "layout": {
+      "type": "manual"
+    }
   },
   "objects": [
     {
@@ -23,10 +26,12 @@
         0,
         0
       ],
-      "subScenes": [
-        "content/scenes/cosmology/star.json"
-      ],
-      "labelTitle": "Star"
+      "labelTitle": "Star",
+      "children": [
+        {
+          "scenePath": "content/scenes/cosmology/star.json"
+        }
+      ]
     },
     {
       "id": "planet_a",
@@ -34,9 +39,6 @@
       "scaleExponent": 6,
       "radius": 1.0625,
       "color": "#327a5e",
-      "subScenes": [
-        "content/scenes/cosmology/planet.json"
-      ],
       "motion": {
         "type": "orbit",
         "orbit": {
@@ -47,7 +49,12 @@
           "phase": 0
         }
       },
-      "labelTitle": "Planet A"
+      "labelTitle": "Planet A",
+      "children": [
+        {
+          "scenePath": "content/scenes/cosmology/planet.json"
+        }
+      ]
     },
     {
       "id": "planet_b",
@@ -55,9 +62,6 @@
       "scaleExponent": 6,
       "radius": 0.935,
       "color": "#2c6c7e",
-      "subScenes": [
-        "content/scenes/cosmology/planet.json"
-      ],
       "motion": {
         "type": "orbit",
         "orbit": {
@@ -68,7 +72,12 @@
           "phase": 2.094
         }
       },
-      "labelTitle": "Planet B"
+      "labelTitle": "Planet B",
+      "children": [
+        {
+          "scenePath": "content/scenes/cosmology/planet.json"
+        }
+      ]
     },
     {
       "id": "planet_c",
@@ -76,9 +85,6 @@
       "scaleExponent": 6,
       "radius": 1.15,
       "color": "#3f5f8a",
-      "subScenes": [
-        "content/scenes/cosmology/planet.json"
-      ],
       "motion": {
         "type": "orbit",
         "orbit": {
@@ -89,7 +95,12 @@
           "phase": 4.189
         }
       },
-      "labelTitle": "Planet C"
+      "labelTitle": "Planet C",
+      "children": [
+        {
+          "scenePath": "content/scenes/cosmology/planet.json"
+        }
+      ]
     },
     {
       "id": "moon",
@@ -97,9 +108,6 @@
       "scaleExponent": 5,
       "radius": 0.45,
       "color": "#9ea6bf",
-      "subScenes": [
-        "content/scenes/cosmology/moon.json"
-      ],
       "motion": {
         "type": "orbit",
         "orbit": {
@@ -110,7 +118,12 @@
           "phase": 0.6
         }
       },
-      "labelTitle": "Moon"
+      "labelTitle": "Moon",
+      "children": [
+        {
+          "scenePath": "content/scenes/cosmology/moon.json"
+        }
+      ]
     }
   ]
 }

@@ -2,13 +2,16 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "periodic_table",
-    "kind": "diagram",
-    "name": "Periodic Table",
+    "title": "Periodic Table",
+    "type": "Scene-Diagram",
     "units": "relative",
     "scaleBandLog10m": [
       0,
       0
-    ]
+    ],
+    "layout": {
+      "type": "manual"
+    }
   },
   "objects": []
 }

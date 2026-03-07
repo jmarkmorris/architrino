@@ -2,16 +2,24 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "hyde_periodic_table",
-    "kind": "diagram",
-    "name": "Hyde Periodic Table",
+    "title": "Hyde Periodic Table",
+    "type": "Scene-Diagram",
     "units": "relative",
-    "markdownPath": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-    "markdownColumns": 2,
-    "markdownAutoOpen": false,
     "scaleBandLog10m": [
       0,
       0
-    ]
+    ],
+    "layout": {
+      "type": "manual"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md"
+    },
+    "view": {
+      "columns": 2,
+      "autoOpen": false
+    }
   },
   "objects": []
 }

@@ -2,12 +2,14 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "composer",
-    "kind": "diagram",
-    "name": "Composer",
+    "title": "Composer",
+    "type": "Scene-Diagram",
     "units": "relative",
-    "layoutMode": "rings",
+    "hideScaleLabels": true,
     "wrapLabels": true,
-    "hideScaleLabels": true
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {

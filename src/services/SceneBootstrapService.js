@@ -10,11 +10,11 @@ export function createSceneBootstrapService(deps = {}) {
     }
     if (
       markdownSceneRegistry &&
-      typeof markdownSceneRegistry.ensureSceneConfigFromSceneId === "function"
+      typeof markdownSceneRegistry.ensureRuntimeMarkdownScene === "function"
     ) {
-      const restored = await markdownSceneRegistry.ensureSceneConfigFromSceneId(scenePath);
-      if (restored && levelConfigs[scenePath]) {
-        return levelConfigs[scenePath];
+      const resolvedTarget = await markdownSceneRegistry.ensureRuntimeMarkdownScene(scenePath);
+      if (typeof resolvedTarget === "string" && levelConfigs[resolvedTarget]) {
+        return levelConfigs[resolvedTarget];
       }
     }
     if (!sceneRepository || typeof sceneRepository.loadSceneConfig !== "function") {

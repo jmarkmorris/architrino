@@ -2,14 +2,16 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "molecule",
-    "kind": "diagram",
-    "name": "Molecule",
+    "title": "Molecule",
+    "type": "Scene-Diagram",
     "units": "relative",
-    "layoutMode": "rings",
     "scaleBandLog10m": [
       -9,
       -6
-    ]
+    ],
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
@@ -18,7 +20,6 @@
       "scaleExponent": -8,
       "radius": 1.2,
       "color": "#3f5f8a",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -30,7 +31,6 @@
       "scaleExponent": -8,
       "radius": 1.1,
       "color": "#327a5e",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -42,7 +42,6 @@
       "scaleExponent": -9,
       "radius": 1,
       "color": "#2c6c7e",
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },

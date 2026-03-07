@@ -2,20 +2,24 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "philosophy_history",
-    "kind": "branching",
-    "name": "Philosophy-History",
+    "title": "Philosophy-History",
+    "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "rings"
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
       "id": "out_of_the_ashes_scene",
-      "label": "Out of the Ashes",
+      "title": "Out of the Ashes",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "subScenes": [
-        "content/scenes/philosophy_history/out_of_the_ashes.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/philosophy_history/out_of_the_ashes.json"
+        }
       ],
       "motion": {
         "type": "fixed"
@@ -24,11 +28,13 @@
     },
     {
       "id": "unknowns_paradoxes_scene",
-      "label": "Unknowns & Paradoxes",
+      "title": "Unknowns & Paradoxes",
       "radius": 2.688,
       "color": "#5a3f73",
-      "subScenes": [
-        "content/scenes/philosophy_history/unknowns_paradoxes.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
+        }
       ],
       "motion": {
         "type": "fixed"
@@ -37,12 +43,14 @@
     },
     {
       "id": "crisis_in_physics",
-      "label": "Crisis in Physics",
+      "title": "Crisis in Physics",
       "radius": 2.688,
       "color": "#243d8f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -50,12 +58,14 @@
     },
     {
       "id": "historical_context_missed_opportunities",
-      "label": "Historical Context and Missed Opportunities",
+      "title": "Historical Context and Missed Opportunities",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -64,12 +74,14 @@
     },
     {
       "id": "lorentz_ether_comparison",
-      "label": "Lorentz Ether Comparison",
+      "title": "Lorentz Ether Comparison",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -78,12 +90,14 @@
     },
     {
       "id": "major_thinkers",
-      "label": "Major Thinkers",
+      "title": "Major Thinkers",
       "radius": 2.688,
       "color": "#4b0082",
       "markdownAutoIndex": false,
-      "subScenes": [
-        "content/scenes/philosophy_history/major_thinkers.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
+        }
       ],
       "motion": {
         "type": "fixed"
@@ -92,12 +106,14 @@
     },
     {
       "id": "religious_ontologies",
-      "label": "Religious Ontologies",
+      "title": "Religious Ontologies",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -106,12 +122,14 @@
     },
     {
       "id": "theory_mapping",
-      "label": "Theory Mapping",
+      "title": "Theory Mapping",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },

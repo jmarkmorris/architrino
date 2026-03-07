@@ -2,19 +2,24 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "fermions",
-    "name": "Fermions",
+    "title": "Fermions",
+    "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "rings",
-    "kind": "branching"
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
       "id": "color_charge_su3",
-      "label": "Color Charge SU3",
+      "title": "Color Charge SU3",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md"
+      },
       "motion": {
         "type": "fixed"
       },
@@ -23,11 +28,13 @@
     },
     {
       "id": "electron_muon_tau",
-      "label": "Electron, Muon, Tau",
+      "title": "Electron, Muon, Tau",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "motion": {
         "type": "fixed"
@@ -36,10 +43,13 @@
     },
     {
       "id": "neutrinos",
-      "label": "Neutrinos",
+      "title": "Neutrinos",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/fermions/neutrinos.md"
+      },
       "motion": {
         "type": "fixed"
       },
@@ -48,10 +58,13 @@
     },
     {
       "id": "quantum_number_mapping",
-      "label": "Quantum Number Mapping",
+      "title": "Quantum Number Mapping",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md"
+      },
       "motion": {
         "type": "fixed"
       },
@@ -60,11 +73,13 @@
     },
     {
       "id": "down_strange_bottom_quarks",
-      "label": "Down, Strange, Bottom Quarks",
+      "title": "Down, Strange, Bottom Quarks",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "subScenes": [
-        "content/scenes/standard-model-particles/down_quark.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/down_quark.json"
+        }
       ],
       "motion": {
         "type": "fixed"
@@ -73,11 +88,13 @@
     },
     {
       "id": "up_charm_top_quarks",
-      "label": "Up, Charm, Top Quarks",
+      "title": "Up, Charm, Top Quarks",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "subScenes": [
-        "content/scenes/standard-model-particles/up_quark.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/up_quark.json"
+        }
       ],
       "motion": {
         "type": "fixed"
@@ -86,10 +103,13 @@
     },
     {
       "id": "weak_mixing_angle",
-      "label": "Weak Mixing Angle",
+      "title": "Weak Mixing Angle",
       "radius": 2.688,
       "color": "#7a5a2f",
-      "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md"
+      },
       "motion": {
         "type": "fixed"
       },
@@ -98,10 +118,13 @@
     },
     {
       "id": "weak_mixing_ckm",
-      "label": "Weak Mixing CKM",
+      "title": "Weak Mixing CKM",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md"
+      },
       "motion": {
         "type": "fixed"
       },

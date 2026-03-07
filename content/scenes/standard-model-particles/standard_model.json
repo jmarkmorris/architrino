@@ -2,14 +2,16 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "standard_model",
-    "kind": "diagram",
-    "name": "Standard Model",
+    "title": "Standard Model",
+    "type": "Scene-Diagram",
     "units": "relative",
-    "layoutMode": "rings",
     "scaleBandLog10m": [
       -19,
       -17
-    ]
+    ],
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
@@ -23,9 +25,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/up_quark.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -36,7 +35,12 @@
         "spin": "1/2",
         "generation": "I"
       },
-      "labelTitle": "up quark"
+      "labelTitle": "up quark",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/up_quark.json"
+        }
+      ]
     },
     {
       "id": "down_quark",
@@ -49,9 +53,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/down_quark.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -62,7 +63,12 @@
         "spin": "1/2",
         "generation": "I"
       },
-      "labelTitle": "down quark"
+      "labelTitle": "down quark",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/down_quark.json"
+        }
+      ]
     },
     {
       "id": "electron",
@@ -75,9 +81,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -88,7 +91,12 @@
         "spin": "1/2",
         "generation": "I"
       },
-      "labelTitle": "electron"
+      "labelTitle": "electron",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
+      ]
     },
     {
       "id": "electron_neutrino",
@@ -101,9 +109,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/neutrino.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -114,7 +119,12 @@
         "spin": "1/2",
         "generation": "I"
       },
-      "labelTitle": "electron neutrino"
+      "labelTitle": "electron neutrino",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/neutrino.json"
+        }
+      ]
     },
     {
       "id": "charm_quark",
@@ -127,9 +137,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/charm.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -140,7 +147,12 @@
         "spin": "1/2",
         "generation": "II"
       },
-      "labelTitle": "charm quark"
+      "labelTitle": "charm quark",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/charm.json"
+        }
+      ]
     },
     {
       "id": "strange_quark",
@@ -153,9 +165,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/strange.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -166,7 +175,12 @@
         "spin": "1/2",
         "generation": "II"
       },
-      "labelTitle": "strange quark"
+      "labelTitle": "strange quark",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/strange.json"
+        }
+      ]
     },
     {
       "id": "muon",
@@ -179,9 +193,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/muon.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -192,7 +203,12 @@
         "spin": "1/2",
         "generation": "II"
       },
-      "labelTitle": "muon"
+      "labelTitle": "muon",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/muon.json"
+        }
+      ]
     },
     {
       "id": "muon_neutrino",
@@ -205,9 +221,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/muon_neutrino.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -218,7 +231,12 @@
         "spin": "1/2",
         "generation": "II"
       },
-      "labelTitle": "muon neutrino"
+      "labelTitle": "muon neutrino",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/muon_neutrino.json"
+        }
+      ]
     },
     {
       "id": "top_quark",
@@ -231,9 +249,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/top.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -244,7 +259,12 @@
         "spin": "1/2",
         "generation": "III"
       },
-      "labelTitle": "top quark"
+      "labelTitle": "top quark",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/top.json"
+        }
+      ]
     },
     {
       "id": "bottom_quark",
@@ -257,9 +277,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/bottom.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -270,7 +287,12 @@
         "spin": "1/2",
         "generation": "III"
       },
-      "labelTitle": "bottom quark"
+      "labelTitle": "bottom quark",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/bottom.json"
+        }
+      ]
     },
     {
       "id": "tau",
@@ -283,9 +305,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/tau.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -296,7 +315,12 @@
         "spin": "1/2",
         "generation": "III"
       },
-      "labelTitle": "tau"
+      "labelTitle": "tau",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/tau.json"
+        }
+      ]
     },
     {
       "id": "tau_neutrino",
@@ -309,9 +333,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/tau_neutrino.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -322,7 +343,12 @@
         "spin": "1/2",
         "generation": "III"
       },
-      "labelTitle": "tau neutrino"
+      "labelTitle": "tau neutrino",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/tau_neutrino.json"
+        }
+      ]
     },
     {
       "id": "photon",
@@ -335,7 +361,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -358,7 +383,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -381,7 +405,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -404,7 +427,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -427,7 +449,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -450,9 +471,6 @@
         0
       ],
       "fixedPosition": true,
-      "subScenes": [
-        "content/scenes/standard-model-particles/higgs_boson.json"
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -462,7 +480,12 @@
         "mass": "125.25 GeV",
         "spin": "0"
       },
-      "labelTitle": "Higgs boson"
+      "labelTitle": "Higgs boson",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/higgs_boson.json"
+        }
+      ]
     }
   ]
 }

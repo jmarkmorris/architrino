@@ -2,91 +2,126 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "meta",
-    "kind": "branching",
-    "name": "Archie",
+    "title": "Archie",
+    "type": "Scene-Index",
     "units": "relative",
-    "layoutMode": "rings",
+    "layout": {
+      "type": "rings"
+    },
     "wrapLabels": true,
     "hideScaleLabels": true
   },
   "objects": [
     {
       "id": "meta_composer",
-      "label": "Composer",
+      "title": "Composer",
       "radius": 2.2,
       "color": "#7ee0d7",
-      "subScenes": [
-        "content/scenes/meta/composer.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/meta/composer.json"
+        }
       ],
       "labelTitle": "Composer"
     },
     {
       "id": "meta_about",
-      "label": "About",
+      "title": "About",
       "radius": 2.2,
       "color": "#243d8f",
-      "markdownPath": "content/markdown/aaa/archie/about.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/about.md"
+      },
       "labelTitle": "About",
       "labelBadge": "doc"
     },
     {
       "id": "meta_licenses_attributions",
-      "label": "Licenses & Attributions",
+      "title": "Licenses & Attributions",
       "radius": 2.2,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/archie/licenses-attributions.md",
-      "markdownColumns": 1,
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/licenses-attributions.md"
+      },
+      "view": {
+        "columns": 1
+      },
       "markdownAutoIndex": false,
       "labelTitle": "Licenses & Attributions",
       "labelBadge": "doc"
     },
     {
       "id": "meta_glossary",
-      "label": "Glossary",
+      "title": "Glossary",
       "radius": 2.2,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/archie/glossary.md",
-      "markdownColumns": 1,
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/glossary.md"
+      },
+      "view": {
+        "columns": 1
+      },
       "labelTitle": "Glossary",
       "labelBadge": "doc"
     },
     {
       "id": "meta_help",
-      "label": "Help",
+      "title": "Help",
       "radius": 2.2,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/archie/help.md",
-      "markdownColumns": 2,
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/help.md"
+      },
+      "view": {
+        "columns": 2
+      },
       "markdownShowTitle": false,
       "labelTitle": "Help",
       "labelBadge": "doc"
     },
     {
       "id": "meta_mathematical_style_guide",
-      "label": "Mathematical Style Guide",
+      "title": "Mathematical Style Guide",
       "radius": 2.2,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/archie/mathematics.md",
-      "markdownSection": "Mathematical Style Guide (Canonical Dialect)",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/mathematics.md"
+      },
+      "view": {
+        "section": "Mathematical Style Guide (Canonical Dialect)"
+      },
       "labelTitle": "Mathematical Style Guide",
       "labelBadge": "doc"
     },
     {
       "id": "meta_mathematical_terminology",
-      "label": "Mathematical Terminology",
+      "title": "Mathematical Terminology",
       "radius": 2.2,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/archie/mathematics.md",
-      "markdownSection": "Mathematical Terminology (Canonical Dialect)",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/mathematics.md"
+      },
+      "view": {
+        "section": "Mathematical Terminology (Canonical Dialect)"
+      },
       "labelTitle": "Mathematical Terminology",
       "labelBadge": "doc"
     },
     {
       "id": "meta_navigation",
-      "label": "Navigation",
+      "title": "Navigation",
       "radius": 2.2,
       "color": "#3f6a5a",
-      "markdownPath": "content/markdown/aaa/archie/navigation.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/navigation.md"
+      },
       "labelTitle": "Navigation",
       "labelBadge": "doc"
     }

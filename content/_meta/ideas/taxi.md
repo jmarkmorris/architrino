@@ -272,146 +272,66 @@ The new ontology is simpler:
 
 ---
 
-## Legacy seams to remove
+## Remaining seams
 
-The current implementation has several legacy seams that should be removed deliberately during the conversion.
+Most of the format conversion is now complete. The remaining work is about bringing the implementation into tighter alignment with the ontology.
 
-### 1. Generated-scene ID taxonomy
+### 1. Structural hierarchy still lives on clickable nodes
 
-The current runtime encodes scene categories into special scene IDs such as:
+The current app still stores hierarchy on object nodes through `objects[].children`.
 
-- `__markdown_doc__:*`
-- `__markdown_index__:*`
-- `__markdown_reader__:*`
-- `__markdown_section_index__:*`
-- `__markdown_directory__:*`
+That means:
 
-That means taxonomy is currently carried partly by scene-ID syntax instead of by explicit scene objects. In the new ontology, scene type should come from declared scene data, not from parsing a prefixed identifier.
+- the sphere node still owns the child target,
+- the scene does not yet own a separate structural child list,
+- hierarchy and presentation are still coupled more tightly than the ontology intends.
 
-### 2. Dynamic scene restoration
+The target model is:
 
-The current bootstrap path can reconstruct scene configs dynamically from those special scene IDs.
+- `Scene-Index` owns structural `children` at the scene level,
+- sphere nodes are one rendering of that hierarchy,
+- node display hints remain possible without making the node the source of truth.
 
-That behavior should be removed. In the new ontology:
+### 2. Hotspots are still mostly an ontology concept, not a first-class generic feature
 
-- bootstrap should resolve explicitly declared scenes,
-- scene loading should not infer scene type from an ID token,
-- runtime restoration should not manufacture scene structure on demand from markdown-derived categories.
+The ontology now distinguishes:
 
-Removing directory walking is not enough by itself. The generated-scene restoration path also has to go.
+- `children` for hierarchy,
+- `links` for cross-scene references,
+- `hotspots` for in-scene interaction anchors.
 
-### 3. Generic schema polluted by markdown-specific fields
+The app has some domain-specific hotspot behavior, but not yet a general scene-level hotspot model that matches the taxonomy.
 
-The current scene schema mixes generic node structure with markdown-specific presentation fields.
+So one remaining step is to decide whether:
 
-Examples include fields such as:
+- hotspots become a first-class generic feature soon, or
+- hotspots stay deferred and are removed from the near-term implementation target.
 
-- `markdownPath`
-- `markdownSection`
-- `markdownColumns`
-- `markdownHeadingLevel`
-- `markdownAutoIndex`
-- `markdownPlainSectionPaths`
+### 3. Runtime markdown helper scenes still exist as an internal mechanism
 
-Those fields reflect an older model in which markdown behavior leaked into the generic scene-object schema. In the new ontology:
+The old `__markdown_*` path is gone, and the current helper namespace is narrower and explicit:
 
-- generic scene structure should stay generic,
-- media-specific configuration should live inside the appropriate presentation-scene type,
-- scene role, media source, and layout configuration should be separated cleanly.
+- `runtime:markdown:doc:*`
+- `runtime:markdown:index:*`
+- `runtime:markdown:reader:*`
 
-### 4. Generic node schema assumes authored radius/color
+This is much cleaner than the prior system, but it is still runtime-generated helper state.
 
-The current schema requires object-level fields such as `radius` and `color` broadly across scene data.
+So a remaining architectural decision is whether:
 
-That assumption does not fit the new ring-layout model for `Scene-Index` and `Scene-Markdown-Split`, where placement and sizing should be automatic by default.
+- this runtime helper mechanism is accepted as a permanent internal implementation detail, or
+- it is eventually replaced by a more explicit authored or state-model-driven approach.
 
-So the conversion should remove the assumption that all node sizing and coloring are authored per object. Those should instead be handled by:
+### 4. Some UI/editor paths still emit internal runtime configs rather than authored scene data
 
-- layout defaults,
-- scene-type defaults,
-- explicit per-node overrides only when needed.
+The main conversion work now uses typed scene data, but some internal preview flows still produce runtime-oriented config objects.
 
-### 5. Media parsing, scene generation, and layout are entangled
+The clearest example is the composer preview path.
 
-The current auto-markdown pipeline combines multiple responsibilities in one path:
+That is not a blocker for the conversion, but it is a remaining mismatch between:
 
-- filesystem discovery,
-- markdown heading extraction,
-- section splitting,
-- dynamic node generation,
-- default visual styling,
-- ring sizing,
-- grid fallback behavior.
-
-That coupling should be broken apart.
-
-The new model should separate:
-
-- media parsing,
-- scene declaration,
-- layout templating,
-- visual defaults,
-- navigation behavior.
-
-### 6. Layout terminology is overloaded
-
-The current implementation uses the word `radius` for more than one meaning:
-
-- rendered node size,
-- packing input,
-- ring-placement geometry.
-
-That should be split into explicit concepts in the new model. At minimum, the ontology and schema should distinguish:
-
-- rendered node scale,
-- layout sizing input,
-- ring orbit radius,
-- slot hint or slot placement.
-
-### 7. Structural children and cross-links need a formal schema split
-
-The current model already contains both hierarchical and non-hierarchical relationships, but the distinction is not sharp enough.
-
-The new ontology should make this explicit:
-
-- structural child membership defines the `Scene-Index` hierarchy,
-- links and hotspots define cross-scene references,
-- a scene may have many links without becoming a structural parent scene.
-
-This matters because any scene may lead to another scene, but not every connection is a hierarchy edge.
-
-### 8. Graph and index generation must be rebuilt from explicit declarations
-
-The current generated artifacts and validation flows still reflect the legacy system.
-
-In the new model, graph construction and indexing should come from:
-
-- explicit scene declarations,
-- explicit structural child relationships,
-- explicit cross-links,
-- explicit media references.
-
-They should not depend on directory-derived inference or markdown-derived scene restoration.
-
-### 9. Legacy classification values should be removed
-
-Values like `sceneKind: "branching"` belong to the old model and should not be carried forward as compatibility baggage.
-
-The new scene-type vocabulary should replace older generic labels entirely.
-
-### 10. Existing content families need classification, not preservation
-
-The conversion should classify existing scene families into the new ontology rather than preserve legacy mechanics.
-
-This includes large hand-authored scene families such as:
-
-- chapter and domain index scenes,
-- validation scenes,
-- element scenes under `content/scenes/elements/*.json`.
-
-These are not exceptions to the ontology. They are presentation scenes or `Scene-Index` scenes that need to be mapped cleanly into the new model.
-
-In particular, the element scenes are presentation scenes with links, not a separate category outside the ontology.
+- the authored ontology,
+- and internal preview/export plumbing.
 
 ---
 
@@ -419,145 +339,104 @@ In particular, the element scenes are presentation scenes with links, not a sepa
 
 Implementation checklist:
 
-- [ ] schema redesign
-- [ ] bootstrap rewrite
-- [ ] markdown registry removal
-- [ ] ring-layout extraction
-- [ ] migration tool
-- [ ] graph/index rebuild
-- [ ] validator rewrite
+- [ ] move structural hierarchy to scene-level `children`
+- [ ] decide and implement the generic `hotspots` model
+- [ ] decide whether `runtime:markdown:*` remains permanent internal machinery
+- [ ] align composer/export flows with the typed scene model
 
 Migration principles:
 
 - prefer explicit declarations over inference,
 - keep generated behavior local and deterministic,
-- avoid long-lived dual runtime models,
+- avoid re-entangling hierarchy with presentation,
 - keep converted data reviewable,
 - remove obsolete runtime recovery paths once the new path is working.
 
-### Phase 1. Freeze the ontology
+### Phase 1. Move hierarchy to the scene level
 
-Define the new scene-type vocabulary and use it consistently in notes, code comments, and implementation planning.
-
-Initial kinds:
-
-- `Scene-Index`
-- `Scene-Markdown-View`
-- `Scene-Markdown-Split`
-- `Scene-Diagram`
-- `Scene-Animation`
-
-Also define the first shared layout/control concepts:
-
-- ring layout,
-- automatic sizing,
-- automatic placement,
-- optional slot hints,
-- common scene controls.
-
-### Phase 2. Remove filesystem discovery from the design
-
-Before writing code, identify every place where scene structure is currently inferred by walking markdown files or directories.
-
-For each case, decide what the explicit authored equivalent will be.
+Make `Scene-Index` own the structural child list directly.
 
 Target result:
 
-- scene structure comes from declared scene data,
-- media sources are referenced explicitly,
-- no runtime taxonomy depends on directory traversal.
+- `scene.children` becomes the source of truth for hierarchy,
+- node-level sphere data becomes a rendering of that hierarchy,
+- node display hints can still override labels, badges, colors, or slot placement,
+- `objects[].children` disappears from authored scene files.
 
-Directory walking may still be used one time during migration to generate the first explicit scene declarations. The same migration pass should also eliminate generated-scene ID restoration as a source of runtime scene creation.
+### Phase 2. Add the generic relationship split
 
-### Phase 3. Define explicit scene schemas
+Make the schema and runtime distinction explicit:
 
-Create new schema definitions around the new ontology.
+- `children` for hierarchy,
+- `links` for cross-scene references,
+- `hotspots` for in-scene anchors.
 
-At minimum:
+This should remove the remaining ambiguity about which edges are structural and which are merely navigational.
 
-- a base scene schema,
-- a `Scene-Index` schema,
-- one schema per presentation-scene type,
-- shared schema fragments for layouts and common controls.
+### Phase 3. Decide the fate of runtime markdown helper scenes
 
-Important design direction:
+The current runtime markdown helper path is much cleaner than the old one, but it is still generated state.
 
-- do not preserve old field names merely for compatibility,
-- rename fields when the new ontology needs cleaner language,
-- separate content source fields from layout fields,
-- separate scene-type fields from media configuration fields,
-- separate structural child relationships from cross-links,
-- remove generic markdown-specific fields from the base scene/object schema.
+This phase should answer:
 
-### Phase 4. Build the new ring layout system
+- do `runtime:markdown:*` helper scenes remain as a permanent internal implementation detail,
+- or do they get replaced by a more explicit authored or state-model-driven mechanism?
 
-Implement a ring-layout system used by `Scene-Index` and `Scene-Markdown-Split`.
+Either answer can be valid, but it should be deliberate.
 
-Requirements:
+### Phase 4. Align preview and editor outputs with the authored model
 
-- fully automatic node sizing by default,
-- fully automatic ring placement by default,
-- support one or more rings,
-- allow optional node slot hints such as `center`, `ring1-3`, `ring2-4`, and similar positions,
-- keep layout logic separate from scene ontology.
-
-This is the right place to eliminate the current ambiguity around rendered node size, packing inputs, and ring orbit radius.
-
-### Phase 5. Convert existing content into explicit scenes
-
-Use the current directory-walking logic only as a migration aid.
-
-Migration goal:
-
-- generate explicit declarations for scenes that are currently implicit,
-- classify each resulting scene into the new ontology,
-- remove the need for runtime discovery once the converted data exists.
-
-The conversion should produce authored scene data that can be reviewed directly.
-
-This classification pass should include existing hand-authored scene families as well, including presentation scenes with links such as the element scenes.
-
-### Phase 6. Replace old runtime paths completely
-
-After explicit scene data and new scene types are in place:
-
-- remove directory-walking runtime paths,
-- remove generated-scene ID parsing and restoration,
-- remove old markdown-derived taxonomy logic,
-- remove restoration logic tied to obsolete generated-scene categories,
-- remove compatibility layers that preserve the old ontology.
-
-Because compatibility is not required, the code should be cleaned decisively rather than carrying both models.
-
-### Phase 7. Rebuild graph, validation, and editor assumptions
-
-Update all supporting systems to align with the new ontology.
+Internal preview and authoring-related flows should move toward emitting the same conceptual model used by authored scenes.
 
 This includes:
 
-- scene validation,
-- graph construction,
-- indexing,
-- scene editing tools,
-- any UI labels that still expose old taxonomy terms.
+- composer preview scene generation,
+- future export paths,
+- any other internal UI that still thinks in raw runtime config objects rather than typed scenes.
 
-The graph should be driven by explicit scene relationships, not by directory-derived inference.
+### Pick up here
+
+If work resumes tomorrow, start here:
+
+1. Move `Scene-Index` hierarchy from `objects[].children` to `scene.children`.
+2. Keep sphere nodes as the clickable rendering layer, but stop making them the source of truth for hierarchy.
+3. Introduce child-reference display hints for the rendered node layer:
+   - label override
+   - badge override
+   - slot hint
+   - optional color override
+4. Update schema, validator, graph build, and runtime together in one pass so there is only one hierarchy model.
+
+Immediate code targets:
+
+- `scripts/schema/scene.schema.json`
+- `scripts/validate-content.mjs`
+- `scripts/build-scene-graph.mjs`
+- `src/services/SceneRepository.js`
+- `app.js`
+
+Immediate authored-data target:
+
+- convert one `Scene-Index` subtree first, not the whole repo at once
+- best first subtree: `content/scenes/philosophy_history`
+
+Success condition for this next pass:
+
+- `Scene-Index` owns hierarchy at the scene level,
+- clickable spheres still work,
+- `objects[].children` is no longer needed for the converted subtree,
+- strict validation and graph checks still pass.
 
 ---
 
 ## Open classification work
 
-The new ontology is clear enough to start implementation planning, but some existing scene families still need an explicit mapping pass.
+The main classification pass is complete. Remaining classification work is narrower:
 
-That work should answer:
-
-- which current scene JSON files become `Scene-Index`,
-- which current scene JSON files become presentation scenes,
-- which presentation-scene types are sufficient for the first conversion,
-- which additional presentation-scene types need to be introduced early,
-- which current per-node authored fields become layout overrides versus obsolete legacy fields.
-
-The important point is that this is a classification problem, not a compatibility problem. The goal is to map the current working system into a cleaner ontology, not to preserve the old terminology or runtime generation behavior.
+- which current node-level hierarchy fields become scene-level structural fields,
+- which node display fields remain valid as child-reference overrides,
+- which domain-specific hotspot systems should be generalized into the main scene model,
+- which preview/editor outputs should become authored-scene-like first.
 
 ## Best-practice position
 

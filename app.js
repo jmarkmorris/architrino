@@ -26,9 +26,7 @@ import {
   titleFromSlug,
 } from "./src/services/MarkdownNamingService.js";
 import {
-  deriveMarkdownConfig,
   extractMarkdownSection,
-  normalizeMarkdownKey,
   normalizeMarkdownPath,
   parseMarkdownHeading,
 } from "./src/services/MarkdownPolicyService.js";
@@ -37,7 +35,6 @@ import { createMarkdownSceneRegistry } from "./src/services/MarkdownSceneRegistr
 import { createMarkdownNodeBuilder } from "./src/services/MarkdownNodeBuilder.js";
 import { createSceneGraphManifestService } from "./src/services/SceneGraphManifestService.js";
 import { createSceneStateHashService } from "./src/services/SceneStateHashService.js";
-import { createMarkdownSectionTitleResolver } from "./src/services/MarkdownSectionTitleService.js";
 import { createSceneBootstrapService } from "./src/services/SceneBootstrapService.js";
 import { createSceneSearchCoordinatorService } from "./src/services/SceneSearchCoordinatorService.js";
 
@@ -543,7 +540,7 @@ function buildComposerSceneConfig(state) {
   }));
   return {
     layout: "static",
-    layoutMode: "rings",
+    layoutType: "rings",
     nodes,
     links: [],
     sceneName: `${state.name} (Preview)`,
@@ -1223,13 +1220,6 @@ const sceneGraphManifestService = createSceneGraphManifestService({
   manifestPath: sceneGraphManifestPath,
   logger: console,
 });
-const resolveMarkdownSectionTitleByKey = createMarkdownSectionTitleResolver({
-  fetchImpl: (...args) => fetch(...args),
-  appendCacheBust,
-  parseMarkdownHeading,
-  normalizeMarkdownKey,
-  logger: console,
-});
 
 const sceneIndexManifestPath = "content/scenes/scenes_index.json";
 const authoredMarkdownColumnsByPath = new Map();
@@ -1237,6 +1227,28 @@ let authoredMarkdownColumnsLoadPromise = null;
 
 function normalizeColumnsPath(path) {
   return normalizeMarkdownPath(path);
+}
+
+function resolveAuthoredMarkdownPath(entry) {
+  if (entry?.source?.type === "markdown" && typeof entry?.source?.path === "string") {
+    return entry.source.path;
+  }
+  return null;
+}
+
+function resolveAuthoredMarkdownColumns(entry) {
+  if (entry?.view?.columns === 1 || entry?.view?.columns === 2) {
+    return entry.view.columns;
+  }
+  return null;
+}
+
+function recordAuthoredMarkdownColumns(entry) {
+  const markdownPath = resolveAuthoredMarkdownPath(entry);
+  const markdownColumns = resolveAuthoredMarkdownColumns(entry);
+  if ((markdownColumns === 1 || markdownColumns === 2) && markdownPath) {
+    authoredMarkdownColumnsByPath.set(normalizeColumnsPath(markdownPath), markdownColumns);
+  }
 }
 
 async function resolveMarkdownColumnsForPath(markdownPath) {
@@ -1270,28 +1282,10 @@ async function resolveMarkdownColumnsForPath(markdownPath) {
               continue;
             }
             const sceneData = await sceneResponse.json();
-            const sceneMarkdownPath = sceneData?.scene?.markdownPath;
-            const sceneMarkdownColumns = sceneData?.scene?.markdownColumns;
-            if ((sceneMarkdownColumns === 1 || sceneMarkdownColumns === 2) && sceneMarkdownPath) {
-              authoredMarkdownColumnsByPath.set(
-                normalizeColumnsPath(sceneMarkdownPath),
-                sceneMarkdownColumns
-              );
-            }
+            recordAuthoredMarkdownColumns(sceneData?.scene);
             const objects = Array.isArray(sceneData?.objects) ? sceneData.objects : [];
             for (const obj of objects) {
-              const objectMarkdownPath = obj?.markdownPath;
-              const objectMarkdownColumns = obj?.markdownColumns;
-              if (
-                (objectMarkdownColumns === 1 || objectMarkdownColumns === 2) &&
-                typeof objectMarkdownPath === "string" &&
-                objectMarkdownPath.trim().length
-              ) {
-                authoredMarkdownColumnsByPath.set(
-                  normalizeColumnsPath(objectMarkdownPath),
-                  objectMarkdownColumns
-                );
-              }
+              recordAuthoredMarkdownColumns(obj);
             }
           } catch (_error) {
             // Skip malformed or unavailable scene files while building the optional restore map.
@@ -1311,10 +1305,7 @@ async function resolveMarkdownColumnsForPath(markdownPath) {
 const markdownSceneRegistry = createMarkdownSceneRegistry({
   levelConfigs,
   titleFromSlug,
-  stripWalkthroughStepPrefix,
-  normalizeMarkdownKey,
   resolveMarkdownDocumentTitle,
-  resolveMarkdownSectionTitleByKey,
   resolveMarkdownColumnsForPath,
 });
 
@@ -1913,9 +1904,6 @@ const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   appendCacheBust,
   parseMarkdownHeading,
   extractMarkdownSection,
-  listMarkdownFilesInDir: (directory) => markdownManifestService.listFilesInDir(directory),
-  listMarkdownDirectoriesInDir: (directory) =>
-    markdownManifestService.listDirectoriesInDir(directory),
   normalizeMarkdownPath,
   titleFromSlug,
   stripWalkthroughStepPrefix,
@@ -1928,8 +1916,6 @@ const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   computeRingLayout,
   maxRingNodeRadius,
   ringLayoutDefaults,
-  ensureMarkdownSectionIndexScene: markdownSceneRegistry.ensureMarkdownSectionIndexScene,
-  ensureMarkdownDirectoryScene: markdownSceneRegistry.ensureMarkdownDirectoryScene,
   logger: console,
 });
 
@@ -1945,7 +1931,6 @@ const sceneRepository = new SceneRepository({
   defaultAutoMarkdownPaletteName,
   defaultSphereColorSchemeName,
   homeScenePath: rootScenePath,
-  deriveMarkdownConfig,
   buildAutoMarkdownNodes,
   resolveMarkdownFileSize,
   resolveMarkdownFileCharacterCount,
@@ -2423,8 +2408,8 @@ function getEffectiveLayoutMode(level) {
   if (!level) {
     return "";
   }
-  if (typeof level.layoutMode === "string" && level.layoutMode.trim()) {
-    return level.layoutMode.toLowerCase();
+  if (typeof level.layoutType === "string" && level.layoutType.trim()) {
+    return level.layoutType.toLowerCase();
   }
   return "";
 }
@@ -3875,9 +3860,11 @@ function focusOnPointer(clientX, clientY) {
     return false;
   }
 
-  const hasMarkdownPath = !!targetNode.data.markdownPath;
+  const hasMarkdownTarget =
+    typeof targetNode?.data?.markdownPath === "string" &&
+    targetNode.data.markdownPath.trim().length > 0;
   const canOpenMarkdown =
-    hasMarkdownPath && targetNode.data.markdownOpenEligible === true;
+    hasMarkdownTarget && targetNode.data.markdownOpenEligible === true;
 
   if (currentLevel?.sceneId === composerSceneId) {
     const panelId = composerPanelMap.get(targetNode.data.id ?? "");
@@ -3912,7 +3899,7 @@ function focusOnPointer(clientX, clientY) {
   const hasExplicitChildScene =
     !!targetNode.data.children ||
     (typeof targetNode.data.childScene === "string" &&
-      !targetNode.data.childScene.startsWith("__markdown_"));
+      !markdownSceneRegistry.isRuntimeMarkdownTarget(targetNode.data.childScene));
 
   if (hasExplicitChildScene) {
     closeDetailPanel();

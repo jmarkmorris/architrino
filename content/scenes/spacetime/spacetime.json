@@ -2,21 +2,25 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime",
-    "kind": "branching",
-    "name": "Spacetime",
+    "title": "Spacetime",
+    "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "rings"
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
       "id": "emergent_metric",
-      "label": "Emergent Metric",
+      "title": "Emergent Metric",
       "radius": 2.688,
       "color": "#243d8f",
-      "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/spacetime/emergent-metric.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -25,12 +29,14 @@
     },
     {
       "id": "general_relativity_observables",
-      "label": "General Relativity",
+      "title": "General Relativity",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/spacetime/gr-phenomenology.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -39,12 +45,14 @@
     },
     {
       "id": "gravitational_waves",
-      "label": "Gravitational Waves",
+      "title": "Gravitational Waves",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/spacetime/gravitational-waves.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -53,12 +61,14 @@
     },
     {
       "id": "ppn_parameters",
-      "label": "PPN Parameters",
+      "title": "PPN Parameters",
       "radius": 2.688,
       "color": "#4b0082",
-      "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/spacetime/ppn-parameters.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -67,12 +77,14 @@
     },
     {
       "id": "proper_time_and_time_dilation",
-      "label": "Proper Time and Time Dilation",
+      "title": "Proper Time and Time Dilation",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -81,12 +93,14 @@
     },
     {
       "id": "lorentz_kinematics",
-      "label": "Lorentz Kinematics",
+      "title": "Lorentz Kinematics",
       "radius": 2.688,
       "color": "#3657a6",
-      "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -95,12 +109,14 @@
     },
     {
       "id": "singularity_resolution",
-      "label": "Singularity Resolution",
+      "title": "Singularity Resolution",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "markdownPath": "content/markdown/aaa/spacetime/singularity-resolution.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/spacetime/singularity-resolution.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -109,14 +125,18 @@
     },
     {
       "id": "cosmic_censorship_holography",
-      "label": "Cosmic Censorship and Holography",
+      "title": "Cosmic Censorship and Holography",
       "radius": 2.688,
       "color": "#355f9a",
-      "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-      "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
-      "markdownColumns": 1,
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+      },
+      "view": {
+        "section": "Cosmic Censorship / Holographic Principle / AdS-CFT",
+        "columns": 1
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },
@@ -125,12 +145,14 @@
     },
     {
       "id": "spacetime_assemblies",
-      "label": "Spacetime Assemblies",
+      "title": "Spacetime Assemblies",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md"
+      },
       "markdownAutoIndex": false,
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       },

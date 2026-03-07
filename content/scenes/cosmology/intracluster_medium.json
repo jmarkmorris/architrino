@@ -2,12 +2,14 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "intracluster_medium",
-    "kind": "branching",
-    "name": "Intracluster Medium",
+    "title": "Intracluster Medium",
+    "type": "Scene-Index",
     "units": "relative",
     "hideScaleLabels": true,
-    "layoutMode": "rings",
-    "centerOn": "hydrogen_ion"
+    "centerOn": "hydrogen_ion",
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
@@ -20,11 +22,13 @@
         "numberDensity": "~10^11-10^13 km^-3",
         "classification": "Ionized gas"
       },
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
       "labelTitle": "Hydrogen",
-      "labelDates": "(H+)"
+      "labelDates": "(H+)",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "helium_ion",
@@ -36,11 +40,13 @@
         "numberDensity": "~10^10-10^12 km^-3",
         "classification": "Ionized gas"
       },
-      "subScenes": [
-        "content/scenes/elements/he.json"
-      ],
       "labelTitle": "Helium",
-      "labelDates": "(He2+)"
+      "labelDates": "(He2+)",
+      "children": [
+        {
+          "scenePath": "content/scenes/elements/he.json"
+        }
+      ]
     },
     {
       "id": "thermal_electron",
@@ -52,11 +58,13 @@
         "numberDensity": "~10^11-10^13 km^-3",
         "classification": "Ionized plasma"
       },
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
-      ],
       "labelTitle": "Electron",
-      "labelDates": "(thermal)"
+      "labelDates": "(thermal)",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
+      ]
     },
     {
       "id": "oxygen_ion",
@@ -68,11 +76,13 @@
         "numberDensity": "~10^7-10^9 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": [
-        "content/scenes/elements/o.json"
-      ],
       "labelTitle": "Oxygen",
-      "labelDates": "(O7+/O8+)"
+      "labelDates": "(O7+/O8+)",
+      "children": [
+        {
+          "scenePath": "content/scenes/elements/o.json"
+        }
+      ]
     },
     {
       "id": "neon_ion",
@@ -84,11 +94,13 @@
         "numberDensity": "~10^6-10^8 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": [
-        "content/scenes/elements/ne.json"
-      ],
       "labelTitle": "Neon",
-      "labelDates": "(Ne9+/Ne10+)"
+      "labelDates": "(Ne9+/Ne10+)",
+      "children": [
+        {
+          "scenePath": "content/scenes/elements/ne.json"
+        }
+      ]
     },
     {
       "id": "magnesium_ion",
@@ -100,11 +112,13 @@
         "numberDensity": "~10^6-10^8 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": [
-        "content/scenes/elements/mg.json"
-      ],
       "labelTitle": "Magnesium",
-      "labelDates": "(Mg11+/Mg12+)"
+      "labelDates": "(Mg11+/Mg12+)",
+      "children": [
+        {
+          "scenePath": "content/scenes/elements/mg.json"
+        }
+      ]
     },
     {
       "id": "silicon_ion",
@@ -116,11 +130,13 @@
         "numberDensity": "~10^6-10^8 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": [
-        "content/scenes/elements/si.json"
-      ],
       "labelTitle": "Silicon",
-      "labelDates": "(Si13+/Si14+)"
+      "labelDates": "(Si13+/Si14+)",
+      "children": [
+        {
+          "scenePath": "content/scenes/elements/si.json"
+        }
+      ]
     },
     {
       "id": "sulfur_ion",
@@ -132,11 +148,13 @@
         "numberDensity": "~10^5-10^7 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": [
-        "content/scenes/elements/s.json"
-      ],
       "labelTitle": "Sulfur",
-      "labelDates": "(S15+/S16+)"
+      "labelDates": "(S15+/S16+)",
+      "children": [
+        {
+          "scenePath": "content/scenes/elements/s.json"
+        }
+      ]
     },
     {
       "id": "iron_ion",
@@ -148,11 +166,13 @@
         "numberDensity": "~10^5-10^7 km^-3",
         "classification": "Metal ion"
       },
-      "subScenes": [
-        "content/scenes/elements/fe.json"
-      ],
       "labelTitle": "Iron",
-      "labelDates": "(Fe23+-Fe26+)"
+      "labelDates": "(Fe23+-Fe26+)",
+      "children": [
+        {
+          "scenePath": "content/scenes/elements/fe.json"
+        }
+      ]
     },
     {
       "id": "cosmic_ray_proton",
@@ -164,10 +184,12 @@
         "numberDensity": "~10^6-10^8 km^-3",
         "classification": "Cosmic ray"
       },
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
-      ],
-      "labelTitle": "Cosmic-ray proton"
+      "labelTitle": "Cosmic-ray proton",
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
+      ]
     },
     {
       "id": "cosmic_ray_electron",
@@ -179,10 +201,12 @@
         "numberDensity": "~10^4-10^6 km^-3",
         "classification": "Cosmic ray"
       },
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
-      ],
-      "labelTitle": "Cosmic-ray electron"
+      "labelTitle": "Cosmic-ray electron",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
+      ]
     },
     {
       "id": "cmb_neutrinos",
@@ -194,11 +218,13 @@
         "numberDensity": "~3x10^17 km^-3",
         "classification": "Relic background"
       },
-      "subScenes": [
-        "content/scenes/standard-model-particles/neutrino.json"
-      ],
       "labelTitle": "Neutrino",
-      "labelDates": "(CnuB)"
+      "labelDates": "(CnuB)",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/neutrino.json"
+        }
+      ]
     },
     {
       "id": "astro_neutrinos",
@@ -210,11 +236,13 @@
         "numberDensity": "<<10^9 km^-3",
         "classification": "Passing background"
       },
-      "subScenes": [
-        "content/scenes/standard-model-particles/neutrino.json"
-      ],
       "labelTitle": "Neutrino",
-      "labelDates": "(astrophysical)"
+      "labelDates": "(astrophysical)",
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/neutrino.json"
+        }
+      ]
     },
     {
       "id": "cmb_photons",
@@ -226,7 +254,6 @@
         "numberDensity": "~4x10^17 km^-3",
         "classification": "Passing radiation"
       },
-      "subScenes": [],
       "labelTitle": "CMB photons"
     },
     {
@@ -239,7 +266,6 @@
         "numberDensity": "~10^14-10^16 km^-3",
         "classification": "Passing radiation"
       },
-      "subScenes": [],
       "labelTitle": "Optical/IR background"
     },
     {
@@ -252,7 +278,6 @@
         "numberDensity": "<<10^9 km^-3",
         "classification": "Emitted radiation"
       },
-      "subScenes": [],
       "labelTitle": "X-ray photons",
       "labelDates": "(ICM)"
     }

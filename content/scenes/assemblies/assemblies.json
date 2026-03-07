@@ -2,19 +2,24 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "assemblies",
-    "name": "Assemblies",
+    "title": "Assemblies",
+    "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
-    "layoutMode": "rings",
-    "kind": "branching"
+    "layout": {
+      "type": "rings"
+    }
   },
   "objects": [
     {
       "id": "noether_core",
-      "label": "Noether Core",
+      "title": "Noether Core",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/assemblies/noether-core.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/noether-core.md"
+      },
       "motion": {
         "type": "fixed"
       },
@@ -23,10 +28,13 @@
     },
     {
       "id": "particle_masses",
-      "label": "Particle Masses",
+      "title": "Particle Masses",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "markdownPath": "content/markdown/aaa/assemblies/particle-masses.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/particle-masses.md"
+      },
       "motion": {
         "type": "fixed"
       },
@@ -35,11 +43,13 @@
     },
     {
       "id": "standard_model",
-      "label": "Standard Model Assemblies",
+      "title": "Standard Model Assemblies",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "subScenes": [
-        "content/scenes/standard-model-particles/standard_model.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/standard_model.json"
+        }
       ],
       "motion": {
         "type": "fixed"
@@ -48,11 +58,13 @@
     },
     {
       "id": "fermions",
-      "label": "Fermions",
+      "title": "Fermions",
       "radius": 2.688,
       "color": "#5d3a9f",
-      "subScenes": [
-        "content/scenes/assemblies/fermions.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/assemblies/fermions.json"
+        }
       ],
       "motion": {
         "type": "fixed"
@@ -61,10 +73,13 @@
     },
     {
       "id": "electroweak_bosons",
-      "label": "Electroweak Bosons",
+      "title": "Electroweak Bosons",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md"
+      },
       "motion": {
         "type": "fixed"
       },
@@ -73,10 +88,13 @@
     },
     {
       "id": "gluons",
-      "label": "Gluons",
+      "title": "Gluons",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/assemblies/bosons/gluons.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/bosons/gluons.md"
+      },
       "motion": {
         "type": "fixed"
       },
@@ -85,7 +103,7 @@
     },
     {
       "id": "photons",
-      "label": "Photons",
+      "title": "Photons",
       "radius": 2.688,
       "color": "#3f6a5a",
       "motion": {
@@ -95,10 +113,13 @@
     },
     {
       "id": "mesons_doc",
-      "label": "Mesons",
+      "title": "Mesons",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "markdownPath": "content/markdown/aaa/assemblies/mesons/mesons.md",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/assemblies/mesons/mesons.md"
+      },
       "motion": {
         "type": "fixed"
       },

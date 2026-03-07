@@ -2,12 +2,20 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "out_of_the_ashes",
-    "kind": "markdown_split",
-    "name": "Out of the Ashes",
+    "title": "Out of the Ashes",
+    "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
-    "markdownPath": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
-    "markdownAutoOpen": true
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md"
+    },
+    "view": {
+      "autoOpen": true
+    }
   },
   "objects": []
 }

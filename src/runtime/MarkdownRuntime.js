@@ -12,6 +12,10 @@ export function createMarkdownRuntime(deps) {
 
   let activeMarkdownPath = null;
   let markdownTwoColumns = true;
+  const runtimeMarkdownPrefix = "runtime:markdown:";
+  const runtimeMarkdownDocPrefix = `${runtimeMarkdownPrefix}doc:`;
+  const runtimeMarkdownReaderPrefix = `${runtimeMarkdownPrefix}reader:`;
+  const runtimeMarkdownIndexPrefix = `${runtimeMarkdownPrefix}index:`;
 
   function escapeHtml(text) {
     return String(text)
@@ -100,14 +104,49 @@ export function createMarkdownRuntime(deps) {
   }
 
   function isActiveLevelMarkdown(level) {
-    if (!level?.markdownPath) {
+    const target = resolveMarkdownTarget(level);
+    if (!target.markdownPath) {
       return false;
     }
-    const sectionKey = level.markdownSection ?? null;
+    const sectionKey = target.markdownSection ?? null;
     const cacheKey = sectionKey
-      ? `${level.markdownPath}::${sectionKey}`
-      : level.markdownPath;
+      ? `${target.markdownPath}::${sectionKey}`
+      : target.markdownPath;
     return isMarkdownPanelOpen() && activeMarkdownPath === cacheKey;
+  }
+
+  function resolveMarkdownTarget(level) {
+    let markdownPath =
+      typeof level?.markdownPath === "string" && level.markdownPath.trim().length > 0
+        ? level.markdownPath
+        : null;
+    let markdownSection =
+      typeof level?.markdownSection === "string" && level.markdownSection.trim().length > 0
+        ? level.markdownSection
+        : null;
+    const levelId = typeof level?.id === "string" ? level.id : "";
+
+    if (levelId.startsWith(runtimeMarkdownDocPrefix)) {
+      markdownPath = levelId.slice(runtimeMarkdownDocPrefix.length);
+      markdownSection = null;
+    } else if (levelId.startsWith(runtimeMarkdownReaderPrefix)) {
+      const raw = levelId.slice(runtimeMarkdownReaderPrefix.length);
+      const sectionSep = raw.indexOf("::");
+      const parsedPath = sectionSep === -1 ? raw : raw.slice(0, sectionSep);
+      const encodedSection = sectionSep === -1 ? null : raw.slice(sectionSep + 2);
+      markdownPath = parsedPath || markdownPath;
+      markdownSection = encodedSection ? decodeURIComponent(encodedSection) : null;
+    } else if (levelId.startsWith(runtimeMarkdownIndexPrefix)) {
+      const raw = levelId.slice(runtimeMarkdownIndexPrefix.length);
+      const headingTokenIndex = raw.lastIndexOf("::h");
+      markdownPath = headingTokenIndex > -1 ? raw.slice(0, headingTokenIndex) : raw;
+      markdownSection = null;
+    }
+
+    return {
+      markdownPath,
+      markdownSection,
+    };
   }
 
   function applyMarkdownLayout() {
@@ -127,12 +166,13 @@ export function createMarkdownRuntime(deps) {
   }
 
   async function showMarkdownPanel(level) {
-    if (!markdownPanel || !level?.markdownPath) {
+    const target = resolveMarkdownTarget(level);
+    if (!markdownPanel || !target.markdownPath) {
       hideMarkdownPanel();
       return;
     }
-    const markdownPath = level.markdownPath;
-    const sectionKey = level.markdownSection ?? null;
+    const markdownPath = target.markdownPath;
+    const sectionKey = target.markdownSection ?? null;
     const cacheKey = sectionKey ? `${markdownPath}::${sectionKey}` : markdownPath;
     if (activeMarkdownPath === cacheKey && markdownPanel.classList.contains("is-open")) {
       hideMarkdownPanel();

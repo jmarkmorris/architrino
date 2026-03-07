@@ -2,13 +2,16 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "s",
-    "kind": "element",
-    "name": "Sulfur (S)",
+    "title": "Sulfur (S)",
+    "type": "Scene-Diagram",
     "units": "relative",
     "scaleBandLog10m": [
       0,
       0
-    ]
+    ],
+    "layout": {
+      "type": "manual"
+    }
   },
   "objects": [
     {
@@ -25,8 +28,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -44,8 +49,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -63,8 +70,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -82,8 +91,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -101,8 +112,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -120,8 +133,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -139,8 +154,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -158,8 +175,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -177,8 +196,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -196,8 +217,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -215,8 +238,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -234,8 +259,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -253,8 +280,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -272,8 +301,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -291,8 +322,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -310,8 +343,10 @@
         "type": "fixed"
       },
       "category": "proton",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -329,8 +364,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -348,8 +385,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -367,8 +406,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -386,8 +427,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -405,8 +448,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -424,8 +469,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -443,8 +490,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -462,8 +511,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -481,8 +532,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -500,8 +553,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -519,8 +574,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -538,8 +595,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -557,8 +616,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -576,8 +637,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -595,8 +658,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -614,8 +679,10 @@
         "type": "fixed"
       },
       "category": "neutron",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -642,8 +709,10 @@
       },
       "category": "electron",
       "shell": 1,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -670,8 +739,10 @@
       },
       "category": "electron",
       "shell": 1,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -698,8 +769,10 @@
       },
       "category": "electron",
       "shell": 2,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -726,8 +799,10 @@
       },
       "category": "electron",
       "shell": 2,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -754,8 +829,10 @@
       },
       "category": "electron",
       "shell": 2,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -782,8 +859,10 @@
       },
       "category": "electron",
       "shell": 2,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -810,8 +889,10 @@
       },
       "category": "electron",
       "shell": 2,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -838,8 +919,10 @@
       },
       "category": "electron",
       "shell": 2,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -866,8 +949,10 @@
       },
       "category": "electron",
       "shell": 2,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -894,8 +979,10 @@
       },
       "category": "electron",
       "shell": 2,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -922,8 +1009,10 @@
       },
       "category": "electron",
       "shell": 3,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -950,8 +1039,10 @@
       },
       "category": "electron",
       "shell": 3,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -978,8 +1069,10 @@
       },
       "category": "electron",
       "shell": 3,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -1006,8 +1099,10 @@
       },
       "category": "electron",
       "shell": 3,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -1034,8 +1129,10 @@
       },
       "category": "electron",
       "shell": 3,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -1062,8 +1159,10 @@
       },
       "category": "electron",
       "shell": 3,
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     },
@@ -1081,8 +1180,10 @@
         "type": "fixed"
       },
       "category": "legend",
-      "subScenes": [
-        "content/scenes/nuclear/proton.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/proton.json"
+        }
       ],
       "labelTitle": "P"
     },
@@ -1100,8 +1201,10 @@
         "type": "fixed"
       },
       "category": "legend",
-      "subScenes": [
-        "content/scenes/nuclear/neutron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/nuclear/neutron.json"
+        }
       ],
       "labelTitle": "N"
     },
@@ -1119,8 +1222,10 @@
         "type": "fixed"
       },
       "category": "legend",
-      "subScenes": [
-        "content/scenes/standard-model-particles/electron.json"
+      "children": [
+        {
+          "scenePath": "content/scenes/standard-model-particles/electron.json"
+        }
       ],
       "labelTitle": "e"
     }

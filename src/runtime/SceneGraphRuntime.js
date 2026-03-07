@@ -596,12 +596,12 @@ export function createSceneGraphRuntime(deps) {
     const shellGuides = [];
     let primaryBinaryNode = null;
 
-    const explicitLayoutMode =
-      typeof config.layoutMode === "string" && config.layoutMode.trim()
-        ? config.layoutMode.toLowerCase()
+    const explicitLayoutType =
+      typeof config.layoutType === "string" && config.layoutType.trim()
+        ? config.layoutType.toLowerCase()
         : null;
     const useExplicitRingsLayout =
-      config.layout === "static" && explicitLayoutMode === "rings";
+      config.layout === "static" && explicitLayoutType === "rings";
     const useStructuredLayout = useExplicitRingsLayout;
     const ringNodes = useStructuredLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
@@ -806,7 +806,6 @@ export function createSceneGraphRuntime(deps) {
       id: levelId,
       name: config.sceneName ?? levelId,
       sceneId: config.sceneId ?? null,
-      sceneKind: config.sceneKind ?? null,
       markdownPath: config.markdownPath ?? null,
       markdownSection: config.markdownSection ?? null,
       markdownColumns: config.markdownColumns ?? null,
@@ -823,7 +822,7 @@ export function createSceneGraphRuntime(deps) {
       shellGuides,
       primaryBinaryNode,
       layout: config.layout,
-      layoutMode: config.layoutMode ?? null,
+      layoutType: config.layoutType ?? null,
       links: [],
     };
 
