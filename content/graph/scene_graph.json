@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 304,
-      "edges": 1146,
+      "nodes": 305,
+      "edges": 1148,
       "scenes": 175,
       "markdownIndexes": 16,
-      "markdownDocs": 113,
+      "markdownDocs": 114,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1232,6 +1232,12 @@
       "id": "content/markdown/aaa/archie/navigation.md",
       "name": "Navigation",
       "path": "content/markdown/aaa/archie/navigation.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/scene-taxonomy.md",
+      "name": "Scene Taxonomy Specification",
+      "path": "content/markdown/aaa/archie/scene-taxonomy.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3617,6 +3623,15 @@
       "name": "Navigation",
       "path": "content/markdown/aaa/archie/navigation.md",
       "searchTarget": "content/markdown/aaa/archie/navigation.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/scene-taxonomy.md",
+      "name": "Scene Taxonomy Specification",
+      "path": "content/markdown/aaa/archie/scene-taxonomy.md",
+      "searchTarget": "content/markdown/aaa/archie/scene-taxonomy.md",
       "implicit": false
     },
     {
@@ -8015,6 +8030,13 @@
       "field": "meta_navigation.source.path"
     },
     {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta.json",
+      "field": "meta_scene_taxonomy.source.path"
+    },
+    {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "edgeType": "markdown_doc",
@@ -8521,6 +8543,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/archie",
       "to": "markdown_doc:content/markdown/aaa/archie/navigation.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/archie",
+      "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"

@@ -125,6 +125,21 @@
       },
       "labelTitle": "Navigation",
       "labelBadge": "doc"
+    },
+    {
+      "id": "meta_scene_taxonomy",
+      "title": "Scene Taxonomy",
+      "radius": 2.2,
+      "color": "#6a5a8f",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/scene-taxonomy.md"
+      },
+      "view": {
+        "columns": 1
+      },
+      "labelTitle": "Scene Taxonomy",
+      "labelBadge": "doc"
     }
   ]
 }

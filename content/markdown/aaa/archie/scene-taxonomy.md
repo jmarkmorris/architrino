@@ -1,10 +1,10 @@
 # Scene Taxonomy Specification
 
-## Why this note exists
+## Scene Taxonomy
 
-The scene taxonomy should be understandable from the author side.
+The scene taxonomy is defined here for guidance to future development of the webapp. Ai code agents should be directed to study this specification prior to coding.
 
-It should not mix together provenance, media type, layout behavior, and runtime implementation details. It should make clear:
+The specification should not mix together provenance, media type, layout behavior, and runtime implementation details. It should make clear:
 
 - what a scene is,
 - what kinds of scenes exist,
