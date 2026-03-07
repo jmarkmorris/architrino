@@ -162,10 +162,10 @@ export function createMarkdownSceneRegistry(deps) {
         markdownColumns,
         markdownAutoOpen: false,
         centerOn: null,
-        autoMarkdownPath: markdownPath,
-        autoMarkdownHeadingLevel: headingLevel,
-        autoMarkdownIncludeExistingInLayout: false,
-        autoMarkdownPlainSectionPaths: markdownPlainSectionPaths,
+        splitSourcePath: markdownPath,
+        splitHeadingLevel: headingLevel,
+        splitIncludeExistingInLayout: false,
+        splitPlainSectionPaths: markdownPlainSectionPaths,
       };
       return sceneId;
     }

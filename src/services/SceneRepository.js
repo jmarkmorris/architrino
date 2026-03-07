@@ -88,18 +88,18 @@ export class SceneRepository {
       typeof source.path === "string" &&
       source.path.length > 0;
     return {
-      autoMarkdownPath: usesTypedSplitSource
+      splitSourcePath: usesTypedSplitSource
         ? source.path
         : typeof sceneMeta?.autoMarkdownPath === "string"
           ? sceneMeta.autoMarkdownPath
           : null,
-      autoMarkdownSection:
+      splitSection:
         typeof view?.section === "string"
           ? view.section
           : typeof sceneMeta?.autoMarkdownSection === "string"
             ? sceneMeta.autoMarkdownSection
             : null,
-      autoMarkdownHeadingLevel:
+      splitHeadingLevel:
         typeof view?.headingLevel === "number"
           ? view.headingLevel
           : usesTypedSplitSource
@@ -107,58 +107,58 @@ export class SceneRepository {
           : typeof sceneMeta?.autoMarkdownHeadingLevel === "number"
             ? sceneMeta.autoMarkdownHeadingLevel
             : null,
-      autoMarkdownColumns:
+      splitColumns:
         view?.columns === 1 || view?.columns === 2
           ? view.columns
           : sceneMeta?.autoMarkdownColumns === 1 || sceneMeta?.autoMarkdownColumns === 2
             ? sceneMeta.autoMarkdownColumns
             : null,
-      autoMarkdownSectionDepth:
+      splitSectionDepth:
         typeof view?.sectionDepth === "number"
           ? view.sectionDepth
           : typeof sceneMeta?.autoMarkdownSectionDepth === "number"
             ? sceneMeta.autoMarkdownSectionDepth
             : null,
-      autoMarkdownIncludeExistingInLayout:
+      splitIncludeExistingInLayout:
         sceneMeta?.autoMarkdownIncludeExistingInLayout === true,
-      autoMarkdownNodeRadius:
+      splitNodeRadius:
         typeof sceneMeta?.autoMarkdownNodeRadius === "number"
           ? sceneMeta.autoMarkdownNodeRadius
           : null,
-      autoMarkdownRingRadius:
+      splitRingRadius:
         typeof sceneMeta?.autoMarkdownRingRadius === "number"
           ? sceneMeta.autoMarkdownRingRadius
           : null,
-      autoMarkdownMaxRingCount:
+      splitMaxRingCount:
         typeof sceneMeta?.autoMarkdownMaxRingCount === "number"
           ? sceneMeta.autoMarkdownMaxRingCount
           : null,
-      autoMarkdownGridSpacing:
+      splitGridSpacing:
         typeof sceneMeta?.autoMarkdownGridSpacing === "number"
           ? sceneMeta.autoMarkdownGridSpacing
           : null,
-      autoMarkdownPalette:
+      splitPalette:
         Array.isArray(sceneMeta?.autoMarkdownPalette) ? sceneMeta.autoMarkdownPalette : null,
-      autoMarkdownPaletteName:
+      splitPaletteName:
         typeof sceneMeta?.autoMarkdownPaletteName === "string"
           ? sceneMeta.autoMarkdownPaletteName
           : this.defaultAutoMarkdownPaletteName,
-      autoMarkdownColor:
+      splitColor:
         typeof sceneMeta?.autoMarkdownColor === "string" ? sceneMeta.autoMarkdownColor : null,
-      autoMarkdownExcludePaths: Array.isArray(sceneMeta?.autoMarkdownExcludePaths)
+      splitExcludePaths: Array.isArray(sceneMeta?.autoMarkdownExcludePaths)
         ? sceneMeta.autoMarkdownExcludePaths
         : [],
-      autoMarkdownPlainPaths: Array.isArray(sceneMeta?.autoMarkdownPlainPaths)
+      splitPlainPaths: Array.isArray(sceneMeta?.autoMarkdownPlainPaths)
         ? sceneMeta.autoMarkdownPlainPaths
         : [],
-      autoMarkdownDefaultIndex: sceneMeta?.autoMarkdownDefaultIndex === true,
-      autoMarkdownIndexPaths: Array.isArray(sceneMeta?.autoMarkdownIndexPaths)
+      splitDefaultIndex: sceneMeta?.autoMarkdownDefaultIndex === true,
+      splitIndexPaths: Array.isArray(sceneMeta?.autoMarkdownIndexPaths)
         ? sceneMeta.autoMarkdownIndexPaths
         : [],
-      autoMarkdownPlainSectionPaths: Array.isArray(sceneMeta?.autoMarkdownPlainSectionPaths)
+      splitPlainSectionPaths: Array.isArray(sceneMeta?.autoMarkdownPlainSectionPaths)
         ? sceneMeta.autoMarkdownPlainSectionPaths
         : [],
-      autoMarkdownOverrides:
+      splitOverrides:
         sceneMeta?.autoMarkdownOverrides && typeof sceneMeta.autoMarkdownOverrides === "object"
           ? sceneMeta.autoMarkdownOverrides
           : null,
@@ -568,8 +568,8 @@ export class SceneRepository {
           });
         }
         this.applyPersonalityArchitrinoSizing(nodes);
-        const autoMarkdownScene = { ...data.scene, ...splitScene };
-        const autoNodes = await this.buildAutoMarkdownNodes(autoMarkdownScene, nodes);
+        const splitRuntimeScene = { ...data.scene, ...splitScene };
+        const autoNodes = await this.buildAutoMarkdownNodes(splitRuntimeScene, nodes);
         if (autoNodes.length) {
           nodes = nodes.concat(autoNodes);
         }
@@ -599,26 +599,25 @@ export class SceneRepository {
           markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
           markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
           centerOn: sceneMeta.centerOn ?? null,
-          autoMarkdownPath: splitScene.autoMarkdownPath,
-          autoMarkdownSection: splitScene.autoMarkdownSection,
-          autoMarkdownHeadingLevel: splitScene.autoMarkdownHeadingLevel,
-          autoMarkdownIncludeExistingInLayout:
-            splitScene.autoMarkdownIncludeExistingInLayout,
-          autoMarkdownNodeRadius: splitScene.autoMarkdownNodeRadius,
-          autoMarkdownRingRadius: splitScene.autoMarkdownRingRadius,
-          autoMarkdownMaxRingCount: splitScene.autoMarkdownMaxRingCount,
-          autoMarkdownGridSpacing: splitScene.autoMarkdownGridSpacing,
-          autoMarkdownColumns: splitScene.autoMarkdownColumns,
-          autoMarkdownPalette: splitScene.autoMarkdownPalette,
-          autoMarkdownPaletteName: splitScene.autoMarkdownPaletteName,
-          autoMarkdownColor: splitScene.autoMarkdownColor,
-          autoMarkdownExcludePaths: splitScene.autoMarkdownExcludePaths,
-          autoMarkdownPlainPaths: splitScene.autoMarkdownPlainPaths,
-          autoMarkdownDefaultIndex: splitScene.autoMarkdownDefaultIndex,
-          autoMarkdownIndexPaths: splitScene.autoMarkdownIndexPaths,
-          autoMarkdownPlainSectionPaths: splitScene.autoMarkdownPlainSectionPaths,
-          autoMarkdownSectionDepth: splitScene.autoMarkdownSectionDepth,
-          autoMarkdownOverrides: splitScene.autoMarkdownOverrides,
+          splitSourcePath: splitScene.splitSourcePath,
+          splitSection: splitScene.splitSection,
+          splitHeadingLevel: splitScene.splitHeadingLevel,
+          splitIncludeExistingInLayout: splitScene.splitIncludeExistingInLayout,
+          splitNodeRadius: splitScene.splitNodeRadius,
+          splitRingRadius: splitScene.splitRingRadius,
+          splitMaxRingCount: splitScene.splitMaxRingCount,
+          splitGridSpacing: splitScene.splitGridSpacing,
+          splitColumns: splitScene.splitColumns,
+          splitPalette: splitScene.splitPalette,
+          splitPaletteName: splitScene.splitPaletteName,
+          splitColor: splitScene.splitColor,
+          splitExcludePaths: splitScene.splitExcludePaths,
+          splitPlainPaths: splitScene.splitPlainPaths,
+          splitDefaultIndex: splitScene.splitDefaultIndex,
+          splitIndexPaths: splitScene.splitIndexPaths,
+          splitPlainSectionPaths: splitScene.splitPlainSectionPaths,
+          splitSectionDepth: splitScene.splitSectionDepth,
+          splitOverrides: splitScene.splitOverrides,
         };
         this.levelConfigs[scenePath] = config;
         this.sceneConfigCache.set(scenePath, config);
@@ -641,9 +640,9 @@ export class SceneRepository {
     }
     const layoutMode = String(config.layoutType ?? config.layoutMode ?? "").toLowerCase();
     const isRingLayout = layoutMode === "rings";
-    const hasAutoMarkdownSource =
-      typeof config.autoMarkdownPath === "string" && config.autoMarkdownPath.length > 0;
-    if (!isRingLayout || !hasAutoMarkdownSource) {
+    const hasSplitSource =
+      typeof config.splitSourcePath === "string" && config.splitSourcePath.length > 0;
+    if (!isRingLayout || !hasSplitSource) {
       return;
     }
     if (!Array.isArray(config.nodes)) {

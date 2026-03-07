@@ -25,20 +25,20 @@ export function createMarkdownNodeBuilder(deps) {
   return async function buildAutoMarkdownNodes(scene, existingNodes) {
     const layoutType = typeof scene?.layoutType === "string" ? scene.layoutType.toLowerCase() : "";
     const usesRingLayout = layoutType === "rings";
-    if (!usesRingLayout || !scene?.autoMarkdownPath) {
+    if (!usesRingLayout || !scene?.splitSourcePath) {
       return [];
     }
     const currentNodes = Array.isArray(existingNodes) ? existingNodes : [];
-    const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
-    const sectionKey = scene.autoMarkdownSection ?? null;
+    const includeExisting = scene.splitIncludeExistingInLayout === true;
+    const sectionKey = scene.splitSection ?? null;
     let entries = [];
     let usedHeadingLevel =
-      typeof scene.autoMarkdownHeadingLevel === "number"
-        ? scene.autoMarkdownHeadingLevel
+      typeof scene.splitHeadingLevel === "number"
+        ? scene.splitHeadingLevel
         : 3;
     let sectionSubheadings = null;
 
-    if (scene.autoMarkdownPath) {
+    if (scene.splitSourcePath) {
       const preferredLevels = [usedHeadingLevel];
       if (usedHeadingLevel === 2) {
         preferredLevels.push(3);
@@ -46,7 +46,7 @@ export function createMarkdownNodeBuilder(deps) {
         preferredLevels.push(2);
       }
       try {
-        const response = await fetchImpl(appendCacheBust(scene.autoMarkdownPath));
+        const response = await fetchImpl(appendCacheBust(scene.splitSourcePath));
         if (response.ok) {
           const text = await response.text();
           let content = text;
@@ -92,41 +92,41 @@ export function createMarkdownNodeBuilder(deps) {
         }
       } catch (error) {
         if (typeof logger?.warn === "function") {
-          logger.warn("Failed to read markdown file", scene.autoMarkdownPath, error);
+          logger.warn("Failed to read markdown file", scene.splitSourcePath, error);
         }
       }
     }
 
-    if (Array.isArray(scene.autoMarkdownExcludePaths) && scene.autoMarkdownExcludePaths.length) {
+    if (Array.isArray(scene.splitExcludePaths) && scene.splitExcludePaths.length) {
       const exclude = new Set(
-        scene.autoMarkdownExcludePaths.map((path) => normalizeMarkdownPath(path))
+        scene.splitExcludePaths.map((path) => normalizeMarkdownPath(path))
       );
       entries = entries.filter((entry) => !exclude.has(normalizeMarkdownPath(entry)));
     }
 
-    const defaultIndex = scene.autoMarkdownDefaultIndex === true;
-    const indexPaths = Array.isArray(scene.autoMarkdownIndexPaths)
-      ? new Set(scene.autoMarkdownIndexPaths.map((path) => normalizeMarkdownPath(path)))
+    const defaultIndex = scene.splitDefaultIndex === true;
+    const indexPaths = Array.isArray(scene.splitIndexPaths)
+      ? new Set(scene.splitIndexPaths.map((path) => normalizeMarkdownPath(path)))
       : null;
-    const plainPaths = Array.isArray(scene.autoMarkdownPlainPaths)
-      ? new Set(scene.autoMarkdownPlainPaths.map((path) => normalizeMarkdownPath(path)))
+    const plainPaths = Array.isArray(scene.splitPlainPaths)
+      ? new Set(scene.splitPlainPaths.map((path) => normalizeMarkdownPath(path)))
       : null;
-    const plainSectionPaths = Array.isArray(scene.autoMarkdownPlainSectionPaths)
-      ? new Set(scene.autoMarkdownPlainSectionPaths.map((path) => normalizeMarkdownPath(path)))
+    const plainSectionPaths = Array.isArray(scene.splitPlainSectionPaths)
+      ? new Set(scene.splitPlainSectionPaths.map((path) => normalizeMarkdownPath(path)))
       : null;
     const defaultSectionDepth =
-      typeof scene.autoMarkdownSectionDepth === "number"
-        ? scene.autoMarkdownSectionDepth
+      typeof scene.splitSectionDepth === "number"
+        ? scene.splitSectionDepth
         : 2;
     const pathOverrides =
-      scene.autoMarkdownOverrides && typeof scene.autoMarkdownOverrides === "object"
-        ? scene.autoMarkdownOverrides
+      scene.splitOverrides && typeof scene.splitOverrides === "object"
+        ? scene.splitOverrides
         : null;
 
     if (!entries.length && !includeExisting) {
       return [];
     }
-    const fileInfos = scene.autoMarkdownPath
+    const fileInfos = scene.splitSourcePath
       ? entries.map((entry) => ({
           title: stripWalkthroughStepPrefix(entry.title) || entry.title,
         }))
@@ -153,9 +153,9 @@ export function createMarkdownNodeBuilder(deps) {
           })
         );
     const usedIds = new Set(currentNodes.map((node) => node.id));
-    const hasCustomNodeRadius = typeof scene.autoMarkdownNodeRadius === "number";
-    const hasCustomRingRadius = typeof scene.autoMarkdownRingRadius === "number";
-    let baseRadius = hasCustomNodeRadius ? scene.autoMarkdownNodeRadius : 1.6;
+    const hasCustomNodeRadius = typeof scene.splitNodeRadius === "number";
+    const hasCustomRingRadius = typeof scene.splitRingRadius === "number";
+    let baseRadius = hasCustomNodeRadius ? scene.splitNodeRadius : 1.6;
     const existingMaxRadius = includeExisting
       ? currentNodes.reduce(
           (maxRadius, node) => Math.max(maxRadius, node.radius ?? 0),
@@ -164,8 +164,8 @@ export function createMarkdownNodeBuilder(deps) {
       : 0;
     const layoutRadius = Math.max(baseRadius, existingMaxRadius);
     const paletteName =
-      typeof scene.autoMarkdownPaletteName === "string"
-        ? scene.autoMarkdownPaletteName
+      typeof scene.splitPaletteName === "string"
+        ? scene.splitPaletteName
         : defaultAutoMarkdownPaletteName;
     const paletteFromName =
       Array.isArray(autoMarkdownPalettes[paletteName]) &&
@@ -173,13 +173,13 @@ export function createMarkdownNodeBuilder(deps) {
         ? autoMarkdownPalettes[paletteName]
         : null;
     const palette =
-      Array.isArray(scene.autoMarkdownPalette) && scene.autoMarkdownPalette.length
-        ? scene.autoMarkdownPalette
+      Array.isArray(scene.splitPalette) && scene.splitPalette.length
+        ? scene.splitPalette
         : paletteFromName ?? defaultAutoMarkdownPalette;
-    const baseColor = scene.autoMarkdownColor ?? null;
+    const baseColor = scene.splitColor ?? null;
     const maxRingCount =
-      typeof scene.autoMarkdownMaxRingCount === "number"
-        ? scene.autoMarkdownMaxRingCount
+      typeof scene.splitMaxRingCount === "number"
+        ? scene.splitMaxRingCount
         : 14;
     const autoEntries = [];
     fileInfos.forEach((info) => {
@@ -198,11 +198,11 @@ export function createMarkdownNodeBuilder(deps) {
       ? currentNodes.length + autoEntries.length
       : autoEntries.length;
     let ringRadius = hasCustomRingRadius
-      ? scene.autoMarkdownRingRadius
+      ? scene.splitRingRadius
       : Math.max(6, Math.min(layoutCount, maxRingCount) * layoutRadius * 1.4);
     const gridSpacing =
-      typeof scene.autoMarkdownGridSpacing === "number"
-        ? scene.autoMarkdownGridSpacing
+      typeof scene.splitGridSpacing === "number"
+        ? scene.splitGridSpacing
         : layoutRadius * 2.6;
     const useRing = layoutCount <= maxRingCount;
     const columns = useRing ? 1 : Math.ceil(Math.sqrt(layoutCount));
@@ -273,7 +273,7 @@ export function createMarkdownNodeBuilder(deps) {
     }
 
     const isSectionIndex = !!sectionKey;
-    const isTwoLevelRoot = !isSectionIndex && scene.autoMarkdownPath && usedHeadingLevel === 2;
+    const isTwoLevelRoot = !isSectionIndex && scene.splitSourcePath && usedHeadingLevel === 2;
 
     return autoEntries
       .map((entry, index) => {
@@ -284,7 +284,7 @@ export function createMarkdownNodeBuilder(deps) {
         if (typeof color === "string" && colorTokens[color]) {
           color = colorTokens[color];
         }
-        const nodeName = scene.autoMarkdownPath
+        const nodeName = scene.splitSourcePath
           ? info.title ?? titleFromSlug(slug)
           : info.title ?? titleFromSlug(slug);
         const node = {
@@ -296,17 +296,17 @@ export function createMarkdownNodeBuilder(deps) {
           color,
           wrapLabel: scene.wrapLabels ?? true,
         };
-        if (scene.autoMarkdownPath) {
+        if (scene.splitSourcePath) {
           const override = pathOverrides
-            ? pathOverrides[normalizeMarkdownPath(scene.autoMarkdownPath)]
+            ? pathOverrides[normalizeMarkdownPath(scene.splitSourcePath)]
             : null;
-          node.markdownPath = scene.autoMarkdownPath;
+          node.markdownPath = scene.splitSourcePath;
           node.markdownSection = info.title ?? null;
           if (
             isTwoLevelRoot &&
             info.title &&
             sectionSubheadings?.get(info.title) === true &&
-            !(plainSectionPaths && plainSectionPaths.has(normalizeMarkdownPath(scene.autoMarkdownPath)))
+            !(plainSectionPaths && plainSectionPaths.has(normalizeMarkdownPath(scene.splitSourcePath)))
           ) {
             node.markdownAutoIndex = true;
             if (typeof override?.headingLevel === "number") {
@@ -350,8 +350,8 @@ export function createMarkdownNodeBuilder(deps) {
           if (plainSectionList.length) {
             node.markdownPlainSectionPaths = plainSectionList;
           }
-          if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
-            node.markdownColumns = scene.autoMarkdownColumns;
+          if (scene.splitColumns === 1 || scene.splitColumns === 2) {
+            node.markdownColumns = scene.splitColumns;
           }
         }
         return node;
