@@ -1902,7 +1902,7 @@
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
-      "name": "Muon Tau",
+      "name": "Muon and Tau",
       "path": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "nodeType": "markdown_doc"
     },
@@ -2352,7 +2352,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/no-go-theorems.md",
-      "name": "No Go Theorems",
+      "name": "No-Go Theorems",
       "path": "content/markdown/aaa/validation/no-go-theorems.md",
       "nodeType": "markdown_doc"
     },
@@ -5252,7 +5252,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
-      "name": "Muon Tau",
+      "name": "Muon and Tau",
       "path": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "searchTarget": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "implicit": false
@@ -5927,7 +5927,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/no-go-theorems.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/no-go-theorems.md",
-      "name": "No Go Theorems",
+      "name": "No-Go Theorems",
       "path": "content/markdown/aaa/validation/no-go-theorems.md",
       "searchTarget": "content/markdown/aaa/validation/no-go-theorems.md",
       "implicit": false

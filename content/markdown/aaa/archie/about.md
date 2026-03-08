@@ -38,5 +38,4 @@ This environment is actively evolving. Scene structure, labels, and document dep
 
 ## Contact
 
-- CEO: Marko
-- inquiries@neoclassical.ai
+- [architrino@gmail.com](mailto:architrino@gmail.com)
