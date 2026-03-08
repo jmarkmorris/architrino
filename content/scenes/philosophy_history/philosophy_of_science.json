@@ -68,6 +68,30 @@
             "labelBadge": "doc",
             "color": "#7a4a1f"
           },
+          "explanation causation and mechanism": {
+            "id": "philosophy_of_science_explanation",
+            "labelTitle": "Explanation / Causation",
+            "labelBadge": "doc",
+            "color": "#6a3c3c"
+          },
+          "reduction emergence and ontological levels": {
+            "id": "philosophy_of_science_reduction",
+            "labelTitle": "Reduction / Emergence",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          },
+          "measurement observation and theory ladenness": {
+            "id": "philosophy_of_science_measurement",
+            "labelTitle": "Measurement / Observation",
+            "labelBadge": "doc",
+            "color": "#243d8f"
+          },
+          "symmetry mathematics and representation": {
+            "id": "philosophy_of_science_representation",
+            "labelTitle": "Symmetry / Representation",
+            "labelBadge": "doc",
+            "color": "#5a3f73"
+          },
           "inference underdetermination and theory choice": {
             "id": "philosophy_of_science_inference",
             "labelTitle": "Inference / Theory Choice",

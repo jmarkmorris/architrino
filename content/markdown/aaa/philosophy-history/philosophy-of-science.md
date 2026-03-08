@@ -114,6 +114,22 @@ So the architrino position is:
 - use severe constraint during evaluative selection,
 - and never confuse creative permission with standards of acceptance.
 
+## Explanation, Causation, and Mechanism
+
+This section will examine what counts as a real explanation in science, how causal language differs from descriptive closure, and when a mechanism is genuinely identified rather than merely redescribed. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is central because the project claims to replace high-level summaries with substrate-generating dynamics rather than with new labels for old regularities.
+
+## Reduction, Emergence, and Ontological Levels
+
+This section will examine how one theory reduces to another, what qualifies as emergence, when a law is merely effective, and how ontological levels should be kept distinct. This is a core concern for $\mathbb{A}\mathbb{A}\mathbb{A}$ because much of the project depends on relocating accepted theories into the correct layer of the stack without discarding their real domains of validity.
+
+## Measurement, Observation, and Theory-Ladenness
+
+This section will examine the status of measurement, the observer's role in theory construction, and the degree to which observation is already filtered by conceptual and instrumental assumptions. This matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because observer reports, fitted parameters, and inferred ontologies must be sharply separated.
+
+## Symmetry, Mathematics, and Representation
+
+This section will examine when mathematical structure is merely representational, when symmetry is ontic versus effective, and how formal elegance can mislead ontology. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this bears directly on gauge structure, metric language, invariance principles, and the risk of mistaking useful mathematics for substrate reality.
+
 ## Inference, Underdetermination, and Theory Choice
 
 Modern physics often moves from data to ontology by long inferential chains. Parameters are fitted, closures are imposed, inverse problems are solved, and then the resulting package is spoken of as if it were directly observed reality.
