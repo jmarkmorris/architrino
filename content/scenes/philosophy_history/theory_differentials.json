@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "theory_differentials",
+    "title": "Theory Differentials",
+    "type": "Scene-Markdown-Split",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "theory_differentials_inventory",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "split": {
+        "mode": "headings",
+        "headingLevel": 2,
+        "sectionDepth": 1,
+        "sectionPresentationType": "Scene-Markdown-View",
+        "overrides": {
+          "scope": {
+            "id": "theory_differentials_scope",
+            "labelTitle": "Scope",
+            "labelBadge": "doc",
+            "color": "#2f4f7a"
+          },
+          "why this document exists": {
+            "id": "theory_differentials_why",
+            "labelTitle": "Why This Exists",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          },
+          "classification axes": {
+            "id": "theory_differentials_classification",
+            "labelTitle": "Classification Axes",
+            "labelBadge": "doc",
+            "color": "#3a5f9f"
+          },
+          "per theory section template": {
+            "id": "theory_differentials_template",
+            "labelTitle": "Section Template",
+            "labelBadge": "doc",
+            "color": "#4b0082"
+          },
+          "minimal entry skeleton": {
+            "id": "theory_differentials_skeleton",
+            "labelTitle": "Entry Skeleton",
+            "labelBadge": "doc",
+            "color": "#5a1f2e"
+          },
+          "ordering principle": {
+            "id": "theory_differentials_ordering",
+            "labelTitle": "Ordering Principle",
+            "labelBadge": "doc",
+            "color": "#6a3c3c"
+          },
+          "theory inventory for future sections": {
+            "id": "theory_differentials_inventory",
+            "labelTitle": "Theory Inventory",
+            "labelBadge": "doc",
+            "color": "#243d8f"
+          },
+          "writing rules for future entries": {
+            "id": "theory_differentials_rules",
+            "labelTitle": "Writing Rules",
+            "labelBadge": "doc",
+            "color": "#7a4a1f"
+          },
+          "intended outcome": {
+            "id": "theory_differentials_outcome",
+            "labelTitle": "Intended Outcome",
+            "labelBadge": "doc",
+            "color": "#3f6a5a"
+          }
+        }
+      }
+    }
+  },
+  "objects": []
+}

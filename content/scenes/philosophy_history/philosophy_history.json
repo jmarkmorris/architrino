@@ -41,6 +41,10 @@
       {
         "nodeId": "theory_mapping",
         "scenePath": "content/scenes/philosophy_history/theory_mapping.json"
+      },
+      {
+        "nodeId": "theory_differentials",
+        "scenePath": "content/scenes/philosophy_history/theory_differentials.json"
       }
     ]
   },
@@ -128,6 +132,17 @@
         "type": "fixed"
       },
       "labelTitle": "Theory Mapping",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "theory_differentials",
+      "title": "Theory Differentials",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Theory Differentials",
       "labelBadge": "doc"
     }
   ]

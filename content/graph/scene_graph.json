@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 409,
-      "edges": 1255,
-      "scenes": 279,
+      "nodes": 411,
+      "edges": 1258,
+      "scenes": 280,
       "markdownIndexes": 16,
-      "markdownDocs": 114,
+      "markdownDocs": 115,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1823,6 +1823,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "theory_differentials",
+      "name": "Theory Differentials",
+      "path": "content/scenes/philosophy_history/theory_differentials.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about.md",
       "name": "About",
       "path": "content/markdown/aaa/archie/about.md",
@@ -2180,6 +2186,12 @@
       "id": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "name": "Major Religious Cosmologies and Foundational Ontologies",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "name": "Theory Differentials",
+      "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4408,6 +4420,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_differentials.json",
+      "nodeType": "scene",
+      "id": "theory_differentials",
+      "name": "Theory Differentials",
+      "path": "content/scenes/philosophy_history/theory_differentials.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_differentials.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "nodeType": "scene",
       "id": "philosophy_history__theory_mapping",
@@ -5669,6 +5690,15 @@
       "name": "Major Religious Cosmologies and Foundational Ontologies",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "name": "Theory Differentials",
+      "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-differentials.md",
       "implicit": false
     },
     {
@@ -9437,6 +9467,13 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
@@ -10472,6 +10509,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/theory_differentials.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_differentials.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
       "edgeType": "markdown_doc",
@@ -11230,6 +11274,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/philosophy-history",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/philosophy-history",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-differentials.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"

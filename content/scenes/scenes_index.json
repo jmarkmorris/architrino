@@ -1394,6 +1394,11 @@
       "id": "validation_action_energy__well_posedness_regularization",
       "name": "Well-Posedness and Regularization",
       "path": "content/scenes/validation/well_posedness_regularization.json"
+    },
+    {
+      "id": "theory_differentials",
+      "name": "Theory Differentials",
+      "path": "content/scenes/philosophy_history/theory_differentials.json"
     }
   ]
 }
