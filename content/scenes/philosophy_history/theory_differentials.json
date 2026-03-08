@@ -6,7 +6,7 @@
     "type": "Scene-Markdown-Split",
     "units": "relative",
     "wrapLabels": true,
-    "centerOn": "theory_differentials_inventory",
+    "centerOn": "theory_differentials_overview",
     "layout": {
       "type": "rings"
     },
@@ -20,57 +20,57 @@
         "sectionDepth": 1,
         "sectionPresentationType": "Scene-Markdown-View",
         "overrides": {
-          "scope": {
-            "id": "theory_differentials_scope",
-            "labelTitle": "Scope",
+          "overview": {
+            "id": "theory_differentials_overview",
+            "labelTitle": "Overview",
             "labelBadge": "doc",
             "color": "#2f4f7a"
           },
-          "why this document exists": {
-            "id": "theory_differentials_why",
-            "labelTitle": "Why This Exists",
+          "core quantum and particle frameworks": {
+            "id": "theory_differentials_core_quantum_particle",
+            "labelTitle": "Core Quantum & Particle",
             "labelBadge": "doc",
             "color": "#2f6b6f"
           },
-          "classification axes": {
-            "id": "theory_differentials_classification",
-            "labelTitle": "Classification Axes",
+          "quantum foundations and interpretations": {
+            "id": "theory_differentials_quantum_foundations",
+            "labelTitle": "Quantum Foundations",
             "labelBadge": "doc",
             "color": "#3a5f9f"
           },
-          "per theory section template": {
-            "id": "theory_differentials_template",
-            "labelTitle": "Section Template",
+          "spacetime gravity and quantum gravity": {
+            "id": "theory_differentials_spacetime_gravity",
+            "labelTitle": "Spacetime / Gravity",
             "labelBadge": "doc",
             "color": "#4b0082"
           },
-          "minimal entry skeleton": {
-            "id": "theory_differentials_skeleton",
-            "labelTitle": "Entry Skeleton",
+          "cosmology and large scale history": {
+            "id": "theory_differentials_cosmology",
+            "labelTitle": "Cosmology",
             "labelBadge": "doc",
             "color": "#5a1f2e"
           },
-          "ordering principle": {
-            "id": "theory_differentials_ordering",
-            "labelTitle": "Ordering Principle",
+          "statistical thermal and bulk descriptions": {
+            "id": "theory_differentials_statistical_bulk",
+            "labelTitle": "Statistical / Bulk",
             "labelBadge": "doc",
             "color": "#6a3c3c"
           },
-          "theory inventory for future sections": {
-            "id": "theory_differentials_inventory",
-            "labelTitle": "Theory Inventory",
+          "rejected historical theories": {
+            "id": "theory_differentials_rejected",
+            "labelTitle": "Rejected Historical",
             "labelBadge": "doc",
             "color": "#243d8f"
           },
-          "writing rules for future entries": {
-            "id": "theory_differentials_rules",
-            "labelTitle": "Writing Rules",
+          "fringe or borderline contrast cases": {
+            "id": "theory_differentials_fringe",
+            "labelTitle": "Fringe / Borderline",
             "labelBadge": "doc",
             "color": "#7a4a1f"
           },
-          "intended outcome": {
-            "id": "theory_differentials_outcome",
-            "labelTitle": "Intended Outcome",
+          "additional major academic programs to consider": {
+            "id": "theory_differentials_additional_academic",
+            "labelTitle": "Additional Academic",
             "labelBadge": "doc",
             "color": "#3f6a5a"
           }
