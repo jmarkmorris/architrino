@@ -57,6 +57,34 @@ export function createSceneSearchRuntime(deps) {
     return Number.POSITIVE_INFINITY;
   }
 
+  function searchTypePriority(scene) {
+    const nodeType = String(scene?.nodeType ?? "").toLowerCase();
+    if (nodeType === "scene") {
+      return 0;
+    }
+    if (nodeType === "markdown_doc") {
+      return 1;
+    }
+    if (nodeType === "markdown_index") {
+      return 2;
+    }
+    return 99;
+  }
+
+  function dedupeMatches(matches) {
+    const seen = new Set();
+    return matches.filter((scene) => {
+      const normalizedName = normalizeSearch(String(scene?.name ?? ""));
+      const fallbackKey = normalizeSearch(String(scene?.path ?? scene?.id ?? ""));
+      const key = normalizedName || fallbackKey;
+      if (!key || seen.has(key)) {
+        return false;
+      }
+      seen.add(key);
+      return true;
+    });
+  }
+
   function updateSearchResults(query) {
     if (!sceneSearchResults) {
       return;
@@ -76,12 +104,18 @@ export function createSceneSearchRuntime(deps) {
         if (a.rank !== b.rank) {
           return a.rank - b.rank;
         }
+        const aType = searchTypePriority(a.scene);
+        const bType = searchTypePriority(b.scene);
+        if (aType !== bType) {
+          return aType - bType;
+        }
         return a.sortName.localeCompare(b.sortName);
       })
       .map((entry) => entry.scene);
+    const uniqueMatches = dedupeMatches(matches);
 
     sceneSearchResults.innerHTML = "";
-    matches.slice(0, 10).forEach((scene) => {
+    uniqueMatches.slice(0, 10).forEach((scene) => {
       const item = document.createElement("button");
       item.type = "button";
       item.className = "scene-search-item";

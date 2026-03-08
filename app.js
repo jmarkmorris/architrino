@@ -2294,6 +2294,26 @@ function layoutRootLevel(level) {
     }
   });
 
+  const preserveFixedEndpointRadius =
+    useRingsAutoSizing &&
+    nodes.length === 1 &&
+    (level.sceneId === "electrino" || level.sceneId === "positrino");
+  if (preserveFixedEndpointRadius) {
+    nodes.forEach((node) => {
+      node.group.scale.setScalar(1);
+      node.baseScale = 1;
+      if (node.data) {
+        node.data.baseScale = 1;
+        if (typeof node.data.baseRadius === "number") {
+          node.data.radius = node.data.baseRadius;
+        }
+      }
+      node.group.position.set(0, 0, node.group.position.z);
+      node.basePosition = node.group.position.clone();
+    });
+    return;
+  }
+
   if (useRootAutoLayout) {
     const baseRadius = Math.max(
       ...nodes.map((node) => node.data?.baseRadius ?? node.data?.radius ?? 0)
