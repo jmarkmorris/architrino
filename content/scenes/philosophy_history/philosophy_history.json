@@ -35,6 +35,10 @@
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
       {
+        "nodeId": "philosophy_of_science",
+        "scenePath": "content/scenes/philosophy_history/philosophy_of_science.json"
+      },
+      {
         "nodeId": "religious_ontologies",
         "scenePath": "content/scenes/philosophy_history/religious_ontologies.json"
       },
@@ -111,6 +115,17 @@
         "type": "fixed"
       },
       "labelTitle": "Major Thinkers"
+    },
+    {
+      "id": "philosophy_of_science",
+      "title": "Philosophy of Science",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Philosophy of Science",
+      "labelBadge": "doc"
     },
     {
       "id": "religious_ontologies",

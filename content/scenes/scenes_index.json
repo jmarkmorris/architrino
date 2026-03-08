@@ -1399,6 +1399,11 @@
       "id": "theory_differentials",
       "name": "Theory Differentials",
       "path": "content/scenes/philosophy_history/theory_differentials.json"
+    },
+    {
+      "id": "philosophy_of_science",
+      "name": "Philosophy of Science",
+      "path": "content/scenes/philosophy_history/philosophy_of_science.json"
     }
   ]
 }

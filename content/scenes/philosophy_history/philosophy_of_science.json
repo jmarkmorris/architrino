@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosophy_of_science",
+    "title": "Philosophy of Science",
+    "type": "Scene-Markdown-Split",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "philosophy_of_science_overview",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "split": {
+        "mode": "headings",
+        "headingLevel": 2,
+        "sectionDepth": 1,
+        "sectionPresentationType": "Scene-Markdown-View",
+        "overrides": {
+          "overview": {
+            "id": "philosophy_of_science_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#2f4f7a"
+          },
+          "scientific realism and anti realism": {
+            "id": "philosophy_of_science_realism",
+            "labelTitle": "Realism / Anti-Realism",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          },
+          "logic language and meaning in science": {
+            "id": "philosophy_of_science_language",
+            "labelTitle": "Logic / Language",
+            "labelBadge": "doc",
+            "color": "#5a3f73"
+          },
+          "verificationism and the vienna circle": {
+            "id": "philosophy_of_science_verificationism",
+            "labelTitle": "Verificationism",
+            "labelBadge": "doc",
+            "color": "#6a3c3c"
+          },
+          "falsificationism": {
+            "id": "philosophy_of_science_falsificationism",
+            "labelTitle": "Falsificationism",
+            "labelBadge": "doc",
+            "color": "#243d8f"
+          },
+          "paradigms and scientific revolutions": {
+            "id": "philosophy_of_science_paradigms",
+            "labelTitle": "Paradigms",
+            "labelBadge": "doc",
+            "color": "#4b0082"
+          },
+          "research programmes": {
+            "id": "philosophy_of_science_research_programmes",
+            "labelTitle": "Research Programmes",
+            "labelBadge": "doc",
+            "color": "#3a5f9f"
+          },
+          "methodological anarchism": {
+            "id": "philosophy_of_science_anarchism",
+            "labelTitle": "Methodological Anarchism",
+            "labelBadge": "doc",
+            "color": "#7a4a1f"
+          },
+          "inference underdetermination and theory choice": {
+            "id": "philosophy_of_science_inference",
+            "labelTitle": "Inference / Theory Choice",
+            "labelBadge": "doc",
+            "color": "#5a1f2e"
+          },
+          "mathbb a mathbb a mathbb a methodological commitments": {
+            "id": "philosophy_of_science_aaa_commitments",
+            "labelTitle": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Commitments",
+            "labelBadge": "doc",
+            "color": "#3f6a5a"
+          }
+        }
+      }
+    }
+  },
+  "objects": []
+}

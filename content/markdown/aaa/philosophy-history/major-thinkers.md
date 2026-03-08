@@ -668,6 +668,96 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
+### **Bertrand Russell (1872–1970) — Logic, Analysis, and Scientific Clarity**
+**Core belief**:
+- Philosophy should achieve **logical clarity** and conceptual precision.
+- Scientific knowledge benefits from analysis of **logical form**, reference, and structure.
+- Mathematics and logic provide disciplined scaffolding for theory.
+
+**Architrino impact**:
+- ✅ **Pro**: Russell's demand for **precision of formulation** aligns with the need to separate substrate claims from effective descriptions and observer-level reports.
+- ✅ **Pro**: Conceptual analysis is useful when auditing overloaded terms such as mass, field, vacuum, information, and causation.
+- ⚠️ **Partial**: Logic alone cannot settle ontology. Formal clarity is necessary, but the architrino project still requires a substantive physical substrate and causal dynamics.
+
+**Legacy shift**: Russell's analytic rigor is **retained as method**, but not elevated into a substitute for ontology.
+
+---
+
+### **Ludwig Wittgenstein (1889–1951) — Language, Meaning, and Use**
+**Core belief**:
+- Philosophical confusion often arises from misuse of language.
+- Meaning is shaped by **use**, practice, and linguistic context rather than by hidden metaphysical essences.
+- Many philosophical disputes dissolve when one clarifies how terms actually function.
+
+**Architrino impact**:
+- ✅ **Pro**: Wittgenstein is a useful warning against taking inherited scientific language at face value when the same term mixes observational, effective, and ontological meanings.
+- ⚠️ **Partial**: The architrino program benefits from language-auditing, especially for concepts such as spacetime, mass, probability, and information.
+- ❌ **Con**: Purely linguistic therapy is insufficient. The project is committed to real substrate claims, not only to clarification of discourse.
+
+**Legacy shift**: Wittgenstein's sensitivity to **meaning drift** is retained, while his anti-metaphysical tendency is subordinated to explicit physical realism.
+
+---
+
+### **Vienna Circle (1920s-1930s) — Verificationism and Logical Positivism**
+**Core belief**:
+- Scientific meaning should be tightly linked to **observation**, logical structure, and verification.
+- Metaphysical claims not tied to empirical content are suspect or meaningless.
+- Philosophy should clarify science rather than compete with it.
+
+**Architrino impact**:
+- ✅ **Pro**: The Vienna Circle correctly warns against uncontrolled metaphysical inflation and vague pseudo-explanations.
+- ✅ **Pro**: Their pressure for explicit observational discipline is valuable when assessing cosmological and interpretive overreach.
+- ❌ **Con**: Verificationism is too narrow for a deep substrate theory. $\mathbb{A}\mathbb{A}\mathbb{A}$ must posit unobserved structure and then justify it by reduction, coherence, and falsifiable consequence.
+
+**Legacy shift**: Positivist discipline survives as a check on inference, but **verificationism is rejected** as a sufficient philosophy of science.
+
+---
+
+### **Rudolf Carnap (1891–1970) — Logical Reconstruction of Science**
+**Core belief**:
+- Scientific concepts should be reconstructed with maximal **logical clarity**.
+- Many philosophical disputes are best treated as questions of linguistic framework and formal structure.
+- Metaphysical claims should be disciplined by their role inside explicit frameworks.
+
+**Architrino impact**:
+- ✅ **Pro**: Carnap's framework-sensitivity is useful when distinguishing substrate ontology, effective field descriptions, and inferential overlays.
+- ⚠️ **Partial**: Some disputes are indeed framework-relative, but the architrino program insists that at least some ontological questions are not merely conventional.
+- ❌ **Con**: A purely formal reconstruction does not replace the need for a real causal substrate.
+
+**Legacy shift**: Carnapian precision is retained as **methodological hygiene**, while conventionalism is limited by ontological realism.
+
+---
+
+### **Moritz Schlick (1882–1936) — Empirical Meaning and Scientific Knowledge**
+**Core belief**:
+- Scientific claims must remain tied to empirical content and disciplined observation.
+- Philosophy should clarify the meaning and justification of scientific statements.
+- Metaphysical excess is a recurring source of confusion.
+
+**Architrino impact**:
+- ✅ **Pro**: Schlick's demand for empirical anchoring supports the project's insistence on constraint-led theory building.
+- ⚠️ **Partial**: His emphasis on meaning and justification remains useful for auditing weakly grounded cosmological narratives.
+- ❌ **Con**: $\mathbb{A}\mathbb{A}\mathbb{A}$ cannot stop at observable reports; it requires ontological commitment to unseen substrate dynamics.
+
+**Legacy shift**: Empirical discipline is preserved, but anti-metaphysical restraint is softened into realism with falsification gates.
+
+---
+
+### **Otto Neurath (1882–1945) — Unified Science and Anti-Foundational Coherence**
+**Core belief**:
+- Science should aspire to a coherent **unity**, but always from within a revisable network of statements.
+- Knowledge is rebuilt at sea, not from an indubitable foundation.
+- Observation itself is theory-laden and socially embedded.
+
+**Architrino impact**:
+- ✅ **Pro**: Neurath's fallibilism is useful. The architrino program should expect revision during development rather than pretend to start from certainty.
+- ✅ **Pro**: His emphasis on networked coherence fits the need to map relations among substrate theory, effective laws, and observational inversions.
+- ⚠️ **Partial**: $\mathbb{A}\mathbb{A}\mathbb{A}$ agrees that theory repair happens from within science, but still seeks a more definite substrate foundation than Neurath's anti-foundational tone suggests.
+
+**Legacy shift**: Neurath's coherence and revisability are retained, while his resistance to deeper ontological grounding is limited.
+
+---
+
 ### **Karl Popper (1902–1994) — Falsificationism**
 **Core belief**: 
 - Scientific theories must be **falsifiable** (have testable failure conditions).
@@ -727,6 +817,21 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
+### **Paul Feyerabend (1924–1994) — Methodological Anarchism**
+**Core belief**:
+- Scientific practice does not obey one universal method.
+- Discovery often proceeds by violating reigning methodological rules.
+- Attempts to codify science too rigidly can suppress genuine innovation.
+
+**Architrino impact**:
+- ✅ **Pro**: Feyerabend usefully warns that a radically different substrate theory may need to violate existing stylistic and disciplinary conventions.
+- ⚠️ **Partial**: Exploratory freedom is valuable during theory generation and conceptual search.
+- ❌ **Con**: The architrino project cannot adopt "anything goes" as an acceptance standard. Once claims are made, they must submit to explicit constraints, derivations, and failure conditions.
+
+**Legacy shift**: Methodological looseness is allowed during discovery, but **strict evaluation discipline** governs theory acceptance.
+
+---
+
 ### **Nancy Cartwright (1944–) — The Dappled World**
 **Core belief**: 
 - Science is **not unified**; different domains have different "laws."
@@ -779,10 +884,15 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 | **Hendrik Lorentz** | 1853–1928 | **Ether, dynamical Lorentz symmetry, preferred frame** | — | — |
 | **Max Planck** | 1858–1947 | *h* as emergent | — | — |
 | **Alfred North Whitehead** | 1861–1947 | Relationalism | **Process > substance priority, panpsychism** | Becoming → secondary to being |
+| **Bertrand Russell** | 1872–1970 | Logical clarity, analytic rigor | **Logic as sufficient philosophy** | Analysis as methodological tool |
 | **Albert Einstein (SR)** | 1879–1955 | Empirical SR predictions | **Fundamental Lorentz invariance, no preferred frame, spacetime as fundamental** | Kinematic → dynamical emergence |
 | **Albert Einstein (GR)** | 1879–1955 | Empirical GR predictions | **Spacetime as fundamental, diffeomorphism invariance** | GR as emergent hydrodynamics |
+| **Moritz Schlick** | 1882–1936 | Empirical discipline | **Verificationist restriction** | Observation discipline retained |
+| **Otto Neurath** | 1882–1945 | Coherence, revisability, unity of science | **Anti-foundational restraint on ontology** | Networked theory repair retained |
 | **Niels Bohr** | 1885–1962 | — | **Completeness, collapse, anti-realism** | Complementarity explained |
 | **Erwin Schrödinger** | 1887–1961 | Realism, desire for ontology | — | $\psi$ as emergent |
+| **Ludwig Wittgenstein** | 1889–1951 | Meaning drift sensitivity | **Language over ontology** | Conceptual audit of scientific terms |
+| **Rudolf Carnap** | 1891–1970 | Formal clarity, framework discipline | **Conventionalism about ontology** | Logical hygiene retained |
 | **Louis de Broglie** | 1892–1987 | **Pilot-wave intuition** | — | Wave on config space → real fields |
 | **Werner Heisenberg** | 1901–1976 | Uncertainty (emergent) | **Reality "behind" formalism** | — |
 | **Karl Popper** | 1902–1994 | **Falsificationism** | — | — |
@@ -793,6 +903,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 | **Andrei Sakharov** | 1921–1989 | **Induced gravity** | — | — |
 | **Thomas Kuhn** | 1922–1996 | Paradigm shift structure | — | Incommensurability softened |
 | **Imre Lakatos** | 1922–1974 | **Research programme methodology** | — | — |
+| **Paul Feyerabend** | 1924–1994 | Creative rule-breaking during discovery | **Anything goes as acceptance norm** | Exploratory looseness, strict evaluation |
 | **Abdus Salam** | 1926–1996 | Electroweak phenomenology | **Gauge fields and Higgs as fundamental** | Gauge symmetry and Higgs as emergent |
 | **John Bell** | 1928–1990 | **Nonlocality + realism framework** | — | Constraints, not obstacles |
 | **Murray Gell-Mann** | 1929–2019 | Quark classification | **Quarks as fundamental** | Quarks as emergent assemblies |
