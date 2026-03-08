@@ -1,23 +1,47 @@
 # Theory Differentials
 
-## Scope
+## Overview
 
 This document defines the **modern ontological network above** $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at the substrate level.
 
-Its purpose is not to rank theories by prestige or sociology. Its purpose is to sort them by:
+Its purpose is not to rank theories by prestige or sociology. Its purpose is to sort concepts by:
 
-- **Ontological area**: what layer of reality the theory claims to describe.
+- **Ontological area**: what layer of reality the concept claims to describe.
 - **Sub-ontological area**: the more specific domain inside that layer.
-- **Theory status**: accepted, competing, rejected, underconstrained, speculative, or fringe.
-- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether the theory is fundamental, emergent, approximately valid, partially recoverable, recoverable only after reinterpretation, mislocated, observationally over-inferred, or incompatible.
+- **Concept status**: accepted, competing, rejected, underconstrained, speculative, or fringe.
+- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether the concept is fundamental, emergent, approximately valid, partially recoverable, recoverable only after reinterpretation, mislocated, observationally over-inferred, or incompatible.
 
-The working assumption throughout is strict layer discipline:
+This document uses two related but non-identical kinds of layering.
+
+First, it uses a **comparative theory-mapping stack**. This is the neutral sorting framework used to compare historical and modern theories against one another without assuming that every theory slices reality at the correct joints.
+
+The working comparative stack throughout is:
 
 1. **Substrate ontology**: what fundamentally exists.
 2. **Assembly / medium dynamics**: stable structures, collective modes, constitutive behavior.
 3. **Effective field / geometry level**: continuum closures and observer-level kinematics.
 4. **Bulk statistical level**: thermodynamics, transport, halo models, ensemble closures.
 5. **Inference layer**: how observations are inverted into narratives about ontology.
+
+This stack is intentionally comparative rather than purely ontological. It mixes ontology, effective description, and inference because the document's job is to classify theories as they actually appear in the history of physics.
+
+Second, the document also needs a **current $\mathbb{A}\mathbb{A}\mathbb{A}$ ontological stack**. This is not the same thing. It is an internal picture of how reality is presently understood to organize if $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct.
+
+The current working $\mathbb{A}\mathbb{A}\mathbb{A}$ ontological stack is:
+
+1. **Substrate Ontology**: architrinos, their admissible states, and the primitive causal, delayed, path-history law.
+2. **Local Dynamical Organization**: persistent local motifs, bound structures, wakes, and the first stable assembly classes.
+3. **Collective Medium and Constitutive Regime**: sea behavior, constitutive response, propagation conditions, and environment-dependent interaction structure.
+4. **Emergent Effective Dynamics**: continuum closures, field-like equations, force laws, and metric-like descriptions that summarize deeper organization.
+5. **Statistical and Population Closures**: thermodynamics, transport, virial regimes, kinetic descriptions, and ensemble-level summaries of large populations.
+6. **Observational and Inferential Layer**: clock conventions, readout structures, inverse modeling, fitted parameters, and narratives constructed from measurement.
+
+The key distinction is simple:
+
+- the **comparative stack** is used to place theories in a common analytic frame;
+- the **$\mathbb{A}\mathbb{A}\mathbb{A}$ stack** is the current internal hypothesis about how the world itself is layered.
+
+These should not be conflated. A theory may be well placed in the comparative stack even if $\mathbb{A}\mathbb{A}\mathbb{A}$ later reclassifies its main content as effective, statistical, inferential, or ontologically mislocated.
 
 This chapter should eventually include:
 
@@ -27,13 +51,11 @@ This chapter should eventually include:
 - historically rejected theories that still illuminate ontological mistakes,
 - fringe theories that are useful mainly as contrast cases.
 
-## Why This Document Exists
-
 The architrino program needs a durable answer to a recurring question:
 
 > If $\mathbb{A}\mathbb{A}\mathbb{A}$ is right, what exactly were earlier theories right about, wrong about, or right about at the wrong ontological layer?
 
-That requires more than summary. It requires a **differential diagnosis** for each theory:
+That requires more than summary. It requires a **differential diagnosis** for each concept:
 
 - What it says exists.
 - What it treats as primitive.
@@ -42,9 +64,40 @@ That requires more than summary. It requires a **differential diagnosis** for ea
 - What remains useful during a transition period.
 - What survives in the long-term architecture after $\mathbb{A}\mathbb{A}\mathbb{A}$-style reduction.
 
-## Classification Axes
+Each concept section should be tagged along these axes before the prose begins.
 
-Each theory entry should be tagged along these axes before the prose begins.
+### Theory-Like Concepts and Cross-Cutting Constructs
+
+This document should not be limited to named theories, schools, or research programs. Some of the most important ontological confusions in physics are carried by **theory-like concepts** that appear across many theories and are often treated as if their meaning were obvious.
+
+These concepts should also be included in the differential analysis when they function as:
+
+- primitive postulates,
+- cross-theory organizing quantities,
+- inferred observables with heavy interpretive load,
+- or compressed summary concepts whose ontological location is unclear.
+
+Examples that should eventually receive dedicated treatment include:
+
+- **Mass**
+- **Entropy**
+- **Temperature**
+- **The Laws of Thermodynamics**
+- **Redshift**
+- **Spacetime Curvature**
+- **Vacuum Energy**
+- **Wavefunction**
+- **Information**
+- **Probability**
+
+These are not always full theories in themselves, but they often behave like portable theory-elements. They migrate across frameworks while carrying hidden assumptions about what exists, what is fundamental, and what is merely an effective or inferential construct.
+
+For this reason, a theory differential may sometimes be written for a concept rather than a named theory. In such cases, the same analytic questions still apply:
+
+- where in the stack the concept belongs,
+- whether it is primitive or emergent,
+- whether it survives only after reinterpretation,
+- and whether current usage mixes observation, effective law, and ontology in unstable ways.
 
 ### Ontological Area
 
@@ -78,7 +131,7 @@ Use one primary sub-area, chosen as narrowly as possible. Examples:
 - thermodynamic closure
 - symmetry extension
 
-### Theory Status
+### Concept Status
 
 Use one primary status label:
 
@@ -103,16 +156,20 @@ Use one or more of:
 - **Deeply Incompatible**
 - **Historically Illuminating Failure**
 
-## Per-Theory Section Template
+Every concept section should use the same schema.
 
-Every theory section should use the same schema.
+The most easily confused relation labels should be interpreted as follows:
+
+- **Mislocated Ontology**: the concept is tracking something real, but at the wrong level of the ontological stack. Its equations or patterns may remain useful, but they are being mistaken for substrate-fundamental structure when they are better understood as effective, bulk, assembly-level, or observer-level descriptions.
+- **Observationally Over-Inferred**: the underlying observations may be sound, but the concept adds interpretive claims that do not strictly follow from the data. The measurements may survive in a $\mathbb{A}\mathbb{A}\mathbb{A}$ reframing even if the standard ontology, mechanism, or narrative built from them does not.
+- **Deeply Incompatible**: the concept contains core ontological or dynamical commitments that cannot be retained within $\mathbb{A}\mathbb{A}\mathbb{A}$ even after reinterpretation, relocation in the stack, or effective reformulation. The conflict is substantive, not merely terminological.
 
 ### Section Title Format
 
 Use:
 
 ```md
-## Quantum Field Theory - QFT
+\## Quantum Field Theory - QFT
 ```
 
 That is:
@@ -123,9 +180,10 @@ That is:
 
 ### Required Header Block
 
-At the top of each theory section, fill in:
+At the top of each concept section, fill in:
 
 ```md
+**Concept Type:** Theory / Program / Law / Quantity / Observable / Parameter / Construct
 **Ontological Area:** Quantum Effective Theory
 **Sub-Ontological Area:** continuum field ontology
 **Short Name:** QFT
@@ -137,13 +195,13 @@ At the top of each theory section, fill in:
 
 After the header block, complete the following subsections in order.
 
-#### 1. Theory Summary
+#### 1. Concept Summary
 
 State briefly:
 
-- what the theory says exists,
+- what the concept says exists, if anything,
 - what equations or principles organize it,
-- what physical domain it was built to explain.
+- what physical domain it was built to explain or track.
 
 This should be short and neutral.
 
@@ -157,9 +215,9 @@ State explicitly:
 - whether probability is ontic or epistemic,
 - whether fields, particles, spacetime, or information are treated as basic.
 
-This subsection should identify the theory's real metaphysical payload, not just its equations.
+This subsection should identify the concept's real metaphysical payload, not just its equations or usage.
 
-#### 3. What The Theory Gets Right
+#### 3. What This Concept Gets Right
 
 List the durable achievements:
 
@@ -168,7 +226,7 @@ List the durable achievements:
 - mathematical tools likely to survive reduction,
 - phenomenology that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover.
 
-This is where we separate “wrong ontology” from “bad theory.” Many theories are ontologically wrong but operationally indispensable.
+This is where we separate wrong ontology from bad modeling. Many concepts are ontologically misframed while remaining operationally indispensable.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -177,14 +235,14 @@ Give the detailed assessment from the architrino perspective:
 - which parts are recovered,
 - which parts are emergent rather than fundamental,
 - which parts are category errors,
-- where the theory sits in the stack,
+- where the concept sits in the stack,
 - whether it is a closure law, a constitutive law, an observational inversion, or a mistaken ontology.
 
 This is the core analytic section.
 
 #### 5. Transition-Period Relevance
 
-Describe the theory's importance during a scientific transition from current physics to $\mathbb{A}\mathbb{A}\mathbb{A}$:
+Describe the concept's importance during a scientific transition from current physics to $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
 - what researchers would still use,
 - what would remain the default computational language,
@@ -203,11 +261,11 @@ State what survives once the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack is mature:
 - historical artifact,
 - or discarded framework.
 
-This should answer: what will future physicists still mean when they invoke this theory?
+This should answer: what will future physicists still mean when they invoke this concept?
 
 #### 7. Failure Mode or Limiting Tension
 
-Identify the clearest reason the theory cannot be ultimate:
+Identify the clearest reason the concept cannot be ultimate:
 
 - missing ontology,
 - unresolved free parameters,
@@ -223,33 +281,32 @@ This forces each entry to state why it cannot simply remain the final story.
 
 End each section with a short explicit mapping target:
 
-- what $\mathbb{A}\mathbb{A}\mathbb{A}$ must derive, reproduce, or reinterpret in order to subsume the theory.
+- what $\mathbb{A}\mathbb{A}\mathbb{A}$ must derive, reproduce, or reinterpret in order to subsume the concept.
 
 Examples:
 
 - derive the effective field equation,
 - recover the symmetry as an assembly invariance,
 - recover the statistical law as a bulk limit,
-- explain why the theory's primitive ontology was attractive but misplaced.
+- explain why the concept's primitive ontology was attractive but misplaced.
 
-## Minimal Entry Skeleton
-
-Use this exact skeleton when starting a new theory entry:
+Use this exact skeleton when starting a new concept section:
 
 ```md
-## Long Theory Name - SHORT
+\## Long Theory Name - SHORT
 
+**Concept Type:** Theory
 **Ontological Area:** 
 **Sub-Ontological Area:** 
 **Short Name:** 
 **Status:** 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** 
 
-### 1. Theory Summary
+### 1. Concept Summary
 
 ### 2. Ontological Commitments
 
-### 3. What The Theory Gets Right
+### 3. What This Concept Gets Right
 
 ### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -261,8 +318,6 @@ Use this exact skeleton when starting a new theory entry:
 
 ### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 ```
-
-## Ordering Principle
 
 Theories should eventually be grouped by ontological area rather than by chronology alone.
 
@@ -279,14 +334,7 @@ Recommended top-level order:
 
 Within each area, order entries by present scientific importance first, then by historical or contrastive importance.
 
-## Theory Inventory For Future Sections
-
-This section lists the theories we should address later as full entries.
-
-The list is written in the **exact title form** we should use for future section headings.
-It begins with theories already present in the $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus or closely adjacent to it, then extends outward to other major theories and programs that have received serious academic investment.
-
-### Core Quantum and Particle Frameworks
+## Core Quantum and Particle Frameworks
 
 - Quantum Field Theory - QFT
 - Standard Model - SM
@@ -306,7 +354,7 @@ It begins with theories already present in the $\mathbb{A}\mathbb{A}\mathbb{A}$ 
 - WIMP Dark Matter - WIMP
 - Hidden Sector / Dark Sector Models - Dark Sector
 
-### Quantum Foundations and Interpretations
+## Quantum Foundations and Interpretations
 
 - Quantum Mechanics - QM
 - Copenhagen Interpretation - Copenhagen
@@ -318,7 +366,7 @@ It begins with theories already present in the $\mathbb{A}\mathbb{A}\mathbb{A}$ 
 - Consistent Histories - Consistent Histories
 - Decoherence Program - Decoherence
 
-### Spacetime, Gravity, and Quantum Gravity
+## Spacetime, Gravity, and Quantum Gravity
 
 - Newtonian Mechanics and Gravity - Newtonian Gravity
 - Special Relativity - SR
@@ -340,7 +388,7 @@ It begins with theories already present in the $\mathbb{A}\mathbb{A}\mathbb{A}$ 
 - Asymptotic Safety - AS
 - Holographic Principle / AdS-CFT - Holography / AdS-CFT
 
-### Cosmology and Large-Scale History
+## Cosmology and Large-Scale History
 
 - $\Lambda$ Cold Dark Matter - $\Lambda$CDM
 - Inflationary Cosmology - Inflation
@@ -359,7 +407,7 @@ It begins with theories already present in the $\mathbb{A}\mathbb{A}\mathbb{A}$ 
 - Multiverse Cosmology - Multiverse
 - Anthropic Principle - Anthropic Principle
 
-### Statistical, Thermal, and Bulk Descriptions
+## Statistical, Thermal, and Bulk Descriptions
 
 - Statistical Mechanics - Statistical Mechanics
 - Thermodynamics - Thermodynamics
@@ -370,7 +418,7 @@ It begins with theories already present in the $\mathbb{A}\mathbb{A}\mathbb{A}$ 
 - Jeans Instability Theory - Jeans Theory
 - Halo Model of Structure Formation - Halo Model
 
-### Rejected Historical Theories
+## Rejected Historical Theories
 
 - Classical Luminiferous Aether Theory - Aether
 - Lorentz Ether Theory - LET
@@ -379,7 +427,7 @@ It begins with theories already present in the $\mathbb{A}\mathbb{A}\mathbb{A}$ 
 - Tired Light Cosmology - Tired Light
 - Epicyclic Ptolemaic Cosmology - Ptolemaic System
 
-### Fringe or Borderline Contrast Cases
+## Fringe or Borderline Contrast Cases
 
 - Plasma Cosmology - Plasma Cosmology
 - Electric Universe - EU
@@ -387,7 +435,7 @@ It begins with theories already present in the $\mathbb{A}\mathbb{A}\mathbb{A}$ 
 - Strong Anthropic Landscape Programs - Anthropic Landscape
 - Digital Physics - Digital Physics
 
-### Additional Major Academic Programs To Consider
+## Additional Major Academic Programs To Consider
 
 These are not always treated as standalone "theories" in the textbook sense, but they have received enough serious academic investment that they likely deserve entries or embedded treatment.
 
@@ -405,8 +453,6 @@ These are not always treated as standalone "theories" in the textbook sense, but
 - Vacuum Landscape / String Landscape - String Landscape
 - Swampland Program - Swampland
 
-## Writing Rules For Future Entries
-
 - Keep the theory description neutral before critique.
 - Do not confuse empirical adequacy with ontological truth.
 - Do not dismiss a theory merely because it was rejected; state why it failed.
@@ -422,8 +468,6 @@ These are not always treated as standalone "theories" in the textbook sense, but
   - **effective**
   - **bulk statistical**
   - **inference-level**
-
-## Intended Outcome
 
 When this document is mature, a reader should be able to answer, for any major modern theory:
 
