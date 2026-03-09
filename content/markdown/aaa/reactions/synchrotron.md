@@ -105,7 +105,7 @@ This 1% threshold is a modeling convention for cascade tractability, not a funda
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
 
-- **Synchrotron emission channel:** curved charged-assembly transport in anisotropic Noether-Sea states crosses planar-mode threshold and nucleates [photon assemblies](../assemblies/bosons/photon.md) from interaction energy / wake stress while conserving charged-assembly identity.
+- **Synchrotron emission channel:** curved charged-assembly transport in anisotropic Noether-Sea states crosses planar-mode threshold and nucleates [photon assemblies](../assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity.
 - **Pair channel:** two-photon planar-mode overlap recruits/relocks local substrate content into charged pair assemblies; this recruitment must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea cores $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
 - **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 

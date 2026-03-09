@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 392,
-      "edges": 1132,
-      "scenes": 274,
+      "nodes": 390,
+      "edges": 1130,
+      "scenes": 273,
       "markdownIndexes": 0,
-      "markdownDocs": 118,
+      "markdownDocs": 117,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1403,12 +1403,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "meta__meta_navigation",
-      "name": "Navigation",
-      "path": "content/scenes/meta/meta_navigation.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "meta__meta_scene_taxonomy",
       "name": "Scene Taxonomy",
       "path": "content/scenes/meta/meta_scene_taxonomy.json",
@@ -1811,12 +1805,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/help.md",
-      "name": "Help",
-      "path": "content/markdown/aaa/archie/help.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
       "name": "Licenses & Attributions",
       "path": "content/markdown/aaa/archie/licenses-attributions.md",
@@ -1835,9 +1823,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/navigation.md",
-      "name": "Navigation",
-      "path": "content/markdown/aaa/archie/navigation.md",
+      "id": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "name": "Navigation & Controls",
+      "path": "content/markdown/aaa/archie/navigation-and-controls.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -1848,7 +1836,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "name": "Architrino Theory: Master Table of Contents",
+      "name": "Textbook File Structure",
       "path": "content/markdown/aaa/archie/textbook-file-structure.md",
       "nodeType": "markdown_doc"
     },
@@ -4132,15 +4120,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/meta/meta_navigation.json",
-      "nodeType": "scene",
-      "id": "meta__meta_navigation",
-      "name": "Navigation",
-      "path": "content/scenes/meta/meta_navigation.json",
-      "searchTarget": "content/scenes/meta/meta_navigation.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/meta/meta_scene_taxonomy.json",
       "nodeType": "scene",
       "id": "meta__meta_scene_taxonomy",
@@ -4996,15 +4975,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/help.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/help.md",
-      "name": "Help",
-      "path": "content/markdown/aaa/archie/help.md",
-      "searchTarget": "content/markdown/aaa/archie/help.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
@@ -5032,12 +5002,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/navigation.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/navigation-and-controls.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/navigation.md",
-      "name": "Navigation",
-      "path": "content/markdown/aaa/archie/navigation.md",
-      "searchTarget": "content/markdown/aaa/archie/navigation.md",
+      "id": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "name": "Navigation & Controls",
+      "path": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "searchTarget": "content/markdown/aaa/archie/navigation-and-controls.md",
       "implicit": false
     },
     {
@@ -5053,7 +5023,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "name": "Architrino Theory: Master Table of Contents",
+      "name": "Textbook File Structure",
       "path": "content/markdown/aaa/archie/textbook-file-structure.md",
       "searchTarget": "content/markdown/aaa/archie/textbook-file-structure.md",
       "implicit": false
@@ -9065,17 +9035,10 @@
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_navigation.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
       "to": "scene:content/scenes/meta/meta_scene_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -10136,7 +10099,7 @@
     },
     {
       "from": "scene:content/scenes/meta/meta_help.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/help.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/navigation-and-controls.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_help.json",
       "field": "scene.source.path"
@@ -10160,13 +10123,6 @@
       "to": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_mathematical_terminology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_navigation.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/navigation.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_navigation.json",
       "field": "scene.source.path"
     },
     {

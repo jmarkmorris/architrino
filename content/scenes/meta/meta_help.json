@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "meta__meta_help",
-    "title": "Help",
+    "title": "Navigation & Controls",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/help.md"
+      "path": "content/markdown/aaa/archie/navigation-and-controls.md"
     },
     "view": {
       "columns": 2,

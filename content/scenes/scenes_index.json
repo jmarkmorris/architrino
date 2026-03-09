@@ -1046,11 +1046,6 @@
       "path": "content/scenes/meta/meta_mathematical_terminology.json"
     },
     {
-      "id": "meta__meta_navigation",
-      "name": "Navigation",
-      "path": "content/scenes/meta/meta_navigation.json"
-    },
-    {
       "id": "meta__meta_scene_taxonomy",
       "name": "Scene Taxonomy",
       "path": "content/scenes/meta/meta_scene_taxonomy.json"

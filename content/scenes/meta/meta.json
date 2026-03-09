@@ -44,10 +44,6 @@
         "scenePath": "content/scenes/meta/meta_mathematical_terminology.json"
       },
       {
-        "nodeId": "meta_navigation",
-        "scenePath": "content/scenes/meta/meta_navigation.json"
-      },
-      {
         "nodeId": "meta_scene_taxonomy",
         "scenePath": "content/scenes/meta/meta_scene_taxonomy.json"
       }
@@ -87,10 +83,10 @@
     },
     {
       "id": "meta_help",
-      "title": "Help",
+      "title": "Navigation & Controls",
       "radius": 2.2,
       "color": "#5a1f2e",
-      "labelTitle": "Help",
+      "labelTitle": "Navigation & Controls",
       "labelBadge": "doc"
     },
     {
@@ -115,14 +111,6 @@
       "radius": 2.2,
       "color": "#2f4f7a",
       "labelTitle": "Mathematical Terminology",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "meta_navigation",
-      "title": "Navigation",
-      "radius": 2.2,
-      "color": "#3f6a5a",
-      "labelTitle": "Navigation",
       "labelBadge": "doc"
     },
     {
