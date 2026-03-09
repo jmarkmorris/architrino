@@ -1,3 +1,38 @@
+## Insane in the Membrane. LOL - what was that song??? who did it??
+
+› this is getting insane. I can't even read and think about all of your response.  We need to regroup and rethink. This needs to be straightforward. preserve the context you need prior to compaction.
+
+
+• Agreed. The simple takeaway is:
+
+  - Do not let heading names control behavior.
+  - Do not let both markdown and scene JSON own hierarchy.
+  - If we support markdown trees, use one explicit rule:
+      - start level
+      - max navigable depth
+      - deeper headings stay inside the leaf view
+
+  That is the only model worth carrying forward.
+
+  Context to preserve before compaction:
+
+  - Crisis in Physics was converted to a Scene-Index with child scene files per ## section and all audits now pass.
+  - historical-context-and-missed-opportunities was set to one-column mode.
+  - philosophy-history top-level doc badges were normalized so only leaf reading scenes show doc.
+  - all philosophy-history markdown files now have --- before every ##.
+  - major-thinkers.md now starts with ## Overview and includes a per-thinker template.
+  - crisis-in-physics.md now has:
+      - ## Overview
+      - a per-crisis template
+      - peer ## sections including Progress vs. Time
+  - architecture discussion conclusion:
+      - current repo already has 3 structural layers: Scene-Index, Scene-Markdown-Split, Scene-Markdown-View
+      - split scenes already use both ## and ### in different places
+      - the clean future direction is a possible Scene-Markdown-Tree, but only with explicit structural config, not heading-text heuristics
+      - the only safe leaf rule is depth-based, not name-based
+
+  If you compact, the next step should be to define a very short proposal for markdown-tree behavior in plain terms, probably no more than 5 rules.
+
 ## Architecture of webapp
 
 I am sort of an architectural puritan every once in a while, because it makes sense to rebase for scalability in the long term. What we are talking about here is consuming exactly one md file and expanding it out into a tree for as many levels of `#` as are supported. We did this once before on the filesystem side and it got complicated. Now it is getting complicated inside the md file, although at least that is a single file.
