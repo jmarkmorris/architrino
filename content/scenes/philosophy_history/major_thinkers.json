@@ -3,7 +3,7 @@
   "scene": {
     "id": "major_thinkers",
     "title": "Major Thinkers",
-    "type": "Scene-Markdown-Split",
+    "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,
     "centerOn": "major_thinkers_overview",
@@ -13,11 +13,9 @@
     "source": {
       "type": "markdown",
       "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "split": {
-        "mode": "headings",
-        "headingLevel": 2,
-        "sectionDepth": 2,
-        "sectionPresentationType": "Scene-Markdown-View",
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 2,
         "overrides": {
           "overview": {
             "id": "major_thinkers_overview",

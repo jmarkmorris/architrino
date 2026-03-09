@@ -82,28 +82,66 @@ export class SceneRepository {
     const sceneType = sceneMeta?.type;
     const source = sceneMeta?.source ?? null;
     const split = source?.split ?? null;
+    const tree = source?.tree ?? null;
     const view = sceneMeta?.view ?? null;
+    const usesTypedTreeSource =
+      sceneType === "Scene-Markdown-Tree" &&
+      source?.type === "markdown" &&
+      typeof source.path === "string" &&
+      source.path.length > 0;
     const usesTypedSplitSource =
       sceneType === "Scene-Markdown-Split" &&
       source?.type === "markdown" &&
       typeof source.path === "string" &&
       source.path.length > 0;
-    return {
-      splitSourcePath: usesTypedSplitSource
-        ? source.path
-        : null,
-      splitSection: typeof split?.section === "string"
-        ? split.section
-        : typeof view?.section === "string"
-          ? view.section
-          : null,
-      splitHeadingLevel: typeof split?.headingLevel === "number"
+    const usesTypedMarkdownTreeLikeSource = usesTypedTreeSource || usesTypedSplitSource;
+    const configuredHeadingLevel = usesTypedTreeSource
+      ? typeof tree?.rootHeadingLevel === "number"
+        ? tree.rootHeadingLevel
+        : typeof tree?.headingLevel === "number"
+          ? tree.headingLevel
+          : typeof view?.headingLevel === "number"
+            ? view.headingLevel
+            : 2
+      : typeof split?.headingLevel === "number"
         ? split.headingLevel
         : typeof view?.headingLevel === "number"
           ? view.headingLevel
           : usesTypedSplitSource
             ? 2
-            : null,
+            : null;
+    const configuredMaxDepth = usesTypedTreeSource
+      ? typeof tree?.maxDepth === "number"
+        ? tree.maxDepth
+        : typeof view?.maxDepth === "number"
+          ? view.maxDepth
+          : 1
+      : typeof split?.maxDepth === "number"
+        ? split.maxDepth
+        : typeof split?.sectionDepth === "number"
+          ? split.sectionDepth
+          : typeof view?.sectionDepth === "number"
+            ? view.sectionDepth
+            : usesTypedSplitSource
+              ? 1
+              : null;
+    return {
+      splitSourcePath: usesTypedMarkdownTreeLikeSource
+        ? source.path
+        : null,
+      splitSection: usesTypedTreeSource
+        ? typeof tree?.section === "string"
+          ? tree.section
+          : typeof view?.section === "string"
+            ? view.section
+            : null
+        : typeof split?.section === "string"
+          ? split.section
+        : typeof view?.section === "string"
+          ? view.section
+          : null,
+      splitHeadingLevel: configuredHeadingLevel,
+      splitMaxDepth: configuredMaxDepth,
       splitColumns:
         view?.columns === 1 || view?.columns === 2
           ? view.columns
@@ -128,8 +166,19 @@ export class SceneRepository {
       splitPlainSectionPaths: [],
       splitOverrides: null,
       splitSectionOverrides:
-        split?.overrides && typeof split.overrides === "object"
-          ? split.overrides
+        usesTypedTreeSource
+          ? tree?.overrides && typeof tree.overrides === "object"
+            ? tree.overrides
+            : null
+          : split?.overrides && typeof split.overrides === "object"
+            ? split.overrides
+            : null,
+      splitTreeRootHeadingLevel: usesTypedTreeSource ? configuredHeadingLevel : null,
+      splitTreeConfiguredMaxDepth: usesTypedTreeSource ? configuredMaxDepth : null,
+      splitTreeMode: usesTypedTreeSource
+        ? "tree"
+        : usesTypedSplitSource
+          ? "split"
           : null,
     };
   }
@@ -250,6 +299,7 @@ export class SceneRepository {
       markdownSection: markdown.markdownSection,
       markdownColumns: markdown.markdownColumns,
       markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
+      markdownMaxDepth: obj.markdownMaxDepth ?? null,
       markdownAutoIndex: obj.markdownAutoIndex ?? null,
       markdownPlainSectionPaths: Array.isArray(obj.markdownPlainSectionPaths)
         ? obj.markdownPlainSectionPaths
@@ -537,7 +587,7 @@ export class SceneRepository {
     const sceneType = typeof sceneMeta.type === "string" ? sceneMeta.type : null;
     const rawSceneMarkdown = this.resolveMarkdownConfig(sceneMeta);
     const sceneMarkdown =
-      sceneType === "Scene-Markdown-Split"
+      sceneType === "Scene-Markdown-Split" || sceneType === "Scene-Markdown-Tree"
         ? {
             markdownPath: null,
             markdownSection: null,
@@ -598,6 +648,7 @@ export class SceneRepository {
       splitSourcePath: splitScene.splitSourcePath,
       splitSection: splitScene.splitSection,
       splitHeadingLevel: splitScene.splitHeadingLevel,
+      splitMaxDepth: splitScene.splitMaxDepth,
       splitIncludeExistingInLayout: splitScene.splitIncludeExistingInLayout,
       splitNodeRadius: splitScene.splitNodeRadius,
       splitRingRadius: splitScene.splitRingRadius,
@@ -615,6 +666,9 @@ export class SceneRepository {
       splitSectionDepth: splitScene.splitSectionDepth,
       splitOverrides: splitScene.splitOverrides,
       splitSectionOverrides: splitScene.splitSectionOverrides,
+      splitTreeRootHeadingLevel: splitScene.splitTreeRootHeadingLevel,
+      splitTreeConfiguredMaxDepth: splitScene.splitTreeConfiguredMaxDepth,
+      splitTreeMode: splitScene.splitTreeMode,
     };
     this.levelConfigs[scenePath] = config;
     this.sceneConfigCache.set(scenePath, config);

@@ -15,6 +15,7 @@ const ALLOWED_SCENE_TYPES = new Set([
   "Scene-Index",
   "Scene-Markdown-View",
   "Scene-Markdown-Split",
+  "Scene-Markdown-Tree",
   "Scene-Diagram",
   "Scene-Animation",
 ]);

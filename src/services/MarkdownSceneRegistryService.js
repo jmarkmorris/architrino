@@ -49,6 +49,8 @@ export function createMarkdownSceneRegistry(deps) {
       markdownColumns: nodeData?.markdownColumns ?? null,
       markdownHeadingLevel:
         typeof nodeData?.markdownHeadingLevel === "number" ? nodeData.markdownHeadingLevel : 2,
+      markdownMaxDepth:
+        typeof nodeData?.markdownMaxDepth === "number" ? nodeData.markdownMaxDepth : 1,
       markdownAutoIndex: nodeData?.markdownAutoIndex,
       markdownPlainSectionPaths: Array.isArray(nodeData?.markdownPlainSectionPaths)
         ? nodeData.markdownPlainSectionPaths
@@ -87,18 +89,20 @@ export function createMarkdownSceneRegistry(deps) {
     return `${markdownReaderPrefix}${markdownPath}::${encodeURIComponent(markdownSection)}`;
   }
 
-  function getMarkdownIndexSceneId(markdownPath, headingLevel) {
+  function getMarkdownIndexSceneId(markdownPath, headingLevel, maxDepth) {
     const levelToken = typeof headingLevel === "number" ? `::h${headingLevel}` : "";
-    return `${markdownIndexPrefix}${markdownPath}${levelToken}`;
+    const depthToken = typeof maxDepth === "number" ? `::d${maxDepth}` : "";
+    return `${markdownIndexPrefix}${markdownPath}${levelToken}${depthToken}`;
   }
 
-  function getMarkdownSectionIndexSceneId(markdownPath, markdownSection, headingLevel) {
+  function getMarkdownSectionIndexSceneId(markdownPath, markdownSection, headingLevel, maxDepth) {
     const sectionToken =
       typeof markdownSection === "string" && markdownSection.length > 0
         ? `::s${encodeURIComponent(markdownSection)}`
         : "";
     const levelToken = typeof headingLevel === "number" ? `::h${headingLevel}` : "";
-    return `${markdownIndexPrefix}${markdownPath}${sectionToken}${levelToken}`;
+    const depthToken = typeof maxDepth === "number" ? `::d${maxDepth}` : "";
+    return `${markdownIndexPrefix}${markdownPath}${sectionToken}${levelToken}${depthToken}`;
   }
 
   function getMarkdownDocSceneId(markdownPath) {
@@ -132,6 +136,7 @@ export function createMarkdownSceneRegistry(deps) {
       markdownSection,
       markdownColumns,
       markdownHeadingLevel: headingLevel,
+      markdownMaxDepth,
       markdownAutoIndex,
       markdownPlainSectionPaths,
       sceneName,
@@ -156,7 +161,7 @@ export function createMarkdownSceneRegistry(deps) {
         });
         return sceneId;
       }
-      const sceneId = getMarkdownIndexSceneId(markdownPath, headingLevel);
+      const sceneId = getMarkdownIndexSceneId(markdownPath, headingLevel, markdownMaxDepth);
       if (levelConfigs[sceneId]) {
         return sceneId;
       }
@@ -174,6 +179,7 @@ export function createMarkdownSceneRegistry(deps) {
         centerOn: null,
         splitSourcePath: markdownPath,
         splitHeadingLevel: headingLevel,
+        splitMaxDepth: markdownMaxDepth,
         splitIncludeExistingInLayout: false,
         splitPlainSectionPaths: markdownPlainSectionPaths,
       };
@@ -181,7 +187,12 @@ export function createMarkdownSceneRegistry(deps) {
     }
 
     if (markdownAutoIndex === true) {
-      const sceneId = getMarkdownSectionIndexSceneId(markdownPath, markdownSection, headingLevel);
+      const sceneId = getMarkdownSectionIndexSceneId(
+        markdownPath,
+        markdownSection,
+        headingLevel,
+        markdownMaxDepth
+      );
       if (levelConfigs[sceneId]) {
         return sceneId;
       }
@@ -200,6 +211,7 @@ export function createMarkdownSceneRegistry(deps) {
         splitSourcePath: markdownPath,
         splitSection: markdownSection,
         splitHeadingLevel: headingLevel,
+        splitMaxDepth: markdownMaxDepth,
         splitIncludeExistingInLayout: false,
         splitPlainSectionPaths: markdownPlainSectionPaths,
       };
@@ -274,11 +286,18 @@ export function createMarkdownSceneRegistry(deps) {
       let markdownPath = raw;
       let markdownSection = null;
       let headingLevel = 2;
+      let maxDepth = 1;
+      const depthTokenIndex = raw.lastIndexOf("::d");
+      const headingTokenIndex =
+        depthTokenIndex > -1 ? raw.lastIndexOf("::h", depthTokenIndex) : raw.lastIndexOf("::h");
       const sectionTokenIndex = raw.lastIndexOf("::s");
-      const headingTokenIndex = raw.lastIndexOf("::h");
-      if (sectionTokenIndex > -1 && (headingTokenIndex === -1 || sectionTokenIndex < headingTokenIndex)) {
+      if (
+        sectionTokenIndex > -1 &&
+        (headingTokenIndex === -1 || sectionTokenIndex < headingTokenIndex)
+      ) {
         const sectionStart = sectionTokenIndex + 3;
-        const sectionEnd = headingTokenIndex > -1 ? headingTokenIndex : raw.length;
+        const sectionEnd =
+          headingTokenIndex > -1 ? headingTokenIndex : depthTokenIndex > -1 ? depthTokenIndex : raw.length;
         const maybePath = raw.slice(0, sectionTokenIndex);
         const encodedSection = raw.slice(sectionStart, sectionEnd);
         if (maybePath && encodedSection) {
@@ -287,11 +306,13 @@ export function createMarkdownSceneRegistry(deps) {
         }
       }
       if (headingTokenIndex > -1) {
-        const pathEnd = sectionTokenIndex > -1 && sectionTokenIndex < headingTokenIndex
-          ? sectionTokenIndex
-          : headingTokenIndex;
+        const headingEnd = depthTokenIndex > -1 ? depthTokenIndex : raw.length;
+        const pathEnd =
+          sectionTokenIndex > -1 && sectionTokenIndex < headingTokenIndex
+            ? sectionTokenIndex
+            : headingTokenIndex;
         const maybePath = raw.slice(0, pathEnd);
-        const maybeLevel = Number(raw.slice(headingTokenIndex + 3));
+        const maybeLevel = Number(raw.slice(headingTokenIndex + 3, headingEnd));
         if (maybePath && Number.isFinite(maybeLevel)) {
           if (!markdownSection) {
             markdownPath = maybePath;
@@ -299,11 +320,27 @@ export function createMarkdownSceneRegistry(deps) {
           headingLevel = maybeLevel;
         }
       }
+      if (depthTokenIndex > -1) {
+        const maybePath =
+          headingTokenIndex > -1
+            ? raw.slice(0, sectionTokenIndex > -1 && sectionTokenIndex < headingTokenIndex
+              ? sectionTokenIndex
+              : headingTokenIndex)
+            : raw.slice(0, depthTokenIndex);
+        const maybeDepth = Number(raw.slice(depthTokenIndex + 3));
+        if (maybePath && Number.isFinite(maybeDepth)) {
+          if (!markdownSection && headingTokenIndex === -1) {
+            markdownPath = maybePath;
+          }
+          maxDepth = maybeDepth;
+        }
+      }
       const sceneName = markdownSection || (await resolveRuntimeMarkdownTitle(markdownPath));
       return ensureMarkdownReaderScene({
         markdownPath,
         markdownSection,
         markdownHeadingLevel: headingLevel,
+        markdownMaxDepth: maxDepth,
         markdownAutoIndex: true,
         name: sceneName,
       });
