@@ -651,7 +651,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Legacy shift**: 't Hooft's program is **vindicated** and **extended** with explicit microphysical ontology. His cellular automaton is replaced by **architrino network**.
 
-## Information/Computation + Philosophy of Science
+## Philosophy of Science
 
 ### **Alfred North Whitehead (1861–1947)**
 **Core belief**: 
@@ -772,6 +772,8 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 **Legacy shift**: Popperism is **vindicated** and **operationalized** in our methodology. Popper becomes the **patron saint** of the architrino project.
 
 ---
+
+## Information/Computation
 
 ### **John Archibald Wheeler (1911–2008) — "It from Bit"**
 **Core belief**: 

@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 413,
-      "edges": 1261,
-      "scenes": 281,
+      "nodes": 416,
+      "edges": 1266,
+      "scenes": 283,
       "markdownIndexes": 16,
-      "markdownDocs": 116,
+      "markdownDocs": 117,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1169,12 +1169,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "major_thinkers_info_computation_science",
-      "name": "Information + Philosophy of Science",
-      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "major_thinkers_qft_standard_model",
       "name": "Standard Model Architecture",
       "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
@@ -1835,6 +1829,24 @@
       "nodeType": "scene"
     },
     {
+      "id": "information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/information_computation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers_information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/major_thinkers_information_computation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "major_thinkers_philosophy_of_science",
+      "name": "Philosophy of Science",
+      "path": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about.md",
       "name": "About",
       "path": "content/markdown/aaa/archie/about.md",
@@ -2168,6 +2180,12 @@
       "id": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "name": "Historical Context and Missed Opportunities",
       "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/information-computation.md",
+      "name": "Information / Computation",
+      "path": "content/markdown/aaa/philosophy-history/information-computation.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4315,6 +4333,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/information_computation.json",
+      "nodeType": "scene",
+      "id": "information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/information_computation.json",
+      "searchTarget": "content/scenes/philosophy_history/information_computation.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "nodeType": "scene",
       "id": "philosophy_history__lorentz_ether_comparison",
@@ -4342,12 +4369,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_information_computation.json",
       "nodeType": "scene",
-      "id": "major_thinkers_info_computation_science",
-      "name": "Information + Philosophy of Science",
-      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "id": "major_thinkers_information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/major_thinkers_information_computation.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_information_computation.json",
       "implicit": false
     },
     {
@@ -4357,6 +4384,15 @@
       "name": "Introduction",
       "path": "content/scenes/philosophy_history/major_thinkers_intro.json",
       "searchTarget": "content/scenes/philosophy_history/major_thinkers_intro.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
+      "nodeType": "scene",
+      "id": "major_thinkers_philosophy_of_science",
+      "name": "Philosophy of Science",
+      "path": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
+      "searchTarget": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
       "implicit": false
     },
     {
@@ -5675,6 +5711,15 @@
       "name": "Historical Context and Missed Opportunities",
       "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/information-computation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/information-computation.md",
+      "name": "Information / Computation",
+      "path": "content/markdown/aaa/philosophy-history/information-computation.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/information-computation.md",
       "implicit": false
     },
     {
@@ -9409,14 +9454,14 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
@@ -9424,6 +9469,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
@@ -9451,7 +9503,7 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -9466,6 +9518,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/information_computation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -9493,28 +9552,28 @@
       "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -10469,6 +10528,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/information_computation.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/information-computation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/information_computation.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "edgeType": "markdown_doc",
@@ -10490,10 +10556,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_information_computation.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
+      "source": "content/scenes/philosophy_history/major_thinkers_information_computation.json",
       "field": "scene.source.path"
     },
     {
@@ -10501,6 +10567,13 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/major_thinkers_intro.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
       "field": "scene.source.path"
     },
     {
@@ -11290,6 +11363,13 @@
     {
       "from": "markdown_index:content/markdown/aaa/philosophy-history",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "edgeType": "markdown_index",
+      "source": "content/markdown/markdown_index.json",
+      "field": "directory_contains"
+    },
+    {
+      "from": "markdown_index:content/markdown/aaa/philosophy-history",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/information-computation.md",
       "edgeType": "markdown_index",
       "source": "content/markdown/markdown_index.json",
       "field": "directory_contains"

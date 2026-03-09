@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "information_computation",
+    "title": "Information / Computation",
+    "type": "Scene-Markdown-Split",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "information_computation_overview",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/information-computation.md",
+      "split": {
+        "mode": "headings",
+        "headingLevel": 2,
+        "sectionDepth": 1,
+        "sectionPresentationType": "Scene-Markdown-View",
+        "overrides": {
+          "overview": {
+            "id": "information_computation_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#2f4f7a"
+          },
+          "information as ontology": {
+            "id": "information_computation_information_ontology",
+            "labelTitle": "Information as Ontology",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          },
+          "computation as ontology": {
+            "id": "information_computation_computation_ontology",
+            "labelTitle": "Computation as Ontology",
+            "labelBadge": "doc",
+            "color": "#5a3f73"
+          },
+          "digital physics and discrete substrate programs": {
+            "id": "information_computation_digital_physics",
+            "labelTitle": "Digital Physics",
+            "labelBadge": "doc",
+            "color": "#243d8f"
+          },
+          "observer encoding and representation": {
+            "id": "information_computation_observer_encoding",
+            "labelTitle": "Observer / Encoding",
+            "labelBadge": "doc",
+            "color": "#6a3c3c"
+          },
+          "simulation modeling and computability limits": {
+            "id": "information_computation_simulation_limits",
+            "labelTitle": "Simulation / Computability",
+            "labelBadge": "doc",
+            "color": "#7a4a1f"
+          },
+          "mathbb a mathbb a mathbb a position on information and computation": {
+            "id": "information_computation_aaa_position",
+            "labelTitle": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Position",
+            "labelBadge": "doc",
+            "color": "#3f6a5a"
+          }
+        }
+      }
+    }
+  },
+  "objects": []
+}

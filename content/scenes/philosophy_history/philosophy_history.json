@@ -35,6 +35,10 @@
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
       {
+        "nodeId": "information_computation",
+        "scenePath": "content/scenes/philosophy_history/information_computation.json"
+      },
+      {
         "nodeId": "philosophy_of_science",
         "scenePath": "content/scenes/philosophy_history/philosophy_of_science.json"
       },
@@ -115,6 +119,17 @@
         "type": "fixed"
       },
       "labelTitle": "Major Thinkers"
+    },
+    {
+      "id": "information_computation",
+      "title": "Information / Computation",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Information / Computation",
+      "labelBadge": "doc"
     },
     {
       "id": "philosophy_of_science",

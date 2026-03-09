@@ -31,8 +31,12 @@
         "scenePath": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
       },
       {
-        "nodeId": "major_thinkers_info_computation_science",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
+        "nodeId": "major_thinkers_philosophy_of_science",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json"
+      },
+      {
+        "nodeId": "major_thinkers_information_computation",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers_information_computation.json"
       },
       {
         "nodeId": "major_thinkers_summary_table",
@@ -82,11 +86,18 @@
       "labelTitle": "Standard Model Architecture"
     },
     {
-      "id": "major_thinkers_info_computation_science",
-      "label": "Information + Philosophy of Science",
+      "id": "major_thinkers_philosophy_of_science",
+      "label": "Philosophy of Science",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "labelTitle": "Information + Philosophy of Science"
+      "labelTitle": "Philosophy of Science"
+    },
+    {
+      "id": "major_thinkers_information_computation",
+      "label": "Information / Computation",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "labelTitle": "Information / Computation"
     },
     {
       "id": "major_thinkers_summary_table",

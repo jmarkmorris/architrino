@@ -851,11 +851,6 @@
       "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
     },
     {
-      "id": "major_thinkers_info_computation_science",
-      "name": "Information + Philosophy of Science",
-      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
-    },
-    {
       "id": "major_thinkers_qft_standard_model",
       "name": "Standard Model Architecture",
       "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
@@ -1404,6 +1399,21 @@
       "id": "philosophy_of_science",
       "name": "Philosophy of Science",
       "path": "content/scenes/philosophy_history/philosophy_of_science.json"
+    },
+    {
+      "id": "information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/information_computation.json"
+    },
+    {
+      "id": "major_thinkers_information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/major_thinkers_information_computation.json"
+    },
+    {
+      "id": "major_thinkers_philosophy_of_science",
+      "name": "Philosophy of Science",
+      "path": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json"
     }
   ]
 }
