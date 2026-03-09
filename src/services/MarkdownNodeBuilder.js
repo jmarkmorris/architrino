@@ -381,6 +381,14 @@ export function createMarkdownNodeBuilder(deps) {
             node.markdownColumns = scene.splitColumns;
           }
         }
+        if (
+          typeof node.labelBadge !== "string" &&
+          typeof node.markdownPath === "string" &&
+          node.markdownPath.trim().length > 0 &&
+          node.markdownAutoIndex !== true
+        ) {
+          node.labelBadge = "doc";
+        }
         return node;
       })
       .filter(Boolean);
