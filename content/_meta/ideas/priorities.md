@@ -1,3 +1,37 @@
+## last call
+
+okay. I committed that. We have more sections to review template and then templatize, right? which ones?
+
+
+• I’ll quickly scan the philosophy-history markdown files for remaining template stubs so we can list exactly which sections are next.
+
+• Explored
+  └ Search needs a standard coverage template|For each .* should|default prose structure in philosophy-history
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• Yes. After major-thinkers, the explicit remaining template-driven sections are:
+
+  1. philosophy-of-science.md
+  2. crisis-in-physics.md
+  3. information-computation.md
+
+  Those three already declare “needs a standard coverage template” and list field/prose requirements, so they are the next direct templatization targets.
+
+
+› is that it?
+
+
+• For explicit, declared template frameworks in philosophy-history, yes, that’s it.
+
+  If you want broader standardization beyond declared templates, we can also apply the same style to:
+
+  - theory-differentials.md
+  - theory-mapping.md
+  - unknowns-paradoxes.md
+
+  But those are optional unless you want uniformity across the whole sphere.
+
 ## meta meta
 
 Hi, I think my prior session which focused on ontology went off the rails quite a bit. I will paste the summary below. Anyway I am attempting to implement a webapp with a UI that navigates a branching network
