@@ -1,3 +1,121 @@
+## meta meta
+
+Hi, I think my prior session which focused on ontology went off the rails quite a bit. I will paste the summary below. Anyway I am attempting to implement a webapp with a UI that navigates a branching network
+  from the current node. We seem to be circling around and around between definition of structure in md files or json files or directories or some combination. This is becoming a barrier to development and we
+  need a best practice that allows the best of all worlds.
+
+  › this is getting insane. I can't even read and think about all of your response.  We need to regroup and rethink. This needs to be straightforward. preserve the context you need prior to compaction.
+
+
+  • Agreed. The simple takeaway is:
+
+    - Do not let heading names control behavior.
+    - Do not let both markdown and scene JSON own hierarchy.
+    - If we support markdown trees, use one explicit rule:
+        - start level
+        - max navigable depth
+        - deeper headings stay inside the leaf view
+
+    That is the only model worth carrying forward.
+
+    Context to preserve before compaction:
+
+    - Crisis in Physics was converted to a Scene-Index with child scene files per ## section and all audits now pass.
+    - historical-context-and-missed-opportunities was set to one-column mode.
+    - philosophy-history top-level doc badges were normalized so only leaf reading scenes show doc.
+    - all philosophy-history markdown files now have --- before every ##.
+    - major-thinkers.md now starts with ## Overview and includes a per-thinker template.
+    - crisis-in-physics.md now has:
+        - ## Overview
+        - a per-crisis template
+        - peer ## sections including Progress vs. Time
+    - architecture discussion conclusion:
+        - current repo already has 3 structural layers: Scene-Index, Scene-Markdown-Split, Scene-Markdown-View
+        - split scenes already use both ## and ### in different places
+        - the clean future direction is a possible Scene-Markdown-Tree, but only with explicit structural config, not heading-text heuristics
+        - the only safe leaf rule is depth-based, not name-based
+
+    If you compact, the next step should be to define a very short proposal for markdown-tree behavior in plain terms, probably no more than 5 rules.
+
+
+• I’m going to inspect the current scene taxonomy and a few representative scene/content files so the recommendation matches the repo you actually have, not an abstract pattern.
+
+• Explored
+  └ Read scene-taxonomy.md
+    Search Scene-Markdown|Scene-Index|Markdown-Tree|Bounded generation|heading in scene-taxonomy.md
+    Read theory_differentials.json, philosophy_history.json, crisis_in_physics.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• I checked the current spec and scenes. The repo already has the right primitives; the problem is ownership.
+
+  Recommendation
+
+  Use one clean ownership split:
+
+  - Markdown owns the intra-document tree.
+  - Scene JSON owns the cross-document graph and UI overrides.
+  - Directories own nothing except storage.
+
+  That gives you the best of all worlds without ambiguity.
+
+  Straightforward model
+
+  Keep only these roles:
+
+  - Scene-Index
+      - joins distinct conceptual objects
+      - example: philosophy_history.json, crisis_in_physics.json
+  - Scene-Markdown-Tree
+      - one markdown file expands into a bounded node tree
+      - this is the missing clean abstraction
+  - Scene-Markdown-View
+      - reads one whole doc or one resolved node
+
+  You can keep Scene-Markdown-Split as the current implementation, but conceptually it should evolve into Scene-Markdown-Tree.
+
+  Five rules
+
+  1. Filesystem never defines hierarchy.
+  2. One markdown file may define a local tree, but only inside one declared tree scene.
+  3. Tree behavior is structural only: start heading level + max navigable depth.
+  4. Anything deeper stays inside the leaf view as normal markdown.
+  5. JSON may override labels, colors, layout, and entry behavior, but not re-declare the markdown section hierarchy.
+
+  That is the simplest stable rule set.
+
+  What this means in practice
+
+  For a taxonomy doc like theory-differentials.md:
+
+  - # = document title
+  - ## = first node level
+  - ### = second node level only if maxDepth >= 2
+  - ####+ = ordinary content unless a deeper depth is explicitly configured
+
+  So leafhood is depth-based, not name-based.
+
+  Why this is the right compromise
+
+  - Authors edit content in markdown.
+  - UI still gets explicit scene control where it matters.
+  - You avoid the current duplication where markdown and JSON both partly define the same structure.
+  - You do not need directory walking or heading-name heuristics.
+
+  Fit with your current repo
+
+  This already matches the spirit of scene-taxonomy.md:
+
+  - it preserves Scene-Index as the only scene-of-scenes type
+  - it keeps generation bounded to one declared markdown source
+  - it avoids runtime filesystem discovery
+
+  The only thing missing is naming and formalizing the markdown-tree case.
+
+  If you want, the next step should be very small: I can draft a short addition to scene-taxonomy.md defining Scene-Markdown-Tree in under 30 lines.
+
+
+
 ## Insane in the Membrane. LOL - what was that song??? who did it??
 
 › this is getting insane. I can't even read and think about all of your response.  We need to regroup and rethink. This needs to be straightforward. preserve the context you need prior to compaction.

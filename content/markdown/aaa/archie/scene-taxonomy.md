@@ -40,6 +40,16 @@ A scene may present markdown, diagrams, animation, or future media types. Those 
 
 So the taxonomy should emphasize scene role and scene type rather than implementation language or content storage format.
 
+That said, markdown may still define a local document tree when a declared scene type explicitly uses it.
+
+The clean ownership split is:
+
+- markdown owns intra-document structure,
+- scene JSON owns cross-document graph structure and UI overrides,
+- directories own nothing except storage.
+
+This avoids the current failure mode where markdown and scene JSON both try to own the same hierarchy.
+
 ### 3. There is one scene-of-scenes type: Scene-Index
 
 A scene whose main job is to organize other scenes is a `Scene-Index`.
@@ -60,6 +70,12 @@ Presentation scenes are scenes whose primary job is to present or interact with 
 A presentation scene may still link to other scenes through hotspots, links, controls, or embedded navigation. What makes it a presentation scene is its primary role, not whether it has outgoing connections.
 
 The taxonomy should support multiple presentation-scene types, and more can be added as the webapp develops.
+
+For content-heavy knowledge branches, the preferred presentation pattern is:
+
+- one markdown file as the source for one conceptual object,
+- one declared tree or split scene that expands that file into navigable nodes,
+- one document-view scene type for reading a resolved node.
 
 ### 5. Hotspots remain part of the ontology, but are deferred in implementation
 
@@ -147,6 +163,73 @@ This is distinct from `Scene-Index`:
 - `Scene-Index` organizes scenes,
 - `Scene-Markdown-Split` organizes sections derived from one source document.
 
+`Scene-Markdown-Split` should be understood as the shallow special case of a more general markdown-tree pattern. In practice, a split scene is a markdown-tree scene with one navigable heading level.
+
+### Scene-Markdown-Tree
+
+`Scene-Markdown-Tree` takes one declared markdown document and expands it into a bounded hierarchy of generated nodes.
+
+Responsibilities:
+
+- parse one declared markdown source,
+- derive a local node tree from heading structure,
+- present those generated nodes as a navigable scene,
+- allow deeper headings to remain ordinary markdown inside a leaf node view.
+
+Constraints:
+
+- it operates on exactly one declared markdown source,
+- it does not walk directories,
+- it does not infer hierarchy from heading names,
+- it uses explicit structural configuration rather than lexical heuristics,
+- generated nodes remain local products of the declared tree scene rather than first-class authored structural scenes.
+
+Design rule:
+
+- markdown owns the local tree inside that one document,
+- scene JSON may override labels, colors, layout, and entry behavior,
+- scene JSON should not redundantly re-declare the markdown section hierarchy.
+
+Minimal tree configuration:
+
+- `rootHeadingLevel`: first heading level that becomes navigable,
+- `maxDepth`: number of heading levels that become navigable,
+- headings deeper than the navigable range remain ordinary markdown inside the leaf view.
+
+This makes leafhood depth-based rather than name-based.
+
+### When a markdown tree stops and becomes a layered document
+
+The stopping rule should be explicit and simple.
+
+A markdown file should stop auto-generating navigable nodes at the configured `maxDepth`. Everything deeper becomes ordinary layered document structure inside the leaf view.
+
+That cutoff is not determined by heading names. It is determined by document role.
+
+Use auto-generated navigation only while the headings are functioning as peer conceptual navigation nodes.
+
+Stop recursion when the next heading level is primarily serving document-internal exposition such as:
+
+- derivation steps,
+- proofs,
+- examples,
+- objections and replies,
+- evidence blocks,
+- implementation notes,
+- local subsections needed for reading rather than navigation.
+
+So the decision rule is:
+
+- if a heading level is part of the conceptual navigation tree, it may become a generated node level,
+- if a heading level is part of reading structure within one concept, it should remain inside the document view.
+
+This means a markdown file can be both:
+
+- a bounded auto-scene for its upper conceptual levels,
+- and a layered document for everything below that boundary.
+
+It should not become an auto-scene merely because it has many headings.
+
 ### Scene-Diagram
 
 `Scene-Diagram` is a presentation scene for active diagrams.
@@ -198,13 +281,15 @@ That means:
 
 A runtime may still transform declared data, but it should not invent scene structure by discovering files on its own.
 
+For markdown-tree scenes, the authored declaration is the tree scene itself, not every generated node. Generated nodes remain bounded products of one declared source.
+
 ### Layout-driven presentation
 
 Layout is a layout concern, not a taxonomy concern.
 
 For this ontology:
 
-- `Scene-Index` and `Scene-Markdown-Split` both use ring-based display layouts,
+- `Scene-Index`, `Scene-Markdown-Split`, and `Scene-Markdown-Tree` may all use ring-based display layouts,
 - those layouts should compute placement and sizing automatically,
 - authored hints may adjust layout slots,
 - the layout should not require authored radius values as a core design assumption.
@@ -233,7 +318,7 @@ That means:
 
 - top-level scene IDs are authored and reviewed,
 - child references point to those explicit scene IDs,
-- generated section-node IDs are derived deterministically from declared source data,
+- generated markdown-node IDs are derived deterministically from declared source data,
 - runtime layout resolution does not create new identity classes.
 
 The model should have one clear answer to the question: where does this scene or node get its identity?
@@ -245,6 +330,7 @@ Runtime generation is allowed only as behavior already declared by a scene type.
 Examples:
 
 - allowed: `Scene-Markdown-Split` generating section nodes from one declared markdown source,
+- allowed: `Scene-Markdown-Tree` generating a bounded node hierarchy from one declared markdown source,
 - not allowed: runtime inventing new scenes by walking a directory or reconstructing scene families from ID prefixes.
 
 This keeps generation local, inspectable, and bounded.
@@ -256,7 +342,7 @@ The model should make it obvious which structures are authored and which are gen
 That distinction should be visible in both schema design and implementation:
 
 - authored scenes are first-class declarations,
-- generated section nodes are runtime products of one declared scene,
+- generated markdown nodes are runtime products of one declared scene,
 - generated nodes do not silently become structural children in the global scene hierarchy.
 
 ---
@@ -279,6 +365,14 @@ For this system, the better long-term practice is:
 - layout-based presentation,
 - media-aware presentation scenes,
 - no hidden provenance.
+
+For the current markdown-heavy knowledge branches, the practical best practice is:
+
+- `Scene-Index` owns the cross-document graph,
+- `Scene-Markdown-Tree` owns the bounded local tree for one document,
+- `Scene-Markdown-View` renders the resolved document or node,
+- directories do not contribute hierarchy,
+- heading names do not control recursion.
 
 That makes the model easier to teach, debug, and extend as the webapp gains more scene types.
 
@@ -308,7 +402,7 @@ Every scene should have a small common base.
 Suggested base fields:
 
 - `id`: stable scene identifier
-- `type`: canonical scene-type discriminator such as `Scene-Index`, `Scene-Markdown-View`, `Scene-Markdown-Split`, `Scene-Diagram`, `Scene-Animation`
+- `type`: canonical scene-type discriminator such as `Scene-Index`, `Scene-Markdown-View`, `Scene-Markdown-Split`, `Scene-Markdown-Tree`, `Scene-Diagram`, `Scene-Animation`
 - `title`: primary display title
 - `subtitle`: optional secondary label
 - `summary`: optional short description
@@ -414,7 +508,7 @@ Design direction:
 - it may still expose links or hotspots,
 - markdown-specific settings belong here rather than in the base scene schema.
 
-`Scene-Markdown-View` and `Scene-Markdown-Split` should remain separate scene types. They may share the same source medium, but they differ in primary behavior: document presentation versus generated section navigation.
+`Scene-Markdown-View` should remain separate from both `Scene-Markdown-Split` and `Scene-Markdown-Tree`. They may share the same source medium, but they differ in primary behavior: document presentation versus generated markdown navigation.
 
 ### 6. Scene-Markdown-Split
 
@@ -439,11 +533,54 @@ Design direction:
 - this scene type parses one declared markdown source,
 - it may generate section nodes from that declared source,
 - it should not discover new files by walking directories,
-- section generation is a scene behavior, not a taxonomy root.
+- section generation is a scene behavior, not a taxonomy root,
+- it should be treated as the shallow one-level special case of `Scene-Markdown-Tree`.
 
 Generated section nodes should use deterministic derived IDs that remain stable across rebuilds as long as the source path and section heading key remain unchanged.
 
 The initial implementation should treat generated section nodes as lightweight generated nodes rather than full standalone scenes, while still giving them stable derived IDs.
+
+### 6A. Scene-Markdown-Tree
+
+Suggested fields:
+
+- `type: Scene-Markdown-Tree`
+- `source.type: markdown`
+- `source.path`: markdown file path
+- `source.tree`: tree configuration
+- `layout`: optional ring layout or other navigation layout
+
+Suggested tree configuration:
+
+- `rootHeadingLevel`: first heading level that becomes navigable
+- `maxDepth`: maximum number of navigable heading levels
+- `includeIntro`: optional handling for pre-heading content
+- `nodePresentationType`: optional scene type used for generated nodes
+- `overrides`: optional per-node label or visual overrides keyed by heading path
+
+Design direction:
+
+- this scene type parses one declared markdown source,
+- it derives a bounded hierarchy from heading structure,
+- it should not infer recursion from heading names such as `Overview` or `Introduction`,
+- headings deeper than the navigable range remain ordinary markdown inside the leaf node view,
+- generated node hierarchy is local to the tree scene and does not become authored scene hierarchy.
+
+Recommended default for taxonomy-style documents:
+
+- `rootHeadingLevel: 2`
+- `maxDepth: 1`
+
+That corresponds to:
+
+- `##` defines peer navigable nodes,
+- deeper headings remain in-node document structure unless a greater depth is explicitly configured.
+
+Recommended judgment:
+
+- use `Scene-Markdown-View` when the document is primarily continuous exposition even if it has many headings,
+- use `Scene-Markdown-Split` when only one heading level should become peer nodes,
+- use `Scene-Markdown-Tree` when more than one heading level is genuinely part of the conceptual navigation tree.
 
 ### 7. Scene-Diagram
 
@@ -649,7 +786,40 @@ These are illustrative examples for ontology review. They are not final implemen
 }
 ```
 
-### 3. Scene-Markdown-Split example
+### 3. Scene-Markdown-Tree example
+
+```json
+{
+  "id": "philosophy_of_science_tree",
+  "type": "Scene-Markdown-Tree",
+  "title": "Philosophy of Science",
+  "source": {
+    "type": "markdown",
+    "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+    "tree": {
+      "rootHeadingLevel": 2,
+      "maxDepth": 1,
+      "includeIntro": false,
+      "nodePresentationType": "Scene-Markdown-View"
+    }
+  },
+  "layout": {
+    "type": "rings",
+    "sizing": {
+      "mode": "auto"
+    },
+    "placement": {
+      "mode": "auto",
+      "centerPolicy": "allow"
+    },
+    "slotPolicy": {
+      "mode": "best-fit"
+    }
+  }
+}
+```
+
+### 4. Scene-Markdown-Split example
 
 ```json
 {
@@ -683,7 +853,7 @@ These are illustrative examples for ontology review. They are not final implemen
 }
 ```
 
-### 4. Presentation-scene example with hotspots and links
+### 5. Presentation-scene example with hotspots and links
 
 ```json
 {
