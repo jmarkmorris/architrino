@@ -2,7 +2,7 @@
 
 ---
 
-## Scope
+## Overview
 
 This chapter asks a counterfactual question:
 
@@ -16,11 +16,7 @@ Here, a "near miss" means all three conditions were present:
 
 The point is not to claim historical error across the board. Most "misses" were productive choices for their time. The claim is narrower: those choices also occluded specific lines that now matter for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
----
-
-## Minimal $\mathbb{A}\mathbb{A}\mathbb{A}$ Lens
-
-The lens used in this chapter is:
+The minimal lens used in this chapter is:
 
 - Substrate kinematics: $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with exact global time form $dt$.
 - Matter and "vacuum" share constituents (assemblies in a Noether-sea-like medium), not two disjoint ontologies.
@@ -28,6 +24,42 @@ The lens used in this chapter is:
 - Deterministic microdynamics can yield multistability and attractor-basin outcome sensitivity.
 
 ---
+
+### Historical-Episode Template (Unified)
+
+Use this template for every detailed historical episode section so each case is evaluated with the same structure.
+
+- **Episode**: the full name of the historical near-miss or lock-in event.
+- **Short Name**: concise label for scene and cross-reference usage.
+- **Period**: time interval and dominant research context.
+- **Near-Miss Thesis**: the specific $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent opening that existed.
+- **What Physics Already Had**: empirical/formal assets available at that time.
+- **What Still Works**: predictive/computational achievements that remain valid.
+- **Narrative Lock-In**: the interpretation that became dominant.
+- **What Was Occluded**: the substrate-first path that was deprioritized.
+- **Why The Lock-In Was Rational Then**: local methodological reasons the field chose that path.
+- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether the episode is directly supportive, partially suggestive, or mostly cautionary.
+- **Transition Relevance**: whether this episode justifies ontological replacement during the transition period.
+- **Long-Term Relevance**: whether the lesson is permanent process guidance or eventually superseded.
+- **What Would Count As Recovery**: the concrete modern closure target that reopens the missed path.
+
+Default prose flow for each episode section:
+
+1. **Overview**: compact statement with `Episode`, `Short Name`, and `Period`.
+2. **Where The Opening Appeared**: `Near-Miss Thesis` plus `What Physics Already Had`.
+3. **What Current Physics Still Gets Right**: preserved strengths from `What Still Works`.
+4. **Where Interpretation Locked In**: `Narrative Lock-In` and why it dominated.
+5. **What Was Left Unfinished**: `What Was Occluded` and the unresolved residue.
+6. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
+7. **Recovery Target**: `Long-Term Relevance` plus `What Would Count As Recovery`.
+
+Template conformance test protocol for each episode section:
+
+1. Confirm all template fields are explicitly addressed in prose.
+2. Confirm all seven prose-flow parts are present in order.
+3. Confirm `What Still Works` preserves accepted empirical success, not strawman failure.
+4. Confirm `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ is classified as direct, partial, cautionary, or open.
+5. Confirm a concrete closure criterion is stated under `What Would Count As Recovery`.
 
 ## Timeline of Near Misses
 
@@ -48,9 +80,7 @@ The lens used in this chapter is:
 
 ---
 
-## High-Value Episodes in Detail
-
-### 1. Lorentz Before Einstein: The Almost-Substrate Moment
+## Lorentz Before Einstein: The Almost-Substrate Moment
 
 By 1904, physics had:
 
@@ -66,7 +96,7 @@ This is the closest pre-quantum near miss to a $\mathbb{A}\mathbb{A}\mathbb{A}$ 
 
 What won instead was conceptual economy: remove unobservable substrate commitments. That choice was mathematically elegant and operationally powerful, but it closed the main door to a medium-first ontology for a century.
 
-### 2. Geometrization After 1915: Effective Description Promoted to Ontology
+## Geometrization After 1915: Effective Description Promoted to Ontology
 
 GR solved real problems and predicted new effects with high accuracy. The missed opportunity was not in rejecting GR predictions, but in interpreting what GR variables represent.
 
@@ -78,7 +108,7 @@ A $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent move would have been:
 
 Instead, the dominant reading fused predictive success with ontological finality: curved spacetime became the primitive rather than the emergent.
 
-### 3. Copenhagen Consolidation: Deterministic Multistability Lost to Epistemic Minimalism
+## Copenhagen Consolidation: Deterministic Multistability Lost to Epistemic Minimalism
 
 Early quantum history contained deterministic lines (de Broglie, later Bohmian reconstruction). The $\mathbb{A}\mathbb{A}\mathbb{A}$-relevant near miss was the treatment of outcome selection.
 
@@ -90,7 +120,7 @@ In a substrate model:
 
 The winning narrative prioritized operational probabilities and instrument-level rules. That was efficient for calculations, but it marginalized deterministic basin-selection programs that align with $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-### 4. Renormalization Era: Warning Signals Reframed as Technique
+## Renormalization Era: Warning Signals Reframed as Technique
 
 UV divergences and vacuum-energy pathologies can be read as evidence that continuum mode-counting exceeds physical ontology. The missed opportunity was to treat divergence structure as a direct clue for finite microstructure.
 
@@ -102,7 +132,7 @@ The field chose a different route:
 
 This produced extraordinary success, but it also delayed systematic attempts to derive field behavior from discrete assembly-like substrates.
 
-### 5. Precision Cosmology: Effective Parameters Hardening into Story
+## Precision Cosmology: Effective Parameters Hardening into Story
 
 Dark matter and dark energy began as phenomenological placeholders. The near miss was that placeholder language became narrative finality too early.
 

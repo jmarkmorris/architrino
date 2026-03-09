@@ -112,11 +112,6 @@
         "periodic_table": "Periodic Table"
       }
     },
-    "content/scenes/philosophy_history/out_of_the_ashes.json": {
-      "sceneId": "out_of_the_ashes",
-      "sceneName": "Out of the Ashes",
-      "objects": {}
-    },
     "content/scenes/philosophy_history/philosophy_history.json": {
       "sceneId": "philosophy_history",
       "sceneName": "Philosophy-History",
@@ -125,7 +120,6 @@
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
         "lorentz_ether_comparison": "Lorentz Ether Comparison",
         "major_thinkers": "Major Thinkers",
-        "out_of_the_ashes_scene": "Out of the Ashes",
         "religious_ontologies": "Religious Ontologies",
         "theory_mapping": "Theory Mapping",
         "unknowns_paradoxes_scene": "Unknowns & Paradoxes"

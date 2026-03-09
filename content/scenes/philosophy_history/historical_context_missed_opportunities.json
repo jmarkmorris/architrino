@@ -3,19 +3,32 @@
   "scene": {
     "id": "philosophy_history__historical_context_missed_opportunities",
     "title": "Historical Context and Missed Opportunities",
-    "type": "Scene-Markdown-View",
+    "type": "Scene-Markdown-Split",
     "units": "relative",
     "wrapLabels": true,
+    "centerOn": "historical_context_overview",
     "layout": {
-      "type": "static"
+      "type": "rings"
     },
+    "labelDocIconOwnLine": true,
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md"
+      "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "split": {
+        "headingLevel": 2,
+        "maxDepth": 1,
+        "overrides": {
+          "overview": {
+            "id": "historical_context_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          }
+        }
+      }
     },
     "view": {
-      "columns": 1,
-      "autoOpen": true
+      "columns": 1
     }
   },
   "objects": []

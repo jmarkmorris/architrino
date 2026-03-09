@@ -12,9 +12,11 @@ This page is indexed by subjects rather than by biography. Related people-center
 
 The current architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
 
-This layer needs a standard coverage template so that subjects are treated systematically rather than as slogans.
+This layer needs one standard coverage template so subjects are treated systematically rather than as slogans.
 
-For each information / computation subject, we should document:
+### Information/Computation Subject Template (Unified)
+
+Use this template for every subject section.
 
 - **Subject**: the full subject name.
 - **Short Name**: the short label used in scene or cross-reference contexts.
@@ -28,14 +30,22 @@ For each information / computation subject, we should document:
 - **Transition Relevance**: whether it remains useful during theory transition.
 - **Long-Term Relevance**: whether it survives as ontology, effective description, modeling language, or caution.
 
-The default prose structure for each subject should be:
+Default prose flow for each subject section:
 
-1. **Overview**: what the subject is claiming.
-2. **Historical Motivation**: what problem or pressure produced it.
-3. **Core Commitments**: what is being treated as fundamental.
-4. **Internal Tensions**: where the subject overreaches or collapses distinctions.
-5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: what is retained, reduced, or rejected.
-6. **What Survives**: the durable lesson or surviving tool.
+1. **Overview**: what the subject is claiming, including `Subject` and `Short Name`.
+2. **Historical Motivation**: what problem or pressure produced it, including `Core Question` and `Central Claim`.
+3. **Core Commitments**: what is treated as fundamental, including `Major Thinkers / Programs` and `Primary Ontological Commitment`.
+4. **Internal Tensions**: where the subject overreaches or collapses distinctions, including `What It Gets Right` and `What It Gets Wrong or Overstates`.
+5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: what is retained, reduced, or rejected, including `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
+6. **What Survives**: durable lesson or tool, including `Long-Term Relevance`.
+
+Template conformance test protocol for each subject section:
+
+1. Confirm all template fields are explicitly addressed in prose.
+2. Confirm all six prose-flow parts are present in order.
+3. Confirm `What It Gets Right` preserves real strengths, not caricatures.
+4. Confirm `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ is classified as aligned, partial, mislocated, incompatible, or open.
+5. Confirm `Long-Term Relevance` states whether the subject remains ontology, effective description, method, or caution.
 
 ---
 

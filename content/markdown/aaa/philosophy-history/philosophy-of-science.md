@@ -30,9 +30,11 @@ The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be su
 
 If $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds, its philosophy of science will not be an afterthought. It will be part of the explanation for why previous theories were simultaneously powerful, partial, and often ontologically mislocated.
 
-This layer needs a standard coverage template so that subjects are treated systematically rather than ad hoc.
+This layer needs one standard coverage template so subjects are treated systematically rather than ad hoc.
 
-For each philosophy-of-science subject, we should eventually document:
+### Philosophy-of-Science Subject Template (Unified)
+
+Use this template for every subject section.
 
 - **Subject**: the full subject name.
 - **Short Name**: the short label used in scene or cross-reference contexts.
@@ -42,20 +44,26 @@ For each philosophy-of-science subject, we should eventually document:
 - **What Problem It Was Trying To Solve**: the historical or conceptual pressure that gave rise to it.
 - **What It Gets Right**: durable insights that should survive.
 - **What It Gets Wrong or Overstates**: the main excess, limitation, or category error.
-- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether it is aligned, partially aligned, useful but limited, misapplied, or in tension with the architrino program.
+- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether it is aligned, partially aligned, useful but limited, misapplied, in tension, or open.
 - **Transition Relevance**: whether it helps guide the replacement of current theory during an active transition.
 - **Long-Term Relevance**: whether it remains a permanent methodological principle, a caution, or mainly a historical lesson.
 
-The default prose structure for each subject should be:
+Default prose flow for each subject section:
 
-1. **Overview**: what the subject is about in one compact paragraph.
-2. **Historical Motivation**: what problem or crisis produced it.
-3. **Core Commitments**: what it actually claims about science, evidence, explanation, or theory.
-4. **Internal Tensions**: where the view becomes unstable, too narrow, too broad, or self-undermining.
-5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: what the architrino program retains, rejects, or reinterprets.
-6. **What Survives**: the durable methodological lesson after reduction and reclassification.
+1. **Overview**: compact statement of the subject, including `Subject` and `Short Name`.
+2. **Historical Motivation**: source pressure and agenda, including `Core Question`, `Central Claim`, and `What Problem It Was Trying To Solve`.
+3. **Core Commitments**: what is taken as methodologically basic, including `Major Thinkers / Schools`.
+4. **Internal Tensions**: preserved strengths and failure modes, including `What It Gets Right` and `What It Gets Wrong or Overstates`.
+5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: alignment status and transition role, including `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
+6. **What Survives**: durable post-transition lesson, including `Long-Term Relevance`.
 
-This template is for coverage discipline, not length discipline.
+Template conformance test protocol for each subject section:
+
+1. Confirm all template fields are explicitly addressed in prose.
+2. Confirm all six prose-flow parts are present in order.
+3. Confirm `What It Gets Right` preserves genuine strengths, not caricatures.
+4. Confirm `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ is classified as aligned, partial, useful-limited, misapplied, in tension, or open.
+5. Confirm `Long-Term Relevance` states whether the subject persists as principle, method, caution, or historical lesson.
 
 ---
 

@@ -1,4 +1,4 @@
-# Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework 
+# Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework
 
 ---
 
@@ -60,7 +60,7 @@ When helpful, the assessment can also note:
 - whether the thinker is valuable mainly for ontology, method, or conceptual hygiene,
 - and whether a historical position was wrong in content but right in direction.
 
-#### The $\mathbb{U}_{\text{now}}$ universe-state perspective: Capabilities and Limits
+**The $\mathbb{U}_{\text{now}}$ universe-state perspective: Capabilities and Limits**
 - **What it knows**: The position, velocity, and charge of every architrino at any (x,y,z,t), and the complete causal history up to the present moment.
 - **What it cannot predict (without full microstate resolution)**: Which stable attractor a system will select at a self-hit branch point when multiple futures are physically realizable.
 - **Why this matters**: This separates **microstate-sensitive multistability** (lawful but threshold-sensitive outcomes) from **epistemic limitation** (incomplete measurement by physical observers).
@@ -71,7 +71,7 @@ The Architrino Assembly Architecture is **deterministic in its laws** despite it
 
 **Central philosophical claim**: This framework, if empirically successful, will **displace teleology, idealism, and transcendentalism**, and **rebuild a mathematically disciplined materialism** that admits **deterministic multistability at self-hit branch points**. Philosophy does not disappear—it becomes **boundary analysis**: clarifying which concepts (causation, identity, emergence) remain coherent once spacetime and its laws are emergent from point-charge assemblies and their wake-surface dynamics.
 
-#### Synthesis
+**Synthesis**
 
 Taken as a whole, this lineage points toward a severe physical realism with a fixed substrate, emergent higher structure, and strong separation between ontology and observer-level description. The major historical fault lines are consistent across the document: absolute versus relational structure, realism versus instrumentalism, mechanism versus formal closure, and reduction versus anti-reduction.
 

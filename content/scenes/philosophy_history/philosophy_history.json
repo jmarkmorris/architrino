@@ -11,10 +11,6 @@
     },
     "children": [
       {
-        "nodeId": "out_of_the_ashes_scene",
-        "scenePath": "content/scenes/philosophy_history/out_of_the_ashes.json"
-      },
-      {
         "nodeId": "unknowns_paradoxes_scene",
         "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
       },
@@ -57,17 +53,6 @@
     ]
   },
   "objects": [
-    {
-      "id": "out_of_the_ashes_scene",
-      "title": "Out of the Ashes",
-      "radius": 2.688,
-      "color": "#6a3c3c",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Out of the Ashes",
-      "labelBadge": "doc"
-    },
     {
       "id": "unknowns_paradoxes_scene",
       "title": "Unknowns & Paradoxes",

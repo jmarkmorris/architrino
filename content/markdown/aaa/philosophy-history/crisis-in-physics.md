@@ -15,9 +15,11 @@ This document should map the main crisis-axes rather than collapse them into one
 - where patchwork closure displaced substrate derivation,
 - and where unresolved tensions may indicate missing causal structure rather than merely harder calculation.
 
-This layer also needs a standard coverage template so that each crisis-axis is treated systematically rather than rhetorically.
+This layer also needs one standard coverage template so each crisis-axis is treated systematically rather than rhetorically.
 
-For each crisis section, the document should eventually capture:
+### Crisis-Section Template (Unified)
+
+Use the same fields for every crisis-axis, and write them through the same seven-part prose flow.
 
 - **Crisis Axis**: the full name of the tension or failure mode.
 - **Short Name**: the label used in scene or cross-reference contexts.
@@ -31,15 +33,15 @@ For each crisis section, the document should eventually capture:
 - **Transition Relevance**: whether the crisis helps justify ontological replacement during the transition period.
 - **Long-Term Relevance**: whether it survives as a permanent caution, a solved problem, or a signpost to the right substrate layer.
 
-The default prose structure for each crisis section should be:
+Default prose flow for each crisis section:
 
-1. **Overview**: the compact statement of the crisis.
-2. **Where The Tension Comes From**: the historical or theoretical source of the mismatch.
-3. **What Current Physics Gets Right**: the empirical and computational strengths that must be preserved.
-4. **What Remains Unresolved**: the precise non-closure, ambiguity, or overreach.
-5. **Standard Repairs**: the main accepted fixes, reinterpretations, or patching strategies.
-6. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether the crisis signals a missing substrate account, a mislocated effective law, or an over-inferred ontology.
-7. **What Would Count As Resolution**: the clearest closure target.
+1. **Overview**: compact statement of the crisis, including `Crisis Axis` and `Short Name`.
+2. **Where The Tension Comes From**: historical/theoretical source, with explicit `Core Tension` and `Where It Appears`.
+3. **What Current Physics Gets Right**: preserved strengths, matching `What Still Works`.
+4. **What Remains Unresolved**: precise non-closure, matching `What Is Unsettled`.
+5. **Standard Repairs**: accepted fixes plus residual failure, covering `Standard Resolution Attempts` and `Why Those Attempts Remain Incomplete`.
+6. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: classification against `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
+7. **What Would Count As Resolution**: explicit closure condition plus `Long-Term Relevance`.
 
 The first set of crisis sections to examine is:
 

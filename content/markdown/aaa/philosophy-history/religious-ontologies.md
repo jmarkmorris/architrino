@@ -1,14 +1,14 @@
 # Major Religious Cosmologies and Foundational Ontologies
 
-**Purpose:** Survey how the world's major religious traditions conceptualize the fundamental "building blocks" of reality, the origin and structure of the cosmos, and eschatological endpoints—providing historical and theological context for comparison with scientific cosmologies.
-
-**Scope:** Christianity, Islam, Judaism, Hinduism, Buddhism, and Daoism (Taoism). These represent the largest and most historically influential systems with articulated cosmologies.
-
-**Disclaimer:** This is an AI-generated, high-level overview intended for comparison and orientation, not an authoritative or exhaustive account. Each tradition contains diverse schools, historical developments, and internal debates that cannot be fully captured in a brief survey. Terms like "creator," "substance," and "end" carry different nuances across traditions; phrasing here is simplified for accessibility and should be cross-checked with primary sources and representative scholarship. Readers are encouraged to consult specialized works for each tradition.
-
 ---
 
-## Introduction: Religion and Cosmology
+## Overview
+
+**Purpose:** Survey how major religious traditions conceptualize foundational ontology, cosmic origin, temporal structure, and end-state claims, providing disciplined comparison context for scientific cosmologies and for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+**Scope:** Judaism, Christianity, Islam, Hinduism, Buddhism, and Daoism, organized by civilizational family and then by tradition-level treatment.
+
+**Disclaimer:** This chapter is a high-level comparative map, not an exhaustive theological history. Each tradition contains multiple schools, internal debates, and historical shifts. Terms such as creator, substance, origin, and end-state are cross-tradition approximations and should be read as comparative labels, not exact doctrinal equivalences.
 
 Religious cosmologies address three core questions:
 1. **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
@@ -16,6 +16,48 @@ Religious cosmologies address three core questions:
 3. **Eschatology (How does it end?):** What is the ultimate fate of the cosmos and its inhabitants? — How does it end?
 
 Unlike scientific theories, religious cosmologies typically embed metaphysical and moral frameworks: the cosmos has purpose, agency (divine or otherwise), and often a teleological arc.
+
+---
+
+### Religious-Cosmology Tradition Template (Unified)
+
+Use this template for each tradition subsection.
+
+- **Tradition**: full tradition name.
+- **Family**: Abrahamic, Dharmic, East Asian, or other grouping used in this chapter.
+- **Sources / Canonical Anchors**: primary texts and major interpretive streams used for orientation.
+- **Ontology**: what is treated as fundamental (creator, substance, process, duality, emptiness, etc.).
+- **Cosmogony**: origin account (created, emanated, beginningless, cyclic unfolding, or hybrid).
+- **Eschatology**: end-state account (judgment, renewal, liberation, perpetual cycle, no terminal end).
+- **Time Structure**: linear, cyclic, or mixed.
+- **Creator Status**: personal creator, impersonal absolute, or no creator.
+- **Internal Variants**: major intra-tradition divergences relevant to ontology/cosmology.
+- **What Still Works as Comparative Insight**: durable conceptual value for cross-tradition analysis.
+- **What Is Easily Overstated**: where summary language risks flattening doctrine or overgeneralizing.
+- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: aligned analogy, partial analogy, contrast, or direct contradiction.
+- **Transition Relevance**: whether this tradition supplies useful conceptual bridges during theory transition.
+- **Long-Term Relevance**: whether the tradition remains methodological context, ontological contrast, or historical background.
+
+Default prose flow for each tradition subsection:
+
+1. **Overview**: identify `Tradition`, `Family`, and `Sources / Canonical Anchors`.
+2. **Ontology**: state fundamental commitments and `Creator Status`.
+3. **Cosmogony**: state origin logic and associated `Time Structure`.
+4. **Eschatology**: state end-state logic and major `Internal Variants`.
+5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: classify `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
+6. **What Survives for Comparison**: preserve `What Still Works as Comparative Insight`, limits from `What Is Easily Overstated`, and `Long-Term Relevance`.
+
+Template conformance test protocol for each tradition subsection:
+
+1. Confirm all template fields are explicitly addressed in prose.
+2. Confirm the six prose-flow parts appear in order.
+3. Confirm internal variants are identified where doctrinal spread is large.
+4. Confirm `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ is explicitly classified as aligned analogy, partial analogy, contrast, contradiction, or open.
+5. Confirm claims are framed as comparative summaries, not exhaustive doctrinal closure.
+
+Chapter organization note:
+
+This chapter uses a two-axis structure (a matrix split): first by civilizational family (`##`), then by individual tradition (`###`). Within each tradition, analysis is then layered by ontology/cosmogony/eschatology. This is the "double split" pattern.
 
 ---
 

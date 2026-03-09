@@ -4,20 +4,52 @@
 
 ## Overview
 
-This document defines the **modern ontological network above** $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at the substrate level.
+This document defines the modern ontological network above $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at substrate level.
 
-Its purpose is not to rank theories by prestige or sociology. Its purpose is to sort concepts by:
+Its purpose is differential classification, not sociological ranking. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-- **Ontological area**: what layer of reality the concept claims to describe.
-- **Sub-ontological area**: the more specific domain inside that layer.
-- **Concept status**: accepted, competing, rejected, underconstrained, speculative, or fringe.
-- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether the concept is fundamental, emergent, approximately valid, partially recoverable, recoverable only after reinterpretation, mislocated, observationally over-inferred, or incompatible.
+### Theory-Differential Template (Unified)
 
-This document uses two related but non-identical kinds of layering.
+Use this template for every concept entry (theory, program, law, observable, parameter, or construct).
 
-First, it uses a **comparative theory-mapping stack**. This is the neutral sorting framework used to compare historical and modern theories against one another without assuming that every theory slices reality at the correct joints.
+- **Concept Type**: theory / program / law / quantity / observable / parameter / construct.
+- **Short Name**: label used in scene and cross-reference contexts.
+- **Ontological Area**: primary layer domain.
+- **Sub-Ontological Area**: narrow domain inside the primary area.
+- **Concept Status**: mainstream foundational/effective, competing, historical rejection, underdetermined, or fringe.
+- **Comparative Stack Placement**: concept placement in the neutral comparative stack.
+- **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement**: placement after $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation.
+- **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation Type**: recovered, partially recovered, reinterpretation-only, mislocated, over-inferred, incompatible, or placeholder.
+- **What It Gets Right**: durable predictive or structural contribution.
+- **What Fails as Ultimate**: limiting tension, missing closure, or category error.
+- **Transition Relevance**: what remains practically usable during migration.
+- **Long-Term Relevance**: what survives in mature stack form.
+- **Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$**: explicit derivation/recovery/reinterpretation target.
 
-The working comparative stack throughout is:
+Default prose flow for each concept entry:
+
+1. **Concept Summary**: compact statement of what the concept claims and where it was built to operate.
+2. **Ontological Commitments**: primitives, background assumptions, and probability/time commitments.
+3. **What This Concept Gets Right**: durable empirical and computational achievements.
+4. **$\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment**: dual-stack placement plus recovery/reinterpretation decision.
+5. **Transition-Period Relevance**: retained workflows and practical migration path.
+6. **Long-Term Relevance**: steady-state role after reduction.
+7. **Failure Mode or Limiting Tension**: clearest reason it cannot be final.
+8. **Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$**: precise closure target that must be met.
+
+Template conformance test protocol for each concept entry:
+
+1. Confirm all header fields are explicitly filled.
+2. Confirm both stack placements are explicit and non-identical when required.
+3. Confirm all eight prose-flow sections are present in order.
+4. Confirm `What This Concept Gets Right` preserves real strengths, not strawman failures.
+5. Confirm `Failure Mode` and `Mapping Target` are concrete and falsifiable.
+
+### Dual-Stack Mapping Frame
+
+This chapter intentionally uses two different layer systems and they must not be conflated.
+
+The **comparative theory-mapping stack** is a neutral cross-framework sorting frame:
 
 1. **Substrate ontology**: what fundamentally exists.
 2. **Assembly / medium dynamics**: stable structures, collective modes, constitutive behavior.
@@ -25,50 +57,26 @@ The working comparative stack throughout is:
 4. **Bulk statistical level**: thermodynamics, transport, halo models, ensemble closures.
 5. **Inference layer**: how observations are inverted into narratives about ontology.
 
-This stack is intentionally comparative rather than purely ontological. It mixes ontology, effective description, and inference because the document's job is to classify theories as they actually appear in the history of physics.
+The **current $\mathbb{A}\mathbb{A}\mathbb{A}$ ontological stack** is the working internal hypothesis:
 
-Second, the document also needs a **current $\mathbb{A}\mathbb{A}\mathbb{A}$ ontological stack**. This is not the same thing. It is an internal picture of how reality is presently understood to organize if $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct.
-
-The current working $\mathbb{A}\mathbb{A}\mathbb{A}$ ontological stack is:
-
-1. **Substrate Ontology**: architrinos, admissible states, and the primitive causal delayed path-history law.
+1. **Substrate Ontology**: architrinos, admissible states, and primitive causal delayed path-history law.
 2. **Stable Assembly Dynamics**: persistent motifs, bound structures, wakes, and recurrent assembly classes.
-3. **Medium and Constitutive Regimes**: sea response, propagation conditions, effective inertia, and environment-dependent coupling structure.
+3. **Medium and Constitutive Regimes**: sea response, propagation conditions, effective inertia, and environment-dependent coupling.
 4. **Emergent Effective Closures**: field equations, force laws, metric-like descriptions, and continuum summaries.
 5. **Statistical Population Regimes**: thermodynamics, kinetic theory, transport, virial behavior, and ensemble closures.
-6. **Observation and Inference**: clocks, readouts, inverse models, fitted parameters, and narrative reconstruction from measurement.
+6. **Observation and Inference**: clocks, readouts, inverse models, fitted parameters, and narrative reconstruction.
 
-The key distinction is simple:
+Interpretation rule:
 
-- the **comparative stack** is used to place theories in a common analytic frame;
-- the **$\mathbb{A}\mathbb{A}\mathbb{A}$ stack** is the current internal hypothesis about how the world itself is layered.
+- Comparative stack placement says where the concept sits in a neutral historical-analytic frame.
+- $\mathbb{A}\mathbb{A}\mathbb{A}$ stack placement says where the retained content is relocated in current ontology.
 
-These should not be conflated. A theory may be well placed in the comparative stack even if $\mathbb{A}\mathbb{A}\mathbb{A}$ later reclassifies its main content as effective, statistical, inferential, or ontologically mislocated.
+Scope rule:
 
-This chapter should include:
-
-- currently accepted mainstream theories,
-- accepted but incomplete effective theories,
-- alternate theories with live technical relevance,
-- historically rejected theories that still illuminate ontological mistakes,
-- fringe theories that are useful mainly as contrast cases.
-
-The architrino program needs a durable answer to a recurring question:
-
-> If $\mathbb{A}\mathbb{A}\mathbb{A}$ is right, what exactly were earlier theories right about, wrong about, or right about at the wrong ontological layer?
-
-That requires more than summary. It requires a **differential diagnosis** for each concept:
-
-- What it says exists.
-- What it treats as primitive.
-- What it explains well.
-- What it misidentifies as fundamental.
-- What remains useful during a transition period.
-- What survives in the long-term architecture after $\mathbb{A}\mathbb{A}\mathbb{A}$-style reduction.
-
-The document title is historical. The unit of analysis is the **concept**, whether that concept is a theory, program, law, observable, parameter, or construct.
-
-Each concept section should be tagged along these axes before the prose begins.
+- include mainstream theories and effective formalisms,
+- include technically live alternatives,
+- include historically rejected theories with diagnostic value,
+- include fringe cases only as contrastive boundary checks.
 
 ### Theory-Like Concepts and Cross-Cutting Constructs
 
@@ -90,6 +98,7 @@ Examples that should eventually receive dedicated treatment include:
 - **Redshift**
 - **Spacetime Curvature**
 - **Vacuum Energy**
+- **Fine-Structure Constant**
 - **Wavefunction**
 - **Information**
 - **Probability**
@@ -483,6 +492,7 @@ These are not always treated as standalone "theories" in the textbook sense, but
 - Redshift - Redshift
 - Spacetime Curvature - Curvature
 - Vacuum Energy - Vacuum Energy
+- Fine-Structure Constant - Fine-Structure Constant
 - Wavefunction - Wavefunction
 - Information - Information
 - Probability - Probability
