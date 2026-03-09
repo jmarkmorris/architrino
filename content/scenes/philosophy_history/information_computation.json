@@ -55,12 +55,6 @@
             "labelTitle": "Simulation / Computability",
             "labelBadge": "doc",
             "color": "#7a4a1f"
-          },
-          "mathbb a mathbb a mathbb a position on information and computation": {
-            "id": "information_computation_aaa_position",
-            "labelTitle": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Position",
-            "labelBadge": "doc",
-            "color": "#3f6a5a"
           }
         }
       }

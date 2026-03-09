@@ -321,7 +321,7 @@ Use this exact skeleton when starting a new concept section:
 ### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 ```
 
-Theories should eventually be grouped by ontological area rather than by chronology alone.
+Concepts should be grouped by ontological area rather than by chronology alone.
 
 Recommended top-level order:
 
@@ -334,7 +334,9 @@ Recommended top-level order:
 7. **Unification / Beyond-Standard-Model**
 8. **Rejected and Fringe Ontologies**
 
-Within each area, order entries by present scientific importance first, then by historical or contrastive importance.
+Within each area, order concepts by present scientific importance first, then by historical or contrastive importance.
+
+The inventory below is intentionally selective. It should track concepts with major scientific investment, major historical influence, or major diagnostic value for the architrino program. It is not meant to become an indiscriminate encyclopedia.
 
 ## Core Quantum and Particle Frameworks
 
@@ -346,7 +348,6 @@ Within each area, order entries by present scientific importance first, then by 
 - Neutrino Oscillation Theory - PMNS
 - Effective Field Theory - EFT
 - Renormalization Group - RG
-- S-Matrix Program - S-Matrix
 - Grand Unified Theories - GUT
 - Supersymmetry - SUSY
 - Supergravity - SUGRA
@@ -365,7 +366,6 @@ Within each area, order entries by present scientific importance first, then by 
 - Objective Collapse Theory - GRW / CSL
 - Relational Quantum Mechanics - RQM
 - QBism - QBism
-- Consistent Histories - Consistent Histories
 - Decoherence Program - Decoherence
 
 ## Spacetime, Gravity, and Quantum Gravity
@@ -388,7 +388,7 @@ Within each area, order entries by present scientific importance first, then by 
 - Causal Set Theory - CST
 - Causal Dynamical Triangulations - CDT
 - Asymptotic Safety - AS
-- Holographic Principle / AdS-CFT - Holography / AdS-CFT
+- Holography / AdS-CFT - Holography / AdS-CFT
 
 ## Cosmology and Large-Scale History
 
@@ -400,7 +400,6 @@ Within each area, order entries by present scientific importance first, then by 
 - Dark Matter Particle Cosmology - Particle Dark Matter
 - Primordial Black Hole Dark Matter - PBH Dark Matter
 - Dark Energy / Quintessence - Dark Energy / Quintessence
-- Holographic Dark Energy - HDE
 - Steady State Cosmology - SSC
 - Quasi-Steady State Cosmology - QSSC
 - Ekpyrotic / Cyclic Cosmology - Ekpyrotic / Cyclic
@@ -454,6 +453,19 @@ These are not always treated as standalone "theories" in the textbook sense, but
 - Inflationary Eternal Inflation - Eternal Inflation
 - Vacuum Landscape / String Landscape - String Landscape
 - Swampland Program - Swampland
+
+## Cross-Cutting Concepts To Differentially Map
+
+- Mass - Mass
+- Entropy - Entropy
+- Temperature - Temperature
+- The Laws of Thermodynamics - Thermodynamic Laws
+- Redshift - Redshift
+- Spacetime Curvature - Curvature
+- Vacuum Energy - Vacuum Energy
+- Wavefunction - Wavefunction
+- Information - Information
+- Probability - Probability
 
 - Keep the theory description neutral before critique.
 - Do not confuse empirical adequacy with ontological truth.
