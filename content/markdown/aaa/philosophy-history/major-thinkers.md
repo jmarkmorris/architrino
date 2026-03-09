@@ -38,6 +38,22 @@ The default prose structure for each thinker should be:
 2. **Architrino Impact**: what $\mathbb{A}\mathbb{A}\mathbb{A}$ retains, rejects, or relocates.
 3. **Legacy Shift**: what survives after the theory stack is rebuilt.
 
+Template conformance test protocol (apply to each thinker entry):
+
+1. **Thinker present**: full name + dates explicitly present.
+2. **Era / Context present**: historical period and problem environment explicitly stated.
+3. **Primary Domain present**: one or more domains explicitly labeled.
+4. **Core Commitments present**: at least three concrete commitments are stated.
+5. **Problem Pressure present**: one explicit "what pressure this was solving" statement.
+6. **What Holds present**: one or more durable claims retained.
+7. **What Fails or Overstates present**: one or more explicit failure or overreach claims.
+8. **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$ **present**: explicit verdict label (vindicated / partially vindicated / reframed / superseded / contradicted).
+9. **Transition Relevance present**: explicit near-term migration value.
+10. **Long-Term Relevance present**: explicit steady-state value after transition.
+11. **KaTeX integrity check**: math delimiters and subscripts remain verbatim; `$\mathbb{U}_{\text{now}}$` must render as one intact token.
+
+Fail condition: if any check above is missing or only implied, the entry is non-conformant.
+
 When helpful, the assessment can also note:
 
 - whether the thinker's ontology sits at the substrate, assembly, effective, statistical, or inferential level,
@@ -179,6 +195,32 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 ---
 
 ### **Isaac Newton (1643–1727)**
+**Era / Context**:
+- Scientific Revolution (late 17th to early 18th century), during consolidation of celestial and terrestrial mechanics into one mathematical framework.
+
+**Primary Domain**:
+- Mechanics and natural philosophy.
+
+**What Problem He Was Trying To Solve**:
+- Unify planetary motion and terrestrial falling-body dynamics under one causal law architecture.
+
+**What He Got Right**:
+- Law-governed dynamics as a foundational method.
+- Strong mathematization of physical theory.
+- Productive use of absolute-time formulations for causal description.
+
+**What He Got Wrong or Overstated**:
+- Instantaneous action-at-a-distance as a fundamental gravitational mechanism.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$:
+- Partially vindicated and reframed.
+
+**Transition Relevance**:
+- High. Newton provides a direct bridge for moving from geometry-first language to substrate-level causal, delayed, path-history dynamics.
+
+**Long-Term Relevance**:
+- High methodological relevance; medium ontological relevance after mechanism replacement.
+
 **Core belief**: 
 - **Absolute space** and **absolute time** as the cosmic stage.
 - Gravity as **instantaneous action at a distance**.
