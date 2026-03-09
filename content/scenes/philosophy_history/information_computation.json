@@ -28,13 +28,13 @@
           },
           "information as ontology": {
             "id": "information_computation_information_ontology",
-            "labelTitle": "Information as Ontology",
+            "labelTitle": "Information / Ontology",
             "labelBadge": "doc",
             "color": "#2f6b6f"
           },
           "computation as ontology": {
             "id": "information_computation_computation_ontology",
-            "labelTitle": "Computation as Ontology",
+            "labelTitle": "Computation / Ontology",
             "labelBadge": "doc",
             "color": "#5a3f73"
           },

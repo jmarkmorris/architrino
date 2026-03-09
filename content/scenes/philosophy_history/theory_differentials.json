@@ -70,9 +70,15 @@
           },
           "additional major academic programs to consider": {
             "id": "theory_differentials_additional_academic",
-            "labelTitle": "Additional Academic",
+            "labelTitle": "Additional Programs",
             "labelBadge": "doc",
             "color": "#3f6a5a"
+          },
+          "cross cutting concepts to differentially map": {
+            "id": "theory_differentials_cross_cutting_concepts",
+            "labelTitle": "Cross-Cutting Concepts",
+            "labelBadge": "doc",
+            "color": "#355f9a"
           }
         }
       }
