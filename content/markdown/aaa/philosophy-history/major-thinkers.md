@@ -464,40 +464,29 @@ If the framework works, the historical result is not that prior thinkers were si
 ---
 
 ### **Relativity**
-#### **Special Relativity**
-**Core belief**: 
-- No preferred frame. Lorentz symmetry is a **fundamental kinematic symmetry** of spacetime itself.
-- Relativity of simultaneity is **ontological** (not just perspectival).
-- Spacetime is a four-dimensional manifold; time is the fourth dimension.
+**Thinker**: Einsteinian relativity program (Special Relativity and General Relativity), treated here as a unified concept-level entry rather than a single-person biography.
 
-**Architrino impact**:
-- ❌ **Con**: We **reject** spacetime as fundamental. Lorentz symmetry is **emergent** and **approximate** (effective at macroscopic scales, below field speed *c_f*).
-- ⚠️ **Con**: Relativity of simultaneity is **perspectival/emergent**, not ontological. Absolute time provides a **global foliation** (preferred simultaneity slicing). The $\mathbb{U}_{\text{now}}$ universe-state perspective has access to a **unique global "now"**.
-- ❌ **Con**: Einstein's framework denies any physical meaning to an $\mathbb{U}_{\text{now}}$ universe-state perspective; in the architrino ontology, such an observer is **mathematically well-defined** (even if no real observer can align with it operationally).
-- ✅ **Pro**: All **empirical predictions** of SR (time dilation, length contraction, mass-energy equivalence *E=mc²*, relativistic momentum) are **reproduced** as emergent phenomena from assembly dynamics.
-- ⚠️ **Clarification**: This does **not** violate empirical SR, because actual observers (assemblies with clocks/rulers) still measure SR effects exactly as predicted. The $\mathbb{U}_{\text{now}}$ universe-state perspective is **not accessible** to physical measurements—it is a theoretical construct for tracking objective reality.
-- ⚠️ **Tension**: Deviations from exact Lorentz invariance may appear in extreme regimes (self-hit, early cosmology).
+**Era / Context**: Relativity developed in the early 20th century to resolve electrodynamic and gravitational tensions in classical physics while preserving high-precision empirical closure.
 
-**Legacy shift**: Einstein's SR is an **effective theory**. His **kinematic** interpretation (spacetime symmetry) is replaced by **dynamical emergence** from absolute-time substrate. Einstein's **empirical predictions** stand; his **ontology** is superseded. The $\mathbb{U}_{\text{now}}$ universe-state perspective reveals Einstein's relativity of simultaneity as **emergent** and **perspectival**, not fundamental.
+**Primary Domain**: Spacetime ontology, relativistic kinematics, gravitation, and geometric field theory.
 
----
+**What Problem He Was Trying To Solve**: The program aimed to reconcile invariant light-speed structure, inertial-frame dynamics, and gravity into a coherent framework that improved over Newtonian mechanics.
 
-#### **General Relativity**
-**Core belief**: 
-- Gravity is **curvature of spacetime**.
-- Spacetime is a **dynamical entity**, not a fixed background.
-- No absolute time; time is part of the geometric structure (timelike dimension).
-- Diffeomorphism invariance: coordinates are arbitrary gauge freedom.
+**What He Got Right**: Relativity correctly delivered extraordinary empirical performance, including time dilation, light bending, gravitational redshift, wave phenomena, and broad dynamical consistency across tested regimes.
 
-**Architrino impact**:
-- ❌ **Con**: Spacetime is **not fundamental**. It is an **emergent assembly structure** (network of tri-binaries forming the "vacuum"—coupled Noether cores).
-- ❌ **Con**: **Coordinate ontology inverted**: In GR, diffeomorphism invariance means coordinates have no physical meaning; only invariants matter. In architrino theory, **Euclidean coordinates have physical meaning** (absolute spatial location + absolute time). The (x,y,z) labels are **permanent**; physical states (assembly configurations, effective metrics) are **functions on this fixed substrate**.
-- ✅ **Pro**: GR's **empirical successes** (light bending, perihelion precession, gravitational redshift, gravitational waves, black hole shadows) must be reproduced as the **effective field limit** of architrino dynamics.
-- ✅ **Advantage over GR**: In GR, "returning to the same point in spacetime" requires choosing coordinates, and the metric changes, making physical identification ambiguous. In architrino theory, the **coordinate labels (x,y,z) are permanent**. The $\mathbb{U}_{\text{now}}$ universe-state perspective at (*x₀, y₀, z₀*) at *t₁* and later at *t₂* is looking at **the same location** in the Euclidean substrate, even if the local assembly network has deformed. This restores **coordinate realism** without sacrificing the empirical successes of GR.
-- ⚠️ **Tension**: Singularities, event horizons, and cosmological solutions (inflation, dark energy) may be **artifacts** of the effective description, not fundamental features.
-- ✅ **Pro**: Potential resolution of **quantum gravity problem**: No need to quantize geometry. Gravity emerges from quantum-like (causal, multistable pilot-wave) architrino assemblies.
+**What He Got Wrong or Overstated**: In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, relativity overstates geometric primitives as fundamental ontology; Lorentz structure and spacetime curvature are treated as emergent effective closures over deeper substrate dynamics.
 
-**Legacy shift**: GR becomes a **phenomenological field theory**, analogous to fluid mechanics emerging from molecular dynamics. Einstein's equations are **emergent**, not fundamental. Curvature is an **effective description** of architrino assembly density gradients and stress. The $\mathbb{U}_{\text{now}}$ universe-state perspective provides the ontological clarity GR lacks.
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained at effective-law level and substantially reinterpreted at ontology level.
+
+**Transition Relevance**: Relativity is central during transition because all replacement claims must recover its precision domain while reclassifying simultaneity, geometry, and coordinate meaning through causal delayed path-history substrate mechanics.
+
+**Long-Term Relevance**: Long-term relevance is very high as effective field architecture and moderate as final ontology, with geometric formalism preserved but substrate status relocated.
+
+**Core belief**: Special relativity treats Lorentz symmetry and relativity of simultaneity as foundational kinematics, while general relativity treats gravity as dynamical spacetime curvature with coordinate-gauge structure.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from medium dynamics and GR curvature as effective assembly-network behavior on Euclidean space with absolute time, where $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
+
+**Legacy shift**: Relativity remains indispensable as a high-accuracy effective theory stack, while its primitive geometric ontology is replaced by substrate-first mechanistic emergence.
 
 ---
 
@@ -1372,16 +1361,29 @@ If the framework works, the historical result is not that prior thinkers were si
 ## Information/Computation
 
 ### **John Archibald Wheeler (1911–2008) — "It from Bit"**
-**Core belief**: 
-- **Information is fundamental**; physical reality arises from information processing.
-- "Every it—every particle, every field of force, even spacetime itself—derives its function, its meaning, its very existence from binary choices, bits."
+**Thinker**: John Archibald Wheeler (1911–2008), physicist who promoted information-centric foundational framing through the "it from bit" thesis.
 
-**Architrino impact**:
-- ⚠️ **Partial**: Information (architrino states, configurations) is **encoded** in physical entities, but **architrinos are ontologically prior** to information.
-- ❌ **Con**: We reject **information primacy**. Architrinos are **physical**, not abstract bits. Information is a **description** of physical states, not their ground.
-- ✅ **Pro**: Wheeler's participatory universe (observer-involvement) is **rejected**; architrinos evolve independently of observation (though the $\mathbb{U}_{\text{now}}$ universe-state perspective can track them).
+**Era / Context**: Wheeler's information-first ideas emerged in late 20th-century foundational discussions where quantum measurement and cosmology encouraged participatory/informational interpretations.
 
-**Legacy shift**: **"It from bit" is reversed**: **"Bit from it"** (information emerges from physical architrino configurations). Wheeler's information-theoretic insights are **useful**, but not fundamental.
+**Primary Domain**: Information-oriented foundations, quantum interpretation, and participatory-universe proposals.
+
+**What Problem He Was Trying To Solve**: Wheeler sought a unifying conceptual basis linking measurement, physical law, and ontology through information structure.
+
+**What He Got Right**: He correctly highlighted that information-theoretic constraints and encoding structure are indispensable in observer-level physics and inference pipelines.
+
+**What He Got Wrong or Overstated**: He likely overstated information primacy by treating bits as ontological ground rather than as descriptors of underlying physical state organization.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially aligned and ontologically inverted.
+
+**Transition Relevance**: Wheeler is useful during transition for integrating information-theoretic diagnostics without collapsing substrate ontology into abstract informational primitives.
+
+**Long-Term Relevance**: Long-term relevance is high for inferential and representational tooling, and low for first-principles ontology.
+
+**Core belief**: Physical reality may arise from informational distinctions, with observation and binary decision structure playing constitutive roles.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ reverses the primacy claim by grounding information in real architrino configurations and treating observer participation as measurement-layer interaction rather than ontological creation.
+
+**Legacy shift**: Wheeler's slogan is recast from "it from bit" to "bit from it," preserving informational utility while restoring physical substrate priority.
 
 ---
 
