@@ -1,5 +1,7 @@
 # Theory Differentials
 
+---
+
 ## Overview
 
 This document defines the **modern ontological network above** $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at the substrate level.
@@ -338,6 +340,8 @@ Within each area, order concepts by present scientific importance first, then by
 
 The inventory below is intentionally selective. It should track concepts with major scientific investment, major historical influence, or major diagnostic value for the architrino program. It is not meant to become an indiscriminate encyclopedia.
 
+---
+
 ## Core Quantum and Particle Frameworks
 
 - Quantum Field Theory - QFT
@@ -357,6 +361,8 @@ The inventory below is intentionally selective. It should track concepts with ma
 - WIMP Dark Matter - WIMP
 - Hidden Sector / Dark Sector Models - Dark Sector
 
+---
+
 ## Quantum Foundations and Interpretations
 
 - Quantum Mechanics - QM
@@ -367,6 +373,8 @@ The inventory below is intentionally selective. It should track concepts with ma
 - Relational Quantum Mechanics - RQM
 - QBism - QBism
 - Decoherence Program - Decoherence
+
+---
 
 ## Spacetime, Gravity, and Quantum Gravity
 
@@ -390,6 +398,8 @@ The inventory below is intentionally selective. It should track concepts with ma
 - Asymptotic Safety - AS
 - Holography / AdS-CFT - Holography / AdS-CFT
 
+---
+
 ## Cosmology and Large-Scale History
 
 - $\Lambda$ Cold Dark Matter - $\Lambda$CDM
@@ -408,6 +418,8 @@ The inventory below is intentionally selective. It should track concepts with ma
 - Multiverse Cosmology - Multiverse
 - Anthropic Principle - Anthropic Principle
 
+---
+
 ## Statistical, Thermal, and Bulk Descriptions
 
 - Statistical Mechanics - Statistical Mechanics
@@ -419,6 +431,8 @@ The inventory below is intentionally selective. It should track concepts with ma
 - Jeans Instability Theory - Jeans Theory
 - Halo Model of Structure Formation - Halo Model
 
+---
+
 ## Rejected Historical Theories
 
 - Classical Luminiferous Aether Theory - Aether
@@ -428,6 +442,8 @@ The inventory below is intentionally selective. It should track concepts with ma
 - Tired Light Cosmology - Tired Light
 - Epicyclic Ptolemaic Cosmology - Ptolemaic System
 
+---
+
 ## Fringe or Borderline Contrast Cases
 
 - Plasma Cosmology - Plasma Cosmology
@@ -435,6 +451,8 @@ The inventory below is intentionally selective. It should track concepts with ma
 - Simulation Hypothesis - Simulation Hypothesis
 - Strong Anthropic Landscape Programs - Anthropic Landscape
 - Digital Physics - Digital Physics
+
+---
 
 ## Additional Major Academic Programs To Consider
 
@@ -453,6 +471,8 @@ These are not always treated as standalone "theories" in the textbook sense, but
 - Inflationary Eternal Inflation - Eternal Inflation
 - Vacuum Landscape / String Landscape - String Landscape
 - Swampland Program - Swampland
+
+---
 
 ## Cross-Cutting Concepts To Differentially Map
 

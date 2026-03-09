@@ -1,5 +1,7 @@
 # Information / Computation
 
+---
+
 ## Overview
 
 This document maps the information-theoretic and computational concepts that shape modern attempts to interpret physics, ontology, and explanation.
@@ -35,11 +37,15 @@ The default prose structure for each subject should be:
 5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: what is retained, reduced, or rejected.
 6. **What Survives**: the durable lesson or surviving tool.
 
+---
+
 ## Information as Ontology
 
 Some modern programs treat information as more fundamental than matter, field, or geometry. In these views, physical reality is ultimately a network of distinctions, correlations, or informational constraints, and what we call objects are secondary encodings of that deeper informational order.
 
 From a $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective, this is partly right and partly inverted. Informational structure is real, but it is not prior to physical organization. It is a description of states, differences, and constraints carried by substrate entities and assemblies. Information survives, but as a derivative rather than a primitive.
+
+---
 
 ## Computation as Ontology
 
@@ -47,17 +53,23 @@ Computational ontology goes further by claiming that the universe is fundamental
 
 This can be fruitful when it sharpens discrete dynamics or clarifies state-update structure. But it often slips from model to ontology too quickly. $\mathbb{A}\mathbb{A}\mathbb{A}$ can make heavy use of computational description without concluding that computation itself is the basic stuff of reality.
 
+---
+
 ## Digital Physics and Discrete Substrate Programs
 
 Digital-physics programs matter because they reject continuum fundamentalism and insist that large-scale smoothness may arise from lower-level discrete processes. Cellular automata, graph dynamics, causal sets, and related programs all belong to this family at different levels of seriousness and sophistication.
 
 These programs are highly relevant as contrast cases for $\mathbb{A}\mathbb{A}\mathbb{A}$. They correctly resist taking continuum formalisms as final. But they often identify discreteness with digitization, or rule tables with ontology, more quickly than the evidence warrants. The architrino task is narrower and more physical: specify what exists, how it interacts, and why continuum closures arise.
 
+---
+
 ## Observer, Encoding, and Representation
 
 Information is not only an abstract quantity. It is stored, transmitted, compressed, corrupted, and decoded by physical systems. Observers and instruments therefore matter, not because they create reality, but because they materially mediate access to it.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is where information theory remains permanently useful. Encoding, measurement, and representation are indispensable at the observational layer even if information is not a substrate primitive. This subject is therefore less about ontology than about how physical systems carry and transform distinguishable states.
+
+---
 
 ## Simulation, Modeling, and Computability Limits
 

@@ -2,6 +2,8 @@
 
 # The Way of the Assembly: A Guide to Existence in a Renewable Universe
 
+---
+
 ## The Big Shift: From Dying Machine to Living Organism
 
 Most of us were taught that the universe is a machine running out of battery. We were told it began with a Big Bang and will end in "Heat Death"—a cold, dark void where nothing happens forever. That story makes us feel like accidents waiting to be erased.

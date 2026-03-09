@@ -1,5 +1,7 @@
 # Historical Context and Missed Opportunities
 
+---
+
 ## Scope
 
 This chapter asks a counterfactual question:
@@ -14,6 +16,8 @@ Here, a "near miss" means all three conditions were present:
 
 The point is not to claim historical error across the board. Most "misses" were productive choices for their time. The claim is narrower: those choices also occluded specific lines that now matter for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+---
+
 ## Minimal $\mathbb{A}\mathbb{A}\mathbb{A}$ Lens
 
 The lens used in this chapter is:
@@ -22,6 +26,8 @@ The lens used in this chapter is:
 - Matter and "vacuum" share constituents (assemblies in a Noether-sea-like medium), not two disjoint ontologies.
 - Relativistic observables are emergent summaries of assembly dynamics.
 - Deterministic microdynamics can yield multistability and attractor-basin outcome sensitivity.
+
+---
 
 ## Timeline of Near Misses
 
@@ -39,6 +45,8 @@ The lens used in this chapter is:
 | 1998-2010s (Dark energy and precision cosmology) | Accelerated expansion inferred from distance-redshift data | Medium-relaxation / clock-comparison interpretation in fixed void | $\Lambda$ as baseline closure model hardened into ontology, not just effective fit |
 | 2000s-2020s (Dark matter null detections vs gravity evidence) | Strong gravitational evidence, weak direct particle confirmation | Neutral assembly sectors + medium response hybrid possibilities | WIMP-first then piecemeal model proliferation delayed unified substrate reinterpretation |
 | 2010s-2020s (Hubble and $S_8$ tensions) | Persistent background-vs-growth mismatches | One medium-history explanation for both expansion and growth channels | Tensions were often treated as separate parameter patches instead of shared ontology failures |
+
+---
 
 ## High-Value Episodes in Detail
 
@@ -106,6 +114,8 @@ A $\mathbb{A}\mathbb{A}\mathbb{A}$-compatible route would have kept:
 
 Instead, the field often optimized parameterized closure before ontology integration.
 
+---
+
 ## Recurrent Narrative Filters
 
 Across episodes, five filters repeatedly blocked $\mathbb{A}\mathbb{A}\mathbb{A}$-like inference:
@@ -116,6 +126,8 @@ Across episodes, five filters repeatedly blocked $\mathbb{A}\mathbb{A}\mathbb{A}
 4. **Patch accretion**: resolve tensions by local parameter extensions rather than substrate unification.
 5. **Category fusion**: blur the distinction between observer-level coordinates and substrate dynamics.
 
+---
+
 ## What Would Have Needed to Be Different
 
 Three methodological shifts would have made an earlier $\mathbb{A}\mathbb{A}\mathbb{A}$ discovery more likely:
@@ -124,6 +136,8 @@ Three methodological shifts would have made an earlier $\mathbb{A}\mathbb{A}\mat
 2. **Constitutive reduction program**: demand derivation of clock/ruler/metric behavior from microdynamics rather than postulate them.
 3. **Tension coupling tests**: when two anomalies share scale and epoch structure, test one shared substrate mechanism before adding separate sectors.
 
+---
+
 ## Present Use of This History
 
 This chapter is not a victory lap over prior physics. It is a process-control document:
@@ -131,6 +145,8 @@ This chapter is not a victory lap over prior physics. It is a process-control do
 - It identifies how strong narratives can hide viable ontologies.
 - It explains why $\mathbb{A}\mathbb{A}\mathbb{A}$ must avoid becoming another narrative lock-in.
 - It sets a standard: every $\mathbb{A}\mathbb{A}\mathbb{A}$ claim should specify what would have been seen historically if the claim were false.
+
+---
 
 ## Falsifiability Constraint
 

@@ -1,5 +1,7 @@
 # Philosophy of Science
 
+---
+
 ## Overview
 
 This document maps the methodological and epistemic schools that govern how science interprets theory, evidence, explanation, realism, and theory change.
@@ -55,6 +57,8 @@ The default prose structure for each subject should be:
 
 This template is for coverage discipline, not length discipline.
 
+---
+
 ## Scientific Realism and Anti-Realism
 
 Scientific realism holds that successful mature theories are at least approximately about real structures in the world, even when those structures are not directly observable. Anti-realism weakens or denies that conclusion, often treating theories more as predictive instruments than as literal ontologies.
@@ -69,6 +73,8 @@ From an architrino perspective:
 
 So the proper $\mathbb{A}\mathbb{A}\mathbb{A}$ stance is neither naive realism about every successful formalism nor instrumentalism about all unseen entities. It is layered realism: realist at the substrate and assembly levels, selective and reduction-sensitive higher in the stack.
 
+---
+
 ## Logic, Language, and Meaning in Science
 
 The analytic tradition forced precision about how scientific claims are stated, what counts as a meaningful claim, and how logic constrains theory construction. Figures such as Bertrand Russell and Ludwig Wittgenstein matter here even when they were not doing physics directly, because they shaped the standards by which scientific discourse was judged.
@@ -82,6 +88,8 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the lesson is mixed:
 - but purely linguistic dissolution is not enough when the project requires real dynamical commitments.
 
 So language analysis belongs in the methodological toolkit, but it cannot replace ontology.
+
+---
 
 ## Verificationism and the Vienna Circle
 
@@ -98,6 +106,8 @@ So the architrino verdict is:
 - reject the idea that only the directly verifiable is meaningful,
 - and replace verificationism with a realism disciplined by explicit failure conditions.
 
+---
+
 ## Falsificationism
 
 Karl Popper's central contribution was the claim that science advances not by verifying theories into certainty but by exposing them to risky tests that could in principle show them to be wrong.
@@ -111,6 +121,8 @@ For that reason, Popperian discipline should remain a first-order methodological
 - and replacement theories should earn authority by surviving hard constraints, not by stylistic elegance.
 
 Within the architrino project, falsificationism is not sufficient by itself, but it is foundational as a governance rule.
+
+---
 
 ## Paradigms and Scientific Revolutions
 
@@ -126,6 +138,8 @@ So the right formulation is a constrained paradigm shift:
 - continuous in recoverable empirical content,
 - and reductionist in its treatment of prior successful theories.
 
+---
+
 ## Lakatos and Research Programmes
 
 Imre Lakatos refined the Popper-Kuhn landscape by describing science in terms of research programmes with a hard core and a protective belt. The question is not whether every anomaly immediately kills a theory, but whether the overall program is progressive or degenerating.
@@ -138,6 +152,8 @@ This framework is highly useful for $\mathbb{A}\mathbb{A}\mathbb{A}$ because it 
 In architrino terms, the hard core would include the substrate ontology, the causal delayed path-history law, and the claim that known physics emerges from assembly and medium behavior. The protective belt would include specific mappings, closure schemes, parameterizations, and computational approximations.
 
 The key methodological demand is that the belt must not endlessly absorb failure without predictive gain.
+
+---
 
 ## Feyerabend and Methodological Anarchism
 
@@ -153,11 +169,15 @@ So the architrino position is:
 - use severe constraint during evaluative selection,
 - and never confuse creative permission with standards of acceptance.
 
+---
+
 ## Explanation, Causation, and Mechanism
 
 Some philosophies of science treat explanation as unification, some as prediction, and some as the exhibition of a real mechanism. $\mathbb{A}\mathbb{A}\mathbb{A}$ is firmly in the mechanism-seeking camp: explanation is stronger when it identifies a causal generative structure rather than merely redescribing a regularity in compressed form.
 
 This does not mean every good explanation must expose the substrate directly. Effective theories can explain within their own layer. But a final architecture must distinguish between a lawful summary and a producing mechanism. That distinction is one of the main reasons the architrino program resists stopping at field equations, fitted cosmological sectors, or purely geometric redescriptions.
+
+---
 
 ## Reduction, Emergence, and Ontological Levels
 
@@ -165,17 +185,23 @@ Reduction asks whether higher-level regularities can be derived from lower-level
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this subject is central. The point is not to deny emergence. The point is to distinguish substrate law, assembly behavior, constitutive medium response, effective closure, and inferential reconstruction. A theory can be robust and indispensable while still being ontologically downstream.
 
+---
+
 ## Measurement, Observation, and Theory-Ladenness
 
 Observation is never a bare encounter with reality. Instruments encode signals, models calibrate instruments, and analysis pipelines translate readings into reported quantities. Theory-ladenness enters because the meaning of a measurement depends partly on the conceptual scheme used to interpret it.
 
 This is especially important for $\mathbb{A}\mathbb{A}\mathbb{A}$ because many disputes in modern physics are not about raw measurement but about the ontological story inferred from it. The architrino program therefore needs a strict separation between readout, reduction pipeline, fitted parameter, and ontological conclusion.
 
+---
+
 ## Symmetry, Mathematics, and Representation
 
 Modern physics often treats symmetry and elegant mathematics as clues to deep reality. Sometimes that is justified. Sometimes the mathematics is only the most efficient representation of a higher-level regularity. The danger is to infer ontology directly from formal success.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, symmetry is expected to survive widely, but often as an emergent invariance or effective closure rather than as the deepest primitive. This section therefore concerns when mathematics is tracking a real structure, when it is a coordinate convenience, and when representational power outruns ontological warrant.
+
+---
 
 ## Inference, Underdetermination, and Theory Choice
 

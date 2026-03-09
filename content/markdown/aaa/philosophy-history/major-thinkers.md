@@ -1,5 +1,7 @@
 # Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework 
 
+---
+
 ## Overview
 
 This document maps key historical and contemporary figures who have shaped foundational thinking about nature, reality, and the structure of physics. For each, it identifies the thinker's core commitments and assesses how $\mathbb{A}\mathbb{A}\mathbb{A}$ supports, challenges, reframes, or supersedes them.
@@ -253,6 +255,8 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Legacy shift**: Laplace's Demon is no longer a thought experiment—it becomes a **qualified ideal** for the $\mathbb{U}_{\text{now}}$ universe-state perspective, bounded by self-hit multistability.
 
+---
+
 ## Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
 ### **Ernst Mach (1838–1916)**
@@ -439,6 +443,8 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ✅ **Pro**: If the theory fails empirical tests, we **pivot or halt** (no "just-so stories" or parameter bloat).
 
 **Legacy shift**: Hossenfelder's **methodological critique** is **embodied** in our team charter. Her call for empirical rigor is our **operating principle**.
+
+---
 
 ## Quantum Foundations & Hidden-Variable Landscape
 
@@ -677,6 +683,8 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ⚠️ **Difference**: 't Hooft uses **discrete cellular automata**; we use **continuous architrino dynamics** in Euclidean 3D + absolute time (though tri-binary lattice introduces discrete structure at assembly scale).
 
 **Legacy shift**: 't Hooft's program is **vindicated** and **extended** with explicit microphysical ontology. His cellular automaton is replaced by **architrino network**.
+
+---
 
 ## Philosophy of Science
 
