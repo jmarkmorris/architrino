@@ -14,7 +14,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not side commentary. It bears dire
 - what counts as falsification, reinterpretation, or reduction,
 - and how a new substrate theory should inherit or replace prior frameworks.
 
-This page is indexed by schools and conceptual disputes rather than by biography. The complementary people-centered map remains [major-thinkers.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/philosophy-history/major-thinkers.md).
+This page is indexed by schools and conceptual disputes rather than by biography. The complementary people-centered map remains [major-thinkers.md](major-thinkers.md).
 
 The main claim of this page is simple: if $\mathbb{A}\mathbb{A}\mathbb{A}$ is to function as a serious replacement architecture, it must be methodologically explicit about realism, reduction, inference, and falsifiability rather than relying on these commitments implicitly.
 

@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 391,
+      "nodes": 392,
       "edges": 1132,
       "scenes": 274,
       "markdownIndexes": 0,
-      "markdownDocs": 117,
+      "markdownDocs": 118,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1823,9 +1823,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/mathematics.md",
-      "name": "Mathematics",
-      "path": "content/markdown/aaa/archie/mathematics.md",
+      "id": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "name": "Mathematical Style Guide (Canonical Dialect)",
+      "path": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "name": "Mathematical Terminology (Canonical Dialect)",
+      "path": "content/markdown/aaa/archie/mathematics-terminology.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5008,12 +5014,21 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/mathematics-style-guide.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/mathematics.md",
-      "name": "Mathematics",
-      "path": "content/markdown/aaa/archie/mathematics.md",
-      "searchTarget": "content/markdown/aaa/archie/mathematics.md",
+      "id": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "name": "Mathematical Style Guide (Canonical Dialect)",
+      "path": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "searchTarget": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "name": "Mathematical Terminology (Canonical Dialect)",
+      "path": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "searchTarget": "content/markdown/aaa/archie/mathematics-terminology.md",
       "implicit": false
     },
     {
@@ -10135,14 +10150,14 @@
     },
     {
       "from": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/mathematics-style-guide.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_mathematical_style_guide.json",
       "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/meta/meta_mathematical_terminology.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_mathematical_terminology.json",
       "field": "scene.source.path"

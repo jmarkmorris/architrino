@@ -8,7 +8,7 @@ This document maps the information-theoretic and computational concepts that sha
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the central question is whether information and computation are fundamental or whether they are derived descriptions of physical organization and update structure.
 
-This page is indexed by subjects rather than by biography. Related people-centered material remains in [major-thinkers.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/philosophy-history/major-thinkers.md).
+This page is indexed by subjects rather than by biography. Related people-centered material remains in [major-thinkers.md](major-thinkers.md).
 
 The current architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
 

@@ -4,7 +4,7 @@
 
 This guide defines the default prose standard for textbook-facing content in the webapp. It is intended for chapters, scene notes, comparative essays, and explanatory reference documents that are part of the public reading surface.
 
-This guide complements, rather than replaces, the mathematical guide in [mathematics.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/archie/mathematics.md). The mathematical guide governs notation and formal dialect. This guide governs prose, structure, tone, and editorial discipline.
+This guide complements, rather than replaces, the mathematical guide in [mathematics-style-guide.md](mathematics-style-guide.md). The mathematical guide governs notation and formal dialect. This guide governs prose, structure, tone, and editorial discipline.
 
 ## Scope
 
