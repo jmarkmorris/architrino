@@ -130,26 +130,6 @@ function walkFiles(relativeDir, predicate) {
   return result.sort((a, b) => a.localeCompare(b));
 }
 
-function walkDirs(relativeDir) {
-  const absoluteDir = path.join(rootDir, relativeDir);
-  const result = [];
-  const stack = [absoluteDir];
-  while (stack.length) {
-    const currentDir = stack.pop();
-    const rel = normalizePath(path.relative(rootDir, currentDir));
-    result.push(rel);
-    const entries = fs
-      .readdirSync(currentDir, { withFileTypes: true })
-      .sort((a, b) => a.name.localeCompare(b.name));
-    for (const entry of entries) {
-      if (entry.isDirectory()) {
-        stack.push(path.join(currentDir, entry.name));
-      }
-    }
-  }
-  return result.sort((a, b) => a.localeCompare(b));
-}
-
 function createLowerMap(paths) {
   const map = new Map();
   for (const p of paths) {
@@ -339,23 +319,6 @@ function validateFileReference(sourcePath, field, refPath, exactSet, lowerMap) {
   const normalized = normalizePath(refPath);
   if (!normalized) {
     errors.push(`${sourcePath} -> ${field}: empty path`);
-    return;
-  }
-  if (exactSet.has(normalized)) {
-    return;
-  }
-  const actual = lowerMap.get(normalized.toLowerCase());
-  if (actual) {
-    addCaseMismatchWarning(sourcePath, field, normalized, actual);
-  } else {
-    addMissingRefError(sourcePath, field, normalized);
-  }
-}
-
-function validateDirectoryReference(sourcePath, field, refPath, exactSet, lowerMap) {
-  const normalized = normalizePath(refPath);
-  if (!normalized) {
-    errors.push(`${sourcePath} -> ${field}: empty directory`);
     return;
   }
   if (exactSet.has(normalized)) {
@@ -703,12 +666,105 @@ function validateSceneIntegrity(scenePath, data, markdownContext) {
 
 }
 
+function validateSceneTypeSpecificRules(scenePath, data) {
+  const scene = data.scene ?? {};
+  const sceneType = asText(scene.type);
+  const source = scene.source ?? null;
+  const split = source?.split ?? null;
+  const tree = source?.tree ?? null;
+  const view = scene.view ?? null;
+  const hasSource = source && typeof source === "object" && !Array.isArray(source);
+  const hasChildren = Array.isArray(scene.children) && scene.children.length > 0;
+  const markdownSourceOk =
+    source?.type === "markdown" &&
+    typeof source?.path === "string" &&
+    source.path.trim().length > 0;
+
+  if (sceneType === "Scene-Index") {
+    if (!hasChildren) {
+      errors.push(`${scenePath}: Scene-Index requires scene.children`);
+    }
+    if (hasSource) {
+      errors.push(`${scenePath}: Scene-Index must not declare scene.source`);
+    }
+    if (view && typeof view === "object" && !Array.isArray(view)) {
+      errors.push(`${scenePath}: Scene-Index must not declare scene.view`);
+    }
+    return;
+  }
+
+  if (sceneType === "Scene-Markdown-View") {
+    if (!markdownSourceOk) {
+      errors.push(
+        `${scenePath}: Scene-Markdown-View requires scene.source.type=markdown and scene.source.path`
+      );
+    }
+    if (split && typeof split === "object") {
+      errors.push(`${scenePath}: Scene-Markdown-View must not declare scene.source.split`);
+    }
+    if (tree && typeof tree === "object") {
+      errors.push(`${scenePath}: Scene-Markdown-View must not declare scene.source.tree`);
+    }
+    return;
+  }
+
+  if (sceneType === "Scene-Markdown-Split") {
+    if (!markdownSourceOk) {
+      errors.push(
+        `${scenePath}: Scene-Markdown-Split requires scene.source.type=markdown and scene.source.path`
+      );
+    }
+    if (!split || typeof split !== "object" || Array.isArray(split)) {
+      errors.push(`${scenePath}: Scene-Markdown-Split requires scene.source.split`);
+    } else {
+      if (Object.prototype.hasOwnProperty.call(split, "sectionDepth")) {
+        errors.push(`${scenePath}: Scene-Markdown-Split uses legacy scene.source.split.sectionDepth`);
+      }
+      if (Object.prototype.hasOwnProperty.call(split, "mode")) {
+        errors.push(`${scenePath}: Scene-Markdown-Split uses legacy scene.source.split.mode`);
+      }
+      if (Object.prototype.hasOwnProperty.call(split, "sectionPresentationType")) {
+        errors.push(
+          `${scenePath}: Scene-Markdown-Split uses legacy scene.source.split.sectionPresentationType`
+        );
+      }
+    }
+    if (tree && typeof tree === "object") {
+      errors.push(`${scenePath}: Scene-Markdown-Split must not declare scene.source.tree`);
+    }
+    return;
+  }
+
+  if (sceneType === "Scene-Markdown-Tree") {
+    if (!markdownSourceOk) {
+      errors.push(
+        `${scenePath}: Scene-Markdown-Tree requires scene.source.type=markdown and scene.source.path`
+      );
+    }
+    if (!tree || typeof tree !== "object" || Array.isArray(tree)) {
+      errors.push(`${scenePath}: Scene-Markdown-Tree requires scene.source.tree`);
+      return;
+    }
+    if (Object.prototype.hasOwnProperty.call(tree, "headingLevel")) {
+      errors.push(`${scenePath}: Scene-Markdown-Tree uses legacy scene.source.tree.headingLevel`);
+    }
+    if (split && typeof split === "object") {
+      errors.push(`${scenePath}: Scene-Markdown-Tree must not declare scene.source.split`);
+    }
+    if (typeof tree.rootHeadingLevel !== "number") {
+      errors.push(`${scenePath}: Scene-Markdown-Tree requires scene.source.tree.rootHeadingLevel`);
+    }
+    if (typeof tree.maxDepth !== "number") {
+      errors.push(`${scenePath}: Scene-Markdown-Tree requires scene.source.tree.maxDepth`);
+    }
+  }
+}
+
 const allSceneJson = walkFiles(SCENES_DIR, (name) => name.toLowerCase().endsWith(".json"));
 const allMarkdownFiles = walkFiles(MARKDOWN_DIR, (name) => name.toLowerCase().endsWith(".md"));
 const indexableMarkdownFiles = allMarkdownFiles.filter(
   (markdownPath) => !normalizePath(markdownPath).includes("/_meta/")
 );
-const allMarkdownDirectories = walkDirs(MARKDOWN_DIR).map((d) => normalizePath(d));
 
 const sceneConfigs = [];
 const ancillarySceneJson = [];
@@ -909,11 +965,8 @@ const sceneConfigSet = new Set(sceneConfigs);
 const sceneConfigLower = createLowerMap(sceneConfigs);
 const markdownFileSet = new Set(allMarkdownFiles);
 const markdownFileLower = createLowerMap(allMarkdownFiles);
-const markdownDirSet = new Set(allMarkdownDirectories);
-const markdownDirLower = createLowerMap(allMarkdownDirectories);
 const markdownContext = {
   markdownFiles: allMarkdownFiles,
-  markdownDirectories: allMarkdownDirectories,
   markdownTextByPath,
 };
 const incomingSceneRefCount = new Map(sceneConfigs.map((scenePath) => [scenePath, 0]));
@@ -1005,6 +1058,7 @@ for (const scenePath of sceneConfigs) {
   if (sceneSchema) {
     validateSchemaValue(scenePath, data, sceneSchema, []);
   }
+  validateSceneTypeSpecificRules(scenePath, data);
   validateSceneIntegrity(scenePath, data, markdownContext);
 
   const sceneMarkdownPath = resolveAuthoredMarkdownPath(scene);

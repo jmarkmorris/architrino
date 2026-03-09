@@ -15,10 +15,8 @@
       "type": "markdown",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "split": {
-        "mode": "headings",
         "headingLevel": 2,
-        "sectionDepth": 1,
-        "sectionPresentationType": "Scene-Markdown-View",
+        "maxDepth": 1,
         "overrides": {
           "overview": {
             "id": "crisis_in_physics_overview",

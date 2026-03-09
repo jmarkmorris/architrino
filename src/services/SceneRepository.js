@@ -98,33 +98,21 @@ export class SceneRepository {
     const configuredHeadingLevel = usesTypedTreeSource
       ? typeof tree?.rootHeadingLevel === "number"
         ? tree.rootHeadingLevel
-        : typeof tree?.headingLevel === "number"
-          ? tree.headingLevel
-          : typeof view?.headingLevel === "number"
-            ? view.headingLevel
-            : 2
+        : 2
       : typeof split?.headingLevel === "number"
         ? split.headingLevel
-        : typeof view?.headingLevel === "number"
-          ? view.headingLevel
-          : usesTypedSplitSource
-            ? 2
-            : null;
+        : usesTypedSplitSource
+          ? 2
+          : null;
     const configuredMaxDepth = usesTypedTreeSource
       ? typeof tree?.maxDepth === "number"
         ? tree.maxDepth
-        : typeof view?.maxDepth === "number"
-          ? view.maxDepth
-          : 1
+        : 1
       : typeof split?.maxDepth === "number"
         ? split.maxDepth
-        : typeof split?.sectionDepth === "number"
-          ? split.sectionDepth
-          : typeof view?.sectionDepth === "number"
-            ? view.sectionDepth
-            : usesTypedSplitSource
-              ? 1
-              : null;
+        : usesTypedSplitSource
+          ? 1
+          : null;
     return {
       splitSourcePath: usesTypedMarkdownTreeLikeSource
         ? source.path
@@ -145,11 +133,6 @@ export class SceneRepository {
       splitColumns:
         view?.columns === 1 || view?.columns === 2
           ? view.columns
-            : null,
-      splitSectionDepth: typeof split?.sectionDepth === "number"
-        ? split.sectionDepth
-        : typeof view?.sectionDepth === "number"
-          ? view.sectionDepth
           : null,
       splitIncludeExistingInLayout: split?.includeExistingInLayout === true,
       splitNodeRadius: null,
@@ -173,8 +156,6 @@ export class SceneRepository {
           : split?.overrides && typeof split.overrides === "object"
             ? split.overrides
             : null,
-      splitTreeRootHeadingLevel: usesTypedTreeSource ? configuredHeadingLevel : null,
-      splitTreeConfiguredMaxDepth: usesTypedTreeSource ? configuredMaxDepth : null,
       splitTreeMode: usesTypedTreeSource
         ? "tree"
         : usesTypedSplitSource
@@ -663,11 +644,8 @@ export class SceneRepository {
       splitDefaultIndex: splitScene.splitDefaultIndex,
       splitIndexPaths: splitScene.splitIndexPaths,
       splitPlainSectionPaths: splitScene.splitPlainSectionPaths,
-      splitSectionDepth: splitScene.splitSectionDepth,
       splitOverrides: splitScene.splitOverrides,
       splitSectionOverrides: splitScene.splitSectionOverrides,
-      splitTreeRootHeadingLevel: splitScene.splitTreeRootHeadingLevel,
-      splitTreeConfiguredMaxDepth: splitScene.splitTreeConfiguredMaxDepth,
       splitTreeMode: splitScene.splitTreeMode,
     };
     this.levelConfigs[scenePath] = config;

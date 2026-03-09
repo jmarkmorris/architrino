@@ -15,10 +15,8 @@
       "type": "markdown",
       "path": "content/markdown/aaa/philosophy-history/information-computation.md",
       "split": {
-        "mode": "headings",
         "headingLevel": 2,
-        "sectionDepth": 1,
-        "sectionPresentationType": "Scene-Markdown-View",
+        "maxDepth": 1,
         "overrides": {
           "overview": {
             "id": "information_computation_overview",

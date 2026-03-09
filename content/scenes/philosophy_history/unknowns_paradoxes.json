@@ -15,10 +15,8 @@
       "type": "markdown",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "split": {
-        "mode": "headings",
         "headingLevel": 3,
-        "sectionDepth": 1,
-        "sectionPresentationType": "Scene-Markdown-View",
+        "maxDepth": 1,
         "overrides": {
           "the nature of dark energy": {
             "id": "unknown_the_nature_of_dark_energy",

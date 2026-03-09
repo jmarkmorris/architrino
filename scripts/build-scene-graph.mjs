@@ -109,11 +109,6 @@ function inferMarkdownName(markdownPath, resolvedTitle = null) {
   return stripWalkthroughStepPrefix(titleFromSlug(file)) || titleFromSlug(file);
 }
 
-function inferDirectoryName(directoryPath) {
-  const segment = directoryPath.split("/").pop() || directoryPath;
-  return titleFromSlug(segment || "index");
-}
-
 function readJson(relativePath) {
   const absolutePath = path.join(rootDir, relativePath);
   try {
@@ -141,10 +136,6 @@ function markdownDocNodeId(markdownPath) {
   return `markdown_doc:${markdownPath}`;
 }
 
-function markdownIndexNodeId(directoryPath) {
-  return `markdown_index:${directoryPath}`;
-}
-
 function resolveAuthoredMarkdownPath(entry) {
   if (entry?.source?.type === "markdown" && typeof entry?.source?.path === "string") {
     return entry.source.path;
@@ -152,16 +143,10 @@ function resolveAuthoredMarkdownPath(entry) {
   return null;
 }
 
-function getParentDirectory(filePath) {
-  const dir = normalizePath(path.posix.dirname(filePath));
-  return dir === "." ? "" : dir;
-}
-
 function compareNodes(a, b) {
   const typeOrder = {
     scene: 0,
-    markdown_index: 1,
-    markdown_doc: 2,
+    markdown_doc: 1,
   };
   const aType = typeOrder[a.nodeType] ?? 99;
   const bType = typeOrder[b.nodeType] ?? 99;
@@ -180,8 +165,7 @@ function compareEdges(a, b) {
   const typeOrder = {
     subscene: 0,
     markdown_doc: 1,
-    markdown_index: 2,
-    runtime_generated: 3,
+    runtime_generated: 2,
   };
   const aType = typeOrder[a.edgeType] ?? 99;
   const bType = typeOrder[b.edgeType] ?? 99;
@@ -317,7 +301,6 @@ for (const markdownPath of markdownFiles) {
 
 const nodeById = new Map();
 const edgeByKey = new Map();
-const markdownDirectories = new Set();
 const sceneSearchOrder = sceneEntries.map((entry) => entry.path);
 const scenePathSet = new Set(sceneEntries.map((entry) => entry.path));
 const periodicRuntimeRouteBySymbol = new Map();
@@ -379,24 +362,6 @@ function ensureMarkdownDocNode(markdownPath) {
   return nodeId;
 }
 
-function ensureMarkdownIndexNode(directoryPath) {
-  const normalizedPath = normalizePath(directoryPath);
-  if (!normalizedPath) {
-    return null;
-  }
-  const nodeId = markdownIndexNodeId(normalizedPath);
-  if (!nodeById.has(nodeId)) {
-    addNode({
-      nodeId,
-      nodeType: "markdown_index",
-      id: normalizedPath,
-      name: inferDirectoryName(normalizedPath),
-      path: normalizedPath,
-    });
-  }
-  return nodeId;
-}
-
 function addEdge({ from, to, edgeType, source, field }) {
   if (!from || !to || !edgeType) {
     return;
@@ -435,23 +400,6 @@ function addMarkdownDocEdge(scenePath, markdownPath, field) {
   });
 }
 
-function addMarkdownIndexEdge(scenePath, directoryPath, field) {
-  const normalizedDirectoryPath = normalizePath(directoryPath);
-  if (!normalizedDirectoryPath) {
-    return;
-  }
-  markdownDirectories.add(normalizedDirectoryPath);
-  const from = ensureSceneNode(scenePath);
-  const to = ensureMarkdownIndexNode(normalizedDirectoryPath);
-  addEdge({
-    from,
-    to,
-    edgeType: "markdown_index",
-    source: scenePath,
-    field,
-  });
-}
-
 for (const sceneEntry of sceneEntries) {
   ensureSceneNode(sceneEntry.path, {
     id: sceneEntry.id,
@@ -461,10 +409,6 @@ for (const sceneEntry of sceneEntries) {
 
 for (const markdownPath of markdownFiles) {
   ensureMarkdownDocNode(markdownPath);
-  const directory = getParentDirectory(markdownPath);
-  if (directory) {
-    markdownDirectories.add(directory);
-  }
 }
 
 for (const sceneEntry of sceneEntries) {
@@ -516,26 +460,6 @@ for (const sceneEntry of sceneEntries) {
       const objectId = asText(obj.id) || `objects[${objectIndex}]`;
       addMarkdownDocEdge(scenePath, objectMarkdownPath, `${objectId}.source.path`);
     }
-  });
-}
-
-for (const directoryPath of markdownDirectories) {
-  ensureMarkdownIndexNode(directoryPath);
-}
-
-for (const markdownPath of markdownFiles) {
-  const directoryPath = getParentDirectory(markdownPath);
-  if (!directoryPath) {
-    continue;
-  }
-  const from = ensureMarkdownIndexNode(directoryPath);
-  const to = ensureMarkdownDocNode(markdownPath);
-  addEdge({
-    from,
-    to,
-    edgeType: "markdown_index",
-    source: MARKDOWN_INDEX_PATH,
-    field: "directory_contains",
   });
 }
 
@@ -637,7 +561,6 @@ const nodes = Array.from(nodeById.values()).sort(compareNodes);
 const edges = Array.from(edgeByKey.values()).sort(compareEdges);
 
 const sceneNodes = nodes.filter((node) => node.nodeType === "scene");
-const markdownIndexNodes = nodes.filter((node) => node.nodeType === "markdown_index");
 const markdownDocNodes = nodes.filter((node) => node.nodeType === "markdown_doc");
 
 const sceneNodeByPath = new Map(sceneNodes.map((node) => [node.path, node]));
@@ -656,16 +579,12 @@ sceneNodes
   .sort((a, b) => a.path.localeCompare(b.path))
   .forEach((node) => orderedSceneNodes.push(node));
 
-const orderedMarkdownIndexNodes = [...markdownIndexNodes].sort((a, b) =>
-  a.path.localeCompare(b.path)
-);
 const orderedMarkdownDocNodes = [...markdownDocNodes].sort((a, b) =>
   a.path.localeCompare(b.path)
 );
 
 const rawSearchEntries = [
   ...orderedSceneNodes,
-  ...orderedMarkdownIndexNodes,
   ...orderedMarkdownDocNodes,
 ]
   .filter((node) => typeof node.searchTarget === "string" && node.searchTarget.length > 0)
@@ -676,20 +595,7 @@ const rawSearchEntries = [
     nodeType: node.nodeType,
   }));
 
-// Avoid duplicate search hits when a scene and markdown directory share the same display name.
-const sceneSearchNames = new Set(
-  rawSearchEntries
-    .filter((entry) => entry.nodeType === "scene")
-    .map((entry) => String(entry.name || "").trim().toLowerCase())
-    .filter(Boolean)
-);
-const searchEntries = rawSearchEntries.filter((entry) => {
-  if (entry.nodeType !== "markdown_index") {
-    return true;
-  }
-  const normalizedName = String(entry.name || "").trim().toLowerCase();
-  return normalizedName ? !sceneSearchNames.has(normalizedName) : true;
-});
+const searchEntries = rawSearchEntries;
 
 for (const edge of edges) {
   if (!nodeById.has(edge.from)) {
@@ -719,7 +625,7 @@ const manifest = {
       nodes: nodes.length,
       edges: edges.length,
       scenes: sceneNodes.length,
-      markdownIndexes: markdownIndexNodes.length,
+      markdownIndexes: 0,
       markdownDocs: markdownDocNodes.length,
       runtimeEdges: edges.filter((edge) => edge.edgeType === "runtime_generated").length,
       periodicGridRoutes: Object.keys(periodicGridRoutes).length,

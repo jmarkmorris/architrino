@@ -77,6 +77,127 @@
           }
         }
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "scene": {
+            "type": "object",
+            "properties": {
+              "type": { "const": "Scene-Index" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scene": {
+            "required": ["children"],
+            "not": {
+              "anyOf": [
+                { "required": ["source"] },
+                { "required": ["view"] }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "scene": {
+            "type": "object",
+            "properties": {
+              "type": { "const": "Scene-Markdown-View" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scene": {
+            "required": ["source"],
+            "properties": {
+              "source": {
+                "required": ["type", "path"],
+                "properties": {
+                  "type": { "const": "markdown" }
+                },
+                "not": {
+                  "anyOf": [
+                    { "required": ["split"] },
+                    { "required": ["tree"] }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "scene": {
+            "type": "object",
+            "properties": {
+              "type": { "const": "Scene-Markdown-Split" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scene": {
+            "required": ["source"],
+            "properties": {
+              "source": {
+                "required": ["type", "path", "split"],
+                "properties": {
+                  "type": { "const": "markdown" }
+                },
+                "not": {
+                  "required": ["tree"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "scene": {
+            "type": "object",
+            "properties": {
+              "type": { "const": "Scene-Markdown-Tree" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scene": {
+            "required": ["source"],
+            "properties": {
+              "source": {
+                "required": ["type", "path", "tree"],
+                "properties": {
+                  "type": { "const": "markdown" },
+                  "tree": {
+                    "required": ["rootHeadingLevel", "maxDepth"]
+                  }
+                },
+                "not": {
+                  "required": ["split"]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   ],
   "properties": {

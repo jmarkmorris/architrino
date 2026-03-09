@@ -140,9 +140,28 @@ export function createMarkdownRuntime(deps) {
       markdownSection = encodedSection ? decodeURIComponent(encodedSection) : null;
     } else if (levelId.startsWith(runtimeMarkdownIndexPrefix)) {
       const raw = levelId.slice(runtimeMarkdownIndexPrefix.length);
-      const headingTokenIndex = raw.lastIndexOf("::h");
-      markdownPath = headingTokenIndex > -1 ? raw.slice(0, headingTokenIndex) : raw;
-      markdownSection = null;
+      const depthTokenIndex = raw.lastIndexOf("::d");
+      const headingTokenIndex =
+        depthTokenIndex > -1 ? raw.lastIndexOf("::h", depthTokenIndex) : raw.lastIndexOf("::h");
+      const sectionTokenIndex = raw.lastIndexOf("::s");
+      const pathEnd =
+        sectionTokenIndex > -1 && (headingTokenIndex === -1 || sectionTokenIndex < headingTokenIndex)
+          ? sectionTokenIndex
+          : headingTokenIndex > -1
+            ? headingTokenIndex
+            : depthTokenIndex > -1
+              ? depthTokenIndex
+              : raw.length;
+      markdownPath = raw.slice(0, pathEnd) || markdownPath;
+      if (sectionTokenIndex > -1) {
+        const sectionStart = sectionTokenIndex + 3;
+        const sectionEnd =
+          headingTokenIndex > -1 ? headingTokenIndex : depthTokenIndex > -1 ? depthTokenIndex : raw.length;
+        const encodedSection = raw.slice(sectionStart, sectionEnd);
+        markdownSection = encodedSection ? decodeURIComponent(encodedSection) : null;
+      } else {
+        markdownSection = null;
+      }
     }
 
     return {

@@ -138,9 +138,6 @@ searchEntries.forEach((entry, index) => {
 if (!searchNodeTypes.has("markdown_doc")) {
   errors.push('searchEntries: missing "markdown_doc" entries');
 }
-if (!searchNodeTypes.has("markdown_index")) {
-  warnings.push('searchEntries: missing "markdown_index" entries');
-}
 if (!searchNodeTypes.has("scene")) {
   errors.push('searchEntries: missing "scene" entries');
 }

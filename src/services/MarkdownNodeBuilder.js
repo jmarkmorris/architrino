@@ -70,9 +70,7 @@ export function createMarkdownNodeBuilder(deps) {
     const remainingDepth =
       typeof scene.splitMaxDepth === "number"
         ? Math.max(1, scene.splitMaxDepth)
-        : typeof scene.splitSectionDepth === "number"
-          ? Math.max(1, scene.splitSectionDepth)
-          : 1;
+        : 1;
 
     if (scene.splitSourcePath) {
       try {
@@ -111,10 +109,6 @@ export function createMarkdownNodeBuilder(deps) {
     const plainSectionPaths = Array.isArray(scene.splitPlainSectionPaths)
       ? new Set(scene.splitPlainSectionPaths.map((path) => normalizeMarkdownPath(path)))
       : null;
-    const defaultSectionDepth =
-      typeof scene.splitSectionDepth === "number"
-        ? scene.splitSectionDepth
-        : 2;
     const pathOverrides =
       scene.splitOverrides && typeof scene.splitOverrides === "object"
         ? scene.splitOverrides
@@ -373,13 +367,11 @@ export function createMarkdownNodeBuilder(deps) {
           if (override?.columns === 1 || override?.columns === 2) {
             node.markdownColumns = override.columns;
           }
-          const sectionDepth =
-            typeof override?.sectionDepth === "number" ? override.sectionDepth : defaultSectionDepth;
           const plainSectionList = [];
           if (plainSectionPaths && plainSectionPaths.has(normalizedPath)) {
             plainSectionList.push(info.path);
           }
-          if (sectionDepth < 2) {
+          if (typeof override?.sectionDepth === "number" && override.sectionDepth < 2) {
             plainSectionList.push(info.path);
           }
           if (plainSectionList.length) {
