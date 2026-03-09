@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "meta__meta_glossary",
-    "title": "Glossary",
+    "title": "Comparative Glossary",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/glossary.md"
+      "path": "content/markdown/aaa/archie/comparative-glossary.md"
     },
     "view": {
       "columns": 1,

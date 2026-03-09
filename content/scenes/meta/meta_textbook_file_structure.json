@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "meta__meta_mathematical_terminology",
-    "title": "Mathematical Terminology Reference",
+    "id": "meta__meta_textbook_file_structure",
+    "title": "Textbook File Structure",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,10 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/mathematics-terminology.md"
+      "path": "content/markdown/aaa/archie/textbook-file-structure.md"
     },
     "view": {
-      "section": "Mathematical Terminology (Canonical Dialect)",
+      "columns": 1,
       "autoOpen": true
     }
   },

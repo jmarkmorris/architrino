@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "meta__meta_about",
-    "title": "About",
+    "title": "About the Webapp",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/about.md"
+      "path": "content/markdown/aaa/archie/about-the-webapp.md"
     },
     "view": {
       "autoOpen": true

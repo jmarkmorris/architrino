@@ -278,7 +278,7 @@ Work on event horizon, curvature, and singularity. chatgpt is saying the singula
 ---
 
 - double click pins vscode tab
-- link a markdown file [text](../../markdown/aaa/prototype/markdown/file). Add note to system prompts.
+- link a markdown file [textbook file structure](../../markdown/aaa/archie/textbook-file-structure.md). Add note to system prompts.
 - one H1 heading per md
 - branches are now alpha beta gamma delta omega in git
 - og entourage ids I should see in lmcouncil Jan 13ab/15ab/17a/24a

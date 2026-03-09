@@ -1364,6 +1364,11 @@
       "id": "meta__meta_academic_style_guide",
       "name": "Academic Style Guide",
       "path": "content/scenes/meta/meta_academic_style_guide.json"
+    },
+    {
+      "id": "meta__meta_textbook_file_structure",
+      "name": "Textbook File Structure",
+      "path": "content/scenes/meta/meta_textbook_file_structure.json"
     }
   ]
 }
