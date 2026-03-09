@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 428,
-      "edges": 1289,
-      "scenes": 295,
+      "nodes": 407,
+      "edges": 1249,
+      "scenes": 274,
       "markdownIndexes": 16,
       "markdownDocs": 117,
       "runtimeEdges": 476,
@@ -1163,30 +1163,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "major_thinkers_classical_modern",
-      "name": "Classical & Early Modern Metaphysics",
-      "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_qft_standard_model",
-      "name": "Standard Model Architecture",
-      "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_quantum_foundations",
-      "name": "Quantum Foundations",
-      "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_relativity_cosmology",
-      "name": "Relativity to Quantum Gravity",
-      "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "major_thinkers",
       "name": "Major Thinkers",
       "path": "content/scenes/philosophy_history/major_thinkers.json",
@@ -1505,24 +1481,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "major_thinkers__major_thinkers_conclusion",
-      "name": "Conclusion",
-      "path": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers__major_thinkers_intro",
-      "name": "Introduction",
-      "path": "content/scenes/philosophy_history/major_thinkers_intro.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers__major_thinkers_summary_table",
-      "name": "Summary Table",
-      "path": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "philosophy_history__religious_ontologies",
       "name": "Religious Ontologies",
       "path": "content/scenes/philosophy_history/religious_ontologies.json",
@@ -1832,90 +1790,6 @@
       "id": "information_computation",
       "name": "Information / Computation",
       "path": "content/scenes/philosophy_history/information_computation.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_information_computation",
-      "name": "Information / Computation",
-      "path": "content/scenes/philosophy_history/major_thinkers_information_computation.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_philosophy_of_science",
-      "name": "Philosophy of Science",
-      "path": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__dark_cosmology",
-      "name": "Dark Matter, Dark Energy, and Cosmological Over-Inference",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_dark_cosmology.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__gr_qt",
-      "name": "General Relativity and Quantum Theory",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_gr_qt.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__math_mechanism",
-      "name": "Mathematical Control vs. Mechanistic Explanation",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_math_mechanism.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__measurement_selection",
-      "name": "Quantum Measurement and Outcome Selection",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_measurement_selection.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__nonlocality_bell",
-      "name": "Nonlocality, Bell, and Causal Structure",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_nonlocality_bell.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__overview",
-      "name": "Overview",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_overview.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__parameter_patchwork",
-      "name": "Parameter Proliferation and Patchwork Closure",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_parameter_patchwork.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__prediction_ontology",
-      "name": "Prediction vs. Ontology",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_prediction_ontology.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__progress_time",
-      "name": "Progress vs. Time",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_progress_time.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__renormalization_uv",
-      "name": "Renormalization, UV Completion, and Continuum Excess",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_renormalization_uv.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__vacuum_medium",
-      "name": "Vacuum, Medium, and the Status of Empty Space",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_vacuum_medium.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "crisis_in_physics__why_aaa",
-      "name": "Why This Matters For $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_why_aaa.json",
       "nodeType": "scene"
     },
     {
@@ -4387,114 +4261,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_dark_cosmology.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__dark_cosmology",
-      "name": "Dark Matter, Dark Energy, and Cosmological Over-Inference",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_dark_cosmology.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_dark_cosmology.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_gr_qt.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__gr_qt",
-      "name": "General Relativity and Quantum Theory",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_gr_qt.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_gr_qt.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_math_mechanism.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__math_mechanism",
-      "name": "Mathematical Control vs. Mechanistic Explanation",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_math_mechanism.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_math_mechanism.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_measurement_selection.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__measurement_selection",
-      "name": "Quantum Measurement and Outcome Selection",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_measurement_selection.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_measurement_selection.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_nonlocality_bell.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__nonlocality_bell",
-      "name": "Nonlocality, Bell, and Causal Structure",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_nonlocality_bell.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_nonlocality_bell.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_overview.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__overview",
-      "name": "Overview",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_overview.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_overview.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_parameter_patchwork.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__parameter_patchwork",
-      "name": "Parameter Proliferation and Patchwork Closure",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_parameter_patchwork.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_parameter_patchwork.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_prediction_ontology.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__prediction_ontology",
-      "name": "Prediction vs. Ontology",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_prediction_ontology.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_prediction_ontology.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_progress_time.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__progress_time",
-      "name": "Progress vs. Time",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_progress_time.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_progress_time.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_renormalization_uv.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__renormalization_uv",
-      "name": "Renormalization, UV Completion, and Continuum Excess",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_renormalization_uv.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_renormalization_uv.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_vacuum_medium.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__vacuum_medium",
-      "name": "Vacuum, Medium, and the Status of Empty Space",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_vacuum_medium.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_vacuum_medium.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics_why_aaa.json",
-      "nodeType": "scene",
-      "id": "crisis_in_physics__why_aaa",
-      "name": "Why This Matters For $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
-      "path": "content/scenes/philosophy_history/crisis_in_physics_why_aaa.json",
-      "searchTarget": "content/scenes/philosophy_history/crisis_in_physics_why_aaa.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "nodeType": "scene",
       "id": "philosophy_history__crisis_in_physics",
@@ -4528,87 +4294,6 @@
       "name": "Lorentz Ether Comparison",
       "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "searchTarget": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_classical_modern",
-      "name": "Classical & Early Modern Metaphysics",
-      "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "nodeType": "scene",
-      "id": "major_thinkers__major_thinkers_conclusion",
-      "name": "Conclusion",
-      "path": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_information_computation.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_information_computation",
-      "name": "Information / Computation",
-      "path": "content/scenes/philosophy_history/major_thinkers_information_computation.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_information_computation.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
-      "nodeType": "scene",
-      "id": "major_thinkers__major_thinkers_intro",
-      "name": "Introduction",
-      "path": "content/scenes/philosophy_history/major_thinkers_intro.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_intro.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_philosophy_of_science",
-      "name": "Philosophy of Science",
-      "path": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_qft_standard_model",
-      "name": "Standard Model Architecture",
-      "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_quantum_foundations",
-      "name": "Quantum Foundations",
-      "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_relativity_cosmology",
-      "name": "Relativity to Quantum Gravity",
-      "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "nodeType": "scene",
-      "id": "major_thinkers__major_thinkers_summary_table",
-      "name": "Summary Table",
-      "path": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
       "implicit": false
     },
     {
@@ -9623,153 +9308,6 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_dark_cosmology.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_gr_qt.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_math_mechanism.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[10]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_measurement_selection.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_nonlocality_bell.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_overview.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_parameter_patchwork.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_prediction_ontology.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_progress_time.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_renormalization_uv.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_vacuum_medium.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics_why_aaa.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.children[11]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_information_computation.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[7]"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
@@ -10778,87 +10316,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_dark_cosmology.json",
+      "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_dark_cosmology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_gr_qt.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_gr_qt.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_math_mechanism.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_math_mechanism.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_measurement_selection.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_measurement_selection.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_nonlocality_bell.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_nonlocality_bell.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_overview.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_overview.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_parameter_patchwork.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_parameter_patchwork.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_prediction_ontology.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_prediction_ontology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_progress_time.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_progress_time.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_renormalization_uv.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_renormalization_uv.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_vacuum_medium.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_vacuum_medium.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/crisis_in_physics_why_aaa.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/crisis_in_physics_why_aaa.json",
+      "source": "content/scenes/philosophy_history/crisis_in_physics.json",
       "field": "scene.source.path"
     },
     {
@@ -10883,66 +10344,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_information_computation.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_information_computation.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_intro.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
       "field": "scene.source.path"
     },
     {

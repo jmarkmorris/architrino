@@ -3,117 +3,61 @@
   "scene": {
     "id": "major_thinkers",
     "title": "Major Thinkers",
-    "type": "Scene-Index",
+    "type": "Scene-Markdown-Split",
     "units": "relative",
     "wrapLabels": true,
+    "centerOn": "major_thinkers_overview",
     "layout": {
       "type": "rings"
     },
-    "children": [
-      {
-        "nodeId": "major_thinkers_intro",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_intro.json"
-      },
-      {
-        "nodeId": "major_thinkers_classical_modern",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
-      },
-      {
-        "nodeId": "major_thinkers_relativity_cosmology",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json"
-      },
-      {
-        "nodeId": "major_thinkers_quantum_foundations",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
-      },
-      {
-        "nodeId": "major_thinkers_qft_standard_model",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
-      },
-      {
-        "nodeId": "major_thinkers_philosophy_of_science",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_philosophy_of_science.json"
-      },
-      {
-        "nodeId": "major_thinkers_information_computation",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_information_computation.json"
-      },
-      {
-        "nodeId": "major_thinkers_summary_table",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_summary_table.json"
-      },
-      {
-        "nodeId": "major_thinkers_conclusion",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers_conclusion.json"
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "split": {
+        "mode": "headings",
+        "headingLevel": 2,
+        "sectionDepth": 2,
+        "sectionPresentationType": "Scene-Markdown-View",
+        "overrides": {
+          "overview": {
+            "id": "major_thinkers_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#243d8f"
+          },
+          "classical early modern metaphysics mechanism": {
+            "id": "major_thinkers_classical_modern",
+            "labelTitle": "Classical / Early Modern",
+            "color": "#2f6b6f"
+          },
+          "relativity gravity cosmology spacetime ontology quantum gravity": {
+            "id": "major_thinkers_relativity_cosmology",
+            "labelTitle": "Relativity / Cosmology",
+            "color": "#5a1f2e"
+          },
+          "quantum foundations hidden variable landscape": {
+            "id": "major_thinkers_quantum_foundations",
+            "labelTitle": "Quantum Foundations",
+            "color": "#4b0082"
+          },
+          "qft standard model architecture foundations renormalization gauge structure": {
+            "id": "major_thinkers_qft_standard_model",
+            "labelTitle": "Standard Model Architecture",
+            "color": "#3a5f9f"
+          },
+          "philosophy of science": {
+            "id": "major_thinkers_philosophy_of_science",
+            "labelTitle": "Philosophy of Science",
+            "color": "#2f4f7a"
+          },
+          "information computation": {
+            "id": "major_thinkers_information_computation",
+            "labelTitle": "Information / Computation",
+            "color": "#3f6a5a"
+          }
+        }
       }
-    ]
-  },
-  "objects": [
-    {
-      "id": "major_thinkers_intro",
-      "label": "Overview",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "labelTitle": "Overview",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "major_thinkers_classical_modern",
-      "label": "Classical & Early Modern Metaphysics",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "labelTitle": "Classical & Early Modern Metaphysics"
-    },
-    {
-      "id": "major_thinkers_relativity_cosmology",
-      "label": "Relativity, Gravity & Cosmology",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "labelTitle": "Relativity, Gravity & Cosmology"
-    },
-    {
-      "id": "major_thinkers_quantum_foundations",
-      "label": "Quantum Foundations",
-      "radius": 2.688,
-      "color": "#4b0082",
-      "labelTitle": "Quantum Foundations"
-    },
-    {
-      "id": "major_thinkers_qft_standard_model",
-      "label": "Standard Model Architecture",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "labelTitle": "Standard Model Architecture"
-    },
-    {
-      "id": "major_thinkers_philosophy_of_science",
-      "label": "Philosophy of Science",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "labelTitle": "Philosophy of Science"
-    },
-    {
-      "id": "major_thinkers_information_computation",
-      "label": "Information / Computation",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "labelTitle": "Information / Computation"
-    },
-    {
-      "id": "major_thinkers_summary_table",
-      "label": "Summary Table",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "labelTitle": "Summary Table",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "major_thinkers_conclusion",
-      "label": "Conclusion",
-      "radius": 2.688,
-      "color": "#6a3c3c",
-      "labelTitle": "Conclusion",
-      "labelBadge": "doc"
     }
-  ]
+  },
+  "objects": []
 }

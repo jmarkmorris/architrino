@@ -3,159 +3,98 @@
   "scene": {
     "id": "crisis_in_physics",
     "title": "Crisis in Physics",
-    "type": "Scene-Index",
+    "type": "Scene-Markdown-Split",
     "units": "relative",
     "wrapLabels": true,
+    "centerOn": "crisis_in_physics_overview",
     "layout": {
       "type": "rings"
     },
-    "children": [
-      {
-        "nodeId": "crisis_in_physics_overview",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_overview.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_progress_time",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_progress_time.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_prediction_ontology",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_prediction_ontology.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_measurement_selection",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_measurement_selection.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_nonlocality_bell",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_nonlocality_bell.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_gr_qt",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_gr_qt.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_renormalization_uv",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_renormalization_uv.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_vacuum_medium",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_vacuum_medium.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_dark_cosmology",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_dark_cosmology.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_parameter_patchwork",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_parameter_patchwork.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_math_mechanism",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_math_mechanism.json"
-      },
-      {
-        "nodeId": "crisis_in_physics_why_aaa",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics_why_aaa.json"
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "split": {
+        "mode": "headings",
+        "headingLevel": 2,
+        "sectionDepth": 1,
+        "sectionPresentationType": "Scene-Markdown-View",
+        "overrides": {
+          "overview": {
+            "id": "crisis_in_physics_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#243d8f"
+          },
+          "progress vs time": {
+            "id": "crisis_in_physics_progress_time",
+            "labelTitle": "Progress vs. Time",
+            "labelBadge": "doc",
+            "color": "#2f6b6f"
+          },
+          "prediction vs ontology": {
+            "id": "crisis_in_physics_prediction_ontology",
+            "labelTitle": "Prediction vs. Ontology",
+            "labelBadge": "doc",
+            "color": "#5a1f2e"
+          },
+          "quantum measurement and outcome selection": {
+            "id": "crisis_in_physics_measurement_selection",
+            "labelTitle": "Measurement / Outcome",
+            "labelBadge": "doc",
+            "color": "#4b0082"
+          },
+          "nonlocality bell and causal structure": {
+            "id": "crisis_in_physics_nonlocality_bell",
+            "labelTitle": "Nonlocality / Bell",
+            "labelBadge": "doc",
+            "color": "#3a5f9f"
+          },
+          "general relativity and quantum theory": {
+            "id": "crisis_in_physics_gr_qt",
+            "labelTitle": "GR and Quantum Theory",
+            "labelBadge": "doc",
+            "color": "#2f4f7a"
+          },
+          "renormalization uv completion and continuum excess": {
+            "id": "crisis_in_physics_renormalization_uv",
+            "labelTitle": "Renormalization / UV",
+            "labelBadge": "doc",
+            "color": "#6a3c3c"
+          },
+          "vacuum medium and the status of empty space": {
+            "id": "crisis_in_physics_vacuum_medium",
+            "labelTitle": "Vacuum / Medium",
+            "labelBadge": "doc",
+            "color": "#3f6a5a"
+          },
+          "dark matter dark energy and cosmological over inference": {
+            "id": "crisis_in_physics_dark_cosmology",
+            "labelTitle": "Dark-Sector Inference",
+            "labelBadge": "doc",
+            "color": "#7a4a1f"
+          },
+          "parameter proliferation and patchwork closure": {
+            "id": "crisis_in_physics_parameter_patchwork",
+            "labelTitle": "Parameters / Patchwork",
+            "labelBadge": "doc",
+            "color": "#5a3f73"
+          },
+          "mathematical control vs mechanistic explanation": {
+            "id": "crisis_in_physics_math_mechanism",
+            "labelTitle": "Math vs. Mechanism",
+            "labelBadge": "doc",
+            "color": "#355f9a"
+          },
+          "why this matters for aaa": {
+            "id": "crisis_in_physics_why_aaa",
+            "labelTitle": "Why AAA",
+            "labelBadge": "doc",
+            "color": "#3f6a5a"
+          }
+        }
       }
-    ]
-  },
-  "objects": [
-    {
-      "id": "crisis_in_physics_overview",
-      "label": "Overview",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "labelTitle": "Overview",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_progress_time",
-      "label": "Progress vs. Time",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "labelTitle": "Progress vs. Time",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_prediction_ontology",
-      "label": "Prediction vs. Ontology",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "labelTitle": "Prediction vs. Ontology",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_measurement_selection",
-      "label": "Measurement / Outcome",
-      "radius": 2.688,
-      "color": "#4b0082",
-      "labelTitle": "Measurement / Outcome",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_nonlocality_bell",
-      "label": "Nonlocality / Bell",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "labelTitle": "Nonlocality / Bell",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_gr_qt",
-      "label": "GR and Quantum Theory",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "labelTitle": "GR and Quantum Theory",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_renormalization_uv",
-      "label": "Renormalization / UV",
-      "radius": 2.688,
-      "color": "#6a3c3c",
-      "labelTitle": "Renormalization / UV",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_vacuum_medium",
-      "label": "Vacuum / Medium",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "labelTitle": "Vacuum / Medium",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_dark_cosmology",
-      "label": "Dark-Sector Inference",
-      "radius": 2.688,
-      "color": "#7a4a1f",
-      "labelTitle": "Dark-Sector Inference",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_parameter_patchwork",
-      "label": "Parameters / Patchwork",
-      "radius": 2.688,
-      "color": "#5a3f73",
-      "labelTitle": "Parameters / Patchwork",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_math_mechanism",
-      "label": "Math vs. Mechanism",
-      "radius": 2.688,
-      "color": "#355f9a",
-      "labelTitle": "Math vs. Mechanism",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "crisis_in_physics_why_aaa",
-      "label": "Why AAA",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "labelTitle": "Why AAA",
-      "labelBadge": "doc"
     }
-  ]
+  },
+  "objects": []
 }

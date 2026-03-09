@@ -92,6 +92,15 @@ export function createMarkdownSceneRegistry(deps) {
     return `${markdownIndexPrefix}${markdownPath}${levelToken}`;
   }
 
+  function getMarkdownSectionIndexSceneId(markdownPath, markdownSection, headingLevel) {
+    const sectionToken =
+      typeof markdownSection === "string" && markdownSection.length > 0
+        ? `::s${encodeURIComponent(markdownSection)}`
+        : "";
+    const levelToken = typeof headingLevel === "number" ? `::h${headingLevel}` : "";
+    return `${markdownIndexPrefix}${markdownPath}${sectionToken}${levelToken}`;
+  }
+
   function getMarkdownDocSceneId(markdownPath) {
     return `${markdownDocPrefix}${markdownPath}`;
   }
@@ -171,6 +180,32 @@ export function createMarkdownSceneRegistry(deps) {
       return sceneId;
     }
 
+    if (markdownAutoIndex === true) {
+      const sceneId = getMarkdownSectionIndexSceneId(markdownPath, markdownSection, headingLevel);
+      if (levelConfigs[sceneId]) {
+        return sceneId;
+      }
+      levelConfigs[sceneId] = {
+        layout: "static",
+        layoutType: "rings",
+        nodes: [],
+        links: [],
+        sceneName,
+        sceneId,
+        markdownPath,
+        markdownSection,
+        markdownColumns,
+        markdownAutoOpen: false,
+        centerOn: null,
+        splitSourcePath: markdownPath,
+        splitSection: markdownSection,
+        splitHeadingLevel: headingLevel,
+        splitIncludeExistingInLayout: false,
+        splitPlainSectionPaths: markdownPlainSectionPaths,
+      };
+      return sceneId;
+    }
+
     const sceneId = getMarkdownReaderSceneId(markdownPath, markdownSection);
     if (levelConfigs[sceneId]) {
       return sceneId;
@@ -237,19 +272,37 @@ export function createMarkdownSceneRegistry(deps) {
         return null;
       }
       let markdownPath = raw;
+      let markdownSection = null;
       let headingLevel = 2;
+      const sectionTokenIndex = raw.lastIndexOf("::s");
       const headingTokenIndex = raw.lastIndexOf("::h");
+      if (sectionTokenIndex > -1 && (headingTokenIndex === -1 || sectionTokenIndex < headingTokenIndex)) {
+        const sectionStart = sectionTokenIndex + 3;
+        const sectionEnd = headingTokenIndex > -1 ? headingTokenIndex : raw.length;
+        const maybePath = raw.slice(0, sectionTokenIndex);
+        const encodedSection = raw.slice(sectionStart, sectionEnd);
+        if (maybePath && encodedSection) {
+          markdownPath = maybePath;
+          markdownSection = decodeURIComponent(encodedSection);
+        }
+      }
       if (headingTokenIndex > -1) {
-        const maybePath = raw.slice(0, headingTokenIndex);
+        const pathEnd = sectionTokenIndex > -1 && sectionTokenIndex < headingTokenIndex
+          ? sectionTokenIndex
+          : headingTokenIndex;
+        const maybePath = raw.slice(0, pathEnd);
         const maybeLevel = Number(raw.slice(headingTokenIndex + 3));
         if (maybePath && Number.isFinite(maybeLevel)) {
-          markdownPath = maybePath;
+          if (!markdownSection) {
+            markdownPath = maybePath;
+          }
           headingLevel = maybeLevel;
         }
       }
-      const sceneName = await resolveRuntimeMarkdownTitle(markdownPath);
+      const sceneName = markdownSection || (await resolveRuntimeMarkdownTitle(markdownPath));
       return ensureMarkdownReaderScene({
         markdownPath,
+        markdownSection,
         markdownHeadingLevel: headingLevel,
         markdownAutoIndex: true,
         name: sceneName,
