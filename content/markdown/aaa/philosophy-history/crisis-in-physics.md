@@ -43,20 +43,6 @@ Default prose flow for each crisis section:
 6. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: classification against `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
 7. **What Would Count As Resolution**: explicit closure condition plus `Long-Term Relevance`.
 
-The first set of crisis sections to examine is:
-
-- `Progress vs. Time`
-- `Prediction vs. Ontology`
-- `Quantum Measurement and Outcome Selection`
-- `Nonlocality, Bell, and Causal Structure`
-- `General Relativity and Quantum Theory`
-- `Renormalization, UV Completion, and Continuum Excess`
-- `Vacuum, Medium, and the Status of Empty Space`
-- `Dark Matter, Dark Energy, and Cosmological Over-Inference`
-- `Parameter Proliferation and Patchwork Closure`
-- `Mathematical Control vs. Mechanistic Explanation`
-- `Why This Matters For` $\mathbb{A}\mathbb{A}\mathbb{A}$
-
 ---
 
 ## Progress vs. Time

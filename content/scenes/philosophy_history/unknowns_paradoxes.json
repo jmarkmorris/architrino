@@ -6,7 +6,7 @@
     "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,
-    "centerOn": "overview",
+    "centerOn": "unknowns_overview",
     "layout": {
       "type": "rings"
     },
@@ -22,7 +22,8 @@
             "id": "unknowns_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#5a3f73"
+            "color": "#5a3f73",
+            "mode": "doc"
           },
           "cosmology and large scale inference": {
             "id": "unknowns_cosmology_inference",

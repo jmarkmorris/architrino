@@ -278,6 +278,9 @@ export function createMarkdownNodeBuilder(deps) {
           scene.splitSourcePath && info.title ? normalizeMarkdownKey(info.title) : null;
         const sectionOverride =
           sectionOverrideKey && sectionOverrides ? sectionOverrides[sectionOverrideKey] : null;
+        if (sectionOverride?.hidden === true || sectionOverride?.exclude === true) {
+          return null;
+        }
         const nodeId =
           typeof sectionOverride?.id === "string" && sectionOverride.id.trim().length > 0
             ? sectionOverride.id.trim()
@@ -325,9 +328,11 @@ export function createMarkdownNodeBuilder(deps) {
           const override = pathOverrides
             ? pathOverrides[normalizeMarkdownPath(scene.splitSourcePath)]
             : null;
+          const forceDocMode = sectionOverride?.mode === "doc";
           node.markdownPath = scene.splitSourcePath;
           node.markdownSection = info.title ?? null;
           if (
+            !forceDocMode &&
             nextDepth > 0 &&
             info.title &&
             info.hasChildHeadings === true &&

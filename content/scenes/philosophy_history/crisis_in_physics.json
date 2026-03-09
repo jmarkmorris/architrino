@@ -22,7 +22,8 @@
             "id": "crisis_in_physics_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#243d8f"
+            "color": "#243d8f",
+            "mode": "doc"
           },
           "progress vs time": {
             "id": "crisis_in_physics_progress_time",

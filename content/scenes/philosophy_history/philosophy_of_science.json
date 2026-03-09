@@ -22,7 +22,8 @@
             "id": "philosophy_of_science_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#2f4f7a"
+            "color": "#2f4f7a",
+            "mode": "doc"
           },
           "scientific realism and anti realism": {
             "id": "philosophy_of_science_realism",

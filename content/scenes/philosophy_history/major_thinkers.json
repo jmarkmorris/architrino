@@ -21,7 +21,8 @@
             "id": "major_thinkers_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#243d8f"
+            "color": "#243d8f",
+            "mode": "doc"
           },
           "classical early modern metaphysics mechanism": {
             "id": "major_thinkers_classical_modern",

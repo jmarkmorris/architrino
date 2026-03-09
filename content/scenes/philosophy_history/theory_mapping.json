@@ -22,7 +22,8 @@
             "id": "theory_mapping_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#2f4f7a"
+            "color": "#2f4f7a",
+            "mode": "doc"
           }
         }
       }

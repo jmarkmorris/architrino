@@ -22,60 +22,52 @@
             "id": "theory_differentials_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#2f4f7a"
+            "color": "#2f4f7a",
+            "mode": "doc"
           },
           "core quantum and particle frameworks": {
             "id": "theory_differentials_core_quantum_particle",
             "labelTitle": "Core Quantum & Particle",
-            "labelBadge": "doc",
             "color": "#2f6b6f"
           },
           "quantum foundations and interpretations": {
             "id": "theory_differentials_quantum_foundations",
             "labelTitle": "Quantum Foundations",
-            "labelBadge": "doc",
             "color": "#3a5f9f"
           },
           "spacetime gravity and quantum gravity": {
             "id": "theory_differentials_spacetime_gravity",
             "labelTitle": "Spacetime / Gravity",
-            "labelBadge": "doc",
             "color": "#4b0082"
           },
           "cosmology and large scale history": {
             "id": "theory_differentials_cosmology",
             "labelTitle": "Cosmology",
-            "labelBadge": "doc",
             "color": "#5a1f2e"
           },
           "statistical thermal and bulk descriptions": {
             "id": "theory_differentials_statistical_bulk",
             "labelTitle": "Statistical / Bulk",
-            "labelBadge": "doc",
             "color": "#6a3c3c"
           },
           "rejected historical theories": {
             "id": "theory_differentials_rejected",
             "labelTitle": "Rejected Historical",
-            "labelBadge": "doc",
             "color": "#243d8f"
           },
           "fringe or borderline contrast cases": {
             "id": "theory_differentials_fringe",
             "labelTitle": "Fringe / Borderline",
-            "labelBadge": "doc",
             "color": "#7a4a1f"
           },
           "additional major academic programs to consider": {
             "id": "theory_differentials_additional_academic",
             "labelTitle": "Additional Programs",
-            "labelBadge": "doc",
             "color": "#3f6a5a"
           },
           "cross cutting concepts to differentially map": {
             "id": "theory_differentials_cross_cutting_concepts",
             "labelTitle": "Cross-Cutting Concepts",
-            "labelBadge": "doc",
             "color": "#355f9a"
           }
         }
