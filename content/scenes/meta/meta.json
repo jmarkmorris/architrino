@@ -32,6 +32,10 @@
         "scenePath": "content/scenes/meta/meta_help.json"
       },
       {
+        "nodeId": "meta_academic_style_guide",
+        "scenePath": "content/scenes/meta/meta_academic_style_guide.json"
+      },
+      {
         "nodeId": "meta_mathematical_style_guide",
         "scenePath": "content/scenes/meta/meta_mathematical_style_guide.json"
       },
@@ -87,6 +91,14 @@
       "radius": 2.2,
       "color": "#5a1f2e",
       "labelTitle": "Help",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "meta_academic_style_guide",
+      "title": "Academic Style Guide",
+      "radius": 2.2,
+      "color": "#5b4c8f",
+      "labelTitle": "Academic Style Guide",
       "labelBadge": "doc"
     },
     {

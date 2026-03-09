@@ -1364,6 +1364,11 @@
       "id": "information_computation",
       "name": "Information / Computation",
       "path": "content/scenes/philosophy_history/information_computation.json"
+    },
+    {
+      "id": "meta__meta_academic_style_guide",
+      "name": "Academic Style Guide",
+      "path": "content/scenes/meta/meta_academic_style_guide.json"
     }
   ]
 }

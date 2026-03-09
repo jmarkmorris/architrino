@@ -4,9 +4,17 @@
 
 ## Overview
 
-This chapter tracks unresolved problems where predictive success coexists with mechanistic non-closure, ontological ambiguity, or cross-domain inconsistency.
+This chapter maps unresolved problems in contemporary physics where predictive success coexists with mechanistic non-closure, ontological ambiguity, or cross-domain inconsistency.
 
-The unit of analysis is the unresolved issue itself (unknown, paradox, or deep tension), not a thinker or school.
+The unit of analysis is the unresolved issue itself, whether it takes the form of an unknown, a paradox, a standing anomaly, or a deeper tension between otherwise successful frameworks. The purpose of the chapter is not to gather puzzles for their own sake. It is to separate three questions that are often run together:
+
+1. What empirical structure is already secure?
+2. What explanatory or ontological gap remains?
+3. What kind of closure would actually count as resolution?
+
+This distinction matters because many unresolved problems in physics are not failures of data or calculation. They are failures of interpretation, mechanism, cross-domain integration, or layer placement. A problem can therefore remain foundationally open even when the surrounding formalism is highly successful.
+
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, these issues function as diagnostic sites. Some are direct targets of substrate reinterpretation. Some are likely to remain as effective-level questions even after deeper ontology improves. Others may eventually turn out to be artifacts of over-inference from observational pipelines. The chapter is designed to keep those possibilities distinct.
 
 ### Unknown/Paradox Entry Template (Unified)
 
@@ -45,7 +53,7 @@ Template conformance test protocol for each issue section:
 
 Chapter organization note:
 
-This chapter is a multi-level split: `##` thematic buckets and `###` issue entries.
+This chapter is a multi-level split: `##` thematic buckets and `###` issue entries. The thematic buckets provide problem families; the issue entries provide the actual unit-level analysis.
 
 ---
 
