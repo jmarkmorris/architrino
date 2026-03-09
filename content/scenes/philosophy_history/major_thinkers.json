@@ -51,10 +51,10 @@
   "objects": [
     {
       "id": "major_thinkers_intro",
-      "label": "Introduction",
+      "label": "Overview",
       "radius": 2.688,
       "color": "#243d8f",
-      "labelTitle": "Introduction",
+      "labelTitle": "Overview",
       "labelBadge": "doc"
     },
     {
