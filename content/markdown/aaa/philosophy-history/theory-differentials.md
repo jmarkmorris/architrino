@@ -10,9 +10,9 @@ Its purpose is differential classification, not sociological ranking. The chapte
 
 ### Theory-Differential Template (Unified)
 
-Use this template for every concept entry (theory, program, law, observable, parameter, or construct). Repetition is intentional: this chapter is a controlled comparison instrument, not a sequence of free-form essays.
+Use this template for every concept entry (theory, framework, program, interpretation, law, principle, quantity, observable, parameter, or construct). Repetition is intentional: this chapter is a controlled comparison instrument, not a sequence of free-form essays.
 
-- **Concept Type**: theory / program / law / quantity / observable / parameter / construct.
+- **Concept Type**: theory / framework / program / interpretation / law / principle / quantity / observable / parameter / construct.
 - **Short Name**: label used in scene and cross-reference contexts.
 - **Ontological Area**: primary layer domain.
 - **Sub-Ontological Area**: narrow domain inside the primary area.
@@ -196,11 +196,13 @@ That is:
 At the top of each concept section, fill in:
 
 ```md
-**Concept Type:** Theory / Program / Law / Quantity / Observable / Parameter / Construct
+**Concept Type:** Theory / Framework / Program / Interpretation / Law / Principle / Quantity / Observable / Parameter / Construct
 **Ontological Area:** Quantum Effective Theory
 **Sub-Ontological Area:** continuum field ontology
 **Short Name:** QFT
 **Concept Status:** Mainstream Foundational
+**Comparative Stack Placement:** Effective field / geometry level
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives; Partially Recovered
 ```
 
@@ -313,6 +315,8 @@ Use this exact skeleton when starting a new concept section:
 **Sub-Ontological Area:** 
 **Short Name:** 
 **Concept Status:** 
+**Comparative Stack Placement:** 
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** 
 
 #### 1. Concept Summary
@@ -4913,4 +4917,3 @@ The clearest limiting tension for Probability is that its native variables are t
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly which layer generates the concept, which layer measures it, and which layer is tempted to over-interpret it. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
-

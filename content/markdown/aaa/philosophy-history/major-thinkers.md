@@ -19,12 +19,12 @@ The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 
 This layer needs a standard coverage template so that major thinkers and closely coupled program-level subjects are treated systematically rather than biographically or ad hoc.
 
-For each thinker, the document should eventually capture:
+For each subject, the document should capture:
 
 - **Subject:** full name and dates.
 - **Era / Context**: the scientific and philosophical setting in which the thinker was working.
 - **Primary Domain**: metaphysics, mechanics, epistemology, quantum foundations, cosmology, philosophy of science, or information / computation.
-- **Core Commitments**: the central ontological, methodological, or epistemic claims.
+- **Core Commitments**: the central ontological, methodological, or epistemic claims. In this chapter, that requirement is normally satisfied by the combined `Core Belief`, `Architrino Impact`, and `Legacy Shift` triad rather than by a separate repeated field.
 - **What Problem They Were Trying To Solve**: the pressure, paradox, or conceptual gap driving the work.
 - **What They Got Right**: durable insights that survive in some form.
 - **What They Got Wrong or Overstated**: the main limitation, mislocation, or excess.
@@ -43,7 +43,7 @@ Template conformance test protocol (apply to each thinker entry):
 1. **Subject present**: full name + dates for a person, or an explicit program label where the conceptual unit is not a single individual.
 2. **Era / Context present**: historical period and problem environment explicitly stated.
 3. **Primary Domain present**: one or more domains explicitly labeled.
-4. **Core Commitments present**: at least three concrete commitments are stated.
+4. **Core Commitments present**: the combined `Core Belief`, `Architrino Impact`, and `Legacy Shift` triad makes at least three concrete commitments explicit.
 5. **Problem Pressure present**: one explicit "what pressure this was solving" statement.
 6. **What Holds present**: one or more durable claims retained.
 7. **What Fails or Overstates present**: one or more explicit failure or overreach claims.

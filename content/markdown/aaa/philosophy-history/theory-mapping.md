@@ -723,7 +723,7 @@ $$
 
 ### Bounce Cosmologies (Generic)
 
-**Theory Name:** Bounce Cosmologies (Generic). **Short Name:** . **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Bounce Cosmologies (Generic). **Short Name:** Bounce Cosmologies. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
 
 **Summary:** The big bang is replaced by a bounce from a prior contraction.
 
@@ -767,7 +767,7 @@ $$
 
 ### Multiverse (Generic)
 
-**Theory Name:** Multiverse (Generic). **Short Name:** . **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Multiverse (Generic). **Short Name:** Multiverse. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
 
 **Summary:** Our universe may be one of many with varying physical parameters.
 
