@@ -1,3 +1,106 @@
+## Architecture of webapp
+
+I am sort of an architectural puritan every once in a while, because it makes sense to rebase for scalability in the long term. What we are talking about here is consuming exactly one md file and expanding it out into a tree for as many levels of `#` as are supported. We did this once before on the filesystem side and it got complicated. Now it is getting complicated inside the md file, although at least that is a single file.
+
+### Architectural fork
+
+- Scene system owns hierarchy; markdown is content.
+- Markdown owns hierarchy; scene system renders it.
+
+Right now the repo is in a hybrid state, which is why it feels increasingly complicated. The complexity is not imaginary. It is coming from having both:
+
+- explicit authored scene hierarchy
+- heading-derived hierarchy inside markdown
+
+That can work for a while, but it gets philosophically muddy.
+
+### Cleanest scalable options
+
+| Option | Ontological center |
+|---|---|
+| current hybrid | scenes and markdown both carry structure |
+| filesystem-driven | directory tree carries structure |
+| markdown-tree-driven | one markdown document carries structure; scenes are derived |
+
+The model being discussed here is the third:
+
+- a single markdown file is the authored source of truth
+- headings define the tree
+- the app expands that into navigable nodes
+- scene JSON becomes only a thin wrapper or optional override layer
+
+Architecturally, that is cleaner than the filesystem version because:
+
+- the structure is local to one file
+- author intent is readable in one place
+- hierarchy is explicit in the prose artifact itself
+- there is no hidden folder ontology
+
+So this is not complicated in the same bad way as the old filesystem approach. It is a different kind of complexity, and arguably a much better one.
+
+### Main danger
+
+The real danger is not that markdown is hierarchical. The real danger is this:
+
+- if markdown hierarchy is the real tree
+- but scene JSON still separately re-declares large parts of that tree
+- then there are two authorities
+
+That is the thing to avoid.
+
+### Purist rule set
+
+If the goal is a purist scalable rebase, then:
+
+- one markdown file may be the authoritative tree for one conceptual object
+- heading levels define navigable depth
+- scene generation from that markdown is automatic and bounded
+- explicit scene JSON should only exist for:
+  - top-level entry points
+  - layout overrides
+  - exceptional hand-crafted scenes
+  - non-markdown media
+
+That would be a coherent architecture.
+
+### Proposed scene model
+
+- `Scene-Index` for joining distinct objects
+- `Scene-Markdown-Tree` for expanding one markdown file into a recursive tree
+- `Scene-Markdown-View` for reading a node
+- `Scene-Diagram` / `Scene-Animation` for non-markdown media
+
+That is cleaner than the current split between:
+
+- some manual index scenes
+- some split scenes on `##`
+- some split scenes on `###`
+- some manually authored per-section leaves
+
+### Conclusion
+
+This is not just overcomplication. It points to a missing abstraction: `Scene-Markdown-Tree`.
+
+Its job would be:
+
+- consume exactly one markdown file
+- expand headings into a bounded tree
+- support configurable max depth
+- optionally treat `##` as navigation level 1, `###` as level 2, and so on
+- derive stable node identities from heading paths
+
+That would let this branch of the system be rebased cleanly.
+
+Recommended direction:
+
+- do not keep growing the hybrid forever
+- do not fully replace everything immediately
+- define `Scene-Markdown-Tree` in the taxonomy as the principled model
+- migrate philosophy-history style docs first, because they are the clearest fit
+
+So yes: if long-term scalability is the goal, a rebase now probably makes sense. The important part is to choose one source of truth for hierarchy. For this class of content, a single markdown-tree source is a strong candidate.
+
+
 ## Conversation Recap
 
 1. AAA cosmology audit of old notes
