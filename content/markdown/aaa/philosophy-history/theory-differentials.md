@@ -189,7 +189,7 @@ At the top of each concept section, fill in:
 **Ontological Area:** Quantum Effective Theory
 **Sub-Ontological Area:** continuum field ontology
 **Short Name:** QFT
-**Status:** Mainstream Foundational
+**Concept Status:** Mainstream Foundational
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives; Partially Recovered
 ```
 
@@ -295,13 +295,13 @@ Examples:
 Use this exact skeleton when starting a new concept section:
 
 ```md
-\## Long Theory Name - SHORT
+\## Long Concept Name - SHORT
 
-**Concept Type:** Theory
+**Concept Type:** 
 **Ontological Area:** 
 **Sub-Ontological Area:** 
 **Short Name:** 
-**Status:** 
+**Concept Status:** 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** 
 
 ### 1. Concept Summary
@@ -325,8 +325,8 @@ Concepts should be grouped by ontological area rather than by chronology alone.
 
 Recommended top-level order:
 
-1. **Quantum Effective Theory**
-2. **Assembly / Particle Structure**
+1. **Assembly / Particle Structure**
+2. **Quantum Effective Theory**
 3. **Spacetime / Gravity**
 4. **Cosmology**
 5. **Statistical / Bulk Matter**

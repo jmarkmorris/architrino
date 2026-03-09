@@ -37,20 +37,30 @@ The default prose structure for each subject should be:
 
 ## Information as Ontology
 
-This section concerns claims that information is ontologically basic rather than descriptive of physical states.
+Some modern programs treat information as more fundamental than matter, field, or geometry. In these views, physical reality is ultimately a network of distinctions, correlations, or informational constraints, and what we call objects are secondary encodings of that deeper informational order.
+
+From a $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective, this is partly right and partly inverted. Informational structure is real, but it is not prior to physical organization. It is a description of states, differences, and constraints carried by substrate entities and assemblies. Information survives, but as a derivative rather than a primitive.
 
 ## Computation as Ontology
 
-This section concerns claims that the universe is fundamentally computational, algorithmic, or rule-rewriting in nature.
+Computational ontology goes further by claiming that the universe is fundamentally an updating process of some algorithmic kind. Physical evolution is then treated as execution, rule application, graph rewriting, symbolic state transition, or a close analogue of computation.
+
+This can be fruitful when it sharpens discrete dynamics or clarifies state-update structure. But it often slips from model to ontology too quickly. $\mathbb{A}\mathbb{A}\mathbb{A}$ can make heavy use of computational description without concluding that computation itself is the basic stuff of reality.
 
 ## Digital Physics and Discrete Substrate Programs
 
-This section concerns digital-physics programs, cellular-automaton models, and related discrete-substrate proposals.
+Digital-physics programs matter because they reject continuum fundamentalism and insist that large-scale smoothness may arise from lower-level discrete processes. Cellular automata, graph dynamics, causal sets, and related programs all belong to this family at different levels of seriousness and sophistication.
+
+These programs are highly relevant as contrast cases for $\mathbb{A}\mathbb{A}\mathbb{A}$. They correctly resist taking continuum formalisms as final. But they often identify discreteness with digitization, or rule tables with ontology, more quickly than the evidence warrants. The architrino task is narrower and more physical: specify what exists, how it interacts, and why continuum closures arise.
 
 ## Observer, Encoding, and Representation
 
-This section concerns storage, transmission, encoding, and interpretation of information by physical observers and measuring systems.
+Information is not only an abstract quantity. It is stored, transmitted, compressed, corrupted, and decoded by physical systems. Observers and instruments therefore matter, not because they create reality, but because they materially mediate access to it.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is where information theory remains permanently useful. Encoding, measurement, and representation are indispensable at the observational layer even if information is not a substrate primitive. This subject is therefore less about ontology than about how physical systems carry and transform distinguishable states.
 
 ## Simulation, Modeling, and Computability Limits
 
-This section concerns the difference between using computation as a modeling tool and treating computation as ontology.
+Computation is unquestionably central to modern science as a method. Simulation, symbolic manipulation, numerical approximation, and complexity analysis all shape what can be predicted or even explored. But methodological indispensability does not imply ontological fundamentality.
+
+This section therefore separates three things that are often collapsed: the world, our models of the world, and the computational limits on those models. $\mathbb{A}\mathbb{A}\mathbb{A}$ may depend heavily on simulation and approximation while still treating computability as a constraint on inquiry rather than the essence of reality.

@@ -56,13 +56,13 @@
             "labelBadge": "doc",
             "color": "#4b0082"
           },
-          "research programmes": {
+          "lakatos and research programmes": {
             "id": "philosophy_of_science_research_programmes",
             "labelTitle": "Lakatos / Programmes",
             "labelBadge": "doc",
             "color": "#3a5f9f"
           },
-          "methodological anarchism": {
+          "feyerabend and methodological anarchism": {
             "id": "philosophy_of_science_anarchism",
             "labelTitle": "Feyerabend / Anarchism",
             "labelBadge": "doc",

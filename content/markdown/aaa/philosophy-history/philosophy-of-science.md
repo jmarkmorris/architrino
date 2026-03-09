@@ -126,7 +126,7 @@ So the right formulation is a constrained paradigm shift:
 - continuous in recoverable empirical content,
 - and reductionist in its treatment of prior successful theories.
 
-## Research Programmes
+## Lakatos and Research Programmes
 
 Imre Lakatos refined the Popper-Kuhn landscape by describing science in terms of research programmes with a hard core and a protective belt. The question is not whether every anomaly immediately kills a theory, but whether the overall program is progressive or degenerating.
 
@@ -139,7 +139,7 @@ In architrino terms, the hard core would include the substrate ontology, the cau
 
 The key methodological demand is that the belt must not endlessly absorb failure without predictive gain.
 
-## Methodological Anarchism
+## Feyerabend and Methodological Anarchism
 
 Paul Feyerabend argued that scientific practice is too unruly to be captured by a single universal method, and that rigid methodological rules can impede discovery. His slogan, "anything goes," is often overstated, but the real point is that science has historically advanced through heterodox moves that violated reigning standards.
 
@@ -155,19 +155,27 @@ So the architrino position is:
 
 ## Explanation, Causation, and Mechanism
 
-This section concerns what counts as explanation, what counts as mechanism, and when causal language tracks a generative structure rather than a redescribed regularity. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this matters because the project claims to replace high-level summaries with substrate-generating dynamics.
+Some philosophies of science treat explanation as unification, some as prediction, and some as the exhibition of a real mechanism. $\mathbb{A}\mathbb{A}\mathbb{A}$ is firmly in the mechanism-seeking camp: explanation is stronger when it identifies a causal generative structure rather than merely redescribing a regularity in compressed form.
+
+This does not mean every good explanation must expose the substrate directly. Effective theories can explain within their own layer. But a final architecture must distinguish between a lawful summary and a producing mechanism. That distinction is one of the main reasons the architrino program resists stopping at field equations, fitted cosmological sectors, or purely geometric redescriptions.
 
 ## Reduction, Emergence, and Ontological Levels
 
-This section concerns reduction, emergence, effective law, and ontological level discipline. It is central because much of the architrino task is to relocate accepted theories into the correct layer without discarding their real domains of validity.
+Reduction asks whether higher-level regularities can be derived from lower-level dynamics. Emergence asks whether those higher-level regularities possess stable autonomy even when they are not fundamental. Most mature physics uses both ideas, but often without clear layer discipline.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, this subject is central. The point is not to deny emergence. The point is to distinguish substrate law, assembly behavior, constitutive medium response, effective closure, and inferential reconstruction. A theory can be robust and indispensable while still being ontologically downstream.
 
 ## Measurement, Observation, and Theory-Ladenness
 
-This section concerns measurement, the observer's role, and the degree to which observation is filtered by instrumental and conceptual assumptions. It matters because observer reports, fitted parameters, and inferred ontologies must be kept distinct.
+Observation is never a bare encounter with reality. Instruments encode signals, models calibrate instruments, and analysis pipelines translate readings into reported quantities. Theory-ladenness enters because the meaning of a measurement depends partly on the conceptual scheme used to interpret it.
+
+This is especially important for $\mathbb{A}\mathbb{A}\mathbb{A}$ because many disputes in modern physics are not about raw measurement but about the ontological story inferred from it. The architrino program therefore needs a strict separation between readout, reduction pipeline, fitted parameter, and ontological conclusion.
 
 ## Symmetry, Mathematics, and Representation
 
-This section concerns when mathematics is representational, when symmetry is ontic versus effective, and how formal elegance can mislead ontology. It bears directly on gauge structure, metric language, and invariance principles.
+Modern physics often treats symmetry and elegant mathematics as clues to deep reality. Sometimes that is justified. Sometimes the mathematics is only the most efficient representation of a higher-level regularity. The danger is to infer ontology directly from formal success.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, symmetry is expected to survive widely, but often as an emergent invariance or effective closure rather than as the deepest primitive. This section therefore concerns when mathematics is tracking a real structure, when it is a coordinate convenience, and when representational power outruns ontological warrant.
 
 ## Inference, Underdetermination, and Theory Choice
 
