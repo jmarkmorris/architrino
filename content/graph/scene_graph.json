@@ -1836,7 +1836,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/scene-taxonomy.md",
-      "name": "Scene Taxonomy Specification",
+      "name": "Scene Taxonomy",
       "path": "content/markdown/aaa/archie/scene-taxonomy.md",
       "nodeType": "markdown_doc"
     },
@@ -5029,7 +5029,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/scene-taxonomy.md",
-      "name": "Scene Taxonomy Specification",
+      "name": "Scene Taxonomy",
       "path": "content/markdown/aaa/archie/scene-taxonomy.md",
       "searchTarget": "content/markdown/aaa/archie/scene-taxonomy.md",
       "implicit": false

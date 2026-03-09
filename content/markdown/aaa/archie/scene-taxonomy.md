@@ -1,916 +1,266 @@
-# Scene Taxonomy Specification
+# Scene Taxonomy
 
-## Scene Taxonomy
+## Purpose
 
-The scene taxonomy is defined here for guidance to future development of the webapp. Ai code agents should be directed to study this specification prior to coding.
+This note defines the current scene taxonomy for the Architrino webapp. It is a normative reference for how scenes are classified, what each scene type is responsible for, and where hierarchy, presentation, and generation belong in the system.
 
-The specification should not mix together provenance, media type, layout behavior, and runtime implementation details. It should make clear:
+This guide should be read alongside:
 
-- what a scene is,
-- what kinds of scenes exist,
-- how hierarchy works,
-- how cross-scene references work,
-- where generated behavior is allowed,
-- and which parts of the model are intentionally deferred.
+- [about-the-webapp.md](about-the-webapp.md)
+- [navigation-and-controls.md](navigation-and-controls.md)
+- [textbook-file-structure.md](textbook-file-structure.md)
 
-This note defines that taxonomy.
+## Core Claim
 
----
+A scene is the primary reader-facing unit of navigation in the webapp. Scene taxonomy is therefore organized by scene role, not by filesystem location, media format, or implementation accident.
 
-## Core decisions
+The governing distinction is:
 
-### 1. No directory walking
+- structural scenes organize other scenes,
+- presentation scenes present content or tools,
+- markdown is one important content medium, but it is not the taxonomy itself.
 
-The runtime should not discover scene structure by walking content directories.
+## Ownership Boundaries
 
-Scene structure should be declared explicitly.
+The system remains coherent only if ownership is explicit.
+
+The current ownership split is:
+
+- markdown owns intra-document structure,
+- scene JSON owns cross-document navigation, scene typing, and display behavior,
+- generated manifests own runtime lookup and search acceleration,
+- directories own storage convenience only.
+
+This prevents the common failure mode in which markdown headings, directory layout, and scene definitions all compete to define the same hierarchy.
+
+## Taxonomy Principles
+
+### Explicit declaration over discovery
+
+Scene structure should be authored explicitly. The runtime should not discover hierarchy by walking directories.
 
 That means:
 
-- scene relationships come from authored scene definitions,
-- provenance is visible in scene data,
-- filesystem layout is not part of the ontology,
-- and runtime discovery does not create hidden hierarchy.
+- parent-child scene relationships are declared in scene data,
+- scene membership is visible and reviewable,
+- filesystem layout does not silently create ontology,
+- and moving files does not implicitly rewrite the reader-facing hierarchy.
 
-### 2. Markdown is not the taxonomy
+### Role before medium
 
-Markdown is one media type, not the organizing principle of the taxonomy.
+A scene should first be classified by what job it performs for the reader.
 
-A scene may present markdown, diagrams, animation, or future media types. Those are presentation capabilities, not the top-level structure of the scene model.
+Examples:
 
-So the taxonomy should emphasize scene role and scene type rather than implementation language or content storage format.
+- organizing a branch,
+- presenting one markdown document,
+- expanding a markdown tree,
+- exposing an interactive tool,
+- presenting a diagram or animation.
 
-That said, markdown may still define a local document tree when a declared scene type explicitly uses it.
+Markdown matters at the presentation layer, but it should not be mistaken for the top-level ontology of the app.
 
-The clean ownership split is:
+### Bounded generation
 
-- markdown owns intra-document structure,
-- scene JSON owns cross-document graph structure and UI overrides,
-- directories own nothing except storage.
+Generated behavior is allowed where it is conceptually local and predictable.
 
-This avoids the current failure mode where markdown and scene JSON both try to own the same hierarchy.
+This is why markdown split/tree scenes are appropriate: they derive local navigation from one declared source document. Generation is not appropriate when it would blur authored cross-document structure.
 
-### 3. There is one scene-of-scenes type: Scene-Index
+### Stable reader hierarchy
 
-A scene whose main job is to organize other scenes is a `Scene-Index`.
+The scene graph is the reader-facing hierarchy. Scene titles, scene types, and child relations therefore need to be treated as part of the public information architecture, not as disposable implementation detail.
 
-A `Scene-Index` may contain only structural child scenes, and each structural child scene must be one of:
-
-- another `Scene-Index`, or
-- a presentation scene.
-
-This gives the hierarchy a clean recursive structure.
-
-Links, hotspots, and other cross-scene references may still connect any scene to any other scene. Presentation scenes may also declare scene-owned drill-down targets through `children`, but those targets are not structural child membership.
-
-### 4. There are many presentation-scene types
-
-Presentation scenes are scenes whose primary job is to present or interact with content rather than structurally organize child scenes.
-
-A presentation scene may still link to other scenes through hotspots, links, controls, or embedded navigation. What makes it a presentation scene is its primary role, not whether it has outgoing connections.
-
-The taxonomy should support multiple presentation-scene types, and more can be added as the webapp develops.
-
-For content-heavy knowledge branches, the preferred presentation pattern is:
-
-- one markdown file as the source for one conceptual object,
-- one declared tree or split scene that expands that file into navigable nodes,
-- one document-view scene type for reading a resolved node.
-
-### 5. Hotspots remain part of the ontology, but are deferred in implementation
-
-The taxonomy distinguishes:
-
-- `children` for scene-owned child-scene references,
-- `links` for cross-scene references,
-- `hotspots` for in-scene interaction anchors.
-
-`hotspots` remain part of the specification, but generic hotspot support is intentionally deferred.
-
-Reason:
-
-- the taxonomy does not require a general hotspot model in order to remain coherent,
-- hotspot behavior already exists in some domain-specific UI paths,
-- and a generic hotspot schema should wait until a concrete authored use case needs it.
-
-So hotspots stay in the specification, but they are not treated as a completed general feature.
-
----
-
-## New ontology
+## Primary Scene Classes
 
 ### Scene-Index
 
-`Scene-Index` is the canonical scene-of-scenes type.
+`Scene-Index` is the canonical structural scene type.
+
+Its job is to organize child scenes and provide branch-level navigation.
 
 Responsibilities:
 
 - present a set of child scenes,
-- support scene navigation,
-- define explicit parent-child scene structure,
-- support recursive composition through nested `Scene-Index` nodes.
+- define explicit parent-child structure,
+- support recursive composition,
+- provide the main ring-based knowledge-graph navigation pattern.
 
 Constraints:
 
-- children must be either presentation scenes or other `Scene-Index` scenes,
-- it is not a generic document view,
-- it does not infer children from filesystem structure,
-- it does not derive hierarchy from runtime discovery.
+- children must be declared explicitly,
+- child scenes may be other `Scene-Index` scenes or presentation scenes,
+- it is not a generic document renderer,
+- it does not infer hierarchy from directories or markdown files.
 
-Display model:
+Operational meaning: a `Scene-Index` is the app's chapter-of-chapters construct.
 
-- `Scene-Index` displays one or more rings of spheres,
-- placement and sizing are automatic by default,
-- individual child references may still declare placement hints such as `center`, `ring1-3`, `ring2-4`, and similar layout locations.
+### Presentation Scenes
 
-This means the layout computes placement automatically, while authored hints can still influence node role within that layout.
+Presentation scenes are scenes whose primary job is to present content, reading surfaces, or interactive tools rather than to organize structural hierarchy.
+
+A presentation scene may still link outward to other scenes. What makes it a presentation scene is its primary role, not the absence of outgoing connections.
+
+The current taxonomy uses several presentation-scene patterns.
+
+## Markdown Presentation Types
 
 ### Scene-Markdown-View
 
-`Scene-Markdown-View` displays a markdown file directly.
+`Scene-Markdown-View` renders one markdown document directly, optionally with a configured section focus.
 
 Responsibilities:
 
-- render one markdown document,
-- support view configuration such as one-column and two-column modes,
-- provide a stable document-reading scene.
+- provide a stable reading surface,
+- support full-document reading,
+- support section-targeted reading when configured,
+- honor display settings such as one-column or two-column modes.
 
-Notes:
-
-- this is a presentation scene,
-- the name is specific because this scene directly presents markdown as a medium,
-- the taxonomy remains media-aware at the presentation-scene level without making markdown the whole taxonomy.
+Use this type when the document should be read as a document rather than navigated as a generated node tree.
 
 ### Scene-Markdown-Split
 
-`Scene-Markdown-Split` takes a markdown document and converts its sections into individual presentation-scene nodes on the fly.
+`Scene-Markdown-Split` derives a set of navigable nodes from one heading level in one markdown document.
 
 Responsibilities:
 
-- parse a source markdown document,
-- split the document into section-based nodes,
-- present those nodes as a ring-based scene,
-- allow section-level navigation without requiring a separately authored scene file for each section.
+- parse one declared source markdown file,
+- derive peer nodes from a bounded heading level,
+- present those nodes as a local scene,
+- preserve document-level reading while exposing section-level entry points.
 
-Display model:
-
-- `Scene-Markdown-Split` displays one or more rings of spheres,
-- placement and sizing are fully automatic by default,
-- individual nodes may still declare placement hints such as `center`, `ring1-3`, `ring2-4`, and similar layout locations.
-
-This is distinct from `Scene-Index`:
-
-- `Scene-Index` organizes scenes,
-- `Scene-Markdown-Split` organizes sections derived from one source document.
-
-`Scene-Markdown-Split` should be understood as the shallow special case of a more general markdown-tree pattern. In practice, a split scene is a markdown-tree scene with one navigable heading level.
+Use this type when the document has a flat conceptual segmentation and each major section should function as a peer navigation node.
 
 ### Scene-Markdown-Tree
 
-`Scene-Markdown-Tree` takes one declared markdown document and expands it into a bounded hierarchy of generated nodes.
+`Scene-Markdown-Tree` derives a bounded local hierarchy from one markdown document.
 
 Responsibilities:
 
-- parse one declared markdown source,
+- parse one declared source markdown file,
 - derive a local node tree from heading structure,
-- present those generated nodes as a navigable scene,
-- allow deeper headings to remain ordinary markdown inside a leaf node view.
+- stop generation at a configured depth,
+- leave deeper structure inside the leaf reading surface.
 
-Constraints:
+Core configuration logic:
 
-- it operates on exactly one declared markdown source,
-- it does not walk directories,
-- it does not infer hierarchy from heading names,
-- it uses explicit structural configuration rather than lexical heuristics,
-- generated nodes remain local products of the declared tree scene rather than first-class authored structural scenes.
+- `rootHeadingLevel` determines where generated navigation begins,
+- `maxDepth` determines how many heading levels become navigable nodes,
+- deeper headings remain ordinary markdown content inside the leaf.
 
-Design rule:
+Use this type when a document has real internal conceptual hierarchy that should remain local to that file.
 
-- markdown owns the local tree inside that one document,
-- scene JSON may override labels, colors, layout, and entry behavior,
-- scene JSON should not redundantly re-declare the markdown section hierarchy.
+## Boundary Between Generated Nodes and Ordinary Document Structure
 
-Minimal tree configuration:
+The stopping rule for markdown generation should be conceptual rather than decorative.
 
-- `rootHeadingLevel`: first heading level that becomes navigable,
-- `maxDepth`: number of heading levels that become navigable,
-- headings deeper than the navigable range remain ordinary markdown inside the leaf view.
+Generate scene nodes only while headings are acting as genuine navigation units. Stop generation when the next heading level mainly serves reading structure inside one concept.
 
-This makes leafhood depth-based rather than name-based.
+Typical in-leaf material includes:
 
-### When a markdown tree stops and becomes a layered document
-
-The stopping rule should be explicit and simple.
-
-A markdown file should stop auto-generating navigable nodes at the configured `maxDepth`. Everything deeper becomes ordinary layered document structure inside the leaf view.
-
-That cutoff is not determined by heading names. It is determined by document role.
-
-Use auto-generated navigation only while the headings are functioning as peer conceptual navigation nodes.
-
-Stop recursion when the next heading level is primarily serving document-internal exposition such as:
-
-- derivation steps,
+- derivations,
 - proofs,
 - examples,
 - objections and replies,
 - evidence blocks,
 - implementation notes,
-- local subsections needed for reading rather than navigation.
+- local clarifications needed for reading but not for branch navigation.
 
-So the decision rule is:
+This rule keeps the generated scene local, bounded, and legible.
 
-- if a heading level is part of the conceptual navigation tree, it may become a generated node level,
-- if a heading level is part of reading structure within one concept, it should remain inside the document view.
+## Other Presentation Types
 
-This means a markdown file can be both:
+The taxonomy should remain open to non-markdown presentation scenes when the primary content object is not a document.
 
-- a bounded auto-scene for its upper conceptual levels,
-- and a layered document for everything below that boundary.
+### Tool scenes
 
-It should not become an auto-scene merely because it has many headings.
+A tool scene presents an interactive experience whose primary value is manipulation, exploration, or authoring rather than reading prose.
 
-### Scene-Diagram
+Current practical example:
 
-`Scene-Diagram` is a presentation scene for active diagrams.
+- Composer-related scenes
 
-Responsibilities:
+### Diagram scenes
 
-- present an interactive or reactive diagram,
-- optionally expose links to other scenes,
-- support diagram-native interaction rather than document reading.
+A diagram scene is appropriate when the diagram itself is the primary interactive content object and should not be treated as a mere illustration inside a markdown page.
 
-This type should be used when the diagram is the primary content object, not just an illustration embedded inside another scene.
+### Animation scenes
 
-### Scene-Animation
+An animation scene is appropriate when time-based visual presentation is the primary content mode.
 
-`Scene-Animation` is a presentation scene for animation content.
+These categories are taxonomically useful even where implementation support is still sparse, because they separate content role from storage medium.
 
-Responsibilities:
+## Structural Relationships
 
-- present animation authored directly in the app or through a video-like asset,
-- support time-based presentation as the core content mode,
-- permit links to related scenes where useful.
+The taxonomy distinguishes several kinds of relationship.
 
-This type should be used when motion is the primary content object.
+### Children
 
----
+`children` express scene-owned hierarchy.
 
-## Structural principles
+Use `children` when one scene structurally contains or organizes another scene in the reader-facing navigation model.
 
-### Separate scene role from media details
+### Links
 
-The ontology should answer these questions in order:
+`links` express cross-scene reference without structural ownership.
 
-1. Is this a `Scene-Index` or a presentation scene?
-2. If it is a presentation scene, what type of presentation scene is it?
-3. What layout or controls does it use?
+Use `links` when a scene should point to another scene for conceptual adjacency, comparison, or lateral navigation.
 
-This keeps the top-level taxonomy stable as more media types appear.
+### Hotspots
 
-### Explicit provenance
+`hotspots` express anchored interaction within a scene.
 
-Every scene should be explicitly declared.
+Hotspots remain part of the conceptual model, but generic hotspot support should be treated as a controlled feature rather than a taxonomic shortcut. Their existence does not alter the higher-level distinction between structure and presentation.
 
-That means:
+## What the Taxonomy Must Not Do
 
-- no hidden scene creation from directory traversal,
-- no ambiguity about whether a scene is authored or generated,
-- no filesystem structure acting as an invisible part of ontology,
-- explicit distinction between structural child relationships, scene-owned drill-down targets, and ordinary links.
+The taxonomy should not collapse together:
 
-A runtime may still transform declared data, but it should not invent scene structure by discovering files on its own.
+- scene role,
+- media type,
+- runtime implementation detail,
+- generated manifest detail,
+- filesystem placement,
+- and conceptual ownership.
 
-For markdown-tree scenes, the authored declaration is the tree scene itself, not every generated node. Generated nodes remain bounded products of one declared source.
+In practical terms, this means:
 
-### Layout-driven presentation
+- directories should not define hierarchy,
+- markdown alone should not define cross-document structure,
+- generated nodes should not be treated as if they were separately authored scene files,
+- and runtime convenience fields should not be mistaken for ontology.
 
-Layout is a layout concern, not a taxonomy concern.
+## Runtime Consequence
 
-For this ontology:
+Because the runtime reads generated manifests and scene definitions rather than discovering content ad hoc, the scene taxonomy supports:
 
-- `Scene-Index`, `Scene-Markdown-Split`, and `Scene-Markdown-Tree` may all use ring-based display layouts,
-- those layouts should compute placement and sizing automatically,
-- authored hints may adjust layout slots,
-- the layout should not require authored radius values as a core design assumption.
+- stable search behavior,
+- stable routing,
+- explicit review of hierarchy changes,
+- portable content organization across deployment contexts.
 
-Layout terminology should distinguish clearly between rendered node scale and layout placement scale.
+The taxonomy is therefore not just a naming exercise. It is part of the app's operational architecture.
 
-### Common scene controls
+## Authoring Consequence
 
-There will likely be controls shared across multiple scene types.
+When adding or revising a scene, the first question should be: what role does this scene play?
 
-Examples may include:
+Use this decision order:
 
-- navigation controls,
-- layout controls,
-- one-column or two-column viewing controls,
-- media-specific display controls,
-- graph or backlink controls.
+1. Is the scene organizing a branch of other scenes? Use `Scene-Index`.
+2. Is it presenting one document directly? Use `Scene-Markdown-View`.
+3. Is it deriving flat peer nodes from one markdown file? Use `Scene-Markdown-Split`.
+4. Is it deriving a bounded local hierarchy from one markdown file? Use `Scene-Markdown-Tree`.
+5. Is the primary object an interactive tool, diagram, or animation? Use the corresponding presentation type.
 
-These common controls should be layered onto scene types without confusing the ontology itself.
+This prevents scene typing from becoming ad hoc.
 
-### Stable ownership of scene identity
+## Summary
 
-Scene identity should come from explicit authored scene declarations.
+The current taxonomy is built on a simple hierarchy of responsibility:
 
-That means:
+- scenes own reader-facing navigation,
+- markdown owns local document structure,
+- generation is allowed only within bounded local scene patterns,
+- and filesystem layout is not part of the reader ontology.
 
-- top-level scene IDs are authored and reviewed,
-- child references point to those explicit scene IDs,
-- generated markdown-node IDs are derived deterministically from declared source data,
-- runtime layout resolution does not create new identity classes.
-
-The model should have one clear answer to the question: where does this scene or node get its identity?
-
-### Bounded generation
-
-Runtime generation is allowed only as behavior already declared by a scene type.
-
-Examples:
-
-- allowed: `Scene-Markdown-Split` generating section nodes from one declared markdown source,
-- allowed: `Scene-Markdown-Tree` generating a bounded node hierarchy from one declared markdown source,
-- not allowed: runtime inventing new scenes by walking a directory or reconstructing scene families from ID prefixes.
-
-This keeps generation local, inspectable, and bounded.
-
-### Explicit provenance of authored versus generated structure
-
-The model should make it obvious which structures are authored and which are generated at runtime from declared inputs.
-
-That distinction should be visible in both schema design and implementation:
-
-- authored scenes are first-class declarations,
-- generated markdown nodes are runtime products of one declared scene,
-- generated nodes do not silently become structural children in the global scene hierarchy.
-
----
-
-## Design position
-
-The best practice here is to optimize for explicit ontology rather than short-term convenience.
-
-Directory walking hides structure and blurs the distinction between:
-
-- scene hierarchy,
-- media source,
-- layout behavior,
-- runtime generation.
-
-For this system, the better long-term practice is:
-
-- explicit scene declaration,
-- stable scene types,
-- layout-based presentation,
-- media-aware presentation scenes,
-- no hidden provenance.
-
-For the current markdown-heavy knowledge branches, the practical best practice is:
-
-- `Scene-Index` owns the cross-document graph,
-- `Scene-Markdown-Tree` owns the bounded local tree for one document,
-- `Scene-Markdown-View` renders the resolved document or node,
-- directories do not contribute hierarchy,
-- heading names do not control recursion.
-
-That makes the model easier to teach, debug, and extend as the webapp gains more scene types.
-
----
-
-## Scope boundaries
-
-This specification excludes the following from the core scene ontology:
-
-- generated scene IDs as part of authored ontology,
-- runtime directory walking,
-- generic markdown-specific fields in the base scene schema,
-- required per-node `radius` and `color` in generic scene data,
-- writing resolved layout placement back into authored scene data,
-- obsolete taxonomy labels that do not describe scene role, structure, or presentation behavior.
-
----
-
-## Schema sketch
-
-This is not a final schema. It is a design sketch meant to make the ontology concrete enough for review.
-
-### 1. Base scene
-
-Every scene should have a small common base.
-
-Suggested base fields:
-
-- `id`: stable scene identifier
-- `type`: canonical scene-type discriminator such as `Scene-Index`, `Scene-Markdown-View`, `Scene-Markdown-Split`, `Scene-Markdown-Tree`, `Scene-Diagram`, `Scene-Animation`
-- `title`: primary display title
-- `subtitle`: optional secondary label
-- `summary`: optional short description
-- `controls`: optional common scene controls
-- `links`: optional cross-scene references
-
-Base-scene principles:
-
-- the base should not contain markdown-specific fields,
-- the base should not contain layout-specific fields,
-- the base should not assume structural children,
-- `controls` remain available without introducing a new scene-type restriction,
-- `links` may exist on any scene type,
-- the base should not require visual node radius or color.
-
-### 2. Structural hierarchy fields
-
-Scene-owned child-scene references should be explicit and separate from ordinary links.
-
-Child references should use child-reference objects, not bare strings. That is the better design because it gives both hierarchy and drill-down navigation room for slot hints, label overrides, badges, future state, and eventual spatial metadata without changing the core shape.
-
-Even though the present UI is effectively 2D and everything is displayed as a sphere, the child-reference shape should remain compatible with a future 3D scene model.
-
-Suggested child-reference fields for scenes that need scene-owned child-scene targets:
-
-- `children`: ordered list of scene-owned child-scene references
-- `defaultChild`: optional default scene to enter from an index scene
-
-A child reference may eventually need fields such as:
-
-- `sceneId`: target child scene
-- `slot`: optional layout slot hint such as `center`, `ring1-3`, `ring2-4`
-- `label`: optional navigation label override
-- `badge`: optional visual badge override
-
-Important distinction:
-
-- `children` defines either scene hierarchy or scene-owned drill-down targets depending on scene type,
-- `links` defines cross-scene connectivity,
-- a scene may have links without having children,
-- a presentation scene may link to many scenes without becoming a `Scene-Index`,
-- a presentation scene may also use `children` for node-bound drill-down without becoming a `Scene-Index`.
-
-### 3. Scene-Index
-
-`Scene-Index` should extend the base scene with hierarchy and layout configuration.
-
-Suggested fields:
-
-- `type: Scene-Index`
-- `children`: required structural child scene references
-- `layout`: required layout configuration
-- `entryBehavior`: optional initial navigation behavior
-
-Suggested constraints:
-
-- every structural child must resolve to either another `Scene-Index` or a presentation scene,
-- `children` is required on `Scene-Index`,
-- `Scene-Index` view behavior should derive from layout by default rather than from authored `view` state,
-- `Scene-Index` should not require direct media-source configuration,
-- `Scene-Index` should not derive children from a filesystem path.
-
-### 4. Presentation-scene base
-
-Presentation scenes should share a small common layer beyond the generic scene base.
-
-Suggested fields:
-
-- `type`: one of the presentation-scene types
-- `source`: optional media source configuration
-- `view`: optional presentation/view configuration
-- `hotspots`: optional interactive in-scene targets, available only on presentation scenes
-- `layout`: optional display layout when the scene type uses one
-
-Presentation-scene principles:
-
-- presentation scenes are defined by primary role, not by lack of links,
-- a presentation scene may still link to or launch other scenes,
-- `source.type` should explicitly classify the media source when a source is present,
-- scene-specific media configuration should live inside the presentation-scene type rather than the global base schema.
-
-Hotspot note:
-
-- `hotspots` remain part of the scene specification,
-- generic hotspot support is intentionally deferred until there is a concrete authored use case that requires it.
-
-### 5. Scene-Markdown-View
-
-Suggested fields:
-
-- `type: Scene-Markdown-View`
-- `source.type: markdown`
-- `source.path`: markdown file path
-- `view.columns`: one-column or two-column mode
-- `view.autoOpen`: optional initial document-open behavior
-- `view.section`: optional section anchor if needed
-
-Design direction:
-
-- this scene type presents one markdown document,
-- it may open directly to a section anchor,
-- it should not generate hierarchy from headings,
-- it may still expose links or hotspots,
-- markdown-specific settings belong here rather than in the base scene schema.
-
-`Scene-Markdown-View` should remain separate from both `Scene-Markdown-Split` and `Scene-Markdown-Tree`. They may share the same source medium, but they differ in primary behavior: document presentation versus generated markdown navigation.
-
-### 6. Scene-Markdown-Split
-
-Suggested fields:
-
-- `type: Scene-Markdown-Split`
-- `source.type: markdown`
-- `source.path`: markdown file path
-- `source.split`: split configuration
-- `layout`: required ring layout
-
-Suggested split configuration:
-
-- `mode`: heading-based splitting mode
-- `headingLevel`: primary heading level to split on
-- `sectionDepth`: optional descendant depth
-- `includeIntro`: optional handling for pre-heading content
-- `sectionPresentationType`: optional scene type used for generated section nodes
-
-Design direction:
-
-- this scene type parses one declared markdown source,
-- it may generate section nodes from that declared source,
-- it should not discover new files by walking directories,
-- section generation is a scene behavior, not a taxonomy root,
-- it should be treated as the shallow one-level special case of `Scene-Markdown-Tree`.
-
-Generated section nodes should use deterministic derived IDs that remain stable across rebuilds as long as the source path and section heading key remain unchanged.
-
-The initial implementation should treat generated section nodes as lightweight generated nodes rather than full standalone scenes, while still giving them stable derived IDs.
-
-### 6A. Scene-Markdown-Tree
-
-Suggested fields:
-
-- `type: Scene-Markdown-Tree`
-- `source.type: markdown`
-- `source.path`: markdown file path
-- `source.tree`: tree configuration
-- `layout`: optional ring layout or other navigation layout
-
-Suggested tree configuration:
-
-- `rootHeadingLevel`: first heading level that becomes navigable
-- `maxDepth`: maximum number of navigable heading levels
-- `includeIntro`: optional handling for pre-heading content
-- `nodePresentationType`: optional scene type used for generated nodes
-- `overrides`: optional per-node label or visual overrides keyed by heading path
-
-Design direction:
-
-- this scene type parses one declared markdown source,
-- it derives a bounded hierarchy from heading structure,
-- it should not infer recursion from heading names such as `Overview` or `Introduction`,
-- headings deeper than the navigable range remain ordinary markdown inside the leaf node view,
-- generated node hierarchy is local to the tree scene and does not become authored scene hierarchy.
-
-Recommended default for taxonomy-style documents:
-
-- `rootHeadingLevel: 2`
-- `maxDepth: 1`
-
-That corresponds to:
-
-- `##` defines peer navigable nodes,
-- deeper headings remain in-node document structure unless a greater depth is explicitly configured.
-
-Recommended judgment:
-
-- use `Scene-Markdown-View` when the document is primarily continuous exposition even if it has many headings,
-- use `Scene-Markdown-Split` when only one heading level should become peer nodes,
-- use `Scene-Markdown-Tree` when more than one heading level is genuinely part of the conceptual navigation tree.
-
-### 7. Scene-Diagram
-
-Suggested fields:
-
-- `type: Scene-Diagram`
-- `source.type: diagram`
-- `source`: diagram source or diagram program definition
-- `view`: diagram-specific viewing configuration
-- `children`: optional scene-owned drill-down targets keyed by `nodeId`
-- `hotspots`: optional diagram hotspots linking to scenes
-- `controls`: optional interactive diagram controls
-
-Design direction:
-
-- this scene type is for diagrams as primary content,
-- links may exist, and node-bound drill-down should live on `scene.children` rather than on the node object,
-- diagram-specific configuration should not spill into unrelated scene types.
-
-### 8. Scene-Animation
-
-Suggested fields:
-
-- `type: Scene-Animation`
-- `source.type: animation`
-- `source`: animation source, asset reference, or app-defined animation program
-- `view`: playback and display configuration
-- `controls`: animation controls
-- `hotspots`: optional timed or spatial links
-
-Design direction:
-
-- this scene type is for motion-first content,
-- playback settings belong here rather than in a generic scene base.
-
-### 9. Ring layout
-
-The ring layout should be defined once and reused by scene types that need it.
-
-The layout should not assume a permanently 2D ontology. It may resolve positions into a 2D plane at first, but its data model should allow later extension to 3D placement without requiring a redesign of child references or relationship structure.
-
-Suggested layout fields:
-
-- `layout.type`: layout identifier such as `rings`
-- `layout.ringCount`: optional maximum or desired ring count
-- `layout.sizing`: automatic sizing configuration
-- `layout.placement`: automatic placement configuration
-- `layout.slotPolicy`: rules for slot hints and collision handling
-- `layout.style`: optional shared visual styling
-
-Suggested sizing fields:
-
-- `mode`: automatic by default
-- `minNodeScale`: optional lower bound
-- `maxNodeScale`: optional upper bound
-- `densityTarget`: optional packing target
-
-Suggested placement fields:
-
-- `mode`: automatic by default
-- `startAngle`: optional layout phase
-- `centerPolicy`: optional rule for center occupancy
-- `ringBalance`: optional balancing policy across rings
-
-Suggested slot-hint behavior:
-
-- a node may request a slot such as `center`, `ring1-3`, `ring2-4`,
-- the layout may honor the hint exactly or best-effort,
-- the schema should distinguish requested slot from resolved slot.
-
-This is the place to use cleaner terms than a single overloaded `radius` concept.
-
-Authored scene data should store requested slot intent only. Resolved slot placement should remain runtime-only and should not be written back into authored scene data unless a future editing workflow actually requires layout freezing or inspection.
-
-### 10. Links and hotspots
-
-Links and hotspots should be first-class relationship mechanisms, separate from hierarchy.
-
-Hotspots are a separate top-level field. They are not just a specialized link kind.
-
-Suggested link fields:
-
-- `targetSceneId`: target scene
-- `kind`: link kind
-- `label`: optional display label
-- `activation`: optional activation mode
-
-Suggested hotspot fields:
-
-- `id`: hotspot identifier
-- `targetSceneId`: target scene
-- `geometry`: hotspot region or anchor description
-- `label`: optional UI label
-- `behavior`: optional interaction behavior
-
-Design direction:
-
-- `links` are scene-to-scene references,
-- `hotspots` are interaction anchors within a presentation scene,
-- neither should be confused with structural child membership,
-- generic hotspot support remains intentionally deferred until a concrete authored use case requires it.
-
-### 11. Overrides versus defaults
-
-The new schema should make overrides explicit.
-
-Suggested rule:
-
-- scene type defines capabilities,
-- layout defines layout defaults,
-- node or child references may override specific layout behavior,
-- overrides should be optional and sparse.
-
-That keeps authored scene data compact while still allowing exceptions where they matter.
-
-### 12. What should disappear from the base schema
-
-The base schema should exclude these assumptions:
-
-- generic markdown-specific fields in every scene object,
-- required per-node `radius`,
-- required per-node `color`,
-- generated-scene taxonomy encoded in scene IDs,
-- mixed hierarchy and link semantics in one generic relationship field.
-
-That removal is part of the ontology cleanup.
-
----
-
-## Minimal JSON examples
-
-These are illustrative examples for ontology review. They are not final implementation schemas.
-
-### 1. Scene-Index example
-
-```json
-{
-  "id": "assemblies",
-  "type": "Scene-Index",
-  "title": "Assemblies",
-  "summary": "Structural index for assembly-related scenes.",
-  "layout": {
-    "type": "rings",
-    "sizing": {
-      "mode": "auto",
-      "minNodeScale": 1.2,
-      "maxNodeScale": 2.8
-    },
-    "placement": {
-      "mode": "auto",
-      "centerPolicy": "allow",
-      "ringBalance": "compact"
-    },
-    "slotPolicy": {
-      "mode": "best-fit"
-    }
-  },
-  "children": [
-    {
-      "sceneId": "fermions",
-      "slot": "center"
-    },
-    {
-      "sceneId": "bosons",
-      "slot": "ring1-1"
-    },
-    {
-      "sceneId": "hadrons",
-      "slot": "ring1-2"
-    }
-  ],
-  "links": [
-    {
-      "targetSceneId": "validation",
-      "kind": "related"
-    }
-  ]
-}
-```
-
-### 2. Scene-Markdown-View example
-
-```json
-{
-  "id": "weak_mixing_angle",
-  "type": "Scene-Markdown-View",
-  "title": "Weak Mixing Angle",
-  "source": {
-    "type": "markdown",
-    "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md"
-  },
-  "view": {
-    "columns": 1,
-    "autoOpen": true
-  },
-  "links": [
-    {
-      "targetSceneId": "fermions",
-      "kind": "parent-index",
-      "label": "Back to Fermions"
-    }
-  ]
-}
-```
-
-### 3. Scene-Markdown-Tree example
-
-```json
-{
-  "id": "philosophy_of_science_tree",
-  "type": "Scene-Markdown-Tree",
-  "title": "Philosophy of Science",
-  "source": {
-    "type": "markdown",
-    "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
-    "tree": {
-      "rootHeadingLevel": 2,
-      "maxDepth": 1,
-      "includeIntro": false,
-      "nodePresentationType": "Scene-Markdown-View"
-    }
-  },
-  "layout": {
-    "type": "rings",
-    "sizing": {
-      "mode": "auto"
-    },
-    "placement": {
-      "mode": "auto",
-      "centerPolicy": "allow"
-    },
-    "slotPolicy": {
-      "mode": "best-fit"
-    }
-  }
-}
-```
-
-### 4. Scene-Markdown-Split example
-
-```json
-{
-  "id": "fermion_overview_sections",
-  "type": "Scene-Markdown-Split",
-  "title": "Fermion Overview",
-  "source": {
-    "type": "markdown",
-    "path": "content/markdown/aaa/assemblies/fermions/overview.md",
-    "split": {
-      "mode": "headings",
-      "headingLevel": 2,
-      "sectionDepth": 1,
-      "includeIntro": true,
-      "sectionPresentationType": "Scene-Markdown-View"
-    }
-  },
-  "layout": {
-    "type": "rings",
-    "sizing": {
-      "mode": "auto"
-    },
-    "placement": {
-      "mode": "auto",
-      "centerPolicy": "allow"
-    },
-    "slotPolicy": {
-      "mode": "best-fit"
-    }
-  }
-}
-```
-
-### 5. Presentation-scene example with hotspots and links
-
-```json
-{
-  "id": "hydrogen_atom_diagram",
-  "type": "Scene-Diagram",
-  "title": "Hydrogen Atom",
-  "source": {
-    "type": "diagram",
-    "diagramId": "hydrogen-atom-v1"
-  },
-  "view": {
-    "camera": "default",
-    "labels": true
-  },
-  "hotspots": [
-    {
-      "id": "electron-shell",
-      "targetSceneId": "electron",
-      "geometry": {
-        "type": "sphere",
-        "center": [0, 0, 0],
-        "radius": 2.4
-      },
-      "label": "Electron"
-    },
-    {
-      "id": "proton-core",
-      "targetSceneId": "proton",
-      "geometry": {
-        "type": "sphere",
-        "center": [0, 0, 0],
-        "radius": 0.8
-      },
-      "label": "Proton"
-    }
-  ],
-  "links": [
-    {
-      "targetSceneId": "assemblies",
-      "kind": "parent-index"
-    },
-    {
-      "targetSceneId": "hydrogen",
-      "kind": "related"
-    }
-  ]
-}
-```
-
-## Example-level takeaways
-
-These examples make several intended rules concrete:
-
-- hierarchy and node-bound drill-down are declared through `children` child-reference objects,
-- cross-scene connectivity is declared through `links` and `hotspots`,
-- ring-layout behavior is configured through `layout`,
-- markdown-specific configuration lives only inside markdown scene types,
-- presentation scenes may link outward freely without becoming `Scene-Index` scenes.
-
-They also show that explicit scene declaration remains compatible with rich navigation. The ontology does not restrict connectivity. It only separates structural hierarchy from ordinary cross-scene references.
+That structure keeps the webapp explicit, reviewable, and scalable as the corpus and tool surface continue to grow.
