@@ -4,6 +4,8 @@
 - Preserve TeX delimiters and content exactly (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
 - Do not allow markdown emphasis parsing to mutate TeX subscripts/superscripts (for example `_i`, `^2`).
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
+- In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
+- For textbook-facing prose and notation in `content/markdown/aaa`, follow the Archie guides in `content/markdown/aaa/archie/academic-style-guide.md`, `content/markdown/aaa/archie/mathematics-style-guide.md`, and `content/markdown/aaa/archie/mathematics-terminology.md` as applicable.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Use causal-delay terminology in prose (`causal`, `delayed`, `path-history`) and avoid `retard`/`retarded` wording outside literal quotations or code identifiers.
 - Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
