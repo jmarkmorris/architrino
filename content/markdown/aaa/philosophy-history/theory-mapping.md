@@ -105,7 +105,6 @@ $$
 
 ---
 
-
 ### Quantum Chromodynamics (QCD)
 
 **Theory Name:** Quantum Chromodynamics (QCD). **Short Name:** QCD. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
@@ -209,7 +208,6 @@ $$
 
 ---
 
-
 ### Axion Theory (Peccei-Quinn)
 
 **Theory Name:** Axion Theory (Peccei-Quinn). **Short Name:** Peccei-Quinn. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
@@ -232,7 +230,6 @@ $$
 
 ---
 
-
 ### Supersymmetry (SUSY)
 
 **Theory Name:** Supersymmetry (SUSY). **Short Name:** SUSY. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
@@ -254,7 +251,6 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 ---
-
 
 ### Technicolor / Composite Higgs
 
@@ -384,7 +380,6 @@ $$
 
 ---
 
-
 ### String Theory
 
 **Theory Name:** String Theory. **Short Name:** String Theory. **Layer Bucket:** Emergent Spacetime / Gravity Layer (Effective Metric).
@@ -408,7 +403,6 @@ $$
 
 ---
 
-
 ### Loop Quantum Gravity (LQG)
 
 **Theory Name:** Loop Quantum Gravity (LQG). **Short Name:** LQG. **Layer Bucket:** Emergent Spacetime / Gravity Layer (Effective Metric).
@@ -431,7 +425,6 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 ---
-
 
 ### Cosmic Censorship / Holographic Principle / AdS-CFT
 
@@ -502,7 +495,6 @@ $$
 
 ---
 
-
 ### Inflationary Cosmology
 
 **Theory Name:** Inflationary Cosmology. **Short Name:** Inflationary Cosmology. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
@@ -526,7 +518,6 @@ $$
 
 ---
 
-
 ### CMB Acoustic Peaks
 
 **Theory Name:** CMB Acoustic Peaks. **Short Name:** CMB Acoustic Peaks. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
@@ -548,7 +539,6 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
-
 
 ### Big Bang Nucleosynthesis (BBN)
 
@@ -573,7 +563,6 @@ $$
 
 ---
 
-
 ### Baryogenesis / Leptogenesis
 
 **Theory Name:** Baryogenesis / Leptogenesis. **Short Name:** Baryogenesis Leptogenesis. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
@@ -595,7 +584,6 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
-
 
 ### Dark Matter (Particle Hypotheses)
 
@@ -620,7 +608,6 @@ $$
 
 ---
 
-
 ### Primordial Black Holes (PBH as DM)
 
 **Theory Name:** Primordial Black Holes (PBH as DM). **Short Name:** PBH as DM. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
@@ -642,7 +629,6 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
-
 
 ### Dark Energy (Beyond $\Lambda$)
 
@@ -667,7 +653,6 @@ For a cosmological constant, $w=-1$.
 
 ---
 
-
 ### Holographic Dark Energy
 
 **Theory Name:** Holographic Dark Energy. **Short Name:** Holographic Dark Energy. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
@@ -689,7 +674,6 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
-
 
 ### Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge)
 
@@ -715,7 +699,6 @@ $$
 
 ---
 
-
 ### Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok)
 
 **Theory Name:** Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok). **Short Name:** Steinhardt--Turok. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
@@ -737,7 +720,6 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
-
 
 ### Bounce Cosmologies (Generic)
 
@@ -761,7 +743,6 @@ $$
 
 ---
 
-
 ### Conformal Cyclic Cosmology (Penrose)
 
 **Theory Name:** Conformal Cyclic Cosmology (Penrose). **Short Name:** Penrose. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
@@ -784,7 +765,6 @@ $$
 
 ---
 
-
 ### Multiverse (Generic)
 
 **Theory Name:** Multiverse (Generic). **Short Name:** . **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
@@ -804,7 +784,6 @@ not a single canonical equation.
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
-
 
 ### Anthropic Principle
 
@@ -861,7 +840,6 @@ $$
 
 ---
 
-
 ### Statistical Mechanics / Thermodynamics
 
 **Theory Name:** Statistical Mechanics / Thermodynamics. **Short Name:** Statistical Mechanics Thermodynamics. **Layer Bucket:** Epistemic / Effective Theories of Observation.
@@ -883,7 +861,6 @@ $$
 **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
 ---
-
 
 ### Copenhagen Interpretation
 
@@ -908,7 +885,6 @@ $$
 
 ---
 
-
 ### Many-Worlds (Everett)
 
 **Theory Name:** Many-Worlds (Everett). **Short Name:** Everett. **Layer Bucket:** Epistemic / Effective Theories of Observation.
@@ -932,7 +908,6 @@ with no collapse postulate.
 **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
 ---
-
 
 ### de Broglie--Bohm (Pilot-Wave)
 
