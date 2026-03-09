@@ -16,30 +16,6 @@ Status Table
   | theory-mapping.md | tree | 65% | Materially populated, but entries are shorter and less normalized than the rewritten files; needs a dedicated refinement pass. |
   | unknowns-paradoxes.md | tree | 55% | Content-rich, but still mostly single-block entries rather than explicit template-driven subsections; needs normalization. |
 
-  Assessments
-
-  1. Strongest files now:
-      - crisis-in-physics.md
-      - historical-context-and-missed-opportunities.md
-      - information-computation.md
-      - philosophy-of-science.md
-      - religious-ontologies.md
-  2. Structurally complete but still editorially rough:
-      - theory-differentials.md
-      - Main issue: the catalog is now filled, but many entries still read like first-pass differential notes rather than polished textbook prose.
-  3. Still needing the next serious pass:
-      - major-thinkers.md
-      - theory-mapping.md
-      - unknowns-paradoxes.md
-  4. Overall stage:
-      - The empty/skeletal problem is largely solved.
-      - The remaining work is mostly normalization and prose-quality harmonization, not blank-leaf rescue.
-  5. Validation status:
-      - validate-content --check --strict: passed
-      - build-scene-graph --check --strict: passed
-
-  If you want, I can next turn this into a stricter “editorial priority table” ordered by what most needs polish before publication.
-
 
 
 # The #1 priority is the dynamics/math/geometry and the mapping
@@ -106,53 +82,7 @@ Based on the current AAA scores in the scorecard, the next focus should be:
 
 ---
 
-- review docs, put docs on webapp, and look at the directory for more
-  - Not referenced by the webapp (based on scene markdown config + hardcoded markdown paths): check these.
-    - 421.md
-    - pdg-api.md
-    - design.md
-    - architrino-si-base-units.md
-    - AnalyticBaselines.md
-- docs to periodically review and ensure they are offered on the webapp.
-  - dynamics page (auto generated spheres)
-    - binary-dynamics.md (reviewed, linked)
-    - energy.md (reviewed 2/12, linked)
-    - master-equation.md (linked)
-    - reality-quantum-causality.md (linked)
-    - tri-binary-dynamics.md (linked)
-    - mapping-Planck-scale.md  (linked)
-  - weak-mixing-ckm.md (major work 2/15)
-  - cosmology
-  - unknowns-paradoxes.md
-  - quantum-number-mapping.md
-  - 421.md
-  - pdg-api.md
-  - assembly-atlas.md
-  - noether-core.md
-  - emergent-metric.md
-  - particle-masses.md
-  - electroweak-bosons.md
-  - gluons.md
-  - color-charge-su3.md
-  - CMB.md
-  - ontology.md
-  - bootstrapping-the-absolute-frame.md
-  - absolute-time-defense.md
-  - emergence.md
-  - euclidean-void.md
-  - composer.md
-  - design.md
-  - displacement-of-spacetime.md
-  - atomic-structure.md
-  - gauge-structure-emergence.md
-  - reaction-ledger.md
-  - out-of-the-ashes.md
-  - theory-mapping.md
-  - proper-time-and-time-dilation.md
-  - architrino-si-base-units.md
-  - AnalyticBaselines.md
-  - perspective.md
-  - what are all the docs in ./architrino-assembly-architecture/validation/simulations/action-energy
+- review docs - I need to spend some dedicated time to review the documents on the webapp. Ai is developing them fast, and the parts I read look good.  How shall I organize this task?
 
 ---
 
