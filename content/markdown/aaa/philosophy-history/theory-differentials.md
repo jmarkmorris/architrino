@@ -29,12 +29,12 @@ Second, the document also needs a **current $\mathbb{A}\mathbb{A}\mathbb{A}$ ont
 
 The current working $\mathbb{A}\mathbb{A}\mathbb{A}$ ontological stack is:
 
-1. **Substrate Ontology**: architrinos, their admissible states, and the primitive causal, delayed, path-history law.
-2. **Local Dynamical Organization**: persistent local motifs, bound structures, wakes, and the first stable assembly classes.
-3. **Collective Medium and Constitutive Regime**: sea behavior, constitutive response, propagation conditions, and environment-dependent interaction structure.
-4. **Emergent Effective Dynamics**: continuum closures, field-like equations, force laws, and metric-like descriptions that summarize deeper organization.
-5. **Statistical and Population Closures**: thermodynamics, transport, virial regimes, kinetic descriptions, and ensemble-level summaries of large populations.
-6. **Observational and Inferential Layer**: clock conventions, readout structures, inverse modeling, fitted parameters, and narratives constructed from measurement.
+1. **Substrate Ontology**: architrinos, admissible states, and the primitive causal delayed path-history law.
+2. **Stable Assembly Dynamics**: persistent motifs, bound structures, wakes, and recurrent assembly classes.
+3. **Medium and Constitutive Regimes**: sea response, propagation conditions, effective inertia, and environment-dependent coupling structure.
+4. **Emergent Effective Closures**: field equations, force laws, metric-like descriptions, and continuum summaries.
+5. **Statistical Population Regimes**: thermodynamics, kinetic theory, transport, virial behavior, and ensemble closures.
+6. **Observation and Inference**: clocks, readouts, inverse models, fitted parameters, and narrative reconstruction from measurement.
 
 The key distinction is simple:
 
@@ -43,7 +43,7 @@ The key distinction is simple:
 
 These should not be conflated. A theory may be well placed in the comparative stack even if $\mathbb{A}\mathbb{A}\mathbb{A}$ later reclassifies its main content as effective, statistical, inferential, or ontologically mislocated.
 
-This chapter should eventually include:
+This chapter should include:
 
 - currently accepted mainstream theories,
 - accepted but incomplete effective theories,
@@ -63,6 +63,8 @@ That requires more than summary. It requires a **differential diagnosis** for ea
 - What it misidentifies as fundamental.
 - What remains useful during a transition period.
 - What survives in the long-term architecture after $\mathbb{A}\mathbb{A}\mathbb{A}$-style reduction.
+
+The document title is historical. The unit of analysis is the **concept**, whether that concept is a theory, program, law, observable, parameter, or construct.
 
 Each concept section should be tagged along these axes before the prose begins.
 
@@ -92,7 +94,7 @@ Examples that should eventually receive dedicated treatment include:
 
 These are not always full theories in themselves, but they often behave like portable theory-elements. They migrate across frameworks while carrying hidden assumptions about what exists, what is fundamental, and what is merely an effective or inferential construct.
 
-For this reason, a theory differential may sometimes be written for a concept rather than a named theory. In such cases, the same analytic questions still apply:
+For this reason, a concept differential may address a named theory, a law, an observable, or a portable construct. In each case, the same analytic questions apply:
 
 - where in the stack the concept belongs,
 - whether it is primitive or emergent,

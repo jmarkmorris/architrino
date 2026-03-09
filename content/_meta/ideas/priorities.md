@@ -1,3 +1,79 @@
+We have been conversing for quite a while. Can you recap the areas we have covered in order in a nested list? Also based on our current evolving idea of a two level taxonomy md document with Overview and
+  multiple sections. In your recap hierarchy - after each item include a parenthetical identifying (needs update) if so.
+
+
+• 1. AAA cosmology audit of old notes
+     1.1 Read the AAA cosmology material and compared it against the pasted discussion on expansion, redshift, CMB, and spectral scaling
+     1.2 Judged that the notes did not contain a major new theoretical advance for $\mathbb{A}\mathbb{A}\mathbb{A}$, but did contain useful constraints and framing about redshift versus inferred time
+  2. Virial theory in the AAA stack
+     2.1 Described virial theory as a bulk, averaged closure relation rather than a substrate law
+     2.2 Tested whether it could apply directly to architrino dynamics
+     2.3 Placed it mainly in the statistical / bulk layer, not the substrate layer
+  3. Theory Differentials document
+     3.1 Created [theory-differentials.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/philosophy-history/theory-differentials.md)
+     3.2 Defined the initial template for analyzing theories against $\mathbb{A}\mathbb{A}\mathbb{A}$
+     3.3 Added a theory inventory covering mainstream, alternate, rejected, and fringe programs (needs update)
+     3.4 Added relation categories including reinterpretation and observational over-inference
+     3.5 Added explicit definitions for mislocated ontology, observationally over-inferred, and deeply incompatible
+     3.6 Distinguished the comparative theory-mapping stack from the internal $\mathbb{A}\mathbb{A}\mathbb{A}$ ontological stack
+     3.7 Added a current working $\mathbb{A}\mathbb{A}\mathbb{A}$ ontological stack (needs update)
+     3.8 Expanded scope from named theories to theory-like concepts such as mass, entropy, temperature, thermodynamic laws, and redshift
+     3.9 Shifted the internal template language from theory-centered to concept-centered (needs update)
+     3.10 Converted the document into an automarkdown split scene
+  4. Document structure conventions
+     4.1 Renamed the first meta section to Overview
+     4.2 Clarified the preferred top-level structure as a two-level taxonomy: ## Overview followed by peer ## subject sections
+     4.3 Used that pattern to judge which material is meta and should live in Overview rather than as a sphere
+  5. Mass and concept placement in the stacks
+     5.1 Discussed where mass belongs in the comparative stack and in the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack
+     5.2 Concluded that mass is not substrate-fundamental but emerges at higher organizational levels
+     5.3 Used that as motivation to include concept-level differentials, not only theory-level differentials
+  6. Philosophy-history corpus audit
+     6.1 Searched the existing philosophy-history markdown files for Popper, Kuhn, Wittgenstein, Russell, Feyerabend, Carnap, Schlick, Neurath, and the Vienna Circle
+     6.2 Found Popper, Kuhn, and Lakatos already present in major-thinkers
+     6.3 Found the rest of that philosophy-of-science cluster missing
+  7. Philosophy of Science as a new branch
+     7.1 Agreed that philosophy of science should be a standalone sphere rather than being only implicit or biography-driven
+     7.2 Created [philosophy-of-science.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/philosophy-history/philosophy-of-science.md)
+     7.3 Added it as its own scene in the philosophy-history webapp structure
+     7.4 Built subject areas including realism, language, verificationism, falsificationism, paradigms, research programmes, methodological anarchism, explanation, reduction, measurement, symmetry, and inference
+     (needs update)
+     7.5 Added an explicit philosophy-of-science subject template in Overview
+  8. Major Thinkers expansion
+     8.1 Extended [major-thinkers.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/philosophy-history/major-thinkers.md) with Bertrand Russell, Ludwig Wittgenstein, Vienna Circle, Rudolf Carnap, Moritz
+     Schlick, Otto Neurath, and Paul Feyerabend
+     8.2 Added them to the summary table
+     8.3 Used major-thinkers as the people-indexed side of the taxonomy, complementary to subject-indexed documents
+  9. Information / Computation split
+     9.1 Decided that Information / Computation should be separate from Philosophy of Science rather than grouped with it
+     9.2 Created [information-computation.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/philosophy-history/information-computation.md)
+     9.3 Structured it using the same pattern: Overview plus peer subject sections
+     9.4 Split the old combined major-thinkers scene into separate Philosophy of Science and Information / Computation branches
+     9.5 Added the standalone Information / Computation sphere to the philosophy-history index (needs update)
+  10. Scene and label cleanup
+     10.1 Adjusted scene labels so long headings render better in sphere form (needs update)
+     10.2 Removed AAA Commitments as a separate Philosophy of Science sphere and folded that material into Overview
+  11. Validation and scene-graph maintenance
+     11.1 Repeatedly ran content validation and scene-graph checks after structural changes
+     11.2 Regenerated [scenes_index.json](/Users/markmorris/vibe/architrino/content/scenes/scenes_index.json), [markdown_index.json](/Users/markmorris/vibe/architrino/content/markdown/markdown_index.json), and
+     [scene_graph.json](/Users/markmorris/vibe/architrino/content/graph/scene_graph.json) when needed
+
+  The main items I would mark as most likely needing near-term update are:
+
+  - Theory inventory in Theory Differentials
+  - the exact AAA ontological stack
+  - the final concept-centered template wording
+  - the set and wording of Philosophy of Science subject areas
+  - the precise Information / Computation subject list
+  - some scene labels for readability and consistency
+
+  If you want, I can turn this recap into a new Overview subsection in one of the philosophy-history documents so the taxonomy decisions are recorded in the corpus itself.
+
+
+
+
+
+
 # The #1 priority is the dynamics/math/geometry and the mapping
 
 - Use my $50 entourages each month.

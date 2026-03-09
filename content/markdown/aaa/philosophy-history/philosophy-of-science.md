@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document maps the major methodological and epistemic schools that shape how modern science interprets theory, evidence, explanation, realism, and theory change.
+This document maps the methodological and epistemic schools that govern how science interprets theory, evidence, explanation, realism, and theory change.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not side commentary. It bears directly on core questions:
 
@@ -28,7 +28,7 @@ The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be su
 
 If $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds, its philosophy of science will not be an afterthought. It will be part of the explanation for why previous theories were simultaneously powerful, partial, and often ontologically mislocated.
 
-This layer also needs a standard coverage template so that subjects are treated systematically rather than ad hoc.
+This layer needs a standard coverage template so that subjects are treated systematically rather than ad hoc.
 
 For each philosophy-of-science subject, we should eventually document:
 
@@ -53,7 +53,7 @@ The default prose structure for each subject should be:
 5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: what the architrino program retains, rejects, or reinterprets.
 6. **What Survives**: the durable methodological lesson after reduction and reclassification.
 
-This template is not meant to force uniform length. It is meant to force uniform coverage.
+This template is for coverage discipline, not length discipline.
 
 ## Scientific Realism and Anti-Realism
 
@@ -155,19 +155,19 @@ So the architrino position is:
 
 ## Explanation, Causation, and Mechanism
 
-This section will examine what counts as a real explanation in science, how causal language differs from descriptive closure, and when a mechanism is genuinely identified rather than merely redescribed. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is central because the project claims to replace high-level summaries with substrate-generating dynamics rather than with new labels for old regularities.
+This section concerns what counts as explanation, what counts as mechanism, and when causal language tracks a generative structure rather than a redescribed regularity. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this matters because the project claims to replace high-level summaries with substrate-generating dynamics.
 
 ## Reduction, Emergence, and Ontological Levels
 
-This section will examine how one theory reduces to another, what qualifies as emergence, when a law is merely effective, and how ontological levels should be kept distinct. This is a core concern for $\mathbb{A}\mathbb{A}\mathbb{A}$ because much of the project depends on relocating accepted theories into the correct layer of the stack without discarding their real domains of validity.
+This section concerns reduction, emergence, effective law, and ontological level discipline. It is central because much of the architrino task is to relocate accepted theories into the correct layer without discarding their real domains of validity.
 
 ## Measurement, Observation, and Theory-Ladenness
 
-This section will examine the status of measurement, the observer's role in theory construction, and the degree to which observation is already filtered by conceptual and instrumental assumptions. This matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because observer reports, fitted parameters, and inferred ontologies must be sharply separated.
+This section concerns measurement, the observer's role, and the degree to which observation is filtered by instrumental and conceptual assumptions. It matters because observer reports, fitted parameters, and inferred ontologies must be kept distinct.
 
 ## Symmetry, Mathematics, and Representation
 
-This section will examine when mathematical structure is merely representational, when symmetry is ontic versus effective, and how formal elegance can mislead ontology. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this bears directly on gauge structure, metric language, invariance principles, and the risk of mistaking useful mathematics for substrate reality.
+This section concerns when mathematics is representational, when symmetry is ontic versus effective, and how formal elegance can mislead ontology. It bears directly on gauge structure, metric language, and invariance principles.
 
 ## Inference, Underdetermination, and Theory Choice
 
