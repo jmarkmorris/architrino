@@ -300,106 +300,166 @@ If the framework works, the historical result is not that prior thinkers were si
 ---
 
 ### **Gottfried Wilhelm Leibniz (1646–1716)**
-**Core belief**: 
-- **Monads**: Simple, non-spatial, mental substances are the fundamental reality.
-- **No interaction** between monads (pre-established harmony orchestrates apparent causation).
-- Space and time are **relational**, not absolute substances.
-- Reality is fundamentally mental/perceptual, not physical.
+**Thinker**: Gottfried Wilhelm Leibniz (1646–1716), rationalist philosopher and mathematician who developed relational space-time and monad-based metaphysics.
 
-**Architrino impact**:
-- ✅ **Pro**: **Relationalism partially vindicated**: Effective spacetime is relational—it emerges from architrino configurations, not as an independent container.
-- ✅ **Pro**: **Pre-established harmony** becomes **emergent**: Stable assemblies exhibit coordinated behavior without top-down design, because they are dynamical attractors of the same underlying laws.
-- ❌ **Con**: **Monads are refuted**. Architrinos are **physical, spatial points**, not mental, non-spatial entities. The $\mathbb{U}_{\text{now}}$ universe-state perspective tracks their positions in Euclidean 3D, not in some monadological "perceptual space."
-- ❌ **Con**: Monads **don't interact**; architrinos **do interact** (via transmitted/received potentials).
-- ❌ **Con**: Leibniz's **idealism** (reality is ultimately mental) is **rejected**. Mind is emergent from physical assemblies.
-- ⚠️ **Tension with absolute frame**: Leibniz argued that shifting the entire universe spatially would be "the same universe" (no absolute position). The $\mathbb{U}_{\text{now}}$ universe-state perspective framework **refutes this**: (x,y,z) labels are real, permanent addresses in the void. The Euclidean substrate is a **real geometric structure**, not reducible to relations.
+**Era / Context**: Leibniz wrote in the late 17th and early 18th centuries amid disputes with Newtonian absolutism, trying to reconcile metaphysical coherence, theological constraints, and the success of emerging mathematical physics.
 
-**Legacy shift**: Leibniz's **relationalism about physical states** is saved (properties depend on configurations). His **rejection of absolute space** is overturned. The architrino framework is "Leibnizian relationalism + Newtonian absolute coordinates + physical realism."
+**Primary Domain**: Metaphysics, philosophy of space and time, and foundational ontology.
+
+**What Problem He Was Trying To Solve**: Leibniz attempted to explain order, identity, and causation without invoking absolute containers, using a relational account that avoids brute spatial and temporal primitives.
+
+**What He Got Right**: He correctly emphasized relational structure and the importance of configuration-level description, which maps well onto effective-level geometry and assembly relations in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+**What He Got Wrong or Overstated**: He overstated idealist and non-interaction premises through monads and denied absolute coordinate realism, both of which conflict with a physical substrate of interacting entities in fixed Euclidean void.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and reframed, because relational description is retained at effective layers while monad ontology and anti-absolute commitments are rejected.
+
+**Transition Relevance**: Leibniz is useful during transition for showing how relational language can be preserved as an effective layer even when substrate ontology restores absolute coordinates and explicit interactions.
+
+**Long-Term Relevance**: Long-term relevance is moderate: high for relational analytic tools, low for monad metaphysics and anti-interaction ontology.
+
+**Core belief**: Reality is constituted by monads and relational order rather than absolute spatial-temporal background, with apparent causation coordinated without direct interaction.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational structure as an emergent descriptive layer but rejects monads, rejects idealism, and restores explicit interacting substrate entities in a physically real Euclidean frame tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
+
+**Legacy shift**: Leibniz survives as a guide for effective relational modeling, while fundamental ontology shifts to interacting substrate realism with absolute coordinate structure.
 
 ---
 
 ### **David Hume (1711–1776)**
-**Core belief**: 
-- **Radical empiricism**: All knowledge comes from sense experience.
-- **No necessary connections** in nature—causation is just observed constant conjunction + psychological habit.
-- No metaphysical necessity; skepticism about induction and causation.
+**Thinker**: David Hume (1711–1776), empiricist philosopher who analyzed causation, induction, and limits of rational justification.
 
-**Architrino impact**:
-- ✅ **Pro**: Hume's **empiricism in spirit** is vindicated. We discover architrino laws through observation and inference, not via pure reason.
-- ❌ **Con**: Hume's **skepticism about necessary connection is refuted**. Architrino interaction laws are **necessary** (given the entities and their properties). The $\mathbb{U}_{\text{now}}$ universe-state perspective sees causation as an **explicit lawlike mapping** from architrino configuration at time *t* to configuration at *t+$\Delta$t*. There is no room for doubt about "necessary connection"—it's baked into the micro-dynamics.
-- ⚠️ **Clarification**: The necessity is **physical** (laws of nature), not **metaphysical** (Hume's original target was metaphysical causation divorced from observation). In that sense, Hume's anti-metaphysical stance is **preserved**, but **physical necessity** is restored.
+**Era / Context**: Hume worked in the Enlightenment, after major advances in mechanics but before modern field theory, where skepticism about metaphysical necessity became a central epistemic pressure.
 
-**Legacy shift**: Hume's **methodology** (empiricism, anti-metaphysical speculation) is **vindicated**. His **ontological conclusion** (no real causation) is **rejected**. The $\mathbb{U}_{\text{now}}$ universe-state perspective makes necessity transparent.
+**Primary Domain**: Epistemology and philosophy of causation.
+
+**What Problem He Was Trying To Solve**: Hume sought to explain how humans form causal beliefs and general laws from finite observations without illegitimately smuggling in metaphysical guarantees.
+
+**What He Got Right**: He correctly enforced inference discipline by distinguishing observed regularity from ontological commitment and by exposing overconfident claims that outrun empirical support.
+
+**What He Got Wrong or Overstated**: He overstated skepticism by collapsing causal necessity into habit, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ treats causal law as physically real at substrate level, even if access to full microstate remains limited.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and corrected, because empiricist method is retained while anti-necessity ontology is rejected.
+
+**Transition Relevance**: Hume is highly relevant during transition as a guardrail against observational over-inference, especially in cosmology and quantum-interpretive pipelines.
+
+**Long-Term Relevance**: Long-term relevance is high for epistemic hygiene and moderate for ontology, since causal skepticism is replaced by explicit substrate law.
+
+**Core belief**: Knowledge arises from experience, and causation as necessary connection is not directly observed but inferred from repeated conjunction and habit.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Hume's demand for evidential discipline but rejects his anti-necessity conclusion by specifying physically necessary delayed interaction laws that govern path-history evolution.
+
+**Legacy shift**: Hume remains foundational for inference governance, while the ontological status of causation is rebuilt as explicit law rather than psychological projection.
 
 ---
 
 ### **Immanuel Kant (1724–1804)**
-**Core belief**: 
-- Space and time are **a priori forms of intuition**—conditions for cognition, not properties of things-in-themselves.
-- Categories (causation, substance, etc.) are **imposed by the mind**, not discovered in nature.
-- The **thing-in-itself** (noumenon) is unknowable; we only know appearances (phenomena).
-- Transcendental idealism: we structure reality; reality does not structure us.
+**Thinker**: Immanuel Kant (1724–1804), critical philosopher who grounded objectivity in transcendental conditions of possible experience.
 
-**Architrino impact**:
-- ❌ **Con**: **Complete refutation**. Space (Euclidean 3D) and time (absolute, linear) are **physical substrates**, not mental forms. The very notion of an **$\mathbb{U}_{\text{now}}$ universe-state perspective** at any (x,y,z,t), who can in principle re-identify points and potentials over time, directly contradicts Kant's view of space and time as mind-dependent forms; they function here as **rigid ontological scaffolding**, not cognitive lenses.
-- ❌ **Con**: Causation is **discovered** (architrino interaction laws), not imposed by categories of understanding. The $\mathbb{U}_{\text{now}}$ universe-state perspective witnesses causation as objective lawlike evolution.
-- ❌ **Con**: The **thing-in-itself is knowable**: It is architrinos and their dynamics. The $\mathbb{U}_{\text{now}}$ universe-state perspective has access to the complete microstate—the full "thing-in-itself."
-- ❌ **Con**: **Transcendental idealism collapses**. Reality structures cognition, not the reverse. The $\mathbb{U}_{\text{now}}$ universe-state perspective does not construct space and time; it **discovers** them.
+**Era / Context**: Kant wrote after Newton and Hume, in a context where robust scientific success coexisted with deep skepticism about metaphysical justification.
 
-**Why Kant's transcendental argument fails in the architrino framework**:
-- **Kant's strongest reply**: Even the "$\mathbb{U}_{\text{now}}$ universe-state perspective" presupposes the forms of intuition (space, time) as conditions for representing architrinos; you cannot escape the categories.
-- **Architrino response**: The $\mathbb{U}_{\text{now}}$ universe-state perspective is not a mind presupposing forms; it is a **mathematical construct defined by the ontology itself**—a coordinate system on the Euclidean void plus a time parameter in the dynamics. Architrinos are not representations; they are the substrate that makes representation possible for physical observers (brains, instruments). Kant conflates conditions for cognition (true for finite observers) with conditions for existence (false). The architrino framework gives access to the thing-in-itself because the thing-in-itself is simpler than our representations of it.
+**Primary Domain**: Epistemology, metaphysics, and transcendental philosophy.
 
-**Legacy shift**: Kant's **Copernican revolution** is **reversed**. Return to **direct realism**. Knowledge is possible because the mind conforms to reality, not because reality conforms to the mind.
+**What Problem He Was Trying To Solve**: Kant aimed to secure universal scientific knowledge while answering Humean skepticism by locating necessity in the structure of cognition rather than in things-in-themselves.
+
+**What He Got Right**: He correctly emphasized observer-structure, representation constraints, and the fact that measurement pipelines are not raw access to unprocessed ontology.
+
+**What He Got Wrong or Overstated**: He overstated mind-constitutive claims by treating space, time, and categories as preconditions of reality as known, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ posits these as discoverable features of an observer-independent substrate.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Largely contradicted with partial methodological retention, because transcendental idealism is rejected while observer-mediation insights are retained at the inferential layer.
+
+**Transition Relevance**: Kant is useful during transition as a reminder to separate observational representation from substrate ontology, but his anti-realist ceiling must be explicitly removed.
+
+**Long-Term Relevance**: Long-term relevance is moderate for epistemic boundary analysis and low for foundational ontology once direct substrate realism is established.
+
+**Core belief**: Space and time are forms of intuition, causal categories are conditions for experience, and noumenal reality remains inaccessible to direct knowledge.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects this ceiling by modeling a physically real Euclidean-time substrate and treating $\mathbb{U}_{\text{now}}$ as an ontological construct, not a cognitive imposition, while still acknowledging observer-level mediation in practical inquiry.
+
+**Legacy shift**: Kant's role shifts from ontological authority to epistemic caution, preserving representational humility but not transcendental idealism.
 
 ---
 
 ### **Pierre-Simon Laplace (1749–1827)**
+**Thinker**: Pierre-Simon Laplace (1749–1827), mathematical physicist and probabilist who articulated the canonical deterministic ideal.
 
-**Core belief**:
-- **Laplace's Demon**: A hypothetical intellect that knows all positions and momenta of all particles could predict the entire future and retrodict the entire past of the universe.
-- Deterministic, mechanistic universe.
+**Era / Context**: Laplace worked during the mature classical mechanics era, extending Newtonian formalism and treating probabilistic tools as epistemic instruments over deterministic dynamics.
 
-**Architrino impact**:
-- ✅ **Pro**: **Qualified vindication**. The **$\mathbb{U}_{\text{now}}$ universe-state perspective** approximates Laplace's Demon: it knows the position, velocity, and charge of every architrino at any (x,y,z,t).
-- ⚠️ **Refinement**: Given complete initial conditions, evolution is law-governed but **multistable** at self-hit branch points, where multiple stable futures are physically realizable and selection is microstate-sensitive.
-- ⚠️ **Refinement**: Laplacean predictability holds **between** branch points but encounters **deterministic multistability** at them; predictability is limited in practice by microstate sensitivity.
+**Primary Domain**: Celestial mechanics, determinism, and mathematical physics.
 
-**Legacy shift**: Laplace's Demon is no longer a thought experiment—it becomes a **qualified ideal** for the $\mathbb{U}_{\text{now}}$ universe-state perspective, bounded by self-hit multistability.
+**What Problem He Was Trying To Solve**: He sought a complete predictive architecture where uncertainty reflects incomplete knowledge rather than objective indeterminacy.
+
+**What He Got Right**: He correctly insisted on law-based evolution, state-specification discipline, and the separation between ontic dynamics and epistemic limitation in predictive practice.
+
+**What He Got Wrong or Overstated**: He overstated global single-future predictability by not modeling deterministic multistability regimes where microstate-sensitive branch selection limits practical and structural forecast closure.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Qualified vindication and refinement, because deterministic law is retained while prediction is bounded at self-hit branch structures.
+
+**Transition Relevance**: Laplace is highly relevant for transition because his state-law framing maps directly onto substrate modeling while clarifying where predictive ambition must be re-scoped.
+
+**Long-Term Relevance**: Long-term relevance is high for deterministic governance and moderate for absolute predictability claims, which are replaced by lawful multistable branching.
+
+**Core belief**: A complete microstate plus exact laws determines past and future, with uncertainty treated as epistemic rather than fundamental.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Laplacean lawfulness and the $\mathbb{U}_{\text{now}}$ ideal of complete state description, but introduces explicit deterministic multistability at self-hit branch points as a structural limit to single-path predictability.
+
+**Legacy shift**: Laplace's demon becomes a constrained ideal observer in a lawful but branch-capable substrate rather than an unlimited predictor of a unique future.
 
 ---
 
 ## Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
 ### **Ernst Mach (1838–1916)**
-**Core belief**: 
-- Reject absolute space; inertia arises from **relative acceleration** with respect to the distribution of all matter in the universe (**Mach's Principle**).
-- **Positivism**: Only observables matter; atoms are convenient fictions, not real entities.
-- **Economy of thought**: Scientific theories should be maximally simple descriptions of observations.
+**Thinker**: Ernst Mach (1838–1916), physicist-philosopher associated with relational inertia ideas and strong empiricist methodological constraints.
 
-**Architrino impact**:
-- ✅ **Pro**: Mach's **relational ideas partially realized**: Effective spacetime geometry is determined by architrino assembly configurations (matter distribution at the deepest level).
-- ✅ **Pro**: **Economy of thought**: One entity type (architrinos) + one set of rules → all phenomena. Maximum parsimony.
-- ❌ **Con**: Absolute time is **retained** (non-Machian in that sense). The $\mathbb{U}_{\text{now}}$ universe-state perspective framework is the **anti-Machian** construct par excellence.
-- ❌ **Con**: Mach's **positivist anti-realism** about atoms is **refuted**. Architrinos are **real entities**, not convenient fictions. They are (in principle) observable via their effects, and the $\mathbb{U}_{\text{now}}$ universe-state perspective tracks them completely.
-- ⚠️ **Nuance**: Mach's program to eliminate absolute space is **definitively rejected** by the $\mathbb{U}_{\text{now}}$ universe-state perspective framework. But his insight—that inertia involves the distribution of matter—survives as an **emergent effect** within the absolute frame (resistance to acceleration through the assembly network).
+**Era / Context**: Mach worked in late 19th-century physics when mechanics, electromagnetism, and atom debates were converging, and positivist pressures against unobservable ontology were strong.
 
-**Legacy shift**: Mach's **methodology** (economy, observability) is **vindicated**; his **anti-realist ontology** is **rejected**.
+**Primary Domain**: Philosophy of physics, mechanics foundations, and scientific methodology.
+
+**What Problem He Was Trying To Solve**: Mach sought to purge speculative metaphysics from physics by grounding explanation in observables and relational structure rather than absolute background primitives.
+
+**What He Got Right**: He correctly emphasized relational dependence, economy of theoretical structure, and the danger of reifying convenient formal elements without clear inferential warrant.
+
+**What He Got Wrong or Overstated**: He overstated anti-realism by downgrading microscopic ontology and rejecting absolute structure too strongly, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps ontological realism and absolute-time frame while preserving relational effective layers.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated with strong correction, because methodological economy and relational sensitivity survive while positivist anti-ontology is rejected.
+
+**Transition Relevance**: Mach is useful in transition as a control against ontology inflation, provided his anti-realist restrictions are not allowed to block substrate commitments.
+
+**Long-Term Relevance**: Long-term relevance is moderate as methodological hygiene and low as a foundational ontology model.
+
+**Core belief**: Physics should prioritize observable relations and conceptual economy, with inertia and structure interpreted relationally rather than via absolute background entities.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Mach-like economy and relational effective interpretation but restores real substrate entities and absolute-time coordinate realism, treating inertia-like effects as emergent from assembly distribution dynamics.
+
+**Legacy shift**: Mach remains a methodological critic of over-inference, while his anti-realist and anti-absolute ontological claims are superseded by explicit substrate realism.
 
 ---
 
 ### **Hendrik Lorentz (1853–1928)**
-**Core belief**: 
-- **Lorentz ether theory**: There is a preferred frame (ether rest frame), but length contraction and time dilation **conspire dynamically** to make the ether undetectable.
-- Lorentz transformations are **dynamical effects** of motion through ether, not purely kinematic symmetries.
+**Thinker**: Hendrik Antoon Lorentz (1853–1928), theoretical physicist whose electron theory and ether dynamics produced Lorentz transformations.
 
-**Architrino impact**:
-- ✅ **Pro**: **Strong vindication**. The architrino model is a **neo-Lorentzian ontology**: Euclidean void + absolute time with **emergent Lorentz symmetry** from architrino dynamics.
-- ✅ **Pro**: "Ether" is the **spacetime assembly network** (spacetime fabric—coupled Noether cores).
-- ✅ **Pro**: Lorentz contraction and time dilation are **real dynamical effects** of assembly configurations, not mere coordinate artifacts (as in Einstein's interpretation).
-- ✅ **Pro**: The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is the entity "at rest with respect to the architrino substrate." In this frame, effective Maxwell-like and gravity-like equations have their simplest form. This is Lorentz's preferred frame made explicit.
+**Era / Context**: Lorentz worked at the turn of the 20th century under pressure from electrodynamics and null ether-drift results, before Einstein's kinematic reinterpretation became dominant.
 
-**Legacy shift**: Lorentz's ontology is **resurrected** and formalized with explicit microphysics. Lorentz ether theory becomes the **correct interpretation** of relativity.
+**Primary Domain**: Electrodynamics, relativity foundations, and medium-based kinematics.
+
+**What Problem He Was Trying To Solve**: Lorentz aimed to explain invariant electromagnetic observations while preserving a dynamical medium and preferred frame ontology.
+
+**What He Got Right**: He correctly anticipated that contraction/dilation structure could be dynamical outcomes tied to underlying medium interactions rather than purely coordinate postulates.
+
+**What He Got Wrong or Overstated**: Classical ether microphysics remained underspecified and unable to provide a complete reduction pathway across all domains without deeper substrate dynamics.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated and upgraded, because preferred-frame medium realism is retained and rebuilt with explicit architrino assembly ontology.
+
+**Transition Relevance**: Lorentz is exceptionally useful in transition for reframing relativity as emergent effective symmetry over substrate dynamics without sacrificing empirical continuity.
+
+**Long-Term Relevance**: Long-term relevance is high as the closest historical precursor to an emergent-Lorentz substrate account, though original ether details are replaced.
+
+**Core belief**: Electromagnetic phenomena are governed by a medium-relative dynamics in which observed Lorentz symmetry can emerge despite a preferred rest structure.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the medium as spacetime assembly network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
+
+**Legacy shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
 
 ---
 
