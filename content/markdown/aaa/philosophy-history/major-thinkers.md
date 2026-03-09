@@ -102,11 +102,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: He remains a durable philosophical ancestor for process sensitivity, but his framework is methodologically secondary once explicit substrate law and assembly dynamics are specified.
 
-**Core belief**: Reality is ordered flux in which strife and opposition generate harmony, so persistence is an equilibrium of tensions rather than a static given.
+**Core Belief**: Reality is ordered flux in which strife and opposition generate harmony, so persistence is an equilibrium of tensions rather than a static given.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Heraclitus's intuition that opposition and continual update matter, but relocates them to lawful interaction between eternal substrate entities, so becoming is derivative from persistent architrino ontology.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Heraclitus's intuition that opposition and continual update matter, but relocates them to lawful interaction between eternal substrate entities, so becoming is derivative from persistent architrino ontology.
 
-**Legacy shift**: Heraclitean becoming survives as the language of evolving patterns, while ontological primacy moves to stable substrate entities and their delayed causal path-history interactions.
+**Legacy Shift**: Heraclitean becoming survives as the language of evolving patterns, while ontological primacy moves to stable substrate entities and their delayed causal path-history interactions.
 
 ---
 
@@ -129,11 +129,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as a historical and conceptual anchor for substrate realism, even though detailed atomist mechanisms are superseded by modern causal dynamics.
 
-**Core belief**: Reality consists of indivisible entities moving in void, and macroscopic qualities arise from their arrangement and motion rather than from irreducible surface appearances.
+**Core Belief**: Reality consists of indivisible entities moving in void, and macroscopic qualities arise from their arrangement and motion rather than from irreducible surface appearances.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ realizes this view in a more explicit way by identifying eternal point entities in Euclidean void and deriving effective qualities through lawful assembly behavior and path-history dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ realizes this view in a more explicit way by identifying eternal point entities in Euclidean void and deriving effective qualities through lawful assembly behavior and path-history dynamics.
 
-**Legacy shift**: Classical atomism is retained as the right ontological direction but upgraded from philosophical sketch to a mathematically disciplined substrate architecture.
+**Legacy Shift**: Classical atomism is retained as the right ontological direction but upgraded from philosophical sketch to a mathematically disciplined substrate architecture.
 
 ---
 
@@ -156,11 +156,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term value is primarily methodological and conceptual-hygiene oriented, not ontological, because substrate realism replaces Form primacy.
 
-**Core belief**: Stable intelligible reality is grounded in timeless Forms, and the physical world is an imperfect participation in this higher abstract order.
+**Core Belief**: Stable intelligible reality is grounded in timeless Forms, and the physical world is an imperfect participation in this higher abstract order.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the demand for structural clarity but rejects a separate Form realm, treating recurring structures as emergent outcomes of material causal dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the demand for structural clarity but rejects a separate Form realm, treating recurring structures as emergent outcomes of material causal dynamics.
 
-**Legacy shift**: Platonism survives as formal discipline in modeling, while its ontological thesis is replaced by a single-layer physical substrate account.
+**Legacy Shift**: Platonism survives as formal discipline in modeling, while its ontological thesis is replaced by a single-layer physical substrate account.
 
 ---
 
@@ -183,11 +183,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as methodological scaffolding for multi-level explanation, but low for core ontological primitives.
 
-**Core belief**: Natural entities are composites of matter and form, and complete explanation requires material, formal, efficient, and final causes within an ordered world.
+**Core Belief**: Natural entities are composites of matter and form, and complete explanation requires material, formal, efficient, and final causes within an ordered world.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains efficient-cause rigor and layered explanatory structure, but discards final causes and form/matter dualism in favor of substrate entities and emergent organization.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains efficient-cause rigor and layered explanatory structure, but discards final causes and form/matter dualism in favor of substrate entities and emergent organization.
 
-**Legacy shift**: Aristotle's explanatory taxonomy survives in reduced form as methodological discipline, while his teleological ontology is replaced by mechanistic assembly dynamics.
+**Legacy Shift**: Aristotle's explanatory taxonomy survives in reduced form as methodological discipline, while his teleological ontology is replaced by mechanistic assembly dynamics.
 
 ---
 
@@ -210,11 +210,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for naturalistic orientation and low for specific swerve mechanics, which are superseded by path-history branching dynamics.
 
-**Core belief**: The world is made of eternal atoms in void without divine governance, and the clinamen introduces deviations that prevent strict fatalism.
+**Core Belief**: The world is made of eternal atoms in void without divine governance, and the clinamen introduces deviations that prevent strict fatalism.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ endorses eternal substrate and anti-teleology but replaces the swerve with lawful, delayed, microstate-sensitive branching in self-hit regimes.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ endorses eternal substrate and anti-teleology but replaces the swerve with lawful, delayed, microstate-sensitive branching in self-hit regimes.
 
-**Legacy shift**: Epicurean materialism is preserved as orientation, while its ad hoc contingency mechanism is replaced by explicit deterministic multistability.
+**Legacy Shift**: Epicurean materialism is preserved as orientation, while its ad hoc contingency mechanism is replaced by explicit deterministic multistability.
 
 ---
 
@@ -237,11 +237,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate for methodological mechanism and low for dualist ontology.
 
-**Core belief**: Nature is mechanistic and intelligible by analysis, but mind and matter are fundamentally distinct substances and matter is essentially extension.
+**Core Belief**: Nature is mechanistic and intelligible by analysis, but mind and matter are fundamentally distinct substances and matter is essentially extension.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves mechanistic realism and lawful structure while replacing dualism with monist physical ontology and replacing extension-primitive metaphysics with emergent assembly geometry.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves mechanistic realism and lawful structure while replacing dualism with monist physical ontology and replacing extension-primitive metaphysics with emergent assembly geometry.
 
-**Legacy shift**: Cartesian mechanism survives as method, while Cartesian substance dualism and extension primacy are removed from foundational ontology.
+**Legacy Shift**: Cartesian mechanism survives as method, while Cartesian substance dualism and extension primacy are removed from foundational ontology.
 
 ---
 
@@ -264,11 +264,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as a philosophical ancestor of unified lawful realism, though the formal rationalist framing is subordinated to empirical model governance.
 
-**Core belief**: Reality is one necessary substance expressed through lawful structure, with teleology and contingency treated as human projection rather than fundamental ontology.
+**Core Belief**: Reality is one necessary substance expressed through lawful structure, with teleology and contingency treated as human projection rather than fundamental ontology.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ operationalizes Spinoza-like monism by identifying one physical substrate and deriving plurality, effective fields, and observer-level phenomena from its dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ operationalizes Spinoza-like monism by identifying one physical substrate and deriving plurality, effective fields, and observer-level phenomena from its dynamics.
 
-**Legacy shift**: Spinoza's metaphysical unity is retained but empirically grounded, yielding a physical monism with explicit causal delayed path-history law.
+**Legacy Shift**: Spinoza's metaphysical unity is retained but empirically grounded, yielding a physical monism with explicit causal delayed path-history law.
 
 ---
 
@@ -291,11 +291,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance remains high methodologically and moderate ontologically, with Newtonian equations preserved as effective limits but force-at-distance ontology retired.
 
-**Core belief**: Space and time form an absolute stage, particles and forces are fundamental descriptors, and gravity acts universally through an inverse-square relation.
+**Core Belief**: Space and time form an absolute stage, particles and forces are fundamental descriptors, and gravity acts universally through an inverse-square relation.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Newton's law discipline and effective limits while reinterpreting gravitational behavior as emergent from finite-speed interactions in an assembly medium tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Newton's law discipline and effective limits while reinterpreting gravitational behavior as emergent from finite-speed interactions in an assembly medium tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 
-**Legacy shift**: Newton's role shifts from final ontology to enduring effective framework, where predictive structure survives but mechanistic foundation is relocated to substrate dynamics.
+**Legacy Shift**: Newton's role shifts from final ontology to enduring effective framework, where predictive structure survives but mechanistic foundation is relocated to substrate dynamics.
 
 ---
 
@@ -318,11 +318,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate: high for relational analytic tools, low for monad metaphysics and anti-interaction ontology.
 
-**Core belief**: Reality is constituted by monads and relational order rather than absolute spatial-temporal background, with apparent causation coordinated without direct interaction.
+**Core Belief**: Reality is constituted by monads and relational order rather than absolute spatial-temporal background, with apparent causation coordinated without direct interaction.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational structure as an emergent descriptive layer but rejects monads, rejects idealism, and restores explicit interacting substrate entities in a physically real Euclidean frame tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational structure as an emergent descriptive layer but rejects monads, rejects idealism, and restores explicit interacting substrate entities in a physically real Euclidean frame tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 
-**Legacy shift**: Leibniz survives as a guide for effective relational modeling, while fundamental ontology shifts to interacting substrate realism with absolute coordinate structure.
+**Legacy Shift**: Leibniz survives as a guide for effective relational modeling, while fundamental ontology shifts to interacting substrate realism with absolute coordinate structure.
 
 ---
 
@@ -345,11 +345,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for epistemic hygiene and moderate for ontology, since causal skepticism is replaced by explicit substrate law.
 
-**Core belief**: Knowledge arises from experience, and causation as necessary connection is not directly observed but inferred from repeated conjunction and habit.
+**Core Belief**: Knowledge arises from experience, and causation as necessary connection is not directly observed but inferred from repeated conjunction and habit.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Hume's demand for evidential discipline but rejects his anti-necessity conclusion by specifying physically necessary delayed interaction laws that govern path-history evolution.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Hume's demand for evidential discipline but rejects his anti-necessity conclusion by specifying physically necessary delayed interaction laws that govern path-history evolution.
 
-**Legacy shift**: Hume remains foundational for inference governance, while the ontological status of causation is rebuilt as explicit law rather than psychological projection.
+**Legacy Shift**: Hume remains foundational for inference governance, while the ontological status of causation is rebuilt as explicit law rather than psychological projection.
 
 ---
 
@@ -372,11 +372,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate for epistemic boundary analysis and low for foundational ontology once direct substrate realism is established.
 
-**Core belief**: Space and time are forms of intuition, causal categories are conditions for experience, and noumenal reality remains inaccessible to direct knowledge.
+**Core Belief**: Space and time are forms of intuition, causal categories are conditions for experience, and noumenal reality remains inaccessible to direct knowledge.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects this ceiling by modeling a physically real Euclidean-time substrate and treating $\mathbb{U}_{\text{now}}$ as an ontological construct, not a cognitive imposition, while still acknowledging observer-level mediation in practical inquiry.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects this ceiling by modeling a physically real Euclidean-time substrate and treating $\mathbb{U}_{\text{now}}$ as an ontological construct, not a cognitive imposition, while still acknowledging observer-level mediation in practical inquiry.
 
-**Legacy shift**: Kant's role shifts from ontological authority to epistemic caution, preserving representational humility but not transcendental idealism.
+**Legacy Shift**: Kant's role shifts from ontological authority to epistemic caution, preserving representational humility but not transcendental idealism.
 
 ---
 
@@ -399,11 +399,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for deterministic governance and moderate for absolute predictability claims, which are replaced by lawful multistable branching.
 
-**Core belief**: A complete microstate plus exact laws determines past and future, with uncertainty treated as epistemic rather than fundamental.
+**Core Belief**: A complete microstate plus exact laws determines past and future, with uncertainty treated as epistemic rather than fundamental.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Laplacean lawfulness and the $\mathbb{U}_{\text{now}}$ ideal of complete state description, but introduces explicit deterministic multistability at self-hit branch points as a structural limit to single-path predictability.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Laplacean lawfulness and the $\mathbb{U}_{\text{now}}$ ideal of complete state description, but introduces explicit deterministic multistability at self-hit branch points as a structural limit to single-path predictability.
 
-**Legacy shift**: Laplace's demon becomes a constrained ideal observer in a lawful but branch-capable substrate rather than an unlimited predictor of a unique future.
+**Legacy Shift**: Laplace's demon becomes a constrained ideal observer in a lawful but branch-capable substrate rather than an unlimited predictor of a unique future.
 
 ---
 
@@ -428,11 +428,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as methodological hygiene and low as a foundational ontology model.
 
-**Core belief**: Physics should prioritize observable relations and conceptual economy, with inertia and structure interpreted relationally rather than via absolute background entities.
+**Core Belief**: Physics should prioritize observable relations and conceptual economy, with inertia and structure interpreted relationally rather than via absolute background entities.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Mach-like economy and relational effective interpretation but restores real substrate entities and absolute-time coordinate realism, treating inertia-like effects as emergent from assembly distribution dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Mach-like economy and relational effective interpretation but restores real substrate entities and absolute-time coordinate realism, treating inertia-like effects as emergent from assembly distribution dynamics.
 
-**Legacy shift**: Mach remains a methodological critic of over-inference, while his anti-realist and anti-absolute ontological claims are superseded by explicit substrate realism.
+**Legacy Shift**: Mach remains a methodological critic of over-inference, while his anti-realist and anti-absolute ontological claims are superseded by explicit substrate realism.
 
 ---
 
@@ -455,11 +455,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as the closest historical precursor to an emergent-Lorentz substrate account, though original ether details are replaced.
 
-**Core belief**: Electromagnetic phenomena are governed by a medium-relative dynamics in which observed Lorentz symmetry can emerge despite a preferred rest structure.
+**Core Belief**: Electromagnetic phenomena are governed by a medium-relative dynamics in which observed Lorentz symmetry can emerge despite a preferred rest structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the medium as spacetime assembly network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the medium as spacetime assembly network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
 
-**Legacy shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
+**Legacy Shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
 
 ---
 
@@ -482,11 +482,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as effective field architecture and moderate as final ontology, with geometric formalism preserved but substrate status relocated.
 
-**Core belief**: Special relativity treats Lorentz symmetry and relativity of simultaneity as foundational kinematics, while general relativity treats gravity as dynamical spacetime curvature with coordinate-gauge structure.
+**Core Belief**: Special relativity treats Lorentz symmetry and relativity of simultaneity as foundational kinematics, while general relativity treats gravity as dynamical spacetime curvature with coordinate-gauge structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from medium dynamics and GR curvature as effective assembly-network behavior on Euclidean space with absolute time, where $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from medium dynamics and GR curvature as effective assembly-network behavior on Euclidean space with absolute time, where $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
 
-**Legacy shift**: Relativity remains indispensable as a high-accuracy effective theory stack, while its primitive geometric ontology is replaced by substrate-first mechanistic emergence.
+**Legacy Shift**: Relativity remains indispensable as a high-accuracy effective theory stack, while its primitive geometric ontology is replaced by substrate-first mechanistic emergence.
 
 ---
 
@@ -509,11 +509,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as a conceptual ancestor of induced gravity, with details superseded by explicit substrate mechanics.
 
-**Core belief**: Gravity is not fundamental but induced from deeper microphysical degrees of freedom, so Einstein structure can emerge from lower-level dynamics.
+**Core Belief**: Gravity is not fundamental but induced from deeper microphysical degrees of freedom, so Einstein structure can emerge from lower-level dynamics.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this orientation by treating gravity as effective hydrodynamics of spacetime assembly-network behavior over a causal delayed substrate.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this orientation by treating gravity as effective hydrodynamics of spacetime assembly-network behavior over a causal delayed substrate.
 
-**Legacy shift**: Sakharov's idea moves from suggestive proposal to operational reduction target with explicit microphysical realization.
+**Legacy Shift**: Sakharov's idea moves from suggestive proposal to operational reduction target with explicit microphysical realization.
 
 ---
 
@@ -536,11 +536,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate to high as mathematical toolkit and conceptual stress-test, but not as final ontology.
 
-**Core belief**: Deep geometric structures such as conformal-cyclic behavior and twistor formulations may encode fundamental organization of physical reality.
+**Core Belief**: Deep geometric structures such as conformal-cyclic behavior and twistor formulations may encode fundamental organization of physical reality.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains Penrosean realism and formal rigor while treating CCC/twistors as possible effective mappings over architrino-driven assembly dynamics rather than substrate primitives.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains Penrosean realism and formal rigor while treating CCC/twistors as possible effective mappings over architrino-driven assembly dynamics rather than substrate primitives.
 
-**Legacy shift**: Penrose remains a high-value geometric interlocutor whose specific ontological bets are recast as advanced representation schemes.
+**Legacy Shift**: Penrose remains a high-value geometric interlocutor whose specific ontological bets are recast as advanced representation schemes.
 
 ---
 
@@ -563,11 +563,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high at the effective cosmology layer and lower at substrate ontology level.
 
-**Core belief**: A brief exponential expansion epoch can resolve key cosmological consistency problems and seed observable large-scale structure.
+**Core Belief**: A brief exponential expansion epoch can resolve key cosmological consistency problems and seed observable large-scale structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ seeks to derive the same effective expansion signatures from self-hit and assembly-network collective modes, without requiring a fundamental inflaton field.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ seeks to derive the same effective expansion signatures from self-hit and assembly-network collective modes, without requiring a fundamental inflaton field.
 
-**Legacy shift**: Inflation survives as effective cosmological behavior, while its primitive field ontology is replaced by substrate-driven mechanism.
+**Legacy Shift**: Inflation survives as effective cosmological behavior, while its primitive field ontology is replaced by substrate-driven mechanism.
 
 ---
 
@@ -590,11 +590,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as conceptual scaffolding and low as final ontology if geometry quantization is not required.
 
-**Core belief**: Spacetime geometry itself is quantized and fundamentally discrete, with spin-network/loop structures replacing continuum primitives.
+**Core Belief**: Spacetime geometry itself is quantized and fundamentally discrete, with spin-network/loop structures replacing continuum primitives.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the discreteness insight but shifts it to physical substrate entities and assembly networks, deriving geometry as effective behavior without loop-geometry quantization.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the discreteness insight but shifts it to physical substrate entities and assembly networks, deriving geometry as effective behavior without loop-geometry quantization.
 
-**Legacy shift**: LQG's core warning about continuum excess survives, while its specific quantization route becomes non-essential.
+**Legacy Shift**: LQG's core warning about continuum excess survives, while its specific quantization route becomes non-essential.
 
 ---
 
@@ -617,11 +617,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is mainly mathematical and comparative, not foundational, in a 3D substrate-first architecture.
 
-**Core belief**: Fundamental physics is governed by extended objects in higher-dimensional frameworks, with low-energy sectors emerging from compactification and symmetry structure.
+**Core Belief**: Fundamental physics is governed by extended objects in higher-dimensional frameworks, with low-energy sectors emerging from compactification and symmetry structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects string primitives and extra dimensions, retaining only the demand for cross-domain coherence and rigorous limiting-case recovery.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects string primitives and extra dimensions, retaining only the demand for cross-domain coherence and rigorous limiting-case recovery.
 
-**Legacy shift**: String theory shifts from leading ontology to high-value mathematical reservoir and benchmark competitor.
+**Legacy Shift**: String theory shifts from leading ontology to high-value mathematical reservoir and benchmark competitor.
 
 ---
 
@@ -644,11 +644,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high methodologically and moderate ontologically where law-evolution claims are not retained.
 
-**Core belief**: Time is fundamental and physically real, and foundational progress requires falsifiable programs rather than mathematically insulated frameworks.
+**Core Belief**: Time is fundamental and physically real, and foundational progress requires falsifiable programs rather than mathematically insulated frameworks.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ strongly shares Smolin's temporal and methodological commitments, while replacing cosmological law evolution with fixed-law substrate dynamics plus deterministic multistability.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ strongly shares Smolin's temporal and methodological commitments, while replacing cosmological law evolution with fixed-law substrate dynamics plus deterministic multistability.
 
-**Legacy shift**: Smolin's diagnostic critique and temporal emphasis are retained as operating doctrine, while his evolving-law thesis is treated as unnecessary.
+**Legacy Shift**: Smolin's diagnostic critique and temporal emphasis are retained as operating doctrine, while his evolving-law thesis is treated as unnecessary.
 
 ---
 
@@ -671,11 +671,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as an effective statistical vocabulary and low as substrate ontology.
 
-**Core belief**: Gravity is an emergent entropic response of microscopic degrees of freedom, not a fundamental interaction mediated by basic force carriers.
+**Core Belief**: Gravity is an emergent entropic response of microscopic degrees of freedom, not a fundamental interaction mediated by basic force carriers.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ allows entropic signatures as coarse-grained outcomes of assembly dynamics but grounds those outcomes in real causal substrate interactions rather than holographic-information primitives.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ allows entropic signatures as coarse-grained outcomes of assembly dynamics but grounds those outcomes in real causal substrate interactions rather than holographic-information primitives.
 
-**Legacy shift**: Entropic gravity becomes a partial effective-language layer within a deeper mechanistic architecture.
+**Legacy Shift**: Entropic gravity becomes a partial effective-language layer within a deeper mechanistic architecture.
 
 ---
 
@@ -698,11 +698,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as continuing methodological guardrail against non-falsifiable drift.
 
-**Core belief**: Foundational physics should prioritize empirical accountability and falsifiability over aesthetic narratives of elegance, naturalness, or formal beauty.
+**Core Belief**: Foundational physics should prioritize empirical accountability and falsifiability over aesthetic narratives of elegance, naturalness, or formal beauty.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this standard directly through explicit prediction targets, comparison protocols, and rejection of ad hoc rescue maneuvers that evade failure.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this standard directly through explicit prediction targets, comparison protocols, and rejection of ad hoc rescue maneuvers that evade failure.
 
-**Legacy shift**: Hossenfelder's critique is operationalized as standing governance rather than occasional commentary.
+**Legacy Shift**: Hossenfelder's critique is operationalized as standing governance rather than occasional commentary.
 
 ---
 
@@ -727,11 +727,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as ongoing methodological and ontological scaffold for emergent law derivation.
 
-**Core belief**: Thermodynamic order, entropy, and apparent probabilistic behavior arise from statistical structure over large ensembles of microscopic constituents.
+**Core Belief**: Thermodynamic order, entropy, and apparent probabilistic behavior arise from statistical structure over large ensembles of microscopic constituents.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts Boltzmann's program directly by treating entropy and quantum-like statistics as coarse-grained outcomes of lawful architrino dynamics, with branch-sensitive multistability delimiting prediction structure.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts Boltzmann's program directly by treating entropy and quantum-like statistics as coarse-grained outcomes of lawful architrino dynamics, with branch-sensitive multistability delimiting prediction structure.
 
-**Legacy shift**: Boltzmann's framework becomes not only preserved but broadened into a general emergence doctrine spanning thermodynamic and quantum-effective behavior.
+**Legacy Shift**: Boltzmann's framework becomes not only preserved but broadened into a general emergence doctrine spanning thermodynamic and quantum-effective behavior.
 
 ---
 
@@ -754,11 +754,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for invariant action-scale structure, even as origin is reclassified from primitive postulate to emergent assembly effect.
 
-**Core belief**: Energy exchange occurs in discrete quanta and the quantum of action *h* governs this discreteness.
+**Core Belief**: Energy exchange occurs in discrete quanta and the quantum of action *h* governs this discreteness.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats Planck-scale quantization as emergent from stable architrino assembly modes and hierarchy constraints rather than as a standalone axiom.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats Planck-scale quantization as emergent from stable architrino assembly modes and hierarchy constraints rather than as a standalone axiom.
 
-**Legacy shift**: Planck's constant remains central, while the interpretation of quantization shifts from ontic primitive to dynamical emergence.
+**Legacy Shift**: Planck's constant remains central, while the interpretation of quantization shifts from ontic primitive to dynamical emergence.
 
 ---
 
@@ -781,11 +781,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate for operational discipline and low for ontology.
 
-**Core belief**: Quantum formalism is complete at the predictive level, collapse is part of measurement description, and complementarity expresses irreducible experimental context duality.
+**Core Belief**: Quantum formalism is complete at the predictive level, collapse is part of measurement description, and complementarity expresses irreducible experimental context duality.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects Copenhagen ontic minimalism by specifying substrate realism and treating collapse-like behavior as emergent coarse-grained branch selection effects in assembly dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects Copenhagen ontic minimalism by specifying substrate realism and treating collapse-like behavior as emergent coarse-grained branch selection effects in assembly dynamics.
 
-**Legacy shift**: Copenhagen's practical laboratory discipline survives, while its anti-realist ontological interpretation is superseded.
+**Legacy Shift**: Copenhagen's practical laboratory discipline survives, while its anti-realist ontological interpretation is superseded.
 
 ---
 
@@ -808,11 +808,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for realism pressure and moderate for direct wave-ontology claims.
 
-**Core belief**: Quantum systems are governed by wave dynamics that should describe physical reality continuously rather than by observer-triggered discontinuities.
+**Core Belief**: Quantum systems are governed by wave dynamics that should describe physical reality continuously rather than by observer-triggered discontinuities.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves the realism impulse and treats wavefunction-like objects as effective guidance/statistical fields over definite substrate configurations with branch-sensitive dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves the realism impulse and treats wavefunction-like objects as effective guidance/statistical fields over definite substrate configurations with branch-sensitive dynamics.
 
-**Legacy shift**: Schrödinger's realism is retained, while the wavefunction is demoted from final ontology to effective representation of deeper assembly behavior.
+**Legacy Shift**: Schrödinger's realism is retained, while the wavefunction is demoted from final ontology to effective representation of deeper assembly behavior.
 
 ---
 
@@ -835,11 +835,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as foundational ancestor; specific mathematical formalisms are reworked into explicit 3D medium fields.
 
-**Core belief**: Matter has real wave-guided dynamics, so particles remain definite entities while wave structure governs trajectory behavior.
+**Core Belief**: Matter has real wave-guided dynamics, so particles remain definite entities while wave structure governs trajectory behavior.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this architecture and replaces abstract configuration-space emphasis with physically real 3D potential fields generated by interacting substrate entities.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this architecture and replaces abstract configuration-space emphasis with physically real 3D potential fields generated by interacting substrate entities.
 
-**Legacy shift**: De Broglie moves from marginalized alternative to direct precursor of substrate-guided quantum emergence.
+**Legacy Shift**: De Broglie moves from marginalized alternative to direct precursor of substrate-guided quantum emergence.
 
 ---
 
@@ -862,11 +862,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for derived effective constraints and low for observables-only ontology.
 
-**Core belief**: Quantum theory should be built from observable quantities, and uncertainty relations express intrinsic limits central to physical description.
+**Core Belief**: Quantum theory should be built from observable quantities, and uncertainty relations express intrinsic limits central to physical description.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ derives Heisenberg-style limits from assembly measurement structure and path-history dynamics while preserving definite substrate states between branch regimes.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ derives Heisenberg-style limits from assembly measurement structure and path-history dynamics while preserving definite substrate states between branch regimes.
 
-**Legacy shift**: Heisenberg's formal constraints survive as emergent theorems, while his anti-realist interpretation is replaced by substrate realism.
+**Legacy Shift**: Heisenberg's formal constraints survive as emergent theorems, while his anti-realist interpretation is replaced by substrate realism.
 
 ---
 
@@ -889,11 +889,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as direct conceptual predecessor, with mechanism refined via explicit architrino ontology.
 
-**Core belief**: Quantum systems have definite states guided by nonlocal dynamics, so probabilities describe ensembles rather than ontic indeterminacy.
+**Core Belief**: Quantum systems have definite states guided by nonlocal dynamics, so probabilities describe ensembles rather than ontic indeterminacy.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Bohmian realism and nonlocal guidance while grounding guidance fields in direct architrino interaction architecture rather than wavefunction-first primitives.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Bohmian realism and nonlocal guidance while grounding guidance fields in direct architrino interaction architecture rather than wavefunction-first primitives.
 
-**Legacy shift**: Bohm's interpretation shifts from alternative interpretation to near-direct ancestor of mechanistic substrate reduction.
+**Legacy Shift**: Bohm's interpretation shifts from alternative interpretation to near-direct ancestor of mechanistic substrate reduction.
 
 ---
 
@@ -916,11 +916,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as permanent methodological boundary condition on acceptable foundational theories.
 
-**Core belief**: Empirical quantum correlations rule out broad classes of local hidden-variable models, forcing explicit treatment of nonlocality or realism assumptions.
+**Core Belief**: Empirical quantum correlations rule out broad classes of local hidden-variable models, forcing explicit treatment of nonlocality or realism assumptions.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ embraces Bell constraints by adopting explicit nonlocal realist dynamics while maintaining no-signaling at effective observational levels.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ embraces Bell constraints by adopting explicit nonlocal realist dynamics while maintaining no-signaling at effective observational levels.
 
-**Legacy shift**: Bell becomes a standing compliance test for substrate realism rather than an argument for anti-realist resignation.
+**Legacy Shift**: Bell becomes a standing compliance test for substrate realism rather than an argument for anti-realist resignation.
 
 ---
 
@@ -943,11 +943,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as conceptual catalyst and low for final ontology.
 
-**Core belief**: Universal wavefunction dynamics never collapse, and all measurement outcomes are realized across branching world histories.
+**Core Belief**: Universal wavefunction dynamics never collapse, and all measurement outcomes are realized across branching world histories.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps no-collapse dynamics and no special observer ontology but replaces branching with single-history evolution through deterministic multistable branch points.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps no-collapse dynamics and no special observer ontology but replaces branching with single-history evolution through deterministic multistable branch points.
 
-**Legacy shift**: Everett's anti-collapse imperative is retained, while many-world ontology is replaced by one-world substrate realism.
+**Legacy Shift**: Everett's anti-collapse imperative is retained, while many-world ontology is replaced by one-world substrate realism.
 
 ---
 
@@ -970,11 +970,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high if signature channels remain experimentally tractable and discriminative.
 
-**Core belief**: Quantum equilibrium may be contingent rather than universal, and nonequilibrium regimes could reveal deviations from Born-rule statistics.
+**Core Belief**: Quantum equilibrium may be contingent rather than universal, and nonequilibrium regimes could reveal deviations from Born-rule statistics.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally accommodates nonequilibrium assembly distributions and treats Valentini-style signatures as key empirical probes.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally accommodates nonequilibrium assembly distributions and treats Valentini-style signatures as key empirical probes.
 
-**Legacy shift**: Valentini's framework becomes an operational testing extension within substrate realism rather than a marginal speculative add-on.
+**Legacy Shift**: Valentini's framework becomes an operational testing extension within substrate realism rather than a marginal speculative add-on.
 
 ### **Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)**
 **Thinker**: Lucien Hardy, Rob Spekkens, and Matthew Leifer, representing operational and $\psi$-epistemic quantum-foundations programs.
@@ -995,11 +995,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for operational and inferential governance, with ontology completed by explicit substrate modeling.
 
-**Core belief**: Quantum state descriptions may be epistemic and operationally constrained, with the key task being principled reconstruction of observable structure.
+**Core Belief**: Quantum state descriptions may be epistemic and operationally constrained, with the key task being principled reconstruction of observable structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats $\psi$ as an effective coarse-grained state descriptor over real architrino configurations, preserving operational constraints as emergent statistical consequences of substrate interactions.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats $\psi$ as an effective coarse-grained state descriptor over real architrino configurations, preserving operational constraints as emergent statistical consequences of substrate interactions.
 
-**Legacy shift**: Operational and $\psi$-epistemic insights become rigorous effective-layer components within a fully explicit realist ontology.
+**Legacy Shift**: Operational and $\psi$-epistemic insights become rigorous effective-layer components within a fully explicit realist ontology.
 
 ---
 
@@ -1024,11 +1024,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for formal constraints and effective equations, with ontological primitives demoted to emergent status.
 
-**Core belief**: Relativistic quantum dynamics requires spinor structure and yields antiparticle sectors as intrinsic consequences of consistent equations.
+**Core Belief**: Relativistic quantum dynamics requires spinor structure and yields antiparticle sectors as intrinsic consequences of consistent equations.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Dirac-level empirical structure while relocating particle/antiparticle interpretation to architrino assembly modes and treating QFT operators as effective bookkeeping over deeper dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Dirac-level empirical structure while relocating particle/antiparticle interpretation to architrino assembly modes and treating QFT operators as effective bookkeeping over deeper dynamics.
 
-**Legacy shift**: Dirac's mathematical achievements remain central, while their ontological reading is reduced to emergent assembly-level representation.
+**Legacy Shift**: Dirac's mathematical achievements remain central, while their ontological reading is reduced to emergent assembly-level representation.
 
 ---
 
@@ -1051,11 +1051,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high computationally and moderate ontologically as representations of emergent ensemble behavior.
 
-**Core belief**: Quantum processes can be represented via weighted path ensembles and diagrammatic interaction expansions that encode measurable amplitudes.
+**Core Belief**: Quantum processes can be represented via weighted path ensembles and diagrammatic interaction expansions that encode measurable amplitudes.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps Feynman's machinery as effective computation while asserting one actual causal path-history at substrate level, with path sums interpreted as statistical over-descriptions.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps Feynman's machinery as effective computation while asserting one actual causal path-history at substrate level, with path sums interpreted as statistical over-descriptions.
 
-**Legacy shift**: Feynman remains a permanent method authority, while virtual particles and path histories are recast as calculational abstractions.
+**Legacy Shift**: Feynman remains a permanent method authority, while virtual particles and path histories are recast as calculational abstractions.
 
 ---
 
@@ -1078,11 +1078,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as effective law layer, with ontology relocated to assembly-medium dynamics.
 
-**Core belief**: Weak and electromagnetic interactions are unified through gauge symmetry with mass generation via symmetry-breaking structure.
+**Core Belief**: Weak and electromagnetic interactions are unified through gauge symmetry with mass generation via symmetry-breaking structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves electroweak phenomenology but interprets gauge and Higgs structure as emergent from spacetime assembly-network organization and phase behavior.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves electroweak phenomenology but interprets gauge and Higgs structure as emergent from spacetime assembly-network organization and phase behavior.
 
-**Legacy shift**: Electroweak unification remains a core effective success while its primitives are demoted to emergent descriptors.
+**Legacy Shift**: Electroweak unification remains a core effective success while its primitives are demoted to emergent descriptors.
 
 ---
 
@@ -1105,11 +1105,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as effective spectrum-language and moderate as ontology.
 
-**Core belief**: Hadrons are structured by quark degrees of freedom organized by symmetry and confinement dynamics.
+**Core Belief**: Hadrons are structured by quark degrees of freedom organized by symmetry and confinement dynamics.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps quark phenomenology as effective emergent structure and seeks to derive it from constrained assembly modes and interaction topology.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps quark phenomenology as effective emergent structure and seeks to derive it from constrained assembly modes and interaction topology.
 
-**Legacy shift**: The quark model remains indispensable as effective taxonomy while being recast as emergent quasi-particle structure.
+**Legacy Shift**: The quark model remains indispensable as effective taxonomy while being recast as emergent quasi-particle structure.
 
 ---
 
@@ -1132,11 +1132,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as deterministic-program ancestor, with specific CA machinery optional.
 
-**Core belief**: Quantum behavior can emerge from deeper deterministic dynamics, potentially represented by discrete update structures.
+**Core Belief**: Quantum behavior can emerge from deeper deterministic dynamics, potentially represented by discrete update structures.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental CA update tables.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental CA update tables.
 
-**Legacy shift**: 't Hooft's deterministic challenge is retained and broadened into explicit substrate field-assembly ontology.
+**Legacy Shift**: 't Hooft's deterministic challenge is retained and broadened into explicit substrate field-assembly ontology.
 
 ---
 
@@ -1161,11 +1161,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as conceptual supplement and low as primary ontology.
 
-**Core belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
+**Core Belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration.
 
-**Legacy shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
+**Legacy Shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
 
 ---
 
@@ -1188,11 +1188,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as methodological hygiene and low as stand-alone ontological framework.
 
-**Core belief**: Scientific and philosophical progress requires explicit logical form, reference discipline, and conceptual disambiguation.
+**Core Belief**: Scientific and philosophical progress requires explicit logical form, reference discipline, and conceptual disambiguation.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ applies Russellian rigor to prevent category drift across substrate, effective, and observational layers.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ applies Russellian rigor to prevent category drift across substrate, effective, and observational layers.
 
-**Legacy shift**: Russell's analytic method remains permanent governance infrastructure, while ontology is supplied by causal physical theory.
+**Legacy Shift**: Russell's analytic method remains permanent governance infrastructure, while ontology is supplied by causal physical theory.
 
 ---
 
@@ -1215,11 +1215,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as linguistic safeguard and low as full substitute for theory of nature.
 
-**Core belief**: Meaning is use-governed, and philosophical confusion often reflects misuse of words rather than discovery of deep entities.
+**Core Belief**: Meaning is use-governed, and philosophical confusion often reflects misuse of words rather than discovery of deep entities.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this warning to enforce vocabulary discipline while proceeding with explicit realist ontology.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this warning to enforce vocabulary discipline while proceeding with explicit realist ontology.
 
-**Legacy shift**: Wittgenstein remains a precision filter for discourse, while mechanistic physical claims carry explanatory burden.
+**Legacy Shift**: Wittgenstein remains a precision filter for discourse, while mechanistic physical claims carry explanatory burden.
 
 ---
 
@@ -1242,11 +1242,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as discipline and low as complete philosophy of science.
 
-**Core belief**: Scientific meaning must be tied to observation and logical structure, and metaphysical excess should be excluded from serious inquiry.
+**Core Belief**: Scientific meaning must be tied to observation and logical structure, and metaphysical excess should be excluded from serious inquiry.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains the discipline but rejects verificationist ceilings, allowing substrate postulates under strict reduction/falsification governance.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains the discipline but rejects verificationist ceilings, allowing substrate postulates under strict reduction/falsification governance.
 
-**Legacy shift**: Positivist rigor survives as filter, while ontological realism is reinstated for deep explanatory closure.
+**Legacy Shift**: Positivist rigor survives as filter, while ontological realism is reinstated for deep explanatory closure.
 
 ---
 
@@ -1269,11 +1269,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for methodological architecture and moderate for ontology.
 
-**Core belief**: Scientific discourse should be rebuilt in explicit formal frameworks where claim-types and inferential roles are clearly typed.
+**Core Belief**: Scientific discourse should be rebuilt in explicit formal frameworks where claim-types and inferential roles are clearly typed.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ uses Carnapian hygiene to separate substrate claims from effective models and observational reports while retaining realist commitments.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ uses Carnapian hygiene to separate substrate claims from effective models and observational reports while retaining realist commitments.
 
-**Legacy shift**: Carnap remains core infrastructure for expression discipline, but realism sets final ontological commitments.
+**Legacy Shift**: Carnap remains core infrastructure for expression discipline, but realism sets final ontological commitments.
 
 ---
 
@@ -1296,11 +1296,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as epistemic discipline and low as full ontological framework.
 
-**Core belief**: Scientific knowledge must remain empirically grounded and conceptually justified to avoid pseudo-explanatory metaphysics.
+**Core Belief**: Scientific knowledge must remain empirically grounded and conceptually justified to avoid pseudo-explanatory metaphysics.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains this discipline while extending beyond it via falsifiable substrate postulates and reduction commitments.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains this discipline while extending beyond it via falsifiable substrate postulates and reduction commitments.
 
-**Legacy shift**: Schlick's empiricist rigor remains as a gate, while deeper realism is reinstated.
+**Legacy Shift**: Schlick's empiricist rigor remains as a gate, while deeper realism is reinstated.
 
 ---
 
@@ -1323,11 +1323,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate to high for process governance and moderate for ontology.
 
-**Core belief**: Science advances as a revisable coherent network rebuilt from within practice rather than from indubitable external foundations.
+**Core Belief**: Science advances as a revisable coherent network rebuilt from within practice rather than from indubitable external foundations.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this revisability in development while still targeting a definite substrate ontology constrained by falsification and reduction.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this revisability in development while still targeting a definite substrate ontology constrained by falsification and reduction.
 
-**Legacy shift**: Neurath's fallibilist governance persists, but anti-foundational implications are bounded by realist closure aims.
+**Legacy Shift**: Neurath's fallibilist governance persists, but anti-foundational implications are bounded by realist closure aims.
 
 ---
 
@@ -1350,11 +1350,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as permanent methodological backbone.
 
-**Core belief**: Science advances through bold conjectures exposed to tests that can decisively rule them out.
+**Core Belief**: Science advances through bold conjectures exposed to tests that can decisively rule them out.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts Popperian governance directly through prediction ledgers, failure criteria, and anti-rescue discipline.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts Popperian governance directly through prediction ledgers, failure criteria, and anti-rescue discipline.
 
-**Legacy shift**: Popper shifts from philosophical influence to concrete operating protocol for model acceptance.
+**Legacy Shift**: Popper shifts from philosophical influence to concrete operating protocol for model acceptance.
 
 ---
 
@@ -1379,11 +1379,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for inferential and representational tooling, and low for first-principles ontology.
 
-**Core belief**: Physical reality may arise from informational distinctions, with observation and binary decision structure playing constitutive roles.
+**Core Belief**: Physical reality may arise from informational distinctions, with observation and binary decision structure playing constitutive roles.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ reverses the primacy claim by grounding information in real architrino configurations and treating observer participation as measurement-layer interaction rather than ontological creation.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ reverses the primacy claim by grounding information in real architrino configurations and treating observer participation as measurement-layer interaction rather than ontological creation.
 
-**Legacy shift**: Wheeler's slogan is recast from "it from bit" to "bit from it," preserving informational utility while restoring physical substrate priority.
+**Legacy Shift**: Wheeler's slogan is recast from "it from bit" to "bit from it," preserving informational utility while restoring physical substrate priority.
 
 ---
 
@@ -1406,11 +1406,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for transition sociology and moderate for final truth-conditions.
 
-**Core belief**: Science alternates between normal puzzle-solving phases and revolutionary paradigm reorganizations that alter standards and primitives.
+**Core Belief**: Science alternates between normal puzzle-solving phases and revolutionary paradigm reorganizations that alter standards and primitives.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ maps naturally onto Kuhn's revolution schema but insists on bridge principles that preserve commensurability through reduction.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ maps naturally onto Kuhn's revolution schema but insists on bridge principles that preserve commensurability through reduction.
 
-**Legacy shift**: Kuhn remains a transition map, while strong discontinuity claims are softened by explicit limiting-case continuity.
+**Legacy Shift**: Kuhn remains a transition map, while strong discontinuity claims are softened by explicit limiting-case continuity.
 
 ---
 
@@ -1433,11 +1433,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as ongoing governance protocol for foundational model development.
 
-**Core belief**: Scientific theories evolve within programs whose value depends on progressive prediction and explanatory gain, not mere anomaly absorption.
+**Core Belief**: Scientific theories evolve within programs whose value depends on progressive prediction and explanatory gain, not mere anomaly absorption.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ operationalizes Lakatos directly via explicit hard-core declarations, belt policies, and progressive/degenerating audits.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ operationalizes Lakatos directly via explicit hard-core declarations, belt policies, and progressive/degenerating audits.
 
-**Legacy shift**: Lakatos becomes an internal control system rather than a retrospective philosophical lens.
+**Legacy Shift**: Lakatos becomes an internal control system rather than a retrospective philosophical lens.
 
 ---
 
@@ -1460,11 +1460,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as creativity safeguard and low as final methodology for theory acceptance.
 
-**Core belief**: Scientific innovation is historically pluralistic and often incompatible with single codified method prescriptions.
+**Core Belief**: Scientific innovation is historically pluralistic and often incompatible with single codified method prescriptions.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ permits exploratory heterodoxy but enforces Popper/Lakatos-grade rigor at selection and acceptance stages.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ permits exploratory heterodoxy but enforces Popper/Lakatos-grade rigor at selection and acceptance stages.
 
-**Legacy shift**: Feyerabend's role becomes bounded pluralism in generation, not permissive standards in validation.
+**Legacy Shift**: Feyerabend's role becomes bounded pluralism in generation, not permissive standards in validation.
 
 ---
 
@@ -1487,11 +1487,11 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate for model-practice realism and low for final ontology if unification succeeds.
 
-**Core belief**: Scientific laws are often local tools with restricted scope, and broad unification claims can misrepresent real explanatory practice.
+**Core Belief**: Scientific laws are often local tools with restricted scope, and broad unification claims can misrepresent real explanatory practice.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts local effective patchiness but interprets it as layered emergence from one substrate ontology rather than evidence against reduction.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts local effective patchiness but interprets it as layered emergence from one substrate ontology rather than evidence against reduction.
 
-**Legacy shift**: Cartwright's caution on context survives, while her anti-unification conclusion is treated as challenge target rather than endpoint.
+**Legacy Shift**: Cartwright's caution on context survives, while her anti-unification conclusion is treated as challenge target rather than endpoint.
 
 ### **Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project**
 **Thinker**: Stephen Wolfram (1959–), proponent of computation-first foundations and rule-based generative physics.
@@ -1512,10 +1512,10 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as computational methodology and low as final ontology in a geometry-first substrate.
 
-**Core belief**: Fundamental physics may be generated by simple computational update rules over abstract structures, with complexity emerging from iterative evolution.
+**Core Belief**: Fundamental physics may be generated by simple computational update rules over abstract structures, with complexity emerging from iterative evolution.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares rule-based emergence and heavy simulation use but grounds rules in physically real architrinos in Euclidean space and absolute time.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares rule-based emergence and heavy simulation use but grounds rules in physically real architrinos in Euclidean space and absolute time.
 
-**Legacy shift**: Wolfram's computational perspective is retained as toolchain and heuristic layer, while ontology remains physical rather than abstract-graph primitive.
+**Legacy Shift**: Wolfram's computational perspective is retained as toolchain and heuristic layer, while ontology remains physical rather than abstract-graph primitive.
 
 ---
