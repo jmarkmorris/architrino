@@ -6,11 +6,11 @@
 
 This document defines the modern ontological network above $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at substrate level.
 
-Its purpose is differential classification, not sociological ranking. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
+Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ### Theory-Differential Template (Unified)
 
-Use this template for every concept entry (theory, program, law, observable, parameter, or construct).
+Use this template for every concept entry (theory, program, law, observable, parameter, or construct). Repetition is intentional: this chapter is a controlled comparison instrument, not a sequence of free-form essays.
 
 - **Concept Type**: theory / program / law / quantity / observable / parameter / construct.
 - **Short Name**: label used in scene and cross-reference contexts.
@@ -347,7 +347,7 @@ Recommended top-level order:
 
 Within each area, order concepts by present scientific importance first, then by historical or contrastive importance.
 
-The inventory below is intentionally selective. It should track concepts with major scientific investment, major historical influence, or major diagnostic value for the architrino program. It is not meant to become an indiscriminate encyclopedia.
+The inventory below is intentionally selective. It should track concepts with major scientific investment, major historical influence, or major diagnostic value for the architrino program. It is not meant to become an indiscriminate encyclopedia. Where an entry remains schematic, the priority is explicit stack placement and falsifiable mapping target rather than literary variation.
 
 ---
 
@@ -366,7 +366,7 @@ The inventory below is intentionally selective. It should track concepts with ma
 
 #### 1. Concept Summary
 
-Quantum Field Theory is a theory in the continuum field ontology domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Quantum Field Theory is a theory in the continuum field ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -374,7 +374,7 @@ Quantum Field Theory carries specific ontological commitments even when it is pr
 
 #### 3. What This Concept Gets Right
 
-Quantum Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Quantum Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -390,7 +390,7 @@ In a mature stack this survives as an effective closure law or modeling language
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Quantum Field Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Quantum Field Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -411,7 +411,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Standard Model is a theory in the gauge structure domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Standard Model is a theory in the gauge structure domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -419,7 +419,7 @@ Standard Model carries specific ontological commitments even when it is presente
 
 #### 3. What This Concept Gets Right
 
-Standard Model gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Standard Model gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -435,7 +435,7 @@ In a mature stack this survives as an effective closure law or modeling language
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Standard Model is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Standard Model is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -456,7 +456,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Quantum Electrodynamics is a theory in the electromagnetic gauge theory domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Quantum Electrodynamics is a theory in the electromagnetic gauge theory domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -464,7 +464,7 @@ Quantum Electrodynamics carries specific ontological commitments even when it is
 
 #### 3. What This Concept Gets Right
 
-Quantum Electrodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Quantum Electrodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -480,7 +480,7 @@ In a mature stack this survives as an effective closure law or modeling language
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Quantum Electrodynamics is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Quantum Electrodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -501,7 +501,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Quantum Chromodynamics is a theory in the strong interaction closure domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Quantum Chromodynamics is a theory in the strong interaction closure domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -509,7 +509,7 @@ Quantum Chromodynamics carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Quantum Chromodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Quantum Chromodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -525,7 +525,7 @@ In a mature stack this survives as an effective closure law or modeling language
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Quantum Chromodynamics is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Quantum Chromodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -546,7 +546,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Electroweak Theory is a theory in the symmetry breaking domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Electroweak Theory is a theory in the symmetry breaking domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -554,7 +554,7 @@ Electroweak Theory carries specific ontological commitments even when it is pres
 
 #### 3. What This Concept Gets Right
 
-Electroweak Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Electroweak Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -570,7 +570,7 @@ In a mature stack this survives as an effective closure law or modeling language
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Electroweak Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Electroweak Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -591,7 +591,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Neutrino Oscillation Theory is a theory in the flavor mixing domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Neutrino Oscillation Theory is a theory in the flavor mixing domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -599,7 +599,7 @@ Neutrino Oscillation Theory carries specific ontological commitments even when i
 
 #### 3. What This Concept Gets Right
 
-Neutrino Oscillation Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Neutrino Oscillation Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -615,7 +615,7 @@ In a mature stack this survives as an effective closure law or modeling language
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Neutrino Oscillation Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Neutrino Oscillation Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -636,7 +636,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Effective Field Theory is a framework in the scale separation domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Effective Field Theory is a framework in the scale separation domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -644,7 +644,7 @@ Effective Field Theory carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Effective Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Effective Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -660,7 +660,7 @@ In a mature stack this survives as an effective closure law or modeling language
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Effective Field Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Effective Field Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -681,7 +681,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Renormalization Group is a framework in the scale flow domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Renormalization Group is a framework in the scale flow domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -689,7 +689,7 @@ Renormalization Group carries specific ontological commitments even when it is p
 
 #### 3. What This Concept Gets Right
 
-Renormalization Group gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Renormalization Group gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -705,7 +705,7 @@ In a mature stack this survives as an effective closure law or modeling language
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Renormalization Group is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Renormalization Group is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -726,7 +726,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Grand Unified Theories is a theory in the high-energy unification domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Grand Unified Theories is a theory in the high-energy unification domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -734,7 +734,7 @@ Grand Unified Theories carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Grand Unified Theories gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Grand Unified Theories gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -771,7 +771,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Supersymmetry is a theory in the symmetry extension domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Supersymmetry is a theory in the symmetry extension domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -779,7 +779,7 @@ Supersymmetry carries specific ontological commitments even when it is presented
 
 #### 3. What This Concept Gets Right
 
-Supersymmetry gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Supersymmetry gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -816,7 +816,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Supergravity is a theory in the gravity-symmetry unification domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Supergravity is a theory in the gravity-symmetry unification domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -824,7 +824,7 @@ Supergravity carries specific ontological commitments even when it is presented 
 
 #### 3. What This Concept Gets Right
 
-Supergravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Supergravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -861,7 +861,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Technicolor / Composite Higgs is a theory in the electroweak compositeness domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Technicolor / Composite Higgs is a theory in the electroweak compositeness domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -869,7 +869,7 @@ Technicolor / Composite Higgs carries specific ontological commitments even when
 
 #### 3. What This Concept Gets Right
 
-Technicolor / Composite Higgs gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Technicolor / Composite Higgs gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -906,7 +906,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Axion Theory / Peccei-Quinn Mechanism is a theory in the strong CP repair domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Axion Theory / Peccei-Quinn Mechanism is a theory in the strong CP repair domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -914,7 +914,7 @@ Axion Theory / Peccei-Quinn Mechanism carries specific ontological commitments e
 
 #### 3. What This Concept Gets Right
 
-Axion Theory / Peccei-Quinn Mechanism gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Axion Theory / Peccei-Quinn Mechanism gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -951,7 +951,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Sterile Neutrino Dark Matter is a theory in the dark sector domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Sterile Neutrino Dark Matter is a theory in the dark sector domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -959,7 +959,7 @@ Sterile Neutrino Dark Matter carries specific ontological commitments even when 
 
 #### 3. What This Concept Gets Right
 
-Sterile Neutrino Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Sterile Neutrino Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -996,7 +996,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-WIMP Dark Matter is a theory in the dark sector domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+WIMP Dark Matter is a theory in the dark sector domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1004,7 +1004,7 @@ WIMP Dark Matter carries specific ontological commitments even when it is presen
 
 #### 3. What This Concept Gets Right
 
-WIMP Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+WIMP Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1041,7 +1041,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Hidden Sector / Dark Sector Models is a theory in the dark sector domain. It was built to organize a recurring class of phenomena within core quantum and particle frameworks, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Hidden Sector / Dark Sector Models is a theory in the dark sector domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1049,7 +1049,7 @@ Hidden Sector / Dark Sector Models carries specific ontological commitments even
 
 #### 3. What This Concept Gets Right
 
-Hidden Sector / Dark Sector Models gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Hidden Sector / Dark Sector Models gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1088,7 +1088,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Quantum Mechanics is a theory in the state evolution and probability domain. It was built to organize a recurring class of phenomena within quantum foundations and interpretations, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Quantum Mechanics is a theory in the state evolution and probability domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1096,7 +1096,7 @@ Quantum Mechanics carries specific ontological commitments even when it is prese
 
 #### 3. What This Concept Gets Right
 
-Quantum Mechanics gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Quantum Mechanics gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1133,7 +1133,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Copenhagen Interpretation is a interpretation in the measurement interpretation domain. It was built to organize a recurring class of phenomena within quantum foundations and interpretations, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Copenhagen Interpretation is a interpretation in the measurement interpretation domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1141,7 +1141,7 @@ Copenhagen Interpretation carries specific ontological commitments even when it 
 
 #### 3. What This Concept Gets Right
 
-Copenhagen Interpretation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Copenhagen Interpretation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1178,7 +1178,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Many-Worlds Interpretation is a interpretation in the branching ontology domain. It was built to organize a recurring class of phenomena within quantum foundations and interpretations, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Many-Worlds Interpretation is a interpretation in the branching ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1186,7 +1186,7 @@ Many-Worlds Interpretation carries specific ontological commitments even when it
 
 #### 3. What This Concept Gets Right
 
-Many-Worlds Interpretation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Many-Worlds Interpretation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1223,7 +1223,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-de Broglie-Bohm Theory is a theory in the hidden-variable dynamics domain. It was built to organize a recurring class of phenomena within quantum foundations and interpretations, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+de Broglie-Bohm Theory is a theory in the hidden-variable dynamics domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1231,7 +1231,7 @@ de Broglie-Bohm Theory carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-de Broglie-Bohm Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+de Broglie-Bohm Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1268,7 +1268,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Objective Collapse Theory is a theory in the collapse dynamics domain. It was built to organize a recurring class of phenomena within quantum foundations and interpretations, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Objective Collapse Theory is a theory in the collapse dynamics domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1276,7 +1276,7 @@ Objective Collapse Theory carries specific ontological commitments even when it 
 
 #### 3. What This Concept Gets Right
 
-Objective Collapse Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Objective Collapse Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1313,7 +1313,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Relational Quantum Mechanics is a interpretation in the observer-relative state assignment domain. It was built to organize a recurring class of phenomena within quantum foundations and interpretations, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Relational Quantum Mechanics is a interpretation in the observer-relative state assignment domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1321,7 +1321,7 @@ Relational Quantum Mechanics carries specific ontological commitments even when 
 
 #### 3. What This Concept Gets Right
 
-Relational Quantum Mechanics gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Relational Quantum Mechanics gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1358,7 +1358,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-QBism is a interpretation in the agent-centered probability domain. It was built to organize a recurring class of phenomena within quantum foundations and interpretations, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+QBism is a interpretation in the agent-centered probability domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1366,7 +1366,7 @@ QBism carries specific ontological commitments even when it is presented as "jus
 
 #### 3. What This Concept Gets Right
 
-QBism gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+QBism gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1403,7 +1403,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Decoherence Program is a theory in the environment-induced classicality domain. It was built to organize a recurring class of phenomena within quantum foundations and interpretations, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Decoherence Program is a theory in the environment-induced classicality domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1411,7 +1411,7 @@ Decoherence Program carries specific ontological commitments even when it is pre
 
 #### 3. What This Concept Gets Right
 
-Decoherence Program gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Decoherence Program gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1450,7 +1450,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Newtonian Mechanics and Gravity is a theory in the weak-field mechanics domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Newtonian Mechanics and Gravity is a theory in the weak-field mechanics domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1458,7 +1458,7 @@ Newtonian Mechanics and Gravity carries specific ontological commitments even wh
 
 #### 3. What This Concept Gets Right
 
-Newtonian Mechanics and Gravity gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Newtonian Mechanics and Gravity gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1474,7 +1474,7 @@ In a mature stack the successful parts survive as effective geometry or constitu
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Newtonian Mechanics and Gravity is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Newtonian Mechanics and Gravity is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -1495,7 +1495,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Special Relativity is a theory in the relativistic kinematics domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Special Relativity is a theory in the relativistic kinematics domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1503,7 +1503,7 @@ Special Relativity carries specific ontological commitments even when it is pres
 
 #### 3. What This Concept Gets Right
 
-Special Relativity gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Special Relativity gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1519,7 +1519,7 @@ In a mature stack the successful parts survive as effective geometry or constitu
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Special Relativity is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Special Relativity is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -1540,7 +1540,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-General Relativity is a theory in the effective metric domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+General Relativity is a theory in the effective metric domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1548,7 +1548,7 @@ General Relativity carries specific ontological commitments even when it is pres
 
 #### 3. What This Concept Gets Right
 
-General Relativity gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+General Relativity gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1564,7 +1564,7 @@ In a mature stack the successful parts survive as effective geometry or constitu
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for General Relativity is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for General Relativity is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -1585,7 +1585,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Scalar-Tensor Gravity is a theory in the gravity and geometry domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Scalar-Tensor Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1593,7 +1593,7 @@ Scalar-Tensor Gravity carries specific ontological commitments even when it is p
 
 #### 3. What This Concept Gets Right
 
-Scalar-Tensor Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Scalar-Tensor Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1630,7 +1630,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Brans-Dicke Theory is a theory in the foundational framework domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Brans-Dicke Theory is a theory in the foundational framework domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1638,7 +1638,7 @@ Brans-Dicke Theory carries specific ontological commitments even when it is pres
 
 #### 3. What This Concept Gets Right
 
-Brans-Dicke Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Brans-Dicke Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1675,7 +1675,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-$f(R)$ Gravity is a theory in the gravity and geometry domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+$f(R)$ Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1683,7 +1683,7 @@ $f(R)$ Gravity carries specific ontological commitments even when it is presente
 
 #### 3. What This Concept Gets Right
 
-$f(R)$ Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+$f(R)$ Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1720,7 +1720,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Einstein-Cartan Theory is a theory in the foundational framework domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Einstein-Cartan Theory is a theory in the foundational framework domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1728,7 +1728,7 @@ Einstein-Cartan Theory carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Einstein-Cartan Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Einstein-Cartan Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1765,7 +1765,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Massive Gravity is a theory in the gravity and geometry domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Massive Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1773,7 +1773,7 @@ Massive Gravity carries specific ontological commitments even when it is present
 
 #### 3. What This Concept Gets Right
 
-Massive Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Massive Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1810,7 +1810,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Bimetric Gravity is a theory in the gravity and geometry domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Bimetric Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1818,7 +1818,7 @@ Bimetric Gravity carries specific ontological commitments even when it is presen
 
 #### 3. What This Concept Gets Right
 
-Bimetric Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Bimetric Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1855,7 +1855,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Modified Newtonian Dynamics is a theory in the low-acceleration gravity domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Modified Newtonian Dynamics is a theory in the low-acceleration gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1863,7 +1863,7 @@ Modified Newtonian Dynamics carries specific ontological commitments even when i
 
 #### 3. What This Concept Gets Right
 
-Modified Newtonian Dynamics gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Modified Newtonian Dynamics gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1900,7 +1900,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Tensor-Vector-Scalar Gravity is a theory in the covariant modified gravity domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Tensor-Vector-Scalar Gravity is a theory in the covariant modified gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1908,7 +1908,7 @@ Tensor-Vector-Scalar Gravity carries specific ontological commitments even when 
 
 #### 3. What This Concept Gets Right
 
-Tensor-Vector-Scalar Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Tensor-Vector-Scalar Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1945,7 +1945,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Emergent Gravity is a theory in the induced gravity domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Emergent Gravity is a theory in the induced gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1953,7 +1953,7 @@ Emergent Gravity carries specific ontological commitments even when it is presen
 
 #### 3. What This Concept Gets Right
 
-Emergent Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Emergent Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -1990,7 +1990,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Unimodular Gravity is a theory in the gravity and geometry domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Unimodular Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1998,7 +1998,7 @@ Unimodular Gravity carries specific ontological commitments even when it is pres
 
 #### 3. What This Concept Gets Right
 
-Unimodular Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Unimodular Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2035,7 +2035,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Loop Quantum Gravity is a theory in the quantized geometry domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Loop Quantum Gravity is a theory in the quantized geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2043,7 +2043,7 @@ Loop Quantum Gravity carries specific ontological commitments even when it is pr
 
 #### 3. What This Concept Gets Right
 
-Loop Quantum Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Loop Quantum Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2080,7 +2080,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-String Theory / M-Theory is a theory in the high-dimensional unification domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+String Theory / M-Theory is a theory in the high-dimensional unification domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2088,7 +2088,7 @@ String Theory / M-Theory carries specific ontological commitments even when it i
 
 #### 3. What This Concept Gets Right
 
-String Theory / M-Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+String Theory / M-Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2125,7 +2125,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Causal Set Theory is a theory in the discrete causal order domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Causal Set Theory is a theory in the discrete causal order domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2133,7 +2133,7 @@ Causal Set Theory carries specific ontological commitments even when it is prese
 
 #### 3. What This Concept Gets Right
 
-Causal Set Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Causal Set Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2170,7 +2170,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Causal Dynamical Triangulations is a theory in the discrete geometry domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Causal Dynamical Triangulations is a theory in the discrete geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2178,7 +2178,7 @@ Causal Dynamical Triangulations carries specific ontological commitments even wh
 
 #### 3. What This Concept Gets Right
 
-Causal Dynamical Triangulations gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Causal Dynamical Triangulations gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2215,7 +2215,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Asymptotic Safety is a theory in the ultraviolet closure domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Asymptotic Safety is a theory in the ultraviolet closure domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2223,7 +2223,7 @@ Asymptotic Safety carries specific ontological commitments even when it is prese
 
 #### 3. What This Concept Gets Right
 
-Asymptotic Safety gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Asymptotic Safety gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2260,7 +2260,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Holography / AdS-CFT is a framework in the duality and boundary encoding domain. It was built to organize a recurring class of phenomena within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Holography / AdS-CFT is a framework in the duality and boundary encoding domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2268,7 +2268,7 @@ Holography / AdS-CFT carries specific ontological commitments even when it is pr
 
 #### 3. What This Concept Gets Right
 
-Holography / AdS-CFT gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Holography / AdS-CFT gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2307,7 +2307,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-$\Lambda$ Cold Dark Matter is a framework in the cosmological closure model domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+$\Lambda$ Cold Dark Matter is a framework in the cosmological closure model domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2315,7 +2315,7 @@ $\Lambda$ Cold Dark Matter carries specific ontological commitments even when it
 
 #### 3. What This Concept Gets Right
 
-$\Lambda$ Cold Dark Matter gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+$\Lambda$ Cold Dark Matter gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2352,7 +2352,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Inflationary Cosmology is a theory in the early-universe smoothing domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Inflationary Cosmology is a theory in the early-universe smoothing domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2360,7 +2360,7 @@ Inflationary Cosmology carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Inflationary Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Inflationary Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2397,7 +2397,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Big Bang Nucleosynthesis is a theory in the light-element synthesis domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Big Bang Nucleosynthesis is a theory in the light-element synthesis domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2405,7 +2405,7 @@ Big Bang Nucleosynthesis carries specific ontological commitments even when it i
 
 #### 3. What This Concept Gets Right
 
-Big Bang Nucleosynthesis gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Big Bang Nucleosynthesis gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2421,7 +2421,7 @@ In a mature stack only the empirically successful large-scale summaries survive,
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Big Bang Nucleosynthesis is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Big Bang Nucleosynthesis is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -2442,7 +2442,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-CMB Acoustic Peak Theory is a theory in the radiation-baryon transfer domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+CMB Acoustic Peak Theory is a theory in the radiation-baryon transfer domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2450,7 +2450,7 @@ CMB Acoustic Peak Theory carries specific ontological commitments even when it i
 
 #### 3. What This Concept Gets Right
 
-CMB Acoustic Peak Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+CMB Acoustic Peak Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2466,7 +2466,7 @@ In a mature stack only the empirically successful large-scale summaries survive,
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for CMB Acoustic Peak Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for CMB Acoustic Peak Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -2487,7 +2487,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Baryogenesis / Leptogenesis is a theory in the matter asymmetry domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Baryogenesis / Leptogenesis is a theory in the matter asymmetry domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2495,7 +2495,7 @@ Baryogenesis / Leptogenesis carries specific ontological commitments even when i
 
 #### 3. What This Concept Gets Right
 
-Baryogenesis / Leptogenesis gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Baryogenesis / Leptogenesis gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2532,7 +2532,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Dark Matter Particle Cosmology is a theory in the dark matter ontology domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Dark Matter Particle Cosmology is a theory in the dark matter ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2540,7 +2540,7 @@ Dark Matter Particle Cosmology carries specific ontological commitments even whe
 
 #### 3. What This Concept Gets Right
 
-Dark Matter Particle Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Dark Matter Particle Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2577,7 +2577,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Primordial Black Hole Dark Matter is a theory in the dark matter ontology domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Primordial Black Hole Dark Matter is a theory in the dark matter ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2585,7 +2585,7 @@ Primordial Black Hole Dark Matter carries specific ontological commitments even 
 
 #### 3. What This Concept Gets Right
 
-Primordial Black Hole Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Primordial Black Hole Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2622,7 +2622,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Dark Energy / Quintessence is a theory in the late-time acceleration domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Dark Energy / Quintessence is a theory in the late-time acceleration domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2630,7 +2630,7 @@ Dark Energy / Quintessence carries specific ontological commitments even when it
 
 #### 3. What This Concept Gets Right
 
-Dark Energy / Quintessence gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Dark Energy / Quintessence gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2667,7 +2667,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Steady State Cosmology is a theory in the cosmic history alternative domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Steady State Cosmology is a theory in the cosmic history alternative domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2675,7 +2675,7 @@ Steady State Cosmology carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Steady State Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Steady State Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2712,7 +2712,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 #### 1. Concept Summary
 
-Quasi-Steady State Cosmology is a theory in the cosmic history alternative domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Quasi-Steady State Cosmology is a theory in the cosmic history alternative domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2720,7 +2720,7 @@ Quasi-Steady State Cosmology carries specific ontological commitments even when 
 
 #### 3. What This Concept Gets Right
 
-Quasi-Steady State Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Quasi-Steady State Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2757,7 +2757,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 #### 1. Concept Summary
 
-Ekpyrotic / Cyclic Cosmology is a theory in the bounce and cycle histories domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Ekpyrotic / Cyclic Cosmology is a theory in the bounce and cycle histories domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2765,7 +2765,7 @@ Ekpyrotic / Cyclic Cosmology carries specific ontological commitments even when 
 
 #### 3. What This Concept Gets Right
 
-Ekpyrotic / Cyclic Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Ekpyrotic / Cyclic Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2802,7 +2802,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Bounce Cosmology is a theory in the non-singular cosmic history domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Bounce Cosmology is a theory in the non-singular cosmic history domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2810,7 +2810,7 @@ Bounce Cosmology carries specific ontological commitments even when it is presen
 
 #### 3. What This Concept Gets Right
 
-Bounce Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Bounce Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2847,7 +2847,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Conformal Cyclic Cosmology is a theory in the cyclic conformal history domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Conformal Cyclic Cosmology is a theory in the cyclic conformal history domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2855,7 +2855,7 @@ Conformal Cyclic Cosmology carries specific ontological commitments even when it
 
 #### 3. What This Concept Gets Right
 
-Conformal Cyclic Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Conformal Cyclic Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2892,7 +2892,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Multiverse Cosmology is a theory in the ensemble cosmology domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Multiverse Cosmology is a theory in the ensemble cosmology domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2900,7 +2900,7 @@ Multiverse Cosmology carries specific ontological commitments even when it is pr
 
 #### 3. What This Concept Gets Right
 
-Multiverse Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Multiverse Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2937,7 +2937,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Anthropic Principle is a principle in the selection effects domain. It was built to organize a recurring class of phenomena within cosmology and large-scale history, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Anthropic Principle is a principle in the selection effects domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2945,7 +2945,7 @@ Anthropic Principle carries specific ontological commitments even when it is pre
 
 #### 3. What This Concept Gets Right
 
-Anthropic Principle gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Anthropic Principle gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2984,7 +2984,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Statistical Mechanics is a theory in the ensemble closure domain. It was built to organize a recurring class of phenomena within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Statistical Mechanics is a theory in the ensemble closure domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2992,7 +2992,7 @@ Statistical Mechanics carries specific ontological commitments even when it is p
 
 #### 3. What This Concept Gets Right
 
-Statistical Mechanics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Statistical Mechanics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3008,7 +3008,7 @@ In a mature stack these remain permanent bulk-limit descriptions and are among t
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Statistical Mechanics is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Statistical Mechanics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3029,7 +3029,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Thermodynamics is a theory in the bulk-state law domain. It was built to organize a recurring class of phenomena within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Thermodynamics is a theory in the bulk-state law domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3037,7 +3037,7 @@ Thermodynamics carries specific ontological commitments even when it is presente
 
 #### 3. What This Concept Gets Right
 
-Thermodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Thermodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3053,7 +3053,7 @@ In a mature stack these remain permanent bulk-limit descriptions and are among t
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Thermodynamics is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Thermodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3074,7 +3074,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Kinetic Theory is a theory in the distribution dynamics domain. It was built to organize a recurring class of phenomena within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Kinetic Theory is a theory in the distribution dynamics domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3082,7 +3082,7 @@ Kinetic Theory carries specific ontological commitments even when it is presente
 
 #### 3. What This Concept Gets Right
 
-Kinetic Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Kinetic Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3098,7 +3098,7 @@ In a mature stack these remain permanent bulk-limit descriptions and are among t
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Kinetic Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Kinetic Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3119,7 +3119,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Hydrodynamics is a theory in the continuum transport domain. It was built to organize a recurring class of phenomena within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Hydrodynamics is a theory in the continuum transport domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3127,7 +3127,7 @@ Hydrodynamics carries specific ontological commitments even when it is presented
 
 #### 3. What This Concept Gets Right
 
-Hydrodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Hydrodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3143,7 +3143,7 @@ In a mature stack these remain permanent bulk-limit descriptions and are among t
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Hydrodynamics is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Hydrodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3164,7 +3164,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Plasma Physics is a theory in the collective charged media domain. It was built to organize a recurring class of phenomena within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Plasma Physics is a theory in the collective charged media domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3172,7 +3172,7 @@ Plasma Physics carries specific ontological commitments even when it is presente
 
 #### 3. What This Concept Gets Right
 
-Plasma Physics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Plasma Physics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3188,7 +3188,7 @@ In a mature stack these remain permanent bulk-limit descriptions and are among t
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Plasma Physics is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Plasma Physics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3209,7 +3209,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Virial Theory is a law in the bound-system averages domain. It was built to organize a recurring class of phenomena within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Virial Theory is a law in the bound-system averages domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3217,7 +3217,7 @@ Virial Theory carries specific ontological commitments even when it is presented
 
 #### 3. What This Concept Gets Right
 
-Virial Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Virial Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3233,7 +3233,7 @@ In a mature stack these remain permanent bulk-limit descriptions and are among t
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Virial Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Virial Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3254,7 +3254,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Jeans Instability Theory is a theory in the gravitational collapse threshold domain. It was built to organize a recurring class of phenomena within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Jeans Instability Theory is a theory in the gravitational collapse threshold domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3262,7 +3262,7 @@ Jeans Instability Theory carries specific ontological commitments even when it i
 
 #### 3. What This Concept Gets Right
 
-Jeans Instability Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Jeans Instability Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3278,7 +3278,7 @@ In a mature stack these remain permanent bulk-limit descriptions and are among t
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Jeans Instability Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Jeans Instability Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3299,7 +3299,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Halo Model of Structure Formation is a framework in the large-scale structure statistics domain. It was built to organize a recurring class of phenomena within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Halo Model of Structure Formation is a framework in the large-scale structure statistics domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3307,7 +3307,7 @@ Halo Model of Structure Formation carries specific ontological commitments even 
 
 #### 3. What This Concept Gets Right
 
-Halo Model of Structure Formation gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Halo Model of Structure Formation gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3323,7 +3323,7 @@ In a mature stack these remain permanent bulk-limit descriptions and are among t
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Halo Model of Structure Formation is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Halo Model of Structure Formation is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3346,7 +3346,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Classical Luminiferous Aether Theory is a theory in the carrier ontology domain. It was built to organize a recurring class of phenomena within rejected historical theories, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Classical Luminiferous Aether Theory is a theory in the carrier ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3354,7 +3354,7 @@ Classical Luminiferous Aether Theory carries specific ontological commitments ev
 
 #### 3. What This Concept Gets Right
 
-Classical Luminiferous Aether Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Classical Luminiferous Aether Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3391,7 +3391,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 #### 1. Concept Summary
 
-Lorentz Ether Theory is a theory in the medium-relative kinematics domain. It was built to organize a recurring class of phenomena within rejected historical theories, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Lorentz Ether Theory is a theory in the medium-relative kinematics domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3399,7 +3399,7 @@ Lorentz Ether Theory carries specific ontological commitments even when it is pr
 
 #### 3. What This Concept Gets Right
 
-Lorentz Ether Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Lorentz Ether Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3436,7 +3436,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 #### 1. Concept Summary
 
-Caloric Theory is a theory in the heat ontology domain. It was built to organize a recurring class of phenomena within rejected historical theories, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Caloric Theory is a theory in the heat ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3444,7 +3444,7 @@ Caloric Theory carries specific ontological commitments even when it is presente
 
 #### 3. What This Concept Gets Right
 
-Caloric Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Caloric Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3481,7 +3481,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 #### 1. Concept Summary
 
-Phlogiston Theory is a theory in the combustion ontology domain. It was built to organize a recurring class of phenomena within rejected historical theories, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Phlogiston Theory is a theory in the combustion ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3489,7 +3489,7 @@ Phlogiston Theory carries specific ontological commitments even when it is prese
 
 #### 3. What This Concept Gets Right
 
-Phlogiston Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Phlogiston Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3526,7 +3526,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 #### 1. Concept Summary
 
-Tired Light Cosmology is a theory in the redshift interpretation domain. It was built to organize a recurring class of phenomena within rejected historical theories, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Tired Light Cosmology is a theory in the redshift interpretation domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3534,7 +3534,7 @@ Tired Light Cosmology carries specific ontological commitments even when it is p
 
 #### 3. What This Concept Gets Right
 
-Tired Light Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Tired Light Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3571,7 +3571,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Epicyclic Ptolemaic Cosmology is a theory in the kinematic fit without mechanism domain. It was built to organize a recurring class of phenomena within rejected historical theories, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Epicyclic Ptolemaic Cosmology is a theory in the kinematic fit without mechanism domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3579,7 +3579,7 @@ Epicyclic Ptolemaic Cosmology carries specific ontological commitments even when
 
 #### 3. What This Concept Gets Right
 
-Epicyclic Ptolemaic Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Epicyclic Ptolemaic Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3618,7 +3618,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 #### 1. Concept Summary
 
-Plasma Cosmology is a theory in the non-standard large-scale plasma claims domain. It was built to organize a recurring class of phenomena within fringe or borderline contrast cases, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Plasma Cosmology is a theory in the non-standard large-scale plasma claims domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3626,7 +3626,7 @@ Plasma Cosmology carries specific ontological commitments even when it is presen
 
 #### 3. What This Concept Gets Right
 
-Plasma Cosmology occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Plasma Cosmology occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3663,7 +3663,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Electric Universe is a theory in the electrical overreach domain. It was built to organize a recurring class of phenomena within fringe or borderline contrast cases, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Electric Universe is a theory in the electrical overreach domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3671,7 +3671,7 @@ Electric Universe carries specific ontological commitments even when it is prese
 
 #### 3. What This Concept Gets Right
 
-Electric Universe occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Electric Universe occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3708,7 +3708,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Simulation Hypothesis is a construct in the externalist ontology domain. It was built to organize a recurring class of phenomena within fringe or borderline contrast cases, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Simulation Hypothesis is a construct in the externalist ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3716,7 +3716,7 @@ Simulation Hypothesis carries specific ontological commitments even when it is p
 
 #### 3. What This Concept Gets Right
 
-Simulation Hypothesis occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Simulation Hypothesis occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3753,7 +3753,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 #### 1. Concept Summary
 
-Strong Anthropic Landscape Programs is a theory in the selection without mechanism domain. It was built to organize a recurring class of phenomena within fringe or borderline contrast cases, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Strong Anthropic Landscape Programs is a theory in the selection without mechanism domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3761,7 +3761,7 @@ Strong Anthropic Landscape Programs carries specific ontological commitments eve
 
 #### 3. What This Concept Gets Right
 
-Strong Anthropic Landscape Programs occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Strong Anthropic Landscape Programs occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3798,7 +3798,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Digital Physics is a theory in the discrete computational ontology domain. It was built to organize a recurring class of phenomena within fringe or borderline contrast cases, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Digital Physics is a theory in the discrete computational ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3806,7 +3806,7 @@ Digital Physics carries specific ontological commitments even when it is present
 
 #### 3. What This Concept Gets Right
 
-Digital Physics occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Digital Physics occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3845,7 +3845,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Standard Model Effective Field Theory is a framework in the effective operator expansion domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Standard Model Effective Field Theory is a framework in the effective operator expansion domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3853,7 +3853,7 @@ Standard Model Effective Field Theory carries specific ontological commitments e
 
 #### 3. What This Concept Gets Right
 
-Standard Model Effective Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Standard Model Effective Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3869,7 +3869,7 @@ In a mature stack some survive as technical methods and some as partial effectiv
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Standard Model Effective Field Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Standard Model Effective Field Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3890,7 +3890,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Conformal Field Theory is a theory in the symmetry-constrained field theory domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Conformal Field Theory is a theory in the symmetry-constrained field theory domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3898,7 +3898,7 @@ Conformal Field Theory carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Conformal Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Conformal Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3914,7 +3914,7 @@ In a mature stack some survive as technical methods and some as partial effectiv
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Conformal Field Theory is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Conformal Field Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3935,7 +3935,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Amplitude Program / On-Shell Methods is a framework in the scattering structure domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Amplitude Program / On-Shell Methods is a framework in the scattering structure domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3943,7 +3943,7 @@ Amplitude Program / On-Shell Methods carries specific ontological commitments ev
 
 #### 3. What This Concept Gets Right
 
-Amplitude Program / On-Shell Methods gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Amplitude Program / On-Shell Methods gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3959,7 +3959,7 @@ In a mature stack some survive as technical methods and some as partial effectiv
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Amplitude Program / On-Shell Methods is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Amplitude Program / On-Shell Methods is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3980,7 +3980,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Non-Commutative Geometry Programs is a theory in the geometry generalization domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Non-Commutative Geometry Programs is a theory in the geometry generalization domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -3988,7 +3988,7 @@ Non-Commutative Geometry Programs carries specific ontological commitments even 
 
 #### 3. What This Concept Gets Right
 
-Non-Commutative Geometry Programs gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Non-Commutative Geometry Programs gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4025,7 +4025,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Twistor Theory is a theory in the geometric representation domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Twistor Theory is a theory in the geometric representation domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4033,7 +4033,7 @@ Twistor Theory carries specific ontological commitments even when it is presente
 
 #### 3. What This Concept Gets Right
 
-Twistor Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Twistor Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4070,7 +4070,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Horava-Lifshitz Gravity is a theory in the anisotropic ultraviolet gravity domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Horava-Lifshitz Gravity is a theory in the anisotropic ultraviolet gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4078,7 +4078,7 @@ Horava-Lifshitz Gravity carries specific ontological commitments even when it is
 
 #### 3. What This Concept Gets Right
 
-Horava-Lifshitz Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Horava-Lifshitz Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4115,7 +4115,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Entropic Gravity is a theory in the statistical gravity interpretation domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Entropic Gravity is a theory in the statistical gravity interpretation domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4123,7 +4123,7 @@ Entropic Gravity carries specific ontological commitments even when it is presen
 
 #### 3. What This Concept Gets Right
 
-Entropic Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Entropic Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4160,7 +4160,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Einstein-Aether Theory is a theory in the preferred-frame gravity domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Einstein-Aether Theory is a theory in the preferred-frame gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4168,7 +4168,7 @@ Einstein-Aether Theory carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Einstein-Aether Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Einstein-Aether Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4205,7 +4205,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Galileon / Horndeski Theory is a theory in the scalar-tensor modification domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Galileon / Horndeski Theory is a theory in the scalar-tensor modification domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4213,7 +4213,7 @@ Galileon / Horndeski Theory carries specific ontological commitments even when i
 
 #### 3. What This Concept Gets Right
 
-Galileon / Horndeski Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Galileon / Horndeski Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4250,7 +4250,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Chameleon / Screening Modified Gravity is a theory in the environment-dependent gravity domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Chameleon / Screening Modified Gravity is a theory in the environment-dependent gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4258,7 +4258,7 @@ Chameleon / Screening Modified Gravity carries specific ontological commitments 
 
 #### 3. What This Concept Gets Right
 
-Chameleon / Screening Modified Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Chameleon / Screening Modified Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4295,7 +4295,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Inflationary Eternal Inflation is a theory in the inflationary ensemble cosmology domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Inflationary Eternal Inflation is a theory in the inflationary ensemble cosmology domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4303,7 +4303,7 @@ Inflationary Eternal Inflation carries specific ontological commitments even whe
 
 #### 3. What This Concept Gets Right
 
-Inflationary Eternal Inflation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Inflationary Eternal Inflation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4340,7 +4340,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Vacuum Landscape / String Landscape is a theory in the vacuum multiplicity domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Vacuum Landscape / String Landscape is a theory in the vacuum multiplicity domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4348,7 +4348,7 @@ Vacuum Landscape / String Landscape carries specific ontological commitments eve
 
 #### 3. What This Concept Gets Right
 
-Vacuum Landscape / String Landscape gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Vacuum Landscape / String Landscape gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4385,7 +4385,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Swampland Program is a theory in the quantum-gravity consistency filters domain. It was built to organize a recurring class of phenomena within additional major academic programs to consider, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Swampland Program is a theory in the quantum-gravity consistency filters domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4393,7 +4393,7 @@ Swampland Program carries specific ontological commitments even when it is prese
 
 #### 3. What This Concept Gets Right
 
-Swampland Program gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Swampland Program gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4432,7 +4432,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Mass is a quantity in the inertia and coupling domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Mass is a quantity in the inertia and coupling domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4440,7 +4440,7 @@ Mass carries specific ontological commitments even when it is presented as "just
 
 #### 3. What This Concept Gets Right
 
-Mass gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Mass gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4477,7 +4477,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 #### 1. Concept Summary
 
-Entropy is a quantity in the state counting and irreversibility domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Entropy is a quantity in the state counting and irreversibility domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4485,7 +4485,7 @@ Entropy carries specific ontological commitments even when it is presented as "j
 
 #### 3. What This Concept Gets Right
 
-Entropy gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Entropy gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4501,7 +4501,7 @@ In a mature stack these survive as carefully re-situated concepts whose meaning 
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Entropy is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Entropy is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -4522,7 +4522,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Temperature is a quantity in the bulk excitation measure domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Temperature is a quantity in the bulk excitation measure domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4530,7 +4530,7 @@ Temperature carries specific ontological commitments even when it is presented a
 
 #### 3. What This Concept Gets Right
 
-Temperature gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Temperature gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4546,7 +4546,7 @@ In a mature stack these survive as carefully re-situated concepts whose meaning 
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Temperature is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Temperature is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -4567,7 +4567,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-The Laws of Thermodynamics is a law in the bulk-law structure domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+The Laws of Thermodynamics is a law in the bulk-law structure domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4575,7 +4575,7 @@ The Laws of Thermodynamics carries specific ontological commitments even when it
 
 #### 3. What This Concept Gets Right
 
-The Laws of Thermodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+The Laws of Thermodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4591,7 +4591,7 @@ In a mature stack these survive as carefully re-situated concepts whose meaning 
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for The Laws of Thermodynamics is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for The Laws of Thermodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -4612,7 +4612,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Redshift is a observable in the observational spectral shift domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Redshift is a observable in the observational spectral shift domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4620,7 +4620,7 @@ Redshift carries specific ontological commitments even when it is presented as "
 
 #### 3. What This Concept Gets Right
 
-Redshift gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Redshift gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4657,7 +4657,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Spacetime Curvature is a construct in the effective geometry descriptor domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Spacetime Curvature is a construct in the effective geometry descriptor domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4665,7 +4665,7 @@ Spacetime Curvature carries specific ontological commitments even when it is pre
 
 #### 3. What This Concept Gets Right
 
-Spacetime Curvature gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Spacetime Curvature gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4702,7 +4702,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 #### 1. Concept Summary
 
-Vacuum Energy is a quantity in the background energy assignment domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Vacuum Energy is a quantity in the background energy assignment domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4710,7 +4710,7 @@ Vacuum Energy carries specific ontological commitments even when it is presented
 
 #### 3. What This Concept Gets Right
 
-Vacuum Energy gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Vacuum Energy gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4747,7 +4747,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Fine-Structure Constant is a theory in the dimensionless coupling domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Fine-Structure Constant is a theory in the dimensionless coupling domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4755,7 +4755,7 @@ Fine-Structure Constant carries specific ontological commitments even when it is
 
 #### 3. What This Concept Gets Right
 
-Fine-Structure Constant gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Fine-Structure Constant gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4771,7 +4771,7 @@ In a mature stack these survive as carefully re-situated concepts whose meaning 
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Fine-Structure Constant is that effective success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Fine-Structure Constant is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -4792,7 +4792,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 #### 1. Concept Summary
 
-Wavefunction is a construct in the state representation domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Wavefunction is a construct in the state representation domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4800,7 +4800,7 @@ Wavefunction carries specific ontological commitments even when it is presented 
 
 #### 3. What This Concept Gets Right
 
-Wavefunction gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Wavefunction gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4837,7 +4837,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 #### 1. Concept Summary
 
-Information is a construct in the representation and state difference domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Information is a construct in the representation and state difference domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4845,7 +4845,7 @@ Information carries specific ontological commitments even when it is presented a
 
 #### 3. What This Concept Gets Right
 
-Information gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Information gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4882,7 +4882,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 #### 1. Concept Summary
 
-Probability is a construct in the epistemic and ensemble weighting domain. It was built to organize a recurring class of phenomena within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a high-value description of one layer rather than as an automatic statement of final ontology.
+Probability is a construct in the epistemic and ensemble weighting domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -4890,7 +4890,7 @@ Probability carries specific ontological commitments even when it is presented a
 
 #### 3. What This Concept Gets Right
 
-Probability gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical habits, phenomenological constraints, or comparison targets it contributes to the larger map.
+Probability gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 

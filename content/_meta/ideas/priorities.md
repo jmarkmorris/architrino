@@ -2,19 +2,21 @@
 
 Status Table
 
-  These percentages are current editorial estimates, not script-generated scores.
+  Current Scoreboard
+  Sorted by mode, then conformance descending.
 
   | File | Mode | Estimated Template Conformance | Current Assessment |
   |---|---:|---:|---|
-  | crisis-in-physics.md | split | 95% | Fully rewritten; leaf sections now follow the overview template explicitly and are review-ready. |
-  | historical-context-and-missed-opportunities.md | split | 95% | Fully rewritten; strong structure and detailed academic treatment across the chapter. |
-  | information-computation.md | split | 95% | Fully rewritten; consistent six-part leaf flow and good depth. |
-  | major-thinkers.md | tree | 60% | Substantive and large, but not normalized to the stricter per-leaf template; needs a second-pass structure cleanup. |
-  | philosophy-of-science.md | split | 95% | Fully rewritten; strong conformance and good explanatory depth. |
-  | religious-ontologies.md | tree | 90% | Rewritten and structurally strong; comparative sections are in good shape. |
-  | theory-differentials.md | tree | 85% | All listed leaves now have real first-pass content and full section structure; needs editorial smoothing more than structural completion. |
-  | theory-mapping.md | tree | 65% | Materially populated, but entries are shorter and less normalized than the rewritten files; needs a dedicated refinement pass. |
-  | unknowns-paradoxes.md | tree | 55% | Content-rich, but still mostly single-block entries rather than explicit template-driven subsections; needs normalization. |
+  | crisis-in-physics.md | split | 95% | Fully rewritten; strong textbook structure and explicit overview-template compliance. |
+  | historical-context-and-missed-opportunities.md | split | 95% | Fully rewritten; detailed and structurally consistent. |
+  | information-computation.md | split | 95% | Fully rewritten; stable six-part leaf pattern with good depth. |
+  | philosophy-of-science.md | split | 95% | Fully rewritten; strong conformance and clear academic register. |
+  | religious-ontologies.md | tree | 92% | Rewritten and hierarchy-corrected; overview now reads much more cleanly. |
+  | theory-differentials.md | tree | 88% | Structurally complete across the catalog; now framed and edited as an intentional reference chapter, though many entries remain catalog-style rather than bespoke essays.
+  |
+  | unknowns-paradoxes.md | tree | 86% | Leaf sections are now explicitly normalized around the issue template and much stronger than before. |
+  | major-thinkers.md | tree | 74% | Large and substantive; schema is now cleaner and more internally coherent, but it is still less uniformly templated than the fully rewritten split chapters. |
+  | theory-mapping.md | tree | 72% | Solid and usable; overview is improved, but many entries are still shorter and less normalized than the strongest chapters. |
 
 
 
