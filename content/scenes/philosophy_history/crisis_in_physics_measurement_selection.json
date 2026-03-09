@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "philosophy_history__historical_context_missed_opportunities",
-    "title": "Historical Context and Missed Opportunities",
+    "id": "crisis_in_physics__measurement_selection",
+    "title": "Quantum Measurement and Outcome Selection",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,10 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md"
+      "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md"
     },
     "view": {
-      "columns": 1,
+      "section": "Quantum Measurement and Outcome Selection",
       "autoOpen": true
     }
   },

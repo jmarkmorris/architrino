@@ -128,8 +128,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Information / Computation",
-      "labelBadge": "doc"
+      "labelTitle": "Information / Computation"
     },
     {
       "id": "philosophy_of_science",
@@ -139,8 +138,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Philosophy of Science",
-      "labelBadge": "doc"
+      "labelTitle": "Philosophy of Science"
     },
     {
       "id": "religious_ontologies",
@@ -172,8 +170,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Theory Differentials",
-      "labelBadge": "doc"
+      "labelTitle": "Theory Differentials"
     }
   ]
 }
