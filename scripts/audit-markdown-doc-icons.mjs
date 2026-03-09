@@ -19,7 +19,6 @@ function walkJson(dir) {
 function normalizeHeadingKey(value) {
   return String(value || "")
     .toLowerCase()
-    .replace(/\$[^$]*\$/g, "")
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 }
@@ -127,12 +126,23 @@ for (const absFile of files) {
 
   const md = fs.readFileSync(mdPath, "utf8");
   const entries = collectHeadingEntries(parseHeadings(md), headingLevel);
+  const allHeadingKeys = new Set(
+    parseHeadings(md)
+      .map((h) => normalizeHeadingKey(h.title))
+      .filter(Boolean)
+  );
   const hasChildByKey = new Map(entries.map((e) => [e.key, e.hasChildHeadings === true]));
 
   for (const [rawKey, ov] of Object.entries(overrides)) {
     if (!ov || typeof ov !== "object") continue;
-    if (ov.hidden === true || ov.exclude === true) continue;
     const key = normalizeHeadingKey(rawKey);
+    if (!allHeadingKeys.has(key)) {
+      findings.push(
+        `${relFile}: override "${rawKey}" does not match any heading`
+      );
+      continue;
+    }
+    if (ov.hidden === true || ov.exclude === true) continue;
     if (!hasChildByKey.has(key)) continue;
     const hasChildren = hasChildByKey.get(key) === true;
     const expectedDoc = ov.mode === "doc" ? true : !(nextDepth > 0 && hasChildren);

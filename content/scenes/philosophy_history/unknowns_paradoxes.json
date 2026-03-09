@@ -75,12 +75,6 @@
             "labelBadge": "doc",
             "color": "#3a5f9f"
           },
-          "cosmological tensions": {
-            "id": "unknown_the_hubble_tension",
-            "labelTitle": "Cosmological Tensions",
-            "labelBadge": "doc",
-            "color": "#2f4f7a"
-          },
           "baryon asymmetry": {
             "id": "unknown_baryon_asymmetry",
             "labelTitle": "Baryon Asymmetry",

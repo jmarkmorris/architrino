@@ -121,19 +121,32 @@ export function createNodeFactory(deps) {
       typeof node.shortName === "string" && node.shortName.trim()
         ? node.shortName.trim()
         : node.name;
-    const parsed = parseStructuredLabel(displayName);
+    const fullName =
+      typeof node.name === "string" && node.name.trim().length > 0
+        ? node.name.trim()
+        : displayName;
+    const parsedFull = parseStructuredLabel(fullName);
+    const parsedFallback = parseStructuredLabel(displayName);
     const labelTitle =
       typeof node.labelTitle === "string" && node.labelTitle.trim().length > 0
         ? node.labelTitle.trim()
-        : parsed.title;
-    const labelSubtitle =
+        : parsedFull.title || parsedFallback.title;
+    let labelSubtitle =
       typeof node.labelSubtitle === "string" && node.labelSubtitle.trim().length > 0
         ? node.labelSubtitle.trim()
-        : parsed.subtitle;
+        : parsedFull.subtitle || parsedFallback.subtitle;
     const labelDates =
       typeof node.labelDates === "string" && node.labelDates.trim().length > 0
         ? node.labelDates.trim()
-        : parsed.dates;
+        : parsedFull.dates || parsedFallback.dates;
+    // Avoid duplicated two-line labels when heading format is "X - X".
+    if (
+      labelSubtitle &&
+      labelTitle &&
+      labelSubtitle.localeCompare(labelTitle, undefined, { sensitivity: "base" }) === 0
+    ) {
+      labelSubtitle = "";
+    }
     const badgeToken =
       typeof node.labelBadge === "string" && node.labelBadge.trim().length > 0
         ? node.labelBadge.trim()
