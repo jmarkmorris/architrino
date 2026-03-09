@@ -11,10 +11,6 @@
     },
     "children": [
       {
-        "nodeId": "out_of_the_ashes_scene",
-        "scenePath": "content/scenes/philosophy_history/out_of_the_ashes.json"
-      },
-      {
         "nodeId": "unknowns_paradoxes_scene",
         "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
       },
@@ -35,26 +31,28 @@
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
       {
+        "nodeId": "information_computation",
+        "scenePath": "content/scenes/philosophy_history/information_computation.json"
+      },
+      {
+        "nodeId": "philosophy_of_science",
+        "scenePath": "content/scenes/philosophy_history/philosophy_of_science.json"
+      },
+      {
         "nodeId": "religious_ontologies",
         "scenePath": "content/scenes/philosophy_history/religious_ontologies.json"
       },
       {
         "nodeId": "theory_mapping",
         "scenePath": "content/scenes/philosophy_history/theory_mapping.json"
+      },
+      {
+        "nodeId": "theory_differentials",
+        "scenePath": "content/scenes/philosophy_history/theory_differentials.json"
       }
     ]
   },
   "objects": [
-    {
-      "id": "out_of_the_ashes_scene",
-      "title": "Out of the Ashes",
-      "radius": 2.688,
-      "color": "#6a3c3c",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Out of the Ashes"
-    },
     {
       "id": "unknowns_paradoxes_scene",
       "title": "Unknowns & Paradoxes",
@@ -83,8 +81,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Historical Context and Missed Opportunities",
-      "labelBadge": "doc"
+      "labelTitle": "Historical Context and Missed Opportunities"
     },
     {
       "id": "lorentz_ether_comparison",
@@ -108,6 +105,26 @@
       "labelTitle": "Major Thinkers"
     },
     {
+      "id": "information_computation",
+      "title": "Information / Computation",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Information / Computation"
+    },
+    {
+      "id": "philosophy_of_science",
+      "title": "Philosophy of Science",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Philosophy of Science"
+    },
+    {
       "id": "religious_ontologies",
       "title": "Religious Ontologies",
       "radius": 2.688,
@@ -115,8 +132,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Religious Ontologies",
-      "labelBadge": "doc"
+      "labelTitle": "Religious Ontologies"
     },
     {
       "id": "theory_mapping",
@@ -126,8 +142,17 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Theory Mapping",
-      "labelBadge": "doc"
+      "labelTitle": "Theory Mapping"
+    },
+    {
+      "id": "theory_differentials",
+      "title": "Theory Differentials",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Theory Differentials"
     }
   ]
 }

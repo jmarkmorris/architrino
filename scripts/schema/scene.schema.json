@@ -77,6 +77,127 @@
           }
         }
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "scene": {
+            "type": "object",
+            "properties": {
+              "type": { "const": "Scene-Index" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scene": {
+            "required": ["children"],
+            "not": {
+              "anyOf": [
+                { "required": ["source"] },
+                { "required": ["view"] }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "scene": {
+            "type": "object",
+            "properties": {
+              "type": { "const": "Scene-Markdown-View" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scene": {
+            "required": ["source"],
+            "properties": {
+              "source": {
+                "required": ["type", "path"],
+                "properties": {
+                  "type": { "const": "markdown" }
+                },
+                "not": {
+                  "anyOf": [
+                    { "required": ["split"] },
+                    { "required": ["tree"] }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "scene": {
+            "type": "object",
+            "properties": {
+              "type": { "const": "Scene-Markdown-Split" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scene": {
+            "required": ["source"],
+            "properties": {
+              "source": {
+                "required": ["type", "path", "split"],
+                "properties": {
+                  "type": { "const": "markdown" }
+                },
+                "not": {
+                  "required": ["tree"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "scene": {
+            "type": "object",
+            "properties": {
+              "type": { "const": "Scene-Markdown-Tree" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scene": {
+            "required": ["source"],
+            "properties": {
+              "source": {
+                "required": ["type", "path", "tree"],
+                "properties": {
+                  "type": { "const": "markdown" },
+                  "tree": {
+                    "required": ["rootHeadingLevel", "maxDepth"]
+                  }
+                },
+                "not": {
+                  "required": ["split"]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   ],
   "properties": {
@@ -98,6 +219,7 @@
             "Scene-Index",
             "Scene-Markdown-View",
             "Scene-Markdown-Split",
+            "Scene-Markdown-Tree",
             "Scene-Diagram",
             "Scene-Animation"
           ]
@@ -124,7 +246,28 @@
           "additionalProperties": true,
           "properties": {
             "type": { "type": "string" },
-            "path": { "type": "string" }
+            "path": { "type": "string" },
+            "split": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "headingLevel": { "type": "number" },
+                "sectionDepth": { "type": "number" },
+                "maxDepth": { "type": "number" },
+                "section": { "type": "string" },
+                "overrides": { "type": "object" }
+              }
+            },
+            "tree": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "rootHeadingLevel": { "type": "number" },
+                "maxDepth": { "type": "number" },
+                "section": { "type": "string" },
+                "overrides": { "type": "object" }
+              }
+            }
           }
         },
         "view": {
@@ -135,7 +278,8 @@
             "autoOpen": { "type": "boolean" },
             "section": { "type": "string" },
             "headingLevel": { "type": "number" },
-            "sectionDepth": { "type": "number" }
+            "sectionDepth": { "type": "number" },
+            "maxDepth": { "type": "number" }
           }
         },
         "children": {
@@ -225,6 +369,7 @@
             }
           },
           "markdownHeadingLevel": { "type": "number" },
+          "markdownMaxDepth": { "type": "number" },
           "markdownAutoIndex": { "type": "boolean" },
           "markdownPlainSectionPaths": {
             "type": "array",

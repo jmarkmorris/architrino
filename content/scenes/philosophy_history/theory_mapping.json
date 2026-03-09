@@ -3,19 +3,32 @@
   "scene": {
     "id": "philosophy_history__theory_mapping",
     "title": "Theory Mapping",
-    "type": "Scene-Markdown-View",
+    "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,
+    "centerOn": "theory_mapping_overview",
     "layout": {
-      "type": "static"
+      "type": "rings"
     },
+    "labelDocIconOwnLine": true,
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+      "path": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 2,
+        "overrides": {
+          "overview": {
+            "id": "theory_mapping_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#2f4f7a",
+            "mode": "doc"
+          }
+        }
+      }
     },
-    "view": {
-      "autoOpen": true
-    }
+    "view": {}
   },
   "objects": []
 }

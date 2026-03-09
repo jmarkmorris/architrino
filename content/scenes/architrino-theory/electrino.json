@@ -19,10 +19,18 @@
       "label": "Electrino",
       "scaleExponent": -20,
       "hideScaleLabel": true,
-      "radius": 1.2,
+      "radius": 0.6,
       "color": "BLUE",
       "motion": {
         "type": "fixed"
+      },
+      "category": "Architrino",
+      "details": {
+        "charge": "-e/6",
+        "lifetime": "unbounded past and future",
+        "indestructible": "yes",
+        "unique": "yes",
+        "provenance": "primitive Architrino constituent with conserved identity"
       },
       "labelTitle": "Electrino"
     }

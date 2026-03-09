@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 409,
-      "edges": 1255,
-      "scenes": 279,
-      "markdownIndexes": 16,
-      "markdownDocs": 114,
+      "nodes": 389,
+      "edges": 1130,
+      "scenes": 273,
+      "markdownIndexes": 0,
+      "markdownDocs": 116,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1019,12 +1019,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "out_of_the_ashes",
-      "name": "Out of the Ashes",
-      "path": "content/scenes/philosophy_history/out_of_the_ashes.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "philosophy_history",
       "name": "Philosophy-History",
       "path": "content/scenes/philosophy_history/philosophy_history.json",
@@ -1160,36 +1154,6 @@
       "id": "validation_action_energy",
       "name": "Action-Energy",
       "path": "content/scenes/validation/action_energy.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_classical_modern",
-      "name": "Classical & Early Modern Metaphysics",
-      "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_info_computation_science",
-      "name": "Information + Philosophy of Science",
-      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_qft_standard_model",
-      "name": "Standard Model Architecture",
-      "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_quantum_foundations",
-      "name": "Quantum Foundations",
-      "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers_relativity_cosmology",
-      "name": "Relativity to Quantum Gravity",
-      "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
       "nodeType": "scene"
     },
     {
@@ -1511,24 +1475,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "major_thinkers__major_thinkers_conclusion",
-      "name": "Conclusion",
-      "path": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers__major_thinkers_intro",
-      "name": "Introduction",
-      "path": "content/scenes/philosophy_history/major_thinkers_intro.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "major_thinkers__major_thinkers_summary_table",
-      "name": "Summary Table",
-      "path": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "philosophy_history__religious_ontologies",
       "name": "Religious Ontologies",
       "path": "content/scenes/philosophy_history/religious_ontologies.json",
@@ -1823,6 +1769,24 @@
       "nodeType": "scene"
     },
     {
+      "id": "theory_differentials",
+      "name": "Theory Differentials",
+      "path": "content/scenes/philosophy_history/theory_differentials.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_of_science",
+      "name": "Philosophy of Science",
+      "path": "content/scenes/philosophy_history/philosophy_of_science.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/information_computation.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about.md",
       "name": "About",
       "path": "content/markdown/aaa/archie/about.md",
@@ -1902,7 +1866,7 @@
     },
     {
       "id": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
-      "name": "Muon Tau",
+      "name": "Muon and Tau",
       "path": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "nodeType": "markdown_doc"
     },
@@ -2148,7 +2112,7 @@
     },
     {
       "id": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "name": "Crisis In Physics",
+      "name": "Crisis in Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "nodeType": "markdown_doc"
     },
@@ -2156,6 +2120,12 @@
       "id": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "name": "Historical Context and Missed Opportunities",
       "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/information-computation.md",
+      "name": "Information / Computation",
+      "path": "content/markdown/aaa/philosophy-history/information-computation.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2171,15 +2141,21 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
-      "name": "The Way of the Assembly: A Guide to Existence in a Renewable Universe",
-      "path": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
+      "id": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "name": "Philosophy of Science",
+      "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "name": "Major Religious Cosmologies and Foundational Ontologies",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "name": "Theory Differentials",
+      "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2190,7 +2166,7 @@
     },
     {
       "id": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "name": "Unknowns Paradoxes",
+      "name": "Unknowns and Paradoxes",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "nodeType": "markdown_doc"
     },
@@ -2352,7 +2328,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/no-go-theorems.md",
-      "name": "No Go Theorems",
+      "name": "No-Go Theorems",
       "path": "content/markdown/aaa/validation/no-go-theorems.md",
       "nodeType": "markdown_doc"
     },
@@ -4291,84 +4267,21 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/information_computation.json",
+      "nodeType": "scene",
+      "id": "information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/information_computation.json",
+      "searchTarget": "content/scenes/philosophy_history/information_computation.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "nodeType": "scene",
       "id": "philosophy_history__lorentz_ether_comparison",
       "name": "Lorentz Ether Comparison",
       "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "searchTarget": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_classical_modern",
-      "name": "Classical & Early Modern Metaphysics",
-      "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "nodeType": "scene",
-      "id": "major_thinkers__major_thinkers_conclusion",
-      "name": "Conclusion",
-      "path": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_info_computation_science",
-      "name": "Information + Philosophy of Science",
-      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
-      "nodeType": "scene",
-      "id": "major_thinkers__major_thinkers_intro",
-      "name": "Introduction",
-      "path": "content/scenes/philosophy_history/major_thinkers_intro.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_intro.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_qft_standard_model",
-      "name": "Standard Model Architecture",
-      "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_quantum_foundations",
-      "name": "Quantum Foundations",
-      "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "nodeType": "scene",
-      "id": "major_thinkers_relativity_cosmology",
-      "name": "Relativity to Quantum Gravity",
-      "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "nodeType": "scene",
-      "id": "major_thinkers__major_thinkers_summary_table",
-      "name": "Summary Table",
-      "path": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "searchTarget": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
       "implicit": false
     },
     {
@@ -4381,15 +4294,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
-      "nodeType": "scene",
-      "id": "out_of_the_ashes",
-      "name": "Out of the Ashes",
-      "path": "content/scenes/philosophy_history/out_of_the_ashes.json",
-      "searchTarget": "content/scenes/philosophy_history/out_of_the_ashes.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "nodeType": "scene",
       "id": "philosophy_history",
@@ -4399,12 +4303,30 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
+      "nodeType": "scene",
+      "id": "philosophy_of_science",
+      "name": "Philosophy of Science",
+      "path": "content/scenes/philosophy_history/philosophy_of_science.json",
+      "searchTarget": "content/scenes/philosophy_history/philosophy_of_science.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "nodeType": "scene",
       "id": "philosophy_history__religious_ontologies",
       "name": "Religious Ontologies",
       "path": "content/scenes/philosophy_history/religious_ontologies.json",
       "searchTarget": "content/scenes/philosophy_history/religious_ontologies.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_differentials.json",
+      "nodeType": "scene",
+      "id": "theory_differentials",
+      "name": "Theory Differentials",
+      "path": "content/scenes/philosophy_history/theory_differentials.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_differentials.json",
       "implicit": false
     },
     {
@@ -5020,118 +4942,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_index:content/markdown/aaa/archie",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/archie",
-      "name": "Archie",
-      "path": "content/markdown/aaa/archie"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/assemblies",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/assemblies",
-      "name": "Assemblies",
-      "path": "content/markdown/aaa/assemblies"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/assemblies/bosons",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/assemblies/bosons",
-      "name": "Bosons",
-      "path": "content/markdown/aaa/assemblies/bosons"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/assemblies/fermions",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/assemblies/fermions",
-      "name": "Fermions",
-      "path": "content/markdown/aaa/assemblies/fermions"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/assemblies/mesons",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/assemblies/mesons",
-      "name": "Mesons",
-      "path": "content/markdown/aaa/assemblies/mesons"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/cosmology",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/cosmology",
-      "name": "Cosmology",
-      "path": "content/markdown/aaa/cosmology"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/dynamics",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/dynamics",
-      "name": "Dynamics",
-      "path": "content/markdown/aaa/dynamics"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/foundations",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/foundations",
-      "name": "Foundations",
-      "path": "content/markdown/aaa/foundations"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/nuclear-atomic",
-      "name": "Nuclear Atomic",
-      "path": "content/markdown/aaa/nuclear-atomic"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/philosophy-history",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/philosophy-history",
-      "name": "Philosophy History",
-      "path": "content/markdown/aaa/philosophy-history"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/quantum",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/quantum",
-      "name": "Quantum",
-      "path": "content/markdown/aaa/quantum"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/reactions",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/reactions",
-      "name": "Reactions",
-      "path": "content/markdown/aaa/reactions"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/spacetime",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/spacetime",
-      "name": "Spacetime",
-      "path": "content/markdown/aaa/spacetime"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/validation",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/validation",
-      "name": "Validation",
-      "path": "content/markdown/aaa/validation"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/validation/simulations",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/validation/simulations",
-      "name": "Simulations",
-      "path": "content/markdown/aaa/validation/simulations"
-    },
-    {
-      "nodeId": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "nodeType": "markdown_index",
-      "id": "content/markdown/aaa/validation/simulations/action-energy",
-      "name": "Action Energy",
-      "path": "content/markdown/aaa/validation/simulations/action-energy"
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/about.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/about.md",
@@ -5252,7 +5062,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
-      "name": "Muon Tau",
+      "name": "Muon and Tau",
       "path": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "searchTarget": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "implicit": false
@@ -5621,7 +5431,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "name": "Crisis In Physics",
+      "name": "Crisis in Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "implicit": false
@@ -5633,6 +5443,15 @@
       "name": "Historical Context and Missed Opportunities",
       "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/information-computation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/information-computation.md",
+      "name": "Information / Computation",
+      "path": "content/markdown/aaa/philosophy-history/information-computation.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/information-computation.md",
       "implicit": false
     },
     {
@@ -5654,12 +5473,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
-      "name": "The Way of the Assembly: A Guide to Existence in a Renewable Universe",
-      "path": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
+      "id": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "name": "Philosophy of Science",
+      "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "implicit": false
     },
     {
@@ -5669,6 +5488,15 @@
       "name": "Major Religious Cosmologies and Foundational Ontologies",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "name": "Theory Differentials",
+      "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-differentials.md",
       "implicit": false
     },
     {
@@ -5684,7 +5512,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "name": "Unknowns Paradoxes",
+      "name": "Unknowns and Paradoxes",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "implicit": false
@@ -5927,7 +5755,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/no-go-theorems.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/no-go-theorems.md",
-      "name": "No Go Theorems",
+      "name": "No-Go Theorems",
       "path": "content/markdown/aaa/validation/no-go-theorems.md",
       "searchTarget": "content/markdown/aaa/validation/no-go-theorems.md",
       "implicit": false
@@ -9338,116 +9166,74 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/major_thinkers.json",
-      "field": "scene.children[6]"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
+      "to": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
+      "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
@@ -10395,6 +10181,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/information_computation.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/information-computation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/information_computation.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "edgeType": "markdown_doc",
@@ -10402,66 +10195,17 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "from": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_classical_modern.json",
+      "source": "content/scenes/philosophy_history/major_thinkers.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "from": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_conclusion.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_intro.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_intro.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/major_thinkers_summary_table.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/out_of_the_ashes.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/out_of_the_ashes.json",
+      "source": "content/scenes/philosophy_history/philosophy_of_science.json",
       "field": "scene.source.path"
     },
     {
@@ -10469,6 +10213,13 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/religious_ontologies.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_differentials.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_differentials.json",
       "field": "scene.source.path"
     },
     {
@@ -10813,804 +10564,6 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/well_posedness_regularization.json",
       "field": "scene.source.path"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/archie",
-      "to": "markdown_doc:content/markdown/aaa/archie/about.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/archie",
-      "to": "markdown_doc:content/markdown/aaa/archie/glossary.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/archie",
-      "to": "markdown_doc:content/markdown/aaa/archie/help.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/archie",
-      "to": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/archie",
-      "to": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/archie",
-      "to": "markdown_doc:content/markdown/aaa/archie/navigation.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/archie",
-      "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/archie",
-      "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/composer.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/noether-core.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/particle-masses.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/bosons",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/bosons",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/bosons/gluons.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/electron.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/neutrinos.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/quarks.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/fermions",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/assemblies/mesons",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/cosmology",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/BBN-constraints.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/cosmology",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/CMB.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/cosmology",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/cosmology-ontology.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/cosmology",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/dark-energy.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/cosmology",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/dark-matter.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/cosmology",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/expansion-mechanism.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/cosmology",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/hubble-s8-tensions.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/cosmology",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/inflation-model.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/cosmology",
-      "to": "markdown_doc:content/markdown/aaa/cosmology/structure-formation.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/binary-dynamics.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/causal-action-functional.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/effective-lagrangian.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/energy.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/dynamics",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/foundations",
-      "to": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/foundations",
-      "to": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/foundations",
-      "to": "markdown_doc:content/markdown/aaa/foundations/emergence.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/foundations",
-      "to": "markdown_doc:content/markdown/aaa/foundations/euclidean-void.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/foundations",
-      "to": "markdown_doc:content/markdown/aaa/foundations/ontology.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/atomic-structure.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/nuclear-atomic",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/philosophy-history",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/philosophy-history",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/philosophy-history",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/philosophy-history",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/philosophy-history",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/out-of-the-ashes.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/philosophy-history",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/religious-ontologies.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/philosophy-history",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/philosophy-history",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/quantum",
-      "to": "markdown_doc:content/markdown/aaa/quantum/bell-theorem.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/quantum",
-      "to": "markdown_doc:content/markdown/aaa/quantum/collapse-problem.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/quantum",
-      "to": "markdown_doc:content/markdown/aaa/quantum/entanglement-nonlocality.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/quantum",
-      "to": "markdown_doc:content/markdown/aaa/quantum/measurement-ontology.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/quantum",
-      "to": "markdown_doc:content/markdown/aaa/quantum/pilot-wave-character.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/quantum",
-      "to": "markdown_doc:content/markdown/aaa/quantum/quantum-summary.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/quantum",
-      "to": "markdown_doc:content/markdown/aaa/quantum/reality-quantum-causality.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/quantum",
-      "to": "markdown_doc:content/markdown/aaa/quantum/superposition-mechanism.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/quantum",
-      "to": "markdown_doc:content/markdown/aaa/quantum/wavefunction-ontology.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/reactions",
-      "to": "markdown_doc:content/markdown/aaa/reactions/bremsstrahlung.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/reactions",
-      "to": "markdown_doc:content/markdown/aaa/reactions/pdg-api.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/reactions",
-      "to": "markdown_doc:content/markdown/aaa/reactions/pdg-solver-ideas.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/reactions",
-      "to": "markdown_doc:content/markdown/aaa/reactions/synchrotron.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/emergent-metric.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/gravitational-waves.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/lorentz-kinematics.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/ppn-parameters.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/proper-time-and-time-dilation.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/singularity-resolution.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/spacetime",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/spacetime-assemblies.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/architrino-si-base-units.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/closure-scorecard.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/constraint-ledger.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/failure-criteria.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/known-tensions.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/no-go-theorems.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/parameter-ledger.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/reaction-ledger.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation",
-      "to": "markdown_doc:content/markdown/aaa/validation/validation-protocols.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/architrino.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/convergence-tests.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/perspective.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/README.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/run-protocols.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/synthetic-observables.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/unsolved-problems.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/attraction.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
-    },
-    {
-      "from": "markdown_index:content/markdown/aaa/validation/simulations/action-energy",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
-      "edgeType": "markdown_index",
-      "source": "content/markdown/markdown_index.json",
-      "field": "directory_contains"
     },
     {
       "from": "scene:content/scenes/chemistry/periodic_table_scene.json",

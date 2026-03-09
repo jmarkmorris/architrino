@@ -11,54 +11,6 @@ The webapp combines:
 - Specialized overlays/tools (for example, Periodic Table and Composer)
 - Search and history navigation for fast traversal
 
-## Core Navigation Model
-
-- A sphere represents a node in a hierarchy.
-- Selecting a sphere can open a child scene or content.
-- `Back` returns one step in your navigation history.
-- `Forward` moves one step forward in history when available.
-- `Home` returns to the root scene.
-- `Archie` opens/toggles the meta ring space.
-
-## Content Model
-
-A node may resolve to:
-
-- Markdown documentation
-- Another scene (sub-graph)
-- A dedicated app/tool view (for example, Composer)
-- Periodic-table element routing/overlays
-- Media or mixed experiences
-
-## Interface Controls
-
-Top HUD controls include:
-
-- `Back` and `Forward` history buttons
-- `Home` reset button
-- Scene search toggle
-- Info reopen button (for detail panel)
-- `Archie` meta-ring button
-- Notes button (open scene notes when available)
-
-Markdown panel controls include:
-
-- Open full document from section view
-- Toggle `1-column` / `2-column` layout
-- Close notes panel
-
-## Search and Shortcuts
-
-- `Cmd/Ctrl + K`: open/close scene search
-- `Enter` in search: open first result
-- `Escape`: close search
-
-## Camera and Interaction
-
-- Click/tap a sphere to descend
-- Drag to pan
-- Wheel or pinch to zoom
-
 ## Runtime Content Contract
 
 Runtime routing is manifest-driven:
@@ -86,5 +38,4 @@ This environment is actively evolving. Scene structure, labels, and document dep
 
 ## Contact
 
-- CEO: Marko
-- inquiries@neoclassical.ai
+- [architrino@gmail.com](mailto:architrino@gmail.com)

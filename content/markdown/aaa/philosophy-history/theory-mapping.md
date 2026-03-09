@@ -1,10 +1,48 @@
 
 # Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)
 
-**Purpose:** A compact, cross-audience map of major theories. Each entry moves from accessible to technical: (1) a
-high-level summary, (2) a STEM-friendly abstraction, (3) the mathematical essence (key idea or formula) and is followed by (4) the architrino assembly architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) perspective.
+## Overview
 
-**Ontology Principle:** In the architrino framework, form precedes function: the geometric structure of assemblies is ontologically prior, and physical behavior (charge, mass, spin, interaction) emerges from that geometry rather than being a design specification imposed on it.
+**Purpose:** A compact, cross-audience map of major theories. Each entry moves from accessible to technical: (1) high-level summary, (2) STEM-level conceptual abstraction, (3) key mathematical form, and (4) the $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective.
+
+**Ontology Principle:** In $\mathbb{A}\mathbb{A}\mathbb{A}$, form precedes function: assembly geometry is ontologically prior, and charge, mass, spin, and interactions are emergent from that structure.
+
+**Document Type:** Matrix-split chapter with two axes:
+- Layer axis (`##`): ontological/phenomenological domains.
+- Theory axis (`###`): individual theories mapped within each domain.
+
+### Theory-Mapping Entry Template (Unified)
+
+Use this template for each theory entry.
+
+- **Theory Name**: full theory/program name.
+- **Short Name**: acronym or short handle used in scenes/cross-reference.
+- **Layer Bucket**: the `##` domain where this entry is placed.
+- **Summary**: compact plain-language description.
+- **Conceptual View**: STEM-level abstract framing.
+- **Key Equation**: one representative mathematical statement.
+- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: recoverable, partially recoverable, reinterpretation required, or incompatible.
+- **What Still Works**: preserved predictive/effective strengths.
+- **What Is Reclassified**: ontological relocation under $\mathbb{A}\mathbb{A}\mathbb{A}$.
+- **Geometric Proof Targets (if applicable)**: concrete derivation targets from assembly dynamics.
+- **Transition Relevance**: practical value during migration.
+- **Long-Term Relevance**: final role after stack maturation.
+
+Default prose flow for each theory entry:
+
+1. **Summary**: what the theory says and where it applies.
+2. **Conceptual View**: what it treats as explanatory core.
+3. **Key Equation**: minimal representative formalism.
+4. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View**: what is retained, reinterpreted, or rejected.
+5. **Proof/Closure Targets**: explicit derivation goals where needed.
+
+Template conformance test protocol for each theory entry:
+
+1. Confirm `Summary`, `Conceptual View`, `Key Equation`, and `$\mathbb{A}\mathbb{A}\mathbb{A}$ View` are all present.
+2. Confirm equation formatting is KaTeX-safe and delimiters are intact.
+3. Confirm the entry states at least one preserved strength and one ontological reclassification.
+4. Confirm any proof targets are concrete enough to be checked.
+5. Confirm the entry is placed in the correct `##` layer bucket.
 
 ---
 

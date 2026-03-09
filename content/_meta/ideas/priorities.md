@@ -1,3 +1,19 @@
+Tons of work do do to build this out:
+
+| File | Mode | Template Conformance % (leaf avg) | Basis |
+|---|---:|---:|---|
+| crisis-in-physics.md | split | 0% | 11 leaf sections vs 16 template items |
+| historical-context-and-missed-opportunities.md | split | 1% | 10 leaf sections vs 18 template items |
+| information-computation.md | split | 1% | 5 leaf sections vs 15 template items |
+| major-thinkers.md | tree | 26% | 53 leaf sections vs 23 template items |
+| philosophy-of-science.md | split | 1% | 12 leaf sections vs 15 template items |
+| religious-ontologies.md | tree | 23% | 15 leaf sections vs 18 template items |
+| theory-differentials.md | tree | 1% | 119 leaf sections vs 31 template items |
+| theory-mapping.md | tree | 44% | 37 leaf sections vs 16 template items |
+| unknowns-paradoxes.md | tree | 4% | 24 leaf sections vs 17 template items |
+
+
+
 # The #1 priority is the dynamics/math/geometry and the mapping
 
 - Use my $50 entourages each month.

@@ -3,19 +3,32 @@
   "scene": {
     "id": "philosophy_history__religious_ontologies",
     "title": "Religious Ontologies",
-    "type": "Scene-Markdown-View",
+    "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,
+    "centerOn": "religious_ontologies_overview",
     "layout": {
-      "type": "static"
+      "type": "rings"
     },
+    "labelDocIconOwnLine": true,
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md"
+      "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 2,
+        "overrides": {
+          "overview": {
+            "id": "religious_ontologies_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#3a5f9f",
+            "mode": "doc"
+          }
+        }
+      }
     },
-    "view": {
-      "autoOpen": true
-    }
+    "view": {}
   },
   "objects": []
 }

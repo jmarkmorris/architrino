@@ -112,11 +112,6 @@
         "periodic_table": "Periodic Table"
       }
     },
-    "content/scenes/philosophy_history/out_of_the_ashes.json": {
-      "sceneId": "out_of_the_ashes",
-      "sceneName": "Out of the Ashes",
-      "objects": {}
-    },
     "content/scenes/philosophy_history/philosophy_history.json": {
       "sceneId": "philosophy_history",
       "sceneName": "Philosophy-History",
@@ -125,38 +120,9 @@
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
         "lorentz_ether_comparison": "Lorentz Ether Comparison",
         "major_thinkers": "Major Thinkers",
-        "out_of_the_ashes_scene": "Out of the Ashes",
         "religious_ontologies": "Religious Ontologies",
         "theory_mapping": "Theory Mapping",
         "unknowns_paradoxes_scene": "Unknowns & Paradoxes"
-      }
-    },
-    "content/scenes/philosophy_history/unknowns_paradoxes.json": {
-      "sceneId": "unknowns_paradoxes",
-      "sceneName": "Unknowns & Paradoxes",
-      "objects": {
-        "unknown_baryon_asymmetry": "Baryon Asymmetry",
-        "unknown_confinement_and_the_mass_gap": "Confinement and the Mass Gap",
-        "unknown_neutrino_mass_and_nature": "Neutrino Mass and Nature",
-        "unknown_proton_stability": "Proton Stability",
-        "unknown_quantum_gravity_and_renormalizability": "Quantum Gravity and Renormalizability",
-        "unknown_the_arrow_of_time": "The Arrow of Time",
-        "unknown_the_black_hole_information_paradox": "The Black Hole Information Paradox",
-        "unknown_the_cosmological_constant_problem": "The Cosmological Constant Problem",
-        "unknown_the_fermi_paradox": "The Fermi Paradox",
-        "unknown_the_flavor_problem": "The Flavor Problem",
-        "unknown_the_hierarchy_problem_naturalness": "The Hierarchy Problem",
-        "unknown_the_hubble_tension": "Cosmological Tensions",
-        "unknown_the_identity_of_dark_matter": "The Identity of Dark Matter",
-        "unknown_the_lithium_problem": "The Lithium Problem",
-        "unknown_the_measurement_problem": "The Measurement Problem",
-        "unknown_the_mechanism_of_inflation": "The Mechanism of Inflation",
-        "unknown_the_muon_g_2_and_lepton_universality_anomalies": "Muon g-2 & Lepton Anomalies",
-        "unknown_the_nature_of_dark_energy": "The Nature of Dark Energy",
-        "unknown_the_strong_cp_problem": "The Strong CP Problem",
-        "unknown_the_trans_planckian_censorship_and_the_swampland": "Trans-Planckian Censorship",
-        "unknown_the_uv_catastrophe_blackbody_divergence": "The UV Catastrophe",
-        "unknown_vacuum_instability": "Vacuum Instability"
       }
     },
     "content/scenes/quantum/quantum.json": {

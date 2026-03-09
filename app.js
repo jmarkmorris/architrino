@@ -1709,6 +1709,7 @@ const markdownRuntime = createMarkdownRuntime({
   markdownCache,
   markdownSectionCache,
   extractMarkdownSection,
+  appendCacheBust,
 });
 
 function updateSceneMarkdown() {
@@ -2292,6 +2293,26 @@ function layoutRootLevel(level) {
       node.data.basePosition = [node.group.position.x, node.group.position.y, node.group.position.z];
     }
   });
+
+  const preserveFixedEndpointRadius =
+    useRingsAutoSizing &&
+    nodes.length === 1 &&
+    (level.sceneId === "electrino" || level.sceneId === "positrino");
+  if (preserveFixedEndpointRadius) {
+    nodes.forEach((node) => {
+      node.group.scale.setScalar(1);
+      node.baseScale = 1;
+      if (node.data) {
+        node.data.baseScale = 1;
+        if (typeof node.data.baseRadius === "number") {
+          node.data.radius = node.data.baseRadius;
+        }
+      }
+      node.group.position.set(0, 0, node.group.position.z);
+      node.basePosition = node.group.position.clone();
+    });
+    return;
+  }
 
   if (useRootAutoLayout) {
     const baseRadius = Math.max(

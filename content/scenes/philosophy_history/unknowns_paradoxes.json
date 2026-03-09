@@ -3,10 +3,10 @@
   "scene": {
     "id": "unknowns_paradoxes",
     "title": "Unknowns & Paradoxes",
-    "type": "Scene-Markdown-Split",
+    "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,
-    "centerOn": "unknown_the_hubble_tension",
+    "centerOn": "unknowns_overview",
     "layout": {
       "type": "rings"
     },
@@ -14,12 +14,37 @@
     "source": {
       "type": "markdown",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "split": {
-        "mode": "headings",
-        "headingLevel": 3,
-        "sectionDepth": 1,
-        "sectionPresentationType": "Scene-Markdown-View",
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 2,
         "overrides": {
+          "overview": {
+            "id": "unknowns_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#5a3f73",
+            "mode": "doc"
+          },
+          "cosmology and large scale inference": {
+            "id": "unknowns_cosmology_inference",
+            "labelTitle": "Cosmology / Inference",
+            "color": "#243d8f"
+          },
+          "particle and field microstructure": {
+            "id": "unknowns_particle_field_microstructure",
+            "labelTitle": "Particle / Field",
+            "color": "#2f6b6f"
+          },
+          "quantum foundations and unification": {
+            "id": "unknowns_quantum_unification",
+            "labelTitle": "Quantum / Unification",
+            "color": "#3f6a5a"
+          },
+          "astrobiological boundary question": {
+            "id": "unknowns_astrobiological_boundary",
+            "labelTitle": "Astrobiological Boundary",
+            "color": "#7a4a1f"
+          },
           "the nature of dark energy": {
             "id": "unknown_the_nature_of_dark_energy",
             "labelTitle": "The Nature of Dark Energy",
@@ -49,12 +74,6 @@
             "labelTitle": "The UV Catastrophe",
             "labelBadge": "doc",
             "color": "#3a5f9f"
-          },
-          "cosmological tensions": {
-            "id": "unknown_the_hubble_tension",
-            "labelTitle": "Cosmological Tensions",
-            "labelBadge": "doc",
-            "color": "#2f4f7a"
           },
           "baryon asymmetry": {
             "id": "unknown_baryon_asymmetry",

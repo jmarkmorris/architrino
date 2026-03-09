@@ -726,11 +726,6 @@
       "path": "content/scenes/nuclear/proton.json"
     },
     {
-      "id": "out_of_the_ashes",
-      "name": "Out of the Ashes",
-      "path": "content/scenes/philosophy_history/out_of_the_ashes.json"
-    },
-    {
       "id": "philosophy_history",
       "name": "Philosophy-History",
       "path": "content/scenes/philosophy_history/philosophy_history.json"
@@ -844,31 +839,6 @@
       "id": "validation_action_energy",
       "name": "Action-Energy",
       "path": "content/scenes/validation/action_energy.json"
-    },
-    {
-      "id": "major_thinkers_classical_modern",
-      "name": "Classical & Early Modern Metaphysics",
-      "path": "content/scenes/philosophy_history/major_thinkers_classical_modern.json"
-    },
-    {
-      "id": "major_thinkers_info_computation_science",
-      "name": "Information + Philosophy of Science",
-      "path": "content/scenes/philosophy_history/major_thinkers_info_computation_science.json"
-    },
-    {
-      "id": "major_thinkers_qft_standard_model",
-      "name": "Standard Model Architecture",
-      "path": "content/scenes/philosophy_history/major_thinkers_qft_standard_model.json"
-    },
-    {
-      "id": "major_thinkers_quantum_foundations",
-      "name": "Quantum Foundations",
-      "path": "content/scenes/philosophy_history/major_thinkers_quantum_foundations.json"
-    },
-    {
-      "id": "major_thinkers_relativity_cosmology",
-      "name": "Relativity to Quantum Gravity",
-      "path": "content/scenes/philosophy_history/major_thinkers_relativity_cosmology.json"
     },
     {
       "id": "major_thinkers",
@@ -1136,21 +1106,6 @@
       "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json"
     },
     {
-      "id": "major_thinkers__major_thinkers_conclusion",
-      "name": "Conclusion",
-      "path": "content/scenes/philosophy_history/major_thinkers_conclusion.json"
-    },
-    {
-      "id": "major_thinkers__major_thinkers_intro",
-      "name": "Introduction",
-      "path": "content/scenes/philosophy_history/major_thinkers_intro.json"
-    },
-    {
-      "id": "major_thinkers__major_thinkers_summary_table",
-      "name": "Summary Table",
-      "path": "content/scenes/philosophy_history/major_thinkers_summary_table.json"
-    },
-    {
       "id": "philosophy_history__religious_ontologies",
       "name": "Religious Ontologies",
       "path": "content/scenes/philosophy_history/religious_ontologies.json"
@@ -1394,6 +1349,21 @@
       "id": "validation_action_energy__well_posedness_regularization",
       "name": "Well-Posedness and Regularization",
       "path": "content/scenes/validation/well_posedness_regularization.json"
+    },
+    {
+      "id": "theory_differentials",
+      "name": "Theory Differentials",
+      "path": "content/scenes/philosophy_history/theory_differentials.json"
+    },
+    {
+      "id": "philosophy_of_science",
+      "name": "Philosophy of Science",
+      "path": "content/scenes/philosophy_history/philosophy_of_science.json"
+    },
+    {
+      "id": "information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/information_computation.json"
     }
   ]
 }
