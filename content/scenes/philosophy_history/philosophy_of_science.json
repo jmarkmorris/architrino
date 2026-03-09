@@ -52,7 +52,7 @@
           },
           "paradigms and scientific revolutions": {
             "id": "philosophy_of_science_paradigms",
-            "labelTitle": "Paradigms",
+            "labelTitle": "Paradigms / Revolutions",
             "labelBadge": "doc",
             "color": "#4b0082"
           },
@@ -97,12 +97,6 @@
             "labelTitle": "Inference / Theory Choice",
             "labelBadge": "doc",
             "color": "#5a1f2e"
-          },
-          "mathbb a mathbb a mathbb a methodological commitments": {
-            "id": "philosophy_of_science_aaa_commitments",
-            "labelTitle": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Commitments",
-            "labelBadge": "doc",
-            "color": "#3f6a5a"
           }
         }
       }

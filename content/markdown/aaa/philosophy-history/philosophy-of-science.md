@@ -16,6 +16,45 @@ This page is indexed by schools and conceptual disputes rather than by biography
 
 The main claim of this page is simple: if $\mathbb{A}\mathbb{A}\mathbb{A}$ is to function as a serious replacement architecture, it must be methodologically explicit about realism, reduction, inference, and falsifiability rather than relying on these commitments implicitly.
 
+The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be summarized as follows:
+
+- **Ontological realism** about substrate entities and causal dynamics.
+- **Reductionism with layer discipline**: higher theories are not dismissed, but located in the correct stack position.
+- **Popperian falsifiability** as a baseline governance rule.
+- **Lakatosian program assessment** for judging whether the project is progressing or merely defending itself.
+- **Kuhnian awareness** that a genuine substrate replacement may require conceptual rupture.
+- **Anti-verificationist realism**: unobservables may be posited, but only under strong explanatory and falsifiable discipline.
+- **Inference vigilance**: observational pipelines must be separated from ontological conclusions.
+
+If $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds, its philosophy of science will not be an afterthought. It will be part of the explanation for why previous theories were simultaneously powerful, partial, and often ontologically mislocated.
+
+This layer also needs a standard coverage template so that subjects are treated systematically rather than ad hoc.
+
+For each philosophy-of-science subject, we should eventually document:
+
+- **Subject**: the full subject name.
+- **Short Name**: the short label used in scene or cross-reference contexts.
+- **Core Question**: the central question the subject is trying to answer.
+- **Central Claim**: the main methodological or epistemic thesis.
+- **Major Thinkers / Schools**: the main figures, schools, or programs associated with it.
+- **What Problem It Was Trying To Solve**: the historical or conceptual pressure that gave rise to it.
+- **What It Gets Right**: durable insights that should survive.
+- **What It Gets Wrong or Overstates**: the main excess, limitation, or category error.
+- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether it is aligned, partially aligned, useful but limited, misapplied, or in tension with the architrino program.
+- **Transition Relevance**: whether it helps guide the replacement of current theory during an active transition.
+- **Long-Term Relevance**: whether it remains a permanent methodological principle, a caution, or mainly a historical lesson.
+
+The default prose structure for each subject should be:
+
+1. **Overview**: what the subject is about in one compact paragraph.
+2. **Historical Motivation**: what problem or crisis produced it.
+3. **Core Commitments**: what it actually claims about science, evidence, explanation, or theory.
+4. **Internal Tensions**: where the view becomes unstable, too narrow, too broad, or self-undermining.
+5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: what the architrino program retains, rejects, or reinterprets.
+6. **What Survives**: the durable methodological lesson after reduction and reclassification.
+
+This template is not meant to force uniform length. It is meant to force uniform coverage.
+
 ## Scientific Realism and Anti-Realism
 
 Scientific realism holds that successful mature theories are at least approximately about real structures in the world, even when those structures are not directly observable. Anti-realism weakens or denies that conclusion, often treating theories more as predictive instruments than as literal ontologies.
@@ -144,17 +183,3 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is one of the most important methodol
 - and successful fit alone does not settle metaphysics.
 
 This is the domain in which the category `Observationally Over-Inferred` becomes indispensable.
-
-## $\mathbb{A}\mathbb{A}\mathbb{A}$ Methodological Commitments
-
-The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be summarized as follows:
-
-- **Ontological realism** about substrate entities and causal dynamics.
-- **Reductionism with layer discipline**: higher theories are not dismissed, but located in the correct stack position.
-- **Popperian falsifiability** as a baseline governance rule.
-- **Lakatosian program assessment** for judging whether the project is progressing or merely defending itself.
-- **Kuhnian awareness** that a genuine substrate replacement may require conceptual rupture.
-- **Anti-verificationist realism**: unobservables may be posited, but only under strong explanatory and falsifiable discipline.
-- **Inference vigilance**: observational pipelines must be separated from ontological conclusions.
-
-If $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds, its philosophy of science will not be an afterthought. It will be part of the explanation for why previous theories were simultaneously powerful, partial, and often ontologically mislocated.
