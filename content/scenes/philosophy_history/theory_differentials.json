@@ -3,7 +3,7 @@
   "scene": {
     "id": "theory_differentials",
     "title": "Theory Differentials",
-    "type": "Scene-Markdown-Split",
+    "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,
     "centerOn": "theory_differentials_overview",
@@ -14,9 +14,9 @@
     "source": {
       "type": "markdown",
       "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-      "split": {
-        "headingLevel": 2,
-        "maxDepth": 1,
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 2,
         "overrides": {
           "overview": {
             "id": "theory_differentials_overview",

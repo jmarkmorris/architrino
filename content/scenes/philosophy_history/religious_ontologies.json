@@ -3,7 +3,7 @@
   "scene": {
     "id": "philosophy_history__religious_ontologies",
     "title": "Religious Ontologies",
-    "type": "Scene-Markdown-Split",
+    "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,
     "centerOn": "religious_ontologies_overview",
@@ -14,9 +14,9 @@
     "source": {
       "type": "markdown",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-      "split": {
-        "headingLevel": 2,
-        "maxDepth": 1,
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 2,
         "overrides": {
           "overview": {
             "id": "religious_ontologies_overview",

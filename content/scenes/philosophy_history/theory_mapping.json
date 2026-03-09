@@ -3,7 +3,7 @@
   "scene": {
     "id": "philosophy_history__theory_mapping",
     "title": "Theory Mapping",
-    "type": "Scene-Markdown-Split",
+    "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,
     "centerOn": "theory_mapping_overview",
@@ -14,9 +14,9 @@
     "source": {
       "type": "markdown",
       "path": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-      "split": {
-        "headingLevel": 2,
-        "maxDepth": 1,
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 2,
         "overrides": {
           "overview": {
             "id": "theory_mapping_overview",

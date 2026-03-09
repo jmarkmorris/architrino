@@ -81,8 +81,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Historical Context and Missed Opportunities",
-      "labelBadge": "doc"
+      "labelTitle": "Historical Context and Missed Opportunities"
     },
     {
       "id": "lorentz_ether_comparison",
@@ -133,8 +132,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Religious Ontologies",
-      "labelBadge": "doc"
+      "labelTitle": "Religious Ontologies"
     },
     {
       "id": "theory_mapping",
@@ -144,8 +142,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Theory Mapping",
-      "labelBadge": "doc"
+      "labelTitle": "Theory Mapping"
     },
     {
       "id": "theory_differentials",

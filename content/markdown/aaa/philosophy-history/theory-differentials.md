@@ -353,113 +353,113 @@ The inventory below is intentionally selective. It should track concepts with ma
 
 ## Core Quantum and Particle Frameworks
 
-- Quantum Field Theory - QFT
-- Standard Model - SM
-- Quantum Electrodynamics - QED
-- Quantum Chromodynamics - QCD
-- Electroweak Theory - EW
-- Neutrino Oscillation Theory - PMNS
-- Effective Field Theory - EFT
-- Renormalization Group - RG
-- Grand Unified Theories - GUT
-- Supersymmetry - SUSY
-- Supergravity - SUGRA
-- Technicolor / Composite Higgs - Composite Higgs
-- Axion Theory / Peccei-Quinn Mechanism - Axion / PQ
-- Sterile Neutrino Dark Matter - Sterile Neutrino
-- WIMP Dark Matter - WIMP
-- Hidden Sector / Dark Sector Models - Dark Sector
+### Quantum Field Theory - QFT
+### Standard Model - SM
+### Quantum Electrodynamics - QED
+### Quantum Chromodynamics - QCD
+### Electroweak Theory - EW
+### Neutrino Oscillation Theory - PMNS
+### Effective Field Theory - EFT
+### Renormalization Group - RG
+### Grand Unified Theories - GUT
+### Supersymmetry - SUSY
+### Supergravity - SUGRA
+### Technicolor / Composite Higgs - Composite Higgs
+### Axion Theory / Peccei-Quinn Mechanism - Axion / PQ
+### Sterile Neutrino Dark Matter - Sterile Neutrino
+### WIMP Dark Matter - WIMP
+### Hidden Sector / Dark Sector Models - Dark Sector
 
 ---
 
 ## Quantum Foundations and Interpretations
 
-- Quantum Mechanics - QM
-- Copenhagen Interpretation - Copenhagen
-- Many-Worlds Interpretation - MWI
-- de Broglie-Bohm Theory - dBB
-- Objective Collapse Theory - GRW / CSL
-- Relational Quantum Mechanics - RQM
-- QBism - QBism
-- Decoherence Program - Decoherence
+### Quantum Mechanics - QM
+### Copenhagen Interpretation - Copenhagen
+### Many-Worlds Interpretation - MWI
+### de Broglie-Bohm Theory - dBB
+### Objective Collapse Theory - GRW / CSL
+### Relational Quantum Mechanics - RQM
+### QBism - QBism
+### Decoherence Program - Decoherence
 
 ---
 
 ## Spacetime, Gravity, and Quantum Gravity
 
-- Newtonian Mechanics and Gravity - Newtonian Gravity
-- Special Relativity - SR
-- General Relativity - GR
-- Scalar-Tensor Gravity - Scalar-Tensor
-- Brans-Dicke Theory - Brans-Dicke
-- $f(R)$ Gravity - $f(R)$
-- Einstein-Cartan Theory - Einstein-Cartan
-- Massive Gravity - Massive Gravity
-- Bimetric Gravity - Bimetric Gravity
-- Modified Newtonian Dynamics - MOND
-- Tensor-Vector-Scalar Gravity - TeVeS
-- Emergent Gravity - Emergent Gravity
-- Unimodular Gravity - Unimodular Gravity
-- Loop Quantum Gravity - LQG
-- String Theory / M-Theory - String Theory
-- Causal Set Theory - CST
-- Causal Dynamical Triangulations - CDT
-- Asymptotic Safety - AS
-- Holography / AdS-CFT - Holography / AdS-CFT
+### Newtonian Mechanics and Gravity - Newtonian Gravity
+### Special Relativity - SR
+### General Relativity - GR
+### Scalar-Tensor Gravity - Scalar-Tensor
+### Brans-Dicke Theory - Brans-Dicke
+### $f(R)$ Gravity - $f(R)$
+### Einstein-Cartan Theory - Einstein-Cartan
+### Massive Gravity - Massive Gravity
+### Bimetric Gravity - Bimetric Gravity
+### Modified Newtonian Dynamics - MOND
+### Tensor-Vector-Scalar Gravity - TeVeS
+### Emergent Gravity - Emergent Gravity
+### Unimodular Gravity - Unimodular Gravity
+### Loop Quantum Gravity - LQG
+### String Theory / M-Theory - String Theory
+### Causal Set Theory - CST
+### Causal Dynamical Triangulations - CDT
+### Asymptotic Safety - AS
+### Holography / AdS-CFT - Holography / AdS-CFT
 
 ---
 
 ## Cosmology and Large-Scale History
 
-- $\Lambda$ Cold Dark Matter - $\Lambda$CDM
-- Inflationary Cosmology - Inflation
-- Big Bang Nucleosynthesis - BBN
-- CMB Acoustic Peak Theory - CMB Acoustic Peaks
-- Baryogenesis / Leptogenesis - Baryogenesis / Leptogenesis
-- Dark Matter Particle Cosmology - Particle Dark Matter
-- Primordial Black Hole Dark Matter - PBH Dark Matter
-- Dark Energy / Quintessence - Dark Energy / Quintessence
-- Steady State Cosmology - SSC
-- Quasi-Steady State Cosmology - QSSC
-- Ekpyrotic / Cyclic Cosmology - Ekpyrotic / Cyclic
-- Bounce Cosmology - Bounce Cosmology
-- Conformal Cyclic Cosmology - CCC
-- Multiverse Cosmology - Multiverse
-- Anthropic Principle - Anthropic Principle
+### $\Lambda$ Cold Dark Matter - $\Lambda$CDM
+### Inflationary Cosmology - Inflation
+### Big Bang Nucleosynthesis - BBN
+### CMB Acoustic Peak Theory - CMB Acoustic Peaks
+### Baryogenesis / Leptogenesis - Baryogenesis / Leptogenesis
+### Dark Matter Particle Cosmology - Particle Dark Matter
+### Primordial Black Hole Dark Matter - PBH Dark Matter
+### Dark Energy / Quintessence - Dark Energy / Quintessence
+### Steady State Cosmology - SSC
+### Quasi-Steady State Cosmology - QSSC
+### Ekpyrotic / Cyclic Cosmology - Ekpyrotic / Cyclic
+### Bounce Cosmology - Bounce Cosmology
+### Conformal Cyclic Cosmology - CCC
+### Multiverse Cosmology - Multiverse
+### Anthropic Principle - Anthropic Principle
 
 ---
 
 ## Statistical, Thermal, and Bulk Descriptions
 
-- Statistical Mechanics - Statistical Mechanics
-- Thermodynamics - Thermodynamics
-- Kinetic Theory - Kinetic Theory
-- Hydrodynamics - Hydrodynamics
-- Plasma Physics - Plasma Physics
-- Virial Theory - Virial Theory
-- Jeans Instability Theory - Jeans Theory
-- Halo Model of Structure Formation - Halo Model
+### Statistical Mechanics - Statistical Mechanics
+### Thermodynamics - Thermodynamics
+### Kinetic Theory - Kinetic Theory
+### Hydrodynamics - Hydrodynamics
+### Plasma Physics - Plasma Physics
+### Virial Theory - Virial Theory
+### Jeans Instability Theory - Jeans Theory
+### Halo Model of Structure Formation - Halo Model
 
 ---
 
 ## Rejected Historical Theories
 
-- Classical Luminiferous Aether Theory - Aether
-- Lorentz Ether Theory - LET
-- Caloric Theory - Caloric Theory
-- Phlogiston Theory - Phlogiston
-- Tired Light Cosmology - Tired Light
-- Epicyclic Ptolemaic Cosmology - Ptolemaic System
+### Classical Luminiferous Aether Theory - Aether
+### Lorentz Ether Theory - LET
+### Caloric Theory - Caloric Theory
+### Phlogiston Theory - Phlogiston
+### Tired Light Cosmology - Tired Light
+### Epicyclic Ptolemaic Cosmology - Ptolemaic System
 
 ---
 
 ## Fringe or Borderline Contrast Cases
 
-- Plasma Cosmology - Plasma Cosmology
-- Electric Universe - EU
-- Simulation Hypothesis - Simulation Hypothesis
-- Strong Anthropic Landscape Programs - Anthropic Landscape
-- Digital Physics - Digital Physics
+### Plasma Cosmology - Plasma Cosmology
+### Electric Universe - EU
+### Simulation Hypothesis - Simulation Hypothesis
+### Strong Anthropic Landscape Programs - Anthropic Landscape
+### Digital Physics - Digital Physics
 
 ---
 
@@ -467,35 +467,35 @@ The inventory below is intentionally selective. It should track concepts with ma
 
 These are not always treated as standalone "theories" in the textbook sense, but they have received enough serious academic investment that they likely deserve entries or embedded treatment.
 
-- Standard Model Effective Field Theory - SMEFT
-- Conformal Field Theory - CFT
-- Amplitude Program / On-Shell Methods - Amplitudes
-- Non-Commutative Geometry Programs - NCG
-- Twistor Theory - Twistor Theory
-- Horava-Lifshitz Gravity - Horava-Lifshitz
-- Entropic Gravity - Entropic Gravity
-- Einstein-Aether Theory - Einstein-Aether
-- Galileon / Horndeski Theory - Horndeski
-- Chameleon / Screening Modified Gravity - Screening Gravity
-- Inflationary Eternal Inflation - Eternal Inflation
-- Vacuum Landscape / String Landscape - String Landscape
-- Swampland Program - Swampland
+### Standard Model Effective Field Theory - SMEFT
+### Conformal Field Theory - CFT
+### Amplitude Program / On-Shell Methods - Amplitudes
+### Non-Commutative Geometry Programs - NCG
+### Twistor Theory - Twistor Theory
+### Horava-Lifshitz Gravity - Horava-Lifshitz
+### Entropic Gravity - Entropic Gravity
+### Einstein-Aether Theory - Einstein-Aether
+### Galileon / Horndeski Theory - Horndeski
+### Chameleon / Screening Modified Gravity - Screening Gravity
+### Inflationary Eternal Inflation - Eternal Inflation
+### Vacuum Landscape / String Landscape - String Landscape
+### Swampland Program - Swampland
 
 ---
 
 ## Cross-Cutting Concepts To Differentially Map
 
-- Mass - Mass
-- Entropy - Entropy
-- Temperature - Temperature
-- The Laws of Thermodynamics - Thermodynamic Laws
-- Redshift - Redshift
-- Spacetime Curvature - Curvature
-- Vacuum Energy - Vacuum Energy
-- Fine-Structure Constant - Fine-Structure Constant
-- Wavefunction - Wavefunction
-- Information - Information
-- Probability - Probability
+### Mass - Mass
+### Entropy - Entropy
+### Temperature - Temperature
+### The Laws of Thermodynamics - Thermodynamic Laws
+### Redshift - Redshift
+### Spacetime Curvature - Curvature
+### Vacuum Energy - Vacuum Energy
+### Fine-Structure Constant - Fine-Structure Constant
+### Wavefunction - Wavefunction
+### Information - Information
+### Probability - Probability
 
 - Keep the theory description neutral before critique.
 - Do not confuse empirical adequacy with ontological truth.

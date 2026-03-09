@@ -3,10 +3,10 @@
   "scene": {
     "id": "unknowns_paradoxes",
     "title": "Unknowns & Paradoxes",
-    "type": "Scene-Markdown-Split",
+    "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,
-    "centerOn": "unknown_the_hubble_tension",
+    "centerOn": "overview",
     "layout": {
       "type": "rings"
     },
@@ -14,10 +14,36 @@
     "source": {
       "type": "markdown",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "split": {
-        "headingLevel": 3,
-        "maxDepth": 1,
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 2,
         "overrides": {
+          "overview": {
+            "id": "unknowns_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#5a3f73"
+          },
+          "cosmology and large scale inference": {
+            "id": "unknowns_cosmology_inference",
+            "labelTitle": "Cosmology / Inference",
+            "color": "#243d8f"
+          },
+          "particle and field microstructure": {
+            "id": "unknowns_particle_field_microstructure",
+            "labelTitle": "Particle / Field",
+            "color": "#2f6b6f"
+          },
+          "quantum foundations and unification": {
+            "id": "unknowns_quantum_unification",
+            "labelTitle": "Quantum / Unification",
+            "color": "#3f6a5a"
+          },
+          "astrobiological boundary question": {
+            "id": "unknowns_astrobiological_boundary",
+            "labelTitle": "Astrobiological Boundary",
+            "color": "#7a4a1f"
+          },
           "the nature of dark energy": {
             "id": "unknown_the_nature_of_dark_energy",
             "labelTitle": "The Nature of Dark Energy",
