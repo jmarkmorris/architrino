@@ -84,174 +84,218 @@ If the framework works, the historical result is not that prior thinkers were si
 ## Classical & Early Modern Metaphysics + Mechanism
 
 ### **Heraclitus (c. 535–475 BCE)**
-**Core belief**: 
-- Reality is **flux** ("panta rhei"); stability is an illusion.
-- Strife and opposition are fundamental; harmony arises through tension.
-- Logos as the law-like structure of change.
+**Thinker**: Heraclitus of Ephesus (c. 535–475 BCE), a pre-Socratic philosopher focused on change, opposition, and order in nature.
 
-**Architrino impact**:
-- ❌ **Con**: Change is **derivative**, not fundamental. Architrinos are eternal; configurations change, but entities do not.
-- ⚠️ **Partial**: Heraclitus's emphasis on **opposition** aligns with the electrino:positrino binary and the role of competing wake interactions.
+**Era / Context**: Heraclitus worked before formal mathematical physics, in a period where early Greek natural philosophy was competing with mythic explanation and searching for a unifying account of stability and change.
 
-**Legacy shift**: Becoming is **reinterpreted** as pattern evolution within an unchanging substrate.
+**Primary Domain**: Metaphysics of change and philosophical ontology.
+
+**What Problem He Was Trying To Solve**: Heraclitus addressed the tension between apparent stability and pervasive transformation by arguing that persistence is structured process, not static substance.
+
+**What He Got Right**: He correctly emphasized that lawful order can be expressed through dynamic opposition and that observable stability can emerge from continuously changing underlying processes.
+
+**What He Got Wrong or Overstated**: He overstated flux as near-total ontological priority and did not provide a substrate model that preserves persistent entities while still explaining dynamical transformation.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and reframed, because $\mathbb{A}\mathbb{A}\mathbb{A}$ retains dynamic pattern evolution while rejecting the claim that change itself is fundamental substance.
+
+**Transition Relevance**: Heraclitus is useful as a conceptual bridge for explaining how effective-level structures can remain stable while substrate-level interactions are continuously updated in causal delayed path-history form.
+
+**Long-Term Relevance**: He remains a durable philosophical ancestor for process sensitivity, but his framework is methodologically secondary once explicit substrate law and assembly dynamics are specified.
+
+**Core belief**: Reality is ordered flux in which strife and opposition generate harmony, so persistence is an equilibrium of tensions rather than a static given.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Heraclitus's intuition that opposition and continual update matter, but relocates them to lawful interaction between eternal substrate entities, so becoming is derivative from persistent architrino ontology.
+
+**Legacy shift**: Heraclitean becoming survives as the language of evolving patterns, while ontological primacy moves to stable substrate entities and their delayed causal path-history interactions.
 
 ---
 
 ### **Democritus (c. 460–370 BCE) & Leucippus**
-**Core belief**: Atomism—reality is composed of indivisible atoms moving in void. All qualities are relational effects of atomic configurations.
+**Thinker**: Leucippus and Democritus (5th century BCE), founders of classical atomism in Greek natural philosophy.
 
-**Architrino impact**:
-- ✅ **Pro**: **Radical vindication** of the atomistic impulse. Architrinos are the true "atoms" (indivisible point entities).
-- ✅ **Pro**: The void is rehabilitated as **fundamental Euclidean substrate**, not mere absence. The $\mathbb{U}_{\text{now}}$ universe-state perspective can, in principle, track every architrino in this void at any moment.
-- ✅ **Pro**: All qualities (mass, charge magnitude, spin, color) are **relational effects** of architrino assemblies—exactly as Democritus envisioned.
-- ⚠️ **Refinement**: Classical atomism assumed atoms had intrinsic properties (shape, size). Architrinos are **dimensionless point transmitter/receivers**; all structure is **dynamic and relational**.
+**Era / Context**: They developed atomism in a pre-experimental but highly analytical context where philosophers sought non-mythic explanations for change, multiplicity, and perceptual qualities.
 
-**Legacy shift**: From philosophical atomism to **mechanistic point-field ontology**. Democritus's vision is **realized with mathematical precision**. The $\mathbb{U}_{\text{now}}$ universe-state perspective provides a complete microphysical perspective that clarifies how lawful dynamics and self-hit branching coexist in the architrino substrate.
+**Primary Domain**: Metaphysical atomism and proto-mechanistic natural philosophy.
+
+**What Problem He Was Trying To Solve**: Their core pressure was to explain how real change is possible without contradictions about being and non-being, while preserving intelligible persistence beneath appearances.
+
+**What He Got Right**: They got the deepest directional insight right by positing indivisible constituents in a real void and treating experienced qualities as relational effects of microstructure rather than primitive essences.
+
+**What He Got Wrong or Overstated**: They lacked a mathematically explicit interaction law and assigned quasi-intrinsic atom features that, in $\mathbb{A}\mathbb{A}\mathbb{A}$, are replaced by emergent properties of point-like transmitter/receiver dynamics.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated with refinement, because the atomist impulse is retained but rebuilt as a precise causal delayed substrate model.
+
+**Transition Relevance**: Their framework is highly useful for transition because it legitimizes ontological reduction and makes it natural to reclassify higher-level observables as assembly-level outcomes.
+
+**Long-Term Relevance**: Long-term relevance is high as a historical and conceptual anchor for substrate realism, even though detailed atomist mechanisms are superseded by modern causal dynamics.
+
+**Core belief**: Reality consists of indivisible entities moving in void, and macroscopic qualities arise from their arrangement and motion rather than from irreducible surface appearances.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ realizes this view in a more explicit way by identifying eternal point entities in Euclidean void and deriving effective qualities through lawful assembly behavior and path-history dynamics.
+
+**Legacy shift**: Classical atomism is retained as the right ontological direction but upgraded from philosophical sketch to a mathematically disciplined substrate architecture.
 
 ---
 
 ### **Plato (428–348 BCE)**
-**Core belief**: 
-- **Theory of Forms**: Abstract, eternal, perfect essences (Forms) are more real than physical particulars.
-- Mathematics is **discovery** of transcendent truths, not human invention.
-- The physical world is a shadow/imitation of the Form-world.
+**Thinker**: Plato (428–348 BCE), central figure in classical Greek philosophy and architect of Form-based metaphysics.
 
-**Architrino impact**:
-- ❌ **Con**: **Complete refutation**. No Platonic heaven. No independent realm of abstract essences.
-- ❌ **Con**: "Forms" (stable patterns: electrons, protons, atoms, geometric structures) are **emergent** from architrino assemblies, not pre-existing blueprints. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees only architrino configurations, not transcendent templates.
-- ⚠️ **Partial survival**: Mathematics remains **useful** (it describes architrino dynamics accurately), but it is a **human language/tool**, not discovered transcendent reality.
-- ❌ **Con**: The physical world is **primary**. There is nothing "more real" behind it.
+**Era / Context**: Plato developed his framework in a context where mathematics, logic, and political-philosophical concerns were being integrated into a broader account of reality, knowledge, and permanence.
 
-**Legacy shift**: Platonism in ontology is **dead**. Mathematical Platonism may survive only as **instrumentalism** (math as effective description, not discovered truth).
+**Primary Domain**: Metaphysics, epistemology, and philosophy of mathematics.
+
+**What Problem He Was Trying To Solve**: Plato aimed to explain how stable truth, geometry, and intelligibility are possible despite sensory variability, corruption, and epistemic uncertainty.
+
+**What He Got Right**: He correctly recognized that durable structure and mathematical regularity require an account deeper than immediate appearance and that explanatory rigor depends on abstract discipline.
+
+**What He Got Wrong or Overstated**: He overstated abstraction into ontology by treating Forms as an independent, higher reality rather than as formal descriptions of physically realized pattern classes.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Mostly contradicted with methodological salvage, because ontological Platonism is rejected while mathematical discipline as representation is retained.
+
+**Transition Relevance**: Plato remains useful as a caution against conflating representational elegance with ontological commitment during theory replacement.
+
+**Long-Term Relevance**: Long-term value is primarily methodological and conceptual-hygiene oriented, not ontological, because substrate realism replaces Form primacy.
+
+**Core belief**: Stable intelligible reality is grounded in timeless Forms, and the physical world is an imperfect participation in this higher abstract order.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the demand for structural clarity but rejects a separate Form realm, treating recurring structures as emergent outcomes of material causal dynamics.
+
+**Legacy shift**: Platonism survives as formal discipline in modeling, while its ontological thesis is replaced by a single-layer physical substrate account.
 
 ---
 
 ### **Aristotle (384–322 BCE)**
-**Core belief**: 
-- **Hylomorphism**: All substances are composites of matter (hyle) and form (morphe).
-- **Four causes**: Material, formal, efficient, and **final** (teleology—"for the sake of which").
-- Nature abhors a vacuum.
-- Continuous substance, not atomism.
+**Thinker**: Aristotle (384–322 BCE), systematic philosopher of causation, substance, and biological and physical explanation.
 
-**Architrino impact**:
-- ❌ **Con**: **Hylomorphism collapses**. No independent "forms" imposed on matter. All structure is dynamic assembly of architrinos, fully visible to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
-- ❌ **Con**: **Teleology is eliminated**. No final causes. Stable structures (particles, organisms) exist because they are **dynamical attractors**, not because they fulfill purposes. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees only lawlike evolution, no goal-directedness.
-- ❌ **Con**: The void is **real and fundamental** (though mostly unoccupied by architrinos).
-- ✅ **Pro** (ironic): Aristotle valued **continuous substance**. The **spacetime assembly network** (spacetime fabric—coupled Noether cores) is effectively continuous at macroscopic scales—**emergent from discrete architrinos**.
+**Era / Context**: Aristotle worked in the mature classical Greek period, developing a comprehensive explanatory system before experimental mechanics and modern mathematical physics.
 
-**Legacy shift**: Aristotelian teleology and form/matter dualism are **rejected**. His emphasis on **emergence of properties from relations** is partially vindicated (but mechanistically, not teleologically).
-All emergence in the architrino framework is **weak emergence**: effective theories (GR, QM, thermodynamics) are coarse-grainings of exact architrino dynamics. There are no **strongly emergent** properties with autonomous causal powers. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees only architrinos; higher-level causation is shorthand for micro-level interactions.
+**Primary Domain**: Metaphysics, natural philosophy, causation theory, and ontology of form and matter.
+
+**What Problem He Was Trying To Solve**: He sought a unified account of change, persistence, purpose-like organization, and classification in nature without collapsing explanation into either pure flux or pure abstraction.
+
+**What He Got Right**: Aristotle correctly emphasized layered explanation, relational organization, and the need to distinguish explanatory roles rather than using a single descriptive vocabulary for all phenomena.
+
+**What He Got Wrong or Overstated**: He overcommitted to teleology and hylomorphic primitives, which in $\mathbb{A}\mathbb{A}\mathbb{A}$ are replaced by non-teleological attractor dynamics and weakly emergent assembly structure.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and substantially reframed, with his classification discipline retained but final-cause ontology and anti-void commitments rejected.
+
+**Transition Relevance**: Aristotle is useful in transition for preserving layer discipline and explanatory typing while replacing purposive language with causal delayed path-history mechanism.
+
+**Long-Term Relevance**: Long-term relevance is moderate as methodological scaffolding for multi-level explanation, but low for core ontological primitives.
+
+**Core belief**: Natural entities are composites of matter and form, and complete explanation requires material, formal, efficient, and final causes within an ordered world.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains efficient-cause rigor and layered explanatory structure, but discards final causes and form/matter dualism in favor of substrate entities and emergent organization.
+
+**Legacy shift**: Aristotle's explanatory taxonomy survives in reduced form as methodological discipline, while his teleological ontology is replaced by mechanistic assembly dynamics.
 
 ---
 
 ### **Epicurus (341–270 BCE)**
-**Core belief**: 
-- **Eternal atoms** in void—no creation, no destruction.
-- **No cosmic teleology**, no divine intervention.
-- The **swerve** (clinamen): spontaneous deviation of atoms to allow free will and break strict determinism.
+**Thinker**: Epicurus (341–270 BCE), Hellenistic atomist philosopher who combined physics, epistemology, and ethics into a materialist program.
 
-**Architrino impact**:
-- ✅ **Pro**: **Perfect alignment** on eternality. Architrinos are eternal; no creation/annihilation events.
-- ✅ **Pro**: No teleology, no gods, no cosmic purpose. Structure emerges from **lawful dynamics** with self-hit branching, transparent to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
-- ❌ **Con**: The **swerve is eliminated** as an ad hoc postulate. Multistability is localized to self-hit branch points rather than an intrinsic atomic swerve.
-- ⚠️ **Implication for free will**: If it exists, it must be an **emergent property** of complex assemblies (brains), not a fundamental feature.
+**Era / Context**: Epicurus developed atomism in a post-classical setting marked by skepticism, anxiety about fate and divine intervention, and demand for a naturalized account of world-order and agency.
 
-**Legacy shift**: Epicureanism **purified**—the swerve is replaced by lawful self-hit multistability rather than fundamental randomness. Materialist ethics must be regrounded in emergent agency, not metaphysical freedom.
+**Primary Domain**: Materialist metaphysics, atomist natural philosophy, and ethical implications of cosmology.
+
+**What Problem He Was Trying To Solve**: He aimed to preserve a fully natural world free of teleological and theological control while still leaving conceptual room for contingency and practical agency.
+
+**What He Got Right**: He got the eternality and non-teleological character of substrate entities directionally right and correctly separated natural explanation from divine purpose narratives.
+
+**What He Got Wrong or Overstated**: He introduced the clinamen as an underconstrained primitive to solve freedom pressure, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ localizes openness to deterministic multistability at specific causal branch regimes.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with refinement, because materialist and anti-teleological commitments are retained while the freedom mechanism is rebuilt.
+
+**Transition Relevance**: Epicurus is highly useful during transition for de-loading metaphysical excess and reinforcing that explanatory closure must come from lawful substrate dynamics.
+
+**Long-Term Relevance**: Long-term relevance is high for naturalistic orientation and low for specific swerve mechanics, which are superseded by path-history branching dynamics.
+
+**Core belief**: The world is made of eternal atoms in void without divine governance, and the clinamen introduces deviations that prevent strict fatalism.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ endorses eternal substrate and anti-teleology but replaces the swerve with lawful, delayed, microstate-sensitive branching in self-hit regimes.
+
+**Legacy shift**: Epicurean materialism is preserved as orientation, while its ad hoc contingency mechanism is replaced by explicit deterministic multistability.
 
 ---
 
 ### **René Descartes (1596–1650)**
-**Core belief**: 
-- **Mechanistic universe**: Nature operates like a machine, governed by contact forces.
-- **Substance dualism**: Mind (res cogitans) and matter (res extensa) are fundamentally distinct.
-- Matter is **extension** in space.
-- Vortex theory of planetary motion and light propagation.
+**Thinker**: René Descartes (1596–1650), early modern founder of mechanical philosophy and analytic method with a dualist metaphysical system.
 
-**Architrino impact**:
-- ✅ **Pro**: **Mechanistic universe fully upheld**. No irreducible mental substance at the fundamental level; no teleology. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees pure mechanism.
-- ✅ **Pro**: **Vortex-like structures** (spiral binaries, nested tri-binaries) are **natural outcomes** of architrino dynamics.
-- ❌ **Con**: **Substance dualism is rejected**. Mind is emergent from complex physical assemblies (brains), not a separate substance.
-- ⚠️ **Con**: Descartes' **matter = extension** is rejected. Architrinos are **point sources**, not extended substance. Extension (spacetime) is **emergent** from point-network dynamics (coupled Noether cores).
+**Era / Context**: Descartes wrote during the early Scientific Revolution, when inherited scholastic frameworks were collapsing and mechanical explanation was emerging as the dominant research program.
 
-**Legacy shift**: From "matter as extension" to **extension from point-network dynamics**. Mechanism vindicated; dualism rejected.
+**Primary Domain**: Mechanics, metaphysics of substance, and epistemic method.
+
+**What Problem He Was Trying To Solve**: He sought to secure certainty in knowledge while providing a mechanistic account of nature that could replace teleological scholastic explanations.
+
+**What He Got Right**: Descartes correctly pushed physics toward mechanistic generative explanation, mathematical formulation, and rejection of irreducible teleological causation in basic natural dynamics.
+
+**What He Got Wrong or Overstated**: He overstated substance dualism and identified matter with extension as primitive, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ treats extension as emergent from point-like substrate network dynamics.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and reframed, with mechanism retained and dualism rejected.
+
+**Transition Relevance**: Descartes is useful for emphasizing mechanism-first explanation and for clarifying where classical conceptual categories still obstruct substrate reduction.
+
+**Long-Term Relevance**: Long-term relevance is moderate for methodological mechanism and low for dualist ontology.
+
+**Core belief**: Nature is mechanistic and intelligible by analysis, but mind and matter are fundamentally distinct substances and matter is essentially extension.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves mechanistic realism and lawful structure while replacing dualism with monist physical ontology and replacing extension-primitive metaphysics with emergent assembly geometry.
+
+**Legacy shift**: Cartesian mechanism survives as method, while Cartesian substance dualism and extension primacy are removed from foundational ontology.
 
 ---
 
 ### **Baruch Spinoza (1632–1677)**
-**Core belief**: 
-- **One substance** (Deus sive Natura—God or Nature), with infinite attributes (thought, extension, etc.).
-- Strict **necessity**: no free will, no teleology, no contingency.
-- Geometric method: reality follows from essence as theorems from axioms.
+**Thinker**: Baruch Spinoza (1632–1677), rationalist monist philosopher who modeled metaphysics on geometric demonstration and strict necessity.
 
-**Architrino impact**:
-- ✅ **Pro**: **Strong vindication** of the metaphysical structure. Architrinos are the **one substance**. All diversity (particles, fields, spacetime, minds) consists of **modes** (configurations) of this one substance.
-- ✅ **Pro**: Spinoza's **rejection of teleology** is fully upheld. The $\mathbb{U}_{\text{now}}$ universe-state perspective embodies Spinoza's "infinite intellect"—the perspective that sees the lawful flow of events, including self-hit branch points.
-- ✅ **Pro**: "God" (Spinoza's term) becomes the **totality of architrino configurations and their laws**—Nature, not a personal deity. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees Nature *sub specie aeternitatis*.
-- ⚠️ **Difference**: Spinoza's "infinite attributes" (thought, extension, etc.) **collapse** into **one physical attribute**: architrino dynamics. Mind is **emergent** from complex assemblies, not a parallel fundamental attribute.
-- ✅ **Pro**: Spinoza's "necessity" is realized as lawful flow with multistability—deterministic in structure, but admitting multiple physically realizable futures at critical junctures.
+**Era / Context**: Spinoza worked in the high rationalist phase of early modern philosophy, in sustained dialogue with Cartesian mechanism, theological doctrine, and debates over freedom and determinism.
 
-**Legacy shift**: Spinoza's metaphysics is **physicalized**. One substance = architrino field; necessity = lawful dynamics with multistability. His system is the closest **historical precursor** to the architrino worldview. The $\mathbb{U}_{\text{now}}$ universe-state perspective is Spinoza's God knowing itself.
+**Primary Domain**: Metaphysics, ontology of substance, and necessity-based philosophy of nature.
+
+**What Problem He Was Trying To Solve**: Spinoza sought a unified non-teleological account of reality that removed anthropocentric purpose and replaced fragmented metaphysics with one coherent lawful totality.
+
+**What He Got Right**: He correctly foregrounded ontological unification, anti-teleology, and lawlike necessity, all of which align strongly with substrate monism and causal discipline in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+**What He Got Wrong or Overstated**: He retained a broader attribute scheme that, in $\mathbb{A}\mathbb{A}\mathbb{A}$, is reduced to physical substrate dynamics with mind treated as emergent assembly-level organization.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated with physicalization, because monist and anti-teleological structure is retained while abstract attribute ontology is reduced.
+
+**Transition Relevance**: Spinoza is highly useful for stabilizing transition language around one-substrate realism and for resisting reintroduction of teleological or dualist categories.
+
+**Long-Term Relevance**: Long-term relevance is high as a philosophical ancestor of unified lawful realism, though the formal rationalist framing is subordinated to empirical model governance.
+
+**Core belief**: Reality is one necessary substance expressed through lawful structure, with teleology and contingency treated as human projection rather than fundamental ontology.
+
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ operationalizes Spinoza-like monism by identifying one physical substrate and deriving plurality, effective fields, and observer-level phenomena from its dynamics.
+
+**Legacy shift**: Spinoza's metaphysical unity is retained but empirically grounded, yielding a physical monism with explicit causal delayed path-history law.
 
 ---
 
 ### **Isaac Newton (1643–1727)**
-**Thinker**:
-- Isaac Newton (1643–1727).
+**Thinker**: Isaac Newton (1643–1727), architect of classical mechanics and universal gravitation in early modern mathematical physics.
 
-**Era / Context**:
-- Scientific Revolution (late 17th to early 18th century), when Keplerian astronomy, Galileo's kinematics, and new mathematical methods were being consolidated.
-- Immediate context included the need to unify celestial and terrestrial mechanics under one causal, quantitative architecture.
-- Methodological backdrop: increasing demand that natural philosophy produce predictive mathematics, not only qualitative explanation.
+**Era / Context**: Newton worked in the Scientific Revolution after Kepler and Galileo, when the central pressure was to unify celestial and terrestrial motion under one quantitative framework with reproducible predictive control.
 
-**Primary Domain**:
-- Mechanics and natural philosophy.
-- Mathematical physics of motion, force, and gravitation.
+**Primary Domain**: Mechanics and mathematical natural philosophy focused on motion, force laws, and gravitational regularities.
 
-**What Problem He Was Trying To Solve**:
-- Unify planetary motion and terrestrial falling-body dynamics under one law architecture.
-- Provide a predictive framework that could derive orbital structure, tides, and projectile motion from shared principles.
-- Stabilize scientific explanation around universal laws rather than domain-specific heuristics.
+**What Problem He Was Trying To Solve**: Newton addressed the need for a single causal law architecture that could explain orbital dynamics, falling bodies, tides, and inertial behavior without domain fragmentation.
 
-**What He Got Right**:
-- Law-governed dynamics as a foundational method.
-- Strong mathematization of physical theory.
-- Productive use of absolute-time formulations for causal description.
-- Durable separation between kinematic description and dynamical law.
-- High-value idealization strategy: precise effective laws can be valid even when underlying micro-mechanism is not yet resolved.
+**What He Got Right**: Newton correctly established law-governed dynamics, rigorous mathematization, and powerful limiting-case modeling, and he set durable standards for separating kinematic description from dynamical law statements.
 
-**What He Got Wrong or Overstated**:
-- Instantaneous action-at-a-distance as a fundamental gravitational mechanism.
-- Treating gravitational force law as ontologically final rather than an effective closure over deeper substrate dynamics.
-- Leaving medium/mechanism underdetermined while reifying force as primitive.
+**What He Got Wrong or Overstated**: Newton left gravitational mechanism underdetermined and effectively treated action-at-a-distance force law as primitive, which $\mathbb{A}\mathbb{A}\mathbb{A}$ treats as an effective closure over deeper delayed medium dynamics.
 
-**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$:
-- Partially vindicated and reframed.
-- Vindicated on absolute-time/coordinate realism and universal law discipline.
-- Reframed on mechanism: gravitational effects arise from finite-speed, delayed, path-history interactions in an assembly medium.
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and reframed, because absolute-time coordinate realism and law discipline are retained while gravitational primitives are replaced.
 
-**Transition Relevance**:
-- High. Newton provides a direct bridge for moving from geometry-first language to substrate-level causal, delayed, path-history dynamics.
-- High value for pedagogy: Newtonian limits remain the most practical entry point for mapping effective laws to deeper ontology.
-- High value for model governance: retain predictive limits while reclassifying ontological status.
+**Transition Relevance**: Transition relevance is high because Newtonian limits provide the clearest pedagogical bridge from current effective mechanics to substrate-level causal delayed path-history accounts.
 
-**Long-Term Relevance**:
-- High methodological relevance; medium ontological relevance after mechanism replacement.
-- Permanent relevance as a methodological anchor for law-based explanation and limiting-case recovery.
-- Non-permanent relevance for gravitational primitives (force-at-distance replaced by emergent medium response).
+**Long-Term Relevance**: Long-term relevance remains high methodologically and moderate ontologically, with Newtonian equations preserved as effective limits but force-at-distance ontology retired.
 
-**Core belief**: 
-- **Absolute space** and **absolute time** as the cosmic stage.
-- Gravity as **instantaneous action at a distance**.
-- Particles and forces as fundamental.
+**Core belief**: Space and time form an absolute stage, particles and forces are fundamental descriptors, and gravity acts universally through an inverse-square relation.
 
-**Architrino impact**:
-- ✅ **Pro**: **Absolute time fully retained** as the global parameter (linear, forward-only, universal). The $\mathbb{U}_{\text{now}}$ universe-state perspective at *any* (x,y,z) at time *t* sees the **same *t*** as an $\mathbb{U}_{\text{now}}$ universe-state perspective at any other location.
-- ✅ **Pro**: **Absolute space vindicated**—the Euclidean void is a **real geometric structure** that supports the $\mathbb{U}_{\text{now}}$ universe-state perspective. This observer can assign unique (x,y,z) labels and detect absolute motion (rotation, acceleration) without ambiguity. Newton's bucket argument (rotation is absolute because water surface curves in absolute space) is fully confirmed.
-- ✅ **Pro**: The $\mathbb{U}_{\text{now}}$ universe-state perspective is the **Newtonian ideal observer**—someone who can measure positions and velocities relative to absolute space and synchronize clocks via absolute time.
-- ❌ **Con**: **Action-at-a-distance gravity is replaced** by emergent curved-spacetime-like behavior from **finite-speed architrino interactions** (field propagation speed *c_f*).
-- ✅ **Pro**: Newtonian gravity as **low-velocity, weak-field limit** is reproduced from emergent geometry.
+**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Newton's law discipline and effective limits while reinterpreting gravitational behavior as emergent from finite-speed interactions in an assembly medium tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 
-**Legacy shift**: Absolute time **vindicated**; absolute space **vindicated** (not a substance, but a real coordinate structure—the permanent Euclidean grid); gravity transformed from instantaneous force to **emergent geometry**. Newton's absolutes are **ontologically correct**; his gravitational mechanism is replaced. The $\mathbb{U}_{\text{now}}$ universe-state perspective is Newton's "Sensorium Dei" de-theologized and made mathematical.
+**Legacy shift**: Newton's role shifts from final ontology to enduring effective framework, where predictive structure survives but mechanistic foundation is relocated to substrate dynamics.
 
 ---
 
