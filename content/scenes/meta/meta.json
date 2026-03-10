@@ -28,8 +28,16 @@
         "scenePath": "content/scenes/meta/meta_glossary.json"
       },
       {
+        "nodeId": "meta_textbook_file_structure",
+        "scenePath": "content/scenes/meta/meta_textbook_file_structure.json"
+      },
+      {
         "nodeId": "meta_help",
         "scenePath": "content/scenes/meta/meta_help.json"
+      },
+      {
+        "nodeId": "meta_academic_style_guide",
+        "scenePath": "content/scenes/meta/meta_academic_style_guide.json"
       },
       {
         "nodeId": "meta_mathematical_style_guide",
@@ -38,10 +46,6 @@
       {
         "nodeId": "meta_mathematical_terminology",
         "scenePath": "content/scenes/meta/meta_mathematical_terminology.json"
-      },
-      {
-        "nodeId": "meta_navigation",
-        "scenePath": "content/scenes/meta/meta_navigation.json"
       },
       {
         "nodeId": "meta_scene_taxonomy",
@@ -59,10 +63,10 @@
     },
     {
       "id": "meta_about",
-      "title": "About",
+      "title": "About the Webapp",
       "radius": 2.2,
       "color": "#243d8f",
-      "labelTitle": "About",
+      "labelTitle": "About the Webapp",
       "labelBadge": "doc"
     },
     {
@@ -75,18 +79,34 @@
     },
     {
       "id": "meta_glossary",
-      "title": "Glossary",
+      "title": "Comparative Glossary",
       "radius": 2.2,
       "color": "#2f6b6f",
-      "labelTitle": "Glossary",
+      "labelTitle": "Comparative Glossary",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "meta_textbook_file_structure",
+      "title": "Textbook File Structure",
+      "radius": 2.2,
+      "color": "#465f3a",
+      "labelTitle": "Textbook File Structure",
       "labelBadge": "doc"
     },
     {
       "id": "meta_help",
-      "title": "Help",
+      "title": "Navigation & Controls",
       "radius": 2.2,
       "color": "#5a1f2e",
-      "labelTitle": "Help",
+      "labelTitle": "Navigation & Controls",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "meta_academic_style_guide",
+      "title": "Academic Style Guide",
+      "radius": 2.2,
+      "color": "#5b4c8f",
+      "labelTitle": "Academic Style Guide",
       "labelBadge": "doc"
     },
     {
@@ -99,18 +119,10 @@
     },
     {
       "id": "meta_mathematical_terminology",
-      "title": "Mathematical Terminology",
+      "title": "Mathematical Terminology Reference",
       "radius": 2.2,
       "color": "#2f4f7a",
-      "labelTitle": "Mathematical Terminology",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "meta_navigation",
-      "title": "Navigation",
-      "radius": 2.2,
-      "color": "#3f6a5a",
-      "labelTitle": "Navigation",
+      "labelTitle": "Mathematical Terminology Reference",
       "labelBadge": "doc"
     },
     {

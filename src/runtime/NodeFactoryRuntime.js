@@ -57,8 +57,39 @@ export function createNodeFactory(deps) {
     return normalized === "diagram" || normalized === "branch";
   }
 
+  function latexToPlainText(expr) {
+    return String(expr || "")
+      .replace(/\\mathbb\{A\}/g, "\u{1D538}")
+      .replace(/\\(mathbb|mathrm|text)\{([^}]*)\}/g, "$2")
+      .replace(/[_^]\{([^}]*)\}/g, "$1")
+      .replace(/[_^]([A-Za-z0-9]+)/g, "$1")
+      .replace(/\\[A-Za-z]+\*?/g, " ")
+      .replace(/[{}]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function normalizeLabelText(text) {
+    let normalized = String(text ?? "").trim();
+    if (!normalized) {
+      return "";
+    }
+    normalized = normalized.replace(/\\\$/g, "$");
+    normalized = normalized.replace(/\$\$([\s\S]*?)\$\$/g, (_match, expr) =>
+      latexToPlainText(expr)
+    );
+    normalized = normalized.replace(/\$([^$]+)\$/g, (_match, expr) => latexToPlainText(expr));
+    normalized = normalized.replace(/\\\(([\s\S]*?)\\\)/g, (_match, expr) =>
+      latexToPlainText(expr)
+    );
+    normalized = normalized.replace(/\\\[([\s\S]*?)\\\]/g, (_match, expr) =>
+      latexToPlainText(expr)
+    );
+    return normalized.replace(/\s+/g, " ").trim();
+  }
+
   function parseStructuredLabel(displayName) {
-    const raw = String(displayName ?? "").trim();
+    const raw = normalizeLabelText(displayName);
     let title = raw;
     let subtitle = "";
     let dates = "";
@@ -127,14 +158,22 @@ export function createNodeFactory(deps) {
         : displayName;
     const parsedFull = parseStructuredLabel(fullName);
     const parsedFallback = parseStructuredLabel(displayName);
+    const prefersCompactLabel =
+      parsedFallback.title &&
+      parsedFallback.title !== parsedFull.title &&
+      parsedFallback.title.length < parsedFull.title.length;
     const labelTitle =
       typeof node.labelTitle === "string" && node.labelTitle.trim().length > 0
         ? node.labelTitle.trim()
-        : parsedFull.title || parsedFallback.title;
+        : prefersCompactLabel
+          ? parsedFallback.title
+          : parsedFull.title || parsedFallback.title;
     let labelSubtitle =
       typeof node.labelSubtitle === "string" && node.labelSubtitle.trim().length > 0
         ? node.labelSubtitle.trim()
-        : parsedFull.subtitle || parsedFallback.subtitle;
+        : prefersCompactLabel
+          ? parsedFallback.subtitle
+          : parsedFull.subtitle || parsedFallback.subtitle;
     const labelDates =
       typeof node.labelDates === "string" && node.labelDates.trim().length > 0
         ? node.labelDates.trim()

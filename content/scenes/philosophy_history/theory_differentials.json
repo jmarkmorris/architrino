@@ -65,6 +65,39 @@
             "labelTitle": "Additional Programs",
             "color": "#3f6a5a"
           },
+          "lambda cold dark matter lambda cdm": {
+            "shortName": "Lambda-CDM"
+          },
+          "standard model effective field theory smeft": {
+            "shortName": "SMEFT"
+          },
+          "conformal field theory cft": {
+            "shortName": "CFT"
+          },
+          "amplitude program on shell methods amplitudes": {
+            "shortName": "Amplitudes"
+          },
+          "non commutative geometry programs ncg": {
+            "shortName": "NCG"
+          },
+          "horava lifshitz gravity horava lifshitz": {
+            "shortName": "Horava-Lifshitz"
+          },
+          "einstein aether theory einstein aether": {
+            "shortName": "Einstein-Aether"
+          },
+          "galileon horndeski theory horndeski": {
+            "shortName": "Horndeski"
+          },
+          "chameleon screening modified gravity screening gravity": {
+            "shortName": "Screening Gravity"
+          },
+          "inflationary eternal inflation eternal inflation": {
+            "shortName": "Eternal Inflation"
+          },
+          "vacuum landscape string landscape string landscape": {
+            "shortName": "String Landscape"
+          },
           "cross cutting concepts to differentially map": {
             "id": "theory_differentials_cross_cutting_concepts",
             "labelTitle": "Cross-Cutting Concepts",

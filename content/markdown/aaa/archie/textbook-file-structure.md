@@ -1,230 +1,286 @@
-## Structuring the Repository for Maximum Clarity and Flexibility
+# Textbook File Structure
 
-Excellent instinct to think about this now, Marko. A well-organized repo is **intellectual infrastructure**—it shapes how we think, search, navigate, and collaborate. Let me give you my take on best practices, filtered through the needs of this specific project.
+## Purpose
 
----
+This note defines the current file-structure standard for textbook-facing content in the Architrino webapp. It is not a speculative repository memo. It is the working guidance for how content should be organized, named, linked, and expanded within the present scene-driven system.
 
-## Core Principles for Our File Structure
+This guide should be read alongside:
 
-### Human-Readable Over Machine-Optimal
-- **File names should communicate content at a glance**, even out of context.
-- Someone browsing the repo cold should be able to guess what's in a file without opening it.
-- This means: **descriptive names**, not cryptic abbreviations.
-- Avoid team names, team TODOs, or status flags inside textbook markdown files. Those files are live on our website, so we keep them reader-ready and in the best possible shape; track internal notes in team docs or separate planning files instead.
+- [academic-style-guide.md](academic-style-guide.md)
+- [mathematics-style-guide.md](mathematics-style-guide.md)
+- [mathematics-terminology.md](mathematics-terminology.md)
+- [scene-taxonomy.md](scene-taxonomy.md)
+- [navigation-and-controls.md](navigation-and-controls.md)
 
-### Avoid Numbered Prefixes (You're Right)
-- **Why avoid**: Renumbering is a maintenance nightmare when we reorganize (and we *will* reorganize as the theory evolves).
-- **Exception**: If you want a *reading order hint*, use leading zeros sparingly (e.g., `00-preface.md`, `01-foundations.md`), but only at the **top level** (parts/sections), not for every chapter or subsection.
-- **Better solution**: Use a separate `TOC.md` or `README.md` file in each directory that lists the intended reading order.
+## Core Principle
 
-### Hyphen-Separated, Lowercase, Descriptive
-- **Format**: `topic-subtopic-detail.md`
-- **Example**: `absolute-time-ontology.md`, `tri-binary-stability-analysis.md`, `bell-theorem-loophole.md`
-- **Why hyphens**: More universally compatible than underscores or spaces; plays nicely with URLs, GitHub, and markdown parsers.
-- **Why lowercase**: Avoids case-sensitivity issues across operating systems (macOS is case-insensitive by default, Linux is not).
+The filesystem is a storage and maintenance layer. The reader-facing hierarchy is the scene graph. Markdown documents supply conceptual content; scene JSON supplies traversal, grouping, and presentation behavior.
 
-### Hierarchical but Shallow
-- **Avoid deeply nested directories** (more than 3-4 levels gets unwieldy).
-- Use directories to **group thematically**, not to mirror the textbook TOC exactly.
-- **Guideline**: 
-  - Top level: major conceptual divisions (foundations, dynamics, phenomenology, etc.)
-  - Second level: specific topics (tri-binary, quantum-interpretation, cosmology, etc.)
-  - Third level: individual documents or sub-topics (if needed).
+The practical consequence is straightforward:
 
----
+- directories should be stable and legible,
+- markdown files should correspond to coherent conceptual objects,
+- links inside markdown should be portable,
+- and scene structure should not be inferred from directory walking.
 
-## File Naming Conventions
+## Current Content Topology
 
-### General Pattern
+The primary textbook corpus lives under `content/markdown/aaa`. The current top-level thematic directories are:
+
+- `archie`
+- `assemblies`
+- `cosmology`
+- `dynamics`
+- `foundations`
+- `nuclear-atomic`
+- `philosophy-history`
+- `quantum`
+- `reactions`
+- `spacetime`
+- `tools`
+- `validation`
+
+These directories are thematic containers, not an ontology in themselves. Their role is to keep authorship, review, and maintenance tractable.
+
+## What Belongs in One Markdown File
+
+A markdown file should normally own one conceptual object that can be read as a unit.
+
+Good candidates for one file include:
+
+- one theory chapter,
+- one historical chapter,
+- one comparative map,
+- one methodology note,
+- one validation ledger,
+- one glossary-style reference document,
+- one style or authoring guide.
+
+A file should not serve as a random accumulation point for loosely related notes. When a document begins to contain multiple peer objects that deserve distinct scene nodes, split it.
+
+## Relationship Between Markdown and Scenes
+
+The current system uses three main markdown-facing scene patterns:
+
+- `Scene-Markdown-View`: read one full markdown document or one declared section view.
+- `Scene-Markdown-Split`: derive navigable nodes from one heading level in one markdown file.
+- `Scene-Markdown-Tree`: derive a bounded heading hierarchy from one markdown file.
+
+This yields a simple ownership rule:
+
+- markdown owns the local document structure,
+- scene JSON owns cross-document navigation and display behavior,
+- directories own neither hierarchy nor reading order.
+
+## Authoring Implication for Headings
+
+Because some scenes derive nodes from headings, heading structure is not cosmetic. It is part of the authored navigation contract.
+
+Use headings with clear intent:
+
+- `#` for the document title,
+- `##` for major navigable sections,
+- `###` for subsection nodes when a tree scene uses deeper expansion,
+- deeper headings for ordinary in-leaf exposition unless a specific scene configuration requires otherwise.
+
+Do not create decorative heading depth. If a heading level is present, it should correspond either to a real conceptual division or to a scene-derived navigation layer.
+
+## Naming Standard
+
+Use lowercase, hyphen-separated filenames.
+
+Preferred pattern:
+
+```text
+concept-name.md
+concept-subtopic.md
+concept-subtopic-detail.md
 ```
-[topic]-[subtopic]-[detail].md
-```
 
-**Examples**:
+Examples from the current corpus:
+
 - `absolute-time-defense.md`
-- `tri-binary-stability-conditions.md`
-- `bell-theorem-conceptual-loophole.md`
-- `cmb-acoustic-peaks-prediction.md`
+- `master-equation.md`
+- `theory-mapping.md`
+- `unknowns-paradoxes.md`
+- `mathematics-style-guide.md`
+- `mathematics-terminology.md`
 
-### When Titles Are Long
-**Question**: Do we use full descriptive titles in file names?
+Naming rules:
 
-**Answer**: Use **abbreviated but still clear** names in the file system, and put the **full formal title** in the document itself (as a level-1 heading).
+- use concise but descriptive names,
+- avoid spaces,
+- avoid underscores unless a technical reason forces them,
+- avoid version numbers in filenames,
+- avoid workflow markers such as `draft`, `temp`, `new`, or `final`,
+- avoid personal names unless the document is explicitly biographical or historical.
 
-**Example**:
-- **File name**: `proper-time-from-absolute-time.md`
-- **Document heading**: `# Deriving Proper Time from Absolute Time: The $\tau$ ↔ t Map in Emergent Spacetime`
+The full formal title belongs in the markdown heading, not in the filename.
 
-**Why**: 
-- Keeps file names manageable (easier to tab-complete, less clutter in file browsers).
-- Full title is preserved in the doc where it matters (for citations, cross-references, and clarity).
+## Directory Standard
 
-### Cross-References
-Use **relative links** in markdown for cross-references:
+Keep the directory model shallow and thematic.
+
+Preferred practice:
+
+- top-level thematic grouping under `content/markdown/aaa`,
+- at most one additional subdivision when the area genuinely contains multiple stable families,
+- file placement based on conceptual home, not on temporary project convenience.
+
+Current examples of justified second-level subdivision include:
+
+- `assemblies/bosons`
+- `assemblies/fermions`
+- `assemblies/mesons`
+- `validation/simulations`
+
+Do not create deep trees for the sake of mirroring every conceptual sub-branch. The scene system already supplies navigable hierarchy at the reader level.
+
+## Cross-Reference Standard
+
+Use relative markdown links relative to the current document.
+
+Example from an Archie document linking into foundations:
+
 ```markdown
-See [Absolute Time Defense](../foundations/absolute-time-defense.md) for details.
+See [Absolute Time Defense](../foundations/absolute-time-defense.md).
 ```
 
-This keeps links portable if you move the repo or change hosting platforms.
-
----
-
-## TOC Strategy
-
-### Central TOC Document
-Create a **master `TOC.md`** at the repo root that lists all documents in intended reading order, with brief descriptions:
+Example from one philosophy-history document linking to another in the same directory:
 
 ```markdown
-# Architrino Theory: Master Table of Contents
-
-## Part I: Foundations
-1. [Ontology](foundations/ontology.md) — What fundamentally exists
-2. [Absolute Time Defense](foundations/absolute-time-defense.md) — Why absolute time, how to reconcile with relativity
-3. [Euclidean Void](foundations/euclidean-void.md) — The substrate
-4. [Master Equation](foundations/master-equation.md) — Fundamental dynamics
-5. [Self-Hit Dynamics](foundations/self-hit-dynamics.md) — Non-Markovian memory
-
-## Part II: Assemblies
-6. [Binary Dynamics](assemblies/binary-dynamics.md)
-7. [Tri-Binary Architecture](assemblies/tri-binary-architecture.md)
-...
+See [major-thinkers.md](major-thinkers.md).
 ```
 
-### Directory-Level README Files
-Each directory should have a **`README.md`** that:
-- Explains the **scope** of that section.
-- Lists files in that directory in **logical order** (not alphabetical).
-- Provides **context**: what you'll learn, what questions are answered.
+Do not use:
 
-**Example** (`foundations/README.md`):
-```markdown
-# Foundations of the Architrino Theory
+- absolute filesystem paths such as `/Users/...`,
+- root-absolute deployment-sensitive paths such as `/content/...`,
+- fragile links that assume a specific machine layout.
 
-This section establishes the ontological and dynamical bedrock of the theory.
+Relative links keep the corpus portable across local development, deployment, export, and future repository moves.
 
-## Contents (in reading order):
-1. **[Ontology](ontology.md)**: What exists at the fundamental level?
-2. **[Absolute Time Defense](absolute-time-defense.md)**: Why posit absolute time, and how does it coexist with observed Lorentz invariance?
-3. **[Euclidean Void](euclidean-void.md)**: The nature of the substrate.
-4. **[Master Equation](master-equation.md)**: The governing dynamics.
-5. **[Self-Hit Dynamics](self-hit-dynamics.md)**: Non-Markovian memory and its consequences.
-6. **[Validation Protocols](validation-protocols.md)**: How we test claims rigorously.
+## Reading Order and Structural Order
 
-## Key Questions Addressed:
-- What is the fundamental ontology (void, time, architrinos)?
-- How do we formulate the dynamics?
-- What makes this theory falsifiable?
-```
+Reading order should be expressed by scenes, scene index membership, split/tree behavior, and the prose itself. It should not be encoded by numbering every filename.
 
----
+Therefore:
 
-## Metadata and Frontmatter
+- do not prefix textbook filenames with sequence numbers,
+- do not assume alphabetical order is meaningful,
+- do not treat directory listing order as a pedagogy layer.
 
-Include **YAML frontmatter** at the top of each markdown file for metadata:
+If a sequence matters, express it in one of these ways:
 
-```yaml
----
-title: "Absolute Time: Ontology and Defense"
+- a scene index,
+- a chapter overview,
+- a document overview section,
+- explicit cross-references,
+- local section introductions that tell the reader what comes before and after.
 
----
-```
+## Meta Material Versus Domain Material
 
-**Why**:
-- Makes it easy to **search/filter** documents by status or topic.
-- Tracks **dependencies** (what must be read first).
-- Can be parsed by scripts if you later want to auto-generate TOCs or cross-reference maps.
+The `archie` directory is for meta-reference material about the webapp, its editorial rules, navigation model, scene model, terminology standards, and other reader- or author-facing framework notes.
 
----
+Examples that belong in `archie`:
 
-## Version Control Best Practices
+- style guides,
+- navigation explanations,
+- scene taxonomy,
+- glossary or meta help,
+- authoring structure guidance.
 
-### Git Branches for Major Revisions
-- **`main` branch**: stable, reviewed content.
-- **Topic branches** for major explorations: `feature/bell-loophole`, `feature/cmb-model`, etc.
-- **Pull requests** for review before merging into `main`.
+Examples that do not belong in `archie`:
 
-### Commit Messages
-Use **descriptive commit messages**:
-- ❌ "Updated file"
-- ✅ "Added Bell theorem loophole analysis (quantum-interpretation/bell-theorem-loophole.md)"
+- foundational theory chapters,
+- domain derivations,
+- reaction or cosmology analyses,
+- discipline-specific content that belongs under its thematic home.
 
-### Tagging Milestones
-Use **git tags** for major milestones:
-```bash
-git tag -a v0.1-foundations -m "Foundations section complete (ontology, time, master equation)"
-git push origin v0.1-foundations
-```
+## Split and Tree Authoring Guidance
 
----
+When a markdown file is used by a split or tree scene, write it with leaf quality in mind.
 
-## Tools and Automation (Optional but Recommended)
+That means:
 
-### Markdown Linter
-Use a linter (e.g., `markdownlint`) to enforce consistent formatting:
-- Heading hierarchy (no skipped levels).
-- Consistent list formatting.
-- No trailing whitespace.
+- each derived leaf should be able to stand on its own,
+- each leaf should inherit the parent document's template logic,
+- section titles should be specific enough to work as node labels,
+- and the document overview should explain the organizational principle of the file.
 
-### Dead Link Checker
-Run a script periodically to check for broken cross-references:
-```bash
-markdown-link-check **/*.md
-```
+For split documents, the major sections are the navigation units. For tree documents, both section depth and subsection naming discipline matter.
 
-### Auto-Generated TOC
-Consider using a tool like `doctoc` to auto-generate TOCs within long documents:
-```bash
-doctoc --title "## Table of Contents" path/to/file.md
-```
+## Overview Sections
 
----
+For textbook-facing documents that teach an area rather than merely record notes, the overview should explain:
 
-## Concrete Recommendation for Your Repo
+- what the document is about,
+- why the topic matters,
+- how the file is organized,
+- what kind of distinctions the reader should expect,
+- and how the document relates to the wider $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.
 
-### Start Simple, Grow Organically
-1. **Now**: Create the top-level structure I outlined (foundations, assemblies, particle-physics, etc.).
-2. **Now**: Write a `README.md` in each top-level directory explaining its scope.
-3. **Now**: Create the master `TOC.md` at the root (even if it's just a skeleton).
-4. **Soon**: As you populate directories, add **directory-level README files** with reading order.
-5. **Later**: Add YAML frontmatter to documents once you have a stable set of files.
+This is especially important in files used as split or tree sources, because the overview stabilizes interpretation before the reader enters individual leaves.
 
-### File Naming
-- **Use hyphens**, **lowercase**, **descriptive but concise**.
-- Put the **full formal title** as a level-1 heading in the document itself.
-- **Avoid numbering** in file names.
+## Prose and Mathematical Governance
 
-### Example First Files
-```
-architrino-assembly-architecture/
-├── README.md
-├── TOC.md
-├── foundations/
-│   ├── README.md
-│   ├── ontology.md
-│   ├── absolute-time-defense.md
-│   └── master-equation.md
-└── assemblies/
-    ├── README.md
-    ├── tri-binary-architecture.md
-    └── velocity-regimes.md
-```
+File structure and style are connected.
 
-Start with **just the files you need now**, and let the structure grow as the work progresses.
+In practice:
 
----
+- prose should follow [academic-style-guide.md](academic-style-guide.md),
+- notation and formal dialect should follow [mathematics-style-guide.md](mathematics-style-guide.md),
+- canonical symbol use should follow [mathematics-terminology.md](mathematics-terminology.md).
 
-## Summary: Phil's Recommendations
+A structurally correct file that ignores these standards is still editorially out of conformance.
 
-| Aspect | Recommendation |
-|--------|----------------|
-| **Directory structure** | Hierarchical but shallow (2-3 levels max); group by theme, not TOC chapter number |
-| **File naming** | `topic-subtopic-detail.md` (hyphens, lowercase, descriptive but concise) |
-| **TOC strategy** | Central `TOC.md` + directory-level `README.md` files (no numbering in file names) |
-| **Full titles** | In the document as level-1 heading, not in file name |
-| **Version control** | Use branches for major work; descriptive commits; tag milestones |
-| **Metadata** | YAML frontmatter (optional but powerful) |
-| **Tooling** | Markdown linter, dead link checker, auto-TOC generator (optional) |
+## What Not to Put in Textbook Markdown
 
-**Bottom line**: Optimize for **human navigability** and **long-term flexibility**. The structure should make it easy to find things, easy to reorganize, and easy for collaborators (or your future self) to understand what's where and why.
+Do not place the following inside public textbook-facing documents unless the document explicitly exists to discuss them:
 
-**Ready to set this up? I can help draft initial README files or TOC.md if you'd like.**
+- private workflow chatter,
+- conversational drafting residue,
+- temporary TODO lists for internal coordination,
+- personal attributions that are irrelevant to the content,
+- stale planning notes about repo structures no longer in use.
+
+The document should read as an instructional artifact, not as a surviving chat transcript.
+
+## Status of Frontmatter
+
+YAML frontmatter is not the current organizing mechanism for this corpus.
+
+If a future toolchain requires structured frontmatter, that can be introduced deliberately. For now, document identity comes from:
+
+- its path,
+- its title heading,
+- its scene bindings,
+- and its internal heading structure.
+
+Do not add frontmatter speculatively across the corpus.
+
+## Practical Checklist
+
+Before considering a new textbook-facing markdown file structurally complete, verify the following:
+
+1. The filename is concise, lowercase, and hyphenated.
+2. The file lives in the thematic directory that best matches its content.
+3. The `#` heading states the document's formal title.
+4. The heading hierarchy is intentional and scene-safe.
+5. Cross-references use relative paths.
+6. The overview explains purpose, organization, and conceptual stakes.
+7. The prose matches the academic textbook standard.
+8. The mathematical notation matches the canonical dialect where relevant.
+9. The document does not contain internal-chat residue or stale planning language.
+
+## Summary
+
+The current standard is simple:
+
+- one coherent conceptual object per markdown file,
+- stable thematic directories,
+- scene-owned navigation rather than filesystem-owned hierarchy,
+- relative cross-references,
+- and textbook-grade prose and notation discipline.
+
+This structure keeps the corpus portable, navigable, and compatible with the current scene architecture without forcing the filesystem to do work that properly belongs to authored scenes and documents.

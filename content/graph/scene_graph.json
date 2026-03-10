@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 389,
-      "edges": 1130,
-      "scenes": 273,
+      "nodes": 391,
+      "edges": 1132,
+      "scenes": 274,
       "markdownIndexes": 0,
-      "markdownDocs": 116,
+      "markdownDocs": 117,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1403,12 +1403,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "meta__meta_navigation",
-      "name": "Navigation",
-      "path": "content/scenes/meta/meta_navigation.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "meta__meta_scene_taxonomy",
       "name": "Scene Taxonomy",
       "path": "content/scenes/meta/meta_scene_taxonomy.json",
@@ -1787,21 +1781,33 @@
       "nodeType": "scene"
     },
     {
-      "id": "content/markdown/aaa/archie/about.md",
-      "name": "About",
-      "path": "content/markdown/aaa/archie/about.md",
+      "id": "meta__meta_academic_style_guide",
+      "name": "Academic Style Guide",
+      "path": "content/scenes/meta/meta_academic_style_guide.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_textbook_file_structure",
+      "name": "Textbook File Structure",
+      "path": "content/scenes/meta/meta_textbook_file_structure.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "content/markdown/aaa/archie/about-the-webapp.md",
+      "name": "About the Webapp",
+      "path": "content/markdown/aaa/archie/about-the-webapp.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/glossary.md",
-      "name": "Glossary",
-      "path": "content/markdown/aaa/archie/glossary.md",
+      "id": "content/markdown/aaa/archie/academic-style-guide.md",
+      "name": "Academic Style Guide",
+      "path": "content/markdown/aaa/archie/academic-style-guide.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/help.md",
-      "name": "Help",
-      "path": "content/markdown/aaa/archie/help.md",
+      "id": "content/markdown/aaa/archie/comparative-glossary.md",
+      "name": "Comparative Glossary",
+      "path": "content/markdown/aaa/archie/comparative-glossary.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -1811,26 +1817,32 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/mathematics.md",
-      "name": "Mathematics",
-      "path": "content/markdown/aaa/archie/mathematics.md",
+      "id": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "name": "Mathematical Style Guide (Canonical Dialect)",
+      "path": "content/markdown/aaa/archie/mathematics-style-guide.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/navigation.md",
-      "name": "Navigation",
-      "path": "content/markdown/aaa/archie/navigation.md",
+      "id": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "name": "Mathematical Terminology (Canonical Dialect)",
+      "path": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "name": "Navigation & Controls",
+      "path": "content/markdown/aaa/archie/navigation-and-controls.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/archie/scene-taxonomy.md",
-      "name": "Scene Taxonomy Specification",
+      "name": "Scene Taxonomy",
       "path": "content/markdown/aaa/archie/scene-taxonomy.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "name": "Architrino Theory: Master Table of Contents",
+      "name": "Textbook File Structure",
       "path": "content/markdown/aaa/archie/textbook-file-structure.md",
       "nodeType": "markdown_doc"
     },
@@ -4060,6 +4072,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/meta/meta_academic_style_guide.json",
+      "nodeType": "scene",
+      "id": "meta__meta_academic_style_guide",
+      "name": "Academic Style Guide",
+      "path": "content/scenes/meta/meta_academic_style_guide.json",
+      "searchTarget": "content/scenes/meta/meta_academic_style_guide.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/meta/meta_glossary.json",
       "nodeType": "scene",
       "id": "meta__meta_glossary",
@@ -4105,21 +4126,21 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/meta/meta_navigation.json",
-      "nodeType": "scene",
-      "id": "meta__meta_navigation",
-      "name": "Navigation",
-      "path": "content/scenes/meta/meta_navigation.json",
-      "searchTarget": "content/scenes/meta/meta_navigation.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/meta/meta_scene_taxonomy.json",
       "nodeType": "scene",
       "id": "meta__meta_scene_taxonomy",
       "name": "Scene Taxonomy",
       "path": "content/scenes/meta/meta_scene_taxonomy.json",
       "searchTarget": "content/scenes/meta/meta_scene_taxonomy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/meta/meta_textbook_file_structure.json",
+      "nodeType": "scene",
+      "id": "meta__meta_textbook_file_structure",
+      "name": "Textbook File Structure",
+      "path": "content/scenes/meta/meta_textbook_file_structure.json",
+      "searchTarget": "content/scenes/meta/meta_textbook_file_structure.json",
       "implicit": false
     },
     {
@@ -4942,30 +4963,30 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/about.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/about-the-webapp.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/about.md",
-      "name": "About",
-      "path": "content/markdown/aaa/archie/about.md",
-      "searchTarget": "content/markdown/aaa/archie/about.md",
+      "id": "content/markdown/aaa/archie/about-the-webapp.md",
+      "name": "About the Webapp",
+      "path": "content/markdown/aaa/archie/about-the-webapp.md",
+      "searchTarget": "content/markdown/aaa/archie/about-the-webapp.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/glossary.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/academic-style-guide.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/glossary.md",
-      "name": "Glossary",
-      "path": "content/markdown/aaa/archie/glossary.md",
-      "searchTarget": "content/markdown/aaa/archie/glossary.md",
+      "id": "content/markdown/aaa/archie/academic-style-guide.md",
+      "name": "Academic Style Guide",
+      "path": "content/markdown/aaa/archie/academic-style-guide.md",
+      "searchTarget": "content/markdown/aaa/archie/academic-style-guide.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/help.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/comparative-glossary.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/help.md",
-      "name": "Help",
-      "path": "content/markdown/aaa/archie/help.md",
-      "searchTarget": "content/markdown/aaa/archie/help.md",
+      "id": "content/markdown/aaa/archie/comparative-glossary.md",
+      "name": "Comparative Glossary",
+      "path": "content/markdown/aaa/archie/comparative-glossary.md",
+      "searchTarget": "content/markdown/aaa/archie/comparative-glossary.md",
       "implicit": false
     },
     {
@@ -4978,28 +4999,37 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/mathematics-style-guide.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/mathematics.md",
-      "name": "Mathematics",
-      "path": "content/markdown/aaa/archie/mathematics.md",
-      "searchTarget": "content/markdown/aaa/archie/mathematics.md",
+      "id": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "name": "Mathematical Style Guide (Canonical Dialect)",
+      "path": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "searchTarget": "content/markdown/aaa/archie/mathematics-style-guide.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/navigation.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/navigation.md",
-      "name": "Navigation",
-      "path": "content/markdown/aaa/archie/navigation.md",
-      "searchTarget": "content/markdown/aaa/archie/navigation.md",
+      "id": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "name": "Mathematical Terminology (Canonical Dialect)",
+      "path": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "searchTarget": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/navigation-and-controls.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "name": "Navigation & Controls",
+      "path": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "searchTarget": "content/markdown/aaa/archie/navigation-and-controls.md",
       "implicit": false
     },
     {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/scene-taxonomy.md",
-      "name": "Scene Taxonomy Specification",
+      "name": "Scene Taxonomy",
       "path": "content/markdown/aaa/archie/scene-taxonomy.md",
       "searchTarget": "content/markdown/aaa/archie/scene-taxonomy.md",
       "implicit": false
@@ -5008,7 +5038,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "name": "Architrino Theory: Master Table of Contents",
+      "name": "Textbook File Structure",
       "path": "content/markdown/aaa/archie/textbook-file-structure.md",
       "searchTarget": "content/markdown/aaa/archie/textbook-file-structure.md",
       "implicit": false
@@ -8978,6 +9008,13 @@
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_academic_style_guide.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
       "to": "scene:content/scenes/meta/meta_glossary.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
@@ -8988,7 +9025,7 @@
       "to": "scene:content/scenes/meta/meta_help.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
@@ -9002,28 +9039,28 @@
       "to": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
       "to": "scene:content/scenes/meta/meta_mathematical_terminology.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_navigation.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
       "to": "scene:content/scenes/meta/meta_scene_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_textbook_file_structure.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -10063,21 +10100,28 @@
     },
     {
       "from": "scene:content/scenes/meta/meta_about.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/about.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/about-the-webapp.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_about.json",
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/meta/meta_academic_style_guide.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/academic-style-guide.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta_academic_style_guide.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/meta/meta_glossary.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/glossary.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/comparative-glossary.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_glossary.json",
       "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/meta/meta_help.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/help.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/navigation-and-controls.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_help.json",
       "field": "scene.source.path"
@@ -10091,23 +10135,16 @@
     },
     {
       "from": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/mathematics-style-guide.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_mathematical_style_guide.json",
       "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/meta/meta_mathematical_terminology.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/mathematics.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_mathematical_terminology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_navigation.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/navigation.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_navigation.json",
       "field": "scene.source.path"
     },
     {
@@ -10115,6 +10152,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_scene_taxonomy.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta_textbook_file_structure.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta_textbook_file_structure.json",
       "field": "scene.source.path"
     },
     {

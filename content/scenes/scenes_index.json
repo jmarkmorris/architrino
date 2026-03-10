@@ -1046,11 +1046,6 @@
       "path": "content/scenes/meta/meta_mathematical_terminology.json"
     },
     {
-      "id": "meta__meta_navigation",
-      "name": "Navigation",
-      "path": "content/scenes/meta/meta_navigation.json"
-    },
-    {
       "id": "meta__meta_scene_taxonomy",
       "name": "Scene Taxonomy",
       "path": "content/scenes/meta/meta_scene_taxonomy.json"
@@ -1364,6 +1359,16 @@
       "id": "information_computation",
       "name": "Information / Computation",
       "path": "content/scenes/philosophy_history/information_computation.json"
+    },
+    {
+      "id": "meta__meta_academic_style_guide",
+      "name": "Academic Style Guide",
+      "path": "content/scenes/meta/meta_academic_style_guide.json"
+    },
+    {
+      "id": "meta__meta_textbook_file_structure",
+      "name": "Textbook File Structure",
+      "path": "content/scenes/meta/meta_textbook_file_structure.json"
     }
   ]
 }

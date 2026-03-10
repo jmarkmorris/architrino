@@ -1,11 +1,12 @@
 {
   "files": [
-    "content/markdown/aaa/archie/about.md",
-    "content/markdown/aaa/archie/glossary.md",
-    "content/markdown/aaa/archie/help.md",
+    "content/markdown/aaa/archie/about-the-webapp.md",
+    "content/markdown/aaa/archie/academic-style-guide.md",
+    "content/markdown/aaa/archie/comparative-glossary.md",
     "content/markdown/aaa/archie/licenses-attributions.md",
-    "content/markdown/aaa/archie/mathematics.md",
-    "content/markdown/aaa/archie/navigation.md",
+    "content/markdown/aaa/archie/mathematics-style-guide.md",
+    "content/markdown/aaa/archie/mathematics-terminology.md",
+    "content/markdown/aaa/archie/navigation-and-controls.md",
     "content/markdown/aaa/archie/scene-taxonomy.md",
     "content/markdown/aaa/archie/textbook-file-structure.md",
     "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",

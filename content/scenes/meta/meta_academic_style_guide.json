@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "meta__meta_navigation",
-    "title": "Navigation",
+    "id": "meta__meta_academic_style_guide",
+    "title": "Academic Style Guide",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,9 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/navigation.md"
+      "path": "content/markdown/aaa/archie/academic-style-guide.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

@@ -1,16 +1,25 @@
-Tons of work do do to build this out:
+  2. targeted label polish in theory-mapping and major-thinkers
+  3. publication-style prose smoothing on whichever chapter you care most about
 
-| File | Mode | Template Conformance % (leaf avg) | Basis |
-|---|---:|---:|---|
-| crisis-in-physics.md | split | 0% | 11 leaf sections vs 16 template items |
-| historical-context-and-missed-opportunities.md | split | 1% | 10 leaf sections vs 18 template items |
-| information-computation.md | split | 1% | 5 leaf sections vs 15 template items |
-| major-thinkers.md | tree | 26% | 53 leaf sections vs 23 template items |
-| philosophy-of-science.md | split | 1% | 12 leaf sections vs 15 template items |
-| religious-ontologies.md | tree | 23% | 15 leaf sections vs 18 template items |
-| theory-differentials.md | tree | 1% | 119 leaf sections vs 31 template items |
-| theory-mapping.md | tree | 44% | 37 leaf sections vs 16 template items |
-| unknowns-paradoxes.md | tree | 4% | 24 leaf sections vs 17 template items |
+---
+
+Status Table
+These are all now at 100%.
+Next step is to go through them all and add more info.
+extract what I have at wordpress.
+
+  | File | Mode | Estimated Template Conformance | Current Assessment |
+  |---|---:|---:|---|
+  | crisis-in-physics.md | split | 95% | Fully rewritten; strong textbook structure and explicit overview-template compliance. |
+  | historical-context-and-missed-opportunities.md | split | 95% | Fully rewritten; detailed and structurally consistent. |
+  | information-computation.md | split | 95% | Fully rewritten; stable six-part leaf pattern with good depth. |
+  | philosophy-of-science.md | split | 95% | Fully rewritten; strong conformance and clear academic register. |
+  | religious-ontologies.md | tree | 92% | Rewritten and hierarchy-corrected; overview now reads much more cleanly. |
+  | theory-differentials.md | tree | 88% | Structurally complete across the catalog; now framed and edited as an intentional reference chapter, though many entries remain catalog-style rather than bespoke essays.
+  |
+  | unknowns-paradoxes.md | tree | 86% | Leaf sections are now explicitly normalized around the issue template and much stronger than before. |
+  | major-thinkers.md | tree | 74% | Large and substantive; schema is now cleaner and more internally coherent, but it is still less uniformly templated than the fully rewritten split chapters. |
+  | theory-mapping.md | tree | 72% | Solid and usable; overview is improved, but many entries are still shorter and less normalized than the strongest chapters. |
 
 
 
@@ -78,53 +87,7 @@ Based on the current AAA scores in the scorecard, the next focus should be:
 
 ---
 
-- review docs, put docs on webapp, and look at the directory for more
-  - Not referenced by the webapp (based on scene markdown config + hardcoded markdown paths): check these.
-    - 421.md
-    - pdg-api.md
-    - design.md
-    - architrino-si-base-units.md
-    - AnalyticBaselines.md
-- docs to periodically review and ensure they are offered on the webapp.
-  - dynamics page (auto generated spheres)
-    - binary-dynamics.md (reviewed, linked)
-    - energy.md (reviewed 2/12, linked)
-    - master-equation.md (linked)
-    - reality-quantum-causality.md (linked)
-    - tri-binary-dynamics.md (linked)
-    - mapping-Planck-scale.md  (linked)
-  - weak-mixing-ckm.md (major work 2/15)
-  - cosmology
-  - unknowns-paradoxes.md
-  - quantum-number-mapping.md
-  - 421.md
-  - pdg-api.md
-  - assembly-atlas.md
-  - noether-core.md
-  - emergent-metric.md
-  - particle-masses.md
-  - electroweak-bosons.md
-  - gluons.md
-  - color-charge-su3.md
-  - CMB.md
-  - ontology.md
-  - bootstrapping-the-absolute-frame.md
-  - absolute-time-defense.md
-  - emergence.md
-  - euclidean-void.md
-  - composer.md
-  - design.md
-  - displacement-of-spacetime.md
-  - atomic-structure.md
-  - gauge-structure-emergence.md
-  - reaction-ledger.md
-  - out-of-the-ashes.md
-  - theory-mapping.md
-  - proper-time-and-time-dilation.md
-  - architrino-si-base-units.md
-  - AnalyticBaselines.md
-  - perspective.md
-  - what are all the docs in ./architrino-assembly-architecture/validation/simulations/action-energy
+- review docs - I need to spend some dedicated time to review the documents on the webapp. Ai is developing them fast, and the parts I read look good.  How shall I organize this task?
 
 ---
 
@@ -250,7 +213,7 @@ Work on event horizon, curvature, and singularity. chatgpt is saying the singula
 ---
 
 - double click pins vscode tab
-- link a markdown file [text](../../markdown/aaa/prototype/markdown/file). Add note to system prompts.
+- link a markdown file [textbook file structure](../../markdown/aaa/archie/textbook-file-structure.md). Add note to system prompts.
 - one H1 heading per md
 - branches are now alpha beta gamma delta omega in git
 - og entourage ids I should see in lmcouncil Jan 13ab/15ab/17a/24a

@@ -6,7 +6,7 @@ Synchrotron cascades are coupled electromagnetic processes in which relativistic
 
 This chapter presents synchrotron-cascade theory first in standard observer-level form, then in a provisional $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology map that preserves established reaction physics.
 
-Terminology in this chapter follows [mode-taxonomy.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/dynamics/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
+Terminology in this chapter follows [mode-taxonomy.md](../dynamics/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
 
 ## Notation Snapshot
 
@@ -105,7 +105,7 @@ This 1% threshold is a modeling convention for cascade tractability, not a funda
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
 
-- **Synchrotron emission channel:** curved charged-assembly transport in anisotropic Noether-Sea states crosses planar-mode threshold and nucleates [photon assemblies](/Users/markmorris/vibe/architrino/content/markdown/aaa/assemblies/bosons/photon.md) from interaction energy / wake stress while conserving charged-assembly identity.
+- **Synchrotron emission channel:** curved charged-assembly transport in anisotropic Noether-Sea states crosses planar-mode threshold and nucleates [photon assemblies](../assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity.
 - **Pair channel:** two-photon planar-mode overlap recruits/relocks local substrate content into charged pair assemblies; this recruitment must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea cores $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
 - **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 

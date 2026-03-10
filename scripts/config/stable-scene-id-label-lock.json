@@ -87,13 +87,13 @@
       "sceneId": "meta",
       "sceneName": "Archie",
       "objects": {
-        "meta_about": "About",
+        "meta_about": "About the Webapp",
         "meta_composer": "Composer",
-        "meta_glossary": "Glossary",
-        "meta_help": "Help",
+        "meta_glossary": "Comparative Glossary",
+        "meta_help": "Navigation & Controls",
         "meta_mathematical_style_guide": "Mathematical Style Guide",
-        "meta_mathematical_terminology": "Mathematical Terminology",
-        "meta_navigation": "Navigation"
+        "meta_mathematical_terminology": "Mathematical Terminology Reference",
+        "meta_textbook_file_structure": "Textbook File Structure"
       }
     },
     "content/scenes/nuclear/nuclear_atomic.json": {

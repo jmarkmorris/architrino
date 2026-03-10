@@ -17,14 +17,14 @@ The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.
 
-This layer needs a standard coverage template so that major thinkers are treated systematically rather than biographically or ad hoc.
+This layer needs a standard coverage template so that major thinkers and closely coupled program-level subjects are treated systematically rather than biographically or ad hoc.
 
-For each thinker, the document should eventually capture:
+For each subject, the document should capture:
 
-- **Thinker**: full name and dates.
+- **Subject:** full name and dates.
 - **Era / Context**: the scientific and philosophical setting in which the thinker was working.
 - **Primary Domain**: metaphysics, mechanics, epistemology, quantum foundations, cosmology, philosophy of science, or information / computation.
-- **Core Commitments**: the central ontological, methodological, or epistemic claims.
+- **Core Commitments**: the central ontological, methodological, or epistemic claims. In this chapter, that requirement is normally satisfied by the combined `Core Belief`, `Architrino Impact`, and `Legacy Shift` triad rather than by a separate repeated field.
 - **What Problem They Were Trying To Solve**: the pressure, paradox, or conceptual gap driving the work.
 - **What They Got Right**: durable insights that survive in some form.
 - **What They Got Wrong or Overstated**: the main limitation, mislocation, or excess.
@@ -40,10 +40,10 @@ The default prose structure for each thinker should be:
 
 Template conformance test protocol (apply to each thinker entry):
 
-1. **Thinker present**: full name + dates explicitly present.
+1. **Subject present**: full name + dates for a person, or an explicit program label where the conceptual unit is not a single individual.
 2. **Era / Context present**: historical period and problem environment explicitly stated.
 3. **Primary Domain present**: one or more domains explicitly labeled.
-4. **Core Commitments present**: at least three concrete commitments are stated.
+4. **Core Commitments present**: the combined `Core Belief`, `Architrino Impact`, and `Legacy Shift` triad makes at least three concrete commitments explicit.
 5. **Problem Pressure present**: one explicit "what pressure this was solving" statement.
 6. **What Holds present**: one or more durable claims retained.
 7. **What Fails or Overstates present**: one or more explicit failure or overreach claims.
@@ -84,17 +84,17 @@ If the framework works, the historical result is not that prior thinkers were si
 ## Classical & Early Modern Metaphysics + Mechanism
 
 ### **Heraclitus (c. 535–475 BCE)**
-**Thinker**: Heraclitus of Ephesus (c. 535–475 BCE), a pre-Socratic philosopher focused on change, opposition, and order in nature.
+**Subject:** Heraclitus of Ephesus (c. 535–475 BCE), a pre-Socratic philosopher focused on change, opposition, and order in nature.
 
 **Era / Context**: Heraclitus worked before formal mathematical physics, in a period where early Greek natural philosophy was competing with mythic explanation and searching for a unifying account of stability and change.
 
 **Primary Domain**: Metaphysics of change and philosophical ontology.
 
-**What Problem He Was Trying To Solve**: Heraclitus addressed the tension between apparent stability and pervasive transformation by arguing that persistence is structured process, not static substance.
+**What Problem They Were Trying To Solve:** Heraclitus addressed the tension between apparent stability and pervasive transformation by arguing that persistence is structured process, not static substance.
 
-**What He Got Right**: He correctly emphasized that lawful order can be expressed through dynamic opposition and that observable stability can emerge from continuously changing underlying processes.
+**What They Got Right:** He correctly emphasized that lawful order can be expressed through dynamic opposition and that observable stability can emerge from continuously changing underlying processes.
 
-**What He Got Wrong or Overstated**: He overstated flux as near-total ontological priority and did not provide a substrate model that preserves persistent entities while still explaining dynamical transformation.
+**What They Got Wrong or Overstated:** He overstated flux as near-total ontological priority and did not provide a substrate model that preserves persistent entities while still explaining dynamical transformation.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and reframed, because $\mathbb{A}\mathbb{A}\mathbb{A}$ retains dynamic pattern evolution while rejecting the claim that change itself is fundamental substance.
 
@@ -102,26 +102,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: He remains a durable philosophical ancestor for process sensitivity, but his framework is methodologically secondary once explicit substrate law and assembly dynamics are specified.
 
-**Core belief**: Reality is ordered flux in which strife and opposition generate harmony, so persistence is an equilibrium of tensions rather than a static given.
+**Core Belief**: Reality is ordered flux in which strife and opposition generate harmony, so persistence is an equilibrium of tensions rather than a static given.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Heraclitus's intuition that opposition and continual update matter, but relocates them to lawful interaction between eternal substrate entities, so becoming is derivative from persistent architrino ontology.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Heraclitus's intuition that opposition and continual update matter, but relocates them to lawful interaction between eternal substrate entities, so becoming is derivative from persistent architrino ontology.
 
-**Legacy shift**: Heraclitean becoming survives as the language of evolving patterns, while ontological primacy moves to stable substrate entities and their delayed causal path-history interactions.
+**Legacy Shift**: Heraclitean becoming survives as the language of evolving patterns, while ontological primacy moves to stable substrate entities and their delayed causal path-history interactions.
 
 ---
 
 ### **Democritus (c. 460–370 BCE) & Leucippus**
-**Thinker**: Leucippus and Democritus (5th century BCE), founders of classical atomism in Greek natural philosophy.
+**Subject:** Leucippus and Democritus (5th century BCE), founders of classical atomism in Greek natural philosophy.
 
 **Era / Context**: They developed atomism in a pre-experimental but highly analytical context where philosophers sought non-mythic explanations for change, multiplicity, and perceptual qualities.
 
 **Primary Domain**: Metaphysical atomism and proto-mechanistic natural philosophy.
 
-**What Problem He Was Trying To Solve**: Their core pressure was to explain how real change is possible without contradictions about being and non-being, while preserving intelligible persistence beneath appearances.
+**What Problem They Were Trying To Solve:** Their core pressure was to explain how real change is possible without contradictions about being and non-being, while preserving intelligible persistence beneath appearances.
 
-**What He Got Right**: They got the deepest directional insight right by positing indivisible constituents in a real void and treating experienced qualities as relational effects of microstructure rather than primitive essences.
+**What They Got Right:** They got the deepest directional insight right by positing indivisible constituents in a real void and treating experienced qualities as relational effects of microstructure rather than primitive essences.
 
-**What He Got Wrong or Overstated**: They lacked a mathematically explicit interaction law and assigned quasi-intrinsic atom features that, in $\mathbb{A}\mathbb{A}\mathbb{A}$, are replaced by emergent properties of point-like transmitter/receiver dynamics.
+**What They Got Wrong or Overstated:** They lacked a mathematically explicit interaction law and assigned quasi-intrinsic atom features that, in $\mathbb{A}\mathbb{A}\mathbb{A}$, are replaced by emergent properties of point-like transmitter/receiver dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated with refinement, because the atomist impulse is retained but rebuilt as a precise causal delayed substrate model.
 
@@ -129,26 +129,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as a historical and conceptual anchor for substrate realism, even though detailed atomist mechanisms are superseded by modern causal dynamics.
 
-**Core belief**: Reality consists of indivisible entities moving in void, and macroscopic qualities arise from their arrangement and motion rather than from irreducible surface appearances.
+**Core Belief**: Reality consists of indivisible entities moving in void, and macroscopic qualities arise from their arrangement and motion rather than from irreducible surface appearances.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ realizes this view in a more explicit way by identifying eternal point entities in Euclidean void and deriving effective qualities through lawful assembly behavior and path-history dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ realizes this view in a more explicit way by identifying eternal point entities in Euclidean void and deriving effective qualities through lawful assembly behavior and path-history dynamics.
 
-**Legacy shift**: Classical atomism is retained as the right ontological direction but upgraded from philosophical sketch to a mathematically disciplined substrate architecture.
+**Legacy Shift**: Classical atomism is retained as the right ontological direction but upgraded from philosophical sketch to a mathematically disciplined substrate architecture.
 
 ---
 
 ### **Plato (428–348 BCE)**
-**Thinker**: Plato (428–348 BCE), central figure in classical Greek philosophy and architect of Form-based metaphysics.
+**Subject:** Plato (428–348 BCE), central figure in classical Greek philosophy and architect of Form-based metaphysics.
 
 **Era / Context**: Plato developed his framework in a context where mathematics, logic, and political-philosophical concerns were being integrated into a broader account of reality, knowledge, and permanence.
 
 **Primary Domain**: Metaphysics, epistemology, and philosophy of mathematics.
 
-**What Problem He Was Trying To Solve**: Plato aimed to explain how stable truth, geometry, and intelligibility are possible despite sensory variability, corruption, and epistemic uncertainty.
+**What Problem They Were Trying To Solve:** Plato aimed to explain how stable truth, geometry, and intelligibility are possible despite sensory variability, corruption, and epistemic uncertainty.
 
-**What He Got Right**: He correctly recognized that durable structure and mathematical regularity require an account deeper than immediate appearance and that explanatory rigor depends on abstract discipline.
+**What They Got Right:** He correctly recognized that durable structure and mathematical regularity require an account deeper than immediate appearance and that explanatory rigor depends on abstract discipline.
 
-**What He Got Wrong or Overstated**: He overstated abstraction into ontology by treating Forms as an independent, higher reality rather than as formal descriptions of physically realized pattern classes.
+**What They Got Wrong or Overstated:** He overstated abstraction into ontology by treating Forms as an independent, higher reality rather than as formal descriptions of physically realized pattern classes.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Mostly contradicted with methodological salvage, because ontological Platonism is rejected while mathematical discipline as representation is retained.
 
@@ -156,26 +156,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term value is primarily methodological and conceptual-hygiene oriented, not ontological, because substrate realism replaces Form primacy.
 
-**Core belief**: Stable intelligible reality is grounded in timeless Forms, and the physical world is an imperfect participation in this higher abstract order.
+**Core Belief**: Stable intelligible reality is grounded in timeless Forms, and the physical world is an imperfect participation in this higher abstract order.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the demand for structural clarity but rejects a separate Form realm, treating recurring structures as emergent outcomes of material causal dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the demand for structural clarity but rejects a separate Form realm, treating recurring structures as emergent outcomes of material causal dynamics.
 
-**Legacy shift**: Platonism survives as formal discipline in modeling, while its ontological thesis is replaced by a single-layer physical substrate account.
+**Legacy Shift**: Platonism survives as formal discipline in modeling, while its ontological thesis is replaced by a single-layer physical substrate account.
 
 ---
 
 ### **Aristotle (384–322 BCE)**
-**Thinker**: Aristotle (384–322 BCE), systematic philosopher of causation, substance, and biological and physical explanation.
+**Subject:** Aristotle (384–322 BCE), systematic philosopher of causation, substance, and biological and physical explanation.
 
 **Era / Context**: Aristotle worked in the mature classical Greek period, developing a comprehensive explanatory system before experimental mechanics and modern mathematical physics.
 
 **Primary Domain**: Metaphysics, natural philosophy, causation theory, and ontology of form and matter.
 
-**What Problem He Was Trying To Solve**: He sought a unified account of change, persistence, purpose-like organization, and classification in nature without collapsing explanation into either pure flux or pure abstraction.
+**What Problem They Were Trying To Solve:** He sought a unified account of change, persistence, purpose-like organization, and classification in nature without collapsing explanation into either pure flux or pure abstraction.
 
-**What He Got Right**: Aristotle correctly emphasized layered explanation, relational organization, and the need to distinguish explanatory roles rather than using a single descriptive vocabulary for all phenomena.
+**What They Got Right:** Aristotle correctly emphasized layered explanation, relational organization, and the need to distinguish explanatory roles rather than using a single descriptive vocabulary for all phenomena.
 
-**What He Got Wrong or Overstated**: He overcommitted to teleology and hylomorphic primitives, which in $\mathbb{A}\mathbb{A}\mathbb{A}$ are replaced by non-teleological attractor dynamics and weakly emergent assembly structure.
+**What They Got Wrong or Overstated:** He overcommitted to teleology and hylomorphic primitives, which in $\mathbb{A}\mathbb{A}\mathbb{A}$ are replaced by non-teleological attractor dynamics and weakly emergent assembly structure.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and substantially reframed, with his classification discipline retained but final-cause ontology and anti-void commitments rejected.
 
@@ -183,26 +183,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as methodological scaffolding for multi-level explanation, but low for core ontological primitives.
 
-**Core belief**: Natural entities are composites of matter and form, and complete explanation requires material, formal, efficient, and final causes within an ordered world.
+**Core Belief**: Natural entities are composites of matter and form, and complete explanation requires material, formal, efficient, and final causes within an ordered world.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains efficient-cause rigor and layered explanatory structure, but discards final causes and form/matter dualism in favor of substrate entities and emergent organization.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains efficient-cause rigor and layered explanatory structure, but discards final causes and form/matter dualism in favor of substrate entities and emergent organization.
 
-**Legacy shift**: Aristotle's explanatory taxonomy survives in reduced form as methodological discipline, while his teleological ontology is replaced by mechanistic assembly dynamics.
+**Legacy Shift**: Aristotle's explanatory taxonomy survives in reduced form as methodological discipline, while his teleological ontology is replaced by mechanistic assembly dynamics.
 
 ---
 
 ### **Epicurus (341–270 BCE)**
-**Thinker**: Epicurus (341–270 BCE), Hellenistic atomist philosopher who combined physics, epistemology, and ethics into a materialist program.
+**Subject:** Epicurus (341–270 BCE), Hellenistic atomist philosopher who combined physics, epistemology, and ethics into a materialist program.
 
 **Era / Context**: Epicurus developed atomism in a post-classical setting marked by skepticism, anxiety about fate and divine intervention, and demand for a naturalized account of world-order and agency.
 
 **Primary Domain**: Materialist metaphysics, atomist natural philosophy, and ethical implications of cosmology.
 
-**What Problem He Was Trying To Solve**: He aimed to preserve a fully natural world free of teleological and theological control while still leaving conceptual room for contingency and practical agency.
+**What Problem They Were Trying To Solve:** He aimed to preserve a fully natural world free of teleological and theological control while still leaving conceptual room for contingency and practical agency.
 
-**What He Got Right**: He got the eternality and non-teleological character of substrate entities directionally right and correctly separated natural explanation from divine purpose narratives.
+**What They Got Right:** He got the eternality and non-teleological character of substrate entities directionally right and correctly separated natural explanation from divine purpose narratives.
 
-**What He Got Wrong or Overstated**: He introduced the clinamen as an underconstrained primitive to solve freedom pressure, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ localizes openness to deterministic multistability at specific causal branch regimes.
+**What They Got Wrong or Overstated:** He introduced the clinamen as an underconstrained primitive to solve freedom pressure, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ localizes openness to deterministic multistability at specific causal branch regimes.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with refinement, because materialist and anti-teleological commitments are retained while the freedom mechanism is rebuilt.
 
@@ -210,26 +210,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for naturalistic orientation and low for specific swerve mechanics, which are superseded by path-history branching dynamics.
 
-**Core belief**: The world is made of eternal atoms in void without divine governance, and the clinamen introduces deviations that prevent strict fatalism.
+**Core Belief**: The world is made of eternal atoms in void without divine governance, and the clinamen introduces deviations that prevent strict fatalism.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ endorses eternal substrate and anti-teleology but replaces the swerve with lawful, delayed, microstate-sensitive branching in self-hit regimes.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ endorses eternal substrate and anti-teleology but replaces the swerve with lawful, delayed, microstate-sensitive branching in self-hit regimes.
 
-**Legacy shift**: Epicurean materialism is preserved as orientation, while its ad hoc contingency mechanism is replaced by explicit deterministic multistability.
+**Legacy Shift**: Epicurean materialism is preserved as orientation, while its ad hoc contingency mechanism is replaced by explicit deterministic multistability.
 
 ---
 
 ### **René Descartes (1596–1650)**
-**Thinker**: René Descartes (1596–1650), early modern founder of mechanical philosophy and analytic method with a dualist metaphysical system.
+**Subject:** René Descartes (1596–1650), early modern founder of mechanical philosophy and analytic method with a dualist metaphysical system.
 
 **Era / Context**: Descartes wrote during the early Scientific Revolution, when inherited scholastic frameworks were collapsing and mechanical explanation was emerging as the dominant research program.
 
 **Primary Domain**: Mechanics, metaphysics of substance, and epistemic method.
 
-**What Problem He Was Trying To Solve**: He sought to secure certainty in knowledge while providing a mechanistic account of nature that could replace teleological scholastic explanations.
+**What Problem They Were Trying To Solve:** He sought to secure certainty in knowledge while providing a mechanistic account of nature that could replace teleological scholastic explanations.
 
-**What He Got Right**: Descartes correctly pushed physics toward mechanistic generative explanation, mathematical formulation, and rejection of irreducible teleological causation in basic natural dynamics.
+**What They Got Right:** Descartes correctly pushed physics toward mechanistic generative explanation, mathematical formulation, and rejection of irreducible teleological causation in basic natural dynamics.
 
-**What He Got Wrong or Overstated**: He overstated substance dualism and identified matter with extension as primitive, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ treats extension as emergent from point-like substrate network dynamics.
+**What They Got Wrong or Overstated:** He overstated substance dualism and identified matter with extension as primitive, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ treats extension as emergent from point-like substrate network dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and reframed, with mechanism retained and dualism rejected.
 
@@ -237,26 +237,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate for methodological mechanism and low for dualist ontology.
 
-**Core belief**: Nature is mechanistic and intelligible by analysis, but mind and matter are fundamentally distinct substances and matter is essentially extension.
+**Core Belief**: Nature is mechanistic and intelligible by analysis, but mind and matter are fundamentally distinct substances and matter is essentially extension.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves mechanistic realism and lawful structure while replacing dualism with monist physical ontology and replacing extension-primitive metaphysics with emergent assembly geometry.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves mechanistic realism and lawful structure while replacing dualism with monist physical ontology and replacing extension-primitive metaphysics with emergent assembly geometry.
 
-**Legacy shift**: Cartesian mechanism survives as method, while Cartesian substance dualism and extension primacy are removed from foundational ontology.
+**Legacy Shift**: Cartesian mechanism survives as method, while Cartesian substance dualism and extension primacy are removed from foundational ontology.
 
 ---
 
 ### **Baruch Spinoza (1632–1677)**
-**Thinker**: Baruch Spinoza (1632–1677), rationalist monist philosopher who modeled metaphysics on geometric demonstration and strict necessity.
+**Subject:** Baruch Spinoza (1632–1677), rationalist monist philosopher who modeled metaphysics on geometric demonstration and strict necessity.
 
 **Era / Context**: Spinoza worked in the high rationalist phase of early modern philosophy, in sustained dialogue with Cartesian mechanism, theological doctrine, and debates over freedom and determinism.
 
 **Primary Domain**: Metaphysics, ontology of substance, and necessity-based philosophy of nature.
 
-**What Problem He Was Trying To Solve**: Spinoza sought a unified non-teleological account of reality that removed anthropocentric purpose and replaced fragmented metaphysics with one coherent lawful totality.
+**What Problem They Were Trying To Solve:** Spinoza sought a unified non-teleological account of reality that removed anthropocentric purpose and replaced fragmented metaphysics with one coherent lawful totality.
 
-**What He Got Right**: He correctly foregrounded ontological unification, anti-teleology, and lawlike necessity, all of which align strongly with substrate monism and causal discipline in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+**What They Got Right:** He correctly foregrounded ontological unification, anti-teleology, and lawlike necessity, all of which align strongly with substrate monism and causal discipline in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-**What He Got Wrong or Overstated**: He retained a broader attribute scheme that, in $\mathbb{A}\mathbb{A}\mathbb{A}$, is reduced to physical substrate dynamics with mind treated as emergent assembly-level organization.
+**What They Got Wrong or Overstated:** He retained a broader attribute scheme that, in $\mathbb{A}\mathbb{A}\mathbb{A}$, is reduced to physical substrate dynamics with mind treated as emergent assembly-level organization.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated with physicalization, because monist and anti-teleological structure is retained while abstract attribute ontology is reduced.
 
@@ -264,26 +264,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as a philosophical ancestor of unified lawful realism, though the formal rationalist framing is subordinated to empirical model governance.
 
-**Core belief**: Reality is one necessary substance expressed through lawful structure, with teleology and contingency treated as human projection rather than fundamental ontology.
+**Core Belief**: Reality is one necessary substance expressed through lawful structure, with teleology and contingency treated as human projection rather than fundamental ontology.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ operationalizes Spinoza-like monism by identifying one physical substrate and deriving plurality, effective fields, and observer-level phenomena from its dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ operationalizes Spinoza-like monism by identifying one physical substrate and deriving plurality, effective fields, and observer-level phenomena from its dynamics.
 
-**Legacy shift**: Spinoza's metaphysical unity is retained but empirically grounded, yielding a physical monism with explicit causal delayed path-history law.
+**Legacy Shift**: Spinoza's metaphysical unity is retained but empirically grounded, yielding a physical monism with explicit causal delayed path-history law.
 
 ---
 
 ### **Isaac Newton (1643–1727)**
-**Thinker**: Isaac Newton (1643–1727), architect of classical mechanics and universal gravitation in early modern mathematical physics.
+**Subject:** Isaac Newton (1643–1727), architect of classical mechanics and universal gravitation in early modern mathematical physics.
 
 **Era / Context**: Newton worked in the Scientific Revolution after Kepler and Galileo, when the central pressure was to unify celestial and terrestrial motion under one quantitative framework with reproducible predictive control.
 
 **Primary Domain**: Mechanics and mathematical natural philosophy focused on motion, force laws, and gravitational regularities.
 
-**What Problem He Was Trying To Solve**: Newton addressed the need for a single causal law architecture that could explain orbital dynamics, falling bodies, tides, and inertial behavior without domain fragmentation.
+**What Problem They Were Trying To Solve:** Newton addressed the need for a single causal law architecture that could explain orbital dynamics, falling bodies, tides, and inertial behavior without domain fragmentation.
 
-**What He Got Right**: Newton correctly established law-governed dynamics, rigorous mathematization, and powerful limiting-case modeling, and he set durable standards for separating kinematic description from dynamical law statements.
+**What They Got Right:** Newton correctly established law-governed dynamics, rigorous mathematization, and powerful limiting-case modeling, and he set durable standards for separating kinematic description from dynamical law statements.
 
-**What He Got Wrong or Overstated**: Newton left gravitational mechanism underdetermined and effectively treated action-at-a-distance force law as primitive, which $\mathbb{A}\mathbb{A}\mathbb{A}$ treats as an effective closure over deeper delayed medium dynamics.
+**What They Got Wrong or Overstated:** Newton left gravitational mechanism underdetermined and effectively treated action-at-a-distance force law as primitive, which $\mathbb{A}\mathbb{A}\mathbb{A}$ treats as an effective closure over deeper delayed medium dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and reframed, because absolute-time coordinate realism and law discipline are retained while gravitational primitives are replaced.
 
@@ -291,26 +291,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance remains high methodologically and moderate ontologically, with Newtonian equations preserved as effective limits but force-at-distance ontology retired.
 
-**Core belief**: Space and time form an absolute stage, particles and forces are fundamental descriptors, and gravity acts universally through an inverse-square relation.
+**Core Belief**: Space and time form an absolute stage, particles and forces are fundamental descriptors, and gravity acts universally through an inverse-square relation.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Newton's law discipline and effective limits while reinterpreting gravitational behavior as emergent from finite-speed interactions in an assembly medium tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Newton's law discipline and effective limits while reinterpreting gravitational behavior as emergent from finite-speed interactions in an assembly medium tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 
-**Legacy shift**: Newton's role shifts from final ontology to enduring effective framework, where predictive structure survives but mechanistic foundation is relocated to substrate dynamics.
+**Legacy Shift**: Newton's role shifts from final ontology to enduring effective framework, where predictive structure survives but mechanistic foundation is relocated to substrate dynamics.
 
 ---
 
 ### **Gottfried Wilhelm Leibniz (1646–1716)**
-**Thinker**: Gottfried Wilhelm Leibniz (1646–1716), rationalist philosopher and mathematician who developed relational space-time and monad-based metaphysics.
+**Subject:** Gottfried Wilhelm Leibniz (1646–1716), rationalist philosopher and mathematician who developed relational space-time and monad-based metaphysics.
 
 **Era / Context**: Leibniz wrote in the late 17th and early 18th centuries amid disputes with Newtonian absolutism, trying to reconcile metaphysical coherence, theological constraints, and the success of emerging mathematical physics.
 
 **Primary Domain**: Metaphysics, philosophy of space and time, and foundational ontology.
 
-**What Problem He Was Trying To Solve**: Leibniz attempted to explain order, identity, and causation without invoking absolute containers, using a relational account that avoids brute spatial and temporal primitives.
+**What Problem They Were Trying To Solve:** Leibniz attempted to explain order, identity, and causation without invoking absolute containers, using a relational account that avoids brute spatial and temporal primitives.
 
-**What He Got Right**: He correctly emphasized relational structure and the importance of configuration-level description, which maps well onto effective-level geometry and assembly relations in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+**What They Got Right:** He correctly emphasized relational structure and the importance of configuration-level description, which maps well onto effective-level geometry and assembly relations in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-**What He Got Wrong or Overstated**: He overstated idealist and non-interaction premises through monads and denied absolute coordinate realism, both of which conflict with a physical substrate of interacting entities in fixed Euclidean void.
+**What They Got Wrong or Overstated:** He overstated idealist and non-interaction premises through monads and denied absolute coordinate realism, both of which conflict with a physical substrate of interacting entities in fixed Euclidean void.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and reframed, because relational description is retained at effective layers while monad ontology and anti-absolute commitments are rejected.
 
@@ -318,26 +318,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate: high for relational analytic tools, low for monad metaphysics and anti-interaction ontology.
 
-**Core belief**: Reality is constituted by monads and relational order rather than absolute spatial-temporal background, with apparent causation coordinated without direct interaction.
+**Core Belief**: Reality is constituted by monads and relational order rather than absolute spatial-temporal background, with apparent causation coordinated without direct interaction.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational structure as an emergent descriptive layer but rejects monads, rejects idealism, and restores explicit interacting substrate entities in a physically real Euclidean frame tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational structure as an emergent descriptive layer but rejects monads, rejects idealism, and restores explicit interacting substrate entities in a physically real Euclidean frame tracked by the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 
-**Legacy shift**: Leibniz survives as a guide for effective relational modeling, while fundamental ontology shifts to interacting substrate realism with absolute coordinate structure.
+**Legacy Shift**: Leibniz survives as a guide for effective relational modeling, while fundamental ontology shifts to interacting substrate realism with absolute coordinate structure.
 
 ---
 
 ### **David Hume (1711–1776)**
-**Thinker**: David Hume (1711–1776), empiricist philosopher who analyzed causation, induction, and limits of rational justification.
+**Subject:** David Hume (1711–1776), empiricist philosopher who analyzed causation, induction, and limits of rational justification.
 
 **Era / Context**: Hume worked in the Enlightenment, after major advances in mechanics but before modern field theory, where skepticism about metaphysical necessity became a central epistemic pressure.
 
 **Primary Domain**: Epistemology and philosophy of causation.
 
-**What Problem He Was Trying To Solve**: Hume sought to explain how humans form causal beliefs and general laws from finite observations without illegitimately smuggling in metaphysical guarantees.
+**What Problem They Were Trying To Solve:** Hume sought to explain how humans form causal beliefs and general laws from finite observations without illegitimately smuggling in metaphysical guarantees.
 
-**What He Got Right**: He correctly enforced inference discipline by distinguishing observed regularity from ontological commitment and by exposing overconfident claims that outrun empirical support.
+**What They Got Right:** He correctly enforced inference discipline by distinguishing observed regularity from ontological commitment and by exposing overconfident claims that outrun empirical support.
 
-**What He Got Wrong or Overstated**: He overstated skepticism by collapsing causal necessity into habit, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ treats causal law as physically real at substrate level, even if access to full microstate remains limited.
+**What They Got Wrong or Overstated:** He overstated skepticism by collapsing causal necessity into habit, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ treats causal law as physically real at substrate level, even if access to full microstate remains limited.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and corrected, because empiricist method is retained while anti-necessity ontology is rejected.
 
@@ -345,26 +345,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for epistemic hygiene and moderate for ontology, since causal skepticism is replaced by explicit substrate law.
 
-**Core belief**: Knowledge arises from experience, and causation as necessary connection is not directly observed but inferred from repeated conjunction and habit.
+**Core Belief**: Knowledge arises from experience, and causation as necessary connection is not directly observed but inferred from repeated conjunction and habit.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Hume's demand for evidential discipline but rejects his anti-necessity conclusion by specifying physically necessary delayed interaction laws that govern path-history evolution.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts Hume's demand for evidential discipline but rejects his anti-necessity conclusion by specifying physically necessary delayed interaction laws that govern path-history evolution.
 
-**Legacy shift**: Hume remains foundational for inference governance, while the ontological status of causation is rebuilt as explicit law rather than psychological projection.
+**Legacy Shift**: Hume remains foundational for inference governance, while the ontological status of causation is rebuilt as explicit law rather than psychological projection.
 
 ---
 
 ### **Immanuel Kant (1724–1804)**
-**Thinker**: Immanuel Kant (1724–1804), critical philosopher who grounded objectivity in transcendental conditions of possible experience.
+**Subject:** Immanuel Kant (1724–1804), critical philosopher who grounded objectivity in transcendental conditions of possible experience.
 
 **Era / Context**: Kant wrote after Newton and Hume, in a context where robust scientific success coexisted with deep skepticism about metaphysical justification.
 
 **Primary Domain**: Epistemology, metaphysics, and transcendental philosophy.
 
-**What Problem He Was Trying To Solve**: Kant aimed to secure universal scientific knowledge while answering Humean skepticism by locating necessity in the structure of cognition rather than in things-in-themselves.
+**What Problem They Were Trying To Solve:** Kant aimed to secure universal scientific knowledge while answering Humean skepticism by locating necessity in the structure of cognition rather than in things-in-themselves.
 
-**What He Got Right**: He correctly emphasized observer-structure, representation constraints, and the fact that measurement pipelines are not raw access to unprocessed ontology.
+**What They Got Right:** He correctly emphasized observer-structure, representation constraints, and the fact that measurement pipelines are not raw access to unprocessed ontology.
 
-**What He Got Wrong or Overstated**: He overstated mind-constitutive claims by treating space, time, and categories as preconditions of reality as known, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ posits these as discoverable features of an observer-independent substrate.
+**What They Got Wrong or Overstated:** He overstated mind-constitutive claims by treating space, time, and categories as preconditions of reality as known, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ posits these as discoverable features of an observer-independent substrate.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Largely contradicted with partial methodological retention, because transcendental idealism is rejected while observer-mediation insights are retained at the inferential layer.
 
@@ -372,26 +372,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate for epistemic boundary analysis and low for foundational ontology once direct substrate realism is established.
 
-**Core belief**: Space and time are forms of intuition, causal categories are conditions for experience, and noumenal reality remains inaccessible to direct knowledge.
+**Core Belief**: Space and time are forms of intuition, causal categories are conditions for experience, and noumenal reality remains inaccessible to direct knowledge.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects this ceiling by modeling a physically real Euclidean-time substrate and treating $\mathbb{U}_{\text{now}}$ as an ontological construct, not a cognitive imposition, while still acknowledging observer-level mediation in practical inquiry.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects this ceiling by modeling a physically real Euclidean-time substrate and treating $\mathbb{U}_{\text{now}}$ as an ontological construct, not a cognitive imposition, while still acknowledging observer-level mediation in practical inquiry.
 
-**Legacy shift**: Kant's role shifts from ontological authority to epistemic caution, preserving representational humility but not transcendental idealism.
+**Legacy Shift**: Kant's role shifts from ontological authority to epistemic caution, preserving representational humility but not transcendental idealism.
 
 ---
 
 ### **Pierre-Simon Laplace (1749–1827)**
-**Thinker**: Pierre-Simon Laplace (1749–1827), mathematical physicist and probabilist who articulated the canonical deterministic ideal.
+**Subject:** Pierre-Simon Laplace (1749–1827), mathematical physicist and probabilist who articulated the canonical deterministic ideal.
 
 **Era / Context**: Laplace worked during the mature classical mechanics era, extending Newtonian formalism and treating probabilistic tools as epistemic instruments over deterministic dynamics.
 
 **Primary Domain**: Celestial mechanics, determinism, and mathematical physics.
 
-**What Problem He Was Trying To Solve**: He sought a complete predictive architecture where uncertainty reflects incomplete knowledge rather than objective indeterminacy.
+**What Problem They Were Trying To Solve:** He sought a complete predictive architecture where uncertainty reflects incomplete knowledge rather than objective indeterminacy.
 
-**What He Got Right**: He correctly insisted on law-based evolution, state-specification discipline, and the separation between ontic dynamics and epistemic limitation in predictive practice.
+**What They Got Right:** He correctly insisted on law-based evolution, state-specification discipline, and the separation between ontic dynamics and epistemic limitation in predictive practice.
 
-**What He Got Wrong or Overstated**: He overstated global single-future predictability by not modeling deterministic multistability regimes where microstate-sensitive branch selection limits practical and structural forecast closure.
+**What They Got Wrong or Overstated:** He overstated global single-future predictability by not modeling deterministic multistability regimes where microstate-sensitive branch selection limits practical and structural forecast closure.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Qualified vindication and refinement, because deterministic law is retained while prediction is bounded at self-hit branch structures.
 
@@ -399,28 +399,28 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for deterministic governance and moderate for absolute predictability claims, which are replaced by lawful multistable branching.
 
-**Core belief**: A complete microstate plus exact laws determines past and future, with uncertainty treated as epistemic rather than fundamental.
+**Core Belief**: A complete microstate plus exact laws determines past and future, with uncertainty treated as epistemic rather than fundamental.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Laplacean lawfulness and the $\mathbb{U}_{\text{now}}$ ideal of complete state description, but introduces explicit deterministic multistability at self-hit branch points as a structural limit to single-path predictability.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Laplacean lawfulness and the $\mathbb{U}_{\text{now}}$ ideal of complete state description, but introduces explicit deterministic multistability at self-hit branch points as a structural limit to single-path predictability.
 
-**Legacy shift**: Laplace's demon becomes a constrained ideal observer in a lawful but branch-capable substrate rather than an unlimited predictor of a unique future.
+**Legacy Shift**: Laplace's demon becomes a constrained ideal observer in a lawful but branch-capable substrate rather than an unlimited predictor of a unique future.
 
 ---
 
 ## Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
 ### **Ernst Mach (1838–1916)**
-**Thinker**: Ernst Mach (1838–1916), physicist-philosopher associated with relational inertia ideas and strong empiricist methodological constraints.
+**Subject:** Ernst Mach (1838–1916), physicist-philosopher associated with relational inertia ideas and strong empiricist methodological constraints.
 
 **Era / Context**: Mach worked in late 19th-century physics when mechanics, electromagnetism, and atom debates were converging, and positivist pressures against unobservable ontology were strong.
 
 **Primary Domain**: Philosophy of physics, mechanics foundations, and scientific methodology.
 
-**What Problem He Was Trying To Solve**: Mach sought to purge speculative metaphysics from physics by grounding explanation in observables and relational structure rather than absolute background primitives.
+**What Problem They Were Trying To Solve:** Mach sought to purge speculative metaphysics from physics by grounding explanation in observables and relational structure rather than absolute background primitives.
 
-**What He Got Right**: He correctly emphasized relational dependence, economy of theoretical structure, and the danger of reifying convenient formal elements without clear inferential warrant.
+**What They Got Right:** He correctly emphasized relational dependence, economy of theoretical structure, and the danger of reifying convenient formal elements without clear inferential warrant.
 
-**What He Got Wrong or Overstated**: He overstated anti-realism by downgrading microscopic ontology and rejecting absolute structure too strongly, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps ontological realism and absolute-time frame while preserving relational effective layers.
+**What They Got Wrong or Overstated:** He overstated anti-realism by downgrading microscopic ontology and rejecting absolute structure too strongly, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps ontological realism and absolute-time frame while preserving relational effective layers.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated with strong correction, because methodological economy and relational sensitivity survive while positivist anti-ontology is rejected.
 
@@ -428,26 +428,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as methodological hygiene and low as a foundational ontology model.
 
-**Core belief**: Physics should prioritize observable relations and conceptual economy, with inertia and structure interpreted relationally rather than via absolute background entities.
+**Core Belief**: Physics should prioritize observable relations and conceptual economy, with inertia and structure interpreted relationally rather than via absolute background entities.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Mach-like economy and relational effective interpretation but restores real substrate entities and absolute-time coordinate realism, treating inertia-like effects as emergent from assembly distribution dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Mach-like economy and relational effective interpretation but restores real substrate entities and absolute-time coordinate realism, treating inertia-like effects as emergent from assembly distribution dynamics.
 
-**Legacy shift**: Mach remains a methodological critic of over-inference, while his anti-realist and anti-absolute ontological claims are superseded by explicit substrate realism.
+**Legacy Shift**: Mach remains a methodological critic of over-inference, while his anti-realist and anti-absolute ontological claims are superseded by explicit substrate realism.
 
 ---
 
 ### **Hendrik Lorentz (1853–1928)**
-**Thinker**: Hendrik Antoon Lorentz (1853–1928), theoretical physicist whose electron theory and ether dynamics produced Lorentz transformations.
+**Subject:** Hendrik Antoon Lorentz (1853–1928), theoretical physicist whose electron theory and ether dynamics produced Lorentz transformations.
 
 **Era / Context**: Lorentz worked at the turn of the 20th century under pressure from electrodynamics and null ether-drift results, before Einstein's kinematic reinterpretation became dominant.
 
 **Primary Domain**: Electrodynamics, relativity foundations, and medium-based kinematics.
 
-**What Problem He Was Trying To Solve**: Lorentz aimed to explain invariant electromagnetic observations while preserving a dynamical medium and preferred frame ontology.
+**What Problem They Were Trying To Solve:** Lorentz aimed to explain invariant electromagnetic observations while preserving a dynamical medium and preferred frame ontology.
 
-**What He Got Right**: He correctly anticipated that contraction/dilation structure could be dynamical outcomes tied to underlying medium interactions rather than purely coordinate postulates.
+**What They Got Right:** He correctly anticipated that contraction/dilation structure could be dynamical outcomes tied to underlying medium interactions rather than purely coordinate postulates.
 
-**What He Got Wrong or Overstated**: Classical ether microphysics remained underspecified and unable to provide a complete reduction pathway across all domains without deeper substrate dynamics.
+**What They Got Wrong or Overstated:** Classical ether microphysics remained underspecified and unable to provide a complete reduction pathway across all domains without deeper substrate dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated and upgraded, because preferred-frame medium realism is retained and rebuilt with explicit architrino assembly ontology.
 
@@ -455,26 +455,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as the closest historical precursor to an emergent-Lorentz substrate account, though original ether details are replaced.
 
-**Core belief**: Electromagnetic phenomena are governed by a medium-relative dynamics in which observed Lorentz symmetry can emerge despite a preferred rest structure.
+**Core Belief**: Electromagnetic phenomena are governed by a medium-relative dynamics in which observed Lorentz symmetry can emerge despite a preferred rest structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the medium as spacetime assembly network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the medium as spacetime assembly network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
 
-**Legacy shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
+**Legacy Shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
 
 ---
 
 ### **Relativity**
-**Thinker**: Einsteinian relativity program (Special Relativity and General Relativity), treated here as a unified concept-level entry rather than a single-person biography.
+**Subject:** Einsteinian relativity program (Special Relativity and General Relativity), treated here as a unified concept-level entry rather than a single-person biography.
 
 **Era / Context**: Relativity developed in the early 20th century to resolve electrodynamic and gravitational tensions in classical physics while preserving high-precision empirical closure.
 
 **Primary Domain**: Spacetime ontology, relativistic kinematics, gravitation, and geometric field theory.
 
-**What Problem He Was Trying To Solve**: The program aimed to reconcile invariant light-speed structure, inertial-frame dynamics, and gravity into a coherent framework that improved over Newtonian mechanics.
+**What Problem They Were Trying To Solve:** The program aimed to reconcile invariant light-speed structure, inertial-frame dynamics, and gravity into a coherent framework that improved over Newtonian mechanics.
 
-**What He Got Right**: Relativity correctly delivered extraordinary empirical performance, including time dilation, light bending, gravitational redshift, wave phenomena, and broad dynamical consistency across tested regimes.
+**What They Got Right:** Relativity correctly delivered extraordinary empirical performance, including time dilation, light bending, gravitational redshift, wave phenomena, and broad dynamical consistency across tested regimes.
 
-**What He Got Wrong or Overstated**: In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, relativity overstates geometric primitives as fundamental ontology; Lorentz structure and spacetime curvature are treated as emergent effective closures over deeper substrate dynamics.
+**What They Got Wrong or Overstated:** In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, relativity overstates geometric primitives as fundamental ontology; Lorentz structure and spacetime curvature are treated as emergent effective closures over deeper substrate dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained at effective-law level and substantially reinterpreted at ontology level.
 
@@ -482,26 +482,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as effective field architecture and moderate as final ontology, with geometric formalism preserved but substrate status relocated.
 
-**Core belief**: Special relativity treats Lorentz symmetry and relativity of simultaneity as foundational kinematics, while general relativity treats gravity as dynamical spacetime curvature with coordinate-gauge structure.
+**Core Belief**: Special relativity treats Lorentz symmetry and relativity of simultaneity as foundational kinematics, while general relativity treats gravity as dynamical spacetime curvature with coordinate-gauge structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from medium dynamics and GR curvature as effective assembly-network behavior on Euclidean space with absolute time, where $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from medium dynamics and GR curvature as effective assembly-network behavior on Euclidean space with absolute time, where $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
 
-**Legacy shift**: Relativity remains indispensable as a high-accuracy effective theory stack, while its primitive geometric ontology is replaced by substrate-first mechanistic emergence.
+**Legacy Shift**: Relativity remains indispensable as a high-accuracy effective theory stack, while its primitive geometric ontology is replaced by substrate-first mechanistic emergence.
 
 ---
 
 ### **Andrei Sakharov (1921–1989) — Induced Gravity**
-**Thinker**: Andrei Sakharov (1921–1989), physicist who proposed induced gravity as an emergent rather than primitive sector.
+**Subject:** Andrei Sakharov (1921–1989), physicist who proposed induced gravity as an emergent rather than primitive sector.
 
 **Era / Context**: Sakharov wrote in the late 20th century when GR was empirically strong but quantum gravity closure remained unsettled, creating pressure for medium-like or induced interpretations.
 
 **Primary Domain**: Gravity foundations and emergent-theory architecture.
 
-**What Problem He Was Trying To Solve**: He aimed to explain why Einstein-like gravity appears universal without assuming geometry is fundamentally dynamical at the deepest level.
+**What Problem They Were Trying To Solve:** He aimed to explain why Einstein-like gravity appears universal without assuming geometry is fundamentally dynamical at the deepest level.
 
-**What He Got Right**: He correctly identified that gravitational field equations can plausibly arise as effective collective behavior rather than as substrate primitives.
+**What They Got Right:** He correctly identified that gravitational field equations can plausibly arise as effective collective behavior rather than as substrate primitives.
 
-**What He Got Wrong or Overstated**: His original framework did not fully specify a concrete substrate entity and interaction law capable of deriving the full cross-domain map.
+**What They Got Wrong or Overstated:** His original framework did not fully specify a concrete substrate entity and interaction law capable of deriving the full cross-domain map.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated and concretized, because emergent gravity is retained and grounded in explicit architrino assembly dynamics.
 
@@ -509,26 +509,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as a conceptual ancestor of induced gravity, with details superseded by explicit substrate mechanics.
 
-**Core belief**: Gravity is not fundamental but induced from deeper microphysical degrees of freedom, so Einstein structure can emerge from lower-level dynamics.
+**Core Belief**: Gravity is not fundamental but induced from deeper microphysical degrees of freedom, so Einstein structure can emerge from lower-level dynamics.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this orientation by treating gravity as effective hydrodynamics of spacetime assembly-network behavior over a causal delayed substrate.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this orientation by treating gravity as effective hydrodynamics of spacetime assembly-network behavior over a causal delayed substrate.
 
-**Legacy shift**: Sakharov's idea moves from suggestive proposal to operational reduction target with explicit microphysical realization.
+**Legacy Shift**: Sakharov's idea moves from suggestive proposal to operational reduction target with explicit microphysical realization.
 
 ---
 
 ### **Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory**
-**Thinker**: Roger Penrose (1931–), mathematical physicist known for geometric realism, twistor programs, and conformal-cyclic cosmology.
+**Subject:** Roger Penrose (1931–), mathematical physicist known for geometric realism, twistor programs, and conformal-cyclic cosmology.
 
 **Era / Context**: Penrose's work spans late 20th to 21st century foundational debates where GR, quantum theory, and cosmology lacked a single accepted substrate closure.
 
 **Primary Domain**: Mathematical relativity, quantum-gravity-adjacent foundations, and cosmology.
 
-**What Problem He Was Trying To Solve**: He sought deep geometric structures capable of unifying global cosmological behavior and microphysical coherence without surrendering physical realism.
+**What Problem They Were Trying To Solve:** He sought deep geometric structures capable of unifying global cosmological behavior and microphysical coherence without surrendering physical realism.
 
-**What He Got Right**: Penrose correctly treated geometry as physically meaningful and pushed for structural rigor beyond instrumental fitting.
+**What They Got Right:** Penrose correctly treated geometry as physically meaningful and pushed for structural rigor beyond instrumental fitting.
 
-**What He Got Wrong or Overstated**: He likely overstated specific geometric primitives (twistor-level ontology, CCC boundary structure) as fundamental rather than as potentially high-value representational layers.
+**What They Got Wrong or Overstated:** He likely overstated specific geometric primitives (twistor-level ontology, CCC boundary structure) as fundamental rather than as potentially high-value representational layers.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially aligned and reinterpreted, with realism retained but geometric primitives relocated to effective description.
 
@@ -536,26 +536,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate to high as mathematical toolkit and conceptual stress-test, but not as final ontology.
 
-**Core belief**: Deep geometric structures such as conformal-cyclic behavior and twistor formulations may encode fundamental organization of physical reality.
+**Core Belief**: Deep geometric structures such as conformal-cyclic behavior and twistor formulations may encode fundamental organization of physical reality.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains Penrosean realism and formal rigor while treating CCC/twistors as possible effective mappings over architrino-driven assembly dynamics rather than substrate primitives.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains Penrosean realism and formal rigor while treating CCC/twistors as possible effective mappings over architrino-driven assembly dynamics rather than substrate primitives.
 
-**Legacy shift**: Penrose remains a high-value geometric interlocutor whose specific ontological bets are recast as advanced representation schemes.
+**Legacy Shift**: Penrose remains a high-value geometric interlocutor whose specific ontological bets are recast as advanced representation schemes.
 
 ---
 
 ### **Alan Guth (1947–) — Cosmic Inflation**
-**Thinker**: Alan Guth (1947–), theoretical physicist who formalized inflationary early-universe expansion.
+**Subject:** Alan Guth (1947–), theoretical physicist who formalized inflationary early-universe expansion.
 
 **Era / Context**: Guth's inflation work emerged in late 20th-century cosmology to repair horizon, flatness, and relic problems that standard hot Big Bang formulations handled poorly.
 
 **Primary Domain**: Early-universe cosmology and dynamical model-building.
 
-**What Problem He Was Trying To Solve**: He aimed to explain large-scale smoothness, near-flat geometry, and perturbation seeding without fine-tuned initial conditions.
+**What Problem They Were Trying To Solve:** He aimed to explain large-scale smoothness, near-flat geometry, and perturbation seeding without fine-tuned initial conditions.
 
-**What He Got Right**: He correctly identified a rapid early expansion phase as a powerful effective mechanism that unifies multiple cosmological anomalies.
+**What They Got Right:** He correctly identified a rapid early expansion phase as a powerful effective mechanism that unifies multiple cosmological anomalies.
 
-**What He Got Wrong or Overstated**: Inflationary scalar-field ontology remained underdetermined, with mechanism often shifted into effective potential choices rather than reduced substrate dynamics.
+**What They Got Wrong or Overstated:** Inflationary scalar-field ontology remained underdetermined, with mechanism often shifted into effective potential choices rather than reduced substrate dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Phenomenology retained and ontology replaced, because inflation-like behavior is recast as emergent assembly dynamics in causal delayed regimes.
 
@@ -563,26 +563,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high at the effective cosmology layer and lower at substrate ontology level.
 
-**Core belief**: A brief exponential expansion epoch can resolve key cosmological consistency problems and seed observable large-scale structure.
+**Core Belief**: A brief exponential expansion epoch can resolve key cosmological consistency problems and seed observable large-scale structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ seeks to derive the same effective expansion signatures from self-hit and assembly-network collective modes, without requiring a fundamental inflaton field.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ seeks to derive the same effective expansion signatures from self-hit and assembly-network collective modes, without requiring a fundamental inflaton field.
 
-**Legacy shift**: Inflation survives as effective cosmological behavior, while its primitive field ontology is replaced by substrate-driven mechanism.
+**Legacy Shift**: Inflation survives as effective cosmological behavior, while its primitive field ontology is replaced by substrate-driven mechanism.
 
 ---
 
 ### **Loop Quantum Gravity (Ashtekar 1949–, Smolin 1955–, Rovelli 1956–)**
-**Thinker**: Loop Quantum Gravity (Ashtekar, Smolin, Rovelli and collaborators), a research program rather than a single individual.
+**Subject:** Loop Quantum Gravity (Ashtekar, Smolin, Rovelli and collaborators), a research program rather than a single individual.
 
 **Era / Context**: LQG developed under persistent pressure to close GR and QM while maintaining background independence and avoiding perturbative quantum-gravity pathologies.
 
 **Primary Domain**: Quantum gravity foundations and non-perturbative geometric quantization.
 
-**What Problem He Was Trying To Solve**: The program sought to produce a mathematically consistent microstructure for spacetime that preserves diffeomorphism principles and resolves UV/gravity inconsistencies.
+**What Problem They Were Trying To Solve:** The program sought to produce a mathematically consistent microstructure for spacetime that preserves diffeomorphism principles and resolves UV/gravity inconsistencies.
 
-**What He Got Right**: LQG correctly insisted that smooth continuum geometry may fail at deep scales and that foundational closure likely requires discrete structural ingredients.
+**What They Got Right:** LQG correctly insisted that smooth continuum geometry may fail at deep scales and that foundational closure likely requires discrete structural ingredients.
 
-**What He Got Wrong or Overstated**: It likely overstated geometry quantization as the right primitive move, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ relocates discreteness to substrate entities and treats geometry as emergent effective closure.
+**What They Got Wrong or Overstated:** It likely overstated geometry quantization as the right primitive move, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ relocates discreteness to substrate entities and treats geometry as emergent effective closure.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated in intuition and superseded in mechanism.
 
@@ -590,26 +590,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as conceptual scaffolding and low as final ontology if geometry quantization is not required.
 
-**Core belief**: Spacetime geometry itself is quantized and fundamentally discrete, with spin-network/loop structures replacing continuum primitives.
+**Core Belief**: Spacetime geometry itself is quantized and fundamentally discrete, with spin-network/loop structures replacing continuum primitives.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the discreteness insight but shifts it to physical substrate entities and assembly networks, deriving geometry as effective behavior without loop-geometry quantization.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the discreteness insight but shifts it to physical substrate entities and assembly networks, deriving geometry as effective behavior without loop-geometry quantization.
 
-**Legacy shift**: LQG's core warning about continuum excess survives, while its specific quantization route becomes non-essential.
+**Legacy Shift**: LQG's core warning about continuum excess survives, while its specific quantization route becomes non-essential.
 
 ---
 
 ### **String Theory (Witten 1951–, Polchinski 1954–2018, et al.)**
-**Thinker**: String theory (Witten, Polchinski, and broad program contributors), a unification framework using extended objects and high-dimensional structure.
+**Subject:** String theory (Witten, Polchinski, and broad program contributors), a unification framework using extended objects and high-dimensional structure.
 
 **Era / Context**: String theory rose as a candidate UV-complete unification program when particle physics and gravity lacked a common mathematically controlled substrate.
 
 **Primary Domain**: High-energy unification, quantum gravity, and mathematical physics.
 
-**What Problem He Was Trying To Solve**: It sought to unify forces and matter, remove UV inconsistencies, and provide a coherent quantum-gravitational framework with broad explanatory reach.
+**What Problem They Were Trying To Solve:** It sought to unify forces and matter, remove UV inconsistencies, and provide a coherent quantum-gravitational framework with broad explanatory reach.
 
-**What He Got Right**: The program correctly emphasized consistency constraints, cross-domain unification pressure, and deep mathematical control as serious requirements for a final framework.
+**What They Got Right:** The program correctly emphasized consistency constraints, cross-domain unification pressure, and deep mathematical control as serious requirements for a final framework.
 
-**What He Got Wrong or Overstated**: It likely overstated extra-dimensional/string/brane primitives and tolerated underconstrained landscape multiplicity that weakens ontological definiteness.
+**What They Got Wrong or Overstated:** It likely overstated extra-dimensional/string/brane primitives and tolerated underconstrained landscape multiplicity that weakens ontological definiteness.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Substantially contradicted at ontology level, with selective methodological reuse.
 
@@ -617,26 +617,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is mainly mathematical and comparative, not foundational, in a 3D substrate-first architecture.
 
-**Core belief**: Fundamental physics is governed by extended objects in higher-dimensional frameworks, with low-energy sectors emerging from compactification and symmetry structure.
+**Core Belief**: Fundamental physics is governed by extended objects in higher-dimensional frameworks, with low-energy sectors emerging from compactification and symmetry structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects string primitives and extra dimensions, retaining only the demand for cross-domain coherence and rigorous limiting-case recovery.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects string primitives and extra dimensions, retaining only the demand for cross-domain coherence and rigorous limiting-case recovery.
 
-**Legacy shift**: String theory shifts from leading ontology to high-value mathematical reservoir and benchmark competitor.
+**Legacy Shift**: String theory shifts from leading ontology to high-value mathematical reservoir and benchmark competitor.
 
 ---
 
 ### **Lee Smolin (1955–) — The Trouble With Physics, Temporal Naturalism**
-**Thinker**: Lee Smolin (1955–), physicist and philosopher of physics known for temporal naturalism and critique of unfalsifiable unification programs.
+**Subject:** Lee Smolin (1955–), physicist and philosopher of physics known for temporal naturalism and critique of unfalsifiable unification programs.
 
 **Era / Context**: Smolin's work emerged during prolonged stagnation in experimentally anchored fundamental-physics progress, especially around quantum gravity and string-theory dominance.
 
 **Primary Domain**: Quantum gravity foundations, philosophy of time, and scientific methodology.
 
-**What Problem He Was Trying To Solve**: Smolin sought to restore time and empirical accountability to foundational physics and to challenge frameworks that drifted away from falsifiable progress.
+**What Problem They Were Trying To Solve:** Smolin sought to restore time and empirical accountability to foundational physics and to challenge frameworks that drifted away from falsifiable progress.
 
-**What He Got Right**: He correctly stressed temporal reality, methodological accountability, and the need for progressive rather than purely formal research programs.
+**What They Got Right:** He correctly stressed temporal reality, methodological accountability, and the need for progressive rather than purely formal research programs.
 
-**What He Got Wrong or Overstated**: His law-evolution proposals may overextend where fixed substrate law plus multistable assembly dynamics can generate sufficient novelty without evolving fundamental rules.
+**What They Got Wrong or Overstated:** His law-evolution proposals may overextend where fixed substrate law plus multistable assembly dynamics can generate sufficient novelty without evolving fundamental rules.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with targeted divergence, retaining temporal realism and falsifiability while rejecting evolving-law necessity.
 
@@ -644,26 +644,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high methodologically and moderate ontologically where law-evolution claims are not retained.
 
-**Core belief**: Time is fundamental and physically real, and foundational progress requires falsifiable programs rather than mathematically insulated frameworks.
+**Core Belief**: Time is fundamental and physically real, and foundational progress requires falsifiable programs rather than mathematically insulated frameworks.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ strongly shares Smolin's temporal and methodological commitments, while replacing cosmological law evolution with fixed-law substrate dynamics plus deterministic multistability.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ strongly shares Smolin's temporal and methodological commitments, while replacing cosmological law evolution with fixed-law substrate dynamics plus deterministic multistability.
 
-**Legacy shift**: Smolin's diagnostic critique and temporal emphasis are retained as operating doctrine, while his evolving-law thesis is treated as unnecessary.
+**Legacy Shift**: Smolin's diagnostic critique and temporal emphasis are retained as operating doctrine, while his evolving-law thesis is treated as unnecessary.
 
 ---
 
 ### **Erik Verlinde (1962–) — Entropic Gravity**
-**Thinker**: Erik Verlinde (1962–), theoretical physicist proposing gravity as an emergent entropic phenomenon.
+**Subject:** Erik Verlinde (1962–), theoretical physicist proposing gravity as an emergent entropic phenomenon.
 
 **Era / Context**: Verlinde's work developed amid attempts to reinterpret gravity through information/thermodynamics in response to dark-sector and quantum-gravity tensions.
 
 **Primary Domain**: Emergent gravity, thermodynamic interpretation, and information-theoretic physics.
 
-**What Problem He Was Trying To Solve**: He aimed to explain gravitational behavior without primitive graviton ontology, using entropy and coarse-grained degrees of freedom as organizing principles.
+**What Problem They Were Trying To Solve:** He aimed to explain gravitational behavior without primitive graviton ontology, using entropy and coarse-grained degrees of freedom as organizing principles.
 
-**What He Got Right**: He correctly emphasized that gravitational regularities may emerge statistically from deeper microstructure rather than requiring fundamental force primitives.
+**What They Got Right:** He correctly emphasized that gravitational regularities may emerge statistically from deeper microstructure rather than requiring fundamental force primitives.
 
-**What He Got Wrong or Overstated**: He likely overstated information-theoretic and holographic primitives as ontological basis, where $\mathbb{A}\mathbb{A}\mathbb{A}$ instead places real 3D substrate entities first.
+**What They Got Wrong or Overstated:** He likely overstated information-theoretic and holographic primitives as ontological basis, where $\mathbb{A}\mathbb{A}\mathbb{A}$ instead places real 3D substrate entities first.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially aligned and reduced, because emergent-gravity direction is retained while informational primacy is rejected.
 
@@ -671,26 +671,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as an effective statistical vocabulary and low as substrate ontology.
 
-**Core belief**: Gravity is an emergent entropic response of microscopic degrees of freedom, not a fundamental interaction mediated by basic force carriers.
+**Core Belief**: Gravity is an emergent entropic response of microscopic degrees of freedom, not a fundamental interaction mediated by basic force carriers.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ allows entropic signatures as coarse-grained outcomes of assembly dynamics but grounds those outcomes in real causal substrate interactions rather than holographic-information primitives.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ allows entropic signatures as coarse-grained outcomes of assembly dynamics but grounds those outcomes in real causal substrate interactions rather than holographic-information primitives.
 
-**Legacy shift**: Entropic gravity becomes a partial effective-language layer within a deeper mechanistic architecture.
+**Legacy Shift**: Entropic gravity becomes a partial effective-language layer within a deeper mechanistic architecture.
 
 ---
 
 ### **Sabine Hossenfelder (1976–) — Lost in Math, Critique of "Beauty"**
-**Thinker**: Sabine Hossenfelder (1976–), physicist and methodological critic of beauty-driven theory selection.
+**Subject:** Sabine Hossenfelder (1976–), physicist and methodological critic of beauty-driven theory selection.
 
 **Era / Context**: Hossenfelder's critique emerged during a period of limited new high-energy empirical breakthroughs and prolonged reliance on mathematically elegant but weakly testable frameworks.
 
 **Primary Domain**: Philosophy and methodology of contemporary theoretical physics.
 
-**What Problem He Was Trying To Solve**: She sought to correct research incentives that reward aesthetic coherence over empirical closure and falsifiable progress.
+**What Problem They Were Trying To Solve:** She sought to correct research incentives that reward aesthetic coherence over empirical closure and falsifiable progress.
 
-**What He Got Right**: She correctly diagnosed parameter proliferation, sociological lock-in, and the risk of replacing test discipline with taste-based criteria.
+**What They Got Right:** She correctly diagnosed parameter proliferation, sociological lock-in, and the risk of replacing test discipline with taste-based criteria.
 
-**What He Got Wrong or Overstated**: Her critique is mainly corrective; any overstatement risk is underweighting the constructive role of formal elegance as a heuristic when explicitly subordinated to testability.
+**What They Got Wrong or Overstated:** Her critique is mainly corrective; any overstatement risk is underweighting the constructive role of formal elegance as a heuristic when explicitly subordinated to testability.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated as methodological governance.
 
@@ -698,28 +698,28 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as continuing methodological guardrail against non-falsifiable drift.
 
-**Core belief**: Foundational physics should prioritize empirical accountability and falsifiability over aesthetic narratives of elegance, naturalness, or formal beauty.
+**Core Belief**: Foundational physics should prioritize empirical accountability and falsifiability over aesthetic narratives of elegance, naturalness, or formal beauty.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this standard directly through explicit prediction targets, comparison protocols, and rejection of ad hoc rescue maneuvers that evade failure.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this standard directly through explicit prediction targets, comparison protocols, and rejection of ad hoc rescue maneuvers that evade failure.
 
-**Legacy shift**: Hossenfelder's critique is operationalized as standing governance rather than occasional commentary.
+**Legacy Shift**: Hossenfelder's critique is operationalized as standing governance rather than occasional commentary.
 
 ---
 
 ## Quantum Foundations & Hidden-Variable Landscape
 
 ### **Ludwig Boltzmann (1844–1906)**
-**Thinker**: Ludwig Boltzmann (1844–1906), founder of statistical mechanics and major defender of atomist reduction in modern physics.
+**Subject:** Ludwig Boltzmann (1844–1906), founder of statistical mechanics and major defender of atomist reduction in modern physics.
 
 **Era / Context**: Boltzmann worked in late 19th-century physics when atomism was still contested and thermodynamics lacked universally accepted microphysical grounding.
 
 **Primary Domain**: Statistical mechanics, thermodynamics foundations, and reductionist ontology.
 
-**What Problem He Was Trying To Solve**: He aimed to derive macroscopic irreversibility and entropy behavior from lawful microscopic dynamics rather than treating thermodynamic laws as primitive.
+**What Problem They Were Trying To Solve:** He aimed to derive macroscopic irreversibility and entropy behavior from lawful microscopic dynamics rather than treating thermodynamic laws as primitive.
 
-**What He Got Right**: Boltzmann correctly established that probabilistic macro-laws can emerge from deterministic microdynamics under coarse-graining and that atomist substrate explanation is indispensable.
+**What They Got Right:** Boltzmann correctly established that probabilistic macro-laws can emerge from deterministic microdynamics under coarse-graining and that atomist substrate explanation is indispensable.
 
-**What He Got Wrong or Overstated**: His framework left open deep measurement/quantum-era closure questions and did not include explicit branch-sensitive dynamics now modeled in self-hit regimes.
+**What They Got Wrong or Overstated:** His framework left open deep measurement/quantum-era closure questions and did not include explicit branch-sensitive dynamics now modeled in self-hit regimes.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated and extended.
 
@@ -727,26 +727,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as ongoing methodological and ontological scaffold for emergent law derivation.
 
-**Core belief**: Thermodynamic order, entropy, and apparent probabilistic behavior arise from statistical structure over large ensembles of microscopic constituents.
+**Core Belief**: Thermodynamic order, entropy, and apparent probabilistic behavior arise from statistical structure over large ensembles of microscopic constituents.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts Boltzmann's program directly by treating entropy and quantum-like statistics as coarse-grained outcomes of lawful architrino dynamics, with branch-sensitive multistability delimiting prediction structure.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts Boltzmann's program directly by treating entropy and quantum-like statistics as coarse-grained outcomes of lawful architrino dynamics, with branch-sensitive multistability delimiting prediction structure.
 
-**Legacy shift**: Boltzmann's framework becomes not only preserved but broadened into a general emergence doctrine spanning thermodynamic and quantum-effective behavior.
+**Legacy Shift**: Boltzmann's framework becomes not only preserved but broadened into a general emergence doctrine spanning thermodynamic and quantum-effective behavior.
 
 ---
 
 ### **Max Planck (1858–1947)**
-**Thinker**: Max Planck (1858–1947), originator of the quantum of action and early architect of quantum transition physics.
+**Subject:** Max Planck (1858–1947), originator of the quantum of action and early architect of quantum transition physics.
 
 **Era / Context**: Planck worked at the turn of the 20th century when blackbody radiation data forced a break from classical equipartition expectations.
 
 **Primary Domain**: Quantum origins, radiation theory, and foundational constants.
 
-**What Problem He Was Trying To Solve**: He sought a mathematically controlled account of blackbody spectra that classical continuum assumptions could not reproduce.
+**What Problem They Were Trying To Solve:** He sought a mathematically controlled account of blackbody spectra that classical continuum assumptions could not reproduce.
 
-**What He Got Right**: Planck correctly identified quantized action structure as indispensable to matching observed radiation behavior.
+**What They Got Right:** Planck correctly identified quantized action structure as indispensable to matching observed radiation behavior.
 
-**What He Got Wrong or Overstated**: Early interpretations left unclear whether quantization is primitive ontology or effective consequence of deeper dynamics.
+**What They Got Wrong or Overstated:** Early interpretations left unclear whether quantization is primitive ontology or effective consequence of deeper dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained with ontological reinterpretation.
 
@@ -754,26 +754,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for invariant action-scale structure, even as origin is reclassified from primitive postulate to emergent assembly effect.
 
-**Core belief**: Energy exchange occurs in discrete quanta and the quantum of action *h* governs this discreteness.
+**Core Belief**: Energy exchange occurs in discrete quanta and the quantum of action *h* governs this discreteness.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats Planck-scale quantization as emergent from stable architrino assembly modes and hierarchy constraints rather than as a standalone axiom.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats Planck-scale quantization as emergent from stable architrino assembly modes and hierarchy constraints rather than as a standalone axiom.
 
-**Legacy shift**: Planck's constant remains central, while the interpretation of quantization shifts from ontic primitive to dynamical emergence.
+**Legacy Shift**: Planck's constant remains central, while the interpretation of quantization shifts from ontic primitive to dynamical emergence.
 
 ---
 
 ### **Niels Bohr (1885–1962) & Copenhagen Interpretation**
-**Thinker**: Niels Bohr (1885–1962) and the Copenhagen school, dominant interpretive program of early quantum mechanics.
+**Subject:** Niels Bohr (1885–1962) and the Copenhagen school, dominant interpretive program of early quantum mechanics.
 
 **Era / Context**: Copenhagen emerged when quantum experiments were succeeding rapidly while underlying ontology remained unresolved and mathematically counterintuitive.
 
 **Primary Domain**: Quantum interpretation, measurement theory, and epistemic framing.
 
-**What Problem He Was Trying To Solve**: Bohr aimed to preserve predictive coherence and laboratory practice despite severe conflict between classical intuitions and quantum formal outcomes.
+**What Problem They Were Trying To Solve:** Bohr aimed to preserve predictive coherence and laboratory practice despite severe conflict between classical intuitions and quantum formal outcomes.
 
-**What He Got Right**: He correctly emphasized experimental context dependence and the practical need for controlled observational language.
+**What They Got Right:** He correctly emphasized experimental context dependence and the practical need for controlled observational language.
 
-**What He Got Wrong or Overstated**: He overstated instrumental closure by denying deeper ontology and treating collapse/measurement as privileged rather than reducible physical interaction.
+**What They Got Wrong or Overstated:** He overstated instrumental closure by denying deeper ontology and treating collapse/measurement as privileged rather than reducible physical interaction.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Largely contradicted with selective methodological retention.
 
@@ -781,26 +781,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate for operational discipline and low for ontology.
 
-**Core belief**: Quantum formalism is complete at the predictive level, collapse is part of measurement description, and complementarity expresses irreducible experimental context duality.
+**Core Belief**: Quantum formalism is complete at the predictive level, collapse is part of measurement description, and complementarity expresses irreducible experimental context duality.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects Copenhagen ontic minimalism by specifying substrate realism and treating collapse-like behavior as emergent coarse-grained branch selection effects in assembly dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects Copenhagen ontic minimalism by specifying substrate realism and treating collapse-like behavior as emergent coarse-grained branch selection effects in assembly dynamics.
 
-**Legacy shift**: Copenhagen's practical laboratory discipline survives, while its anti-realist ontological interpretation is superseded.
+**Legacy Shift**: Copenhagen's practical laboratory discipline survives, while its anti-realist ontological interpretation is superseded.
 
 ---
 
 ### **Erwin Schrödinger (1887–1961)**
-**Thinker**: Erwin Schrödinger (1887–1961), co-founder of wave mechanics and key critic of unresolved quantum measurement ontology.
+**Subject:** Erwin Schrödinger (1887–1961), co-founder of wave mechanics and key critic of unresolved quantum measurement ontology.
 
 **Era / Context**: Schrödinger worked in foundationally unstable early quantum theory when successful equations lacked clear ontology and measurement narratives diverged.
 
 **Primary Domain**: Quantum wave mechanics and interpretation.
 
-**What Problem He Was Trying To Solve**: He sought a continuous and realist account of quantum behavior that avoided abrupt collapse postulates.
+**What Problem They Were Trying To Solve:** He sought a continuous and realist account of quantum behavior that avoided abrupt collapse postulates.
 
-**What He Got Right**: Schrödinger correctly identified the measurement paradox and pressed for an ontology stronger than purely instrumental formalism.
+**What They Got Right:** Schrödinger correctly identified the measurement paradox and pressed for an ontology stronger than purely instrumental formalism.
 
-**What He Got Wrong or Overstated**: His early wave realism did not fully resolve discrete outcomes and left ambiguity about the ontic status of configuration-space objects.
+**What They Got Wrong or Overstated:** His early wave realism did not fully resolve discrete outcomes and left ambiguity about the ontic status of configuration-space objects.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated and reinterpreted.
 
@@ -808,26 +808,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for realism pressure and moderate for direct wave-ontology claims.
 
-**Core belief**: Quantum systems are governed by wave dynamics that should describe physical reality continuously rather than by observer-triggered discontinuities.
+**Core Belief**: Quantum systems are governed by wave dynamics that should describe physical reality continuously rather than by observer-triggered discontinuities.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves the realism impulse and treats wavefunction-like objects as effective guidance/statistical fields over definite substrate configurations with branch-sensitive dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves the realism impulse and treats wavefunction-like objects as effective guidance/statistical fields over definite substrate configurations with branch-sensitive dynamics.
 
-**Legacy shift**: Schrödinger's realism is retained, while the wavefunction is demoted from final ontology to effective representation of deeper assembly behavior.
+**Legacy Shift**: Schrödinger's realism is retained, while the wavefunction is demoted from final ontology to effective representation of deeper assembly behavior.
 
 ---
 
 ### **Louis de Broglie (1892–1987)**
-**Thinker**: Louis de Broglie (1892–1987), originator of matter-wave and pilot-wave interpretation strategies.
+**Subject:** Louis de Broglie (1892–1987), originator of matter-wave and pilot-wave interpretation strategies.
 
 **Era / Context**: De Broglie developed pilot-wave ideas during the foundational opening phase of quantum mechanics before Copenhagen hegemony consolidated.
 
 **Primary Domain**: Quantum foundations and hidden-variable realism.
 
-**What Problem He Was Trying To Solve**: He sought to preserve particle realism while explaining interference and nonclassical correlations through guidance dynamics.
+**What Problem They Were Trying To Solve:** He sought to preserve particle realism while explaining interference and nonclassical correlations through guidance dynamics.
 
-**What He Got Right**: He correctly anticipated that deterministic nonlocal guidance can reproduce quantum-like behavior without abandoning ontological realism.
+**What They Got Right:** He correctly anticipated that deterministic nonlocal guidance can reproduce quantum-like behavior without abandoning ontological realism.
 
-**What He Got Wrong or Overstated**: Configuration-space wave ontology remained difficult to reconcile with directly physical 3D substrate intuition.
+**What They Got Wrong or Overstated:** Configuration-space wave ontology remained difficult to reconcile with directly physical 3D substrate intuition.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated and concretized.
 
@@ -835,26 +835,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as foundational ancestor; specific mathematical formalisms are reworked into explicit 3D medium fields.
 
-**Core belief**: Matter has real wave-guided dynamics, so particles remain definite entities while wave structure governs trajectory behavior.
+**Core Belief**: Matter has real wave-guided dynamics, so particles remain definite entities while wave structure governs trajectory behavior.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this architecture and replaces abstract configuration-space emphasis with physically real 3D potential fields generated by interacting substrate entities.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this architecture and replaces abstract configuration-space emphasis with physically real 3D potential fields generated by interacting substrate entities.
 
-**Legacy shift**: De Broglie moves from marginalized alternative to direct precursor of substrate-guided quantum emergence.
+**Legacy Shift**: De Broglie moves from marginalized alternative to direct precursor of substrate-guided quantum emergence.
 
 ---
 
 ### **Werner Heisenberg (1901–1976)**
-**Thinker**: Werner Heisenberg (1901–1976), founder of matrix mechanics and principal architect of uncertainty-centered interpretation.
+**Subject:** Werner Heisenberg (1901–1976), founder of matrix mechanics and principal architect of uncertainty-centered interpretation.
 
 **Era / Context**: Heisenberg developed his framework during the rapid formation of quantum theory, when mathematically successful formalisms outran mechanistic explanation.
 
 **Primary Domain**: Quantum formalism and interpretation.
 
-**What Problem He Was Trying To Solve**: He aimed to build a predictive quantum framework constrained strictly by observables and free from misleading classical imagery.
+**What Problem They Were Trying To Solve:** He aimed to build a predictive quantum framework constrained strictly by observables and free from misleading classical imagery.
 
-**What He Got Right**: He correctly identified robust measurement tradeoffs and formal complementarity constraints that any realistic account must recover.
+**What They Got Right:** He correctly identified robust measurement tradeoffs and formal complementarity constraints that any realistic account must recover.
 
-**What He Got Wrong or Overstated**: He overstated anti-ontology by treating uncertainty as fundamental indeterminacy rather than as effective inferential limits over deeper lawful dynamics.
+**What They Got Wrong or Overstated:** He overstated anti-ontology by treating uncertainty as fundamental indeterminacy rather than as effective inferential limits over deeper lawful dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained in formal consequences and contradicted in ontology.
 
@@ -862,26 +862,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for derived effective constraints and low for observables-only ontology.
 
-**Core belief**: Quantum theory should be built from observable quantities, and uncertainty relations express intrinsic limits central to physical description.
+**Core Belief**: Quantum theory should be built from observable quantities, and uncertainty relations express intrinsic limits central to physical description.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ derives Heisenberg-style limits from assembly measurement structure and path-history dynamics while preserving definite substrate states between branch regimes.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ derives Heisenberg-style limits from assembly measurement structure and path-history dynamics while preserving definite substrate states between branch regimes.
 
-**Legacy shift**: Heisenberg's formal constraints survive as emergent theorems, while his anti-realist interpretation is replaced by substrate realism.
+**Legacy Shift**: Heisenberg's formal constraints survive as emergent theorems, while his anti-realist interpretation is replaced by substrate realism.
 
 ---
 
 ### **David Bohm (1917–1992)**
-**Thinker**: David Bohm (1917–1992), developer of a realist hidden-variable quantum theory with guidance dynamics.
+**Subject:** David Bohm (1917–1992), developer of a realist hidden-variable quantum theory with guidance dynamics.
 
 **Era / Context**: Bohm worked under Copenhagen dominance, offering a deterministic nonlocal alternative that reproduced core quantum predictions.
 
 **Primary Domain**: Quantum foundations, hidden variables, and nonlocal realism.
 
-**What Problem He Was Trying To Solve**: Bohm sought to eliminate collapse paradoxes and restore clear ontology while maintaining empirical equivalence with standard quantum mechanics.
+**What Problem They Were Trying To Solve:** Bohm sought to eliminate collapse paradoxes and restore clear ontology while maintaining empirical equivalence with standard quantum mechanics.
 
-**What He Got Right**: He correctly demonstrated that realist nonlocal hidden-variable frameworks are viable and can dissolve measurement pathology without abandoning predictive success.
+**What They Got Right:** He correctly demonstrated that realist nonlocal hidden-variable frameworks are viable and can dissolve measurement pathology without abandoning predictive success.
 
-**What He Got Wrong or Overstated**: Bohmian dependence on wavefunction-first structure left unresolved whether the guidance substrate could be reduced to explicit physical entities.
+**What They Got Wrong or Overstated:** Bohmian dependence on wavefunction-first structure left unresolved whether the guidance substrate could be reduced to explicit physical entities.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated and deepened.
 
@@ -889,26 +889,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as direct conceptual predecessor, with mechanism refined via explicit architrino ontology.
 
-**Core belief**: Quantum systems have definite states guided by nonlocal dynamics, so probabilities describe ensembles rather than ontic indeterminacy.
+**Core Belief**: Quantum systems have definite states guided by nonlocal dynamics, so probabilities describe ensembles rather than ontic indeterminacy.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Bohmian realism and nonlocal guidance while grounding guidance fields in direct architrino interaction architecture rather than wavefunction-first primitives.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Bohmian realism and nonlocal guidance while grounding guidance fields in direct architrino interaction architecture rather than wavefunction-first primitives.
 
-**Legacy shift**: Bohm's interpretation shifts from alternative interpretation to near-direct ancestor of mechanistic substrate reduction.
+**Legacy Shift**: Bohm's interpretation shifts from alternative interpretation to near-direct ancestor of mechanistic substrate reduction.
 
 ---
 
 ### **John Bell (1928–1990)**
-**Thinker**: John Bell (1928–1990), physicist who formalized no-go constraints on local hidden-variable reconstructions.
+**Subject:** John Bell (1928–1990), physicist who formalized no-go constraints on local hidden-variable reconstructions.
 
 **Era / Context**: Bell worked in a period when quantum interpretation debates lacked sharp discriminators between competing ontologies.
 
 **Primary Domain**: Quantum nonlocality, hidden-variable constraints, and foundations.
 
-**What Problem He Was Trying To Solve**: Bell sought to make foundational disputes experimentally meaningful by deriving inequalities that separate local realism from quantum correlations.
+**What Problem They Were Trying To Solve:** Bell sought to make foundational disputes experimentally meaningful by deriving inequalities that separate local realism from quantum correlations.
 
-**What He Got Right**: He decisively showed that locality assumptions of a certain kind cannot survive empirical quantum correlations, forcing explicit ontological commitments.
+**What They Got Right:** He decisively showed that locality assumptions of a certain kind cannot survive empirical quantum correlations, forcing explicit ontological commitments.
 
-**What He Got Wrong or Overstated**: Bell's framework is primarily constraint-setting; any overreading occurs when theorem scope is expanded beyond its precise assumptions.
+**What They Got Wrong or Overstated:** Bell's framework is primarily constraint-setting; any overreading occurs when theorem scope is expanded beyond its precise assumptions.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly compatible as external constraint and validation target.
 
@@ -916,26 +916,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as permanent methodological boundary condition on acceptable foundational theories.
 
-**Core belief**: Empirical quantum correlations rule out broad classes of local hidden-variable models, forcing explicit treatment of nonlocality or realism assumptions.
+**Core Belief**: Empirical quantum correlations rule out broad classes of local hidden-variable models, forcing explicit treatment of nonlocality or realism assumptions.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ embraces Bell constraints by adopting explicit nonlocal realist dynamics while maintaining no-signaling at effective observational levels.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ embraces Bell constraints by adopting explicit nonlocal realist dynamics while maintaining no-signaling at effective observational levels.
 
-**Legacy shift**: Bell becomes a standing compliance test for substrate realism rather than an argument for anti-realist resignation.
+**Legacy Shift**: Bell becomes a standing compliance test for substrate realism rather than an argument for anti-realist resignation.
 
 ---
 
 ### **Hugh Everett III (1930–1982) — Many-Worlds Interpretation**
-**Thinker**: Hugh Everett III (1930–1982), originator of the relative-state / Many-Worlds interpretation.
+**Subject:** Hugh Everett III (1930–1982), originator of the relative-state / Many-Worlds interpretation.
 
 **Era / Context**: Everett proposed Many-Worlds during mid-20th-century measurement-problem debates dominated by collapse/instrumentalist narratives.
 
 **Primary Domain**: Quantum interpretation and measurement ontology.
 
-**What Problem He Was Trying To Solve**: He sought to remove collapse postulates and observer exceptionalism while preserving strict unitary dynamics.
+**What Problem They Were Trying To Solve:** He sought to remove collapse postulates and observer exceptionalism while preserving strict unitary dynamics.
 
-**What He Got Right**: Everett correctly targeted collapse inconsistency and emphasized that measurement should be treated as ordinary physical interaction.
+**What They Got Right:** Everett correctly targeted collapse inconsistency and emphasized that measurement should be treated as ordinary physical interaction.
 
-**What He Got Wrong or Overstated**: He overstated branching-world ontology where single-world lawful evolution with branch-sensitive attractor selection can recover outcome structure without multiplying worlds.
+**What They Got Wrong or Overstated:** He overstated branching-world ontology where single-world lawful evolution with branch-sensitive attractor selection can recover outcome structure without multiplying worlds.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Motivationally aligned but ontologically contradicted.
 
@@ -943,26 +943,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as conceptual catalyst and low for final ontology.
 
-**Core belief**: Universal wavefunction dynamics never collapse, and all measurement outcomes are realized across branching world histories.
+**Core Belief**: Universal wavefunction dynamics never collapse, and all measurement outcomes are realized across branching world histories.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps no-collapse dynamics and no special observer ontology but replaces branching with single-history evolution through deterministic multistable branch points.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps no-collapse dynamics and no special observer ontology but replaces branching with single-history evolution through deterministic multistable branch points.
 
-**Legacy shift**: Everett's anti-collapse imperative is retained, while many-world ontology is replaced by one-world substrate realism.
+**Legacy Shift**: Everett's anti-collapse imperative is retained, while many-world ontology is replaced by one-world substrate realism.
 
 ---
 
 ### **Antony Valentini (1965–) — Quantum Nonequilibrium**
-**Thinker**: Antony Valentini (1965–), quantum-foundations physicist extending pilot-wave dynamics beyond equilibrium Born-rule assumptions.
+**Subject:** Antony Valentini (1965–), quantum-foundations physicist extending pilot-wave dynamics beyond equilibrium Born-rule assumptions.
 
 **Era / Context**: Valentini's program emerged in late 20th and early 21st century efforts to produce discriminating tests among hidden-variable frameworks.
 
 **Primary Domain**: Quantum nonequilibrium phenomenology and testable hidden-variable extensions.
 
-**What Problem He Was Trying To Solve**: He aimed to move beyond interpretive stalemate by identifying observable departures from standard quantum statistics under nonequilibrium conditions.
+**What Problem They Were Trying To Solve:** He aimed to move beyond interpretive stalemate by identifying observable departures from standard quantum statistics under nonequilibrium conditions.
 
-**What He Got Right**: He correctly pushed foundations toward empirical differentiation by linking microdynamic assumptions to concrete signature classes.
+**What They Got Right:** He correctly pushed foundations toward empirical differentiation by linking microdynamic assumptions to concrete signature classes.
 
-**What He Got Wrong or Overstated**: Main risks are practical detectability and model degeneracy, not conceptual incoherence; claims need strict observational gating.
+**What They Got Wrong or Overstated:** Main risks are practical detectability and model degeneracy, not conceptual incoherence; claims need strict observational gating.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly compatible as a prediction-layer extension.
 
@@ -970,24 +970,24 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high if signature channels remain experimentally tractable and discriminative.
 
-**Core belief**: Quantum equilibrium may be contingent rather than universal, and nonequilibrium regimes could reveal deviations from Born-rule statistics.
+**Core Belief**: Quantum equilibrium may be contingent rather than universal, and nonequilibrium regimes could reveal deviations from Born-rule statistics.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally accommodates nonequilibrium assembly distributions and treats Valentini-style signatures as key empirical probes.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally accommodates nonequilibrium assembly distributions and treats Valentini-style signatures as key empirical probes.
 
-**Legacy shift**: Valentini's framework becomes an operational testing extension within substrate realism rather than a marginal speculative add-on.
+**Legacy Shift**: Valentini's framework becomes an operational testing extension within substrate realism rather than a marginal speculative add-on.
 
 ### **Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)**
-**Thinker**: Lucien Hardy, Rob Spekkens, and Matthew Leifer, representing operational and $\psi$-epistemic quantum-foundations programs.
+**Subject:** Lucien Hardy, Rob Spekkens, and Matthew Leifer, representing operational and $\psi$-epistemic quantum-foundations programs.
 
 **Era / Context**: Their work developed in a mature quantum-foundations era seeking reconstruction principles and ontology-sensitive distinctions beyond textbook interpretation slogans.
 
 **Primary Domain**: Operational reconstructions, epistemic-state models, and quantum information-theoretic constraints.
 
-**What Problem He Was Trying To Solve**: They aimed to clarify what quantum states mean and which operational constraints any viable underlying ontology must satisfy.
+**What Problem They Were Trying To Solve:** They aimed to clarify what quantum states mean and which operational constraints any viable underlying ontology must satisfy.
 
-**What He Got Right**: They correctly sharpened representational distinctions, constraint frameworks, and theorem-level boundaries that prevent vague interpretive claims.
+**What They Got Right:** They correctly sharpened representational distinctions, constraint frameworks, and theorem-level boundaries that prevent vague interpretive claims.
 
-**What He Got Wrong or Overstated**: Purely epistemic readings can overreach if disconnected from explicit ontic substrate states and causal dynamics.
+**What They Got Wrong or Overstated:** Purely epistemic readings can overreach if disconnected from explicit ontic substrate states and causal dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially aligned and integrated at inferential/effective layers.
 
@@ -995,28 +995,28 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for operational and inferential governance, with ontology completed by explicit substrate modeling.
 
-**Core belief**: Quantum state descriptions may be epistemic and operationally constrained, with the key task being principled reconstruction of observable structure.
+**Core Belief**: Quantum state descriptions may be epistemic and operationally constrained, with the key task being principled reconstruction of observable structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats $\psi$ as an effective coarse-grained state descriptor over real architrino configurations, preserving operational constraints as emergent statistical consequences of substrate interactions.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats $\psi$ as an effective coarse-grained state descriptor over real architrino configurations, preserving operational constraints as emergent statistical consequences of substrate interactions.
 
-**Legacy shift**: Operational and $\psi$-epistemic insights become rigorous effective-layer components within a fully explicit realist ontology.
+**Legacy Shift**: Operational and $\psi$-epistemic insights become rigorous effective-layer components within a fully explicit realist ontology.
 
 ---
 
 ## QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)
 
 ### **Paul Dirac (1902–1984)**
-**Thinker**: Paul Dirac (1902–1984), foundational architect of relativistic quantum theory and antimatter prediction.
+**Subject:** Paul Dirac (1902–1984), foundational architect of relativistic quantum theory and antimatter prediction.
 
 **Era / Context**: Dirac worked in early quantum-field development when relativity and quantum mechanics required unification under a mathematically coherent framework.
 
 **Primary Domain**: Relativistic quantum theory, field-theoretic formalism, and particle ontology.
 
-**What Problem He Was Trying To Solve**: He sought equations consistent with both Lorentz structure and quantum behavior while preserving predictive control over electron dynamics.
+**What Problem They Were Trying To Solve:** He sought equations consistent with both Lorentz structure and quantum behavior while preserving predictive control over electron dynamics.
 
-**What He Got Right**: Dirac correctly produced a structurally powerful relativistic framework and anticipated antimatter as a real physical sector before direct experimental confirmation.
+**What They Got Right:** Dirac correctly produced a structurally powerful relativistic framework and anticipated antimatter as a real physical sector before direct experimental confirmation.
 
-**What He Got Wrong or Overstated**: Field-operator and vacuum fluctuation objects were treated in ways that can be ontologically over-read beyond their effective calculational status.
+**What They Got Wrong or Overstated:** Field-operator and vacuum fluctuation objects were treated in ways that can be ontologically over-read beyond their effective calculational status.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained at phenomenology level and reinterpreted at ontology level.
 
@@ -1024,26 +1024,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for formal constraints and effective equations, with ontological primitives demoted to emergent status.
 
-**Core belief**: Relativistic quantum dynamics requires spinor structure and yields antiparticle sectors as intrinsic consequences of consistent equations.
+**Core Belief**: Relativistic quantum dynamics requires spinor structure and yields antiparticle sectors as intrinsic consequences of consistent equations.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Dirac-level empirical structure while relocating particle/antiparticle interpretation to architrino assembly modes and treating QFT operators as effective bookkeeping over deeper dynamics.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Dirac-level empirical structure while relocating particle/antiparticle interpretation to architrino assembly modes and treating QFT operators as effective bookkeeping over deeper dynamics.
 
-**Legacy shift**: Dirac's mathematical achievements remain central, while their ontological reading is reduced to emergent assembly-level representation.
+**Legacy Shift**: Dirac's mathematical achievements remain central, while their ontological reading is reduced to emergent assembly-level representation.
 
 ---
 
 ### **Richard Feynman (1918–1988)**
-**Thinker**: Richard Feynman (1918–1988), creator of path-integral methods and diagrammatic perturbation techniques.
+**Subject:** Richard Feynman (1918–1988), creator of path-integral methods and diagrammatic perturbation techniques.
 
 **Era / Context**: Feynman developed these tools in mid-20th-century QED maturation under strong pressure for practical, high-precision computation.
 
 **Primary Domain**: Quantum field computational methods and interpretive pragmatics.
 
-**What Problem He Was Trying To Solve**: He aimed to provide tractable and physically intuitive computational machinery for complex interaction amplitudes.
+**What Problem They Were Trying To Solve:** He aimed to provide tractable and physically intuitive computational machinery for complex interaction amplitudes.
 
-**What He Got Right**: He correctly supplied extraordinarily effective calculational frameworks that remain unmatched in predictive utility across high-energy and condensed-matter domains.
+**What They Got Right:** He correctly supplied extraordinarily effective calculational frameworks that remain unmatched in predictive utility across high-energy and condensed-matter domains.
 
-**What He Got Wrong or Overstated**: Diagrammatic entities and path-sum language are often misread as literal ontology rather than controlled approximation schemes.
+**What They Got Wrong or Overstated:** Diagrammatic entities and path-sum language are often misread as literal ontology rather than controlled approximation schemes.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained as method and reinterpreted as ontology.
 
@@ -1051,26 +1051,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high computationally and moderate ontologically as representations of emergent ensemble behavior.
 
-**Core belief**: Quantum processes can be represented via weighted path ensembles and diagrammatic interaction expansions that encode measurable amplitudes.
+**Core Belief**: Quantum processes can be represented via weighted path ensembles and diagrammatic interaction expansions that encode measurable amplitudes.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps Feynman's machinery as effective computation while asserting one actual causal path-history at substrate level, with path sums interpreted as statistical over-descriptions.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps Feynman's machinery as effective computation while asserting one actual causal path-history at substrate level, with path sums interpreted as statistical over-descriptions.
 
-**Legacy shift**: Feynman remains a permanent method authority, while virtual particles and path histories are recast as calculational abstractions.
+**Legacy Shift**: Feynman remains a permanent method authority, while virtual particles and path histories are recast as calculational abstractions.
 
 ---
 
 ### **Abdus Salam (1926–1996), Sheldon Glashow (1932–), Steven Weinberg (1933–2021) — Electroweak Unification**
-**Thinker**: Salam, Glashow, and Weinberg, architects of electroweak unification in Standard Model theory.
+**Subject:** Salam, Glashow, and Weinberg, architects of electroweak unification in Standard Model theory.
 
 **Era / Context**: Their work arose during late 20th-century gauge-theory consolidation as particle phenomenology demanded unified weak/electromagnetic treatment.
 
 **Primary Domain**: Gauge unification, symmetry breaking, and Standard Model architecture.
 
-**What Problem He Was Trying To Solve**: They sought a single renormalizable framework unifying weak and electromagnetic interactions while accounting for observed mass sectors and mediator behavior.
+**What Problem They Were Trying To Solve:** They sought a single renormalizable framework unifying weak and electromagnetic interactions while accounting for observed mass sectors and mediator behavior.
 
-**What He Got Right**: They correctly built a predictive unified effective theory with robust experimental confirmation across weak neutral currents, boson spectra, and precision electroweak tests.
+**What They Got Right:** They correctly built a predictive unified effective theory with robust experimental confirmation across weak neutral currents, boson spectra, and precision electroweak tests.
 
-**What He Got Wrong or Overstated**: Gauge and Higgs sectors are often treated as ontological primitives rather than potentially emergent closures over deeper substrate interactions.
+**What They Got Wrong or Overstated:** Gauge and Higgs sectors are often treated as ontological primitives rather than potentially emergent closures over deeper substrate interactions.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained at effective level and reclassified at substrate level.
 
@@ -1078,26 +1078,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as effective law layer, with ontology relocated to assembly-medium dynamics.
 
-**Core belief**: Weak and electromagnetic interactions are unified through gauge symmetry with mass generation via symmetry-breaking structure.
+**Core Belief**: Weak and electromagnetic interactions are unified through gauge symmetry with mass generation via symmetry-breaking structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves electroweak phenomenology but interprets gauge and Higgs structure as emergent from spacetime assembly-network organization and phase behavior.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves electroweak phenomenology but interprets gauge and Higgs structure as emergent from spacetime assembly-network organization and phase behavior.
 
-**Legacy shift**: Electroweak unification remains a core effective success while its primitives are demoted to emergent descriptors.
+**Legacy Shift**: Electroweak unification remains a core effective success while its primitives are demoted to emergent descriptors.
 
 ---
 
 ### **Murray Gell-Mann (1929–2019) & the Quark Model**
-**Thinker**: Murray Gell-Mann (1929–2019) and quark-model development community.
+**Subject:** Murray Gell-Mann (1929–2019) and quark-model development community.
 
 **Era / Context**: The quark model emerged to organize hadron spectroscopy and interaction patterns during explosive particle-discovery growth in mid-20th-century high-energy physics.
 
 **Primary Domain**: Particle classification, hadron structure, and symmetry-led phenomenology.
 
-**What Problem He Was Trying To Solve**: He sought a coherent underlying classification that explains hadron multiplets, quantum numbers, and scattering regularities.
+**What Problem They Were Trying To Solve:** He sought a coherent underlying classification that explains hadron multiplets, quantum numbers, and scattering regularities.
 
-**What He Got Right**: He correctly identified a compact structural language that predicts and organizes hadronic states with extraordinary empirical success.
+**What They Got Right:** He correctly identified a compact structural language that predicts and organizes hadronic states with extraordinary empirical success.
 
-**What He Got Wrong or Overstated**: Quark fundamentality may be overstated if quark degrees are effective modes of deeper substrate assemblies.
+**What They Got Wrong or Overstated:** Quark fundamentality may be overstated if quark degrees are effective modes of deeper substrate assemblies.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Phenomenologically vindicated and ontologically reinterpreted.
 
@@ -1105,26 +1105,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as effective spectrum-language and moderate as ontology.
 
-**Core belief**: Hadrons are structured by quark degrees of freedom organized by symmetry and confinement dynamics.
+**Core Belief**: Hadrons are structured by quark degrees of freedom organized by symmetry and confinement dynamics.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps quark phenomenology as effective emergent structure and seeks to derive it from constrained assembly modes and interaction topology.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps quark phenomenology as effective emergent structure and seeks to derive it from constrained assembly modes and interaction topology.
 
-**Legacy shift**: The quark model remains indispensable as effective taxonomy while being recast as emergent quasi-particle structure.
+**Legacy Shift**: The quark model remains indispensable as effective taxonomy while being recast as emergent quasi-particle structure.
 
 ---
 
 ### **Gerard 't Hooft (1946–) — Deterministic Quantum Mechanics**
-**Thinker**: Gerard 't Hooft (1946–), advocate of deterministic sub-quantum programs including cellular-automaton interpretations.
+**Subject:** Gerard 't Hooft (1946–), advocate of deterministic sub-quantum programs including cellular-automaton interpretations.
 
 **Era / Context**: His proposals developed in late 20th and early 21st century debates over whether quantum indeterminacy is fundamental or emergent.
 
 **Primary Domain**: Quantum foundations and deterministic substructure modeling.
 
-**What Problem He Was Trying To Solve**: He sought a deeper deterministic layer beneath quantum statistics that could restore ontological continuity without losing empirical agreement.
+**What Problem They Were Trying To Solve:** He sought a deeper deterministic layer beneath quantum statistics that could restore ontological continuity without losing empirical agreement.
 
-**What He Got Right**: He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction.
+**What They Got Right:** He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction.
 
-**What He Got Wrong or Overstated**: Cellular-automaton discretization is one possible route but may be too restrictive relative to continuous causal field/assembly dynamics.
+**What They Got Wrong or Overstated:** Cellular-automaton discretization is one possible route but may be too restrictive relative to continuous causal field/assembly dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with mechanistic divergence.
 
@@ -1132,28 +1132,28 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as deterministic-program ancestor, with specific CA machinery optional.
 
-**Core belief**: Quantum behavior can emerge from deeper deterministic dynamics, potentially represented by discrete update structures.
+**Core Belief**: Quantum behavior can emerge from deeper deterministic dynamics, potentially represented by discrete update structures.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental CA update tables.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental CA update tables.
 
-**Legacy shift**: 't Hooft's deterministic challenge is retained and broadened into explicit substrate field-assembly ontology.
+**Legacy Shift**: 't Hooft's deterministic challenge is retained and broadened into explicit substrate field-assembly ontology.
 
 ---
 
 ## Philosophy of Science
 
 ### **Alfred North Whitehead (1861–1947)**
-**Thinker**: Alfred North Whitehead (1861–1947), process philosopher who prioritized events and relations over static substance metaphysics.
+**Subject:** Alfred North Whitehead (1861–1947), process philosopher who prioritized events and relations over static substance metaphysics.
 
 **Era / Context**: Whitehead wrote during early 20th-century upheaval in physics and philosophy, when classical ontology appeared increasingly inadequate.
 
 **Primary Domain**: Metaphysics of process, relational ontology, and philosophical cosmology.
 
-**What Problem He Was Trying To Solve**: He sought to explain novelty, becoming, and relational coherence without reducing reality to static inert building blocks.
+**What Problem They Were Trying To Solve:** He sought to explain novelty, becoming, and relational coherence without reducing reality to static inert building blocks.
 
-**What He Got Right**: Whitehead correctly stressed relational structure and the inadequacy of naive static metaphysics for dynamic physical phenomena.
+**What They Got Right:** Whitehead correctly stressed relational structure and the inadequacy of naive static metaphysics for dynamic physical phenomena.
 
-**What He Got Wrong or Overstated**: He overstated process primacy and experiential language at the foundational level, where $\mathbb{A}\mathbb{A}\mathbb{A}$ posits stable substrate entities with evolving configurations.
+**What They Got Wrong or Overstated:** He overstated process primacy and experiential language at the foundational level, where $\mathbb{A}\mathbb{A}\mathbb{A}$ posits stable substrate entities with evolving configurations.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained and inverted.
 
@@ -1161,26 +1161,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as conceptual supplement and low as primary ontology.
 
-**Core belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
+**Core Belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration.
 
-**Legacy shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
+**Legacy Shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
 
 ---
 
 ### **Bertrand Russell (1872–1970) — Logic, Analysis, and Scientific Clarity**
-**Thinker**: Bertrand Russell (1872–1970), analytic philosopher emphasizing logical form, reference discipline, and conceptual precision.
+**Subject:** Bertrand Russell (1872–1970), analytic philosopher emphasizing logical form, reference discipline, and conceptual precision.
 
 **Era / Context**: Russell's program developed during foundational reforms in logic, mathematics, and scientific language in the early 20th century.
 
 **Primary Domain**: Logic, analytic philosophy, and methodological clarity in science.
 
-**What Problem He Was Trying To Solve**: He aimed to eliminate conceptual confusion by reconstructing claims in logically explicit forms.
+**What Problem They Were Trying To Solve:** He aimed to eliminate conceptual confusion by reconstructing claims in logically explicit forms.
 
-**What He Got Right**: Russell correctly established that precise language and structure auditing are prerequisites for robust theoretical reasoning.
+**What They Got Right:** Russell correctly established that precise language and structure auditing are prerequisites for robust theoretical reasoning.
 
-**What He Got Wrong or Overstated**: Logical analysis alone cannot decide substrate ontology without empirical and mechanistic closure.
+**What They Got Wrong or Overstated:** Logical analysis alone cannot decide substrate ontology without empirical and mechanistic closure.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained as method and bounded as ontology criterion.
 
@@ -1188,26 +1188,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as methodological hygiene and low as stand-alone ontological framework.
 
-**Core belief**: Scientific and philosophical progress requires explicit logical form, reference discipline, and conceptual disambiguation.
+**Core Belief**: Scientific and philosophical progress requires explicit logical form, reference discipline, and conceptual disambiguation.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ applies Russellian rigor to prevent category drift across substrate, effective, and observational layers.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ applies Russellian rigor to prevent category drift across substrate, effective, and observational layers.
 
-**Legacy shift**: Russell's analytic method remains permanent governance infrastructure, while ontology is supplied by causal physical theory.
+**Legacy Shift**: Russell's analytic method remains permanent governance infrastructure, while ontology is supplied by causal physical theory.
 
 ---
 
 ### **Ludwig Wittgenstein (1889–1951) — Language, Meaning, and Use**
-**Thinker**: Ludwig Wittgenstein (1889–1951), philosopher of language and meaning whose later work emphasized use-context over abstract essences.
+**Subject:** Ludwig Wittgenstein (1889–1951), philosopher of language and meaning whose later work emphasized use-context over abstract essences.
 
 **Era / Context**: Wittgenstein wrote across early/mid 20th-century analytic transitions where language analysis became central to philosophical method.
 
 **Primary Domain**: Philosophy of language, conceptual analysis, and methodological clarification.
 
-**What Problem He Was Trying To Solve**: He sought to dissolve pseudo-problems generated by linguistic misuse and conceptual overextension.
+**What Problem They Were Trying To Solve:** He sought to dissolve pseudo-problems generated by linguistic misuse and conceptual overextension.
 
-**What He Got Right**: He correctly diagnosed meaning drift and showed that many disputes arise from untracked shifts in language games and usage layers.
+**What They Got Right:** He correctly diagnosed meaning drift and showed that many disputes arise from untracked shifts in language games and usage layers.
 
-**What He Got Wrong or Overstated**: Language clarification does not by itself settle physical ontology when explicit substrate mechanisms are required.
+**What They Got Wrong or Overstated:** Language clarification does not by itself settle physical ontology when explicit substrate mechanisms are required.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained as conceptual hygiene with ontological limitation.
 
@@ -1215,26 +1215,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high as linguistic safeguard and low as full substitute for theory of nature.
 
-**Core belief**: Meaning is use-governed, and philosophical confusion often reflects misuse of words rather than discovery of deep entities.
+**Core Belief**: Meaning is use-governed, and philosophical confusion often reflects misuse of words rather than discovery of deep entities.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this warning to enforce vocabulary discipline while proceeding with explicit realist ontology.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this warning to enforce vocabulary discipline while proceeding with explicit realist ontology.
 
-**Legacy shift**: Wittgenstein remains a precision filter for discourse, while mechanistic physical claims carry explanatory burden.
+**Legacy Shift**: Wittgenstein remains a precision filter for discourse, while mechanistic physical claims carry explanatory burden.
 
 ---
 
 ### **Vienna Circle (1920s-1930s) — Verificationism and Logical Positivism**
-**Thinker**: Vienna Circle movement (1920s–1930s), including logical-positivist reconstruction of scientific meaning and method.
+**Subject:** Vienna Circle movement (1920s–1930s), including logical-positivist reconstruction of scientific meaning and method.
 
 **Era / Context**: The Circle formed in interwar Europe under pressure to formalize science and constrain metaphysical speculation.
 
 **Primary Domain**: Philosophy of science, verification criteria, and logical reconstruction.
 
-**What Problem He Was Trying To Solve**: The program sought reliable demarcation between meaningful scientific claims and unconstrained metaphysical language.
+**What Problem They Were Trying To Solve:** The program sought reliable demarcation between meaningful scientific claims and unconstrained metaphysical language.
 
-**What He Got Right**: It correctly enforced explicit observational accountability and anti-vagueness discipline in scientific discourse.
+**What They Got Right:** It correctly enforced explicit observational accountability and anti-vagueness discipline in scientific discourse.
 
-**What He Got Wrong or Overstated**: Strict verificationism is too restrictive for deep theories that infer unobserved structures through coherent falsifiable consequence chains.
+**What They Got Wrong or Overstated:** Strict verificationism is too restrictive for deep theories that infer unobserved structures through coherent falsifiable consequence chains.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Methodologically retained and philosophically superseded.
 
@@ -1242,26 +1242,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as discipline and low as complete philosophy of science.
 
-**Core belief**: Scientific meaning must be tied to observation and logical structure, and metaphysical excess should be excluded from serious inquiry.
+**Core Belief**: Scientific meaning must be tied to observation and logical structure, and metaphysical excess should be excluded from serious inquiry.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains the discipline but rejects verificationist ceilings, allowing substrate postulates under strict reduction/falsification governance.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains the discipline but rejects verificationist ceilings, allowing substrate postulates under strict reduction/falsification governance.
 
-**Legacy shift**: Positivist rigor survives as filter, while ontological realism is reinstated for deep explanatory closure.
+**Legacy Shift**: Positivist rigor survives as filter, while ontological realism is reinstated for deep explanatory closure.
 
 ---
 
 ### **Rudolf Carnap (1891–1970) — Logical Reconstruction of Science**
-**Thinker**: Rudolf Carnap (1891–1970), major logical empiricist focused on explicit frameworks and reconstruction of scientific concepts.
+**Subject:** Rudolf Carnap (1891–1970), major logical empiricist focused on explicit frameworks and reconstruction of scientific concepts.
 
 **Era / Context**: Carnap developed his program in the analytic/positivist period where formal language and framework-dependence became central concerns.
 
 **Primary Domain**: Logical reconstruction, framework analysis, and scientific semantics.
 
-**What Problem He Was Trying To Solve**: He aimed to replace ambiguous metaphysical dispute with formally explicit framework-relative analysis.
+**What Problem They Were Trying To Solve:** He aimed to replace ambiguous metaphysical dispute with formally explicit framework-relative analysis.
 
-**What He Got Right**: Carnap correctly showed that many apparent disputes are framework confusions and that formal discipline improves inferential transparency.
+**What They Got Right:** Carnap correctly showed that many apparent disputes are framework confusions and that formal discipline improves inferential transparency.
 
-**What He Got Wrong or Overstated**: He may over-conventionalize some ontological questions that require empirical substrate commitments beyond framework choice.
+**What They Got Wrong or Overstated:** He may over-conventionalize some ontological questions that require empirical substrate commitments beyond framework choice.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained as method and constrained as ontological verdict engine.
 
@@ -1269,26 +1269,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for methodological architecture and moderate for ontology.
 
-**Core belief**: Scientific discourse should be rebuilt in explicit formal frameworks where claim-types and inferential roles are clearly typed.
+**Core Belief**: Scientific discourse should be rebuilt in explicit formal frameworks where claim-types and inferential roles are clearly typed.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ uses Carnapian hygiene to separate substrate claims from effective models and observational reports while retaining realist commitments.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ uses Carnapian hygiene to separate substrate claims from effective models and observational reports while retaining realist commitments.
 
-**Legacy shift**: Carnap remains core infrastructure for expression discipline, but realism sets final ontological commitments.
+**Legacy Shift**: Carnap remains core infrastructure for expression discipline, but realism sets final ontological commitments.
 
 ---
 
 ### **Moritz Schlick (1882–1936) — Empirical Meaning and Scientific Knowledge**
-**Thinker**: Moritz Schlick (1882–1936), philosopher of science emphasizing empirical meaning and justification standards.
+**Subject:** Moritz Schlick (1882–1936), philosopher of science emphasizing empirical meaning and justification standards.
 
 **Era / Context**: Schlick worked in the logical-empiricist phase where scientific legitimacy was tightly tied to observation and justification clarity.
 
 **Primary Domain**: Epistemology of science and empirical meaning criteria.
 
-**What Problem He Was Trying To Solve**: He sought to prevent speculative drift by tethering claims to disciplined empirical interpretation.
+**What Problem They Were Trying To Solve:** He sought to prevent speculative drift by tethering claims to disciplined empirical interpretation.
 
-**What He Got Right**: He correctly reinforced the need for observational anchoring and justification transparency in foundational argument.
+**What They Got Right:** He correctly reinforced the need for observational anchoring and justification transparency in foundational argument.
 
-**What He Got Wrong or Overstated**: Exclusive emphasis on observable anchoring can underpower deep-theory construction where unobserved substrate entities are inferentially warranted.
+**What They Got Wrong or Overstated:** Exclusive emphasis on observable anchoring can underpower deep-theory construction where unobserved substrate entities are inferentially warranted.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Methodologically aligned and ontologically narrowed.
 
@@ -1296,26 +1296,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as epistemic discipline and low as full ontological framework.
 
-**Core belief**: Scientific knowledge must remain empirically grounded and conceptually justified to avoid pseudo-explanatory metaphysics.
+**Core Belief**: Scientific knowledge must remain empirically grounded and conceptually justified to avoid pseudo-explanatory metaphysics.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains this discipline while extending beyond it via falsifiable substrate postulates and reduction commitments.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains this discipline while extending beyond it via falsifiable substrate postulates and reduction commitments.
 
-**Legacy shift**: Schlick's empiricist rigor remains as a gate, while deeper realism is reinstated.
+**Legacy Shift**: Schlick's empiricist rigor remains as a gate, while deeper realism is reinstated.
 
 ---
 
 ### **Otto Neurath (1882–1945) — Unified Science and Anti-Foundational Coherence**
-**Thinker**: Otto Neurath (1882–1945), advocate of unified science, coherentism, and fallibilist reconstruction.
+**Subject:** Otto Neurath (1882–1945), advocate of unified science, coherentism, and fallibilist reconstruction.
 
 **Era / Context**: Neurath developed his views in the same logical-empiricist milieu but emphasized pragmatic revisability over strict foundational certainty.
 
 **Primary Domain**: Philosophy of science, coherentism, and methodological fallibilism.
 
-**What Problem He Was Trying To Solve**: He sought a realistic model of scientific development that acknowledges ongoing revision rather than absolute foundational starting points.
+**What Problem They Were Trying To Solve:** He sought a realistic model of scientific development that acknowledges ongoing revision rather than absolute foundational starting points.
 
-**What He Got Right**: Neurath correctly highlighted theory-ladenness, network coherence, and the inevitability of iterative repair in scientific progress.
+**What They Got Right:** Neurath correctly highlighted theory-ladenness, network coherence, and the inevitability of iterative repair in scientific progress.
 
-**What He Got Wrong or Overstated**: Strong anti-foundational tone can blur the distinction between revisable modeling and stable substrate commitments.
+**What They Got Wrong or Overstated:** Strong anti-foundational tone can blur the distinction between revisable modeling and stable substrate commitments.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained with ontological strengthening.
 
@@ -1323,26 +1323,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate to high for process governance and moderate for ontology.
 
-**Core belief**: Science advances as a revisable coherent network rebuilt from within practice rather than from indubitable external foundations.
+**Core Belief**: Science advances as a revisable coherent network rebuilt from within practice rather than from indubitable external foundations.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this revisability in development while still targeting a definite substrate ontology constrained by falsification and reduction.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts this revisability in development while still targeting a definite substrate ontology constrained by falsification and reduction.
 
-**Legacy shift**: Neurath's fallibilist governance persists, but anti-foundational implications are bounded by realist closure aims.
+**Legacy Shift**: Neurath's fallibilist governance persists, but anti-foundational implications are bounded by realist closure aims.
 
 ---
 
 ### **Karl Popper (1902–1994) — Falsificationism**
-**Thinker**: Karl Popper (1902–1994), philosopher of science who formalized falsifiability as demarcation and progress criterion.
+**Subject:** Karl Popper (1902–1994), philosopher of science who formalized falsifiability as demarcation and progress criterion.
 
 **Era / Context**: Popper wrote in response to verificationist limitations and pseudo-scientific immunity strategies in early/mid 20th-century debate.
 
 **Primary Domain**: Methodology of science and epistemic governance.
 
-**What Problem He Was Trying To Solve**: He sought clear criteria distinguishing scientific risk-taking theories from unfalsifiable adaptive narratives.
+**What Problem They Were Trying To Solve:** He sought clear criteria distinguishing scientific risk-taking theories from unfalsifiable adaptive narratives.
 
-**What He Got Right**: Popper correctly centered risky predictions, explicit failure conditions, and anti-immunization norms as core to scientific integrity.
+**What They Got Right:** Popper correctly centered risky predictions, explicit failure conditions, and anti-immunization norms as core to scientific integrity.
 
-**What He Got Wrong or Overstated**: Strict single-test falsification sometimes understates program-level development dynamics, though this is addressed by Lakatosian refinement.
+**What They Got Wrong or Overstated:** Strict single-test falsification sometimes understates program-level development dynamics, though this is addressed by Lakatosian refinement.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly and operationally vindicated.
 
@@ -1350,28 +1350,28 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as permanent methodological backbone.
 
-**Core belief**: Science advances through bold conjectures exposed to tests that can decisively rule them out.
+**Core Belief**: Science advances through bold conjectures exposed to tests that can decisively rule them out.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts Popperian governance directly through prediction ledgers, failure criteria, and anti-rescue discipline.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts Popperian governance directly through prediction ledgers, failure criteria, and anti-rescue discipline.
 
-**Legacy shift**: Popper shifts from philosophical influence to concrete operating protocol for model acceptance.
+**Legacy Shift**: Popper shifts from philosophical influence to concrete operating protocol for model acceptance.
 
 ---
 
 ## Information/Computation
 
 ### **John Archibald Wheeler (1911–2008) — "It from Bit"**
-**Thinker**: John Archibald Wheeler (1911–2008), physicist who promoted information-centric foundational framing through the "it from bit" thesis.
+**Subject:** John Archibald Wheeler (1911–2008), physicist who promoted information-centric foundational framing through the "it from bit" thesis.
 
 **Era / Context**: Wheeler's information-first ideas emerged in late 20th-century foundational discussions where quantum measurement and cosmology encouraged participatory/informational interpretations.
 
 **Primary Domain**: Information-oriented foundations, quantum interpretation, and participatory-universe proposals.
 
-**What Problem He Was Trying To Solve**: Wheeler sought a unifying conceptual basis linking measurement, physical law, and ontology through information structure.
+**What Problem They Were Trying To Solve:** Wheeler sought a unifying conceptual basis linking measurement, physical law, and ontology through information structure.
 
-**What He Got Right**: He correctly highlighted that information-theoretic constraints and encoding structure are indispensable in observer-level physics and inference pipelines.
+**What They Got Right:** He correctly highlighted that information-theoretic constraints and encoding structure are indispensable in observer-level physics and inference pipelines.
 
-**What He Got Wrong or Overstated**: He likely overstated information primacy by treating bits as ontological ground rather than as descriptors of underlying physical state organization.
+**What They Got Wrong or Overstated:** He likely overstated information primacy by treating bits as ontological ground rather than as descriptors of underlying physical state organization.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially aligned and ontologically inverted.
 
@@ -1379,26 +1379,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for inferential and representational tooling, and low for first-principles ontology.
 
-**Core belief**: Physical reality may arise from informational distinctions, with observation and binary decision structure playing constitutive roles.
+**Core Belief**: Physical reality may arise from informational distinctions, with observation and binary decision structure playing constitutive roles.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ reverses the primacy claim by grounding information in real architrino configurations and treating observer participation as measurement-layer interaction rather than ontological creation.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ reverses the primacy claim by grounding information in real architrino configurations and treating observer participation as measurement-layer interaction rather than ontological creation.
 
-**Legacy shift**: Wheeler's slogan is recast from "it from bit" to "bit from it," preserving informational utility while restoring physical substrate priority.
+**Legacy Shift**: Wheeler's slogan is recast from "it from bit" to "bit from it," preserving informational utility while restoring physical substrate priority.
 
 ---
 
 ### **Thomas Kuhn (1922–1996) — Paradigm Shifts**
-**Thinker**: Thomas Kuhn (1922–1996), historian-philosopher of science known for paradigm-shift models of scientific change.
+**Subject:** Thomas Kuhn (1922–1996), historian-philosopher of science known for paradigm-shift models of scientific change.
 
 **Era / Context**: Kuhn analyzed historical episodes showing non-linear conceptual restructuring beyond simple cumulative progress narratives.
 
 **Primary Domain**: History and philosophy of scientific change.
 
-**What Problem He Was Trying To Solve**: He aimed to explain how scientific communities actually transition between incompatible conceptual frameworks.
+**What Problem They Were Trying To Solve:** He aimed to explain how scientific communities actually transition between incompatible conceptual frameworks.
 
-**What He Got Right**: Kuhn correctly identified discontinuous conceptual shifts and social-epistemic dynamics in foundational transitions.
+**What They Got Right:** Kuhn correctly identified discontinuous conceptual shifts and social-epistemic dynamics in foundational transitions.
 
-**What He Got Wrong or Overstated**: Strong incommensurability claims can obscure continuity through limiting-case recovery and shared empirical constraints.
+**What They Got Wrong or Overstated:** Strong incommensurability claims can obscure continuity through limiting-case recovery and shared empirical constraints.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially vindicated with continuity refinement.
 
@@ -1406,26 +1406,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for transition sociology and moderate for final truth-conditions.
 
-**Core belief**: Science alternates between normal puzzle-solving phases and revolutionary paradigm reorganizations that alter standards and primitives.
+**Core Belief**: Science alternates between normal puzzle-solving phases and revolutionary paradigm reorganizations that alter standards and primitives.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ maps naturally onto Kuhn's revolution schema but insists on bridge principles that preserve commensurability through reduction.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ maps naturally onto Kuhn's revolution schema but insists on bridge principles that preserve commensurability through reduction.
 
-**Legacy shift**: Kuhn remains a transition map, while strong discontinuity claims are softened by explicit limiting-case continuity.
+**Legacy Shift**: Kuhn remains a transition map, while strong discontinuity claims are softened by explicit limiting-case continuity.
 
 ---
 
 ### **Imre Lakatos (1922–1974) — Research Programmes**
-**Thinker**: Imre Lakatos (1922–1974), philosopher of science who formalized progressive vs degenerating research-program assessment.
+**Subject:** Imre Lakatos (1922–1974), philosopher of science who formalized progressive vs degenerating research-program assessment.
 
 **Era / Context**: Lakatos worked after Popper and Kuhn, addressing tension between strict falsification and historical persistence of developing theories.
 
 **Primary Domain**: Methodology of research programs and theory-evaluation governance.
 
-**What Problem He Was Trying To Solve**: He sought criteria for judging ongoing programs without either premature rejection or indefinite ad hoc rescue.
+**What Problem They Were Trying To Solve:** He sought criteria for judging ongoing programs without either premature rejection or indefinite ad hoc rescue.
 
-**What He Got Right**: Lakatos correctly distinguished hard-core commitments from adjustable auxiliary layers and tied legitimacy to predictive progress.
+**What They Got Right:** Lakatos correctly distinguished hard-core commitments from adjustable auxiliary layers and tied legitimacy to predictive progress.
 
-**What He Got Wrong or Overstated**: Boundaries between core and belt can be contested in practice, requiring explicit governance conventions.
+**What They Got Wrong or Overstated:** Boundaries between core and belt can be contested in practice, requiring explicit governance conventions.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained as program-management framework.
 
@@ -1433,26 +1433,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is very high as ongoing governance protocol for foundational model development.
 
-**Core belief**: Scientific theories evolve within programs whose value depends on progressive prediction and explanatory gain, not mere anomaly absorption.
+**Core Belief**: Scientific theories evolve within programs whose value depends on progressive prediction and explanatory gain, not mere anomaly absorption.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ operationalizes Lakatos directly via explicit hard-core declarations, belt policies, and progressive/degenerating audits.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ operationalizes Lakatos directly via explicit hard-core declarations, belt policies, and progressive/degenerating audits.
 
-**Legacy shift**: Lakatos becomes an internal control system rather than a retrospective philosophical lens.
+**Legacy Shift**: Lakatos becomes an internal control system rather than a retrospective philosophical lens.
 
 ---
 
 ### **Paul Feyerabend (1924–1994) — Methodological Anarchism**
-**Thinker**: Paul Feyerabend (1924–1994), critic of rigid universal scientific-method doctrines.
+**Subject:** Paul Feyerabend (1924–1994), critic of rigid universal scientific-method doctrines.
 
 **Era / Context**: Feyerabend wrote against over-codified methodology narratives that, in his view, misdescribed historical scientific creativity.
 
 **Primary Domain**: Philosophy of science and methodological pluralism.
 
-**What Problem He Was Trying To Solve**: He sought to protect exploratory innovation from methodological policing that can suppress nonconforming but fruitful ideas.
+**What Problem They Were Trying To Solve:** He sought to protect exploratory innovation from methodological policing that can suppress nonconforming but fruitful ideas.
 
-**What He Got Right**: Feyerabend correctly warned that discovery phases often require heterodox moves and temporary rule-breaking.
+**What They Got Right:** Feyerabend correctly warned that discovery phases often require heterodox moves and temporary rule-breaking.
 
-**What He Got Wrong or Overstated**: "Anything goes" cannot be an acceptance rule, because mature theory evaluation requires stringent constraints and explicit failure conditions.
+**What They Got Wrong or Overstated:** "Anything goes" cannot be an acceptance rule, because mature theory evaluation requires stringent constraints and explicit failure conditions.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained in exploration and rejected in acceptance governance.
 
@@ -1460,26 +1460,26 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as creativity safeguard and low as final methodology for theory acceptance.
 
-**Core belief**: Scientific innovation is historically pluralistic and often incompatible with single codified method prescriptions.
+**Core Belief**: Scientific innovation is historically pluralistic and often incompatible with single codified method prescriptions.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ permits exploratory heterodoxy but enforces Popper/Lakatos-grade rigor at selection and acceptance stages.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ permits exploratory heterodoxy but enforces Popper/Lakatos-grade rigor at selection and acceptance stages.
 
-**Legacy shift**: Feyerabend's role becomes bounded pluralism in generation, not permissive standards in validation.
+**Legacy Shift**: Feyerabend's role becomes bounded pluralism in generation, not permissive standards in validation.
 
 ---
 
 ### **Nancy Cartwright (1944–) — The Dappled World**
-**Thinker**: Nancy Cartwright (1944–), philosopher of science known for anti-unification and context-sensitive law critiques.
+**Subject:** Nancy Cartwright (1944–), philosopher of science known for anti-unification and context-sensitive law critiques.
 
 **Era / Context**: Cartwright's work emerged in late 20th-century philosophy amid concerns that grand unification narratives ignored domain-specific modeling realities.
 
 **Primary Domain**: Philosophy of science, anti-reductionism, and law pluralism.
 
-**What Problem He Was Trying To Solve**: She aimed to explain why many successful scientific models are local, patchy, and context-dependent rather than globally unified.
+**What Problem They Were Trying To Solve:** She aimed to explain why many successful scientific models are local, patchy, and context-dependent rather than globally unified.
 
-**What He Got Right**: Cartwright correctly emphasized that effective law application is domain-shaped and that model validity is frequently conditional.
+**What They Got Right:** Cartwright correctly emphasized that effective law application is domain-shaped and that model validity is frequently conditional.
 
-**What He Got Wrong or Overstated**: She may overextend patchiness into anti-unification ontology, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ treats patchiness as effective-layer behavior over unified substrate dynamics.
+**What They Got Wrong or Overstated:** She may overextend patchiness into anti-unification ontology, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ treats patchiness as effective-layer behavior over unified substrate dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Largely contradicted with partial methodological retention.
 
@@ -1487,24 +1487,24 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate for model-practice realism and low for final ontology if unification succeeds.
 
-**Core belief**: Scientific laws are often local tools with restricted scope, and broad unification claims can misrepresent real explanatory practice.
+**Core Belief**: Scientific laws are often local tools with restricted scope, and broad unification claims can misrepresent real explanatory practice.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts local effective patchiness but interprets it as layered emergence from one substrate ontology rather than evidence against reduction.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts local effective patchiness but interprets it as layered emergence from one substrate ontology rather than evidence against reduction.
 
-**Legacy shift**: Cartwright's caution on context survives, while her anti-unification conclusion is treated as challenge target rather than endpoint.
+**Legacy Shift**: Cartwright's caution on context survives, while her anti-unification conclusion is treated as challenge target rather than endpoint.
 
 ### **Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project**
-**Thinker**: Stephen Wolfram (1959–), proponent of computation-first foundations and rule-based generative physics.
+**Subject:** Stephen Wolfram (1959–), proponent of computation-first foundations and rule-based generative physics.
 
 **Era / Context**: Wolfram's program expanded in an era of high computational power and dissatisfaction with continuous-formalism dominance in foundational physics.
 
 **Primary Domain**: Computational physics foundations and rule-based emergence programs.
 
-**What Problem He Was Trying To Solve**: He sought a minimal generative substrate where simple update rules produce rich large-scale physics without heavy axiomatic overhead.
+**What Problem They Were Trying To Solve:** He sought a minimal generative substrate where simple update rules produce rich large-scale physics without heavy axiomatic overhead.
 
-**What He Got Right**: Wolfram correctly emphasized emergence from simple local rules and the central role of computation in exploring foundational hypotheses.
+**What They Got Right:** Wolfram correctly emphasized emergence from simple local rules and the central role of computation in exploring foundational hypotheses.
 
-**What He Got Wrong or Overstated**: Computation-first ontology can overstate abstract graph primitives where physically specified substrate entities and geometry may be required.
+**What They Got Wrong or Overstated:** Computation-first ontology can overstate abstract graph primitives where physically specified substrate entities and geometry may be required.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially aligned methodologically and contradicted ontologically.
 
@@ -1512,10 +1512,10 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as computational methodology and low as final ontology in a geometry-first substrate.
 
-**Core belief**: Fundamental physics may be generated by simple computational update rules over abstract structures, with complexity emerging from iterative evolution.
+**Core Belief**: Fundamental physics may be generated by simple computational update rules over abstract structures, with complexity emerging from iterative evolution.
 
-**Architrino impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares rule-based emergence and heavy simulation use but grounds rules in physically real architrinos in Euclidean space and absolute time.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares rule-based emergence and heavy simulation use but grounds rules in physically real architrinos in Euclidean space and absolute time.
 
-**Legacy shift**: Wolfram's computational perspective is retained as toolchain and heuristic layer, while ontology remains physical rather than abstract-graph primitive.
+**Legacy Shift**: Wolfram's computational perspective is retained as toolchain and heuristic layer, while ontology remains physical rather than abstract-graph primitive.
 
 ---

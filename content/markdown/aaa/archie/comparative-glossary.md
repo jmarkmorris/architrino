@@ -1,3 +1,7 @@
+# Comparative Glossary
+
+This glossary provides a comparative reference between standard modern frameworks and the canonical terminology used in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
 | Term | $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$ | $\mathbb{A}\mathbb{A}\mathbb{A}$ = Architrino Assembly Architecture |
 | --- | --- | --- |
 | Absolute Frame / Preferred Frame | No preferred inertial frame; all inertial frames are equivalent in $\mathrm{SR}/\mathrm{GR}$. | The Euclidean-void rest frame defined by isotropy of $c_f$ and absolute time; physically real but operationally hidden. |
