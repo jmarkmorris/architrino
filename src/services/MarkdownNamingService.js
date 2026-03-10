@@ -28,7 +28,13 @@ export function compactMarkdownNodeLabel(title, maxChars = 34) {
     if (!text.includes(splitter)) {
       continue;
     }
-    const head = text.split(splitter)[0].trim();
+    const [headRaw, ...tailParts] = text.split(splitter);
+    const head = headRaw.trim();
+    const tail = tailParts.join(splitter).trim();
+    if (shouldPreferTailLabel(head, tail, maxChars)) {
+      text = tail;
+      break;
+    }
     if (head.length >= 8) {
       text = head;
       break;
@@ -53,6 +59,28 @@ export function compactMarkdownNodeLabel(title, maxChars = 34) {
     return `${compact}\u2026`;
   }
   return `${text.slice(0, budget).trimEnd()}\u2026`;
+}
+
+function shouldPreferTailLabel(head, tail, maxChars) {
+  if (!tail) {
+    return false;
+  }
+  if (!head) {
+    return true;
+  }
+  if (tail.localeCompare(head, undefined, { sensitivity: "base" }) === 0) {
+    return false;
+  }
+  if (tail.length <= 12) {
+    return true;
+  }
+  if (tail.length <= 18 && head.length > tail.length + 6) {
+    return true;
+  }
+  if (tail.length <= maxChars * 0.55 && head.length > maxChars) {
+    return true;
+  }
+  return false;
 }
 
 const sphereAaaText = "\u{1D538}\u{1D538}\u{1D538}";
