@@ -1,9 +1,12 @@
+  2. targeted label polish in theory-mapping and major-thinkers
+  3. publication-style prose smoothing on whichever chapter you care most about
 
+---
 
 Status Table
-
-  Current Scoreboard
-  Sorted by mode, then conformance descending.
+These are all now at 100%.
+Next step is to go through them all and add more info.
+extract what I have at wordpress.
 
   | File | Mode | Estimated Template Conformance | Current Assessment |
   |---|---:|---:|---|
