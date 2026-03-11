@@ -16,6 +16,8 @@ Here, a "near miss" means all three conditions were present:
 
 The point is not to claim historical error across the board. Most "misses" were productive choices for their time. The claim is narrower: those choices also occluded specific lines that now matter for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+This chapter also treats missed opportunities dynamically rather than as one-time mistakes. An assumption set may be locally rational at one stage of science and still deserve reopening later when the admissible state space, constituent inventory, or structural vocabulary expands. New discoveries do not merely add facts. They can also change which earlier rejections remain justified. One recurring historical question is therefore whether a once-rejected ontology family was ruled out in principle, or only in the primitive form then available.
+
 The minimal lens used in this chapter is:
 
 - Substrate kinematics: $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with exact global time form $dt$.
@@ -72,6 +74,8 @@ Template conformance test protocol for each episode section:
 What physics already had at each moment was never trivial. Newtonian mechanics supplied exact time and lawful dynamics. Maxwellian electrodynamics supplied finite propagation and wave structure. Lorentz and the Michelson-Morley era supplied transformation structure compatible with emergent invariance. General relativity supplied metric closure of gravitation. Quantum theory supplied rich statistics with unresolved outcome structure. Renormalized field theory supplied predictive control with ultraviolet discomfort. Precision cosmology supplied long-baseline observation with increasingly layered inference.
 
 The opening in each case was similar in form even when different in content. A deeper constitutive account could have been pursued before effective variables hardened into final ontology. A medium could have remained physically serious after finite-speed field propagation. Lorentz symmetry could have been interpreted as emergent. Metric structure could have remained a constitutive summary. Quantum outcomes could have been treated as deterministic multistability under hidden path-history dynamics. Dark-sector closure could have remained explicitly provisional.
+
+Another recurring pattern is failure to revisit earlier assumption sets after later discoveries widened the design space. When new constituent possibilities, new charge or state structures, or new assembly principles become available, old no-go conclusions do not automatically remain final. Sometimes they do. Sometimes they only show that an earlier implementation failed. A historical near-miss analysis should keep that distinction explicit.
 
 | Period | What physics had in hand | $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent opening | Narrative lock-in that occluded it |
 |:---|:---|:---|:---|

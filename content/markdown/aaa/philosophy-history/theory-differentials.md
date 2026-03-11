@@ -8,6 +8,8 @@ This document defines the modern ontological network above $\mathbb{A}\mathbb{A}
 
 Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+One governing distinction in this chapter is the difference between predictive closure and implementation closure. A theory may organize observations with extraordinary precision while still leaving open what physically implements the successful mathematics. In that case the formalism is not discarded, but its stack placement must remain disciplined. The central comparative question is therefore not only whether a framework works, but whether it explains by exposing a generator or only by stabilizing an effective summary.
+
 ### Theory-Differential Template (Unified)
 
 Use this template for every concept entry (theory, framework, program, interpretation, law, principle, quantity, observable, parameter, or construct). Repetition is intentional: this chapter is a controlled comparison instrument, not a sequence of free-form essays.
