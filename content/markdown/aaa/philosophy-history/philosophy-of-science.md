@@ -25,6 +25,7 @@ The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be su
 - **Popperian falsifiability** as a baseline governance rule.
 - **Lakatosian program assessment** for judging whether the project is progressing or merely defending itself.
 - **Kuhnian awareness** that a genuine substrate replacement may require conceptual rupture.
+- **Crisis detection and corrective governance** when a field remains operationally strong but foundationally stalled.
 - **Anti-verificationist realism**: unobservables may be posited, but only under strong explanatory and falsifiable discipline.
 - **Inference vigilance**: observational pipelines must be separated from ontological conclusions.
 
@@ -280,6 +281,50 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **strongly aligned**. Its tr
 ### What Survives
 
 The long-term relevance of this subject is as a **permanent evaluative method**. What survives is the requirement that theory development be judged by progressive unification, constrained adjustment, and increasing contact with evidence. Even a successful mature theory will need this framework for later extensions. The long-term lesson is not loyalty to a programme, but disciplined accounting of its growth.
+
+---
+
+## Scientific Method Under Crisis Conditions
+
+### Overview
+
+**Subject:** Scientific Method Under Crisis Conditions. **Short Name:** Crisis Governance. The core question is what science should do when a field remains technically productive and empirically active while foundational closure stalls for decades. The central claim is that standard presentations of the scientific method are under-specified for this situation. They describe hypothesis, test, and revision reasonably well at local scale, but they do not clearly define how to detect long-duration architectural failure or how to respond when a successful research program becomes operationally powerful yet conceptually non-closing.
+
+This subject matters to $\mathbb{A}\mathbb{A}\mathbb{A}$ because the project's diagnosis of modern physics is not only that specific theories may be wrong in part. It is also that the governing methodological culture has lacked an explicit crisis mode. A mature field can accumulate unknowns, tensions, paradoxes, and interpretive proliferation while still appearing healthy by ordinary productivity metrics.
+
+### Historical Motivation
+
+The historical pressure behind this subject comes from the mismatch between textbook method and the actual behavior of mature foundational sciences. The core question is how to recognize that a field may be in trouble even when direct falsification is absent, publication volume remains high, and instrumentation continues to improve. The problem it is trying to solve is slow failure: prolonged non-closure masked by operational success.
+
+This subject is synthetic rather than attached to one canonical school. It draws on Popperian demands for risk, Kuhnian attention to anomaly accumulation and paradigm strain, Lakatosian analysis of progressive versus degenerating programs, and contemporary foundational criticism in physics. What none of these frameworks fully supplies on its own is an explicit protocol for crisis detection and corrective action in a technically successful but architecturally stalled field.
+
+### Core Commitments
+
+The central commitment is that science should contain a recognizable crisis-detection layer rather than waiting for informal prestige shifts or late-career dissent. A field should be reviewed not only for local empirical adequacy but also for signs that it is accumulating unresolved debt faster than it is achieving foundational closure. That requires explicit metrics rather than mere mood.
+
+Relevant indicators include anomaly load, ontology debt, patch density, progress latency, theory proliferation without convergence, and imbalance between effective success and explanatory integration. Anomaly load concerns the number and severity of unresolved tensions, paradoxes, and unexplained sectors. Ontology debt concerns the number of central theoretical objects that remain predictively useful while mechanistically unclear. Patch density concerns the growth of auxiliary sectors, repair layers, and interpretation families needed to preserve the framework. Progress latency concerns the elapsed time since the last widely accepted foundational closure rather than the last confirmation of an inherited prediction. Theory proliferation without convergence concerns the multiplication of interpretations or repair programs without narrowing toward a common architecture. Effective-success imbalance concerns the case in which engineering and prediction remain strong while explanatory unification remains weak.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, these commitments imply a formal distinction between three things that are too often fused: empirical data, calculational formalism, and ontological interpretation. Under crisis conditions, the method should require these to be separated explicitly. The field should ask which parts of the current structure are measurements to preserve, which parts are successful effective machinery to rederive, and which parts are interpretive overlays that may need to be stripped away.
+
+### Internal Tensions
+
+What this subject gets right is that science needs more than sharp falsifiers. Some fields fail not by one decisive contradiction but by long accumulation of unresolved tensions under a still-productive shell. A method that cannot register that pattern is incomplete. Crisis governance also gets right that detection without procedure is not enough. Once warning signs are identified, there must be a disciplined response rather than vague dissatisfaction.
+
+The corrective response should therefore be structured. It should include comparative audits of data, formalism, and interpretation; explicit review of whether an effective theory has been mistaken for final ontology; historical rollback analysis of points where an early conceptual mistake may have hardened into doctrine; and organized support for alternative architectures that aim at deeper closure rather than local patching. It should also include dedicated working groups, protected resources for foundational reconstruction, and periodic crisis reviews so that the burden of recognition does not fall only on unusually secure or unusually marginal figures.
+
+What this subject can overstate, if handled poorly, is the ease of declaring crisis or the wisdom of administrative intervention. A field should not be pushed into melodrama every time difficulty persists. Hard problems are not automatically signs of methodological failure. The danger is false crisis language, politicized scorekeeping, or forced heterodoxy for its own sake. The point is not to replace scientific judgment with bureaucracy. The point is to make room for a disciplined review when prolonged non-closure becomes part of the evidential situation.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **strongly aligned and partly unmet by current practice**. Transition relevance is extremely high because the project explicitly claims that modern physics has spent decades in a condition of operational success without corresponding ontological settlement. From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the scientific method should not treat this as mere sociology. It should treat it as a methodological signal requiring diagnosis.
+
+Under that diagnosis, the first corrective action is not immediate replacement but disciplined decomposition. Interpretations should be stripped away from confirmed quantitative results. Effective theories should be retained where they work, but their status should be reclassified if they no longer justify final ontology. Resources should be directed toward linked anomaly analysis, substrate reconstruction, and historically informed audits of where the dominant framework may have taken a wrong turn or accepted capitulation into effective theory as sufficient closure.
+
+### What Survives
+
+The long-term relevance of this subject is as a **permanent methodological extension**. What survives is the principle that science needs governance not only for discovery and test, but also for prolonged periods of field-level strain. A mature method should be able to detect when unknowns, tensions, paradoxes, and explanatory delay have become structurally significant. It should also be able to recommend corrective action without abandoning empirical rigor.
+
+What should survive, then, is not a bureaucratic doctrine of crisis declaration. It is a disciplined crisis mode: detect accumulated non-closure, separate data from interpretation, audit whether effective success has been mistaken for final architecture, protect serious alternatives, and judge competing programs by explanatory recovery, reduction, and new testable reach. In that form, scientific method becomes more complete under crisis conditions rather than being replaced.
 
 ---
 
