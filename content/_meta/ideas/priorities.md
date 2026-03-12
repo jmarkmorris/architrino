@@ -12,6 +12,7 @@ Review in detail. - crisis-in-physics.md  :
   - Done
     - progress/time
     - ## Vacuum, Medium, and the Status of Empty Space
+    - ## Prediction vs. Ontology
 
 
   | historical-context-and-missed-opportunities.md | split | 95% | Fully rewritten; detailed and structurally consistent. |

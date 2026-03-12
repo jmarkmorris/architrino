@@ -137,31 +137,45 @@ This crisis would be resolved if a deeper theory could recover present predictio
 
 ### Overview
 
-**Crisis Axis:** Quantum Measurement and Outcome Selection. **Short Name:** Measurement Problem. The core tension is the gap between the smooth evolution of the formal quantum state and the definite outcomes recorded in experiments. The crisis appears in quantum mechanics, in all major interpretation families, and in any theory that must explain why one observed result occurs rather than another.
+**Crisis Axis:** Quantum Measurement and Outcome Selection. **Short Name:** Measurement Problem. The core tension is the gap between the smooth evolution of the formal quantum state and the definite outcomes recorded in experiments. Quantum theory predicts probabilities with extraordinary success, yet the point at which one actual record is produced rather than another remains ontologically unsettled. The crisis appears in quantum mechanics, in all major interpretation families, and in any theory that must explain why one observed result occurs rather than another.
 
 ### Where The Tension Comes From
 
-The historical source is familiar: the Schrondinger-style evolution of the formal state appears continuous and deterministic, while measurement reports are discrete and definite. The core tension is not merely linguistic. It concerns mechanism. What physically happens during outcome selection, and why does one basin of possibility become the realized record? The problem appears in laboratory measurement, decoherence discourse, interpretive debates, and the wider attempt to connect microdynamics to observed events.
+The historical source is familiar: Schrodinger-style evolution of the formal state appears continuous and deterministic, while measurement reports are discrete and definite. The core tension is not merely linguistic. It concerns mechanism. What physically happens during outcome selection, and why does one possibility become the realized record?
+
+This pressure is stronger than a narrow interpretive puzzle. Measurement is the point where the formal apparatus meets laboratory inscription: detector clicks, tracks, screen impacts, digital counts, macroscopic records. If the theory can evolve amplitudes but cannot say, in physical terms, how one recorded event is selected, then the connection between formal description and world-event remains incomplete.
+
+The tension is reinforced by the status of the apparatus itself. In practice the apparatus is made of the same physical world as the system under study, yet standard presentations often rely on a blurry shift in descriptive mode when the apparatus enters. The result is a persistent uncertainty about where the linear formalism ends, where effective classicality begins, and what counts as a measurement in the first place.
 
 ### What Current Physics Gets Right
 
-What still works is enormous. Quantum theory predicts interference, spectra, transition probabilities, scattering outcomes, and countless experimental results with unmatched accuracy. Decoherence theory explains how phase relations become effectively inaccessible in open systems. Measurement protocols are technically powerful and operationally indispensable.
+What still works is enormous. Quantum theory predicts interference, spectra, transition probabilities, scattering outcomes, and countless experimental results with unmatched accuracy. Decoherence theory explains how phase relations become effectively inaccessible in open systems and why stable quasi-classical records emerge at the level of reduced description. Measurement protocols are technically powerful and operationally indispensable.
+
+These achievements matter because they constrain any replacement account. A serious theory must preserve the statistical structure of quantum prediction, recover the practical success of decoherence analysis, and explain record formation without destroying the extraordinary empirical reach of the existing formalism.
 
 ### What Remains Unresolved
 
-What is unsettled is the ontological status of the transition from formal possibility to definite event. Decoherence explains suppression of interference between branches, but not by itself why one observed record is realized. Collapse approaches insert new dynamics, Many-Worlds multiplies realized structure, and epistemic interpretations weaken the ontological demand. None ends debate because the mechanism of actual outcome selection remains contested.
+What is unsettled is the ontological status of the transition from formal possibility to definite event. Decoherence explains suppression of interference between branches, but not by itself why one observed record is realized. Reduced density matrices can look classical while the selection problem remains: why this click, this pointer value, this track?
+
+There is also a second unresolved layer. Even if one grants that outcome fixation occurs, the theory still owes an account of what makes the transition irreversible, what physically constitutes a record, and why the observed frequencies follow the Born rule rather than some neighboring statistical law. Until outcome selection, record stabilization, and statistical weighting are connected within one mechanism, the closure remains partial.
 
 ### Standard Repairs
 
-Standard repairs include Copenhagen-style operationalism, decoherence-based effective classicality, objective collapse models, pilot-wave theories, and branching ontologies. Each captures something important. Yet the repairs remain incomplete because they either shift the ontological burden elsewhere, add unconfirmed structure, or leave the relation between formal evolution and concrete event insufficiently unified.
+Standard repairs include Copenhagen-style operationalism, decoherence-based effective classicality, objective collapse models, pilot-wave theories, and branching ontologies. Each captures something important. Operationalism preserves laboratory discipline. Decoherence explains branch isolation. Collapse models supply an explicit selection rule. Pilot-wave approaches retain definite microstates. Many-Worlds preserves unitary evolution.
+
+Yet the repairs remain incomplete because each resolves one pressure by relocating another. Operationalism lowers the ontological demand rather than meeting it. Decoherence explains effective classicality without by itself selecting one realized outcome. Collapse models add new dynamics that remain empirically unsettled. Pilot-wave theories retain hidden structure but still face the question of how measurement statistics and effective collapse are best understood. Branching ontologies preserve the mathematics at the price of multiplying realized structure in a way many physicists regard as explanatorily heavy. The dispute persists because no repair has closed mechanism, record, and statistics in one broadly accepted account.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**, though not yet fully solved. The project's interest lies in deterministic microdynamics with multistability, path-history dependence, and attractor-basin selection. That makes transition relevance extremely high: if a substrate account can derive effective quantum statistics while explaining outcome fixation as a causal process, it would address one of the central foundational crises.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**, though not yet fully solved. The project's proposed move is to treat measurement not as a primitive discontinuity but as finite-time threshold resolution in a deterministic, path-history-dependent substrate. On that picture, the measured system and the apparatus are assemblies governed by the same underlying microdynamics. What standard quantum language calls collapse is reinterpreted as the crossing of a metastable separatrix into one attractor basin under structured causal interaction, with macroscopic irreversibility arising from dissipation into the surrounding medium.
+
+This makes transition relevance extremely high. If a substrate account can derive effective quantum statistics while explaining outcome fixation as a causal process, eliminate the Heisenberg cut as a fundamental division, and show how apparent collapse emerges from one continuous dynamics, it would address one of the central foundational crises.
 
 ### What Would Count As Resolution
 
-Resolution would require a physically explicit account of how definite outcomes arise from substrate interaction without abandoning the successful statistical structure of quantum theory. The long-term relevance of this crisis is likely permanent until such a derivation exists, because measurement is the place where formal description meets recorded event most directly.
+Resolution would require a physically explicit account of how definite outcomes arise from substrate interaction without abandoning the successful statistical structure of quantum theory. It would need to show how one attractor is selected, how a stable record is formed, why the Born weights emerge, and what measurable signatures distinguish finite-time causal resolution from idealized instantaneous projection.
+
+The long-term relevance of this crisis is likely permanent until such a derivation exists, because measurement is the place where formal description meets recorded event most directly. If a future substrate theory closes that gap, the measurement problem would cease to be a foundational paradox and become a derived threshold phenomenon within a larger causal architecture.
 
 ---
 
