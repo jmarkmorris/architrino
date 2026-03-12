@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 391,
-      "edges": 1132,
-      "scenes": 274,
+      "nodes": 393,
+      "edges": 1134,
+      "scenes": 275,
       "markdownIndexes": 0,
-      "markdownDocs": 117,
+      "markdownDocs": 118,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1793,6 +1793,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "meta__meta_github_presence_and_community",
+      "name": "GitHub Presence & Community",
+      "path": "content/scenes/meta/meta_github_presence_and_community.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -1808,6 +1814,12 @@
       "id": "content/markdown/aaa/archie/comparative-glossary.md",
       "name": "Comparative Glossary",
       "path": "content/markdown/aaa/archie/comparative-glossary.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/github-presence-and-community.md",
+      "name": "GitHub Presence and Community",
+      "path": "content/markdown/aaa/archie/github-presence-and-community.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4081,6 +4093,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/meta/meta_github_presence_and_community.json",
+      "nodeType": "scene",
+      "id": "meta__meta_github_presence_and_community",
+      "name": "GitHub Presence & Community",
+      "path": "content/scenes/meta/meta_github_presence_and_community.json",
+      "searchTarget": "content/scenes/meta/meta_github_presence_and_community.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/meta/meta_glossary.json",
       "nodeType": "scene",
       "id": "meta__meta_glossary",
@@ -4987,6 +5008,15 @@
       "name": "Comparative Glossary",
       "path": "content/markdown/aaa/archie/comparative-glossary.md",
       "searchTarget": "content/markdown/aaa/archie/comparative-glossary.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/github-presence-and-community.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/github-presence-and-community.md",
+      "name": "GitHub Presence and Community",
+      "path": "content/markdown/aaa/archie/github-presence-and-community.md",
+      "searchTarget": "content/markdown/aaa/archie/github-presence-and-community.md",
       "implicit": false
     },
     {
@@ -9011,7 +9041,14 @@
       "to": "scene:content/scenes/meta/meta_academic_style_guide.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta.json",
+      "to": "scene:content/scenes/meta/meta_github_presence_and_community.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/meta/meta.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
@@ -9025,7 +9062,7 @@
       "to": "scene:content/scenes/meta/meta_help.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
@@ -9039,21 +9076,21 @@
       "to": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
       "to": "scene:content/scenes/meta/meta_mathematical_terminology.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
       "to": "scene:content/scenes/meta/meta_scene_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/meta/meta.json",
@@ -10110,6 +10147,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/academic-style-guide.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/meta/meta_academic_style_guide.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/meta/meta_github_presence_and_community.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/github-presence-and-community.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/meta/meta_github_presence_and_community.json",
       "field": "scene.source.path"
     },
     {

@@ -1369,6 +1369,11 @@
       "id": "meta__meta_textbook_file_structure",
       "name": "Textbook File Structure",
       "path": "content/scenes/meta/meta_textbook_file_structure.json"
+    },
+    {
+      "id": "meta__meta_github_presence_and_community",
+      "name": "GitHub Presence & Community",
+      "path": "content/scenes/meta/meta_github_presence_and_community.json"
     }
   ]
 }

@@ -32,6 +32,10 @@
         "scenePath": "content/scenes/meta/meta_textbook_file_structure.json"
       },
       {
+        "nodeId": "meta_github_presence_and_community",
+        "scenePath": "content/scenes/meta/meta_github_presence_and_community.json"
+      },
+      {
         "nodeId": "meta_help",
         "scenePath": "content/scenes/meta/meta_help.json"
       },
@@ -91,6 +95,14 @@
       "radius": 2.2,
       "color": "#465f3a",
       "labelTitle": "Textbook File Structure",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "meta_github_presence_and_community",
+      "title": "GitHub Presence & Community",
+      "radius": 2.2,
+      "color": "#3f5f6f",
+      "labelTitle": "GitHub Presence & Community",
       "labelBadge": "doc"
     },
     {
