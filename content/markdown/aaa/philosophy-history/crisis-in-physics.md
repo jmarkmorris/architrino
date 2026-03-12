@@ -187,29 +187,41 @@ The long-term relevance of this crisis is likely permanent until such a derivati
 
 ### Where The Tension Comes From
 
-The source of the tension is the mismatch between classical intuitions about local causal mediation and the structure of experimentally confirmed Bell correlations. The core question is not only whether locality survives in a familiar sense, but which assumptions are actually being ruled out. Bell theorems are precise, yet the surrounding narrative often becomes imprecise, collapsing different notions of locality, realism, signaling, and independence into one slogan.
+The source of the tension is the mismatch between classical intuitions about local causal mediation and the structure of experimentally confirmed Bell correlations. The core question is not only whether locality survives in a familiar sense, but which assumptions are actually being ruled out. Bell theorems are precise, yet the surrounding narrative often becomes imprecise, collapsing different notions of Bell locality, signaling locality, realism, and measurement independence into one slogan.
 
-This is where causal structure becomes central. If correlations violate classical locality constraints without enabling controllable signaling, then one must ask what kind of delayed, nonlocal, or globally constrained substrate process could underwrite them.
+This is where causal structure becomes central. Experiments show correlations that violate Bell inequalities while preserving the practical no-signaling structure of quantum theory. That means the pressure is not simply "faster-than-light messaging" versus "no mystery." It is a sharper question about what kind of non-separable or globally constrained causal organization can produce the correlations without enabling controllable superluminal communication.
+
+The crisis is amplified by the gap between theorem and rhetoric. Bell's result excludes a specific class of locally factorizable hidden-variable models. It does not by itself say that causation is impossible, that realism is obviously dead, or that every deterministic substrate program has been closed off. Much of the conceptual damage enters when a mathematically exact theorem is converted into a philosophically compressed slogan.
 
 ### What Current Physics Gets Right
 
-What current physics gets right is the empirical robustness of the correlations and the theorem-level clarity about what certain hidden-variable classes cannot do. The formal apparatus of entanglement, no-signaling structure, and Bell inequalities is stable and experimentally mature. Any replacement theory must recover those results rather than attempt to wish them away.
+What current physics gets right is the empirical robustness of the correlations and the theorem-level clarity about what certain hidden-variable classes cannot do. The formal apparatus of entanglement, no-signaling structure, and Bell inequalities is stable and experimentally mature. Loophole-closing work matters here: the correlations are not a fringe artifact, and neither are the independence constraints built into modern tests.
+
+Any replacement theory must therefore recover at least three things at once: the observed Bell-inequality violations, the no-signaling structure of local marginals, and the practical independence of detector settings from the hidden-variable description. These are durable empirical achievements, not optional interpretive decorations.
 
 ### What Remains Unresolved
 
-What is unsettled is the ontological reading. "Local realism is dead" is rhetorically compact but conceptually blunt. The unresolved issue is which nonlocal ontology, if any, best explains the observed pattern while preserving the distinction between correlation and signaling. There is still no universally accepted causal picture of how the correlations are produced.
+What is unsettled is the ontological reading. "Local realism is dead" is rhetorically compact but conceptually blunt. The unresolved issue is which kind of nonlocality, if any, best explains the observed pattern while preserving the distinction between correlation and signaling. Is the right picture a non-separable state ontology, a deterministic hidden-variable theory with explicitly nonlocal structure, a retrocausal account, a superdeterminist constraint, or some deeper reconstruction of causation itself?
+
+There is still no universally accepted causal picture of how the correlations are produced. Even where the mathematics is clear, mechanism is not. Are the correlations read out from shared creation constraints, maintained by a global wavefunction, enforced by future boundary conditions, or carried by some other substrate organization? Until the theory says what sort of dependence exists, and how it avoids signaling, the Bell crisis remains open.
 
 ### Standard Repairs
 
-Standard repairs include anti-realist or operationalist interpretations, pilot-wave nonlocality, Many-Worlds branching, relational views, superdeterminist proposals, and causal-structure reconstructions. These remain incomplete because each pays a price: hidden preferred structure, weakened ontology, controversial independence assumptions, or explanatory reframing without fully intuitive mechanism.
+Standard repairs include anti-realist or operationalist interpretations, pilot-wave nonlocality, Many-Worlds branching, relational views, superdeterminist proposals, retrocausal models, and causal-structure reconstructions. Each captures something important. Operational approaches preserve empirical discipline. Pilot-wave theories show that deterministic nonlocality is conceptually coherent. Everettian views preserve unitary closure. Superdeterminist and retrocausal models widen the logical option space.
+
+They remain incomplete because each pays a price. Operationalism lowers the ontological demand rather than meeting it. Pilot-wave theories recover correlations but introduce preferred structure many physicists resist. Branching ontologies preserve the formalism by multiplying realized structure. Superdeterminism weakens measurement independence in a way many regard as methodologically costly. Retrocausal models revise time-order intuitions. Causal-structure reconstructions often clarify the logic of the theorem without yet supplying a concrete underlying world-model. The repair space is rich precisely because no option has closed the issue in a broadly accepted way.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially clarified** by the project's willingness to consider real substrate-level causal structure not exhausted by relativistic signaling language. Transition relevance is very high because Bell results are often treated as closing off deterministic or substrate-first programs when they more precisely close off only narrower classes. A careful architrino treatment would need to show how nonlocal dependence can exist without collapsing observed signaling constraints.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially clarified** by the project's willingness to consider real substrate-level causal structure not exhausted by relativistic signaling language. The proposed move is to deny Bell locality while preserving realism, forward causal order, and measurement independence. On that picture, correlated pairs inherit joint geometric constraints from a shared creation event, and those constraints are later read out locally during measurement without requiring a new superluminal signal between detectors at measurement time.
+
+Transition relevance is very high because Bell results are often treated as closing off deterministic or substrate-first programs when they more precisely close off only narrower classes. A careful architrino treatment would need to show not only that such nonlocal dependence is conceptually allowed, but that the Master Equation actually yields the observed correlation law while preserving no-signaling. Until that derivation is complete, the Bell crisis is clarified in direction but not fully closed.
 
 ### What Would Count As Resolution
 
-Resolution would require a causal account that reproduces Bell correlations, preserves observed no-signaling, and states clearly which assumptions are modified. The long-term relevance of this crisis is permanent as a signpost to the right substrate layer: it tells us that familiar local kinematics may not be where fundamental causation is best described.
+Resolution would require a causal account that reproduces Bell correlations, preserves observed no-signaling, and states clearly which assumptions are modified. More specifically, it would need to distinguish Bell locality from signaling locality, identify the carrier of the non-separable dependence, and derive the observed angular correlation structure from the underlying dynamics rather than inserting it by hand.
+
+The long-term relevance of this crisis is permanent as a signpost to the right substrate layer. It tells us that familiar local kinematics may not be where fundamental causation is best described, even if operational signaling constraints remain intact.
 
 ---
 
