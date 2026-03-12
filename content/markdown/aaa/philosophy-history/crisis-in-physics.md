@@ -89,33 +89,41 @@ Resolution would require more than continued precision inside inherited formalis
 
 ### Overview
 
-**Crisis Axis:** Prediction vs. Ontology. **Short Name:** Predictive Success. The core tension is that several major theories predict extremely well without settling what their central objects really are. The issue appears in quantum states, fields, vacuum structure, cosmological sectors, and effective parameters. Prediction is strong; ontology remains ambiguous.
+**Crisis Axis:** Prediction vs. Ontology. **Short Name:** Predictive Success. The core tension is that several major theories predict extraordinarily well while leaving the ontological status of their central objects unsettled. The issue appears in quantum states, fields, vacuum structure, cosmological sectors, and effective parameters. Prediction is strong; ontology remains underdetermined.
 
 ### Where The Tension Comes From
 
-The tension arises whenever a formalism maps observables accurately while the status of its entities remains unclear. Historically this happened because science often discovers a stable mathematical relation before it discovers the mechanism behind it. Once the relation becomes reliable, the pressure to clarify ontology weakens. The formal object is then allowed to carry explanatory burden it may not deserve.
+The tension arises whenever a formalism maps observables accurately while the status of its entities remains unclear. Historically this happens because science often discovers a stable mathematical relation before it discovers the mechanism behind it. Once the relation becomes reliable across many experiments, the pressure to clarify ontology weakens. The formal object is then allowed to carry explanatory burden it may not deserve.
 
-This pattern is especially visible when a theory's central symbols can be interpreted in multiple ways without immediate loss of predictive power. The same success that should motivate deeper inquiry can instead postpone it.
+This pattern becomes especially important when a theory's central symbols can support multiple incompatible readings without immediate loss of predictive power. A wavefunction may be treated as a real field, a law-like object, an information state, or a summary of hidden dynamics. A dark sector may be treated as a substance, an effective closure term, or a sign that the inference pipeline has attached ontology too quickly to a fitted residual. Vacuum structure may be described as active and consequential while its carrier status remains deliberately indeterminate. In each case, predictive success preserves the formal layer, but does not by itself decide what kind of thing the formal object is.
+
+There is also an institutional dimension to the drift. Once a formalism becomes pedagogically central and technologically productive, later generations are trained first in its successful use rather than in the open status of its key objects. In that setting, operational mastery can gradually be mistaken for explanatory completion. The same success that should motivate deeper inquiry can instead postpone it.
 
 ### What Current Physics Gets Right
 
 Current physics gets the predictive task right to an extraordinary degree. The formal machinery of mature theories is not a superficial artifact. It captures regularities that are stable, testable, and often astonishingly precise. That success must be preserved under any replacement architecture. A theory that improves ontology while degrading empirical control would not count as progress.
 
+It is also important that predictive success often tracks a real effective layer. Even when a theory's ontology is incomplete, its variables may still organize the observable world with great power. The crisis is therefore not that current theories predict without value. It is that predictive reliability does not by itself settle whether the variables belong to substrate ontology, effective description, observer reconstruction, or statistical closure.
+
 ### What Remains Unresolved
 
-What remains unsettled is the ontological meaning of the objects doing the predictive work. Is a wavefunction a real field, a bookkeeping device, or a summary of hidden dynamics? Is dark energy a substance, a geometric term, or a sign of mislocated inference? When the same predictive system permits multiple ontological stories, explanation has not finished.
+What remains unsettled is the ontological meaning and explanatory location of the objects doing the predictive work. Is a wavefunction a real field, a bookkeeping device, or a summary of hidden dynamics? Is dark energy a substance, a geometric term, or a sign of mislocated inference? Are renormalized fields and vacuum sectors fundamental, or do they summarize deeper constitutive behavior? When the same predictive system permits multiple ontological stories, explanation has not finished.
+
+The unresolved issue is therefore not simply interpretation in a casual sense. It is underdetermination at the level of what exists and at what layer it exists. A variable may be indispensable for calculation and still be misplaced as final ontology. Until there is a principled account of which successful objects are fundamental and which are effective summaries, predictive success remains compatible with deep ontological ambiguity.
 
 ### Standard Repairs
 
-The usual repair is pragmatic quietism: keep the equations, avoid metaphysical commitment, and work where the formalism is fruitful. Another repair is selective realism, which treats some theoretical entities as real and others as merely instrumental. These responses remain incomplete because they often stabilize the prediction layer without stating a principled ontology-selection rule.
+The usual repair is pragmatic quietism: keep the equations, avoid ontological commitment, and work where the formalism is fruitful. Another repair is selective realism, which treats some theoretical entities as real and others as merely instrumental. Both responses are understandable. They protect successful work and prevent premature dogma. They remain incomplete because they often stabilize the prediction layer without stating a principled ontology-selection rule.
+
+This is where the inconsistency becomes visible. The same discourse may treat one unobservable as physically real because it is indispensable to fit, while treating another as merely formal because its status is uncomfortable or disputed. Without a disciplined criterion for moving from predictive indispensability to ontological commitment, the boundary between realism and instrumentalism becomes ad hoc.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project exists partly to close the gap between successful prediction and causal explanation by relocating current objects into a layered substrate account. Transition relevance is maximal because the whole replacement case depends on showing that predictive power need not be sacrificed when ontology is revised.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project exists partly to close the gap between successful prediction and causal explanation by relocating current objects into a layered substrate account. In that picture, some familiar quantities are treated as observer-level reconstructions, some as effective statistical summaries, and some as misread as fundamental when they are better understood as downstream from substrate organization. Transition relevance is maximal because the whole replacement case depends on showing that predictive power need not be sacrificed when ontology is revised.
 
 ### What Would Count As Resolution
 
-This crisis would be resolved if a deeper theory could recover present predictions while assigning clear ontological roles to the currently ambiguous objects. The long-term relevance is permanent, because advanced science will likely always face periods in which mathematical success outruns interpretive clarity. The methodological lesson is to preserve prediction without mistaking it for final ontology.
+This crisis would be resolved if a deeper theory could recover present predictions while assigning clear ontological roles to the currently ambiguous objects and explaining why the older formalism worked so well despite its ambiguity. It would also need to mark the regime in which the inherited variables remain valid as effective descriptions and the regime in which they should no longer be treated as fundamental. The long-term relevance is permanent, because advanced science will likely always face periods in which mathematical success outruns interpretive clarity. The methodological lesson is to preserve prediction without mistaking it for final ontology.
 
 ---
 

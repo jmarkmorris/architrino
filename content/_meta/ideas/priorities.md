@@ -10,7 +10,8 @@ extract what I have at wordpress.
 
 Review in detail. - crisis-in-physics.md  :
   - Done
-  - progress/time
+    - progress/time
+    - ## Vacuum, Medium, and the Status of Empty Space
 
 
   | historical-context-and-missed-opportunities.md | split | 95% | Fully rewritten; detailed and structurally consistent. |
