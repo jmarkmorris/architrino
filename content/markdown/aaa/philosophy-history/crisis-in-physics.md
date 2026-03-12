@@ -99,17 +99,23 @@ This pattern becomes especially important when a theory's central symbols can su
 
 There is also an institutional dimension to the drift. Once a formalism becomes pedagogically central and technologically productive, later generations are trained first in its successful use rather than in the open status of its key objects. In that setting, operational mastery can gradually be mistaken for explanatory completion. The same success that should motivate deeper inquiry can instead postpone it.
 
+There is a further scale issue. Predictive success is always established within a tested regime, not across the whole physically possible state space. Modern experiment and accepted theory occupy only a comparatively narrow and highly nonuniform region of the universe's possible phase space, especially with respect to extreme frequency, energy, temperature, density, and curvature. Planck-scale quantities are important as organizing benchmarks, but the empirical reach of present physics samples only a minute fraction of that extreme regime, often many orders of magnitude away from it. In frequency terms alone, the experimentally occupied band is only an exceedingly small sliver of the full range between ordinary scales and Planckian closure. This does not invalidate current theory. It does mean that precision within an accessible shell should not automatically license strong ontological confidence about the deeper or more extreme layers that remain largely unprobed.
+
 ### What Current Physics Gets Right
 
 Current physics gets the predictive task right to an extraordinary degree. The formal machinery of mature theories is not a superficial artifact. It captures regularities that are stable, testable, and often astonishingly precise. That success must be preserved under any replacement architecture. A theory that improves ontology while degrading empirical control would not count as progress.
 
 It is also important that predictive success often tracks a real effective layer. Even when a theory's ontology is incomplete, its variables may still organize the observable world with great power. The crisis is therefore not that current theories predict without value. It is that predictive reliability does not by itself settle whether the variables belong to substrate ontology, effective description, observer reconstruction, or statistical closure.
 
+This point becomes stronger once regime coverage is taken seriously. A theory may be extraordinarily accurate within a narrow operational band and still fail to reveal what happens outside it. Interpolation inside a well-tested region and ontological extrapolation across enormous untested ranges are not the same achievement. The second requires a level of caution that scientific culture does not always maintain consistently.
+
 ### What Remains Unresolved
 
 What remains unsettled is the ontological meaning and explanatory location of the objects doing the predictive work. Is a wavefunction a real field, a bookkeeping device, or a summary of hidden dynamics? Is dark energy a substance, a geometric term, or a sign of mislocated inference? Are renormalized fields and vacuum sectors fundamental, or do they summarize deeper constitutive behavior? When the same predictive system permits multiple ontological stories, explanation has not finished.
 
 The unresolved issue is therefore not simply interpretation in a casual sense. It is underdetermination at the level of what exists and at what layer it exists. A variable may be indispensable for calculation and still be misplaced as final ontology. Until there is a principled account of which successful objects are fundamental and which are effective summaries, predictive success remains compatible with deep ontological ambiguity.
+
+Part of that ambiguity is extrapolative. If the currently accessible domain samples only a small portion of the total physically relevant phase space, then ontological claims about ultimate structure remain partly hostage to what has not yet been probed. Large untested ranges in frequency, energy, and temperature are not mere empty margins. They are places where hidden constitutive behavior, threshold effects, or layer transitions may reside. A mature methodology should therefore distinguish carefully between "well confirmed here" and "licensed as fundamental everywhere."
 
 ### Standard Repairs
 
