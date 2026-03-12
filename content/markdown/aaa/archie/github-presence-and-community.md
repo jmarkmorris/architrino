@@ -70,14 +70,6 @@ Useful AI-assisted tasks include:
 
 The standard is not that a post be AI-generated. The standard is that the post be serious, intelligible, relevant, and useful.
 
-## Wiki and Community Curation
-
-The repository wiki is enabled as a supplementary public knowledge surface. Its likely function is different from that of the main markdown corpus. The main corpus carries the project's structured and versioned primary texts. The wiki can support lighter-weight summaries, navigational aids, cross-references, explanatory notes, and public-facing orientation material.
-
-That said, a wiki requires editorial discipline if it is to remain useful. The expectation is that it would eventually require community moderation in a style analogous to Wikipedia stewardship, even if not identical in procedure. The value of a public knowledge layer depends on curation, relevance, and resistance to drift.
-
-At the present stage, the wiki should be treated as a supplementary explanatory surface rather than the final canonical source of theory statements.
-
 ## Issues, Discussions, and Pull Requests
 
 The repository works best when different contribution types are routed to the right place.
