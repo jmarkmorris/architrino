@@ -14,6 +14,13 @@ Review in detail. - crisis-in-physics.md  :
     - ## Prediction vs. Ontology
     - Quantum Measurement and Outcome Selection
     - ## Nonlocality, Bell, and Causal Structure
+    - ## General Relativity and Quantum Theory
+    -
+    -
+    -
+    -
+
+
     - ## Vacuum, Medium, and the Status of Empty Space
 
 

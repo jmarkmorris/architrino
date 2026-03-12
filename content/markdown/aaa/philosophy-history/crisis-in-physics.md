@@ -233,25 +233,33 @@ The long-term relevance of this crisis is permanent as a signpost to the right s
 
 ### Where The Tension Comes From
 
-The crisis emerges because the dominant ontological packages of modern physics seem to assign fundamental status to very different kinds of objects. General relativity treats metric structure as dynamically central. Quantum theory, especially in field-theoretic form, treats states, operators, and quanta in a very different framework. The core tension is therefore not only technical unification. It is a conflict over which layer is basic.
+The crisis emerges because the dominant ontological packages of modern physics seem to assign fundamental status to very different kinds of objects while neither package clearly specifies a substrate implementation of nature. General relativity treats metric structure as dynamically central. Quantum theory, especially in field-theoretic form, treats states, operators, and quanta in a very different framework. The core tension is therefore not only technical unification. It is a conflict over which layer is basic and over whether either framework is describing generators or only highly successful effective closures.
 
-Historically the problem intensified once it became clear that both theories were individually successful across enormous domains. That success made replacement harder because neither side looked like a provisional approximation in its own home territory.
+Historically the problem intensified once it became clear that both theories were individually successful across enormous domains. That success made replacement harder because neither side looked like a provisional approximation in its own home territory. A mature crisis can therefore be hidden by success: the mathematics continues to organize observations while the underlying narrative remains unsettled.
 
 ### What Current Physics Gets Right
 
 Both theories get real things right. General relativity explains gravitation, lensing, orbital precession, compact objects, and many large-scale effects with great success. Quantum theory and quantum field theory explain atomic structure, scattering, statistics, and the microphysical behavior behind modern technology. Their empirical authority is not in doubt within their domains.
 
+That empirical success matters methodologically. The crisis is not that the observations are wrong or that the effective mathematics is useless. The crisis is that the most successful formalisms in modern physics may still be silent about what physically implements them. In that case the formal success stands, but the ontological reading remains provisional.
+
 ### What Remains Unresolved
 
 What is unsettled is how, or whether, both frameworks can be fundamental in their current form. Attempts to quantize geometry or geometrize quantum theory often reveal that one side is being forced to accommodate the other without a shared ontological base. The unresolved residue is the suspicion that at least one framework is already effective rather than primitive.
+
+More sharply, the open problem is not merely to place both theories in one mathematical container. It is to determine whether spacetime geometry, quantum state structure, field quanta, and measurement statistics are primitive constituents or emergent summaries of a deeper causal architecture. Until that is answered, the GR-QM problem remains as much ontological as formal.
 
 ### Standard Repairs
 
 Standard repairs include string theory, loop quantum gravity, semiclassical gravity, asymptotic safety, holographic dualities, and emergent-spacetime programs. These efforts are sophisticated and historically important. Yet they remain incomplete because no approach has secured broad empirical closure while also ending disagreement about what is fundamental and what is emergent.
 
+Many of these programs also preserve large portions of the inherited formal stack while relocating only part of the ontology. That is often productive, but it can leave open whether the field is reconciling two effective languages with each other rather than descending to the layer that generates both. The result is substantial mathematical progress without universally accepted implementation closure.
+
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's basic wager is that metric structure and quantum effective behavior may both be downstream from a deeper substrate organization. Transition relevance is maximal because this crisis is one of the clearest motivations for ontological relocation rather than formal patching.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's basic wager is that metric structure and quantum effective behavior may both be downstream from a deeper substrate organization. On that reading, neither GR nor QM is discarded. Both are retained as effective closures whose domain success must be recovered while their ontological placement is lowered.
+
+Transition relevance is maximal because this crisis is one of the clearest motivations for ontological relocation rather than formal patching. In that sense the aim is closer to refactoring than replacement: preserve the durable empirical and mathematical achievements, but reconnect them to a generator-level architecture of nature.
 
 ### What Would Count As Resolution
 
