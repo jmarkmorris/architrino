@@ -15,7 +15,7 @@ This document should map the main crisis-axes rather than collapse them into one
 - where patchwork closure displaced substrate derivation,
 - and where unresolved tensions may indicate missing causal structure rather than merely harder calculation.
 
-This layer also needs one standard coverage template so each crisis-axis is treated systematically rather than rhetorically.
+This document also needs one standard coverage template so each crisis-axis is treated systematically rather than rhetorically.
 
 ### Crisis-Section Template (Unified)
 
@@ -151,7 +151,7 @@ This crisis would be resolved if a deeper theory could recover present predictio
 
 ### Where The Tension Comes From
 
-The historical source is familiar: Schrodinger-style evolution of the formal state appears continuous and deterministic, while measurement reports are discrete and definite. The core tension is not merely linguistic. It concerns mechanism. What physically happens during outcome selection, and why does one possibility become the realized record?
+The historical source is familiar: Schrodinger-type evolution of the formal state appears continuous and deterministic, while measurement reports are discrete and definite. The core tension is not merely linguistic. It concerns mechanism. What physically happens during outcome selection, and why does one possibility become the realized record?
 
 This pressure is stronger than a narrow interpretive puzzle. Measurement is the point where the formal apparatus meets laboratory inscription: detector clicks, tracks, screen impacts, digital counts, macroscopic records. If the theory can evolve amplitudes but cannot say, in physical terms, how one recorded event is selected, then the connection between formal description and world-event remains incomplete.
 
