@@ -43,6 +43,16 @@ Default prose flow for each crisis section:
 6. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: classification against `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
 7. **What Would Count As Resolution**: explicit closure condition plus `Long-Term Relevance`.
 
+### Why This Matters for $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The point of this chapter is not to collect fashionable complaints. It is to ask whether several persistent tensions in modern physics are isolated technical problems or signs of a more general ontological mislocation. Quantum measurement, Bell structure, gravity-quantum mismatch, continuum excess, dark-sector inference, patchwork parameter growth, and the wider gap between mathematical control and mechanistic explanation can all be treated locally. The broader question is whether their recurrence indicates missing substrate architecture.
+
+Current physics gets an enormous amount right. It has discovered durable effective laws, built precise predictive systems, and mapped real regularities across scales. Any serious replacement theory must begin by acknowledging that strength. The crisis language used here is therefore not a dismissal of modern physics. It is a diagnosis that effectiveness and fundamentality may sometimes have been conflated.
+
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, these crisis-axes matter because they help justify asking whether delayed causal law, substrate entities, assembly formation, and medium organization sit beneath the currently dominant stack. If the tensions discussed here are genuinely linked, then local success can coexist with global misplacement. If they are not linked, then the case for ontological relocation becomes much weaker.
+
+That is the standard the chapter should keep in view. The crisis only matters if it sharpens ontology and sharpens tests. For $\mathbb{A}\mathbb{A}\mathbb{A}$, resolution would mean recovering established effective success, reducing multiple tensions by common mechanism, exposing clear failure conditions, and explaining why prior frameworks worked as well as they did. Anything weaker would risk replacing one rhetorical overreach with another.
+
 ---
 
 ## Progress vs. Time
@@ -466,33 +476,3 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The p
 Resolution would require a theory that preserves or improves formal success while also exhibiting the generative causal architecture behind it. The long-term relevance of this crisis is permanent: even future theories can become mathematically dominant before their mechanism is fully understood, so the distinction must remain active.
 
 ---
-
-## Why This Matters For $\mathbb{A}\mathbb{A}\mathbb{A}$
-
-### Overview
-
-**Crisis Axis:** Why This Matters for $\mathbb{A}\mathbb{A}\mathbb{A}$. **Short Name:** Architrino Relevance. The core tension gathered across the previous sections is whether modern physics is facing isolated technical puzzles or a pattern of mislocated ontology. This section appears at the level of program assessment rather than within one narrow domain.
-
-### Where The Tension Comes From
-
-The shared source across the crisis axes is a recurring mismatch: operational success remains high while causal and ontological closure remains uneven. Quantum measurement, Bell structure, gravity-quantum mismatch, continuum excess, dark-sector inference, and patchwork parameter growth can each be treated locally. The broader question is whether their recurrence indicates missing substrate architecture.
-
-### What Current Physics Gets Right
-
-Current physics gets an enormous amount right. It has discovered durable effective laws, built precise predictive systems, and mapped real regularities across scales. Any serious replacement theory must begin by acknowledging that strength. The crisis is not evidence that modern physics is useless. It is evidence that effectiveness and fundamentality may have been conflated.
-
-### What Remains Unresolved
-
-What remains unsettled is whether one coherent ontological relocation can recover these successes while clarifying their place in a deeper stack. If not, then the crisis language should be weakened to a collection of open technical fronts. If yes, then the field's unresolved tensions may be symptoms of a common explanatory displacement.
-
-### Standard Repairs
-
-The standard repair is compartmentalization: treat each crisis within its local specialty, preserve the productive formalism, and avoid larger ontological revision until forced. This is institutionally rational, but incomplete if the crises are linked. Local success can coexist with global misplacement.
-
-### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
-
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **program-defining**. The theory treats these crises as justification for asking whether substrate entities, delayed causal law, assembly formation, and medium organization sit beneath the currently dominant stack. Transition relevance is absolute because without these tensions there would be much less reason to pursue replacement ontology.
-
-### What Would Count As Resolution
-
-Resolution would require $\mathbb{A}\mathbb{A}\mathbb{A}$ to do four things at once: recover established effective success, reduce independent tensions by common mechanism, expose clear failure conditions, and explain why prior frameworks worked as well as they did. The long-term relevance of this final section is as a signpost: the crisis only matters if it produces sharper ontology and sharper tests rather than stronger rhetoric.

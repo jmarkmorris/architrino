@@ -15,13 +15,13 @@ Review in detail. - crisis-in-physics.md  :
     - Quantum Measurement and Outcome Selection
     - ## Nonlocality, Bell, and Causal Structure
     - ## General Relativity and Quantum Theory
-    -
-    -
-    -
-    -
-
-
+    - Renormalization, UV Completion, and Continuum Excess
     - ## Vacuum, Medium, and the Status of Empty Space
+    - next
+    - ## Dark Matter, Dark Energy, and Cosmological Over-Inference
+    - ## Parameter Proliferation and Patchwork Closure
+    - ## Mathematical Control vs. Mechanistic Explanation
+
 
 
   | historical-context-and-missed-opportunities.md | split | 95% | Fully rewritten; detailed and structurally consistent. |
