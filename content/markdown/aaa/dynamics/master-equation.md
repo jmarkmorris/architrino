@@ -14,7 +14,7 @@ The Master EOM is:
 
 - **Deterministic**: Given complete initial conditions at $t_0$, the future is determined, with **deterministic multistability** at threshold regimes.
 - **Non-Markovian**: Depends on full path history, not just instantaneous state.
-- **Local in spacetime**: Only intersecting causal wake surfaces contribute to acceleration (no action-at-a-distance).
+- **Event-local at the receiver**: Only delayed causal intersections at the receiver event contribute to acceleration (no action-at-a-distance).
 - **Causal**: All influences propagate at finite field speed $c_f$.
 - **Self-consistent**: Includes self-interaction (self-hit) when $v > c_f$ at past emission times.
 
@@ -32,7 +32,7 @@ At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ de
 - **Not relevant**: Potential at other times $t' \neq t$ (except as encoded in the causal history that arrives "now")
 - **Only relevant**: The **intersection events** (causal hits) where $\mathbf{x}_i(t)$ coincides with an expanding wake surface from some source at some past emission time $t_0 < t$
 
-This is a **strictly local (in spacetime) interaction rule**, despite being non-Markovian (depends on path history).
+This is an **event-local delayed interaction rule**: the acceleration is evaluated at the receiver event, but depends on path history through the delayed causal roots.
 
 In the absence of any causal hits, an architrino follows inertial motion: straight-line, constant-velocity trajectories in the fixed Euclidean background.
 
@@ -55,63 +55,66 @@ where:
 
 **Key insight:** Both terms have the same functional form (radial $1/r^2$ force law); they differ only in source identity ($j = i$ vs $j \neq i$).
 
-#### Path History Potential Integral Form
+#### Path-History Sum and Integral Representation
 
-The Master Equation is most naturally understood as a **path history potential law** akin to the Liénard–Wiechert representation in electromagnetism, though strictly Euclidean/Galilean in character. All of the physical content resides in the past worldlines of the sources, and the path history constraint selects the points on those worldlines whose influence reaches the receiver “now.”
+The reduced canonical law used in this chapter is most naturally understood as a **path-history branch sum**: all of the physical content resides in the past worldlines of the sources, and the causal constraint selects the emission points on those worldlines whose influence reaches the receiver event “now.”
 
-Formally,
+In integral form, the same branch-sum law can be written as
 
 $$
 \frac{d^2 \mathbf{x}_i}{dt^2}
 = \sum_j \kappa\,\sigma_{ij}\,|q_i q_j|
 \int_{-\infty}^t \mathrm{d}t_0 \;
+\left|\partial_{t_0} g_{ij}(t;t_0)\right|
 \frac{\hat{\mathbf{r}}_{ij}(t; t_0)}{r_{ij}^2(t; t_0)}
-\delta\!\Big(r_{ij}(t; t_0) - c_f(t - t_0)\Big),
+\delta\!\Big(g_{ij}(t; t_0)\Big),
 $$
 
 where
 
 - $r_{ij}(t; t_0) = \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|$,
 - $\hat{\mathbf{r}}_{ij} = (\mathbf{x}_i(t) - \mathbf{x}_j(t_0))/r_{ij}$,
-- $\delta(\cdot)$ enforces the causal constraint $r_{ij} = c_f(t - t_0)$, and
+- $g_{ij}(t;t_0) = r_{ij}(t;t_0) - c_f(t-t_0)$,
+- $\partial_{t_0} g_{ij}(t;t_0) = c_f - \hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)$,
+- $\delta(\cdot)$ enforces the causal constraint $g_{ij}=0$, and
 - $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ encodes attraction/repulsion.
 
-The delta collapses the time integral to the causal set $\mathcal{C}_j(t)$ (see Section 1.3), so the integrand is evaluated at the **path-history time** $t_0$ determined by the causal constraint $r_{ij}(t; t_0) = c_f(t - t_0)$. This is the causal path-history potential law: acceleration at $t$ depends on the $1/r^2$ contributions from each emission selected by the causal history (rather than any future or instantaneous value). The Euclidean analog of the Liénard–Wiechert potential thus emerges as a **path-history integral** whose kernel is purely radial.
+The Jacobian factor is written explicitly so that the integral collapses exactly to the receiver/source-specific causal set $\mathcal{C}_{ij}(t)$:
+$$
+\int_{-\infty}^{t}\mathrm{d}t_0\;
+\left|\partial_{t_0} g_{ij}(t;t_0)\right| f(t_0)\,\delta\!\big(g_{ij}(t;t_0)\big)
+=
+\sum_{t_0\in\mathcal{C}_{ij}(t)} f(t_0),
+$$
+provided the active roots are simple. This is the path-history integral representation of the reduced branch-sum law: acceleration at $t$ depends on the $1/r^2$ contributions from each emission selected by the causal history, with no contribution from noncausal points on the source worldline.
 
-Numerical implementations discretize this integral by sampling discrete emission times, producing the familiar picture of summing over “spherical wake surfaces.” That discrete wake surface sum is therefore **a numerical approximation** of the continuous path-history integral, not a separate physical mechanism. The underlying physics remains the continuous causal flux of potential.
+Numerical implementations discretize this representation by sampling candidate emission times and solving for the active roots. The familiar “sum over spherical wake surfaces” is therefore a numerical realization of the same branch-selection rule, not a separate physical mechanism.
 
 ---
 
-#### Working Non-Local Action (Defines $E_{\text{wake}}$)
+#### Regularized Diagnostic Energy Functional
 
-To define conserved energy in computation, we use an $\eta$-regularized **surrogate** of the exact causal-delay action given later in Section 6.1.3. A minimal working form is:
+For computation with finite shell width $\eta>0$, it is useful to introduce an $\eta$-regularized **diagnostic functional** that tracks kinetic energy together with a history-dependent interaction term. This object is not taken here as the fundamental action of the theory; it is a smooth surrogate used for numerical diagnostics of the reduced branch-sum law:
 $$
-S
-= \int dt \sum_i \frac{1}{2} m_i \left|\dot{\mathbf{x}}_i(t)\right|^2
-+ \frac{1}{2}\sum_{i,j} \kappa\,\sigma_{ij}\,|q_i q_j|
-\int dt \int_{-\infty}^{t} dt_0\;
-\frac{1}{r_{ij}^2(t; t_0)}\,
-\delta_\eta\!\big(r_{ij}(t; t_0) - c_f(t - t_0)\big).
+E_{\text{diag}}^{(\eta)}(t)
+= \sum_i \frac{1}{2} m_i \left|\dot{\mathbf{x}}_i(t)\right|^2
++ E_{\text{wake,diag}}^{(\eta)}(t).
 $$
-where $\delta_\eta$ is a mollified delta (shell of width $\eta$). This regularized surrogate converges to the exact cone-constrained theory as $\eta\to 0$ and, by time-translation symmetry, defines the conserved energy used in diagnostics:
+For the regularized interaction term, a convenient working expression is:
 $$
-E_{\text{total}}(t) = \sum_i \frac{1}{2}m_i\left|\dot{\mathbf{x}}_i(t)\right|^2 + E_{\text{wake}}(t).
-$$
-with $E_{\text{wake}}$ given by the associated Noether functional over the history segment. For the $\eta>0$ system, a working explicit form is:
-$$
-E_{\text{wake}}(t) =
+E_{\text{wake,diag}}^{(\eta)}(t) =
 \frac{1}{2}\sum_{i,j} \kappa\,\sigma_{ij}\,|q_i q_j|
 \int_{t-\tau_{\max}}^{t} dt_0\;
 \frac{1}{r_{ij}^2(t; t_0)}\,
 \delta_\eta\!\big(r_{ij}(t; t_0) - c_f(t - t_0)\big).
 $$
-where $\tau_{\max}$ bounds the causal memory depth used in analysis/simulation. This is the history (path) integral of interaction energy carried by the causal wakes in flight. A full derivation from the action should confirm the precise prefactors and any additional boundary terms, but the structure (kinetic plus history-integral) is fixed by time-translation symmetry.
+where $\tau_{\max}$ bounds the causal memory depth used in analysis and simulation. This quantity serves as a regularized energy-like monitor for the reduced model. The separate action-based completion discussed later is the place where an exact nonlocal Noether charge would have to be derived.
 
 ### Causal Interaction Set (The Geometry of Delay)
 
 #### Definition of Causal Emission Times
 
-For a receiver at position $\mathbf{x}_i(t)$ (architrino $i$ at time $t$) and a source with worldline $\mathbf{x}_j(t')$, the **causal emission times** $\mathcal{C}_j(t)$ are all past times $t_0 < t$ such that a causal wake surface emitted by source $j$ at $t_0$ arrives at $\mathbf{x}_i(t)$ at time $t$.
+For a receiver at position $\mathbf{x}_i(t)$ and a source with worldline $\mathbf{x}_j(t')$, the **causal emission times** $\mathcal{C}_{ij}(t)$ are all past times $t_0 < t$ such that a causal wake surface emitted by source $j$ at $t_0$ arrives at receiver $i$ at time $t$.
 
 **Causal constraint:**
 
@@ -124,7 +127,7 @@ where $c_f$ is the field speed (set to 1 in natural units).
 **Notation:**
 
 $$
-\mathcal{C}_j(t) = \Big\{ t_0 < t \;\Big|\; \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0) \Big\}.
+\mathcal{C}_{ij}(t) = \Big\{ t_0 < t \;\Big|\; \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0) \Big\}.
 $$
 
 #### Causal-Time Map and Root Topology
@@ -142,7 +145,7 @@ $$
 Then causal emission times are exactly the roots:
 
 $$
-t_0\in \mathcal{C}_j(t)\quad \Longleftrightarrow\quad F_t^{(ij)}(t_0)=0.
+t_0\in \mathcal{C}_{ij}(t)\quad \Longleftrightarrow\quad F_t^{(ij)}(t_0)=0.
 $$
 
 The one-dimensional delay-map Jacobian is
@@ -155,10 +158,10 @@ $$
 
 On a bounded history interval $I_t$ (e.g., simulation memory window), define:
 
-- Unsigned root count: $N_{ij}(t)\equiv \#\mathcal{C}_j(t)$,
+- Unsigned root count: $N_{ij}(t)\equiv \#\mathcal{C}_{ij}(t)$,
 - Signed Brouwer degree:
   $$
-  D_{ij}(t)\equiv \deg(F_t^{(ij)},I_t,0)=\sum_{t_0\in\mathcal{C}_j(t)} \mathrm{sign}\!\left(\frac{dF_t^{(ij)}}{dt_0}\Big|_{t_0}\right).
+  D_{ij}(t)\equiv \deg(F_t^{(ij)},I_t,0)=\sum_{t_0\in\mathcal{C}_{ij}(t)} \mathrm{sign}\!\left(\frac{dF_t^{(ij)}}{dt_0}\Big|_{t_0}\right).
   $$
 
 #### Delay-Map Theorem Pack (Formalized)
@@ -224,10 +227,10 @@ $$
 #### Multi-Hit Regime (Multiple $t_0$)
 
 In the **super-field-speed regime** ($|\mathbf{v}_j| > c_f$ at some past times), the delay map can fold when
-$\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_j > c_f$, i.e. when $dF_t^{(ij)}/dt_0$ changes sign. Then $\mathcal{C}_j(t)$ can contain multiple solutions:
+$\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_j > c_f$, i.e. when $dF_t^{(ij)}/dt_0$ changes sign. Then $\mathcal{C}_{ij}(t)$ can contain multiple solutions:
 
 $$
-\mathcal{C}_j(t) = \{t_{0,1}, t_{0,2}, \ldots, t_{0,m}\}.
+\mathcal{C}_{ij}(t) = \{t_{0,1}, t_{0,2}, \ldots, t_{0,m}\}.
 $$
 
 Fold bifurcations create/annihilate roots in pairs. The signed degree $D_{ij}$ stays topologically fixed between folds, while the unsigned branch count $N_{ij}$ jumps by even integers.
@@ -246,7 +249,7 @@ which is the root-count counterpart of the action-partition doubling used later 
 
 #### Self-Hit (Source = Receiver, $j = i$)
 
-When $j = i$ (source and receiver are the same architrino), the causal set $\mathcal{C}_i(t)$ represents **self-hits**: times when architrino $i$ intersects its own past emissions.
+When $j = i$ (source and receiver are the same architrino), the causal set $\mathcal{C}_{ii}(t)$ represents **self-hits**: times when architrino $i$ intersects its own past emissions.
 
 **Self-hit condition:**
 
@@ -261,7 +264,7 @@ $$
 
 **Key clarification:**
 
-- **Self-hits can be plural**: $\mathcal{C}_i(t)$ can contain multiple emission times (e.g., multiple winding numbers in circular motion).
+- **Self-hits can be plural**: $\mathcal{C}_{ii}(t)$ can contain multiple emission times (e.g., multiple winding numbers in circular motion).
 - **Persistent memory**: Once an architrino has exceeded $v > c_f$ in its past, it can **later slow down** to $v < c_f$ and **still receive self-hits** from wake surfaces emitted during the super-field-speed phase. The self-hit regime is **not** instantaneously tied to current velocity; it depends on **path history**.
 
 **Implication:** Self-hit is a **non-Markovian memory effect**. The architrino's current acceleration depends on whether it **ever** exceeded $c_f$ in the past and curved, not just on its current state.
@@ -275,7 +278,7 @@ $$
  - Field-speed causal wake surface: the expanding isochron at radius $c_f(t - t_0)$ centered at $\mathbf{x}_j(t_0)$
  - **Causal emission times**: where this wake surface **intersects** the receiver's current location
 
-For each $t_0 \in \mathcal{C}_j(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\mathbf{x}_i(t)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the force.
+For each $t_0 \in \mathcal{C}_{ij}(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\mathbf{x}_i(t)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the force.
 
 This geometry should be read in terms of the source worldline, the expanding causal isochrons centered on past emission points, and the receiver event at which one or more of those isochrons are intersected.
 
@@ -325,7 +328,7 @@ This gives a derived reduced-model target for Lorentz suppression. The full unre
 
 #### Per-Hit Acceleration
 
-For each causal emission time $t_0 \in \mathcal{C}_j(t)$, define:
+For each causal emission time $t_0 \in \mathcal{C}_{ij}(t)$, define:
 
 **Separation vector and distance:**
 
@@ -342,7 +345,7 @@ $$
 **Charge sign factor:**
 
 $$
-\sigma_{ij} = \text{sign}(q_i q_j) = \begin{cases}
+\sigma_{ij} = \mathrm{sign}(q_i q_j) = \begin{cases}
 +1 & \text{like charges (repel)} \\
 -1 & \text{unlike charges (attract)}
 \end{cases}
@@ -363,7 +366,7 @@ where $m_i$ is the inertial parameter of the receiving architrino.
 where:
 
 - $\kappa$: universal coupling constant
-- $q_i, q_j$: charges of receiver and source ($\pm e/6$ for electrinos/positrinos)
+- $q_i, q_j$: charges of receiver and source ($\pm \epsilon$ for electrinos/positrinos)
 - $r_{ij}$: distance from emission point to reception point
 - $\hat{\mathbf{r}}_{ij}$: radial direction from emission to reception
 
@@ -376,32 +379,32 @@ where:
 The total acceleration on architrino $i$ at time $t$ is the **vector sum** over:
 
 1. All sources $j \neq i$ (partner hits)
-2. All causal emission times $t_0 \in \mathcal{C}_j(t)$ for each source
+2. All causal emission times $t_0 \in \mathcal{C}_{ij}(t)$ for each source
 3. Self-hits ($j = i$), if any exist
 
 **Master Equation of Motion (Canonical Form):**
 
 $$
 \boxed{
-\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j} \sum_{t_0 \in \mathcal{C}_j(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}
+\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j} \sum_{t_0 \in \mathcal{C}_{ij}(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}
 }
 $$
 
 where:
 
 - Outer sum: over all sources $j$ (including $j = i$ for self-hits)
-- Inner sum: over all causal emission times $t_0 \in \mathcal{C}_j(t)$
+- Inner sum: over all causal emission times $t_0 \in \mathcal{C}_{ij}(t)$
 - Each term: radial $1/r^2$ acceleration with sign $\sigma_{ij}$
 
 **Explicit separation of partner and self-hit terms:**
 
 $$
-\frac{d^2 \mathbf{x}_i}{dt^2} = \underbrace{\sum_{j \neq i} \sum_{t_0 \in \mathcal{C}_j(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}}_{\text{Partner hits}} + \underbrace{\sum_{t_0 \in \mathcal{C}_i(t)} \kappa \, \sigma_{ii} \, \frac{|q_i q_i|}{r_{ii}^2} \, \hat{\mathbf{r}}_{ii}}_{\text{Self-hits}}.
+\frac{d^2 \mathbf{x}_i}{dt^2} = \underbrace{\sum_{j \neq i} \sum_{t_0 \in \mathcal{C}_{ij}(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}}_{\text{Partner hits}} + \underbrace{\sum_{t_0 \in \mathcal{C}_{ii}(t)} \kappa \, \sigma_{ii} \, \frac{|q_i q_i|}{r_{ii}^2} \, \hat{\mathbf{r}}_{ii}}_{\text{Self-hits}}.
 $$
 
 **Note:** $\sigma_{ii} = +1$ (like charges repel), so self-hits are always **repulsive**.
 
-This sum can be viewed as a **path-history integral**: each emission time in $\mathcal{C}_j(t)$ marks where the receiver's worldline crosses the causal wake surface emitted at $t_0$. The delta constraint in the Green's-function representation ensures we only collect those wake surfaces that currently intersect the receiver, so the integral directly reconstructs the continuous causal potential field.
+This sum can be viewed as a **path-history branch sum**: each emission time in $\mathcal{C}_{ij}(t)$ marks where the receiver's worldline crosses the causal wake surface emitted at $t_0$. The integral representation above is simply the distributional encoding of this branch-selection rule.
 
 #### Conventions and Exclusions
 
@@ -410,7 +413,7 @@ This sum can be viewed as a **path-history integral**: each emission time in $\m
 The emission at $t_0 = t$ (instantaneous self-force) is **excluded**. Formally, this is enforced by writing:
 
 $$
-\mathcal{C}_j(t) = \Big\{ t_0 < t \;\Big|\; \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0) \Big\}.
+\mathcal{C}_{ij}(t) = \Big\{ t_0 < t \;\Big|\; \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0) \Big\}.
 $$
 
 (Strict inequality $t_0 < t$; no $t_0 = t$ allowed.)
@@ -496,7 +499,7 @@ $$
 
 **Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected (at the instant of the hit). Over time, of course, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
 
-**Lorentz Suppression Requirement (Tier-1 Constraint):** The receiver kinematics described here must **mechanically** produce Lorentz contraction for moving assemblies. If tri-binaries do not naturally contract along direction of motion when coupled to Noether Sea, this falsifies the model. Lorentz leakage bound ($< 10^{-17}$).
+**Lorentz-suppression closure requirement:** The receiver kinematics described here must mechanically produce Lorentz-like contraction for moving assemblies. If tri-binaries do not contract along the direction of motion when coupled to the Noether Sea, the closure program fails. The intended leakage scale is below current preferred-frame bounds.
 
 #### Work and Power
 
@@ -550,7 +553,7 @@ $$
 where:
 
 $$
-\mathbf{a}_i(t) = \sum_{j} \sum_{t_0 \in \mathcal{C}_j(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}.
+\mathbf{a}_i(t) = \sum_{j} \sum_{t_0 \in \mathcal{C}_{ij}(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}.
 $$
 
 #### Causal Functional Form
@@ -573,7 +576,7 @@ where $\mathcal{F}$ is a **causal functional**: it depends on the current state 
 
 #### Regularization (Mollified Shells, Finite $\eta$)
 
-The ideal model uses **surface-delta causal isochrons**, which yield **impulsive forces** at isolated hit times $t_0 \in \mathcal{C}_j(t)$. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or **regularize** by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
+The ideal model uses **surface-delta causal isochrons**, which yield **impulsive forces** at isolated hit times $t_0 \in \mathcal{C}_{ij}(t)$. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
 
 $$
 \delta(r - \tau) \longrightarrow \delta_\eta(r - \tau) = \frac{1}{\sqrt{2\pi}\,\eta} \exp\!\Big(-\frac{(r - \tau)^2}{2\eta^2}\Big),
@@ -587,11 +590,9 @@ while preserving total emission $q$.
 
 **Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. 
 
-#### Well-Posedness (Existence and Uniqueness)
+#### Conditional Well-Posedness for the Regularized Branch-Sum Model
 
-To make the existence/uniqueness claim precise, we now formalize the
-regularized dynamics introduced above (finite $\eta>0$) as a
-state-dependent delay system in first-order form:
+To make the existence/uniqueness claim precise for the regularized branch-sum model used in this chapter, we formalize the finite-$\eta$ dynamics as a state-dependent delay system in first-order form:
 $$
 \dot{\mathbf{Y}}(t)=\mathcal{G}(\mathbf{Y}_t),\qquad
 \mathbf{Y}_t(\theta)=\mathbf{Y}(t+\theta),\ \theta\in[-h,0],
@@ -611,7 +612,7 @@ with phase space $\mathcal{H}=C^1([-h,0],\mathbb{R}^{6N})$.
 - **(W4) Distance floor on the branch support:** $\|\phi_i(0)-\phi_j(-\tau_{ij,\ell}(\phi))\|\ge d_{\min}>0$.
 - **(W5) Bounded charges/couplings:** $\kappa$, $|q_i|$ finite.
 
-**Theorem (Local well-posedness and continuation).**  
+**Conditional theorem (local well-posedness and continuation).**  
 Under (W1)-(W5), for any initial history $\phi^0\in\mathcal{H}$ there exists $T>0$ and a unique solution
 $$
 \mathbf{Y}\in C^1([t_0-h,t_0+T),\mathbb{R}^{6N}),\qquad \mathbf{Y}_{t_0}=\phi^0.
@@ -633,7 +634,7 @@ Here $r_{ij,\ell}(t)$ denotes the source-receiver distance on branch $\ell$.
 4. Standard state-dependent DDE existence/uniqueness theory on Banach spaces applies, yielding a unique local $C^1$ solution and a maximal extension.
 5. Continuation follows from the same theorem: finite-time breakdown can occur only by leaving every bounded subset of the admissible set, i.e. via unbounded speed, vanishing separation on active support, or transversality loss/root accumulation.
 
-Therefore the regularized master dynamics are locally well-posed, with global existence whenever those failure modes are excluded. $\square$
+Therefore the regularized branch-sum dynamics are locally well-posed, with global existence whenever those failure modes are excluded. This conditional statement applies to the finite-$\eta$ regularized model only; it does not by itself establish the ideal $\eta\to 0$ shell limit or the separate action-based completion discussed later. $\square$
 
 ## Operational Principles, Self-Interaction, and Examples
 
@@ -696,14 +697,14 @@ $$
 
 **Key insight:** An architrino can experience **multiple self-hits simultaneously** (or within a regularization window $\eta$).
 
-**Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past isochrons** at the same observation time $t$. Each intersection corresponds to a distinct emission time $t_{0,k} \in \mathcal{C}_i(t)$.
+**Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past isochrons** at the same observation time $t$. Each intersection corresponds to a distinct emission time $t_{0,k} \in \mathcal{C}_{ii}(t)$.
 
 **Example:** In uniform circular motion at speed $v > c_f$, an architrino can be hit by wake surfaces from multiple points on its own orbit, corresponding to different "winding numbers" $m = 0, 1, 2, \ldots$ (see Maximum-Curvature Orbit).
 
 **Sum over all self-hit roots:**
 
 $$
-\mathbf{F}_{ii}(\text{self-hit}) = \sum_{t_0 \in \mathcal{C}_i(t)} \kappa \, \sigma_{ii} \, \frac{|q_i q_i|}{r_{ii}^2} \, \hat{\mathbf{r}}_{ii},
+\mathbf{F}_{ii}(\text{self-hit}) = \sum_{t_0 \in \mathcal{C}_{ii}(t)} \kappa \, \sigma_{ii} \, \frac{|q_i q_i|}{r_{ii}^2} \, \hat{\mathbf{r}}_{ii},
 $$
 
 where $\sigma_{ii} = +1$ (like charges repel), so each self-hit contributes an **outward** (repulsive) force.
@@ -724,7 +725,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 **Implication:** Self-hit is a **path-history memory effect**. The architrino's current acceleration depends on **whether it ever exceeded $c_f$ in the past and curved**, not just on its instantaneous state.
 
-**Non-Markovian nature:** Knowing $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ is insufficient to determine $\mathbf{a}_i(t)$. You need the **full past worldline** $\{\mathbf{x}_i(t') : t' < t\}$ to identify all causal self-hit times $t_0 \in \mathcal{C}_i(t)$.
+**Non-Markovian nature:** Knowing $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ is insufficient to determine $\mathbf{a}_i(t)$. You need the **full past worldline** $\{\mathbf{x}_i(t') : t' < t\}$ to identify all causal self-hit times $t_0 \in \mathcal{C}_{ii}(t)$.
 
 #### Self-Hit as Stabilization Mechanism
 
@@ -761,7 +762,7 @@ $$
 
 where the factor of 2 comes from the symmetry (each feels the same magnitude force).
 
-**Solution:** Standard Kepler-like radial fall.
+**Solution structure:** In the reduced model, this has the same quadrature structure as Keplerian radial fall.
 
 **Key insight:** Partner attraction dominates; no self-hit (speeds remain sub-field-speed for moderate $d_0$).
 
@@ -777,7 +778,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 
 **Result:** Net tangential power $T > 0$ → continuous acceleration → orbit tightens (spiral inward) → speed increases.
 
-**Conclusion:** No stable circular orbit exists in sub-field-speed regime for isolated opposite-charge binaries.
+**Conclusion within the reduced circular model:** No stable circular orbit appears in the sub-field-speed regime for isolated opposite-charge binaries.
 
 
 
@@ -788,7 +789,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 - Self-hits activate → repulsive outward force
 
 **Geometric definition (Null Separatrix):**
-For an active causal root $t_0 \in \mathcal{C}_i(t)$ on the self-hit branch, define
+For an active causal root $t_0 \in \mathcal{C}_{ii}(t)$ on the self-hit branch, define
 
 $$
 J_{ii}(t;t_0)\equiv 1-\frac{\mathbf{v}_i(t_0)\cdot \hat{\mathbf{r}}_{ii}(t;t_0)}{c_f}.
@@ -803,7 +804,7 @@ $$
 with approach from the admissible side $J_{ii}>0$. Geometrically, this is the state where the receiver trajectory is tangent to the causal cone of its own past emission (the “riding-the-shock” limit).
 
 **Why this is a hard wall in the exact theory:**
-In the branch-resolved force from Section 6.1.3, the self-hit contribution carries the factor
+In the branch-resolved force from the candidate action-based completion below, the self-hit contribution carries the factor
 
 $$
 \frac{1}{r_{ii}^2(t;t_0)\,\left|J_{ii}(t;t_0)\right|}.
@@ -843,8 +844,8 @@ The receiver does **not** have direct knowledge of:
 
 A particularly important ambiguity: the receiver cannot distinguish between:
 
-- A **negative potential** due to an Electrino (charge $-e/6$) on one side of the line of action, and
-- A **positive potential** due to a Positrino (charge $+e/6$) on the **opposite side** of the same line,
+- A **negative potential** due to an Electrino (charge $-\epsilon$) on one side of the line of action, and
+- A **positive potential** due to a Positrino (charge $+\epsilon$) on the **opposite side** of the same line,
 
 if the resulting radial acceleration is the same.
 
@@ -961,12 +962,12 @@ At each hit, log:
 The **Master Equation of Motion** is the deterministic law governing the evolution of all architrinos:
 
 $$
-\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j} \sum_{t_0 \in \mathcal{C}_j(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}.
+\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j} \sum_{t_0 \in \mathcal{C}_{ij}(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}.
 $$
 
 **Key features:**
 
-1. **Local in spacetime**: Only intersecting causal wake surfaces contribute (no action-at-a-distance).
+1. **Event-local at the receiver**: Only intersecting delayed causal wake surfaces contribute (no action-at-a-distance).
 2. **Non-Markovian**: Depends on full path history (self-hit memory).
 3. **Superposition**: Linear sum over all sources and causal roots.
 4. **Self-hit**: Repulsive self-interaction when $v > c_f$ at past emission times; persists even after slowing down.
@@ -1129,7 +1130,7 @@ We will not get a *closed‑form sum*, but:
 - We can show convergence of the self‑force series away from Jacobian-degenerate roots ($J=0$),
 - And derive asymptotic radial/tangential components as functions of $v/c_f$.
 
-Near the null-separatrix condition $J\to 0$, the exact branch weight carries a $1/|J|$ singularity (see Maximum-Curvature Orbit and Section 6.1.3), so this toy model also captures the geometric-wall limit.
+Near the null-separatrix condition $J\to 0$, the exact branch weight carries a $1/|J|$ singularity (see Maximum-Curvature Orbit and the candidate action-based completion below), so this toy model also captures the geometric-wall limit.
 
 So: **strong analytic handle**, though not “closed form in elementary functions.”
 
@@ -1252,11 +1253,11 @@ In this section we outline how **energy** and **variational structure** are hand
 
 $$
 \frac{d^2 \mathbf{x}_i}{dt^2} =
-\sum_{j} \sum_{t_0 \in \mathcal{C}_j(t)}
+\sum_{j} \sum_{t_0 \in \mathcal{C}_{ij}(t)}
 \kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2(t;t_0)}\,\hat{\mathbf{r}}_{ij}(t;t_0),
 $$
 
-where each contribution comes from a **causal wake intersection** at time $t$ between architrino $i$ and a wake emitted by architrino $j$ at earlier time $t_0$. The set $\mathcal{C}_j(t)$ encodes all such emission times selected by the causal constraint
+where each contribution comes from a **causal wake intersection** at time $t$ between architrino $i$ and a wake emitted by architrino $j$ at earlier time $t_0$. The set $\mathcal{C}_{ij}(t)$ encodes all such emission times selected by the causal constraint
 
 $$
 \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f (t - t_0),\quad t_0 < t.
@@ -1305,13 +1306,13 @@ Thus kinetic energy splits naturally into:
 
 ---
 
-#### Exact Nonlocal Noether Energy (Causal-Delay Charge)
+#### Candidate Nonlocal Noether Energy from an Action-Based Completion
 
-With finite‑speed causal wakes and path‑history dependence, an instantaneous position-only potential is not fundamental. The exact theory instead uses the time-translation symmetry of the nonlocal action (Section 6.1.3) to define a conserved Noether charge.
+With finite-speed causal wakes and path-history dependence, an instantaneous position-only potential is not fundamental. If one adopts the action-based completion developed later in this section, time-translation symmetry supplies a corresponding nonlocal Noether charge. The formulas in this subsection therefore belong to the **candidate action-based completion**, not to the reduced branch-sum law by itself.
 
 ##### Energy exchange per causal hit
 
-Consider a single contribution to the acceleration of architrino $i$ at time $t$ from a causal hit emitted by $j$ at time $t_0\in\mathcal{C}_j(t)$. The acceleration contribution is:
+Consider a single contribution to the acceleration of architrino $i$ at time $t$ from a causal hit emitted by $j$ at time $t_0\in\mathcal{C}_{ij}(t)$. The acceleration contribution is:
 
 $$
 \mathbf{a}_{ij}(t;t_0)
@@ -1322,8 +1323,8 @@ The instantaneous power delivered to architrino $i$ by this hit is:
 
 $$
 P_{ij}(t;t_0)
-= \mathbf{a}_{ij}\cdot \mathbf{v}_i
-= \kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2}\, v_{r,ij},
+= m_i\,\mathbf{a}_{ij}\cdot \mathbf{v}_i
+= m_i\,\kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2}\, v_{r,ij},
 $$
 
 where $v_{r,ij} = \mathbf{v}_i(t)\cdot \hat{\mathbf{r}}_{ij}$ is the radial component of the receiver’s velocity along the line of action. This is the **only instant** when the interaction can change the kinetic energy of $i$. Between hits, $\mathbf{a}_{ij}$ from this specific emission is zero.
@@ -1332,14 +1333,14 @@ Summing over all contributing sources and all causal emission times at a given $
 
 $$
 \frac{dK}{dt}(t)
-= \sum_i \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} P_{ij}(t;t_0),
+= \sum_i \sum_j \sum_{t_0 \in \mathcal{C}_{ij}(t)} P_{ij}(t;t_0),
 $$
 
 with the understanding that for self‑hit we include $j=i$ as well.
 
 ##### Exact wake-energy functional at time boundary $t$
 
-Let $\mathcal{K}_{ij}(t_1,t_0)$ denote the causal-delay interaction kernel from Section 6.1.3:
+Let $\mathcal{K}_{ij}(t_1,t_0)$ denote the causal-delay interaction kernel appearing in the candidate action-based completion below:
 
 $$
 \mathcal{K}_{ij}(t_1,t_0)
@@ -1368,11 +1369,11 @@ E_{\text{wake}}(t)
 \partial_{t_1}\mathcal{K}_{ij}(t_1,t_0).
 $$
 
-For $i=j$, the same rule applies with the trivial coincidence branch ($t_1=t_0$) excluded, matching the self-hit convention in Section 6.1.3.
+For $i=j$, the same rule applies with the trivial coincidence branch ($t_1=t_0$) excluded, matching the self-hit convention used throughout this chapter.
 
 Interpretation: the double integral measures interaction links that cross the time boundary $t$ (past emission side $t_0\le t$ and future reception side $t_1\ge t$). This is the exact “in-flight” interaction contribution in the nonlocal theory.
 
-By nonlocal Noether’s theorem, for exact solutions of the Master Equation,
+If this action-based completion is adopted, nonlocal Noether’s theorem gives, for exact solutions of the completed equations,
 
 $$
 \frac{d}{dt}\Big(K(t)+E_{\text{wake}}(t)\Big)=0.
@@ -1382,13 +1383,13 @@ No separate spatial field-energy ontology is required; conservation is encoded d
 
 ##### Diagnostic equivalent (work-integral form)
 
-For simulation diagnostics, one may still compute an equivalent interaction functional by integrating instantaneous power:
+For simulation diagnostics in the reduced branch-sum model, one may compute a companion interaction functional by integrating instantaneous power:
 
 $$
-U(t)=U_\ast-\int_{t_\ast}^{t}\sum_i \mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
+U(t)=U_\ast-\int_{t_\ast}^{t}\sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
 $$
 
-In the exact continuum theory this differs from $E_{\text{wake}}(t)$ only by a reference constant, so both yield the same conserved $E_{\text{tot}}$.
+In the action-based completion this is expected to differ from $E_{\text{wake}}(t)$ by at most a reference constant and boundary bookkeeping. In the reduced branch-sum model it is used operationally as a diagnostic reconstruction, not as an independently derived Noether charge.
 
 In short-delay effective limits, $E_{\text{wake}}$ reduces to an approximate instantaneous pair form
 
@@ -1400,9 +1401,9 @@ with leading $1/r_{ij}$ behavior plus geometry-dependent self-hit corrections.
 
 ---
 
-#### Nonlocal Lagrangian for Path‑History Dynamics
+#### Candidate Nonlocal Lagrangian for an Action-Based Completion
 
-To connect with variational methods and with later continuum approximations, it is useful to exhibit an **action principle** from which the Master Equation can be derived. Because the dynamics depend on **path history** via causal wakes (not just instantaneous positions), the action is necessarily **nonlocal in time**.
+To connect with variational methods and with later continuum approximations, it is useful to exhibit a **candidate action principle** for the delayed dynamics. Because the interactions depend on path history via causal wakes, the action is necessarily nonlocal in time.
 
 ##### Exact causal-delay Fokker-type interaction term
 
@@ -1448,7 +1449,7 @@ Integrating out the delta via the delay-map Jacobian gives the branch-resolved f
 $$
 \delta\!\big(g_{ij}(t,t')\big)
 =
-\sum_{t_0\in\mathcal{C}_j(t)}
+\sum_{t_0\in\mathcal{C}_{ij}(t)}
 \frac{\delta(t'-t_0)}
 {\left|\partial_{t'} g_{ij}(t,t_0)\right|},
 \qquad
@@ -1463,7 +1464,7 @@ S_{ij}
 =
 \frac{\kappa\,\sigma_{ij}\,|q_i q_j|}{c_f}
 \int dt\,
-\sum_{t_0\in\mathcal{C}_j(t)}
+\sum_{t_0\in\mathcal{C}_{ij}(t)}
 \frac{1}
 {r_{ij}(t;t_0)\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}.
 $$
@@ -1483,7 +1484,7 @@ $$
 \mathbf{F}_{ij}(t)
 =
 \kappa\,\sigma_{ij}\,|q_i q_j|
-\sum_{t_0\in\mathcal{C}_j(t)}
+\sum_{t_0\in\mathcal{C}_{ij}(t)}
 \left[
 \frac{\hat{\mathbf{r}}_{ij}(t;t_0)}
 {r_{ij}^2(t;t_0)\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
@@ -1500,26 +1501,27 @@ Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, 
 
 Thus:
 
-- The Master Equation is the **Euler–Lagrange equation** of an exact nonlocal causal-delay action with no fundamental mollifier,
-- Any $\delta_\eta$ replacement is a numerical regularization of this exact theory for simulation and convergence control.
+- The action above should be read as a **candidate action-consistent completion** of the delayed dynamics,
+- Its branch-resolved variation exhibits the same radial $1/r^2$ structure as the reduced branch-sum law, but with additional Jacobian and delay-variation terms that are not part of the reduced canonical model used elsewhere in this chapter,
+- Any $\delta_\eta$ replacement is a numerical regularization of whichever delayed model is being simulated.
 
 ---
 
-#### Hamiltonian and Total Energy for an Isolated Set
+#### Diagnostic Total Energy for an Isolated Set
 
-Given the nonlocal action and the kinetic energy definition, we now address the **Hamiltonian** and total energy for an isolated architrino set.
+Given the kinetic energy definition, we now address the most useful history-aware **diagnostic total energy** for an isolated architrino set under the reduced branch-sum law.
 
 ##### General structure
 
-We define a functional $H$ such that:
+We define a functional $H_{\text{diag}}$ such that:
 
-- $H$ is **constant in $t$** for any isolated system evolving under the Master Equation,
-- $H$ reduces to $K+U$ in regimes where an effective potential $U(t)$ as in Section 3.1.2 is a good description.
+- $H_{\text{diag}}$ is constant in $t$ by construction when the work integral is evaluated exactly from the realized trajectory,
+- $H_{\text{diag}}$ reduces to $K+U$ in regimes where an effective potential description is adequate.
 
 Formally, for an isolated system,
 
 $$
-H[\{\mathbf{x}_i(\cdot)\},\{\mathbf{v}_i(\cdot)\}; t]
+H_{\text{diag}}[\{\mathbf{x}_i(\cdot)\},\{\mathbf{v}_i(\cdot)\}; t]
 \equiv
 K(t) + U(t),
 $$
@@ -1527,19 +1529,19 @@ $$
 with $U(t)$ defined via:
 
 $$
-U(t) = U_\ast - \int_{t_\ast}^{t} \sum_i \mathbf{a}_i(t')\cdot \mathbf{v}_i(t')\,dt',
+U(t) = U_\ast - \int_{t_\ast}^{t} \sum_i m_i\,\mathbf{a}_i(t')\cdot \mathbf{v}_i(t')\,dt',
 $$
 
 where $U_\ast$ is a fixed reference and $\mathbf{a}_i$ is the actual acceleration given by the Master Equation (including self‑hit and partner contributions). Then:
 
 $$
-\frac{dH}{dt} = \frac{dK}{dt} + \frac{dU}{dt}
-= \sum_i \mathbf{a}_i\cdot\mathbf{v}_i
-- \sum_i \mathbf{a}_i\cdot\mathbf{v}_i
+\frac{dH_{\text{diag}}}{dt} = \frac{dK}{dt} + \frac{dU}{dt}
+= \sum_i m_i\,\mathbf{a}_i\cdot\mathbf{v}_i
+- \sum_i m_i\,\mathbf{a}_i\cdot\mathbf{v}_i
 = 0.
 $$
 
-In this sense, the Hamiltonian is:
+In this sense, the diagnostic energy functional is:
 
 - Not a local function only of $(\mathbf{x}_i(t),\mathbf{p}_i(t))$,
 - But a **history‑aware conserved quantity** that accounts for all past wake emission and all energy exchange via causal intersections.
@@ -1548,7 +1550,7 @@ This matches the ontology:
 
 - **Energy resides in the architrinos and their assemblies**, not in a separate field substance,
 - It is only updated at the times $t$ when wake surfaces intersect receivers,
-- Yet there exists a global invariant $H$ for isolated systems, defined entirely from the particle worldlines and their induced accelerations.
+- Yet there exists a global bookkeeping invariant $H_{\text{diag}}$ for isolated trajectories, defined entirely from the particle worldlines and their induced accelerations.
 
 ##### Local canonical form in effective limits
 
@@ -1575,7 +1577,7 @@ $$
 
 which:
 
-- Approximates the full history‑aware Hamiltonian $H$ when assemblies are well separated and slowly varying,
+- Approximates the full history-aware energy functional when assemblies are well separated and slowly varying,
 - Recovers familiar particle‑mechanics structure for many emergent phenomena (orbital motion, scattering, bound states) without ever attributing energy to a continuous field.
 
 ---
@@ -1583,241 +1585,11 @@ which:
 #### Summary
 
 - **Kinetic energy** is defined in the usual way at the architrino level, with internal kinetic energy of tightly bound self‑hit binaries contributing to assembly rest masses.
-- **Interaction energy** is not primitive as an instantaneous position function; it enters as an exact nonlocal Noether charge $E_{\text{wake}}$ (with $U$ as an equivalent diagnostic reconstruction up to a constant).
-- A **nonlocal action principle** exists: a multi‑time Lagrangian whose kernel enforces the causal isochron geometry reproduces the Master Equation under variation, including self‑hit.
-- The **Hamiltonian** for an isolated system is a conserved history‑aware functional of the worldlines; in suitable limits it reduces to a canonical $H_\text{eff} = \sum \mathbf{P}^2/2M + U_\text{eff}$ for effective assemblies, with no separate “field energy” ontology.
-
-All energy accounting remains localized to **architrinos and their assemblies** and is only updated at the instants when **causal wake surfaces intersect receivers** at $t = \text{now}$.
-
----
-
-### Total Energy Calculation for an Isolated Set of Architrinos
-
-In the Architrino Assembly Architecture, the conserved total energy follows from the time-translation symmetry of the nonlocal action. This section gives the operational calculation route for that same conserved quantity:
-
-- Define kinetic energy in the usual kinematic way.
-- Track how causal‑wake intersections (including self‑hit) change kinetic energy.
-- Introduce a complementary interaction functional that captures the **deferred impact** of past emissions on future kinetic energy.
-- Pay particular attention to behavior near the **symmetry‑breaking threshold** $v \approx c_f$, where self‑hit acts dynamically like an amplifier.
-
-Throughout, we avoid assigning any independent “field energy” to the void. All energy accounting lives in the architrinos and in how their past motions influence future kinetic changes via causal wakes.
-
----
-
-#### Kinetic Energy of an Architrino Ensemble
-
-For each architrino $i$ with position $\mathbf{x}_i(t)$, velocity $\mathbf{v}_i(t)$, and inertial parameter $m_i$, we define the instantaneous kinetic energy as
-
-$$
-K(t) \equiv \sum_i \frac{1}{2} m_i \,\|\mathbf{v}_i(t)\|^2.
-$$
-
-This is the purely kinematic part. All interaction effects—partner hits and self‑hits—show up as **changes** in $K(t)$ over time.
-
-The Master Equation of Motion can be written as
-
-$$
-\frac{d^2 \mathbf{x}_i}{dt^2}
-= \mathbf{a}_i(t)
-= \sum_j \sum_{t_0 \in \mathcal{C}_j(t)}
-\kappa\,\sigma_{ij}\,\frac{\lvert q_i q_j \rvert}{r_{ij}^2(t; t_0)}\,\hat{\mathbf{r}}_{ij}(t; t_0),
-$$
-
-Here $\mathbf{a}_{ij}(t; t_0)$ denotes the per-hit acceleration contribution inside the double sum, i.e.
-$$
-\mathbf{a}_{ij}(t; t_0) \equiv \kappa\,\sigma_{ij}\,\frac{\lvert q_i q_j \rvert}{r_{ij}^2(t; t_0)}\,\hat{\mathbf{r}}_{ij}(t; t_0),
-$$
-so that $\mathbf{a}_i(t) = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \mathbf{a}_{ij}(t; t_0)$.
-
-where each term corresponds to a **causal‑wake intersection** at time $t$ between architrino $i$ and a wake emitted by architrino $j$ at earlier time $t_0$. The set $\mathcal{C}_j(t)$ contains all such emission times selected by the causal condition
-
-$$
-\big\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\big\|
-= c_f\,(t - t_0), \quad t_0 < t.
-$$
-
-The instantaneous rate of change of kinetic energy is then
-
-$$
-\frac{dK}{dt}(t)
-= \sum_i m_i\,\mathbf{a}_i(t)\cdot \mathbf{v}_i(t)
-= \sum_i \sum_j \sum_{t_0 \in \mathcal{C}_j(t)}
-m_i\,\mathbf{a}_{ij}(t; t_0)\cdot \mathbf{v}_i(t).
-$$
-
-Each contribution $\mathbf{a}_{ij}(t; t_0)$ is nonzero only at an actual wake–receiver intersection. Between such events, that particular source–receiver pair contributes nothing to $\frac{dK}{dt}$.
-
-Thus **all changes in kinetic energy are localized**: they occur only when a causal wake surface intersects an architrino at $t = \text{now}$.
-
----
-
-#### Interaction Energy as Deferred Work of Past Emissions
-
-Consider an architrino that has, at some earlier times $t_0$, emitted causal wakes while following a certain trajectory. Much later, at times $t > t_0$, its own worldline $\mathbf{x}_i(t)$ may intersect those wakes again (self‑hit), especially when:
-
-- Its speed has entered the $v > c_f$ regime at some stage in its history, and
-- Its path has curved so it can “overtake” its own earlier wake pattern.
-
-At those intersection events, its kinetic energy can change sharply.
-
-From the $\mathbb{U}_{\text{now}}$ universe-state perspective’s standpoint:
-
-- When self‑hit first becomes possible near $v \approx c_f$, the kinetic energy of that particular architrino can begin to grow much faster (a strong amplifier of the local rate of kinetic-energy growth).
-- At that exact moment, no other architrino directly feels anything; their kinetic energies do not change until the consequences of this altered motion propagate outward via their own emitted wakes and later intersect them.
-
-This suggests that any notion of “interaction energy” for a finite, isolated set cannot be a simple instantaneous function of the positions $\{\mathbf{x}_i(t)\}$. Instead, it must somehow encode the **deferred effect** of past emissions that have been launched but whose influence on kinetic energy has not yet been realized at their future intersection points.
-
-This motivates a different perspective:
-
-> **Interaction energy is the structured record of how past motions and emissions will, at future causal‑wake intersections, change kinetic energies.** It is not “stored in the field” as a static density in space, but rather encoded in the **pattern of causal wakes** and their geometric relation to future worldlines.  The **pattern of causal wakes** is itself calculable from the path history of each architrino.
-
----
-
-#### A Path‑History Based Interaction Functional
-
-To formalize this for a finite, isolated set of architrinos:
-
-1. Fix a reference time $t_\ast$. At that time we know:
-   - All positions $\mathbf{x}_i(t_\ast)$ and velocities $\mathbf{v}_i(t_\ast)$,
-   - And, implicitly, the entire prior worldlines $\{\mathbf{x}_i(t') : t' < t_\ast\}$ that determine which wakes have been emitted and where they are in the void.
-
-2. For any later time $t > t_\ast$, the kinetic energy is
-
-   $$
-   K(t)
-   = K(t_\ast)
-   + \int_{t_\ast}^{t}
-     \sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
-   $$
-
-3. Define an **interaction functional** $W(t)$ (you can think of it as “unrealized work”) by
-
-   $$
-   W(t) \equiv W(t_\ast)
-   - \int_{t_\ast}^{t}
-     \sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
-   $$
-
-In particular, if we choose the same reference-time convention and drop the explicit $m_i$ factor (absorbing it into the definition of $\mathbf{a}_i$), we can identify this interaction functional with the $U(t)$ defined in Section 3.1.2, i.e. set $W(t) \equiv U(t)$ up to an overall reference constant.
-
-By construction, this implies
-
-$$
-K(t) + W(t)
-= K(t_\ast) + W(t_\ast)
-\equiv E_0,
-$$
-
-so the combination $K + W$ is **time‑independent** for the chosen isolated system, given the actual accelerations from the Master Equation.
-
-Interpretation:
-
-- At any given time $t$:
-  - $K(t)$ is the energy that has already been realized as kinetic motion.
-  - $W(t)$ represents the portion of “interaction capacity” encoded in the past wake pattern that has **not yet** been cashed out as kinetic changes at future intersections.
-- Whenever a wake hits a receiver and does work (changing $K$), $W$ changes in the opposite direction so that $K + W$ remains fixed for that isolated ensemble.
-
-This construction is **agnostic** about where “interaction energy” resides spatially. It is only a disciplined way of tracking:
-
-- When and by how much kinetic energy changes, and
-- A complementary quantity that keeps the running sum simple.
-
----
-
-#### Behavior at the Self‑Hit Threshold
-
-Now specialize to an architrino that has just entered the **self‑hit regime**.
-
-- Before its speed and geometry allowed self‑hit, many of its emitted wakes might never have intersected its own future worldline again.
-- Once self‑hit becomes possible ($v>c_f$ in some segment of its history with sufficient curvature), new causal‑intersection roots $t_0 \in \mathcal{C}_i(t)$ appear where its past wakes now intersect its current position.
-- Each such new intersection contributes an additional term to $\mathbf{a}_i(t)$ and hence to $\mathbf{a}_i\cdot\mathbf{v}_i$. As a result, the instantaneous rate $\frac{dK}{dt}$ for that architrino can increase sharply—a strong amplifier of the local rate of kinetic-energy growth.
-
-In terms of energy accounting:
-
-- $K(t)$ for that architrino begins to grow more rapidly as self‑hit kicks in.
-- $W(t)$, defined as above, simultaneously decreases so that $K(t) + W(t)$ for the isolated set remains at the constant value $E_0$.
-- No other architrino’s kinetic energy changes at that exact instant; the change is entirely local to the self‑hitting worldline.
-- Only later—after this new motion produces its own outgoing wakes, which then intersect other architrinos—do those others see changes in their own kinetic energies.
-
-Crucially:
-
-- This picture does **not** say that the wake itself is an energy container.
-- Instead, it says that the combination of:
-  - past worldline structure,
-  - causal‑wake geometry, and
-  - future intersection patterns  
-  jointly determines how much **future kinetic change** has already been “pre‑arranged” but not yet realized.
-- When self‑hit opens up new intersection channels that were impossible before, the same underlying past emissions now have **more ways** to convert into kinetic changes. Dynamically, that looks like an amplifier, but in this framing it is a re‑routing of which intersection events realize which parts of $W$.
-
----
-
-#### A Calculated Total Energy
-
-With the definitions above, we can introduce
-
-$$
-E_{\text{calc}}(t) \;\equiv\; K(t) + W(t).
-$$
-
-If we identify $W(t)$ with the interaction functional $U(t)$ of Section 3.1 (up to a fixed reference constant), then $E_{\text{calc}}(t)$ coincides with the Hamiltonian $H(t) = K(t) + U(t)$ for an isolated system. In the continuous theory this quantity is time-independent; in simulations, conservation of
-
-$$
-E_{\text{calc}}(t) \approx E_0
-$$
-
-within numerical tolerance becomes a diagnostic of integrator quality and of whether the implemented dynamics faithfully reproduce the Master Equation.
-
-Two important clarifications:
-
-1. We have **not** claimed that $E_{\text{calc}}(t)$ admits a simple, closed‑form expression depending only on the instantaneous state:
-   $$
-   E_{\text{calc}}(t) \neq \mathcal{E}\big(\{\mathbf{x}_i(t), \mathbf{v}_i(t)\}\big)
-   \quad\text{in general.}
-   $$
-   In realistic configurations, $W(t)$ depends on the **entire past history** of all worldlines, because causal wakes and self‑hit are inherently path‑history phenomena.
-
-2. We have **not** assigned an independent energy density to a field in the void.
-   - All changes in energy happen at architrinos, at the moments when wakes intersect them.
-   - $W(t)$ is a diagnostic estimator for the nonlocal interaction charge, encoding how much of the “interaction capacity” of past wakes is still unrealized as kinetic motion.
-
-In this sense, one can regard $E_{\text{calc}}$ either as:
-
-- A generalized “total energy” for the isolated architrino ensemble, or
-- A compact way to summarize the exact balance between realized kinetic energy and still‑deferred interaction effects within the path‑history dynamics.
-
----
-
-#### Remaining derivation gaps
-
-To turn this section into a fully explicit computational and conservation framework, the remaining derivation gaps are:
-
-1. **Derive branch-resolved evaluation formulas for $E_{\text{wake}}(t)$** in terms of:
-   - Delay roots and their Jacobians, and
-   - Causal intersection geometry of worldline segments.
-
-2. **Analyze how self‑hit reshapes $E_{\text{wake}}(t)$ and its estimator $W(t)$**:
-   - Before self‑hit, many emissions may have no future self‑intersection.
-   - After self‑hit is allowed, some of those emissions begin to contribute to future self‑intersections, altering the partition of “who will feel what, and when.”
-
-3. **Test numerically on small systems**:
-   - Integrate the Master Equation for isolated ensembles (including strong self‑hit near $v \approx c_f$).
-   - Compute $K(t)$ directly.
-   - Numerically accumulate the work term
-     $\displaystyle \int \sum_i m_i\,\mathbf{a}_i\cdot\mathbf{v}_i\,dt$
-     to define $W(t)$ as an estimator of $E_{\text{wake}}$.
-   - Check whether $E_{\text{calc}}(t) = K(t) + W(t)$ remains flat (within numerical tolerance) and matches direct evaluations of $K+E_{\text{wake}}$ where feasible.
-
-If $E_{\text{calc}}(t)$ shows systematic drift for truly isolated ensembles under accurate integration (after ruling out numerical artifacts via convergence tests), this is a **falsification signal**: it indicates either:
-
-1. The Master Equation as written is not strictly conservative (which would require adding dissipative or source terms), or
-2. The implemented estimator for $E_{\text{wake}}(t)$ is incomplete and must account for additional nonlocal terms in the wake geometry.
-
-Either outcome would require revising the fundamental dynamics or the nonlocal energy-functional construction. This is a **hard test** of the theory's internal consistency.
-
-If, instead, $E_{\text{calc}}(t)$ is robustly constant, then we will have:
-
-- A precise, architrino‑level notion of “total energy” that does **not** rely on field energy,
-- A clear understanding of how the apparent amplification near $v = c_f$ is a **delayed, geometry‑driven rerouting** of how and when past emissions change kinetic motion across the ensemble.
+- **Interaction energy** is not primitive as an instantaneous position function; in the reduced model it is tracked by the diagnostic functional $U$, while the action-based completion supplies a candidate nonlocal Noether charge $E_{\text{wake}}$.
+- A **candidate nonlocal action principle** exists: a multi-time Lagrangian whose kernel enforces the causal isochron geometry exhibits the same leading radial structure as the reduced branch-sum law, but also makes clear where additional Jacobian and delay terms would enter.
+- The **diagnostic total energy** for an isolated reduced-model trajectory is history-aware; in suitable limits it reduces to a canonical $H_\text{eff} = \sum \mathbf{P}^2/2M + U_\text{eff}$ for effective assemblies, with no separate “field energy” ontology.
+
+All energy accounting remains localized to **architrinos and their assemblies** and is only updated at the instants when **causal wake surfaces intersect receivers** at $t = \text{now}$. Operationally, the reduced model uses the diagnostic reconstruction $H_{\text{diag}}(t)=K(t)+U(t)$, while the action-based completion supplies the candidate nonlocal charge $K(t)+E_{\text{wake}}(t)$. The unresolved derivation work is therefore concentrated in making the relationship between those two descriptions explicit and branch-resolved.
 
 ---
 
@@ -1852,43 +1624,43 @@ $$
 $$
 Because the forces are delayed, $\dot{\mathbf{P}}_{\text{mech}}(t)$ is generally nonzero.
 
-**Definition (Wake momentum functional).** For an isolated system, define
+**Definition (Wake momentum bookkeeping functional).** For an isolated system, define
 $$
 \mathbf{P}_{\text{wake}}(t) = \mathbf{P}_{\text{wake}}(t_\ast) - \int_{t_\ast}^{t} \sum_i \mathbf{F}_i(s)\,ds,
 $$
 with $\mathbf{F}_i = m_i \mathbf{a}_i$ from the Master Equation.
 
-**Theorem (Total momentum conservation).**
+**Bookkeeping identity (total momentum diagnostic).**
 $$
 \mathbf{P}_{\text{tot}}(t) \equiv \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{wake}}(t)
 $$
-is constant in time for isolated systems.
+is constant in time by construction. In the reduced branch-sum model this is a diagnostic partition of momentum into mechanical and wake-bookkeeping pieces; promoting it to a derived conservation law requires the completed nonlocal action framework.
 
 **Definition (Mechanical angular momentum).**
 $$
 \mathbf{L}_{\text{mech}}(t) = \sum_i \mathbf{x}_i(t) \times m_i \mathbf{v}_i(t).
 $$
 
-**Definition (Wake angular momentum functional).**
+**Definition (Wake angular momentum bookkeeping functional).**
 $$
 \mathbf{L}_{\text{wake}}(t) = \mathbf{L}_{\text{wake}}(t_\ast) - \int_{t_\ast}^{t} \sum_i \mathbf{x}_i(s)\times \mathbf{F}_i(s)\,ds.
 $$
 
-**Theorem (Total angular momentum conservation).**
+**Bookkeeping identity (total angular momentum diagnostic).**
 $$
 \mathbf{L}_{\text{tot}}(t) \equiv \mathbf{L}_{\text{mech}}(t) + \mathbf{L}_{\text{wake}}(t)
 $$
-is constant in time for isolated systems.
+is constant in time by construction. As with momentum, treating this as a derived conservation law rather than a bookkeeping identity requires the completed nonlocal action framework.
 
-**Remark.** These definitions mirror the nonlocal energy charge in Sections 6.1-6.2: the "missing" momentum and angular momentum are attributed to in-flight wake geometry, so the total conserved quantities are functionals of the path history.
+**Remark.** These definitions mirror the energy bookkeeping used earlier: the "missing" momentum and angular momentum are attributed to in-flight wake geometry, so the total quantities are functionals of the path history. In this chapter they are used diagnostically.
 
 #### Energy Functional and No-Runaway Criterion
 
-Time-translation invariance implies a conserved history functional. In this document we define the total energy as
+For the action-based completion, time-translation invariance would imply a conserved history functional. In the reduced branch-sum model used here, we track the corresponding quantity diagnostically as
 $$
 E_{\text{tot}}(t) = K(t) + E_{\text{wake}}(t),
 $$
-where $K$ is kinetic energy and $E_{\text{wake}}$ is the nonlocal Noether interaction charge from Sections 6.1-6.2. In diagnostics, $U$ or $W$ may be used as equivalent reconstructions up to a constant offset.
+where $K$ is kinetic energy and $E_{\text{wake}}$ denotes the candidate action-based nonlocal interaction charge. In reduced-model diagnostics, $U$ or $W$ may be used as corresponding reconstructions up to a constant offset.
 
 **Lemma (Bounded work rate under regularization).** If $\eta>0$ and the mollified kernel bounds the per-hit force, then there exists $F_{\max}(\eta)$ such that
 $$
@@ -1904,7 +1676,7 @@ $$
 
 In addition to the convergence checks in Section 4.2, track these conserved functionals in any isolated run:
 
-- **Total energy**: $E_{\text{calc}}(t) = K(t) + U(t)$ (or direct $K+E_{\text{wake}}$ where available) should be constant up to the energy-drift thresholds in Section 4.2.3.
+- **Total energy**: $H_{\text{diag}}(t) = K(t) + U(t)$ (or direct $K+E_{\text{wake}}$ where available) should remain constant within the chosen numerical tolerance.
 - **Total momentum**: $\mathbf{P}_{\text{tot}}(t)$ should be constant; monitor $\|\mathbf{P}_{\text{tot}}(t)-\mathbf{P}_{\text{tot}}(0)\|$.
 - **Total angular momentum**: $\mathbf{L}_{\text{tot}}(t)$ should be constant; in planar runs, the unit axis $\hat{\mathbf{n}} = \mathbf{L}_{\text{tot}}/\|\mathbf{L}_{\text{tot}}\|$ should remain fixed.
 - **Binary symmetry defect** (for symmetric initial data):
@@ -1919,7 +1691,7 @@ These diagnostics operationalize the symmetry constraints and provide early warn
 
 For integration with the quantum closure program, the master equation provides the microscopic gate:
 $$
-m_i\ddot{\mathbf{x}}_i(t)=\text{retarded causal-hit sum over }\mathcal{C}_j(t).
+m_i\ddot{\mathbf{x}}_i(t)=\text{retarded causal-hit sum over }\mathcal{C}_{ij}(t).
 $$
 
 The required next reduction is a controlled map to mesoscopic density dynamics:

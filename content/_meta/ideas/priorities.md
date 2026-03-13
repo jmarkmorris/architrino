@@ -1,3 +1,9 @@
+  figure out what to do with the subscription site.
+  and stripe.
+  
+  
+  
+  
   2. targeted label polish in theory-mapping and major-thinkers
   3. publication-style prose smoothing on whichever chapter you care most about
 
