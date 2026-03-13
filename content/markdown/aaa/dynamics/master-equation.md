@@ -22,7 +22,7 @@ The Master EOM is:
 
 #### The Central Idea
 
-**Fundamental Principle (from Marko's presentation):**
+**Fundamental Principle:**
 
 > *Potential at all other points in time and space is irrelevant.*
 
@@ -259,7 +259,7 @@ $$
 1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past light cones).
 2. **Super-field-speed history**: At some emission time $t_0$, the architrino must have exceeded $c_f$ (otherwise, it remains inside all past wake surfaces and never catches up).
 
-**Key clarification (from Marko):**
+**Key clarification:**
 
 - **Self-hits can be plural**: $\mathcal{C}_i(t)$ can contain multiple emission times (e.g., multiple winding numbers in circular motion).
 - **Persistent memory**: Once an architrino has exceeded $v > c_f$ in its past, it can **later slow down** to $v < c_f$ and **still receive self-hits** from wake surfaces emitted during the super-field-speed phase. The self-hit regime is **not** instantaneously tied to current velocity; it depends on **path history**.
@@ -277,7 +277,7 @@ $$
 
 For each $t_0 \in \mathcal{C}_j(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\mathbf{x}_i(t)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the force.
 
-**[Diagram to be added]**: Visualize causal light cone, source worldline, expanding isochrons, and receiver intersection. Show both single-hit (sub-$c_f$) and multi-hit (super-$c_f$) cases.
+This geometry should be read in terms of the source worldline, the expanding causal isochrons centered on past emission points, and the receiver event at which one or more of those isochrons are intersected.
 
 #### Reduced Lorentz-Suppression Derivation from Delay Geometry
 
@@ -362,14 +362,14 @@ where $m_i$ is the inertial parameter of the receiving architrino.
 
 where:
 
-- $\kappa$: universal coupling constant (see Parameter Ledger)
+- $\kappa$: universal coupling constant
 - $q_i, q_j$: charges of receiver and source ($\pm e/6$ for electrinos/positrinos)
 - $r_{ij}$: distance from emission point to reception point
 - $\hat{\mathbf{r}}_{ij}$: radial direction from emission to reception
 
 **Note on interaction structure:** The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is **purely radial**—it points along the line-of-action $\hat{\mathbf{r}}_{ij}$ from the source's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** (no $\mathbf{v}_i \times \mathbf{B}$-like contributions) in the fundamental interaction kernel. All "magnetic" or velocity-dependent forces in emergent physics (e.g., the Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry** and **superposition of radial hits**, not from intrinsic magnetic structure in the per-hit law.
 
-**Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry** and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the entire burden of magnetic-field emergence on the assembly structure and Noether Sea dynamics (see TOC Ch. 20: "Emergence of Gauge Symmetries").
+**Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry** and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the entire burden of magnetic-field emergence on the assembly structure and Noether Sea dynamics.
 
 #### Total Acceleration (Sum Over All Causal Hits)
 
@@ -657,7 +657,7 @@ The total acceleration on a particle at any instant is the **vector sum** of the
 
 **Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent wake surfaces. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past light cones).
 
-**Persistent memory (from Marko's clarification):** Once an architrino has exceeded $v > c_f$ in its past and emitted wake surfaces, it can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions. The self-hit regime is **not instantaneously tied to current velocity**; it is a **path-history memory effect**.
+**Persistent memory:** Once an architrino has exceeded $v > c_f$ in its past and emitted wake surfaces, it can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions. The self-hit regime is **not instantaneously tied to current velocity**; it is a **path-history memory effect**.
 
 #### Causality and Locality
 
@@ -694,7 +694,7 @@ $$
 
 #### Multiple Self-Hits (Plural)
 
-**Key insight (from Marko):** An architrino can experience **multiple self-hits simultaneously** (or within a regularization window $\eta$).
+**Key insight:** An architrino can experience **multiple self-hits simultaneously** (or within a regularization window $\eta$).
 
 **Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past isochrons** at the same observation time $t$. Each intersection corresponds to a distinct emission time $t_{0,k} \in \mathcal{C}_i(t)$.
 
@@ -710,7 +710,7 @@ where $\sigma_{ii} = +1$ (like charges repel), so each self-hit contributes an *
 
 #### Persistent Memory (Self-Hit After Slowing Down)
 
-**Critical clarification (from Marko):**
+**Critical clarification:**
 
 Self-hit is **not** instantaneously tied to current velocity. An architrino that has **previously** exceeded $v > c_f$ and emitted wake surfaces can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions.
 
@@ -740,7 +740,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 - Discrete stable states (attractors in phase space)
 - Measurement uncertainty (informational ambiguity at receiver; see Section 3.4)
 
-**Next steps (Dyna):** Map the full phase-space attractor landscape for self-hit binaries. Questions: (1) How large is the basin of attraction for maximum-curvature orbit? (2) What initial conditions lead to escape (dissociation)? (3) Are there secondary attractors (e.g., elliptical orbits)?
+An important open problem is to map the phase-space attractor landscape for self-hit binaries, including basin size for maximum-curvature orbits, escape conditions, and the existence of secondary attractors such as long-lived elliptical families.
 
 ### Worked Examples (Analytic Baselines)
 
@@ -819,7 +819,7 @@ Hence as $J_{ii}\to 0^+$ the ideal (unregularized) response diverges, producing 
 **Significance:**
 - Defines a **fundamental length scale** $R_{\min}$ that sets the tightest stable orbit radius
 - In the exact geometric model, excludes classical $r \to 0$ collapse by a null-separatrix barrier
-- Foundation for stable particle assemblies (tri-binaries; see TOC Ch. 11)
+- Foundation for stable particle assemblies such as tri-binaries
 
 **Status split (analytic vs numeric):**
 - **Analytic:** Existence of the Jacobian-null boundary and its singular restoring scaling in the exact kernel.
@@ -870,33 +870,24 @@ The ambiguity is compounded by **superposition**: The net potential at any insta
 
 This limited, unoriented, and source-ambiguous information at the hit level is a **key ingredient** for the emergence of effective quantum-like behavior and measurement uncertainty from deterministic micro-dynamics:
 
-- **Wavefunction as potential distribution**: The "wavefunction" $\psi$ may be interpreted as a **coarse-grained representation** of the superposed potential field (see TOC Ch. 29).
-- **Measurement as interaction**: "Measurement" is simply a complex assembly interaction; the "outcome" is determined by which causal hits occur (see TOC Ch. 30).
+- **Wavefunction as potential distribution**: The "wavefunction" $\psi$ may be interpreted as a **coarse-grained representation** of the superposed potential field.
+- **Measurement as interaction**: "Measurement" is simply a complex assembly interaction; the "outcome" is determined by which causal hits occur.
 - **Uncertainty**: Not fundamental indeterminacy, but **informational ambiguity** from the receiver's limited perspective.
 
 ## Parameters and Numerical Implementation
 
-### Parameter Definitions (From Ledger)
+### Parameter Definitions
 
-All parameters used in the Master EOM are defined in the **Parameter Ledger**.
+The core parameters entering the Master Equation are:
 
-| **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
-|:--------------|:-----------|:-------------------|:----------------|:------------|
-| Field speed | $c_f$ | 1 (natural units) | Length/Time | Set by unit choice; physical value TBD |
-| Coupling constant | $\kappa$ | TBD | (Length³/Time²)/(Charge²) | Controls $1/r^2$ force strength |
-| Architrino charge unit | $\epsilon$ | $e/6$ | Charge | Fundamental charge magnitude |
-| Shell thickness (regularization) | $\eta$ | TBD (numerical) | Length | Mollifies delta singularities |
+| **Parameter** | **Symbol** | **Working convention** | **Dimensional** | **Comment** |
+|:--------------|:-----------|:----------------------|:----------------|:------------|
+| Field speed | $c_f$ | Set to 1 in natural units unless otherwise stated | Length/Time | Propagation speed in the causal constraint |
+| Coupling constant | $\kappa$ | Universal coupling parameter | (Length³/Time²)/(Charge²) | Controls the strength of the inverse-square interaction |
+| Architrino charge unit | $\epsilon$ | $\lvert e \rvert / 6$ | Charge | Fundamental charge magnitude |
+| Shell thickness (regularization) | $\eta$ | Positive regularization width used in analysis and simulation | Length | Mollifies delta singularities |
 
-**Status:**
-
-- $c_f = 1$: **Postulated** (unit-setting convention)
-- $\kappa$: **To be derived or fitted** (likely related to Coulomb constant $k_e = 1/(4\pi\epsilon_0)$)
- - **Explanatory target**: Derive from $\epsilon$, $c_f$, and Planck units, or demonstrate independence. If $\kappa$ requires adjustment beyond 2 significant figures to match Coulomb constant, flag as potential fine-tuning (FTQ assessment required).
-- $\epsilon = e/6$: **Postulated** (explanatory target: why 1/6?)
-- $\eta$: **Numerical parameter**
- - **Physical justification required**: Is $\eta$ tied to a fixed microscopic length scale, or does it vary across contexts? If $\eta$ varies by $> 10\%$ across different physical contexts (binaries vs nuclei vs cosmology), theory lacks naturalness.
-
-**Naturalness assessment:** Track fine-tuning quotient (FTQ) for each parameter; flag if FTQ $> 10$ (see TOC Ch. 54).
+In this document, $c_f$ is treated primarily as a unit-setting convention, $\kappa$ as the universal coupling scale of the delayed interaction law, $\epsilon$ as the fundamental charge unit, and $\eta$ as a regularization parameter used only when a smooth surrogate of the exact shell dynamics is required.
 
 ### Numerical Implementation Notes
 
@@ -987,17 +978,12 @@ $$
 
 - **Stable binaries** form via self-hit stabilization at maximum curvature.
 - **Tri-binaries (Noether cores)** emerge as nested binary configurations.
-- **Particles** are decorated tri-binary assemblies (see TOC Part IV).
+- **Particles** are decorated tri-binary assemblies.
 - **Quantum behavior** arises from non-Markovian memory + informational ambiguity.
-- **Spacetime curvature** emerges from Noether Sea density gradients (see TOC Part VII).
-- **Cosmological expansion** is local energy dissipation in the Noether Sea (see TOC Part VIII).
-
-*"One equation. Infinite consequences. Let the simulations begin."* 
+- **Spacetime curvature** emerges from Noether Sea density gradients.
+- **Cosmological expansion** is local energy dissipation in the Noether Sea.
 
 ---
-
-Part II - Are Analytic Solutions Possible?
-
 
 ### Fully general case (arbitrary N, arbitrary trajectories)
 
@@ -1024,9 +1010,9 @@ That’s standard: even Newtonian N‑body gravity is analytically intractable g
 
 ---
 
-### Ideal / symmetric cases where analytic work *is* realistic
+### Ideal / symmetric cases where analytic work is realistic
 
-Here’s where I do think we can get genuine closed forms or very controlled approximations.
+The most tractable cases are the highly symmetric regimes in which closed forms or controlled approximations remain plausible.
 
 #### Static / quasi‑static limit (Coulomb analogue)
 
@@ -1051,7 +1037,7 @@ Analytic status:
 - Two‑body problem in this limit: solvable exactly (ellipses, etc.).
 - N‑body: same qualitative status as Newtonian gravity/electrostatics—no closed form in general, but standard perturbation methods apply.
 
-This is basically our “sanity check” regime.
+This is the basic consistency-check regime of the theory.
 
 ---
 
@@ -1180,7 +1166,7 @@ Analytic expectations:
 So:
 
 - Analytically: we can reduce to algebraic conditions and asymptotic expansions.
-- Dynamically: we still need simulations to test stability (attractor vs fine‑tuned orbit).
+- Dynamically: the stability question remains separate from the algebraic construction and requires numerical analysis of attractivity versus fine-tuned orbit families.
 
 This would be an “analytic scaffold + numerical check” situation, not full closed forms.
 
@@ -1219,9 +1205,9 @@ That’s analytically tractable and important for:
 
 ---
 
-### What I recommend as next analytic targets
+### Natural analytic targets
 
-If we prioritize “bang for analytic buck,” I’d line up:
+The most natural targets for further analytic closure are:
 
 1. **Uniform circular self‑hit (single particle, v>c_f)**  
    - Solve the transcendental equation  
@@ -1242,7 +1228,7 @@ If we prioritize “bang for analytic buck,” I’d line up:
    - Derive linearized wave equation for small perturbations,
    - Extract dispersion relation $\omega(k)$.
 
-All four are realistically doable analytically (modulo standard transcendental equations and integrals) and directly support the rest of the program.
+These four targets are analytically accessible enough to serve as the main bridge between the formal law and the broader closure program.
 
 ---
 
@@ -1801,9 +1787,9 @@ In this sense, one can regard $E_{\text{calc}}$ either as:
 
 ---
 
-#### Open Tasks for This Framework
+#### Remaining derivation gaps
 
-To turn this into a practical computational tool, we still need to:
+To turn this section into a fully explicit computational and conservation framework, the remaining derivation gaps are:
 
 1. **Derive branch-resolved evaluation formulas for $E_{\text{wake}}(t)$** in terms of:
    - Delay roots and their Jacobians, and
