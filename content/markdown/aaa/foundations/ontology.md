@@ -1024,37 +1024,37 @@ Each causal wake surface in the stream carries surface density $q/(4\pi r^2)$ so
 For a receiver $a$ at time $t$ and source $j$, define the **causal set** of emission times whose current wake surfaces intersect the receiver:
 
 $$
-\mathcal{C}_j(t) = \left\{ t_0 < t \;\middle|\; \|\mathbf{s}_a(t) - \mathbf{s}_j(t_0)\| = v_f (t - t_0) \right\}.
+\mathcal{C}_{aj}(t) = \left\{ t_0 < t \;\middle|\; \|\mathbf{s}_a(t) - \mathbf{s}_j(t_0)\| = v_f (t - t_0) \right\}.
 $$
 
-In units where $v_f = 1$, each element of $\mathcal{C}_j(t)$ supplies a radial acceleration along the normalized vector
+In units where $v_f = 1$, each element of $\mathcal{C}_{aj}(t)$ supplies a line-of-action acceleration along the normalized vector
 
 $$
 \hat{\mathbf{r}}_{ja}(t,t_0) = \frac{\mathbf{s}_a(t) - \mathbf{s}_j(t_0)}{\|\mathbf{s}_a(t) - \mathbf{s}_j(t_0)\|},
 $$
 
-with magnitude proportional to $|q_j q_a|/r^2$ (where $r=\|\mathbf{s}_a(t)-\mathbf{s}_j(t_0)\|$) and sign given by $\sigma_{q_j q_a} = \text{sign}(q_j q_a)$. The total acceleration is the vector sum over all causal contributions:
+with magnitude proportional to $|q_j q_a|/(r^2 |J_{aj}(t;t_0)|)$ (where $r=\|\mathbf{s}_a(t)-\mathbf{s}_j(t_0)\|$) and sign given by $\sigma_{q_j q_a} = \text{sign}(q_j q_a)$. The total acceleration is the vector sum over all causal contributions:
 
 $$
-\mathbf{a}_a(t) = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \mathbf{a}_{a,j}(t; t_0),
+\mathbf{a}_a(t) = \sum_j \sum_{t_0 \in \mathcal{C}_{aj}(t)} \mathbf{a}_{a,j}(t; t_0),
 $$
 
-where each $\mathbf{a}_{a,j}(t; t_0)$ is computed by evaluating the $1/r^2$ kernel at the emission point. This statement is the **canonical Master Equation of Motion** written as a path-history integral: the continuous potential field is reconstructed by isolating each causal emission, applying the radial $1/r^2$ factor at that emission, and summing. Because nearby sources contribute larger $1/r^2$ terms, they tend to dominate and long-range contributions cancel more completely.
+where each $\mathbf{a}_{a,j}(t; t_0)$ is computed by evaluating the inverse-square line-of-action kernel together with its causal Jacobian weight at the emission point. This statement is the **canonical Master Equation of Motion** written as a path-history integral: the continuous potential field is reconstructed by isolating each causal emission, applying the Jacobian-weighted radial factor at that emission, and summing. Because nearby sources contribute larger inverse-square terms, they tend to dominate and long-range contributions cancel more completely.
 
-Plain language: the acceleration at any instant is the vector sum of all $1/r^2$ pushes from the intersecting wake surfaces. Each hit tells you the line back to some emission, and attraction versus repulsion follows from the signs of the charges. Emission cadence and per-surface amplitude are fixed, so the receiver’s velocity only affects the instantaneous power $F\cdot v = |F| v_r$.
+Plain language: the acceleration at any instant is the vector sum of all Jacobian-weighted inverse-square pushes from the intersecting wake surfaces. Each hit tells you the line back to some emission, and attraction versus repulsion follows from the signs of the charges. Emission cadence and per-surface amplitude are fixed at the source, while the received force magnitude is shaped by causal-flux bunching through the branch Jacobian.
 
 The causal set is typically a singleton when $|\mathbf{v}_j| < v_f$ but may contain multiple roots in the multi-hit regime whenever $|\mathbf{v}_j| > v_f$. Self-hits correspond to $j=a$ with $t_0 < t$ and encode the particle’s own path history.
 
 #### Superposition of Sphere Streams
 
-Sphere streams from distinct architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a purely radial push scaling as $1/r^2$, so nearby wake hits dominate while distant contributions decay. The total field felt by any Architrino is the sum of these individual hits.
+Sphere streams from distinct architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a line-of-action push with inverse-square geometric decay and Jacobian flux weighting, so nearby wake hits dominate while distant contributions decay. The total field felt by any Architrino is the sum of these individual hits.
 
 #### Future Path and Deterministic Evolution
 
 The Architrino's future path is determined by its current state and the superposed hits from all sources. The acceleration at time $t$ is:
 
 $$
-\mathbf{a}_a(t) = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \mathbf{a}_{a,j}(t; t_0),
+\mathbf{a}_a(t) = \sum_j \sum_{t_0 \in \mathcal{C}_{aj}(t)} \mathbf{a}_{a,j}(t; t_0),
 $$
 
 where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted by source $j$'s causal wake surface emitted at $t_0$. This is the history-dependent evolution law, with meta-stable branching possible at self-hit thresholds.
@@ -1262,7 +1262,7 @@ Each Noether core is itself a **tri-binary assembly**: three nested, counter-rot
 - **Effective permittivity/permeability**: Emergent electromagnetic constants $\epsilon_0$, $\mu_0$ arise from Noether Sea response to charge/current distributions
 - **Refractive index**: Variations in $\rho_{vac}$ cause variations in effective light speed $c_{\text{eff}} = c_f / n(\rho_{vac})$
 
-**Status of the magnetic field ($\mathbb{A}\mathbb{A}\mathbb{A}$ viewpoint):** The fundamental interaction kernel is **purely radial and delayed**; it contains no intrinsic velocity-cross-product term. “Magnetic field” is therefore **not a primitive substance** but a **pseudovector summary** that appears only after coarse-graining the geometry of overlapping delayed radial hits into an instantaneous, low-velocity approximation. The familiar $ \mathbf{v} \times \mathbf{B}$ term is the first-order side-effect of two geometric facts: (i) **aberration**—retarded line-of-action tilts by $O(v/c)$, producing a transverse component; (ii) **time-shear**—different parts of a moving/looped source are sampled at slightly different retarded times, so their radial pushes sum to a net circulation. Package those transverse pieces and you recover the Lorentz “magnetic” force. Binary coupling makes the effect coherent: two charges chasing each other keep a persistent retarded tilt, so the transverse components add up and look like magnetic binding, but nothing new is added to the fundamental law. All magnetic-like observables (moments, flux tubes, v×B forces) thus arise from the circulation and phase structure of delayed radial pushes in the Noether Sea. Keep the radial-with-delay law as the ontology; B is a bookkeeping device, not an independent field.
+**Status of the magnetic field ($\mathbb{A}\mathbb{A}\mathbb{A}$ viewpoint):** The fundamental interaction kernel is **delayed and radial in direction**; it contains no intrinsic velocity-cross-product term. Its magnitude, however, is strongly velocity dependent through the causal Jacobian that bunches or dilates received flux along each active branch. “Magnetic field” is therefore **not a primitive substance** but a **pseudovector summary** that appears only after coarse-graining the geometry of overlapping delayed hits into an instantaneous, low-velocity approximation. The familiar $ \mathbf{v} \times \mathbf{B}$ term is the first-order side-effect of three geometric facts: (i) **aberration**—delayed line-of-action tilts by $O(v/c)$, producing a transverse component; (ii) **time-shear**—different parts of a moving or looped source are sampled at slightly different delayed times, so their radial pushes sum to a net circulation; (iii) **causal-flux bunching**—the Jacobian denominator enhances or suppresses specific branches according to source motion. Package those transverse pieces and flux weights and you recover the Lorentz “magnetic” force. Binary coupling makes the effect coherent: two charges chasing each other keep a persistent delayed tilt and branch-weight asymmetry, so the transverse components add up and look like magnetic binding, but nothing new is added to the fundamental law. All magnetic-like observables (moments, flux tubes, v×B forces) thus arise from the circulation and phase structure of delayed, Jacobian-weighted line-of-action pushes in the Noether Sea. Keep the delayed line-of-action law as the ontology; B is a bookkeeping device, not an independent field.
 
 **Edge-condition energy transfer (deterministic multistability):**  
 Even below the self-hit regime, energy transfer to/from a Noether core can pass through **threshold conditions** where multiple outcomes are dynamically accessible (transfer proceeds or stalls). Which outcome occurs is **deterministic but microstate-sensitive**: the local wake phase configuration from other architrinos can tip the system into one attractor or another. This is **meta-stable branching** without Many-Worlds or fundamental randomness.

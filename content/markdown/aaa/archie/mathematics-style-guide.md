@@ -62,7 +62,7 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
   $$
 - Causal set:
   $$
-  \mathcal{C}_j(t) = \{\, t_0 < t \mid \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\| = v\,(t - t_0) \,\}
+  \mathcal{C}_{o'j}(t) = \{\, t_0 < t \mid \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\| = v\,(t - t_0) \,\}
   $$
 - Conventions:
   - $H(0)=0$ (no instantaneous self-kick).
@@ -95,7 +95,7 @@ Plain language: Each emission is a razor-thin causal wake surface; when needed, 
 
 ---
 
-## master equation of Motion (EOM; purely radial)
+## master equation of Motion (EOM; line of action with Jacobian weighting)
 
 Given a receiver o′ at time t and a source j at causal emission time t₀ ∈ 𝒞_j(t), let
 $$
@@ -108,12 +108,16 @@ Canonical per-hit acceleration:
 $$
 a_{o′\leftarrow j}(t; t_0)
 = \kappa\,\sigma_{q_j q_{o′}}\,
-\frac{|q_j q_{o′}|}{r^2}\,\hat{\mathbf{r}}.
+\frac{|q_j q_{o′}|}{r^2\,|J_{o′j}(t;t_0)|}\,\hat{\mathbf{r}},
+$$
+where
+$$
+J_{o′j}(t;t_0)\equiv 1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}}{v}.
 $$
 
 Total acceleration:
 $$
-\mathbf{a}_{o′}(t) = \sum_{j}\ \sum_{t_0 \in \mathcal{C}_j(t)} a_{o′\leftarrow j}(t; t_0).
+\mathbf{a}_{o′}(t) = \sum_{j}\ \sum_{t_0 \in \mathcal{C}_{o′j}(t)} a_{o′\leftarrow j}(t; t_0).
 $$
 
 DDE view: let state $x = (\mathbf{s}, \mathbf{v})$. With $\eta>0$ regularization, the dynamics admit a causal functional form
@@ -123,10 +127,10 @@ $$
 with $\tau_j$ determined implicitly by $\lVert \mathbf{s}(t) - \mathbf{s}_j(t - \tau_j)\rVert = v\,\tau_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
-- Emission cadence and per-wavefront amplitude are constant The receiver’s velocity influences only instantaneous power via $\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.
+- Emission cadence and per-wavefront amplitude are constant at the source; the received force magnitude is modulated by the Jacobian factor $|J|^{-1}$.
 - No cross products, no right-hand-rule magnetism; every per-hit action is along $\hat{\mathbf{r}}$.
 
-Plain language: For each past emission that can reach you now, push along the line back to where it came from, with 1/r² falloff only, then add all pushes.
+Plain language: For each past emission that can reach you now, push along the line back to where it came from, with inverse-square falloff and Jacobian flux weighting, then add all pushes.
 
 Receiver velocity decomposition (instantaneous):
 - Decompose the receiver velocity relative to $\hat{\mathbf{r}}$:
@@ -189,7 +193,7 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 ## Editorial micro-style
 
 - After formal definitions, add a brief “Plain language” sentence.
-- Use consistent symbol set: $\mathcal{C}_j(t)$, $r$, $\hat{\mathbf{r}}$, $v$, $\epsilon$, $\kappa$.
+- Use consistent symbol set: $\mathcal{C}_{o'j}(t)$, $r$, $\hat{\mathbf{r}}$, $v$, $\epsilon$, $\kappa$, $J$.
 - Equation tags (optional): (CT) causal-time, (EOM) equation of motion, (REG) regularization, (ENER) energetics.
 - Emission cadence and per-wavefront amplitude are constant.
 - Notation for “now”: use $t_{\text{now}}$ for a fixed current evaluation time; use $t_{\text{obs}}$ for observation time. Avoid Tnow/`T_now`; keep $t$ as the running variable elsewhere.

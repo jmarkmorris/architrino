@@ -6,7 +6,7 @@ This document formalizes the variational foundation of the Architrino Assembly A
 
 The Master Equation of motion for architrinos is non-Markovian, driven by the intersection of trajectories with past causal wake surfaces. Consequently, the fundamental action principle cannot be a local integral over instantaneous states. It must be a multi-time functional that evaluates the entire path history.
 
-For a finite, isolated set of architrinos parameterized by absolute time $t$ in the Euclidean void, use the $\eta>0$ regularized retarded action (the exact kernel is recovered as $\eta\to0^+$).
+For a finite, isolated set of architrinos parameterized by absolute time $t$ in the Euclidean void, use the $\eta>0$ regularized delayed action (the exact kernel is recovered as $\eta\to0^+$).
 
 $$
 S_\eta[\{\mathbf{x}_i\}]
@@ -40,7 +40,7 @@ The derivation below is valid under:
 - **(EL3)** Collision exclusion on active support: $r_{ij}(t;t_0)\ge r_{\min}>0$ whenever $\phi_\eta(g_{ij}(t,t_0))\neq0$.
 - **(EL4)** Delay-root transversality on active branches: $\partial_{t_0}g_{ij}(t,t_0)\neq0$ when $g_{ij}(t,t_0)=0$.
 - **(EL5)** Integrability on the chosen history window (finite window or decay) so differentiation under the time integrals is justified.
-- **(EL6)** Retarded branch convention: only $t_0\le t$ contributes (equivalently, the $\Theta(t-t_0)$ branch of the causal selector).
+- **(EL6)** Delayed branch convention: only $t_0\le t$ contributes (equivalently, the $\Theta(t-t_0)$ branch of the causal selector).
 
 #### Explicit Euler-Lagrange Calculation
 
@@ -88,12 +88,9 @@ $$
 +
 \frac{\phi_\eta'(g_{ij})}{c_f\,r_{ij}}
 \right]
-+
-\mathbf{J}_{i,\eta}^{(\text{delay})}(t)
 \Bigg)\,dt.
 $$
-
-The $\mathbf{J}_{i,\eta}^{(\text{delay})}$ term is the explicit source-time/moving-root correction from varying the delayed argument and exchanging $(t,t_0)$ roles in the symmetric pair sum. By the fundamental lemma of the calculus of variations, stationarity $\delta S_\eta=0$ gives
+By the fundamental lemma of the calculus of variations, stationarity $\delta S_\eta=0$ gives
 $$
 m_i\ddot{\mathbf{x}}_i(t)
 =
@@ -105,15 +102,14 @@ m_i\ddot{\mathbf{x}}_i(t)
 +
 \frac{\phi_\eta'(g_{ij})}{c_f\,r_{ij}}
 \right]
-+
-\mathbf{J}_{i,\eta}^{(\text{delay})}(t).
+.
 $$
 
 Under (EL4), the $\eta\to0^+$ limit can be written branchwise:
 $$
 \phi_\eta(g_{ij}(t,t_0))
 \;\xrightarrow{\eta\to0^+}\;
-\sum_{\tau\in\mathcal{C}_j(t)}
+\sum_{\tau\in\mathcal{C}_{ij}(t)}
 \frac{\delta(t_0-\tau)}
 {\left|1-\hat{\mathbf{r}}_{ij}(t;\tau)\cdot\mathbf{v}_j(\tau)/c_f\right|},
 $$
@@ -122,13 +118,9 @@ $$
 m_i\ddot{\mathbf{x}}_i(t)
 =
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
-\sum_{\tau\in\mathcal{C}_j(t)}
-\left[
+\sum_{\tau\in\mathcal{C}_{ij}(t)}
 \frac{\hat{\mathbf{r}}_{ij}(t;\tau)}
-{r_{ij}(t;\tau)^2\,\left|1-\hat{\mathbf{r}}_{ij}(t;\tau)\cdot\mathbf{v}_j(\tau)/c_f\right|}
-+
-\mathbf{J}_{ij}^{(\text{delay})}(t;\tau)
-\right].
+{r_{ij}(t;\tau)^2\,\left|1-\hat{\mathbf{r}}_{ij}(t;\tau)\cdot\mathbf{v}_j(\tau)/c_f\right|}.
 $$
 
 This is the same line-of-action force structure as the Master Equation derivation (including self-hit branches $i=j$ when present), now stated as an explicit Euler-Lagrange consequence of the regularized action.
@@ -137,10 +129,10 @@ This is the same line-of-action force structure as the Master Equation derivatio
 
 The regularized action $S_\eta$ is invariant under the fundamental symmetry group of the substrate: the Euclidean group $E(3)$ and absolute time translations $\mathbb{R}_{\text{time}}$; the exact statement is recovered in the $\eta\to0^+$ limit.
 
-Because the Lagrangian is nonlocal in time, standard Noether charges are augmented by path-history functionals tracking "in-flight" interactions encoded in the causal wakes.
+Because the Lagrangian is nonlocal in time, the corresponding Noether charges are path-history functionals tracking "in-flight" interactions encoded in the causal wakes.
 
 **Energy Functional:**
-Invariance under absolute time translation yields a conserved total energy $E_{\text{tot}} = K(t) + U(t)$. The effective potential $U(t)$ is not a state function of instantaneous positions, but a history-aware bookkeeping functional capturing the deferred work of past emissions:
+Invariance under absolute time translation yields a conserved total energy $E_{\text{tot}} = K(t) + U(t)$. The interaction term $U(t)$ is not a state function of instantaneous positions, but a history-aware functional capturing the deferred work of past emissions:
 
 $$
 U(t) = U_\ast - \int_{t_\ast}^{t} \sum_i \mathbf{F}_i(t') \cdot \mathbf{v}_i(t') \, dt'

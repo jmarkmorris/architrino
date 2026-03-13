@@ -1,35 +1,35 @@
 # Perspective: Why This Model Maps So Well
 
-This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices—reduction to two true primitives (±$\epsilon$ architrinos) and choosing $\epsilon$=|e/6|—help with parsimony and charge bookkeeping, but the outsized wins come from how delayed, radial-only action and a self-interaction threshold conspire to produce stability, scale selection, and emergent “magnetic-like” behavior without ever invoking right-hand-rule cross products.
+This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices—reduction to two true primitives (±$\epsilon$ architrinos) and choosing $\epsilon$=|e/6|—help with parsimony and charge bookkeeping, but the outsized wins come from how delayed line-of-action action, Jacobian-weighted causal flux, and a self-interaction threshold conspire to produce stability, scale selection, and emergent “magnetic-like” behavior without ever invoking right-hand-rule cross products.
 
-Historically, general relativity and quantum mechanics are extraordinarily successful as effective theories that summarize large classes of phenomena. We position this neoclassical, delayed radial-action model as a simpler dynamical substrate whose coherent assemblies recover GR/QM-like phenomenology in appropriate coarse-grained, slow/weak, or phase-locked limits.
+Historically, general relativity and quantum mechanics are extraordinarily successful as effective theories that summarize large classes of phenomena. We position this neoclassical, delayed line-of-action model as a simpler dynamical substrate whose coherent assemblies recover GR/QM-like phenomenology in appropriate coarse-grained, slow/weak, or phase-locked limits.
 
-We work throughout in units with field speed $v=1$; per-hit accelerations are purely radial along $\hat{\mathbf{r}}$ and superpose linearly.
+We work throughout in units with field speed $v=1$; per-hit accelerations are directed along $\hat{\mathbf{r}}$, weighted by the causal Jacobian, and superpose linearly.
 
 ---
 
-## Delayed causal emission on $1/r^2$ isochrons (no magnetism needed)
+## Delayed causal emission on Jacobian-weighted $1/r^2$ isochrons (no magnetism needed)
 
 - What we assume:
 - Sources emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-\tau)$ with $\tau = t - t_0$.
-  - Each causal hit is strictly radial: the acceleration contribution lies along $\hat{\mathbf{r}}$ from the source history point to the receiver.
+  - Each causal hit is directed along $\hat{\mathbf{r}}$ from the source history point to the receiver, with received magnitude weighted by the branch Jacobian.
 
 - Why it matters:
   - Gauss-like behavior falls out immediately (1/r² on wavefronts).
-  - Moving systems automatically generate tangential components in the receiver’s frame due solely to path-history geometry: the “aim point” is in the past, so the strictly radial force-at-emission is not central at reception. Orbital and vortex-like patterns emerge from delay, not from any B∝v×E construction.
+  - Moving systems automatically generate tangential components in the receiver’s frame due to path-history geometry and causal-flux bunching: the “aim point” is in the past, and source motion enhances or suppresses active branches through the Jacobian. Orbital and vortex-like patterns emerge from delay, not from any B∝v×E construction.
 
 - Consequence:
-  - You can reproduce many “magnetic” phenomenologies (circulation, axial vortices, flux tubes) as kinematic consequences of delayed radial pushes. There is no right-hand rule, no cross products—just geometry and time delay.
+  - You can reproduce many “magnetic” phenomenologies (circulation, axial vortices, flux tubes) as kinematic consequences of delayed, Jacobian-weighted line-of-action pushes. There is no right-hand rule, no cross products, just geometry, flux weighting, and time delay.
 
 ---
 
 ## Constant per-wavefront emission 
 
 - What we assume:
-  - Emission cadence and per-wavefront amplitude are constant.
+  - Emission cadence and per-wavefront amplitude are constant at the source.
 
 - Why it matters:
-  - Simplifies calibration and emphasizes that stability and scale selection arise from delay and self-interaction. Receiver motion influences only instantaneous power via $\mathbf{F}\cdot\mathbf{v}$ through the radial component $v_r$.
+  - Simplifies calibration and emphasizes that stability and scale selection arise from delay and self-interaction. Receiver motion influences instantaneous power via $\mathbf{F}\cdot\mathbf{v}$ through the radial component $v_r$, while source motion modulates the received force magnitude through the Jacobian.
   - With $\eta$-mollification ($\delta\to\delta_\eta$), you can define $\Phi_\eta$ and verify $\Delta E_k = -\,\Delta U$ on resolved intervals while still taking $\eta\to 0$ for sharp impulses.
 
 ---
@@ -53,7 +53,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
 - We use a narrow Gaussian isochron $\delta_\eta$ when continuous-time derivatives are needed.
 
 - Why it matters:
-  - Locality: $1/r^2$ weighting ensures near sources dominate; far sources cancel via multipole suppression.
+  - Locality: inverse-square geometric weighting together with finite-speed branch selection ensures near sources dominate; far sources cancel via multipole suppression.
   - Bookkeeping: with $\delta_\eta$ you can integrate numerically with standard ODE solvers; with $\delta$ you can reason about impulses and events. Both views agree in the $\eta\to 0$ limit for integrals over resolved intervals.
 
 ---
@@ -88,8 +88,8 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
   - $d_0$ and $t_0$ arise from dynamics; they are not postulated rulers and clocks but attractors of the binary system.
 - Shielding and apparent inertia:
   - Fast internal motion produces far-field cancellation; the tiny residual field of a coherent assembly behaves like inertial mass in interactions with the outside.
-- Magnetism without magnetism:
-  - Tangential effects and axial structures appear as a corollary of path-history + radial per-hit action. No cross products required.
+  - Magnetism without magnetism:
+  - Tangential effects and axial structures appear as a corollary of path-history plus Jacobian-weighted line-of-action per-hit action. No cross products required.
 
 ---
 
@@ -182,7 +182,7 @@ Consequence: even the $\mathbb{U}_{\text{now}}$ universe-state perspective must 
 
 ## Single-source multi-hit nuance vs universal superposition
 
-Even for a single source, the receiver cannot be sure that a given shove did not come from multiple distinct emission times $t_0 \in \mathcal{C}_j(t)$ on that same source. When $\lVert \mathbf{v}_j \rVert > 1$ or the source trajectory curves, several roots of $r = v(t - t_0)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit pushes that are locally indistinguishable as to origin.
+Even for a single source, the receiver cannot be sure that a given shove did not come from multiple distinct emission times $t_0 \in \mathcal{C}_{o'j}(t)$ on that same source. When $\lVert \mathbf{v}_j \rVert > 1$ or the source trajectory curves, several roots of $r = v(t - t_0)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit pushes that are locally indistinguishable as to origin.
 
 However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net field is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver “now.” While $1/r^2$ weighting makes nearby sources dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
