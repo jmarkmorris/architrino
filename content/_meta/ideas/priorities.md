@@ -8,9 +8,9 @@ These are all now at 100%.
 Next step is to go through them all and add more info.
 extract what I have at wordpress.
 
-  | File | Mode | Estimated Template Conformance | Current Assessment |
-  |---|---:|---:|---|
-  | crisis-in-physics.md | split | 95% | Fully rewritten; strong textbook structure and explicit overview-template compliance. |
+- crisis-in-physics.md  : full review March 12, 2026
+
+
   | historical-context-and-missed-opportunities.md | split | 95% | Fully rewritten; detailed and structurally consistent. |
   | information-computation.md | split | 95% | Fully rewritten; stable six-part leaf pattern with good depth. |
   | philosophy-of-science.md | split | 95% | Fully rewritten; strong conformance and clear academic register. |
