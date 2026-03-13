@@ -42,7 +42,7 @@ Each symbol carries a specific medium-level meaning:
 
 - **$\bar{\rho}_m(t)$**: the mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with `dark-matter.md`).
 
-**Mechanism for the source term.** A local matter overdensity increases the density of architrino assemblies in that region. The additional causal wakes emitted by these assemblies modify the local effective refractive index of the Noether Sea, slowing signal propagation and deepening the effective potential well. Surrounding matter assemblies, following geodesics of the emergent metric (equivalently, responding to the gradient of the effective potential), drift inward. This positive feedback loop is gravitational instability, recast as medium-response dynamics.
+**Mechanism for the source term.** A local matter overdensity increases the density of architrino assemblies in that region. The additional delayed causal flux emitted by these assemblies modifies the local effective refractive index of the Noether Sea, slowing signal propagation and deepening the effective potential well. At substrate level this is not set by inverse-square dilution alone: the received flux is also Jacobian-weighted, so local branch geometry and source motion can bunch or dilute the effective gravitational signal. Surrounding matter assemblies, following geodesics of the emergent metric (equivalently, responding to the gradient of the effective potential), drift inward. This positive feedback loop is gravitational instability, recast as medium-response dynamics.
 
 **Where the equation is valid.** This growth equation holds in the regime where:
 - perturbations are small ($|\delta| \ll 1$),
@@ -50,7 +50,7 @@ Each symbol carries a specific medium-level meaning:
 - the medium response is quasi-static (perturbation timescale $\gg$ internal tri-binary oscillation period),
 - no internal velocity component of the matter assemblies approaches $c_f$ (the self-hit regime is not triggered by the perturbation dynamics themselves).
 
-**What breaks outside that regime.** At $|\delta| \sim 1$ (turnaround and collapse), the linear equation fails and must be replaced by the full nonlinear medium response—analogous to N-body or hydrodynamic treatment in standard cosmology. At very small scales, the finite size of tri-binary assemblies and the discreteness of the Noether Sea introduce a physical cutoff; the continuum growth equation is not valid below the mean inter-assembly spacing. At extremely high densities (approaching conditions near a Planck-core object), the self-hit regime is entered and the effective $G$ itself changes qualitatively.
+**What breaks outside that regime.** At $|\delta| \sim 1$ (turnaround and collapse), the linear equation fails and must be replaced by the full nonlinear medium response—analogous to N-body or hydrodynamic treatment in standard cosmology. At very small scales, the finite size of tri-binary assemblies and the discreteness of the Noether Sea introduce a physical cutoff; the continuum growth equation is not valid below the mean inter-assembly spacing. At extremely high densities (approaching conditions near a Planck-core object), the self-hit regime is entered, Jacobian anisotropies become large, and the effective $G$ itself changes qualitatively.
 
 ### The Growth Factor
 

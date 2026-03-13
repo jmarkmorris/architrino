@@ -54,6 +54,10 @@
       {
         "nodeId": "scene_taxonomy",
         "scenePath": "content/scenes/archie/scene_taxonomy.json"
+      },
+      {
+        "nodeId": "research_notebook",
+        "scenePath": "content/scenes/archie/research_notebook.json"
       }
     ]
   },
@@ -143,6 +147,14 @@
       "radius": 2.2,
       "color": "#6a5a8f",
       "labelTitle": "Scene Taxonomy",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "research_notebook",
+      "title": "Research Notebook",
+      "radius": 2.2,
+      "color": "#8b6f3a",
+      "labelTitle": "Research Notebook",
       "labelBadge": "doc"
     }
   ]

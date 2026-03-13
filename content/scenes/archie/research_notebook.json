@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__research_notebook",
+    "title": "Research Notebook",
+    "type": "Scene-Markdown-Split",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "research_notebook_overview",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/research-notebook.md",
+      "split": {
+        "headingLevel": 2,
+        "maxDepth": 1,
+        "overrides": {
+          "overview": {
+            "id": "research_notebook_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#8b6f3a",
+            "mode": "doc"
+          }
+        }
+      }
+    },
+    "view": {
+      "columns": 1
+    }
+  },
+  "objects": []
+}

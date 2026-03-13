@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 393,
-      "edges": 1134,
-      "scenes": 275,
+      "nodes": 395,
+      "edges": 1136,
+      "scenes": 276,
       "markdownIndexes": 0,
-      "markdownDocs": 118,
+      "markdownDocs": 119,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1799,6 +1799,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__research_notebook",
+      "name": "Research Notebook",
+      "path": "content/scenes/archie/research_notebook.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -1844,6 +1850,12 @@
       "id": "content/markdown/aaa/archie/navigation-and-controls.md",
       "name": "Navigation & Controls",
       "path": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/research-notebook.md",
+      "name": "Research Notebook",
+      "path": "content/markdown/aaa/archie/research-notebook.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2596,6 +2608,15 @@
       "name": "Mathematical Terminology Reference",
       "path": "content/scenes/archie/mathematical_terminology.json",
       "searchTarget": "content/scenes/archie/mathematical_terminology.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/research_notebook.json",
+      "nodeType": "scene",
+      "id": "archie__research_notebook",
+      "name": "Research Notebook",
+      "path": "content/scenes/archie/research_notebook.json",
+      "searchTarget": "content/scenes/archie/research_notebook.json",
       "implicit": false
     },
     {
@@ -5056,6 +5077,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/research-notebook.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/research-notebook.md",
+      "name": "Research Notebook",
+      "path": "content/markdown/aaa/archie/research-notebook.md",
+      "searchTarget": "content/markdown/aaa/archie/research-notebook.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/scene-taxonomy.md",
@@ -6109,6 +6139,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
       "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/research_notebook.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/archie.json",
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
@@ -9944,6 +9981,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/mathematical_terminology.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/research_notebook.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/research-notebook.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/research_notebook.json",
       "field": "scene.source.path"
     },
     {
