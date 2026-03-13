@@ -1181,7 +1181,7 @@ if (markdownRenderer) {
 const markdownManifestPath = "content/markdown/markdown_index.json";
 const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
-const metaScenePath = "content/scenes/meta/meta.json";
+const metaScenePath = "content/scenes/archie/meta.json";
 const composerSceneId = "composer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";

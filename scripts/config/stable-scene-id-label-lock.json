@@ -71,7 +71,7 @@
         "foundational_ontology": "Foundational Ontology"
       }
     },
-    "content/scenes/meta/composer.json": {
+    "content/scenes/archie/composer.json": {
       "sceneId": "composer",
       "sceneName": "Composer",
       "objects": {
@@ -83,7 +83,7 @@
         "composer_tree": "Scene Tree"
       }
     },
-    "content/scenes/meta/meta.json": {
+    "content/scenes/archie/meta.json": {
       "sceneId": "meta",
       "sceneName": "Archie",
       "objects": {

@@ -971,18 +971,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "composer",
-      "name": "Composer",
-      "path": "content/scenes/meta/composer.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta",
-      "name": "Archie",
-      "path": "content/scenes/meta/meta.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "atom",
       "name": "Atom",
       "path": "content/scenes/nuclear/atom.json",
@@ -1367,48 +1355,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "meta__meta_about",
-      "name": "About",
-      "path": "content/scenes/meta/meta_about.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_glossary",
-      "name": "Glossary",
-      "path": "content/scenes/meta/meta_glossary.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_help",
-      "name": "Help",
-      "path": "content/scenes/meta/meta_help.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_licenses_attributions",
-      "name": "Licenses & Attributions",
-      "path": "content/scenes/meta/meta_licenses_attributions.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_mathematical_style_guide",
-      "name": "Mathematical Style Guide",
-      "path": "content/scenes/meta/meta_mathematical_style_guide.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_mathematical_terminology",
-      "name": "Mathematical Terminology",
-      "path": "content/scenes/meta/meta_mathematical_terminology.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_scene_taxonomy",
-      "name": "Scene Taxonomy",
-      "path": "content/scenes/meta/meta_scene_taxonomy.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "nuclear_atomic__atomic_spectra",
       "name": "Atomic Spectra",
       "path": "content/scenes/nuclear/atomic_spectra.json",
@@ -1781,21 +1727,75 @@
       "nodeType": "scene"
     },
     {
-      "id": "meta__meta_academic_style_guide",
-      "name": "Academic Style Guide",
-      "path": "content/scenes/meta/meta_academic_style_guide.json",
+      "id": "composer",
+      "name": "Composer",
+      "path": "content/scenes/archie/composer.json",
       "nodeType": "scene"
     },
     {
-      "id": "meta__meta_textbook_file_structure",
-      "name": "Textbook File Structure",
-      "path": "content/scenes/meta/meta_textbook_file_structure.json",
+      "id": "meta__meta_about",
+      "name": "About the Webapp",
+      "path": "content/scenes/archie/meta_about.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_academic_style_guide",
+      "name": "Academic Style Guide",
+      "path": "content/scenes/archie/meta_academic_style_guide.json",
       "nodeType": "scene"
     },
     {
       "id": "meta__meta_github_presence_and_community",
       "name": "GitHub Presence & Community",
-      "path": "content/scenes/meta/meta_github_presence_and_community.json",
+      "path": "content/scenes/archie/meta_github_presence_and_community.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_glossary",
+      "name": "Comparative Glossary",
+      "path": "content/scenes/archie/meta_glossary.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_help",
+      "name": "Navigation & Controls",
+      "path": "content/scenes/archie/meta_help.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_licenses_attributions",
+      "name": "Licenses & Attributions",
+      "path": "content/scenes/archie/meta_licenses_attributions.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_mathematical_style_guide",
+      "name": "Mathematical Style Guide",
+      "path": "content/scenes/archie/meta_mathematical_style_guide.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_mathematical_terminology",
+      "name": "Mathematical Terminology Reference",
+      "path": "content/scenes/archie/meta_mathematical_terminology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_scene_taxonomy",
+      "name": "Scene Taxonomy",
+      "path": "content/scenes/archie/meta_scene_taxonomy.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta__meta_textbook_file_structure",
+      "name": "Textbook File Structure",
+      "path": "content/scenes/archie/meta_textbook_file_structure.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "meta",
+      "name": "Archie",
+      "path": "content/scenes/archie/meta.json",
       "nodeType": "scene"
     },
     {
@@ -2508,6 +2508,114 @@
     }
   ],
   "nodes": [
+    {
+      "nodeId": "scene:content/scenes/archie/composer.json",
+      "nodeType": "scene",
+      "id": "composer",
+      "name": "Composer",
+      "path": "content/scenes/archie/composer.json",
+      "searchTarget": "content/scenes/archie/composer.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_about.json",
+      "nodeType": "scene",
+      "id": "meta__meta_about",
+      "name": "About the Webapp",
+      "path": "content/scenes/archie/meta_about.json",
+      "searchTarget": "content/scenes/archie/meta_about.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_academic_style_guide.json",
+      "nodeType": "scene",
+      "id": "meta__meta_academic_style_guide",
+      "name": "Academic Style Guide",
+      "path": "content/scenes/archie/meta_academic_style_guide.json",
+      "searchTarget": "content/scenes/archie/meta_academic_style_guide.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_github_presence_and_community.json",
+      "nodeType": "scene",
+      "id": "meta__meta_github_presence_and_community",
+      "name": "GitHub Presence & Community",
+      "path": "content/scenes/archie/meta_github_presence_and_community.json",
+      "searchTarget": "content/scenes/archie/meta_github_presence_and_community.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_glossary.json",
+      "nodeType": "scene",
+      "id": "meta__meta_glossary",
+      "name": "Comparative Glossary",
+      "path": "content/scenes/archie/meta_glossary.json",
+      "searchTarget": "content/scenes/archie/meta_glossary.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_help.json",
+      "nodeType": "scene",
+      "id": "meta__meta_help",
+      "name": "Navigation & Controls",
+      "path": "content/scenes/archie/meta_help.json",
+      "searchTarget": "content/scenes/archie/meta_help.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_licenses_attributions.json",
+      "nodeType": "scene",
+      "id": "meta__meta_licenses_attributions",
+      "name": "Licenses & Attributions",
+      "path": "content/scenes/archie/meta_licenses_attributions.json",
+      "searchTarget": "content/scenes/archie/meta_licenses_attributions.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_mathematical_style_guide.json",
+      "nodeType": "scene",
+      "id": "meta__meta_mathematical_style_guide",
+      "name": "Mathematical Style Guide",
+      "path": "content/scenes/archie/meta_mathematical_style_guide.json",
+      "searchTarget": "content/scenes/archie/meta_mathematical_style_guide.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_mathematical_terminology.json",
+      "nodeType": "scene",
+      "id": "meta__meta_mathematical_terminology",
+      "name": "Mathematical Terminology Reference",
+      "path": "content/scenes/archie/meta_mathematical_terminology.json",
+      "searchTarget": "content/scenes/archie/meta_mathematical_terminology.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_scene_taxonomy.json",
+      "nodeType": "scene",
+      "id": "meta__meta_scene_taxonomy",
+      "name": "Scene Taxonomy",
+      "path": "content/scenes/archie/meta_scene_taxonomy.json",
+      "searchTarget": "content/scenes/archie/meta_scene_taxonomy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta_textbook_file_structure.json",
+      "nodeType": "scene",
+      "id": "meta__meta_textbook_file_structure",
+      "name": "Textbook File Structure",
+      "path": "content/scenes/archie/meta_textbook_file_structure.json",
+      "searchTarget": "content/scenes/archie/meta_textbook_file_structure.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/meta.json",
+      "nodeType": "scene",
+      "id": "meta",
+      "name": "Archie",
+      "path": "content/scenes/archie/meta.json",
+      "searchTarget": "content/scenes/archie/meta.json",
+      "implicit": false
+    },
     {
       "nodeId": "scene:content/scenes/architrino_assembly_architecture.json",
       "nodeType": "scene",
@@ -4063,114 +4171,6 @@
       "name": "Foundations",
       "path": "content/scenes/foundations/foundations.json",
       "searchTarget": "content/scenes/foundations/foundations.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/composer.json",
-      "nodeType": "scene",
-      "id": "composer",
-      "name": "Composer",
-      "path": "content/scenes/meta/composer.json",
-      "searchTarget": "content/scenes/meta/composer.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_about.json",
-      "nodeType": "scene",
-      "id": "meta__meta_about",
-      "name": "About",
-      "path": "content/scenes/meta/meta_about.json",
-      "searchTarget": "content/scenes/meta/meta_about.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_academic_style_guide.json",
-      "nodeType": "scene",
-      "id": "meta__meta_academic_style_guide",
-      "name": "Academic Style Guide",
-      "path": "content/scenes/meta/meta_academic_style_guide.json",
-      "searchTarget": "content/scenes/meta/meta_academic_style_guide.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_github_presence_and_community.json",
-      "nodeType": "scene",
-      "id": "meta__meta_github_presence_and_community",
-      "name": "GitHub Presence & Community",
-      "path": "content/scenes/meta/meta_github_presence_and_community.json",
-      "searchTarget": "content/scenes/meta/meta_github_presence_and_community.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_glossary.json",
-      "nodeType": "scene",
-      "id": "meta__meta_glossary",
-      "name": "Glossary",
-      "path": "content/scenes/meta/meta_glossary.json",
-      "searchTarget": "content/scenes/meta/meta_glossary.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_help.json",
-      "nodeType": "scene",
-      "id": "meta__meta_help",
-      "name": "Help",
-      "path": "content/scenes/meta/meta_help.json",
-      "searchTarget": "content/scenes/meta/meta_help.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_licenses_attributions.json",
-      "nodeType": "scene",
-      "id": "meta__meta_licenses_attributions",
-      "name": "Licenses & Attributions",
-      "path": "content/scenes/meta/meta_licenses_attributions.json",
-      "searchTarget": "content/scenes/meta/meta_licenses_attributions.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
-      "nodeType": "scene",
-      "id": "meta__meta_mathematical_style_guide",
-      "name": "Mathematical Style Guide",
-      "path": "content/scenes/meta/meta_mathematical_style_guide.json",
-      "searchTarget": "content/scenes/meta/meta_mathematical_style_guide.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_mathematical_terminology.json",
-      "nodeType": "scene",
-      "id": "meta__meta_mathematical_terminology",
-      "name": "Mathematical Terminology",
-      "path": "content/scenes/meta/meta_mathematical_terminology.json",
-      "searchTarget": "content/scenes/meta/meta_mathematical_terminology.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_scene_taxonomy.json",
-      "nodeType": "scene",
-      "id": "meta__meta_scene_taxonomy",
-      "name": "Scene Taxonomy",
-      "path": "content/scenes/meta/meta_scene_taxonomy.json",
-      "searchTarget": "content/scenes/meta/meta_scene_taxonomy.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta_textbook_file_structure.json",
-      "nodeType": "scene",
-      "id": "meta__meta_textbook_file_structure",
-      "name": "Textbook File Structure",
-      "path": "content/scenes/meta/meta_textbook_file_structure.json",
-      "searchTarget": "content/scenes/meta/meta_textbook_file_structure.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/meta/meta.json",
-      "nodeType": "scene",
-      "id": "meta",
-      "name": "Archie",
-      "path": "content/scenes/meta/meta.json",
-      "searchTarget": "content/scenes/meta/meta.json",
       "implicit": false
     },
     {
@@ -6047,6 +6047,83 @@
     }
   ],
   "edges": [
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/composer.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_about.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_academic_style_guide.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_github_presence_and_community.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_glossary.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_help.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_licenses_attributions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_mathematical_style_guide.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_mathematical_terminology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_scene_taxonomy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta.json",
+      "to": "scene:content/scenes/archie/meta_textbook_file_structure.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/meta.json",
+      "field": "scene.children[4]"
+    },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/assemblies/assemblies.json",
@@ -9023,83 +9100,6 @@
       "field": "scene.children[4]"
     },
     {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/composer.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_about.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_academic_style_guide.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_github_presence_and_community.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_glossary.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_help.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_licenses_attributions.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_mathematical_terminology.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_scene_taxonomy.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[10]"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta.json",
-      "to": "scene:content/scenes/meta/meta_textbook_file_structure.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/meta/meta.json",
-      "field": "scene.children[4]"
-    },
-    {
       "from": "scene:content/scenes/nuclear/atom.json",
       "to": "scene:content/scenes/nuclear/nucleus.json",
       "edgeType": "subscene",
@@ -9891,6 +9891,76 @@
       "field": "scene.children[9]"
     },
     {
+      "from": "scene:content/scenes/archie/meta_about.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/about-the-webapp.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_about.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta_academic_style_guide.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/academic-style-guide.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_academic_style_guide.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta_github_presence_and_community.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/github-presence-and-community.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_github_presence_and_community.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta_glossary.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/comparative-glossary.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_glossary.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta_help.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/navigation-and-controls.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_help.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta_licenses_attributions.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_licenses_attributions.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta_mathematical_style_guide.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/mathematics-style-guide.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_mathematical_style_guide.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta_mathematical_terminology.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_mathematical_terminology.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta_scene_taxonomy.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_scene_taxonomy.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/meta_textbook_file_structure.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/meta_textbook_file_structure.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/assemblies/color_charge_su3.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "edgeType": "markdown_doc",
@@ -10133,76 +10203,6 @@
       "to": "markdown_doc:content/markdown/aaa/foundations/ontology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/foundations/foundational_ontology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_about.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/about-the-webapp.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_about.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_academic_style_guide.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/academic-style-guide.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_academic_style_guide.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_github_presence_and_community.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/github-presence-and-community.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_github_presence_and_community.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_glossary.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/comparative-glossary.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_glossary.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_help.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/navigation-and-controls.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_help.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_licenses_attributions.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_licenses_attributions.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_mathematical_style_guide.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/mathematics-style-guide.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_mathematical_style_guide.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_mathematical_terminology.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_mathematical_terminology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_scene_taxonomy.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_scene_taxonomy.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/meta/meta_textbook_file_structure.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/meta/meta_textbook_file_structure.json",
       "field": "scene.source.path"
     },
     {

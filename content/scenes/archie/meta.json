@@ -13,47 +13,47 @@
     "children": [
       {
         "nodeId": "meta_composer",
-        "scenePath": "content/scenes/meta/composer.json"
+        "scenePath": "content/scenes/archie/composer.json"
       },
       {
         "nodeId": "meta_about",
-        "scenePath": "content/scenes/meta/meta_about.json"
+        "scenePath": "content/scenes/archie/meta_about.json"
       },
       {
         "nodeId": "meta_licenses_attributions",
-        "scenePath": "content/scenes/meta/meta_licenses_attributions.json"
+        "scenePath": "content/scenes/archie/meta_licenses_attributions.json"
       },
       {
         "nodeId": "meta_glossary",
-        "scenePath": "content/scenes/meta/meta_glossary.json"
+        "scenePath": "content/scenes/archie/meta_glossary.json"
       },
       {
         "nodeId": "meta_textbook_file_structure",
-        "scenePath": "content/scenes/meta/meta_textbook_file_structure.json"
+        "scenePath": "content/scenes/archie/meta_textbook_file_structure.json"
       },
       {
         "nodeId": "meta_github_presence_and_community",
-        "scenePath": "content/scenes/meta/meta_github_presence_and_community.json"
+        "scenePath": "content/scenes/archie/meta_github_presence_and_community.json"
       },
       {
         "nodeId": "meta_help",
-        "scenePath": "content/scenes/meta/meta_help.json"
+        "scenePath": "content/scenes/archie/meta_help.json"
       },
       {
         "nodeId": "meta_academic_style_guide",
-        "scenePath": "content/scenes/meta/meta_academic_style_guide.json"
+        "scenePath": "content/scenes/archie/meta_academic_style_guide.json"
       },
       {
         "nodeId": "meta_mathematical_style_guide",
-        "scenePath": "content/scenes/meta/meta_mathematical_style_guide.json"
+        "scenePath": "content/scenes/archie/meta_mathematical_style_guide.json"
       },
       {
         "nodeId": "meta_mathematical_terminology",
-        "scenePath": "content/scenes/meta/meta_mathematical_terminology.json"
+        "scenePath": "content/scenes/archie/meta_mathematical_terminology.json"
       },
       {
         "nodeId": "meta_scene_taxonomy",
-        "scenePath": "content/scenes/meta/meta_scene_taxonomy.json"
+        "scenePath": "content/scenes/archie/meta_scene_taxonomy.json"
       }
     ]
   },
