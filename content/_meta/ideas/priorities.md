@@ -18,8 +18,8 @@ Review in detail. - crisis-in-physics.md  :
     - Renormalization, UV Completion, and Continuum Excess
     - ## Vacuum, Medium, and the Status of Empty Space
     - ## Dark Matter, Dark Energy, and Cosmological Over-Inference
-    - next
     - ## Parameter Proliferation and Patchwork Closure
+    - next
     - ## Mathematical Control vs. Mechanistic Explanation
 
 
