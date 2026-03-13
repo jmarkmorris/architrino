@@ -1123,7 +1123,7 @@ When potential from another Architrino (or from one's own past emissions, in the
 
 - **Radial acceleration**: The acceleration is directed along the line from the emission point to the receiver's current location.
 - **Charge-dependent sign**: Like charges repel ($\sigma_{qq'} = +1$); opposite charges attract ($\sigma_{qq'} = -1$).
-- **$1/r^2$ magnitude scaling**: The strength of each individual hit scales as the inverse square of the distance from emission to receiver.
+- **Inverse-square baseline with Jacobian weighting**: The received strength of each individual hit scales with the inverse square of the emission-to-receiver distance and is further weighted by the causal Jacobian factor $\left|J\right|^{-1}$, which captures geometric bunching or dilation of the emitted flux.
 - **Superposition**: The total acceleration is the vector sum of all individual hits from all sources (including self-hits, if present).
 
 This rule is **universal**, making the evolution of any system of architrinos determined by initial conditions, with **meta-stable branch points** where multiple attractors are dynamically accessible and outcomes are microstate-sensitive.
@@ -1139,12 +1139,13 @@ $$
 the acceleration contribution is:
 
 $$
-\mathbf{a}_{\text{hit}} = \kappa \, \sigma_{q_{\text{rec}} q_{\text{emit}}} \, \frac{|q_{\text{rec}} q_{\text{emit}}|}{r^2} \, \hat{\mathbf{r}},
+\mathbf{a}_{\text{hit}} = \kappa \, \sigma_{q_{\text{rec}} q_{\text{emit}}} \, \frac{|q_{\text{rec}} q_{\text{emit}}|}{r^2 \left|J\right|} \, \hat{\mathbf{r}},
 $$
 
 where:
 - $\kappa$ is the universal coupling constant (see Parameter Ledger),
 - $\sigma_{qq'} = \text{sign}(q q')$ (±1),
+- $J = 1 - \dfrac{\mathbf{v}_{\text{emit}}(t_0)\cdot\hat{\mathbf{r}}}{v_f}$ is the causal delay-map Jacobian on the active branch,
 - $r = \|\mathbf{s}_{\text{rec}}(t) - \mathbf{s}_{\text{emit}}(t_0)\|$,
 - $\hat{\mathbf{r}} = (\mathbf{s}_{\text{rec}}(t) - \mathbf{s}_{\text{emit}}(t_0)) / r$.
 
@@ -1601,7 +1602,7 @@ The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted
 
 | **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:-------------------|:----------------|:------------|
-| Coupling constant | $\kappa$ | TBD | (Length$^3$/Time$^2$)/(Charge$^2$) | Controls $1/r^2$ force strength |
+| Coupling constant | $\kappa$ | TBD | $\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | Controls the baseline inverse-square interaction strength prior to Jacobian weighting |
 
 **Status:**
 
@@ -1656,7 +1657,7 @@ These parameters arise from discretization and regularization used when approxim
 
 $\eta$ exists because computers sample the past worldline at discrete times; as the resolution increases ($\eta\to 0$) the simulation converges to the continuous causal flux described in Section 1.3. Its presence does not imply that physics is fundamentally pulsed.
 
-The **path-history integral** described in Section 2.4.5 can be approximated by sampling discrete time steps. Each time step produces an effective causal wake surface of width $\eta$ whose $1/r^2$ contribution is summed; as $\eta\to 0$ the sum approaches the continuous integral over causal emissions. Thus, “summing wake surfaces” is the numerical recipe for approximating the causal path-history potential law, not a claim that the underlying ontology emits pulses.
+The **path-history integral** described in Section 2.4.5 can be approximated by sampling discrete time steps. Each time step produces an effective causal wake surface of width $\eta$ whose inverse-square contribution is evaluated together with the branch Jacobian weight; as $\eta\to 0$ the sum approaches the continuous integral over causal emissions. Thus, “summing wake surfaces” is the numerical recipe for approximating the causal path-history potential law, not a claim that the underlying ontology emits pulses.
 
 ---
 
