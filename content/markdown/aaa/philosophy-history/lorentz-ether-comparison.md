@@ -16,6 +16,8 @@ Architrino position (2025):
 - Lorentz symmetry is emergent from assembly dynamics.
 - Simulations and derivations are performed in the preferred frame.
 
+The Liénard-Wiechert moving-source potentials belong naturally on the Lorentz side of this comparison because they made electrodynamic influence depend on finite propagation from source history rather than on instantaneous source location alone. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, they are an important historical precursor to path-history-sensitive effective potentials, even though the older theory lacked the explicit substrate microphysics needed to close the ontology.
+
 Key comparison:
 
 | Aspect | Lorentz Ether (1904) | Architrino Framework (2025) |
