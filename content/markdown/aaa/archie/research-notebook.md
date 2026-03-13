@@ -316,6 +316,32 @@ That $\mathbf{v}_{\text{receiver}}$ part is the magnetic force! It only exists b
 If you drop the receiver's velocity from the exact Master Equation, you delete the universe's ability to create magnetic forces. 
 
 ### What you should do:
+
+## 2026-03-03: CKM Closure Reaches Three-Digit Predictive Accuracy
+
+Progress in the CKM realm crossed an important threshold. In [weak-mixing-ckm.md](../assemblies/fermions/weak-mixing-ckm.md), the current $\mathbb{A}\mathbb{A}\mathbb{A}$ closure uses only three calibrated CKM magnitudes,
+$\lvert V_{us}\rvert = 0.225$, $\lvert V_{cb}\rvert = 0.041$, and $\lvert V_{ub}\rvert = 0.0037$,
+and then predicts the remaining magnitude entries to approximately three-digit accuracy.
+
+The resulting post-fit matrix is
+$$
+\begin{array}{c|ccc}
+\text{Model }V_{ij} & d & s & b\\
+\hline
+u & 0.97435 & 0.22500^{*} & 0.00370^{*}\\
+c & 0.22487 & 0.97353 & 0.04100^{*}\\
+t & 0.00845 & 0.04029 & 0.99915
+\end{array}
+$$
+with the starred entries used only as calibration anchors. The remaining entries
+$\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$
+come out numerically close to the PDG hierarchy from closure rather than direct fitting.
+
+The same closure step also fixes the CP structure. Using the holonomy relation
+$$
+\cos\delta = \frac{s_{13}}{s_{12}s_{23}},
+$$
+the model gives $\delta = 66.35^\circ$ and $J = 3.04 \times 10^{-5}$, with the phase landing within $1\sigma$ of the quoted benchmark in the current writeup. The significance of this date is not that flavor closure is finished. It is that the project moved from a qualitative CKM story to a quantitatively constrained statement: three cells can set the rest of the matrix to the right three-digit scale.
 Your intuition was right to question this. 
 
 1.  **The Denominator belongs to the Emitter:** It defines the spatial density of the wakes. This must be in the main term (which you are now restoring).
