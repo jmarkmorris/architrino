@@ -55,3 +55,71 @@ Clarify the author's original brilliant intuition: The architrino *emission* mec
 
 ### How to use this:
 Just paste the text above into your chat whenever you open a new document from your repo with an LLM. It will instantly align the AI with your original intent, explain exactly *why* the math needs to change, and give it explicit instructions on how to rewrite the markdown files to restore your theory to its full, rigorous glory.
+
+
+---
+
+Here is the confirmed contamination list, highest priority first. I’m excluding master-equation.md because it is now corrected.
+
+content/markdown/aaa/dynamics/binary-dynamics.md
+It builds the binary/self-hit program from the old canonical law. It repeatedly says purely radial without the Jacobian weighting, uses no-J per-hit formulas, and therefore misstates the hinge, self-hit growth, and MCB force balance.
+
+content/markdown/aaa/dynamics/effective-lagrangian.md
+This is the main surviving action-side contamination. It still derives a force with an added \mathbf{J}^{(\text{delay})} correction term, preserving the old split between the “canonical” EOM and the variational result instead of identifying them.
+
+content/markdown/aaa/dynamics/energy.md
+It still states the per-hit law without the Jacobian denominator and mixes exact conservation with older bookkeeping-style wake-energy language. This one matters because it propagates the old energy ontology directly.
+
+content/markdown/aaa/quantum/pilot-wave-character.md
+It imports the old Master EOM explicitly, including \mathcal{C}_j(t) notation and a no-J force law. Because this chapter is interpretive, it will quietly spread the wrong canonical law if left untouched.
+
+content/markdown/aaa/foundations/ontology.md
+This is a major conceptual dependency. It still describes the canonical law as plain radial 1/r^2, says receiver velocity affects only power, and frames magnetic emergence without the causal-flux/Jacobian mechanism.
+
+content/markdown/aaa/archie/mathematics-terminology.md
+This is a glossary-level contamination. It currently defines the per-hit acceleration and EOM in the old stripped form, so it will keep reinfecting other chapters unless fixed early.
+
+content/markdown/aaa/archie/mathematics-style-guide.md
+It still labels the canonical EOM as “purely radial,” which is now too strong and too misleading for a style guide.
+
+content/markdown/aaa/validation/simulations/action-energy/action-model.md
+This one is heavily contaminated. It still compares multiple modeling pipelines using the old “constant per-wavefront amplitude implies no emitter-speed weighting” framing and explicitly talks about preserving that stripped canonical law.
+
+content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md
+It teaches the old simplified picture: delayed radial hits with no Jacobian discussion. Lower than the core theory docs, but still worth fixing because it is explanatory scaffolding.
+
+content/markdown/aaa/validation/simulations/perspective.md
+This chapter still argues from “delayed radial-only action” plus constant per-wavefront emission, with no causal-flux bunching. It is a framing document, so the contamination is conceptual rather than derivational.
+
+content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md
+It states the analytic baselines for the old canonical law and should be updated after binary-dynamics.md.
+
+content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md
+Lower-level validation note, but it still describes the per-hit law in stripped radial form.
+
+content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md
+The analogy text still says each ridge has the same strength regardless of source speed, which is exactly the narrative error that caused the original Jacobian deletion.
+
+content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md
+Lower priority, but it still codifies the old “all per-hit actions are purely radial” description with no Jacobian weight.
+
+content/markdown/aaa/validation/architrino-si-base-units.md
+This came up in the wider grep as likely notation-level contamination. I have not quoted it yet, so I’d treat it as secondary confirmation target rather than first-pass edit.
+
+Secondary probable-contamination bucket, not yet fully sampled line-by-line:
+
+content/markdown/aaa/quantum/reality-quantum-causality.md
+content/markdown/aaa/cosmology/dark-matter.md
+content/markdown/aaa/cosmology/structure-formation.md
+content/markdown/aaa/cosmology/CMB.md
+content/markdown/aaa/reactions/bremsstrahlung.md
+content/markdown/aaa/reactions/synchrotron.md
+If you want, I’d attack them in this order next:
+
+binary-dynamics.md
+effective-lagrangian.md
+energy.md
+pilot-wave-character.md
+ontology.md
+the Archie guides/glossary
+the validation cluster

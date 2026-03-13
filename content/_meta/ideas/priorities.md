@@ -1,7 +1,8 @@
   figure out what to do with the subscription site.
   and stripe.
   
-  
+  Holy crap. My intuition was correct about velocity dependence.  See Bill Thurston writeup in ideas.
+  I need to work through the entire repo a few times removing the contamination!!!
   
   
   2. targeted label polish in theory-mapping and major-thinkers
