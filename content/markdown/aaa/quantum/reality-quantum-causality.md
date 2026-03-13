@@ -145,7 +145,7 @@ $$
 $$
 
 - $\tau$ is the causal delay around the orbit (set by path length and $c_f$).
-- $g(\beta)$ is small for $\beta<1$ and rises sharply as $\beta \to 1$ due to wake pileup; it encodes the onset of self‑hit coupling.
+- $g(\beta)$ is small for $\beta<1$ and rises sharply as $\beta \to 1$ because active branches become strongly Jacobian-weighted near the self-hit threshold; it encodes the onset of self‑hit coupling.
 
 Linearizing with $x(t) \sim e^{\lambda t}$ gives the characteristic equation:
 
@@ -522,13 +522,13 @@ The Outer Binary is an oscillator. It absorbs energy most efficiently when the i
 
 ### Mechanism 3: Geometric Gating (Spatial Tuning)
 
-Architrino wakes are vector fields—they have directionality.
+Architrino wake interactions carry directionality through delayed source-receiver geometry and line-of-action structure.
 
 **The Physics:**
 A Middle Binary is planar (or toroidal). It is most sensitive to potential impacts that align with its orbital plane or rotation axis (depending on the specific coupling).
 
 **The Mechanism:**
-*   **Precession Control:** The Decider can induce a Larmor-like precession in the Target assembly using a magnetic-like interaction from neighbors.
+*   **Precession Control:** The Decider can induce a Larmor-like precession in the Target assembly using a neighbor-induced, Jacobian-weighted delayed interaction that coarse-grains to a magnetic-like effect.
 *   **Alignment:**
     *   **Ignore:** Orient the Target's sensitive plane *orthogonal* to the direction of incoming peaks. The cross-section is minimized.
     *   **Leverage:** Precess the Target until its plane is *parallel* to the incoming waves. The cross-section is maximized.

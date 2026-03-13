@@ -17,7 +17,7 @@ Standard Model fields are often treated as fundamental entities. Here, we posit 
 **The $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) vs. The Physical Observer (PO)**
 *   **$\mathbb{U}_{\text{now}}$ View:** Sees only point-like architrinos ($\pm |e/6|$) and their discrete potential emissions $\Phi$. There are no continuous "gauge fields," only the summation of causal potential wakes.
 *   **PO View (Emergent):** Lacking the resolution to see individual architrinos, the Physical Observer measures the **collective potential gradient** $\nabla \Phi$ at a point.
-    *   **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of the potential flux density and vorticity in the Noether Sea.
+    *   **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether Sea.
     *   **Gauge Potentials ($A_\mu$):** These correspond to local **twists, strains, or density gradients** in the lattice of the Noether Sea.
 
 ## Symmetry Groups as Geometric Deformations
@@ -26,7 +26,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
-    *   *Architrino View:* A variation in the **potential density** or polarization alignment of the Noether Sea. A particle moving through this gradient experiences a force we call "electromagnetic."
+    *   *Architrino View:* A variation in the **potential density** or polarization alignment of the Noether Sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and Jacobian flux bunching.
 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
@@ -107,9 +107,10 @@ S_{\text{fund}}
 \int dt\left[
 \sum_i \frac{1}{2}m_i\dot{\mathbf{x}}_i^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
-\frac{\kappa \epsilon^2}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2}\,W_{ij}
+\frac{\kappa \epsilon^2}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2\,|J_{ij}|}\,W_{ij}
 \right].
 $$
+Here $J_{ij}$ is the delay-map Jacobian on the active branch, so the electroweak closure map starts from the same Jacobian-weighted causal geometry as the master equation rather than from a stripped inverse-square surrogate.
 After fast-mode averaging of inner and middle binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_M^2$, the minimal observer-level action is written as
 $$
 \mathcal{L}_{\text{eff}}
