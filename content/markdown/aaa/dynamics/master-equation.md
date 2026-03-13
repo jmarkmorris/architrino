@@ -882,10 +882,10 @@ The core parameters entering the Master Equation are:
 
 | **Parameter** | **Symbol** | **Working convention** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:----------------------|:----------------|:------------|
-| Field speed | $c_f$ | Set to 1 in natural units unless otherwise stated | Length/Time | Propagation speed in the causal constraint |
-| Coupling constant | $\kappa$ | Universal coupling parameter | (Length³/Time²)/(Charge²) | Controls the strength of the inverse-square interaction |
-| Architrino charge unit | $\epsilon$ | $\lvert e \rvert / 6$ | Charge | Fundamental charge magnitude |
-| Shell thickness (regularization) | $\eta$ | Positive regularization width used in analysis and simulation | Length | Mollifies delta singularities |
+| Field speed | $c_f$ | Set to 1 in natural units unless otherwise stated | $\mathrm{L}\,\mathrm{T}^{-1}$ | Propagation speed in the causal constraint |
+| Coupling constant | $\kappa$ | Universal coupling parameter | $\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | Controls the strength of the inverse-square interaction |
+| Architrino charge unit | $\epsilon$ | $\lvert e \rvert / 6$ | $\mathrm{Q}$ | Fundamental charge magnitude |
+| Shell thickness (regularization) | $\eta$ | Positive regularization width used in analysis and simulation | $\mathrm{L}$ | Mollifies delta singularities |
 
 In this document, $c_f$ is treated primarily as a unit-setting convention, $\kappa$ as the universal coupling scale of the delayed interaction law, $\epsilon$ as the fundamental charge unit, and $\eta$ as a regularization parameter used only when a smooth surrogate of the exact shell dynamics is required.
 
