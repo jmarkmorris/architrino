@@ -17,8 +17,8 @@ Review in detail. - crisis-in-physics.md  :
     - ## General Relativity and Quantum Theory
     - Renormalization, UV Completion, and Continuum Excess
     - ## Vacuum, Medium, and the Status of Empty Space
-    - next
     - ## Dark Matter, Dark Energy, and Cosmological Over-Inference
+    - next
     - ## Parameter Proliferation and Patchwork Closure
     - ## Mathematical Control vs. Mechanistic Explanation
 

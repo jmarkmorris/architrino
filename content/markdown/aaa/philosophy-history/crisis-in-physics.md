@@ -379,33 +379,47 @@ Resolution would require a concrete derivation showing how vacuum-like behavior,
 
 ### Overview
 
-**Crisis Axis:** Dark Matter, Dark Energy, and Cosmological Over-Inference. **Short Name:** Dark-Sector Inference. The core tension is that cosmology has achieved remarkable observational reach while relying on ontological components inferred through long model pipelines. The issue appears in rotation curves, lensing, structure formation, supernova distance measures, CMB fitting, and expansion-history reconstruction.
+**Crisis Axis:** Dark Matter, Dark Energy, and Cosmological Over-Inference. **Short Name:** Dark-Sector Inference. The core tension is that cosmology has achieved remarkable observational reach while relying on ontological components inferred through long model pipelines. The issue is not whether the observations are real. It is whether the dominant ontological reading of those observations is as uniquely fixed as it is often presented. This crisis appears in rotation curves, lensing, structure formation, supernova distance measures, CMB fitting, and expansion-history reconstruction.
 
 ### Where The Tension Comes From
 
-The source of the tension is not that the observations are unreal. It is that the route from observation to ontology is layered and theory-dependent. Redshifts, luminosity distances, shear maps, background anisotropies, and growth statistics do not speak their final ontological meaning by themselves. The core tension is therefore between observational success and the confidence with which dark-sector entities are sometimes presented as directly established.
+The source of the tension is not that the observations are unreal. It is that the route from observation to ontology is layered and theory-dependent. Redshifts, luminosity distances, shear maps, background anisotropies, and growth statistics do not speak their final ontological meaning by themselves. They are interpreted through distance ladders, background models, perturbation schemes, matter assumptions, bias models, and parameter priors. The core tension is therefore between observational success and the confidence with which dark-sector entities are sometimes presented as directly established.
 
-Historically, dark matter and dark energy began as closure devices: names for what had to be added within a framework to restore fit. Over time, those placeholders often hardened into story.
+Historically, dark matter and dark energy began as closure devices: names for what had to be added within a framework to restore fit. Over time, those placeholders often hardened into story. That hardening is understandable. A closure term that succeeds repeatedly acquires credibility. But the conceptual question remains whether the inferred sectors are final substances, effective descriptors, or signs that part of the underlying medium or constitutive structure has been misdescribed.
+
+This matters differently for the two sectors. Dark matter is read out from clustering, rotation support, lensing, and large-scale growth. Dark energy is read out from expansion-history reconstruction and the effective late-time acceleration of the universe. In both cases the observational pressure is real. In both cases the ontological jump from observed mismatch to final invisible component remains larger than everyday discourse sometimes admits.
 
 ### What Current Physics Gets Right
 
 What current cosmology gets right is enormous. The observational programs are sophisticated, the parameter fits are nontrivial, and the resulting models organize a vast amount of data coherently. The dark-sector framework has genuine explanatory and predictive power at the level of effective cosmological closure. Those successes cannot be dismissed as mere narrative.
 
+The point is especially strong because the evidence package is distributed across multiple domains. Rotation curves, cluster dynamics, weak lensing, CMB peak structure, background expansion, baryon acoustic oscillations, and growth measurements do not all point in arbitrary directions. They form a substantial and disciplined body of evidence. Any replacement theory must recover that cross-domain coherence rather than selectively attacking one dataset at a time.
+
 ### What Remains Unresolved
 
 What is unsettled is whether the inferred sectors correspond to substrate-level entities of the advertised kind, or whether some portion of the closure reflects overextended interpretation of effective variables and modeling assumptions. The unresolved issue is not fit quality alone, but ontological uniqueness. Multiple mechanism classes may in principle underwrite parts of the same observational package.
 
+This is where over-inference enters. A good fit to a large dataset does not automatically prove that the fitted object is a literal new substance. It may instead indicate that the current framework has found an effective bookkeeping device for missing mechanism. That possibility becomes especially serious where the same anomaly can be read through several mechanism families: particle-like dark sectors, medium response, modified effective gravity, hybrid constructions, or some combination of these.
+
+The dark-matter side is also uneven across scale. Galaxy-scale phenomenology, cluster-scale behavior, and pre-decoupling matter loading do not all place the same pressure on the same mechanism. The dark-energy side is similarly indirect: what is directly observed is not a repulsive substance but an expansion history whose standard interpretation assigns a component with $w \approx -1$. That inference may be right, but it is still an inference through a model stack.
+
 ### Standard Repairs
 
-Standard repairs include introducing new particle sectors, a cosmological constant, dynamical dark energy, modified gravity, or increasingly hybrid models. These remain incomplete because the space of repairs continues to expand without delivering universally accepted mechanistic closure. The very proliferation of repair families suggests that the observational package may underdetermine the ontology more than standard discourse sometimes admits.
+Standard repairs include introducing new particle sectors, a cosmological constant, dynamical dark energy, modified gravity, or increasingly hybrid models. Each captures something important. New particle sectors preserve the standard gravitational framework. A cosmological constant gives an economical effective descriptor of late-time acceleration. Modified-gravity and medium-response approaches try to reduce invisible components. Hybrid models acknowledge that different scales may require different emphases.
+
+These remain incomplete because the space of repairs continues to expand without delivering universally accepted mechanistic closure. The proliferation of repair families is itself evidence that the observational package may underdetermine the ontology more than standard discourse sometimes admits. One can often improve fit locally while still leaving the deeper question unanswered: what in the world corresponds to the fitted sector?
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory is motivated by the possibility that some dark-sector inferences reflect effective closure over substrate organization, medium history, or neutral assembly behavior rather than separate final substances. Transition relevance is maximal because this is one of the clearest domains where ontological replacement could matter without rejecting data.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory is motivated by the possibility that some dark-sector inferences reflect effective closure over substrate organization, medium history, or neutral assembly behavior rather than separate final substances. In the current AAA cosmology, the working baseline is not a single universal replacement slogan but a hybrid picture: neutral assemblies carry much of the dark-matter role, while medium response and medium relaxation contribute to galaxy-scale and expansion-history effects now grouped under dark-sector language.
+
+Transition relevance is maximal because this is one of the clearest domains where ontological replacement could matter without rejecting data. The ambition is not to explain away the evidence, but to show that at least part of what is currently packaged as dark matter and dark energy may be reclassified as properties of one deeper medium-and-assembly ontology.
 
 ### What Would Count As Resolution
 
-Resolution would require showing, across linked observables, whether a substrate-based account can reproduce lensing, growth, background, and expansion data with equal or better coherence and fewer independent assumptions. The long-term relevance of this crisis is permanent as a caution against conflating fitted sectors with uniquely established ontology.
+Resolution would require showing, across linked observables, whether a substrate-based account can reproduce lensing, growth, background, and expansion data with equal or better coherence and fewer independent assumptions. It would need to work across galaxy, cluster, and cosmological scales at once, rather than succeeding only in isolated subdomains. It would also need to distinguish clearly which residuals are carried by neutral assemblies, which by medium response, and which by effective expansion descriptors.
+
+The long-term relevance of this crisis is permanent as a caution against conflating fitted sectors with uniquely established ontology. Even if dark matter particles or a dark-energy-like component eventually prove real in some strong sense, the methodological lesson should survive: cosmological success by itself does not eliminate the need to ask how much of the ontology was inferred and how much was directly compelled.
 
 ---
 
