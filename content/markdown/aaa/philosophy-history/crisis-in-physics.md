@@ -475,32 +475,46 @@ The long-term relevance of this crisis is permanent as a program-diagnostic crit
 
 ### Overview
 
-**Crisis Axis:** Mathematical Control vs. Mechanistic Explanation. **Short Name:** Control vs. Mechanism. The core tension is that physics often achieves extraordinary formal control over quantities while lacking an equally strong account of what physically produces them. The issue appears wherever elegant mathematics outruns causal intelligibility.
+**Crisis Axis:** Mathematical Control vs. Mechanistic Explanation. **Short Name:** Control vs. Mechanism. The core tension is that physics often achieves extraordinary formal control over quantities while lacking an equally strong account of what physically produces them. The issue is not whether the mathematics works. It is whether successful calculation has been mistaken for completed explanation. This crisis appears wherever elegant mathematics outruns causal intelligibility.
 
 ### Where The Tension Comes From
 
 The source of the crisis is partly the success of mathematics itself. Powerful formalisms allow prediction, interpolation, and unification at scales where direct mechanistic imagination is difficult. The core tension arises when that success becomes self-sufficient. Once a quantity can be computed reliably, the incentive to ask what concretely generates it may weaken.
 
-This appears in quantum field amplitudes, cosmological fit pipelines, geometric reformulations, and many other advanced domains. The more complete the formal control, the easier it is to mistake representation mastery for explanatory closure.
+This appears in quantum field amplitudes, cosmological fit pipelines, geometric reformulations, renormalization practice, and many other advanced domains. The more complete the formal control, the easier it is to mistake representation mastery for explanatory closure. A formalism can tell us how different quantities hang together without yet telling us what physical organization gives rise to them.
+
+That distinction is easy to blur because mathematics often feels more complete than verbal interpretation. Once the equations close, the temptation is to treat the question of mechanism as optional, naive, or already answered in substance. But a law-like summary of behavior and a generator-level account of behavior are not the same thing, even when the summary is exact over a wide regime.
 
 ### What Current Physics Gets Right
 
 What still works is clear: mathematical control is one of science's greatest achievements. Without it there would be no precision prediction, no engineered application, and no robust comparison with data. Formal structure often reveals genuine lawfulness even before ontology is settled.
 
+This point should be stated strongly. Mathematics is not a dispensable wrapper around physics. It is often the first place where real structure becomes visible. Many mechanisms were discovered only because formal relations were understood before the underlying ontology was. The problem is therefore not mathematical success itself. The problem is elevating mathematical sufficiency into ontological sufficiency without additional argument.
+
 ### What Remains Unresolved
 
 What is unsettled is whether computation alone explains. A successful formal apparatus may tell us how to generate numbers, not what physical organization generates the phenomenon. The unresolved issue is therefore the distinction between lawful summary and causal production. If that distinction disappears, explanation becomes weaker than it appears.
 
+The deeper issue is one of explanatory stopping rules. At what point should the ability to compute be treated as enough? If the answer becomes "whenever the formalism is powerful," then mechanism is effectively retired as a scientific demand. But if mechanism remains part of explanation, then highly successful mathematics may still leave a theory ontologically incomplete.
+
+This matters most in domains where the formal objects are themselves underdetermined: wavefunctions, fields, effective metrics, dark-sector parameters, renormalized couplings, and state spaces. In such cases the equations may be tightly controlled while the physical status of the controlled objects remains unsettled.
+
 ### Standard Repairs
 
-Standard repairs include appeals to unification, representational necessity, or the claim that deeper mechanism is not a meaningful demand once the formalism is complete. These responses remain incomplete because they answer the request for mechanism by redefining explanation downward. They justify stopping points rather than establishing causal sufficiency.
+Standard repairs include appeals to unification, representational necessity, or the claim that deeper mechanism is not a meaningful demand once the formalism is complete. Some of these replies have real force. Unification can be explanatory. Representations can capture genuine invariants. In some regimes there may be no simple mechanical picture available at all.
+
+They remain incomplete because they too easily answer the request for mechanism by redefining explanation downward. The argument becomes: if the equations organize everything observable, then nothing further need be asked. That may be a practical stopping point, but it is not always a principled closure condition. It can justify patience. It does not by itself establish causal sufficiency.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's core ambition is to increase mechanistic explanation without losing mathematical control. Transition relevance is maximal because this crisis states the most general reason a substrate theory is worth attempting at all.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's core ambition is to increase mechanistic explanation without losing mathematical control. The AAA wager is that effective mathematics should be preserved, but relocated: some equations summarize observer-level or medium-level behavior, while a deeper substrate should explain why those summaries work.
+
+Transition relevance is maximal because this crisis states the most general reason a substrate theory is worth attempting at all. If the project cannot improve mechanism while retaining formal success, it fails on its own terms. If it can, then this is one of the clearest places where ontological relocation would matter.
 
 ### What Would Count As Resolution
 
-Resolution would require a theory that preserves or improves formal success while also exhibiting the generative causal architecture behind it. The long-term relevance of this crisis is permanent: even future theories can become mathematically dominant before their mechanism is fully understood, so the distinction must remain active.
+Resolution would require a theory that preserves or improves formal success while also exhibiting the generative causal architecture behind it. It would need to show not only how to compute the right quantities, but why those quantities arise from the underlying organization of the world and which parts of the mathematics are exact, effective, or observer-relative.
+
+The long-term relevance of this crisis is permanent. Even future theories can become mathematically dominant before their mechanism is fully understood, so the distinction must remain active. A mature science should know the difference between controlling a phenomenon and explaining what produces it.
 
 ---

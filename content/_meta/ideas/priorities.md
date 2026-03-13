@@ -8,20 +8,7 @@ These are all now at 100%.
 Next step is to go through them all and add more info.
 extract what I have at wordpress.
 
-Review in detail. - crisis-in-physics.md  :
-  - Done
-    - progress/time
-    - ## Prediction vs. Ontology
-    - Quantum Measurement and Outcome Selection
-    - ## Nonlocality, Bell, and Causal Structure
-    - ## General Relativity and Quantum Theory
-    - Renormalization, UV Completion, and Continuum Excess
-    - ## Vacuum, Medium, and the Status of Empty Space
-    - ## Dark Matter, Dark Energy, and Cosmological Over-Inference
-    - ## Parameter Proliferation and Patchwork Closure
-    - next
-    - ## Mathematical Control vs. Mechanistic Explanation
-
+- crisis-in-physics.md  : full review March 12, 2026
 
 
   | historical-context-and-missed-opportunities.md | split | 95% | Fully rewritten; detailed and structurally consistent. |
