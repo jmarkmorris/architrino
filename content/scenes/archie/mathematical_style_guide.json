@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "meta__meta_mathematical_terminology",
-    "title": "Mathematical Terminology Reference",
+    "id": "archie__mathematical_style_guide",
+    "title": "Mathematical Style Guide",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,10 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/mathematics-terminology.md"
+      "path": "content/markdown/aaa/archie/mathematics-style-guide.md"
     },
     "view": {
-      "section": "Mathematical Terminology (Canonical Dialect)",
+      "section": "Mathematical Style Guide (Canonical Dialect)",
       "autoOpen": true
     }
   },

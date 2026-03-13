@@ -1733,69 +1733,69 @@
       "nodeType": "scene"
     },
     {
-      "id": "meta__meta_about",
+      "id": "archie__about",
       "name": "About the Webapp",
-      "path": "content/scenes/archie/meta_about.json",
+      "path": "content/scenes/archie/about.json",
       "nodeType": "scene"
     },
     {
-      "id": "meta__meta_academic_style_guide",
+      "id": "archie__academic_style_guide",
       "name": "Academic Style Guide",
-      "path": "content/scenes/archie/meta_academic_style_guide.json",
+      "path": "content/scenes/archie/academic_style_guide.json",
       "nodeType": "scene"
     },
     {
-      "id": "meta__meta_github_presence_and_community",
-      "name": "GitHub Presence & Community",
-      "path": "content/scenes/archie/meta_github_presence_and_community.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_glossary",
-      "name": "Comparative Glossary",
-      "path": "content/scenes/archie/meta_glossary.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_help",
-      "name": "Navigation & Controls",
-      "path": "content/scenes/archie/meta_help.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_licenses_attributions",
-      "name": "Licenses & Attributions",
-      "path": "content/scenes/archie/meta_licenses_attributions.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_mathematical_style_guide",
-      "name": "Mathematical Style Guide",
-      "path": "content/scenes/archie/meta_mathematical_style_guide.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_mathematical_terminology",
-      "name": "Mathematical Terminology Reference",
-      "path": "content/scenes/archie/meta_mathematical_terminology.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_scene_taxonomy",
-      "name": "Scene Taxonomy",
-      "path": "content/scenes/archie/meta_scene_taxonomy.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta__meta_textbook_file_structure",
-      "name": "Textbook File Structure",
-      "path": "content/scenes/archie/meta_textbook_file_structure.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "meta",
+      "id": "archie",
       "name": "Archie",
-      "path": "content/scenes/archie/meta.json",
+      "path": "content/scenes/archie/archie.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__github_presence_and_community",
+      "name": "GitHub Presence & Community",
+      "path": "content/scenes/archie/github_presence_and_community.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__glossary",
+      "name": "Comparative Glossary",
+      "path": "content/scenes/archie/glossary.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__help",
+      "name": "Navigation & Controls",
+      "path": "content/scenes/archie/help.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__licenses_attributions",
+      "name": "Licenses & Attributions",
+      "path": "content/scenes/archie/licenses_attributions.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__mathematical_style_guide",
+      "name": "Mathematical Style Guide",
+      "path": "content/scenes/archie/mathematical_style_guide.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__mathematical_terminology",
+      "name": "Mathematical Terminology Reference",
+      "path": "content/scenes/archie/mathematical_terminology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__scene_taxonomy",
+      "name": "Scene Taxonomy",
+      "path": "content/scenes/archie/scene_taxonomy.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__textbook_file_structure",
+      "name": "Textbook File Structure",
+      "path": "content/scenes/archie/textbook_file_structure.json",
       "nodeType": "scene"
     },
     {
@@ -2509,6 +2509,33 @@
   ],
   "nodes": [
     {
+      "nodeId": "scene:content/scenes/archie/about.json",
+      "nodeType": "scene",
+      "id": "archie__about",
+      "name": "About the Webapp",
+      "path": "content/scenes/archie/about.json",
+      "searchTarget": "content/scenes/archie/about.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/academic_style_guide.json",
+      "nodeType": "scene",
+      "id": "archie__academic_style_guide",
+      "name": "Academic Style Guide",
+      "path": "content/scenes/archie/academic_style_guide.json",
+      "searchTarget": "content/scenes/archie/academic_style_guide.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/archie.json",
+      "nodeType": "scene",
+      "id": "archie",
+      "name": "Archie",
+      "path": "content/scenes/archie/archie.json",
+      "searchTarget": "content/scenes/archie/archie.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/archie/composer.json",
       "nodeType": "scene",
       "id": "composer",
@@ -2518,102 +2545,75 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/meta_about.json",
+      "nodeId": "scene:content/scenes/archie/github_presence_and_community.json",
       "nodeType": "scene",
-      "id": "meta__meta_about",
-      "name": "About the Webapp",
-      "path": "content/scenes/archie/meta_about.json",
-      "searchTarget": "content/scenes/archie/meta_about.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/meta_academic_style_guide.json",
-      "nodeType": "scene",
-      "id": "meta__meta_academic_style_guide",
-      "name": "Academic Style Guide",
-      "path": "content/scenes/archie/meta_academic_style_guide.json",
-      "searchTarget": "content/scenes/archie/meta_academic_style_guide.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/meta_github_presence_and_community.json",
-      "nodeType": "scene",
-      "id": "meta__meta_github_presence_and_community",
+      "id": "archie__github_presence_and_community",
       "name": "GitHub Presence & Community",
-      "path": "content/scenes/archie/meta_github_presence_and_community.json",
-      "searchTarget": "content/scenes/archie/meta_github_presence_and_community.json",
+      "path": "content/scenes/archie/github_presence_and_community.json",
+      "searchTarget": "content/scenes/archie/github_presence_and_community.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/meta_glossary.json",
+      "nodeId": "scene:content/scenes/archie/glossary.json",
       "nodeType": "scene",
-      "id": "meta__meta_glossary",
+      "id": "archie__glossary",
       "name": "Comparative Glossary",
-      "path": "content/scenes/archie/meta_glossary.json",
-      "searchTarget": "content/scenes/archie/meta_glossary.json",
+      "path": "content/scenes/archie/glossary.json",
+      "searchTarget": "content/scenes/archie/glossary.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/meta_help.json",
+      "nodeId": "scene:content/scenes/archie/help.json",
       "nodeType": "scene",
-      "id": "meta__meta_help",
+      "id": "archie__help",
       "name": "Navigation & Controls",
-      "path": "content/scenes/archie/meta_help.json",
-      "searchTarget": "content/scenes/archie/meta_help.json",
+      "path": "content/scenes/archie/help.json",
+      "searchTarget": "content/scenes/archie/help.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/meta_licenses_attributions.json",
+      "nodeId": "scene:content/scenes/archie/licenses_attributions.json",
       "nodeType": "scene",
-      "id": "meta__meta_licenses_attributions",
+      "id": "archie__licenses_attributions",
       "name": "Licenses & Attributions",
-      "path": "content/scenes/archie/meta_licenses_attributions.json",
-      "searchTarget": "content/scenes/archie/meta_licenses_attributions.json",
+      "path": "content/scenes/archie/licenses_attributions.json",
+      "searchTarget": "content/scenes/archie/licenses_attributions.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/meta_mathematical_style_guide.json",
+      "nodeId": "scene:content/scenes/archie/mathematical_style_guide.json",
       "nodeType": "scene",
-      "id": "meta__meta_mathematical_style_guide",
+      "id": "archie__mathematical_style_guide",
       "name": "Mathematical Style Guide",
-      "path": "content/scenes/archie/meta_mathematical_style_guide.json",
-      "searchTarget": "content/scenes/archie/meta_mathematical_style_guide.json",
+      "path": "content/scenes/archie/mathematical_style_guide.json",
+      "searchTarget": "content/scenes/archie/mathematical_style_guide.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/meta_mathematical_terminology.json",
+      "nodeId": "scene:content/scenes/archie/mathematical_terminology.json",
       "nodeType": "scene",
-      "id": "meta__meta_mathematical_terminology",
+      "id": "archie__mathematical_terminology",
       "name": "Mathematical Terminology Reference",
-      "path": "content/scenes/archie/meta_mathematical_terminology.json",
-      "searchTarget": "content/scenes/archie/meta_mathematical_terminology.json",
+      "path": "content/scenes/archie/mathematical_terminology.json",
+      "searchTarget": "content/scenes/archie/mathematical_terminology.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/meta_scene_taxonomy.json",
+      "nodeId": "scene:content/scenes/archie/scene_taxonomy.json",
       "nodeType": "scene",
-      "id": "meta__meta_scene_taxonomy",
+      "id": "archie__scene_taxonomy",
       "name": "Scene Taxonomy",
-      "path": "content/scenes/archie/meta_scene_taxonomy.json",
-      "searchTarget": "content/scenes/archie/meta_scene_taxonomy.json",
+      "path": "content/scenes/archie/scene_taxonomy.json",
+      "searchTarget": "content/scenes/archie/scene_taxonomy.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/meta_textbook_file_structure.json",
+      "nodeId": "scene:content/scenes/archie/textbook_file_structure.json",
       "nodeType": "scene",
-      "id": "meta__meta_textbook_file_structure",
+      "id": "archie__textbook_file_structure",
       "name": "Textbook File Structure",
-      "path": "content/scenes/archie/meta_textbook_file_structure.json",
-      "searchTarget": "content/scenes/archie/meta_textbook_file_structure.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/meta.json",
-      "nodeType": "scene",
-      "id": "meta",
-      "name": "Archie",
-      "path": "content/scenes/archie/meta.json",
-      "searchTarget": "content/scenes/archie/meta.json",
+      "path": "content/scenes/archie/textbook_file_structure.json",
+      "searchTarget": "content/scenes/archie/textbook_file_structure.json",
       "implicit": false
     },
     {
@@ -6048,80 +6048,80 @@
   ],
   "edges": [
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/composer.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/about.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_about.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[1]"
     },
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_academic_style_guide.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/academic_style_guide.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[7]"
     },
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_github_presence_and_community.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/composer.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/github_presence_and_community.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[5]"
     },
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_glossary.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/glossary.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[3]"
     },
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_help.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/help.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[6]"
     },
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_licenses_attributions.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[2]"
     },
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_mathematical_style_guide.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/mathematical_style_guide.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[8]"
     },
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_mathematical_terminology.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/mathematical_terminology.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[9]"
     },
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_scene_taxonomy.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/scene_taxonomy.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[10]"
     },
     {
-      "from": "scene:content/scenes/archie/meta.json",
-      "to": "scene:content/scenes/archie/meta_textbook_file_structure.json",
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/textbook_file_structure.json",
       "edgeType": "subscene",
-      "source": "content/scenes/archie/meta.json",
+      "source": "content/scenes/archie/archie.json",
       "field": "scene.children[4]"
     },
     {
@@ -9891,73 +9891,73 @@
       "field": "scene.children[9]"
     },
     {
-      "from": "scene:content/scenes/archie/meta_about.json",
+      "from": "scene:content/scenes/archie/about.json",
       "to": "markdown_doc:content/markdown/aaa/archie/about-the-webapp.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_about.json",
+      "source": "content/scenes/archie/about.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/meta_academic_style_guide.json",
+      "from": "scene:content/scenes/archie/academic_style_guide.json",
       "to": "markdown_doc:content/markdown/aaa/archie/academic-style-guide.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_academic_style_guide.json",
+      "source": "content/scenes/archie/academic_style_guide.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/meta_github_presence_and_community.json",
+      "from": "scene:content/scenes/archie/github_presence_and_community.json",
       "to": "markdown_doc:content/markdown/aaa/archie/github-presence-and-community.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_github_presence_and_community.json",
+      "source": "content/scenes/archie/github_presence_and_community.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/meta_glossary.json",
+      "from": "scene:content/scenes/archie/glossary.json",
       "to": "markdown_doc:content/markdown/aaa/archie/comparative-glossary.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_glossary.json",
+      "source": "content/scenes/archie/glossary.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/meta_help.json",
+      "from": "scene:content/scenes/archie/help.json",
       "to": "markdown_doc:content/markdown/aaa/archie/navigation-and-controls.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_help.json",
+      "source": "content/scenes/archie/help.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/meta_licenses_attributions.json",
+      "from": "scene:content/scenes/archie/licenses_attributions.json",
       "to": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_licenses_attributions.json",
+      "source": "content/scenes/archie/licenses_attributions.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/meta_mathematical_style_guide.json",
+      "from": "scene:content/scenes/archie/mathematical_style_guide.json",
       "to": "markdown_doc:content/markdown/aaa/archie/mathematics-style-guide.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_mathematical_style_guide.json",
+      "source": "content/scenes/archie/mathematical_style_guide.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/meta_mathematical_terminology.json",
+      "from": "scene:content/scenes/archie/mathematical_terminology.json",
       "to": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_mathematical_terminology.json",
+      "source": "content/scenes/archie/mathematical_terminology.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/meta_scene_taxonomy.json",
+      "from": "scene:content/scenes/archie/scene_taxonomy.json",
       "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_scene_taxonomy.json",
+      "source": "content/scenes/archie/scene_taxonomy.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/meta_textbook_file_structure.json",
+      "from": "scene:content/scenes/archie/textbook_file_structure.json",
       "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/meta_textbook_file_structure.json",
+      "source": "content/scenes/archie/textbook_file_structure.json",
       "field": "scene.source.path"
     },
     {

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "meta",
+    "id": "archie",
     "title": "Archie",
     "type": "Scene-Index",
     "units": "relative",
@@ -12,61 +12,61 @@
     "hideScaleLabels": true,
     "children": [
       {
-        "nodeId": "meta_composer",
+        "nodeId": "composer",
         "scenePath": "content/scenes/archie/composer.json"
       },
       {
-        "nodeId": "meta_about",
-        "scenePath": "content/scenes/archie/meta_about.json"
+        "nodeId": "about",
+        "scenePath": "content/scenes/archie/about.json"
       },
       {
-        "nodeId": "meta_licenses_attributions",
-        "scenePath": "content/scenes/archie/meta_licenses_attributions.json"
+        "nodeId": "licenses_attributions",
+        "scenePath": "content/scenes/archie/licenses_attributions.json"
       },
       {
-        "nodeId": "meta_glossary",
-        "scenePath": "content/scenes/archie/meta_glossary.json"
+        "nodeId": "glossary",
+        "scenePath": "content/scenes/archie/glossary.json"
       },
       {
-        "nodeId": "meta_textbook_file_structure",
-        "scenePath": "content/scenes/archie/meta_textbook_file_structure.json"
+        "nodeId": "textbook_file_structure",
+        "scenePath": "content/scenes/archie/textbook_file_structure.json"
       },
       {
-        "nodeId": "meta_github_presence_and_community",
-        "scenePath": "content/scenes/archie/meta_github_presence_and_community.json"
+        "nodeId": "github_presence_and_community",
+        "scenePath": "content/scenes/archie/github_presence_and_community.json"
       },
       {
-        "nodeId": "meta_help",
-        "scenePath": "content/scenes/archie/meta_help.json"
+        "nodeId": "help",
+        "scenePath": "content/scenes/archie/help.json"
       },
       {
-        "nodeId": "meta_academic_style_guide",
-        "scenePath": "content/scenes/archie/meta_academic_style_guide.json"
+        "nodeId": "academic_style_guide",
+        "scenePath": "content/scenes/archie/academic_style_guide.json"
       },
       {
-        "nodeId": "meta_mathematical_style_guide",
-        "scenePath": "content/scenes/archie/meta_mathematical_style_guide.json"
+        "nodeId": "mathematical_style_guide",
+        "scenePath": "content/scenes/archie/mathematical_style_guide.json"
       },
       {
-        "nodeId": "meta_mathematical_terminology",
-        "scenePath": "content/scenes/archie/meta_mathematical_terminology.json"
+        "nodeId": "mathematical_terminology",
+        "scenePath": "content/scenes/archie/mathematical_terminology.json"
       },
       {
-        "nodeId": "meta_scene_taxonomy",
-        "scenePath": "content/scenes/archie/meta_scene_taxonomy.json"
+        "nodeId": "scene_taxonomy",
+        "scenePath": "content/scenes/archie/scene_taxonomy.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "meta_composer",
+      "id": "composer",
       "title": "Composer",
       "radius": 2.2,
       "color": "#7ee0d7",
       "labelTitle": "Composer"
     },
     {
-      "id": "meta_about",
+      "id": "about",
       "title": "About the Webapp",
       "radius": 2.2,
       "color": "#243d8f",
@@ -74,7 +74,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "meta_licenses_attributions",
+      "id": "licenses_attributions",
       "title": "Licenses & Attributions",
       "radius": 2.2,
       "color": "#6a3c3c",
@@ -82,7 +82,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "meta_glossary",
+      "id": "glossary",
       "title": "Comparative Glossary",
       "radius": 2.2,
       "color": "#2f6b6f",
@@ -90,7 +90,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "meta_textbook_file_structure",
+      "id": "textbook_file_structure",
       "title": "Textbook File Structure",
       "radius": 2.2,
       "color": "#465f3a",
@@ -98,7 +98,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "meta_github_presence_and_community",
+      "id": "github_presence_and_community",
       "title": "GitHub Presence & Community",
       "radius": 2.2,
       "color": "#3f5f6f",
@@ -106,7 +106,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "meta_help",
+      "id": "help",
       "title": "Navigation & Controls",
       "radius": 2.2,
       "color": "#5a1f2e",
@@ -114,7 +114,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "meta_academic_style_guide",
+      "id": "academic_style_guide",
       "title": "Academic Style Guide",
       "radius": 2.2,
       "color": "#5b4c8f",
@@ -122,7 +122,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "meta_mathematical_style_guide",
+      "id": "mathematical_style_guide",
       "title": "Mathematical Style Guide",
       "radius": 2.2,
       "color": "#3a5f9f",
@@ -130,7 +130,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "meta_mathematical_terminology",
+      "id": "mathematical_terminology",
       "title": "Mathematical Terminology Reference",
       "radius": 2.2,
       "color": "#2f4f7a",
@@ -138,7 +138,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "meta_scene_taxonomy",
+      "id": "scene_taxonomy",
       "title": "Scene Taxonomy",
       "radius": 2.2,
       "color": "#6a5a8f",

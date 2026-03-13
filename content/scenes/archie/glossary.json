@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "meta__meta_glossary",
+    "id": "archie__glossary",
     "title": "Comparative Glossary",
     "type": "Scene-Markdown-View",
     "units": "relative",

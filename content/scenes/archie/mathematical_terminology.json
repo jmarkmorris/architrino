@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "meta__meta_licenses_attributions",
-    "title": "Licenses & Attributions",
+    "id": "archie__mathematical_terminology",
+    "title": "Mathematical Terminology Reference",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,10 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/licenses-attributions.md"
+      "path": "content/markdown/aaa/archie/mathematics-terminology.md"
     },
     "view": {
-      "columns": 1,
+      "section": "Mathematical Terminology (Canonical Dialect)",
       "autoOpen": true
     }
   },

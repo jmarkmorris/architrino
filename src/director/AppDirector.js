@@ -87,9 +87,9 @@ export class AppDirector {
       return false;
     }
 
-    const metaStack = this.deps.getMetaBackStack();
-    if (metaStack.length > 0) {
-      const backState = metaStack.pop();
+    const archieStack = this.deps.getArchieBackStack();
+    if (archieStack.length > 0) {
+      const backState = archieStack.pop();
       if (backState?.levelId) {
         await this.deps.jumpToScene(backState.levelId, {
           restoreNavStack: backState.navigationStack,

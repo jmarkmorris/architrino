@@ -83,17 +83,21 @@
         "composer_tree": "Scene Tree"
       }
     },
-    "content/scenes/archie/meta.json": {
-      "sceneId": "meta",
+    "content/scenes/archie/archie.json": {
+      "sceneId": "archie",
       "sceneName": "Archie",
       "objects": {
-        "meta_about": "About the Webapp",
-        "meta_composer": "Composer",
-        "meta_glossary": "Comparative Glossary",
-        "meta_help": "Navigation & Controls",
-        "meta_mathematical_style_guide": "Mathematical Style Guide",
-        "meta_mathematical_terminology": "Mathematical Terminology Reference",
-        "meta_textbook_file_structure": "Textbook File Structure"
+        "about": "About the Webapp",
+        "composer": "Composer",
+        "glossary": "Comparative Glossary",
+        "help": "Navigation & Controls",
+        "academic_style_guide": "Academic Style Guide",
+        "mathematical_style_guide": "Mathematical Style Guide",
+        "mathematical_terminology": "Mathematical Terminology Reference",
+        "textbook_file_structure": "Textbook File Structure",
+        "licenses_attributions": "Licenses & Attributions",
+        "github_presence_and_community": "GitHub Presence & Community",
+        "scene_taxonomy": "Scene Taxonomy"
       }
     },
     "content/scenes/nuclear/nuclear_atomic.json": {

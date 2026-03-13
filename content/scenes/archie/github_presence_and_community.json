@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "meta__meta_help",
-    "title": "Navigation & Controls",
+    "id": "archie__github_presence_and_community",
+    "title": "GitHub Presence & Community",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,10 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/navigation-and-controls.md"
+      "path": "content/markdown/aaa/archie/github-presence-and-community.md"
     },
     "view": {
-      "columns": 2,
+      "columns": 1,
       "autoOpen": true
     }
   },

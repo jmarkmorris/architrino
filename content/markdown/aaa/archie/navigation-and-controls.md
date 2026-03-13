@@ -12,7 +12,7 @@ A sphere represents a node in the scene hierarchy and acts as a portal into the 
 - `Back` returns one step in your navigation history.
 - `Forward` moves one step forward when that history exists.
 - `Home` returns to the root scene.
-- `Archie` opens or toggles the meta ring space.
+- `Archie` opens or toggles the Archie ring space.
 
 ## Hierarchy Structure
 
@@ -50,7 +50,7 @@ When a sphere maps to markdown, notes open in the markdown panel.
 2. Use `Back` / `Forward` to move through scene history.
 3. Use `Home` to return to root.
 4. Open notes with the document icon when available.
-5. Use `Archie` to open/toggle the meta ring.
+5. Use `Archie` to open/toggle the Archie ring.
 
 ## Camera and Interaction
 
@@ -65,7 +65,7 @@ When a sphere maps to markdown, notes open in the markdown panel.
 - `Home`: jump to root scene
 - `Search` (magnifier): open scene search
 - `Info` (circle-i): reopen element detail panel when supported
-- `Archie` (ring): open/toggle meta ring
+- `Archie` (ring): open/toggle Archie ring
 - `Notes` (document): open scene notes for current scene
 
 ## Markdown Panel
@@ -86,7 +86,7 @@ When a sphere maps to markdown, notes open in the markdown panel.
 2. Descend sphere-by-sphere into your topic.
 3. Open notes when you need context.
 4. Shift between section reading and full-document reading as needed.
-5. Use history for local path changes and the meta ring for orientation or tooling context.
+5. Use history for local path changes and the Archie ring for orientation or tooling context.
 
 ## Element Scene Controls
 
