@@ -2,9 +2,6 @@
   and stripe.
   and my qrcode
   
-  Holy crap. My intuition was correct about velocity dependence.  See Bill Thurston writeup in ideas.
-  I need to work through the entire repo a few times removing the contamination!!!
-  
   
   2. targeted label polish in theory-mapping and major-thinkers
   3. publication-style prose smoothing on whichever chapter you care most about
@@ -32,7 +29,174 @@ Next:
 
 # The #1 priority is the dynamics/math/geometry and the mapping
 
+----
+
 - focus on the master equation
+
+It is very important to the theory that the spiral not continue to a singularity.  Also, our math is based on circular orbits, correct?  I am wondering what happens if we use the actual spiral math as each architrino follows its own spiral, still pi out of phase with the partner.
+
+Yes. The **master equation itself** is fully general, but most of the explicit math we currently have for self-hit structure, branch thresholds, and MCB behavior is built on the **uniform circular ansatz**.
+
+That matters, because the circular ansatz hard-codes several things:
+- constant radius,
+- constant speed,
+- constant curvature,
+- very rigid branch geometry,
+- and the sign-definite tangential contributions we found.
+
+A true symmetric spiral pair could behave differently.
+
+The biggest reason is this: in a spiral, each architrino has both
+- tangential velocity, and
+- radial velocity.
+
+So the delayed line of action is no longer being projected onto a pure circular tangent. That means the sign of the tangential contribution, and even the sign of the instantaneous power, may no longer be locked the way it is in the circular benchmark. In other words:
+
+- the circular `T > 0` obstruction may be a **special feature of exact circular geometry**,
+- while a spiral could allow parts of the delayed self-hit budget to act as a **brake** rather than always as a driver.
+
+That is probably the most important thing to ponder.
+
+A spiral also changes the self-hit geometry in a deeper way:
+- later tighter turns can intersect wakes emitted on earlier wider turns,
+- branch structure is no longer indexed by a simple circular winding number alone,
+- curvature and Jacobian amplification vary along the orbit,
+- and the approach to collapse may encounter a turning point before any singular continuation.
+
+So yes, I think this is a very promising direction. If the theory needs “no singular collapse” but the exact circular ansatz looks too restrictive, then the right next question is probably:
+
+`Does the symmetric delayed spiral admit a self-consistent limit cycle or radial turning point that the circular ansatz misses?`
+
+If I were pushing this mathematically, I would do it in this order:
+
+1. Start with a symmetric spiral ansatz
+   `r(\theta) = R_0 e^{-a\theta}`
+   with the partner phase-shifted by `\pi`.
+
+2. Parameterize motion carefully
+   You need `t(\theta)`, not just `r(\theta)`, because the causal condition is in time, not angle.
+
+3. Recompute the delayed-hit condition on the spiral
+   Replace the circular root equation with
+   `\|\mathbf{x}(\theta)-\mathbf{x}(\theta_0)\| = c_f (t(\theta)-t(\theta_0))`.
+
+4. Project each delayed branch onto the local Frenet frame
+   radial, tangential, and possibly curvature-normal form.
+
+5. Check the sign of the tangential/power terms
+   This is the key test. If some self branches become braking branches on the spiral, the circular obstruction may disappear.
+
+6. Look for a radial turning condition
+   not necessarily a constant-radius circle, but
+   `\dot r = 0`, `\ddot r \ge 0`
+   at a minimum radius.
+
+My short answer is: I think the circular math may be too restrictive for exactly the issue you care about, and the spiral geometry is the right place to look next.
+
+Re: 'I also made the bare-kernel MCB situation more honest: within the symmetric isolated circular two-body ansatz, the tangential contributions do not cancel branchwise, so exact constant-speed closure is obstructed unless something beyond that bare ansatz is doing the work.'  Is it the case that the tangential forces run into some kind of maximum curvature wall?
+
+Yes, but with an important distinction.
+
+The Jacobian-null boundary is not just a **radial** wall. In the exact bare kernel, it amplifies the **entire self-hit branch**, so both the outward radial piece and the positive tangential piece blow up as `J \to 0`.
+
+For the self branch in the circular ansatz,
+$$
+|A_{s,\mathrm{rad}}|
+\propto
+\frac{1}{\sin(\delta_s/2)\,|J_s|},
+\qquad
+T_s
+\propto
+\frac{\cos(\delta_s/2)}{\sin^2(\delta_s/2)\,|J_s|}.
+$$
+So the same Jacobian wall hits both components.
+
+Near the principal onset `s = 1 + \mu`,
+$$
+|A_{s,\mathrm{rad}}| \sim \mu^{-3/2},
+\qquad
+T_s \sim \mu^{-2}.
+$$
+That means the tangential piece actually blows up **more strongly** than the radial one near that onset.
+
+So the answer is:
+
+- `Yes`: the tangential force also runs into the same Jacobian / maximum-curvature wall.
+- `But no`: that does **not** mean the tangential budget closes by itself.
+
+What it means physically is:
+- the self branch can become singular and block further naive contraction,
+- but the same branch can still push the motion forward tangentially,
+- so a bare isolated circular two-body orbit may hit a **causal wall without becoming a steady constant-speed circle**.
+
+That is why I described the situation as an obstruction rather than a resolution. The wall may stop one kind of continuation, but it does not automatically produce a stable closed orbit. It may instead force:
+- branch reorganization,
+- non-circular motion,
+- multi-body locking,
+- or medium-coupled dissipation/redistribution.
+
+The clean next thing to do would be to add this explicitly to the document as:
+`the null-separatrix is an amplitude wall for the self branch, not by itself a proof of circular closure.`
+
+If you want, I can patch that into the relevant sections next.
+
+I advanced the tractable parts in [master-equation.md](/Users/markmorris/vibe/architrino/content/markdown/aaa/dynamics/master-equation.md).
+
+The new math now makes three things explicit:
+- every new circular self-hit branch is born at an interior tangency of `g_\beta(\xi)=\sin\xi-\xi/\beta`, equivalently at a root of `\tan\xi=\xi`
+- every such branch is born exactly on a Jacobian-null surface, since at threshold `J^\star=0`
+- the circular self-branch count grows only linearly, `N_{\text{self}}(\beta)=\beta/\pi+O(1)`
+
+I also made the bare-kernel MCB situation more honest: within the symmetric isolated circular two-body ansatz, the tangential contributions do not cancel branchwise, so exact constant-speed closure is obstructed unless something beyond that bare ansatz is doing the work.
+
+Checks passed:
+- `node scripts/validate-content.mjs --check --strict`
+- `node scripts/build-scene-graph.mjs --check --strict`
+
+**Remaining Problems, Easiest First**
+
+1. Higher-winding branch asymptotics beyond leading order.  
+   Derive sharper expansions for `\xi_m^\star`, `\beta_m^\star`, `J_m`, and branch weights, not just `O(1/m)` leading behavior.
+
+2. Large-`\beta` asymptotics for the full circular self-force sum.  
+   Turn the branch-count law into actual asymptotics for radial and tangential self-force, with error bounds.
+
+3. Exact partner-only circular formulas collected back into the master-equation chapter.  
+   The ingredients exist, but the chapter could still use a compact theorem-level statement for the delayed partner radial/tangential decomposition.
+
+4. Bare-kernel circular MCB no-go theorem or existence theorem.  
+   Right now we have a serious obstruction, but not yet a complete theorem ruling out all exact isolated circular two-body closures.
+
+5. Non-circular periodic orbit possibility for the isolated binary.  
+   If the circular orbit fails, the next tractable question is whether a non-circular periodic orbit can close the tangential budget over a cycle.
+
+6. Exact Noether derivation of momentum and angular momentum from the delayed action.  
+   Energy is close to mature; momentum and angular momentum still need the same level of derivation.
+
+7. `\eta \to 0` existence/uniqueness theory for the exact shell model.  
+   This is a real analysis problem: measure-driven dynamics, branch accumulation, and Jacobian-degenerate events.
+
+8. Controlled kinetic/coarse-grained equation from the master law.  
+   Before Schrödinger closure, derive a proper nonlocal transport equation with memory and Jacobian-weighted interactions.
+
+9. Lorentz-suppression emergence for moving assemblies in the full dynamics.  
+   The current two-leg argument is a target, not a proof.
+
+10. Effective magnetic/Lorentz-force emergence from assemblies.  
+    Show explicitly how delayed radial hits plus Jacobian bunching reduce to observer-level `\mathbf{E}/\mathbf{B}` behavior.
+
+11. Full attractor landscape for binaries and tri-binaries.  
+    Basins, metastability, capture, escape, and whether the theory really selects the assembly hierarchy it wants.
+
+12. Quantum closure from the master equation.  
+    This is the hardest one in the stack: a controlled derivation of the effective envelope dynamics with explicit memory corrections.
+
+If you want, the best next move is probably item 1 plus item 2 together: finish the higher-winding asymptotics and then use them to estimate the full large-speed circular self-force.
+
+
+----
+
+
 
 - Use my $50 entourages each month.
 
@@ -41,12 +205,6 @@ Next:
   - a language for describing animations
   - every scene will be ported to this format
 - composer should use the same frame elements in the corners.
-
----
-
-Design a new two level ring structure and all the possibilities for the branching config
-- center, 4, each branching up to 3.  : 1 + 4 + 12 = 17 max
-- center, 5, each branching up to 2
 
 ---
 
@@ -91,10 +249,9 @@ Based on the current AAA scores in the scorecard, the next focus should be:
 
 - new architrino repository is live 20260217
   - need to go back and clean up the old neoclassical.ai repo.
-- neoclassical.ai domain is not working
 - make a new subreddit server named architrino
 - rename my blog
-- having a .ai domain is kinda cool though. don't give it up.
+- try to see neoclassical.ai domain 
 
 ---
 

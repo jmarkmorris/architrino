@@ -1217,6 +1217,51 @@ $$
 $$
 This is the circular caustic behind the null-separatrix wall: the first self branch does not merely appear at $\beta=1$, it appears with a Jacobian-amplified weight that is already singular in the excess speed.
 
+Higher branches are also tractable. For the circular root function
+$$
+g_\beta(\xi)\equiv \sin\xi-\frac{\xi}{\beta},
+$$
+new admissible roots can appear only at interior tangencies satisfying
+$$
+g_\beta(\xi)=0,
+\qquad
+g_\beta'(\xi)=0.
+$$
+Eliminating $\beta$ gives the tangency equation
+$$
+\tan\xi = \xi,
+$$
+and the corresponding threshold speed is
+$$
+\beta^\star = \sec\xi^\star.
+$$
+At every such tangency,
+$$
+J^\star = 1-\beta^\star \cos\xi^\star = 0.
+$$
+So each new circular self branch is born directly on a Jacobian-null boundary: branch creation and null-separatrix contact are the same event in the uniform circular toy model.
+
+For large winding index, the tangency points lie near the poles of $\tan\xi$, so if
+$$
+\xi_m^\star \in \left(\left(m+\frac{1}{2}\right)\pi-\varepsilon,\ \left(m+\frac{1}{2}\right)\pi\right),
+$$
+then
+$$
+\xi_m^\star
+=
+\left(m+\frac{1}{2}\right)\pi + O\!\left(\frac{1}{m}\right),
+\qquad
+\beta_m^\star
+=
+\left(m+\frac{1}{2}\right)\pi + O\!\left(\frac{1}{m}\right).
+$$
+Consequently the number of admissible self branches below speed $\beta$ grows only linearly:
+$$
+N_{\text{self}}(\beta)=\frac{\beta}{\pi}+O(1),
+\qquad \beta\to\infty.
+$$
+This branch-count law is enough to control the combinatorics of the circular self-hit sum even before one has a full closed-form force series.
+
 That already:
 
 - Gives us analytic control of the causal roots (as solutions of a simple scalar transcendental),
@@ -1269,9 +1314,16 @@ Analytic expectations:
   - That gives us a **pair of algebraic conditions** in $R$ and $\omega$ (or equivalently $R$ and $v$).
   - Solving those algebraic conditions (perhaps numerically) defines a maximum‑curvature solution family.
 
+However, the circular benchmark also already exposes a serious obstruction in the bare two-body kernel. In the symmetric isolated binary, every active partner branch contributes a positive tangential component, and every active self branch also contributes a positive tangential component. Therefore the branchwise tangential sum is strictly positive whenever any branch is active. Within the bare circular two-body ansatz, exact constant-speed closure cannot come from cancellation among the delayed branches alone.
+
+This sharpens the maximum-curvature program into a concrete fork:
+
+- either the isolated two-body MCB does **not** exist as an exact constant-speed circular orbit of the bare kernel, or
+- closure requires additional structure beyond the bare circular two-body ansatz, such as medium coupling, genuine tri-binary multi-body locking, or a more subtle non-circular periodic balance.
+
 So:
 
-- Analytically: we can reduce to algebraic conditions and asymptotic expansions.
+- Analytically: we can reduce the existence question to algebraic conditions and asymptotic expansions, and in the bare circular ansatz we can already identify the tangential no-cancellation obstruction.
 - Dynamically: the stability question remains separate from the algebraic construction and requires numerical analysis of attractivity versus fine-tuned orbit families.
 
 This would be an “analytic scaffold + numerical check” situation, not full closed forms.
