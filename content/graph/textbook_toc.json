@@ -4657,26 +4657,26 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Ernst Mach (1838–1916)",
+                    "title": "Ernst Mach (1838–1916) — relationalism",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Ernst Mach (1838–1916)",
-                    "sectionKey": "ernst mach 1838 1916",
+                    "markdownSection": "Ernst Mach (1838–1916) — relationalism",
+                    "sectionKey": "ernst mach 1838 1916 relationalism",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Hendrik Lorentz (1853–1928)",
+                    "title": "Hendrik Lorentz (1853–1928) — ether dynamics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Hendrik Lorentz (1853–1928)",
-                    "sectionKey": "hendrik lorentz 1853 1928",
+                    "markdownSection": "Hendrik Lorentz (1853–1928) — ether dynamics",
+                    "sectionKey": "hendrik lorentz 1853 1928 ether dynamics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Albert Einstein (1879–1955)",
+                    "title": "Albert Einstein (1879–1955) — relativity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Albert Einstein (1879–1955)",
-                    "sectionKey": "albert einstein 1879 1955",
+                    "markdownSection": "Albert Einstein (1879–1955) — relativity",
+                    "sectionKey": "albert einstein 1879 1955 relativity",
                     "headingLevel": 3
                   },
                   {
@@ -4705,10 +4705,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Loop Quantum Gravity (Ashtekar 1949–, Smolin 1955–, Rovelli 1956–)",
+                    "title": "Ashtekar (1949–), Smolin (1955–), Rovelli (1956–) - LQG",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Loop Quantum Gravity (Ashtekar 1949–, Smolin 1955–, Rovelli 1956–)",
-                    "sectionKey": "loop quantum gravity ashtekar 1949 smolin 1955 rovelli 1956",
+                    "markdownSection": "Ashtekar (1949–), Smolin (1955–), Rovelli (1956–) - LQG",
+                    "sectionKey": "ashtekar 1949 smolin 1955 rovelli 1956 lqg",
                     "headingLevel": 3
                   },
                   {

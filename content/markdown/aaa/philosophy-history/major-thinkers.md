@@ -409,7 +409,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ## Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
-### **Ernst Mach (1838–1916)**
+### **Ernst Mach (1838–1916) — relationalism**
 **Subject:** Ernst Mach (1838–1916), physicist-philosopher associated with relational inertia ideas and strong empiricist methodological constraints.
 
 **Era / Context**: Mach worked in late 19th-century physics when mechanics, electromagnetism, and atom debates were converging, and positivist pressures against unobservable ontology were strong.
@@ -436,7 +436,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Hendrik Lorentz (1853–1928)**
+### **Hendrik Lorentz (1853–1928) — ether dynamics**
 **Subject:** Hendrik Antoon Lorentz (1853–1928), theoretical physicist whose electron theory and ether dynamics produced Lorentz transformations.
 
 **Era / Context**: Lorentz worked at the turn of the 20th century under pressure from electrodynamics and null ether-drift results, before Einstein's kinematic reinterpretation became dominant.
@@ -463,7 +463,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Albert Einstein (1879–1955)**
+### **Albert Einstein (1879–1955) — relativity**
 **Subject:** Albert Einstein (1879–1955), treated here through the relativity program he originated and shaped, especially Special Relativity and General Relativity.
 
 **Era / Context**: Relativity developed in the early 20th century to resolve electrodynamic and gravitational tensions in classical physics while preserving high-precision empirical closure.
@@ -571,7 +571,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Loop Quantum Gravity (Ashtekar 1949–, Smolin 1955–, Rovelli 1956–)**
+### **Ashtekar (1949–), Smolin (1955–), Rovelli (1956–) - LQG**
 **Subject:** Loop Quantum Gravity (Ashtekar, Smolin, Rovelli and collaborators), a research program rather than a single individual.
 
 **Era / Context**: LQG developed under persistent pressure to close GR and QM while maintaining background independence and avoiding perturbative quantum-gravity pathologies.
