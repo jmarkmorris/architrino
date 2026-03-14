@@ -1034,7 +1034,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Hidden Sector / Dark Sector Models - Dark Sector
+### Hidden Sector / Dark Sector Models
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology

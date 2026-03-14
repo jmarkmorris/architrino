@@ -430,10 +430,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Architrino Assembly Architecture: Single-Ontology Guidance",
+                    "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Single-Ontology Guidance",
                     "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
-                    "markdownSection": "Architrino Assembly Architecture: Single-Ontology Guidance",
-                    "sectionKey": "architrino assembly architecture single ontology guidance",
+                    "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Single-Ontology Guidance",
+                    "sectionKey": "mathbb a mathbb a mathbb a single ontology guidance",
                     "headingLevel": 2
                   },
                   {
@@ -1305,10 +1305,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Residual Strong Force and Nuclear Binding (Qualitative Hook)",
+                    "title": "Residual Strong Force and Nuclear Binding",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-                    "markdownSection": "Residual Strong Force and Nuclear Binding (Qualitative Hook)",
-                    "sectionKey": "residual strong force and nuclear binding qualitative hook",
+                    "markdownSection": "Residual Strong Force and Nuclear Binding",
+                    "sectionKey": "residual strong force and nuclear binding",
                     "headingLevel": 2
                   },
                   {
@@ -1346,10 +1346,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Neutrinos: Strongly Shielded, Net-Neutral Noether-Core Excitations",
+                    "title": "Strongly Shielded, Net-Neutral Noether-Core Excitations",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
-                    "markdownSection": "Neutrinos: Strongly Shielded, Net-Neutral Noether-Core Excitations",
-                    "sectionKey": "neutrinos strongly shielded net neutral noether core excitations",
+                    "markdownSection": "Strongly Shielded, Net-Neutral Noether-Core Excitations",
+                    "sectionKey": "strongly shielded net neutral noether core excitations",
                     "headingLevel": 2
                   }
                 ]
@@ -2635,10 +2635,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Acoustic Peak Seeding (late Photon Epoch, pre-recombination)",
+                "title": "Acoustic Peak Seeding (pre-recombination)",
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
-                "markdownSection": "Acoustic Peak Seeding (late Photon Epoch, pre-recombination)",
-                "sectionKey": "acoustic peak seeding late photon epoch pre recombination",
+                "markdownSection": "Acoustic Peak Seeding (pre-recombination)",
+                "sectionKey": "acoustic peak seeding pre recombination",
                 "headingLevel": 2
               },
               {
@@ -2659,10 +2659,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Source Interpretation Layer: SMBH Jet and/or Surface Emissions",
+                "title": "SMBH Jet and/or Surface Emissions",
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
-                "markdownSection": "Source Interpretation Layer: SMBH Jet and/or Surface Emissions",
-                "sectionKey": "source interpretation layer smbh jet and or surface emissions",
+                "markdownSection": "SMBH Jet and/or Surface Emissions",
+                "sectionKey": "smbh jet and or surface emissions",
                 "headingLevel": 2
               },
               {
@@ -3556,18 +3556,18 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Superposition with measure-valued isochrons and $\\eta$-regularization",
+                    "title": "Superposition with isochrons and $\\eta$-regularization",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Superposition with measure-valued isochrons and $\\eta$-regularization",
-                    "sectionKey": "superposition with measure valued isochrons and eta regularization",
+                    "markdownSection": "Superposition with isochrons and $\\eta$-regularization",
+                    "sectionKey": "superposition with isochrons and eta regularization",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Recursive assembly grammar → Noether Core, color, and flux tubes",
+                    "title": "Assembly grammar → Noether Core and flux tubes",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Recursive assembly grammar → Noether Core, color, and flux tubes",
-                    "sectionKey": "recursive assembly grammar noether core color and flux tubes",
+                    "markdownSection": "Assembly grammar → Noether Core and flux tubes",
+                    "sectionKey": "assembly grammar noether core and flux tubes",
                     "headingLevel": 2
                   },
                   {
@@ -4713,10 +4713,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "String Theory (Witten 1951–, Polchinski 1954–2018, et al.)",
+                    "title": "Ed Witten (1951–) - String Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "String Theory (Witten 1951–, Polchinski 1954–2018, et al.)",
-                    "sectionKey": "string theory witten 1951 polchinski 1954 2018 et al",
+                    "markdownSection": "Ed Witten (1951–) - String Theory",
+                    "sectionKey": "ed witten 1951 string theory",
                     "headingLevel": 3
                   },
                   {
@@ -4755,66 +4755,66 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Ludwig Boltzmann (1844–1906)",
+                    "title": "Ludwig Boltzmann (1844–1906) — statistical mechanics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Ludwig Boltzmann (1844–1906)",
-                    "sectionKey": "ludwig boltzmann 1844 1906",
+                    "markdownSection": "Ludwig Boltzmann (1844–1906) — statistical mechanics",
+                    "sectionKey": "ludwig boltzmann 1844 1906 statistical mechanics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Max Planck (1858–1947)",
+                    "title": "Max Planck (1858–1947) — quantum action",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Max Planck (1858–1947)",
-                    "sectionKey": "max planck 1858 1947",
+                    "markdownSection": "Max Planck (1858–1947) — quantum action",
+                    "sectionKey": "max planck 1858 1947 quantum action",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Niels Bohr (1885–1962) & Copenhagen Interpretation",
+                    "title": "Niels Bohr (1885–1962) Copenhagen Interpretation",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Niels Bohr (1885–1962) & Copenhagen Interpretation",
+                    "markdownSection": "Niels Bohr (1885–1962) Copenhagen Interpretation",
                     "sectionKey": "niels bohr 1885 1962 copenhagen interpretation",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Erwin Schrödinger (1887–1961)",
+                    "title": "Erwin Schrödinger (1887–1961) — wave mechanics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Erwin Schrödinger (1887–1961)",
-                    "sectionKey": "erwin schrodinger 1887 1961",
+                    "markdownSection": "Erwin Schrödinger (1887–1961) — wave mechanics",
+                    "sectionKey": "erwin schrodinger 1887 1961 wave mechanics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Louis de Broglie (1892–1987)",
+                    "title": "Louis de Broglie (1892–1987) — matter waves",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Louis de Broglie (1892–1987)",
-                    "sectionKey": "louis de broglie 1892 1987",
+                    "markdownSection": "Louis de Broglie (1892–1987) — matter waves",
+                    "sectionKey": "louis de broglie 1892 1987 matter waves",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Werner Heisenberg (1901–1976)",
+                    "title": "Werner Heisenberg (1901–1976) — matrix mechanics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Werner Heisenberg (1901–1976)",
-                    "sectionKey": "werner heisenberg 1901 1976",
+                    "markdownSection": "Werner Heisenberg (1901–1976) — matrix mechanics",
+                    "sectionKey": "werner heisenberg 1901 1976 matrix mechanics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "David Bohm (1917–1992)",
+                    "title": "David Bohm (1917–1992) — pilot wave",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "David Bohm (1917–1992)",
-                    "sectionKey": "david bohm 1917 1992",
+                    "markdownSection": "David Bohm (1917–1992) — pilot wave",
+                    "sectionKey": "david bohm 1917 1992 pilot wave",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "John Bell (1928–1990)",
+                    "title": "John Bell (1928–1990) — Bell nonlocality",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "John Bell (1928–1990)",
-                    "sectionKey": "john bell 1928 1990",
+                    "markdownSection": "John Bell (1928–1990) — Bell nonlocality",
+                    "sectionKey": "john bell 1928 1990 bell nonlocality",
                     "headingLevel": 3
                   },
                   {
@@ -5639,10 +5639,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "de Broglie--Bohm (Pilot-Wave)",
+                    "title": "Pilot-Wave (de Broglie--Bohm)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                    "markdownSection": "de Broglie--Bohm (Pilot-Wave)",
-                    "sectionKey": "de broglie bohm pilot wave",
+                    "markdownSection": "Pilot-Wave (de Broglie--Bohm)",
+                    "sectionKey": "pilot wave de broglie bohm",
                     "headingLevel": 3
                   }
                 ]
@@ -5795,10 +5795,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Hidden Sector / Dark Sector Models - Dark Sector",
+                    "title": "Hidden Sector / Dark Sector Models",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Hidden Sector / Dark Sector Models - Dark Sector",
-                    "sectionKey": "hidden sector dark sector models dark sector",
+                    "markdownSection": "Hidden Sector / Dark Sector Models",
+                    "sectionKey": "hidden sector dark sector models",
                     "headingLevel": 3
                   }
                 ]

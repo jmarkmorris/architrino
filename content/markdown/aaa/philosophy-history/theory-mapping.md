@@ -910,9 +910,9 @@ with no collapse postulate.
 
 ---
 
-### de Broglie--Bohm (Pilot-Wave)
+### Pilot-Wave (de Broglie--Bohm)
 
-**Theory Name:** de Broglie--Bohm (Pilot-Wave). **Short Name:** Pilot-Wave. **Layer Bucket:** Epistemic / Effective Theories of Observation.
+**Theory Name:** Pilot-Wave (de Broglie--Bohm). **Short Name:** Pilot-Wave. **Layer Bucket:** Epistemic / Effective Theories of Observation.
 
 **Summary:** Particles have definite positions guided by a wavefunction.
 

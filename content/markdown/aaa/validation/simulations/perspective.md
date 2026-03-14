@@ -46,7 +46,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Superposition with measure-valued isochrons and $\eta$-regularization
+## Superposition with isochrons and $\eta$-regularization
 
 - What we assume:
 - All fields superpose linearly at the level of distributions (isochrons add).
@@ -58,7 +58,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Recursive assembly grammar → Noether Core, color, and flux tubes
+## Assembly grammar → Noether Core and flux tubes
 
 - What we assume:
   - Binary orbits are the base motif; binaries can nest with wide scale separation; a triply nested configuration (Noether Core) is dynamically robust.

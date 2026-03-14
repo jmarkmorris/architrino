@@ -598,7 +598,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **String Theory (Witten 1951–, Polchinski 1954–2018, et al.)**
+### **Ed Witten (1951–) - String Theory**
 **Subject:** String theory (Witten, Polchinski, and broad program contributors), a unification framework using extended objects and high-dimensional structure.
 
 **Era / Context**: String theory rose as a candidate UV-complete unification program when particle physics and gravity lacked a common mathematically controlled substrate.
@@ -708,7 +708,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ## Quantum Foundations & Hidden-Variable Landscape
 
-### **Ludwig Boltzmann (1844–1906)**
+### **Ludwig Boltzmann (1844–1906) — statistical mechanics**
 **Subject:** Ludwig Boltzmann (1844–1906), founder of statistical mechanics and major defender of atomist reduction in modern physics.
 
 **Era / Context**: Boltzmann worked in late 19th-century physics when atomism was still contested and thermodynamics lacked universally accepted microphysical grounding.
@@ -735,7 +735,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Max Planck (1858–1947)**
+### **Max Planck (1858–1947) — quantum action**
 **Subject:** Max Planck (1858–1947), originator of the quantum of action and early architect of quantum transition physics.
 
 **Era / Context**: Planck worked at the turn of the 20th century when blackbody radiation data forced a break from classical equipartition expectations.
@@ -762,7 +762,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Niels Bohr (1885–1962) & Copenhagen Interpretation**
+### **Niels Bohr (1885–1962) Copenhagen Interpretation**
 **Subject:** Niels Bohr (1885–1962) and the Copenhagen school, dominant interpretive program of early quantum mechanics.
 
 **Era / Context**: Copenhagen emerged when quantum experiments were succeeding rapidly while underlying ontology remained unresolved and mathematically counterintuitive.
@@ -789,7 +789,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Erwin Schrödinger (1887–1961)**
+### **Erwin Schrödinger (1887–1961) — wave mechanics**
 **Subject:** Erwin Schrödinger (1887–1961), co-founder of wave mechanics and key critic of unresolved quantum measurement ontology.
 
 **Era / Context**: Schrödinger worked in foundationally unstable early quantum theory when successful equations lacked clear ontology and measurement narratives diverged.
@@ -816,7 +816,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Louis de Broglie (1892–1987)**
+### **Louis de Broglie (1892–1987) — matter waves**
 **Subject:** Louis de Broglie (1892–1987), originator of matter-wave and pilot-wave interpretation strategies.
 
 **Era / Context**: De Broglie developed pilot-wave ideas during the foundational opening phase of quantum mechanics before Copenhagen hegemony consolidated.
@@ -843,7 +843,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Werner Heisenberg (1901–1976)**
+### **Werner Heisenberg (1901–1976) — matrix mechanics**
 **Subject:** Werner Heisenberg (1901–1976), founder of matrix mechanics and principal architect of uncertainty-centered interpretation.
 
 **Era / Context**: Heisenberg developed his framework during the rapid formation of quantum theory, when mathematically successful formalisms outran mechanistic explanation.
@@ -870,7 +870,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **David Bohm (1917–1992)**
+### **David Bohm (1917–1992) — pilot wave**
 **Subject:** David Bohm (1917–1992), developer of a realist hidden-variable quantum theory with guidance dynamics.
 
 **Era / Context**: Bohm worked under Copenhagen dominance, offering a deterministic nonlocal alternative that reproduced core quantum predictions.
@@ -897,7 +897,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **John Bell (1928–1990)**
+### **John Bell (1928–1990) — Bell nonlocality**
 **Subject:** John Bell (1928–1990), physicist who formalized no-go constraints on local hidden-variable reconstructions.
 
 **Era / Context**: Bell worked in a period when quantum interpretation debates lacked sharp discriminators between competing ontologies.

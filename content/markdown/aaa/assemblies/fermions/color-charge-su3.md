@@ -425,7 +425,7 @@ At large distances, axis‑dependent multipoles from each regime cancel:
 This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether cores: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
 
 
-## Residual Strong Force and Nuclear Binding (Qualitative Hook)
+## Residual Strong Force and Nuclear Binding
 
 Even for color‑singlet nucleons:
 

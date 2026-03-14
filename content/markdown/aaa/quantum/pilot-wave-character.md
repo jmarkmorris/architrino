@@ -57,7 +57,7 @@ The ontological status of $\psi$ is debated: is it a physical field (Valentini),
 
 ---
 
-## Architrino Assembly Architecture: Single-Ontology Guidance
+## $\mathbb{A}\mathbb{A}\mathbb{A}$: Single-Ontology Guidance
 
 ### The Ontological Reduction
 

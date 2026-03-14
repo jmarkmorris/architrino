@@ -1,4 +1,4 @@
-## Neutrinos: Strongly Shielded, Net-Neutral Noether-Core Excitations
+## Strongly Shielded, Net-Neutral Noether-Core Excitations
 
 Definition (geometric): A neutrino is a Noether Core in a net-neutral configuration (no personality charge), with an exterior field that is a tiny, time-averaged residue. Weak interaction strength follows from superposition inside the core that cancels nearly all external projection; only subtle axial mismatches and phase drifts couple to outside structures.
 
