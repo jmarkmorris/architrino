@@ -463,8 +463,8 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Relativity**
-**Subject:** Einsteinian relativity program (Special Relativity and General Relativity), treated here as a unified concept-level entry rather than a single-person biography.
+### **Albert Einstein (1879–1955)**
+**Subject:** Albert Einstein (1879–1955), treated here through the relativity program he originated and shaped, especially Special Relativity and General Relativity.
 
 **Era / Context**: Relativity developed in the early 20th century to resolve electrodynamic and gravitational tensions in classical physics while preserving high-precision empirical closure.
 

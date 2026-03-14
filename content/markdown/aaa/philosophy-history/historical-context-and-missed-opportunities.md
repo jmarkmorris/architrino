@@ -150,11 +150,11 @@ The long-term relevance of this episode is permanent. Recovery would require a m
 
 ---
 
-## Geometrization After 1915: Description Promoted to Ontology
+## Geometrization After 1915: Ontology Shift
 
 ### Overview
 
-**Episode:** Geometrization After 1915: Effective Description Promoted to Ontology. **Short Name:** Geometrization Lock-In. **Period:** 1915 through the consolidation of general relativity in the early twentieth century. The near-miss thesis is that the metric could have been treated as a constitutive summary of deeper medium organization rather than as the final primitive of gravitation.
+**Episode:** Geometrization After 1915: Ontology Shift. **Short Name:** Geometrization Lock-In. **Period:** 1915 through the consolidation of general relativity in the early twentieth century. The near-miss thesis is that the metric could have been treated as a constitutive summary of deeper medium organization rather than as the final primitive of gravitation.
 
 ### Where The Opening Appeared
 
@@ -218,11 +218,11 @@ The long-term relevance of this episode is permanent until the outcome-selection
 
 ---
 
-## Renormalization Era: Warning Signals Reframed as Technique
+## Renormalization Era: Warnings Reframed
 
 ### Overview
 
-**Episode:** Renormalization Era: Warning Signals Reframed as Technique. **Short Name:** Renormalization Lock-In. **Period:** roughly the 1930s through the consolidation of renormalized quantum field theory in the postwar era. The near-miss thesis is that ultraviolet divergence, vacuum excess, and scale-dependent closure could have been treated more aggressively as clues to missing microstructure rather than normalized into technique alone.
+**Episode:** Renormalization Era: Warnings Reframed. **Short Name:** Renormalization Lock-In. **Period:** roughly the 1930s through the consolidation of renormalized quantum field theory in the postwar era. The near-miss thesis is that ultraviolet divergence, vacuum excess, and scale-dependent closure could have been treated more aggressively as clues to missing microstructure rather than normalized into technique alone.
 
 ### Where The Opening Appeared
 
