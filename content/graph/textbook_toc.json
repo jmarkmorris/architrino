@@ -1084,10 +1084,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Detailed Mapping: Low-Energy SM Assemblies in a Noether-Core Sea",
+                "title": "Low-Energy SM Assemblies in a Noether-Core Sea",
                 "markdownPath": "content/markdown/aaa/dynamics/mode-taxonomy.md",
-                "markdownSection": "Detailed Mapping: Low-Energy SM Assemblies in a Noether-Core Sea",
-                "sectionKey": "detailed mapping low energy sm assemblies in a noether core sea",
+                "markdownSection": "Low-Energy SM Assemblies in a Noether-Core Sea",
+                "sectionKey": "low energy sm assemblies in a noether core sea",
                 "headingLevel": 2
               },
               {
@@ -3322,10 +3322,10 @@
                     "sections": [
                       {
                         "kind": "markdown-section",
-                        "title": "Cross-method guidance: when to use which method, a unifying example, and practical tips",
+                        "title": "Cross-Method Guidance",
                         "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Cross-method guidance: when to use which method, a unifying example, and practical tips",
-                        "sectionKey": "cross method guidance when to use which method a unifying example and practical tips",
+                        "markdownSection": "Cross-Method Guidance",
+                        "sectionKey": "cross method guidance",
                         "headingLevel": 2
                       },
                       {
@@ -3738,10 +3738,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "$\\mathbb{U}_{\\text{now}}$ universe-state perspective ($\\mathbb{U}_{\\text{now}}$) / $\\mathbb{U}_{\\text{now}}$ universe-state perspective Logging Standard (Tier-agnostic)",
+                    "title": "$\\mathbb{U}_{\\text{now}}$ Logging Standard",
                     "markdownPath": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
-                    "markdownSection": "$\\mathbb{U}_{\\text{now}}$ universe-state perspective ($\\mathbb{U}_{\\text{now}}$) / $\\mathbb{U}_{\\text{now}}$ universe-state perspective Logging Standard (Tier-agnostic)",
-                    "sectionKey": "mathbb u text now universe state perspective mathbb u text now mathbb u text now universe state perspective logging standard tier agnostic",
+                    "markdownSection": "$\\mathbb{U}_{\\text{now}}$ Logging Standard",
+                    "sectionKey": "mathbb u text now logging standard",
                     "headingLevel": 2
                   }
                 ]

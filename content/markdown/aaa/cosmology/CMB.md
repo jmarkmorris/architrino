@@ -170,8 +170,8 @@ Isotropy in this branch is attributed to long-time averaging over many source po
 
 ## Consistency Anchors
 
-- Expansion wording here should remain consistent with `expansion-mechanism.md`.
-- Dark-sector loading language here should remain consistent with `dark-matter.md` and `hubble-s8-tensions.md`.
+- Expansion wording here should remain consistent with [expansion-mechanism.md](./expansion-mechanism.md).
+- Dark-sector loading language here should remain consistent with [dark-matter.md](./dark-matter.md) and [hubble-s8-tensions.md](./hubble-s8-tensions.md).
 - Parameter-bridge wording here should remain consistent with `_meta/ideas/constraints-lcdm-map.md`.
 
 ## CMB-Module Interface

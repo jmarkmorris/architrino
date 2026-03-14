@@ -210,7 +210,7 @@ Use this table to close the constitutive loop against modern benchmarks.
 | Newtonian limit | $\mathbf{a}=-\nabla\Phi_{\text{eff}}$ (weak field) | exact leading-order recovery | No constitutive contradiction |
 | Cross-observable consistency | same constitutive coefficients across delay, redshift, precession, lensing | single-parameter-set closure | No per-observable re-fit |
 
-Numeric pass/fail thresholds are taken from `validation/constraint-ledger.md`.
+Numeric pass/fail thresholds are taken from [validation/constraint-ledger.md](../validation/constraint-ledger.md).
 
 ### Closure Program Interface (observable decision layer)
 
@@ -228,9 +228,9 @@ $$
 within the benchmark tolerances listed in the validation ledger.
 
 Cross-chapter integration:
-- constitutive map source: `spacetime/emergent-metric.md`
-- clock-law coefficient extraction: `spacetime/proper-time-and-time-dilation.md`
-- threshold enforcement: `validation/constraint-ledger.md`
+- constitutive map source: [spacetime/emergent-metric.md](./emergent-metric.md)
+- clock-law coefficient extraction: [spacetime/proper-time-and-time-dilation.md](./proper-time-and-time-dilation.md)
+- threshold enforcement: [validation/constraint-ledger.md](../validation/constraint-ledger.md)
 
 ### Numeric Closure Pipeline and Global Objective
 

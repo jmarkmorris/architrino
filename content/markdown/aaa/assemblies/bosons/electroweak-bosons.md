@@ -141,5 +141,5 @@ Operational closure requirement:
 - measured rate hierarchies must be reproducible from overlap weights plus kinematics.
 
 Primary closure integrations:
-- Quark sector: `assemblies/fermions/weak-mixing-ckm.md`
-- Lepton sector: `assemblies/fermions/neutrinos.md`
+- Quark sector: [assemblies/fermions/weak-mixing-ckm.md](../fermions/weak-mixing-ckm.md)
+- Lepton sector: [assemblies/fermions/neutrinos.md](../fermions/neutrinos.md)

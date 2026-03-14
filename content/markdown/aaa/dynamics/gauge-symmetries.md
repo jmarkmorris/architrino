@@ -103,9 +103,9 @@ Required consistency conditions:
 3. **Energy-side compatibility:** gauge sector must admit open-vs-closed braid scaling laws without violating local covariance of the effective Lagrangian.
 
 Interface chapters:
-- topology and action invariants: `dynamics/causal-action-functional.md`
-- color structure and confinement geometry: `assemblies/fermions/color-charge-su3.md`
-- preferred-frame closure: `spacetime/ppn-parameters.md`
+- topology and action invariants: [dynamics/causal-action-functional.md](./causal-action-functional.md)
+- color structure and confinement geometry: [assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md)
+- preferred-frame closure: [spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md)
 
 ## Failure Conditions
 

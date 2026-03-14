@@ -217,7 +217,7 @@ The full SM gauge group is captured geometrically as:
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed planar mode aligned to leave Shielded + Weak-Coupling Triad combination invariant ($Q$-coupling only).
 
-*Boson details:* see `assemblies/bosons/gluons.md` (color sector) and `assemblies/bosons/electroweak-bosons.md` (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.) 
+*Boson details:* see [assemblies/bosons/gluons.md](../bosons/gluons.md) (color sector) and [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md) (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.) 
 ### Hypercharge bookkeeping (Shielded triad → $Y$)
 
 Hypercharge is set by the net charge on the **Shielded Triad** (three hidden decoration sites) plus any core offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for doublets, and for singlets $T_3=0$ so $Y=2Q$.
@@ -235,7 +235,7 @@ Notes: the shielded charge is common within a doublet; right-handed singlets set
 
 ### Charge quantization cross-check
 
-Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in `phenomenology/gauge-structure-emergence.md`, section “Quantization from Stability”).
+Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [dynamics/gauge-structure-emergence.md](../../dynamics/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section “Quantization from Stability”).
 
 ### Right-handed neutrino stance and mass eigenstates (hypothesis)
 
@@ -357,9 +357,9 @@ The table is sufficient. It connects the geometry to every parameter needed to c
 
 This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
 
-- **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in `assemblies/fermions/weak-mixing-ckm.md`.
-- **Lepton mixing (PMNS):** neutral-core phase Hamiltonian and oscillation map in `assemblies/fermions/neutrinos.md`.
-- **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in `dynamics/causal-action-functional.md` and `assemblies/fermions/color-charge-su3.md`.
+- **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [assemblies/fermions/weak-mixing-ckm.md](./weak-mixing-ckm.md).
+- **Lepton mixing (PMNS):** neutral-core phase Hamiltonian and oscillation map in [assemblies/fermions/neutrinos.md](./neutrinos.md).
+- **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](./color-charge-su3.md).
 
 Minimal symbol map used across those closures:
 $$
@@ -376,7 +376,7 @@ with tri-binary ordered-frame evolution transforming on the double cover so that
 
 ## Weak-Mixing and Composite-Observable Closure Hooks
 
-This chapter fixes the geometry-to-quantum-number dictionary used by the observer-level electroweak closure map in `dynamics/gauge-structure-emergence.md`.
+This chapter fixes the geometry-to-quantum-number dictionary used by the observer-level electroweak closure map in [dynamics/gauge-structure-emergence.md](../../dynamics/gauge-structure-emergence.md).
 
 ### Weak mixing from six-pole geometry
 

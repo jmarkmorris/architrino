@@ -463,7 +463,7 @@ This chapter therefore carries:
 - **already closed:** color Hilbert space, generator construction, and $\mathfrak{su}(3)$ algebra closure;
 - **to close quantitatively:** open-vs-closed energy scaling with explicit $\sigma_{\mathrm{eff}}$ extraction from medium shear/torsion.
 
-Primary topology spine: `dynamics/causal-action-functional.md`.
+Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md).
 
 ## Summary and Next Steps
 

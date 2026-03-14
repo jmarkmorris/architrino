@@ -6,7 +6,7 @@
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
 - Define minimal dynamical requirements for agency/decision in assemblies.
 - Connect the **Decider** and **Switch** case studies to those requirements.
-- Tie the chapter to the canonical definition in `foundations/ontology.md`.
+- Tie the chapter to the canonical definition in [foundations/ontology.md](../foundations/ontology.md).
 
 **Blanket hypothesis:** All claims in this chapter are asserted within the architrino framework and reflect our current best understanding unless explicitly labeled otherwise.
 
@@ -202,14 +202,14 @@ So the question becomes: what is the minimal set of features an assembly must ha
 
 ### Justification for the Canonical Definition
 
-This chapter's stance on determinism and agency follows directly from the core dynamics. (This matches the canonical determinism/branching/agency definitions in `foundations/ontology.md`, §4.x.)
+This chapter's stance on determinism and agency follows directly from the core dynamics. (This matches the canonical determinism/branching/agency definitions in [foundations/ontology.md](../foundations/ontology.md), §4.x.)
 
 1. **Lawful micro-dynamics**: the master equation fixes evolution given complete initial conditions.
 2. **Threshold multistability**: self-hit and edge-condition regimes admit multiple coexisting attractors from a single prior state.
 3. **Internal structure matters**: assemblies can tune their own thresholds and thereby shape which attractor they fall into.
 4. **Predictability is limited**: microstate sensitivity makes outcomes effectively unpredictable to operational observers without introducing ontological randomness.
 
-These points motivate the canonical definition of determinism, branching, and agency in `foundations/ontology.md` (see canonical definition).
+These points motivate the canonical definition of determinism, branching, and agency in [foundations/ontology.md](../foundations/ontology.md) (see canonical definition).
 
 ### Position Summary
 

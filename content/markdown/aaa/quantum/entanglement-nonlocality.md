@@ -80,7 +80,7 @@ The correlations established at $t_0$ are carried forward in the **internal conf
 
 ### Measurement as Threshold Resolution
 
-When a measurement apparatus (itself an assembly of architrinos) interacts with particle $A$, the measurement is a complex assembly interaction governed by the Master Equation. The apparatus drives $A$ across a phase-space separatrix into a definite attractor basin (see `quantum/superposition-mechanism.md`). The outcome depends on:
+When a measurement apparatus (itself an assembly of architrinos) interacts with particle $A$, the measurement is a complex assembly interaction governed by the Master Equation. The apparatus drives $A$ across a phase-space separatrix into a definite attractor basin (see [quantum/superposition-mechanism.md](./superposition-mechanism.md)). The outcome depends on:
 
 1. The internal microstate of $A$ (including binary phases, wake history),
 2. The internal microstate of the apparatus,

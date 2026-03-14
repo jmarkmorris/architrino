@@ -249,11 +249,14 @@ function sceneKindFromType(sceneType) {
 }
 
 function escapeMarkdownLinkText(text) {
-  return String(text).replace(/([\\[\]])/g, "\\$1");
+  return String(text).replace(/([\[\]])/g, "\\$1");
 }
 
 function normalizeTextbookTocMarkdownLabel(text) {
   const stylizedAAA = "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$";
+  const stylizedUNow = "$\\mathbb{U}_{\\text{now}}$";
+  const stylizedFieldSpeed = "$c_f$";
+  const stylizedFieldSpeedEquality = "$v = c_f$";
   const superscriptMap = new Map([
     ["+", "⁺"],
     ["-", "⁻"],
@@ -268,6 +271,20 @@ function normalizeTextbookTocMarkdownLabel(text) {
     ["8", "⁸"],
     ["9", "⁹"],
   ]);
+  const subscriptMap = new Map([
+    ["+", "₊"],
+    ["-", "₋"],
+    ["0", "₀"],
+    ["1", "₁"],
+    ["2", "₂"],
+    ["3", "₃"],
+    ["4", "₄"],
+    ["5", "₅"],
+    ["6", "₆"],
+    ["7", "₇"],
+    ["8", "₈"],
+    ["9", "₉"],
+  ]);
 
   function toSuperscript(textValue) {
     const value = String(textValue ?? "");
@@ -280,10 +297,27 @@ function normalizeTextbookTocMarkdownLabel(text) {
       .join("");
   }
 
+  function toSubscript(textValue) {
+    const value = String(textValue ?? "");
+    return value
+      .split("")
+      .map((char) => subscriptMap.get(char) ?? char)
+      .join("");
+  }
+
   function normalizeInlineMathSegment(segment) {
     const rawValue = String(segment ?? "").trim();
     if (rawValue.replace(/\s+/g, "") === "\\mathbb{A}\\mathbb{A}\\mathbb{A}") {
       return stylizedAAA;
+    }
+    if (rawValue.replace(/\s+/g, "") === "\\mathbb{U}_{\\text{now}}") {
+      return stylizedUNow;
+    }
+    if (rawValue.replace(/\s+/g, "") === "c_f") {
+      return stylizedFieldSpeed;
+    }
+    if (rawValue.replace(/\s+/g, "") === "v=c_f") {
+      return stylizedFieldSpeedEquality;
     }
 
     let value = rawValue;
@@ -313,6 +347,7 @@ function normalizeTextbookTocMarkdownLabel(text) {
     value = value.replace(/\^±/g, "±");
     value = value.replace(/_\\+text\{([^}]+)\}/g, "_$1");
     value = value.replace(/_\{([^}]+)\}/g, "_$1");
+    value = value.replace(/_([0-9+\-]+)/g, (_, subscript) => toSubscript(subscript));
     value = value.replace(/[{}]/g, "");
     value = value.replace(/\^([⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻±]+)/g, "$1");
     value = value.replace(/\|\s*([A-Za-z0-9])/g, "|$1");
@@ -325,8 +360,10 @@ function normalizeTextbookTocMarkdownLabel(text) {
     .replace(/\$([^$]+)\$/g, (_, segment) => normalizeInlineMathSegment(segment))
     .replace(/𝔸𝔸𝔸/g, stylizedAAA)
     .replace(/\bAAA\b/g, stylizedAAA)
+    .replace(/\bU_now\b/g, stylizedUNow)
     .replace(/\^([+\-0]{1,2})/g, (_, exponent) => toSuperscript(exponent))
     .replace(/\^±/g, "±")
+    .replace(/_([0-9+\-]+)/g, (_, subscript) => toSubscript(subscript))
     .replace(/\|= /g, "| = ");
 }
 

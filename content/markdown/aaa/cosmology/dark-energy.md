@@ -185,11 +185,11 @@ The acceleration onset redshift $z \sim 0.7$ is treated as the characteristic cr
 
 In the modular cosmology architecture, this chapter provides:
 
-- **Output to `expansion-mechanism.md`:** $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$ from the medium-relaxation model.
-- **Output to `CMB.md`:** late-time ISW contribution and distance to last scattering.
-- **Output to `structure-formation.md`:** potential evolution $\dot{\Phi}(z)$ entering the growth equation.
-- **Input from `dark-matter.md`:** $\Omega_m(z)$ and $G_{\mathrm{eff}}(a,k)$ for consistent Friedmann integration.
-- **Input from `BBN-constraints.md`:** early-universe constraints ensuring $\rho_{\mathrm{DE,eff}}(z_{\mathrm{BBN}})$ is negligible relative to radiation density.
+- **Output to [expansion-mechanism.md](./expansion-mechanism.md):** $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$ from the medium-relaxation model.
+- **Output to [CMB.md](./CMB.md):** late-time ISW contribution and distance to last scattering.
+- **Output to [structure-formation.md](./structure-formation.md):** potential evolution $\dot{\Phi}(z)$ entering the growth equation.
+- **Input from [dark-matter.md](./dark-matter.md):** $\Omega_m(z)$ and $G_{\mathrm{eff}}(a,k)$ for consistent Friedmann integration.
+- **Input from [BBN-constraints.md](./BBN-constraints.md):** early-universe constraints ensuring $\rho_{\mathrm{DE,eff}}(z_{\mathrm{BBN}})$ is negligible relative to radiation density.
 - **Ontic variables passed:** $\rho_{\mathrm{NS}}(z)$, $\langle R_{\mathrm{outer}} \rangle(z)$, $\tau_{\mathrm{relax}}^{\mathrm{outer}}$, $\mathcal{S}_{\mathrm{relax}}(z)$.
 - **Effective outputs returned:** $w_{\mathrm{eff}}(z)$, $\rho_{\mathrm{DE,eff}}(z)$, $H(z)$.
 
