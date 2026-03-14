@@ -1174,7 +1174,50 @@ $$
 2R\left|\sin\frac{\omega \Delta}{2}\right| = c_f \Delta.
 $$
 
-This is a transcendental equation with **infinitely many roots** $\Delta_n$ for $v > c_f$. That already:
+Introduce the dimensionless variables
+$$
+\beta=\frac{v}{c_f}=\frac{\omega R}{c_f},
+\qquad
+\xi=\frac{\omega \Delta}{2}.
+$$
+Then the circular self-hit condition becomes
+$$
+\sin\xi=\frac{\xi}{\beta},
+\qquad 0<\xi<\beta.
+$$
+For fixed $\beta>1$, the admissible self-hit set is therefore **finite**, not infinite: roots are exactly the intersections of $\sin\xi$ with the line $\xi/\beta$ inside the compact interval $(0,\beta)$.
+
+The principal branch turns on at $\beta=1$. Writing $\beta=1+\mu$ with $\mu>0$ small, the smallest root obeys
+$$
+\xi_0 \sim \sqrt{6\mu},
+\qquad
+\Delta_0 \sim \frac{2\sqrt{6\mu}}{\omega},
+\qquad
+r_0=c_f\Delta_0\sim 2R\sqrt{6\mu}.
+$$
+The associated circular branch Jacobian is
+$$
+J_n
+=
+1-\frac{\mathbf{v}(t-\Delta_n)\cdot\hat{\mathbf{r}}_n}{c_f}
+=
+1-\beta\cos\xi_n
+=
+1-\xi_n\cot\xi_n.
+$$
+On the principal branch,
+$$
+J_0 \sim 2\mu.
+$$
+Hence the near-threshold self-hit weight scales like
+$$
+\frac{1}{r_0^2|J_0|}
+\sim
+\frac{1}{48R^2\,\mu^2}.
+$$
+This is the circular caustic behind the null-separatrix wall: the first self branch does not merely appear at $\beta=1$, it appears with a Jacobian-amplified weight that is already singular in the excess speed.
+
+That already:
 
 - Gives us analytic control of the causal roots (as solutions of a simple scalar transcendental),
 - Lets us write the self‑force as
@@ -1187,7 +1230,8 @@ This is a transcendental equation with **infinitely many roots** $\Delta_n$ for 
 We will not get a *closed‑form sum*, but:
 
 - The geometry is 100% analyzable,
-- Large‑$n$ roots have asymptotic expansions,
+- At high speed the number of admissible roots grows only linearly with $\beta$ because all roots lie in $(0,\beta)$,
+- Large‑$n$ roots admit asymptotic expansions,
 - We can show convergence of the self‑force series away from Jacobian-degenerate roots ($J=0$),
 - And derive asymptotic radial/tangential components as functions of $v/c_f$.
 

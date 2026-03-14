@@ -29,7 +29,7 @@ where:
 *   $m_i$ is the inertial parameter (effective mass) of the receiver.
 *   $r_{ij}(t; t_0)$ is the Euclidean separation between reception and emission events.
 *   $\delta_\eta$ is a mollified delta function of width $\eta > 0$, regularizing the causal wake surface to ensure a Lipschitz-continuous vector field.
-*   $\sigma_{ij} = \text{sign}(q_i q_j)$ enforces attraction for opposite charges and repulsion for like charges.
+*   $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ enforces attraction for opposite charges and repulsion for like charges.
 
 #### Regularization and Admissibility Assumptions
 
@@ -148,8 +148,33 @@ To describe the emergent dynamics of the Noether Sea and complex matter assembli
 The exact multi-time interaction double sum reduces to a continuous path-history potential integral. The effective interaction action becomes:
 
 $$
-S_{\text{int}} = - \frac{\kappa}{2} \int dt \int d^3x \int d^3x' \frac{\rho(\mathbf{x}, t) \rho(\mathbf{x}', t - \|\mathbf{x}-\mathbf{x}'\|/c_f)}{\|\mathbf{x}-\mathbf{x}'\|^2}
+S_{\text{int}} = - \frac{\kappa}{2} \int dt \int d^3x \int d^3x' \,
+\frac{\rho(\mathbf{x}, t) \rho(\mathbf{x}', t - \|\mathbf{x}-\mathbf{x}'\|/c_f)}
+{\|\mathbf{x}-\mathbf{x}'\|^2\,J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')}
 $$
+with delayed source time
+$$
+t' = t - \frac{\|\mathbf{x}-\mathbf{x}'\|}{c_f},
+$$
+propagation direction
+$$
+\hat{\mathbf{n}}(\mathbf{x},\mathbf{x}')=
+\frac{\mathbf{x}-\mathbf{x}'}{\|\mathbf{x}-\mathbf{x}'\|},
+$$
+coarse transport velocity
+$$
+\mathbf{u}(\mathbf{x}',t')
+=
+\frac{\mathbf{j}(\mathbf{x}',t')}{\rho(\mathbf{x}',t')}
+\qquad (\rho\neq 0),
+$$
+and effective Jacobian
+$$
+J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')
+=
+\left|1-\frac{\mathbf{u}(\mathbf{x}',t')\cdot\hat{\mathbf{n}}(\mathbf{x},\mathbf{x}')}{c_f}\right|.
+$$
+This is the continuum inheritance of the discrete branch weight: source emission remains isotropic at the microscopic level, but the received coarse flux is compressed or dilated by the delayed transport geometry. In the quasi-static limit $\|\mathbf{u}\|/c_f\to0$, one recovers $J_{\mathrm{eff}}\to 1$ and the kernel reduces to the familiar inverse-square form.
 
 By defining an effective scalar potential $\Phi(\mathbf{x}, t)$ and a vector flow potential $\mathbf{A}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. The resulting Lagrangian density $\mathcal{L}_{\text{eff}}$ governs acoustic and transverse modes within the Noether Sea. 
 
