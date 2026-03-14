@@ -307,7 +307,7 @@ g_\beta(\xi)=0,\qquad \partial_\xi g_\beta(\xi)=0
 $$
 at some interior point $\xi\in(a,b)$.
 
-**Proof.** For fixed $\beta$, $g_\beta$ is real-analytic on $(0,\pi)$, hence zeros are isolated unless the function is identically zero on an interval. That cannot occur here because $g_\beta$ is not identically zero. A discrete subset of a compact interval is finite, proving (1).
+**Proof.** For fixed $\beta$, $g_\beta$ is real-analytic on $(0,\beta)$, hence zeros are isolated unless the function is identically zero on an interval. That cannot occur here because $g_\beta$ is not identically zero. A discrete subset of a compact interval is finite, proving (1).
 
 For (2), if $\xi_*$ is a simple root ($\partial_\xi g_\beta(\xi_*)\neq0$), the implicit function theorem gives a unique smooth continuation of that root under small parameter changes, so simple roots cannot be created or destroyed locally. Root-count change can therefore occur only when simplicity fails, i.e. when $g_\beta=0$ and $\partial_\xi g_\beta=0$ simultaneously (multiple/tangent root). Boundary-root events are excluded by the boundary-regularity condition.
 
@@ -348,7 +348,7 @@ Mean‑field view: in a dilute limit with many architrinos, coarse‑graining th
 - Use the same $\delta_\eta$ and $\eta$ for force and action estimators.
 - For periodic orbits, normalize by $T^2$ and enforce periodic boundary conditions.
 - For circular‑orbit calibration, compute $\xi_n$ roots numerically and sum with the Jacobian factor.
-- Handle the $\beta=\pi/2$ caustic with care; the unregularized action diverges.
+- Handle the $\beta=1$ onset caustic with care; the unregularized circular action is singular there once both Jacobian and coarea factors are retained.
 - Keep $\eta>0$ during variation: $\nabla\delta$ terms appear in $\delta\mathcal{A}$; regularization makes the Euler–Lagrange equations well‑posed. Take $\eta\to0$ only after solving or bounding solutions.
 
 ### Simulation Protocol (Minimal Theorem-Backed Checks)
@@ -402,7 +402,7 @@ Combined with causal-locus class constraints, this gives a quantitative separati
 ### Summary and Status
 - We defined a causal self-action and total-action functional directly from the Jacobian-weighted inverse-square delayed kernel, plus its normalized form for periodic orbits.
 - Topology of the causal locus $\mathcal{L}_{\text{causal}}\subset T^2$ supplies discrete labels (winding, writhe, link type) that naturally segment orbit families.
-- The circular-orbit benchmark gives an analytic threshold at $\beta=\pi/2$ and finite high-speed asymptotics, anchoring numerical calibrations.
+- The circular-orbit benchmark gives an analytic threshold at $\beta=1$, explicit branchwise Jacobians, and controlled near-threshold asymptotics, anchoring numerical calibrations.
 - Under explicit assumptions (A1-A5), we now have a compact theorem spine:
   finiteness, coarea reduction, topological invariance away from critical points,
   and a precise bifurcation condition for branch changes.

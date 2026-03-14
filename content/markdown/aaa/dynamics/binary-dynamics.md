@@ -561,7 +561,7 @@ g_{ij}(\tau, \phi) \equiv \|\phi_i(0) - \phi_j(-\tau)\| - c_f \tau = 0.
 $$
 
 #### Lemma 1 (Regularity of the Delay Map)
-*Assumption:* The velocities are sub-luminal relative to the separation, i.e., $|\mathbf{v}_j| < c_f$ (Single-Hit Regime) OR we isolate a specific branch of the multi-hit solution where the relative radial velocity is not $c_f$.
+*Assumption:* The velocities are sub-field-speed relative to the separation, i.e., $|\mathbf{v}_j| < c_f$ (Single-Hit Regime) OR we isolate a specific branch of the multi-hit solution where the relative radial velocity is not $c_f$.
 
 *Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+$ such that $\tau(\phi) = \tau^*$.
 
@@ -582,7 +582,7 @@ $$
 \frac{\phi_i(0)-\phi_j(-\tau^*)}{\|\phi_i(0)-\phi_j(-\tau^*)\|}.
 $$
 The simple-root condition is exactly $\partial_\tau g_{ij}\neq 0$, i.e. no
-retarded tangency/causal-shock degeneracy. Therefore, by the Banach-space
+delayed tangency/causal-shock degeneracy. Therefore, by the Banach-space
 Implicit Function Theorem, there exist a neighborhood $U$ of $\phi$ and a
 unique $C^1$ map $\tau:U\to\mathbb{R}^+$ with
 $g_{ij}(\tau(\psi),\psi)=0$ and $\tau(\phi)=\tau^*$. $\square$
