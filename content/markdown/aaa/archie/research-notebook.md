@@ -317,6 +317,22 @@ If you drop the receiver's velocity from the exact Master Equation, you delete t
 
 ### What you should do:
 
+## 2026-03-10 Philosophy-History Leaf Schema
+
+An important editorial-methodology step was added across the topic documents: each major topic can now define a systematic method for handling its heading-derived leaves, rather than letting individual units accumulate in an ad hoc way. The relevant philosophy-history documents now explicitly introduce unified coverage templates and conformance checks so every topic leaf is written through a deliberate set of areas to cover.
+
+This is visible in documents such as [philosophy-of-science.md](../philosophy-history/philosophy-of-science.md), [major-thinkers.md](../philosophy-history/major-thinkers.md), [information-computation.md](../philosophy-history/information-computation.md), and [crisis-in-physics.md](../philosophy-history/crisis-in-physics.md). Each one now opens by stating that the layer needs a standard coverage template, then defines the fields, the prose flow, and a conformance protocol for every topic leaf in that file.
+
+The real gain is not just consistency of style. It is that the project now has a well-considered list of areas to cover when treating a leaf topic. Depending on the document, those areas include things such as the subject name and short name, the core question or tension, the historical problem pressure, what still works, what fails or overstates, relation to $\mathbb{A}\mathbb{A}\mathbb{A}$, transition relevance, long-term relevance, and an explicit statement of what survives or what would count as resolution. That methodology turns topic growth into governed expansion rather than note accretion.
+
+## 2026-03-07 Hyde Periodic Table
+
+The Hyde periodic table became a meaningful part of the project’s reader-facing structure. The repo now includes both a dedicated Hyde scene in [hyde_periodic_table_scene.json](../../../scenes/chemistry/hyde_periodic_table_scene.json) and a supporting analysis document in [hyde-info.md](../nuclear-atomic/hyde-info.md).
+
+What matters about the Hyde form is not only its historical novelty. It is a spiral layout that works well for intuitive thinkers because it preserves a near-continuous path through atomic number while making shell progression and family resemblance visually legible in one sweep. In the current writeup, the Hyde geometry is treated as a structural representation that reduces the topological breaks of the detached rectangular table and makes periodic recurrence feel spatially continuous rather than block-fragmented.
+
+This also connects directly to the interactive atomic reader. The periodic-table interface in this repo is built around clickable element regions that open element scenes, and the runtime supports anchored interaction through scene hotspots and legend routes. In practical terms, the Hyde table is not just an image: it functions as a visual map with hot spots for drilling down into atomic structure and related element-level scenes.
+
 ## 2026-03-03: CKM Closure Reaches Three-Digit Predictive Accuracy
 
 Progress in the CKM realm crossed an important threshold. In [weak-mixing-ckm.md](../assemblies/fermions/weak-mixing-ckm.md), the current $\mathbb{A}\mathbb{A}\mathbb{A}$ closure uses only three calibrated CKM magnitudes,
