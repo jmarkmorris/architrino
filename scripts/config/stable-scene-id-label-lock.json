@@ -130,14 +130,6 @@
         "unknowns_paradoxes_scene": "Unknowns & Paradoxes"
       }
     },
-    "content/scenes/philosophy_history/historical_context_missed_opportunities.json": {
-      "sceneId": "historical_context_missed_opportunities",
-      "sceneName": "Historical Context and Missed Opportunities",
-      "objects": {
-        "historical_context_overview_scene": "Overview",
-        "lorentz_ether_comparison": "Lorentz Ether Comparison"
-      }
-    },
     "content/scenes/quantum/quantum.json": {
       "sceneId": "quantum",
       "sceneName": "Quantum",

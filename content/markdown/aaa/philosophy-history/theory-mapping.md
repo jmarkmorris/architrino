@@ -272,13 +272,13 @@ $$
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, decoration states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
-## Emergent Spacetime / Gravity Layer (Effective Metric)
+## Spacetime / Gravity (Emergent Metric)
 
 These are theories of spacetime structure and gravitational dynamics. In the architrino view, they are emergent descriptions of how the Noether-core medium modulates signal speeds, clock rates, and effective geometry.
 
 ### General Relativity (GR)
 
-**Theory Name:** General Relativity (GR). **Short Name:** GR. **Layer Bucket:** Emergent Spacetime / Gravity Layer (Effective Metric).
+**Theory Name:** General Relativity (GR). **Short Name:** GR. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
 **Summary:** Gravity is not a force; it is the curvature of spacetime caused by
 energy and momentum.
@@ -305,7 +305,7 @@ $$
 ---
 ### Special Relativity (SR)
 
-**Theory Name:** Special Relativity (SR). **Short Name:** SR. **Layer Bucket:** Emergent Spacetime / Gravity Layer (Effective Metric).
+**Theory Name:** Special Relativity (SR). **Short Name:** SR. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
 **Summary:** The laws of physics are the same in all inertial frames; the speed
 of light is constant.
@@ -336,7 +336,7 @@ For the assembly-level closure used in this program, see [Effective Energy-Momen
 ---
 ### Newtonian Mechanics and Gravity
 
-**Theory Name:** Newtonian Mechanics and Gravity. **Short Name:** Newtonian Mechanics Gravity. **Layer Bucket:** Emergent Spacetime / Gravity Layer (Effective Metric).
+**Theory Name:** Newtonian Mechanics and Gravity. **Short Name:** Newtonian Mechanics Gravity. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
 **Summary:** Forces determine motion; gravity is an inverse-square force.
 
@@ -361,7 +361,7 @@ $$
 ---
 ### Modified Gravity (MOND / TeVeS)
 
-**Theory Name:** Modified Gravity (MOND / TeVeS). **Short Name:** MOND / TeVeS. **Layer Bucket:** Emergent Spacetime / Gravity Layer (Effective Metric).
+**Theory Name:** Modified Gravity (MOND / TeVeS). **Short Name:** MOND / TeVeS. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
 **Summary:** Gravity may deviate from Newton/GR at very low accelerations.
 
@@ -383,7 +383,7 @@ $$
 
 ### String Theory
 
-**Theory Name:** String Theory. **Short Name:** String Theory. **Layer Bucket:** Emergent Spacetime / Gravity Layer (Effective Metric).
+**Theory Name:** String Theory. **Short Name:** String Theory. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
 **Summary:** Fundamental objects are 1D strings; different vibrations yield
 particles and forces, including gravity.
@@ -406,7 +406,7 @@ $$
 
 ### Loop Quantum Gravity (LQG)
 
-**Theory Name:** Loop Quantum Gravity (LQG). **Short Name:** LQG. **Layer Bucket:** Emergent Spacetime / Gravity Layer (Effective Metric).
+**Theory Name:** Loop Quantum Gravity (LQG). **Short Name:** LQG. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
 **Summary:** Spacetime geometry is quantized; areas and volumes come in discrete
 units.
@@ -429,7 +429,7 @@ $$
 
 ### Cosmic Censorship / Holographic Principle / AdS-CFT
 
-**Theory Name:** Cosmic Censorship / Holographic Principle / AdS-CFT. **Short Name:** Cosmic Censorship Holographic. **Layer Bucket:** Emergent Spacetime / Gravity Layer (Effective Metric).
+**Theory Name:** Cosmic Censorship / Holographic Principle / AdS-CFT. **Short Name:** Cosmic Censorship Holographic. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
 **Summary:** This grouped entry joins three closely connected ideas about gravitational extremality and informational closure: cosmic censorship, holography, and AdS/CFT. Cosmic censorship concerns whether singular behavior is hidden behind horizons. Holography concerns whether bulk physics admits lower-dimensional encoding. AdS/CFT provides the strongest formal realization of that idea by relating a gravitational bulk theory to a non-gravitational boundary theory.
 
@@ -468,13 +468,13 @@ That yields a disciplined shorthand: Horizon interface for the Planck-aligned in
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
 
 ---
-## Cosmology / Large-Scale Assembly Evolution
+## Cosmology / Large-Scale Assembly
 
 These theories describe the universe at large scales: expansion history, structure formation, and cosmic origins. In the architrino view, they map to how spacetime assemblies evolve, cool, and transport energy across epochs.
 
 ### Lambda-CDM (Big Bang Cosmology)
 
-**Theory Name:** Lambda-CDM (Big Bang Cosmology). **Short Name:** Big Bang Cosmology. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Lambda-CDM (Big Bang Cosmology). **Short Name:** Big Bang Cosmology. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** The standard Big Bang cosmology: dark energy ($\Lambda$) plus cold
 dark matter (CDM) in an expanding universe.
@@ -498,7 +498,7 @@ $$
 
 ### Inflationary Cosmology
 
-**Theory Name:** Inflationary Cosmology. **Short Name:** Inflationary Cosmology. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Inflationary Cosmology. **Short Name:** Inflationary Cosmology. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** The early universe expanded extremely rapidly, explaining
 horizon/flatness problems.
@@ -521,7 +521,7 @@ $$
 
 ### CMB Acoustic Peaks
 
-**Theory Name:** CMB Acoustic Peaks. **Short Name:** CMB Acoustic Peaks. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** CMB Acoustic Peaks. **Short Name:** CMB Acoustic Peaks. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** The CMB power spectrum encodes sound waves in the early plasma.
 
@@ -543,7 +543,7 @@ $$
 
 ### Big Bang Nucleosynthesis (BBN)
 
-**Theory Name:** Big Bang Nucleosynthesis (BBN). **Short Name:** BBN. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Big Bang Nucleosynthesis (BBN). **Short Name:** BBN. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** Light elements formed in the first minutes of the universe.
 
@@ -566,7 +566,7 @@ $$
 
 ### Baryogenesis / Leptogenesis
 
-**Theory Name:** Baryogenesis / Leptogenesis. **Short Name:** Baryogenesis Leptogenesis. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Baryogenesis / Leptogenesis. **Short Name:** Baryogenesis Leptogenesis. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** Matter-antimatter asymmetry arises from early-universe processes.
 
@@ -588,7 +588,7 @@ $$
 
 ### Dark Matter (Particle Hypotheses)
 
-**Theory Name:** Dark Matter (Particle Hypotheses). **Short Name:** Particle Hypotheses. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Dark Matter (Particle Hypotheses). **Short Name:** Particle Hypotheses. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** Unseen matter explains gravitational effects in galaxies and
 clusters.
@@ -611,7 +611,7 @@ $$
 
 ### Primordial Black Holes (PBH as DM)
 
-**Theory Name:** Primordial Black Holes (PBH as DM). **Short Name:** PBH as DM. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Primordial Black Holes (PBH as DM). **Short Name:** PBH as DM. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** Black holes formed in the early universe could be dark matter.
 
@@ -633,7 +633,7 @@ $$
 
 ### Dark Energy (Beyond $\Lambda$)
 
-**Theory Name:** Dark Energy (Beyond $\Lambda$). **Short Name:** Beyond $\Lambda$. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Dark Energy (Beyond $\Lambda$). **Short Name:** Beyond $\Lambda$. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** The universe's expansion is accelerating for unknown reasons.
 
@@ -656,7 +656,7 @@ For a cosmological constant, $w=-1$.
 
 ### Holographic Dark Energy
 
-**Theory Name:** Holographic Dark Energy. **Short Name:** Holographic Dark Energy. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Holographic Dark Energy. **Short Name:** Holographic Dark Energy. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** Dark energy density is tied to a cosmic horizon scale.
 
@@ -678,7 +678,7 @@ $$
 
 ### Quasi-Steady-State (Hoyle--Narlikar--Burbidge)
 
-**Theory Name:** Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge). **Short Name:** Hoyle--Narlikar--Burbidge. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge). **Short Name:** Hoyle--Narlikar--Burbidge. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** The universe is eternal on large scales; matter is continuously
 created to keep density constant.
@@ -702,7 +702,7 @@ $$
 
 ### Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok)
 
-**Theory Name:** Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok). **Short Name:** Steinhardt--Turok. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok). **Short Name:** Steinhardt--Turok. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** The universe undergoes repeated cycles of contraction and bounce.
 
@@ -724,7 +724,7 @@ $$
 
 ### Bounce Cosmologies (Generic)
 
-**Theory Name:** Bounce Cosmologies (Generic). **Short Name:** Bounce Cosmologies. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Bounce Cosmologies (Generic). **Short Name:** Bounce Cosmologies. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** The big bang is replaced by a bounce from a prior contraction.
 
@@ -746,7 +746,7 @@ $$
 
 ### Conformal Cyclic Cosmology (Penrose)
 
-**Theory Name:** Conformal Cyclic Cosmology (Penrose). **Short Name:** Penrose. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Conformal Cyclic Cosmology (Penrose). **Short Name:** Penrose. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** The remote future of one universe becomes the big bang of the next.
 
@@ -768,7 +768,7 @@ $$
 
 ### Multiverse (Generic)
 
-**Theory Name:** Multiverse (Generic). **Short Name:** Multiverse. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Multiverse (Generic). **Short Name:** Multiverse. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** Our universe may be one of many with varying physical parameters.
 
@@ -788,7 +788,7 @@ not a single canonical equation.
 
 ### Anthropic Principle
 
-**Theory Name:** Anthropic Principle. **Short Name:** Anthropic Principle. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
+**Theory Name:** Anthropic Principle. **Short Name:** Anthropic Principle. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
 **Summary:** Physical parameters appear fine-tuned because only certain values
 allow observers to exist.
@@ -814,13 +814,13 @@ fine-tuning reflects conditional selection rather than design.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
 **Transition Relevance:** Transition relevance is high because cosmological inference will continue to be performed first in the legacy parameter language before any deeper substrate reconstruction is accepted.
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
-## Epistemic / Effective Theories of Observation
+## Epistemic / Effective Observation Theories
 
 These are theories and interpretations that describe how observers access and summarize dynamics: coarse-graining, probabilities, and measurement update. In the architrino view, they sit at the physical-observer level.
 
 ### Quantum Mechanics (QM)
 
-**Theory Name:** Quantum Mechanics (QM). **Short Name:** QM. **Layer Bucket:** Epistemic / Effective Theories of Observation.
+**Theory Name:** Quantum Mechanics (QM). **Short Name:** QM. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
 **Summary:** Physical systems are described by a wavefunction whose squared
 magnitude gives probabilities of measurement outcomes.
@@ -843,7 +843,7 @@ $$
 
 ### Statistical Mechanics / Thermodynamics
 
-**Theory Name:** Statistical Mechanics / Thermodynamics. **Short Name:** Statistical Mechanics Thermodynamics. **Layer Bucket:** Epistemic / Effective Theories of Observation.
+**Theory Name:** Statistical Mechanics / Thermodynamics. **Short Name:** Statistical Mechanics Thermodynamics. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
 **Summary:** Macroscopic laws emerge from statistics of microscopic states.
 
@@ -865,7 +865,7 @@ $$
 
 ### Copenhagen Interpretation
 
-**Theory Name:** Copenhagen Interpretation. **Short Name:** Copenhagen Interpretation. **Layer Bucket:** Epistemic / Effective Theories of Observation.
+**Theory Name:** Copenhagen Interpretation. **Short Name:** Copenhagen Interpretation. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
 **Summary:** The wavefunction is a tool for probabilities; measurement causes
 collapse.
@@ -888,7 +888,7 @@ $$
 
 ### Many-Worlds (Everett)
 
-**Theory Name:** Many-Worlds (Everett). **Short Name:** Everett. **Layer Bucket:** Epistemic / Effective Theories of Observation.
+**Theory Name:** Many-Worlds (Everett). **Short Name:** Everett. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
 **Summary:** All possible outcomes occur, each in its own branch of the
 universe.
@@ -912,7 +912,7 @@ with no collapse postulate.
 
 ### Pilot-Wave (de Broglie--Bohm)
 
-**Theory Name:** Pilot-Wave (de Broglie--Bohm). **Short Name:** Pilot-Wave. **Layer Bucket:** Epistemic / Effective Theories of Observation.
+**Theory Name:** Pilot-Wave (de Broglie--Bohm). **Short Name:** Pilot-Wave. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
 **Summary:** Particles have definite positions guided by a wavefunction.
 

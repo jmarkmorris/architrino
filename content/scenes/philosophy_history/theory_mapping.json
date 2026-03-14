@@ -24,6 +24,18 @@
             "labelBadge": "doc",
             "color": "#2f4f7a",
             "mode": "doc"
+          },
+          "spacetime gravity emergent metric": {
+            "labelTitle": "Spacetime / Gravity",
+            "labelSubtitle": "Emergent Metric"
+          },
+          "cosmology large scale assembly": {
+            "labelTitle": "Cosmology",
+            "labelSubtitle": "Large-Scale Assembly"
+          },
+          "epistemic effective observation theories": {
+            "labelTitle": "Epistemic / Effective",
+            "labelSubtitle": "Observation Theories"
           }
         }
       }

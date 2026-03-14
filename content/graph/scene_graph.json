@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 404,
-      "edges": 1146,
-      "scenes": 281,
+      "nodes": 401,
+      "edges": 1143,
+      "scenes": 279,
       "markdownIndexes": 0,
-      "markdownDocs": 123,
+      "markdownDocs": 122,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1409,12 +1409,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "philosophy_history__lorentz_ether_comparison",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "philosophy_history__religious_ontologies",
       "name": "Religious Ontologies",
       "path": "content/scenes/philosophy_history/religious_ontologies.json",
@@ -1829,12 +1823,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "historical_context_overview_scene",
-      "name": "Overview",
-      "path": "content/scenes/philosophy_history/historical_context_overview.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2210,12 +2198,6 @@
       "id": "content/markdown/aaa/philosophy-history/information-computation.md",
       "name": "Information / Computation",
       "path": "content/markdown/aaa/philosophy-history/information-computation.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4429,30 +4411,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/historical_context_overview.json",
-      "nodeType": "scene",
-      "id": "historical_context_overview_scene",
-      "name": "Overview",
-      "path": "content/scenes/philosophy_history/historical_context_overview.json",
-      "searchTarget": "content/scenes/philosophy_history/historical_context_overview.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/information_computation.json",
       "nodeType": "scene",
       "id": "information_computation",
       "name": "Information / Computation",
       "path": "content/scenes/philosophy_history/information_computation.json",
       "searchTarget": "content/scenes/philosophy_history/information_computation.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__lorentz_ether_comparison",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "searchTarget": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "implicit": false
     },
     {
@@ -5668,15 +5632,6 @@
       "name": "Information / Computation",
       "path": "content/markdown/aaa/philosophy-history/information-computation.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/information-computation.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "implicit": false
     },
     {
@@ -9447,20 +9402,6 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
-      "to": "scene:content/scenes/philosophy_history/historical_context_overview.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
-      "to": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
-      "field": "scene.children[1]"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
@@ -10518,10 +10459,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/historical_context_overview.json",
+      "from": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/historical_context_overview.json",
+      "source": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "field": "scene.source.path"
     },
     {
@@ -10529,13 +10470,6 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/information-computation.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/information_computation.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "field": "scene.source.path"
     },
     {

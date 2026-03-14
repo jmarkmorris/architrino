@@ -1051,11 +1051,6 @@
       "path": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
     },
     {
-      "id": "philosophy_history__lorentz_ether_comparison",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json"
-    },
-    {
       "id": "philosophy_history__religious_ontologies",
       "name": "Religious Ontologies",
       "path": "content/scenes/philosophy_history/religious_ontologies.json"
@@ -1399,11 +1394,6 @@
       "id": "foundations__detecting_the_absolute_frame",
       "name": "Detecting the Absolute Frame",
       "path": "content/scenes/foundations/detecting_the_absolute_frame.json"
-    },
-    {
-      "id": "historical_context_overview_scene",
-      "name": "Overview",
-      "path": "content/scenes/philosophy_history/historical_context_overview.json"
     }
   ]
 }
