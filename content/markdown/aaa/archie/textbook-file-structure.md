@@ -54,6 +54,8 @@ Good candidates for one file include:
 - one methodology note,
 - one validation ledger,
 - one glossary-style reference document,
+- one public-process or community note,
+- one reader-facing research journal used as a split-backed notebook,
 - one style or authoring guide.
 
 A file should not serve as a random accumulation point for loosely related notes. When a document begins to contain multiple peer objects that deserve distinct scene nodes, split it.
@@ -187,7 +189,9 @@ Examples that belong in `archie`:
 - style guides,
 - navigation explanations,
 - scene taxonomy,
-- glossary or meta help,
+- comparative glossaries or meta help,
+- GitHub/community process notes,
+- research notebooks that document major project inflection points for readers,
 - authoring structure guidance.
 
 Examples that do not belong in `archie`:
@@ -209,6 +213,8 @@ That means:
 - and the document overview should explain the organizational principle of the file.
 
 For split documents, the major sections are the navigation units. For tree documents, both section depth and subsection naming discipline matter.
+
+The research notebook in `archie` is a useful example of a split-backed document with dated `##` entries. In that pattern, the overview explains the notebook's purpose and the dated sections function as the peer navigation units. Ordering should remain deliberate rather than incidental.
 
 ## Overview Sections
 

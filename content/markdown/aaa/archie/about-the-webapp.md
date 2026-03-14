@@ -11,6 +11,9 @@ This guide should be read alongside:
 - [navigation-and-controls.md](navigation-and-controls.md)
 - [scene-taxonomy.md](scene-taxonomy.md)
 - [textbook-file-structure.md](textbook-file-structure.md)
+- [comparative-glossary.md](comparative-glossary.md)
+- [github-presence-and-community.md](github-presence-and-community.md)
+- [research-notebook.md](research-notebook.md)
 
 ## What the Webapp Is
 
@@ -34,6 +37,8 @@ Much of the explanatory and reference content is authored in markdown. Depending
 - a section view into one document,
 - a split view derived from one heading layer,
 - a bounded tree view derived from a local document hierarchy.
+
+The Archie branch also includes reader-facing reference documents that explain the app and its editorial frame from within the corpus itself. Those documents include the scene taxonomy, file-structure and style guides, comparative terminology aids, public GitHub/community guidance, and the research notebook that records major project inflection points.
 
 ### Specialized tools and overlays
 
@@ -102,9 +107,9 @@ The environment is active and still evolving.
 
 That means:
 
-- scene labels may be refined,
 - content depth may increase,
-- scene bindings may change as documents are reorganized,
+- scene bindings may continue to improve as documents are reorganized,
+- supporting Archie references may expand as the public surface becomes more explicit,
 - and additional presentation types may be added over time.
 
 The governing architecture, however, is already clear: scenes organize the reader-facing graph, markdown carries the long-form content, and generated manifests stabilize runtime access.
