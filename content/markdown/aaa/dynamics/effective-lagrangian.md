@@ -195,5 +195,5 @@ $$
 $$
 
 Closure requirement for this interface:
-- the Euler-Lagrange equations of the coarse action reproduce the effective envelope equation used in `quantum/pilot-wave-character.md`,
+- the Euler-Lagrange equations of the coarse action reproduce the effective envelope equation used in [pilot-wave-character](../quantum/pilot-wave-character.md),
 - memory contributions $\mathbf{j}_{\mathrm{mem}}$ remain explicit as controlled correction terms rather than hidden parameter absorbs.

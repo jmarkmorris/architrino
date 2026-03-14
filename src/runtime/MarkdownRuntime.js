@@ -9,9 +9,11 @@ export function createMarkdownRuntime(deps) {
     markdownSectionCache,
     extractMarkdownSection,
     appendCacheBust,
+    navigateToTarget,
   } = deps;
 
   let activeMarkdownPath = null;
+  let activeMarkdownSourcePath = null;
   let markdownTwoColumns = true;
   // These IDs are runtime-only helper scene identities, not authored scene IDs.
   const runtimeMarkdownPrefix = "runtime:markdown:";
@@ -24,6 +26,57 @@ export function createMarkdownRuntime(deps) {
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
+  }
+
+  function normalizeRepoPath(value) {
+    return String(value)
+      .replace(/\\/g, "/")
+      .replace(/^\.?\//, "")
+      .replace(/\/+$/, "");
+  }
+
+  function buildMarkdownReaderTarget(markdownPath, markdownSection) {
+    return `${runtimeMarkdownReaderPrefix}${markdownPath}::${encodeURIComponent(markdownSection)}`;
+  }
+
+  function resolveMarkdownLinkTarget(rawHref) {
+    if (typeof rawHref !== "string" || !rawHref.trim()) {
+      return null;
+    }
+    const href = rawHref.trim();
+    if (href.startsWith(runtimeMarkdownPrefix)) {
+      return href;
+    }
+
+    const basePath = activeMarkdownSourcePath
+      ? `https://architrino.local/${normalizeRepoPath(activeMarkdownSourcePath)}`
+      : "https://architrino.local/";
+    let parsed;
+    try {
+      parsed = new URL(href, basePath);
+    } catch (error) {
+      return null;
+    }
+
+    if (parsed.protocol !== "https:" || parsed.hostname !== "architrino.local") {
+      return null;
+    }
+
+    const resolvedPath = normalizeRepoPath(parsed.pathname);
+    if (!resolvedPath) {
+      return null;
+    }
+    if (resolvedPath.endsWith(".json") && resolvedPath.startsWith("content/scenes/")) {
+      return resolvedPath;
+    }
+    if (resolvedPath.endsWith(".md") && resolvedPath.startsWith("content/markdown/")) {
+      const section = parsed.searchParams.get("section");
+      if (typeof section === "string" && section.trim()) {
+        return buildMarkdownReaderTarget(resolvedPath, section.trim());
+      }
+      return resolvedPath;
+    }
+    return null;
   }
 
   function protectMathSegments(markdown) {
@@ -99,6 +152,7 @@ export function createMarkdownRuntime(deps) {
       markdownBody.innerHTML = "";
     }
     activeMarkdownPath = null;
+    activeMarkdownSourcePath = null;
   }
 
   function isMarkdownPanelOpen() {
@@ -250,8 +304,28 @@ export function createMarkdownRuntime(deps) {
     markdownPanel.setAttribute("aria-hidden", "false");
     markdownPanel.inert = false;
     activeMarkdownPath = cacheKey;
+    activeMarkdownSourcePath = markdownPath;
     applyMarkdownLayout();
     typesetMarkdown();
+  }
+
+  if (markdownBody && typeof navigateToTarget === "function") {
+    markdownBody.addEventListener("click", async (event) => {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+      const link = event.target?.closest?.("a[href]");
+      if (!link) {
+        return;
+      }
+      const rawHref = link.getAttribute("href");
+      const target = resolveMarkdownLinkTarget(rawHref);
+      if (!target) {
+        return;
+      }
+      event.preventDefault();
+      await navigateToTarget(target);
+    });
   }
 
   return {

@@ -1710,6 +1710,12 @@ const markdownRuntime = createMarkdownRuntime({
   markdownSectionCache,
   extractMarkdownSection,
   appendCacheBust,
+  navigateToTarget: async (target) => {
+    if (!target || !appDirector) {
+      return;
+    }
+    await appDirector.navigateTo(target);
+  },
 });
 
 function updateSceneMarkdown() {

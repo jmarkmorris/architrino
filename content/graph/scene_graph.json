@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 397,
-      "edges": 1139,
-      "scenes": 277,
+      "nodes": 399,
+      "edges": 1141,
+      "scenes": 278,
       "markdownIndexes": 0,
-      "markdownDocs": 120,
+      "markdownDocs": 121,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1811,6 +1811,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__textbook_toc",
+      "name": "Textbook TOC",
+      "path": "content/scenes/archie/textbook_toc.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2529,6 +2535,12 @@
       "name": "Validation Protocols",
       "path": "content/markdown/aaa/validation/validation-protocols.md",
       "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-toc.md",
+      "name": "Textbook TOC",
+      "path": "content/markdown/generated/textbook-toc.md",
+      "nodeType": "markdown_doc"
     }
   ],
   "nodes": [
@@ -2656,6 +2668,15 @@
       "name": "Textbook File Structure",
       "path": "content/scenes/archie/textbook_file_structure.json",
       "searchTarget": "content/scenes/archie/textbook_file_structure.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/textbook_toc.json",
+      "nodeType": "scene",
+      "id": "archie__textbook_toc",
+      "name": "Textbook TOC",
+      "path": "content/scenes/archie/textbook_toc.json",
+      "searchTarget": "content/scenes/archie/textbook_toc.json",
       "implicit": false
     },
     {
@@ -6104,6 +6125,15 @@
       "path": "content/markdown/aaa/validation/validation-protocols.md",
       "searchTarget": "content/markdown/aaa/validation/validation-protocols.md",
       "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-toc.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-toc.md",
+      "name": "Textbook TOC",
+      "path": "content/markdown/generated/textbook-toc.md",
+      "searchTarget": "content/markdown/generated/textbook-toc.md",
+      "implicit": false
     }
   ],
   "edges": [
@@ -6112,91 +6142,98 @@
       "to": "scene:content/scenes/archie/about.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/academic_style_guide.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/composer.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/github_presence_and_community.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/glossary.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/help.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/mathematical_style_guide.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/mathematical_terminology.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/research_notebook.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/scene_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/support_architrino_research.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/textbook_file_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/textbook_toc.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/archie.json",
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -10053,6 +10090,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_file_structure.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_toc.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-toc.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_toc.json",
       "field": "scene.source.path"
     },
     {

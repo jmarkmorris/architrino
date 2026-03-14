@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__textbook_toc",
+    "title": "Textbook TOC",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/generated/textbook-toc.md"
+    },
+    "view": {
+      "autoOpen": true,
+      "columns": 2
+    }
+  },
+  "objects": []
+}

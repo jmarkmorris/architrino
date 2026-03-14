@@ -12,6 +12,10 @@
     "hideScaleLabels": true,
     "children": [
       {
+        "nodeId": "textbook_toc",
+        "scenePath": "content/scenes/archie/textbook_toc.json"
+      },
+      {
         "nodeId": "composer",
         "scenePath": "content/scenes/archie/composer.json"
       },
@@ -66,6 +70,14 @@
     ]
   },
   "objects": [
+    {
+      "id": "textbook_toc",
+      "title": "Textbook TOC",
+      "radius": 2.2,
+      "color": "#7a5a2f",
+      "labelTitle": "Textbook TOC",
+      "labelBadge": "doc"
+    },
     {
       "id": "composer",
       "title": "Composer",

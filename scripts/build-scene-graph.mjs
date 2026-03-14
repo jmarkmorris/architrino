@@ -10,6 +10,7 @@ const LEGEND_ROUTES_PATH = "content/graph/runtime_routes.json";
 const ROOT_SCENE_PATH = "content/scenes/architrino_assembly_architecture.json";
 const OUTPUT_PATH = "content/graph/scene_graph.json";
 const TEXTBOOK_TOC_PATH = "content/graph/textbook_toc.json";
+const TEXTBOOK_TOC_MARKDOWN_PATH = "content/markdown/generated/textbook-toc.md";
 
 const args = new Set(process.argv.slice(2));
 const wantsWrite = args.has("--write");
@@ -40,10 +41,10 @@ const errors = [];
 function printUsage(exitCode) {
   console.log("Usage: node scripts/build-scene-graph.mjs [--check|--write] [--strict]");
   console.log(
-    "  --check   Validate generated graph/TOC against content/graph/scene_graph.json and content/graph/textbook_toc.json (default)"
+    "  --check   Validate generated graph/TOC artifacts against content/graph/scene_graph.json, content/graph/textbook_toc.json, and content/markdown/generated/textbook-toc.md (default)"
   );
   console.log(
-    "  --write   Regenerate content/graph/scene_graph.json and content/graph/textbook_toc.json"
+    "  --write   Regenerate content/graph/scene_graph.json, content/graph/textbook_toc.json, and content/markdown/generated/textbook-toc.md"
   );
   console.log("  --strict  Treat warnings as failures");
   process.exit(exitCode);
@@ -247,6 +248,88 @@ function sceneKindFromType(sceneType) {
   }
 }
 
+function escapeMarkdownLinkText(text) {
+  return String(text).replace(/([\\[\]])/g, "\\$1");
+}
+
+function normalizeTextbookTocMarkdownLabel(text) {
+  const stylizedAAA = "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$";
+  const superscriptMap = new Map([
+    ["+", "⁺"],
+    ["-", "⁻"],
+    ["0", "⁰"],
+    ["1", "¹"],
+    ["2", "²"],
+    ["3", "³"],
+    ["4", "⁴"],
+    ["5", "⁵"],
+    ["6", "⁶"],
+    ["7", "⁷"],
+    ["8", "⁸"],
+    ["9", "⁹"],
+  ]);
+
+  function toSuperscript(textValue) {
+    const value = String(textValue ?? "");
+    if (value === "\\pm") {
+      return "±";
+    }
+    return value
+      .split("")
+      .map((char) => superscriptMap.get(char) ?? char)
+      .join("");
+  }
+
+  function normalizeInlineMathSegment(segment) {
+    const rawValue = String(segment ?? "").trim();
+    if (rawValue.replace(/\s+/g, "") === "\\mathbb{A}\\mathbb{A}\\mathbb{A}") {
+      return stylizedAAA;
+    }
+
+    let value = rawValue;
+    value = value.replace(/\\+mathbf\{([^}]+)\}/g, "$1");
+    value = value.replace(/\\+mathbf([A-Za-z0-9]+)/g, "$1");
+    value = value.replace(/\\+text\{([^}]+)\}/g, "$1");
+    value = value.replace(/\\+lvert/g, "|");
+    value = value.replace(/\\+rvert/g, "|");
+    value = value.replace(/\\+mathbb\{A\}/g, "A");
+    value = value.replace(/\\+mathbb\{U\}/g, "U");
+    value = value.replace(/\\+gamma/g, "γ");
+    value = value.replace(/\\+pi/g, "π");
+    value = value.replace(/\\+rho/g, "ρ");
+    value = value.replace(/\\+Delta/g, "Δ");
+    value = value.replace(/\\+epsilon/g, "ε");
+    value = value.replace(/\\+eta/g, "η");
+    value = value.replace(/\\+Lambda/g, "Λ");
+    value = value.replace(/\\+sim/g, "~");
+    value = value.replace(/\\+times/g, "×");
+    value = value.replace(/\\+nu/g, "ν");
+    value = value.replace(/\\+pm/g, "±");
+    value = value.replace(/\\+to/g, "→");
+    value = value.replace(/\\+bar\{([^}]+)\}/g, (_, inner) => `${inner}̄`);
+    value = value.replace(/\^\{([^}]+)\}/g, (_, exponent) => toSuperscript(exponent));
+    value = value.replace(/\^([A-Za-z0-9+\-±\\]+)\b/g, (_, exponent) => toSuperscript(exponent));
+    value = value.replace(/\^([+\-0]{1,2})/g, (_, exponent) => toSuperscript(exponent));
+    value = value.replace(/\^±/g, "±");
+    value = value.replace(/_\\+text\{([^}]+)\}/g, "_$1");
+    value = value.replace(/_\{([^}]+)\}/g, "_$1");
+    value = value.replace(/[{}]/g, "");
+    value = value.replace(/\^([⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻±]+)/g, "$1");
+    value = value.replace(/\|\s*([A-Za-z0-9])/g, "|$1");
+    value = value.replace(/([A-Za-z0-9])\s*\|/g, "$1|");
+    value = value.replace(/\s+/g, " ").trim();
+    return value;
+  }
+
+  return String(text)
+    .replace(/\$([^$]+)\$/g, (_, segment) => normalizeInlineMathSegment(segment))
+    .replace(/𝔸𝔸𝔸/g, stylizedAAA)
+    .replace(/\bAAA\b/g, stylizedAAA)
+    .replace(/\^([+\-0]{1,2})/g, (_, exponent) => toSuperscript(exponent))
+    .replace(/\^±/g, "±")
+    .replace(/\|= /g, "| = ");
+}
+
 function compareNodes(a, b) {
   const typeOrder = {
     scene: 0,
@@ -313,8 +396,10 @@ if (errors.length) {
     tocSectionCount: 0,
     wroteGraph: false,
     wroteToc: false,
+    wroteTocMarkdown: false,
     graphDrift: false,
     tocDrift: false,
+    tocMarkdownDrift: false,
   });
 }
 
@@ -824,6 +909,7 @@ function buildTextbookTocEntry(scenePath, ancestry = new Set()) {
   const sceneType = asText(sceneConfig.type);
   const markdownPath = resolveAuthoredMarkdownPath(sceneConfig);
   const markdownSection = resolveAuthoredMarkdownSection(sceneConfig);
+  const hideChildrenInToc = sceneConfig?.textbookToc?.hideChildren === true;
   const entry = {
     id: asText(sceneConfig.id) || indexedScene.id,
     title: asText(sceneConfig.title) || indexedScene.name,
@@ -854,7 +940,7 @@ function buildTextbookTocEntry(scenePath, ancestry = new Set()) {
     }
   }
 
-  if (sceneType === "Scene-Index" && Array.isArray(sceneConfig.children)) {
+  if (!hideChildrenInToc && sceneType === "Scene-Index" && Array.isArray(sceneConfig.children)) {
     const nextAncestry = new Set(ancestry);
     nextAncestry.add(normalizedScenePath);
     const children = sceneConfig.children
@@ -895,6 +981,80 @@ function countAllTocSections(entry) {
     ? entry.children.reduce((sum, child) => sum + countAllTocSections(child), 0)
     : 0;
   return ownSections + childSections;
+}
+
+function relativeRepoLink(fromPath, targetPath, searchParams = null) {
+  const fromDir = path.posix.dirname(normalizePath(fromPath));
+  const relativePath = path.posix.relative(fromDir, normalizePath(targetPath)) || ".";
+  const normalizedRelativePath = toPosixPath(relativePath);
+  if (!searchParams || !Object.keys(searchParams).length) {
+    return normalizedRelativePath;
+  }
+  const query = new URLSearchParams();
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (typeof value === "string" && value.trim()) {
+      query.set(key, value);
+    }
+  });
+  const serialized = query.toString();
+  return serialized ? `${normalizedRelativePath}?${serialized}` : normalizedRelativePath;
+}
+
+function renderTextbookTocMarkdown(rootEntry) {
+  const lines = [
+    "# Textbook TOC",
+    "",
+    "This generated table of contents mirrors the current authored scene order and local section structure.",
+    "Chapter links open scenes. Section links open the corresponding markdown section.",
+    "",
+  ];
+
+  function renderEntry(entry, depth) {
+    if (!entry || typeof entry !== "object") {
+      return;
+    }
+    const indent = "  ".repeat(depth);
+    let target = null;
+    if (typeof entry.scenePath === "string" && entry.scenePath.trim()) {
+      target = relativeRepoLink(TEXTBOOK_TOC_MARKDOWN_PATH, entry.scenePath);
+    } else if (typeof entry.markdownPath === "string" && entry.markdownPath.trim()) {
+      target = relativeRepoLink(TEXTBOOK_TOC_MARKDOWN_PATH, entry.markdownPath);
+    }
+
+    const badge =
+      entry.kind === "diagram"
+        ? " _(diagram)_"
+        : entry.kind === "animation"
+          ? " _(animation)_"
+          : "";
+    const label = escapeMarkdownLinkText(normalizeTextbookTocMarkdownLabel(entry.title));
+    lines.push(target ? `${indent}- [${label}](${target})${badge}` : `${indent}- ${label}${badge}`);
+
+    const sections = Array.isArray(entry.sections) ? entry.sections : [];
+    sections.forEach((section) => renderSection(section, depth + 1));
+
+    const children = Array.isArray(entry.children) ? entry.children : [];
+    children.forEach((child) => renderEntry(child, depth + 1));
+  }
+
+  function renderSection(section, depth) {
+    if (!section || typeof section !== "object") {
+      return;
+    }
+    const indent = "  ".repeat(depth);
+    const target = relativeRepoLink(TEXTBOOK_TOC_MARKDOWN_PATH, section.markdownPath, {
+      section: section.markdownSection,
+    });
+    const label = escapeMarkdownLinkText(normalizeTextbookTocMarkdownLabel(section.title));
+    lines.push(`${indent}- [${label}](${target})`);
+    const children = Array.isArray(section.children) ? section.children : [];
+    children.forEach((child) => renderSection(child, depth + 1));
+  }
+
+  const rootChildren = Array.isArray(rootEntry?.children) ? rootEntry.children : [];
+  rootChildren.forEach((entry) => renderEntry(entry, 0));
+  lines.push("");
+  return `${lines.join("\n")}\n`;
 }
 
 const nodes = Array.from(nodeById.values()).sort(compareNodes);
@@ -998,6 +1158,7 @@ const textbookTocManifest = {
   },
   tocRoot: textbookTocRoot,
 };
+const serializedTextbookTocMarkdown = renderTextbookTocMarkdown(textbookTocRoot);
 
 const serializedManifest = `${JSON.stringify(manifest, null, 2)}\n`;
 const outputAbsolutePath = path.join(rootDir, OUTPUT_PATH);
@@ -1013,8 +1174,15 @@ const currentTextbookTocRaw = fs.existsSync(textbookTocAbsolutePath)
   : null;
 const tocDrift = currentTextbookTocRaw !== serializedTextbookToc;
 
+const textbookTocMarkdownAbsolutePath = path.join(rootDir, TEXTBOOK_TOC_MARKDOWN_PATH);
+const currentTextbookTocMarkdownRaw = fs.existsSync(textbookTocMarkdownAbsolutePath)
+  ? fs.readFileSync(textbookTocMarkdownAbsolutePath, "utf8")
+  : null;
+const tocMarkdownDrift = currentTextbookTocMarkdownRaw !== serializedTextbookTocMarkdown;
+
 let wroteGraph = false;
 let wroteToc = false;
+let wroteTocMarkdown = false;
 if (mode === "write" && graphDrift) {
   fs.mkdirSync(path.dirname(outputAbsolutePath), { recursive: true });
   fs.writeFileSync(outputAbsolutePath, serializedManifest, "utf8");
@@ -1024,6 +1192,11 @@ if (mode === "write" && tocDrift) {
   fs.mkdirSync(path.dirname(textbookTocAbsolutePath), { recursive: true });
   fs.writeFileSync(textbookTocAbsolutePath, serializedTextbookToc, "utf8");
   wroteToc = true;
+}
+if (mode === "write" && tocMarkdownDrift) {
+  fs.mkdirSync(path.dirname(textbookTocMarkdownAbsolutePath), { recursive: true });
+  fs.writeFileSync(textbookTocMarkdownAbsolutePath, serializedTextbookTocMarkdown, "utf8");
+  wroteTocMarkdown = true;
 }
 
 printReportAndExit({
@@ -1036,8 +1209,10 @@ printReportAndExit({
   tocSectionCount: countAllTocSections(textbookTocRoot),
   wroteGraph,
   wroteToc,
+  wroteTocMarkdown,
   graphDrift,
   tocDrift,
+  tocMarkdownDrift,
 });
 
 function printReportAndExit({
@@ -1050,8 +1225,10 @@ function printReportAndExit({
   tocSectionCount: reportTocSectionCount,
   wroteGraph: reportWroteGraph,
   wroteToc: reportWroteToc,
+  wroteTocMarkdown: reportWroteTocMarkdown,
   graphDrift: reportGraphDrift,
   tocDrift: reportTocDrift,
+  tocMarkdownDrift: reportTocMarkdownDrift,
 }) {
   console.log(`build-scene-graph mode: ${reportMode}${reportStrict ? " (strict)" : ""}`);
   console.log(`- Scene index entries: ${sceneEntries.length}`);
@@ -1067,12 +1244,18 @@ function printReportAndExit({
   if (reportWroteToc) {
     console.log(`- Wrote textbook TOC: ${TEXTBOOK_TOC_PATH}`);
   }
+  if (reportWroteTocMarkdown) {
+    console.log(`- Wrote textbook TOC markdown: ${TEXTBOOK_TOC_MARKDOWN_PATH}`);
+  }
 
   if (reportGraphDrift && !(reportMode === "write" && reportWroteGraph)) {
     console.log(`- Drift detected: ${OUTPUT_PATH} is out of date`);
   }
   if (reportTocDrift && !(reportMode === "write" && reportWroteToc)) {
     console.log(`- Drift detected: ${TEXTBOOK_TOC_PATH} is out of date`);
+  }
+  if (reportTocMarkdownDrift && !(reportMode === "write" && reportWroteTocMarkdown)) {
+    console.log(`- Drift detected: ${TEXTBOOK_TOC_MARKDOWN_PATH} is out of date`);
   }
 
   if (warnings.length) {
@@ -1090,7 +1273,7 @@ function printReportAndExit({
   const failed =
     errors.length > 0 ||
     (reportStrict && warnings.length > 0) ||
-    (reportMode === "check" && (reportGraphDrift || reportTocDrift));
+    (reportMode === "check" && (reportGraphDrift || reportTocDrift || reportTocMarkdownDrift));
   if (failed) {
     process.exit(1);
   }

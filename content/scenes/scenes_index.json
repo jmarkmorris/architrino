@@ -1384,6 +1384,11 @@
       "id": "archie__support_architrino_research",
       "name": "Support Architrino Research",
       "path": "content/scenes/archie/support_architrino_research.json"
+    },
+    {
+      "id": "archie__textbook_toc",
+      "name": "Textbook TOC",
+      "path": "content/scenes/archie/textbook_toc.json"
     }
   ]
 }

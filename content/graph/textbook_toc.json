@@ -8,7 +8,7 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 138,
+      "entries": 125,
       "sections": 676
     }
   },
@@ -6553,100 +6553,7 @@
                 "title": "Intracluster Medium",
                 "kind": "scene-index",
                 "sceneType": "Scene-Index",
-                "scenePath": "content/scenes/cosmology/intracluster_medium.json",
-                "children": [
-                  {
-                    "id": "proton",
-                    "title": "Proton",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/nuclear/proton.json"
-                  },
-                  {
-                    "id": "he",
-                    "title": "Helium (He)",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/elements/he.json"
-                  },
-                  {
-                    "id": "electron",
-                    "title": "Electron",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/standard-model-particles/electron.json"
-                  },
-                  {
-                    "id": "o",
-                    "title": "Oxygen (O)",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/elements/o.json"
-                  },
-                  {
-                    "id": "ne",
-                    "title": "Neon (Ne)",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/elements/ne.json"
-                  },
-                  {
-                    "id": "mg",
-                    "title": "Magnesium (Mg)",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/elements/mg.json"
-                  },
-                  {
-                    "id": "si",
-                    "title": "Silicon (Si)",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/elements/si.json"
-                  },
-                  {
-                    "id": "s",
-                    "title": "Sulfur (S)",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/elements/s.json"
-                  },
-                  {
-                    "id": "fe",
-                    "title": "Iron (Fe)",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/elements/fe.json"
-                  },
-                  {
-                    "id": "proton",
-                    "title": "Proton",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/nuclear/proton.json"
-                  },
-                  {
-                    "id": "electron",
-                    "title": "Electron",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/standard-model-particles/electron.json"
-                  },
-                  {
-                    "id": "neutrino",
-                    "title": "Neutrino",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/standard-model-particles/neutrino.json"
-                  },
-                  {
-                    "id": "neutrino",
-                    "title": "Neutrino",
-                    "kind": "diagram",
-                    "sceneType": "Scene-Diagram",
-                    "scenePath": "content/scenes/standard-model-particles/neutrino.json"
-                  }
-                ]
+                "scenePath": "content/scenes/cosmology/intracluster_medium.json"
               }
             ]
           },
