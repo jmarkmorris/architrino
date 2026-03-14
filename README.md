@@ -21,6 +21,7 @@ Then open `http://localhost:5173/`.
 - Runtime search is manifest-only and reads `content/graph/scene_graph.json`.
 - Periodic element routing is manifest-only via `runtimeRoutes.periodicGrid` in `content/graph/scene_graph.json`.
 - Element legend routing is generated from `content/graph/runtime_routes.json` into `runtimeRoutes.elementLegendTargets`.
+- Textbook TOC data is generated into `content/graph/textbook_toc.json`.
 - Keep the manifest up to date after content changes.
 
 ## Authoring Contract (Explicit Scene Network)
@@ -34,6 +35,7 @@ Then open `http://localhost:5173/`.
   - `content/scenes/scenes_index.json`
   - `content/markdown/markdown_index.json`
   - `content/graph/scene_graph.json`
+  - `content/graph/textbook_toc.json`
 - After scene/markdown edits, regenerate artifacts before commit:
   - `node scripts/validate-content.mjs --write`
   - `node scripts/build-scene-graph.mjs --write`

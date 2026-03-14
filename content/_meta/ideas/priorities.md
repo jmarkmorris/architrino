@@ -1,17 +1,17 @@
   figure out what to do with the subscription site liberapay.
   and stripe.
   and my qrcode
-
   arghhh - google disabled my email architrino@gmail.com.  Filed appeal 3/14/2026
   
+  ---
   
   2. targeted label polish in theory-mapping and major-thinkers
   3. publication-style prose smoothing on whichever chapter you care most about
 
 ---
 
-Status Table
-These are all now at 100%.
+review Status Table
+These are all now at 100% drafted.
 Next step is to go through them all and add more info.
 extract what I have at wordpress.
 
@@ -151,9 +151,7 @@ The new math now makes three things explicit:
 
 I also made the bare-kernel MCB situation more honest: within the symmetric isolated circular two-body ansatz, the tangential contributions do not cancel branchwise, so exact constant-speed closure is obstructed unless something beyond that bare ansatz is doing the work.
 
-Checks passed:
-- `node scripts/validate-content.mjs --check --strict`
-- `node scripts/build-scene-graph.mjs --check --strict`
+
 
 **Remaining Problems, Easiest First**
 
@@ -251,17 +249,16 @@ Based on the current AAA scores in the scorecard, the next focus should be:
 
 - new architrino repository is live 20260217
   - need to go back and clean up the old neoclassical.ai repo.
+
 - make a new subreddit server named architrino
+
 - rename my blog
-- try to see neoclassical.ai domain 
+
+- try to sell neoclassical.ai domain 
 
 ---
 
 - i like this term 'wake'. It is better than field. Wake: the causal‑isochron residue left by architrino motion; a wake is the architrino‑native description of what appears as a field at the effective level.
-
----
-
-- review docs - I need to spend some dedicated time to review the documents on the webapp. Ai is developing them fast, and the parts I read look good.  How shall I organize this task?
 
 ---
 
