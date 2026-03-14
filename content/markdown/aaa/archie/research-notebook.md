@@ -10,6 +10,13 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 I discovered that an LLM had guided me incorrectly over the previous 2.5 months. The notes below preserve Bill Thurston's description of the issue and the resulting correction path.
 
+Relevant files:
+
+- [master-equation.md](../dynamics/master-equation.md#the-master-equation-canonical-form)
+- [master-equation.md](../dynamics/master-equation.md#energy-lagrangian-and-hamiltonian-structure-of-the-architrino-dynamics)
+- [energy.md](../dynamics/energy.md)
+- [historical-context-and-missed-opportunities.md](../philosophy-history/historical-context-and-missed-opportunities.md#lorentz-before-einstein-the-almost-substrate-moment)
+
 What follows is a briefing document written in LLM-to-LLM form so the mathematical structures and repository repair targets remain explicit.
 
 ### Repo-Wide Physics Architecture Correction
@@ -329,6 +336,13 @@ When you prompt your LLMs to fix the repository, you should explicitly tell them
 
 An important editorial-methodology step was added across the topic documents: each major topic can now define a systematic method for handling its heading-derived leaves, rather than letting individual units accumulate in an ad hoc way. The relevant philosophy-history documents now explicitly introduce unified coverage templates and conformance checks so every topic leaf is written through a deliberate set of areas to cover.
 
+Relevant files:
+
+- [philosophy-of-science.md](../philosophy-history/philosophy-of-science.md#philosophy-of-science-subject-template-unified)
+- [major-thinkers.md](../philosophy-history/major-thinkers.md)
+- [information-computation.md](../philosophy-history/information-computation.md)
+- [crisis-in-physics.md](../philosophy-history/crisis-in-physics.md#crisis-section-template-unified)
+
 This is visible in documents such as [philosophy-of-science.md](../philosophy-history/philosophy-of-science.md), [major-thinkers.md](../philosophy-history/major-thinkers.md), [information-computation.md](../philosophy-history/information-computation.md), and [crisis-in-physics.md](../philosophy-history/crisis-in-physics.md). Each one now opens by stating that the layer needs a standard coverage template, then defines the fields, the prose flow, and a conformance protocol for every topic leaf in that file.
 
 The real gain is not just consistency of style. It is that the project now has a well-considered list of areas to cover when treating a leaf topic. Depending on the document, those areas include things such as the subject name and short name, the core question or tension, the historical problem pressure, what still works, what fails or overstates, relation to $\mathbb{A}\mathbb{A}\mathbb{A}$, transition relevance, long-term relevance, and an explicit statement of what survives or what would count as resolution. That methodology turns topic growth into governed expansion rather than note accretion.
@@ -336,6 +350,12 @@ The real gain is not just consistency of style. It is that the project now has a
 ## 2026-03-07 Hyde Periodic Table
 
 The Hyde periodic table became a meaningful part of the project’s reader-facing structure. The repo now includes both a dedicated Hyde scene in [hyde_periodic_table_scene.json](../../../scenes/chemistry/hyde_periodic_table_scene.json) and a supporting analysis document in [hyde-info.md](../nuclear-atomic/hyde-info.md).
+
+Relevant files:
+
+- [hyde-info.md](../nuclear-atomic/hyde-info.md#5-how-the-hyde-geometry-encodes-periodic-structure)
+- [hyde-info.md](../nuclear-atomic/hyde-info.md#7-aaa-working-hypothesis-collection-draft)
+- [navigation-and-controls.md](navigation-and-controls.md#periodic-table-scene)
 
 What matters about the Hyde form is not only its historical novelty. It is a spiral layout that works well for intuitive thinkers because it preserves a near-continuous path through atomic number while making shell progression and family resemblance visually legible in one sweep. In the current writeup, the Hyde geometry is treated as a structural representation that reduces the topological breaks of the detached rectangular table and makes periodic recurrence feel spatially continuous rather than block-fragmented.
 
@@ -346,6 +366,12 @@ This also connects directly to the interactive atomic reader. The periodic-table
 Progress in the CKM realm crossed an important threshold. In [weak-mixing-ckm.md](../assemblies/fermions/weak-mixing-ckm.md), the current $\mathbb{A}\mathbb{A}\mathbb{A}$ closure uses only three calibrated CKM magnitudes,
 $\lvert V_{us}\rvert = 0.225$, $\lvert V_{cb}\rvert = 0.041$, and $\lvert V_{ub}\rvert = 0.0037$,
 and then predicts the remaining magnitude entries to approximately three-digit accuracy.
+
+Relevant files:
+
+- [weak-mixing-ckm.md](../assemblies/fermions/weak-mixing-ckm.md#ckm-geometric-overlap-minimal-model)
+- [weak-mixing-ckm.md](../assemblies/fermions/weak-mixing-ckm.md#confidence-interval-closure-test)
+- [weak-mixing-ckm.md](../assemblies/fermions/weak-mixing-ckm.md#ckm-closure-target-quark-sector)
 
 The resulting post-fit matrix is
 $$
