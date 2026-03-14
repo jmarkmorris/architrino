@@ -19,7 +19,7 @@
       },
       {
         "nodeId": "cosmic_web",
-        "scenePath": "content/scenes/cosmology/galaxy_cluster.json"
+        "scenePath": "content/scenes/cosmology/structure_formation.json"
       }
     ]
   },
@@ -28,7 +28,7 @@
       "id": "galaxy_cluster",
       "label": "galaxy cluster",
       "scaleExponent": 23,
-      "radius": 1.6,
+      "radius": 1.4,
       "color": "#243d8f",
       "labelTitle": "galaxy cluster"
     },

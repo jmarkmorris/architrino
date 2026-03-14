@@ -1,14 +1,14 @@
 # Delay-Only Formulations (Exact Statements)
 
 Purpose:
-- State the delay differential equations (DDEs) that govern canonical interactions under the delayed, purely radial law.
+- State the delay differential equations (DDEs) that govern canonical interactions under the delayed line-of-action law with Jacobian-weighted magnitude.
 - Record exact analytical solutions only where they exist; otherwise, state solvability status without approximations.
 
 Models:
 - Fixed center (test particle, source stationary):
   - DDE reduces exactly to the ODE $\ddot{r}=-K/r^2$ with $K=\kappa |q q'|>0$; exact closed forms exist.
 - Two-body mutual interaction (opposite or equal charges):
-  - Coupled DDEs with causal roots $t_0$ defined by $|x_i(t)-x_j(t_0)|=t-t_0$ (v=1); accelerations superpose as $\pm \kappa \epsilon^2/r^2$ along the line of action.
+  - Coupled DDEs with causal roots $t_0$ defined by $|x_i(t)-x_j(t_0)|=t-t_0$ (v=1); accelerations superpose as $\pm \kappa \epsilon^2/(r^2 |J|)$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.
 
 Symmetric two-body on a line (exact DDE; challenges):
@@ -22,7 +22,7 @@ Symmetric two-body on a line (exact DDE; challenges):
   $$
 - For opposite charges, the exact relative-coordinate equation is the state-dependent DDE
   $$
-  \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2},
+  \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2\,|J(t)|},
   $$
   with $\tau(t)$ determined by the implicit constraint above. For equal charges, the sign is reversed.
 

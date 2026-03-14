@@ -16,7 +16,7 @@ Traditional superposition treats the indeterminacy as fundamental and ontologica
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing. 
 
-The linearity of quantum superposition arises strictly from the linearity of the Master Equation: the total potential field experienced by any receiver is the exact, unmediated linear sum of all $1/r^2$ causal wake surfaces intersecting its current location. 
+The linearity of quantum superposition arises strictly from the linearity of the Master Equation: the total potential field experienced by any receiver is the exact, unmediated linear sum of all Jacobian-weighted inverse-square causal wake-surface intersections at its current location.
 
 When a tri-binary assembly is described as being in a "superposition," it is physically occupying a metastable region of its configuration space—typically a boundary zone near a separatrix between resonance bands, or hovering near the symmetry-breaking velocity threshold ($v = c_f$). The assembly is continuously driven by the high-dimensional, deterministic flux of the local Noether Sea (the background tri-binary medium). 
 

@@ -12,7 +12,7 @@ A sphere represents a node in the scene hierarchy and acts as a portal into the 
 - `Back` returns one step in your navigation history.
 - `Forward` moves one step forward when that history exists.
 - `Home` returns to the root scene.
-- `Archie` opens or toggles the meta ring space.
+- `Archie` opens or toggles the Archie ring space.
 
 ## Hierarchy Structure
 
@@ -43,6 +43,10 @@ When a sphere maps to markdown, notes open in the markdown panel.
 - A node can open a section view or a full document view.
 - Section views provide local context inside a larger document.
 - Full document views support longer-form reading across the whole text.
+- Split scenes derive peer spheres from one heading level in a document.
+- Tree scenes derive a bounded local heading hierarchy from one document.
+
+Sphere labels may also use more than one text row when the scene author provides auxiliary label data. A common pattern is a title on the first row and a short subtitle, such as a date, on the second row.
 
 ## Quick Start
 
@@ -50,7 +54,7 @@ When a sphere maps to markdown, notes open in the markdown panel.
 2. Use `Back` / `Forward` to move through scene history.
 3. Use `Home` to return to root.
 4. Open notes with the document icon when available.
-5. Use `Archie` to open/toggle the meta ring.
+5. Use `Archie` to open/toggle the Archie ring.
 
 ## Camera and Interaction
 
@@ -65,7 +69,7 @@ When a sphere maps to markdown, notes open in the markdown panel.
 - `Home`: jump to root scene
 - `Search` (magnifier): open scene search
 - `Info` (circle-i): reopen element detail panel when supported
-- `Archie` (ring): open/toggle meta ring
+- `Archie` (ring): open/toggle Archie ring
 - `Notes` (document): open scene notes for current scene
 
 ## Markdown Panel
@@ -73,6 +77,8 @@ When a sphere maps to markdown, notes open in the markdown panel.
 - Toggle layout (1/2 column): layout icon in notes header
 - Open full document from section/index: document icon in notes header
 - Close notes panel: `Close`
+
+When a split or tree source is section-based, opening the full document is often the fastest way to regain the surrounding overview before returning to the local node.
 
 ## Search and Keyboard
 
@@ -86,7 +92,7 @@ When a sphere maps to markdown, notes open in the markdown panel.
 2. Descend sphere-by-sphere into your topic.
 3. Open notes when you need context.
 4. Shift between section reading and full-document reading as needed.
-5. Use history for local path changes and the meta ring for orientation or tooling context.
+5. Use history for local path changes and the Archie ring for orientation or tooling context.
 
 ## Element Scene Controls
 

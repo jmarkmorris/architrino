@@ -2,7 +2,7 @@
 
 In this model, all energy is fundamentally tied to architrinos and the potential fields they generate. Architrinos are the sole primitive carriers of kinetic energy through their motion and the sole primitive sources of potential energy through their interactions. There is no standalone "field substance" or vacuum energy independent of architrinos and their assemblies. A **wake (field)** is the causal-isochron imprint of an architrino's emissions; motion affects the geometry, not the existence, of the wake. "Wake" is the architrino-native description of what appears as a field at the effective level.
 
-All such dynamics unfold on a flat, non-dynamical background (absolute time × Euclidean space). Forces and motion arise from **delayed, purely radial hits from causal isochrons** on this fixed background. We work in units with field speed $c_f=1$.
+All such dynamics unfold on a flat, non-dynamical background (absolute time × Euclidean space). Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and Jacobian-weighted magnitude, on this fixed background. We work in units with field speed $c_f=1$.
 
 Crucially, what we call "spacetime" at the effective level is not the bare Euclidean background, but a **dense sea of scalable high-energy tri-binary assemblies**. These tri-binaries are extremely small compared to ordinary Standard Model particles and constitute the medium in which all other assemblies move and interact. The energetic state and configuration of this tri-binary sea controls how energy, inertia, and effective geometry appear at larger scales.
 
@@ -47,7 +47,20 @@ where $\mathbf{F}_a$ is the net force from all causal hits, given by the Master 
 
 From the canonical per-hit law
 
-$$\mathbf{a}_{o'\leftarrow o}(t; t_0) = \kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}\,\hat{\mathbf{r}},$$
+$$
+\mathbf{a}_{o'\leftarrow o}(t; t_0)
+=
+\kappa\,\sigma_{q_o q_{o'}}\,
+\frac{|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,\hat{\mathbf{r}},
+$$
+
+where
+$$
+J_{o'\leftarrow o}(t;t_0)
+\equiv
+1-\frac{\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}}}{c_f}
+$$
+is the causal Jacobian encoding geometric bunching or dilation of the received wake flux.
 
 decompose the receiver's velocity into radial and transverse components:
 
@@ -57,7 +70,13 @@ Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
 
 - The **instantaneous work rate** from this hit is
   
-  $$\frac{dE_k}{dt}\bigg|_{\text{hit}} = \mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'} = \frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2}\,v_r.$$
+  $$
+  \frac{dE_k}{dt}\bigg|_{\text{hit}}
+  =
+  \mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
+  =
+  \frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,v_r.
+  $$
   
   Only $v_r$ contributes to instantaneous power.
 
@@ -96,7 +115,7 @@ The force-as-gradient identity is valid only when taking the gradient at fixed c
 
 ## Energy Conservation and Exchange
 
-The model enforces energy conservation via the continuous exchange of energy between kinetic and potential forms, plus energy stored in propagating wakes.
+The model enforces energy conservation via the continuous exchange of energy between kinetic and interaction forms, plus energy stored in propagating wakes.
 
 For a single architrino:
 
@@ -108,10 +127,10 @@ $$E_{\text{total}} = \sum_a E_{k,a} + U_{\text{int}} + E_{\text{wake}},$$
 
 and is constant in time (in the limit of perfect regularization and no open boundaries).
 
-- $U_{\text{int}}$ collects all pairwise interaction energies.
-- $E_{\text{wake}}$ accounts for energy carried in the wake structures of the tri-binary sea and any "radiation" from assemblies.
+- $U_{\text{int}}$ is an optional effective decomposition of near-field interaction energy.
+- $E_{\text{wake}}$ accounts for the exact nonlocal interaction content carried by wake structures and any radiation-like transport through the tri-binary sea.
 
-Ledger rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ (pairwise) term is retained for bookkeeping inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
+Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
 In practice, for finite systems or simulation domains, we verify conservation by monitoring $E_{\text{total}}(t)$ and checking convergence as $\eta$ and $\Delta t$ are reduced.
 

@@ -2,7 +2,7 @@
 
 # Revisiting our Action Model — Comparative modeling frameworks for delayed, radial action
 
-We synthesize Steps 1–10 and the canonical Action to compare—side by side—the three modeling options for the emission–propagation–interaction pipeline and to recommend a primary approach (with supporting roles for the others). We work in units with field speed v=1 unless stated otherwise; emission cadence and per-wavefront amplitude are constant; per-hit actions are purely radial along $\hat{\mathbf{r}}$ with 1/r² falloff; H(0)=0 excludes the coincident-time self-kick; no cross products/right-hand-rule terms appear.
+We synthesize Steps 1–10 and the canonical Action to compare, side by side, the three modeling options for the emission-propagation-interaction pipeline and to recommend a primary approach (with supporting roles for the others). We work in units with field speed $v=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the source; per-hit actions are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and Jacobian-weighted magnitude; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
 
 ---
 
@@ -185,7 +185,7 @@ If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau
 
 # Event-driven radial-transport + per-hit EOM (current canonical method)
 
-Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing purely radial per-hit accelerations at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c$ otherwise.
+Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with Jacobian-weighted magnitude at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c$ otherwise.
 
 Field representation (transport/continuity form)
 - Source impulse at $(t_0,\mathbf{s}_0)$ creates a wake surface supported on $r = v(t-t_0)$ with surface density that conserves a constant per-wake surface amplitude $q$:
@@ -203,11 +203,11 @@ Per-hit equation of motion (EOM)
   $$
   \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\| = v\,(t-t_0),\qquad t_0<t.
   $$
-- Each root contributes a purely radial acceleration
+- Each root contributes a line-of-action acceleration
   $$
   \mathbf{a}_{o'\leftarrow j}(t;t_0)
   \;=\;
-  \kappa\,\sigma_{q_j q_{o'}}\,\frac{|q_j q_{o'}|}{r^2}\,\hat{\mathbf{r}},
+  \kappa\,\sigma_{q_j q_{o'}}\,\frac{|q_j q_{o'}|}{r^2\,|J_{o'j}(t;t_0)|}\,\hat{\mathbf{r}},
   \quad
   \hat{\mathbf{r}}=\frac{\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)}{r},\ r>0,
   $$
@@ -253,10 +253,10 @@ Bottom line (3 lines)
 
 ## Differential analysis (criteria-by-criteria)
 
-Axiomatic fidelity (delayed-only, radial-only, constant per-wavefront amplitude)
+Axiomatic fidelity (delayed-only, line-of-action, constant source emission)
 - Method 1: Partially aligned. The PDE yields 1/(4$\pi$r) wave amplitudes; mapping to 1/r² per-hit accelerations requires gradients and conventions. Radial-only action is not built-in.
-- Method 2: Causality and superposition are exact; amplitudes are 1/(4$\pi$r) with a Jacobian |1−$\mathbf{n}\cdot\mathbf{v}_s$/$c$|⁻¹ when evaluating the path-history time delta. To preserve constant per-wavefront amplitude in the canonical law, geometric factors are absorbed into $\kappa$ when comparing accelerations.
-- Method 3: Exact match. Delayed-only, radial-only per-hit with constant per-wavefront amplitude is native. Geometric normalizations are conventionally absorbed into $\kappa$.
+- Method 2: Causality and superposition are exact; amplitudes are 1/(4$\pi$r) with a Jacobian |1−$\mathbf{n}\cdot\mathbf{v}_s$/$c$|⁻¹ when evaluating the path-history time delta. The canonical law keeps that Jacobian weighting explicitly, while overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
+- Method 3: Exact match. Delayed-only, line-of-action per-hit with constant source emission is native, and the branch Jacobian appears explicitly in the received force magnitude. Geometric normalizations are conventionally absorbed into $\kappa$.
 
 Causal root structure, self-interaction, multiplicity
 - Method 1: Self-hits and multiple roots are implicit in the evolving field; they are not directly enumerated as discrete events.
@@ -373,5 +373,3 @@ Notes (interpretation):
 - “Dark-matter-like neutral” denotes very weakly coupled, neutral meta-assemblies consistent with this framework; included here as a hypothesis for qualitative comparison.
 - Entries marked [~] depend on spectrum, thickness, coherence, and alignment (e.g., $\gamma$ vs optical photons; corridor alignment for neutrinos).
 - The diagram is about penetration (transit). Local interactions, capture, or re-binding are separate processes governed by geometry and delay.
-
-

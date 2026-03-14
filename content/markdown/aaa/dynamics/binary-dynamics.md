@@ -33,7 +33,7 @@ where $\delta_p$ is the partner delay angle. The time-averaged tangential accele
 -  The tangential component of the delayed force sustains the orbital motion.
 -  The radial component continuously pulls the particles closer together.
 
-With perfectly symmetric initial conditions (e.g., starting at rest), the paths of the electrino and positrino are distinct but perfect mirror images of each other. As they spiral inward, their speeds continuously increase. Emission cadence and per-wavefront amplitude remain constant; the evolution is driven entirely by delay geometry and, once active, self-interaction.
+With perfectly symmetric initial conditions (e.g., starting at rest), the paths of the electrino and positrino are distinct but perfect mirror images of each other. As they spiral inward, their speeds continuously increase. Emission cadence and intrinsic per-wavefront amplitude remain constant, but the **received** force is still velocity-dependent because the delayed Jacobian compresses or dilates the causal flux along each active branch. The evolution is therefore driven by delay geometry, branch bunching, and, once active, self-interaction.
 
 Initially, and as long as the speeds of both particles are less than or equal to the field speed $c_f$, they are only influenced by their partner's attractive field. The total acceleration is simply the attractive force:
 $$
@@ -51,9 +51,27 @@ This section treats an exponential-in-angle spiral (logarithmic spiral) as a **m
 
 ## Spiral Binary Symmetry-Breaking Point ($v = c_f$)
 
-The binary system's evolution is organized around the **field-speed symmetry point** $v=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is a change in **root count**. The transition is smooth as long as the delay roots remain simple (no "causal shock"), which in the symmetric spiral/circular geometry is generically satisfied. At the hinge the principal self-hit branch appears with a small delay angle ($\tilde{\delta}_s\to 0^+$), which geometrically means the self-hit emission point lies almost directly behind the current position.
-
-The radial factor scales like $1/\sin(\tilde{\delta}_s/2)$ and therefore becomes very large as $\tilde{\delta}_s\to 0^+$. This large outward term adds a strong radial component, but it does not necessarily prevent further tightening because tangential acceleration continues to rise; in the working picture the spiral still contracts more each turn, with any true radial arrest pushed to the final, multi-root turn. The maximum-curvature regime does not occur near threshold but only after $\tilde{\delta}_s$ becomes appreciable (higher $s$ and larger-angle roots).
+The binary system's evolution is organized around the **field-speed symmetry point** $v=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is the birth of the principal self branch. In the symmetric circular geometry the self-delay equation is
+$$
+\delta_s = 2s\sin(\delta_s/2), \qquad s=\frac{v}{c_f}.
+$$
+Writing $s=1+\mu$ with $\mu>0$ small, the principal root satisfies
+$$
+\delta_s \sim \sqrt{24\mu},
+\qquad
+\sin(\delta_s/2)\sim \sqrt{6\mu}.
+$$
+The associated branch Jacobian is
+$$
+J_s = 1-s\cos(\delta_s/2)=1-\frac{\delta_s}{2}\cot(\delta_s/2)\sim 2\mu.
+$$
+Therefore the self radial and tangential magnitudes scale as
+$$
+\frac{1}{\sin(\delta_s/2)\,|J_s|}\sim \mu^{-3/2},
+\qquad
+\frac{1}{\sin^2(\delta_s/2)\,|J_s|}\sim \mu^{-2}.
+$$
+This is the first major consequence of restoring the causal Jacobian: the hinge is not merely a change in root count but a genuine **caustic onset**. The principal self branch turns on with a sharply amplified outward radial response and an even more singular tangential drive. Any candidate maximum-curvature balance must therefore confront a near-threshold Jacobian wall before appealing to higher-winding smoothing.
 
 ## Self-Hit: Definition and Diagnostics
 
@@ -87,9 +105,9 @@ Once self-hit turns on, the natural question is whether the dynamics converge to
 
 MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to future work. The formal state-space framework appears in **State Space and Well-Posedness of the Delayed Two-Body System**.
 
-**Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed, purely radial per-hit law.
+**Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and Jacobian-weighted magnitude.
 
-**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-charge pair can trace when the only forces come from delayed, radial interactions with the partner (multiple-hits) and from one's own past emissions (self-hits, active only when speed exceeds field speed).
+**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-charge pair can trace when the only forces come from delayed, Jacobian-weighted line-of-action interactions with the partner (multiple-hits) and from one's own past emissions (self-hits, active only when speed exceeds field speed).
 
 ### Foundational Context (Ontological Clarification)
 
@@ -198,17 +216,52 @@ $$
 
 #### Canonical Per-Hit Accelerations
 
-Using the delayed, radial law with magnitude $\kappa \epsilon^2 / r^2$ (where $\kappa$ is a coupling constant and $\epsilon = |e/6|$):
+Using the delayed law with line-of-action direction and Jacobian-weighted magnitude (where $\kappa$ is a coupling constant and $\epsilon = |e/6|$), define branch Jacobians
+
+$$
+J_s \equiv 1-\frac{\mathbf{v}_{\text{self}}(t_0)\cdot \hat{u}_s}{c_f},
+\qquad
+J_p \equiv 1-\frac{\mathbf{v}_{\text{partner}}(t_0)\cdot \hat{u}_p}{c_f}.
+$$
+
+These encode the geometric bunching or dilation of the received causal flux along the active self and partner branches.
 
 **Self-hit** (like charges -> repulsive):
 $$
-\mathbf{a}_s = +\kappa \epsilon^2 \frac{1}{r_s^2} \hat{u}_s.
+\mathbf{a}_s = +\kappa \epsilon^2 \frac{1}{r_s^2\,|J_s|} \hat{u}_s.
 $$
 
 **Partner hit** (opposite charges -> attractive):
 $$
-\mathbf{a}_p = -\kappa \epsilon^2 \frac{1}{r_p^2} \hat{u}_p.
+\mathbf{a}_p = -\kappa \epsilon^2 \frac{1}{r_p^2\,|J_p|} \hat{u}_p.
 $$
+
+---
+
+#### Explicit Circular Jacobians
+
+For the symmetric circular geometry, the emitter velocities can be resolved exactly against the line-of-action directions:
+$$
+\mathbf{v}_{\text{self}}(t_0)\cdot \hat{u}_s = s\cos(\delta_s/2),
+\qquad
+\mathbf{v}_{\text{partner}}(t_0)\cdot \hat{u}_p = -s\sin(\delta_p/2).
+$$
+Hence the branch Jacobians reduce to
+$$
+J_s = 1-s\cos(\delta_s/2),
+\qquad
+J_p = 1+s\sin(\delta_p/2).
+$$
+Using the delay constraints gives equivalent forms
+$$
+J_s = 1-\frac{\delta_s}{2}\cot(\delta_s/2),
+\qquad
+J_p = 1+\frac{\delta_p}{2}\tan(\delta_p/2).
+$$
+These formulas make the asymmetry between the two branch types explicit:
+
+- The partner branch always satisfies $J_p > 1$, so delay geometry **dilutes** the received partner flux relative to the static inverse-square value.
+- The self branch can satisfy $J_s \to 0^+$, producing the causal bunching that sharpens self-hit into a null-separatrix wall.
 
 ---
 
@@ -225,29 +278,29 @@ $$
 
 - **Self** (repulsive -> outward -> negative):
  $$
- A_{s,\text{rad}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)}.
+ A_{s,\text{rad}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2\,|J_s|} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)\,|J_s|}.
  $$
 
 - **Partner** (attractive -> inward -> positive):
  $$
- A_{p,\text{rad}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)}.
+ A_{p,\text{rad}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2\,|J_p|} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)\,|J_p|}.
  $$
 
 **Net inward radial acceleration**:
 $$
-A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)} - \frac{1}{\sin(\delta_s / 2)} \right).
+A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)\,|J_p|} - \frac{1}{\sin(\delta_s / 2)\,|J_s|} \right).
 $$
 
 **Tangential components** (both non-negative for $0 < \delta_s, \delta_p < \pi$):
 
 - **Self**:
  $$
- T_s = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)}.
+ T_s = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2\,|J_s|} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)\,|J_s|}.
  $$
 
 - **Partner**:
  $$
- T_p = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)}.
+ T_p = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2\,|J_p|} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)\,|J_p|}.
  $$
 
 **Net tangential acceleration**:
@@ -262,16 +315,16 @@ $$
 When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes, so the tangential drive remains strictly positive, consistent with the lemma above:
 
 $$
-T(s < 1) = T_p = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)}.
+T(s < 1) = T_p = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)\,|J_p|}.
 $$
 
 Using the delay relation $\delta_p = 2s \cos(\delta_p / 2)$:
 
 $$
-T(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2} > 0.
+T(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|} > 0.
 $$
 
-**Interpretation**: Even at sub-field speeds, there is always a **net positive tangential force** (accelerating the binary). This prevents a truly stable, constant-speed circular orbit.
+Because $J_p = 1+s\sin(\delta_p/2) > 1$, the delay geometry weakens the partner contribution relative to bare $1/r^2$, but it never changes its sign. Therefore even at sub-field speeds there is always a **net positive tangential force** (accelerating the binary), which prevents a truly stable, constant-speed circular orbit.
 
 ---
 
@@ -312,7 +365,7 @@ $$
 T_{p,m}
 =
 \frac{\kappa\epsilon^2}{4R^2}
-\frac{\sin(\tilde{\delta}_{p,m}/2)}{\cos^2(\tilde{\delta}_{p,m}/2)}
+\frac{\sin(\tilde{\delta}_{p,m}/2)}{\cos^2(\tilde{\delta}_{p,m}/2)\,|J_{p,m}|}
 >0,
 \qquad \tilde{\delta}_{p,m}\in(0,\pi),
 $$
@@ -321,7 +374,7 @@ $$
 T_{s,m}
 =
 \frac{\kappa\epsilon^2}{4R^2}
-\frac{\cos(\tilde{\delta}_{s,m}/2)}{\sin^2(\tilde{\delta}_{s,m}/2)}
+\frac{\cos(\tilde{\delta}_{s,m}/2)}{\sin^2(\tilde{\delta}_{s,m}/2)\,|J_{s,m}|}
 >0,
 \qquad \tilde{\delta}_{s,m}\in(0,\pi).
 $$
@@ -337,23 +390,26 @@ Within the bare isolated two-body kernel, an exact constant-speed circular orbit
 
 ### What "Maximum Curvature" Demands
 
-**Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$, while the **self-hit factor** also grows because the path curvature brings the particle closer to its own past wakes and because **new self-hit roots appear** at higher $s$. Maximum curvature is reached when the **outward self-hit radial component balances the inward partner pull**; beyond that point the radius cannot decrease without an overwhelming self-hit response.
+**Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$, while the decisive extra effect is the Jacobian weighting: the self-hit response can sharpen dramatically as an active branch approaches its null-separatrix geometry and because **new self-hit roots appear** at higher $s$. Maximum curvature would require the **outward self-hit radial component** to balance the inward partner pull without the still-positive tangential drive destroying constant-speed closure.
 
 From the radial component formula:
 
 $$
-A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)} - \frac{1}{\sin(\delta_s / 2)} \right).
+A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)\,|J_p|} - \frac{1}{\sin(\delta_s / 2)\,|J_s|} \right).
 $$
 
 **Increasing curvature** ($\kappa = 1/R$ larger -> $R$ smaller) requires **stronger inward radial force**. This occurs when:
 
 1. **$\delta_p$ increases** -> $\cos(\delta_p / 2)$ decreases -> partner term $1/\cos(\delta_p / 2)$ **increases** (stronger inward pull).
-2. **$\delta_s$ increases** -> $\sin(\delta_s / 2)$ increases -> self term $1/\sin(\delta_s / 2)$ **decreases** (weaker outward repulsion).
+2. **$\delta_s$ increases** -> $\sin(\delta_s / 2)$ increases -> the geometric part of the self term decreases, while the full outward response still depends on how rapidly the Jacobian factor $|J_s|^{-1}$ grows along the active branch.
 
-**Maximum curvature** (smallest stable $R$) likely occurs at **higher speeds** ($s \gg 1$) where:
-- Multiple self-hits ($m \ge 1$) are active,
-- $\delta_s$ is large (approaching $\pi$),
-- Outward self-repulsion is minimized while inward partner attraction is maximized.
+Two distinct balance mechanisms are now mathematically visible:
+
+1. **Near-threshold Jacobian wall.**  
+   On the principal self branch, $|J_s|^{-1}$ turns on singularly as $s\downarrow 1^+$, with radial magnitude scaling like $(s-1)^{-3/2}$. This is the earliest possible obstruction to continued contraction.
+
+2. **Higher-speed multi-branch redistribution.**  
+   At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full weighted sum over all active branches rather than on the principal branch alone.
 
 **However**: Due to the per-hit $T > 0$ result, this "maximum curvature" state remains unverified for the isolated two-body system. Its stability must be tested by the full, multi-root time-averaged dynamics.
 
@@ -385,26 +441,31 @@ $$
 
 #### Counting Self-Hits by Winding Index
 
-A new self-hit branch (for winding $m$) appears when:
-
+For fixed winding $m \ge 0$, define
 $$
-s \ge s_m^\star = \frac{(2m + 1) \pi}{2}.
+f_m(\delta;s)=2s\sin(\delta/2)-\delta-2\pi m,
+\qquad \delta\in(0,\pi].
 $$
+An $m$-branch self-hit exists exactly when $f_m(\delta;s)=0$ has a solution in $(0,\pi]$.
 
-Therefore, the number of distinct self-hits at speed $s$ is:
+- For the principal branch $m=0$, the threshold is sharp:
+  $$
+  s_0^\star = 1.
+  $$
+- For higher winding numbers $m\ge 1$, the appearance threshold is determined by the tangency condition at the interior maximizer $f_m'(\delta;s)=0$, namely
+  $$
+  \cos(\delta^\star_m/2)=\frac{1}{s},
+  \qquad
+  \sqrt{(s_m^\star)^2-1}-\arccos\!\left(\frac{1}{s_m^\star}\right)=\pi m.
+  $$
 
+Thus the higher self branches do not turn on at equally spaced speeds. Their onset is governed by a nonlinear sequence of tangencies of the delayed self-intersection curve.
+
+For large winding number $m$, the threshold has the asymptotic form
 $$
-N_{\text{self}}(s) = \begin{cases}
-0, & s \le 1, \\
-1 + \max\!\left(0, \left\lfloor \frac{s}{\pi} - \frac{1}{2} \right\rfloor \right), & s > 1.
-\end{cases}
+s_m^\star = \pi m + \frac{\pi}{2} + O\!\left(\frac{1}{m}\right),
 $$
-
-**Examples**:
-
-- $1 < s < 3\pi/2 \approx 4.712$ -> $N_{\text{self}} = 1$ (only $m = 0$).
-- $s \ge 3\pi/2$ -> $N_{\text{self}} \ge 2$ ($m = 0$ and $m = 1$).
-- Higher $m$ branches turn on at $s \ge 5\pi/2$, $7\pi/2$, etc.
+so the old equally spaced picture is recovered only as a high-speed approximation.
 
 **Note**: Straight-line motion admits **no self-hits** even if $s > 1$; **curvature is required**. The above statements apply specifically to uniform circular, non-translating geometry.
 
@@ -446,12 +507,9 @@ The emission points on the circle that can produce hits "now" form a **finite, d
  $$
 
 - **Existence windows**:
- - Principal branch ($m = 0$): exists only for $1 < s \le \pi/2$; terminates at $\tilde{\delta}_s = \pi$ when $s = \pi/2$.
- - For $m \ge 1$: new branch appears when
-  $$
-  s \ge s_m^\star = \frac{(2m + 1) \pi}{2}.
-  $$
- - Within a branch, $\tilde{\delta}_s$ decreases with $s$ -> $\varphi_s$ drifts toward $-\pi$.
+ - Principal branch ($m = 0$): exists for every $s>1$, with $\tilde{\delta}_s\to0^+$ as $s\downarrow1$.
+ - For $m \ge 1$: the branch appears only when the self-delay equation develops an interior tangency. The exact threshold $s_m^\star$ is determined in **Counting Self-Hits by Winding Index** below.
+ - Within each branch, $\tilde{\delta}_s$ initially enters at a tangency angle and then decreases with $s$, so $\varphi_s$ drifts toward $-\pi$ at high speed.
 
 ---
 
@@ -503,7 +561,7 @@ g_{ij}(\tau, \phi) \equiv \|\phi_i(0) - \phi_j(-\tau)\| - c_f \tau = 0.
 $$
 
 #### Lemma 1 (Regularity of the Delay Map)
-*Assumption:* The velocities are sub-luminal relative to the separation, i.e., $|\mathbf{v}_j| < c_f$ (Single-Hit Regime) OR we isolate a specific branch of the multi-hit solution where the relative radial velocity is not $c_f$.
+*Assumption:* The velocities are sub-field-speed relative to the separation, i.e., $|\mathbf{v}_j| < c_f$ (Single-Hit Regime) OR we isolate a specific branch of the multi-hit solution where the relative radial velocity is not $c_f$.
 
 *Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+$ such that $\tau(\phi) = \tau^*$.
 
@@ -524,7 +582,7 @@ $$
 \frac{\phi_i(0)-\phi_j(-\tau^*)}{\|\phi_i(0)-\phi_j(-\tau^*)\|}.
 $$
 The simple-root condition is exactly $\partial_\tau g_{ij}\neq 0$, i.e. no
-retarded tangency/causal-shock degeneracy. Therefore, by the Banach-space
+delayed tangency/causal-shock degeneracy. Therefore, by the Banach-space
 Implicit Function Theorem, there exist a neighborhood $U$ of $\phi$ and a
 unique $C^1$ map $\tau:U\to\mathbb{R}^+$ with
 $g_{ij}(\tau(\psi),\psi)=0$ and $\tau(\phi)=\tau^*$. $\square$
@@ -620,7 +678,7 @@ We consider the regularized two-body system in the Euclidean Void $\mathbb{R}^3$
 #### Definition 1 (The Fundamental Symmetry Group)
 The background substrate and the master equation interaction kernel
 $$
-\mathbf{a}_{ij}(t) \propto \frac{\mathbf{x}_i(t) - \mathbf{x}_j(t_0)}{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|^2}
+\mathbf{a}_{ij}(t) \propto \frac{\mathbf{x}_i(t) - \mathbf{x}_j(t_0)}{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|^2\,|J_{ij}(t;t_0)|}
 $$
 (regularized by $\eta$) respect the group:
 $$
@@ -635,8 +693,8 @@ Let $\mathbf{x}(t)$ be a solution to the master equation.
 
 *Proof.*  
 For time translation, set $\mathbf{y}_i(t)=\mathbf{x}_i(t+\tau)$. If
-$t_0\in\mathcal{C}_j^x(t+\tau)$ for the original solution, then
-$t_0-\tau\in\mathcal{C}_j^y(t)$ because
+$t_0\in\mathcal{C}_{ij}^x(t+\tau)$ for the original solution, then
+$t_0-\tau\in\mathcal{C}_{ij}^y(t)$ because
 $$
 \|\mathbf{y}_i(t)-\mathbf{y}_j(t_0-\tau)\|
 =\|\mathbf{x}_i(t+\tau)-\mathbf{x}_j(t_0)\|
@@ -658,8 +716,8 @@ $\hat{\mathbf{r}}_{ij}^y=R\hat{\mathbf{r}}_{ij}^x$. Therefore each force term
 transforms as $\mathbf{a}_{ij}^y=R\mathbf{a}_{ij}^x$, and
 $$
 \ddot{\mathbf{y}}_i(t)=R\ddot{\mathbf{x}}_i(t)
-=\sum_j\sum_{t_0\in\mathcal{C}_j(t)}
-\kappa\sigma_{ij}\frac{|q_iq_j|}{r_{ij}^2}\,\hat{\mathbf{r}}_{ij}^y.
+=\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\kappa\sigma_{ij}\frac{|q_iq_j|}{r_{ij}^2\,|J_{ij}(t;t_0)|}\,\hat{\mathbf{r}}_{ij}^y.
 $$
 Thus $\mathbf{y}$ solves the same equations. $\square$
 

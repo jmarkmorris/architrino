@@ -1181,7 +1181,7 @@ if (markdownRenderer) {
 const markdownManifestPath = "content/markdown/markdown_index.json";
 const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
-const metaScenePath = "content/scenes/meta/meta.json";
+const archieScenePath = "content/scenes/archie/archie.json";
 const composerSceneId = "composer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
@@ -1195,7 +1195,7 @@ let appDirector = null;
 const sceneIndexService = new SceneIndexService();
 const periodicTableService = new PeriodicTableService();
 const searchBackStack = [];
-const metaBackStack = [];
+const archieBackStack = [];
 const generationBackStack = [];
 const browserBackStack = [];
 const browserForwardStack = [];
@@ -3636,14 +3636,14 @@ function updateDocButton() {
   docButton.disabled = transitionState.active || !hasDoc;
 }
 
-function updateMetaButton() {
-  const button = document.getElementById("meta-button");
+function updateArchieButton() {
+  const button = document.getElementById("archie-button");
   if (!button) {
     return;
   }
-  const isMeta = currentLevel?.id === metaScenePath;
-  button.classList.toggle("is-active", isMeta);
-  button.setAttribute("aria-pressed", String(isMeta));
+  const isArchie = currentLevel?.id === archieScenePath;
+  button.classList.toggle("is-active", isArchie);
+  button.setAttribute("aria-pressed", String(isArchie));
 }
 
 const composerUiRuntime = createComposerUiRuntime({
@@ -3699,7 +3699,7 @@ function updateSceneLabel() {
   }
   sceneLabel.textContent = currentLevel?.name ?? "";
   updateDocButton();
-  updateMetaButton();
+  updateArchieButton();
   updateMarkdownLayoutToggleButton();
   updateMarkdownDocButton();
   composerUiRuntime.updateComposerOverlay(currentLevel);
@@ -3709,12 +3709,12 @@ function updateSceneLabel() {
   updateElementNavigationUi();
 }
 
-function openMetaRing() {
+function openArchieRing() {
   if (transitionState.active) {
     return;
   }
-  if (currentLevel?.id === metaScenePath) {
-    const backState = metaBackStack.pop();
+  if (currentLevel?.id === archieScenePath) {
+    const backState = archieBackStack.pop();
     if (backState?.levelId) {
       jumpToScene(backState.levelId, {
         restoreNavStack: backState.navigationStack,
@@ -3725,7 +3725,7 @@ function openMetaRing() {
     return;
   }
   if (currentLevel) {
-    metaBackStack.push({
+    archieBackStack.push({
       levelId: currentLevel.id,
       navigationStack: navigationStack.map((entry) => ({
         levelId: entry.levelId,
@@ -3733,7 +3733,7 @@ function openMetaRing() {
       })),
     });
   }
-  jumpToScene(metaScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
+  jumpToScene(archieScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
 }
 
 const sceneSearchRuntime = createSceneSearchRuntime({
@@ -4160,7 +4160,7 @@ async function init() {
 }
 
 if (typeof window !== "undefined") {
-  window.openMetaRing = openMetaRing;
+  window.openArchieRing = openArchieRing;
 }
 
 appDirector = new AppDirector({
@@ -4180,7 +4180,7 @@ appDirector = new AppDirector({
   getTransitionState: () => transitionState,
   getNavigationStack: () => navigationStack,
   getSearchBackStack: () => searchBackStack,
-  getMetaBackStack: () => metaBackStack,
+  getArchieBackStack: () => archieBackStack,
   getGenerationBackStack: () => generationBackStack,
 });
 const appShellUiRuntime = createAppShellUiRuntime({

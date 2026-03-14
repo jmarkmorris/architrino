@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "meta__meta_github_presence_and_community",
-    "title": "GitHub Presence & Community",
+    "id": "archie__scene_taxonomy",
+    "title": "Scene Taxonomy",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/github-presence-and-community.md"
+      "path": "content/markdown/aaa/archie/scene-taxonomy.md"
     },
     "view": {
       "columns": 1,

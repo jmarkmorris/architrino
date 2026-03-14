@@ -309,7 +309,7 @@ body {
   height: 18px;
 }
 
-#meta-button {
+#archie-button {
   -webkit-appearance: none;
   appearance: none;
   width: 32px;
@@ -325,7 +325,7 @@ body {
   padding: 0;
 }
 
-#meta-button svg {
+#archie-button svg {
   width: 18px;
   height: 18px;
   pointer-events: none;
@@ -334,7 +334,7 @@ body {
   fill: none;
 }
 
-#meta-button.is-active {
+#archie-button.is-active {
   border-color: rgba(213, 220, 255, 0.6);
 }
 

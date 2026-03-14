@@ -686,16 +686,6 @@
       "path": "content/scenes/foundations/foundations.json"
     },
     {
-      "id": "composer",
-      "name": "Composer",
-      "path": "content/scenes/meta/composer.json"
-    },
-    {
-      "id": "meta",
-      "name": "Archie",
-      "path": "content/scenes/meta/meta.json"
-    },
-    {
       "id": "atom",
       "name": "Atom",
       "path": "content/scenes/nuclear/atom.json"
@@ -1016,41 +1006,6 @@
       "path": "content/scenes/foundations/foundational_ontology.json"
     },
     {
-      "id": "meta__meta_about",
-      "name": "About",
-      "path": "content/scenes/meta/meta_about.json"
-    },
-    {
-      "id": "meta__meta_glossary",
-      "name": "Glossary",
-      "path": "content/scenes/meta/meta_glossary.json"
-    },
-    {
-      "id": "meta__meta_help",
-      "name": "Help",
-      "path": "content/scenes/meta/meta_help.json"
-    },
-    {
-      "id": "meta__meta_licenses_attributions",
-      "name": "Licenses & Attributions",
-      "path": "content/scenes/meta/meta_licenses_attributions.json"
-    },
-    {
-      "id": "meta__meta_mathematical_style_guide",
-      "name": "Mathematical Style Guide",
-      "path": "content/scenes/meta/meta_mathematical_style_guide.json"
-    },
-    {
-      "id": "meta__meta_mathematical_terminology",
-      "name": "Mathematical Terminology",
-      "path": "content/scenes/meta/meta_mathematical_terminology.json"
-    },
-    {
-      "id": "meta__meta_scene_taxonomy",
-      "name": "Scene Taxonomy",
-      "path": "content/scenes/meta/meta_scene_taxonomy.json"
-    },
-    {
       "id": "nuclear_atomic__atomic_spectra",
       "name": "Atomic Spectra",
       "path": "content/scenes/nuclear/atomic_spectra.json"
@@ -1361,19 +1316,69 @@
       "path": "content/scenes/philosophy_history/information_computation.json"
     },
     {
-      "id": "meta__meta_academic_style_guide",
+      "id": "composer",
+      "name": "Composer",
+      "path": "content/scenes/archie/composer.json"
+    },
+    {
+      "id": "archie__about",
+      "name": "About the Webapp",
+      "path": "content/scenes/archie/about.json"
+    },
+    {
+      "id": "archie__academic_style_guide",
       "name": "Academic Style Guide",
-      "path": "content/scenes/meta/meta_academic_style_guide.json"
+      "path": "content/scenes/archie/academic_style_guide.json"
     },
     {
-      "id": "meta__meta_textbook_file_structure",
-      "name": "Textbook File Structure",
-      "path": "content/scenes/meta/meta_textbook_file_structure.json"
+      "id": "archie",
+      "name": "Archie",
+      "path": "content/scenes/archie/archie.json"
     },
     {
-      "id": "meta__meta_github_presence_and_community",
+      "id": "archie__github_presence_and_community",
       "name": "GitHub Presence & Community",
-      "path": "content/scenes/meta/meta_github_presence_and_community.json"
+      "path": "content/scenes/archie/github_presence_and_community.json"
+    },
+    {
+      "id": "archie__glossary",
+      "name": "Comparative Glossary",
+      "path": "content/scenes/archie/glossary.json"
+    },
+    {
+      "id": "archie__help",
+      "name": "Navigation & Controls",
+      "path": "content/scenes/archie/help.json"
+    },
+    {
+      "id": "archie__licenses_attributions",
+      "name": "Licenses & Attributions",
+      "path": "content/scenes/archie/licenses_attributions.json"
+    },
+    {
+      "id": "archie__mathematical_style_guide",
+      "name": "Mathematical Style Guide",
+      "path": "content/scenes/archie/mathematical_style_guide.json"
+    },
+    {
+      "id": "archie__mathematical_terminology",
+      "name": "Mathematical Terminology Reference",
+      "path": "content/scenes/archie/mathematical_terminology.json"
+    },
+    {
+      "id": "archie__scene_taxonomy",
+      "name": "Scene Taxonomy",
+      "path": "content/scenes/archie/scene_taxonomy.json"
+    },
+    {
+      "id": "archie__textbook_file_structure",
+      "name": "Textbook File Structure",
+      "path": "content/scenes/archie/textbook_file_structure.json"
+    },
+    {
+      "id": "archie__research_notebook",
+      "name": "Research Notebook",
+      "path": "content/scenes/archie/research_notebook.json"
     }
   ]
 }

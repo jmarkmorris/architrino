@@ -9,23 +9,24 @@ Canonical dynamics are defined in [The Master Equation (Canonical Form)](master-
 $$
 \mathcal{A}_{\text{self}}[\gamma] = \iint_{\gamma \times \gamma}
 \frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f|t-t'|\big)}
-{\|\mathbf{x}(t)-\mathbf{x}(t')\|^2}\,dt\,dt'
+{\|\mathbf{x}(t)-\mathbf{x}(t')\|^2\,J_\gamma(t,t')}\,dt\,dt'
 $$
 We introduce a functional to replace ad‑hoc stability searches with a single quantity that can be compared across trajectories. The goal is to identify which worldlines are dynamically preferred and to connect that preference to discrete, reproducible particle‑like states.
 
-This integrates over all pairs of points on a single worldline and counts only those pairs that are causally connected by a wake moving at speed $c_f$. The $1/r^2$ factor weights nearby self‑hits more strongly than distant ones.
-Convention: this document uses the symmetric selector $|t-t'|$ in action integrals; the equivalent retarded form uses $(t-t')$ with an explicit $\Theta(t-t')$.
+This integrates over all pairs of points on a single worldline and counts only those pairs that are causally connected by a wake moving at speed $c_f$. The inverse-square factor weights nearby self‑hits more strongly than distant ones, while $J_\gamma^{-1}$ accounts for the geometric bunching or dilation of the delayed flux along the active branch.
+Convention: this document uses the symmetric selector $|t-t'|$ in action integrals; the equivalent delayed form uses $(t-t')$ with an explicit $\Theta(t-t')$.
+Here $J_\gamma(t,t')$ denotes the absolute delay-map Jacobian induced by the causal constraint, namely $J_\gamma(t,t')=\left|\partial_{t'}\big(\|\mathbf{x}(t)-\mathbf{x}(t')\|-c_f|t-t'|\big)\right|$.
 
 **Interpretation:**
 1. **Object:** The full worldline $\gamma$ is treated as a single geometric object.
 2. **Constraint:** The delta function enforces the light‑cone condition, selecting causally connected pairs.
-3. **Measure:** The $1/r^2$ weight emphasizes close self‑hits over distant ones.
+3. **Measure:** The inverse-square weight emphasizes close self‑hits over distant ones, while the Jacobian factor converts constant source emission into the correct received causal flux.
 
 **Normalized (periodic) self‑action:**
 $$
 \bar{\mathcal{A}}_{\text{self}}[\gamma] =
 \frac{1}{T^2}\int_0^T\!\int_0^T
-\frac{\delta_\eta\!\big(r(t,t')-c_f|t-t'|\big)}{r(t,t')^2}\,dt\,dt'
+\frac{\delta_\eta\!\big(r(t,t')-c_f|t-t'|\big)}{r(t,t')^2\,J_\gamma(t,t')}\,dt\,dt'
 $$
 with $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$ and $\delta_\eta$ a mollified delta.
 This version is defined for periodic orbits. The $T^2$ normalization makes values comparable across different periods, while $\delta_\eta$ regularizes the causal constraint for numerical evaluation.
@@ -36,23 +37,23 @@ $$
 \bar{\mathcal{A}}_{\text{total}}[\{\gamma_i\}] =
 \frac{1}{T^2}\left[
 \sum_i \int_0^T\!\int_0^T
-\frac{\delta_\eta\!\big(r_{ii}(t,t')-c_f|t-t'|\big)}{r_{ii}(t,t')^2}\,dt\,dt'
+\frac{\delta_\eta\!\big(r_{ii}(t,t')-c_f|t-t'|\big)}{r_{ii}(t,t')^2\,J_{ii}(t,t')}\,dt\,dt'
 \;+\;
 \frac{1}{2}\sum_{i\ne j}\int_0^T\!\int_0^T
-\frac{\delta_\eta\!\big(r_{ij}(t,t')-c_f|t-t'|\big)}{r_{ij}(t,t')^2}\,dt\,dt'
+\frac{\delta_\eta\!\big(r_{ij}(t,t')-c_f|t-t'|\big)}{r_{ij}(t,t')^2\,J_{ij}(t,t')}\,dt\,dt'
 \right]
 $$
 This aggregates self‑terms and cross‑terms between components, with the $\frac{1}{2}\sum_{i\ne j}$ convention ensuring unordered pairs are counted once.
 
-**Definitions:** $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $r_{ij}(t,t')=\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|$, and $\Delta t = t-t'$.
+**Definitions:** $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $r_{ij}(t,t')=\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|$, $\Delta t = t-t'$, and $J_{ij}(t,t')=\left|\partial_{t'}\big(r_{ij}(t,t')-c_f|t-t'|\big)\right|$ is the branch Jacobian induced by the delayed causal constraint.
 
 **Kernel comparison:**
 $$
-\text{Force kernel: } \left[ \frac{\hat{\mathbf{r}}(t,t')}{r^2}, \delta\!\big(r-c_f\Delta t\big) \right]
+\text{Force kernel: } \left[ \frac{\hat{\mathbf{r}}(t,t')}{r^2\,J}, \delta\!\big(r-c_f\Delta t\big) \right]
 \qquad
-\text{Action kernel: } \left[ \frac{1}{r^2}, \delta\!\big(r-c_f\Delta t\big) \right]
+\text{Action kernel: } \left[ \frac{1}{r^2\,J}, \delta\!\big(r-c_f\Delta t\big) \right]
 $$
-The force kernel retains direction via $\hat{\mathbf{r}}$, while the action kernel keeps only the scalar magnitude. This is the minimal change that turns a vector interaction into a scalar functional suitable for variational comparisons.
+The force kernel retains direction via $\hat{\mathbf{r}}$, while the action kernel keeps only the scalar magnitude. This is the minimal change that turns a vector interaction into a scalar functional suitable for variational comparisons while preserving the same causal Jacobian geometry as the master equation.
 
 As a scalar, $\mathcal{A}_{\text{self}}$ summarizes the total strength of causal self‑hits along a worldline. It is derived directly from the interaction structure, but with the directional information removed.
 
@@ -60,7 +61,7 @@ For reference, the self‑interaction term in the master equation uses the same 
 $$
 \mathbf{a}_{\text{self}}(t)
 =\kappa q^2\int dt' \,
-\frac{\hat{\mathbf{r}}(t,t')}{r^2(t,t')}
+\frac{\hat{\mathbf{r}}(t,t')}{r^2(t,t')\,J_\gamma(t,t')}
 \delta\!\big(r(t,t')-c_f(t-t')\big)
 $$
 
@@ -79,11 +80,11 @@ r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|.
 $$
 
 For a $T$-periodic $C^2$ trajectory $\mathbf{x}(t)$ with no collisions on the sampled
-domain ($r(t,t')\ge r_{\min}>0$ on support of $\phi_\eta$), define
+domain ($r(t,t')\ge r_{\min}>0$ and $J_\gamma(t,t')\ge J_{\min}>0$ on support of $\phi_\eta$), define
 $$
 \bar{\mathcal{A}}_{\text{self},\eta}[\gamma]
 =\frac{1}{T^2}\int_0^T\!\!\int_0^T
-\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2}\,dt\,dt'.
+\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2\,J_\gamma(t,t')}\,dt\,dt'.
 $$
 
 This is the primary object for proofs and numerics. The unregularized
@@ -96,6 +97,7 @@ We use the following minimal assumption set for theorem-level statements:
 - **(A1) Regularity:** $\mathbf{x}\in C^2(\mathbb{R};\mathbb{R}^3)$ and is $T$-periodic.
 - **(A2) Finite-speed causality:** The causal selector is $F_\gamma(t,t')=0$ with field speed $c_f>0$.
 - **(A3) Collision exclusion on support:** $r(t,t')\ge r_{\min}>0$ whenever $\phi_\eta(F_\gamma(t,t'))\neq0$.
+- **(A3b) Jacobian nondegeneracy on support:** $J_\gamma(t,t')\ge J_{\min}>0$ whenever $\phi_\eta(F_\gamma(t,t'))\neq0$.
 - **(A4) Transversality (generic branch):** $\nabla F_\gamma\neq0$ along the selected causal set.
 - **(A5) Fixed topological class:** Deformations are taken inside one homotopy class on $T^2$ unless a bifurcation condition is crossed.
 - **(A6) Isolated system bookkeeping:** When connecting to dynamics, energy/momentum use the same $\eta$ and history window conventions as the master-equation diagnostics.
@@ -115,7 +117,7 @@ $$
 \mathcal{L}_{\text{causal}} = \{(t,t')\in T^2 \mid \|\mathbf{x}(t)-\mathbf{x}(t')\| = c_f|t-t'|\}
 $$
 is the set of self‑hits. Its winding numbers $(p,q)$ on $T^2$ are **discrete labels** for orbit families. As $R$ or $v$ change, the locus undergoes reconnection events; these are the bifurcations where families appear or disappear, giving a natural quantization of admissible self‑hit patterns. Sub‑$c_f$ motion leaves $\mathcal{L}_{\text{causal}}$ empty; super‑$c_f$ creates branches whose closure determines the integer self‑hit count per period.
-The self‑action integral is the **weighted arc length** of $\mathcal{L}_{\text{causal}}$ with weight $1/r^2$, so topology and metric weight enter together.
+The self‑action integral is the **weighted arc length** of $\mathcal{L}_{\text{causal}}$ with weight $1/(r^2 J_\gamma)$, so topology and metric weight enter together.
 
 **Causal writhe (chirality):**
 $$
@@ -134,31 +136,32 @@ $\phi_\eta\in C_c^\infty(\mathbb{R})$, $\phi_\eta\ge0$, $\int_{\mathbb{R}}\phi_\
 
 #### Assumptions Checklist (Use Before Citing a Theorem)
 
-| Claim | A1 | A2 | A3 | A4 | A5 |
-| --- | --- | --- | --- | --- | --- |
-| Theorem 1 (finiteness/nonnegativity) | required | required | required | not required | not required |
-| Theorem 2 (coarea limit) | required | required | required | required | not required |
-| Corollary 2.1 (integer labels) | required | required | required | required | required |
-| Theorem 3 (bifurcation criterion) | required | required | required | required (except at critical value) | required |
-| Theorem 4 (two-sided bounds) | required | required | required | not required | not required |
+| Claim | A1 | A2 | A3 | A3b | A4 | A5 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Theorem 1 (finiteness/nonnegativity) | required | required | required | required | not required | not required |
+| Theorem 2 (coarea limit) | required | required | required | required | required | not required |
+| Corollary 2.1 (integer labels) | required | required | required | not required | required | required |
+| Theorem 3 (bifurcation criterion) | required | required | required | not required | required (except at critical value) | required |
+| Theorem 4 (two-sided bounds) | required | required | required | required | not required | not required |
 
 #### Theorem 1 (Well-defined finite regularized action)
-Under (A1)-(A3), $\bar{\mathcal{A}}_{\text{self},\eta}[\gamma]$ is finite and nonnegative.
+Under (A1)-(A3b), $\bar{\mathcal{A}}_{\text{self},\eta}[\gamma]$ is finite and nonnegative.
 
 **Proof.** Write
 $$
 \bar{\mathcal{A}}_{\text{self},\eta}
-=\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2}\,dt\,dt'.
+=
+\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2 J_\gamma(t,t')}\,dt\,dt'.
 $$
-The integrand is nonnegative because $\phi_\eta\ge0$ and $r^{-2}>0$, so $\bar{\mathcal{A}}_{\text{self},\eta}\ge0$.
-By (A3), on the support of $\phi_\eta(F_\gamma)$ we have $r\ge r_{\min}>0$, hence
-$r^{-2}\le r_{\min}^{-2}$. Therefore
+The integrand is nonnegative because $\phi_\eta\ge0$, $r^{-2}>0$, and $J_\gamma^{-1}>0$, so $\bar{\mathcal{A}}_{\text{self},\eta}\ge0$.
+By (A3) and (A3b), on the support of $\phi_\eta(F_\gamma)$ we have $r\ge r_{\min}>0$ and $J_\gamma\ge J_{\min}>0$, hence
+$r^{-2}J_\gamma^{-1}\le r_{\min}^{-2}J_{\min}^{-1}$. Therefore
 $$
 0\le \bar{\mathcal{A}}_{\text{self},\eta}
 \le
-\frac{1}{T^2}\,r_{\min}^{-2}\,\|\phi_\eta\|_\infty\,|[0,T]^2|
+\frac{1}{T^2}\,r_{\min}^{-2}J_{\min}^{-1}\,\|\phi_\eta\|_\infty\,|[0,T]^2|
 =
-\frac{\|\phi_\eta\|_\infty}{r_{\min}^2}<\infty.
+\frac{\|\phi_\eta\|_\infty}{r_{\min}^2 J_{\min}}<\infty.
 $$
 So the functional is finite and nonnegative.
 
@@ -170,13 +173,13 @@ $$
 =
 \frac{1}{T^2}
 \int_{\mathcal{L}_{\text{causal}}}
-\frac{1}{r(t,t')^2\,\|\nabla F_\gamma(t,t')\|}\,d\ell,
+\frac{1}{r(t,t')^2\,J_\gamma(t,t')\,\|\nabla F_\gamma(t,t')\|}\,d\ell,
 $$
 where $\mathcal{L}_{\text{causal}}=\{(t,t')\in T^2: F_\gamma(t,t')=0\}$.
 
 **Proof.** Apply the coarea formula on $[0,T]^2$ with level function $F_\gamma$:
 $$
-\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2}\,dt\,dt'
+\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2 J_\gamma}\,dt\,dt'
 =
 \int_{\mathbb{R}}\phi_\eta(s)\,
 H(s)\,ds,
@@ -185,9 +188,9 @@ with
 $$
 H(s)\equiv
 \int_{F_\gamma^{-1}(s)}
-\frac{1}{r^2\,\|\nabla F_\gamma\|}\,d\ell.
+\frac{1}{r^2\,J_\gamma\,\|\nabla F_\gamma\|}\,d\ell.
 $$
-By (A4), $\|\nabla F_\gamma\|$ is nonzero on $F_\gamma^{-1}(0)$, so in a small tubular neighborhood of the zero level the level sets are regular 1-manifolds and $H(s)$ is continuous near $s=0$. By (A3), $r^{-2}$ is bounded on the active support, so $H(s)$ is locally bounded. Since $\phi_\eta$ is an approximate identity, $\int \phi_\eta(s)H(s)\,ds\to H(0)$ as $\eta\to0^+$. Dividing by $T^2$ yields the claimed limit.
+By (A4), $\|\nabla F_\gamma\|$ is nonzero on $F_\gamma^{-1}(0)$, so in a small tubular neighborhood of the zero level the level sets are regular 1-manifolds and $H(s)$ is continuous near $s=0$. By (A3) and (A3b), both $r^{-2}$ and $J_\gamma^{-1}$ are bounded on the active support, so $H(s)$ is locally bounded. Since $\phi_\eta$ is an approximate identity, $\int \phi_\eta(s)H(s)\,ds\to H(0)$ as $\eta\to0^+$. Dividing by $T^2$ yields the claimed limit.
 
 #### Corollary 2.1 (Discrete branch labels)
 Connected components of $\mathcal{L}_{\text{causal}}$ carry winding numbers
@@ -206,28 +209,28 @@ for some $(t,t')\in T^2$.
 **Proof.** Fix $\lambda_0$ such that $F_{\lambda_0}^{-1}(0)$ is regular (A4). By the implicit function theorem, near every point of $F_{\lambda_0}^{-1}(0)$ the zero set is a smooth curve varying smoothly with $\lambda$. Compactness of $T^2$ gives a finite cover, so the full causal locus varies by isotopy for $\lambda$ in a neighborhood of $\lambda_0$. Isotopy preserves component count and homology labels. Therefore these quantities are locally constant on regular parameter intervals. Any change between two regular intervals must pass through a non-regular parameter where $\nabla F=0$ at a zero-level point.
 
 #### Theorem 4 (Two-sided bounds useful for validation)
-Under (A1)-(A3), for any fixed $\eta>0$:
+Under (A1)-(A3b), for any fixed $\eta>0$:
 $$
 0\le
 \bar{\mathcal{A}}_{\text{self},\eta}
 \le
-\frac{\|\phi_\eta\|_\infty}{r_{\min}^2}.
+\frac{\|\phi_\eta\|_\infty}{r_{\min}^2 J_{\min}}.
 $$
-If additionally $r\le r_{\max}$ on support, then
+If additionally $r\le r_{\max}$ and $J_\gamma\le J_{\max}$ on support, then
 $$
 \bar{\mathcal{A}}_{\text{self},\eta}
 \ge
-\frac{1}{r_{\max}^2T^2}
+\frac{1}{r_{\max}^2 J_{\max} T^2}
 \int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'.
 $$
 
-**Proof.** The upper bound is exactly the estimate used in Theorem 1. For the lower bound, if $r\le r_{\max}$ on support, then $r^{-2}\ge r_{\max}^{-2}$ on support, hence
+**Proof.** The upper bound is exactly the estimate used in Theorem 1. For the lower bound, if $r\le r_{\max}$ and $J_\gamma\le J_{\max}$ on support, then $r^{-2}\ge r_{\max}^{-2}$ and $J_\gamma^{-1}\ge J_{\max}^{-1}$ on support, hence
 $$
 \bar{\mathcal{A}}_{\text{self},\eta}
 =
-\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2}\,dt\,dt'
+\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2 J_\gamma}\,dt\,dt'
 \ge
-\frac{1}{r_{\max}^2T^2}\int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'.
+\frac{1}{r_{\max}^2 J_{\max} T^2}\int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'.
 $$
 
 **Meaning:** numerical pipelines can assert hard pass/fail envelopes before any
@@ -244,39 +247,56 @@ $$
 \sin\xi = \frac{\xi}{\beta}
 $$
 
-**Threshold:** The first non‑trivial self‑hit occurs at $\beta=\pi/2$.
+The nontrivial self-hit threshold is
+$$
+\beta^\star = 1.
+$$
+For $\beta \le 1$, the only solution is the trivial coincidence $\xi=0$, so the circular self-action vanishes. For $\beta>1$, each admissible root $\xi_n$ determines a concrete branch datum:
+$$
+\Delta_n = \frac{2\xi_n}{\omega},
+\qquad
+r_n = c_f\Delta_n = \frac{2R\xi_n}{\beta},
+\qquad
+J_n = 1-\beta\cos\xi_n = 1-\xi_n\cot\xi_n.
+$$
+The derivative of the root function is
+$$
+g_\beta'(\xi_n)=\cos\xi_n-\frac{1}{\beta}
+=
+\cos\xi_n-\frac{\sin\xi_n}{\xi_n},
+$$
+which is the additional coarea factor controlling branch weight when the two-time integral is collapsed onto the circular causal locus.
 
-**Closed‑form sum (with Jacobian):**
+Near threshold, write $\beta=1+\mu$ with $\mu>0$ small. The principal root then satisfies
 $$
-\bar{\mathcal{A}}_{\text{self}}(\beta,R)=
-\frac{\beta^3}{8\pi R^2}\sum_{n=1}^{N_{\text{max}}}
-\frac{1}{\xi_n^2\sqrt{\beta^2-\xi_n^2}},
-\quad \sin\xi_n=\frac{\xi_n}{\beta}
+\xi_0 \sim \sqrt{6\mu},
+\qquad
+r_0 \sim 2R\sqrt{6\mu},
+\qquad
+J_0 \sim 2\mu,
+\qquad
+g_\beta'(\xi_0)\sim -2\mu.
 $$
+Hence the principal branch contribution to the circular action density scales like
+$$
+\frac{1}{r_0^2\,|J_0|\,|g_\beta'(\xi_0)|}
+\sim
+\frac{1}{96R^2\,\mu^3}.
+$$
+This is the action-functional expression of the same circular caustic seen in the force law: the onset of self-hit is already singular once the Jacobian and coarea reduction are both kept.
 
-**Asymptotics:**
-$$
-\bar{\mathcal{A}}_{\text{self}} \sim \frac{C}{\sqrt{\beta-\pi/2}}
-\quad (\beta\to(\pi/2)^+)
-$$
-$$
-\bar{\mathcal{A}}_{\text{self}} \sim \frac{\pi}{48R^2}
-\quad (\beta\gg 1)
-$$
-The number of admissible roots $\xi_n$ (self‑hits per period) is the discrete count that matches the winding numbers of $\mathcal{L}_{\text{causal}}$; new roots appear only when the causal locus reconnects, so this analytic toy mirrors the bifurcation picture in the geometric/topological framework above.
+At high speed, all admissible roots lie in $(0,\beta)$, so the branch count grows only linearly with $\beta$. The circular toy therefore gives a controlled benchmark: discrete branch creation, explicit near-threshold asymptotics, and a root-by-root action density that can be compared directly to numerical orbit scans.
 
-### Circular Benchmark as a Branch-Count Theorem (Chosen Branch Convention)
+### Circular Benchmark as a Branch-Count Theorem
 
-In the branch convention used in this document (the same one used for the
-$\beta=\pi/2$ caustic), define
+Define
 $$
 g_\beta(\xi)=\sin\xi-\frac{\xi}{\beta}.
 $$
-Let $I_{\text{branch}}\subset(0,\pi)$ denote the chosen admissible interval.
-Then admissible causal roots are zeros of $g_\beta$ in $I_{\text{branch}}$.
+Admissible circular self-hit branches are zeros of $g_\beta$ in $(0,\beta)$.
 
 #### Proposition 5.1 (Discrete Root Count and Branch-Change Criterion)
-Fix a compact admissible interval $I_{\text{branch}}=[a,b]\subset(0,\pi)$ with boundary regularity $g_\beta(a)\neq0$, $g_\beta(b)\neq0$.
+Fix a compact admissible interval $I_{\text{branch}}=[a,b]\subset(0,\beta)$ with boundary regularity $g_\beta(a)\neq0$, $g_\beta(b)\neq0$.
 
 1. For fixed $\beta>0$, the admissible root set
    $\{\xi\in I_{\text{branch}}:g_\beta(\xi)=0\}$ is finite.
@@ -287,12 +307,11 @@ g_\beta(\xi)=0,\qquad \partial_\xi g_\beta(\xi)=0
 $$
 at some interior point $\xi\in(a,b)$.
 
-**Proof.** For fixed $\beta$, $g_\beta$ is real-analytic on $(0,\pi)$, hence zeros are isolated unless the function is identically zero on an interval. That cannot occur here because $g_\beta$ is not identically zero. A discrete subset of a compact interval is finite, proving (1).
+**Proof.** For fixed $\beta$, $g_\beta$ is real-analytic on $(0,\beta)$, hence zeros are isolated unless the function is identically zero on an interval. That cannot occur here because $g_\beta$ is not identically zero. A discrete subset of a compact interval is finite, proving (1).
 
 For (2), if $\xi_*$ is a simple root ($\partial_\xi g_\beta(\xi_*)\neq0$), the implicit function theorem gives a unique smooth continuation of that root under small parameter changes, so simple roots cannot be created or destroyed locally. Root-count change can therefore occur only when simplicity fails, i.e. when $g_\beta=0$ and $\partial_\xi g_\beta=0$ simultaneously (multiple/tangent root). Boundary-root events are excluded by the boundary-regularity condition.
 
-This is the 1D analog of Theorem 3 and provides an explicit, checkable bifurcation
-condition for the circular toy model.
+For the principal circular branch, the bifurcation point occurs at $(\beta,\xi)=(1,0)$ in the limiting sense. Higher branches appear at interior tangencies where both equations hold with $\xi>0$. This is the 1D analog of Theorem 3 and provides an explicit, checkable bifurcation condition for the circular toy model.
 
 ### Dynamical Interpretation
 - Stable periodic orbits are **critical points** of $\bar{\mathcal{A}}_{\text{total}}$ constrained within a winding class. The delay flow need not be a gradient flow of this functional, so extremality is a selection principle, not a proof of asymptotic stability.
@@ -304,7 +323,17 @@ condition for the circular toy model.
 ### Emergent Geometry Constraints
 Define the coarse‑grained hit density
 $$
-\mathcal{I}(t,\mathbf{x})=\sum_j\int_{-\infty}^{t}\!\frac{\delta_\eta\!\big(\|\mathbf{x}-\mathbf{x}_j(t')\|-c_f(t-t')\big)}{\|\mathbf{x}-\mathbf{x}_j(t')\|^2}\,dt',
+\mathcal{I}(t,\mathbf{x})=\sum_j\int_{-\infty}^{t}\!\frac{\delta_\eta\!\big(\|\mathbf{x}-\mathbf{x}_j(t')\|-c_f(t-t')\big)}{\|\mathbf{x}-\mathbf{x}_j(t')\|^2\,J_j(t,\mathbf{x};t')}\,dt',
+$$
+where
+$$
+J_j(t,\mathbf{x};t')
+=
+\left|1-\frac{\mathbf{v}_j(t')\cdot\hat{\mathbf{n}}(t,\mathbf{x};t')}{c_f}\right|,
+\qquad
+\hat{\mathbf{n}}(t,\mathbf{x};t')
+=
+\frac{\mathbf{x}-\mathbf{x}_j(t')}{\|\mathbf{x}-\mathbf{x}_j(t')\|}.
 $$
 and map it to an effective metric
 $$
@@ -319,7 +348,7 @@ Mean‑field view: in a dilute limit with many architrinos, coarse‑graining th
 - Use the same $\delta_\eta$ and $\eta$ for force and action estimators.
 - For periodic orbits, normalize by $T^2$ and enforce periodic boundary conditions.
 - For circular‑orbit calibration, compute $\xi_n$ roots numerically and sum with the Jacobian factor.
-- Handle the $\beta=\pi/2$ caustic with care; the unregularized action diverges.
+- Handle the $\beta=1$ onset caustic with care; the unregularized circular action is singular there once both Jacobian and coarea factors are retained.
 - Keep $\eta>0$ during variation: $\nabla\delta$ terms appear in $\delta\mathcal{A}$; regularization makes the Euler–Lagrange equations well‑posed. Take $\eta\to0$ only after solving or bounding solutions.
 
 ### Simulation Protocol (Minimal Theorem-Backed Checks)
@@ -371,9 +400,9 @@ Combined with causal-locus class constraints, this gives a quantitative separati
 - gauge-covariant effective layer and failure criteria: `dynamics/gauge-symmetries.md`
 
 ### Summary and Status
-- We defined a causal self-action and total-action functional directly from the $1/r^2$ delayed kernel, plus its normalized form for periodic orbits.
+- We defined a causal self-action and total-action functional directly from the Jacobian-weighted inverse-square delayed kernel, plus its normalized form for periodic orbits.
 - Topology of the causal locus $\mathcal{L}_{\text{causal}}\subset T^2$ supplies discrete labels (winding, writhe, link type) that naturally segment orbit families.
-- The circular-orbit benchmark gives an analytic threshold at $\beta=\pi/2$ and finite high-speed asymptotics, anchoring numerical calibrations.
+- The circular-orbit benchmark gives an analytic threshold at $\beta=1$, explicit branchwise Jacobians, and controlled near-threshold asymptotics, anchoring numerical calibrations.
 - Under explicit assumptions (A1-A5), we now have a compact theorem spine:
   finiteness, coarea reduction, topological invariance away from critical points,
   and a precise bifurcation condition for branch changes.

@@ -3,7 +3,7 @@
 Existing text excerpt:
 > The dynamics of an architrino are governed by a simple action: an acceleration caused by the intersection of its path with a potential field.
 >
-> Geodesics and dynamics: The background is fixed (absolute time × Euclidean space); free paths are straight. Accelerations come only from delayed, purely radial hits from emitted causal isochrons—never from background curvature.
+> Geodesics and dynamics: The background is fixed (absolute time × Euclidean space); free paths are straight. Accelerations come only from delayed causal hits from emitted causal isochrons, with line-of-action direction and Jacobian-weighted magnitude, never from background curvature.
 
 Detailed explanation (dynamical geometry):
 
@@ -21,17 +21,17 @@ Detailed explanation (dynamical geometry):
     \|\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)\| = v(t - t_0)
     $
     That event is a causal hit from source $o$’s past to the receiver’s present.
-  - At a hit, the acceleration impulse is purely radial along
+  - At a hit, the acceleration impulse is directed along
     $
     \hat{\mathbf{r}} = \frac{\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)}{\|\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)\|}.
     $
-    No cross products or right-hand-rule terms appear; the action is collinear with $\hat{\mathbf{r}}$.
+    No cross products or right-hand-rule terms appear; the action is collinear with $\hat{\mathbf{r}}$. Its magnitude is weighted by the branch Jacobian $|J|^{-1}$, which captures causal-flux bunching or dilation due to source motion.
 
 - “Simple action” in precise terms:
-  - The law is event-driven: acceleration is a sum of per-hit radial contributions, each scaled by $1/r^2$. Between hits (as $\eta\to 0$) motion is inertial; with mollification ($\eta>0$) the impulses become short, smooth pushes.
+  - The law is event-driven: acceleration is a sum of per-hit line-of-action contributions, each scaled by $1/(r^2 |J|)$. Between hits (as $\eta\to 0$) motion is inertial; with mollification ($\eta>0$) the impulses become short, smooth pushes.
   - The background adds no force; departures from straight motion arise only from these intersections with emitted fields (including self-hits when kinematics allow).
 
 - Physical picture:
-  - Picture many continuously expanding wake surfaces (causal isochrons). A push occurs whenever one of those surfaces intersects the receiver, directed straight along the radius back to its emission point, with strength falling as $1/r^2$.
+  - Picture many continuously expanding wake surfaces (causal isochrons). A push occurs whenever one of those surfaces intersects the receiver, directed straight along the radius back to its emission point, with inverse-square geometric decay and an additional Jacobian weight set by the source motion on that branch.
 
-If you’d like to continue, next up are “Units and constants” (the $v=1$ convention, coupling $\kappa$, regularization width $\eta$) and the formal definition of the causal interaction set $\mathcal{C}_o(t)$.
+If you’d like to continue, next up are “Units and constants” (the $v=1$ convention, coupling $\kappa$, regularization width $\eta$) and the formal definition of the causal interaction set $\mathcal{C}_{o'j}(t)$.

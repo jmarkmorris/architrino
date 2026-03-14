@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "meta__meta_textbook_file_structure",
-    "title": "Textbook File Structure",
+    "id": "archie__help",
+    "title": "Navigation & Controls",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,10 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/textbook-file-structure.md"
+      "path": "content/markdown/aaa/archie/navigation-and-controls.md"
     },
     "view": {
-      "columns": 1,
+      "columns": 2,
       "autoOpen": true
     }
   },

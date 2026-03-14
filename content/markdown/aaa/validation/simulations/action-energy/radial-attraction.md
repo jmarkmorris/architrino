@@ -10,13 +10,13 @@ Objectives:
 
 Delay differential equation and exact reduction:
 - With field speed normalized to $v=1$ and a fixed source location $x_c$, the causal root satisfies $|x(t)-x_c|=t-t_0$ with $t_0<t$.
-- The per-hit law yields a purely radial acceleration whose magnitude depends on the current separation $r(t)=|x(t)-x_c|$:
+- The per-hit law yields a line-of-action acceleration whose magnitude depends on the current separation $r(t)=|x(t)-x_c|$:
   $$
-  \ddot{x}(t) \;=\; -\,\kappa\,\sigma_{q q'}\,\frac{|q q'|}{r(t)^2}\,\mathrm{sgn}\!\big(x(t)-x_c\big).
+  \ddot{x}(t) \;=\; -\,\kappa\,\sigma_{q q'}\,\frac{|q q'|}{r(t)^2\,|J(t)|}\,\mathrm{sgn}\!\big(x(t)-x_c\big).
   $$
   Writing $K=\kappa\,|q q'|>0$ and $r=\lvert x-x_c\rvert$, the radial ODE is
   $$
-  \ddot{r}(t) \;=\; -\,\frac{K}{r(t)^2}.
+  \ddot{r}(t) \;=\; -\,\frac{K}{r(t)^2\,|J(t)|}.
   $$
 
 Exact solution (closed form):
@@ -29,9 +29,9 @@ Exact solution (closed form):
   with fall time $T_{\mathrm{fall}}=\tfrac{\pi}{2}\sqrt{r_0^3/(2K)}$.
 
 Notes:
-- For a fixed source, the delayed formulation reduces exactly to the above ODE; the causal root determines only the emission time, not the instantaneous acceleration magnitude or direction.
+- For a fixed source, the source velocity vanishes, so $J(t)=1$. The delayed formulation therefore reduces exactly to the inverse-square ODE above; the causal root determines only the emission time, not the instantaneous acceleration magnitude or direction.
 
 Use:
 - A ground-truth closed form against which delayed-law simulations can be benchmarked in the fixed-source case.
 
-Plain language: With a stationary center, the delayed law simplifies to the familiar inverse-square fall, which has an exact, closed-form solution.
+Plain language: With a stationary center, the Jacobian is trivial and the delayed law simplifies to the familiar inverse-square fall, which has an exact, closed-form solution.

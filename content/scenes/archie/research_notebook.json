@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__research_notebook",
+    "title": "Research Notebook",
+    "type": "Scene-Markdown-Split",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "research_notebook_overview",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/research-notebook.md",
+      "split": {
+        "headingLevel": 2,
+        "maxDepth": 1,
+        "overrides": {
+          "overview": {
+            "id": "research_notebook_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "color": "#8b6f3a",
+            "mode": "doc"
+          },
+          "2026 03 12 major llm induced error is corrected with bill thurston ai": {
+            "labelTitle": "Major LLM Induced Error is Corrected with Bill Thurston (AI)",
+            "labelSubtitle": "2026-03-12"
+          },
+          "2026 03 09 github presence and community": {
+            "labelTitle": "GitHub Presence and Community",
+            "labelSubtitle": "2026-03-09"
+          },
+          "2026 03 08 scene taxonomy defined": {
+            "labelTitle": "Scene Taxonomy Defined",
+            "labelSubtitle": "2026-03-08"
+          },
+          "2026 03 11 closure scorecard": {
+            "labelTitle": "Closure Scorecard",
+            "labelSubtitle": "2026-03-11"
+          },
+          "2026 03 10 philosophy history leaf schema": {
+            "labelTitle": "Philosophy-History Leaf Schema",
+            "labelSubtitle": "2026-03-10"
+          },
+          "2026 03 07 hyde periodic table": {
+            "labelTitle": "Hyde Periodic Table",
+            "labelSubtitle": "2026-03-07"
+          },
+          "2026 03 06 comparative glossary": {
+            "labelTitle": "Comparative Glossary",
+            "labelSubtitle": "2026-03-06"
+          },
+          "2026 03 03 ckm closure reaches three digit predictive accuracy": {
+            "labelTitle": "CKM Closure Reaches Three-Digit Predictive Accuracy",
+            "labelSubtitle": "2026-03-03"
+          }
+        }
+      }
+    },
+    "view": {
+      "columns": 1
+    }
+  },
+  "objects": []
+}

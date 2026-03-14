@@ -1,3 +1,11 @@
+  figure out what to do with the subscription site liberapay.
+  and stripe.
+  and my qrcode
+  
+  Holy crap. My intuition was correct about velocity dependence.  See Bill Thurston writeup in ideas.
+  I need to work through the entire repo a few times removing the contamination!!!
+  
+  
   2. targeted label polish in theory-mapping and major-thinkers
   3. publication-style prose smoothing on whichever chapter you care most about
 
@@ -10,20 +18,21 @@ extract what I have at wordpress.
 
 - crisis-in-physics.md  : full review March 12, 2026
 
-
-  | historical-context-and-missed-opportunities.md | split | 95% | Fully rewritten; detailed and structurally consistent. |
-  | information-computation.md | split | 95% | Fully rewritten; stable six-part leaf pattern with good depth. |
-  | philosophy-of-science.md | split | 95% | Fully rewritten; strong conformance and clear academic register. |
-  | religious-ontologies.md | tree | 92% | Rewritten and hierarchy-corrected; overview now reads much more cleanly. |
-  | theory-differentials.md | tree | 88% | Structurally complete across the catalog; now framed and edited as an intentional reference chapter, though many entries remain catalog-style rather than bespoke essays.
-  |
-  | unknowns-paradoxes.md | tree | 86% | Leaf sections are now explicitly normalized around the issue template and much stronger than before. |
-  | major-thinkers.md | tree | 74% | Large and substantive; schema is now cleaner and more internally coherent, but it is still less uniformly templated than the fully rewritten split chapters. |
-  | theory-mapping.md | tree | 72% | Solid and usable; overview is improved, but many entries are still shorter and less normalized than the strongest chapters. |
+Next:
+  | historical-context-and-missed-opportunities.md | 
+  | information-computation.md | 
+  | philosophy-of-science.md | 
+  | religious-ontologies.md | 
+  | theory-differentials.md | 
+  | unknowns-paradoxes.md | 
+  | major-thinkers.md | 
+  | theory-mapping.md | 
 
 
 
 # The #1 priority is the dynamics/math/geometry and the mapping
+
+- focus on the master equation
 
 - Use my $50 entourages each month.
 
@@ -32,6 +41,12 @@ extract what I have at wordpress.
   - a language for describing animations
   - every scene will be ported to this format
 - composer should use the same frame elements in the corners.
+
+---
+
+Design a new two level ring structure and all the possibilities for the branching config
+- center, 4, each branching up to 3.  : 1 + 4 + 12 = 17 max
+- center, 5, each branching up to 2
 
 ---
 
