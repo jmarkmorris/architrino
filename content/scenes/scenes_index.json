@@ -1379,6 +1379,11 @@
       "id": "archie__research_notebook",
       "name": "Research Notebook",
       "path": "content/scenes/archie/research_notebook.json"
+    },
+    {
+      "id": "archie__support_architrino_research",
+      "name": "Support Architrino Research",
+      "path": "content/scenes/archie/support_architrino_research.json"
     }
   ]
 }

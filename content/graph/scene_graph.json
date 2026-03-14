@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 395,
-      "edges": 1137,
-      "scenes": 276,
+      "nodes": 397,
+      "edges": 1139,
+      "scenes": 277,
       "markdownIndexes": 0,
-      "markdownDocs": 119,
+      "markdownDocs": 120,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1805,6 +1805,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__support_architrino_research",
+      "name": "Support Architrino Research",
+      "path": "content/scenes/archie/support_architrino_research.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -1862,6 +1868,12 @@
       "id": "content/markdown/aaa/archie/scene-taxonomy.md",
       "name": "Scene Taxonomy",
       "path": "content/markdown/aaa/archie/scene-taxonomy.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/support-architrino-research.md",
+      "name": "Support Architrino Research",
+      "path": "content/markdown/aaa/archie/support-architrino-research.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2626,6 +2638,15 @@
       "name": "Scene Taxonomy",
       "path": "content/scenes/archie/scene_taxonomy.json",
       "searchTarget": "content/scenes/archie/scene_taxonomy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/support_architrino_research.json",
+      "nodeType": "scene",
+      "id": "archie__support_architrino_research",
+      "name": "Support Architrino Research",
+      "path": "content/scenes/archie/support_architrino_research.json",
+      "searchTarget": "content/scenes/archie/support_architrino_research.json",
       "implicit": false
     },
     {
@@ -5095,6 +5116,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/support-architrino-research.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/support-architrino-research.md",
+      "name": "Support Architrino Research",
+      "path": "content/markdown/aaa/archie/support-architrino-research.md",
+      "searchTarget": "content/markdown/aaa/archie/support-architrino-research.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
@@ -6089,7 +6119,7 @@
       "to": "scene:content/scenes/archie/academic_style_guide.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
@@ -6117,7 +6147,7 @@
       "to": "scene:content/scenes/archie/help.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
@@ -6131,28 +6161,35 @@
       "to": "scene:content/scenes/archie/mathematical_style_guide.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/mathematical_terminology.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/research_notebook.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/scene_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/support_architrino_research.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/archie.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
@@ -10002,6 +10039,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/scene_taxonomy.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/support_architrino_research.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/support-architrino-research.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/support_architrino_research.json",
       "field": "scene.source.path"
     },
     {

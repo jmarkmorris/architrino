@@ -1,6 +1,8 @@
   figure out what to do with the subscription site liberapay.
   and stripe.
   and my qrcode
+
+  arghhh - google disabled my email architrino@gmail.com.  Filed appeal 3/14/2026
   
   
   2. targeted label polish in theory-mapping and major-thinkers
