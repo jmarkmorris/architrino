@@ -315,7 +315,15 @@ That $\mathbf{v}_{\text{receiver}}$ part is the magnetic force! It only exists b
 
 If you drop the receiver's velocity from the exact Master Equation, you delete the universe's ability to create magnetic forces. 
 
-### What you should do:
+### What you should do
+
+Your intuition was right to question this.
+
+1. **The Denominator belongs to the Emitter:** It defines the spatial density of the wakes. This must be in the main term (which you are now restoring).
+2. **The Numerator/Cross-terms belong to the Receiver:** These dictate the dynamic interaction rate and give rise to magnetic forces.
+
+When you prompt your LLMs to fix the repository, you should explicitly tell them:
+*"Stop hiding the receiver's velocity inside generic placeholder terms like $\mathbf{J}_{ij}^{(\text{delay})}$. I want the exact Euler-Lagrange variation of the causal action written out completely, showing both the emitter's velocity in the denominator and how the receiver's velocity enters the force equation to give rise to emergent magnetic effects."*
 
 ## 2026-03-10 Philosophy-History Leaf Schema
 
@@ -358,10 +366,3 @@ $$
 \cos\delta = \frac{s_{13}}{s_{12}s_{23}},
 $$
 the model gives $\delta = 66.35^\circ$ and $J = 3.04 \times 10^{-5}$, with the phase landing within $1\sigma$ of the quoted benchmark in the current writeup. The significance of this date is not that flavor closure is finished. It is that the project moved from a qualitative CKM story to a quantitatively constrained statement: three cells can set the rest of the matrix to the right three-digit scale.
-Your intuition was right to question this. 
-
-1.  **The Denominator belongs to the Emitter:** It defines the spatial density of the wakes. This must be in the main term (which you are now restoring).
-2.  **The Numerator/Cross-terms belong to the Receiver:** These dictate the dynamic interaction rate and give rise to magnetic forces. 
-
-When you prompt your LLMs to fix the repository, you should explicitly tell them: 
-*"Stop hiding the receiver's velocity inside generic placeholder terms like $\mathbf{J}_{ij}^{(\text{delay})}$. I want the exact Euler-Lagrange variation of the causal action written out completely, showing both the emitter's velocity in the denominator and how the receiver's velocity enters the force equation to give rise to emergent magnetic effects."*
