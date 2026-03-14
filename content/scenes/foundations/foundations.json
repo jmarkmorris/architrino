@@ -15,6 +15,10 @@
         "scenePath": "content/scenes/foundations/absolute_time_defense.json"
       },
       {
+        "nodeId": "detecting_the_absolute_frame",
+        "scenePath": "content/scenes/foundations/detecting_the_absolute_frame.json"
+      },
+      {
         "nodeId": "bootstrapping_the_absolute_frame",
         "scenePath": "content/scenes/foundations/bootstrapping_the_absolute_frame.json"
       },
@@ -45,14 +49,25 @@
       "labelBadge": "doc"
     },
     {
-      "id": "bootstrapping_the_absolute_frame",
-      "title": "Bootstrapping the Absolute Frame",
+      "id": "detecting_the_absolute_frame",
+      "title": "Detecting the Absolute Frame",
       "radius": 2.688,
       "color": "#2f6b6f",
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Bootstrapping the Absolute Frame",
+      "labelTitle": "Detecting the Absolute Frame",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "bootstrapping_the_absolute_frame",
+      "title": "Bootstrapping a Coordinate Frame",
+      "radius": 2.688,
+      "color": "#3657a6",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Bootstrapping a Coordinate Frame",
       "labelBadge": "doc"
     },
     {

@@ -65,7 +65,8 @@
       "sceneName": "Foundations",
       "objects": {
         "absolute_time_defense": "Absolute Time Defense",
-        "bootstrapping_the_absolute_frame": "Bootstrapping the Absolute Frame",
+        "detecting_the_absolute_frame": "Detecting the Absolute Frame",
+        "bootstrapping_the_absolute_frame": "Bootstrapping a Coordinate Frame",
         "emergence_of_structure": "Emergence of Structure",
         "euclidean_void": "Euclidean Void",
         "foundational_ontology": "Foundational Ontology"

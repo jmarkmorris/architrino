@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 119,
-      "sections": 675
+      "entries": 120,
+      "sections": 676
     }
   },
   "tocRoot": {
@@ -35,17 +35,25 @@
             "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md"
           },
           {
-            "id": "foundations__bootstrapping_the_absolute_frame",
-            "title": "Bootstrapping the Absolute Frame",
+            "id": "foundations__detecting_the_absolute_frame",
+            "title": "Detecting the Absolute Frame",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
-            "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+            "scenePath": "content/scenes/foundations/detecting_the_absolute_frame.json",
+            "markdownPath": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "The Fundamental Challenge",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
                 "markdownSection": "The Fundamental Challenge",
                 "sectionKey": "the fundamental challenge",
                 "headingLevel": 2
@@ -53,15 +61,23 @@
               {
                 "kind": "markdown-section",
                 "title": "Detecting Absolute Rest: The Causal Wake Diagnostic",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
                 "markdownSection": "Detecting Absolute Rest: The Causal Wake Diagnostic",
                 "sectionKey": "detecting absolute rest the causal wake diagnostic",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
+                "title": "Connections to Core Dynamics",
+                "markdownPath": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+                "markdownSection": "Connections to Core Dynamics",
+                "sectionKey": "connections to core dynamics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Ontological Clarifications",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
                 "markdownSection": "Ontological Clarifications",
                 "sectionKey": "ontological clarifications",
                 "headingLevel": 2
@@ -69,27 +85,29 @@
               {
                 "kind": "markdown-section",
                 "title": "Philosophical Context",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
                 "markdownSection": "Philosophical Context",
                 "sectionKey": "philosophical context",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Connections to Core Dynamics",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Connections to Core Dynamics",
-                "sectionKey": "connections to core dynamics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
                 "title": "Summary: The Detection Method",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
                 "markdownSection": "Summary: The Detection Method",
                 "sectionKey": "summary the detection method",
                 "headingLevel": 2
-              },
+              }
+            ]
+          },
+          {
+            "id": "foundations__bootstrapping_the_absolute_frame",
+            "title": "Bootstrapping a Coordinate Frame",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+            "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+            "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Overview",
@@ -322,10 +340,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Comparison with Other Nonlocal Hidden-Variable Frameworks",
+                    "title": "Comparison with Other Hidden-Variable Frameworks",
                     "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
-                    "markdownSection": "Comparison with Other Nonlocal Hidden-Variable Frameworks",
-                    "sectionKey": "comparison with other nonlocal hidden variable frameworks",
+                    "markdownSection": "Comparison with Other Hidden-Variable Frameworks",
+                    "sectionKey": "comparison with other hidden variable frameworks",
                     "headingLevel": 2
                   },
                   {

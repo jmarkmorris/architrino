@@ -193,7 +193,7 @@ which, combined with the uniform distribution over $\hat{n}$ and the anti-correl
 
 ---
 
-## Comparison with Other Nonlocal Hidden-Variable Frameworks
+## Comparison with Other Hidden-Variable Frameworks
 
 ### de Broglie–Bohm (Pilot-Wave) Theory
 

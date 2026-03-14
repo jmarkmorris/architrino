@@ -1394,6 +1394,11 @@
       "id": "philosophy_history__cosmic_censorship_holography",
       "name": "Cosmic Censorship and Holography",
       "path": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
+    },
+    {
+      "id": "foundations__detecting_the_absolute_frame",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/scenes/foundations/detecting_the_absolute_frame.json"
     }
   ]
 }

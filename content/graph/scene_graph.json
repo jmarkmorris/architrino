@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 401,
-      "edges": 1143,
-      "scenes": 279,
+      "nodes": 403,
+      "edges": 1145,
+      "scenes": 280,
       "markdownIndexes": 0,
-      "markdownDocs": 122,
+      "markdownDocs": 123,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1823,6 +1823,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "foundations__detecting_the_absolute_frame",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/scenes/foundations/detecting_the_absolute_frame.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2100,8 +2106,14 @@
     },
     {
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4213,6 +4225,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/foundations/detecting_the_absolute_frame.json",
+      "nodeType": "scene",
+      "id": "foundations__detecting_the_absolute_frame",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/scenes/foundations/detecting_the_absolute_frame.json",
+      "searchTarget": "content/scenes/foundations/detecting_the_absolute_frame.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/foundations/emergence_of_structure.json",
       "nodeType": "scene",
       "id": "foundations__emergence_of_structure",
@@ -5485,9 +5506,18 @@
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "searchTarget": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "searchTarget": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
       "implicit": false
     },
     {
@@ -9224,6 +9254,13 @@
       "to": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/detecting_the_absolute_frame.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
       "field": "scene.children[1]"
     },
     {
@@ -9231,21 +9268,21 @@
       "to": "scene:content/scenes/foundations/emergence_of_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/euclidean_void.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/foundational_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -10358,6 +10395,13 @@
       "to": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/foundations/detecting_the_absolute_frame.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/detecting_the_absolute_frame.json",
       "field": "scene.source.path"
     },
     {
