@@ -9285,6 +9285,13 @@
       "field": "scene.children[5]"
     },
     {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/philosophy_history/information_computation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[6]"
+    },
+    {
       "from": "scene:content/scenes/nuclear/atom.json",
       "to": "scene:content/scenes/nuclear/nucleus.json",
       "edgeType": "subscene",
@@ -9433,13 +9440,6 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
@@ -9451,13 +9451,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/information_computation.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -9478,28 +9471,28 @@
       "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -9559,6 +9552,13 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/emergent_metric.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
@@ -9611,7 +9611,7 @@
       "to": "scene:content/scenes/spacetime/spacetime_assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",

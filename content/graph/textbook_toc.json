@@ -289,6 +289,64 @@
                 "headingLevel": 2
               }
             ]
+          },
+          {
+            "id": "information_computation",
+            "title": "Information / Computation",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/information_computation.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Information / Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Information as Ontology",
+                "sectionKey": "information as ontology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Computation / Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Computation as Ontology",
+                "sectionKey": "computation as ontology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Digital Physics",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Digital Physics and Discrete Substrate Programs",
+                "sectionKey": "digital physics and discrete substrate programs",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer / Encoding",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Observer, Encoding, and Representation",
+                "sectionKey": "observer encoding and representation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation / Computability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Simulation, Modeling, and Computability Limits",
+                "sectionKey": "simulation modeling and computability limits",
+                "headingLevel": 2
+              }
+            ]
           }
         ]
       },
@@ -2379,6 +2437,16 @@
                 "headingLevel": 2
               }
             ]
+          },
+          {
+            "id": "philosophy_history__cosmic_censorship_holography",
+            "title": "Cosmic Censorship and Holography",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+            "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
+            "sectionKey": "cosmic censorship holographic principle ads cft"
           },
           {
             "id": "spacetime__spacetime_assemblies",
@@ -5036,64 +5104,6 @@
             ]
           },
           {
-            "id": "information_computation",
-            "title": "Information / Computation",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/information_computation.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Information / Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Information as Ontology",
-                "sectionKey": "information as ontology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Computation / Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Computation as Ontology",
-                "sectionKey": "computation as ontology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Digital Physics",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Digital Physics and Discrete Substrate Programs",
-                "sectionKey": "digital physics and discrete substrate programs",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observer / Encoding",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Observer, Encoding, and Representation",
-                "sectionKey": "observer encoding and representation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Simulation / Computability",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Simulation, Modeling, and Computability Limits",
-                "sectionKey": "simulation modeling and computability limits",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "philosophy_of_science",
             "title": "Philosophy of Science",
             "kind": "markdown-split",
@@ -5310,16 +5320,6 @@
                 ]
               }
             ]
-          },
-          {
-            "id": "philosophy_history__cosmic_censorship_holography",
-            "title": "Cosmic Censorship and Holography",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-            "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
-            "sectionKey": "cosmic censorship holographic principle ads cft"
           },
           {
             "id": "philosophy_history__theory_mapping",

@@ -35,20 +35,12 @@
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
       {
-        "nodeId": "information_computation",
-        "scenePath": "content/scenes/philosophy_history/information_computation.json"
-      },
-      {
         "nodeId": "philosophy_of_science",
         "scenePath": "content/scenes/philosophy_history/philosophy_of_science.json"
       },
       {
         "nodeId": "religious_ontologies",
         "scenePath": "content/scenes/philosophy_history/religious_ontologies.json"
-      },
-      {
-        "nodeId": "cosmic_censorship_holography",
-        "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
       },
       {
         "nodeId": "theory_mapping",
@@ -124,16 +116,6 @@
       "labelTitle": "Major Thinkers"
     },
     {
-      "id": "information_computation",
-      "title": "Information / Computation",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Information / Computation"
-    },
-    {
       "id": "philosophy_of_science",
       "title": "Philosophy of Science",
       "radius": 2.688,
@@ -152,17 +134,6 @@
         "type": "fixed"
       },
       "labelTitle": "Religious Ontologies"
-    },
-    {
-      "id": "cosmic_censorship_holography",
-      "title": "Cosmic Censorship and Holography",
-      "radius": 2.688,
-      "color": "#355f9a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Cosmic Censorship and Holography",
-      "labelBadge": "doc"
     },
     {
       "id": "theory_mapping",

@@ -69,7 +69,8 @@
         "bootstrapping_the_absolute_frame": "Bootstrapping a Coordinate Frame",
         "emergence_of_structure": "Emergence of Structure",
         "euclidean_void": "Euclidean Void",
-        "foundational_ontology": "Foundational Ontology"
+        "foundational_ontology": "Foundational Ontology",
+        "information_computation": "Information / Computation"
       }
     },
     "content/scenes/archie/composer.json": {
@@ -148,6 +149,7 @@
       "sceneId": "spacetime",
       "sceneName": "Spacetime",
       "objects": {
+        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
         "emergent_metric": "Emergent Metric",
         "general_relativity_observables": "General Relativity",
         "gravitational_waves": "Gravitational Waves",
@@ -167,10 +169,8 @@
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
         "lorentz_ether_comparison": "Lorentz Ether Comparison",
         "major_thinkers": "Major Thinkers",
-        "information_computation": "Information / Computation",
         "philosophy_of_science": "Philosophy of Science",
         "religious_ontologies": "Religious Ontologies",
-        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
         "theory_mapping": "Theory Mapping",
         "theory_differentials": "Theory Differentials"
       }

@@ -33,6 +33,10 @@
       {
         "nodeId": "foundational_ontology",
         "scenePath": "content/scenes/foundations/foundational_ontology.json"
+      },
+      {
+        "nodeId": "information_computation",
+        "scenePath": "content/scenes/philosophy_history/information_computation.json"
       }
     ]
   },
@@ -102,6 +106,16 @@
       },
       "labelTitle": "Foundational Ontology",
       "labelBadge": "doc"
+    },
+    {
+      "id": "information_computation",
+      "title": "Information / Computation",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Information / Computation"
     }
   ]
 }
