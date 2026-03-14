@@ -14,7 +14,8 @@ export function createMarkdownRuntime(deps) {
 
   let activeMarkdownPath = null;
   let activeMarkdownSourcePath = null;
-  let markdownTwoColumns = true;
+  let markdownColumnCount = 2;
+  let markdownPreferredColumnCount = 2;
   // These IDs are runtime-only helper scene identities, not authored scene IDs.
   const runtimeMarkdownPrefix = "runtime:markdown:";
   const runtimeMarkdownDocPrefix = `${runtimeMarkdownPrefix}doc:`;
@@ -228,15 +229,19 @@ export function createMarkdownRuntime(deps) {
     if (!markdownPanel || !markdownLayoutToggle) {
       return;
     }
-    markdownPanel.classList.toggle("two-columns", markdownTwoColumns);
+    const resolvedCount = Math.max(1, Math.min(3, Number(markdownColumnCount) || 1));
+    markdownPanel.classList.toggle("multi-columns", resolvedCount > 1);
+    markdownPanel.style.setProperty("--markdown-column-count", String(resolvedCount));
     markdownLayoutToggle.setAttribute(
       "aria-label",
-      markdownTwoColumns ? "Switch to single column" : "Switch to two columns"
+      resolvedCount > 1
+        ? "Switch to single column"
+        : `Switch to ${markdownPreferredColumnCount}-column layout`
     );
   }
 
   function toggleMarkdownLayout() {
-    markdownTwoColumns = !markdownTwoColumns;
+    markdownColumnCount = markdownColumnCount > 1 ? 1 : markdownPreferredColumnCount;
     applyMarkdownLayout();
   }
 
@@ -253,15 +258,11 @@ export function createMarkdownRuntime(deps) {
       hideMarkdownPanel();
       return;
     }
-    if (sectionKey) {
-      markdownTwoColumns = false;
-    } else if (level.markdownColumns === 1) {
-      markdownTwoColumns = false;
-    } else if (level.markdownColumns === 2) {
-      markdownTwoColumns = true;
-    } else {
-      markdownTwoColumns = true;
-    }
+    markdownPreferredColumnCount =
+      level.markdownColumns === 1 || level.markdownColumns === 2 || level.markdownColumns === 3
+        ? level.markdownColumns
+        : 2;
+    markdownColumnCount = sectionKey ? 1 : markdownPreferredColumnCount;
     const sectionCache = sectionKey ? markdownSectionCache : markdownCache;
     let html = sectionCache.get(cacheKey);
     if (!html) {

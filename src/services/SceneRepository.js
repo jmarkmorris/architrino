@@ -131,7 +131,7 @@ export class SceneRepository {
       splitHeadingLevel: configuredHeadingLevel,
       splitMaxDepth: configuredMaxDepth,
       splitColumns:
-        view?.columns === 1 || view?.columns === 2
+        view?.columns === 1 || view?.columns === 2 || view?.columns === 3
           ? view.columns
           : null,
       splitIncludeExistingInLayout: split?.includeExistingInLayout === true,

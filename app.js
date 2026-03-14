@@ -1236,7 +1236,7 @@ function resolveAuthoredMarkdownPath(entry) {
 }
 
 function resolveAuthoredMarkdownColumns(entry) {
-  if (entry?.view?.columns === 1 || entry?.view?.columns === 2) {
+  if (entry?.view?.columns === 1 || entry?.view?.columns === 2 || entry?.view?.columns === 3) {
     return entry.view.columns;
   }
   return null;
@@ -1245,7 +1245,7 @@ function resolveAuthoredMarkdownColumns(entry) {
 function recordAuthoredMarkdownColumns(entry) {
   const markdownPath = resolveAuthoredMarkdownPath(entry);
   const markdownColumns = resolveAuthoredMarkdownColumns(entry);
-  if ((markdownColumns === 1 || markdownColumns === 2) && markdownPath) {
+  if ((markdownColumns === 1 || markdownColumns === 2 || markdownColumns === 3) && markdownPath) {
     authoredMarkdownColumnsByPath.set(normalizeColumnsPath(markdownPath), markdownColumns);
   }
 }

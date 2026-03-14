@@ -1,3 +1,13 @@
+  triage
+
+have ai examine the toc history docs for anything useful not covered.
+have ai examine the toc for organization
+
+
+  ---
+  
+  
+  
   figure out what to do with the subscription site liberapay.
   and stripe.
   and my qrcode

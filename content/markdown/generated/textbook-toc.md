@@ -796,10 +796,4 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Wavefunction - Wavefunction](../aaa/philosophy-history/theory-differentials.md?section=Wavefunction+-+Wavefunction)
       - [Information - Information](../aaa/philosophy-history/theory-differentials.md?section=Information+-+Information)
       - [Probability - Probability](../aaa/philosophy-history/theory-differentials.md?section=Probability+-+Probability)
-- [Universe](../../scenes/cosmology/universe.json)
-  - [Galaxy Cluster](../../scenes/cosmology/galaxy_cluster.json)
-    - [Galaxy](../../scenes/cosmology/galaxy.json)
-      - [Galaxy Disk](../../scenes/cosmology/disk.json)
-        - [Solar System](../../scenes/cosmology/solar_system.json) _(diagram)_
-    - [Intracluster Medium](../../scenes/cosmology/intracluster_medium.json)
 

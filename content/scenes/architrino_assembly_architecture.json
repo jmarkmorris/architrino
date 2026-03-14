@@ -49,7 +49,10 @@
       },
       {
         "nodeId": "universe",
-        "scenePath": "content/scenes/cosmology/universe.json"
+        "scenePath": "content/scenes/cosmology/universe.json",
+        "textbookToc": {
+          "hideEntry": true
+        }
       }
     ]
   },

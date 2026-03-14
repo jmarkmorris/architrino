@@ -33,7 +33,7 @@ export function createMarkdownSceneRegistry(deps) {
       return null;
     }
     const resolved = await resolveMarkdownColumnsForPath(markdownPath);
-    return resolved === 1 || resolved === 2 ? resolved : null;
+    return resolved === 1 || resolved === 2 || resolved === 3 ? resolved : null;
   }
 
   function resolveNodeMarkdownConfig(nodeData) {

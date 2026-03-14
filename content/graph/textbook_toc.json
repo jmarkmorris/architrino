@@ -8,7 +8,7 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 125,
+      "entries": 119,
       "sections": 675
     }
   },
@@ -6562,56 +6562,6 @@
                     "headingLevel": 3
                   }
                 ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "universe",
-        "title": "Universe",
-        "kind": "scene-index",
-        "sceneType": "Scene-Index",
-        "scenePath": "content/scenes/cosmology/universe.json",
-        "children": [
-          {
-            "id": "galaxy_cluster",
-            "title": "Galaxy Cluster",
-            "kind": "scene-index",
-            "sceneType": "Scene-Index",
-            "scenePath": "content/scenes/cosmology/galaxy_cluster.json",
-            "children": [
-              {
-                "id": "galaxy",
-                "title": "Galaxy",
-                "kind": "scene-index",
-                "sceneType": "Scene-Index",
-                "scenePath": "content/scenes/cosmology/galaxy.json",
-                "children": [
-                  {
-                    "id": "galaxy_disk",
-                    "title": "Galaxy Disk",
-                    "kind": "scene-index",
-                    "sceneType": "Scene-Index",
-                    "scenePath": "content/scenes/cosmology/disk.json",
-                    "children": [
-                      {
-                        "id": "solar_system",
-                        "title": "Solar System",
-                        "kind": "diagram",
-                        "sceneType": "Scene-Diagram",
-                        "scenePath": "content/scenes/cosmology/solar_system.json"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "intracluster_medium",
-                "title": "Intracluster Medium",
-                "kind": "scene-index",
-                "sceneType": "Scene-Index",
-                "scenePath": "content/scenes/cosmology/intracluster_medium.json"
               }
             ]
           }
