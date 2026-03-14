@@ -517,7 +517,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory**
+### **Roger Penrose (1931–) — Conformal Cyclic Cosmology**
 **Subject:** Roger Penrose (1931–), mathematical physicist known for geometric realism, twistor programs, and conformal-cyclic cosmology.
 
 **Era / Context**: Penrose's work spans late 20th to 21st century foundational debates where GR, quantum theory, and cosmology lacked a single accepted substrate closure.
@@ -625,7 +625,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Lee Smolin (1955–) — The Trouble With Physics, Temporal Naturalism**
+### **Lee Smolin (1955–) — The Trouble With Physics**
 **Subject:** Lee Smolin (1955–), physicist and philosopher of physics known for temporal naturalism and critique of unfalsifiable unification programs.
 
 **Era / Context**: Smolin's work emerged during prolonged stagnation in experimentally anchored fundamental-physics progress, especially around quantum gravity and string-theory dominance.

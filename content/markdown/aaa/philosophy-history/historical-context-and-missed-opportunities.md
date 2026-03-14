@@ -150,7 +150,7 @@ The long-term relevance of this episode is permanent. Recovery would require a m
 
 ---
 
-## Geometrization After 1915: Effective Description Promoted to Ontology
+## Geometrization After 1915: Description Promoted to Ontology
 
 ### Overview
 
@@ -184,7 +184,7 @@ The long-term relevance of this episode is permanent process guidance. Recovery 
 
 ---
 
-## Copenhagen: Deterministic Multistability Lost to Epistemic Minimalism
+## Copenhagen: Multistability Lost to Epistemic Minimalism
 
 ### Overview
 

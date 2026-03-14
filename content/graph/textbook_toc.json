@@ -2256,82 +2256,82 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "1. Problem Statement",
+                "title": "Problem Statement",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "1. Problem Statement",
-                "sectionKey": "1 problem statement",
+                "markdownSection": "Problem Statement",
+                "sectionKey": "problem statement",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "2. Governing Microdynamics",
+                "title": "Governing Microdynamics",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "2. Governing Microdynamics",
-                "sectionKey": "2 governing microdynamics",
+                "markdownSection": "Governing Microdynamics",
+                "sectionKey": "governing microdynamics",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "3. Emergent Kinematics from Delay Anisotropy",
+                "title": "Emergent Kinematics from Delay Anisotropy",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "3. Emergent Kinematics from Delay Anisotropy",
-                "sectionKey": "3 emergent kinematics from delay anisotropy",
+                "markdownSection": "Emergent Kinematics from Delay Anisotropy",
+                "sectionKey": "emergent kinematics from delay anisotropy",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "4. Observer Construction and Operational Invariance",
+                "title": "Observer Construction and Operational Invariance",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "4. Observer Construction and Operational Invariance",
-                "sectionKey": "4 observer construction and operational invariance",
+                "markdownSection": "Observer Construction and Operational Invariance",
+                "sectionKey": "observer construction and operational invariance",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "5. Derivation Program",
+                "title": "Derivation Program",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "5. Derivation Program",
-                "sectionKey": "5 derivation program",
+                "markdownSection": "Derivation Program",
+                "sectionKey": "derivation program",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "6. Theorem Targets",
+                "title": "Theorem Targets",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "6. Theorem Targets",
-                "sectionKey": "6 theorem targets",
+                "markdownSection": "Theorem Targets",
+                "sectionKey": "theorem targets",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "7. Observable Interface",
+                "title": "Observable Interface",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "7. Observable Interface",
-                "sectionKey": "7 observable interface",
+                "markdownSection": "Observable Interface",
+                "sectionKey": "observable interface",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "8. Failure Conditions",
+                "title": "Failure Conditions",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "8. Failure Conditions",
-                "sectionKey": "8 failure conditions",
+                "markdownSection": "Failure Conditions",
+                "sectionKey": "failure conditions",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "9. Position in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Program",
+                "title": "Position in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Program",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "9. Position in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Program",
-                "sectionKey": "9 position in the mathbb a mathbb a mathbb a program",
+                "markdownSection": "Position in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Program",
+                "sectionKey": "position in the mathbb a mathbb a mathbb a program",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "10. Canonical Dependencies",
+                "title": "Canonical Dependencies",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "10. Canonical Dependencies",
-                "sectionKey": "10 canonical dependencies",
+                "markdownSection": "Canonical Dependencies",
+                "sectionKey": "canonical dependencies",
                 "headingLevel": 2
               }
             ]
@@ -4453,18 +4453,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Geometrization After 1915: Effective Description Promoted to Ontology",
+                "title": "Geometrization After 1915: Description Promoted to Ontology",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Geometrization After 1915: Effective Description Promoted to Ontology",
-                "sectionKey": "geometrization after 1915 effective description promoted to ontology",
+                "markdownSection": "Geometrization After 1915: Description Promoted to Ontology",
+                "sectionKey": "geometrization after 1915 description promoted to ontology",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Copenhagen: Deterministic Multistability Lost to Epistemic Minimalism",
+                "title": "Copenhagen: Multistability Lost to Epistemic Minimalism",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Copenhagen: Deterministic Multistability Lost to Epistemic Minimalism",
-                "sectionKey": "copenhagen deterministic multistability lost to epistemic minimalism",
+                "markdownSection": "Copenhagen: Multistability Lost to Epistemic Minimalism",
+                "sectionKey": "copenhagen multistability lost to epistemic minimalism",
                 "headingLevel": 2
               },
               {
@@ -4689,10 +4689,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory",
+                    "title": "Roger Penrose (1931–) — Conformal Cyclic Cosmology",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory",
-                    "sectionKey": "roger penrose 1931 conformal cyclic cosmology twistor theory",
+                    "markdownSection": "Roger Penrose (1931–) — Conformal Cyclic Cosmology",
+                    "sectionKey": "roger penrose 1931 conformal cyclic cosmology",
                     "headingLevel": 3
                   },
                   {
@@ -4721,10 +4721,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Lee Smolin (1955–) — The Trouble With Physics, Temporal Naturalism",
+                    "title": "Lee Smolin (1955–) — The Trouble With Physics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Lee Smolin (1955–) — The Trouble With Physics, Temporal Naturalism",
-                    "sectionKey": "lee smolin 1955 the trouble with physics temporal naturalism",
+                    "markdownSection": "Lee Smolin (1955–) — The Trouble With Physics",
+                    "sectionKey": "lee smolin 1955 the trouble with physics",
                     "headingLevel": 3
                   },
                   {

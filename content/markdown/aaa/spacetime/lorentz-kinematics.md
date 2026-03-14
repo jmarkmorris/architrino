@@ -10,7 +10,7 @@ T(v)=\gamma(v)\,T_0,\qquad
 $$
 with bounded preferred-frame leakage in measurable observables.
 
-## 1. Problem Statement
+## Problem Statement
 
 ### 1.1 Kinematic closure target
 
@@ -31,7 +31,7 @@ Given a translating bound assembly (binary and then tri-binary), derive:
 3. Conditions under which $(Q(v),T(v))$ produce effective Lorentz ruler and clock laws.
 4. Residual non-Lorentz terms and their scaling.
 
-## 2. Governing Microdynamics
+## Governing Microdynamics
 
 ### 2.1 Causal path-history interaction form
 
@@ -106,7 +106,7 @@ E_{\text{tot}}
 $$
 Therefore an isolated translating assembly admits a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift $\mathbf{v}=\mathbf{P}_{\text{tot}}/M_{\text{tot}}$.
 
-## 3. Emergent Kinematics from Delay Anisotropy
+## Emergent Kinematics from Delay Anisotropy
 
 ### 3.1 Directional delay asymmetry
 
@@ -491,7 +491,7 @@ ds_{\text{eff}}^2=g_{\mu\nu}^{\text{eff}}dx^\mu dx^\nu
 $$
 Therefore the clock channel is governed by $\Omega^{-1}\xi^{-1}$ and the spatial ruler channel by $\Omega^{-1}$, matching the two-channel deformation interpretation.
 
-## 4. Observer Construction and Operational Invariance
+## Observer Construction and Operational Invariance
 
 ### 4.1 Assembly clocks and rods
 
@@ -550,7 +550,7 @@ $$
 $$
 which is precisely $L_{\parallel}=L_0/\gamma+O(\beta^6)$.
 
-## 5. Derivation Program
+## Derivation Program
 
 ### 5.1 Stage A: binary analytic benchmark
 
@@ -823,7 +823,7 @@ $$
 $$
 for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}}$, then small divisors invalidate the homological equations of the Lie transform. The resulting secular resonance destroys adiabatic decoupling, can break KAM tori, and drives $O(1)$ interlayer energy exchange. In that regime, coefficient drift can exceed the quadrupole estimate and local preferred-frame leakage can rise above $O(\epsilon_{\text{LV}})$ even when geometric hierarchy is large.
 
-## 6. Theorem Targets
+## Theorem Targets
 
 ### Theorem A (attractor existence under drift)
 
@@ -899,7 +899,7 @@ C_Q\left(\frac{r_M}{r_L}\right)^2
 $$
 In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
 
-## 7. Observable Interface
+## Observable Interface
 
 Key outputs to pass into validation and simulation layers:
 
@@ -908,7 +908,7 @@ Key outputs to pass into validation and simulation layers:
 3. Orientation-dependent residuals in two-way propagation observables.
 4. Parameter surfaces where leakage remains below target bounds.
 
-## 8. Failure Conditions
+## Failure Conditions
 
 The Lorentzian conspiracy program fails if any of the following occur:
 
@@ -919,7 +919,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
 6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in Sec. 5.7.
 
-## 9. Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
+## Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
 
 This priority is the first gate because it constrains all downstream bridges:
 
@@ -927,7 +927,7 @@ This priority is the first gate because it constrains all downstream bridges:
 2. Without universal assembly clock behavior, phenomenological mapping to GR tests is unstable.
 3. With kinematic closure established, metric constitutive derivations and PPN matching become sharply posed problems.
 
-## 10. Canonical Dependencies
+## Canonical Dependencies
 
 Primary theory anchors:
 
