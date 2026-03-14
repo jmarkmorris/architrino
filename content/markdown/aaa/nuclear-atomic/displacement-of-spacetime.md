@@ -91,7 +91,7 @@ Think of maximally packed van der Waals volumes as a **molecular fortress**. Ord
 
 ---
 
-## Background timespace vs implemented medium (theory perspective)
+## Background Timespace vs. Implemented Medium
 
 - Background: the mathematical arena in this project is absolute timespace (one global time × Euclidean 3-space). It is fixed, non-dynamical, and does not curve.
 - Implemented “spacetime”: the effective medium that carries corridors and supports propagation is realized by coherent assembly architecture at scales far smaller than molecules (a spacetime-æther layer in the implementation sense, not a separate field inventory). Their microstructure can modulate effective propagation, boundaries, and coherence without altering the background kinematics.
@@ -105,4 +105,3 @@ Think of maximally packed van der Waals volumes as a **molecular fortress**. Ord
 In other words, the van der Waals volume is a “no-go zone” only for **ordinary fermionic matter**. For most of the universe’s particles and fields, those barriers simply don’t exist.
 
 ---
-

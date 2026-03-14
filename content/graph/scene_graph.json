@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 399,
-      "edges": 1141,
-      "scenes": 278,
+      "nodes": 401,
+      "edges": 1143,
+      "scenes": 279,
       "markdownIndexes": 0,
-      "markdownDocs": 121,
+      "markdownDocs": 122,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1817,6 +1817,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "philosophy_history__agency_and_internal_causation",
+      "name": "Agency and Internal Causation",
+      "path": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2162,6 +2168,12 @@
       "id": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "name": "Nucleon Structure",
       "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "name": "Agency and Internal Causation",
+      "path": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4354,6 +4366,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__agency_and_internal_causation",
+      "name": "Agency and Internal Causation",
+      "path": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "searchTarget": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "nodeType": "scene",
       "id": "philosophy_history__crisis_in_physics",
@@ -5566,6 +5587,15 @@
       "name": "Nucleon Structure",
       "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "searchTarget": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "name": "Agency and Internal Causation",
+      "path": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
       "implicit": false
     },
     {
@@ -9359,66 +9389,73 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
+      "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+      "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/information_computation.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
+      "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
+      "to": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -10391,6 +10428,13 @@
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/nuclear/nucleon_structure.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/agency_and_internal_causation.json",
       "field": "scene.source.path"
     },
     {

@@ -15,6 +15,10 @@
         "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
       },
       {
+        "nodeId": "agency_and_internal_causation",
+        "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
+      },
+      {
         "nodeId": "crisis_in_physics",
         "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json"
       },
@@ -62,6 +66,17 @@
         "type": "fixed"
       },
       "labelTitle": "Unknowns & Paradoxes"
+    },
+    {
+      "id": "agency_and_internal_causation",
+      "title": "Agency and Internal Causation",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Agency and Internal Causation",
+      "labelBadge": "doc"
     },
     {
       "id": "crisis_in_physics",

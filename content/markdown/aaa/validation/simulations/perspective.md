@@ -8,7 +8,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Delayed causal emission on Jacobian-weighted $1/r^2$ isochrons
+## Delayed Emission on Jacobian-Weighted Isochrons
 
 - What we assume:
 - Sources emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-\tau)$ with $\tau = t - t_0$.

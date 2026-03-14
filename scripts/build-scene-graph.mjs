@@ -985,6 +985,7 @@ function buildTextbookTocEntry(scenePath, ancestry = new Set()) {
     const nextAncestry = new Set(ancestry);
     nextAncestry.add(normalizedScenePath);
     const children = sceneConfig.children
+      .filter((childRef) => childRef?.textbookToc?.hideEntry !== true)
       .map((childRef) => resolveChildScenePath(childRef))
       .filter(Boolean)
       .map((childScenePath) => buildTextbookTocEntry(childScenePath, nextAncestry))

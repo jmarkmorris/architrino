@@ -252,7 +252,7 @@ The long-term relevance of this episode is permanent until a deeper microtheory 
 
 ---
 
-## Precision Cosmology: Effective Parameters Hardening into Story
+## Precision Cosmology: Parameters into Story
 
 ### Overview
 

@@ -1389,6 +1389,11 @@
       "id": "archie__textbook_toc",
       "name": "Textbook TOC",
       "path": "content/scenes/archie/textbook_toc.json"
+    },
+    {
+      "id": "philosophy_history__agency_and_internal_causation",
+      "name": "Agency and Internal Causation",
+      "path": "content/scenes/philosophy_history/agency_and_internal_causation.json"
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 Notes collected here document the falsification criteria, ordering priorities, and supporting mechanisms for the adversarial architrino model. Keep this page focused on observable constraints so we can quickly verify whether a given version of the theory survives experimental scrutiny.
 
-## Master Experimental Constraint Ledger and Falsification Criteria
+## Experimental Constraint Ledger and Falsification Criteria
 
 This ledger crystallizes the measurable thresholds and theoretical guardrails that could falsify the architrino proposal. Each numbered entry combines the empirical bound, the proposed mechanism, and the explicit failure condition so that we can track how discrete experimental results shape or reject the model.
 

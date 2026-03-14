@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 676
+      "sections": 675
     }
   },
   "tocRoot": {
@@ -548,14 +548,6 @@
                     "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
                     "markdownSection": "Suggested Refinements",
                     "sectionKey": "suggested refinements",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Appendix C: Philosophical Implications (Supplementary)",
-                    "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-                    "markdownSection": "Appendix C: Philosophical Implications (Supplementary)",
-                    "sectionKey": "appendix c philosophical implications supplementary",
                     "headingLevel": 2
                   }
                 ]
@@ -1614,10 +1606,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to Standard Model",
+                    "title": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to SM",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to Standard Model",
-                    "sectionKey": "weak mixing mathbb a mathbb a mathbb a to standard model",
+                    "markdownSection": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to SM",
+                    "sectionKey": "weak mixing mathbb a mathbb a mathbb a to sm",
                     "headingLevel": 2
                   },
                   {
@@ -1670,10 +1662,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Speculative bookkeeping sketch (particles and architrino counts)",
+                    "title": "Speculative Bookkeeping Sketch",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Speculative bookkeeping sketch (particles and architrino counts)",
-                    "sectionKey": "speculative bookkeeping sketch particles and architrino counts",
+                    "markdownSection": "Speculative Bookkeeping Sketch",
+                    "sectionKey": "speculative bookkeeping sketch",
                     "headingLevel": 2
                   },
                   {
@@ -1927,10 +1919,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Background timespace vs implemented medium (theory perspective)",
+                "title": "Background Timespace vs. Implemented Medium",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
-                "markdownSection": "Background timespace vs implemented medium (theory perspective)",
-                "sectionKey": "background timespace vs implemented medium theory perspective",
+                "markdownSection": "Background Timespace vs. Implemented Medium",
+                "sectionKey": "background timespace vs implemented medium",
                 "headingLevel": 2
               },
               {
@@ -3540,10 +3532,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Delayed causal emission on Jacobian-weighted $1/r^2$ isochrons",
+                    "title": "Delayed Emission on Jacobian-Weighted Isochrons",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Delayed causal emission on Jacobian-weighted $1/r^2$ isochrons",
-                    "sectionKey": "delayed causal emission on jacobian weighted 1 r 2 isochrons",
+                    "markdownSection": "Delayed Emission on Jacobian-Weighted Isochrons",
+                    "sectionKey": "delayed emission on jacobian weighted isochrons",
                     "headingLevel": 2
                   },
                   {
@@ -3842,10 +3834,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Master Experimental Constraint Ledger and Falsification Criteria",
+                "title": "Experimental Constraint Ledger and Falsification Criteria",
                 "markdownPath": "content/markdown/aaa/validation/constraint-ledger.md",
-                "markdownSection": "Master Experimental Constraint Ledger and Falsification Criteria",
-                "sectionKey": "master experimental constraint ledger and falsification criteria",
+                "markdownSection": "Experimental Constraint Ledger and Falsification Criteria",
+                "sectionKey": "experimental constraint ledger and falsification criteria",
                 "headingLevel": 2
               }
             ]
@@ -3996,10 +3988,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Case Study: Free Neutron Decay ($n \\to p + e^- + \\bar{\\nu}_e$)",
+                "title": "Free Neutron Decay",
                 "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
-                "markdownSection": "Case Study: Free Neutron Decay ($n \\to p + e^- + \\bar{\\nu}_e$)",
-                "sectionKey": "case study free neutron decay n to p e bar nu e",
+                "markdownSection": "Free Neutron Decay",
+                "sectionKey": "free neutron decay",
                 "headingLevel": 2
               }
             ]
@@ -4264,6 +4256,72 @@
             ]
           },
           {
+            "id": "philosophy_history__agency_and_internal_causation",
+            "title": "Agency and Internal Causation",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Internal vs External Causation",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Internal vs External Causation",
+                "sectionKey": "internal vs external causation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Functional Agency",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Functional Agency",
+                "sectionKey": "functional agency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Determinism and Predictability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Determinism and Predictability",
+                "sectionKey": "determinism and predictability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Will as Threshold Setting",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Will as Threshold Setting",
+                "sectionKey": "will as threshold setting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Free Will: Compatibilist vs Libertarian",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Free Will: Compatibilist vs Libertarian",
+                "sectionKey": "free will compatibilist vs libertarian",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closing Statement",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Closing Statement",
+                "sectionKey": "closing statement",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "crisis_in_physics",
             "title": "Crisis in Physics",
             "kind": "markdown-split",
@@ -4419,10 +4477,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Precision Cosmology: Effective Parameters Hardening into Story",
+                "title": "Precision Cosmology: Parameters into Story",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Precision Cosmology: Effective Parameters Hardening into Story",
-                "sectionKey": "precision cosmology effective parameters hardening into story",
+                "markdownSection": "Precision Cosmology: Parameters into Story",
+                "sectionKey": "precision cosmology parameters into story",
                 "headingLevel": 2
               },
               {
@@ -6554,72 +6612,6 @@
                 "kind": "scene-index",
                 "sceneType": "Scene-Index",
                 "scenePath": "content/scenes/cosmology/intracluster_medium.json"
-              }
-            ]
-          },
-          {
-            "id": "cosmology__structure_formation",
-            "title": "Structure Formation",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/cosmology/structure_formation.json",
-            "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Scope and Physical Picture",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Scope and Physical Picture",
-                "sectionKey": "scope and physical picture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Perturbation Theory",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Effective Perturbation Theory",
-                "sectionKey": "effective perturbation theory",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Matter Content and the Dark Sector",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Matter Content and the Dark Sector",
-                "sectionKey": "matter content and the dark sector",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observational Readout Domains",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Observational Readout Domains",
-                "sectionKey": "observational readout domains",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Scale Dependence of $G_{\\text{eff}}$: Mechanism and Regime Map",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Scale Dependence of $G_{\\text{eff}}$: Mechanism and Regime Map",
-                "sectionKey": "scale dependence of g text eff mechanism and regime map",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Growth-Module Interface",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Growth-Module Interface",
-                "sectionKey": "growth module interface",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Synthesis",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Synthesis",
-                "sectionKey": "synthesis",
-                "headingLevel": 2
               }
             ]
           }

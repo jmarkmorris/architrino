@@ -1,6 +1,6 @@
 # Weak Mixing and CKM
 
-## Weak Mixing: $\mathbb{A}\mathbb{A}\mathbb{A}$ to Standard Model
+## Weak Mixing: $\mathbb{A}\mathbb{A}\mathbb{A}$ to SM
 
 This chapter is written as a bridge text: it first states CKM in standard SM language, then translates each ingredient into $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry. The goal is that a reader with QM and introductory QFT can identify exactly what is standard, what is assumed in $\mathbb{A}\mathbb{A}\mathbb{A}$, and what is predicted.
 
@@ -349,7 +349,7 @@ so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are cali
 
 _Status: speculative scaffold for a derivation. Fill in with explicit states, overlaps, and phase calculations._
 
-## Speculative bookkeeping sketch (particles and architrino counts)
+## Speculative Bookkeeping Sketch
 
 - **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, and architrino counts close. Mark allowed vs. unseen channels and why.
 - **Forward axial sites:** Weak-Coupling Triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
