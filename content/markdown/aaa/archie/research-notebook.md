@@ -12,8 +12,8 @@ I discovered that an LLM had guided me incorrectly over the previous 2.5 months.
 
 Relevant files:
 
-- [master-equation.md](../dynamics/master-equation.md#the-master-equation-canonical-form)
-- [master-equation.md](../dynamics/master-equation.md#energy-lagrangian-and-hamiltonian-structure-of-the-architrino-dynamics)
+- [master-equation.md: Canonical Form](../dynamics/master-equation.md#the-master-equation-canonical-form)
+- [master-equation.md: Energy, Lagrangian, and Hamiltonian Structure](../dynamics/master-equation.md#energy-lagrangian-and-hamiltonian-structure-of-the-architrino-dynamics)
 - [energy.md](../dynamics/energy.md)
 - [historical-context-and-missed-opportunities.md](../philosophy-history/historical-context-and-missed-opportunities.md#lorentz-before-einstein-the-almost-substrate-moment)
 
