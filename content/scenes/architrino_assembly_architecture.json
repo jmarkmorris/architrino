@@ -102,7 +102,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Assemblies",
+      "labelTitle": "Standard Model Assemblies",
       "fixedPosition": true
     },
     {
@@ -118,7 +118,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Nuclear-Atomic",
+      "labelTitle": "Atomic and Nuclear Assemblies",
       "fixedPosition": true
     },
     {
@@ -187,7 +187,7 @@
     },
     {
       "id": "universe",
-      "title": "Universe",
+      "title": "Reductionist Universe",
       "radius": 2.688,
       "color": "#243d8f",
       "position": [
@@ -199,7 +199,7 @@
         "type": "fixed"
       },
       "scaleExponent": 26,
-      "labelTitle": "Universe",
+      "labelTitle": "Reductionist Universe",
       "fixedPosition": true
     }
   ]

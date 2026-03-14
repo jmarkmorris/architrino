@@ -702,7 +702,7 @@
     },
     {
       "id": "nuclear_atomic",
-      "name": "Nuclear-Atomic",
+      "name": "Atomic and Nuclear Assemblies",
       "path": "content/scenes/nuclear/nuclear_atomic.json"
     },
     {
@@ -732,7 +732,7 @@
     },
     {
       "id": "spacetime",
-      "name": "Spacetime Assemblies",
+      "name": "Spacetime",
       "path": "content/scenes/spacetime/spacetime.json"
     },
     {
@@ -817,7 +817,7 @@
     },
     {
       "id": "assemblies",
-      "name": "Assemblies",
+      "name": "Standard Model Assemblies",
       "path": "content/scenes/assemblies/assemblies.json"
     },
     {
@@ -987,7 +987,7 @@
     },
     {
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json"
     },
     {

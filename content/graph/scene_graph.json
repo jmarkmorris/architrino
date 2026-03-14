@@ -990,7 +990,7 @@
     },
     {
       "id": "nuclear_atomic",
-      "name": "Nuclear-Atomic",
+      "name": "Atomic and Nuclear Assemblies",
       "path": "content/scenes/nuclear/nuclear_atomic.json",
       "nodeType": "scene"
     },
@@ -1026,7 +1026,7 @@
     },
     {
       "id": "spacetime",
-      "name": "Spacetime Assemblies",
+      "name": "Spacetime",
       "path": "content/scenes/spacetime/spacetime.json",
       "nodeType": "scene"
     },
@@ -1128,7 +1128,7 @@
     },
     {
       "id": "assemblies",
-      "name": "Assemblies",
+      "name": "Standard Model Assemblies",
       "path": "content/scenes/assemblies/assemblies.json",
       "nodeType": "scene"
     },
@@ -1332,7 +1332,7 @@
     },
     {
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene"
     },
@@ -2740,7 +2740,7 @@
       "nodeId": "scene:content/scenes/assemblies/assemblies.json",
       "nodeType": "scene",
       "id": "assemblies",
-      "name": "Assemblies",
+      "name": "Standard Model Assemblies",
       "path": "content/scenes/assemblies/assemblies.json",
       "searchTarget": "content/scenes/assemblies/assemblies.json",
       "implicit": false
@@ -4225,7 +4225,7 @@
       "nodeId": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene",
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "searchTarget": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "implicit": false
@@ -4351,7 +4351,7 @@
       "nodeId": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "nodeType": "scene",
       "id": "nuclear_atomic",
-      "name": "Nuclear-Atomic",
+      "name": "Atomic and Nuclear Assemblies",
       "path": "content/scenes/nuclear/nuclear_atomic.json",
       "searchTarget": "content/scenes/nuclear/nuclear_atomic.json",
       "implicit": false
@@ -4666,7 +4666,7 @@
       "nodeId": "scene:content/scenes/spacetime/spacetime.json",
       "nodeType": "scene",
       "id": "spacetime",
-      "name": "Spacetime Assemblies",
+      "name": "Spacetime",
       "path": "content/scenes/spacetime/spacetime.json",
       "searchTarget": "content/scenes/spacetime/spacetime.json",
       "implicit": false
