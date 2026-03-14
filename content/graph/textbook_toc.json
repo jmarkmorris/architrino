@@ -2363,16 +2363,6 @@
             ]
           },
           {
-            "id": "spacetime__cosmic_censorship_holography",
-            "title": "Cosmic Censorship and Holography",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/spacetime/cosmic_censorship_holography.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-            "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
-            "sectionKey": "cosmic censorship holographic principle ads cft"
-          },
-          {
             "id": "spacetime__spacetime_assemblies",
             "title": "Spacetime Assemblies",
             "kind": "markdown-view",
@@ -2423,6 +2413,456 @@
         "sceneType": "Scene-Index",
         "scenePath": "content/scenes/cosmology/cosmology.json",
         "children": [
+          {
+            "id": "cosmology__cosmology_ontology",
+            "title": "Cosmology Ontology",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/cosmology/cosmology_ontology.json",
+            "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Cosmology in the Absolute Frame",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Cosmology in the Absolute Frame",
+                "sectionKey": "cosmology in the absolute frame",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Cosmology: Overview",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Cosmology: Overview",
+                "sectionKey": "mathbb a mathbb a mathbb a cosmology overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmology Document Set",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Cosmology Document Set",
+                "sectionKey": "cosmology document set",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Historical Lineage (Conceptual, Not Identical)",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Historical Lineage (Conceptual, Not Identical)",
+                "sectionKey": "historical lineage conceptual not identical",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Classification Axes ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Position)",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Classification Axes ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Position)",
+                "sectionKey": "classification axes mathbb a mathbb a mathbb a position",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Working Principle",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Working Principle",
+                "sectionKey": "working principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observation-First Component Abstraction",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Observation-First Component Abstraction",
+                "sectionKey": "observation first component abstraction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interface Variables (Predicted API Surface)",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Interface Variables (Predicted API Surface)",
+                "sectionKey": "interface variables predicted api surface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mapping Stance",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mapping Stance",
+                "sectionKey": "mathbb a mathbb a mathbb a mapping stance",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Origin and Global History Stance",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Origin and Global History Stance",
+                "sectionKey": "origin and global history stance",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Galaxy-Local Cosmology Paradigm",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Galaxy-Local Cosmology Paradigm",
+                "sectionKey": "galaxy local cosmology paradigm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Time Notions (Operational)",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Time Notions (Operational)",
+                "sectionKey": "time notions operational",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "cosmology__expansion_mechanism",
+            "title": "Expansion Mechanism",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/cosmology/expansion_mechanism.json",
+            "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Core Idea",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Core Idea",
+                "sectionKey": "core idea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Scale Factor in a Fixed Void",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Effective Scale Factor in a Fixed Void",
+                "sectionKey": "effective scale factor in a fixed void",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Clock-Rate Redshift Interpretation",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Clock-Rate Redshift Interpretation",
+                "sectionKey": "clock rate redshift interpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Photon-Propagation Contribution",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Photon-Propagation Contribution",
+                "sectionKey": "photon propagation contribution",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dissipation and Rescaling Picture",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Dissipation and Rescaling Picture",
+                "sectionKey": "dissipation and rescaling picture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dark-Energy Language in This Frame",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Dark-Energy Language in This Frame",
+                "sectionKey": "dark energy language in this frame",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hubble-Tension Link",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Hubble-Tension Link",
+                "sectionKey": "hubble tension link",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Timescape-Style Bridge, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Timescape-Style Bridge, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
+                "sectionKey": "timescape style bridge mathbb a mathbb a mathbb a mechanism",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Friedmann Bridge (Comparison Layer)",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Effective Friedmann Bridge (Comparison Layer)",
+                "sectionKey": "effective friedmann bridge comparison layer",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Expansion-Module Interface",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Expansion-Module Interface",
+                "sectionKey": "expansion module interface",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "cosmology__dark_matter",
+            "title": "Dark Matter",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/cosmology/dark_matter.json",
+            "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope and Purpose",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Scope and Purpose",
+                "sectionKey": "scope and purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
+                "sectionKey": "mathbb a mathbb a mathbb a ontology foundations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Substrates",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Candidate Substrates",
+                "sectionKey": "candidate substrates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regime Map",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Regime Map",
+                "sectionKey": "regime map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "SMBH Recycling and Dark-Sector Flow",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "SMBH Recycling and Dark-Sector Flow",
+                "sectionKey": "smbh recycling and dark sector flow",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Assembly Properties",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Candidate Assembly Properties",
+                "sectionKey": "candidate assembly properties",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmology Integration",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Cosmology Integration",
+                "sectionKey": "cosmology integration",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Growth-Module Interface",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Growth-Module Interface",
+                "sectionKey": "growth module interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "cosmology__dark_energy",
+            "title": "Dark Energy",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/cosmology/dark_energy.json",
+            "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope and Purpose",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Scope and Purpose",
+                "sectionKey": "scope and purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
+                "sectionKey": "mathbb a mathbb a mathbb a ontology foundations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Medium-State Interpretation of Accelerated Expansion",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Medium-State Interpretation of Accelerated Expansion",
+                "sectionKey": "medium state interpretation of accelerated expansion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Friedmann Framework",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Effective Friedmann Framework",
+                "sectionKey": "effective friedmann framework",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Cosmological-Constant Problem",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "The Cosmological-Constant Problem",
+                "sectionKey": "the cosmological constant problem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Redshift as Clock Comparison",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Redshift as Clock Comparison",
+                "sectionKey": "redshift as clock comparison",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "SMBH Recycling and Energy Flow",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "SMBH Recycling and Energy Flow",
+                "sectionKey": "smbh recycling and energy flow",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regime Map",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Regime Map",
+                "sectionKey": "regime map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Expansion-Module Interface",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Expansion-Module Interface",
+                "sectionKey": "expansion module interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "cosmology__inflation_model",
+            "title": "Inflation Model",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/cosmology/inflation_model.json",
+            "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Core Idea",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Core Idea",
+                "sectionKey": "core idea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Local-Process Commitment",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Local-Process Commitment",
+                "sectionKey": "local process commitment",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cyclical vs Recycling Clarification",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Cyclical vs Recycling Clarification",
+                "sectionKey": "cyclical vs recycling clarification",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "SMBH-Core Mechanism ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$)",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "SMBH-Core Mechanism ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$)",
+                "sectionKey": "smbh core mechanism mathbb a mathbb a mathbb a",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Inflaton Reinterpretation",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Effective Inflaton Reinterpretation",
+                "sectionKey": "effective inflaton reinterpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Planck-Alignment Boundary",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Planck-Alignment Boundary",
+                "sectionKey": "planck alignment boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Parameterization",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Effective Parameterization",
+                "sectionKey": "effective parameterization",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Expansion-Module Interface",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Expansion-Module Interface",
+                "sectionKey": "expansion module interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Coherent Reading",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Coherent Reading",
+                "sectionKey": "coherent reading",
+                "headingLevel": 2
+              }
+            ]
+          },
           {
             "id": "cosmology__bbn_constraints",
             "title": "BBN Constraints",
@@ -2700,369 +3140,67 @@
             ]
           },
           {
-            "id": "cosmology__cosmology_ontology",
-            "title": "Cosmology Ontology",
+            "id": "cosmology__structure_formation",
+            "title": "Structure Formation",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/cosmology/cosmology_ontology.json",
-            "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+            "scenePath": "content/scenes/cosmology/structure_formation.json",
+            "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Cosmology in the Absolute Frame",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Cosmology in the Absolute Frame",
-                "sectionKey": "cosmology in the absolute frame",
+                "title": "Scope and Physical Picture",
+                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
+                "markdownSection": "Scope and Physical Picture",
+                "sectionKey": "scope and physical picture",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Cosmology: Overview",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Cosmology: Overview",
-                "sectionKey": "mathbb a mathbb a mathbb a cosmology overview",
+                "title": "Effective Perturbation Theory",
+                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
+                "markdownSection": "Effective Perturbation Theory",
+                "sectionKey": "effective perturbation theory",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Cosmology Document Set",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Cosmology Document Set",
-                "sectionKey": "cosmology document set",
+                "title": "Matter Content and the Dark Sector",
+                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
+                "markdownSection": "Matter Content and the Dark Sector",
+                "sectionKey": "matter content and the dark sector",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Historical Lineage (Conceptual, Not Identical)",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Historical Lineage (Conceptual, Not Identical)",
-                "sectionKey": "historical lineage conceptual not identical",
+                "title": "Observational Readout Domains",
+                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
+                "markdownSection": "Observational Readout Domains",
+                "sectionKey": "observational readout domains",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Classification Axes ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Position)",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Classification Axes ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Position)",
-                "sectionKey": "classification axes mathbb a mathbb a mathbb a position",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Working Principle",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Working Principle",
-                "sectionKey": "working principle",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observation-First Component Abstraction",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Observation-First Component Abstraction",
-                "sectionKey": "observation first component abstraction",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Interface Variables (Predicted API Surface)",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Interface Variables (Predicted API Surface)",
-                "sectionKey": "interface variables predicted api surface",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mapping Stance",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mapping Stance",
-                "sectionKey": "mathbb a mathbb a mathbb a mapping stance",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Origin and Global History Stance",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Origin and Global History Stance",
-                "sectionKey": "origin and global history stance",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Galaxy-Local Cosmology Paradigm",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Galaxy-Local Cosmology Paradigm",
-                "sectionKey": "galaxy local cosmology paradigm",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Time Notions (Operational)",
-                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
-                "markdownSection": "Time Notions (Operational)",
-                "sectionKey": "time notions operational",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "cosmology__dark_energy",
-            "title": "Dark Energy",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/cosmology/dark_energy.json",
-            "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Scope and Purpose",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Scope and Purpose",
-                "sectionKey": "scope and purpose",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
-                "sectionKey": "mathbb a mathbb a mathbb a ontology foundations",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Medium-State Interpretation of Accelerated Expansion",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Medium-State Interpretation of Accelerated Expansion",
-                "sectionKey": "medium state interpretation of accelerated expansion",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Friedmann Framework",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Effective Friedmann Framework",
-                "sectionKey": "effective friedmann framework",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Cosmological-Constant Problem",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "The Cosmological-Constant Problem",
-                "sectionKey": "the cosmological constant problem",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Redshift as Clock Comparison",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Redshift as Clock Comparison",
-                "sectionKey": "redshift as clock comparison",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "SMBH Recycling and Energy Flow",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "SMBH Recycling and Energy Flow",
-                "sectionKey": "smbh recycling and energy flow",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Regime Map",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Regime Map",
-                "sectionKey": "regime map",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Expansion-Module Interface",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Expansion-Module Interface",
-                "sectionKey": "expansion module interface",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Summary",
-                "sectionKey": "summary",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "cosmology__dark_matter",
-            "title": "Dark Matter",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/cosmology/dark_matter.json",
-            "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Scope and Purpose",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Scope and Purpose",
-                "sectionKey": "scope and purpose",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
-                "sectionKey": "mathbb a mathbb a mathbb a ontology foundations",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Candidate Substrates",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Candidate Substrates",
-                "sectionKey": "candidate substrates",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Regime Map",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Regime Map",
-                "sectionKey": "regime map",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "SMBH Recycling and Dark-Sector Flow",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "SMBH Recycling and Dark-Sector Flow",
-                "sectionKey": "smbh recycling and dark sector flow",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Candidate Assembly Properties",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Candidate Assembly Properties",
-                "sectionKey": "candidate assembly properties",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cosmology Integration",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Cosmology Integration",
-                "sectionKey": "cosmology integration",
+                "title": "Scale Dependence of $G_{\\text{eff}}$: Mechanism and Regime Map",
+                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
+                "markdownSection": "Scale Dependence of $G_{\\text{eff}}$: Mechanism and Regime Map",
+                "sectionKey": "scale dependence of g text eff mechanism and regime map",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Growth-Module Interface",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
                 "markdownSection": "Growth-Module Interface",
                 "sectionKey": "growth module interface",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Summary",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Summary",
-                "sectionKey": "summary",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "cosmology__expansion_mechanism",
-            "title": "Expansion Mechanism",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/cosmology/expansion_mechanism.json",
-            "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Core Idea",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Core Idea",
-                "sectionKey": "core idea",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Scale Factor in a Fixed Void",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Effective Scale Factor in a Fixed Void",
-                "sectionKey": "effective scale factor in a fixed void",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Clock-Rate Redshift Interpretation",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Clock-Rate Redshift Interpretation",
-                "sectionKey": "clock rate redshift interpretation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Photon-Propagation Contribution",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Photon-Propagation Contribution",
-                "sectionKey": "photon propagation contribution",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dissipation and Rescaling Picture",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Dissipation and Rescaling Picture",
-                "sectionKey": "dissipation and rescaling picture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dark-Energy Language in This Frame",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Dark-Energy Language in This Frame",
-                "sectionKey": "dark energy language in this frame",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Hubble-Tension Link",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Hubble-Tension Link",
-                "sectionKey": "hubble tension link",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Timescape-Style Bridge, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Timescape-Style Bridge, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
-                "sectionKey": "timescape style bridge mathbb a mathbb a mathbb a mechanism",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Friedmann Bridge (Comparison Layer)",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Effective Friedmann Bridge (Comparison Layer)",
-                "sectionKey": "effective friedmann bridge comparison layer",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Expansion-Module Interface",
-                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
-                "markdownSection": "Expansion-Module Interface",
-                "sectionKey": "expansion module interface",
+                "title": "Synthesis",
+                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
+                "markdownSection": "Synthesis",
+                "sectionKey": "synthesis",
                 "headingLevel": 2
               }
             ]
@@ -3129,154 +3267,6 @@
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
                 "markdownSection": "Coherent Reading",
                 "sectionKey": "coherent reading",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "cosmology__inflation_model",
-            "title": "Inflation Model",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/cosmology/inflation_model.json",
-            "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Core Idea",
-                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-                "markdownSection": "Core Idea",
-                "sectionKey": "core idea",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Local-Process Commitment",
-                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-                "markdownSection": "Local-Process Commitment",
-                "sectionKey": "local process commitment",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cyclical vs Recycling Clarification",
-                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-                "markdownSection": "Cyclical vs Recycling Clarification",
-                "sectionKey": "cyclical vs recycling clarification",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "SMBH-Core Mechanism ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$)",
-                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-                "markdownSection": "SMBH-Core Mechanism ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$)",
-                "sectionKey": "smbh core mechanism mathbb a mathbb a mathbb a",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Inflaton Reinterpretation",
-                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-                "markdownSection": "Effective Inflaton Reinterpretation",
-                "sectionKey": "effective inflaton reinterpretation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Planck-Alignment Boundary",
-                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-                "markdownSection": "Planck-Alignment Boundary",
-                "sectionKey": "planck alignment boundary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Parameterization",
-                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-                "markdownSection": "Effective Parameterization",
-                "sectionKey": "effective parameterization",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Expansion-Module Interface",
-                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-                "markdownSection": "Expansion-Module Interface",
-                "sectionKey": "expansion module interface",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Coherent Reading",
-                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
-                "markdownSection": "Coherent Reading",
-                "sectionKey": "coherent reading",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "cosmology__structure_formation",
-            "title": "Structure Formation",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/cosmology/structure_formation.json",
-            "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Scope and Physical Picture",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Scope and Physical Picture",
-                "sectionKey": "scope and physical picture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Perturbation Theory",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Effective Perturbation Theory",
-                "sectionKey": "effective perturbation theory",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Matter Content and the Dark Sector",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Matter Content and the Dark Sector",
-                "sectionKey": "matter content and the dark sector",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observational Readout Domains",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Observational Readout Domains",
-                "sectionKey": "observational readout domains",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Scale Dependence of $G_{\\text{eff}}$: Mechanism and Regime Map",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Scale Dependence of $G_{\\text{eff}}$: Mechanism and Regime Map",
-                "sectionKey": "scale dependence of g text eff mechanism and regime map",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Growth-Module Interface",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Growth-Module Interface",
-                "sectionKey": "growth module interface",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Synthesis",
-                "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
-                "markdownSection": "Synthesis",
-                "sectionKey": "synthesis",
                 "headingLevel": 2
               }
             ]
@@ -5302,6 +5292,16 @@
                 ]
               }
             ]
+          },
+          {
+            "id": "philosophy_history__cosmic_censorship_holography",
+            "title": "Cosmic Censorship and Holography",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+            "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
+            "sectionKey": "cosmic censorship holographic principle ads cft"
           },
           {
             "id": "philosophy_history__theory_mapping",

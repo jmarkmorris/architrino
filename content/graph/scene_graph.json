@@ -1469,12 +1469,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "spacetime__cosmic_censorship_holography",
-      "name": "Cosmic Censorship and Holography",
-      "path": "content/scenes/spacetime/cosmic_censorship_holography.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "spacetime__emergent_metric",
       "name": "Emergent Metric",
       "path": "content/scenes/spacetime/emergent_metric.json",
@@ -1820,6 +1814,12 @@
       "id": "philosophy_history__agency_and_internal_causation",
       "name": "Agency and Internal Causation",
       "path": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__cosmic_censorship_holography",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
       "nodeType": "scene"
     },
     {
@@ -4375,6 +4375,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__cosmic_censorship_holography",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "searchTarget": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "nodeType": "scene",
       "id": "philosophy_history__crisis_in_physics",
@@ -4543,15 +4552,6 @@
       "name": "Wavefunction Ontology",
       "path": "content/scenes/quantum/wavefunction_ontology.json",
       "searchTarget": "content/scenes/quantum/wavefunction_ontology.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/cosmic_censorship_holography.json",
-      "nodeType": "scene",
-      "id": "spacetime__cosmic_censorship_holography",
-      "name": "Cosmic Censorship and Holography",
-      "path": "content/scenes/spacetime/cosmic_censorship_holography.json",
-      "searchTarget": "content/scenes/spacetime/cosmic_censorship_holography.json",
       "implicit": false
     },
     {
@@ -6438,21 +6438,21 @@
       "to": "scene:content/scenes/cosmology/bbn_constraints.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/cmb.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/cosmology_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
@@ -6466,35 +6466,35 @@
       "to": "scene:content/scenes/cosmology/dark_matter.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/expansion_mechanism.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/hubble_s8_tensions.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/inflation_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/structure_formation.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/cosmology/disk.json",
@@ -9396,6 +9396,13 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
@@ -9448,14 +9455,14 @@
       "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -9515,13 +9522,6 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/cosmic_censorship_holography.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/emergent_metric.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
@@ -9574,7 +9574,7 @@
       "to": "scene:content/scenes/spacetime/spacetime_assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",
@@ -10438,6 +10438,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "edgeType": "markdown_doc",
@@ -10554,13 +10561,6 @@
       "to": "markdown_doc:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/wavefunction_ontology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/cosmic_censorship_holography.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/cosmic_censorship_holography.json",
       "field": "scene.source.path"
     },
     {

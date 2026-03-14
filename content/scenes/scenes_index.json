@@ -1101,11 +1101,6 @@
       "path": "content/scenes/quantum/wavefunction_ontology.json"
     },
     {
-      "id": "spacetime__cosmic_censorship_holography",
-      "name": "Cosmic Censorship and Holography",
-      "path": "content/scenes/spacetime/cosmic_censorship_holography.json"
-    },
-    {
       "id": "spacetime__emergent_metric",
       "name": "Emergent Metric",
       "path": "content/scenes/spacetime/emergent_metric.json"
@@ -1394,6 +1389,11 @@
       "id": "philosophy_history__agency_and_internal_causation",
       "name": "Agency and Internal Causation",
       "path": "content/scenes/philosophy_history/agency_and_internal_causation.json"
+    },
+    {
+      "id": "philosophy_history__cosmic_censorship_holography",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
     }
   ]
 }

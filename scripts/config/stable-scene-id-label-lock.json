@@ -147,7 +147,6 @@
       "sceneId": "spacetime",
       "sceneName": "Spacetime",
       "objects": {
-        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
         "emergent_metric": "Emergent Metric",
         "general_relativity_observables": "General Relativity",
         "gravitational_waves": "Gravitational Waves",
@@ -155,6 +154,24 @@
         "proper_time_and_time_dilation": "Proper Time and Time Dilation",
         "singularity_resolution": "Singularity Resolution",
         "spacetime_assemblies": "Spacetime Assemblies"
+      }
+    },
+    "content/scenes/philosophy_history/philosophy_history.json": {
+      "sceneId": "philosophy_history",
+      "sceneName": "Philosophy-History",
+      "objects": {
+        "unknowns_paradoxes_scene": "Unknowns & Paradoxes",
+        "agency_and_internal_causation": "Agency and Internal Causation",
+        "crisis_in_physics": "Crisis in Physics",
+        "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
+        "lorentz_ether_comparison": "Lorentz Ether Comparison",
+        "major_thinkers": "Major Thinkers",
+        "information_computation": "Information / Computation",
+        "philosophy_of_science": "Philosophy of Science",
+        "religious_ontologies": "Religious Ontologies",
+        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
+        "theory_mapping": "Theory Mapping",
+        "theory_differentials": "Theory Differentials"
       }
     },
     "content/scenes/validation/action_energy.json": {
