@@ -2480,7 +2480,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Baryogenesis / Leptogenesis - Baryogenesis / Leptogenesis
+### Baryogenesis / Leptogenesis
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -2615,7 +2615,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Dark Energy / Quintessence - Dark Energy / Quintessence
+### Dark Energy / Quintessence
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -3746,7 +3746,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 ---
 
-### Strong Anthropic Landscape Programs - Anthropic Landscape
+### Strong Anthropic Landscape Programs
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -4243,7 +4243,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Chameleon / Screening Modified Gravity - Screening Gravity
+### Chameleon / Screening Modified Gravity
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -4560,7 +4560,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### The Laws of Thermodynamics - Thermodynamic Laws
+### The Laws of Thermodynamics
 
 **Concept Type:** Law
 **Ontological Area:** Statistical / Bulk Matter

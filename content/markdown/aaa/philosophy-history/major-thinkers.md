@@ -679,7 +679,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Sabine Hossenfelder (1976–) — Lost in Math, Critique of "Beauty"**
+### **Sabine Hossenfelder (1976–) — Lost in Math**
 **Subject:** Sabine Hossenfelder (1976–), physicist and methodological critic of beauty-driven theory selection.
 
 **Era / Context**: Hossenfelder's critique emerged during a period of limited new high-energy empirical breakthroughs and prolonged reliance on mathematically elegant but weakly testable frameworks.
@@ -924,7 +924,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Hugh Everett III (1930–1982) — Many-Worlds Interpretation**
+### **Hugh Everett III (1930–1982) — Many-Worlds**
 **Subject:** Hugh Everett III (1930–1982), originator of the relative-state / Many-Worlds interpretation.
 
 **Era / Context**: Everett proposed Many-Worlds during mid-20th-century measurement-problem debates dominated by collapse/instrumentalist narratives.
@@ -976,7 +976,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Legacy Shift**: Valentini's framework becomes an operational testing extension within substrate realism rather than a marginal speculative add-on.
 
-### **Lucien Hardy (1966–) — Quantum Foundations (Operational/Psi-Epistemic)**
+### **Lucien Hardy (1966–) — Quantum Foundations**
 **Subject:** Lucien Hardy, representing operational and $\psi$-epistemic quantum-foundations programs.
 
 **Acknowledgement of Adjacent Work:** This section also draws directly on the closely related contributions of Rob Spekkens and Matthew Leifer, whose work sharpened epistemic-state models, ontology constraints, and theorem-level limits on what an operational quantum description can mean.
@@ -1115,7 +1115,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Gerard 't Hooft (1946–) — Deterministic Quantum Mechanics**
+### **Gerard 't Hooft (1946–) — Deterministic Mechanics**
 **Subject:** Gerard 't Hooft (1946–), advocate of deterministic sub-quantum programs including cellular-automaton interpretations.
 
 **Era / Context**: His proposals developed in late 20th and early 21st century debates over whether quantum indeterminacy is fundamental or emergent.
@@ -1495,7 +1495,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Legacy Shift**: Cartwright's caution on context survives, while her anti-unification conclusion is treated as challenge target rather than endpoint.
 
-### **Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project**
+### **Stephen Wolfram (1959–) — A New Kind of Science**
 **Subject:** Stephen Wolfram (1959–), proponent of computation-first foundations and rule-based generative physics.
 
 **Era / Context**: Wolfram's program expanded in an era of high computational power and dissatisfaction with continuous-formalism dominance in foundational physics.
