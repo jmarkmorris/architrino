@@ -232,11 +232,6 @@ Within `High`, `Medium`, and `Low`, items are ordered by estimated ROI: best pay
   - the circular self-branch count grows only linearly, `N_{\text{self}}(\beta)=\beta/\pi+O(1)`;
   - within the symmetric isolated circular two-body ansatz, tangential contributions do not cancel branchwise, so exact constant-speed closure is obstructed unless something beyond the bare ansatz does the work.
 
-### Working terminology
-- `wake` is preferable to `field`.
-- Working definition:
-  `Wake: the causal-isochron residue left by architrino motion; a wake is the architrino-native description of what appears as a field at the effective level.`
-
 ### Strong-field / tri-binary hypotheses worth preserving
 - One working black-hole idea: the tri-binary may open up inside the black hole, with quadrupole resonance appearing when a given core pops early or late.
 - Another working picture: the event horizon may not be a clean sphere but a rough surface with significant radial depth.
