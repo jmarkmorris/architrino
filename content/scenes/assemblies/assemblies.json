@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "assemblies",
-    "title": "Assemblies",
+    "title": "Standard Model Assemblies",
     "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,

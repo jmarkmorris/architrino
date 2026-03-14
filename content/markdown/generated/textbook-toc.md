@@ -147,7 +147,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Revision Triggers (Failure Modes)](../aaa/dynamics/tri-binary-dynamics.md?section=Revision+Triggers+%28Failure+Modes%29)
     - [Equivalence Principle (Working Interpretation)](../aaa/dynamics/tri-binary-dynamics.md?section=Equivalence+Principle+%28Working+Interpretation%29)
     - [Speculative Extensions](../aaa/dynamics/tri-binary-dynamics.md?section=Speculative+Extensions)
-- [Assemblies](../../scenes/assemblies/assemblies.json)
+- [Standard Model Assemblies](../../scenes/assemblies/assemblies.json)
   - [Noether Core](../../scenes/assemblies/noether_core.json)
   - [Particle Masses](../../scenes/assemblies/particle_masses.json)
     - [The Mass Hypothesis: Inertia as Medium Interaction](../aaa/assemblies/particle-masses.md?section=The+Mass+Hypothesis%3A+Inertia+as+Medium+Interaction)
@@ -226,7 +226,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Delta Baryons (Δ⁺⁺, Δ⁺, Δ⁰, Δ⁻)](../aaa/assemblies/mesons/mesons.md?section=Delta+Baryons+%28%24%5CDelta%5E%7B%2B%2B%7D%2C+%5CDelta%5E%2B%2C+%5CDelta%5E0%2C+%5CDelta%5E-%24%29)
     - [Summary of Role](../aaa/assemblies/mesons/mesons.md?section=Summary+of+Role)
     - [Hadron Table — Mapping SM → $\mathbb{A}\mathbb{A}\mathbb{A}$](../aaa/assemblies/mesons/mesons.md?section=Hadron+Table+%E2%80%94+Mapping+SM+%E2%86%92+%24%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%24)
-- [Nuclear-Atomic](../../scenes/nuclear/nuclear_atomic.json)
+- [Atomic and Nuclear Assemblies](../../scenes/nuclear/nuclear_atomic.json)
   - [Periodic Table](../../scenes/chemistry/periodic_table_scene.json) _(diagram)_
   - [Hyde Periodic Table](../../scenes/chemistry/hyde_periodic_table_scene.json) _(diagram)_
   - [Atom](../../scenes/nuclear/atom.json) _(diagram)_

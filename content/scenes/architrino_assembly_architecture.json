@@ -91,7 +91,7 @@
     },
     {
       "id": "assemblies",
-      "title": "Assemblies",
+      "title": "Standard Model Assemblies",
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
@@ -107,7 +107,7 @@
     },
     {
       "id": "nuclear_atomic",
-      "title": "Nuclear-Atomic",
+      "title": "Atomic and Nuclear Assemblies",
       "radius": 2.688,
       "color": "#7a4a1f",
       "position": [

@@ -1212,7 +1212,7 @@
       },
       {
         "id": "assemblies",
-        "title": "Assemblies",
+        "title": "Standard Model Assemblies",
         "kind": "scene-index",
         "sceneType": "Scene-Index",
         "scenePath": "content/scenes/assemblies/assemblies.json",
@@ -1860,7 +1860,7 @@
       },
       {
         "id": "nuclear_atomic",
-        "title": "Nuclear-Atomic",
+        "title": "Atomic and Nuclear Assemblies",
         "kind": "scene-index",
         "sceneType": "Scene-Index",
         "scenePath": "content/scenes/nuclear/nuclear_atomic.json",

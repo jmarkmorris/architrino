@@ -3,7 +3,7 @@
   "entries": {
     "content/scenes/assemblies/assemblies.json": {
       "sceneId": "assemblies",
-      "sceneName": "Assemblies",
+      "sceneName": "Standard Model Assemblies",
       "objects": {
         "electroweak_bosons": "Electroweak Bosons",
         "fermions": "Fermions",
@@ -103,7 +103,7 @@
     },
     "content/scenes/nuclear/nuclear_atomic.json": {
       "sceneId": "nuclear_atomic",
-      "sceneName": "Nuclear-Atomic",
+      "sceneName": "Atomic and Nuclear Assemblies",
       "objects": {
         "atom": "Atom",
         "atomic_spectra": "Atomic Spectra",
