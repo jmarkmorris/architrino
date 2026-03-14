@@ -1443,7 +1443,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ## Spacetime, Gravity, and Quantum Gravity
 
-### Newtonian Mechanics and Gravity - Newtonian Gravity
+### Newtonian Mechanics and Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -1578,7 +1578,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Scalar-Tensor Gravity - Scalar-Tensor
+### Scalar-Tensor Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -1623,7 +1623,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Brans-Dicke Theory - Brans-Dicke
+### Brans-Dicke Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -1668,7 +1668,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### $f(R)$ Gravity - $f(R)$
+### $f(R)$ Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -1713,7 +1713,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Einstein-Cartan Theory - Einstein-Cartan
+### Einstein-Cartan Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -1758,7 +1758,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Massive Gravity - Massive Gravity
+### Massive Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -1803,7 +1803,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Bimetric Gravity - Bimetric Gravity
+### Bimetric Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -1938,7 +1938,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Emergent Gravity - Emergent Gravity
+### Emergent Gravity
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -1983,7 +1983,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Unimodular Gravity - Unimodular Gravity
+### Unimodular Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -2073,7 +2073,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### String Theory / M-Theory - String Theory
+### String Theory / M-Theory
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -2345,7 +2345,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Inflationary Cosmology - Inflation
+### Inflationary Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -2435,7 +2435,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### CMB Acoustic Peak Theory - CMB Acoustic Peaks
+### CMB Acoustic Peak Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -2525,7 +2525,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Dark Matter Particle Cosmology - Particle Dark Matter
+### Dark Matter Particle Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -2570,7 +2570,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Primordial Black Hole Dark Matter - PBH Dark Matter
+### Primordial Black Hole Dark Matter
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -2750,7 +2750,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 ---
 
-### Ekpyrotic / Cyclic Cosmology - Ekpyrotic / Cyclic
+### Ekpyrotic / Cyclic Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -2795,7 +2795,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Bounce Cosmology - Bounce Cosmology
+### Bounce Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -2885,7 +2885,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Multiverse Cosmology - Multiverse
+### Multiverse Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -2930,7 +2930,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Anthropic Principle - Anthropic Principle
+### Anthropic Principle
 
 **Concept Type:** Principle
 **Ontological Area:** Methodology / Inference Framework
@@ -2977,7 +2977,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ## Statistical, Thermal, and Bulk Descriptions
 
-### Statistical Mechanics - Statistical Mechanics
+### Statistical Mechanics
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -3022,7 +3022,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Thermodynamics - Thermodynamics
+### Thermodynamics
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -3067,7 +3067,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Kinetic Theory - Kinetic Theory
+### Kinetic Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -3112,7 +3112,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Hydrodynamics - Hydrodynamics
+### Hydrodynamics
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -3157,7 +3157,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Plasma Physics - Plasma Physics
+### Plasma Physics
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -3202,7 +3202,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Virial Theory - Virial Theory
+### Virial Theory
 
 **Concept Type:** Law
 **Ontological Area:** Statistical / Bulk Matter
@@ -3247,7 +3247,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Jeans Instability Theory - Jeans Theory
+### Jeans Instability Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -3292,7 +3292,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Halo Model of Structure Formation - Halo Model
+### Halo Model of Structure Formation
 
 **Concept Type:** Framework
 **Ontological Area:** Statistical / Bulk Matter
@@ -3339,7 +3339,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ## Rejected Historical Theories
 
-### Classical Luminiferous Aether Theory - Aether
+### Classical Luminiferous Aether Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -3429,7 +3429,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 ---
 
-### Caloric Theory - Caloric Theory
+### Caloric Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -3474,7 +3474,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 ---
 
-### Phlogiston Theory - Phlogiston
+### Phlogiston Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -3519,7 +3519,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 ---
 
-### Tired Light Cosmology - Tired Light
+### Tired Light Cosmology
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -3564,7 +3564,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Epicyclic Ptolemaic Cosmology - Ptolemaic System
+### Epicyclic Ptolemaic Cosmology
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -3611,7 +3611,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 
 ## Fringe or Borderline Contrast Cases
 
-### Plasma Cosmology - Plasma Cosmology
+### Plasma Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -3701,7 +3701,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Simulation Hypothesis - Simulation Hypothesis
+### Simulation Hypothesis
 
 **Concept Type:** Construct
 **Ontological Area:** Methodology / Inference Framework
@@ -3791,7 +3791,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Digital Physics - Digital Physics
+### Digital Physics
 
 **Concept Type:** Program
 **Ontological Area:** Methodology / Inference Framework

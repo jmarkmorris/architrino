@@ -103,7 +103,7 @@ At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; 
 
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
 
-MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to future work. The formal state-space framework appears in **State Space and Well-Posedness of the Delayed Two-Body System**.
+MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to future work. The formal state-space framework appears in **State Space and Well-Posedness of the Two-Body Delay System**.
 
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and Jacobian-weighted magnitude.
 
@@ -521,7 +521,7 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 The circular formulas below use reduced coordinates; stability in the full history space remains a separate proof obligation.
 
-## State Space and Well-Posedness of the Delayed Two-Body System
+## State Space and Well-Posedness of the Two-Body Delay System
 
 ### Introduction and Scope
 

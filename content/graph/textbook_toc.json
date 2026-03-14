@@ -694,10 +694,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "State Space and Well-Posedness of the Delayed Two-Body System",
+                "title": "State Space and Well-Posedness of the Two-Body Delay System",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "State Space and Well-Posedness of the Delayed Two-Body System",
-                "sectionKey": "state space and well posedness of the delayed two body system",
+                "markdownSection": "State Space and Well-Posedness of the Two-Body Delay System",
+                "sectionKey": "state space and well posedness of the two body delay system",
                 "headingLevel": 2
               },
               {
@@ -5887,10 +5887,10 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Newtonian Mechanics and Gravity - Newtonian Gravity",
+                    "title": "Newtonian Mechanics and Gravity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Newtonian Mechanics and Gravity - Newtonian Gravity",
-                    "sectionKey": "newtonian mechanics and gravity newtonian gravity",
+                    "markdownSection": "Newtonian Mechanics and Gravity",
+                    "sectionKey": "newtonian mechanics and gravity",
                     "headingLevel": 3
                   },
                   {
@@ -5911,50 +5911,50 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Scalar-Tensor Gravity - Scalar-Tensor",
+                    "title": "Scalar-Tensor Gravity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Scalar-Tensor Gravity - Scalar-Tensor",
-                    "sectionKey": "scalar tensor gravity scalar tensor",
+                    "markdownSection": "Scalar-Tensor Gravity",
+                    "sectionKey": "scalar tensor gravity",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Brans-Dicke Theory - Brans-Dicke",
+                    "title": "Brans-Dicke Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Brans-Dicke Theory - Brans-Dicke",
-                    "sectionKey": "brans dicke theory brans dicke",
+                    "markdownSection": "Brans-Dicke Theory",
+                    "sectionKey": "brans dicke theory",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "$f(R)$ Gravity - $f(R)$",
+                    "title": "$f(R)$ Gravity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "$f(R)$ Gravity - $f(R)$",
-                    "sectionKey": "f r gravity f r",
+                    "markdownSection": "$f(R)$ Gravity",
+                    "sectionKey": "f r gravity",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Einstein-Cartan Theory - Einstein-Cartan",
+                    "title": "Einstein-Cartan Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Einstein-Cartan Theory - Einstein-Cartan",
-                    "sectionKey": "einstein cartan theory einstein cartan",
+                    "markdownSection": "Einstein-Cartan Theory",
+                    "sectionKey": "einstein cartan theory",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Massive Gravity - Massive Gravity",
+                    "title": "Massive Gravity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Massive Gravity - Massive Gravity",
-                    "sectionKey": "massive gravity massive gravity",
+                    "markdownSection": "Massive Gravity",
+                    "sectionKey": "massive gravity",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Bimetric Gravity - Bimetric Gravity",
+                    "title": "Bimetric Gravity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Bimetric Gravity - Bimetric Gravity",
-                    "sectionKey": "bimetric gravity bimetric gravity",
+                    "markdownSection": "Bimetric Gravity",
+                    "sectionKey": "bimetric gravity",
                     "headingLevel": 3
                   },
                   {
@@ -5975,18 +5975,18 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Emergent Gravity - Emergent Gravity",
+                    "title": "Emergent Gravity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Emergent Gravity - Emergent Gravity",
-                    "sectionKey": "emergent gravity emergent gravity",
+                    "markdownSection": "Emergent Gravity",
+                    "sectionKey": "emergent gravity",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Unimodular Gravity - Unimodular Gravity",
+                    "title": "Unimodular Gravity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Unimodular Gravity - Unimodular Gravity",
-                    "sectionKey": "unimodular gravity unimodular gravity",
+                    "markdownSection": "Unimodular Gravity",
+                    "sectionKey": "unimodular gravity",
                     "headingLevel": 3
                   },
                   {
@@ -5999,10 +5999,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "String Theory / M-Theory - String Theory",
+                    "title": "String Theory / M-Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "String Theory / M-Theory - String Theory",
-                    "sectionKey": "string theory m theory string theory",
+                    "markdownSection": "String Theory / M-Theory",
+                    "sectionKey": "string theory m theory",
                     "headingLevel": 3
                   },
                   {
@@ -6057,10 +6057,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Inflationary Cosmology - Inflation",
+                    "title": "Inflationary Cosmology",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Inflationary Cosmology - Inflation",
-                    "sectionKey": "inflationary cosmology inflation",
+                    "markdownSection": "Inflationary Cosmology",
+                    "sectionKey": "inflationary cosmology",
                     "headingLevel": 3
                   },
                   {
@@ -6073,10 +6073,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "CMB Acoustic Peak Theory - CMB Acoustic Peaks",
+                    "title": "CMB Acoustic Peak Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "CMB Acoustic Peak Theory - CMB Acoustic Peaks",
-                    "sectionKey": "cmb acoustic peak theory cmb acoustic peaks",
+                    "markdownSection": "CMB Acoustic Peak Theory",
+                    "sectionKey": "cmb acoustic peak theory",
                     "headingLevel": 3
                   },
                   {
@@ -6089,18 +6089,18 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Dark Matter Particle Cosmology - Particle Dark Matter",
+                    "title": "Dark Matter Particle Cosmology",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Dark Matter Particle Cosmology - Particle Dark Matter",
-                    "sectionKey": "dark matter particle cosmology particle dark matter",
+                    "markdownSection": "Dark Matter Particle Cosmology",
+                    "sectionKey": "dark matter particle cosmology",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Primordial Black Hole Dark Matter - PBH Dark Matter",
+                    "title": "Primordial Black Hole Dark Matter",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Primordial Black Hole Dark Matter - PBH Dark Matter",
-                    "sectionKey": "primordial black hole dark matter pbh dark matter",
+                    "markdownSection": "Primordial Black Hole Dark Matter",
+                    "sectionKey": "primordial black hole dark matter",
                     "headingLevel": 3
                   },
                   {
@@ -6129,18 +6129,18 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Ekpyrotic / Cyclic Cosmology - Ekpyrotic / Cyclic",
+                    "title": "Ekpyrotic / Cyclic Cosmology",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Ekpyrotic / Cyclic Cosmology - Ekpyrotic / Cyclic",
-                    "sectionKey": "ekpyrotic cyclic cosmology ekpyrotic cyclic",
+                    "markdownSection": "Ekpyrotic / Cyclic Cosmology",
+                    "sectionKey": "ekpyrotic cyclic cosmology",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Bounce Cosmology - Bounce Cosmology",
+                    "title": "Bounce Cosmology",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Bounce Cosmology - Bounce Cosmology",
-                    "sectionKey": "bounce cosmology bounce cosmology",
+                    "markdownSection": "Bounce Cosmology",
+                    "sectionKey": "bounce cosmology",
                     "headingLevel": 3
                   },
                   {
@@ -6153,18 +6153,18 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Multiverse Cosmology - Multiverse",
+                    "title": "Multiverse Cosmology",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Multiverse Cosmology - Multiverse",
-                    "sectionKey": "multiverse cosmology multiverse",
+                    "markdownSection": "Multiverse Cosmology",
+                    "sectionKey": "multiverse cosmology",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Anthropic Principle - Anthropic Principle",
+                    "title": "Anthropic Principle",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Anthropic Principle - Anthropic Principle",
-                    "sectionKey": "anthropic principle anthropic principle",
+                    "markdownSection": "Anthropic Principle",
+                    "sectionKey": "anthropic principle",
                     "headingLevel": 3
                   }
                 ]
@@ -6179,66 +6179,66 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Statistical Mechanics - Statistical Mechanics",
+                    "title": "Statistical Mechanics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Statistical Mechanics - Statistical Mechanics",
-                    "sectionKey": "statistical mechanics statistical mechanics",
+                    "markdownSection": "Statistical Mechanics",
+                    "sectionKey": "statistical mechanics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Thermodynamics - Thermodynamics",
+                    "title": "Thermodynamics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Thermodynamics - Thermodynamics",
-                    "sectionKey": "thermodynamics thermodynamics",
+                    "markdownSection": "Thermodynamics",
+                    "sectionKey": "thermodynamics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Kinetic Theory - Kinetic Theory",
+                    "title": "Kinetic Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Kinetic Theory - Kinetic Theory",
-                    "sectionKey": "kinetic theory kinetic theory",
+                    "markdownSection": "Kinetic Theory",
+                    "sectionKey": "kinetic theory",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Hydrodynamics - Hydrodynamics",
+                    "title": "Hydrodynamics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Hydrodynamics - Hydrodynamics",
-                    "sectionKey": "hydrodynamics hydrodynamics",
+                    "markdownSection": "Hydrodynamics",
+                    "sectionKey": "hydrodynamics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Plasma Physics - Plasma Physics",
+                    "title": "Plasma Physics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Plasma Physics - Plasma Physics",
-                    "sectionKey": "plasma physics plasma physics",
+                    "markdownSection": "Plasma Physics",
+                    "sectionKey": "plasma physics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Virial Theory - Virial Theory",
+                    "title": "Virial Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Virial Theory - Virial Theory",
-                    "sectionKey": "virial theory virial theory",
+                    "markdownSection": "Virial Theory",
+                    "sectionKey": "virial theory",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Jeans Instability Theory - Jeans Theory",
+                    "title": "Jeans Instability Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Jeans Instability Theory - Jeans Theory",
-                    "sectionKey": "jeans instability theory jeans theory",
+                    "markdownSection": "Jeans Instability Theory",
+                    "sectionKey": "jeans instability theory",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Halo Model of Structure Formation - Halo Model",
+                    "title": "Halo Model of Structure Formation",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Halo Model of Structure Formation - Halo Model",
-                    "sectionKey": "halo model of structure formation halo model",
+                    "markdownSection": "Halo Model of Structure Formation",
+                    "sectionKey": "halo model of structure formation",
                     "headingLevel": 3
                   }
                 ]
@@ -6253,10 +6253,10 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Classical Luminiferous Aether Theory - Aether",
+                    "title": "Classical Luminiferous Aether Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Classical Luminiferous Aether Theory - Aether",
-                    "sectionKey": "classical luminiferous aether theory aether",
+                    "markdownSection": "Classical Luminiferous Aether Theory",
+                    "sectionKey": "classical luminiferous aether theory",
                     "headingLevel": 3
                   },
                   {
@@ -6269,34 +6269,34 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Caloric Theory - Caloric Theory",
+                    "title": "Caloric Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Caloric Theory - Caloric Theory",
-                    "sectionKey": "caloric theory caloric theory",
+                    "markdownSection": "Caloric Theory",
+                    "sectionKey": "caloric theory",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Phlogiston Theory - Phlogiston",
+                    "title": "Phlogiston Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Phlogiston Theory - Phlogiston",
-                    "sectionKey": "phlogiston theory phlogiston",
+                    "markdownSection": "Phlogiston Theory",
+                    "sectionKey": "phlogiston theory",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Tired Light Cosmology - Tired Light",
+                    "title": "Tired Light Cosmology",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Tired Light Cosmology - Tired Light",
-                    "sectionKey": "tired light cosmology tired light",
+                    "markdownSection": "Tired Light Cosmology",
+                    "sectionKey": "tired light cosmology",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Epicyclic Ptolemaic Cosmology - Ptolemaic System",
+                    "title": "Epicyclic Ptolemaic Cosmology",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Epicyclic Ptolemaic Cosmology - Ptolemaic System",
-                    "sectionKey": "epicyclic ptolemaic cosmology ptolemaic system",
+                    "markdownSection": "Epicyclic Ptolemaic Cosmology",
+                    "sectionKey": "epicyclic ptolemaic cosmology",
                     "headingLevel": 3
                   }
                 ]
@@ -6311,10 +6311,10 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Plasma Cosmology - Plasma Cosmology",
+                    "title": "Plasma Cosmology",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Plasma Cosmology - Plasma Cosmology",
-                    "sectionKey": "plasma cosmology plasma cosmology",
+                    "markdownSection": "Plasma Cosmology",
+                    "sectionKey": "plasma cosmology",
                     "headingLevel": 3
                   },
                   {
@@ -6327,10 +6327,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Simulation Hypothesis - Simulation Hypothesis",
+                    "title": "Simulation Hypothesis",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Simulation Hypothesis - Simulation Hypothesis",
-                    "sectionKey": "simulation hypothesis simulation hypothesis",
+                    "markdownSection": "Simulation Hypothesis",
+                    "sectionKey": "simulation hypothesis",
                     "headingLevel": 3
                   },
                   {
@@ -6343,10 +6343,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Digital Physics - Digital Physics",
+                    "title": "Digital Physics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Digital Physics - Digital Physics",
-                    "sectionKey": "digital physics digital physics",
+                    "markdownSection": "Digital Physics",
+                    "sectionKey": "digital physics",
                     "headingLevel": 3
                   }
                 ]
