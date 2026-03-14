@@ -710,6 +710,37 @@ body {
   margin: 6px 0;
 }
 
+#markdown-panel.is-textbook-toc #markdown-content li {
+  break-inside: avoid;
+}
+
+#markdown-panel.is-textbook-toc #markdown-content li[data-toc-level="2"] {
+  list-style: none;
+}
+
+#markdown-panel.is-textbook-toc #markdown-content li[data-toc-level="2"]::marker {
+  content: "";
+}
+
+#markdown-panel.is-textbook-toc #markdown-content .toc-branch-toggle {
+  width: 1.15rem;
+  min-width: 1.15rem;
+  margin: 0 0.45rem 0 -1.6rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#markdown-panel.is-textbook-toc #markdown-content .toc-branch-toggle:hover,
+#markdown-panel.is-textbook-toc #markdown-content .toc-branch-toggle:focus-visible {
+  color: #ffffff;
+}
+
 #markdown-panel.multi-columns #markdown-content {
   column-count: var(--markdown-column-count, 2);
   column-gap: 36px;
