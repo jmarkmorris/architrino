@@ -195,7 +195,7 @@ So the proposal does **not** replace the current color picture. It adds a second
 
 ---
 
-## Up vs Down: Why They Need Not Share the Same Branch
+## Why Up and Down Need Not Share a Branch
 
 The up and down quarks should not be distinguished only by total charge. Their personality tensors have different structure and therefore can support different equilibrium branches.
 

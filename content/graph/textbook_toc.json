@@ -1532,10 +1532,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Up vs Down: Why They Need Not Share the Same Branch",
+                    "title": "Why Up and Down Need Not Share a Branch",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
-                    "markdownSection": "Up vs Down: Why They Need Not Share the Same Branch",
-                    "sectionKey": "up vs down why they need not share the same branch",
+                    "markdownSection": "Why Up and Down Need Not Share a Branch",
+                    "sectionKey": "why up and down need not share a branch",
                     "headingLevel": 2
                   },
                   {
@@ -6377,10 +6377,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Amplitude Program / On-Shell Methods - Amplitudes",
+                    "title": "Amplitude Program / On-Shell Methods",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Amplitude Program / On-Shell Methods - Amplitudes",
-                    "sectionKey": "amplitude program on shell methods amplitudes",
+                    "markdownSection": "Amplitude Program / On-Shell Methods",
+                    "sectionKey": "amplitude program on shell methods",
                     "headingLevel": 3
                   },
                   {
@@ -6393,42 +6393,42 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Twistor Theory - Twistor Theory",
+                    "title": "Twistor Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Twistor Theory - Twistor Theory",
-                    "sectionKey": "twistor theory twistor theory",
+                    "markdownSection": "Twistor Theory",
+                    "sectionKey": "twistor theory",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Horava-Lifshitz Gravity - Horava-Lifshitz",
+                    "title": "Horava-Lifshitz Gravity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Horava-Lifshitz Gravity - Horava-Lifshitz",
-                    "sectionKey": "horava lifshitz gravity horava lifshitz",
+                    "markdownSection": "Horava-Lifshitz Gravity",
+                    "sectionKey": "horava lifshitz gravity",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Entropic Gravity - Entropic Gravity",
+                    "title": "Entropic Gravity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Entropic Gravity - Entropic Gravity",
-                    "sectionKey": "entropic gravity entropic gravity",
+                    "markdownSection": "Entropic Gravity",
+                    "sectionKey": "entropic gravity",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Einstein-Aether Theory - Einstein-Aether",
+                    "title": "Einstein-Aether Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Einstein-Aether Theory - Einstein-Aether",
-                    "sectionKey": "einstein aether theory einstein aether",
+                    "markdownSection": "Einstein-Aether Theory",
+                    "sectionKey": "einstein aether theory",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Galileon / Horndeski Theory - Horndeski",
+                    "title": "Galileon / Horndeski Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Galileon / Horndeski Theory - Horndeski",
-                    "sectionKey": "galileon horndeski theory horndeski",
+                    "markdownSection": "Galileon / Horndeski Theory",
+                    "sectionKey": "galileon horndeski theory",
                     "headingLevel": 3
                   },
                   {
@@ -6441,26 +6441,26 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Inflationary Eternal Inflation - Eternal Inflation",
+                    "title": "Eternal Inflation",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Inflationary Eternal Inflation - Eternal Inflation",
-                    "sectionKey": "inflationary eternal inflation eternal inflation",
+                    "markdownSection": "Eternal Inflation",
+                    "sectionKey": "eternal inflation",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Vacuum Landscape / String Landscape - String Landscape",
+                    "title": "Vacuum Landscape / String Landscape",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Vacuum Landscape / String Landscape - String Landscape",
-                    "sectionKey": "vacuum landscape string landscape string landscape",
+                    "markdownSection": "Vacuum Landscape / String Landscape",
+                    "sectionKey": "vacuum landscape string landscape",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Swampland Program - Swampland",
+                    "title": "Swampland Program",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Swampland Program - Swampland",
-                    "sectionKey": "swampland program swampland",
+                    "markdownSection": "Swampland Program",
+                    "sectionKey": "swampland program",
                     "headingLevel": 3
                   }
                 ]
@@ -6475,26 +6475,26 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Mass - Mass",
+                    "title": "Mass",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Mass - Mass",
-                    "sectionKey": "mass mass",
+                    "markdownSection": "Mass",
+                    "sectionKey": "mass",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Entropy - Entropy",
+                    "title": "Entropy",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Entropy - Entropy",
-                    "sectionKey": "entropy entropy",
+                    "markdownSection": "Entropy",
+                    "sectionKey": "entropy",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Temperature - Temperature",
+                    "title": "Temperature",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Temperature - Temperature",
-                    "sectionKey": "temperature temperature",
+                    "markdownSection": "Temperature",
+                    "sectionKey": "temperature",
                     "headingLevel": 3
                   },
                   {
@@ -6507,58 +6507,58 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Redshift - Redshift",
+                    "title": "Redshift",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Redshift - Redshift",
-                    "sectionKey": "redshift redshift",
+                    "markdownSection": "Redshift",
+                    "sectionKey": "redshift",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Spacetime Curvature - Curvature",
+                    "title": "Spacetime Curvature",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Spacetime Curvature - Curvature",
-                    "sectionKey": "spacetime curvature curvature",
+                    "markdownSection": "Spacetime Curvature",
+                    "sectionKey": "spacetime curvature",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Vacuum Energy - Vacuum Energy",
+                    "title": "Vacuum Energy",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Vacuum Energy - Vacuum Energy",
-                    "sectionKey": "vacuum energy vacuum energy",
+                    "markdownSection": "Vacuum Energy",
+                    "sectionKey": "vacuum energy",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Fine-Structure Constant - Fine-Structure Constant",
+                    "title": "Fine-Structure Constant",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Fine-Structure Constant - Fine-Structure Constant",
-                    "sectionKey": "fine structure constant fine structure constant",
+                    "markdownSection": "Fine-Structure Constant",
+                    "sectionKey": "fine structure constant",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Wavefunction - Wavefunction",
+                    "title": "Wavefunction",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Wavefunction - Wavefunction",
-                    "sectionKey": "wavefunction wavefunction",
+                    "markdownSection": "Wavefunction",
+                    "sectionKey": "wavefunction",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Information - Information",
+                    "title": "Information",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Information - Information",
-                    "sectionKey": "information information",
+                    "markdownSection": "Information",
+                    "sectionKey": "information",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Probability - Probability",
+                    "title": "Probability",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Probability - Probability",
-                    "sectionKey": "probability probability",
+                    "markdownSection": "Probability",
+                    "sectionKey": "probability",
                     "headingLevel": 3
                   }
                 ]

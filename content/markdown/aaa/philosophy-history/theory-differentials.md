@@ -3928,7 +3928,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Amplitude Program / On-Shell Methods - Amplitudes
+### Amplitude Program / On-Shell Methods
 
 **Concept Type:** Framework
 **Ontological Area:** Quantum Effective Theory
@@ -4018,7 +4018,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Twistor Theory - Twistor Theory
+### Twistor Theory
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -4063,7 +4063,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Horava-Lifshitz Gravity - Horava-Lifshitz
+### Horava-Lifshitz Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4108,7 +4108,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Entropic Gravity - Entropic Gravity
+### Entropic Gravity
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -4153,7 +4153,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Einstein-Aether Theory - Einstein-Aether
+### Einstein-Aether Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4198,7 +4198,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Galileon / Horndeski Theory - Horndeski
+### Galileon / Horndeski Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4288,7 +4288,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-### Inflationary Eternal Inflation - Eternal Inflation
+### Eternal Inflation
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -4333,7 +4333,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Vacuum Landscape / String Landscape - String Landscape
+### Vacuum Landscape / String Landscape
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -4378,7 +4378,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Swampland Program - Swampland
+### Swampland Program
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -4425,7 +4425,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ## Cross-Cutting Concepts To Differentially Map
 
-### Mass - Mass
+### Mass
 
 **Concept Type:** Quantity
 **Ontological Area:** Assembly / Particle Structure
@@ -4470,7 +4470,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 ---
 
-### Entropy - Entropy
+### Entropy
 
 **Concept Type:** Quantity
 **Ontological Area:** Statistical / Bulk Matter
@@ -4515,7 +4515,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Temperature - Temperature
+### Temperature
 
 **Concept Type:** Quantity
 **Ontological Area:** Statistical / Bulk Matter
@@ -4605,7 +4605,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Redshift - Redshift
+### Redshift
 
 **Concept Type:** Observable
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4650,7 +4650,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Spacetime Curvature - Curvature
+### Spacetime Curvature
 
 **Concept Type:** Construct
 **Ontological Area:** Spacetime / Gravity
@@ -4695,7 +4695,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 ---
 
-### Vacuum Energy - Vacuum Energy
+### Vacuum Energy
 
 **Concept Type:** Quantity
 **Ontological Area:** Spacetime / Gravity
@@ -4740,7 +4740,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ---
 
-### Fine-Structure Constant - Fine-Structure Constant
+### Fine-Structure Constant
 
 **Concept Type:** Parameter
 **Ontological Area:** Quantum Effective Theory
@@ -4785,7 +4785,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 
 ---
 
-### Wavefunction - Wavefunction
+### Wavefunction
 
 **Concept Type:** Construct
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4830,7 +4830,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 ---
 
-### Information - Information
+### Information
 
 **Concept Type:** Construct
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4875,7 +4875,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 ---
 
-### Probability - Probability
+### Probability
 
 **Concept Type:** Construct
 **Ontological Area:** Measurement / Information / Interpretation
