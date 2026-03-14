@@ -6,9 +6,9 @@ It records turning points, major corrections, conceptual reframings, and other m
 
 Each dated section should preserve the reasoning of the moment closely enough that later readers can see what changed and why.
 
-## 2026-03-12: Major LLM Induced Error is Corrected with Bill Thurston
+## 2026-03-12: Major LLM Induced Error is Corrected with Bill Thurston (AI)
 
-I discovered that an LLM had guided me incorrectly over the previous 2.5 months. The notes below preserve Bill Thurston's description of the issue and the resulting correction path.
+I discovered that an LLM had guided me incorrectly over the previous 2.5 months. The notes below preserve Thurston's description of the issue and the resulting correction path.
 
 Relevant files:
 
