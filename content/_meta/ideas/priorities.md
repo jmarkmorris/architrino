@@ -1,12 +1,8 @@
   triage
 
-have ai examine the toc history docs for anything useful not covered.
-have ai examine the toc for organization
 
 
   ---
-  
-  
   
   figure out what to do with the subscription site liberapay.
   and stripe.
@@ -20,10 +16,8 @@ have ai examine the toc for organization
 
 ---
 
-review Status Table
 These are all now at 100% drafted.
 Next step is to go through them all and add more info.
-extract what I have at wordpress.
 
 - crisis-in-physics.md  : full review March 12, 2026
 
@@ -260,7 +254,7 @@ Based on the current AAA scores in the scorecard, the next focus should be:
 - new architrino repository is live 20260217
   - need to go back and clean up the old neoclassical.ai repo.
 
-- make a new subreddit server named architrino
+- make a new subreddit named architrino
 
 - rename my blog
 
@@ -272,7 +266,7 @@ Based on the current AAA scores in the scorecard, the next focus should be:
 
 ---
 
-Work on event horizon, curvature, and singularity. chatgpt is saying the singularity is not the event horizon, that curvature is 1/area, that the singularity is not the center of the bh either. Interesting. as my teams.
+Work on event horizon, curvature, and singularity. chatgpt is saying the singularity is not the event horizon, that curvature is 1/area, that the singularity is not the center of the bh either. Interesting. 
 
 ---
 
@@ -350,16 +344,7 @@ Work on event horizon, curvature, and singularity. chatgpt is saying the singula
 
 ---
 
-# architrino Design Notes
 
-## Goals
-- Multi-scale 3D visualization from cosmic structures down to assembly architecture.
-- Drill-down navigation with log-scale zoom and focus on selected parts.
-- Analytic path specification for orbits and assemblies.
-- Cross-platform rendering with MP4 export (desktop/mobile).
-- Glyph sizing independent of camera distance; zoom scaling is allowed with clamps.
-- Preserve relative scale fidelity across classical and quantum domains; keep scale transitions educational and legible.
-- Convey architrino assembly architecture clearly without distorting scale relationships.
 
 ## Future enhancements (discussion)
 - Branching zoom paths and user-directed exploration.
