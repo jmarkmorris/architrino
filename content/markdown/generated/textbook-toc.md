@@ -380,7 +380,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Recombination (~ 3.8×10⁵ years)](../aaa/cosmology/CMB.md?section=Recombination+%28%24%5Csim+3.8%5Ctimes10%5E5%24+years%29)
     - [Dark Ages (~ 3.8×10⁵ years to first light)](../aaa/cosmology/CMB.md?section=Dark+Ages+%28%24%5Csim+3.8%5Ctimes10%5E5%24+years+to+first+light%29)
     - [SMBH Jet and/or Surface Emissions](../aaa/cosmology/CMB.md?section=SMBH+Jet+and%2For+Surface+Emissions)
-    - [Distributed-Emission Channels (Same Ontology)](../aaa/cosmology/CMB.md?section=Distributed-Emission+Channels+%28Same+Ontology%29)
+    - [Distributed-Emission Channels](../aaa/cosmology/CMB.md?section=Distributed-Emission+Channels)
     - [Consistency Anchors](../aaa/cosmology/CMB.md?section=Consistency+Anchors)
     - [CMB-Module Interface](../aaa/cosmology/CMB.md?section=CMB-Module+Interface)
     - [Prediction Layer (Unified)](../aaa/cosmology/CMB.md?section=Prediction+Layer+%28Unified%29)

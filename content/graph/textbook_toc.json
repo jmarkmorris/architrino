@@ -3125,10 +3125,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Distributed-Emission Channels (Same Ontology)",
+                "title": "Distributed-Emission Channels",
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
-                "markdownSection": "Distributed-Emission Channels (Same Ontology)",
-                "sectionKey": "distributed emission channels same ontology",
+                "markdownSection": "Distributed-Emission Channels",
+                "sectionKey": "distributed emission channels",
                 "headingLevel": 2
               },
               {

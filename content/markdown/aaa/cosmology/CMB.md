@@ -154,7 +154,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 | Core difference | Phenomenological source and transport descriptions | Tri-binary medium microphysics with explicit module interfaces |
 | Closure standard | General background consistency goals | Hard closure targets: blackbody precision, $\Delta T/T$, and TT/TE/EE/damping coherence |
 
-## Distributed-Emission Channels (Same Ontology)
+## Distributed-Emission Channels
 
 Within the same ontology, CMB sourcing can be represented through:
 
