@@ -27,10 +27,6 @@
         "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
       },
       {
-        "nodeId": "lorentz_ether_comparison",
-        "scenePath": "content/scenes/philosophy_history/lorentz_ether_comparison.json"
-      },
-      {
         "nodeId": "major_thinkers",
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
@@ -93,17 +89,6 @@
         "type": "fixed"
       },
       "labelTitle": "Historical Context and Missed Opportunities"
-    },
-    {
-      "id": "lorentz_ether_comparison",
-      "title": "Lorentz Ether Comparison",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Lorentz Ether Comparison",
-      "labelBadge": "doc"
     },
     {
       "id": "major_thinkers",

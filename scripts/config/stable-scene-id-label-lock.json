@@ -124,11 +124,18 @@
       "objects": {
         "crisis_in_physics": "Crisis in Physics",
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
-        "lorentz_ether_comparison": "Lorentz Ether Comparison",
         "major_thinkers": "Major Thinkers",
         "religious_ontologies": "Religious Ontologies",
         "theory_mapping": "Theory Mapping",
         "unknowns_paradoxes_scene": "Unknowns & Paradoxes"
+      }
+    },
+    "content/scenes/philosophy_history/historical_context_missed_opportunities.json": {
+      "sceneId": "historical_context_missed_opportunities",
+      "sceneName": "Historical Context and Missed Opportunities",
+      "objects": {
+        "historical_context_overview_scene": "Overview",
+        "lorentz_ether_comparison": "Lorentz Ether Comparison"
       }
     },
     "content/scenes/quantum/quantum.json": {
@@ -167,7 +174,6 @@
         "agency_and_internal_causation": "Agency and Internal Causation",
         "crisis_in_physics": "Crisis in Physics",
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
-        "lorentz_ether_comparison": "Lorentz Ether Comparison",
         "major_thinkers": "Major Thinkers",
         "philosophy_of_science": "Philosophy of Science",
         "religious_ontologies": "Religious Ontologies",

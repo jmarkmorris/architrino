@@ -8,7 +8,7 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 120,
+      "entries": 121,
       "sections": 676
     }
   },
@@ -4496,110 +4496,119 @@
             ]
           },
           {
-            "id": "philosophy_history__historical_context_missed_opportunities",
+            "id": "historical_context_missed_opportunities",
             "title": "Historical Context and Missed Opportunities",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
+            "kind": "scene-index",
+            "sceneType": "Scene-Index",
             "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-            "sections": [
+            "children": [
               {
-                "kind": "markdown-section",
+                "id": "historical_context_overview_scene",
                 "title": "Overview",
+                "kind": "markdown-split",
+                "sceneType": "Scene-Markdown-Split",
+                "scenePath": "content/scenes/philosophy_history/historical_context_overview.json",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Overview",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Overview",
+                    "sectionKey": "overview",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Timeline of Near Misses",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Timeline of Near Misses",
+                    "sectionKey": "timeline of near misses",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Lorentz Before Einstein: The Almost-Substrate Moment",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Lorentz Before Einstein: The Almost-Substrate Moment",
+                    "sectionKey": "lorentz before einstein the almost substrate moment",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Geometrization After 1915: Ontology Shift",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Geometrization After 1915: Ontology Shift",
+                    "sectionKey": "geometrization after 1915 ontology shift",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Copenhagen: Multistability Lost to Epistemic Minimalism",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Copenhagen: Multistability Lost to Epistemic Minimalism",
+                    "sectionKey": "copenhagen multistability lost to epistemic minimalism",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Renormalization Era: Warnings Reframed",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Renormalization Era: Warnings Reframed",
+                    "sectionKey": "renormalization era warnings reframed",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Precision Cosmology: Parameters into Story",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Precision Cosmology: Parameters into Story",
+                    "sectionKey": "precision cosmology parameters into story",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Recurrent Narrative Filters",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Recurrent Narrative Filters",
+                    "sectionKey": "recurrent narrative filters",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "What Would Have Needed to Be Different",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "What Would Have Needed to Be Different",
+                    "sectionKey": "what would have needed to be different",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Present Use of This History",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Present Use of This History",
+                    "sectionKey": "present use of this history",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Falsifiability Constraint",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                    "markdownSection": "Falsifiability Constraint",
+                    "sectionKey": "falsifiability constraint",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
-                "kind": "markdown-section",
-                "title": "Timeline of Near Misses",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Timeline of Near Misses",
-                "sectionKey": "timeline of near misses",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Lorentz Before Einstein: The Almost-Substrate Moment",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Lorentz Before Einstein: The Almost-Substrate Moment",
-                "sectionKey": "lorentz before einstein the almost substrate moment",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometrization After 1915: Ontology Shift",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Geometrization After 1915: Ontology Shift",
-                "sectionKey": "geometrization after 1915 ontology shift",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Copenhagen: Multistability Lost to Epistemic Minimalism",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Copenhagen: Multistability Lost to Epistemic Minimalism",
-                "sectionKey": "copenhagen multistability lost to epistemic minimalism",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Renormalization Era: Warnings Reframed",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Renormalization Era: Warnings Reframed",
-                "sectionKey": "renormalization era warnings reframed",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Precision Cosmology: Parameters into Story",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Precision Cosmology: Parameters into Story",
-                "sectionKey": "precision cosmology parameters into story",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Recurrent Narrative Filters",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Recurrent Narrative Filters",
-                "sectionKey": "recurrent narrative filters",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What Would Have Needed to Be Different",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "What Would Have Needed to Be Different",
-                "sectionKey": "what would have needed to be different",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Present Use of This History",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Present Use of This History",
-                "sectionKey": "present use of this history",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Falsifiability Constraint",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Falsifiability Constraint",
-                "sectionKey": "falsifiability constraint",
-                "headingLevel": 2
+                "id": "philosophy_history__lorentz_ether_comparison",
+                "title": "Lorentz Ether Comparison",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md"
               }
             ]
-          },
-          {
-            "id": "philosophy_history__lorentz_ether_comparison",
-            "title": "Lorentz Ether Comparison",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md"
           },
           {
             "id": "major_thinkers",

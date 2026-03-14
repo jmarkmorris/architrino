@@ -1,36 +1,46 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "philosophy_history__historical_context_missed_opportunities",
+    "id": "historical_context_missed_opportunities",
     "title": "Historical Context and Missed Opportunities",
-    "type": "Scene-Markdown-Split",
+    "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
-    "centerOn": "historical_context_overview",
     "layout": {
       "type": "rings"
     },
-    "labelDocIconOwnLine": true,
-    "source": {
-      "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-      "split": {
-        "headingLevel": 2,
-        "maxDepth": 1,
-        "overrides": {
-          "overview": {
-            "id": "historical_context_overview",
-            "labelTitle": "Overview",
-            "labelBadge": "doc",
-            "color": "#2f6b6f",
-            "mode": "doc"
-          }
-        }
+    "children": [
+      {
+        "nodeId": "historical_context_overview_scene",
+        "scenePath": "content/scenes/philosophy_history/historical_context_overview.json"
+      },
+      {
+        "nodeId": "lorentz_ether_comparison",
+        "scenePath": "content/scenes/philosophy_history/lorentz_ether_comparison.json"
       }
-    },
-    "view": {
-      "columns": 1
-    }
+    ]
   },
-  "objects": []
+  "objects": [
+    {
+      "id": "historical_context_overview_scene",
+      "title": "Overview",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Overview"
+    },
+    {
+      "id": "lorentz_ether_comparison",
+      "title": "Lorentz Ether Comparison",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Lorentz Ether Comparison",
+      "labelBadge": "doc"
+    }
+  ]
 }
