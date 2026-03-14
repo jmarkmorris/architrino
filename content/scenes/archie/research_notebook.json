@@ -29,6 +29,14 @@
             "labelTitle": "Major LLM Induced Error is Corrected with Bill Thurston (AI)",
             "labelSubtitle": "2026-03-12"
           },
+          "2026 03 09 github presence and community": {
+            "labelTitle": "GitHub Presence and Community",
+            "labelSubtitle": "2026-03-09"
+          },
+          "2026 03 08 scene taxonomy defined": {
+            "labelTitle": "Scene Taxonomy Defined",
+            "labelSubtitle": "2026-03-08"
+          },
           "2026 03 11 closure scorecard": {
             "labelTitle": "Closure Scorecard",
             "labelSubtitle": "2026-03-11"
@@ -40,6 +48,10 @@
           "2026 03 07 hyde periodic table": {
             "labelTitle": "Hyde Periodic Table",
             "labelSubtitle": "2026-03-07"
+          },
+          "2026 03 06 comparative glossary": {
+            "labelTitle": "Comparative Glossary",
+            "labelSubtitle": "2026-03-06"
           },
           "2026 03 03 ckm closure reaches three digit predictive accuracy": {
             "labelTitle": "CKM Closure Reaches Three-Digit Predictive Accuracy",

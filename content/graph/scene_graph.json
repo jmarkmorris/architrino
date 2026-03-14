@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 395,
-      "edges": 1136,
+      "edges": 1137,
       "scenes": 276,
       "markdownIndexes": 0,
       "markdownDocs": 119,
@@ -6524,6 +6524,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/universe.json",
+      "to": "scene:content/scenes/cosmology/structure_formation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/universe.json",
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",

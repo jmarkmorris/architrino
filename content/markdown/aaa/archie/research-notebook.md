@@ -359,6 +359,31 @@ This is visible in documents such as [Philosophy of Science](../philosophy-histo
 
 The real gain is not just consistency of style. It is that the project now has a well-considered list of areas to cover when treating a leaf topic. Depending on the document, those areas include things such as the subject name and short name, the core question or tension, the historical problem pressure, what still works, what fails or overstates, relation to $\mathbb{A}\mathbb{A}\mathbb{A}$, transition relevance, long-term relevance, and an explicit statement of what survives or what would count as resolution. That methodology turns topic growth into governed expansion rather than note accretion.
 
+## 2026-03-09 GitHub Presence and Community
+
+The project’s GitHub-facing layer was clarified as a distinct public surface for discussion, critique, revision, and collaborative refinement. The point was not merely to host files, but to define a community process in which questions, criticism, issues, pull requests, and AI-assisted participation all have a clear role.
+
+Relevant files:
+
+- [GitHub presence and community note](github-presence-and-community.md)
+- [Repository home and purpose](github-presence-and-community.md#repository-home)
+- [Discussions community](github-presence-and-community.md#discussions-community)
+- [AI-assisted participation](github-presence-and-community.md#ai-assisted-participation)
+
+The core idea is that GitHub serves as a public theory-workshop layer alongside the reader-facing webapp. It provides a durable place for versioned documents, issue tracking, structured discussion, and AI-supported refinement. That makes it possible to compare ideas in public, route them into the right workflow, and build a community that is both critical and constructive around the theory.
+
+## 2026-03-08 Scene Taxonomy Defined
+
+A scene-taxonomy note was defined as a normative reference for developers authoring new scenes. Its purpose is to make scene construction more deliberate by stating what each major scene type is for, where structural hierarchy belongs, and where document-driven presentation begins.
+
+Relevant files:
+
+- [Scene taxonomy note](scene-taxonomy.md)
+- [Primary scene classes](scene-taxonomy.md#primary-scene-classes)
+- [Markdown presentation types](scene-taxonomy.md#markdown-presentation-types)
+
+The note gives a brief working taxonomy. `Scene-Index` is the structural organizer for child scenes and branch navigation. `Scene-Markdown-View` is the direct reading surface for a single document. `Scene-Markdown-Split` turns one heading level of a markdown file into peer spheres, while `Scene-Markdown-Tree` turns a bounded heading hierarchy into a local scene tree. Together these definitions give developers a clearer rule for when to build a scene as structure, when to present a document directly, and when to derive navigation from markdown.
+
 ## 2026-03-07 Hyde Periodic Table
 
 The Hyde periodic table became a meaningful part of the project’s reader-facing structure. The repo now includes both a dedicated [Hyde periodic-table scene config](../../../scenes/chemistry/hyde_periodic_table_scene.json) and a supporting [Hyde analysis note](../nuclear-atomic/hyde-info.md).
@@ -372,6 +397,18 @@ Relevant files:
 What matters about the Hyde form is not only its historical novelty. It is a spiral layout that works well for intuitive thinkers because it preserves a near-continuous path through atomic number while making shell progression and family resemblance visually legible in one sweep. In the current writeup, the Hyde geometry is treated as a structural representation that reduces the topological breaks of the detached rectangular table and makes periodic recurrence feel spatially continuous rather than block-fragmented.
 
 This also connects directly to the interactive atomic reader. The periodic-table interface in this repo is built around clickable element regions that open element scenes, and the runtime supports anchored interaction through scene hotspots and legend routes. In practical terms, the Hyde table is not just an image: it functions as a visual map with hot spots for drilling down into atomic structure and related element-level scenes.
+
+## 2026-03-06 Comparative Glossary
+
+A comparative glossary was added as a cross-framework translation document. Its role is to let readers, developers, and editors move more cleanly between standard modern terminology and the canonical terminology used in $\mathbb{A}\mathbb{A}\mathbb{A}$, without leaving key words underspecified or letting older vocabulary quietly drag the ontology back toward mainstream assumptions.
+
+Relevant files:
+
+- [Comparative glossary](comparative-glossary.md)
+- [Cosmology lineage terms](comparative-glossary.md#cosmology-lineage-terms)
+- [Key regime terms](comparative-glossary.md#key-regime-terms)
+
+The glossary works as a controlled translation layer. It pairs familiar modern terms with $\mathbb{A}\mathbb{A}\mathbb{A}$ replacements, clarifies which inherited phrases should be phased out, and gives compact bridge language for major regime distinctions. That makes it useful both for prose consistency and for helping new readers understand where the framework is reusing language, where it is redefining it, and where it is introducing genuinely different concepts.
 
 ## 2026-03-03: CKM Closure Reaches Three-Digit Predictive Accuracy
 

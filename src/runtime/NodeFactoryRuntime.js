@@ -162,21 +162,26 @@ export function createNodeFactory(deps) {
       parsedFallback.title &&
       parsedFallback.title !== parsedFull.title &&
       parsedFallback.title.length < parsedFull.title.length;
-    const labelTitle =
-      typeof node.labelTitle === "string" && node.labelTitle.trim().length > 0
-        ? node.labelTitle.trim()
-        : prefersCompactLabel
-          ? parsedFallback.title
-          : parsedFull.title || parsedFallback.title;
-    let labelSubtitle =
-      typeof node.labelSubtitle === "string" && node.labelSubtitle.trim().length > 0
-        ? node.labelSubtitle.trim()
-        : prefersCompactLabel
-          ? parsedFallback.subtitle
-          : parsedFull.subtitle || parsedFallback.subtitle;
-    const labelDates =
-      typeof node.labelDates === "string" && node.labelDates.trim().length > 0
-        ? node.labelDates.trim()
+    const hasExplicitLabelTitle =
+      typeof node.labelTitle === "string" && node.labelTitle.trim().length > 0;
+    const hasExplicitLabelSubtitle =
+      typeof node.labelSubtitle === "string" && node.labelSubtitle.trim().length > 0;
+    const hasExplicitLabelDates =
+      typeof node.labelDates === "string" && node.labelDates.trim().length > 0;
+    const labelTitle = hasExplicitLabelTitle
+      ? node.labelTitle.trim()
+      : prefersCompactLabel
+        ? parsedFallback.title
+        : parsedFull.title || parsedFallback.title;
+    let labelSubtitle = hasExplicitLabelSubtitle
+      ? node.labelSubtitle.trim()
+      : prefersCompactLabel
+        ? parsedFallback.subtitle
+        : parsedFull.subtitle || parsedFallback.subtitle;
+    const labelDates = hasExplicitLabelDates
+      ? node.labelDates.trim()
+      : hasExplicitLabelTitle || hasExplicitLabelSubtitle
+        ? ""
         : parsedFull.dates || parsedFallback.dates;
     // Avoid duplicated two-line labels when heading format is "X - X".
     if (
