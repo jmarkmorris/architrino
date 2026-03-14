@@ -1,4 +1,4 @@
-## Simulation Frame: Implementing the Virtual/$\mathbb{U}_{\text{now}}$ universe-state perspective
+## Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective
 
 - All tiers are implemented in the absolute Euclidean frame (fixed x,y,z; absolute t).
 - The simulator effectively plays the role of the $\mathbb{U}_{\text{now}}$ universe-state perspective by integrating the master equation and maintaining S(t).

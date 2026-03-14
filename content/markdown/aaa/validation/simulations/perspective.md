@@ -34,7 +34,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Self-interaction switch at $\lvert \mathbf{v}\rvert = v$: the engine of stabilization and scales
+## Self-Interaction Switch at $\lvert \mathbf{v}\rvert = v$
 
 - What we assume:
 - When a worldline outruns its own recently emitted isochrons ($\lvert \mathbf{v}\rvert>1$ in our units), the causal roots include self-hits.
@@ -167,7 +167,7 @@ Plain language: you never see the full book of who emitted what; you only see a 
 
 ---
 
-## $\mathbb{U}_{\text{now}}$ note: what perfect clocks and frames do (and don’t)
+## $\mathbb{U}_{\text{now}}$ Note: Limits of Perfect Clocks and Frames
 
 Absolute time and Euclidean frames remove coordinate ambiguity (synchronization and alignment) but not physical ambiguity:
 - Sign/side ambiguity: attraction from +$\epsilon$ on one side vs repulsion from −$\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
@@ -209,7 +209,7 @@ Plain language: aligned corridors add, misaligned ones cancel; the strength you 
 
 ---
 
-## Reconstruction and inference: practical recipe under information bounds
+## Reconstruction Under Information Bounds
 
 Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, and prior-guided:
 - Multi-receiver geometry: use separated receivers to triangulate unoriented lines at the same t; intersecting rays yield two-sided candidate loci.

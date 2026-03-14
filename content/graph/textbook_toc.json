@@ -372,10 +372,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Architrino Assembly Architecture ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$) Mechanism",
+                    "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
                     "markdownPath": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
-                    "markdownSection": "Architrino Assembly Architecture ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$) Mechanism",
-                    "sectionKey": "architrino assembly architecture mathbb a mathbb a mathbb a mechanism",
+                    "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
+                    "sectionKey": "mathbb a mathbb a mathbb a mechanism",
                     "headingLevel": 2
                   },
                   {
@@ -842,10 +842,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Appendix A: Energy Bookkeeping and Reference Zero ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Convention)",
+                "title": "Appendix A: Energy Zero and Bookkeeping",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Appendix A: Energy Bookkeeping and Reference Zero ($\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Convention)",
-                "sectionKey": "appendix a energy bookkeeping and reference zero mathbb a mathbb a mathbb a convention",
+                "markdownSection": "Appendix A: Energy Zero and Bookkeeping",
+                "sectionKey": "appendix a energy zero and bookkeeping",
                 "headingLevel": 2
               }
             ]
@@ -1614,10 +1614,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Mapping weak mixing in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to the Standard Model",
+                    "title": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to Standard Model",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Mapping weak mixing in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to the Standard Model",
-                    "sectionKey": "mapping weak mixing in mathbb a mathbb a mathbb a to the standard model",
+                    "markdownSection": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to Standard Model",
+                    "sectionKey": "weak mixing mathbb a mathbb a mathbb a to standard model",
                     "headingLevel": 2
                   },
                   {
@@ -1822,10 +1822,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "The Delta Baryons ($\\Delta^{++}, \\Delta^+, \\Delta^0, \\Delta^-$): Excited Nucleons",
+                "title": "Delta Baryons ($\\Delta^{++}, \\Delta^+, \\Delta^0, \\Delta^-$)",
                 "markdownPath": "content/markdown/aaa/assemblies/mesons/mesons.md",
-                "markdownSection": "The Delta Baryons ($\\Delta^{++}, \\Delta^+, \\Delta^0, \\Delta^-$): Excited Nucleons",
-                "sectionKey": "the delta baryons delta delta delta 0 delta excited nucleons",
+                "markdownSection": "Delta Baryons ($\\Delta^{++}, \\Delta^+, \\Delta^0, \\Delta^-$)",
+                "sectionKey": "delta baryons delta delta delta 0 delta",
                 "headingLevel": 2
               },
               {
@@ -2441,10 +2441,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Standard vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ BBN: Ontological Reframing",
+                "title": "Standard vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ BBN",
                 "markdownPath": "content/markdown/aaa/cosmology/BBN-constraints.md",
-                "markdownSection": "Standard vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ BBN: Ontological Reframing",
-                "sectionKey": "standard vs mathbb a mathbb a mathbb a bbn ontological reframing",
+                "markdownSection": "Standard vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ BBN",
+                "sectionKey": "standard vs mathbb a mathbb a mathbb a bbn",
                 "headingLevel": 2
               },
               {
@@ -3556,10 +3556,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Self-interaction switch at $\\lvert \\mathbf{v}\\rvert = v$: the engine of stabilization and scales",
+                    "title": "Self-Interaction Switch at $\\lvert \\mathbf{v}\\rvert = v$",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Self-interaction switch at $\\lvert \\mathbf{v}\\rvert = v$: the engine of stabilization and scales",
-                    "sectionKey": "self interaction switch at lvert mathbf v rvert v the engine of stabilization and scales",
+                    "markdownSection": "Self-Interaction Switch at $\\lvert \\mathbf{v}\\rvert = v$",
+                    "sectionKey": "self interaction switch at lvert mathbf v rvert v",
                     "headingLevel": 2
                   },
                   {
@@ -3636,10 +3636,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "$\\mathbb{U}_{\\text{now}}$ note: what perfect clocks and frames do (and don’t)",
+                    "title": "$\\mathbb{U}_{\\text{now}}$ Note: Limits of Perfect Clocks and Frames",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "$\\mathbb{U}_{\\text{now}}$ note: what perfect clocks and frames do (and don’t)",
-                    "sectionKey": "mathbb u text now note what perfect clocks and frames do and don t",
+                    "markdownSection": "$\\mathbb{U}_{\\text{now}}$ Note: Limits of Perfect Clocks and Frames",
+                    "sectionKey": "mathbb u text now note limits of perfect clocks and frames",
                     "headingLevel": 2
                   },
                   {
@@ -3668,10 +3668,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Reconstruction and inference: practical recipe under information bounds",
+                    "title": "Reconstruction Under Information Bounds",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Reconstruction and inference: practical recipe under information bounds",
-                    "sectionKey": "reconstruction and inference practical recipe under information bounds",
+                    "markdownSection": "Reconstruction Under Information Bounds",
+                    "sectionKey": "reconstruction under information bounds",
                     "headingLevel": 2
                   },
                   {
@@ -3702,10 +3702,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Simulation Frame: Implementing the Virtual/$\\mathbb{U}_{\\text{now}}$ universe-state perspective",
+                    "title": "Simulation Frame: Virtual $\\mathbb{U}_{\\text{now}}$ Perspective",
                     "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
-                    "markdownSection": "Simulation Frame: Implementing the Virtual/$\\mathbb{U}_{\\text{now}}$ universe-state perspective",
-                    "sectionKey": "simulation frame implementing the virtual mathbb u text now universe state perspective",
+                    "markdownSection": "Simulation Frame: Virtual $\\mathbb{U}_{\\text{now}}$ Perspective",
+                    "sectionKey": "simulation frame virtual mathbb u text now perspective",
                     "headingLevel": 2
                   }
                 ]
@@ -3720,10 +3720,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Run Protocol: Absolute Frame Integration + Mandatory $\\mathbb{U}_{\\text{now}}$ Logging",
+                    "title": "Run Protocol: Absolute-Frame + $\\mathbb{U}_{\\text{now}}$ Logging",
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
-                    "markdownSection": "Run Protocol: Absolute Frame Integration + Mandatory $\\mathbb{U}_{\\text{now}}$ Logging",
-                    "sectionKey": "run protocol absolute frame integration mandatory mathbb u text now logging",
+                    "markdownSection": "Run Protocol: Absolute-Frame + $\\mathbb{U}_{\\text{now}}$ Logging",
+                    "sectionKey": "run protocol absolute frame mathbb u text now logging",
                     "headingLevel": 2
                   }
                 ]
@@ -5491,10 +5491,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge)",
+                    "title": "Quasi-Steady-State (Hoyle--Narlikar--Burbidge)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                    "markdownSection": "Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge)",
-                    "sectionKey": "steady state quasi steady state hoyle narlikar burbidge",
+                    "markdownSection": "Quasi-Steady-State (Hoyle--Narlikar--Burbidge)",
+                    "sectionKey": "quasi steady state hoyle narlikar burbidge",
                     "headingLevel": 3
                   },
                   {

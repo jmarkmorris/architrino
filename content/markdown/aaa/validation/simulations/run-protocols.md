@@ -6,7 +6,7 @@
 4. **Noether Sea Initialization**: Standard "Vacuum" runs must pre-populate the grid with a lattice of coupled pro/anti tri-binary assemblies to simulate the medium's influence on test particles.
 5. **Convergence**: $\Delta$t refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
 
-## Run Protocol: Absolute Frame Integration + Mandatory $\mathbb{U}_{\text{now}}$ Logging
+## Run Protocol: Absolute-Frame + $\mathbb{U}_{\text{now}}$ Logging
 
 ### Absolute frame rule
 All simulations integrate dynamics in the absolute Euclidean frame:

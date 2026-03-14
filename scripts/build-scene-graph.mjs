@@ -255,6 +255,7 @@ function escapeMarkdownLinkText(text) {
 function normalizeTextbookTocMarkdownLabel(text) {
   const stylizedAAA = "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$";
   const stylizedUNow = "$\\mathbb{U}_{\\text{now}}$";
+  const stylizedGeff = "$G_{\\text{eff}}$";
   const stylizedFieldSpeed = "$c_f$";
   const stylizedFieldSpeedEquality = "$v = c_f$";
   const superscriptMap = new Map([
@@ -312,6 +313,9 @@ function normalizeTextbookTocMarkdownLabel(text) {
     }
     if (rawValue.replace(/\s+/g, "") === "\\mathbb{U}_{\\text{now}}") {
       return stylizedUNow;
+    }
+    if (rawValue.replace(/\s+/g, "") === "G_{\\text{eff}}") {
+      return stylizedGeff;
     }
     if (rawValue.replace(/\s+/g, "") === "c_f") {
       return stylizedFieldSpeed;

@@ -38,7 +38,7 @@ Despite the correlations, entanglement cannot transmit information faster than l
 
 ---
 
-## Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Mechanism
 
 ### Ontological Starting Point
 

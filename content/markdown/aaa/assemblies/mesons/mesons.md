@@ -93,7 +93,7 @@ If the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or 
 
 ---
 
-## The Delta Baryons ($\Delta^{++}, \Delta^+, \Delta^0, \Delta^-$): Excited Nucleons
+## Delta Baryons ($\Delta^{++}, \Delta^+, \Delta^0, \Delta^-$)
 
 **Standard Model Role:**
 These are excited states of the nucleon. The $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which necessitated the introduction of the **Color** quantum number to satisfy Pauli Exclusion. They are Spin-3/2.

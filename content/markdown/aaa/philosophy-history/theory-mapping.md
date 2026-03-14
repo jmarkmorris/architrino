@@ -676,7 +676,7 @@ $$
 
 ---
 
-### Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge)
+### Quasi-Steady-State (Hoyle--Narlikar--Burbidge)
 
 **Theory Name:** Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge). **Short Name:** Hoyle--Narlikar--Burbidge. **Layer Bucket:** Cosmology / Large-Scale Assembly Evolution.
 
