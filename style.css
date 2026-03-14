@@ -362,6 +362,11 @@ body {
   height: 18px;
 }
 
+#doc-button.is-active {
+  background: rgba(92, 36, 164, 0.92);
+  border-color: rgba(176, 136, 255, 0.7);
+}
+
 #doc-button.is-hidden {
   visibility: hidden;
   opacity: 0;

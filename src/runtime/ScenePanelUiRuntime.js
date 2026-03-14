@@ -3,13 +3,13 @@ export function createScenePanelUiRuntime(deps) {
     docButton,
     detailClose,
     markdownClose,
-    markdownPanel,
     markdownDocButton,
     markdownLayoutToggle,
     markdownRuntime,
     closeDetailPanel,
     getCurrentLevel,
     isTransitionActive,
+    toggleTextbookToc,
   } = deps;
 
   function openCurrentLevelDoc() {
@@ -30,21 +30,12 @@ export function createScenePanelUiRuntime(deps) {
     }
   }
 
-  function toggleCurrentLevelDoc() {
-    if (isTransitionActive()) {
-      return;
-    }
-    if (markdownPanel?.classList.contains("is-open")) {
-      markdownRuntime.hideMarkdownPanel();
-      return;
-    }
-    openCurrentLevelDoc();
-  }
-
   function wireListeners() {
     if (docButton) {
       docButton.addEventListener("click", () => {
-        toggleCurrentLevelDoc();
+        if (typeof toggleTextbookToc === "function") {
+          toggleTextbookToc();
+        }
       });
     }
 

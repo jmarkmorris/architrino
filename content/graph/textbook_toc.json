@@ -3540,10 +3540,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Delayed causal emission on Jacobian-weighted $1/r^2$ isochrons (no magnetism needed)",
+                    "title": "Delayed causal emission on Jacobian-weighted $1/r^2$ isochrons",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Delayed causal emission on Jacobian-weighted $1/r^2$ isochrons (no magnetism needed)",
-                    "sectionKey": "delayed causal emission on jacobian weighted 1 r 2 isochrons no magnetism needed",
+                    "markdownSection": "Delayed causal emission on Jacobian-weighted $1/r^2$ isochrons",
+                    "sectionKey": "delayed causal emission on jacobian weighted 1 r 2 isochrons",
                     "headingLevel": 2
                   },
                   {
@@ -3702,10 +3702,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Simulation Frame: Implementing the Virtual/$\\mathbb{U}_{\\text{now}}$ universe-state perspective View",
+                    "title": "Simulation Frame: Implementing the Virtual/$\\mathbb{U}_{\\text{now}}$ universe-state perspective",
                     "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
-                    "markdownSection": "Simulation Frame: Implementing the Virtual/$\\mathbb{U}_{\\text{now}}$ universe-state perspective View",
-                    "sectionKey": "simulation frame implementing the virtual mathbb u text now universe state perspective view",
+                    "markdownSection": "Simulation Frame: Implementing the Virtual/$\\mathbb{U}_{\\text{now}}$ universe-state perspective",
+                    "sectionKey": "simulation frame implementing the virtual mathbb u text now universe state perspective",
                     "headingLevel": 2
                   }
                 ]
@@ -4403,10 +4403,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Copenhagen Consolidation: Deterministic Multistability Lost to Epistemic Minimalism",
+                "title": "Copenhagen: Deterministic Multistability Lost to Epistemic Minimalism",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Copenhagen Consolidation: Deterministic Multistability Lost to Epistemic Minimalism",
-                "sectionKey": "copenhagen consolidation deterministic multistability lost to epistemic minimalism",
+                "markdownSection": "Copenhagen: Deterministic Multistability Lost to Epistemic Minimalism",
+                "sectionKey": "copenhagen deterministic multistability lost to epistemic minimalism",
                 "headingLevel": 2
               },
               {
@@ -4777,10 +4777,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
+                    "title": "Lucien Hardy (1966–) — Quantum Foundations (Operational/Psi-Epistemic)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)",
-                    "sectionKey": "lucien hardy 1966 rob spekkens 1970 matthew leifer 1975 quantum foundations operational psi epistemic",
+                    "markdownSection": "Lucien Hardy (1966–) — Quantum Foundations (Operational/Psi-Epistemic)",
+                    "sectionKey": "lucien hardy 1966 quantum foundations operational psi epistemic",
                     "headingLevel": 3
                   }
                 ]

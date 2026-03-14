@@ -976,8 +976,10 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Legacy Shift**: Valentini's framework becomes an operational testing extension within substrate realism rather than a marginal speculative add-on.
 
-### **Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)**
-**Subject:** Lucien Hardy, Rob Spekkens, and Matthew Leifer, representing operational and $\psi$-epistemic quantum-foundations programs.
+### **Lucien Hardy (1966–) — Quantum Foundations (Operational/Psi-Epistemic)**
+**Subject:** Lucien Hardy, representing operational and $\psi$-epistemic quantum-foundations programs.
+
+**Acknowledgement of Adjacent Work:** This section also draws directly on the closely related contributions of Rob Spekkens and Matthew Leifer, whose work sharpened epistemic-state models, ontology constraints, and theorem-level limits on what an operational quantum description can mean.
 
 **Era / Context**: Their work developed in a mature quantum-foundations era seeking reconstruction principles and ontology-sensitive distinctions beyond textbook interpretation slogans.
 

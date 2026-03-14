@@ -184,11 +184,11 @@ The long-term relevance of this episode is permanent process guidance. Recovery 
 
 ---
 
-## Copenhagen Consolidation: Deterministic Multistability Lost to Epistemic Minimalism
+## Copenhagen: Deterministic Multistability Lost to Epistemic Minimalism
 
 ### Overview
 
-**Episode:** Copenhagen Consolidation: Deterministic Multistability Lost to Epistemic Minimalism. **Short Name:** Copenhagen Lock-In. **Period:** roughly 1924-1935 in the development of quantum mechanics and its interpretive settlement. The near-miss thesis is that quantum outcome selection could have been pursued through deterministic microstate and contextual basin dynamics rather than being neutralized into an operational rule-set.
+**Episode:** Copenhagen: Deterministic Multistability Lost to Epistemic Minimalism. **Short Name:** Copenhagen Lock-In. **Period:** roughly 1924-1935 in the development of quantum mechanics and its interpretive settlement. The near-miss thesis is that quantum outcome selection could have been pursued through deterministic microstate and contextual basin dynamics rather than being neutralized into an operational rule-set.
 
 ### Where The Opening Appeared
 
