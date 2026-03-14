@@ -332,6 +332,18 @@ Your intuition was right to question this.
 When you prompt your LLMs to fix the repository, you should explicitly tell them:
 *"Stop hiding the receiver's velocity inside generic placeholder terms like $\mathbf{J}_{ij}^{(\text{delay})}$. I want the exact Euler-Lagrange variation of the causal action written out completely, showing both the emitter's velocity in the denominator and how the receiver's velocity enters the force equation to give rise to emergent magnetic effects."*
 
+## 2026-03-11 Closure Scorecard
+
+A reusable prompt was defined to compare $\mathbb{A}\mathbb{A}\mathbb{A}$ to modern physics along two distinct axes: operational effectiveness and foundational mechanism. The resulting scorecard makes the comparison explicit rather than rhetorical, and it can be reused in later assessment cycles without changing the basic lens.
+
+Relevant files:
+
+- [Closure scorecard](../validation/closure-scorecard.md)
+- [Reusable assessment prompt](../validation/closure-scorecard.md#reusable-assessment-prompt)
+- [Assessment table](../validation/closure-scorecard.md#assessment-table)
+
+The scores illustrate both sides of the present situation. They show where $\mathbb{A}\mathbb{A}\mathbb{A}$ already does well, especially in architectural coherence and ontic-mechanism framing, and they also show where the framework still needs more development and improvement, particularly in coverage depth, parameter closure, and several mathematical bridge areas. That makes the scorecard useful not just as a verdict sheet, but as a development map.
+
 ## 2026-03-10 Philosophy-History Leaf Schema
 
 An important editorial-methodology step was added across the topic documents: each major topic can now define a systematic method for handling its heading-derived leaves, rather than letting individual units accumulate in an ad hoc way. The relevant philosophy-history documents now explicitly introduce unified coverage templates and conformance checks so every topic leaf is written through a deliberate set of areas to cover.

@@ -1,5 +1,6 @@
-  figure out what to do with the subscription site.
+  figure out what to do with the subscription site liberapay.
   and stripe.
+  and my qrcode
   
   Holy crap. My intuition was correct about velocity dependence.  See Bill Thurston writeup in ideas.
   I need to work through the entire repo a few times removing the contamination!!!
@@ -17,7 +18,7 @@ extract what I have at wordpress.
 
 - crisis-in-physics.md  : full review March 12, 2026
 
-
+Next:
   | historical-context-and-missed-opportunities.md | 
   | information-computation.md | 
   | philosophy-of-science.md | 
@@ -40,6 +41,12 @@ extract what I have at wordpress.
   - a language for describing animations
   - every scene will be ported to this format
 - composer should use the same frame elements in the corners.
+
+---
+
+Design a new two level ring structure and all the possibilities for the branching config
+- center, 4, each branching up to 3.  : 1 + 4 + 12 = 17 max
+- center, 5, each branching up to 2
 
 ---
 
