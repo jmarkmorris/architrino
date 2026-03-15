@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 121,
-      "sections": 775
+      "sections": 779
     }
   },
   "tocRoot": {
@@ -4804,10 +4804,42 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Canonical Parameter Table",
+                "title": "Canonical Guardrails",
                 "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
-                "markdownSection": "Canonical Parameter Table",
-                "sectionKey": "canonical parameter table",
+                "markdownSection": "Canonical Guardrails",
+                "sectionKey": "canonical guardrails",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Layer I: Substrate and Kernel Parameters",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Layer I: Substrate and Kernel Parameters",
+                "sectionKey": "layer i substrate and kernel parameters",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Layer II: Assembly-Geometry Closure Targets",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Layer II: Assembly-Geometry Closure Targets",
+                "sectionKey": "layer ii assembly geometry closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Layer III: Constitutive Spacetime Parameters",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Layer III: Constitutive Spacetime Parameters",
+                "sectionKey": "layer iii constitutive spacetime parameters",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Layer IV: Observer-Level Benchmarks and Derived Outputs",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Layer IV: Observer-Level Benchmarks and Derived Outputs",
+                "sectionKey": "layer iv observer level benchmarks and derived outputs",
                 "headingLevel": 2
               },
               {
@@ -4820,10 +4852,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Closure Rules",
+                "title": "What Is Not Yet Closed",
                 "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
-                "markdownSection": "Closure Rules",
-                "sectionKey": "closure rules",
+                "markdownSection": "What Is Not Yet Closed",
+                "sectionKey": "what is not yet closed",
                 "headingLevel": 2
               },
               {

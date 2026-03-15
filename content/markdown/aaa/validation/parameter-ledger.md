@@ -1,65 +1,137 @@
 # Parameter Ledger
 
-This chapter is the canonical bookkeeping page for the parameters used across the closure program. Its purpose is to keep symbols, statuses, and chapter responsibilities stable enough that constitutive targets, observables, and genuine postulates are not silently mixed together.
+This chapter is the canonical bookkeeping page for the symbols that control closure across the current $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus. Its purpose is not to re-derive every quantity. Its purpose is to keep the roles of primitive postulates, geometric closure targets, constitutive coefficients, state variables, and observer-level benchmarks from collapsing into one another.
+
+The central bookkeeping rule is simple: not every symbol that appears in an equation is a free parameter. Some symbols are fixed substrate inputs, some are assembly-dependent outputs, some are constitutive functions of the medium, and some are measured benchmarks that the theory is supposed to recover.
 
 ## Purpose
 
-This chapter is the canonical bookkeeping page for the parameters that appear across the current $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program. Its job is not to re-derive every quantity. Its job is to state:
+This ledger records, for each recurrent symbol:
 
-- which symbols are fundamental,
-- which are constitutive or geometric closure targets,
-- which are observable-fit coefficients,
-- and which chapters are responsible for determining them.
+- what kind of object it is,
+- whether it is currently treated as primitive, derived, or still open,
+- which chapter owns its definition,
+- and which closure program is responsible for fixing it.
 
-The ledger is therefore the bridge between ontology, dynamics, and validation. It prevents the same symbol from silently changing meaning across chapters.
+That distinction matters because the corpus currently spans several layers at once:
+
+- substrate dynamics in the Euclidean void,
+- assembly geometry and delay-lock structure,
+- effective spacetime constitutive maps,
+- and observer-level fits to standard benchmarks.
+
+Without a ledger, those layers can silently trade symbols back and forth as if they were interchangeable. They are not.
 
 ## Status Classes
 
-Use the following status labels consistently.
+Use the following classes consistently.
 
-- **Fundamental:** part of the substrate-level postulate set.
-- **Geometric closure target:** expected to be fixed by assembly geometry or delay-lock dynamics.
-- **Constitutive closure target:** effective-medium coefficient that must be extracted from coarse-graining and then held fixed across observables.
-- **Observable benchmark:** not fundamental to the theory, but a measured quantity used to calibrate or test the mapping.
+- **Fundamental parameter:** part of the substrate-level postulate set.
+- **Regulator / convention:** introduced for regularization, nondimensionalization, or normalization; not itself an ontological observable.
+- **Geometric closure target:** should be fixed by assembly geometry, delay locking, or branch selection.
+- **Constitutive closure target:** effective-medium quantity that must be extracted once and then reused across observables.
+- **State variable / field:** varies over space, time, or assembly; not a single global fit constant.
+- **Observable benchmark:** measured output used to test the closure map.
 
-## Canonical Parameter Table
+## Canonical Guardrails
 
-| ID | Symbol | Name | Status | Current role | Primary closure home |
+### Field-speed notation
+
+The corpus uses both $v$ and $c_f$ for field speed in different chapters. This ledger treats
+$$
+c_f
+$$
+as the canonical symbol for the physical field speed, while $v=1$ or $c_f=1$ denotes a chapter-local nondimensionalization convention.
+
+### Parameter versus field
+
+The following should **not** be treated as free global constants:
+
+- $n(\mathbf{x},t)$,
+- $\rho_{\text{core}}(\mathbf{x},t)$,
+- $\Phi_{\text{eff}}(\mathbf{x},t)$,
+- $c_{\text{eff}}(\mathbf{x})$,
+- $m_{\text{inertial}}(A)$ for a specific assembly $A$.
+
+These are state variables, constitutive fields, or derived outputs. They may be controlled by a smaller parameter set, but they are not themselves independent knobs.
+
+### Benchmark versus postulate
+
+The following observer-level quantities are closure targets, not primitive inputs:
+
+- $e$,
+- $h,\hbar$,
+- $G$,
+- $\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i$,
+- particle masses and electroweak angles.
+
+If the theory must reset them independently for each chapter, parameter closure has failed.
+
+## Layer I: Substrate and Kernel Parameters
+
+These symbols belong to the delayed microscopic law itself.
+
+| ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| A1 | $c_f$ | field speed | Fundamental | speed of causal wake propagation | [foundations/ontology.md](../foundations/ontology.md), [dynamics/master-equation.md](../dynamics/master-equation.md) |
-| A2 | $\epsilon$ | architrino charge magnitude | Fundamental | elementary substrate charge with $e = 6\epsilon$ | [assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
-| A3 | $\kappa$ | microscopic coupling constant | Geometric closure target | overall strength of the reception law | [dynamics/master-equation.md](../dynamics/master-equation.md), [validation/architrino-si-base-units.md](./architrino-si-base-units.md) |
-| A4 | $\eta$ | kernel regularization width | Constitutive closure target | defines the regularized causal kernel used in exact and numerical dynamics | [validation/simulations/action-energy/well-posedness-and-regularization.md](./simulations/action-energy/well-posedness-and-regularization.md) |
-| A5 | $s_{\text{core}}$ | pro/anti core orientation sign | Fundamental | matter/antimatter bookkeeping sign for core chirality | [assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
-| B1 | $\rho_{\text{core},0}$ | reference Noether-core density | Constitutive closure target | baseline medium density for spacetime constitutive maps | [spacetime/emergent-metric.md](../spacetime/emergent-metric.md) |
-| B2 | $n(x,t)$ | normalized Noether-core density | Constitutive closure target | $n=\rho_{\text{core}}/\rho_{\text{core},0}$ | [spacetime/emergent-metric.md](../spacetime/emergent-metric.md) |
-| B3 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | tri-binary radii | Geometric closure target | nested binary scales for clock, spin, and shielding structure | [assemblies/noether-core.md](../assemblies/noether-core.md), [dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md) |
-| B4 | $R_{\text{align}}$ | alignment radius | Geometric closure target | event-horizon / Planck-alignment scale | [dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md) |
-| C1 | $\Phi_{\text{eff}}$ | constitutive effective potential | Constitutive closure target | clock-channel potential entering the metric map | [spacetime/emergent-metric.md](../spacetime/emergent-metric.md) |
-| C2 | $\Omega,\xi$ | metric constitutive factors | Constitutive closure target | observer-level clock and ruler response functions | [spacetime/emergent-metric.md](../spacetime/emergent-metric.md) |
-| C3 | $\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i$ | PPN coefficients | Observable benchmark / constitutive outputs | weak-field GR comparison coefficients | [spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
-| C4 | $\zeta(A)$ | shielding factor of assembly $A$ | Geometric closure target | ratio of apparent to internal field amplitude | [dynamics/energy.md](../dynamics/energy.md) |
-| C5 | $\alpha$ | personality-frame misalignment angle | Geometric closure target | quark electroweak / flavor geometry datum | [assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
-| D1 | $e$ | elementary charge | Observable benchmark | recovered via $e = 6\epsilon \sqrt{\kappa c_f}\,Z_e$ | [assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
-| D2 | $h,\hbar$ | action quantum | Geometric closure target | alignment / orbital action scale | [dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md), [validation/architrino-si-base-units.md](./architrino-si-base-units.md) |
-| D3 | $G$ | effective Newton coupling | Constitutive closure target | medium-compliance parameter in the gravity map | [spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md) |
-| D4 | $m_{\text{inertial}}(A)$ | inertial mass of assembly $A$ | Geometric closure target | emergent inertia from shielding and internal energy | [dynamics/energy.md](../dynamics/energy.md), [assemblies/particle-masses.md](../assemblies/particle-masses.md) |
+| K1 | $c_f$ | Fundamental parameter | Primitive | field speed of causal wake propagation | [../dynamics/master-equation.md](../dynamics/master-equation.md), [../foundations/ontology.md](../foundations/ontology.md) |
+| K2 | $\epsilon$ | Fundamental parameter | Primitive | unit architrino charge magnitude, with observer-level charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../dynamics/gauge-structure-emergence.md](../dynamics/gauge-structure-emergence.md) |
+| K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open | universal coupling strength in the per-hit acceleration law | [../dynamics/master-equation.md](../dynamics/master-equation.md), [architrino-si-base-units.md](./architrino-si-base-units.md) |
+| K4 | $\eta$ | Regulator / convention | Open but non-ontological | mollifier width used to regularize causal wake surfaces for smooth dynamics and numerics | [simulations/action-energy/well-posedness-and-regularization.md](./simulations/action-energy/well-posedness-and-regularization.md), [../dynamics/master-equation.md](../dynamics/master-equation.md) |
+| K5 | $Z_e$ | Regulator / convention | Convention, default $Z_e=1$ | coarse-graining / normalization factor in the substrate-to-observer charge map | [../dynamics/gauge-structure-emergence.md](../dynamics/gauge-structure-emergence.md), [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
+
+## Layer II: Assembly-Geometry Closure Targets
+
+These quantities belong to tri-binary architecture, shielding, branch structure, and assembly response.
+
+| ID | Symbol | Class | Current status | Meaning | Primary home |
+| --- | --- | --- | --- | --- | --- |
+| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../assemblies/noether-core.md](../assemblies/noether-core.md), [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md) |
+| G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
+| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md) |
+| G4 | $L_{\text{align}}$ | Geometric closure target | Open, conjectural | action / angular-momentum increment of the aligned terminal mode | [../dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md) |
+| G5 | $\zeta(A)$ | Geometric closure target | Open | shielding or leakage factor of assembly $A$, defined by far-field suppression relative to naive constituent exposure | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
+| G6 | $\alpha$ | Geometric closure target | Open | personality-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
+| G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional personality-axis orientation | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
+
+## Layer III: Constitutive Spacetime Parameters
+
+These symbols control the handoff from the Euclidean substrate plus Noether-core sea to effective metric language.
+
+| ID | Symbol | Class | Current status | Meaning | Primary home |
+| --- | --- | --- | --- | --- | --- |
+| C1 | $\rho_{\text{core},0}$ | Constitutive closure target | Open | reference Noether-core density used to normalize the medium | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether-core density, $n=\rho_{\text{core}}/\rho_{\text{core},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C3 | $\Omega(\mathbf{x}),\xi(\mathbf{x})$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) |
+| C4 | $\Phi_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C5 | $c_{\text{eff}}(\mathbf{x})$ | State variable / field | Derived field | effective signal speed in the medium, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+| C6 | $\gamma_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | first-order refraction / space-curvature coefficient in the weak-field map | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+| C7 | $C_2$ or $\beta_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | second-order clock-channel nonlinearity entering the $g_{00}$ expansion | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+| C8 | $\Xi_1,\Xi_2,\Xi_3,\Xi_4$ | Constitutive closure target | Open | preferred-frame leakage coefficients in the weak-field constitutive expansion | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+
+## Layer IV: Observer-Level Benchmarks and Derived Outputs
+
+These quantities are where closure is tested. They are not substrate inputs.
+
+| ID | Symbol | Class | Current status | Meaning | Primary home |
+| --- | --- | --- | --- | --- | --- |
+| O1 | $e$ | Observable benchmark | Derived target | elementary charge reconstructed from substrate charge and normalization map | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../dynamics/gauge-structure-emergence.md](../dynamics/gauge-structure-emergence.md) |
+| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | action quantum to be related to tri-binary alignment or orbital closure | [../dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md), [architrino-si-base-units.md](./architrino-si-base-units.md) |
+| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [../dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md), [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md) |
+| O4 | $m_{\text{inertial}}(A)$ | Derived output | Open | inertial mass of assembly $A$, extracted operationally from shielding and medium response | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
+| O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md), [../dynamics/gauge-structure-emergence.md](../dynamics/gauge-structure-emergence.md) |
+| O6 | $(\alpha_1,\alpha_2,\alpha_3)$ | Observable benchmark | Open | standard PPN preferred-frame coefficients derived from $(\Xi_1,\Xi_2,\Xi_3)$ | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 
 ## Canonical Relations
 
-The following relations are the current canonical interfaces between the ledger symbols.
+The ledger above is only useful if the interfaces between layers stay explicit. The following relations are the current canonical handoff points in the corpus.
 
-### Substrate charge normalization
+### 1. Microscopic delayed dynamics
 
+The regularized exact law uses the kernel-side set
 $$
-e = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
+(c_f,\epsilon,\kappa,\eta).
 $$
-
-with $Z_e$ the observer-level field-normalization factor used when matching the substrate to canonical kinetic terms.
-
-### Regularized microscopic dynamics
-
-At the exact dynamical level, the regularized force law is represented schematically by
+A representative regularized form is
 $$
 m_a\ddot{\mathbf{x}}_a(t)=
 \sum_b
@@ -69,113 +141,168 @@ m_a\ddot{\mathbf{x}}_a(t)=
 \delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big).
 $$
 
-So $(c_f,\epsilon,\kappa,\eta)$ are the kernel-side parameters that any exact or numerical closure must control.
+This is the substrate-side parameter core. Any exact or numerical closure that changes these symbols chapter by chapter is not a closed theory.
 
-### Metric constitutive map
+### 2. Charge reconstruction
 
-For spacetime phenomenology, the canonical constitutive handoff is
+The current substrate-to-observer charge map is
 $$
-(\delta_{ij},n,\Phi_{\text{eff}},\text{stress})\mapsto g_{\mu\nu}^{\text{eff}},
+e = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
 $$
-with
+with canonical normalization choice
 $$
-\Phi_{\text{eff}}(x)=-c_f^2\ln\!\big(\Omega(x)\xi(x)\big).
+Z_e=1.
 $$
 
-The first weak-field expansion is
+This relation is important because it shows that $e$ is not presently a primitive input in the architrino ontology. It is a recovered observer-level benchmark.
+
+### 3. Medium normalization and clock-channel potential
+
+The constitutive spacetime layer uses
 $$
-g^{\text{eff}}_{00}=
--\left(1+\frac{2\Phi_N}{c_f^2}\right)+O(c_f^{-4}),
+\rho_{\text{core}}(\mathbf{x},t)=\rho_{\text{core},0}\,n(\mathbf{x},t),
+$$
+and
+$$
+\Phi_{\text{eff}}(\mathbf{x})
+=
+-c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big).
+$$
+
+This is the cleanest current statement of the medium-to-metric handoff:
+$$
+(\delta_{ij},n,\Phi_{\text{eff}},\text{stress})
+\mapsto
+g_{\mu\nu}^{\text{eff}}.
+$$
+
+### 4. Weak-field PPN extraction
+
+The observable weak-field coefficients are read from the constitutive map through
+$$
+n(\mathbf{x})
+\equiv
+\frac{c_f}{c_{\text{eff}}(\mathbf{x})}
+=
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
+$$
+and
+$$
+\beta_{\text{eff}}=\frac{1+2C_2}{2}.
+$$
+
+Preferred-frame leakage is encoded by
+$$
+\alpha_1=\Xi_1,\qquad
+\alpha_2=\Xi_2,\qquad
+\alpha_3=\Xi_1-\Xi_2-\Xi_3.
+$$
+
+The zero-leakage closure condition is therefore
+$$
+\Xi_1=\Xi_2=\Xi_3=\Xi_4=0
+\quad\Longleftrightarrow\quad
+\alpha_1=\alpha_2=\alpha_3=0.
+$$
+
+### 5. Mass map
+
+The current assembly-side inertial map is
+$$
+m_{\text{inertial}}(A)
+\approx
+\alpha\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2},
+$$
+with $\alpha$ fixed once by a reference assembly rather than re-fit separately for each particle.
+
+This relation means that $m_{\text{inertial}}(A)$ is not a primitive parameter. It is an output of shielding, internal energy, and medium response.
+
+### 6. Planck-alignment map
+
+The current Planck-scale program uses the conjectural relations
+$$
+L_{\text{align}} \stackrel{\text{hyp.}}{\approx} h,
 \qquad
-g^{\text{eff}}_{ij}=
-\delta_{ij}\left(1-2\gamma_{\text{eff}}\frac{\Phi_N}{c_f^2}\right)+O(c_f^{-4}).
+2\pi R_{\text{align}} = \ell_P,
+$$
+and the effective gravity-side alignment estimate
+$$
+G_{\text{eff}}
+\equiv
+\frac{R_{\text{align}}^2 c_f^3}{L_{\text{align}}}.
 $$
 
-### Emergent inertial mass
+These are not yet closed derivations. They are the current alignment-side targets connecting geometric closure to $(h,G)$.
 
-The current closure interface for inertia is
-$$
-m_{\text{inertial}}(A)\approx
-\alpha_{\text{mass}}
-\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2},
-$$
-where the prefactor is to be fixed once by a reference assembly and then carried across the mass map without per-particle retuning.
+### 7. Weak-mixing branch structure
 
-### Quark electroweak geometry
-
-The quark-sector electroweak closure presently uses
+The weak-mixing geometry note uses
 $$
-Q=T_3+\frac{Y}{2},
-$$
-together with the discrete personality-frame datum
-$$
-\alpha \in \{0,\theta_W^{\text{bare}},2\theta_W^{\text{bare}},\dots\},
+\sin^2\theta_W^{\text{bare}}=\frac14,
 \qquad
-\sin^2\theta_W^{\text{bare}}=\frac14.
+\theta_W^{\text{bare}}=30^\circ,
+$$
+and the discrete personality-frame branch hypothesis
+$$
+\alpha_n=n\,\theta_W^{\text{bare}}.
 $$
 
-That is not yet a finished derivation of the observed weak angle. It is the current geometric parameterization that must eventually reduce the electroweak sector's fit freedom.
+This means the present quark-sector use of $\alpha$ is a geometric branch label tied to a candidate bare electroweak increment, not yet a finished derivation of the measured weak angle.
 
-## Closure Rules
+## What Is Not Yet Closed
 
-A parameter should be considered closed only if it satisfies the rule appropriate to its status class.
+The current corpus supports the following conservative closure assessment.
 
-### Fundamental
+### Closed enough to treat as canonical
 
-A fundamental quantity is closed when:
+- $c_f$ is treated consistently as the substrate propagation speed, even when chapters temporarily write $v=1$.
+- $\epsilon$ is treated consistently as the unit architrino charge magnitude.
+- $\rho_{\text{core},0}$ is the reference density symbol for the spacetime medium.
+- $\Phi_{\text{eff}}=-c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition.
 
-- its definition is fixed once,
-- it enters every later chapter with the same meaning,
-- and no later observable fit is allowed to redefine it.
+### Still genuinely open
 
-### Geometric closure target
-
-A geometric quantity is closed when:
-
-- it is computed from assembly geometry or delay-lock conditions,
-- the same value or branch assignment is reused across multiple observables,
-- and the value is not reset independently per process.
-
-### Constitutive closure target
-
-A constitutive quantity is closed when:
-
-- it is extracted from one medium/observer map,
-- then reused across clocks, rulers, signals, and force observables,
-- with no observable-specific re-fitting.
-
-### Observable benchmark
-
-An observable benchmark is not itself ontological closure. It is the comparison layer that tests whether the underlying geometric or constitutive parameters are working.
+- whether $\kappa$ is primitive, derived, or partly a normalization artifact,
+- whether $\eta$ should disappear entirely from physical statements after the weak limit is taken,
+- the actual tri-binary radii/frequency ladder,
+- the shielding map $\zeta(A)$ across the fermion spectrum,
+- the constitutive functions $(\Omega,\xi)$ and the weak-field coefficient set $(\gamma_{\text{eff}},C_2,\Xi_i)$,
+- the Planck-alignment identification of $(R_{\text{align}},L_{\text{align}},h,G)$,
+- and the reduction of weak-mixing branch labels to a predictive electroweak closure.
 
 ## Immediate Parameter-Closure Priorities
 
-The fastest remaining closure gains from this ledger are:
+The shortest path to a better closure score is:
 
-1. Fix the admissible role of $\kappa$: fundamental constant, derived combination, or normalization artifact.
-2. Convert $(\Omega,\xi)$ from symbolic constitutive functions to one reusable parameterization constrained by redshift, Shapiro delay, and light bending together.
-3. Replace the current mass-prefactor calibration with one explicit reference prescription that is then held fixed across the charged-lepton ladder.
-4. Reduce the weak-mixing parameter $\alpha$ from a candidate branch label to a derived minimum of an effective geometric energy.
+1. Fix the status of $\kappa$ once, with an explicit statement of what part is physical coupling and what part is absorbed normalization.
+2. Derive or numerically extract a reusable constitutive parameterization for $(\Omega,\xi)$, then hold it fixed across redshift, Shapiro delay, lensing, and preferred-frame tests.
+3. Replace symbolic shielding language with an operational $\zeta(A)$ extraction protocol that can be reused for electron, quark, and neutrino assemblies without redefinition.
+4. Decide whether the Planck-alignment map yields $(h,G)$ as true outputs or only as analogy-level scaling relations.
+5. Reduce the weak-mixing angle program from discrete branch suggestion to an actual minimization problem for $E_{\text{eff}}(\alpha,\phi_c)$.
 
 ## Falsification Gate
 
-Parameter closure fails if either of the following occurs:
+Parameter closure fails if any of the following occurs:
 
-- one observable class requires a parameter value outside the uncertainty band demanded by another class,
-- or a symbol that was advertised as geometric/constitutive must be re-fit independently in different chapters to preserve agreement.
+- a symbol advertised as fundamental changes meaning across chapters,
+- a constitutive coefficient must be re-fit independently for different observable classes,
+- a state field such as $n(\mathbf{x},t)$ is implicitly treated as a free global constant to rescue a calculation,
+- or observer-level benchmarks such as $e$, $G$, or particle masses are matched only by introducing one-off per-sector normalizations.
 
-In shorthand, the parameter program must move toward
+In compact form, the closure target is a nonempty shared parameter set
 $$
-\mathcal{P}_{\text{shared}}
-\neq
-\varnothing,
+\mathcal{P}_{\text{shared}} \neq \varnothing,
 $$
-where $\mathcal{P}_{\text{shared}}$ is the common parameter set that survives the gravity, quantum, and particle-side closure gates simultaneously.
+where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive set that survives particle, spacetime, and quantum-side tests simultaneously.
 
 ## Related Chapters
 
-- [architrino-si-base-units.md](./architrino-si-base-units.md)
 - [constraint-ledger.md](./constraint-ledger.md)
+- [architrino-si-base-units.md](./architrino-si-base-units.md)
+- [../dynamics/master-equation.md](../dynamics/master-equation.md)
 - [../dynamics/energy.md](../dynamics/energy.md)
+- [../dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md)
 - [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md)
-- [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md)
+- [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md)
+- [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md)
