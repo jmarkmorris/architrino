@@ -40,10 +40,31 @@ The recursive picture is easiest to read as a bottom-up construction ladder:
 2. **Point potentials:** individual architrinos are the irreducible emitters/receivers of causal wake structure.
 3. **Primal assembly:** a stable orbiting electrino-positrino binary is the first bound assembly.
 4. **Nested cores:** binaries can capture into larger nested systems, giving isolated-binary, bi-binary, and tri-binary cores with progressively stronger shielding structure.
-5. **Decorated fermions:** attaching six polar personality sites to a Noether core produces the fermion families; changing the core shielding tier changes generation.
-6. **Medium and bosonic sectors:** larger collective organizations of cores produce spacetime assemblies, while propagating coupled disturbances of assemblies appear as effective bosonic channels.
+5. **Noether core stabilization:** the triply nested binary is the first fully three-dimensional shielded core. Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
+6. **Decorated fermions:** attaching six polar personality sites to a Noether core produces the fermion families; changing the core shielding tier changes generation, while pro/anti orientation tracks the handedness of the same core architecture rather than a separate substance type.
+7. **Collective medium:** larger balanced populations of cores organize into the spacetime medium, so the Noether Sea is a higher-order collective state of cores rather than a second fundamental substrate.
+8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels. Photons, weak corridors, and gluonic links therefore belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species.
+9. **Composite matter and reactions:** nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
 
 This ladder matters because it prevents category drift. Fermions, bosons, and spacetime are not separate ontological species added by hand; they are different organizational levels of the same underlying architrino dynamics.
+
+Just as important, the ladder should not be read as a single unbranched stack after the Noether core appears. Once stable cores exist, three descriptive branches open at once:
+
+-   **Matter branch:** decorated cores yield fermions and then larger composites.
+-   **Medium branch:** dense balanced populations of cores yield the spacetime aether.
+-   **Interaction branch:** phase-locked disturbances and exchange corridors yield effective bosonic behavior.
+
+This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion personality layer, and the Noether Sea on the same explanatory rung; they are different organizations of the same underlying ingredients.
+
+### Emergent Measures and Stability Markers
+
+The most useful observer-level quantities enter only after assemblies have formed. They are not primitive objects sitting underneath the dynamics.
+
+-   **Angular momentum:** emerges from organized orbital motion of point potentials and from the ordered orientation data of nested binaries.
+-   **Chirality:** emerges from the handed precession order of a stable core.
+-   **Apparent mass and reactivity:** depend on shielding, drag against the surrounding medium, and how exposed the deeper binary structure is to external coupling.
+
+In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 
 ### The Dynamics of Structure and Asymmetry
 
@@ -59,4 +80,8 @@ This introduces a profound asymmetry into the system. A small acceleration cause
 
 ### Provenance within Emergence
 
-A key feature of this model is that emergence does not erase identity. Since architrinos cannot be created or destroyed and each follows a unique path, they retain their individual provenance even when participating in a complex assembly. An assembly is a collective behavior, not a new, singular entity. A $\mathbb{U}_{\text{now}}$ universe-state perspective could, in principle, track the complete and distinct path of every architrino as it interacts, forms structures, and evolves through time, ensuring that no particle is ever lost or conflated with another.
+A key feature of this model is that emergence does not erase identity. Since architrinos cannot be created or destroyed and each follows a unique path, they retain their individual provenance even when participating in a complex assembly. An assembly is a collective behavior, not a new, singular entity.
+
+This has a practical consequence for reaction language. Decay, scattering, exchange, and transmutation should be read as provenance-preserving rearrangements of constituents inside a complicated many-body environment. The local reaction region may look like a maelstrom, but the ontology still says that continuous point-potential paths are being redirected, rebound, screened, or released rather than created ex nihilo.
+
+A $\mathbb{U}_{\text{now}}$ universe-state perspective could, in principle, track the complete and distinct path of every architrino as it interacts, forms structures, and evolves through time, ensuring that no particle is ever lost or conflated with another.

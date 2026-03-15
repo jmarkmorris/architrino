@@ -15,7 +15,7 @@ Method:
 | High | Drafted theory/history/philosophy chapter passes | 7 | 3 | 2.33 |
 | High | Highest-value textbook authoring sequence | 8 | 4 | 2.00 |
 | High | Parameter ledger, couplings, and first mass map | 9 | 5 | 1.80 |
-| High | Remaining Standard Model assembly gaps | 8 | 5 | 1.60 |
+| High | Remaining Standard Model assembly gaps | 7 | 4 | 1.75 |
 | High | Tractable master-equation stack | 10 | 8 | 1.25 |
 | High | Simulations, regularization, and shell numerics | 9 | 8 | 1.13 |
 | High | Metric / clock / ruler bridge to GR | 10 | 9 | 1.11 |
@@ -88,11 +88,10 @@ Method:
 - Keep the constants question active: why `h`, `c_f`, and `G`; one spiral; maybe `G` is emergent rather than fundamental.
 
 ### 5. Close the remaining Standard Model assembly gaps where the leverage is best
-- Value `8`, Cost `5`, ROI `1.60`.
-- The quark catalog and the basic `SU(3)\times SU(2)\times U(1)` bookkeeping are now in place. The remaining leverage is:
+- Value `7`, Cost `4`, ROI `1.75`.
+- The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
   - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
   - finish the remaining quantum-number dictionary pieces from the tri-binary geometry:
-    - spin / statistics,
     - mixing-angle checks against Standard Model pulls.
 - Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
