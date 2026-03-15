@@ -17,14 +17,14 @@ Scoring system:
 | 421 resonance reduced-map program | 7 | 3 | 2.33 |
 | Unified chapter authoring queue | 8 | 4 | 2.00 |
 | Remaining black-hole / strong-field quantitative closure | 4 | 2 | 2.00 |
-| Parameter ledger, couplings, and first mass map | 9 | 5 | 1.80 |
-| Remaining Standard Model assembly gaps | 7 | 4 | 1.75 |
-| Tractable master-equation stack | 10 | 8 | 1.25 |
+| Noether-core stability, shielding, parameter ledger, and first mass map | 9 | 5 | 1.80 |
+| Remaining Standard Model assembly gaps, flavor mixing, and confinement | 7 | 4 | 1.75 |
+| Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 8 | 1.25 |
 | Scene system, scene builder, applications, and later enhancements | 8 | 7 | 1.14 |
 | Simulations, regularization, and shell numerics | 9 | 8 | 1.13 |
 | Cosmology transfer-function closure | 9 | 8 | 1.13 |
-| Metric / clock / ruler bridge to GR | 10 | 9 | 1.11 |
-| Quantum-interpretation gap with hard tests | 10 | 9 | 1.11 |
+| Lorentz kinematics and metric / clock / ruler bridge to GR | 10 | 9 | 1.11 |
+| Born-rule / quantum closure with hard tests | 10 | 9 | 1.11 |
 | Recover useful old material | 6 | 6 | 1.00 |
 | Deferred product / outlook work | 3 | 5 | 0.60 |
 
@@ -141,26 +141,43 @@ Scoring system:
   - and keep neighboring chapters synchronized when the strong-field story changes.
 - Treat this as a mostly-completed architecture item, not as a missing-canonical-home item anymore.
 
-### 7. Finish the parameter ledger, constants, couplings, and first mass map
+### 7. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
 - Value `9`, Cost `5`, ROI `1.80`.
+- Move this item from placeholder bookkeeping to first-principles tri-binary closure.
 - Populate [parameter-ledger.md](../../markdown/aaa/foundations/parameter-ledger.md) with `\kappa`, `\epsilon_0 / \mu_0` analogues, density scales, regularization widths, extraction equations, and observable links.
 - Tie that ledger to [action.md](../../markdown/aaa/foundations/action.md), [architrino-si-base-units.md](../../markdown/aaa/foundations/architrino-si-base-units.md), and [constraint-ledger.md](../../markdown/aaa/validation/constraint-ledger.md).
 - Move Mass Formulas from roadmap status to one closed mass map, even if first-pass.
+- Theorems and calculations to finish here:
+  - solve the exact 6-body non-Markovian path-history equations for the tri-binary and locate the relevant limit cycles or other robust attractors,
+  - derive the minimum radius `R_{\text{min}}`, radii ratios, frequency structure, binding scales, shielding / leakage factors, and far-field cancellation directly from the delayed `1/r^2` kernel rather than from calibration targets,
+  - turn `\zeta` from a placeholder into a derived quantity and use it to predict the baseline electron mass and the first generational hierarchy checks such as `m_\mu / m_e`,
+  - test whether the same derived geometry explains the structural origin of the fine-structure constant `\alpha` from `\kappa` and `c_f`.
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question active: why `h`, `c_f`, and `G`; one spiral; maybe `G` is emergent rather than fundamental.
 
-### 8. Close the remaining Standard Model assembly gaps where the leverage is best
+### 8. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
 - Value `7`, Cost `4`, ROI `1.75`.
 - The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
   - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
   - finish the remaining quantum-number dictionary pieces from the tri-binary geometry:
-    - mixing-angle checks against Standard Model pulls.
+    - move from mixing-angle checks against Standard Model pulls to explicit overlap-integral derivations for CKM / PMNS data.
+- Push the Standard Model bridge from calibration to geometry:
+  - compute the exact 3D charge distributions or effective wavefunctions of the Gen I, II, and III core geometries and use them as mass-basis and weak-basis objects,
+  - derive the overlap integrals `V_{ij} = \int \psi_{j,\text{mass}}^* \psi_{i,\text{weak}} \, d\mu` rather than treating transport costs as fit knobs,
+  - derive `\kappa_{12}`, `\kappa_{23}`, and any analogous transport parameters from radii ratios, field drag, and shielding mismatch,
+  - test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target `\cos\delta = s_{13}/(s_{12}s_{23})`,
+  - derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension `V \propto r` or `\sigma_{\mathrm{eff}} L` and finite relaxed bounds for closed color-singlet configurations.
 - Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 
-### 9. Finish the tractable master-equation stack
+### 9. Finish the tractable master-equation stack for Lorentz, quantum, and core closure
 - Value `10`, Cost `8`, ROI `1.25`.
 - Keep dynamics, math, geometry, and mapping centered on [master-equation.md](../../markdown/aaa/dynamics/master-equation.md) as the top theory priority.
+- This stack has to carry the whole closure program from the `\eta`-regularized delayed action to the continuum bridges:
+  1. full 3D translating tri-binary NFDE / DDE analysis for emergent `\gamma`-scaling,
+  2. transfer-operator and invariant-measure control for Born-rule emergence from metastable separatrix crossing,
+  3. exact 6-body core stability and shielding extraction for the first-principles mass program.
+- The reduced delay-loop result is not enough anymore; the live target is full translating-tri-binary control in a form that can feed GR, QM, and Standard Model closure directly.
 - Use the current tractable footholds as fixed starting points:
   1. every new circular self-hit branch is born at an interior tangency of `g_\beta(\xi)=\sin\xi-\xi/\beta`, equivalently at a root of `\tan\xi=\xi`;
   2. every such branch is born exactly on a Jacobian-null surface, since at threshold `J^\star = 0`;
@@ -191,7 +208,7 @@ Scoring system:
   1. exact Noether derivation of momentum and angular momentum from the delayed action;
   2. `\eta \to 0` existence / uniqueness theory for the exact shell model;
   3. controlled kinetic / coarse-grained equation from the master law;
-  4. Lorentz-suppression emergence for moving assemblies in the full dynamics;
+  4. Lorentz-suppression emergence for moving assemblies in the full dynamics, ideally independent of specific charge decoration details;
   5. effective magnetic / Lorentz-force emergence from assemblies;
   6. full attractor landscape for binaries and tri-binaries;
   7. quantum closure from the master equation.
@@ -242,18 +259,34 @@ Scoring system:
 - Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where `$\mathbb{A}\mathbb{A}\mathbb{A}$` matches, replaces, or diverges from each component.
 - This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
 
-### 13. Close the metric / clock / ruler bridge to GR
+### 13. Close Lorentz kinematics and the metric / clock / ruler bridge to GR
 - Value `10`, Cost `9`, ROI `1.11`.
+- Treat the bridge as a two-stage theorem program:
+  1. prove that moving tri-binaries in the Noether Sea realize `R_\parallel = R_\perp / \gamma` and `T(v) = T_0 \gamma` as a stable delayed-dynamics attractor rather than by tuning,
+  2. coarse-grain the same causal medium into a constitutive response that yields `g_{\mu\nu}^{\mathrm{eff}}`, weak-field PPN closure, and suppressed preferred-frame leakage.
+- Make the empirical stakes explicit:
+  - the absolute-time / Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below `10^{-17}`,
+  - if the contraction and clock-slowing law require ad hoc tuning of `\kappa`, `\eta`, or decoration-specific structure, the bridge fails.
 - Close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional.
 - Derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
-- Derive PPN numbers `\gamma`, `\beta`, and `\alpha_i` to Cassini / LLR precision and show Shapiro delay / light-bending equivalence to GR at the advertised `10^{-5}` level.
+- Derive the constitutive closure from the coarse-grained medium itself:
+  - take the continuum limit of the `\eta`-regularized delayed action and the effective medium Lagrangian seriously enough that the constitutive law is derived rather than postulated,
+  - compute the relevant continuum stress-strain or equivalent constitutive variables of the causal medium,
+  - derive PPN numbers `\gamma`, `\beta`, and `\alpha_i` to Cassini / LLR precision,
+  - recover the target weak-field values `\gamma_{\mathrm{eff}} = 1`, `\beta_{\mathrm{eff}} = 1`, and vanishing preferred-frame coefficients `\alpha_1`, `\alpha_2`, `\alpha_3`,
+  - show Shapiro delay and light-bending equivalence to GR at the advertised `10^{-5}` level.
 - Keep this as the direct bridge from substrate dynamics to GR tests: match GR in the weak field, then let strong-field differences emerge as predictions rather than assertions.
 - Related mechanical task: derive emergent Lorentz invariance for fast-moving tri-binaries so lifetimes, scattering kinematics, and decay rates recover the standard `\gamma` factor.
 
-### 14. Close the quantum-interpretation gap only after making it testable
+### 14. Close the Born-rule / quantum gap only after making it testable
 - Value `10`, Cost `9`, ROI `1.11`.
 - Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
-- Show how receiver-side informational ambiguity can yield the Born rule `P \propto |\psi|^2`.
+- Make the Born-rule target fully measure-theoretic rather than only interpretive:
+  - construct the relevant Perron-Frobenius or equivalent transfer operator for metastable assemblies under causal background driving,
+  - identify the invariant measure on competing attractor basins during deterministic finite-time separatrix crossing,
+  - model the background causal weather with enough specificity that the noise floor is part of the theorem rather than a handwave,
+  - show that the basin weights recover `P \propto |\psi|^2` and the squared amplitudes of the effective linear envelope equation rather than only qualitative multistability,
+  - use that closure to support quantitative scattering and decay predictions rather than only interpretive rhetoric.
 - Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
 - Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
 
