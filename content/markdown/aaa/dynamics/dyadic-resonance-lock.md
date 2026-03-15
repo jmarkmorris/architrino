@@ -180,6 +180,8 @@ What is now mathematically cleaner:
 - the aligned self-similar closure naturally selects the family $1:s:s^2$,
 - and the familiar 1:2:4 lock is the minimal integer member of that family.
 
+A useful physical picture sits behind the reduced-map target. If adjacent branches are near a dyadic relation, the slower branch can pass through Jacobian-bunched wake maxima of the faster branch at a repeated fixed cadence. In plain language, the tri-binary begins to behave like a **fractal antenna** or parametric pump: the middle layer is kicked twice per outer orbit, and the inner layer can then reinforce the same timing pattern one level down. This does not prove the lock, but it does state a concrete mechanism for why a dyadic resonance tongue might widen relative to nearby rational alternatives.
+
 What remains open:
 
 - why the actual dynamical system should prefer the **minimal** integer factor rather than $s=3,4,\dots$,

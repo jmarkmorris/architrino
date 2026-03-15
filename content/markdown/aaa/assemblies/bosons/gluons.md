@@ -51,6 +51,8 @@ In this model, the gluon is not a fundamental particle but an **emergent meta-as
 * **Coupling:** When colored quarks interact, these vortices do not terminate in the vacuum. Instead, they twist the surrounding Noether Sea into a **Flux Tube**—a coherent bundle of vacuum tri-binaries locked into a non-singlet phase.
 * **The Glue:** The strong force *is* the tension of these coupled vortices trying to shorten and restore the vacuum to its isotropic ground state.
 
+This can also be read as the strong-force version of the **pole problem**. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored cores therefore remain open at their poles unless another core accepts the flux. A gluon tube is the medium's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
+
 ### The Gluon as an Axis-Reconfiguration Braid
 A "Gluon" is not just a force carrier; it is a geometric instruction set—a propagating disturbance in the tri-binary lattice that forces a swap of axis roles.
 

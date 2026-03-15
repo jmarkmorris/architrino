@@ -91,7 +91,7 @@ Scoring system:
   - whether the $\mathbb{Z}_3$ organization acts as a true adiabatic stabilizer,
   - whether any branchwise ledger emerges only after the lock is solved rather than before.
 - Immediate next move:
-  1. Use [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [dyadic-resonance-lock-intuitions.md](dyadic-resonance-lock-intuitions.md) as the scratch/archive notebook.
+  1. Use [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics.md](phenomenological-heuristics.md) as the scratch/archive notebook.
   2. Build the two-layer regularized map first.
   3. Look for local contraction or a Lyapunov-type quantity near the dyadic fixed point.
   4. Only promote more of the archive once it is rederived from the reduced dynamics.

@@ -203,6 +203,8 @@ The practical diagnostics are the same in both cases:
 - clock-rate shifts,
 - stability thresholds for aligned and oblate states.
 
+For resonance questions, one additional diagnostic is worth tracking explicitly: a cycle-averaged causal-work or phase-slip variance. The working intuition is that non-commensurate drift samples the large-$1/|J|$ region irregularly, producing large cycle-to-cycle swings in delayed work, whereas a true lock should compress that variance and make the return map locally contractive.
+
 If those quantities cannot be matched between the gradient-driven and acceleration-driven cases in the local limit, then the observer-level recovery of the equivalence principle fails and the constitutive map must be revised.
 
 ---

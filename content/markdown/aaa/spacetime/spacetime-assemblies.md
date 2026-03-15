@@ -11,6 +11,8 @@ In the current framing, the basic spacetime carrier is a tri-binary assembly wit
 
 In this project framing, pro-Noether cores are associated with pro-particle assemblies, and anti-Noether cores are associated with anti-particle assemblies. The key claim is that stable large-scale medium behavior emerges when both orientations coexist and couple, so the medium remains dynamically balanced rather than drifting into a single-sign ordering.
 
+At the assembly level, a useful physical picture is that complementary orientations can also suppress exposed axial circulation by pairing anti-parallel. That gives the medium a second kind of neutrality beyond net charge cancellation: local pole leakage is mutually plugged, so the composite remains comparatively transparent and non-reactive.
+
 At the field level, represent local core density with canonical symbols
 $(\rho_{\text{core}}, n)$ as two coupled components:
 

@@ -44,6 +44,8 @@ At the assembly level, opposite-charge binaries driven past the hinge near $c_f$
 
 The constitutive claim is modest but important: singularity language remains a warning that weak-field effective variables have exceeded their domain, while the ontic replacement is a structured maximum-curvature core with finite internal bookkeeping.
 
+One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature tri-binaries pack into a near-crystalline "Noether crystal" core, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation, but it is a useful candidate for how collapse can saturate without an ontic singularity.
+
 ## Horizon Interface
 
 The horizon interface is the most important black-hole concept in the local dialect. It names the layer in which tri-binary assemblies are flattened into an alignment-locked sheet.

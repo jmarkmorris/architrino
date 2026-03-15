@@ -91,6 +91,18 @@ This **braid chirality** will underpin our distinction between particles and ant
 **Core rule:**  
 Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same personality pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
+### Stealth and color neutrality
+
+The guiding physical picture is that long-lived assemblies must suppress time-dependent far-field leakage. A useful test state is the equal-phase triad
+$$
+\phi \in \left(0,\frac{2\pi}{3},\frac{4\pi}{3}\right),
+$$
+for which
+$$
+1+e^{i2\pi/3}+e^{i4\pi/3}=0.
+$$
+This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether core survive without strong radiative leakage.
+
 ### Electron and positron
 
 - **Electron**:

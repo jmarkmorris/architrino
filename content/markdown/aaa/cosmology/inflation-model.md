@@ -54,6 +54,12 @@ $$
 
 where $\Omega_{\text{eff}}(a)$ encodes the emergent high-curvature phase and its relaxation.
 
+As a toy kinematic decomposition, one can also track the expansion-rate profile by assigning separate qualitative roles to the three nested branches:
+$$
+\dot{R}(t) = v_I(t) + c_f + v_O(t).
+$$
+Here the inner contribution $v_I(t)$ plays the role of a decaying high-curvature release term, the constant $c_f$ marks the transport/horizon channel, and the outer contribution $v_O(t)$ captures slower volumetric rebound. This is not a closed cosmological derivation, but it is a compact way to encode the intuition that inflation-like release, horizon-scale transport, and late-time expansion can all be read as different branches of the same tri-binary process.
+
 ## Expansion-Module Interface
 
 In the modular cosmology map, this page contributes:
