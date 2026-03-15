@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 120,
-      "sections": 732
+      "entries": 121,
+      "sections": 779
     }
   },
   "tocRoot": {
@@ -32,7 +32,25 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/absolute_time_defense.json",
-            "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md"
+            "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Case for Absolute Time ($t$)",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "The Case for Absolute Time ($t$)",
+                "sectionKey": "the case for absolute time t",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Absolute Time, Global Foliation, and Proper Time",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Absolute Time, Global Foliation, and Proper Time",
+                "sectionKey": "absolute time global foliation and proper time",
+                "headingLevel": 2
+              }
+            ]
           },
           {
             "id": "foundations__detecting_the_absolute_frame",
@@ -796,10 +814,172 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Causal Action Functional — Coherent Structure",
+                "title": "Problem Statement and Goal",
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Causal Action Functional — Coherent Structure",
-                "sectionKey": "causal action functional coherent structure",
+                "markdownSection": "Problem Statement and Goal",
+                "sectionKey": "problem statement and goal",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Functional Definitions",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Core Functional Definitions",
+                "sectionKey": "core functional definitions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regularized Mathematical Setting (Explicit Regime)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Regularized Mathematical Setting (Explicit Regime)",
+                "sectionKey": "regularized mathematical setting explicit regime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Axioms and Admissibility Assumptions",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Axioms and Admissibility Assumptions",
+                "sectionKey": "axioms and admissibility assumptions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Rationale for the Functional",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Rationale for the Functional",
+                "sectionKey": "rationale for the functional",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometric/Topological Framework",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Geometric/Topological Framework",
+                "sectionKey": "geometric topological framework",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Theorem Spine (Provable Core under A1-A5)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Theorem Spine (Provable Core under A1-A5)",
+                "sectionKey": "theorem spine provable core under a1 a5",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Analytic Benchmarks (Circular Orbit)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Analytic Benchmarks (Circular Orbit)",
+                "sectionKey": "analytic benchmarks circular orbit",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Circular Benchmark as a Branch-Count Theorem",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Circular Benchmark as a Branch-Count Theorem",
+                "sectionKey": "circular benchmark as a branch count theorem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamical Interpretation",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Dynamical Interpretation",
+                "sectionKey": "dynamical interpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergent Geometry Constraints",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Emergent Geometry Constraints",
+                "sectionKey": "emergent geometry constraints",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Implementation Notes (Appendix)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Implementation Notes (Appendix)",
+                "sectionKey": "implementation notes appendix",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Protocol (Minimal Theorem-Backed Checks)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Simulation Protocol (Minimal Theorem-Backed Checks)",
+                "sectionKey": "simulation protocol minimal theorem backed checks",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Limitations and Caveats",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Limitations and Caveats",
+                "sectionKey": "limitations and caveats",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Extension: Spin Bundle and Confinement Energy Law",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Closure Extension: Spin Bundle and Confinement Energy Law",
+                "sectionKey": "closure extension spin bundle and confinement energy law",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary and Status",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Summary and Status",
+                "sectionKey": "summary and status",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__dyadic_resonance_lock",
+            "title": "Dyadic Resonance Lock",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json",
+            "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Proof-Structured Core",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Proof-Structured Core",
+                "sectionKey": "proof structured core",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What the Delay Math Actually Gives You About Frequency Multiples",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "What the Delay Math Actually Gives You About Frequency Multiples",
+                "sectionKey": "what the delay math actually gives you about frequency multiples",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced-Theorem Target",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Reduced-Theorem Target",
+                "sectionKey": "reduced theorem target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Invariant Backbone",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Invariant Backbone",
+                "sectionKey": "invariant backbone",
                 "headingLevel": 2
               }
             ]
@@ -1060,10 +1240,74 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Mapping the Planck Scale to the Tri-Binary Geometry",
+                "title": "Thesis",
                 "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-                "markdownSection": "Mapping the Planck Scale to the Tri-Binary Geometry",
-                "sectionKey": "mapping the planck scale to the tri binary geometry",
+                "markdownSection": "Thesis",
+                "sectionKey": "thesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Planck Units Imply About the Outer Binary",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "What Planck Units Imply About the Outer Binary",
+                "sectionKey": "what planck units imply about the outer binary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Kinematic and Dynamical Alignment Conditions",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Kinematic and Dynamical Alignment Conditions",
+                "sectionKey": "kinematic and dynamical alignment conditions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Experienced-Field Framing (Energy as Interaction History)",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Experienced-Field Framing (Energy as Interaction History)",
+                "sectionKey": "experienced field framing energy as interaction history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
+                "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
+                "sectionKey": "spin transition and configuration space topology hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
+                "sectionKey": "emergent constants hbar ell p and g",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
+                "sectionKey": "horizon microstructure and condensate like phases conjecture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Constraints, Assumptions, and Failure Modes",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Constraints, Assumptions, and Failure Modes",
+                "sectionKey": "constraints assumptions and failure modes",
                 "headingLevel": 2
               }
             ]
@@ -1434,6 +1678,14 @@
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
                     "markdownSection": "Strongly Shielded, Net-Neutral Noether-Core Excitations",
                     "sectionKey": "strongly shielded net neutral noether core excitations",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "PMNS closure program (primary lepton integration)",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
+                    "markdownSection": "PMNS closure program (primary lepton integration)",
+                    "sectionKey": "pmns closure program primary lepton integration",
                     "headingLevel": 2
                   }
                 ]
@@ -1959,7 +2211,25 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/nuclear/atomic_spectra.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md"
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Atomic Orbitals as Lattice Resonances",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+                "markdownSection": "Atomic Orbitals as Lattice Resonances",
+                "sectionKey": "atomic orbitals as lattice resonances",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Orbitals as Lattice Resonances",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+                "markdownSection": "Orbitals as Lattice Resonances",
+                "sectionKey": "orbitals as lattice resonances",
+                "headingLevel": 2
+              }
+            ]
           },
           {
             "id": "nuclear_atomic__atomic_structure",
@@ -1967,7 +2237,33 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/nuclear/atomic_structure.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md"
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Multi-Body Assembly Structure",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+                "markdownSection": "Multi-Body Assembly Structure",
+                "sectionKey": "multi body assembly structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nuclear Physics in the Noether Sea",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+                "markdownSection": "Nuclear Physics in the Noether Sea",
+                "sectionKey": "nuclear physics in the noether sea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nuclear Physics in the Sea of Cores",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+                "markdownSection": "Nuclear Physics in the Sea of Cores",
+                "sectionKey": "nuclear physics in the sea of cores",
+                "headingLevel": 2
+              }
+            ]
           },
           {
             "id": "nuclear_atomic__condensed_matter",
@@ -1975,7 +2271,25 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/nuclear/condensed_matter.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md"
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Superfluid Vacuum Hypothesis",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Superfluid Vacuum Hypothesis",
+                "sectionKey": "superfluid vacuum hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Superfluid Vacuum",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Superfluid Vacuum",
+                "sectionKey": "superfluid vacuum",
+                "headingLevel": 2
+              }
+            ]
           },
           {
             "id": "nuclear_atomic__displacement_of_spacetime",
@@ -3744,6 +4058,30 @@
                     "sections": [
                       {
                         "kind": "markdown-section",
+                        "title": "Time-based PDE (wave equation with a moving point source)",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                        "markdownSection": "Time-based PDE (wave equation with a moving point source)",
+                        "sectionKey": "time based pde wave equation with a moving point source",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Integral (Green’s function / path-history potential) approach",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                        "markdownSection": "Integral (Green’s function / path-history potential) approach",
+                        "sectionKey": "integral green s function path history potential approach",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Event-driven radial-transport + per-hit EOM (current canonical method)",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                        "markdownSection": "Event-driven radial-transport + per-hit EOM (current canonical method)",
+                        "sectionKey": "event driven radial transport per hit eom current canonical method",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Cross-Method Guidance",
                         "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
                         "markdownSection": "Cross-Method Guidance",
@@ -3772,6 +4110,14 @@
                         "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
                         "markdownSection": "Recommendation (going forward)",
                         "sectionKey": "recommendation going forward",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Layered penetration diagram (molecules → cores)",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                        "markdownSection": "Layered penetration diagram (molecules → cores)",
+                        "sectionKey": "layered penetration diagram molecules cores",
                         "headingLevel": 2
                       }
                     ]
@@ -4150,6 +4496,14 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
+                    "title": "Master Simulation Protocol (Absolute Frame)",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "Master Simulation Protocol (Absolute Frame)",
+                    "sectionKey": "master simulation protocol absolute frame",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Run Protocol: Absolute-Frame + $\\mathbb{U}_{\\text{now}}$ Logging",
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "Run Protocol: Absolute-Frame + $\\mathbb{U}_{\\text{now}}$ Logging",
@@ -4450,10 +4804,42 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Canonical Parameter Table",
+                "title": "Canonical Guardrails",
                 "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
-                "markdownSection": "Canonical Parameter Table",
-                "sectionKey": "canonical parameter table",
+                "markdownSection": "Canonical Guardrails",
+                "sectionKey": "canonical guardrails",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Layer I: Substrate and Kernel Parameters",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Layer I: Substrate and Kernel Parameters",
+                "sectionKey": "layer i substrate and kernel parameters",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Layer II: Assembly-Geometry Closure Targets",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Layer II: Assembly-Geometry Closure Targets",
+                "sectionKey": "layer ii assembly geometry closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Layer III: Constitutive Spacetime Parameters",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Layer III: Constitutive Spacetime Parameters",
+                "sectionKey": "layer iii constitutive spacetime parameters",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Layer IV: Observer-Level Benchmarks and Derived Outputs",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Layer IV: Observer-Level Benchmarks and Derived Outputs",
+                "sectionKey": "layer iv observer level benchmarks and derived outputs",
                 "headingLevel": 2
               },
               {
@@ -4466,10 +4852,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Closure Rules",
+                "title": "What Is Not Yet Closed",
                 "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
-                "markdownSection": "Closure Rules",
-                "sectionKey": "closure rules",
+                "markdownSection": "What Is Not Yet Closed",
+                "sectionKey": "what is not yet closed",
                 "headingLevel": 2
               },
               {
@@ -4538,7 +4924,17 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/validation/validation_protocols.json",
-            "markdownPath": "content/markdown/aaa/validation/validation-protocols.md"
+            "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Validation Protocols: Proving the Absolute Frame",
+                "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
+                "markdownSection": "Validation Protocols: Proving the Absolute Frame",
+                "sectionKey": "validation protocols proving the absolute frame",
+                "headingLevel": 2
+              }
+            ]
           }
         ]
       },

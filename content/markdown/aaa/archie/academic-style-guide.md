@@ -1,5 +1,9 @@
 # Academic Style Guide
 
+This guide defines the prose standard for reader-facing textbook material in the webapp. Its purpose is to make voice, structure, tone, and editorial discipline consistent enough that chapters read like parts of one coherent corpus rather than isolated notes with incompatible habits.
+
+The sections below move from scope and core aims to concrete rules for headings, tone, explanation, and editorial review.
+
 ## Purpose
 
 This guide defines the default prose standard for textbook-facing content in the webapp. It is intended for chapters, scene notes, comparative essays, and explanatory reference documents that are part of the public reading surface.

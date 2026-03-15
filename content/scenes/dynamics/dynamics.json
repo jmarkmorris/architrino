@@ -20,6 +20,10 @@
         "scenePath": "content/scenes/dynamics/causal_action_functional.json"
       },
       {
+        "nodeId": "dyadic_resonance_lock",
+        "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json"
+      },
+      {
         "nodeId": "effective_lagrangian",
         "scenePath": "content/scenes/dynamics/effective_lagrangian.json"
       },
@@ -84,6 +88,17 @@
         "type": "fixed"
       },
       "labelTitle": "Causal Action Functional",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "dyadic_resonance_lock",
+      "title": "Dyadic Resonance Lock",
+      "radius": 2.688,
+      "color": "#6c4f8d",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Dyadic Resonance Lock",
       "labelBadge": "doc"
     },
     {

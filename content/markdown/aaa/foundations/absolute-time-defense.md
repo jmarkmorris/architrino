@@ -1,4 +1,10 @@
-### The Case for Absolute Time ($t$)
+# Absolute Time Defense
+
+This chapter states the substrate-level case for absolute time as the fundamental evolution parameter of the theory. Its purpose is to distinguish the exact global time variable used by the master equation from the derived clock time experienced by physical assemblies, and to show why the framework treats foliation as real structure rather than coordinate gauge.
+
+The opening establishes the core absolute-time claims. The later sections then connect those claims to universe-state description, proper time, and the deterministic flow of the full microstate.
+
+## The Case for Absolute Time ($t$)
 
 1. **Fundamental evolution parameter**: Absolute time $t$ is the unique global parameter of the master equation.
 2. **Product substrate**: The kinematic background is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with global clock map $\pi_t:\mathcal{M}\to\mathbb{R}$.
@@ -9,7 +15,7 @@
 4. **Global time form**: The 1-form $dt$ is closed and exact, providing an intrinsic time orientation and eliminating foliation ambiguity.
 5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of tri-binary internal phase dynamics.
 
-### Absolute Time, Global Foliation, and Proper Time
+## Absolute Time, Global Foliation, and Proper Time
 
 **Absolute time $t$ and universe state**
 - The $\mathbb{U}_{\text{now}}$ perspective indexes the exact microstate as $S(t)$ on each slice $\Sigma_t$.

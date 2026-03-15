@@ -1,5 +1,9 @@
 # Expansion Mechanism
 
+This chapter explains how cosmological expansion language is translated into a fixed-void ontology. Its purpose is to replace geometric container expansion with medium evolution, clock-rate comparison, and effective scale-factor bookkeeping while preserving contact with the standard observational vocabulary.
+
+The sections below move from the core idea to redshift, photon propagation, dark-energy language, tension interfaces, and the effective Friedmann comparison layer.
+
 ## Core Idea
 
 The Euclidean void does not expand. What evolves is the Noether sea and the state of assemblies moving through it.

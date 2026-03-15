@@ -1,5 +1,9 @@
 # Black Holes in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework
 
+This chapter is the main black-hole orientation document for the spacetime branch. Its purpose is to tell the reader what survives from standard compact-object phenomenology, what is being reinterpreted at the constitutive level, and how the strong-field tri-binary regime is supposed to replace singularity language without losing observational discipline.
+
+The opening establishes the three-layer distinction between observables, constitutive strong-field structure, and substrate ontology. The later sections then work through horizon conditions, interior regime structure, release channels, and cosmological embedding.
+
 ## Scope and Purpose
 
 This chapter centralizes the black-hole story within the Architrino Assembly Architecture. Its purpose is to distinguish three levels that are often conflated in black-hole discussion:

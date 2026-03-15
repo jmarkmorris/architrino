@@ -1,5 +1,9 @@
 # Navigation & Controls
 
+This note explains how a reader actually moves through the scene-driven interface once the webapp is open. It is the practical companion to the broader architectural guides: less about why the system is organized this way, more about what the controls do and how to use them without losing context.
+
+The sections below move from the basic navigation model to specific interaction patterns in scenes, markdown panels, search, and reader workflow.
+
 ## Purpose
 
 This note explains how to move through the webapp, how sphere-based hierarchy works, and how document reading controls behave at runtime.

@@ -1,5 +1,7 @@
 # Bootstrapping a Coordinate Frame
 
+This chapter explains how a usable coordinate frame is constructed from intrinsic physics rather than assumed from pre-labeled space. Its purpose is to show how a preferred operational frame can be bootstrapped from wake geometry while keeping clear that the coordinate system itself is a cognitive and computational scaffold, not an extra ontological ingredient.
+
 ## Overview
 
 Having established in the previous chapter that a stationary architrino can be identified through the concentric geometry of its spherically expanding causal wakes, we now face the practical challenge of constructing a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0."

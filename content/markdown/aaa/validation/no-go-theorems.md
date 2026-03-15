@@ -1,5 +1,7 @@
 # No-Go Theorems
 
+This chapter is the placeholder for formal impossibility and obstruction results relevant to the framework. Its purpose is to mark out the role these theorems should play: not as decorative citations, but as serious filters on what the theory can and cannot consistently claim.
+
 ## Purpose
 
 This chapter is a placeholder for no-go theorems relevant to $\mathbb{A}\mathbb{A}\mathbb{A}$.

@@ -1,5 +1,9 @@
 # Scene Taxonomy
 
+This note is the normative reference for what kinds of scenes exist in the webapp and what each kind is responsible for. Its purpose is to prevent hierarchy, presentation, and generation rules from drifting into ad hoc conventions by making scene roles explicit and reviewable.
+
+Read it as the architecture guide for reader-facing scene behavior: first the governing claims, then the ownership boundaries, then the specific scene classes.
+
 ## Purpose
 
 This note defines the current scene taxonomy for the Architrino webapp. It is a normative reference for how scenes are classified, what each scene type is responsible for, and where hierarchy, presentation, and generation belong in the system.
@@ -116,6 +120,17 @@ Responsibilities:
 - honor display settings such as one-column or two-column modes.
 
 Use this type when the document should be read as a document rather than navigated as a generated node tree.
+
+Authoring implication:
+
+- the markdown source should open with a real `#` title,
+- the opening block should orient a cold reader before the first major section,
+- and auto-open view scenes should not rely on surrounding scene context to explain what the document is doing.
+
+Display implication:
+
+- when scene chrome already presents the document title, the reading surface may suppress the duplicate visible `#` heading,
+- but the markdown source should still keep that `#` as the canonical title for authored structure and manifest generation.
 
 ### Scene-Markdown-Split
 

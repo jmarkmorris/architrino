@@ -1,3 +1,9 @@
+# Neutrinos
+
+This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as strongly shielded, nearly silent Noether-core excitations. The goal is to explain why they are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
+
+The opening section states the geometric picture and the plain-language interpretation. The later closure program then records how PMNS-style mixing is meant to arise from internal phase structure and neutral-core geometry.
+
 ## Strongly Shielded, Net-Neutral Noether-Core Excitations
 
 Definition (geometric): A neutrino is a Noether Core in a net-neutral configuration (no personality charge), with an exterior field that is a tiny, time-averaged residue. Weak interaction strength follows from superposition inside the core that cancels nearly all external projection; only subtle axial mismatches and phase drifts couple to outside structures.
@@ -19,7 +25,7 @@ Definition (geometric): A neutrino is a Noether Core in a net-neutral configurat
 
 Plain language: A neutrino is a very quiet, neutral core with almost all of its energy hidden; a tiny axial “whisper” shifts among three inner loops as it flies, making its type oscillate, and it interacts only when that whisper lines up just right with another assembly’s axis.
 
-### PMNS closure program (primary lepton integration)
+## PMNS closure program (primary lepton integration)
 
 Use a three-mode internal phase Hamiltonian:
 $$

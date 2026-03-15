@@ -1,5 +1,7 @@
 # Euclidean Void
 
+This chapter defines the ontological status of the Euclidean void and distinguishes it from the populated physical medium often informally called vacuum. Its purpose is to keep the geometric container, the Noether-Sea occupancy, and the effective spacetime medium from collapsing into one ambiguous concept.
+
 ## The Aether Sea: Noether Core Occupancy
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective reveals that what we perceive as "Empty Space" is actually a dense lattice of neutral assemblies.

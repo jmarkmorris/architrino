@@ -1,5 +1,7 @@
 # Mathematics and Geometry Closure Scorecard
 
+This chapter is the reusable assessment surface for closure progress across the theory stack. Its purpose is to keep evaluation criteria stable from one scoring cycle to the next so that changes in score reflect actual progress or regression rather than drift in the assessment lens itself.
+
 ## Reusable Assessment Prompt
 
 Use this prompt for each new assessment cycle:

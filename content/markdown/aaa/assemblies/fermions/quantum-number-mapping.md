@@ -1,5 +1,7 @@
 # Quantum Number Mapping: Architrino Geometry to Standard Model
 
+This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether core and personality layer are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
+
 ## Purpose
 This document establishes the canonical dictionary translating **Tri-Binary Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
 

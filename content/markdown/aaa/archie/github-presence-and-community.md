@@ -1,5 +1,9 @@
 # GitHub Presence and Community
 
+This note explains why the repository is not only a storage location but also a public discussion surface for the theory. Its purpose is to frame GitHub as part of the reader-facing and critique-facing architecture of the project rather than as a purely internal engineering tool.
+
+The sections below explain repository role, community function, and how the public discussion layer relates to the main web presentation.
+
 ## Purpose
 
 This document explains how the project's GitHub presence functions as a public-facing layer for discussion, critique, revision, and collaborative refinement. The aim is not merely to host files. It is to provide a structured environment in which the theory can be examined, challenged, clarified, and improved in public view.
