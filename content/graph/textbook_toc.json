@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 119,
-      "sections": 714
+      "sections": 715
     }
   },
   "tocRoot": {
@@ -3732,6 +3732,14 @@
                         "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
                         "markdownSection": "Practical guidance (numerics and analysis)",
                         "sectionKey": "practical guidance numerics and analysis",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Sign-resolved bookkeeping",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+                        "markdownSection": "Sign-resolved bookkeeping",
+                        "sectionKey": "sign resolved bookkeeping",
                         "headingLevel": 2
                       }
                     ]

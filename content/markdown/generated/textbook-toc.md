@@ -455,6 +455,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
         - [Classical self-energy pathology (contrast)](../aaa/validation/simulations/action-energy/self-energy.md?section=Classical+self-energy+pathology+%28contrast%29)
         - [Why the divergence is absent here](../aaa/validation/simulations/action-energy/self-energy.md?section=Why+the+divergence+is+absent+here)
         - [Practical guidance (numerics and analysis)](../aaa/validation/simulations/action-energy/self-energy.md?section=Practical+guidance+%28numerics+and+analysis%29)
+        - [Sign-resolved bookkeeping](../aaa/validation/simulations/action-energy/self-energy.md?section=Sign-resolved+bookkeeping)
       - [Self-Interaction Switch](../../scenes/validation/self_interaction_switch.json)
       - [Superposition and Locality](../../scenes/validation/superposition_locality.json)
       - [Units and Constants](../../scenes/validation/units_constants.json)

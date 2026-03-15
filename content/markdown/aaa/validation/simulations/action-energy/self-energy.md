@@ -32,4 +32,14 @@ Net effect: the canonical ontology (moving surface measures, H(0)=0, mollificati
 - Calibrate $\kappa$ using stationary/slow benchmarks (Method 2) and use the event-driven law (Method 3) for many-body dynamics; no per-hit emitter-speed amplitude weighting is introduced.
 - Treat self-hits as ordinary finite r>0 events; ensure H(0)=0 in implementation to exclude coincident-time artifacts.
 
+## Sign-resolved bookkeeping
+
+An additional numerical caution is worth stating explicitly: a medium or assembly may carry a large internal action budget even when its coarse far field appears weak.
+
+- Positive and negative sectors can superpose so that the net far-field potential is small.
+- That cancellation does **not** imply the underlying kinetic work or stored interaction content is individually small in each sector.
+- For this reason, diagnostics should track sign-resolved contributions whenever possible rather than relying only on net-field summaries.
+
+This matters especially for shielding claims. A strongly shielded assembly may look energetically modest from afar while still containing substantial internal positive/negative activity whose cancellation is only effective after superposition. Sign-resolved ledgers therefore help distinguish true low-energy states from high-content states hidden by cancellation.
+
 Plain language: We don’t keep a permanent 1/r field glued to the point. Instead we use thin expanding causal surfaces, ignore the instant of emission for self-push, and (when needed) slightly thicken those wake surfaces so calculus works—so nothing ever “blows up” at r=0.

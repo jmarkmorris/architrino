@@ -11,6 +11,11 @@ Models:
   - Coupled DDEs with causal roots $t_0$ defined by $|x_i(t)-x_j(t_0)|=t-t_0$ (v=1); accelerations superpose as $\pm \kappa \epsilon^2/(r^2 |J|)$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.
 
+Methodological priority:
+- Treat the two-point-potential problem as the canonical first laboratory for the delayed theory.
+- Any proposed energy, momentum, virial-like, or kinetic/potential closure claim should be checked here before being generalized to assemblies or medium-level arguments.
+- In practice this means: solve the fixed-center and symmetric two-body cases first, then ask which familiar ODE identities survive, which acquire delay corrections, and which fail outright.
+
 Symmetric two-body on a line (exact DDE; challenges):
 - Let $x_1(t)=+\tfrac{1}{2}r(t)$ and $x_2(t)=-\tfrac{1}{2}r(t)$ with $r(t)>0$ and $v=1$. The causal-time condition implies
   $$
@@ -57,5 +62,10 @@ Solution techniques (toolbox for delayed, radial DDEs):
 Deliverables:
 - Precise DDE forms and causal-root conditions for use in analysis and computation.
 - Cross-references to sections with exact solutions (fixed source) and status notes (mutual interaction).
+- A minimal benchmark ladder for closure tests:
+  - fixed-center ODE recovery,
+  - symmetric two-body delayed dynamics,
+  - work-energy balance on resolved windows,
+  - virial-like time averages where periodic or quasi-periodic regimes exist.
 
 Plain language: We give only the exact delayed equations; where an exact solution exists (fixed source), we present it, and where it does not (mutual interaction), we say so without approximations.
