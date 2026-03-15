@@ -182,6 +182,7 @@ The surrounding tri-binary sea, and the arrangement of pro/anti architrinos insi
 
 - **Charge cancellation**: positive and negative architrinos within the assembly (and in surrounding tri-binaries) emit fields that interfere destructively at larger distances.
 - **Sphere-stream structuring**: the geometry of internal orbits and tri-binary polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size (multipole cancellation in the far field).
+- **Nested-shell screening**: in multi-binary fermion cores, outer binaries partially screen the deeper binaries from the surrounding sea. Generation shifts can therefore be read as loss of shielding shells, not only as loss of constituent count.
 
 Define a **shielding (leakage) factor** $\zeta(A)\in[0,1]$ for an assembly $A$ as:
 
@@ -280,7 +281,7 @@ Globally, energy is conserved: self-hit just routes energy along more complex pa
 
 Inside an assembly there is a huge storm of energy. Outside, you only see a faint ripple whose amplitude is set by how imperfect the internal cancellations and sea shielding are.
 
-Architrinos and their assemblies are where all the energy lives. The tri-binary sea is a dense, high-energy ocean in which a few special assemblies (electrons, quarks, nucleons) are like boats. The boats' mass and inertia are not just in the hull—they live in how the hull is built and how it pulls on the water. Most of the ocean's energy never shows up in long-range fields, because the waves from different directions cancel almost exactly. The tiny leftover ripples are what we call gravity and particle masses.
+Architrinos and their assemblies are where all the energy lives. The tri-binary sea is a dense, high-energy ocean in which a few special assemblies (electrons, quarks, nucleons) are like boats. The boats' mass and inertia are not just in the hull—they live in how the hull is built and how it pulls on the water. In nested fermion cores, the outer binaries also act like energy screens around the deeper engine. Most of the ocean's energy never shows up in long-range fields, because the waves from different directions cancel almost exactly and the deeper layers are partly hidden behind those screening shells. The tiny leftover ripples are what we call gravity and particle masses.
 
 ## Summary and Role in the Larger Theory
 
@@ -293,6 +294,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
   Large internal energies, plus coupling to the tri-binary sea, generate:
   - Effective inertia (mass),
   - Shielded external fields (tiny apparent energy compared to internal),
+  - Generation dependence through how many outer screening shells still surround the deepest core,
   - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior.
 
 - **For spacetime and gravity:**
