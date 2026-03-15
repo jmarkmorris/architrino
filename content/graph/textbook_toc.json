@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 119,
-      "sections": 676
+      "sections": 692
     }
   },
   "tocRoot": {
@@ -2206,10 +2206,74 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Strong-Field Deviations",
+                "title": "Purpose",
                 "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
-                "markdownSection": "Strong-Field Deviations",
-                "sectionKey": "strong field deviations",
+                "markdownSection": "Purpose",
+                "sectionKey": "purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Interpretation",
+                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownSection": "Core Interpretation",
+                "sectionKey": "core interpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Weak-Field Observables That Must Match GR",
+                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownSection": "Weak-Field Observables That Must Match GR",
+                "sectionKey": "weak field observables that must match gr",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Preferred-Frame Leakage",
+                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownSection": "Preferred-Frame Leakage",
+                "sectionKey": "preferred frame leakage",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Gravitational-Wave Channel",
+                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownSection": "Gravitational-Wave Channel",
+                "sectionKey": "gravitational wave channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Strong-Field Regime",
+                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownSection": "Strong-Field Regime",
+                "sectionKey": "strong field regime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Falsification Gate",
+                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownSection": "Falsification Gate",
+                "sectionKey": "falsification gate",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]
@@ -4036,7 +4100,73 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/validation/parameter_ledger.json",
-            "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md"
+            "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Purpose",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Purpose",
+                "sectionKey": "purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Status Classes",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Status Classes",
+                "sectionKey": "status classes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Parameter Table",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Canonical Parameter Table",
+                "sectionKey": "canonical parameter table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Relations",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Canonical Relations",
+                "sectionKey": "canonical relations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Rules",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Closure Rules",
+                "sectionKey": "closure rules",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Immediate Parameter-Closure Priorities",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Immediate Parameter-Closure Priorities",
+                "sectionKey": "immediate parameter closure priorities",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Falsification Gate",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Falsification Gate",
+                "sectionKey": "falsification gate",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/validation/parameter-ledger.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
+                "headingLevel": 2
+              }
+            ]
           },
           {
             "id": "validation__reaction_ledger",
