@@ -138,25 +138,24 @@ Scoring system:
   - [singularity-resolution.md](../../markdown/aaa/spacetime/singularity-resolution.md),
   - the aligned cosmology chapters,
   - and the equivalence-principle rewrite in [tri-binary-dynamics.md](../../markdown/aaa/dynamics/tri-binary-dynamics.md).
-- The remaining work is narrower:
-  - derive stronger observer-level strong-field predictions,
-  - clarify release-channel selection between jets, diffuse outflow, and dark-sector escape,
-  - and keep neighboring chapters synchronized when the strong-field story changes.
-- Treat this as a mostly-completed architecture item, not as a missing-canonical-home item anymore.
+- The actual priority here is now narrow and quantitative:
+  - derive a stronger observer-level strong-field prediction set,
+  - decide the release-channel selection between jets, diffuse outflow, and dark-sector escape,
+  - and extract at least one discriminating observable that separates this story from GR-like strong-field behavior.
 
 ### 7. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
 - Value `9`, Cost `5`, ROI `1.80`.
-- Move this item from placeholder bookkeeping to first-principles tri-binary closure.
-- Populate [parameter-ledger.md](../../markdown/aaa/foundations/parameter-ledger.md) with `\kappa`, `\epsilon_0 / \mu_0` analogues, density scales, regularization widths, extraction equations, and observable links.
-- Tie that ledger to [action.md](../../markdown/aaa/foundations/action.md), [architrino-si-base-units.md](../../markdown/aaa/foundations/architrino-si-base-units.md), and [constraint-ledger.md](../../markdown/aaa/validation/constraint-ledger.md).
-- Move Mass Formulas from roadmap status to one closed mass map, even if first-pass.
+- Treat [parameter-ledger.md](../../markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The real priority is to turn the open mass-side symbols it names into one reusable derived map.
+- First concrete deliverable: one derived tri-binary attractor family with radii, frequencies, binding scales, and a reproducible shielding-extraction protocol.
+- Second concrete deliverable: derive `\zeta(A)` from the delayed kernel strongly enough to predict a baseline electron mass and at least one next-step hierarchy check such as `m_\mu / m_e`.
+- Third concrete deliverable: decide which quantities survive as shared inputs across the mass-side program, especially `\kappa`, the physical role of `\eta`, and whether the first mass map also constrains the bridge to `h` and `G`.
 - Theorems and calculations to finish here:
   - solve the exact 6-body non-Markovian path-history equations for the tri-binary and locate the relevant limit cycles or other robust attractors,
   - derive the minimum radius `R_{\text{min}}`, radii ratios, frequency structure, binding scales, shielding / leakage factors, and far-field cancellation directly from the delayed `1/r^2` kernel rather than from calibration targets,
   - turn `\zeta` from a placeholder into a derived quantity and use it to predict the baseline electron mass and the first generational hierarchy checks such as `m_\mu / m_e`,
   - test whether the same derived geometry explains the structural origin of the fine-structure constant `\alpha` from `\kappa` and `c_f`.
 - Test the first map against electron / muon / tau or hadron constraints.
-- Keep the constants question active: why `h`, `c_f`, and `G`; one spiral; maybe `G` is emergent rather than fundamental.
+- Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
 ### 8. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
 - Value `7`, Cost `4`, ROI `1.75`.
@@ -243,7 +242,7 @@ Scoring system:
 
 ### 11. Lock the simulations, regularization, and shell numerics
 - Value `9`, Cost `8`, ROI `1.13`.
-- Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/simulations/run-protocols.md) and the `synthesis/action-energy/*` material.
+- Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/validation/simulations/run-protocols.md) and the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
 - Publish convergence plots and `\mathbb{U}_{\text{now}}` provenance logs.
 - Consolidate a formal `\eta > 0` package: existence, uniqueness, continuation criteria, and no-runaway bounds.
