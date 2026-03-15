@@ -808,6 +808,16 @@ body {
   text-decoration: underline;
 }
 
+#markdown-content .liberapay-donation-widget {
+  margin: 14px 0 10px;
+  break-inside: avoid;
+}
+
+#markdown-content .liberapay-donation-widget iframe,
+#markdown-content .liberapay-donation-widget img {
+  max-width: 100%;
+}
+
 .math-block {
   margin: 10px 0;
   padding: 8px 10px;

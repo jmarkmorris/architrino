@@ -19,9 +19,9 @@ If this project is useful to you, financial support helps preserve that continui
 
 ### Monthly support
 
-Use Liberapay for recurring support if you want to help sustain the research on an ongoing basis.
+Use Liberapay for recurring support if you want to help sustain the research on an ongoing basis. The donation button should appear below in the webapp, and the direct donation page is here:
 
-Liberapay link: TBD
+[Donate monthly via Liberapay](https://liberapay.com/Architrino/donate)
 
 ### One-time support
 

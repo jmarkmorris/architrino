@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 120,
-      "sections": 729
+      "sections": 730
     }
   },
   "tocRoot": {
@@ -1250,10 +1250,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Equivalence Principle (Working Interpretation)",
+                "title": "Equivalence Principle (Working Constraint)",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Equivalence Principle (Working Interpretation)",
-                "sectionKey": "equivalence principle working interpretation",
+                "markdownSection": "Equivalence Principle (Working Constraint)",
+                "sectionKey": "equivalence principle working constraint",
                 "headingLevel": 2
               },
               {
@@ -2712,6 +2712,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Jets and Other Release Channels",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Jets and Other Release Channels",
+                "sectionKey": "jets and other release channels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Relation to Dark Energy and Expansion History",
                 "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
                 "markdownSection": "Relation to Dark Energy and Expansion History",
@@ -3515,10 +3523,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "SMBH Jet and/or Surface Emissions",
+                "title": "SMBH Release Channels",
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
-                "markdownSection": "SMBH Jet and/or Surface Emissions",
-                "sectionKey": "smbh jet and or surface emissions",
+                "markdownSection": "SMBH Release Channels",
+                "sectionKey": "smbh release channels",
                 "headingLevel": 2
               },
               {

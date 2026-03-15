@@ -80,6 +80,47 @@ This is the sense in which black holes are treated as recycling furnaces in the 
 
 The same picture implies that the effective mass of a black hole need not be interpreted as a purely isolated bookkeeping variable. If the horizon interface and interior remain constitutively coupled to the ambient Noether Sea, then part of what observers infer as compact-object mass can depend on how the surrounding medium loads, unloads, or stores energy around the recycling site. This does not license arbitrary mass drift. It means that the distinction between "local compact-object state" and "embedding medium state" is dynamical rather than absolute.
 
+## Jets and Other Release Channels
+
+Jets should remain in the black-hole story, but they should be placed at the correct level. In $\mathbb{A}\mathbb{A}\mathbb{A}$, jets are not the definition of recycling. They are one candidate macroscopic manifestation of release from a recycling site. The deeper claim is that strong-field interiors can return some portion of their processed content to the surrounding medium; the jet question is how much of that return becomes collimated, how much remains diffuse, and how much leaves in channels that are initially dark to ordinary electromagnetic observation.
+
+For that reason, the framework uses a release-channel hierarchy:
+
+- **Constitutive claim:** infalling matter and radiation can be reprocessed into outward channels.
+- **Astrophysical channel claim:** some of those outward channels may become observable jets or winds.
+- **Dark-sector claim:** some channels may cross outward through the horizon interface as recycled dark-matter-like or dark-energy-like assemblies, or in dark-photon-like form, before later converting into visible excitations, if they do so at all.
+
+This hierarchy keeps the theory from overcommitting to a single morphology. A jet is evidence for organized outflow, not by itself proof that all recycling must emerge in collimated form.
+
+The same distinction can be phrased as a sequence.
+
+1. Core processing compresses infalling content into maximum-curvature and alignment regimes.
+2. The horizon interface selects which modes remain trapped and which can move outward.
+3. The released content then appears as one or more observer-level channels: jets, broader winds, radiative outflow, or initially dark-sector escape.
+
+This ordering preserves your original intuition that jets may inject recycled matter or energy into the surrounding medium while keeping the framework open to the possibility that some released content leaves the horizon interface in forms that are not immediately visible.
+
+### Dark-Sector Escape and Re-Entry
+
+The local framework therefore keeps open the possibility that some processed content crosses outward through the horizon interface in a form that is initially dark to ordinary electromagnetic observation. In that case, "escape the event horizon" should be read in the constitutive sense: a mode successfully traverses outward through the alignment-locked interface after a state transition.
+
+Three working possibilities remain live:
+
+- **Dark-sector escape:** a released mode stays weakly coupled to visible matter after outward crossing and contributes mainly through gravitational or dark-sector signatures.
+- **Recycled dark assemblies:** the released content emerges as assembly populations that behave effectively like dark matter or dark energy after outward crossing, remaining weakly coupled to visible channels.
+- **Dark-photon-like escape with later conversion:** a released mode exits in an initially dark form and only farther from the horizon re-enters visible channels through dissipation, coupling, or geometric relaxation.
+
+### Jet Production as a Selection Problem
+
+The open physical question is not merely whether release occurs, but why some environments produce narrow, persistent jets while others favor broader or darker outflows. In the current framework, that is a channel-selection problem governed by at least four ingredients:
+
+- the degree of horizon-interface alignment;
+- the state of the surrounding Noether Sea, including anisotropy and loading;
+- the composition of the released mode mix;
+- the ambient matter and effective magnetic-like environment through which the outflow propagates.
+
+This is the disciplined way to keep jets in the chapter: as one important release channel among several, rather than as the whole definition of recycling.
+
 ## Relation to Dark Energy and Expansion History
 
 The black-hole chapter does not identify dark energy with black holes by definition. The baseline dark-energy mechanism in $\mathbb{A}\mathbb{A}\mathbb{A}$ remains Noether-Sea medium relaxation, as developed in [../cosmology/dark-energy.md](../cosmology/dark-energy.md). Black holes enter that story only if strong-field recycling makes a measurable contribution to the slowly varying outer-binary tension sector.
@@ -130,6 +171,7 @@ The black-hole program in $\mathbb{A}\mathbb{A}\mathbb{A}$ earns credibility onl
 - **Embedding regularity:** the same strong-field description must remain regular when the compact object is treated as embedded in an evolving large-scale medium rather than an artificially isolated background.
 - **Population coupling test:** any claimed cosmological black-hole coupling must survive hidden-accretion and merger-systematics analysis and fit consistently with the late-time expansion history.
 - **History accounting:** any black-hole source term must be compatible with plausible compact-object formation and feeding histories; one cannot simply posit a present-day population effect while ignoring the route by which the population was produced.
+- **Release-channel discrimination:** if jets, diffuse outflows, and dark-sector release are all allowed in principle, the framework must eventually state which environments prefer which channels and what observer-level signatures distinguish them.
 - **No free energy:** recycling cannot function as perpetual creation. Any outward channel must be accounted for as redistribution from infalling matter, radiation, or pre-existing medium energy.
 - **Cross-module closure:** the same strong-field constitutive map must remain compatible with [../cosmology/dark-energy.md](../cosmology/dark-energy.md), [../cosmology/CMB.md](../cosmology/CMB.md), and [../cosmology/dark-matter.md](../cosmology/dark-matter.md).
 
