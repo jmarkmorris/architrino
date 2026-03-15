@@ -14,7 +14,7 @@ Scoring system:
 | Fastest scorecard lift | 9 | 3 | 3.00 |
 | PDG solver | 10 | 4 | 2.50 |
 | Preserve strong-field / tri-binary hypotheses | 5 | 2 | 2.50 |
-| 421 resonance reduced-map program | 7 | 3 | 2.33 |
+| Dyadic resonance lock reduced-map program | 7 | 3 | 2.33 |
 | Unified chapter authoring queue | 8 | 4 | 2.00 |
 | Remaining black-hole / strong-field quantitative closure | 4 | 2 | 2.00 |
 | Noether-core stability, shielding, parameter ledger, and first mass map | 9 | 5 | 1.80 |

@@ -117,6 +117,17 @@ Responsibilities:
 
 Use this type when the document should be read as a document rather than navigated as a generated node tree.
 
+Authoring implication:
+
+- the markdown source should open with a real `#` title,
+- the opening block should orient a cold reader before the first major section,
+- and auto-open view scenes should not rely on surrounding scene context to explain what the document is doing.
+
+Display implication:
+
+- when scene chrome already presents the document title, the reading surface may suppress the duplicate visible `#` heading,
+- but the markdown source should still keep that `#` as the canonical title for authored structure and manifest generation.
+
 ### Scene-Markdown-Split
 
 `Scene-Markdown-Split` derives a set of navigable nodes from one heading level in one markdown document.

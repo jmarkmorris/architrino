@@ -1,10 +1,14 @@
-## Causal Action Functional — Coherent Structure
+# Causal Action Functional
 
-### Problem Statement and Goal
+This chapter develops the variational complement to the master-equation treatment of dynamics. Its job is to define a causal action functional that can compare delayed worldline structures, separate stable from unstable assembly classes, and turn emergent mass claims into a geometric quantity that can be evaluated, bounded, and tested.
+
+The current scope is mixed. Some statements are theorem-backed in the regularized setting, while the larger closure program remains open. The chapter therefore begins with the problem statement and core functional definitions, then separates the controlled theorem spine from benchmarks, implementation notes, and longer-range closure targets.
+
+## Problem Statement and Goal
 The objective is to explain why only certain assemblies are stable and discrete, and to interpret emergent “mass” as a consequence of causal interaction structure: intrinsic self‑action of each worldline plus coupling to the ambient tri-binary sea (effective spacetime), rather than an externally assigned input. The target is a geometric/variational functional derived from the causal‑wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
 Canonical dynamics are defined in [The Master Equation (Canonical Form)](master-equation.md#the-master-equation-canonical-form); this chapter provides the complementary action-functional lens.
 
-### Core Functional Definitions
+## Core Functional Definitions
 **Self‑action functional:**
 $$
 \mathcal{A}_{\text{self}}[\gamma] = \iint_{\gamma \times \gamma}
@@ -65,7 +69,7 @@ $$
 \delta\!\big(r(t,t')-c_f(t-t')\big)
 $$
 
-### Regularized Mathematical Setting (Explicit Regime)
+## Regularized Mathematical Setting (Explicit Regime)
 
 To separate what is already controlled from what remains conjectural, we work in the
 regularized regime $\eta>0$ and state all claims on one period.
@@ -90,7 +94,7 @@ $$
 This is the primary object for proofs and numerics. The unregularized
 $\eta\to0^+$ limit is treated only after bounds are established.
 
-### Axioms and Admissibility Assumptions
+## Axioms and Admissibility Assumptions
 
 We use the following minimal assumption set for theorem-level statements:
 
@@ -105,13 +109,13 @@ We use the following minimal assumption set for theorem-level statements:
 These assumptions are deliberately local and testable. If any assumption fails, the
 corresponding theorem is not claimed.
 
-### Rationale for the Functional
+## Rationale for the Functional
 - **Natural Lyapunov/action‑like candidate:** If certain motion classes monotonically reduce a single functional, that quantity can label attractors and discrete minima that look like “mass levels” or particle configurations.
 - **Bridge to geometric analysis / knot theory:** Showing that simple periodic motions (e.g., maximum‑curvature self‑hit orbits) locally minimize $\mathcal{A}_{\text{self}}$ within a topological class would give a clean geometric explanation for why some orbits are preferred over nearby perturbations.
 - **Simulation‑friendly statistic:** Given any numerically computed orbit, we can Monte‑Carlo sample $(t,t')$, test the causal condition, and estimate $\mathcal{A}_{\text{self}}[\gamma]$ to compare shapes. This makes the “stable = local minimum” heuristic empirically testable.
 - **Kolmogorov‑style appeal:** The functional is built directly from the microscopic law, convertible to empirical statistics, and a candidate for invariant measures that could explain attractor selection.
 
-### Geometric/Topological Framework
+## Geometric/Topological Framework
 **Causal locus on the torus:** For a periodic orbit the domain $(t,t')\in[0,T]^2$ is a torus. The causal locus
 $$
 \mathcal{L}_{\text{causal}} = \{(t,t')\in T^2 \mid \|\mathbf{x}(t)-\mathbf{x}(t')\| = c_f|t-t'|\}
@@ -129,12 +133,12 @@ is a signed measure of handedness for the self‑interaction pattern. Nonzero $W
 
 **Multi‑component topology:** For assemblies, project the spatial trajectories over one period, classify the resulting link, and when hyperbolic, use the volume of the link complement as a complexity measure. Brunnian or highly knotted complements signal strong causal interlocking and higher action density.
 
-### Theorem Spine (Provable Core under A1-A5)
+## Theorem Spine (Provable Core under A1-A5)
 
 In this section we also assume the standard mollifier properties:
 $\phi_\eta\in C_c^\infty(\mathbb{R})$, $\phi_\eta\ge0$, $\int_{\mathbb{R}}\phi_\eta(s)\,ds=1$, and $\phi_\eta\to\delta$ weakly as $\eta\to0^+$.
 
-#### Assumptions Checklist (Use Before Citing a Theorem)
+### Assumptions Checklist (Use Before Citing a Theorem)
 
 | Claim | A1 | A2 | A3 | A3b | A4 | A5 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -144,7 +148,7 @@ $\phi_\eta\in C_c^\infty(\mathbb{R})$, $\phi_\eta\ge0$, $\int_{\mathbb{R}}\phi_\
 | Theorem 3 (bifurcation criterion) | required | required | required | not required | required (except at critical value) | required |
 | Theorem 4 (two-sided bounds) | required | required | required | required | not required | not required |
 
-#### Theorem 1 (Well-defined finite regularized action)
+### Theorem 1 (Well-defined finite regularized action)
 Under (A1)-(A3b), $\bar{\mathcal{A}}_{\text{self},\eta}[\gamma]$ is finite and nonnegative.
 
 **Proof.** Write
@@ -165,7 +169,7 @@ $$
 $$
 So the functional is finite and nonnegative.
 
-#### Theorem 2 (Coarea reduction to causal locus)
+### Theorem 2 (Coarea reduction to causal locus)
 Under (A1)-(A4), the $\eta\to0^+$ limit of
 $\bar{\mathcal{A}}_{\text{self},\eta}$ is the weighted 1D measure of the causal locus:
 $$
@@ -192,14 +196,14 @@ H(s)\equiv
 $$
 By (A4), $\|\nabla F_\gamma\|$ is nonzero on $F_\gamma^{-1}(0)$, so in a small tubular neighborhood of the zero level the level sets are regular 1-manifolds and $H(s)$ is continuous near $s=0$. By (A3) and (A3b), both $r^{-2}$ and $J_\gamma^{-1}$ are bounded on the active support, so $H(s)$ is locally bounded. Since $\phi_\eta$ is an approximate identity, $\int \phi_\eta(s)H(s)\,ds\to H(0)$ as $\eta\to0^+$. Dividing by $T^2$ yields the claimed limit.
 
-#### Corollary 2.1 (Discrete branch labels)
+### Corollary 2.1 (Discrete branch labels)
 Connected components of $\mathcal{L}_{\text{causal}}$ carry winding numbers
 $(p,q)\in\mathbb{Z}^2$ on $T^2$. These are unchanged under smooth deformations that
 preserve (A4) and remain inside one homotopy class (A5).
 
 **Proof.** Under (A4), each connected component of the level set $F_\gamma=0$ is a smooth embedded closed curve on $T^2$, hence defines a homology class in $H_1(T^2,\mathbb{Z})\cong\mathbb{Z}^2$. The coordinates of this class are the winding numbers $(p,q)$. Under a smooth deformation preserving regularity and homotopy class, components evolve by isotopy, so their homology classes are unchanged.
 
-#### Theorem 3 (Bifurcation criterion for quantized branch changes)
+### Theorem 3 (Bifurcation criterion for quantized branch changes)
 For a smooth one-parameter family $\gamma_\lambda$ (equivalently $F_\lambda$), component count and winding labels can change only at parameter values $\lambda_*$ where transversality fails:
 $$
 F_{\lambda_*}(t,t')=0,\qquad \nabla F_{\lambda_*}(t,t')=0
@@ -208,7 +212,7 @@ for some $(t,t')\in T^2$.
 
 **Proof.** Fix $\lambda_0$ such that $F_{\lambda_0}^{-1}(0)$ is regular (A4). By the implicit function theorem, near every point of $F_{\lambda_0}^{-1}(0)$ the zero set is a smooth curve varying smoothly with $\lambda$. Compactness of $T^2$ gives a finite cover, so the full causal locus varies by isotopy for $\lambda$ in a neighborhood of $\lambda_0$. Isotopy preserves component count and homology labels. Therefore these quantities are locally constant on regular parameter intervals. Any change between two regular intervals must pass through a non-regular parameter where $\nabla F=0$ at a zero-level point.
 
-#### Theorem 4 (Two-sided bounds useful for validation)
+### Theorem 4 (Two-sided bounds useful for validation)
 Under (A1)-(A3b), for any fixed $\eta>0$:
 $$
 0\le
@@ -236,7 +240,7 @@ $$
 **Meaning:** numerical pipelines can assert hard pass/fail envelopes before any
 physical interpretation is attempted.
 
-### Analytic Benchmarks (Circular Orbit)
+## Analytic Benchmarks (Circular Orbit)
 For a circular orbit of radius $R$ and speed $v=\beta c_f$:
 $$
 2R\left|\sin\left(\frac{\omega\Delta}{2}\right)\right| = c_f\Delta,
@@ -287,7 +291,7 @@ This is the action-functional expression of the same circular caustic seen in th
 
 At high speed, all admissible roots lie in $(0,\beta)$, so the branch count grows only linearly with $\beta$. The circular toy therefore gives a controlled benchmark: discrete branch creation, explicit near-threshold asymptotics, and a root-by-root action density that can be compared directly to numerical orbit scans.
 
-### Circular Benchmark as a Branch-Count Theorem
+## Circular Benchmark as a Branch-Count Theorem
 
 Define
 $$
@@ -295,7 +299,7 @@ g_\beta(\xi)=\sin\xi-\frac{\xi}{\beta}.
 $$
 Admissible circular self-hit branches are zeros of $g_\beta$ in $(0,\beta)$.
 
-#### Proposition 5.1 (Discrete Root Count and Branch-Change Criterion)
+### Proposition 5.1 (Discrete Root Count and Branch-Change Criterion)
 Fix a compact admissible interval $I_{\text{branch}}=[a,b]\subset(0,\beta)$ with boundary regularity $g_\beta(a)\neq0$, $g_\beta(b)\neq0$.
 
 1. For fixed $\beta>0$, the admissible root set
@@ -313,14 +317,14 @@ For (2), if $\xi_*$ is a simple root ($\partial_\xi g_\beta(\xi_*)\neq0$), the i
 
 For the principal circular branch, the bifurcation point occurs at $(\beta,\xi)=(1,0)$ in the limiting sense. Higher branches appear at interior tangencies where both equations hold with $\xi>0$. This is the 1D analog of Theorem 3 and provides an explicit, checkable bifurcation condition for the circular toy model.
 
-### Dynamical Interpretation
+## Dynamical Interpretation
 - Stable periodic orbits are **critical points** of $\bar{\mathcal{A}}_{\text{total}}$ constrained within a winding class. The delay flow need not be a gradient flow of this functional, so extremality is a selection principle, not a proof of asymptotic stability.
 - **Existence vs. stability:** Topology of $\mathcal{L}_{\text{causal}}$ dictates which families can exist (via bifurcations when branches reconnect). Linear spectra of the delay equation decide which of those families attract. The causal locus is the combinatorial skeleton; Lyapunov exponents tell who survives.
 - **Discreteness:** Each winding class gives an integer self‑hit count; moving between classes requires a reconnection event, explaining mass gaps and “generations” without adding quantization by hand.
 - **Conservation with memory:** Time‑translation and rotational symmetry of the kernel imply conserved total energy and angular momentum, but energy includes the “virial of the history” stored in active causal wakes.
 - **Gradient vs. symplectic:** The master equation is conservative; critical points of $\bar{\mathcal{A}}$ correspond to KAM‑style islands, not sinks. If any dissipation couples to the Noether Sea, minima could become attractors, but absent that, stability means orbital persistence, not asymptotic convergence.
 
-### Emergent Geometry Constraints
+## Emergent Geometry Constraints
 Define the coarse‑grained hit density
 $$
 \mathcal{I}(t,\mathbf{x})=\sum_j\int_{-\infty}^{t}\!\frac{\delta_\eta\!\big(\|\mathbf{x}-\mathbf{x}_j(t')\|-c_f(t-t')\big)}{\|\mathbf{x}-\mathbf{x}_j(t')\|^2\,J_j(t,\mathbf{x};t')}\,dt',
@@ -344,14 +348,14 @@ Here, "fifth force" means an additional long-range interaction mediated by the s
 Numerical check: evolve two assemblies with different internal $\bar{\mathcal{A}}_{\text{total}}$ through the same prescribed $\mathcal{I}(t,\mathbf{x})$ background and verify their centers follow the same geodesic to numerical tolerance.
 Mean‑field view: in a dilute limit with many architrinos, coarse‑graining the hit process should yield a Vlasov equation for $f(t,\mathbf{x},\mathbf{v})$ with force derived from $\mathcal{I}$, providing the statistical bridge to continuum geometry.
 
-### Implementation Notes (Appendix)
+## Implementation Notes (Appendix)
 - Use the same $\delta_\eta$ and $\eta$ for force and action estimators.
 - For periodic orbits, normalize by $T^2$ and enforce periodic boundary conditions.
 - For circular‑orbit calibration, compute $\xi_n$ roots numerically and sum with the Jacobian factor.
 - Handle the $\beta=1$ onset caustic with care; the unregularized circular action is singular there once both Jacobian and coarea factors are retained.
 - Keep $\eta>0$ during variation: $\nabla\delta$ terms appear in $\delta\mathcal{A}$; regularization makes the Euler–Lagrange equations well‑posed. Take $\eta\to0$ only after solving or bounding solutions.
 
-### Simulation Protocol (Minimal Theorem-Backed Checks)
+## Simulation Protocol (Minimal Theorem-Backed Checks)
 
 For each simulated orbit family:
 
@@ -364,17 +368,17 @@ For each simulated orbit family:
 5. In the circular benchmark, verify Proposition 5.1 double-root condition at branch
    transitions.
 
-### Limitations and Caveats
+## Limitations and Caveats
 - **Rest mass is not just self-action:** $\mathcal{A}_{\text{self}}$ needs careful units; true rest energy also depends on partner interactions, Noether Sea coupling, and external wakes.
 - **Minima ≠ stability without dynamics:** Stability depends on the full DDE flow; the functional must be windowed/normalized (e.g., one period) to avoid divergences and to compare orbits meaningfully.
 - **Topology needs precision:** Time is monotone; periodic motion yields a spatially closed path but a helical spacetime curve. Be explicit about which projection/linking notion defines the “topological class.”
 - **Cohomology language is aspirational:** A cochain complex over the moduli of periodic orbits is not yet constructed; treat “cohomology of causal interaction” as a research direction, not a result.
 
-### Closure Extension: Spin Bundle and Confinement Energy Law
+## Closure Extension: Spin Bundle and Confinement Energy Law
 
 To complete the topological closure program, add two theorem targets on top of the existing causal-locus spine.
 
-#### (T5.1) Spinor lift target
+### (T5.1) Spinor lift target
 
 Construct a framed configuration bundle for tri-binary ordered axes and prove that physical orientation transport lifts through
 $$
@@ -382,7 +386,7 @@ $$
 $$
 so the internal phase distinguishes 2$\pi$ and 4$\pi$ loops.
 
-#### (T5.2) Open-vs-closed braid energy target
+### (T5.2) Open-vs-closed braid energy target
 
 Define an effective color-braid energy law:
 $$
@@ -393,13 +397,13 @@ E_{\mathrm{closed}}(L)\to E_{\infty}<\infty\quad (L\to\infty).
 $$
 Combined with causal-locus class constraints, this gives a quantitative separation between confined open sectors and screened singlet sectors.
 
-#### Integration map
+### Integration map
 
 - causal-locus topology and bifurcation class invariants: **this chapter**
 - color-algebra and singlet braid structure: [assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md)
 - gauge-covariant effective layer and failure criteria: [dynamics/gauge-symmetries.md](./gauge-symmetries.md)
 
-### Summary and Status
+## Summary and Status
 - We defined a causal self-action and total-action functional directly from the Jacobian-weighted inverse-square delayed kernel, plus its normalized form for periodic orbits.
 - Topology of the causal locus $\mathcal{L}_{\text{causal}}\subset T^2$ supplies discrete labels (winding, writhe, link type) that naturally segment orbit families.
 - The circular-orbit benchmark gives an analytic threshold at $\beta=1$, explicit branchwise Jacobians, and controlled near-threshold asymptotics, anchoring numerical calibrations.

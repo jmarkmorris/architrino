@@ -1,5 +1,7 @@
 # Emergence of U(1)/SU(2)
 
+This chapter is a working emergence map from Noether-Sea substrate language to observer-level electroweak bookkeeping. It is not the formal symmetry theorem chapter; its role is to explain how vacuum structure, effective fields, symmetry deformations, and measurement-facing quantities are being interpreted on the dynamics side before exact closure is finished.
+
 ## The Physical Substrate: From Vacuum to "Noether Sea"
 
 In standard QFT, the vacuum is a complex state of harmonic oscillators with zero point energy. In the Architrino Assembly Architecture, we reject this abstraction in favor of a physical definition.

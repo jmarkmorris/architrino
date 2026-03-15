@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 121,
-      "sections": 736
+      "sections": 759
     }
   },
   "tocRoot": {
@@ -796,10 +796,130 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Causal Action Functional — Coherent Structure",
+                "title": "Problem Statement and Goal",
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Causal Action Functional — Coherent Structure",
-                "sectionKey": "causal action functional coherent structure",
+                "markdownSection": "Problem Statement and Goal",
+                "sectionKey": "problem statement and goal",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Functional Definitions",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Core Functional Definitions",
+                "sectionKey": "core functional definitions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regularized Mathematical Setting (Explicit Regime)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Regularized Mathematical Setting (Explicit Regime)",
+                "sectionKey": "regularized mathematical setting explicit regime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Axioms and Admissibility Assumptions",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Axioms and Admissibility Assumptions",
+                "sectionKey": "axioms and admissibility assumptions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Rationale for the Functional",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Rationale for the Functional",
+                "sectionKey": "rationale for the functional",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometric/Topological Framework",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Geometric/Topological Framework",
+                "sectionKey": "geometric topological framework",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Theorem Spine (Provable Core under A1-A5)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Theorem Spine (Provable Core under A1-A5)",
+                "sectionKey": "theorem spine provable core under a1 a5",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Analytic Benchmarks (Circular Orbit)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Analytic Benchmarks (Circular Orbit)",
+                "sectionKey": "analytic benchmarks circular orbit",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Circular Benchmark as a Branch-Count Theorem",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Circular Benchmark as a Branch-Count Theorem",
+                "sectionKey": "circular benchmark as a branch count theorem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamical Interpretation",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Dynamical Interpretation",
+                "sectionKey": "dynamical interpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergent Geometry Constraints",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Emergent Geometry Constraints",
+                "sectionKey": "emergent geometry constraints",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Implementation Notes (Appendix)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Implementation Notes (Appendix)",
+                "sectionKey": "implementation notes appendix",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Protocol (Minimal Theorem-Backed Checks)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Simulation Protocol (Minimal Theorem-Backed Checks)",
+                "sectionKey": "simulation protocol minimal theorem backed checks",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Limitations and Caveats",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Limitations and Caveats",
+                "sectionKey": "limitations and caveats",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Extension: Spin Bundle and Confinement Energy Law",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Closure Extension: Spin Bundle and Confinement Energy Law",
+                "sectionKey": "closure extension spin bundle and confinement energy law",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary and Status",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Summary and Status",
+                "sectionKey": "summary and status",
                 "headingLevel": 2
               }
             ]
@@ -1102,10 +1222,74 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Mapping the Planck Scale to the Tri-Binary Geometry",
+                "title": "Thesis",
                 "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-                "markdownSection": "Mapping the Planck Scale to the Tri-Binary Geometry",
-                "sectionKey": "mapping the planck scale to the tri binary geometry",
+                "markdownSection": "Thesis",
+                "sectionKey": "thesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Planck Units Imply About the Outer Binary",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "What Planck Units Imply About the Outer Binary",
+                "sectionKey": "what planck units imply about the outer binary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Kinematic and Dynamical Alignment Conditions",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Kinematic and Dynamical Alignment Conditions",
+                "sectionKey": "kinematic and dynamical alignment conditions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Experienced-Field Framing (Energy as Interaction History)",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Experienced-Field Framing (Energy as Interaction History)",
+                "sectionKey": "experienced field framing energy as interaction history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
+                "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
+                "sectionKey": "spin transition and configuration space topology hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
+                "sectionKey": "emergent constants hbar ell p and g",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
+                "sectionKey": "horizon microstructure and condensate like phases conjecture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Constraints, Assumptions, and Failure Modes",
+                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownSection": "Constraints, Assumptions, and Failure Modes",
+                "sectionKey": "constraints assumptions and failure modes",
                 "headingLevel": 2
               }
             ]

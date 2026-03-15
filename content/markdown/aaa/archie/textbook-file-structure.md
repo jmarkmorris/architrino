@@ -87,6 +87,21 @@ Use headings with clear intent:
 
 Do not create decorative heading depth. If a heading level is present, it should correspond either to a real conceptual division or to a scene-derived navigation layer.
 
+## Launch-Ready Openings for View Documents
+
+When a markdown file is used as a `Scene-Markdown-View`, especially with direct auto-open behavior, the opening is part of the reader-facing interface rather than mere document preliminaries.
+
+Use the following launch standard:
+
+- line 1 should be a real `#` document title,
+- the title should be followed immediately by a short orienting overview before the first `##`,
+- that opening should identify the subject, explain why the document matters, and state the scope or theorem-status when relevant,
+- the opening should also tell the reader how the document is organized when the chapter is long or technically layered.
+
+Do not let a view-node document open directly on a `##` heading, a divider, or a dense technical block with no orienting context. If a reader opens a sphere and lands in the document cold, the file should still make immediate sense.
+
+Keep the `#` title in the source even when the runtime already shows the scene title in surrounding chrome. The source title remains the canonical document heading for graph generation, portability, and authoring consistency. Runtime display may suppress that first visible heading to avoid redundant titling, but the markdown file should still contain it.
+
 ## Naming Standard
 
 Use lowercase, hyphen-separated filenames.
@@ -274,7 +289,7 @@ Before considering a new textbook-facing markdown file structurally complete, ve
 3. The `#` heading states the document's formal title.
 4. The heading hierarchy is intentional and scene-safe.
 5. Cross-references use relative paths.
-6. The overview explains purpose, organization, and conceptual stakes.
+6. The opening overview explains purpose, organization, and conceptual stakes, and any direct-reading `Scene-Markdown-View` launch is context-complete.
 7. The prose matches the academic textbook standard.
 8. The mathematical notation matches the canonical dialect where relevant.
 9. The document does not contain internal-chat residue or stale planning language.
