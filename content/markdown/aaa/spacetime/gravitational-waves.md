@@ -56,6 +56,8 @@ to leading order (higher-order dispersive corrections are constitutive and model
 
 ## Polarization Content
 
+In the repo-wide spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.
+
 **Theorem 2 (Two-mode TT closure in isotropic limit).**  
 If the low-energy constitutive response is parity-even and isotropic, residual gauge constraints leave exactly two propagating tensor modes:
 $$

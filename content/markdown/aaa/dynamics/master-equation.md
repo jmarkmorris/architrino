@@ -36,6 +36,8 @@ This is an **event-local delayed interaction rule**: the acceleration is evaluat
 
 In the absence of any causal hits, an architrino follows inertial motion: straight-line, constant-velocity trajectories in the fixed Euclidean background.
 
+Operationally, the expanding causal wake is also the theory's minimal bridge between time and space. Absolute time orders emissions, Euclidean distance sets the propagation delay, and the receiver event is where those two inputs are rejoined into one physical interaction. The wake law is therefore not just a force prescription; it is the mechanism that turns temporal ordering plus spatial separation into concrete dynamics.
+
 #### Abstract Form
 
 The Master Equation of Motion (abstract level):

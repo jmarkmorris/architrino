@@ -24,6 +24,16 @@ A particularly important and stable configuration is the **triply nested binary*
 
 -   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and charge than the sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their fields to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
 
+### The Core Hierarchy and Fermion Generations
+
+The broader assembly program suggests reading the nested-binary family as a natural hierarchy of fermion nuclei:
+
+-   **Isolated binary:** the most exposed nucleus, corresponding to the Generation-III core tier.
+-   **Bi-binary:** one shielding shell restored, corresponding to the Generation-II core tier.
+-   **Tri-binary / Noether core:** the fully shielded three-shell nucleus, corresponding to the Generation-I core tier.
+
+On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding shells still surround the deepest binary engine.
+
 ### Tri-Binary Alignment and Planck-Scale Framing
 
 The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), but its **radius and frequency vary**; it acts as the **energy-storage fulcrum** for transfers across the tri-binary.

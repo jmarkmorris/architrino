@@ -23,6 +23,7 @@ Note: **Mass is derived**, not a quantum number here; it comes from core shieldi
 Every fermion contains a central engine composed of nested binary pairs.
 *   **Composition:** Each binary contains 1 Positrino + 1 Electrino (Neutral).
 *   **Generation I Nucleus (Tri-Binary):** 3 Nested Binaries (Inner, Middle, Outer). Total 6 architrinos (3P, 3E).
+*   **Nested-scale picture:** The three binaries should be read as a genuine radial hierarchy, not just as three items in a list. The middle binary sits inside the shielding domain of the outer binary, and the inner binary sits inside the shielding domains of both. In that sense, the higher-generation core may be viewed as what is revealed when the outer shielding shell is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
     *   **Pro-Core:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
     *   **Anti-Core:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
@@ -32,6 +33,7 @@ Every fermion contains a central engine composed of nested binary pairs.
 *   **Sites:** 6 Polar regions available for decoration.
 *   **Occupancy:** All stable fermions have all 6 sites filled.
 *   **Function:** This layer interacts with external fields (EM, Weak).
+*   **Binding picture:** The personality architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where personality potentials bind to the Noether core scaffold.
 
 ### Total Constituent Count (Gen I)
 *   **Nucleus (6) + personality (6) = 12 architrinos.**
@@ -188,16 +190,16 @@ The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 
 ---
 
-## Gauge Group Coverage: SU(3) × SU(2) × U(1)
+## Gauge Group Coverage: $SU(3)_c \times SU(2)_L \times U(1)_Y$
 
 The full SM gauge group is captured geometrically as:
 
-- **SU(3) (Color):** azimuthal phase of the personality asymmetry (Red, Green, Blue). Quarks carry a rotating dipole/quadrupole that fixes their SU(3) orientation; leptons are azimuthally symmetric (singlets). Gluons are planar phase-correction ribbons that live on flux tubes and form the octet.
-- **SU(2) (Weak isospin):** polarity of the **Weak-Coupling Triad** (three exposed decoration sites). Left-handed fermions are doublets; right-handed fermions are singlets (Weak-Coupling Triad hidden).
-- **U(1) (Hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
+- **$SU(3)_c$ (color):** azimuthal phase of the personality asymmetry (Red, Green, Blue). Quarks carry a rotating dipole/quadrupole that fixes their $SU(3)_c$ orientation; leptons are azimuthally symmetric singlets. Gluons are planar phase-correction ribbons that live on flux tubes and form the octet.
+- **$SU(2)_L$ (weak isospin):** polarity of the **Weak-Coupling Triad** (three exposed decoration sites). Left-handed fermions are doublets; right-handed fermions are singlets (Weak-Coupling Triad hidden).
+- **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
 - **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving Weak-Coupling Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
 
-**Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). Relation: $Q = T_3 + Y/2$ for all fields.
+**Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). In this chapter we write weak hypercharge as $Y$ rather than $Y_w$. Relation: $Q = T_3 + Y/2$ for all fields.
 
 ### Representation cheat sheet (Gen I fermions)
 
@@ -233,9 +235,156 @@ Hypercharge is set by the net charge on the **Shielded Triad** (three hidden dec
 
 Notes: the shielded charge is common within a doublet; right-handed singlets set $Y$ via $Q$ with $T_3=0$.
 
+### Universal charged-fermion bookkeeping rule (conjectural synthesis)
+
+The charged fermion sector appears to obey one compact geometric bookkeeping rule rather than separate ad hoc rules for leptons and quarks.
+
+For any charged fermion family, the working pattern is:
+
+- **pro-left:** weak doublet branch,
+- **pro-right:** weak singlet branch,
+- **anti-right:** charge-conjugate mirror of the pro-left doublet branch,
+- **anti-left:** charge-conjugate mirror of the pro-right singlet branch.
+
+In formulas:
+
+- doublet branches carry
+  $$
+  T_3=\pm\frac{1}{2},
+  $$
+- singlet branches carry
+  $$
+  T_3=0,
+  $$
+- and hypercharge is always reconstructed from
+  $$
+  Y = 2(Q-T_3).
+  $$
+
+This single rule reproduces the bookkeeping already used for:
+
+- $e_L,\ e_R,\ \bar e_R,\ \bar e_L$,
+- $u_L,\ u_R,\ \bar u_R,\ \bar u_L$,
+- $d_L,\ d_R,\ \bar d_R,\ \bar d_L$,
+
+and extends radially to the higher generations by keeping the same electroweak placement while changing only the shielding tier of the core.
+
+The geometrical interpretation is:
+
+- generation is primarily a **radial / shielding** variable,
+- electroweak quantum numbers are primarily an **angular / exposure** variable,
+- charge conjugation mirrors the pattern across the same bookkeeping plane,
+- handedness selects whether the Weak-Coupling Triad is exposed or hidden.
+
+The neutral sector is less settled. The left-handed neutrino branch fits naturally into the same scheme, but the fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
+
+- no right-handed neutrino in the minimal architecture,
+- a sterile singlet branch,
+- or a geometrically indistinguishable neutral mirror sector.
+
+So the rule above should currently be read as a strong charged-fermion synthesis, not yet as a completed theorem for all fermions.
+
 ### Charge quantization cross-check
 
 Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [dynamics/gauge-structure-emergence.md](../../dynamics/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section “Quantization from Stability”).
+
+### Baryon / lepton bookkeeping and anomaly cancellation
+
+For elementary fermions, the clean geometric bookkeeping is:
+
+- quark-like color-triplet assemblies carry
+  $$
+  B=\pm\frac{1}{3},\qquad L=0,
+  $$
+- lepton-like color-singlet assemblies carry
+  $$
+  B=0,\qquad L=\pm 1,
+  $$
+- the sign is set by core orientation:
+  $$
+  s_{\text{core}}=
+  \begin{cases}
+  +1,& \text{pro-core},\\
+  -1,& \text{anti-core}.
+  \end{cases}
+  $$
+
+If $\chi_q=1$ for a quark-like color-triplet assembly and $\chi_q=0$ for a lepton-like color-singlet assembly, then the elementary-fermion rule may be written compactly as
+$$
+B = s_{\text{core}}\frac{\chi_q}{3},
+\qquad
+L = s_{\text{core}}(1-\chi_q).
+$$
+
+This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti core sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
+
+Using the left-chiral one-generation SM content
+$$
+q_L:(3,2,+\tfrac{1}{3}),\quad
+u^c_L:(\bar 3,1,-\tfrac{4}{3}),\quad
+d^c_L:(\bar 3,1,+\tfrac{2}{3}),\quad
+\ell_L:(1,2,-1),\quad
+e^c_L:(1,1,+2),
+$$
+the Standard-Model gauge anomalies cancel exactly.
+
+With $T(3)=T(\bar 3)=\tfrac{1}{2}$ and $T(2)=\tfrac{1}{2}$, the mixed non-abelian anomalies are
+$$
+\mathcal{A}_{[SU(3)_c]^2U(1)_Y}
+=
+2\,T(3)\!\left(\tfrac{1}{3}\right)
++T(\bar 3)\!\left(-\tfrac{4}{3}\right)
++T(\bar 3)\!\left(\tfrac{2}{3}\right)
+=0,
+$$
+and
+$$
+\mathcal{A}_{[SU(2)_L]^2U(1)_Y}
+=
+3\,T(2)\!\left(\tfrac{1}{3}\right)
++T(2)(-1)
+=0.
+$$
+
+The mixed gravitational-hypercharge anomaly also cancels:
+$$
+\mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
+=
+6\!\left(\tfrac{1}{3}\right)
++3\!\left(-\tfrac{4}{3}\right)
++3\!\left(\tfrac{2}{3}\right)
++2(-1)
++(+2)
+=0.
+$$
+
+Finally, the cubic hypercharge anomaly is
+$$
+\mathcal{A}_{[U(1)_Y]^3}
+=
+6\!\left(\tfrac{1}{3}\right)^3
++3\!\left(-\tfrac{4}{3}\right)^3
++3\!\left(\tfrac{2}{3}\right)^3
++2(-1)^3
++(+2)^3
+=0.
+$$
+
+So the present geometry-to-quantum-number dictionary already matches the Standard Model's per-generation gauge-anomaly cancellation. This is a nontrivial consistency check, not just a notation match.
+
+If a sterile right-handed neutrino is added with
+$$
+\nu_R:(1,1,0),
+$$
+it contributes zero to all of these SM gauge anomalies, so the minimal anomaly cancellation is unchanged.
+
+However, for the global bookkeeping symmetry $B-L$, one generation without $\nu_R$ gives
+$$
+\sum(B-L)=-1,
+\qquad
+\sum(B-L)^3=-1,
+$$
+while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restores both to zero. So in the current minimal architecture, $B-L$ works as a global label, but not yet as an independently gauged anomaly-free channel.
 
 ### Right-handed neutrino stance and mass eigenstates (hypothesis)
 
@@ -248,12 +397,20 @@ Because every fermion personality fills six sites with $\pm e/6$, the only stabl
 
 Generations are defined by the **shedding of shielding binaries** from the Nucleus. The Personality Layer (Charge) remains constant.
 
+Equivalently, the generation ladder can be read as a nested-shell hierarchy:
+
+- **Generation I:** full three-shell shielding, with inner binaries screened by outer ones,
+- **Generation II:** one shielding shell removed, exposing the deeper engine more directly,
+- **Generation III:** only the innermost engine remains exposed.
+
+This is stronger than the statement "fewer binaries means more mass." The outer binaries act as real shielding shells for deeper core energy, so moving from Generation I to II to III is a progressive loss of energy screening.
+
 ### Generation II (Muon, Charm, Strange)
 *   **Architecture:** Missing the **Outer Binary**.
 *   **Nucleus:** **Bi-Binary** (Inner, Middle).
     *   Composition: 2P, 2E (4 architrinos).
 *   **Personality:** 6 decorations (unchanged).
-*   **Physics:** Without the outer binary shell, the high-energy inner binaries are more "exposed" to the Noether Sea, creating higher drag/interaction (Mass).
+*   **Physics:** Without the outer binary shell, the high-energy inner binaries are more exposed to the Noether Sea, creating higher drag/interaction (Mass). In the nested-shell picture, Generation II is the same core hierarchy viewed one layer deeper.
 *   **Example: The Muon ($\mu^-$)**
     *   Nucleus: Pro-Bi-Binary (4 architrinos).
     *   Personality: 6E.
@@ -265,7 +422,7 @@ Generations are defined by the **shedding of shielding binaries** from the Nucle
     *   Composition: 1P, 1E (2 architrinos).
     *   *Note:* This is the bare high-energy engine, extremely unstable/reactive.
 *   **Personality:** 6 decorations (unchanged).
-*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest Mass. Shortest lifetime.
+*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest Mass. Shortest lifetime. In the nested-shell picture, this is the innermost engine with essentially no outer energy screen remaining.
 *   **Example: The Top Quark ($t$)**
     *   Nucleus: Pro-Uni-Binary (2 architrinos).
     *   Personality: 5P, 1E.
@@ -274,9 +431,9 @@ Generations are defined by the **shedding of shielding binaries** from the Nucle
 ### Core Depletion, Axial Vortices, and Lifetime (plain view)
 
 - **What the binaries do:** Each binary carries a pair of axial vortices—think of them as rails that hold the six personality charges in place and share load into the Noether Sea.
-- **Gen I (tri-binary):** Three binaries = three vortex pairs → a stiff 3D scaffold that locks the decorations and spreads stress. Long-lived.
-- **Gen II (bi-binary):** One binary removed → one vortex pair gone. The remaining scaffold is weaker, so small perturbations kick the core off its attractor more easily. Lifetime drops.
-- **Gen III (uni-binary):** Only one binary → a single vortex pair must hold all six charges. Stability margin is tiny; modest hits can reconfigure or eject decorations. Very short-lived.
+- **Gen I (tri-binary):** Three binaries = three vortex pairs → a stiff 3D scaffold that locks the decorations, spreads stress, and shields the deeper core layers. Long-lived.
+- **Gen II (bi-binary):** One binary removed → one vortex pair gone. The remaining scaffold is weaker, and one shielding shell is lost, so small perturbations kick the core off its attractor more easily. Lifetime drops.
+- **Gen III (uni-binary):** Only one binary → a single vortex pair must hold all six charges. Stability margin is tiny, and almost no outer screening remains for the deepest core energy. Very short-lived.
 - **Takeaway:** Fewer binaries → fewer vortex rails → weaker topological confinement → faster decay.
 
 ---
@@ -325,7 +482,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Spin** | $J$ | Intrinsic angular momentum ($1/2\hbar$). | **Core Topology.** The ellipsoidal rotation path of the Tri-binary nucleus. Fermions are spin-1/2 because the path requires 720 degrees to return to the initial state (spinor behavior). |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-Coupling Triad Exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the Weak-Coupling Triad to the vacuum (Interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the Weak-Coupling Triad into the particle's "wake" or shield (Interaction blocked). |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
-| **Baryon/Lepton No.** | $B, L$ | Conserved matter counts. | **Core Count.**<br>• **Matter (+1):** Pro-Core (Left-braided nucleus).<br>• **Antimatter (-1):** Anti-Core (Right-braided nucleus). |
+| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-core vs anti-core orientation. |
 
 For the **Elementary Fermions** (Quarks and Leptons), yes, this table is complete. It covers the "ID Card" required to distinguish every particle in the Standard Model Lagrangian.
 
@@ -334,6 +491,17 @@ For the **Elementary Fermions** (Quarks and Leptons), yes, this table is complet
 - The tri-binary core has three non-coplanar binary planes with ordered normals; keeping total $\mathbf{J}$ fixed, that ordered triad lives on $SO(3)$ but carries an **ordering/phase sign** from the vortex scaffold.
 - A 2π spatial rotation permutes the braid ordering once, flipping the sign of the internal phase (like rotating a framed triad or belt). Only after 4π does the ordered triad and its vortex phase return to the same configuration.
 - This ordered-triad + fixed-$\mathbf{J}$ constraint is proposed as the geometric origin of the SU(2) double cover → spin-1/2 behavior; a formal bundle map is still to be derived.
+
+### Spin taxonomy across assemblies
+
+Across the repo, the working geometric rule is that the spin label tracks the **kind of orientation data** the excitation carries:
+
+- **Spin-0 (scalar):** purely radial or isotropic breathing, with no preferred direction attached to the mode itself.
+- **Spin-1/2 (fermionic spinor):** an ordered tri-binary core whose internal phase changes sign under a $2\pi$ turn and closes only after $4\pi$.
+- **Spin-1 (vector):** an excitation with one distinguished axis plus transverse/helical structure around that axis.
+- **Spin-2 (tensor):** a transverse-traceless shape disturbance carrying quadrupolar deformation data rather than a single axis alone.
+
+This should be read as the common geometric dictionary behind the particle-specific chapters: the Higgs uses the scalar channel, photons/gluons/$W^\pm$/$Z$ use vector channels, fermions use the ordered-core spinor channel, and gravitational waves realize the effective tensor channel.
 
 However, there are two nuances we should be aware of, though we don't necessarily need a new row for them:
 

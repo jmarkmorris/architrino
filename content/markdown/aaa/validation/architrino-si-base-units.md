@@ -53,6 +53,16 @@ In our theory, the **truly fundamental** quantities are:
 - Tri-binary stability conditions (quantization)
 - Aether coupling (emergent metric, inertia)
 
+### Primitive-to-Derived Measure Ladder
+
+For the units program, it is useful to distinguish primitive measures from derived ones rather than treating the SI list as a flat catalog.
+
+- **Primitive substrate inputs:** field speed $c_f$, architrino charge magnitude $|e/6|$, absolute time ordering, and the geometric closure scales that belong to stable assemblies.
+- **First-order derived measures:** characteristic time, length, action, and energy scales attached to a single stable closure problem.
+- **Second-order derived measures:** area, volume, velocity ratios, densities, currents, and transport coefficients built from the first-order scales.
+
+This ladder matters because it fixes the order of derivation. The program should first identify the minimal closure scales of the substrate and only then build compound observer-level units from them. On this reading, many SI constants are not peers inside the ontology; they are bookkeeping conventions sitting at different heights in the derivation tree.
+
 ---
 
 ## Mapping SI Constants to Architrino Physics
