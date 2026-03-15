@@ -32,6 +32,19 @@ The concept of assemblies can be formalized through a recursive definition.
 
 This recursive structure implies that all emergent forms, no matter how complex, can be deconstructed into a hierarchy of simpler, nested binary systems.
 
+### Bottom-Up Structural Ladder
+
+The recursive picture is easiest to read as a bottom-up construction ladder:
+
+1. **Substrate:** absolute time and absolute Euclidean space provide the fixed arena.
+2. **Point potentials:** individual architrinos are the irreducible emitters/receivers of causal wake structure.
+3. **Primal assembly:** a stable orbiting electrino-positrino binary is the first bound assembly.
+4. **Nested cores:** binaries can capture into larger nested systems, giving isolated-binary, bi-binary, and tri-binary cores with progressively stronger shielding structure.
+5. **Decorated fermions:** attaching six polar personality sites to a Noether core produces the fermion families; changing the core shielding tier changes generation.
+6. **Medium and bosonic sectors:** larger collective organizations of cores produce spacetime assemblies, while propagating coupled disturbances of assemblies appear as effective bosonic channels.
+
+This ladder matters because it prevents category drift. Fermions, bosons, and spacetime are not separate ontological species added by hand; they are different organizational levels of the same underlying architrino dynamics.
+
 ### The Dynamics of Structure and Asymmetry
 
 All structure in this universe is based on a **dynamical geometry**. Every architrino is, at all times, interacting with the wakes of every other architrino in the universe, and potentially with its own past isochrons. This creates an N-body problem of infinite scale, meaning there is no closed-form analytical solution for the evolution of a structure in the general case.
