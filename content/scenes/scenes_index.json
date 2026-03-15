@@ -1394,6 +1394,11 @@
       "id": "foundations__detecting_the_absolute_frame",
       "name": "Detecting the Absolute Frame",
       "path": "content/scenes/foundations/detecting_the_absolute_frame.json"
+    },
+    {
+      "id": "spacetime__black_holes",
+      "name": "Black Holes",
+      "path": "content/scenes/spacetime/black_holes.json"
     }
   ]
 }

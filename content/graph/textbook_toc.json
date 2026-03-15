@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 119,
-      "sections": 716
+      "entries": 120,
+      "sections": 729
     }
   },
   "tocRoot": {
@@ -2642,6 +2642,120 @@
                 "markdownPath": "content/markdown/aaa/spacetime/singularity-resolution.md",
                 "markdownSection": "Maximal Curvature vs Planck Scale",
                 "sectionKey": "maximal curvature vs planck scale",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "spacetime__black_holes",
+            "title": "Black Holes",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/black_holes.json",
+            "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope and Purpose",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Scope and Purpose",
+                "sectionKey": "scope and purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What the Framework Treats as a Black Hole",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "What the Framework Treats as a Black Hole",
+                "sectionKey": "what the framework treats as a black hole",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Horizon Condition",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Canonical Horizon Condition",
+                "sectionKey": "canonical horizon condition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Singularity Replacement and the Maximum-Curvature Core",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Singularity Replacement and the Maximum-Curvature Core",
+                "sectionKey": "singularity replacement and the maximum curvature core",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Horizon Interface",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Horizon Interface",
+                "sectionKey": "horizon interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmological Embedding and Horizon Regularity",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Cosmological Embedding and Horizon Regularity",
+                "sectionKey": "cosmological embedding and horizon regularity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interior Dynamics and Recycling",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Interior Dynamics and Recycling",
+                "sectionKey": "interior dynamics and recycling",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relation to Dark Energy and Expansion History",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Relation to Dark Energy and Expansion History",
+                "sectionKey": "relation to dark energy and expansion history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmological Coupling Hypothesis",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Cosmological Coupling Hypothesis",
+                "sectionKey": "cosmological coupling hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Population History and Source Accounting",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Population History and Source Accounting",
+                "sectionKey": "population history and source accounting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observable Targets and Falsifiers",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Observable Targets and Falsifiers",
+                "sectionKey": "observable targets and falsifiers",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interfaces to Other Chapters",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Interfaces to Other Chapters",
+                "sectionKey": "interfaces to other chapters",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
                 "headingLevel": 2
               }
             ]

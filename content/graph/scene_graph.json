@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 402,
-      "edges": 1143,
-      "scenes": 279,
+      "nodes": 403,
+      "edges": 1145,
+      "scenes": 280,
       "markdownIndexes": 0,
       "markdownDocs": 123,
       "runtimeEdges": 476,
@@ -1820,6 +1820,12 @@
       "id": "foundations__detecting_the_absolute_frame",
       "name": "Detecting the Absolute Frame",
       "path": "content/scenes/foundations/detecting_the_absolute_frame.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__black_holes",
+      "name": "Black Holes",
+      "path": "content/scenes/spacetime/black_holes.json",
       "nodeType": "scene"
     },
     {
@@ -4558,6 +4564,15 @@
       "name": "Wavefunction Ontology",
       "path": "content/scenes/quantum/wavefunction_ontology.json",
       "searchTarget": "content/scenes/quantum/wavefunction_ontology.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/black_holes.json",
+      "nodeType": "scene",
+      "id": "spacetime__black_holes",
+      "name": "Black Holes",
+      "path": "content/scenes/spacetime/black_holes.json",
+      "searchTarget": "content/scenes/spacetime/black_holes.json",
       "implicit": false
     },
     {
@@ -9533,6 +9548,13 @@
       "to": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/black_holes.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[7]"
     },
     {
@@ -9589,7 +9611,7 @@
       "to": "scene:content/scenes/spacetime/spacetime_assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",
@@ -10576,6 +10598,13 @@
       "to": "markdown_doc:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/wavefunction_ontology.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/black_holes.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/black-holes.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/black_holes.json",
       "field": "scene.source.path"
     },
     {

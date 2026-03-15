@@ -166,6 +166,7 @@ Supermassive black holes process matter and radiation through their high-energy 
 
 - **Energy input to the Noether Sea.** Jets and radiative outflows from SMBHs inject energy into the surrounding medium, locally exciting outer-binary modes and increasing the Noether-Sea internal temperature. On galactic and cluster scales, this injection is a source of heating that counteracts the natural cosmological cooling of the medium.
 - **Feedback on $w_{\mathrm{eff}}$.** If SMBH energy injection is correlated with structure formation, the effective dark-energy equation of state can carry weak environmental dependence.
+- **Backreaction rather than isolation.** The relevant cosmological question is not whether a black hole is an isolated object with a fixed bookkeeping mass, but whether the recycling zone and the ambient Noether Sea remain coupled strongly enough for the surrounding medium state to alter what the object contributes at late times.
 - **No perpetual motion.** The recycling process does not create energy; it redistributes it. The total energy budget (matter + radiation + medium baseline) is conserved in absolute time. What changes is the partition between locked internal modes and the slowly varying tension sector.
 
 The canonical strong-field and recycling picture is developed in [../spacetime/black-holes.md](../spacetime/black-holes.md). The present chapter keeps only the cosmological consequence: whether black-hole processing contributes a measurable source term to the late-time expansion history.
@@ -222,6 +223,22 @@ $$
 
 where $\mathcal{S}_{\mathrm{BH}}$ captures the net transfer from SMBH recycling zones into the slowly varying outer-binary tension sector. The sign and magnitude of $\mathcal{S}_{\mathrm{BH}}$ are empirical questions, not inputs fixed by ontology alone.
 
+This decomposition also clarifies why an effective phantom crossing does not by itself force acausal physics in the local framework. If the dark-energy-like sector is being fed by transfer from another component, then $w_{\mathrm{eff}} < -1$ can appear at the level of the fit while the underlying substrate dynamics remain causal and energy-accounted.
+
+### Population History Matters
+
+If an SMBH-correlated channel exists, its amplitude cannot depend only on the instantaneous properties of present-day black holes. It must inherit the production and feeding history of the recycling population. In observational practice this often shows up through links to star-formation history, galaxy assembly, compact-object demographics, and host-environment selection. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the deeper statement is that $\mathcal{S}_{\mathrm{BH}}$ depends on the path-history by which matter was routed into strong-field processing sites and then returned, in altered form, to the surrounding medium.
+
+For that reason the black-hole source term should be interpreted schematically as
+
+$$
+\mathcal{S}_{\mathrm{BH}}(z)
+=
+\mathcal{F}\!\left[\mathcal{H}_{\mathrm{form}},\mathcal{H}_{\mathrm{feed}},\mathcal{H}_{\mathrm{release}}\right],
+$$
+
+where $\mathcal{H}_{\mathrm{form}}$ denotes the compact-object formation history, $\mathcal{H}_{\mathrm{feed}}$ the inflow history into recycling sites, and $\mathcal{H}_{\mathrm{release}}$ the history of outward channels that load the Noether Sea. The point of this notation is conceptual rather than final: any viable black-hole contribution must be history-dependent, not merely appended as a static late-time correction.
+
 ### What Would Have to Be True
 
 For cosmological coupling to become part of the mainline dark-energy story in $\mathbb{A}\mathbb{A}\mathbb{A}$, four conditions would need to hold simultaneously.
@@ -230,6 +247,11 @@ For cosmological coupling to become part of the mainline dark-energy story in $\
 - The coupling must scale coherently across galaxy populations rather than appearing only in a tuned subsample.
 - The same coupling must fit late-time expansion data without spoiling CMB, BAO, lensing, and structure-growth closure.
 - The strong-field mechanism in [../spacetime/black-holes.md](../spacetime/black-holes.md) must provide a constitutive path from horizon/interior recycling to a population-level contribution to $\rho_{\mathrm{DE,eff}}(z)$.
+
+Two additional consistency conditions are equally important.
+
+- The source history that feeds $\mathcal{S}_{\mathrm{BH}}$ must remain compatible with reasonable compact-object formation and galaxy-assembly histories.
+- The resulting effective component need not trace baryonic structure point by point; if it is truly mediated through medium loading, its large-scale distribution and clustering response may differ from ordinary matter while still remaining tied to matter-processing history.
 
 Until those conditions are met, cosmological coupling should be treated as a candidate channel under test, not as settled closure.
 
