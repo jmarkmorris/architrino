@@ -79,7 +79,7 @@ Scoring system:
 
 ### 4. Advance the 421 resonance reduced-map program
 - Value `7`, Cost `3`, ROI `2.33`.
-- [421.md](421.md) now has a cleaner math backbone and should be treated as a reduced-map dynamics program, not as a finished derivation.
+- [dyadic-resonance-lock.md](dyadic-resonance-lock.md) now has a cleaner math backbone and should be treated as a reduced-map dynamics program, not as a finished derivation.
 - What is now solid enough to build on:
   - exact periodic closure gives a rational resonance lattice,
   - self-similar near-horizon closure gives the family $1:s:s^2$,
@@ -91,10 +91,10 @@ Scoring system:
   - whether the $\mathbb{Z}_3$ organization acts as a true adiabatic stabilizer,
   - whether any branchwise ledger emerges only after the lock is solved rather than before.
 - Immediate next move:
-  1. Extract the live front matter of [421.md](421.md) into a short dynamics-scene note.
+  1. Extract the live front matter of [dyadic-resonance-lock.md](dyadic-resonance-lock.md) into a short dynamics-scene note.
   2. Build the two-layer regularized map first.
   3. Look for local contraction or a Lyapunov-type quantity near the dyadic fixed point.
-  4. Keep [421.md](421.md) itself as the scratch/archive notebook.
+  4. Keep [dyadic-resonance-lock.md](dyadic-resonance-lock.md) itself as the scratch/archive notebook.
 
 ### 5. Run the chapter authoring queue
 - Value `8`, Cost `4`, ROI `2.00`.
