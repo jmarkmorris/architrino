@@ -27,7 +27,6 @@ Method:
 | Medium | Scene system and scene builder | 7 | 7 | 1.00 |
 | Medium | Black-hole / strong-field chapter cleanup | 6 | 6 | 1.00 |
 | Medium | PDG solver | 6 | 7 | 0.86 |
-| Low | Workflow and conventions cleanup | 3 | 2 | 1.50 |
 | Low | Repo / branding / community cleanup | 4 | 3 | 1.33 |
 | Low | Payment, account, and identity loose ends | 5 | 4 | 1.25 |
 | Low | Deferred product / outlook work | 3 | 5 | 0.60 |
@@ -232,14 +231,6 @@ Method:
   - use the scene builder in API mode.
 
 ## Low
-
-### 1. Sweep small workflow and conventions tasks
-- Value `3`, Cost `2`, ROI `1.50`.
-- Double-click pins the VS Code tab.
-- Link [textbook-file-structure.md](../../markdown/aaa/archie/textbook-file-structure.md) from the relevant system prompts / notes.
-- Keep one H1 heading per Markdown file.
-- Branches are now `alpha`, `beta`, `gamma`, `delta`, `omega` in git.
-- OG entourage IDs to check in `lmcouncil`: `Jan 13ab`, `15ab`, `17a`, `24a`.
 
 ### 2. Do the lightweight repo / branding / community cleanup
 - Value `4`, Cost `3`, ROI `1.33`.
