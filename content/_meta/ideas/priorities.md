@@ -16,7 +16,6 @@ Scoring system:
 | Preserve strong-field / tri-binary hypotheses | 5 | 2 | 2.50 |
 | Unified chapter authoring queue | 8 | 4 | 2.00 |
 | Remaining black-hole / strong-field quantitative closure | 4 | 2 | 2.00 |
-| Retain comparative assembly theory notes | 4 | 2 | 2.00 |
 | Parameter ledger, couplings, and first mass map | 9 | 5 | 1.80 |
 | Remaining Standard Model assembly gaps | 7 | 4 | 1.75 |
 | Tractable master-equation stack | 10 | 8 | 1.25 |
@@ -123,22 +122,7 @@ Scoring system:
   - and keep neighboring chapters synchronized when the strong-field story changes.
 - Treat this as a mostly-completed architecture item, not as a missing-canonical-home item anymore.
 
-### 6. Retain the comparative assembly theory notes
-- Value `4`, Cost `2`, ROI `2.00`.
-- Keep the nearest prior assembly-architecture reference points visible:
-  1. Preon / rishon models.
-  2. Early quark-lepton compositeness.
-  3. Technicolor.
-  4. Extended technicolor / walking technicolor.
-  5. Composite Higgs / pseudo-Nambu-Goldstone Higgs.
-  6. Partial compositeness.
-  7. Top condensation / topcolor.
-  8. Topological / preon braid ideas.
-- Bottom line to retain: many frameworks propose Standard Model assembly, but none is experimentally established as a full, unique UV-complete replacement.
-- Closest literature to the generation idea is compositeness / preon / rishon work where higher generations are treated as excited states of deeper constituents.
-- The exact claim `remove or destroy the outer binary and you get the next generation` does not appear to be a standard mainstream formulation.
-
-### 7. Finish the parameter ledger, constants, couplings, and first mass map
+### 6. Finish the parameter ledger, constants, couplings, and first mass map
 - Value `9`, Cost `5`, ROI `1.80`.
 - Populate [parameter-ledger.md](../../markdown/aaa/foundations/parameter-ledger.md) with `\kappa`, `\epsilon_0 / \mu_0` analogues, density scales, regularization widths, extraction equations, and observable links.
 - Tie that ledger to [action.md](../../markdown/aaa/foundations/action.md), [architrino-si-base-units.md](../../markdown/aaa/foundations/architrino-si-base-units.md), and [constraint-ledger.md](../../markdown/aaa/validation/constraint-ledger.md).
@@ -146,7 +130,7 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question active: why `h`, `c_f`, and `G`; one spiral; maybe `G` is emergent rather than fundamental.
 
-### 8. Close the remaining Standard Model assembly gaps where the leverage is best
+### 7. Close the remaining Standard Model assembly gaps where the leverage is best
 - Value `7`, Cost `4`, ROI `1.75`.
 - The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
   - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
@@ -155,7 +139,7 @@ Scoring system:
 - Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 
-### 9. Finish the tractable master-equation stack
+### 8. Finish the tractable master-equation stack
 - Value `10`, Cost `8`, ROI `1.25`.
 - Keep dynamics, math, geometry, and mapping as the top theory priority.
 - Focus on [master-equation.md](../../markdown/aaa/dynamics/master-equation.md).
@@ -193,13 +177,13 @@ Scoring system:
   6. Full attractor landscape for binaries and tri-binaries.
   7. Quantum closure from the master equation.
 
-### 10. Build a few focused exploratory applications
+### 9. Build a few focused exploratory applications
 - Value `5`, Cost `4`, ROI `1.25`.
 - Make application pages that show Gell-Mann's eightfold way and tenfold diagram, placing the relevant particle from the scene creator at each vertex.
 - Use those pages to look for correlations with `T_3`, `Y`, and mass patterns.
 - Keep Kaiser's MIT lecture 22 as a prompt for that direction.
 
-### 11. Lock the simulations, regularization, and shell numerics
+### 10. Lock the simulations, regularization, and shell numerics
 - Value `9`, Cost `8`, ROI `1.13`.
 - Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/simulations/run-protocols.md) and the `synthesis/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
@@ -208,7 +192,7 @@ Scoring system:
 - Tie Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
 - If a quick intuition tool is useful, make a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
 
-### 12. Convert cosmology from narrative strength to equation-level closure
+### 11. Convert cosmology from narrative strength to equation-level closure
 - Value `9`, Cost `8`, ROI `1.13`.
 - Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
 - Build per-component observable interfaces for `\Lambda\mathrm{CDM}` comparison:
@@ -220,7 +204,7 @@ Scoring system:
 - Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where `$\mathbb{A}\mathbb{A}\mathbb{A}$` matches, replaces, or diverges from each component.
 - This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
 
-### 13. Close the metric / clock / ruler bridge to GR
+### 12. Close the metric / clock / ruler bridge to GR
 - Value `10`, Cost `9`, ROI `1.11`.
 - Close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional.
 - Derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
@@ -228,14 +212,14 @@ Scoring system:
 - Keep this as the direct bridge from substrate dynamics to GR tests: match GR in the weak field, then let strong-field differences emerge as predictions rather than assertions.
 - Related mechanical task: derive emergent Lorentz invariance for fast-moving tri-binaries so lifetimes, scattering kinematics, and decay rates recover the standard `\gamma` factor.
 
-### 14. Close the quantum-interpretation gap only after making it testable
+### 13. Close the quantum-interpretation gap only after making it testable
 - Value `10`, Cost `9`, ROI `1.11`.
 - Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
 - Show how receiver-side informational ambiguity can yield the Born rule `P \propto |\psi|^2`.
 - Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
 - Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
 
-### 15. Keep building the scene system, but only in the order that compounds
+### 14. Keep building the scene system, but only in the order that compounds
 - Value `7`, Cost `7`, ROI `1.00`.
 - Build the 3D visualizer for the oblating Noether core and related scenes such as the sphere.
 - Continue the ellipsoid work, aiming to understand time through that geometry.
@@ -246,12 +230,12 @@ Scoring system:
 - Use the scene builder in API mode where it helps.
 - Keep `sim2rewrite.md` as a later porting source, but wait until the scene builder is working before using it.
 
-### 16. Recover useful old material before rewriting it from scratch
+### 15. Recover useful old material before rewriting it from scratch
 - Value `6`, Cost `6`, ROI `1.00`.
 - Mine material from WordPress where it can save time.
 - Clean up PowerPoints, or better, migrate the worthwhile ones into the web site.
 
-### 17. Keep deferred product / outlook work explicitly low priority
+### 16. Keep deferred product / outlook work explicitly low priority
 - Value `3`, Cost `5`, ROI `0.60`.
 - `Vision for the Future / Toward New Technologies` belongs at the end of the textbook stack, not in the core derivation spine.
 - Future enhancements once core navigation is stable:

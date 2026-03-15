@@ -112,6 +112,14 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive** at t
 
 The long-term relevance of this section is as permanent process guidance. Recovery would consist in reopening these episodes with modern constraints and asking, case by case, whether a substrate-first reinterpretation can now do empirical work that earlier versions could not. The timeline is justified only if it sharpens present derivation targets rather than serving as retrospective mythology.
 
+### Compositeness Programs as Contrast, Not Precursor
+
+Another historical pattern worth naming explicitly is the recurring attempt to replace Standard Model finality with some deeper compositeness or reductionist layer. Preon and rishon models, early quark-lepton compositeness proposals, technicolor, extended or walking technicolor, composite-Higgs programs, partial compositeness, top-condensation ideas, and topological braid-style schemes all belong to that broad family. Their historical importance is real, but it is mostly historical and contrastive rather than directly preparatory for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+The point that should be stated plainly is this: many compositeness attempts existed, but none closed the program, and most were too weak or too narrow to be true precursors. Their value is therefore not that they already contained the architrino architecture in embryonic form. Their value is that they show how often physics kept reaching for reductionist or compositeness ideas, but in weak, partial, or non-closing ways. That contrast helps frame how different the present program is. The architrino claim is not merely that the Standard Model has deeper constituents. It is that masses, charges, generations, and effective spacetime behavior should all be traced back to one unified assembly-and-substrate ontology with explicit closure targets.
+
+This also clarifies what should and should not be borrowed from that history. The useful lesson is that dissatisfaction with parameter-level finality was widespread and persistent. The less useful temptation is to treat every earlier compositeness scheme as a serious technical ancestor. In most cases they are better read as evidence of an unresolved pressure in physics than as genuine near-completions. They indicate that the reductionist question kept returning; they do not show that the field had already built a viable constitutive replacement.
+
 ---
 
 ## Lorentz Before Einstein: The Almost-Substrate Moment
