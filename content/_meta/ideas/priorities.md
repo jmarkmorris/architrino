@@ -12,25 +12,24 @@ Scoring system:
 | Item | Value | Cost | ROI |
 | --- | ---: | ---: | ---: |
 | Fastest scorecard lift | 9 | 3 | 3.00 |
+| Consolidate current master-equation footholds | 6 | 2 | 3.00 |
+| PDG solver | 10 | 4 | 2.50 |
+| Preserve strong-field / tri-binary hypotheses | 5 | 2 | 2.50 |
 | Drafted theory/history/philosophy chapters | 7 | 3 | 2.33 |
-| Highest-value textbook authoring sequence | 8 | 4 | 2.00 |
+| Textbook authoring sequence and backlog tiers | 8 | 4 | 2.00 |
 | Recover useful old material | 6 | 3 | 2.00 |
 | Remaining black-hole / strong-field quantitative closure | 4 | 2 | 2.00 |
+| Retain comparative assembly theory notes | 4 | 2 | 2.00 |
 | Parameter ledger, couplings, and first mass map | 9 | 5 | 1.80 |
 | Remaining Standard Model assembly gaps | 7 | 4 | 1.75 |
-| Continue the textbook backlog after the top chapters | 7 | 5 | 1.40 |
-| Repo / branding / community cleanup | 4 | 3 | 1.33 |
 | Tractable master-equation stack | 10 | 8 | 1.25 |
 | Focused exploratory applications | 5 | 4 | 1.25 |
-| Payment, account, and identity loose ends | 5 | 4 | 1.25 |
 | Simulations, regularization, and shell numerics | 9 | 8 | 1.13 |
 | Cosmology transfer-function closure | 9 | 8 | 1.13 |
 | Metric / clock / ruler bridge to GR | 10 | 9 | 1.11 |
 | Quantum-interpretation gap with hard tests | 10 | 9 | 1.11 |
 | Scene system and scene builder | 7 | 7 | 1.00 |
-| PDG solver | 6 | 7 | 0.86 |
 | Deferred product / outlook work | 3 | 5 | 0.60 |
-| Convenience purchases | 2 | 4 | 0.50 |
 
 ## Overall Task List
 
@@ -53,7 +52,25 @@ Scoring system:
   - falsification gate.
 - Rule of thumb to retain: each `+10` points in one category adds about `+0.56` to the total 18-category mean.
 
-### 2. Finish the drafted theory/history/philosophy chapters
+### 2. Consolidate the current master-equation footholds
+- Value `6`, Cost `2`, ROI `3.00`.
+- Preserve and keep using the tractable circular results already added to [master-equation.md](../../markdown/aaa/dynamics/master-equation.md):
+  - every new circular self-hit branch is born at an interior tangency of `g_\beta(\xi)=\sin\xi-\xi/\beta`, equivalently at a root of `\tan\xi=\xi`;
+  - every such branch is born exactly on a Jacobian-null surface, since at threshold `J^\star = 0`;
+  - the circular self-branch count grows only linearly, `N_{\text{self}}(\beta)=\beta/\pi+O(1)`;
+  - within the symmetric isolated circular two-body ansatz, tangential contributions do not cancel branchwise, so exact constant-speed closure is obstructed unless something beyond the bare ansatz does the work.
+
+### 3. Build the PDG solver after the scene system is usable
+- Value `10`, Cost `4`, ROI `2.50`.
+- PDG solver tasks:
+  - provenance,
+  - diagrams,
+  - core disposition,
+  - use the API that now exists,
+  - look into MadGraph for reactions,
+  - use the scene builder in API mode.
+
+### 4. Finish the drafted theory/history/philosophy chapters
 - Value `7`, Cost `3`, ROI `2.33`.
 - These are already drafted and now need information passes rather than first drafts.
 - `crisis-in-physics.md` received a full review on March 12, 2026.
@@ -69,22 +86,49 @@ Scoring system:
 - Apply targeted label polish to `theory-mapping` and `major-thinkers`.
 - Do publication-style prose smoothing on whichever chapter matters most next.
 
-### 3. Use the highest-value textbook authoring sequence
+### 5. Preserve the strong-field / tri-binary hypotheses
+- Value `5`, Cost `2`, ROI `2.50`.
+- Keep the following strong-field / tri-binary ideas alive while the quantitative closures tighten:
+  - the tri-binary may open up inside the black hole, with quadrupole resonance appearing when a given core pops early or late;
+  - the event horizon may not be a clean sphere but a rough surface with significant radial depth;
+  - there may be a brief neck to planar motion before returning to 3D motion while still shrinking;
+  - open questions remain on avoiding zero volume at the event horizon and on whether there is a viable solution exactly at the horizon when all three binaries are at `c_f`;
+  - an alternative horizon geometry may look more like a throat or cylinder than a sphere;
+  - there may be a nontrivial connection to Fermi-Dirac versus Pauli exclusion.
+- Preserve the `4:2:1` model idea even if it turns out to be wrong:
+  - maybe the zero on the `4:2:1` scale is wrong;
+  - maybe the correct baseline is the MCB frequency rather than `1` Hz;
+  - maybe the reference scale is `f_{\mathrm{MCB}}`, with `f_{\max}`, `f_{\max}/2`, `f_{\max}/4`, then subtracting `1`, `2`, `4` from there for each click;
+  - maybe the MCB should be treated as zero potential energy and maximum kinetic energy until freeze-out;
+  - maybe nature wants `v = c_f` and the Planck-scale juncture to define zero;
+  - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
+  - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing `c_f`, though that seems doubtful.
+
+### 6. Use the textbook authoring sequence in tiers
 - Value `8`, Cost `4`, ROI `2.00`.
-- Missing canonical homes with the best current payoff:
+- Use one practical authoring queue instead of splitting the backlog across multiple notes.
+- Highest-payoff tier:
   1. `Assembly Atlas`
   2. `Chronology of Nature`
-- Existing stubs with the best current payoff:
-  1. [nuclear-binding.md](../../markdown/aaa/nuclear-atomic/nuclear-binding.md)
-  2. [nucleon-structure.md](../../markdown/aaa/nuclear-atomic/nucleon-structure.md)
-  3. [atomic-spectra.md](../../markdown/aaa/nuclear-atomic/atomic-spectra.md)
+  3. [nuclear-binding.md](../../markdown/aaa/nuclear-atomic/nuclear-binding.md)
+  4. [nucleon-structure.md](../../markdown/aaa/nuclear-atomic/nucleon-structure.md)
+  5. [atomic-spectra.md](../../markdown/aaa/nuclear-atomic/atomic-spectra.md)
+- Next backlog tier:
+  6. `Dense Matter and Degeneracy Pressure`
+  7. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
+  8. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
+  9. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
+  10. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
+  11. `Hierarchy Problem and Asymptotic Safety`
+  12. `Reconstructing Physics and Cosmology`
+  13. `Vision for the Future / Toward New Technologies`
 
-### 4. Recover useful old material before rewriting it from scratch
+### 7. Recover useful old material before rewriting it from scratch
 - Value `6`, Cost `3`, ROI `2.00`.
 - Mine material from WordPress where it can save time.
 - Clean up PowerPoints, or better, migrate the worthwhile ones into the web site.
 
-### 5. Finish the remaining black-hole / strong-field quantitative closure
+### 8. Finish the remaining black-hole / strong-field quantitative closure
 - Value `4`, Cost `2`, ROI `2.00`.
 - The core chapter architecture is now in place:
   - [black-holes.md](../../markdown/aaa/spacetime/black-holes.md),
@@ -97,7 +141,22 @@ Scoring system:
   - and keep neighboring chapters synchronized when the strong-field story changes.
 - Treat this as a mostly-completed architecture item, not as a missing-canonical-home item anymore.
 
-### 6. Finish the parameter ledger, constants, couplings, and first mass map
+### 9. Retain the comparative assembly theory notes
+- Value `4`, Cost `2`, ROI `2.00`.
+- Keep the nearest prior assembly-architecture reference points visible:
+  1. Preon / rishon models.
+  2. Early quark-lepton compositeness.
+  3. Technicolor.
+  4. Extended technicolor / walking technicolor.
+  5. Composite Higgs / pseudo-Nambu-Goldstone Higgs.
+  6. Partial compositeness.
+  7. Top condensation / topcolor.
+  8. Topological / preon braid ideas.
+- Bottom line to retain: many frameworks propose Standard Model assembly, but none is experimentally established as a full, unique UV-complete replacement.
+- Closest literature to the generation idea is compositeness / preon / rishon work where higher generations are treated as excited states of deeper constituents.
+- The exact claim `remove or destroy the outer binary and you get the next generation` does not appear to be a standard mainstream formulation.
+
+### 10. Finish the parameter ledger, constants, couplings, and first mass map
 - Value `9`, Cost `5`, ROI `1.80`.
 - Populate [parameter-ledger.md](../../markdown/aaa/foundations/parameter-ledger.md) with `\kappa`, `\epsilon_0 / \mu_0` analogues, density scales, regularization widths, extraction equations, and observable links.
 - Tie that ledger to [action.md](../../markdown/aaa/foundations/action.md), [architrino-si-base-units.md](../../markdown/aaa/foundations/architrino-si-base-units.md), and [constraint-ledger.md](../../markdown/aaa/validation/constraint-ledger.md).
@@ -105,7 +164,7 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question active: why `h`, `c_f`, and `G`; one spiral; maybe `G` is emergent rather than fundamental.
 
-### 7. Close the remaining Standard Model assembly gaps where the leverage is best
+### 11. Close the remaining Standard Model assembly gaps where the leverage is best
 - Value `7`, Cost `4`, ROI `1.75`.
 - The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
   - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
@@ -114,27 +173,7 @@ Scoring system:
 - Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 
-### 8. Continue the textbook backlog after the highest-ROI chapters
-- Value `7`, Cost `5`, ROI `1.40`.
-- Missing canonical homes still worth doing after the top group:
-  1. `Dense Matter and Degeneracy Pressure`
-  2. `Hierarchy Problem and Asymptotic Safety`
-  3. `Reconstructing Physics and Cosmology`
-- Existing stubs still worth doing after the top group:
-  1. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
-  2. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
-  3. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
-  4. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
-
-### 9. Do the lightweight repo / branding / community cleanup
-- Value `4`, Cost `3`, ROI `1.33`.
-- The new `architrino` repository went live on February 17, 2026.
-- Go back and clean up the old `neoclassical.ai` repo.
-- Try to sell the `neoclassical.ai` domain.
-- Make a new subreddit named `architrino`.
-- Rename the blog.
-
-### 10. Finish the tractable master-equation stack
+### 12. Finish the tractable master-equation stack
 - Value `10`, Cost `8`, ROI `1.25`.
 - Keep dynamics, math, geometry, and mapping as the top theory priority.
 - Focus on [master-equation.md](../../markdown/aaa/dynamics/master-equation.md).
@@ -167,19 +206,13 @@ Scoring system:
   6. Full attractor landscape for binaries and tri-binaries.
   7. Quantum closure from the master equation.
 
-### 11. Build a few focused exploratory applications
+### 13. Build a few focused exploratory applications
 - Value `5`, Cost `4`, ROI `1.25`.
 - Make application pages that show Gell-Mann's eightfold way and tenfold diagram, placing the relevant particle from the scene creator at each vertex.
 - Use those pages to look for correlations with `T_3`, `Y`, and mass patterns.
 - Keep Kaiser's MIT lecture 22 as a prompt for that direction.
 
-### 12. Clean up payment, account, and identity loose ends
-- Value `5`, Cost `4`, ROI `1.25`.
-- Attempt to understand OpenAI billing.
-- Use whatever OpenAI credits are available.
-- Use the `$50` entourages each month.
-
-### 13. Lock the simulations, regularization, and shell numerics
+### 14. Lock the simulations, regularization, and shell numerics
 - Value `9`, Cost `8`, ROI `1.13`.
 - Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/simulations/run-protocols.md) and the `synthesis/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
@@ -188,7 +221,7 @@ Scoring system:
 - Tie Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
 - If a quick intuition tool is useful, make a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
 
-### 14. Convert cosmology from narrative strength to equation-level closure
+### 15. Convert cosmology from narrative strength to equation-level closure
 - Value `9`, Cost `8`, ROI `1.13`.
 - Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
 - Build per-component observable interfaces for `\Lambda\mathrm{CDM}` comparison:
@@ -200,7 +233,7 @@ Scoring system:
 - Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where `$\mathbb{A}\mathbb{A}\mathbb{A}$` matches, replaces, or diverges from each component.
 - This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
 
-### 15. Close the metric / clock / ruler bridge to GR
+### 16. Close the metric / clock / ruler bridge to GR
 - Value `10`, Cost `9`, ROI `1.11`.
 - Close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional.
 - Derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
@@ -208,14 +241,14 @@ Scoring system:
 - Keep this as the direct bridge from substrate dynamics to GR tests: match GR in the weak field, then let strong-field differences emerge as predictions rather than assertions.
 - Related mechanical task: derive emergent Lorentz invariance for fast-moving tri-binaries so lifetimes, scattering kinematics, and decay rates recover the standard `\gamma` factor.
 
-### 16. Close the quantum-interpretation gap only after making it testable
+### 17. Close the quantum-interpretation gap only after making it testable
 - Value `10`, Cost `9`, ROI `1.11`.
 - Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
 - Show how receiver-side informational ambiguity can yield the Born rule `P \propto |\psi|^2`.
 - Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
 - Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
 
-### 17. Keep building the scene system, but only in the order that compounds
+### 18. Keep building the scene system, but only in the order that compounds
 - Value `7`, Cost `7`, ROI `1.00`.
 - Build the 3D visualizer for the oblating Noether core and related scenes such as the sphere.
 - Continue the ellipsoid work, aiming to understand time through that geometry.
@@ -225,16 +258,6 @@ Scoring system:
 - Make the composer use the same frame elements in the corners.
 - Use the scene builder in API mode where it helps.
 - Keep `sim2rewrite.md` as a later porting source, but wait until the scene builder is working before using it.
-
-### 18. Build the PDG solver after the scene system is usable
-- Value `6`, Cost `7`, ROI `0.86`.
-- PDG solver tasks:
-  - provenance,
-  - diagrams,
-  - core disposition,
-  - use the API that now exists,
-  - look into MadGraph for reactions,
-  - use the scene builder in API mode.
 
 ### 19. Keep deferred product / outlook work explicitly low priority
 - Value `3`, Cost `5`, ROI `0.60`.
@@ -248,66 +271,23 @@ Scoring system:
   - export presets for desktop `16:9` and mobile `9:16`,
   - formal narrative / export spec later, not now.
 
-### 20. Leave pure convenience purchases for later
-- Value `2`, Cost `4`, ROI `0.50`.
-- Get a Mac mini when the `M5` comes out.
-
 ## Info
 
-### Current master-equation footholds
-- The tractable circular results already added to [master-equation.md](../../markdown/aaa/dynamics/master-equation.md) are:
-  - every new circular self-hit branch is born at an interior tangency of `g_\beta(\xi)=\sin\xi-\xi/\beta`, equivalently at a root of `\tan\xi=\xi`;
-  - every such branch is born exactly on a Jacobian-null surface, since at threshold `J^\star = 0`;
-  - the circular self-branch count grows only linearly, `N_{\text{self}}(\beta)=\beta/\pi+O(1)`;
-  - within the symmetric isolated circular two-body ansatz, tangential contributions do not cancel branchwise, so exact constant-speed closure is obstructed unless something beyond the bare ansatz does the work.
+### Repo / branding / community cleanup notes
+- The new `architrino` repository went live on February 17, 2026.
+- Go back and clean up the old `neoclassical.ai` repo.
+- Try to sell the `neoclassical.ai` domain.
+- Make a new subreddit named `architrino`.
+- Rename the blog.
 
-### Strong-field / tri-binary hypotheses worth preserving
-- One working black-hole idea: the tri-binary may open up inside the black hole, with quadrupole resonance appearing when a given core pops early or late.
-- Another working picture: the event horizon may not be a clean sphere but a rough surface with significant radial depth.
-- Related image to preserve: a brief neck to planar motion before returning to 3D motion while still shrinking.
-- Open volume question: how to avoid volume going to zero at the event horizon.
-- Open kinematic question: is there a viable solution exactly at the event horizon when all three binaries are at `c_f`.
-- Possible alternative horizon geometry: a throat that looks like a planar circle times `c_f` in translation, more like a cylinder.
-- Possible connection to preserve: this may offer a different way to think about Fermi-Dirac versus Pauli exclusion.
-- Preserve the `4:2:1` model idea even if it turns out to be wrong:
-  - maybe the zero on the `4:2:1` scale is wrong;
-  - maybe the correct baseline is the MCB frequency rather than `1` Hz;
-  - maybe the reference scale is `f_{\mathrm{MCB}}`, with `f_{\max}`, `f_{\max}/2`, `f_{\max}/4`, then subtracting `1`, `2`, `4` from there for each click;
-  - maybe the MCB should be treated as zero potential energy and maximum kinetic energy until freeze-out;
-  - maybe nature wants `v = c_f` and the Planck-scale juncture to define zero;
-  - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
-  - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing `c_f`, though that seems doubtful.
+### Payment / account / identity notes
+- Attempt to understand OpenAI billing.
+- Use whatever OpenAI credits are available.
+- Use the `$50` entourages each month.
+
+### Convenience purchase notes
+- Get a Mac mini when the `M5` comes out.
 
 ### Research prompts that are still too raw to prioritize highly
 - What is the smallest assembly that can make a decision?
 - Think more about multi-determinism and how it maps to quantum theory, many worlds, and free will.
-
-### Comparative-theory notes to retain
-- Closest prior “assembly architecture” lines for Standard Model replacement / reconstruction:
-  1. Preon / rishon models.
-  2. Early quark-lepton compositeness.
-  3. Technicolor.
-  4. Extended technicolor / walking technicolor.
-  5. Composite Higgs / pseudo-Nambu-Goldstone Higgs.
-  6. Partial compositeness.
-  7. Top condensation / topcolor.
-  8. Topological / preon braid ideas.
-- Bottom line: many frameworks propose Standard Model “assembly,” but none is experimentally established as a full, unique UV-complete replacement.
-- The closest literature to the generation idea is compositeness / preon / rishon work where higher generations are treated as excited states of deeper constituents.
-- The exact claim “remove or destroy the outer binary and you get the next generation” does not appear to be a standard mainstream formulation.
-
-### Textbook backlog reference snapshot
-- Earlier practical authoring order worth remembering:
-  1. `Assembly Atlas`
-  2. `Chronology of Nature`
-  3. [nuclear-binding.md](../../markdown/aaa/nuclear-atomic/nuclear-binding.md)
-  4. [nucleon-structure.md](../../markdown/aaa/nuclear-atomic/nucleon-structure.md)
-  5. [atomic-spectra.md](../../markdown/aaa/nuclear-atomic/atomic-spectra.md)
-  6. `Dense Matter and Degeneracy Pressure`
-  7. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
-  8. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
-  9. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
-  10. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
-  11. `Hierarchy Problem and Asymptotic Safety`
-  12. `Reconstructing Physics and Cosmology`
-  13. `Vision for the Future / Toward New Technologies`
