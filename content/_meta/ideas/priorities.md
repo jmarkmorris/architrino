@@ -175,10 +175,6 @@ Scoring system:
 
 ### 12. Clean up payment, account, and identity loose ends
 - Value `5`, Cost `4`, ROI `1.25`.
-- Figure out what to do with the subscription site on Liberapay.
-- Figure out Stripe.
-- Figure out the QR code situation.
-- `architrino@gmail.com` was disabled by Google; appeal filed on March 14, 2026.
 - Attempt to understand OpenAI billing.
 - Use whatever OpenAI credits are available.
 - Use the `$50` entourages each month.

@@ -34,3 +34,5 @@ Chang's framework and $\mathbb{A}\mathbb{A}\mathbb{A}$ share a medium-first intu
 1. A shared dynamical model with explicit variables.
 2. Quantitative fits to precision tests (QED, electroweak, collider, cosmology).
 3. Clear failure criteria where the mapping does not hold.
+
+Note:  Is this related to a patent granted to the U.S. Navy. US10322827B2

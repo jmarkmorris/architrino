@@ -1,43 +1,4 @@
-# **Gravitons**
-
-## I am brainstorming and having a breakthrough on spherical Lissajou Curves
-
-### 
-- 
-
-### The spherical Lissajous curves reminded me of The Messenger.
-- 
-	- 
-- 
-
-### https://www.math.unipd.it/~erb/LSphere.html#:~:text=A%20spherical%20Lissajous%20curve%20is%20defined%20in%20parametric,N2%20and%20a%20rotation%20parameter%20%CE%B1%20%E2%88%88%20R.
-- 
-
-## The Messenger
-
-### 
-- 
-	- 
-		- 
-
-### https://www.facebook.com/FiringRoom1
-- see videos, one of which I saved to Desktop
-
-### https://firingroom1.com/
-
-### I think The Messenger mentioned Donald C. Chang
-
-### The Messenger mentions a patent granted to the U.S. Navy. US10322827B2
-
-## Donald C Chang
-
-## The Navy patent
-
-### 
-
-### The patent mentions the Gertsenshtein effect
-
-### Gertsenshtein effect leads to Andrea Palessandro
+# **Notes**
 
 ## Andrea Palessandro
 

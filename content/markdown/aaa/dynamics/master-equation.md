@@ -108,7 +108,7 @@ $$
 \hat{\mathbf{r}}_{ij}(t;t_0).
 $$
 Since $\partial_{t_0}g_{ij}(t;t_0)=c_f J_{ij}(t;t_0)$, the collapse produces an overall factor $1/c_f$ together with $\left|J_{ij}\right|^{-1}$; by convention that constant factor is absorbed into $\kappa$.
-The intrinsic emission amplitude is constant and isotropic, but the **received causal flux** is geometrically compressed or dilated by the delay-map Jacobian. That $J_{ij}^{-1}$ factor is therefore part of the fundamental law, not an optional correction.
+An architrino emits potential at a constant rate per unit absolute time, but a moving source lays that steady output down on a moving family of causal surfaces. The **received causal flux** is therefore velocity dependent through the delay-map Jacobian: source motion geometrically compresses or dilates successive wake arrivals at the receiver. That $J_{ij}^{-1}$ factor is therefore part of the fundamental law, not an optional correction.
 
 Numerical implementations discretize this representation by sampling candidate emission times and solving for the active roots. The familiar “sum over spherical wake surfaces” is therefore a numerical realization of the same branch-selection rule, not a separate physical mechanism.
 
@@ -405,7 +405,7 @@ where:
 - $\hat{\mathbf{r}}_{ij}$: radial direction from emission to reception
 - $J_{ij}$: causal Jacobian controlling geometric bunching or dilation of the received wake flux
 
-**Note on interaction structure:** The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is **radial in direction**: it points along the line of action $\hat{\mathbf{r}}_{ij}$ from the source's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** (no $\mathbf{v}_i \times \mathbf{B}$-like contributions) in the fundamental interaction kernel. However, the force magnitude is not purely $1/r^2$; it is modulated by $\left|J_{ij}\right|^{-1}$. Constant isotropic emission at the source is therefore received as a Jacobian-weighted causal flux at the receiver.
+**Note on interaction structure:** The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is **radial in direction**: it points along the line of action $\hat{\mathbf{r}}_{ij}$ from the source's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** (no $\mathbf{v}_i \times \mathbf{B}$-like contributions) in the fundamental interaction kernel. However, the force magnitude is not purely $1/r^2$; it is modulated by $\left|J_{ij}\right|^{-1}$. Constant emission per unit absolute time at the source is therefore received as a Jacobian-weighted causal flux at the receiver, with the spatial deposition pattern itself changing as the source moves.
 
 **Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry**, **Jacobian-modulated flux**, and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the burden of magnetic-field emergence on the assembly structure, Noether Sea dynamics, and the finite-speed causal geometry itself.
 
@@ -508,7 +508,7 @@ Reflects the **surface density** of potential on the causal isochron. As that su
 
 **The Jacobian factor $\left|J_{ij}\right|^{-1}$:**
 
-Although each emitted wavefront has constant intrinsic amplitude, the receiver samples that emission through a finite-speed causal map. Motion of the source toward the active branch compresses the spacing of wake surfaces and increases the received flux; motion away from the branch dilates the spacing and decreases it. The geometric compression/dilation factor is exactly $\left|J_{ij}\right|^{-1}$.
+Under the constant-time emission rule stated above, source motion between emission instants deposits the output onto a history-dependent family of expanding causal surfaces. Motion of the source toward the active branch compresses the spacing of successive wake arrivals and increases the received flux; motion away from the branch dilates the spacing and decreases it. The geometric compression/dilation factor is exactly $\left|J_{ij}\right|^{-1}$.
 
 **Absorption of geometric constants into $\kappa$:**
 
@@ -564,21 +564,22 @@ $$
 
 **Important caveat:** Path-history delay shifts both the causal root $t_0$ and $\hat{\mathbf{r}}_{ij}$ over finite intervals, so these are strictly **local** statements about infinitesimal time evolution. The global trajectory depends on the full history of all sources.
 
-#### Emission Cadence, Constant Emission, and Received Flux
+#### Moving-Source Geometry and Received Flux
 
 **Critical modeling note:**
 
-- **Emission cadence**: constant rate (independent of source speed)
-- **Per-wavefront amplitude**: constant (independent of source speed)
+- **Emission rule**: fixed by the constant-time law stated above
+- **Spatial deposition**: velocity dependent because the source changes position between emission instants
 
-The source's intrinsic emission rule is constant and isotropic, but the **received** force magnitude is not purely a function of $r_{ij}$. It is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, which measures how the source motion compresses or dilates the spacing of wake surfaces along the active branch.
+The **emitted potential pattern in space** is not speed independent: a moving source lays down successive wake surfaces from different points on its worldline. The **received** force magnitude is therefore not purely a function of $r_{ij}$. It is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, which measures how the source motion compresses or dilates the spacing of wake surfaces along the active branch.
 
-The receiver's velocity $\mathbf{v}_i(t)$ does **not** directly modulate the force magnitude $|\mathbf{F}_{ij}|$ itself (at fixed $r_{ij}$, $\hat{\mathbf{r}}_{ij}$, and $J_{ij}$). It influences:
+The receiver's velocity $\mathbf{v}_i(t)$ does **not** appear as a separate source-strength factor in $|\mathbf{F}_{ij}|$ itself (at fixed $r_{ij}$, $\hat{\mathbf{r}}_{ij}$, and $J_{ij}$). It influences:
 
 1. The **instantaneous power** through $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
 2. The **subsequent evolution of $r_{ij}$** (and thus future force magnitudes).
+3. Which delayed branches are actually sampled along the receiver worldline over time.
 
-**Causal-flux modulation:** Unlike some classical wave models, the architrino emission is **isotropic and constant-amplitude** at the source. The velocity dependence enters through the **geometry of causal intersections** and the **bunching or dilation of received wake flux** in the Euclidean void. This is the origin of the Jacobian denominator and the seed of relativistic and magnetic behavior in the emergent theory.
+**Causal-flux modulation:** Unlike models that make source strength itself a function of speed, the velocity dependence here enters through the **moving-source geometry** of emission, the **geometry of causal intersections**, and the **bunching or dilation of received wake flux** in the Euclidean void. This is the origin of the Jacobian denominator and the seed of relativistic and magnetic behavior in the emergent theory.
 
 ---
 
@@ -707,7 +708,7 @@ The total acceleration on a particle at any instant is the **vector sum** of the
 
 #### Velocity Dependence
 
-**Statement:** The dynamics are **delayed** and **radial in direction**. Architrinos are transceivers: they emit causal isochrons at a **constant cadence** and **constant per-wavefront amplitude** (independent of emitter speed). The received force magnitude is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, which captures geometric bunching or dilation of the wake flux along the active branch. The receiver's speed affects the **work rate** via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
+**Statement:** The dynamics are **delayed** and **radial in direction**. Because the source moves while emitting, both the emitted wake pattern and the received force are velocity dependent through causal geometry. The received force magnitude is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, while the receiver's speed affects the **work rate** and branch sampling via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
 
 **Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent wake surfaces. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past light cones).
 
@@ -915,7 +916,7 @@ if the resulting radial acceleration is the same.
 
 Any single hit can be **equivalently described** with a **stationary emitter** ($|\mathbf{v}| = 0$) placed somewhere along the same unoriented line of action, with the emitter's actual speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
 
-**Key property:** The per-wavefront emission amplitude remains constant in this recast; the velocity dependence is transferred into the causal geometry and the matched Jacobian-weighted flux.
+**Key property:** The same emission law is preserved in this recast; the velocity dependence is transferred into the adjusted emission geometry and the matched Jacobian-weighted flux.
 
 **Utility:** This recast simplifies some analytic calculations and provides intuition for the receiver's "inference problem" (what source configurations are consistent with a given hit?).
 
