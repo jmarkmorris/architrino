@@ -77,24 +77,27 @@ Scoring system:
   - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
   - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing `c_f`, though that seems doubtful.
 
-### 4. Advance the 421 resonance reduced-map program
+### 4. Advance the dyadic resonance lock reduced-map program
 - Value `7`, Cost `3`, ROI `2.33`.
-- [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) now has a cleaner math backbone and should be treated as a reduced-map dynamics program, not as a finished derivation.
+- [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) should now be treated as the live note for a **candidate** dyadic lock, not as a proof that the full dynamics uniquely select `1:2:4`.
 - What is now solid enough to build on:
-  - exact periodic closure gives a rational resonance lattice,
-  - self-similar near-horizon closure gives the family $1:s:s^2$,
-  - the live theorem target is a regularized phase-amplitude map near the Jacobian wall,
-  - the exact global invariants are total energy and total angular momentum rather than branchwise action slices.
+  - exact periodic closure gives a rational resonance lattice rather than an arbitrary hierarchy,
+  - self-similar near-horizon closure gives the broader family $1:s:s^2$,
+  - the dyadic member $1:2:4$ appears as the minimal integer member of that family, not yet as a theorem of the full master equation,
+  - the theorem-level statements currently established are conditional kinematic radius identities under the dyadic assumptions plus the $\mathbb{Z}_3$ dipole-cancellation identity,
+  - the exact global invariants worth anchoring the reduction are total energy and total angular momentum rather than branchwise action slices.
 - What remains open:
-  - whether the dyadic member $s=2$ is dynamically selected rather than merely the minimal integer candidate,
-  - whether a Lyapunov-Krasovskii or cycle-averaged causal-work functional can be constructed for the reduced map,
-  - whether the $\mathbb{Z}_3$ organization acts as a true adiabatic stabilizer,
-  - whether any branchwise ledger emerges only after the lock is solved rather than before.
+  - whether the dynamical system actually selects the dyadic member $s=2$ rather than some other rational or self-similar lock,
+  - whether the common-speed and self-similar assumptions are valid only near the horizon or across a wider operating range,
+  - whether a Lyapunov-Krasovskii, phase-slip, or cycle-averaged causal-work functional can contract the reduced map toward the dyadic fixed point,
+  - whether the $\mathbb{Z}_3$ organization is only radiative-stealth bookkeeping or a genuine adiabatic stabilizer,
+  - whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
 - Immediate next move:
   1. Use [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics.md](phenomenological-heuristics.md) as the scratch/archive notebook.
-  2. Build the two-layer regularized map first.
-  3. Look for local contraction or a Lyapunov-type quantity near the dyadic fixed point.
-  4. Only promote more of the archive once it is rederived from the reduced dynamics.
+  2. Build the regularized two-layer phase-amplitude return map at fixed finite `\eta > 0`, not a pure phase-only reduction.
+  3. Prove or numerically demonstrate a stable `1:2` fixed point in that reduction, then examine whether chaining the second layer yields a stable `1:2:4` state.
+  4. Study the Jacobian and eigenvalues near the suspected dyadic fixed point as `\beta \to 1`.
+  5. Only after that revisit `\eta \to 0^+` and promote archive material that can be rederived from the reduced dynamics.
 
 ### 5. Run the chapter authoring queue
 - Value `8`, Cost `4`, ROI `2.00`.

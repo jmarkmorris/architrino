@@ -1,10 +1,20 @@
 # Dyadic Resonance Lock
 
-This hypothesis, a rigid frequency hierarchy $f_O : f_M : f_I = 1 : 2 : 4$ imposed across the full tri-binary operating range (from a low outer-floor like $f_O = 1$ Hz up to $f_O = f_P$), suggests a specific solution class to the delay-differential master equation. In dynamical systems, such integer ratios often signify **mode-locking** within Arnold tongues, where nonlinear oscillators, here coupled by causal wakes, stabilize against perturbations.
+This document studies the dyadic hierarchy
+$$
+f_O : f_M : f_I = 1 : 2 : 4,
+$$
+as a **candidate** resonance lock for the tri-binary rather than as an already-derived theorem of the master equation. In dynamical systems, such integer ratios often signal **mode-locking** within Arnold tongues, where nonlinear oscillators, here coupled by causal wakes, stabilize against perturbations.
 
-If we accept the 1:2:4 ansatz and the condition that the middle binary rides the field speed $c_f$ across the operating range, with the outer reaching $c_f$ only at $f_O=f_P$, the geometric consequences for radii and the stress-tensor of the assembly are restrictive.
+The current mathematical status is narrower than the opening ansatz. Exact delay-periodicity gives a rational resonance lattice, and an added self-similar near-horizon closure gives the broader family
+$$
+1:s:s^2.
+$$
+The specific dyadic member $1{:}2{:}4$ appears only after the extra choice of the minimal nontrivial integer factor $s=2$.
 
-Status note: this document is exploratory. It records the live mathematical backbone of the dyadic-lock proposal and states the reduced theorem target clearly. It does not claim a full first-principles derivation from the master equation.
+If we temporarily accept that dyadic ansatz together with the condition that the middle binary rides the field speed $c_f$ across the operating range, with the outer reaching $c_f$ only at $f_O=f_P$, then the geometric consequences for radii and the stress-tensor of the assembly are restrictive.
+
+Status note: this document is exploratory. It records the live mathematical backbone of the dyadic-lock proposal and states the reduced theorem target clearly. It does not claim a full first-principles derivation from the master equation, nor does it yet prove that the full dynamics uniquely select the dyadic member over other rational or self-similar locks.
 
 ## Proof-Structured Core
 
