@@ -168,4 +168,5 @@ If that intersection is empty, the effective-metric program is not yet viable.
 - [proper-time-and-time-dilation.md](./proper-time-and-time-dilation.md)
 - [gravitational-waves.md](./gravitational-waves.md)
 - [singularity-resolution.md](./singularity-resolution.md)
+- [black-holes.md](./black-holes.md)
 - [../validation/constraint-ledger.md](../validation/constraint-ledger.md)

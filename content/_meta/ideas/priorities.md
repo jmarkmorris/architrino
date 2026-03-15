@@ -1,38 +1,38 @@
 # Priorities
 
-Method:
+Scoring system:
 - Score `Value` and `Cost` on the same `1-10` scale.
 - Compute `ROI = Value / Cost`.
-- Keep `High`, `Medium`, and `Low` as strategic buckets.
-- Order items inside each bucket by `ROI`, highest first.
-- `Info` keeps status notes, hypotheses, terminology, and reference material that should not stay mixed into the task list.
+- Sort the task list by `ROI`, highest first.
+- Break ties by higher `Value`, then lower `Cost`.
+- Remove items from the task list once they are genuinely finished; keep background notes in `Info`, not mixed into active priorities.
 
 ## Scoring Table
 
-| Bucket | Item | Value | Cost | ROI |
-| --- | --- | ---: | ---: | ---: |
-| High | Fastest scorecard lift | 9 | 3 | 3.00 |
-| High | Drafted theory/history/philosophy chapter passes | 7 | 3 | 2.33 |
-| High | Highest-value textbook authoring sequence | 8 | 4 | 2.00 |
-| High | Parameter ledger, couplings, and first mass map | 9 | 5 | 1.80 |
-| High | Remaining Standard Model assembly gaps | 7 | 4 | 1.75 |
-| High | Tractable master-equation stack | 10 | 8 | 1.25 |
-| High | Simulations, regularization, and shell numerics | 9 | 8 | 1.13 |
-| High | Metric / clock / ruler bridge to GR | 10 | 9 | 1.11 |
-| High | Quantum-interpretation gap with hard tests | 10 | 9 | 1.11 |
-| Medium | Recover useful old material | 6 | 3 | 2.00 |
-| Medium | Continue the textbook backlog after the top chapters | 7 | 5 | 1.40 |
-| Medium | Focused exploratory applications | 5 | 4 | 1.25 |
-| Medium | Cosmology transfer-function closure | 9 | 8 | 1.13 |
-| Medium | Scene system and scene builder | 7 | 7 | 1.00 |
-| Medium | Black-hole / strong-field chapter cleanup | 6 | 6 | 1.00 |
-| Medium | PDG solver | 6 | 7 | 0.86 |
-| Low | Repo / branding / community cleanup | 4 | 3 | 1.33 |
-| Low | Payment, account, and identity loose ends | 5 | 4 | 1.25 |
-| Low | Deferred product / outlook work | 3 | 5 | 0.60 |
-| Low | Convenience purchases | 2 | 4 | 0.50 |
+| Item | Value | Cost | ROI |
+| --- | ---: | ---: | ---: |
+| Fastest scorecard lift | 9 | 3 | 3.00 |
+| Drafted theory/history/philosophy chapters | 7 | 3 | 2.33 |
+| Highest-value textbook authoring sequence | 8 | 4 | 2.00 |
+| Recover useful old material | 6 | 3 | 2.00 |
+| Remaining black-hole / strong-field quantitative closure | 4 | 2 | 2.00 |
+| Parameter ledger, couplings, and first mass map | 9 | 5 | 1.80 |
+| Remaining Standard Model assembly gaps | 7 | 4 | 1.75 |
+| Continue the textbook backlog after the top chapters | 7 | 5 | 1.40 |
+| Repo / branding / community cleanup | 4 | 3 | 1.33 |
+| Tractable master-equation stack | 10 | 8 | 1.25 |
+| Focused exploratory applications | 5 | 4 | 1.25 |
+| Payment, account, and identity loose ends | 5 | 4 | 1.25 |
+| Simulations, regularization, and shell numerics | 9 | 8 | 1.13 |
+| Cosmology transfer-function closure | 9 | 8 | 1.13 |
+| Metric / clock / ruler bridge to GR | 10 | 9 | 1.11 |
+| Quantum-interpretation gap with hard tests | 10 | 9 | 1.11 |
+| Scene system and scene builder | 7 | 7 | 1.00 |
+| PDG solver | 6 | 7 | 0.86 |
+| Deferred product / outlook work | 3 | 5 | 0.60 |
+| Convenience purchases | 2 | 4 | 0.50 |
 
-## High
+## Overall Task List
 
 ### 1. Take the fastest scorecard lift first
 - Value `9`, Cost `3`, ROI `3.00`.
@@ -79,7 +79,25 @@ Method:
   2. [nucleon-structure.md](../../markdown/aaa/nuclear-atomic/nucleon-structure.md)
   3. [atomic-spectra.md](../../markdown/aaa/nuclear-atomic/atomic-spectra.md)
 
-### 4. Finish the parameter ledger, constants, couplings, and first mass map
+### 4. Recover useful old material before rewriting it from scratch
+- Value `6`, Cost `3`, ROI `2.00`.
+- Mine material from WordPress where it can save time.
+- Clean up PowerPoints, or better, migrate the worthwhile ones into the web site.
+
+### 5. Finish the remaining black-hole / strong-field quantitative closure
+- Value `4`, Cost `2`, ROI `2.00`.
+- The core chapter architecture is now in place:
+  - [black-holes.md](../../markdown/aaa/spacetime/black-holes.md),
+  - [singularity-resolution.md](../../markdown/aaa/spacetime/singularity-resolution.md),
+  - the aligned cosmology chapters,
+  - and the equivalence-principle rewrite in [tri-binary-dynamics.md](../../markdown/aaa/dynamics/tri-binary-dynamics.md).
+- The remaining work is narrower:
+  - derive stronger observer-level strong-field predictions,
+  - clarify release-channel selection between jets, diffuse outflow, and dark-sector escape,
+  - and keep neighboring chapters synchronized when the strong-field story changes.
+- Treat this as a mostly-completed architecture item, not as a missing-canonical-home item anymore.
+
+### 6. Finish the parameter ledger, constants, couplings, and first mass map
 - Value `9`, Cost `5`, ROI `1.80`.
 - Populate [parameter-ledger.md](../../markdown/aaa/foundations/parameter-ledger.md) with `\kappa`, `\epsilon_0 / \mu_0` analogues, density scales, regularization widths, extraction equations, and observable links.
 - Tie that ledger to [action.md](../../markdown/aaa/foundations/action.md), [architrino-si-base-units.md](../../markdown/aaa/foundations/architrino-si-base-units.md), and [constraint-ledger.md](../../markdown/aaa/validation/constraint-ledger.md).
@@ -87,7 +105,7 @@ Method:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question active: why `h`, `c_f`, and `G`; one spiral; maybe `G` is emergent rather than fundamental.
 
-### 5. Close the remaining Standard Model assembly gaps where the leverage is best
+### 7. Close the remaining Standard Model assembly gaps where the leverage is best
 - Value `7`, Cost `4`, ROI `1.75`.
 - The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
   - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
@@ -96,7 +114,27 @@ Method:
 - Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 
-### 6. Finish the tractable master-equation stack
+### 8. Continue the textbook backlog after the highest-ROI chapters
+- Value `7`, Cost `5`, ROI `1.40`.
+- Missing canonical homes still worth doing after the top group:
+  1. `Dense Matter and Degeneracy Pressure`
+  2. `Hierarchy Problem and Asymptotic Safety`
+  3. `Reconstructing Physics and Cosmology`
+- Existing stubs still worth doing after the top group:
+  1. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
+  2. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
+  3. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
+  4. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
+
+### 9. Do the lightweight repo / branding / community cleanup
+- Value `4`, Cost `3`, ROI `1.33`.
+- The new `architrino` repository went live on February 17, 2026.
+- Go back and clean up the old `neoclassical.ai` repo.
+- Try to sell the `neoclassical.ai` domain.
+- Make a new subreddit named `architrino`.
+- Rename the blog.
+
+### 10. Finish the tractable master-equation stack
 - Value `10`, Cost `8`, ROI `1.25`.
 - Keep dynamics, math, geometry, and mapping as the top theory priority.
 - Focus on [master-equation.md](../../markdown/aaa/dynamics/master-equation.md).
@@ -129,7 +167,23 @@ Method:
   6. Full attractor landscape for binaries and tri-binaries.
   7. Quantum closure from the master equation.
 
-### 7. Lock the simulations, regularization, and shell numerics
+### 11. Build a few focused exploratory applications
+- Value `5`, Cost `4`, ROI `1.25`.
+- Make application pages that show Gell-Mann's eightfold way and tenfold diagram, placing the relevant particle from the scene creator at each vertex.
+- Use those pages to look for correlations with `T_3`, `Y`, and mass patterns.
+- Keep Kaiser's MIT lecture 22 as a prompt for that direction.
+
+### 12. Clean up payment, account, and identity loose ends
+- Value `5`, Cost `4`, ROI `1.25`.
+- Figure out what to do with the subscription site on Liberapay.
+- Figure out Stripe.
+- Figure out the QR code situation.
+- `architrino@gmail.com` was disabled by Google; appeal filed on March 14, 2026.
+- Attempt to understand OpenAI billing.
+- Use whatever OpenAI credits are available.
+- Use the `$50` entourages each month.
+
+### 13. Lock the simulations, regularization, and shell numerics
 - Value `9`, Cost `8`, ROI `1.13`.
 - Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/simulations/run-protocols.md) and the `synthesis/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
@@ -138,48 +192,7 @@ Method:
 - Tie Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
 - If a quick intuition tool is useful, make a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
 
-### 8. Close the metric / clock / ruler bridge to GR
-- Value `10`, Cost `9`, ROI `1.11`.
-- Close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional.
-- Derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
-- Derive PPN numbers `\gamma`, `\beta`, and `\alpha_i` to Cassini / LLR precision and show Shapiro delay / light-bending equivalence to GR at the advertised `10^{-5}` level.
-- Keep this as the direct bridge from substrate dynamics to GR tests: match GR in the weak field, then let strong-field differences emerge as predictions rather than assertions.
-- Related mechanical task: derive emergent Lorentz invariance for fast-moving tri-binaries so lifetimes, scattering kinematics, and decay rates recover the standard `\gamma` factor.
-
-### 9. Close the quantum-interpretation gap only after making it testable
-- Value `10`, Cost `9`, ROI `1.11`.
-- Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
-- Show how receiver-side informational ambiguity can yield the Born rule `P \propto |\psi|^2`.
-- Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
-- Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
-
-## Medium
-
-### 1. Recover useful old material before rewriting it from scratch
-- Value `6`, Cost `3`, ROI `2.00`.
-- Mine material from WordPress where it can save time.
-- Clean up PowerPoints, or better, migrate the worthwhile ones into the web site.
-
-### 2. Continue the textbook backlog after the highest-ROI chapters
-- Value `7`, Cost `5`, ROI `1.40`.
-- Missing canonical homes still worth doing after the top group:
-  1. `Black Holes, Jets, and Recycling`
-  2. `Dense Matter and Degeneracy Pressure`
-  3. `Hierarchy Problem and Asymptotic Safety`
-  4. `Reconstructing Physics and Cosmology`
-- Existing stubs still worth doing after the top group:
-  1. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
-  2. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
-  3. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
-  4. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
-
-### 3. Build a few focused exploratory applications
-- Value `5`, Cost `4`, ROI `1.25`.
-- Make application pages that show Gell-Mann's eightfold way and tenfold diagram, placing the relevant particle from the scene creator at each vertex.
-- Use those pages to look for correlations with `T_3`, `Y`, and mass patterns.
-- Keep Kaiser's MIT lecture 22 as a prompt for that direction.
-
-### 4. Convert cosmology from narrative strength to equation-level closure
+### 14. Convert cosmology from narrative strength to equation-level closure
 - Value `9`, Cost `8`, ROI `1.13`.
 - Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
 - Build per-component observable interfaces for `\Lambda\mathrm{CDM}` comparison:
@@ -191,7 +204,22 @@ Method:
 - Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where `$\mathbb{A}\mathbb{A}\mathbb{A}$` matches, replaces, or diverges from each component.
 - This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
 
-### 5. Keep building the scene system, but only in the order that compounds
+### 15. Close the metric / clock / ruler bridge to GR
+- Value `10`, Cost `9`, ROI `1.11`.
+- Close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional.
+- Derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
+- Derive PPN numbers `\gamma`, `\beta`, and `\alpha_i` to Cassini / LLR precision and show Shapiro delay / light-bending equivalence to GR at the advertised `10^{-5}` level.
+- Keep this as the direct bridge from substrate dynamics to GR tests: match GR in the weak field, then let strong-field differences emerge as predictions rather than assertions.
+- Related mechanical task: derive emergent Lorentz invariance for fast-moving tri-binaries so lifetimes, scattering kinematics, and decay rates recover the standard `\gamma` factor.
+
+### 16. Close the quantum-interpretation gap only after making it testable
+- Value `10`, Cost `9`, ROI `1.11`.
+- Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
+- Show how receiver-side informational ambiguity can yield the Born rule `P \propto |\psi|^2`.
+- Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
+- Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
+
+### 17. Keep building the scene system, but only in the order that compounds
 - Value `7`, Cost `7`, ROI `1.00`.
 - Build the 3D visualizer for the oblating Noether core and related scenes such as the sphere.
 - Continue the ellipsoid work, aiming to understand time through that geometry.
@@ -202,17 +230,7 @@ Method:
 - Use the scene builder in API mode where it helps.
 - Keep `sim2rewrite.md` as a later porting source, but wait until the scene builder is working before using it.
 
-### 6. Turn the black-hole / strong-field ideas into disciplined chapters
-- Value `6`, Cost `6`, ROI `1.00`.
-- Work on event horizon, curvature, and singularity in a way that separates geometry, causal-delay dynamics, and observables.
-- Keep `Black Holes, Jets, and Recycling` tied to:
-  - collapse without singular ontological commitment,
-  - jet production,
-  - recycling and re-emission,
-  - observational signatures.
-- Revisit what was written on the equivalence principle and check whether it still makes sense in the current framework.
-
-### 7. Build the PDG solver after the scene system is usable
+### 18. Build the PDG solver after the scene system is usable
 - Value `6`, Cost `7`, ROI `0.86`.
 - PDG solver tasks:
   - provenance,
@@ -222,27 +240,7 @@ Method:
   - look into MadGraph for reactions,
   - use the scene builder in API mode.
 
-## Low
-
-### 2. Do the lightweight repo / branding / community cleanup
-- Value `4`, Cost `3`, ROI `1.33`.
-- The new `architrino` repository went live on February 17, 2026.
-- Go back and clean up the old `neoclassical.ai` repo.
-- Try to sell the `neoclassical.ai` domain.
-- Make a new subreddit named `architrino`.
-- Rename the blog.
-
-### 3. Clean up payment, account, and identity loose ends
-- Value `5`, Cost `4`, ROI `1.25`.
-- Figure out what to do with the subscription site on Liberapay.
-- Figure out Stripe.
-- Figure out the QR code situation.
-- `architrino@gmail.com` was disabled by Google; appeal filed on March 14, 2026.
-- Attempt to understand OpenAI billing.
-- Use whatever OpenAI credits are available.
-- Use the `$50` entourages each month.
-
-### 4. Keep deferred product / outlook work explicitly low priority
+### 19. Keep deferred product / outlook work explicitly low priority
 - Value `3`, Cost `5`, ROI `0.60`.
 - `Vision for the Future / Toward New Technologies` belongs at the end of the textbook stack, not in the core derivation spine.
 - Future enhancements once core navigation is stable:
@@ -254,7 +252,7 @@ Method:
   - export presets for desktop `16:9` and mobile `9:16`,
   - formal narrative / export spec later, not now.
 
-### 5. Leave pure convenience purchases for later
+### 20. Leave pure convenience purchases for later
 - Value `2`, Cost `4`, ROI `0.50`.
 - Get a Mac mini when the `M5` comes out.
 
@@ -308,13 +306,12 @@ Method:
   2. `Chronology of Nature`
   3. [nuclear-binding.md](../../markdown/aaa/nuclear-atomic/nuclear-binding.md)
   4. [nucleon-structure.md](../../markdown/aaa/nuclear-atomic/nucleon-structure.md)
-  5. `Black Holes, Jets, and Recycling`
-  6. [atomic-spectra.md](../../markdown/aaa/nuclear-atomic/atomic-spectra.md)
-  7. `Dense Matter and Degeneracy Pressure`
-  8. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
-  9. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
-  10. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
-  11. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
-  12. `Hierarchy Problem and Asymptotic Safety`
-  13. `Reconstructing Physics and Cosmology`
-  14. `Vision for the Future / Toward New Technologies`
+  5. [atomic-spectra.md](../../markdown/aaa/nuclear-atomic/atomic-spectra.md)
+  6. `Dense Matter and Degeneracy Pressure`
+  7. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
+  8. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
+  9. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
+  10. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
+  11. `Hierarchy Problem and Asymptotic Safety`
+  12. `Reconstructing Physics and Cosmology`
+  13. `Vision for the Future / Toward New Technologies`
