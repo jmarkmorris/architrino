@@ -2,8 +2,12 @@
 
 Scoring system:
 - Score `Value` and `Cost` on the same `1-10` scale.
+- For `Value`, prioritize:
+  1. work that drives more solid mathematical closure, especially the EOM, assembly energy, shielding, mass, and adjacent derivations;
+  2. work that improves visualization and animation enough to generate new understanding or insight.
+- For `Cost`, assume math-heavy derivation cost is lower than before because the implementation/derivation burden is now mostly on Codex, while visualization and animation work is relatively cheap.
 - Compute `ROI = Value / Cost`.
-- Sort the task list by `ROI`, highest first.
+- Use the scoring table as the canonical ranking. The detailed notes below remain grouped by theme for continuity and are not yet fully re-sorted.
 - Break ties by higher `Value`, then lower `Cost`.
 - Remove items from the task list once they are genuinely finished; keep background notes in `Info`, not mixed into active priorities.
 
@@ -11,27 +15,27 @@ Scoring system:
 
 | Item | Value | Cost | ROI |
 | --- | ---: | ---: | ---: |
-| Fastest scorecard lift | 9 | 3 | 3.00 |
-| PDG solver | 10 | 4 | 2.50 |
-| Preserve strong-field / tri-binary hypotheses | 5 | 2 | 2.50 |
-| Dyadic resonance lock reduced-map program | 7 | 3 | 2.33 |
-| Unified chapter authoring queue | 8 | 4 | 2.00 |
-| Remaining black-hole / strong-field quantitative closure | 4 | 2 | 2.00 |
-| Noether-core stability, shielding, parameter ledger, and first mass map | 9 | 5 | 1.80 |
-| Remaining Standard Model assembly gaps, flavor mixing, and confinement | 7 | 4 | 1.75 |
-| Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 8 | 1.25 |
-| Scene system, scene builder, applications, and later enhancements | 8 | 7 | 1.14 |
-| Simulations, regularization, and shell numerics | 9 | 8 | 1.13 |
-| Cosmology transfer-function closure | 9 | 8 | 1.13 |
-| Lorentz kinematics and metric / clock / ruler bridge to GR | 10 | 9 | 1.11 |
-| Born-rule / quantum closure with hard tests | 10 | 9 | 1.11 |
-| Recover useful old material | 6 | 6 | 1.00 |
-| Deferred product / outlook work | 3 | 5 | 0.60 |
+| Scene system, scene builder, applications, and later enhancements | 10 | 4 | 2.50 |
+| Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 5 | 2.00 |
+| Dyadic resonance lock reduced-map program | 8 | 4 | 2.00 |
+| Simulations, regularization, and shell numerics | 9 | 5 | 1.80 |
+| Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 6 | 1.67 |
+| PDG solver | 6 | 4 | 1.50 |
+| Lorentz kinematics and metric / clock / ruler bridge to GR | 8 | 6 | 1.33 |
+| Remaining black-hole / strong-field quantitative closure | 5 | 4 | 1.25 |
+| Remaining Standard Model assembly gaps, flavor mixing, and confinement | 6 | 6 | 1.00 |
+| Preserve strong-field / tri-binary hypotheses | 3 | 3 | 1.00 |
+| Fastest scorecard lift | 2 | 3 | 0.67 |
+| Unified chapter authoring queue | 3 | 5 | 0.60 |
+| Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
+| Recover useful old material | 2 | 4 | 0.50 |
+| Cosmology transfer-function closure | 3 | 8 | 0.38 |
+| Deferred product / outlook work | 1 | 6 | 0.17 |
 
 ## Overall Task List
 
 ### 1. Take the fastest scorecard lift first
-- Value `9`, Cost `3`, ROI `3.00`.
+- Value `2`, Cost `3`, ROI `0.67`.
 - Based on the current `$\mathbb{A}\mathbb{A}\mathbb{A}$` scorecard, the fastest lift is still:
   1. Coverage.
   2. Parameter Closure.
@@ -50,7 +54,7 @@ Scoring system:
 - Rule of thumb to retain: each `+10` points in one category adds about `+0.56` to the total 18-category mean.
 
 ### 2. Build the PDG solver after the scene system is usable
-- Value `10`, Cost `4`, ROI `2.50`.
+- Value `6`, Cost `4`, ROI `1.50`.
 - PDG solver tasks:
   - provenance,
   - diagrams,
@@ -60,7 +64,7 @@ Scoring system:
   - use the scene builder in API mode.
 
 ### 3. Preserve the strong-field / tri-binary hypotheses
-- Value `5`, Cost `2`, ROI `2.50`.
+- Value `3`, Cost `3`, ROI `1.00`.
 - Keep the following strong-field / tri-binary ideas alive while the quantitative closures tighten:
   - the tri-binary may open up inside the black hole, with quadrupole resonance appearing when a given core pops early or late;
   - the event horizon may not be a clean sphere but a rough surface with significant radial depth;
@@ -78,7 +82,7 @@ Scoring system:
   - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing `c_f`, though that seems doubtful.
 
 ### 4. Advance the dyadic resonance lock reduced-map program
-- Value `7`, Cost `3`, ROI `2.33`.
+- Value `8`, Cost `4`, ROI `2.00`.
 - [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) should now be treated as the live note for a **candidate** dyadic lock, not as a proof that the full dynamics uniquely select `1:2:4`.
 - What is now solid enough to build on:
   - exact periodic closure gives a rational resonance lattice rather than an arbitrary hierarchy,
@@ -100,7 +104,7 @@ Scoring system:
   5. Only after that revisit `\eta \to 0^+` and promote archive material that can be rederived from the reduced dynamics.
 
 ### 5. Run the chapter authoring queue
-- Value `8`, Cost `4`, ROI `2.00`.
+- Value `3`, Cost `5`, ROI `0.60`.
 - This item is the ranked queue for chapter-writing work.
 - Use it for both:
   1. improving chapters that already have drafts,
@@ -132,7 +136,7 @@ Scoring system:
   13. `Vision for the Future / Toward New Technologies`
 
 ### 6. Finish the remaining black-hole / strong-field quantitative closure
-- Value `4`, Cost `2`, ROI `2.00`.
+- Value `5`, Cost `4`, ROI `1.25`.
 - The core chapter architecture is now in place:
   - [black-holes.md](../../markdown/aaa/spacetime/black-holes.md),
   - [singularity-resolution.md](../../markdown/aaa/spacetime/singularity-resolution.md),
@@ -144,7 +148,7 @@ Scoring system:
   - and extract at least one discriminating observable that separates this story from GR-like strong-field behavior.
 
 ### 7. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
-- Value `9`, Cost `5`, ROI `1.80`.
+- Value `10`, Cost `5`, ROI `2.00`.
 - Treat [parameter-ledger.md](../../markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The real priority is to turn the open mass-side symbols it names into one reusable derived map.
 - First concrete deliverable: one derived tri-binary attractor family with radii, frequencies, binding scales, and a reproducible shielding-extraction protocol.
 - Second concrete deliverable: derive `\zeta(A)` from the delayed kernel strongly enough to predict a baseline electron mass and at least one next-step hierarchy check such as `m_\mu / m_e`.
@@ -158,7 +162,7 @@ Scoring system:
 - Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
 ### 8. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
-- Value `7`, Cost `4`, ROI `1.75`.
+- Value `6`, Cost `6`, ROI `1.00`.
 - The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
   - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
   - finish the remaining quantum-number dictionary pieces from the tri-binary geometry:
@@ -173,7 +177,7 @@ Scoring system:
 - Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 
 ### 9. Finish the tractable master-equation stack for Lorentz, quantum, and core closure
-- Value `10`, Cost `8`, ROI `1.25`.
+- Value `10`, Cost `6`, ROI `1.67`.
 - Keep dynamics, math, geometry, and mapping centered on [master-equation.md](../../markdown/aaa/dynamics/master-equation.md) as the top theory priority.
 - This stack has to carry the whole closure program from the `\eta`-regularized delayed action to the continuum bridges:
   1. full 3D translating tri-binary NFDE / DDE analysis for emergent `\gamma`-scaling,
@@ -216,7 +220,7 @@ Scoring system:
   7. quantum closure from the master equation.
 
 ### 10. Scene system, scene builder, applications, and later enhancements
-- Value `8`, Cost `7`, ROI `1.14`.
+- Value `10`, Cost `4`, ROI `2.50`.
 - Build the 3D visualizer for the oblating Noether core and related scenes such as the sphere.
 - Continue the ellipsoid work, aiming to understand time through that geometry.
 - Work on the scene builder first.
@@ -241,7 +245,7 @@ Scoring system:
     - formal narrative / export spec later, not now.
 
 ### 11. Lock the simulations, regularization, and shell numerics
-- Value `9`, Cost `8`, ROI `1.13`.
+- Value `9`, Cost `5`, ROI `1.80`.
 - Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/validation/simulations/run-protocols.md) and the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
 - Publish convergence plots and `\mathbb{U}_{\text{now}}` provenance logs.
@@ -250,7 +254,7 @@ Scoring system:
 - If a quick intuition tool is useful, make a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
 
 ### 12. Convert cosmology from narrative strength to equation-level closure
-- Value `9`, Cost `8`, ROI `1.13`.
+- Value `3`, Cost `8`, ROI `0.38`.
 - Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
 - Build per-component observable interfaces for `\Lambda\mathrm{CDM}` comparison:
   1. background expansion,
@@ -262,7 +266,7 @@ Scoring system:
 - This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
 
 ### 13. Close Lorentz kinematics and the metric / clock / ruler bridge to GR
-- Value `10`, Cost `9`, ROI `1.11`.
+- Value `8`, Cost `6`, ROI `1.33`.
 - Treat the bridge as a two-stage theorem program:
   1. prove that moving tri-binaries in the Noether Sea realize `R_\parallel = R_\perp / \gamma` and `T(v) = T_0 \gamma` as a stable delayed-dynamics attractor rather than by tuning,
   2. coarse-grain the same causal medium into a constitutive response that yields `g_{\mu\nu}^{\mathrm{eff}}`, weak-field PPN closure, and suppressed preferred-frame leakage.
@@ -281,7 +285,7 @@ Scoring system:
 - Related mechanical task: derive emergent Lorentz invariance for fast-moving tri-binaries so lifetimes, scattering kinematics, and decay rates recover the standard `\gamma` factor.
 
 ### 14. Close the Born-rule / quantum gap only after making it testable
-- Value `10`, Cost `9`, ROI `1.11`.
+- Value `4`, Cost `8`, ROI `0.50`.
 - Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
 - Make the Born-rule target fully measure-theoretic rather than only interpretive:
   - construct the relevant Perron-Frobenius or equivalent transfer operator for metastable assemblies under causal background driving,
@@ -293,7 +297,7 @@ Scoring system:
 - Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
 
 ### 15. Recover useful old material before rewriting it from scratch
-- Value `6`, Cost `6`, ROI `1.00`.
+- Value `2`, Cost `4`, ROI `0.50`.
 - Mine material from WordPress where it can save time.
 - Clean up PowerPoints, or better, migrate the worthwhile ones into the web site.
 
