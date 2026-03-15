@@ -492,6 +492,17 @@ For the **Elementary Fermions** (Quarks and Leptons), yes, this table is complet
 - A 2π spatial rotation permutes the braid ordering once, flipping the sign of the internal phase (like rotating a framed triad or belt). Only after 4π does the ordered triad and its vortex phase return to the same configuration.
 - This ordered-triad + fixed-$\mathbf{J}$ constraint is proposed as the geometric origin of the SU(2) double cover → spin-1/2 behavior; a formal bundle map is still to be derived.
 
+### Spin taxonomy across assemblies
+
+Across the repo, the working geometric rule is that the spin label tracks the **kind of orientation data** the excitation carries:
+
+- **Spin-0 (scalar):** purely radial or isotropic breathing, with no preferred direction attached to the mode itself.
+- **Spin-1/2 (fermionic spinor):** an ordered tri-binary core whose internal phase changes sign under a $2\pi$ turn and closes only after $4\pi$.
+- **Spin-1 (vector):** an excitation with one distinguished axis plus transverse/helical structure around that axis.
+- **Spin-2 (tensor):** a transverse-traceless shape disturbance carrying quadrupolar deformation data rather than a single axis alone.
+
+This should be read as the common geometric dictionary behind the particle-specific chapters: the Higgs uses the scalar channel, photons/gluons/$W^\pm$/$Z$ use vector channels, fermions use the ordered-core spinor channel, and gravitational waves realize the effective tensor channel.
+
 However, there are two nuances we should be aware of, though we don't necessarily need a new row for them:
 
 1.  **Flavor Quantum Numbers ($S, C, B, T$):**

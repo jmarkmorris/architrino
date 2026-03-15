@@ -108,6 +108,8 @@ The apparatus couples to a resonance band, interference geometry, or transport m
 
 The apparatus couples to a discrete assembly orientation or topological branch. The record is a branch-specific amplification, for example one of two detector channels.
 
+In this language, "spin up" and "spin down" are not tiny literal arrows hidden inside the particle. They are the two stable branch labels selected by the apparatus relative to its chosen measurement axis.
+
 The important point is that the ontology never changes: different observables correspond to different coarse coordinates and different apparatus couplings, not different laws of collapse.
 
 ## Born-Rule Interface

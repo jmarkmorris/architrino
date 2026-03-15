@@ -3,6 +3,8 @@
 **Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
 **Core Principle:** Bosons are discrete, propagating assemblies of architrinos (Planar Tri-binaries) organized into phase-locked modes.
 
+Spin follows the geometry of the excitation: the Higgs is scalar because its motion is purely radial, while the photon and weak corridors are vector modes because each carries a distinguished propagation/interaction axis together with transverse phase structure.
+
 ---
 
 ## The Photon ($\gamma$): Coaxial Contra-Rotating Stack

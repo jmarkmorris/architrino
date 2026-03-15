@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 119,
-      "sections": 692
+      "sections": 714
     }
   },
   "tocRoot": {
@@ -2063,18 +2063,90 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Current framing",
+                "title": "Core Claim",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
-                "markdownSection": "Current framing",
-                "sectionKey": "current framing",
+                "markdownSection": "Core Claim",
+                "sectionKey": "core claim",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Status",
+                "title": "Effective Binding Decomposition",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
-                "markdownSection": "Status",
-                "sectionKey": "status",
+                "markdownSection": "Effective Binding Decomposition",
+                "sectionKey": "effective binding decomposition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Physical Ingredients",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Physical Ingredients",
+                "sectionKey": "physical ingredients",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Shape of the Effective Potential",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Shape of the Effective Potential",
+                "sectionKey": "shape of the effective potential",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Deuteron as the First Binding Test",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Deuteron as the First Binding Test",
+                "sectionKey": "deuteron as the first binding test",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Saturation",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Saturation",
+                "sectionKey": "saturation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why Alpha-Like Structures Should Be Special",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Why Alpha-Like Structures Should Be Special",
+                "sectionKey": "why alpha like structures should be special",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Beta Stability Interface",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Beta Stability Interface",
+                "sectionKey": "beta stability interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Minimal Falsification Gates",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Minimal Falsification Gates",
+                "sectionKey": "minimal falsification gates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relation to Mesons",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Relation to Mesons",
+                "sectionKey": "relation to mesons",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]
@@ -2097,18 +2169,90 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Current framing",
+                "title": "Core Claim",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Current framing",
-                "sectionKey": "current framing",
+                "markdownSection": "Core Claim",
+                "sectionKey": "core claim",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Status",
+                "title": "Constituents and Counting",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Status",
-                "sectionKey": "status",
+                "markdownSection": "Constituents and Counting",
+                "sectionKey": "constituents and counting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Color-Singlet Closure",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Color-Singlet Closure",
+                "sectionKey": "color singlet closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proton and Neutron as Ground-State Tri-Cores",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Proton and Neutron as Ground-State Tri-Cores",
+                "sectionKey": "proton and neutron as ground state tri cores",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Internal Geometry",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Effective Internal Geometry",
+                "sectionKey": "effective internal geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spin and Magnetic-Moment Expectations",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Spin and Magnetic-Moment Expectations",
+                "sectionKey": "spin and magnetic moment expectations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proton-Neutron Mass Difference",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Proton-Neutron Mass Difference",
+                "sectionKey": "proton neutron mass difference",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Residual Strong Interaction Interface",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Residual Strong Interaction Interface",
+                "sectionKey": "residual strong interaction interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Nucleon Table",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Canonical Nucleon Table",
+                "sectionKey": "canonical nucleon table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]
@@ -4044,18 +4188,50 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Current framing",
+                "title": "Severity Scale",
                 "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
-                "markdownSection": "Current framing",
-                "sectionKey": "current framing",
+                "markdownSection": "Severity Scale",
+                "sectionKey": "severity scale",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Status",
+                "title": "Pressure Ledger",
                 "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
-                "markdownSection": "Status",
-                "sectionKey": "status",
+                "markdownSection": "Pressure Ledger",
+                "sectionKey": "pressure ledger",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Highest-Leverage Cluster",
+                "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
+                "markdownSection": "Highest-Leverage Cluster",
+                "sectionKey": "highest leverage cluster",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interdependence Map",
+                "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
+                "markdownSection": "Interdependence Map",
+                "sectionKey": "interdependence map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Acceptance Principle",
+                "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
+                "markdownSection": "Acceptance Principle",
+                "sectionKey": "acceptance principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]
