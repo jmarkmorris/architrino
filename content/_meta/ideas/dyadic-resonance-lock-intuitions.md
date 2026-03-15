@@ -6,6 +6,28 @@ The live mathematical backbone of this topic now lives in [dyadic-resonance-lock
 
 The Tao / Noether triage did not preserve the old pseudo-rigorous action algebra, but it did preserve several high-value physical intuitions. Those are the ideas worth keeping alive here for later numerics, phenomenology, and theory-mapping work.
 
+### Poincare Routing Priorities
+
+Poincare's review sharpened the role of this file: it is not a proof document, but a routing document for phenomenological and taxonomy-grade ideas that still matter.
+
+- **Stealth principle and axial-leakage taxonomy:** this remains the highest-value bridge from tri-binary geometry to particle taxonomy. The equatorial blur, the pole problem, and the three boundary-condition solutions should eventually feed a dedicated particle-taxonomy or standard-model-mapping chapter.
+- **$\mathbb{Z}_3$ / $SU(3)$ dipole cancellation:** the $120^\circ$ phase-lock should be preserved as the geometric origin of color-neutral survival. This belongs beside the pole taxonomy in the Standard Model mapping layer.
+- **Parametric pumping / fractal antenna:** the twice-per-orbit wake-surfing picture should survive as the plain-language physical mechanism behind the reduced-map stability story. This belongs in the discussion or motivation layer around the live dynamics note, not in the theorem spine itself.
+- **Zero-entropy lattice intuition:** the crystallographic collapse-limit idea still belongs to black-hole phenomenology, but only as a heuristic strong-field interior option until a stronger constitutive closure exists.
+- **Unified cosmological expansion toy law:** the three-term expansion curve should be retained only as a toy macroscopic model for future cosmology work. It is not yet part of the canonical cosmology ontology.
+
+One part of the older picture has already been promoted out of this file: the hourglass / dimensional-pinch intuition now lives in the spacetime docs in a more disciplined form. The remaining job of this archive is to preserve the unmoved nuggets without re-inflating them into false derivations.
+
+### Emmy Routing Priorities
+
+Emmy's review reinforces the same division: the rigorous theorem targets belong in the live dynamics note, while this file should preserve the phenomenological and structural ideas that the theorem program will eventually need to explain.
+
+- **Resonance and stability mechanisms:** keep the parametric-pumping / fractal-antenna picture and the causal-work-variance blueprint as the physical motivation for why a dyadic lock might be preferred.
+- **Assembly stealth and gauge structure:** keep the $\mathbb{Z}_3$ dipole-cancellation principle and the pole-problem taxonomy as geometric bridges toward confinement, fermion capping, and vacuum pairing.
+- **Strong-field and cosmological heuristics:** keep the Noether-crystal interior idea and the remaining black-hole / cosmology mappings here only when they have not already been promoted into spacetime docs.
+- **Phenomenological scaling laws:** retain toy but testable laws, such as the tri-partite expansion profile and the confining-scaling intuition, as heuristic targets rather than proofs.
+- **Micro-macro homology:** preserve the statement that particles and black-hole structures may be topologically homologous, but only as a high-level ontology map until a stronger constitutive derivation exists.
+
 ### Reduced-Map Mechanisms to Test
 
 - **Fractal antenna / parametric pumping:** if adjacent layers satisfy a dyadic relation, the outer layer can pass through Jacobian-bunched wake maxima of the inner layer at a fixed repeated cadence. The specific intuition to preserve is "twice-per-orbit wake surfing" as a concrete mechanism for resonance capture in the reduced map.
@@ -23,6 +45,12 @@ The Tao / Noether triage did not preserve the old pseudo-rigorous action algebra
 
 - **Zero-entropy FCC core:** preserve the conjecture that maximal-curvature tri-binaries can ring to a stop in a close-packed lattice, replacing the singularity with an ordered collapse limit.
 - **Tri-partite expansion toy law:** preserve the idea that cosmological expansion can be decomposed into nested binary contributions, with inner relaxation, middle transport, and outer rebound playing the qualitative roles of inflation, horizon crossing, and dark expansion.
+- **Mechanical reheating / rebound:** preserve the idea that release of a compressed degree of freedom can act as a purely geometric reheating channel, but keep it at the heuristic level until it is tied to a quantitative cosmology module.
+
+### Phenomenological Scaling and Homology
+
+- **Confining-scaling intuition:** preserve the heuristic that self-hit-dominant or confining regimes can exhibit a different radius-frequency law than Coulomb-like partner-only regimes. Any explicit $r \propto f^{-1/2}$ relation should be treated as a toy scaling law, not as a proved consequence of the master equation.
+- **Micro-macro homology:** preserve the philosophy-level mapping that the inner, middle, and outer binary roles may mirror singularity-like interior, horizon-like interface, and exterior-field behavior in black holes. This remains an ontology map, not yet a derived equivalence.
 
 ### Theory Guardrail
 
