@@ -158,6 +158,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Noether Core](../../scenes/assemblies/noether_core.json)
   - [Particle Masses](../../scenes/assemblies/particle_masses.json)
     - [The Mass Hypothesis: Inertia as Medium Interaction](../aaa/assemblies/particle-masses.md?section=The+Mass+Hypothesis%3A+Inertia+as+Medium+Interaction)
+    - [Speculative Charged-Lepton Benchmark: Koide](../aaa/assemblies/particle-masses.md?section=Speculative+Charged-Lepton+Benchmark%3A+Koide)
     - [Research Plan: From Hypothesis to Calculation](../aaa/assemblies/particle-masses.md?section=Research+Plan%3A+From+Hypothesis+to+Calculation)
     - [Open Questions & Failure Modes](../aaa/assemblies/particle-masses.md?section=Open+Questions+%26+Failure+Modes)
   - [Standard Model](../../scenes/standard-model-particles/standard_model.json) _(diagram)_
@@ -281,6 +282,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Ontological Picture](../aaa/spacetime/emergent-metric.md?section=Ontological+Picture)
     - [Canonical Symbols (Spacetime)](../aaa/spacetime/emergent-metric.md?section=Canonical+Symbols+%28Spacetime%29)
     - [What “Metric” Means Here](../aaa/spacetime/emergent-metric.md?section=What+%E2%80%9CMetric%E2%80%9D+Means+Here)
+    - [Jacobson-Type Support: Metric as Equation of State](../aaa/spacetime/emergent-metric.md?section=Jacobson-Type+Support%3A+Metric+as+Equation+of+State)
     - [Refraction vs. Curvature](../aaa/spacetime/emergent-metric.md?section=Refraction+vs.+Curvature)
     - [Minimal Weak-Field Constitutive Map (for PPN Matching)](../aaa/spacetime/emergent-metric.md?section=Minimal+Weak-Field+Constitutive+Map+%28for+PPN+Matching%29)
     - [Closure Program Interface (metric constitutive map)](../aaa/spacetime/emergent-metric.md?section=Closure+Program+Interface+%28metric+constitutive+map%29)

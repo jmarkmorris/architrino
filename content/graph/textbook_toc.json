@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 120,
-      "sections": 730
+      "sections": 732
     }
   },
   "tocRoot": {
@@ -1301,6 +1301,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Speculative Charged-Lepton Benchmark: Koide",
+                "markdownPath": "content/markdown/aaa/assemblies/particle-masses.md",
+                "markdownSection": "Speculative Charged-Lepton Benchmark: Koide",
+                "sectionKey": "speculative charged lepton benchmark koide",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Research Plan: From Hypothesis to Calculation",
                 "markdownPath": "content/markdown/aaa/assemblies/particle-masses.md",
                 "markdownSection": "Research Plan: From Hypothesis to Calculation",
@@ -2304,6 +2312,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
                 "markdownSection": "What “Metric” Means Here",
                 "sectionKey": "what metric means here",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Jacobson-Type Support: Metric as Equation of State",
+                "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
+                "markdownSection": "Jacobson-Type Support: Metric as Equation of State",
+                "sectionKey": "jacobson type support metric as equation of state",
                 "headingLevel": 2
               },
               {
