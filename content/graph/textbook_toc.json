@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 119,
-      "sections": 715
+      "entries": 120,
+      "sections": 732
     }
   },
   "tocRoot": {
@@ -1250,10 +1250,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Equivalence Principle (Working Interpretation)",
+                "title": "Equivalence Principle (Working Constraint)",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Equivalence Principle (Working Interpretation)",
-                "sectionKey": "equivalence principle working interpretation",
+                "markdownSection": "Equivalence Principle (Working Constraint)",
+                "sectionKey": "equivalence principle working constraint",
                 "headingLevel": 2
               },
               {
@@ -1297,6 +1297,14 @@
                 "markdownPath": "content/markdown/aaa/assemblies/particle-masses.md",
                 "markdownSection": "The Mass Hypothesis: Inertia as Medium Interaction",
                 "sectionKey": "the mass hypothesis inertia as medium interaction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speculative Charged-Lepton Benchmark: Koide",
+                "markdownPath": "content/markdown/aaa/assemblies/particle-masses.md",
+                "markdownSection": "Speculative Charged-Lepton Benchmark: Koide",
+                "sectionKey": "speculative charged lepton benchmark koide",
                 "headingLevel": 2
               },
               {
@@ -2308,6 +2316,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Jacobson-Type Support: Metric as Equation of State",
+                "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
+                "markdownSection": "Jacobson-Type Support: Metric as Equation of State",
+                "sectionKey": "jacobson type support metric as equation of state",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Refraction vs. Curvature",
                 "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
                 "markdownSection": "Refraction vs. Curvature",
@@ -2642,6 +2658,128 @@
                 "markdownPath": "content/markdown/aaa/spacetime/singularity-resolution.md",
                 "markdownSection": "Maximal Curvature vs Planck Scale",
                 "sectionKey": "maximal curvature vs planck scale",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "spacetime__black_holes",
+            "title": "Black Holes",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/black_holes.json",
+            "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope and Purpose",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Scope and Purpose",
+                "sectionKey": "scope and purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What the Framework Treats as a Black Hole",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "What the Framework Treats as a Black Hole",
+                "sectionKey": "what the framework treats as a black hole",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Horizon Condition",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Canonical Horizon Condition",
+                "sectionKey": "canonical horizon condition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Singularity Replacement and the Maximum-Curvature Core",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Singularity Replacement and the Maximum-Curvature Core",
+                "sectionKey": "singularity replacement and the maximum curvature core",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Horizon Interface",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Horizon Interface",
+                "sectionKey": "horizon interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmological Embedding and Horizon Regularity",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Cosmological Embedding and Horizon Regularity",
+                "sectionKey": "cosmological embedding and horizon regularity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interior Dynamics and Recycling",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Interior Dynamics and Recycling",
+                "sectionKey": "interior dynamics and recycling",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Jets and Other Release Channels",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Jets and Other Release Channels",
+                "sectionKey": "jets and other release channels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relation to Dark Energy and Expansion History",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Relation to Dark Energy and Expansion History",
+                "sectionKey": "relation to dark energy and expansion history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmological Coupling Hypothesis",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Cosmological Coupling Hypothesis",
+                "sectionKey": "cosmological coupling hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Population History and Source Accounting",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Population History and Source Accounting",
+                "sectionKey": "population history and source accounting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observable Targets and Falsifiers",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Observable Targets and Falsifiers",
+                "sectionKey": "observable targets and falsifiers",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interfaces to Other Chapters",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Interfaces to Other Chapters",
+                "sectionKey": "interfaces to other chapters",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
                 "headingLevel": 2
               }
             ]
@@ -3051,6 +3189,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Cosmological Coupling as a Candidate Dark-Energy Channel",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Cosmological Coupling as a Candidate Dark-Energy Channel",
+                "sectionKey": "cosmological coupling as a candidate dark energy channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Regime Map",
                 "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
                 "markdownSection": "Regime Map",
@@ -3393,10 +3539,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "SMBH Jet and/or Surface Emissions",
+                "title": "SMBH Release Channels",
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
-                "markdownSection": "SMBH Jet and/or Surface Emissions",
-                "sectionKey": "smbh jet and or surface emissions",
+                "markdownSection": "SMBH Release Channels",
+                "sectionKey": "smbh release channels",
                 "headingLevel": 2
               },
               {

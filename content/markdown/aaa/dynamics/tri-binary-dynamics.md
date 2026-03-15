@@ -185,19 +185,25 @@ As alignment increases and planes coincide, the remaining degree of freedom is a
 
 ---
 
-## Equivalence Principle (Working Interpretation)
+## Equivalence Principle (Working Constraint)
 
-**Premise:** In high gravity, Noether cores become more oblate as the local delay geometry is distorted by the surrounding volume gradient. In pure acceleration (deep space), an object’s internal delay geometry also becomes more oblate. If the equivalence principle is to hold locally, the surrounding spacetime must adapt as well.
+The current framework should treat the equivalence principle as a closure constraint rather than as already-derived microphysics. The requirement is local: a uniformly accelerated assembly and a stationary assembly placed in a matched Noether-Sea gradient should exhibit the same local delay-geometry diagnostics to the order probed by observer-built clocks and rulers.
 
-**Local-equivalence statement (model-level):** A uniformly accelerated assembly should experience the same local delay geometry as a stationary assembly in a corresponding Noether core volume gradient. This requires the local spacetime delay structure (pilot-wave environment) to co-distort with the accelerated object, not just the object alone.
+In current language, the comparison is:
 
-**Implementation idea:** Treat acceleration as imposing an effective gradient in the experienced field, mediated by the pilot-wave structure. In the minimal model:
-- High gravity: oblate cores arise because $G_{\text{grad}}$ skews delays across the orbit.
-- Uniform acceleration: oblate cores arise because the pilot-wave environment rephases so that the same $\Delta t_{\text{rt}}(\theta)$ pattern appears in the accelerated frame.
+- **Gravity case:** the surrounding Noether Sea carries a local gradient that skews the assembly's delay structure.
+- **Acceleration case:** the assembly is externally driven, but the experienced delay pattern must reorganize so that the same local constitutive observables are recovered.
 
-**Testable consequence:** If equivalence holds, the same delay-closure diagnostics (phase residuals, anisotropy ratios, stability thresholds) should match between (i) a gradient-driven case and (ii) an acceleration-driven case with matched effective $\alpha(\theta)$.
+The important point is that the comparison cannot be made by deforming the assembly alone. The ambient medium must participate. Otherwise the framework would fail to explain why locally constructed observers infer equivalence between gravitational and inertial response.
 
-**Momentum after acceleration:** During acceleration, the object and its pilot-wave environment rephase into a moving, oblate configuration. When the external acceleration ceases, the established delay-closure state persists (no gradient remains to unwind it), so translation continues. Momentum is the conserved motion state of this locked geometry; it relaxes only if interactions or gradients rephase the delays.
+The practical diagnostics are the same in both cases:
+
+- phase-closure residuals,
+- anisotropy ratios of the internal geometry,
+- clock-rate shifts,
+- stability thresholds for aligned and oblate states.
+
+If those quantities cannot be matched between the gradient-driven and acceleration-driven cases in the local limit, then the observer-level recovery of the equivalence principle fails and the constitutive map must be revised.
 
 ---
 
@@ -232,32 +238,14 @@ $$
 $$
 The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
 
-### Tri-Binary Recycling/Formation in a Black Hole (Speculative)
+### Black-Hole Regime Note
 
-One conjecture is that a tri-binary enters a black hole in a near-planar configuration and is recycled. At the event horizon, the inner, middle, and outer binaries would have translational and rotational velocities equal to field speed. The evolution of their orbital planes inside the black hole remains an open question.
+The detailed black-hole treatment now lives in [../spacetime/black-holes.md](../spacetime/black-holes.md). For the purposes of this dynamics chapter, only the regime summary is needed:
 
-Another speculative idea is that the three binary frequencies follow a 1:2:4 relationship from outer to inner. A change of one angular-momentum quantum $\Delta L_c$ would then shift the outer frequency by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not supported by analysis or simulation, but it provides a compact hypothesis for maximal shielding by superposition.
+- at the horizon interface, forward-sector components approach terminal alignment near $c_f$;
+- in the interior, maximum-curvature and recycling dynamics dominate;
+- outward release may later appear as jets, diffuse outflow, or dark-sector / dark-photon-like channels.
 
-Because the black-hole interior is highly turbulent, any such descriptions are intended as statistical rather than deterministic.
-
-### Tri-Binary Inflation/Deflation Mode in a Black Hole
-
-We speculate that toward the core of a black hole the density increases and may reach a maximum. In an idealized, non-spinning, non-translating black hole, MCBs or triple MCBs could become densely packed with limited mobility, approaching a low-entropy microstate.
-
-In this picture tri-binaries reach a maximally deflated, high-energy state near the core, then re-expand and acquire radial velocity outward toward the event horizon, possibly escaping via jets. The theory requires that recycled tri-binaries re-emerge; one speculative channel is through dark-photon states with translational and rotational speeds above field speed, later transitioning into observable photons (e.g., CMB-scale emissions).
-
-Incoming photons are envisioned to deflate and gain energy, then re-emerge as part of the recycling process.
-
-The theory posits that the self-hit region behaves as AdS space.
-
-### Tri-Binary at the Event Horizon
-
-The theory posits that the tri-binary is planar at the event horizon. All binaries are translating and orbiting at field speed.
-
-### Tri-Binary Expansion/Contraction Mode Outside of a Black Hole
-
-The key behaviors of the tri-binary include its wide scalability and deformability.
-
-The theory posits that the sub-field-speed region behaves as a CFT.
+This chapter therefore keeps only the tri-binary regime map and leaves the ontology, recycling logic, and observer-facing strong-field interpretation to the canonical spacetime chapters.
 
 In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. Einstein's spacetime is implemented by a dense Noether sea, and the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.

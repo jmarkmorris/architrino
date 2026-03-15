@@ -39,6 +39,10 @@
         "scenePath": "content/scenes/spacetime/singularity_resolution.json"
       },
       {
+        "nodeId": "black_holes",
+        "scenePath": "content/scenes/spacetime/black_holes.json"
+      },
+      {
         "nodeId": "cosmic_censorship_holography",
         "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
       },
@@ -124,6 +128,17 @@
         "type": "fixed"
       },
       "labelTitle": "Singularity Resolution",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "black_holes",
+      "title": "Black Holes",
+      "radius": 2.688,
+      "color": "#4a3b6f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Black Holes",
       "labelBadge": "doc"
     },
     {

@@ -24,7 +24,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Outside the model; $\Lambda\mathrm{CDM}$ does not define a pre-Big-Bang state.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The universe is a fixed Euclidean container filled with a Noether-core sea. Galaxies and SMBHs have existed indefinitely in a steady-state, recycling regime. SMBHs possess crystal cores (maximum-curvature assemblies) and emit dark-photon-like excitations from the event-horizon region into the surrounding sea. These outbound excitations traverse an evolving tri-binary medium and can be thermally reprocessed by repeated interactions with assemblies. This steady-state backdrop is the source reservoir that later maps onto the Big Bang timeline for physical observers.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The universe is a fixed Euclidean container filled with a Noether-core sea. Galaxies and SMBHs have existed indefinitely in a steady-state, recycling regime. SMBHs act as strong-field recycling sites whose horizon interfaces can return processed content to the surrounding sea through several release channels. Those channels may include visible outflows, diffuse radiative release, and initially dark-sector or dark-photon-like excitations. The released content then traverses an evolving tri-binary medium and can be thermally reprocessed by repeated interactions with assemblies. This steady-state backdrop is the source reservoir that later maps onto the Big Bang timeline for physical observers.
 
 ## Planck Epoch (0 to $\sim 10^{-43}$ s)
 - Time window: 0 to $\sim 10^{-43}$ s.
@@ -137,14 +137,14 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: CMB Counter-Rotating Coaxial Assemblies Launch):** The decoupled photon-like assemblies propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
 
-## SMBH Jet and/or Surface Emissions
+## SMBH Release Channels
 - Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the effective Big Bang chronology map.
 - Claim: the Big Bang corresponds to the collective surfaces of SMBHs, not a singular origin.
-- Outcome: outbound SMBH emissions map onto the observed CMB after thermalization and redshift.
+- Outcome: outward release from SMBH recycling sites maps onto the observed CMB after thermalization and redshift.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** The Big Bang is a global origin of spacetime, setting the initial conditions for all subsequent evolution.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark photons and other outbound excitations from SMBH horizons (and associated jet/surface processes) propagate through the Noether sea, thermalize, and redshift into the observed CMB. The three intrinsic tri-binary energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB thus becomes a global record of steady-state recycling dynamics in a fixed void, not a singular origin event nor literal metric stretching of the container.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark-photon-like modes, recycled dark-sector assemblies, and other outbound excitations from SMBH horizon interfaces can propagate through the Noether sea, thermalize, and redshift into the observed CMB directly or after further conversion into visible channels. Jets and surface outflows remain plausible observer-level manifestations of this release, but they are not the only allowed morphology. The three intrinsic tri-binary energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB thus becomes a global record of steady-state recycling dynamics in a fixed void, not a singular origin event nor literal metric stretching of the container.
 
 ### QSSC Contrast (Conceptual)
 
@@ -158,13 +158,13 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 Within the same ontology, CMB sourcing can be represented through:
 
-1. SMBH jet/horizon outbound photon-like and dark-photon-like channels accumulated over long history,
+1. SMBH release from horizon-interface recycling sites, including jet-like, diffuse, and initially dark-sector channels accumulated over long history,
 2. medium-relaxation radiation from Noether-sea state transitions,
-3. conversion/decay channels from high-velocity assembly states into photon-like modes.
+3. conversion or decay channels from high-velocity or dark-sector assembly states into photon-like modes.
 
 These channels are treated as parts of one shared thermalization and decoupling story; they are not separate ontologies.
 
-Jet-transport scales in the Mpc class are treated as part of this channel family, with cumulative contribution determined by source population statistics and medium thermalization depth.
+Jet-transport scales in the Mpc class are treated as one member of this channel family, with cumulative contribution determined by source population statistics, release-channel selection, and medium thermalization depth.
 
 Isotropy in this branch is attributed to long-time averaging over many source populations following the same microphysical rules, not to one-time primordial causal contact.
 
@@ -172,6 +172,7 @@ Isotropy in this branch is attributed to long-time averaging over many source po
 
 - Expansion wording here should remain consistent with [expansion-mechanism.md](./expansion-mechanism.md).
 - Dark-sector loading language here should remain consistent with [dark-matter.md](./dark-matter.md) and [hubble-s8-tensions.md](./hubble-s8-tensions.md).
+- Strong-field release language here should remain consistent with [../spacetime/black-holes.md](../spacetime/black-holes.md).
 - Parameter-bridge wording here should remain consistent with `_meta/ideas/constraints-lcdm-map.md`.
 
 ## CMB-Module Interface

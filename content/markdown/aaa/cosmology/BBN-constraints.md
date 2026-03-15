@@ -12,8 +12,8 @@
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reinterpretation
 
 - **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $t$ within the eternal Euclidean void.
-- **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their recycling jets.
-- **Why:** Tri-binary spacetime assemblies (Noether Sea) near SMBHs reach densities/temperatures sufficient for nuclear reactions; subsequent radial outflow and cooling mimics expansion-driven freeze-out.
+- **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their release channels.
+- **Why:** Tri-binary spacetime assemblies (Noether Sea) near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out.
 - **Background:** Eternal void; no singularity; "BBN" is a recurring local process, not a singular cosmic event.
 
 ### What Remains Unchanged
@@ -55,12 +55,12 @@ Proton/neutron assemblies (nucleon tri-binaries) are driven into close proximity
 Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
 Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether-Sea saturation rather than scaling linearly with SMBH mass.
 
-2. **Radial Outflow (Jets/Winds):**
+2. **Outward Release and Cooling:**
 
-Material ejected from near-horizon regions undergoes rapid radial expansion.
+Material released from near-horizon regions undergoes rapid outward dilution and cooling.
 Effective cooling rate $dT/dt$ matches the freeze-out timing required for standard BBN yields.
 This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective "expansion" as density dilution.
-Interpretive timing claim: the effective expansion rate is not free-form jet kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$ and near-core stability times, so the cooling window can align with weak freeze-out timing.
+Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
 
 3. **Observable Output:**
 
@@ -112,7 +112,7 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 
 - **Spatial Inhomogeneities:** If BBN is SMBH-local, early structures might show abundance gradients correlated with SMBH proximity.
 - **Time Evolution:** In an eternal universe, light-element ratios could vary with cosmic epoch if SMBH nucleation efficiency evolves (contrast with Big Bang's fixed primordial values).
-- **Lithium Tension as Signal:** The $^7$Li discrepancy can be interpreted as a transport signature: hotter jet-core tracks preferentially deplete $^7$Be/$^7$Li while cooler sheath tracks preserve D, yielding an integrated low-Li/high-D pattern.
+- **Lithium Tension as Signal:** The $^7$Li discrepancy can be interpreted as a transport signature: hotter inner release tracks preferentially deplete $^7$Be/$^7$Li while cooler outer channels preserve D, yielding an integrated low-Li/high-D pattern.
 
 ### Current Status
 
@@ -146,21 +146,21 @@ In Standard BBN, neutron freeze-out is set by $\Gamma_{\mathrm{weak}} \sim H$. I
 
 - **Goal:** Show the ejection/cooling timescale naturally lands near the weak freeze-out scale, $\tau_{\mathrm{cool}}\approx 1\,\mathrm{s}$.
 - **Sensitivity checks:** Too slow drives $n\to p$ decay toward H-dominated yields; too fast preserves high $n/p$ and overproduces helium (for example $Y_p>0.5$).
-- **Physical closure target:** Parameterize the effective expansion clock as an assembly-limited rate (bounded by transport scales set by $c_f$ and local stability times) rather than unconstrained jet phenomenology.
+- **Physical closure target:** Parameterize the effective expansion clock as an assembly-limited rate (bounded by transport scales set by $c_f$, local stability times, and release-channel geometry) rather than unconstrained outflow phenomenology.
 
 ### 3. Deuterium Survival Goal: Monotonic Quench Window
 
 Deuterium survives only if the flow exits the bottleneck window quickly after formation (around $T\approx0.1\,\mathrm{MeV}$), rather than recirculating and re-burning.
 
 - **Goal:** Require laminar, monotonic cooling through the D-formation window, followed by rapid quench.
-- **Mapping task:** Relate jet transport properties (including Reynolds-like turbulence diagnostics) and cooling curves to the D-survival window.
+- **Mapping task:** Relate release-channel transport properties, including turbulence or shear diagnostics where relevant, and cooling curves to the D-survival window.
 
 ### 4. Photon-Bath Goal: Reproduce Effective $\eta^{-1}\sim10^9$
 
 The BBN reaction sequence requires a high photon-to-baryon environment so D is not stabilized too early, consistent with effective $\eta\approx6\times10^{-10}$.
 
 - **Goal:** Identify a photon-dominated reaction zone with $\rho_\gamma\gg\rho_b$ in the relevant nucleation channel.
-- **Interpretive option:** Distinct jet shear layers or pair/synchrotron-bright regions can be tested as photon-bath suppliers, rather than matter-heavy disk zones.
+- **Interpretive option:** Distinct shear layers, diffuse outflow regions, or pair/synchrotron-bright release channels can be tested as photon-bath suppliers, rather than matter-heavy disk zones.
 - **Source-model objective:** Show how recycling-zone photon production (for example pair annihilation, bremsstrahlung, and synchrotron cascades) can maintain BBN-compatible photon loading during the D bottleneck window.
 - **Consistency check:** If this condition is unmet, D forms too early and is over-processed.
 
@@ -191,7 +191,7 @@ Cosmological data are consistent with an effective relativistic-species count ne
 
 Observed low-metallicity gas and very old stars with BBN-like light-element patterns require a viable pre-stellar enrichment pathway in SMBH-local interpretations.
 
-- **Cycle mapping objective:** Establish an early sequence SMBH nucleation $\to$ jet/wind ejection $\to$ ambient gas-cloud enrichment $\to$ subsequent star formation.
+- **Cycle mapping objective:** Establish an early sequence SMBH nucleation $\to$ release-channel ejection $\to$ ambient gas-cloud enrichment $\to$ subsequent star formation.
 - **Timescale objective:** Show that transport and mixing can populate star-forming reservoirs with BBN-like yields early enough to match old-star abundance constraints.
 - **Formation-context option:** Evaluate whether early structure formation with primordial or very-early SMBH populations can supply the required enrichment baseline.
 
@@ -201,7 +201,7 @@ Observed low-metallicity gas and very old stars with BBN-like light-element patt
 
 - **No singularity:** Avoids the conceptual paradox of $t=0$ and "something from nothing."
 - **No fine-tuning of initial conditions:** Abundances emerge from dynamical equilibration in SMBH environments, not from finely-tuned cosmic initial states.
-- **Mechanistic clarity:** Replaces abstract "expansion cooling" with explicit radial outflow of assemblies through fixed Euclidean space.
+- **Mechanistic clarity:** Replaces abstract "expansion cooling" with explicit outward transport of assemblies through fixed Euclidean space.
 
 ### What It Seeks to Explain
 
@@ -218,6 +218,6 @@ Observed low-metallicity gas and very old stars with BBN-like light-element patt
 | Universe age | Finite ($t\sim13.8$ Gyr) | Eternal (no beginning) |
 | BBN location | Everywhere | Near SMBH cores |
 | BBN frequency | Once (first 20 min) | Recurring (wherever SMBHs form) |
-| Expansion driver | Metric expansion | Radial outflow of assemblies |
+| Expansion driver | Metric expansion | Outward transport of assemblies |
 | Light-element origin | Primordial relics | SMBH nucleation products |
 | Homogeneity explanation | Initial conditions | Dynamical equilibration |

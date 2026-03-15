@@ -114,6 +114,20 @@ For this reason, a concept differential may address a named theory, a law, an ob
 - whether it survives only after reinterpretation,
 - and whether current usage mixes observation, effective law, and ontology in unstable ways.
 
+### Unification Filter: Symmetry Container Is Not Enough
+
+One comparative rule should be stated explicitly for unification programs. A large symmetry container, elegant embedding, or visually compelling algebraic organization is **not** by itself a serious closure result.
+
+In this chapter, any unification proposal must be tested against at least three harder filters:
+
+- **chirality closure:** can it recover the asymmetric weak sector without unwanted mirror matter,
+- **flavor closure:** can it account for generation structure, mixing, and mass hierarchy rather than only relabeling them,
+- **phenomenology closure:** can it survive precision data without hiding failure behind mathematical elegance.
+
+This matters because many ambitious frameworks succeed first as containers. They show that several sectors can be written inside one algebra, bundle, or symmetry group. That can be mathematically illuminating and historically useful. But container success is weaker than mechanism success. If chirality, flavor, and quantitative fit remain external inputs, then the framework has organized known content without yet explaining why that content has the form it does.
+
+The same rule applies when assessing whether $\mathbb{A}\mathbb{A}\mathbb{A}$ has actually improved on a prior unification attempt. Replacing a Lie-algebra container with an assembly-and-medium ontology only counts as progress if the new ontology closes the same hard gates rather than merely moving them.
+
 ### Ontological Area
 
 Use one primary area:

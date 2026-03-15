@@ -17,6 +17,8 @@ export function createMarkdownRuntime(deps) {
   let markdownColumnCount = 2;
   let markdownPreferredColumnCount = 2;
   const textbookTocMarkdownPath = "content/markdown/generated/textbook-toc.md";
+  const supportResearchMarkdownPath = "content/markdown/aaa/archie/support-architrino-research.md";
+  const liberapayWidgetScriptSrc = "https://liberapay.com/Architrino/widgets/button.js";
   // These IDs are runtime-only helper scene identities, not authored scene IDs.
   const runtimeMarkdownPrefix = "runtime:markdown:";
   const runtimeMarkdownDocPrefix = `${runtimeMarkdownPrefix}doc:`;
@@ -121,6 +123,10 @@ export function createMarkdownRuntime(deps) {
     return normalizeRepoPath(markdownPath) === textbookTocMarkdownPath;
   }
 
+  function isSupportResearchPath(markdownPath) {
+    return normalizeRepoPath(markdownPath) === supportResearchMarkdownPath;
+  }
+
   function setMarkdownKind(markdownPath) {
     if (!markdownPanel) {
       return;
@@ -213,6 +219,39 @@ export function createMarkdownRuntime(deps) {
     };
 
     level2Items.forEach((item) => setExpandedState(item, false));
+  }
+
+  function decorateSupportResearch() {
+    if (!markdownBody || !isSupportResearchPath(activeMarkdownSourcePath)) {
+      return;
+    }
+
+    const monthlyHeading = [...markdownBody.querySelectorAll("h3")].find(
+      (heading) => heading.textContent.trim().toLowerCase() === "monthly support"
+    );
+    if (!monthlyHeading) {
+      return;
+    }
+
+    const existingWidget = markdownBody.querySelector(".liberapay-donation-widget");
+    if (existingWidget) {
+      return;
+    }
+
+    const insertionTarget =
+      monthlyHeading.nextElementSibling?.tagName === "P"
+        ? monthlyHeading.nextElementSibling
+        : monthlyHeading;
+
+    const widget = document.createElement("div");
+    widget.className = "liberapay-donation-widget";
+    widget.setAttribute("aria-label", "Liberapay donation button");
+
+    const script = document.createElement("script");
+    script.src = liberapayWidgetScriptSrc;
+    widget.appendChild(script);
+
+    insertionTarget.insertAdjacentElement("afterend", widget);
   }
 
   function typesetMarkdown() {
@@ -410,6 +449,7 @@ export function createMarkdownRuntime(deps) {
     applyMarkdownLayout();
     typesetMarkdown();
     decorateTextbookToc();
+    decorateSupportResearch();
   }
 
   if (markdownBody && typeof navigateToTarget === "function") {

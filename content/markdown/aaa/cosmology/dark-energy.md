@@ -5,7 +5,7 @@
 
 Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 68% of the present energy budget to dark energy—a component with equation-of-state parameter $w \approx -1$ that drives late-time accelerated expansion. The simplest realization is a cosmological constant $\Lambda$, which enters Einstein's field equations as a geometric term equivalent to a constant vacuum energy density $\rho_\Lambda = \Lambda c^2 / (8\pi G) \approx 5.96 \times 10^{-27}\;\mathrm{kg\,m^{-3}}$.
 
-This chapter maps dark-energy phenomenology onto the architrino assembly architecture. The central claim is that late-time acceleration is not the expansion of the Euclidean void itself—which is fixed, non-dynamical, and does not stretch—but a macroscopic readout of the evolving internal state of the Noether Sea. The task is to identify the substrate-level mechanism and derive the effective equation of state.
+This chapter maps dark-energy phenomenology onto the architrino assembly architecture. The central claim is that late-time acceleration is not the expansion of the Euclidean void itself—which is fixed, non-dynamical, and does not stretch—but a macroscopic readout of the evolving internal state of the Noether Sea. The task is to identify the substrate-level mechanism and derive the effective equation of state. Within that program, black holes are treated as one possible mediator of the large-scale energy-partition history, not as a replacement for the medium ontology itself.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
@@ -110,7 +110,6 @@ w(a) = w_0 + w_a(1-a),
 $$
 
 with $a = 1/(1+z)$ the effective scale factor (defined operationally through the redshift of photon-mode assemblies).
-with $a = 1/(1+z)$ the effective scale factor (defined operationally through the redshift of photon-mode assemblies).
 
 ## The Cosmological-Constant Problem
 
@@ -167,7 +166,94 @@ Supermassive black holes process matter and radiation through their high-energy 
 
 - **Energy input to the Noether Sea.** Jets and radiative outflows from SMBHs inject energy into the surrounding medium, locally exciting outer-binary modes and increasing the Noether-Sea internal temperature. On galactic and cluster scales, this injection is a source of heating that counteracts the natural cosmological cooling of the medium.
 - **Feedback on $w_{\mathrm{eff}}$.** If SMBH energy injection is correlated with structure formation, the effective dark-energy equation of state can carry weak environmental dependence.
+- **Backreaction rather than isolation.** The relevant cosmological question is not whether a black hole is an isolated object with a fixed bookkeeping mass, but whether the recycling zone and the ambient Noether Sea remain coupled strongly enough for the surrounding medium state to alter what the object contributes at late times.
 - **No perpetual motion.** The recycling process does not create energy; it redistributes it. The total energy budget (matter + radiation + medium baseline) is conserved in absolute time. What changes is the partition between locked internal modes and the slowly varying tension sector.
+
+The canonical strong-field and recycling picture is developed in [../spacetime/black-holes.md](../spacetime/black-holes.md). The present chapter keeps only the cosmological consequence: whether black-hole processing contributes a measurable source term to the late-time expansion history.
+
+## Cosmological Coupling as a Candidate Dark-Energy Channel
+
+### What the External Claim Is
+
+A recent observational claim, now part of the comparison landscape for this topic, is that dormant supermassive black holes in old elliptical galaxies may grow more strongly with cosmic time than standard accretion and merger channels predict. In that interpretation, the relevant question is not merely whether black holes grow, but whether the growth tracks the cosmological background in a way that suggests direct coupling to the large-scale medium state.
+
+The usual phenomenological parameterization writes the black-hole mass as
+
+$$
+M_{\mathrm{BH}}(a) \propto a^{K},
+$$
+
+where $a$ is the effective scale factor and $K$ measures the strength of the proposed cosmological coupling. In the source material motivating this scaffold, the interesting regime is the one in which $K$ is appreciably positive rather than consistent with zero after ordinary astrophysical channels are removed.
+
+### How $\mathbb{A}\mathbb{A}\mathbb{A}$ Would Read Such a Signal
+
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of this kind would not be read as black holes creating energy from nothing or as the Euclidean void itself driving mass growth. The relevant interpretation would instead be constitutive: black holes are regions where the Noether Sea is driven into the strongest known alignment, compression, and recycling regimes, so they are natural places for energy partition between inner, middle, and outer tri-binary layers to become macroscopically visible.
+
+That yields a disciplined three-layer reading:
+
+- At the **substrate level**, the Noether Sea remains the carrier of the cosmological dynamics.
+- At the **strong-field constitutive level**, SMBHs act as high-gradient recycling sites that can shift energy between locked internal modes and outward-propagating medium excitations.
+- At the **effective cosmology level**, any residual population-wide black-hole coupling appears only as a contribution to $\rho_{\mathrm{DE,eff}}(z)$ or to the source term $\mathcal{S}_{\mathrm{relax}}$ in the expansion history.
+
+In that reading, the black-hole channel is neither the whole dark-energy story nor a dispensable side note. It is a candidate transport mechanism inside a medium-relaxation cosmology.
+
+### Minimal Incorporation into the Effective Expansion Law
+
+The conservative way to encode this possibility is to split the effective dark-energy sector into a baseline medium term plus an SMBH-correlated term:
+
+$$
+\rho_{\mathrm{DE,eff}}(z)
+=
+\rho_{\mathrm{sea,relax}}(z)
++
+\rho_{\mathrm{BH,coup}}(z).
+$$
+
+The first term is the default Noether-Sea relaxation channel developed above. The second term is reserved for any statistically supported black-hole population effect that cannot be re-expressed as ordinary heating, accretion history, merger history, or selection bias.
+
+At the same level of description, the source term may be decomposed as
+
+$$
+\mathcal{S}_{\mathrm{relax}}
+=
+\mathcal{S}_{\mathrm{sea}}
++
+\mathcal{S}_{\mathrm{BH}},
+$$
+
+where $\mathcal{S}_{\mathrm{BH}}$ captures the net transfer from SMBH recycling zones into the slowly varying outer-binary tension sector. The sign and magnitude of $\mathcal{S}_{\mathrm{BH}}$ are empirical questions, not inputs fixed by ontology alone.
+
+This decomposition also clarifies why an effective phantom crossing does not by itself force acausal physics in the local framework. If the dark-energy-like sector is being fed by transfer from another component, then $w_{\mathrm{eff}} < -1$ can appear at the level of the fit while the underlying substrate dynamics remain causal and energy-accounted.
+
+### Population History Matters
+
+If an SMBH-correlated channel exists, its amplitude cannot depend only on the instantaneous properties of present-day black holes. It must inherit the production and feeding history of the recycling population. In observational practice this often shows up through links to star-formation history, galaxy assembly, compact-object demographics, and host-environment selection. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the deeper statement is that $\mathcal{S}_{\mathrm{BH}}$ depends on the path-history by which matter was routed into strong-field processing sites and then returned, in altered form, to the surrounding medium.
+
+For that reason the black-hole source term should be interpreted schematically as
+
+$$
+\mathcal{S}_{\mathrm{BH}}(z)
+=
+\mathcal{F}\!\left[\mathcal{H}_{\mathrm{form}},\mathcal{H}_{\mathrm{feed}},\mathcal{H}_{\mathrm{release}}\right],
+$$
+
+where $\mathcal{H}_{\mathrm{form}}$ denotes the compact-object formation history, $\mathcal{H}_{\mathrm{feed}}$ the inflow history into recycling sites, and $\mathcal{H}_{\mathrm{release}}$ the history of outward channels that load the Noether Sea. The point of this notation is conceptual rather than final: any viable black-hole contribution must be history-dependent, not merely appended as a static late-time correction.
+
+### What Would Have to Be True
+
+For cosmological coupling to become part of the mainline dark-energy story in $\mathbb{A}\mathbb{A}\mathbb{A}$, four conditions would need to hold simultaneously.
+
+- The inferred black-hole growth must remain after careful accounting for hidden accretion, merger demographics, selection effects, and mass-calibration drift.
+- The coupling must scale coherently across galaxy populations rather than appearing only in a tuned subsample.
+- The same coupling must fit late-time expansion data without spoiling CMB, BAO, lensing, and structure-growth closure.
+- The strong-field mechanism in [../spacetime/black-holes.md](../spacetime/black-holes.md) must provide a constitutive path from horizon/interior recycling to a population-level contribution to $\rho_{\mathrm{DE,eff}}(z)$.
+
+Two additional consistency conditions are equally important.
+
+- The source history that feeds $\mathcal{S}_{\mathrm{BH}}$ must remain compatible with reasonable compact-object formation and galaxy-assembly histories.
+- The resulting effective component need not trace baryonic structure point by point; if it is truly mediated through medium loading, its large-scale distribution and clustering response may differ from ordinary matter while still remaining tied to matter-processing history.
+
+Until those conditions are met, cosmological coupling should be treated as a candidate channel under test, not as settled closure.
 
 ## Regime Map
 
@@ -175,8 +261,8 @@ Supermassive black holes process matter and radiation through their high-energy 
 |:---|:---|:---|:---|
 | Radiation era ($z > 3400$) | Hot, dense; outer binaries contracted | $w_{\mathrm{eff}} \to 0$ (subdominant) | Radiation pressure dominates |
 | Matter era ($3400 > z > 0.7$) | Cooling; outer binaries relaxing | $w_{\mathrm{eff}}$ transitions toward $-1$ | Matter density dominates; tension grows |
-| Acceleration onset ($z \sim 0.7$) | $\rho_{\mathrm{DE,eff}} \sim \rho_m$ | $w_{\mathrm{eff}} \approx -1$ | Tension becomes dynamically significant |
-| Present ($z = 0$) | Quasi-equilibrium tension | $w_{\mathrm{eff}} \approx -1.03 \pm 0.03$ | Acceleration established |
+| Acceleration onset ($z \sim 0.7$) | $\rho_{\mathrm{DE,eff}} \sim \rho_m$ | $w_{\mathrm{eff}} \approx -1$ | Tension becomes dynamically significant; SMBH channel may become non-negligible |
+| Present ($z = 0$) | Quasi-equilibrium tension | $w_{\mathrm{eff}} \approx -1$ with possible mild drift | Acceleration established; coupling tests become survey-limited |
 | Far future ($z \to -1$) | Full relaxation | $w_{\mathrm{eff}} \to -1$ or evolves | Depends on relaxation endpoint |
 
 The acceleration onset redshift $z \sim 0.7$ is treated as the characteristic crossover of this relaxation model, with timescale set by assembly-scale physics (outer-binary binding energy and Noether-Sea coupling).
@@ -188,10 +274,11 @@ In the modular cosmology architecture, this chapter provides:
 - **Output to [expansion-mechanism.md](./expansion-mechanism.md):** $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$ from the medium-relaxation model.
 - **Output to [CMB.md](./CMB.md):** late-time ISW contribution and distance to last scattering.
 - **Output to [structure-formation.md](./structure-formation.md):** potential evolution $\dot{\Phi}(z)$ entering the growth equation.
+- **Cross-link to [../spacetime/black-holes.md](../spacetime/black-holes.md):** strong-field recycling map and the constitutive interpretation of any SMBH population coupling.
 - **Input from [dark-matter.md](./dark-matter.md):** $\Omega_m(z)$ and $G_{\mathrm{eff}}(a,k)$ for consistent Friedmann integration.
 - **Input from [BBN-constraints.md](./BBN-constraints.md):** early-universe constraints ensuring $\rho_{\mathrm{DE,eff}}(z_{\mathrm{BBN}})$ is negligible relative to radiation density.
-- **Ontic variables passed:** $\rho_{\mathrm{NS}}(z)$, $\langle R_{\mathrm{outer}} \rangle(z)$, $\tau_{\mathrm{relax}}^{\mathrm{outer}}$, $\mathcal{S}_{\mathrm{relax}}(z)$.
-- **Effective outputs returned:** $w_{\mathrm{eff}}(z)$, $\rho_{\mathrm{DE,eff}}(z)$, $H(z)$.
+- **Ontic variables passed:** $\rho_{\mathrm{NS}}(z)$, $\langle R_{\mathrm{outer}} \rangle(z)$, $\tau_{\mathrm{relax}}^{\mathrm{outer}}$, $\mathcal{S}_{\mathrm{sea}}(z)$, $\mathcal{S}_{\mathrm{BH}}(z)$.
+- **Effective outputs returned:** $w_{\mathrm{eff}}(z)$, $\rho_{\mathrm{sea,relax}}(z)$, $\rho_{\mathrm{BH,coup}}(z)$, $\rho_{\mathrm{DE,eff}}(z)$, $H(z)$.
 
 All interfaces use the same absolute-time / Euclidean-void substrate and Noether-Sea state variables, ensuring ontological consistency with other cosmology modules.
 
@@ -201,7 +288,8 @@ Late-time accelerated expansion, conventionally attributed to dark energy or a c
 
 - The Noether Sea carries a baseline energy density set by the binding and oscillation energies of its constituent tri-binaries.
 - The outer-binary sector of these tri-binaries produces an effective tension (negative pressure) as the medium relaxes and outer-binary radii evolve on cosmological timescales.
+- Supermassive black holes may supply a secondary transport channel that feeds or modulates that tension sector, but only if the inferred population-level coupling survives ordinary astrophysical explanations.
 - When this tension satisfies $w < -1/3$, the effective expansion history shows acceleration.
 - The cosmological-constant hierarchy problem is reframed: high-energy internal modes are dynamically shielded from the tension sector by the nested-binary architecture, so the natural scale of $\rho_{\mathrm{DE,eff}}$ is set by outer-binary physics, not by summing all zero-point modes.
 
-The parameters $w$ and $\Lambda$ remain useful effective descriptors of expansion history, while the mechanistic content resides in the Noether-Sea constitutive relation and outer-binary dynamics. Deriving that constitutive relation from the master equation is the critical open program.
+The parameters $w$ and $\Lambda$ remain useful effective descriptors of expansion history, while the mechanistic content resides in the Noether-Sea constitutive relation, outer-binary dynamics, and any validated SMBH recycling channel. Deriving that constitutive relation from the master equation is the critical open program.

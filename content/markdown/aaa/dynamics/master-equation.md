@@ -108,7 +108,7 @@ $$
 \hat{\mathbf{r}}_{ij}(t;t_0).
 $$
 Since $\partial_{t_0}g_{ij}(t;t_0)=c_f J_{ij}(t;t_0)$, the collapse produces an overall factor $1/c_f$ together with $\left|J_{ij}\right|^{-1}$; by convention that constant factor is absorbed into $\kappa$.
-The intrinsic emission amplitude is constant and isotropic, but the **received causal flux** is geometrically compressed or dilated by the delay-map Jacobian. That $J_{ij}^{-1}$ factor is therefore part of the fundamental law, not an optional correction.
+An architrino emits potential at a constant rate per unit absolute time, but a moving source lays that steady output down on a moving family of causal surfaces. The **received causal flux** is therefore velocity dependent through the delay-map Jacobian: source motion geometrically compresses or dilates successive wake arrivals at the receiver. That $J_{ij}^{-1}$ factor is therefore part of the fundamental law, not an optional correction.
 
 Numerical implementations discretize this representation by sampling candidate emission times and solving for the active roots. The familiar “sum over spherical wake surfaces” is therefore a numerical realization of the same branch-selection rule, not a separate physical mechanism.
 
@@ -405,7 +405,7 @@ where:
 - $\hat{\mathbf{r}}_{ij}$: radial direction from emission to reception
 - $J_{ij}$: causal Jacobian controlling geometric bunching or dilation of the received wake flux
 
-**Note on interaction structure:** The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is **radial in direction**: it points along the line of action $\hat{\mathbf{r}}_{ij}$ from the source's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** (no $\mathbf{v}_i \times \mathbf{B}$-like contributions) in the fundamental interaction kernel. However, the force magnitude is not purely $1/r^2$; it is modulated by $\left|J_{ij}\right|^{-1}$. Constant isotropic emission at the source is therefore received as a Jacobian-weighted causal flux at the receiver.
+**Note on interaction structure:** The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is **radial in direction**: it points along the line of action $\hat{\mathbf{r}}_{ij}$ from the source's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** (no $\mathbf{v}_i \times \mathbf{B}$-like contributions) in the fundamental interaction kernel. However, the force magnitude is not purely $1/r^2$; it is modulated by $\left|J_{ij}\right|^{-1}$. Constant emission per unit absolute time at the source is therefore received as a Jacobian-weighted causal flux at the receiver, with the spatial deposition pattern itself changing as the source moves.
 
 **Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry**, **Jacobian-modulated flux**, and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the burden of magnetic-field emergence on the assembly structure, Noether Sea dynamics, and the finite-speed causal geometry itself.
 
@@ -508,7 +508,7 @@ Reflects the **surface density** of potential on the causal isochron. As that su
 
 **The Jacobian factor $\left|J_{ij}\right|^{-1}$:**
 
-Although each emitted wavefront has constant intrinsic amplitude, the receiver samples that emission through a finite-speed causal map. Motion of the source toward the active branch compresses the spacing of wake surfaces and increases the received flux; motion away from the branch dilates the spacing and decreases it. The geometric compression/dilation factor is exactly $\left|J_{ij}\right|^{-1}$.
+Under the constant-time emission rule stated above, source motion between emission instants deposits the output onto a history-dependent family of expanding causal surfaces. Motion of the source toward the active branch compresses the spacing of successive wake arrivals and increases the received flux; motion away from the branch dilates the spacing and decreases it. The geometric compression/dilation factor is exactly $\left|J_{ij}\right|^{-1}$.
 
 **Absorption of geometric constants into $\kappa$:**
 
@@ -564,21 +564,22 @@ $$
 
 **Important caveat:** Path-history delay shifts both the causal root $t_0$ and $\hat{\mathbf{r}}_{ij}$ over finite intervals, so these are strictly **local** statements about infinitesimal time evolution. The global trajectory depends on the full history of all sources.
 
-#### Emission Cadence, Constant Emission, and Received Flux
+#### Moving-Source Geometry and Received Flux
 
 **Critical modeling note:**
 
-- **Emission cadence**: constant rate (independent of source speed)
-- **Per-wavefront amplitude**: constant (independent of source speed)
+- **Emission rule**: fixed by the constant-time law stated above
+- **Spatial deposition**: velocity dependent because the source changes position between emission instants
 
-The source's intrinsic emission rule is constant and isotropic, but the **received** force magnitude is not purely a function of $r_{ij}$. It is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, which measures how the source motion compresses or dilates the spacing of wake surfaces along the active branch.
+The **emitted potential pattern in space** is not speed independent: a moving source lays down successive wake surfaces from different points on its worldline. The **received** force magnitude is therefore not purely a function of $r_{ij}$. It is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, which measures how the source motion compresses or dilates the spacing of wake surfaces along the active branch.
 
-The receiver's velocity $\mathbf{v}_i(t)$ does **not** directly modulate the force magnitude $|\mathbf{F}_{ij}|$ itself (at fixed $r_{ij}$, $\hat{\mathbf{r}}_{ij}$, and $J_{ij}$). It influences:
+The receiver's velocity $\mathbf{v}_i(t)$ does **not** appear as a separate source-strength factor in $|\mathbf{F}_{ij}|$ itself (at fixed $r_{ij}$, $\hat{\mathbf{r}}_{ij}$, and $J_{ij}$). It influences:
 
 1. The **instantaneous power** through $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
 2. The **subsequent evolution of $r_{ij}$** (and thus future force magnitudes).
+3. Which delayed branches are actually sampled along the receiver worldline over time.
 
-**Causal-flux modulation:** Unlike some classical wave models, the architrino emission is **isotropic and constant-amplitude** at the source. The velocity dependence enters through the **geometry of causal intersections** and the **bunching or dilation of received wake flux** in the Euclidean void. This is the origin of the Jacobian denominator and the seed of relativistic and magnetic behavior in the emergent theory.
+**Causal-flux modulation:** Unlike models that make source strength itself a function of speed, the velocity dependence here enters through the **moving-source geometry** of emission, the **geometry of causal intersections**, and the **bunching or dilation of received wake flux** in the Euclidean void. This is the origin of the Jacobian denominator and the seed of relativistic and magnetic behavior in the emergent theory.
 
 ---
 
@@ -707,7 +708,7 @@ The total acceleration on a particle at any instant is the **vector sum** of the
 
 #### Velocity Dependence
 
-**Statement:** The dynamics are **delayed** and **radial in direction**. Architrinos are transceivers: they emit causal isochrons at a **constant cadence** and **constant per-wavefront amplitude** (independent of emitter speed). The received force magnitude is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, which captures geometric bunching or dilation of the wake flux along the active branch. The receiver's speed affects the **work rate** via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
+**Statement:** The dynamics are **delayed** and **radial in direction**. Because the source moves while emitting, both the emitted wake pattern and the received force are velocity dependent through causal geometry. The received force magnitude is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, while the receiver's speed affects the **work rate** and branch sampling via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
 
 **Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent wake surfaces. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past light cones).
 
@@ -787,11 +788,11 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 #### Self-Hit as Stabilization Mechanism
 
-**Role in binary formation:** Self-hit provides **repulsive radial force** that opposes the attractive pull of opposite-charge partners. This competition produces:
+**Role in binary formation:** Self-hit provides a **repulsive radial contribution** that opposes the attractive pull of opposite-charge partners. This competition produces:
 
-- **Maximum-curvature orbits**: Stable or quasi-stable configurations at minimum radius $R_{\min}$.
-- **Null-separatrix protection**: The Jacobian-degenerate boundary $J=0$ acts as a geometric wall against collapse.
-- **Energy balance**: Self-hit can absorb tangential power, enabling quasi-circular orbits.
+- **Maximum-curvature candidates**: the circular toy model identifies where a minimum-radius barrier must be analyzed.
+- **Null-separatrix protection**: the Jacobian-degenerate boundary $J=0$ acts as a geometric wall against collapse in the exact kernel.
+- **A closure test, not a closure proof**: the same $1/|J|$ amplification multiplies tangential as well as radial projections, so a Jacobian-null branch does not by itself prove vanishing tangential power or an exact locked orbit.
 
 **Connection to quantum behavior:** The non-Markovian memory and deterministic-but-complex self-hit dynamics are the **seed** of quantum-like phenomena:
 
@@ -870,15 +871,17 @@ $$
 
 Hence as $J_{ii}\to 0^+$ the ideal (unregularized) response diverges, producing a restoring barrier that blocks continuation into a collapsing branch. With finite numerical regularization $\eta>0$, this appears as a very large but finite restoring force and must sharpen as $\eta\to 0$.
 
+This null-separatrix is therefore an **amplitude wall** for the self branch. It is not, by itself, a theorem of circular closure. The same branch weight multiplies every projection of the self-hit force, including the tangential component, so contact with $J_{ii}=0$ obstructs collapse but does not by itself establish a periodic orbit or zero net cycle-averaged power.
+
 **Operational characterization of MCB:**
 - The inner branch evolves near $J_{ii}=0$ without crossing it.
 - The minimum radius $R_{\min}$ is the smallest orbit radius compatible with $J_{ii}\ge 0$ on active roots.
-- Tangential power averages near zero over one cycle in the locked regime.
+- Tangential power must be controlled separately; near-zero cycle-average power is an additional closure condition, not a consequence of $J_{ii}=0$ alone.
 
 **Significance:**
 - Defines a **fundamental length scale** $R_{\min}$ that sets the tightest stable orbit radius
 - In the exact geometric model, excludes classical $r \to 0$ collapse by a null-separatrix barrier
-- Foundation for stable particle assemblies such as tri-binaries
+- Supplies one geometric ingredient in candidate stable particle assemblies such as tri-binaries
 
 **Status split (analytic vs numeric):**
 - **Analytic:** Existence of the Jacobian-null boundary and its singular restoring scaling in the exact kernel.
@@ -915,7 +918,7 @@ if the resulting radial acceleration is the same.
 
 Any single hit can be **equivalently described** with a **stationary emitter** ($|\mathbf{v}| = 0$) placed somewhere along the same unoriented line of action, with the emitter's actual speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
 
-**Key property:** The per-wavefront emission amplitude remains constant in this recast; the velocity dependence is transferred into the causal geometry and the matched Jacobian-weighted flux.
+**Key property:** The same emission law is preserved in this recast; the velocity dependence is transferred into the adjusted emission geometry and the matched Jacobian-weighted flux.
 
 **Utility:** This recast simplifies some analytic calculations and provides intuition for the receiver's "inference problem" (what source configurations are consistent with a given hit?).
 
@@ -1133,23 +1136,136 @@ So: **analytic yes** (up to standard quadratures), and corrections doable.
 
 #### Two‑body uniform circular orbit, sub‑$c_f$ (no self‑hit)
 
-This is in the draft as the “unstable orbit” case.
+Consider the symmetric opposite-charge circular ansatz
+$$
+\mathbf{x}_1(t)=R(\cos\omega t,\sin\omega t,0),
+\qquad
+\mathbf{x}_2(t)=-\mathbf{x}_1(t),
+\qquad
+\beta\equiv \frac{v}{c_f}=\frac{\omega R}{c_f}\in(0,1).
+$$
+Fix receiver $1$ at time $t$ and let the unique partner emission time be $t_0=t-\Delta$, with
+$$
+\xi\equiv \frac{\omega\Delta}{2}\in\left(0,\frac{\pi}{2}\right).
+$$
+Write $\mathbf{e}_r(t)=(\cos\omega t,\sin\omega t,0)$ and
+$\mathbf{e}_\theta(t)=(-\sin\omega t,\cos\omega t,0)$ for the receiver polar frame.
 
-We can:
+#### Proposition (Unique partner branch and exact delay equation)
 
-- Assume circular orbit of radius $R$, angular speed $\omega$, velocity $v = \omega R < c_f$.
-- Solve the causal constraint for a *single* causal-delay emission angle (unique $t_0$).
-- Compute the exact radial and tangential components of the causal-delay force.
+In the symmetric sub-$c_f$ circular ansatz, the partner branch is unique and its delay angle $\xi$ is the unique solution of
+$$
+\cos\xi=\frac{\xi}{\beta},
+\qquad
+0<\xi<\frac{\pi}{2}.
+$$
 
-This is analogous to classical EM with causal-delay potentials but simpler (pure radial kernel). There are known techniques:
+**Proof.**
+The partner separation is
+$$
+\mathbf{r}_{12}(t;t_0)
+=
+\mathbf{x}_1(t)-\mathbf{x}_2(t_0)
+=
+R\big(\mathbf{e}_r(t)+\mathbf{e}_r(t-\Delta)\big),
+$$
+so
+$$
+r_{12}(t;t_0)=2R\cos\frac{\omega\Delta}{2}=2R\cos\xi.
+$$
+The causal condition $r_{12}=c_f\Delta$ therefore becomes
+$$
+2R\cos\xi=c_f\frac{2\xi}{\omega},
+$$
+hence $\cos\xi=\xi/\beta$.
+Define $h_\beta(\xi)=\cos\xi-\xi/\beta$ on $[0,\pi/2]$. Then
+$$
+h_\beta(0)=1>0,
+\qquad
+h_\beta\!\left(\frac{\pi}{2}\right)=-\frac{\pi}{2\beta}<0,
+\qquad
+h_\beta'(\xi)=-\sin\xi-\frac{1}{\beta}<0.
+$$
+So $h_\beta$ is strictly decreasing and has exactly one root on $(0,\pi/2)$. $\square$
 
-- Solve for the causal-delay phase difference $\Delta\phi$ by transcendental equation,
-- Then get closed expressions (often implicit) for the force components.
+#### Proposition (Exact partner-only circular force decomposition)
 
-Outcome:
+For the unique partner branch above,
+$$
+\hat{\mathbf{r}}_{12}
+=
+\cos\xi\,\mathbf{e}_r(t)-\sin\xi\,\mathbf{e}_\theta(t),
+\qquad
+r_{12}=2R\cos\xi,
+\qquad
+J_{12}=1+\beta\sin\xi.
+$$
+Since the charges are opposite, the partner acceleration on receiver $1$ is
+$$
+\mathbf{a}_{12}
+=
+-\frac{\kappa |q_1q_2|}{4R^2\cos^2\xi\,(1+\beta\sin\xi)}
+\left(
+\cos\xi\,\mathbf{e}_r(t)-\sin\xi\,\mathbf{e}_\theta(t)
+\right).
+$$
+Therefore the exact radial and tangential components are
+$$
+a_r^{(\mathrm{part})}
+=
+-\frac{\kappa |q_1q_2|}{4R^2\cos\xi\,(1+\beta\sin\xi)}<0,
+$$
+$$
+a_\theta^{(\mathrm{part})}
+=
+\frac{\kappa |q_1q_2|\,\sin\xi}{4R^2\cos^2\xi\,(1+\beta\sin\xi)}
+=
+\frac{\kappa |q_1q_2|\,\tan\xi}{4R^2\cos\xi\,(1+\beta\sin\xi)}
+>0.
+$$
 
-- We can get **analytic expressions** (possibly implicit) for the tangential power and show explicitly that tangential force is positive → spiral instability.
-- Might not be pretty, but it will be analytic.
+**Proof.**
+Using
+$$
+\mathbf{e}_r(t-\Delta)=\cos(2\xi)\,\mathbf{e}_r(t)-\sin(2\xi)\,\mathbf{e}_\theta(t),
+$$
+one finds
+$$
+\mathbf{r}_{12}
+=
+R\big(\mathbf{e}_r(t)+\mathbf{e}_r(t-\Delta)\big)
+=
+2R\cos\xi\left(\cos\xi\,\mathbf{e}_r(t)-\sin\xi\,\mathbf{e}_\theta(t)\right),
+$$
+which gives the stated $r_{12}$ and $\hat{\mathbf{r}}_{12}$.
+The source velocity at emission is
+$$
+\mathbf{v}_2(t_0)
+=
+-v\,\mathbf{e}_\theta(t-\Delta),
+$$
+and
+$$
+\mathbf{e}_\theta(t-\Delta)\cdot\hat{\mathbf{r}}_{12}=\sin\xi,
+$$
+so
+$$
+\mathbf{v}_2(t_0)\cdot\hat{\mathbf{r}}_{12}=-v\sin\xi,
+\qquad
+J_{12}=1-\frac{\mathbf{v}_2(t_0)\cdot\hat{\mathbf{r}}_{12}}{c_f}=1+\beta\sin\xi.
+$$
+Because $\sigma_{12}=-1$ for opposite charges, the branch acceleration is $-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/(r_{12}^2J_{12})$, and projecting onto $\mathbf{e}_r(t)$ and $\mathbf{e}_\theta(t)$ yields the stated components. Since $\xi\in(0,\pi/2)$, every factor in the denominators is positive and $\sin\xi>0$, proving the sign claims. $\square$
+
+#### Corollary (Tangential positivity and circular instability)
+
+Within the isolated partner-only circular ansatz, the tangential power is strictly positive:
+$$
+\mathbf{a}_{12}\cdot\mathbf{v}_1(t)=v\,a_\theta^{(\mathrm{part})}>0.
+$$
+Therefore an isolated opposite-charge binary cannot realize an exact constant-speed circular orbit from partner delay alone.
+
+**Interpretation.**
+These are the exact partner-only circular formulas needed elsewhere in the chapter. They show that the delayed partner branch supplies the desired inward radial pull, but it also drives the motion forward along $\mathbf{e}_\theta$. The circular ansatz therefore spirals inward instead of closing unless some additional structure changes the tangential balance.
 
 ---
 
@@ -1284,6 +1400,8 @@ We will not get a *closed‑form sum*, but:
 
 Near the null-separatrix condition $J\to 0$, the exact branch weight carries a $1/|J|$ singularity (see Maximum-Curvature Orbit above), so this toy model also captures the geometric-wall limit.
 
+This is again an amplitude statement, not a closure theorem. A circular self branch born on $J=0$ is born with singular weight, but the same singular factor multiplies tangential as well as radial projections. The null wall therefore obstructs continuation through the branch boundary without, by itself, proving an exactly locked circular orbit.
+
 So: **strong analytic handle**, though not “closed form in elementary functions.”
 
 This is the right playground to:
@@ -1329,6 +1447,119 @@ So:
 - Dynamically: the stability question remains separate from the algebraic construction and requires numerical analysis of attractivity versus fine-tuned orbit families.
 
 This would be an “analytic scaffold + numerical check” situation, not full closed forms.
+
+---
+
+#### Symmetric delayed logarithmic spiral (advanced non-circular benchmark)
+
+The circular obstruction makes a non-circular benchmark worthwhile. A workable first ansatz is the symmetric logarithmic spiral
+$$
+r(\theta)=R_0 e^{-a\theta},
+\qquad
+t(\theta)=\frac{\theta}{\Omega},
+\qquad
+\mathbf{x}_1(\theta)=r(\theta)\,\mathbf{e}_r(\theta),
+\qquad
+\mathbf{x}_2(\theta)=-r(\theta)\,\mathbf{e}_r(\theta),
+$$
+with fixed pitch $a>0$ and constant angular rate $\Omega>0$.
+
+For a receiver event at angle $\theta$ and a partner emission at $\theta_0=\theta-\Delta$ with $\Delta>0$, define
+$$
+\rho\equiv e^{a\Delta},
+\qquad
+\Lambda(\Delta;a)\equiv \sqrt{1+\rho^2+2\rho\cos\Delta}.
+$$
+Then
+$$
+\mathbf{r}_{12}(\theta;\theta_0)
+=
+r(\theta)\Big[(1+\rho\cos\Delta)\mathbf{e}_r(\theta)-\rho\sin\Delta\,\mathbf{e}_\theta(\theta)\Big],
+$$
+so the exact delayed-hit condition becomes
+$$
+r(\theta)\,\Lambda(\Delta;a)=c_f\,\frac{\Delta}{\Omega}.
+$$
+Equivalently, with the local circular-speed ratio
+$$
+b(\theta)\equiv \frac{\Omega r(\theta)}{c_f},
+$$
+the admissible delay angles solve
+$$
+\Lambda(\Delta;a)=\frac{\Delta}{b(\theta)}.
+$$
+This is the non-circular analogue of the circular partner equation $\cos\xi=\xi/\beta$.
+
+The spiral Frenet frame is
+$$
+\hat{\mathbf{T}}
+=
+\frac{-a\,\mathbf{e}_r(\theta)+\mathbf{e}_\theta(\theta)}{\sqrt{1+a^2}},
+\qquad
+\hat{\mathbf{N}}
+=
+\frac{-\mathbf{e}_r(\theta)-a\,\mathbf{e}_\theta(\theta)}{\sqrt{1+a^2}},
+$$
+with speed
+$$
+\|\dot{\mathbf{x}}_1\|=\Omega r(\theta)\sqrt{1+a^2}.
+$$
+Using the branch unit vector
+$$
+\hat{\mathbf{r}}_{12}
+=
+\frac{(1+\rho\cos\Delta)\mathbf{e}_r(\theta)-\rho\sin\Delta\,\mathbf{e}_\theta(\theta)}
+{\Lambda(\Delta;a)},
+$$
+the source-velocity projection entering the Jacobian is
+$$
+\mathbf{v}_2(\theta_0)\cdot\hat{\mathbf{r}}_{12}
+=
+\frac{\Omega r(\theta)\rho}{\Lambda(\Delta;a)}
+\Big[\sin\Delta-a(\cos\Delta+\rho)\Big].
+$$
+Hence
+$$
+J_{12}
+=
+1-\frac{\Omega r(\theta)\rho}{c_f\,\Lambda(\Delta;a)}
+\Big[\sin\Delta-a(\cos\Delta+\rho)\Big].
+$$
+
+For opposite charges, the branch acceleration is
+$$
+\mathbf{a}_{12}
+=
+-\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda^2 |J_{12}|}\,
+\hat{\mathbf{r}}_{12}.
+$$
+Projecting onto the spiral Frenet frame gives
+$$
+a_T
+=
+\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda^3 |J_{12}|\,\sqrt{1+a^2}}
+\Big[a(1+\rho\cos\Delta)+\rho\sin\Delta\Big],
+$$
+$$
+a_N
+=
+\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda^3 |J_{12}|\,\sqrt{1+a^2}}
+\Big[1+\rho\cos\Delta-a\rho\sin\Delta\Big].
+$$
+
+The power sign is controlled by $a_T$, since the velocity is tangent to the spiral. In the circular limit $a\to0$, one recovers the sign-definite numerator $\rho\sin\Delta>0$ and therefore the circular instability result above. For $a>0$, however, the tangential numerator
+$$
+S_T(\Delta,a)\equiv a(1+\rho\cos\Delta)+\rho\sin\Delta
+$$
+is no longer sign-definite from geometry alone. The spiral benchmark therefore reopens the braking question: admissible delayed roots could, in principle, yield $S_T<0$ on some branches even though the circular ansatz cannot.
+
+At the same time, the fixed-pitch logarithmic spiral cannot itself realize a true turning point, because
+$$
+\dot r=-a\Omega r<0,
+\qquad
+\ddot r=a^2\Omega^2 r>0
+$$
+for all finite $\theta$. A genuine minimum-radius event with $\dot r=0$ therefore requires at least a variable-pitch spiral $a=a(\theta)$ or another non-circular periodic ansatz. The present calculation advances the spiral track by giving the exact delayed-root equation and branchwise Frenet projections, but it does not yet solve the turning-point problem.
 
 ---
 

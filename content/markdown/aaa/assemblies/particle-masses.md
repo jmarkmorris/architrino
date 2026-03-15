@@ -59,6 +59,42 @@ In the architrino framework:
 - Mass is **not a coupling constant** ($y_f$ Yukawa couplings) but a **geometric property** (shielding factor $\zeta$ + drag coefficient).
 - The 125 GeV "Higgs Boson" is reinterpreted as a **radial breathing mode** of the sea lattice, not the source of mass itself (see).
 
+## Speculative Charged-Lepton Benchmark: Koide
+
+The charged-lepton mass triplet is unusual enough that it is worth recording one explicit benchmark, while keeping the status clear: this is **speculative** and should not be presented as a derivation.
+
+Let
+$$
+\mathbf{r} = \left(\sqrt{m_e},\sqrt{m_\mu},\sqrt{m_\tau}\right).
+$$
+The empirical Koide relation can be written as
+$$
+\frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}.
+$$
+
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same decorated core architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from tri-binary, bi-binary, and uni-binary cores is more constrained than a generic monotone hierarchy.
+
+The conservative use of Koide here is therefore:
+
+- as a **charged-lepton benchmark** on the shielding/exposure mass map,
+- not as proof that the architecture has derived lepton masses,
+- and not as a license to tune free parameters until the ratio appears.
+
+If a first-principles shielding model naturally lands near the Koide surface for $(e,\mu,\tau)$, that is a meaningful success signal. If it does not, the framework is not automatically falsified, but the idea that generation lifting alone tightly fixes the lepton mass triplet becomes weaker.
+
+### Why Quarks Should Not Be Expected to Obey Koide
+
+Even if the charged leptons approximately follow a simple shielding geometry, quarks should not be expected to do so.
+
+The reason is that quark inertial mass is not just bare core exposure. Quarks carry axis-exceptional color structure, induce persistent flux-tube tension, and require continual phase-correction exchange through the strong sector. In that regime, the measured effective mass is contaminated by confinement energy and Noether-Sea response to the color disturbance.
+
+So the working distinction is:
+
+- **charged leptons:** closest available probe of the bare shielding ladder,
+- **quarks:** shielding ladder plus strong-sector contamination.
+
+That means a Koide-like benchmark, if it is useful at all, belongs first to the charged leptons. Failure of quarks to lie on the same mass-root surface should be treated as expected in the present ontology, not as an immediate contradiction.
+
 ---
 
 ## Research Plan: From Hypothesis to Calculation

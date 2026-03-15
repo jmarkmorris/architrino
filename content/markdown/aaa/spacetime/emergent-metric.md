@@ -40,6 +40,20 @@ The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps:
 
 $(\delta_{ij}, n(x,t), \Phi_{\text{eff}}(x,t), \nabla\Phi_{\text{eff}}(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
 
+## Jacobson-Type Support: Metric as Equation of State
+
+This medium-first picture is strengthened by the general Jacobson-style lesson: Einstein equations are plausibly an **equation of state** for an underlying microscopic system rather than substrate-level laws of the void itself.
+
+That comparative point fits $\mathbb{A}\mathbb{A}\mathbb{A}$ cleanly:
+
+- the Euclidean void and absolute time are fundamental background structure,
+- the Noether-core sea is the relevant microstructure,
+- and relativistic metric behavior is the long-wavelength thermodynamic closure of that microstructure.
+
+On this reading, quantizing the effective metric directly is not the primary move. The primary move is to understand and simulate the microphysical medium well enough that GR-like geometry emerges as its coarse constitutive summary.
+
+This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed tri-binary architecture should matter.
+
 ## Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
