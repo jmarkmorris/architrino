@@ -1,5 +1,9 @@
 # Textbook File Structure
 
+This note defines how textbook-facing markdown files are supposed to behave inside the scene-driven webapp, not just how they are stored on disk. Its purpose is to make file structure, heading structure, launch behavior, and scene relationships legible enough that authored documents remain portable and reader-ready at the same time.
+
+The sections below move from core principles to practical authoring rules, then end with the checklist used to judge whether a reader-facing file is structurally complete.
+
 ## Purpose
 
 This note defines the current file-structure standard for textbook-facing content in the Architrino webapp. It is not a speculative repository memo. It is the working guidance for how content should be organized, named, linked, and expanded within the present scene-driven system.
