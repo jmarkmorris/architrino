@@ -371,6 +371,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [The Cosmological-Constant Problem](../aaa/cosmology/dark-energy.md?section=The+Cosmological-Constant+Problem)
     - [Redshift as Clock Comparison](../aaa/cosmology/dark-energy.md?section=Redshift+as+Clock+Comparison)
     - [SMBH Recycling and Energy Flow](../aaa/cosmology/dark-energy.md?section=SMBH+Recycling+and+Energy+Flow)
+    - [Cosmological Coupling as a Candidate Dark-Energy Channel](../aaa/cosmology/dark-energy.md?section=Cosmological+Coupling+as+a+Candidate+Dark-Energy+Channel)
     - [Regime Map](../aaa/cosmology/dark-energy.md?section=Regime+Map)
     - [Expansion-Module Interface](../aaa/cosmology/dark-energy.md?section=Expansion-Module+Interface)
     - [Summary](../aaa/cosmology/dark-energy.md?section=Summary)

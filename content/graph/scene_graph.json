@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 401,
+      "nodes": 402,
       "edges": 1143,
       "scenes": 279,
       "markdownIndexes": 0,
-      "markdownDocs": 122,
+      "markdownDocs": 123,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2312,6 +2312,12 @@
       "id": "content/markdown/aaa/reactions/synchrotron.md",
       "name": "Synchrotron Cascades",
       "path": "content/markdown/aaa/reactions/synchrotron.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/black-holes.md",
+      "name": "Black Holes in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Framework",
+      "path": "content/markdown/aaa/spacetime/black-holes.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5803,6 +5809,15 @@
       "name": "Synchrotron Cascades",
       "path": "content/markdown/aaa/reactions/synchrotron.md",
       "searchTarget": "content/markdown/aaa/reactions/synchrotron.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/black-holes.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/black-holes.md",
+      "name": "Black Holes in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Framework",
+      "path": "content/markdown/aaa/spacetime/black-holes.md",
+      "searchTarget": "content/markdown/aaa/spacetime/black-holes.md",
       "implicit": false
     },
     {

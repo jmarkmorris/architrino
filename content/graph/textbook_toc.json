@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 119,
-      "sections": 715
+      "sections": 716
     }
   },
   "tocRoot": {
@@ -3047,6 +3047,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
                 "markdownSection": "SMBH Recycling and Energy Flow",
                 "sectionKey": "smbh recycling and energy flow",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmological Coupling as a Candidate Dark-Energy Channel",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Cosmological Coupling as a Candidate Dark-Energy Channel",
+                "sectionKey": "cosmological coupling as a candidate dark energy channel",
                 "headingLevel": 2
               },
               {
