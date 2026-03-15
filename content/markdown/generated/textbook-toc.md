@@ -180,7 +180,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [The Fermion Mapping (Generation I)](../aaa/assemblies/fermions/quantum-number-mapping.md?section=The+Fermion+Mapping+%28Generation+I%29)
       - [Weak Isospin (T₃) and Chirality](../aaa/assemblies/fermions/quantum-number-mapping.md?section=Weak+Isospin+%28%24T_3%24%29+and+Chirality)
       - [Color Charge and Strong Confinement](../aaa/assemblies/fermions/quantum-number-mapping.md?section=Color+Charge+and+Strong+Confinement)
-      - [Gauge Group Coverage: SU(3) × SU(2) × U(1)](../aaa/assemblies/fermions/quantum-number-mapping.md?section=Gauge+Group+Coverage%3A+SU%283%29+%C3%97+SU%282%29+%C3%97+U%281%29)
+      - [Gauge Group Coverage: SU(3)_c × SU(2)_L × U(1)_Y](../aaa/assemblies/fermions/quantum-number-mapping.md?section=Gauge+Group+Coverage%3A+%24SU%283%29_c+%5Ctimes+SU%282%29_L+%5Ctimes+U%281%29_Y%24)
       - [The Generation Mechanism (Mass Hierarchy)](../aaa/assemblies/fermions/quantum-number-mapping.md?section=The+Generation+Mechanism+%28Mass+Hierarchy%29)
       - [Phenomenological Implications](../aaa/assemblies/fermions/quantum-number-mapping.md?section=Phenomenological+Implications)
       - [Summary: The Geometric Dictionary](../aaa/assemblies/fermions/quantum-number-mapping.md?section=Summary%3A+The+Geometric+Dictionary)

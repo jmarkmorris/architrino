@@ -191,6 +191,7 @@ The conjectural rule then reads:
 - **left-handed anti-core branches** behave as the electroweak mirrors of the pro-core right-handed singlets.
 
 This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks.
+At a broader bookkeeping level, it also suggests a compact charged-fermion rule: pro-left doublets mirror anti-right doublets, while pro-right singlets mirror anti-left singlets.
 
 #### Right-handed antiquark bookkeeping
 
@@ -225,6 +226,39 @@ $$
 The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-core lookup system. Once the pro-core sector is specified, the anti-core sector follows by charge conjugation plus the handedness swap in weak exposure.
 
 This remains a conjectural bookkeeping layer derived by reverse engineering from the current weak-coupling pictures. It should not yet be treated as a proved weak-sector theorem.
+
+### Electroweak-plane embedding (conjectural map to the standard diagram)
+
+The larger comparative picture suggested by the diagram is that the six-site personality-count wheel may be embedded directly into the familiar electroweak plane with coordinates
+$$
+(T_3,Y),
+$$
+while electric charge appears on the diagonal through
+$$
+Q = T_3 + \frac{Y}{2}.
+$$
+
+For quarks, this gives a compact map:
+
+| State | $(T_3,Y)$ | Charge check |
+| --- | --- | --- |
+| $u^L,c^L,t^L$ | $\left(+\frac{1}{2},+\frac{1}{3}\right)$ | $+\frac{1}{2}+\frac{1}{6}=+\frac{2}{3}$ |
+| $d^L,s^L,b^L$ | $\left(-\frac{1}{2},+\frac{1}{3}\right)$ | $-\frac{1}{2}+\frac{1}{6}=-\frac{1}{3}$ |
+| $u^R,c^R,t^R$ | $\left(0,+\frac{4}{3}\right)$ | $0+\frac{2}{3}=+\frac{2}{3}$ |
+| $d^R,s^R,b^R$ | $\left(0,-\frac{2}{3}\right)$ | $0-\frac{1}{3}=-\frac{1}{3}$ |
+| $\bar u^R,\bar c^R,\bar t^R$ | $\left(-\frac{1}{2},-\frac{1}{3}\right)$ | $-\frac{1}{2}-\frac{1}{6}=-\frac{2}{3}$ |
+| $\bar d^R,\bar s^R,\bar b^R$ | $\left(+\frac{1}{2},-\frac{1}{3}\right)$ | $+\frac{1}{2}-\frac{1}{6}=+\frac{1}{3}$ |
+| $\bar u^L,\bar c^L,\bar t^L$ | $\left(0,-\frac{4}{3}\right)$ | $0-\frac{2}{3}=-\frac{2}{3}$ |
+| $\bar d^L,\bar s^L,\bar b^L$ | $\left(0,+\frac{2}{3}\right)$ | $0+\frac{1}{3}=+\frac{1}{3}$ |
+
+What makes this useful is not merely that it reproduces the standard charge formula. It also suggests that the personality-count wheel may be functioning as a geometric pre-mixing chart:
+
+- horizontal separation distinguishes weak-isospin splitting,
+- vertical separation distinguishes hypercharge loading,
+- the diagonal coordinate is the observed electromagnetic charge,
+- and quark versus antiquark states appear as charge-conjugate reflections within the same plane.
+
+This should still be treated cautiously. The image supports a candidate mapping to the standard electroweak diagram, but it does not yet derive the Weinberg-angle mixing itself from quark microgeometry. In other words, the map looks structurally compatible with the standard diagram, but it is not yet a closure proof for electroweak mixing.
 
 ## Six-flavor catalog
 

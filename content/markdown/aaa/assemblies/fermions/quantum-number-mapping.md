@@ -188,16 +188,16 @@ The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 
 ---
 
-## Gauge Group Coverage: SU(3) × SU(2) × U(1)
+## Gauge Group Coverage: $SU(3)_c \times SU(2)_L \times U(1)_Y$
 
 The full SM gauge group is captured geometrically as:
 
-- **SU(3) (Color):** azimuthal phase of the personality asymmetry (Red, Green, Blue). Quarks carry a rotating dipole/quadrupole that fixes their SU(3) orientation; leptons are azimuthally symmetric (singlets). Gluons are planar phase-correction ribbons that live on flux tubes and form the octet.
-- **SU(2) (Weak isospin):** polarity of the **Weak-Coupling Triad** (three exposed decoration sites). Left-handed fermions are doublets; right-handed fermions are singlets (Weak-Coupling Triad hidden).
-- **U(1) (Hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
+- **$SU(3)_c$ (color):** azimuthal phase of the personality asymmetry (Red, Green, Blue). Quarks carry a rotating dipole/quadrupole that fixes their $SU(3)_c$ orientation; leptons are azimuthally symmetric singlets. Gluons are planar phase-correction ribbons that live on flux tubes and form the octet.
+- **$SU(2)_L$ (weak isospin):** polarity of the **Weak-Coupling Triad** (three exposed decoration sites). Left-handed fermions are doublets; right-handed fermions are singlets (Weak-Coupling Triad hidden).
+- **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
 - **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving Weak-Coupling Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
 
-**Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). Relation: $Q = T_3 + Y/2$ for all fields.
+**Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). In this chapter we write weak hypercharge as $Y$ rather than $Y_w$. Relation: $Q = T_3 + Y/2$ for all fields.
 
 ### Representation cheat sheet (Gen I fermions)
 
@@ -232,6 +232,55 @@ Hypercharge is set by the net charge on the **Shielded Triad** (three hidden dec
 | (optional) $\nu_R$ | $-1/2$ | $2 \times (-1/2) = -1$, but if $Q=0, T_3=0 \Rightarrow Y=0$ (requires model choice) | (not in SM) |
 
 Notes: the shielded charge is common within a doublet; right-handed singlets set $Y$ via $Q$ with $T_3=0$.
+
+### Universal charged-fermion bookkeeping rule (conjectural synthesis)
+
+The charged fermion sector appears to obey one compact geometric bookkeeping rule rather than separate ad hoc rules for leptons and quarks.
+
+For any charged fermion family, the working pattern is:
+
+- **pro-left:** weak doublet branch,
+- **pro-right:** weak singlet branch,
+- **anti-right:** charge-conjugate mirror of the pro-left doublet branch,
+- **anti-left:** charge-conjugate mirror of the pro-right singlet branch.
+
+In formulas:
+
+- doublet branches carry
+  $$
+  T_3=\pm\frac{1}{2},
+  $$
+- singlet branches carry
+  $$
+  T_3=0,
+  $$
+- and hypercharge is always reconstructed from
+  $$
+  Y = 2(Q-T_3).
+  $$
+
+This single rule reproduces the bookkeeping already used for:
+
+- $e_L,\ e_R,\ \bar e_R,\ \bar e_L$,
+- $u_L,\ u_R,\ \bar u_R,\ \bar u_L$,
+- $d_L,\ d_R,\ \bar d_R,\ \bar d_L$,
+
+and extends radially to the higher generations by keeping the same electroweak placement while changing only the shielding tier of the core.
+
+The geometrical interpretation is:
+
+- generation is primarily a **radial / shielding** variable,
+- electroweak quantum numbers are primarily an **angular / exposure** variable,
+- charge conjugation mirrors the pattern across the same bookkeeping plane,
+- handedness selects whether the Weak-Coupling Triad is exposed or hidden.
+
+The neutral sector is less settled. The left-handed neutrino branch fits naturally into the same scheme, but the fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
+
+- no right-handed neutrino in the minimal architecture,
+- a sterile singlet branch,
+- or a geometrically indistinguishable neutral mirror sector.
+
+So the rule above should currently be read as a strong charged-fermion synthesis, not yet as a completed theorem for all fermions.
 
 ### Charge quantization cross-check
 

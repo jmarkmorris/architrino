@@ -1480,10 +1480,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Gauge Group Coverage: SU(3) × SU(2) × U(1)",
+                    "title": "Gauge Group Coverage: $SU(3)_c \\times SU(2)_L \\times U(1)_Y$",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
-                    "markdownSection": "Gauge Group Coverage: SU(3) × SU(2) × U(1)",
-                    "sectionKey": "gauge group coverage su 3 su 2 u 1",
+                    "markdownSection": "Gauge Group Coverage: $SU(3)_c \\times SU(2)_L \\times U(1)_Y$",
+                    "sectionKey": "gauge group coverage su 3 c times su 2 l times u 1 y",
                     "headingLevel": 2
                   },
                   {
