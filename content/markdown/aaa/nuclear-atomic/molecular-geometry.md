@@ -1,5 +1,7 @@
 # Molecular Geometry
 
+This chapter is the placeholder for molecular-geometry closure within the assembly framework. Its purpose is to state what molecular geometry is expected to depend on in this ontology so the eventual detailed derivation has a stable launch point.
+
 ## Purpose
 
 This chapter is a placeholder for molecular geometry in $\mathbb{A}\mathbb{A}\mathbb{A}$.

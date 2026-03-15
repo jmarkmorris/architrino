@@ -1,5 +1,7 @@
 # Detecting the Absolute Frame
 
+This chapter isolates the operational problem of identifying absolute rest inside a theory with Euclidean void and absolute time. Its purpose is to show that the preferred frame is not a purely metaphysical declaration but something that, at least in principle, is encoded in the geometry of causal wakes.
+
 ## Overview
 
 This chapter isolates the conceptual question that has to be answered before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes. The detection criterion is the **concentricity of causal wakes** emitted by a stationary architrino.

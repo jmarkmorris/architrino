@@ -1,5 +1,7 @@
 # Foundational Ontology
 
+This chapter is the bedrock ontology note for the framework. Its purpose is to state, in one place, what fundamentally exists, what is emergent, and what terminology has to remain fixed if the rest of the corpus is to stay coherent.
+
 ---
 
 ## Purpose and Scope

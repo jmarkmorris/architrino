@@ -1,5 +1,7 @@
 # Parameter Ledger
 
+This chapter is the canonical bookkeeping page for the parameters used across the closure program. Its purpose is to keep symbols, statuses, and chapter responsibilities stable enough that constitutive targets, observables, and genuine postulates are not silently mixed together.
+
 ## Purpose
 
 This chapter is the canonical bookkeeping page for the parameters that appear across the current $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program. Its job is not to re-derive every quantity. Its job is to state:

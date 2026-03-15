@@ -1,5 +1,7 @@
 # Structure Formation
 
+This chapter translates standard structure-formation language into medium-and-assembly evolution inside a fixed Euclidean background. Its purpose is to explain how overdensity growth, effective expansion variables, and dark-sector clustering are meant to fit together when the Noether Sea replaces metric expansion as the underlying ontology.
+
 ## Scope and Physical Picture
 
 Structure formation describes how the nearly homogeneous early universe developed the web of galaxies, clusters, filaments, and voids observed today. In standard $\Lambda$CDM this story unfolds through gravitational instability of small density perturbations in an expanding Friedmann–Robertson–Walker metric, seeded during inflation and amplified by pressureless cold dark matter that decouples early from the photon–baryon plasma.

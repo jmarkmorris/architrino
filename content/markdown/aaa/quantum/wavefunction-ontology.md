@@ -1,5 +1,7 @@
 # Wavefunction Ontology
 
+This chapter states what the wavefunction is and is not within the framework. Its purpose is to relocate $\psi$ from fundamental ontic field status to an effective epistemic description while still explaining why standard quantum formalism remains operationally useful.
+
 ## Purpose and Scope
 
 This document establishes the ontological status of the quantum wavefunction ($\psi$) and the fundamental operators of quantum mechanics within the Architrino Assembly Architecture. It maps the standard quantum formalism—traditionally treated as axiomatic—to the deterministic, non-Markovian dynamics of the architrino Master Equation. 

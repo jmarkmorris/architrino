@@ -1,5 +1,7 @@
 # Architrino Framework and SI Base Units: Deep Intersection Analysis
 
+This chapter examines how the modern SI system interfaces with the architrino program. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
+
 ## Executive Summary
 
 The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is **profoundly aligned** with the architrino framework's goal: deriving all observable physics from a minimal set of fundamental postulates (Euclidean void, absolute time, architrino charge $|e/6|$, field speed $c_f$).

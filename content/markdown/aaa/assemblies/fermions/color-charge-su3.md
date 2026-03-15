@@ -1,5 +1,7 @@
 # Color Charge and SU(3)
 
+This chapter gives the current assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and tri-binary scaffold geometry are meant to fit together before the full topological confinement derivation is closed.
+
 ---
 
 ## Ontology, Notation, and Generations

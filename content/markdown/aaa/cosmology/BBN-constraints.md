@@ -1,5 +1,7 @@
 # BBN in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework
 
+This chapter states how big-bang nucleosynthesis constraints are to be read inside a fixed-void ontology. Its purpose is not to rewrite nuclear reaction physics, but to reinterpret where and when the relevant thermal histories occur and how those histories are projected into the standard BBN observable language.
+
 ## Standard vs. $\mathbb{A}\mathbb{A}\mathbb{A}$ BBN
 
 ### Standard Big Bang Nucleosynthesis

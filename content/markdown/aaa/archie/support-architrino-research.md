@@ -1,5 +1,9 @@
 # Support Architrino Research
 
+This note explains how readers can support the Architrino research program financially and why that support matters to the continuity of the work. Its purpose is practical, but it also frames support as part of sustaining a long-form independent research effort rather than as a generic donation request.
+
+The sections below move from the basic support rationale to the available contribution routes.
+
 ## Purpose
 
 Architrino Assembly Architecture is an independent research program in fundamental physics. If you find the work valuable and want to help sustain ongoing research, writing, simulations, editing, and public discussion, you can support it either monthly or with a one-time contribution.

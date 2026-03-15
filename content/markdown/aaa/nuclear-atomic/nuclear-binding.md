@@ -1,5 +1,7 @@
 # Nuclear Binding
 
+This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. Its purpose is to say what the binding ingredients are, what level of coarse-graining is being used, and what kinds of nuclear questions the current language is meant to support before any precision model exists.
+
 ## Purpose
 
 This chapter states the first effective-level nuclear-binding picture for $\mathbb{A}\mathbb{A}\mathbb{A}$. The aim is not yet a precision nuclear model. The aim is to define the binding ingredients clearly enough that deuteron-scale, alpha-scale, and saturation questions can be posed in one shared language.

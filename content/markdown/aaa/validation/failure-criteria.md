@@ -1,5 +1,7 @@
 # Failure Criteria
 
+This chapter states the hard-stop conditions for the framework. Its purpose is to distinguish ordinary incompleteness from genuine failure modes, especially where Lorentz recovery, drag behavior, or substrate-level consistency would be lost rather than merely deferred.
+
 ## The Lorentzian Conspiracy Stop-Condition
 
 While the $\mathbb{U}_{\text{now}}$ universe-state perspective is a powerful tool, it introduces a "Hard Wall" for the theory.

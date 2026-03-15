@@ -1,5 +1,7 @@
 # Nucleon Structure
 
+This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time.
+
 ## Purpose
 
 This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in the current assembly language and which geometric features matter most for nuclear physics.

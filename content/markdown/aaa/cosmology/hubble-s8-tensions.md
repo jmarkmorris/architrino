@@ -1,5 +1,7 @@
 # Hubble and $S_8$ Tensions
 
+This note frames the $H_0$ and $S_8$ problems as coupled symptoms inside one cosmological medium story rather than as unrelated anomalies. Its purpose is to give the reader a single conceptual entry point before the detailed growth and expansion modules are considered separately.
+
 ## Core Idea
 
 This document frames $H_0$ and $S_8$ as linked conceptual problems inside a single cosmological ontology.
