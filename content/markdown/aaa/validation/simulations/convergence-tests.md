@@ -1,3 +1,9 @@
+# Convergence Tests for Non-Markovian Dynamics
+
+This chapter defines the convergence standard for simulations that include self-hit structure and other delayed-memory effects. Its role is to specify which observables are checked, which refinement ladders are required, and what pass/fail thresholds count as numerical control rather than artifact.
+
+Because self-hit dynamics are especially prone to fake structure under poor time or history resolution, this document should be read as a validation gate rather than as optional numerical hygiene.
+
 ## Convergence in Non-Markovian (Self-Hit) Dynamics
 
 ### Scope and default observable set

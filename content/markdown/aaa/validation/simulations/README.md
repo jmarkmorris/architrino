@@ -1,3 +1,9 @@
+# Simulation README
+
+This note is the launch overview for the simulation branch. It explains the common simulation frame, the role of the virtual $\mathbb{U}_{\text{now}}$ universe-state perspective, and the separation between raw microstate logging and detector-level synthetic observables.
+
+Use it as the top orientation document before reading the more specialized simulation protocols, convergence checks, and action-energy notes.
+
 ## Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective
 
 - All tiers are implemented in the absolute Euclidean frame (fixed x,y,z; absolute t).

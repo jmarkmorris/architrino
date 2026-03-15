@@ -1,3 +1,9 @@
+# Architrino Simulation Tests
+
+This note records the minimum tier-1 simulation tests that should be passed before any strong self-hit or non-Markovian claims are trusted numerically. Its purpose is narrow: establish provenance-resolved propagation, baseline diagnostics, and a workable history-buffer strategy before moving to richer dynamics.
+
+The file is therefore an implementation-facing checklist rather than a general theory chapter. It should be read as a gate on simulation credibility.
+
 ## Tier-1 Mandatory Unit Tests (Before Self-Hit Claims)
 
 ### Provenance-resolved propagation test

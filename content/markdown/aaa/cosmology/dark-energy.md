@@ -1,5 +1,8 @@
-
 # Dark Energy in the Architrino Assembly Architecture
+
+This chapter treats dark energy as a medium-state problem inside the Noether Sea rather than as literal expansion of the Euclidean void. Its job is to map the standard late-time acceleration data onto substrate evolution, effective equation-of-state language, and possible large-scale energy-partition mechanisms within $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+The opening sections state the ontology and the medium-level interpretation of accelerated expansion. Later sections connect that picture to effective Friedmann variables, redshift, black-hole recycling ideas, and the practical module interface for cosmological closure.
 
 ## Scope and Purpose
 

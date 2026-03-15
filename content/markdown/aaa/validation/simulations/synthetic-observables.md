@@ -1,3 +1,9 @@
+# Synthetic Observables and $\mathbb{U}_{\text{now}}$ Logging
+
+This note defines the canonical logging standard for the virtual $\mathbb{U}_{\text{now}}$ perspective and explains how those logs are turned into detector-like synthetic observables. Its purpose is to keep the separation clear between exact simulation bookkeeping and the post-processed quantities that stand in for what a physical observer would measure.
+
+The file therefore serves as both a data-contract note and an observer-interface note for the simulation stack.
+
 ## $\mathbb{U}_{\text{now}}$ Logging Standard
 
 ### Purpose

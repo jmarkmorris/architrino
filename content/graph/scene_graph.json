@@ -2526,13 +2526,13 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/architrino.md",
-      "name": "Architrino",
+      "name": "Architrino Simulation Tests",
       "path": "content/markdown/aaa/validation/simulations/architrino.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/convergence-tests.md",
-      "name": "Convergence Tests",
+      "name": "Convergence Tests for Non-Markovian Dynamics",
       "path": "content/markdown/aaa/validation/simulations/convergence-tests.md",
       "nodeType": "markdown_doc"
     },
@@ -2544,19 +2544,19 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/README.md",
-      "name": "README",
+      "name": "Simulation README",
       "path": "content/markdown/aaa/validation/simulations/README.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/run-protocols.md",
-      "name": "Run Protocols",
+      "name": "Simulation Run Protocols",
       "path": "content/markdown/aaa/validation/simulations/run-protocols.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
-      "name": "Synthetic Observables",
+      "name": "Synthetic Observables and $\\mathbb{U}_{\\text{now}}$ Logging",
       "path": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "nodeType": "markdown_doc"
     },
@@ -6148,7 +6148,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/architrino.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/architrino.md",
-      "name": "Architrino",
+      "name": "Architrino Simulation Tests",
       "path": "content/markdown/aaa/validation/simulations/architrino.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/architrino.md",
       "implicit": false
@@ -6157,7 +6157,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/convergence-tests.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/convergence-tests.md",
-      "name": "Convergence Tests",
+      "name": "Convergence Tests for Non-Markovian Dynamics",
       "path": "content/markdown/aaa/validation/simulations/convergence-tests.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/convergence-tests.md",
       "implicit": false
@@ -6175,7 +6175,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/README.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/README.md",
-      "name": "README",
+      "name": "Simulation README",
       "path": "content/markdown/aaa/validation/simulations/README.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/README.md",
       "implicit": false
@@ -6184,7 +6184,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/run-protocols.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/run-protocols.md",
-      "name": "Run Protocols",
+      "name": "Simulation Run Protocols",
       "path": "content/markdown/aaa/validation/simulations/run-protocols.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/run-protocols.md",
       "implicit": false
@@ -6193,7 +6193,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
-      "name": "Synthetic Observables",
+      "name": "Synthetic Observables and $\\mathbb{U}_{\\text{now}}$ Logging",
       "path": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "implicit": false

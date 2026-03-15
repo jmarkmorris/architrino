@@ -1,5 +1,3 @@
-
-
 # Revisiting our Action Model — Comparative modeling frameworks for delayed, radial action
 
 We synthesize Steps 1–10 and the canonical Action to compare, side by side, the three modeling options for the emission-propagation-interaction pipeline and to recommend a primary approach (with supporting roles for the others). We work in units with field speed $v=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the source; per-hit actions are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and Jacobian-weighted magnitude; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
@@ -26,7 +24,7 @@ We compare three frameworks: (1) a time-domain PDE/source, (2) an integral/Green
 
 ---
 
-# Time-based PDE (wave equation with a moving point source)
+## Time-based PDE (wave equation with a moving point source)
 
 **Physical idea:** keep the source as “something injected per unit time at the emitter location,” put that into the wave PDE that governs how disturbances travel at speed $c$, and let the PDE produce expanding spherical wavefronts automatically. Numerically this is usually the easiest and most robust approach.
 
@@ -80,7 +78,7 @@ Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave opera
 
 ---
 
-# Integral (Green’s function / path-history potential) approach
+## Integral (Green’s function / path-history potential) approach
 
 **Physical idea:** instead of evolving a PDE in time, write the solution as the sum of contributions from every past emission. For the wave equation the contribution from an impulse emitted at time $\tau$ and place $\mathbf{x}_s(\tau)$ arrives at a field point $\mathbf{x}$ only at the **path-history time** when the causal wake surface reaches $\mathbf{x}$. The Green’s function neatly encodes the expanding causal wake surface.
 
@@ -183,7 +181,7 @@ If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau
 
 
 
-# Event-driven radial-transport + per-hit EOM (current canonical method)
+## Event-driven radial-transport + per-hit EOM (current canonical method)
 
 Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with Jacobian-weighted magnitude at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c$ otherwise.
 
@@ -354,7 +352,7 @@ Recap (in three lines)
 
 ---
 
-# Layered penetration diagram (molecules → cores)
+## Layered penetration diagram (molecules → cores)
 
 A qualitative “onion” sketch to visualize which excitations typically penetrate which structural layers. This helps readers see what’s excluded and what isn’t.
 

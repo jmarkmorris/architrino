@@ -1,5 +1,8 @@
-
 # Dark Matter in the Architrino Assembly Architecture
+
+This chapter maps the standard dark-matter phenomenology onto substrate candidates available inside the architrino ontology. The central task is to explain gravitational clustering without visible electromagnetic coupling, using assemblies or medium responses that belong to the same Euclidean-void and Noether-Sea framework as the rest of the theory.
+
+The opening establishes the ontology and the criteria for what counts as dark in this setting. The later sections compare candidate substrates, summarize the current hybrid working baseline, and connect the picture to cosmological growth and observational interfaces.
 
 ## Scope and Purpose
 
