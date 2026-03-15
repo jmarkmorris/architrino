@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 120,
-      "sections": 732
+      "entries": 121,
+      "sections": 736
     }
   },
   "tocRoot": {
@@ -800,6 +800,48 @@
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
                 "markdownSection": "Causal Action Functional — Coherent Structure",
                 "sectionKey": "causal action functional coherent structure",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__dyadic_resonance_lock",
+            "title": "Dyadic Resonance Lock",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json",
+            "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Proof-Structured Core",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Proof-Structured Core",
+                "sectionKey": "proof structured core",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What the Delay Math Actually Gives You About Frequency Multiples",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "What the Delay Math Actually Gives You About Frequency Multiples",
+                "sectionKey": "what the delay math actually gives you about frequency multiples",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced-Theorem Target",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Reduced-Theorem Target",
+                "sectionKey": "reduced theorem target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Invariant Backbone",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Invariant Backbone",
+                "sectionKey": "invariant backbone",
                 "headingLevel": 2
               }
             ]

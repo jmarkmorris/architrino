@@ -1,4 +1,4 @@
-# Geometric Analysis of a 1:2:4 Resonant Lock at the Field-Speed Horizon
+# Dyadic Resonance Lock
 
 This hypothesis, a rigid frequency hierarchy $f_O : f_M : f_I = 1 : 2 : 4$ imposed across the full tri-binary operating range (from a low outer-floor like $f_O = 1$ Hz up to $f_O = f_P$), suggests a specific solution class to the delay-differential master equation. In dynamical systems, such integer ratios often signify **mode-locking** within Arnold tongues, where nonlinear oscillators, here coupled by causal wakes, stabilize against perturbations.
 

@@ -941,6 +941,11 @@
       "path": "content/scenes/dynamics/causal_action_functional.json"
     },
     {
+      "id": "dynamics__dyadic_resonance_lock",
+      "name": "Dyadic Resonance Lock",
+      "path": "content/scenes/dynamics/dyadic_resonance_lock.json"
+    },
+    {
       "id": "dynamics__effective_lagrangian",
       "name": "Effective Lagrangian",
       "path": "content/scenes/dynamics/effective_lagrangian.json"
