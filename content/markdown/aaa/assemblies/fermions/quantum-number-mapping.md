@@ -288,6 +288,104 @@ So the rule above should currently be read as a strong charged-fermion synthesis
 
 Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [dynamics/gauge-structure-emergence.md](../../dynamics/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section “Quantization from Stability”).
 
+### Baryon / lepton bookkeeping and anomaly cancellation
+
+For elementary fermions, the clean geometric bookkeeping is:
+
+- quark-like color-triplet assemblies carry
+  $$
+  B=\pm\frac{1}{3},\qquad L=0,
+  $$
+- lepton-like color-singlet assemblies carry
+  $$
+  B=0,\qquad L=\pm 1,
+  $$
+- the sign is set by core orientation:
+  $$
+  s_{\text{core}}=
+  \begin{cases}
+  +1,& \text{pro-core},\\
+  -1,& \text{anti-core}.
+  \end{cases}
+  $$
+
+If $\chi_q=1$ for a quark-like color-triplet assembly and $\chi_q=0$ for a lepton-like color-singlet assembly, then the elementary-fermion rule may be written compactly as
+$$
+B = s_{\text{core}}\frac{\chi_q}{3},
+\qquad
+L = s_{\text{core}}(1-\chi_q).
+$$
+
+This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti core sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
+
+Using the left-chiral one-generation SM content
+$$
+q_L:(3,2,+\tfrac{1}{3}),\quad
+u^c_L:(\bar 3,1,-\tfrac{4}{3}),\quad
+d^c_L:(\bar 3,1,+\tfrac{2}{3}),\quad
+\ell_L:(1,2,-1),\quad
+e^c_L:(1,1,+2),
+$$
+the Standard-Model gauge anomalies cancel exactly.
+
+With $T(3)=T(\bar 3)=\tfrac{1}{2}$ and $T(2)=\tfrac{1}{2}$, the mixed non-abelian anomalies are
+$$
+\mathcal{A}_{[SU(3)_c]^2U(1)_Y}
+=
+2\,T(3)\!\left(\tfrac{1}{3}\right)
++T(\bar 3)\!\left(-\tfrac{4}{3}\right)
++T(\bar 3)\!\left(\tfrac{2}{3}\right)
+=0,
+$$
+and
+$$
+\mathcal{A}_{[SU(2)_L]^2U(1)_Y}
+=
+3\,T(2)\!\left(\tfrac{1}{3}\right)
++T(2)(-1)
+=0.
+$$
+
+The mixed gravitational-hypercharge anomaly also cancels:
+$$
+\mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
+=
+6\!\left(\tfrac{1}{3}\right)
++3\!\left(-\tfrac{4}{3}\right)
++3\!\left(\tfrac{2}{3}\right)
++2(-1)
++(+2)
+=0.
+$$
+
+Finally, the cubic hypercharge anomaly is
+$$
+\mathcal{A}_{[U(1)_Y]^3}
+=
+6\!\left(\tfrac{1}{3}\right)^3
++3\!\left(-\tfrac{4}{3}\right)^3
++3\!\left(\tfrac{2}{3}\right)^3
++2(-1)^3
++(+2)^3
+=0.
+$$
+
+So the present geometry-to-quantum-number dictionary already matches the Standard Model's per-generation gauge-anomaly cancellation. This is a nontrivial consistency check, not just a notation match.
+
+If a sterile right-handed neutrino is added with
+$$
+\nu_R:(1,1,0),
+$$
+it contributes zero to all of these SM gauge anomalies, so the minimal anomaly cancellation is unchanged.
+
+However, for the global bookkeeping symmetry $B-L$, one generation without $\nu_R$ gives
+$$
+\sum(B-L)=-1,
+\qquad
+\sum(B-L)^3=-1,
+$$
+while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restores both to zero. So in the current minimal architecture, $B-L$ works as a global label, but not yet as an independently gauged anomaly-free channel.
+
 ### Right-handed neutrino stance and mass eigenstates (hypothesis)
 
 - **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
@@ -384,7 +482,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Spin** | $J$ | Intrinsic angular momentum ($1/2\hbar$). | **Core Topology.** The ellipsoidal rotation path of the Tri-binary nucleus. Fermions are spin-1/2 because the path requires 720 degrees to return to the initial state (spinor behavior). |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-Coupling Triad Exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the Weak-Coupling Triad to the vacuum (Interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the Weak-Coupling Triad into the particle's "wake" or shield (Interaction blocked). |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
-| **Baryon/Lepton No.** | $B, L$ | Conserved matter counts. | **Core Count.**<br>• **Matter (+1):** Pro-Core (Left-braided nucleus).<br>• **Antimatter (-1):** Anti-Core (Right-braided nucleus). |
+| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-core vs anti-core orientation. |
 
 For the **Elementary Fermions** (Quarks and Leptons), yes, this table is complete. It covers the "ID Card" required to distinguish every particle in the Standard Model Lagrangian.
 

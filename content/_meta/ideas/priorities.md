@@ -15,7 +15,7 @@ Method:
 | High | Drafted theory/history/philosophy chapter passes | 7 | 3 | 2.33 |
 | High | Highest-value textbook authoring sequence | 8 | 4 | 2.00 |
 | High | Parameter ledger, couplings, and first mass map | 9 | 5 | 1.80 |
-| High | Standard Model assembly layer | 9 | 7 | 1.29 |
+| High | Remaining Standard Model assembly gaps | 8 | 5 | 1.60 |
 | High | Tractable master-equation stack | 10 | 8 | 1.25 |
 | High | Simulations, regularization, and shell numerics | 9 | 8 | 1.13 |
 | High | Metric / clock / ruler bridge to GR | 10 | 9 | 1.11 |
@@ -87,20 +87,13 @@ Method:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question active: why `h`, `c_f`, and `G`; one spiral; maybe `G` is emergent rather than fundamental.
 
-### 5. Close the Standard Model assembly layer where the leverage is best
-- Value `9`, Cost `7`, ROI `1.29`.
-- Finish [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) as a full quark catalog:
-  - six quark geometries,
-  - decoration patterns,
-  - color phase assignments,
-  - architrino counts,
-  - coupling rules to gluons,
-  - first mass predictions.
-- Fill the quantum-number dictionary from the tri-binary geometry:
-  - full `SU(3)\times SU(2)\times U(1)` assignments,
-  - `Q`, `Y`, `T_3`, `B/L`, and spin / statistics,
-  - anomaly cancellation,
-  - mixing-angle checks against Standard Model pulls.
+### 5. Close the remaining Standard Model assembly gaps where the leverage is best
+- Value `8`, Cost `5`, ROI `1.60`.
+- The quark catalog and the basic `SU(3)\times SU(2)\times U(1)` bookkeeping are now in place. The remaining leverage is:
+  - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
+  - finish the remaining quantum-number dictionary pieces from the tri-binary geometry:
+    - spin / statistics,
+    - mixing-angle checks against Standard Model pulls.
 - Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 
