@@ -2,7 +2,7 @@
 
 Notes collected here document the falsification criteria, ordering priorities, and supporting mechanisms for the adversarial architrino model. Keep this page focused on observable constraints so we can quickly verify whether a given version of the theory survives experimental scrutiny.
 
-## Master Experimental Constraint Ledger and Falsification Criteria
+## Experimental Constraint Ledger and Falsification Criteria
 
 This ledger crystallizes the measurable thresholds and theoretical guardrails that could falsify the architrino proposal. Each numbered entry combines the empirical bound, the proposed mechanism, and the explicit failure condition so that we can track how discrete experimental results shape or reject the model.
 
@@ -57,11 +57,11 @@ Use this ledger as the acceptance layer for the five integrated closure programs
 
 | Program | Primary chapters | Ledger gate |
 | --- | --- | --- |
-| CKM holonomy closure | `assemblies/fermions/weak-mixing-ckm.md` | CKM hierarchy and CP-phase consistency with propagated uncertainty |
-| PMNS neutral-core closure | `assemblies/fermions/neutrinos.md` | Oscillation pattern consistency across $L/E$ and medium regimes |
-| Emergent metric / PPN closure | `spacetime/emergent-metric.md`, `spacetime/ppn-parameters.md`, `spacetime/proper-time-and-time-dilation.md` | Lorentz leakage, PPN, redshift, Shapiro, GW-speed bounds |
-| Schrödinger + Born closure | `quantum/pilot-wave-character.md`, `quantum/wavefunction-ontology.md`, `quantum/superposition-mechanism.md` | Effective wave equation + statistical outcome consistency |
-| Topological spin/confinement closure | `dynamics/causal-action-functional.md`, `assemblies/fermions/color-charge-su3.md` | 4$\pi$ spin structure and open-vs-closed color-energy scaling |
+| CKM holonomy closure | [assemblies/fermions/weak-mixing-ckm.md](../assemblies/fermions/weak-mixing-ckm.md) | CKM hierarchy and CP-phase consistency with propagated uncertainty |
+| PMNS neutral-core closure | [assemblies/fermions/neutrinos.md](../assemblies/fermions/neutrinos.md) | Oscillation pattern consistency across $L/E$ and medium regimes |
+| Emergent metric / PPN closure | [spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md), [spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) | Lorentz leakage, PPN, redshift, Shapiro, GW-speed bounds |
+| Schrödinger + Born closure | [quantum/pilot-wave-character.md](../quantum/pilot-wave-character.md), [quantum/wavefunction-ontology.md](../quantum/wavefunction-ontology.md), [quantum/superposition-mechanism.md](../quantum/superposition-mechanism.md) | Effective wave equation + statistical outcome consistency |
+| Topological spin/confinement closure | [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md), [assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md) | 4$\pi$ spin structure and open-vs-closed color-energy scaling |
 
 Cross-program acceptance principle:
 $$

@@ -85,7 +85,7 @@ The decay of a high-energy Top quark disrupts the local spacetime fabric, recrui
 
 ---
 
-## Case Study: Free Neutron Decay ($n \to p + e^- + \bar{\nu}_e$)
+## Free Neutron Decay
 
 *Observed Process:* A free neutron decays (lifetime ~15 mins) into a proton, electron, and electron-antineutrino.
 *Standard Model:* $d \to u + W^- (\to e^- + \bar{\nu}_e)$.

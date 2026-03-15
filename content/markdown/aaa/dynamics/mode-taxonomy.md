@@ -19,7 +19,7 @@ At assembly level, these terms refer to substrate dynamics in absolute time:
 
 Observer-level equations remain the operational layer. Assembly-level language is accepted only when it preserves threshold, cross-section, timing, and conservation closure against standard phenomenology.
 
-## Detailed Mapping: Low-Energy SM Assemblies in a Noether-Core Sea
+## Low-Energy SM Assemblies in a Noether-Core Sea
 
 This section is the canonical stepwise map for low-energy Standard Model channels interpreted in $\mathbb{A}\mathbb{A}\mathbb{A}$ language.
 

@@ -49,7 +49,10 @@
       },
       {
         "nodeId": "universe",
-        "scenePath": "content/scenes/cosmology/universe.json"
+        "scenePath": "content/scenes/cosmology/universe.json",
+        "textbookToc": {
+          "hideEntry": true
+        }
       }
     ]
   },
@@ -88,7 +91,7 @@
     },
     {
       "id": "assemblies",
-      "title": "Assemblies",
+      "title": "Standard Model Assemblies",
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
@@ -99,12 +102,12 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Assemblies",
+      "labelTitle": "Standard Model Assemblies",
       "fixedPosition": true
     },
     {
       "id": "nuclear_atomic",
-      "title": "Nuclear-Atomic",
+      "title": "Atomic and Nuclear Assemblies",
       "radius": 2.688,
       "color": "#7a4a1f",
       "position": [
@@ -115,7 +118,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Nuclear-Atomic",
+      "labelTitle": "Atomic and Nuclear Assemblies",
       "fixedPosition": true
     },
     {
@@ -184,7 +187,7 @@
     },
     {
       "id": "universe",
-      "title": "Universe",
+      "title": "Reductionist Universe",
       "radius": 2.688,
       "color": "#243d8f",
       "position": [
@@ -196,7 +199,7 @@
         "type": "fixed"
       },
       "scaleExponent": 26,
-      "labelTitle": "Universe",
+      "labelTitle": "Reductionist Universe",
       "fixedPosition": true
     }
   ]

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "foundations__bootstrapping_the_absolute_frame",
-    "title": "Bootstrapping a Coordinate Frame",
+    "id": "archie__support_architrino_research",
+    "title": "Support Architrino Research",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,9 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md"
+      "path": "content/markdown/aaa/archie/support-architrino-research.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

@@ -7,6 +7,9 @@
     "units": "relative",
     "hideScaleLabels": true,
     "centerOn": "hydrogen_ion",
+    "textbookToc": {
+      "hideChildren": true
+    },
     "layout": {
       "type": "rings"
     },

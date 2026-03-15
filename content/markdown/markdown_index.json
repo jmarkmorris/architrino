@@ -10,6 +10,7 @@
     "content/markdown/aaa/archie/navigation-and-controls.md",
     "content/markdown/aaa/archie/research-notebook.md",
     "content/markdown/aaa/archie/scene-taxonomy.md",
+    "content/markdown/aaa/archie/support-architrino-research.md",
     "content/markdown/aaa/archie/textbook-file-structure.md",
     "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
     "content/markdown/aaa/assemblies/bosons/gluons.md",
@@ -46,6 +47,7 @@
     "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
     "content/markdown/aaa/foundations/absolute-time-defense.md",
     "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+    "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
     "content/markdown/aaa/foundations/emergence.md",
     "content/markdown/aaa/foundations/euclidean-void.md",
     "content/markdown/aaa/foundations/ontology.md",
@@ -57,10 +59,10 @@
     "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
     "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
     "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+    "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
     "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
     "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
     "content/markdown/aaa/philosophy-history/information-computation.md",
-    "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
     "content/markdown/aaa/philosophy-history/major-thinkers.md",
     "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
     "content/markdown/aaa/philosophy-history/religious-ontologies.md",
@@ -118,6 +120,7 @@
     "content/markdown/aaa/validation/simulations/run-protocols.md",
     "content/markdown/aaa/validation/simulations/synthetic-observables.md",
     "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-    "content/markdown/aaa/validation/validation-protocols.md"
+    "content/markdown/aaa/validation/validation-protocols.md",
+    "content/markdown/generated/textbook-toc.md"
   ]
 }

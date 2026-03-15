@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "philosophy_history__historical_context_missed_opportunities",
+    "id": "historical_context_missed_opportunities",
     "title": "Historical Context and Missed Opportunities",
     "type": "Scene-Markdown-Split",
     "units": "relative",

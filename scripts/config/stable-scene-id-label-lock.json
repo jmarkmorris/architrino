@@ -3,7 +3,7 @@
   "entries": {
     "content/scenes/assemblies/assemblies.json": {
       "sceneId": "assemblies",
-      "sceneName": "Assemblies",
+      "sceneName": "Standard Model Assemblies",
       "objects": {
         "electroweak_bosons": "Electroweak Bosons",
         "fermions": "Fermions",
@@ -65,10 +65,12 @@
       "sceneName": "Foundations",
       "objects": {
         "absolute_time_defense": "Absolute Time Defense",
-        "bootstrapping_the_absolute_frame": "Bootstrapping the Absolute Frame",
+        "detecting_the_absolute_frame": "Detecting the Absolute Frame",
+        "bootstrapping_the_absolute_frame": "Bootstrapping a Coordinate Frame",
         "emergence_of_structure": "Emergence of Structure",
         "euclidean_void": "Euclidean Void",
-        "foundational_ontology": "Foundational Ontology"
+        "foundational_ontology": "Foundational Ontology",
+        "information_computation": "Information / Computation"
       }
     },
     "content/scenes/archie/composer.json": {
@@ -102,7 +104,7 @@
     },
     "content/scenes/nuclear/nuclear_atomic.json": {
       "sceneId": "nuclear_atomic",
-      "sceneName": "Nuclear-Atomic",
+      "sceneName": "Atomic and Nuclear Assemblies",
       "objects": {
         "atom": "Atom",
         "atomic_spectra": "Atomic Spectra",
@@ -122,7 +124,6 @@
       "objects": {
         "crisis_in_physics": "Crisis in Physics",
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
-        "lorentz_ether_comparison": "Lorentz Ether Comparison",
         "major_thinkers": "Major Thinkers",
         "religious_ontologies": "Religious Ontologies",
         "theory_mapping": "Theory Mapping",
@@ -155,6 +156,21 @@
         "proper_time_and_time_dilation": "Proper Time and Time Dilation",
         "singularity_resolution": "Singularity Resolution",
         "spacetime_assemblies": "Spacetime Assemblies"
+      }
+    },
+    "content/scenes/philosophy_history/philosophy_history.json": {
+      "sceneId": "philosophy_history",
+      "sceneName": "Philosophy-History",
+      "objects": {
+        "unknowns_paradoxes_scene": "Unknowns & Paradoxes",
+        "agency_and_internal_causation": "Agency and Internal Causation",
+        "crisis_in_physics": "Crisis in Physics",
+        "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
+        "major_thinkers": "Major Thinkers",
+        "philosophy_of_science": "Philosophy of Science",
+        "religious_ontologies": "Religious Ontologies",
+        "theory_mapping": "Theory Mapping",
+        "theory_differentials": "Theory Differentials"
       }
     },
     "content/scenes/validation/action_energy.json": {

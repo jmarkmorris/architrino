@@ -15,6 +15,10 @@
         "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
       },
       {
+        "nodeId": "agency_and_internal_causation",
+        "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
+      },
+      {
         "nodeId": "crisis_in_physics",
         "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json"
       },
@@ -23,16 +27,8 @@
         "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
       },
       {
-        "nodeId": "lorentz_ether_comparison",
-        "scenePath": "content/scenes/philosophy_history/lorentz_ether_comparison.json"
-      },
-      {
         "nodeId": "major_thinkers",
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
-      },
-      {
-        "nodeId": "information_computation",
-        "scenePath": "content/scenes/philosophy_history/information_computation.json"
       },
       {
         "nodeId": "philosophy_of_science",
@@ -64,6 +60,17 @@
       "labelTitle": "Unknowns & Paradoxes"
     },
     {
+      "id": "agency_and_internal_causation",
+      "title": "Agency and Internal Causation",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Agency and Internal Causation",
+      "labelBadge": "doc"
+    },
+    {
       "id": "crisis_in_physics",
       "title": "Crisis in Physics",
       "radius": 2.688,
@@ -84,17 +91,6 @@
       "labelTitle": "Historical Context and Missed Opportunities"
     },
     {
-      "id": "lorentz_ether_comparison",
-      "title": "Lorentz Ether Comparison",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Lorentz Ether Comparison",
-      "labelBadge": "doc"
-    },
-    {
       "id": "major_thinkers",
       "title": "Major Thinkers",
       "radius": 2.688,
@@ -103,16 +99,6 @@
         "type": "fixed"
       },
       "labelTitle": "Major Thinkers"
-    },
-    {
-      "id": "information_computation",
-      "title": "Information / Computation",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Information / Computation"
     },
     {
       "id": "philosophy_of_science",

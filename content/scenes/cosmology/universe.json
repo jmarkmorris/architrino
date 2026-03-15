@@ -19,7 +19,10 @@
       },
       {
         "nodeId": "cosmic_web",
-        "scenePath": "content/scenes/cosmology/structure_formation.json"
+        "scenePath": "content/scenes/cosmology/structure_formation.json",
+        "textbookToc": {
+          "hideEntry": true
+        }
       }
     ]
   },

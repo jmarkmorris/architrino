@@ -306,7 +306,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 ---
 
-## Appendix A: Energy Bookkeeping and Reference Zero ($\mathbb{A}\mathbb{A}\mathbb{A}$ Convention)
+## Appendix A: Energy Zero and Bookkeeping
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of a bound pair (the self-hit / max-curvature radius). This choice is both physical and operational: the system has a **hard inner cutoff** (no further compression), so the deepest accessible state is unique and history-independent.
 

@@ -7,7 +7,10 @@ const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
 const PERIODIC_TABLE_PATH = "content/scenes/chemistry/periodic_table.json";
 const LEGEND_ROUTES_PATH = "content/graph/runtime_routes.json";
+const ROOT_SCENE_PATH = "content/scenes/architrino_assembly_architecture.json";
 const OUTPUT_PATH = "content/graph/scene_graph.json";
+const TEXTBOOK_TOC_PATH = "content/graph/textbook_toc.json";
+const TEXTBOOK_TOC_MARKDOWN_PATH = "content/markdown/generated/textbook-toc.md";
 
 const args = new Set(process.argv.slice(2));
 const wantsWrite = args.has("--write");
@@ -37,8 +40,12 @@ const errors = [];
 
 function printUsage(exitCode) {
   console.log("Usage: node scripts/build-scene-graph.mjs [--check|--write] [--strict]");
-  console.log("  --check   Validate generated graph against content/graph/scene_graph.json (default)");
-  console.log("  --write   Regenerate content/graph/scene_graph.json");
+  console.log(
+    "  --check   Validate generated graph/TOC artifacts against content/graph/scene_graph.json, content/graph/textbook_toc.json, and content/markdown/generated/textbook-toc.md (default)"
+  );
+  console.log(
+    "  --write   Regenerate content/graph/scene_graph.json, content/graph/textbook_toc.json, and content/markdown/generated/textbook-toc.md"
+  );
   console.log("  --strict  Treat warnings as failures");
   process.exit(exitCode);
 }
@@ -109,6 +116,72 @@ function inferMarkdownName(markdownPath, resolvedTitle = null) {
   return stripWalkthroughStepPrefix(titleFromSlug(file)) || titleFromSlug(file);
 }
 
+function normalizeMarkdownKey(text) {
+  return String(text)
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function parseMarkdownHeading(line) {
+  const match = line.match(/^(#{2,3})\s+(.*)$/);
+  if (!match) {
+    const numbered = line.match(/^\*\*(\d+)\.\s+(.+?)\*\*/);
+    if (!numbered) {
+      return null;
+    }
+    return { level: 3, title: numbered[2].trim() };
+  }
+  const level = match[1].length;
+  let title = match[2].trim();
+  const boldMatch = title.match(/^\*\*(.+?)\*\*/);
+  if (boldMatch) {
+    title = boldMatch[1].trim();
+  }
+  return { level, title };
+}
+
+function extractMarkdownSection(markdown, sectionKey) {
+  const target = normalizeMarkdownKey(sectionKey);
+  if (!target) {
+    return null;
+  }
+  const lines = markdown.split(/\r?\n/);
+  let sectionTitle = null;
+  let start = -1;
+  let end = lines.length;
+  let startLevel = null;
+  for (let i = 0; i < lines.length; i += 1) {
+    const heading = parseMarkdownHeading(lines[i]);
+    if (!heading) {
+      continue;
+    }
+    const headingKey = normalizeMarkdownKey(heading.title);
+    if (start === -1) {
+      if (headingKey === target) {
+        sectionTitle = heading.title;
+        start = i + 1;
+        startLevel = heading.level;
+      }
+      continue;
+    }
+    if (heading.level <= (startLevel ?? heading.level)) {
+      end = i;
+      break;
+    }
+  }
+  if (start === -1) {
+    return null;
+  }
+  return {
+    title: sectionTitle,
+    body: lines.slice(start, end).join("\n").trim(),
+    level: startLevel,
+  };
+}
+
 function readJson(relativePath) {
   const absolutePath = path.join(rootDir, relativePath);
   try {
@@ -141,6 +214,161 @@ function resolveAuthoredMarkdownPath(entry) {
     return entry.source.path;
   }
   return null;
+}
+
+function resolveAuthoredMarkdownSection(entry) {
+  if (typeof entry?.view?.section === "string" && entry.view.section.trim()) {
+    return entry.view.section.trim();
+  }
+  if (typeof entry?.source?.split?.section === "string" && entry.source.split.section.trim()) {
+    return entry.source.split.section.trim();
+  }
+  if (typeof entry?.source?.tree?.section === "string" && entry.source.tree.section.trim()) {
+    return entry.source.tree.section.trim();
+  }
+  return null;
+}
+
+function sceneKindFromType(sceneType) {
+  switch (sceneType) {
+    case "Scene-Index":
+      return "scene-index";
+    case "Scene-Markdown-View":
+      return "markdown-view";
+    case "Scene-Markdown-Split":
+      return "markdown-split";
+    case "Scene-Markdown-Tree":
+      return "markdown-tree";
+    case "Scene-Diagram":
+      return "diagram";
+    case "Scene-Animation":
+      return "animation";
+    default:
+      return "scene";
+  }
+}
+
+function escapeMarkdownLinkText(text) {
+  return String(text).replace(/([\[\]])/g, "\\$1");
+}
+
+function normalizeTextbookTocMarkdownLabel(text) {
+  const stylizedAAA = "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$";
+  const stylizedUNow = "$\\mathbb{U}_{\\text{now}}$";
+  const stylizedGeff = "$G_{\\text{eff}}$";
+  const stylizedFieldSpeed = "$c_f$";
+  const stylizedFieldSpeedEquality = "$v = c_f$";
+  const superscriptMap = new Map([
+    ["+", "⁺"],
+    ["-", "⁻"],
+    ["0", "⁰"],
+    ["1", "¹"],
+    ["2", "²"],
+    ["3", "³"],
+    ["4", "⁴"],
+    ["5", "⁵"],
+    ["6", "⁶"],
+    ["7", "⁷"],
+    ["8", "⁸"],
+    ["9", "⁹"],
+  ]);
+  const subscriptMap = new Map([
+    ["+", "₊"],
+    ["-", "₋"],
+    ["0", "₀"],
+    ["1", "₁"],
+    ["2", "₂"],
+    ["3", "₃"],
+    ["4", "₄"],
+    ["5", "₅"],
+    ["6", "₆"],
+    ["7", "₇"],
+    ["8", "₈"],
+    ["9", "₉"],
+  ]);
+
+  function toSuperscript(textValue) {
+    const value = String(textValue ?? "");
+    if (value === "\\pm") {
+      return "±";
+    }
+    return value
+      .split("")
+      .map((char) => superscriptMap.get(char) ?? char)
+      .join("");
+  }
+
+  function toSubscript(textValue) {
+    const value = String(textValue ?? "");
+    return value
+      .split("")
+      .map((char) => subscriptMap.get(char) ?? char)
+      .join("");
+  }
+
+  function normalizeInlineMathSegment(segment) {
+    const rawValue = String(segment ?? "").trim();
+    if (rawValue.replace(/\s+/g, "") === "\\mathbb{A}\\mathbb{A}\\mathbb{A}") {
+      return stylizedAAA;
+    }
+    if (rawValue.replace(/\s+/g, "") === "\\mathbb{U}_{\\text{now}}") {
+      return stylizedUNow;
+    }
+    if (rawValue.replace(/\s+/g, "") === "G_{\\text{eff}}") {
+      return stylizedGeff;
+    }
+    if (rawValue.replace(/\s+/g, "") === "c_f") {
+      return stylizedFieldSpeed;
+    }
+    if (rawValue.replace(/\s+/g, "") === "v=c_f") {
+      return stylizedFieldSpeedEquality;
+    }
+
+    let value = rawValue;
+    value = value.replace(/\\+mathbf\{([^}]+)\}/g, "$1");
+    value = value.replace(/\\+mathbf([A-Za-z0-9]+)/g, "$1");
+    value = value.replace(/\\+text\{([^}]+)\}/g, "$1");
+    value = value.replace(/\\+lvert/g, "|");
+    value = value.replace(/\\+rvert/g, "|");
+    value = value.replace(/\\+mathbb\{A\}/g, "A");
+    value = value.replace(/\\+mathbb\{U\}/g, "U");
+    value = value.replace(/\\+gamma/g, "γ");
+    value = value.replace(/\\+pi/g, "π");
+    value = value.replace(/\\+rho/g, "ρ");
+    value = value.replace(/\\+Delta/g, "Δ");
+    value = value.replace(/\\+epsilon/g, "ε");
+    value = value.replace(/\\+eta/g, "η");
+    value = value.replace(/\\+Lambda/g, "Λ");
+    value = value.replace(/\\+sim/g, "~");
+    value = value.replace(/\\+times/g, "×");
+    value = value.replace(/\\+nu/g, "ν");
+    value = value.replace(/\\+pm/g, "±");
+    value = value.replace(/\\+to/g, "→");
+    value = value.replace(/\\+bar\{([^}]+)\}/g, (_, inner) => `${inner}̄`);
+    value = value.replace(/\^\{([^}]+)\}/g, (_, exponent) => toSuperscript(exponent));
+    value = value.replace(/\^([A-Za-z0-9+\-±\\]+)\b/g, (_, exponent) => toSuperscript(exponent));
+    value = value.replace(/\^([+\-0]{1,2})/g, (_, exponent) => toSuperscript(exponent));
+    value = value.replace(/\^±/g, "±");
+    value = value.replace(/_\\+text\{([^}]+)\}/g, "_$1");
+    value = value.replace(/_\{([^}]+)\}/g, "_$1");
+    value = value.replace(/_([0-9+\-]+)/g, (_, subscript) => toSubscript(subscript));
+    value = value.replace(/[{}]/g, "");
+    value = value.replace(/\^([⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻±]+)/g, "$1");
+    value = value.replace(/\|\s*([A-Za-z0-9])/g, "|$1");
+    value = value.replace(/([A-Za-z0-9])\s*\|/g, "$1|");
+    value = value.replace(/\s+/g, " ").trim();
+    return value;
+  }
+
+  return String(text)
+    .replace(/\$([^$]+)\$/g, (_, segment) => normalizeInlineMathSegment(segment))
+    .replace(/𝔸𝔸𝔸/g, stylizedAAA)
+    .replace(/\bAAA\b/g, stylizedAAA)
+    .replace(/\bU_now\b/g, stylizedUNow)
+    .replace(/\^([+\-0]{1,2})/g, (_, exponent) => toSuperscript(exponent))
+    .replace(/\^±/g, "±")
+    .replace(/_([0-9+\-]+)/g, (_, subscript) => toSubscript(subscript))
+    .replace(/\|= /g, "| = ");
 }
 
 function compareNodes(a, b) {
@@ -205,8 +433,14 @@ if (errors.length) {
     nodes: [],
     edges: [],
     searchEntries: [],
-    wrote: false,
-    drift: false,
+    tocEntryCount: 0,
+    tocSectionCount: 0,
+    wroteGraph: false,
+    wroteToc: false,
+    wroteTocMarkdown: false,
+    graphDrift: false,
+    tocDrift: false,
+    tocMarkdownDrift: false,
   });
 }
 
@@ -226,6 +460,7 @@ if (!Array.isArray(markdownIndexResult.data?.files)) {
 
 const sceneEntries = [];
 const sceneEntryByPath = new Map();
+const sceneEntryById = new Map();
 const sceneDataByPath = new Map();
 
 sceneEntriesRaw.forEach((entry, index) => {
@@ -248,6 +483,9 @@ sceneEntriesRaw.forEach((entry, index) => {
   sceneEntries.push(normalized);
   if (!sceneEntryByPath.has(scenePath)) {
     sceneEntryByPath.set(scenePath, normalized);
+  }
+  if (sceneId && !sceneEntryById.has(sceneId)) {
+    sceneEntryById.set(sceneId, normalized);
   }
 });
 
@@ -287,16 +525,28 @@ for (const sceneEntry of sceneEntries) {
 }
 
 const markdownTitleByPath = new Map();
+const markdownTextByPath = new Map();
 for (const markdownPath of markdownFiles) {
   const markdownRaw = readText(markdownPath);
   if (!markdownRaw.ok) {
     warnings.push(`${markdownPath}: failed to read markdown file (${markdownRaw.error.message})`);
     continue;
   }
+  markdownTextByPath.set(markdownPath, markdownRaw.data);
   const title = extractMarkdownDocumentTitle(markdownRaw.data);
   if (title) {
     markdownTitleByPath.set(markdownPath, title);
   }
+}
+
+function resolveChildScenePath(childRef) {
+  if (typeof childRef?.scenePath === "string" && childRef.scenePath.trim()) {
+    return normalizePath(childRef.scenePath);
+  }
+  if (typeof childRef?.sceneId === "string" && childRef.sceneId.trim()) {
+    return sceneEntryById.get(childRef.sceneId.trim())?.path ?? null;
+  }
+  return null;
 }
 
 const nodeById = new Map();
@@ -427,16 +677,10 @@ for (const sceneEntry of sceneEntries) {
   }
   if (Array.isArray(scene.children)) {
     scene.children.forEach((childRef, childIndex) => {
-      const childTarget =
-        typeof childRef?.scenePath === "string"
-          ? childRef.scenePath
-          : typeof childRef?.sceneId === "string"
-            ? childRef.sceneId
-            : null;
-      if (!childTarget) {
+      const normalizedSubScenePath = resolveChildScenePath(childRef);
+      if (!normalizedSubScenePath) {
         return;
       }
-      const normalizedSubScenePath = normalizePath(childTarget);
       if (!scenePathSet.has(normalizedSubScenePath)) {
         warnings.push(
           `${scenePath} -> scene.children[${childIndex}]: target scene missing from index (${normalizedSubScenePath})`
@@ -557,6 +801,304 @@ if (!legendRoutesResult.ok) {
   }
 }
 
+function buildMarkdownSectionEntries({
+  markdownPath,
+  markdownSection,
+  sceneType,
+  sceneConfig,
+}) {
+  const normalizedMarkdownPath = normalizePath(markdownPath);
+  const markdownText = markdownTextByPath.get(normalizedMarkdownPath);
+  if (typeof markdownText !== "string" || !markdownText.trim()) {
+    return [];
+  }
+
+  let scopedMarkdown = markdownText;
+  let scopedSectionLevel = null;
+  if (typeof markdownSection === "string" && markdownSection.trim()) {
+    const extracted = extractMarkdownSection(markdownText, markdownSection);
+    if (!extracted) {
+      warnings.push(
+        `${normalizedMarkdownPath}: textbook TOC could not resolve section "${markdownSection}"`
+      );
+      return [];
+    }
+    scopedMarkdown = extracted.body;
+    scopedSectionLevel = extracted.level;
+  }
+
+  const source = sceneConfig?.source ?? {};
+  const splitConfig =
+    source.split && typeof source.split === "object" && !Array.isArray(source.split)
+      ? source.split
+      : null;
+  const treeConfig =
+    source.tree && typeof source.tree === "object" && !Array.isArray(source.tree)
+      ? source.tree
+      : null;
+
+  let rootHeadingLevel = 2;
+  let maxDepth = 1;
+  if (sceneType === "Scene-Markdown-Split") {
+    rootHeadingLevel =
+      typeof splitConfig?.headingLevel === "number" ? splitConfig.headingLevel : rootHeadingLevel;
+    maxDepth = typeof splitConfig?.maxDepth === "number" ? splitConfig.maxDepth : 1;
+  } else if (sceneType === "Scene-Markdown-Tree") {
+    rootHeadingLevel =
+      typeof treeConfig?.rootHeadingLevel === "number"
+        ? treeConfig.rootHeadingLevel
+        : rootHeadingLevel;
+    maxDepth = typeof treeConfig?.maxDepth === "number" ? treeConfig.maxDepth : 1;
+  } else if (sceneType === "Scene-Markdown-View" && Number.isFinite(scopedSectionLevel)) {
+    rootHeadingLevel = scopedSectionLevel + 1;
+  }
+
+  const boundedDepth = Math.max(1, Math.trunc(maxDepth || 1));
+  const maxHeadingLevel = rootHeadingLevel + boundedDepth;
+  const rawRoots = [];
+  const stack = [];
+  const lines = scopedMarkdown.split(/\r?\n/);
+  lines.forEach((line) => {
+    const heading = parseMarkdownHeading(line);
+    if (!heading) {
+      return;
+    }
+    if (heading.level < rootHeadingLevel || heading.level >= maxHeadingLevel) {
+      return;
+    }
+    const rawTitle = heading.title;
+    const title = stripWalkthroughStepPrefix(rawTitle) || rawTitle;
+    const sectionKey = normalizeMarkdownKey(rawTitle);
+    const node = {
+      title,
+      rawTitle,
+      sectionKey,
+      headingLevel: heading.level,
+      children: [],
+    };
+    while (stack.length && stack[stack.length - 1].headingLevel >= heading.level) {
+      stack.pop();
+    }
+    if (stack.length) {
+      stack[stack.length - 1].children.push(node);
+    } else {
+      rawRoots.push(node);
+    }
+    stack.push(node);
+  });
+
+  const sectionOverridesSource =
+    sceneType === "Scene-Markdown-Tree" ? treeConfig?.overrides : splitConfig?.overrides;
+  const sectionOverrides =
+    sectionOverridesSource &&
+    typeof sectionOverridesSource === "object" &&
+    !Array.isArray(sectionOverridesSource)
+      ? sectionOverridesSource
+      : null;
+
+  function applyOverrides(nodes) {
+    return nodes
+      .map((node) => {
+        const override =
+          sectionOverrides && node.sectionKey ? sectionOverrides[node.sectionKey] : null;
+        if (override?.hidden === true || override?.exclude === true) {
+          return null;
+        }
+        const entry = {
+          kind: "markdown-section",
+          title:
+            asText(override?.labelTitle) ||
+            asText(override?.title) ||
+            asText(node.title) ||
+            node.rawTitle,
+          markdownPath: normalizedMarkdownPath,
+          markdownSection: node.rawTitle,
+          sectionKey: node.sectionKey,
+          headingLevel: node.headingLevel,
+        };
+        if (typeof markdownSection === "string" && markdownSection.trim()) {
+          entry.parentMarkdownSection = markdownSection;
+        }
+        const forceDocMode = override?.mode === "doc";
+        const children = forceDocMode ? [] : applyOverrides(node.children);
+        if (children.length) {
+          entry.children = children;
+        }
+        return entry;
+      })
+      .filter(Boolean);
+  }
+
+  return applyOverrides(rawRoots);
+}
+
+function buildTextbookTocEntry(scenePath, ancestry = new Set()) {
+  const normalizedScenePath = normalizePath(scenePath);
+  const indexedScene = sceneEntryByPath.get(normalizedScenePath);
+  const sceneData = sceneDataByPath.get(normalizedScenePath);
+  if (!indexedScene || !sceneData?.scene) {
+    warnings.push(`Textbook TOC references missing scene data: ${normalizedScenePath}`);
+    return null;
+  }
+
+  if (ancestry.has(normalizedScenePath)) {
+    warnings.push(`Textbook TOC cycle detected at ${normalizedScenePath}`);
+    return null;
+  }
+
+  const sceneConfig = sceneData.scene;
+  const sceneType = asText(sceneConfig.type);
+  const markdownPath = resolveAuthoredMarkdownPath(sceneConfig);
+  const markdownSection = resolveAuthoredMarkdownSection(sceneConfig);
+  const hideChildrenInToc = sceneConfig?.textbookToc?.hideChildren === true;
+  const entry = {
+    id: asText(sceneConfig.id) || indexedScene.id,
+    title: asText(sceneConfig.title) || indexedScene.name,
+    kind: sceneKindFromType(sceneType),
+    sceneType,
+    scenePath: normalizedScenePath,
+  };
+
+  if (typeof markdownPath === "string" && markdownPath.trim()) {
+    entry.markdownPath = normalizePath(markdownPath);
+  }
+  if (typeof markdownSection === "string" && markdownSection.trim()) {
+    entry.markdownSection = markdownSection;
+    entry.sectionKey = normalizeMarkdownKey(markdownSection);
+  }
+
+  if (sceneType === "Scene-Markdown-View" ||
+      sceneType === "Scene-Markdown-Split" ||
+      sceneType === "Scene-Markdown-Tree") {
+    const sections = buildMarkdownSectionEntries({
+      markdownPath,
+      markdownSection,
+      sceneType,
+      sceneConfig,
+    });
+    if (sections.length) {
+      entry.sections = sections;
+    }
+  }
+
+  if (!hideChildrenInToc && sceneType === "Scene-Index" && Array.isArray(sceneConfig.children)) {
+    const nextAncestry = new Set(ancestry);
+    nextAncestry.add(normalizedScenePath);
+    const children = sceneConfig.children
+      .filter((childRef) => childRef?.textbookToc?.hideEntry !== true)
+      .map((childRef) => resolveChildScenePath(childRef))
+      .filter(Boolean)
+      .map((childScenePath) => buildTextbookTocEntry(childScenePath, nextAncestry))
+      .filter(Boolean);
+    if (children.length) {
+      entry.children = children;
+    }
+  }
+
+  return entry;
+}
+
+function countTocEntries(entry) {
+  if (!entry || typeof entry !== "object") {
+    return 0;
+  }
+  const children = Array.isArray(entry.children) ? entry.children : [];
+  return 1 + children.reduce((sum, child) => sum + countTocEntries(child), 0);
+}
+
+function countTocSections(sections) {
+  const list = Array.isArray(sections) ? sections : [];
+  return list.reduce((sum, section) => {
+    const childCount = countTocSections(section.children);
+    return sum + 1 + childCount;
+  }, 0);
+}
+
+function countAllTocSections(entry) {
+  if (!entry || typeof entry !== "object") {
+    return 0;
+  }
+  const ownSections = countTocSections(entry.sections);
+  const childSections = Array.isArray(entry.children)
+    ? entry.children.reduce((sum, child) => sum + countAllTocSections(child), 0)
+    : 0;
+  return ownSections + childSections;
+}
+
+function relativeRepoLink(fromPath, targetPath, searchParams = null) {
+  const fromDir = path.posix.dirname(normalizePath(fromPath));
+  const relativePath = path.posix.relative(fromDir, normalizePath(targetPath)) || ".";
+  const normalizedRelativePath = toPosixPath(relativePath);
+  if (!searchParams || !Object.keys(searchParams).length) {
+    return normalizedRelativePath;
+  }
+  const query = new URLSearchParams();
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (typeof value === "string" && value.trim()) {
+      query.set(key, value);
+    }
+  });
+  const serialized = query.toString();
+  return serialized ? `${normalizedRelativePath}?${serialized}` : normalizedRelativePath;
+}
+
+function renderTextbookTocMarkdown(rootEntry) {
+  const lines = [
+    "# Textbook TOC",
+    "",
+    "This generated table of contents mirrors the current authored scene order and local section structure.",
+    "Chapter links open scenes. Section links open the corresponding markdown section.",
+    "",
+  ];
+
+  function renderEntry(entry, depth) {
+    if (!entry || typeof entry !== "object") {
+      return;
+    }
+    const indent = "  ".repeat(depth);
+    let target = null;
+    if (typeof entry.scenePath === "string" && entry.scenePath.trim()) {
+      target = relativeRepoLink(TEXTBOOK_TOC_MARKDOWN_PATH, entry.scenePath);
+    } else if (typeof entry.markdownPath === "string" && entry.markdownPath.trim()) {
+      target = relativeRepoLink(TEXTBOOK_TOC_MARKDOWN_PATH, entry.markdownPath);
+    }
+
+    const badge =
+      entry.kind === "diagram"
+        ? " _(diagram)_"
+        : entry.kind === "animation"
+          ? " _(animation)_"
+          : "";
+    const label = escapeMarkdownLinkText(normalizeTextbookTocMarkdownLabel(entry.title));
+    lines.push(target ? `${indent}- [${label}](${target})${badge}` : `${indent}- ${label}${badge}`);
+
+    const sections = Array.isArray(entry.sections) ? entry.sections : [];
+    sections.forEach((section) => renderSection(section, depth + 1));
+
+    const children = Array.isArray(entry.children) ? entry.children : [];
+    children.forEach((child) => renderEntry(child, depth + 1));
+  }
+
+  function renderSection(section, depth) {
+    if (!section || typeof section !== "object") {
+      return;
+    }
+    const indent = "  ".repeat(depth);
+    const target = relativeRepoLink(TEXTBOOK_TOC_MARKDOWN_PATH, section.markdownPath, {
+      section: section.markdownSection,
+    });
+    const label = escapeMarkdownLinkText(normalizeTextbookTocMarkdownLabel(section.title));
+    lines.push(`${indent}- [${label}](${target})`);
+    const children = Array.isArray(section.children) ? section.children : [];
+    children.forEach((child) => renderSection(child, depth + 1));
+  }
+
+  const rootChildren = Array.isArray(rootEntry?.children) ? rootEntry.children : [];
+  rootChildren.forEach((entry) => renderEntry(entry, 0));
+  lines.push("");
+  return `${lines.join("\n")}\n`;
+}
+
 const nodes = Array.from(nodeById.values()).sort(compareNodes);
 const edges = Array.from(edgeByKey.values()).sort(compareEdges);
 
@@ -641,18 +1183,62 @@ const manifest = {
   edges,
 };
 
+const textbookTocRoot = buildTextbookTocEntry(ROOT_SCENE_PATH);
+const textbookTocManifest = {
+  meta: {
+    schemaVersion: 1,
+    generator: "scripts/build-scene-graph.mjs",
+    rootScenePath: ROOT_SCENE_PATH,
+    sources: {
+      scenesIndex: SCENES_INDEX_PATH,
+      markdownIndex: MARKDOWN_INDEX_PATH,
+    },
+    counts: {
+      entries: countTocEntries(textbookTocRoot),
+      sections: countAllTocSections(textbookTocRoot),
+    },
+  },
+  tocRoot: textbookTocRoot,
+};
+const serializedTextbookTocMarkdown = renderTextbookTocMarkdown(textbookTocRoot);
+
 const serializedManifest = `${JSON.stringify(manifest, null, 2)}\n`;
 const outputAbsolutePath = path.join(rootDir, OUTPUT_PATH);
 const currentManifestRaw = fs.existsSync(outputAbsolutePath)
   ? fs.readFileSync(outputAbsolutePath, "utf8")
   : null;
-const drift = currentManifestRaw !== serializedManifest;
+const graphDrift = currentManifestRaw !== serializedManifest;
 
-let wrote = false;
-if (mode === "write" && drift) {
+const serializedTextbookToc = `${JSON.stringify(textbookTocManifest, null, 2)}\n`;
+const textbookTocAbsolutePath = path.join(rootDir, TEXTBOOK_TOC_PATH);
+const currentTextbookTocRaw = fs.existsSync(textbookTocAbsolutePath)
+  ? fs.readFileSync(textbookTocAbsolutePath, "utf8")
+  : null;
+const tocDrift = currentTextbookTocRaw !== serializedTextbookToc;
+
+const textbookTocMarkdownAbsolutePath = path.join(rootDir, TEXTBOOK_TOC_MARKDOWN_PATH);
+const currentTextbookTocMarkdownRaw = fs.existsSync(textbookTocMarkdownAbsolutePath)
+  ? fs.readFileSync(textbookTocMarkdownAbsolutePath, "utf8")
+  : null;
+const tocMarkdownDrift = currentTextbookTocMarkdownRaw !== serializedTextbookTocMarkdown;
+
+let wroteGraph = false;
+let wroteToc = false;
+let wroteTocMarkdown = false;
+if (mode === "write" && graphDrift) {
   fs.mkdirSync(path.dirname(outputAbsolutePath), { recursive: true });
   fs.writeFileSync(outputAbsolutePath, serializedManifest, "utf8");
-  wrote = true;
+  wroteGraph = true;
+}
+if (mode === "write" && tocDrift) {
+  fs.mkdirSync(path.dirname(textbookTocAbsolutePath), { recursive: true });
+  fs.writeFileSync(textbookTocAbsolutePath, serializedTextbookToc, "utf8");
+  wroteToc = true;
+}
+if (mode === "write" && tocMarkdownDrift) {
+  fs.mkdirSync(path.dirname(textbookTocMarkdownAbsolutePath), { recursive: true });
+  fs.writeFileSync(textbookTocMarkdownAbsolutePath, serializedTextbookTocMarkdown, "utf8");
+  wroteTocMarkdown = true;
 }
 
 printReportAndExit({
@@ -661,8 +1247,14 @@ printReportAndExit({
   nodes,
   edges,
   searchEntries,
-  wrote,
-  drift,
+  tocEntryCount: countTocEntries(textbookTocRoot),
+  tocSectionCount: countAllTocSections(textbookTocRoot),
+  wroteGraph,
+  wroteToc,
+  wroteTocMarkdown,
+  graphDrift,
+  tocDrift,
+  tocMarkdownDrift,
 });
 
 function printReportAndExit({
@@ -671,8 +1263,14 @@ function printReportAndExit({
   nodes: reportNodes,
   edges: reportEdges,
   searchEntries: reportSearchEntries,
-  wrote: reportWrote,
-  drift: reportDrift,
+  tocEntryCount: reportTocEntryCount,
+  tocSectionCount: reportTocSectionCount,
+  wroteGraph: reportWroteGraph,
+  wroteToc: reportWroteToc,
+  wroteTocMarkdown: reportWroteTocMarkdown,
+  graphDrift: reportGraphDrift,
+  tocDrift: reportTocDrift,
+  tocMarkdownDrift: reportTocMarkdownDrift,
 }) {
   console.log(`build-scene-graph mode: ${reportMode}${reportStrict ? " (strict)" : ""}`);
   console.log(`- Scene index entries: ${sceneEntries.length}`);
@@ -680,12 +1278,26 @@ function printReportAndExit({
   console.log(`- Generated nodes: ${reportNodes.length}`);
   console.log(`- Generated edges: ${reportEdges.length}`);
   console.log(`- Search entries: ${reportSearchEntries.length}`);
-  if (reportWrote) {
+  console.log(`- Textbook TOC entries: ${reportTocEntryCount}`);
+  console.log(`- Textbook TOC sections: ${reportTocSectionCount}`);
+  if (reportWroteGraph) {
     console.log(`- Wrote graph manifest: ${OUTPUT_PATH}`);
   }
+  if (reportWroteToc) {
+    console.log(`- Wrote textbook TOC: ${TEXTBOOK_TOC_PATH}`);
+  }
+  if (reportWroteTocMarkdown) {
+    console.log(`- Wrote textbook TOC markdown: ${TEXTBOOK_TOC_MARKDOWN_PATH}`);
+  }
 
-  if (reportDrift && !(reportMode === "write" && reportWrote)) {
+  if (reportGraphDrift && !(reportMode === "write" && reportWroteGraph)) {
     console.log(`- Drift detected: ${OUTPUT_PATH} is out of date`);
+  }
+  if (reportTocDrift && !(reportMode === "write" && reportWroteToc)) {
+    console.log(`- Drift detected: ${TEXTBOOK_TOC_PATH} is out of date`);
+  }
+  if (reportTocMarkdownDrift && !(reportMode === "write" && reportWroteTocMarkdown)) {
+    console.log(`- Drift detected: ${TEXTBOOK_TOC_MARKDOWN_PATH} is out of date`);
   }
 
   if (warnings.length) {
@@ -703,7 +1315,7 @@ function printReportAndExit({
   const failed =
     errors.length > 0 ||
     (reportStrict && warnings.length > 0) ||
-    (reportMode === "check" && reportDrift);
+    (reportMode === "check" && (reportGraphDrift || reportTocDrift || reportTocMarkdownDrift));
   if (failed) {
     process.exit(1);
   }

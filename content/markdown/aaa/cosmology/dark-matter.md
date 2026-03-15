@@ -13,7 +13,7 @@ Throughout, "dark matter" refers to the set of phenomena conventionally attribut
 
 In the architrino framework, the Euclidean void is populated by a dense lattice of coupled neutral tri-binary assemblies—the Noether Sea. Each tri-binary consists of three nested electrino–positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent refractive effect: local variations in Noether-Sea density $\rho_{\mathrm{NS}}(\mathbf{x},t)$ alter effective signal-propagation speeds and the transmission of delayed causal flux, producing geodesic deviation and an effective metric $g_{\mu\nu}$ experienced by all assemblies.
 
-Massive composite assemblies (protons, atoms, stars) are tri-binary configurations with decoration charges; they locally compress the Noether Sea, increasing $\rho_{\mathrm{NS}}$ and slowing effective light propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to the medium compliance—how readily the Sea density responds to stress from embedded matter (see `spacetime/emergent-metric.md`).
+Massive composite assemblies (protons, atoms, stars) are tri-binary configurations with decoration charges; they locally compress the Noether Sea, increasing $\rho_{\mathrm{NS}}$ and slowing effective light propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to the medium compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../spacetime/emergent-metric.md)).
 
 ### What Counts as "Dark" in this Ontology
 
@@ -167,10 +167,10 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid baseline offers two potential handle
 
 In the modular cosmology architecture, this chapter connects to other modules through:
 
-- **Input to `CMB.md`:** $\Omega_A h^2$, neutral-assembly equation of state $w_A(z)$ (expected: $w_A = 0$ for CDM-like behavior), and any $\Delta N_{\mathrm{eff}}$ contribution.
-- **Input to `structure-formation.md`:** $G_{\mathrm{eff}}(a,k)$ from medium-response constitutive relation; neutral-assembly self-interaction cross-section $\sigma(v)/m$.
-- **Input from `expansion-mechanism.md`:** $H(z)$ and $\Omega_m(z)$ for growth-equation integration.
-- **Input from `BBN-constraints.md`:** $N_{\mathrm{eff}}$ bound constraining allowed neutral-assembly species at MeV temperatures.
+- **Input to [CMB.md](./CMB.md):** $\Omega_A h^2$, neutral-assembly equation of state $w_A(z)$ (expected: $w_A = 0$ for CDM-like behavior), and any $\Delta N_{\mathrm{eff}}$ contribution.
+- **Input to [structure-formation.md](./structure-formation.md):** $G_{\mathrm{eff}}(a,k)$ from medium-response constitutive relation; neutral-assembly self-interaction cross-section $\sigma(v)/m$.
+- **Input from [expansion-mechanism.md](./expansion-mechanism.md):** $H(z)$ and $\Omega_m(z)$ for growth-equation integration.
+- **Input from [BBN-constraints.md](./BBN-constraints.md):** $N_{\mathrm{eff}}$ bound constraining allowed neutral-assembly species at MeV temperatures.
 
 All interfaces use the same absolute-time / Euclidean-space substrate and the same Noether-Sea state variables, ensuring ontological consistency across modules.
 

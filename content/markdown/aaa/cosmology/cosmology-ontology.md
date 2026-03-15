@@ -22,14 +22,14 @@ All cosmological observables are computed from absolute-state evolution and then
 
 ## Cosmology Document Set
 
-- `expansion-mechanism.md`: canonical expansion and redshift mapping in fixed void ontology.
-- `inflation-model.md`: emergent early rapid-expansion model and conceptual inflation framing.
-- `BBN-constraints.md`: light-element abundance constraints under emergent $H(t)$.
-- `CMB.md`: integrated CMB origin narrative plus quantitative prediction mapping in the same ontology.
-- `structure-formation.md`: growth dynamics and large-scale structure tests.
-- `hubble-s8-tensions.md`: joint treatment of late-time cosmology tensions.
-- `dark-matter.md`: dark-sector mechanism mapping in a unified medium-and-assembly frame.
-- `dark-energy.md`: acceleration mechanism mapping in the same fixed-void ontology.
+- [expansion-mechanism.md](./expansion-mechanism.md): canonical expansion and redshift mapping in fixed void ontology.
+- [inflation-model.md](./inflation-model.md): emergent early rapid-expansion model and conceptual inflation framing.
+- [BBN-constraints.md](./BBN-constraints.md): light-element abundance constraints under emergent $H(t)$.
+- [CMB.md](./CMB.md): integrated CMB origin narrative plus quantitative prediction mapping in the same ontology.
+- [structure-formation.md](./structure-formation.md): growth dynamics and large-scale structure tests.
+- [hubble-s8-tensions.md](./hubble-s8-tensions.md): joint treatment of late-time cosmology tensions.
+- [dark-matter.md](./dark-matter.md): dark-sector mechanism mapping in a unified medium-and-assembly frame.
+- [dark-energy.md](./dark-energy.md): acceleration mechanism mapping in the same fixed-void ontology.
 
 ## Historical Lineage (Conceptual, Not Identical)
 

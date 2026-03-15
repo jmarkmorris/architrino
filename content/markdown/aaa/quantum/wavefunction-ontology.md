@@ -84,4 +84,4 @@ $$
 $$
 in the same regime where the envelope dynamics reduce to effective Schrödinger evolution.
 
-Primary synthesis location: `quantum/pilot-wave-character.md`.
+Primary synthesis location: [quantum/pilot-wave-character.md](./pilot-wave-character.md).

@@ -271,7 +271,7 @@ For the static branch ($v=0$),
 $$
 \frac{\omega}{\omega_0}=1-\frac{U}{c_f^2}+C_2\frac{U^2}{c_f^4}+\cdots,
 $$
-and the PPN map used in `spacetime/ppn-parameters.md` is
+and the PPN map used in [spacetime/ppn-parameters.md](./ppn-parameters.md) is
 $$
 \beta_{\mathrm{eff}}=\frac{1+2C_2}{2}.
 $$
@@ -285,7 +285,7 @@ The mixed coefficient $C_{Uv}$ is treated as a leakage diagnostic at this order.
 Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are defined in:
 
 1. `validation/experiments/*`
-2. `validation/constraint-ledger.md`
+2. [validation/constraint-ledger.md](../validation/constraint-ledger.md)
 
 ---
 
@@ -325,7 +325,7 @@ map to
 $$
 \hat\beta_{\mathrm{eff}}=\frac{1+2\hat C_2}{2},
 $$
-and forward to the PPN decision vector in `spacetime/ppn-parameters.md`.
+and forward to the PPN decision vector in [spacetime/ppn-parameters.md](./ppn-parameters.md).
 
 A compact closure statistic is:
 $$

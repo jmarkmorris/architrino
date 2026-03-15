@@ -118,4 +118,4 @@ In the modular cosmology map, this page provides:
 
 - ontic inputs: medium density/stress state, clock-rate map, and transport environment,
 - effective outputs: inferred $a(t)$, $H(z)$, and redshift-distance behavior,
-- shared bridge variables used by `dark-energy.md`, `hubble-s8-tensions.md`, and `CMB.md`.
+- shared bridge variables used by [dark-energy.md](./dark-energy.md), [hubble-s8-tensions.md](./hubble-s8-tensions.md), and [CMB.md](./CMB.md).

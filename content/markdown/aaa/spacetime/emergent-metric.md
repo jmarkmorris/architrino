@@ -100,9 +100,9 @@ $$
 
 Distribute proof obligations as:
 - constitutive metric form and observer map: **this chapter**,
-- explicit 1PN observables/estimators: `spacetime/ppn-parameters.md`,
-- clock-law extraction and coefficient fitting: `spacetime/proper-time-and-time-dilation.md`,
-- final acceptance thresholds: `validation/constraint-ledger.md`.
+- explicit 1PN observables/estimators: [spacetime/ppn-parameters.md](./ppn-parameters.md),
+- clock-law extraction and coefficient fitting: [spacetime/proper-time-and-time-dilation.md](./proper-time-and-time-dilation.md),
+- final acceptance thresholds: [validation/constraint-ledger.md](../validation/constraint-ledger.md).
 
 Minimal closure condition:
 1. Eikonal path-time extremals in the refractive picture match null geodesics of $g^{\text{eff}}_{\mu\nu}$ in weak field.

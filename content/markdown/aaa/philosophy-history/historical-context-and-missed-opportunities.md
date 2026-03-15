@@ -128,6 +128,22 @@ Liénard and Wiechert sharpened that opening by giving the potentials of a movin
 
 In other words, the ingredients for a layered interpretation were already present. One could have said: the measurement devices themselves are assemblies whose dimensions and rates depend on motion through a constitutive medium, so the symmetry observed in measurement does not settle the deepest kinematics. That would not yet have been the architrino theory, but it would have preserved the correct kind of question.
 
+#### Lorentz Ether vs Einstein vs Architrino
+
+| Aspect | Lorentz Ether (1904) | Einstein SR (1905) | $\mathbb{A}\mathbb{A}\mathbb{A}$ |
+|:---|:---|:---|:---|
+| Preferred frame | Yes, physically real ether rest frame | No preferred inertial frame | Yes, Euclidean void with exact global time |
+| Status of Lorentz transformations | Dynamical compensation from motion through a medium | Fundamental kinematics of spacetime itself | Emergent observable symmetry from assembly dynamics |
+| Medium composition | Unspecified ether substance | No constitutive medium required | Noether-core sea of architrino assemblies |
+| Relation between matter and medium | Matter moves through a distinct ether | Matter and spacetime are treated kinematically | Matter and medium share one ontology |
+| Why ordinary experiments fail to reveal the frame | Rod-clock compensation is exact | No hidden frame exists to detect | Accessible-regime compensation hides the frame in ordinary conditions |
+| Moving-source causal structure | Finite-propagation source history already matters in electrodynamics | Retained mathematically but stripped of medium ontology | Elevated into a substrate-first path-history picture |
+| Ontological cost | Real medium with weak microphysical closure | Strong formal economy, weaker constitutive account | Harder closure burden, but explicit constitutive target |
+
+#### Why No Aether-Wind Signal Is Expected
+
+Michelson-Morley did not force the conclusion that no constitutive background exists. It forced the conclusion that a naive wind model was inadequate. In the Lorentz-family reading, rulers and clocks made of the same underlying medium-coupled matter can contract and slow in exactly the way needed to erase first-order access to the background frame. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading, the same general lesson persists in sharper form: the instruments are not outside the substrate they probe, so compensation in the ordinary regime is not surprising. A null aether-wind result therefore underdetermines ontology. It rules out crude drag pictures, not every possible medium-based constitutive account.
+
 ### What Current Physics Still Gets Right
 
 What still works from the victorious path is indisputable. Relativistic kinematics achieved enormous conceptual economy and empirical success. The Lorentz transformations were preserved and generalized cleanly. The elimination of an experimentally inaccessible rest frame simplified theory building and reduced ad hoc burden. The success of special relativity was real, not a historical mistake.
@@ -150,11 +166,11 @@ The long-term relevance of this episode is permanent. Recovery would require a m
 
 ---
 
-## Geometrization After 1915: Effective Description Promoted to Ontology
+## Geometrization After 1915: Ontology Shift
 
 ### Overview
 
-**Episode:** Geometrization After 1915: Effective Description Promoted to Ontology. **Short Name:** Geometrization Lock-In. **Period:** 1915 through the consolidation of general relativity in the early twentieth century. The near-miss thesis is that the metric could have been treated as a constitutive summary of deeper medium organization rather than as the final primitive of gravitation.
+**Episode:** Geometrization After 1915: Ontology Shift. **Short Name:** Geometrization Lock-In. **Period:** 1915 through the consolidation of general relativity in the early twentieth century. The near-miss thesis is that the metric could have been treated as a constitutive summary of deeper medium organization rather than as the final primitive of gravitation.
 
 ### Where The Opening Appeared
 
@@ -184,11 +200,11 @@ The long-term relevance of this episode is permanent process guidance. Recovery 
 
 ---
 
-## Copenhagen Consolidation: Deterministic Multistability Lost to Epistemic Minimalism
+## Copenhagen: Multistability Lost to Epistemic Minimalism
 
 ### Overview
 
-**Episode:** Copenhagen Consolidation: Deterministic Multistability Lost to Epistemic Minimalism. **Short Name:** Copenhagen Lock-In. **Period:** roughly 1924-1935 in the development of quantum mechanics and its interpretive settlement. The near-miss thesis is that quantum outcome selection could have been pursued through deterministic microstate and contextual basin dynamics rather than being neutralized into an operational rule-set.
+**Episode:** Copenhagen: Deterministic Multistability Lost to Epistemic Minimalism. **Short Name:** Copenhagen Lock-In. **Period:** roughly 1924-1935 in the development of quantum mechanics and its interpretive settlement. The near-miss thesis is that quantum outcome selection could have been pursued through deterministic microstate and contextual basin dynamics rather than being neutralized into an operational rule-set.
 
 ### Where The Opening Appeared
 
@@ -218,11 +234,11 @@ The long-term relevance of this episode is permanent until the outcome-selection
 
 ---
 
-## Renormalization Era: Warning Signals Reframed as Technique
+## Renormalization Era: Warnings Reframed
 
 ### Overview
 
-**Episode:** Renormalization Era: Warning Signals Reframed as Technique. **Short Name:** Renormalization Lock-In. **Period:** roughly the 1930s through the consolidation of renormalized quantum field theory in the postwar era. The near-miss thesis is that ultraviolet divergence, vacuum excess, and scale-dependent closure could have been treated more aggressively as clues to missing microstructure rather than normalized into technique alone.
+**Episode:** Renormalization Era: Warnings Reframed. **Short Name:** Renormalization Lock-In. **Period:** roughly the 1930s through the consolidation of renormalized quantum field theory in the postwar era. The near-miss thesis is that ultraviolet divergence, vacuum excess, and scale-dependent closure could have been treated more aggressively as clues to missing microstructure rather than normalized into technique alone.
 
 ### Where The Opening Appeared
 
@@ -252,7 +268,7 @@ The long-term relevance of this episode is permanent until a deeper microtheory 
 
 ---
 
-## Precision Cosmology: Effective Parameters Hardening into Story
+## Precision Cosmology: Parameters into Story
 
 ### Overview
 

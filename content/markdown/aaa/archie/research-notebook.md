@@ -148,7 +148,7 @@ This is not a made-up trick. It is the same geometric factor that appears in the
 Why? Because the underlying problem is the same:
 - a source emits influence at finite speed,
 - the source moves while the influence is propagating,
-- and a receiver samples the source not at "now" but at the **retarded emission event**.
+- and a receiver samples the source not at "now" but at the **delayed causal emission event**.
 
 Whenever you solve that geometry correctly, you must include the Jacobian of the map from emission time to reception geometry. That Jacobian is what produces the $(1 - \beta \cos\theta)$ structure, or in vector form:
 $$

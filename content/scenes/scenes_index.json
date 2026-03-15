@@ -702,7 +702,7 @@
     },
     {
       "id": "nuclear_atomic",
-      "name": "Nuclear-Atomic",
+      "name": "Atomic and Nuclear Assemblies",
       "path": "content/scenes/nuclear/nuclear_atomic.json"
     },
     {
@@ -732,7 +732,7 @@
     },
     {
       "id": "spacetime",
-      "name": "Spacetime Assemblies",
+      "name": "Spacetime",
       "path": "content/scenes/spacetime/spacetime.json"
     },
     {
@@ -817,7 +817,7 @@
     },
     {
       "id": "assemblies",
-      "name": "Assemblies",
+      "name": "Standard Model Assemblies",
       "path": "content/scenes/assemblies/assemblies.json"
     },
     {
@@ -987,7 +987,7 @@
     },
     {
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json"
     },
     {
@@ -1051,11 +1051,6 @@
       "path": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
     },
     {
-      "id": "philosophy_history__lorentz_ether_comparison",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json"
-    },
-    {
       "id": "philosophy_history__religious_ontologies",
       "name": "Religious Ontologies",
       "path": "content/scenes/philosophy_history/religious_ontologies.json"
@@ -1099,11 +1094,6 @@
       "id": "quantum__wavefunction_ontology",
       "name": "Wavefunction Ontology",
       "path": "content/scenes/quantum/wavefunction_ontology.json"
-    },
-    {
-      "id": "spacetime__cosmic_censorship_holography",
-      "name": "Cosmic Censorship and Holography",
-      "path": "content/scenes/spacetime/cosmic_censorship_holography.json"
     },
     {
       "id": "spacetime__emergent_metric",
@@ -1379,6 +1369,31 @@
       "id": "archie__research_notebook",
       "name": "Research Notebook",
       "path": "content/scenes/archie/research_notebook.json"
+    },
+    {
+      "id": "archie__support_architrino_research",
+      "name": "Support Architrino Research",
+      "path": "content/scenes/archie/support_architrino_research.json"
+    },
+    {
+      "id": "archie__textbook_toc",
+      "name": "Textbook TOC",
+      "path": "content/scenes/archie/textbook_toc.json"
+    },
+    {
+      "id": "philosophy_history__agency_and_internal_causation",
+      "name": "Agency and Internal Causation",
+      "path": "content/scenes/philosophy_history/agency_and_internal_causation.json"
+    },
+    {
+      "id": "philosophy_history__cosmic_censorship_holography",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
+    },
+    {
+      "id": "foundations__detecting_the_absolute_frame",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/scenes/foundations/detecting_the_absolute_frame.json"
     }
   ]
 }

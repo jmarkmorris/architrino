@@ -1182,6 +1182,7 @@ const markdownManifestPath = "content/markdown/markdown_index.json";
 const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const archieScenePath = "content/scenes/archie/archie.json";
+const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
 const composerSceneId = "composer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
@@ -1235,7 +1236,7 @@ function resolveAuthoredMarkdownPath(entry) {
 }
 
 function resolveAuthoredMarkdownColumns(entry) {
-  if (entry?.view?.columns === 1 || entry?.view?.columns === 2) {
+  if (entry?.view?.columns === 1 || entry?.view?.columns === 2 || entry?.view?.columns === 3) {
     return entry.view.columns;
   }
   return null;
@@ -1244,7 +1245,7 @@ function resolveAuthoredMarkdownColumns(entry) {
 function recordAuthoredMarkdownColumns(entry) {
   const markdownPath = resolveAuthoredMarkdownPath(entry);
   const markdownColumns = resolveAuthoredMarkdownColumns(entry);
-  if ((markdownColumns === 1 || markdownColumns === 2) && markdownPath) {
+  if ((markdownColumns === 1 || markdownColumns === 2 || markdownColumns === 3) && markdownPath) {
     authoredMarkdownColumnsByPath.set(normalizeColumnsPath(markdownPath), markdownColumns);
   }
 }
@@ -1382,6 +1383,7 @@ let composerCameraWaypointMaterial = null;
 const levels = new Map();
 const navigationStack = [];
 let currentLevel = null;
+let textbookTocReturnState = null;
 const sceneStateHashService = createSceneStateHashService({
   rootScenePath,
   getNavigationStack: () => navigationStack,
@@ -1710,6 +1712,12 @@ const markdownRuntime = createMarkdownRuntime({
   markdownSectionCache,
   extractMarkdownSection,
   appendCacheBust,
+  navigateToTarget: async (target) => {
+    if (!target || !appDirector) {
+      return;
+    }
+    await appDirector.navigateTo(target);
+  },
 });
 
 function updateSceneMarkdown() {
@@ -3631,9 +3639,15 @@ function updateDocButton() {
   if (!docButton) {
     return;
   }
-  const hasDoc = !!currentLevel?.markdownPath;
-  docButton.classList.toggle("is-hidden", !hasDoc);
-  docButton.disabled = transitionState.active || !hasDoc;
+  const isTextbookToc = currentLevel?.id === textbookTocScenePath;
+  docButton.classList.remove("is-hidden");
+  docButton.classList.toggle("is-active", isTextbookToc);
+  docButton.setAttribute(
+    "aria-label",
+    isTextbookToc ? "Return from textbook TOC" : "Open textbook TOC"
+  );
+  docButton.setAttribute("aria-pressed", String(isTextbookToc));
+  docButton.disabled = transitionState.active || !currentLevel;
 }
 
 function updateArchieButton() {
@@ -3736,6 +3750,30 @@ function openArchieRing() {
   jumpToScene(archieScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
 }
 
+function toggleTextbookToc() {
+  if (transitionState.active || !currentLevel) {
+    return;
+  }
+  if (currentLevel.id === textbookTocScenePath) {
+    const backState = textbookTocReturnState;
+    textbookTocReturnState = null;
+    if (backState?.levelId) {
+      jumpToScene(backState.levelId, {
+        restoreNavStack: backState.navigationStack,
+      });
+    }
+    return;
+  }
+  textbookTocReturnState = {
+    levelId: currentLevel.id,
+    navigationStack: navigationStack.map((entry) => ({
+      levelId: entry.levelId,
+      focusNodeId: entry.focusNodeId,
+    })),
+  };
+  jumpToScene(textbookTocScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
+}
+
 const sceneSearchRuntime = createSceneSearchRuntime({
   sceneSearch,
   sceneSearchToggle,
@@ -3765,13 +3803,13 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   docButton,
   detailClose,
   markdownClose,
-  markdownPanel,
   markdownDocButton,
   markdownLayoutToggle,
   markdownRuntime,
   closeDetailPanel,
   getCurrentLevel: () => currentLevel,
   isTransitionActive: () => transitionState.active,
+  toggleTextbookToc,
 });
 const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerTabs,

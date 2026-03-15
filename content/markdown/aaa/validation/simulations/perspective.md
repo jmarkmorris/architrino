@@ -8,7 +8,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Delayed causal emission on Jacobian-weighted $1/r^2$ isochrons (no magnetism needed)
+## Delayed Emission on Jacobian-Weighted Isochrons
 
 - What we assume:
 - Sources emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-\tau)$ with $\tau = t - t_0$.
@@ -34,7 +34,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Self-interaction switch at $\lvert \mathbf{v}\rvert = v$: the engine of stabilization and scales
+## Self-Interaction Switch at $\lvert \mathbf{v}\rvert = v$
 
 - What we assume:
 - When a worldline outruns its own recently emitted isochrons ($\lvert \mathbf{v}\rvert>1$ in our units), the causal roots include self-hits.
@@ -46,7 +46,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Superposition with measure-valued isochrons and $\eta$-regularization
+## Superposition with isochrons and $\eta$-regularization
 
 - What we assume:
 - All fields superpose linearly at the level of distributions (isochrons add).
@@ -58,7 +58,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Recursive assembly grammar → Noether Core, color, and flux tubes
+## Assembly grammar → Noether Core and flux tubes
 
 - What we assume:
   - Binary orbits are the base motif; binaries can nest with wide scale separation; a triply nested configuration (Noether Core) is dynamically robust.
@@ -167,7 +167,7 @@ Plain language: you never see the full book of who emitted what; you only see a 
 
 ---
 
-## $\mathbb{U}_{\text{now}}$ note: what perfect clocks and frames do (and don’t)
+## $\mathbb{U}_{\text{now}}$ Note: Limits of Perfect Clocks and Frames
 
 Absolute time and Euclidean frames remove coordinate ambiguity (synchronization and alignment) but not physical ambiguity:
 - Sign/side ambiguity: attraction from +$\epsilon$ on one side vs repulsion from −$\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
@@ -209,7 +209,7 @@ Plain language: aligned corridors add, misaligned ones cancel; the strength you 
 
 ---
 
-## Reconstruction and inference: practical recipe under information bounds
+## Reconstruction Under Information Bounds
 
 Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, and prior-guided:
 - Multi-receiver geometry: use separated receivers to triangulate unoriented lines at the same t; intersecting rays yield two-sided candidate loci.

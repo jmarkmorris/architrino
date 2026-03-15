@@ -369,7 +369,7 @@ export function createMarkdownNodeBuilder(deps) {
           if (typeof override?.headingLevel === "number") {
             node.markdownHeadingLevel = override.headingLevel;
           }
-          if (override?.columns === 1 || override?.columns === 2) {
+          if (override?.columns === 1 || override?.columns === 2 || override?.columns === 3) {
             node.markdownColumns = override.columns;
           }
           const plainSectionList = [];
@@ -382,7 +382,7 @@ export function createMarkdownNodeBuilder(deps) {
           if (plainSectionList.length) {
             node.markdownPlainSectionPaths = plainSectionList;
           }
-          if (scene.splitColumns === 1 || scene.splitColumns === 2) {
+          if (scene.splitColumns === 1 || scene.splitColumns === 2 || scene.splitColumns === 3) {
             node.markdownColumns = scene.splitColumns;
           }
         }

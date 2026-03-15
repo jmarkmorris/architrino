@@ -50,8 +50,8 @@ For $S_8$:
 
 In the modular cosmology map, this document is the coupling layer between:
 
-- expansion-module outputs (`expansion-mechanism.md`) that shape inferred $H_0$,
-- growth-module outputs (`structure-formation.md`) that shape inferred $S_8$,
+- expansion-module outputs ([expansion-mechanism.md](./expansion-mechanism.md)) that shape inferred $H_0$,
+- growth-module outputs ([structure-formation.md](./structure-formation.md)) that shape inferred $S_8$,
 - shared medium-state variables that keep both readouts in one ontology.
 
 ## Coherent Reading

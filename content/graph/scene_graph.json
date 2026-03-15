@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 395,
-      "edges": 1137,
-      "scenes": 276,
+      "nodes": 401,
+      "edges": 1143,
+      "scenes": 279,
       "markdownIndexes": 0,
-      "markdownDocs": 119,
+      "markdownDocs": 122,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -990,7 +990,7 @@
     },
     {
       "id": "nuclear_atomic",
-      "name": "Nuclear-Atomic",
+      "name": "Atomic and Nuclear Assemblies",
       "path": "content/scenes/nuclear/nuclear_atomic.json",
       "nodeType": "scene"
     },
@@ -1026,7 +1026,7 @@
     },
     {
       "id": "spacetime",
-      "name": "Spacetime Assemblies",
+      "name": "Spacetime",
       "path": "content/scenes/spacetime/spacetime.json",
       "nodeType": "scene"
     },
@@ -1128,7 +1128,7 @@
     },
     {
       "id": "assemblies",
-      "name": "Assemblies",
+      "name": "Standard Model Assemblies",
       "path": "content/scenes/assemblies/assemblies.json",
       "nodeType": "scene"
     },
@@ -1332,7 +1332,7 @@
     },
     {
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene"
     },
@@ -1409,12 +1409,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "philosophy_history__lorentz_ether_comparison",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "philosophy_history__religious_ontologies",
       "name": "Religious Ontologies",
       "path": "content/scenes/philosophy_history/religious_ontologies.json",
@@ -1466,12 +1460,6 @@
       "id": "quantum__wavefunction_ontology",
       "name": "Wavefunction Ontology",
       "path": "content/scenes/quantum/wavefunction_ontology.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "spacetime__cosmic_censorship_holography",
-      "name": "Cosmic Censorship and Holography",
-      "path": "content/scenes/spacetime/cosmic_censorship_holography.json",
       "nodeType": "scene"
     },
     {
@@ -1805,6 +1793,36 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__support_architrino_research",
+      "name": "Support Architrino Research",
+      "path": "content/scenes/archie/support_architrino_research.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__textbook_toc",
+      "name": "Textbook TOC",
+      "path": "content/scenes/archie/textbook_toc.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__agency_and_internal_causation",
+      "name": "Agency and Internal Causation",
+      "path": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__cosmic_censorship_holography",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "foundations__detecting_the_absolute_frame",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/scenes/foundations/detecting_the_absolute_frame.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -1862,6 +1880,12 @@
       "id": "content/markdown/aaa/archie/scene-taxonomy.md",
       "name": "Scene Taxonomy",
       "path": "content/markdown/aaa/archie/scene-taxonomy.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/support-architrino-research.md",
+      "name": "Support Architrino Research",
+      "path": "content/markdown/aaa/archie/support-architrino-research.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2076,8 +2100,14 @@
     },
     {
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2147,6 +2177,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "name": "Agency and Internal Causation",
+      "path": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "name": "Crisis in Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
@@ -2162,12 +2198,6 @@
       "id": "content/markdown/aaa/philosophy-history/information-computation.md",
       "name": "Information / Computation",
       "path": "content/markdown/aaa/philosophy-history/information-computation.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2517,6 +2547,12 @@
       "name": "Validation Protocols",
       "path": "content/markdown/aaa/validation/validation-protocols.md",
       "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-toc.md",
+      "name": "Textbook TOC",
+      "path": "content/markdown/generated/textbook-toc.md",
+      "nodeType": "markdown_doc"
     }
   ],
   "nodes": [
@@ -2629,12 +2665,30 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/archie/support_architrino_research.json",
+      "nodeType": "scene",
+      "id": "archie__support_architrino_research",
+      "name": "Support Architrino Research",
+      "path": "content/scenes/archie/support_architrino_research.json",
+      "searchTarget": "content/scenes/archie/support_architrino_research.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/archie/textbook_file_structure.json",
       "nodeType": "scene",
       "id": "archie__textbook_file_structure",
       "name": "Textbook File Structure",
       "path": "content/scenes/archie/textbook_file_structure.json",
       "searchTarget": "content/scenes/archie/textbook_file_structure.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/textbook_toc.json",
+      "nodeType": "scene",
+      "id": "archie__textbook_toc",
+      "name": "Textbook TOC",
+      "path": "content/scenes/archie/textbook_toc.json",
+      "searchTarget": "content/scenes/archie/textbook_toc.json",
       "implicit": false
     },
     {
@@ -2668,7 +2722,7 @@
       "nodeId": "scene:content/scenes/assemblies/assemblies.json",
       "nodeType": "scene",
       "id": "assemblies",
-      "name": "Assemblies",
+      "name": "Standard Model Assemblies",
       "path": "content/scenes/assemblies/assemblies.json",
       "searchTarget": "content/scenes/assemblies/assemblies.json",
       "implicit": false
@@ -4153,9 +4207,18 @@
       "nodeId": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene",
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "searchTarget": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/foundations/detecting_the_absolute_frame.json",
+      "nodeType": "scene",
+      "id": "foundations__detecting_the_absolute_frame",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/scenes/foundations/detecting_the_absolute_frame.json",
+      "searchTarget": "content/scenes/foundations/detecting_the_absolute_frame.json",
       "implicit": false
     },
     {
@@ -4270,7 +4333,7 @@
       "nodeId": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "nodeType": "scene",
       "id": "nuclear_atomic",
-      "name": "Nuclear-Atomic",
+      "name": "Atomic and Nuclear Assemblies",
       "path": "content/scenes/nuclear/nuclear_atomic.json",
       "searchTarget": "content/scenes/nuclear/nuclear_atomic.json",
       "implicit": false
@@ -4312,6 +4375,24 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__agency_and_internal_causation",
+      "name": "Agency and Internal Causation",
+      "path": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "searchTarget": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__cosmic_censorship_holography",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "searchTarget": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "nodeType": "scene",
       "id": "philosophy_history__crisis_in_physics",
@@ -4336,15 +4417,6 @@
       "name": "Information / Computation",
       "path": "content/scenes/philosophy_history/information_computation.json",
       "searchTarget": "content/scenes/philosophy_history/information_computation.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__lorentz_ether_comparison",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "searchTarget": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "implicit": false
     },
     {
@@ -4483,15 +4555,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/spacetime/cosmic_censorship_holography.json",
-      "nodeType": "scene",
-      "id": "spacetime__cosmic_censorship_holography",
-      "name": "Cosmic Censorship and Holography",
-      "path": "content/scenes/spacetime/cosmic_censorship_holography.json",
-      "searchTarget": "content/scenes/spacetime/cosmic_censorship_holography.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/spacetime/emergent_metric.json",
       "nodeType": "scene",
       "id": "spacetime__emergent_metric",
@@ -4567,7 +4630,7 @@
       "nodeId": "scene:content/scenes/spacetime/spacetime.json",
       "nodeType": "scene",
       "id": "spacetime",
-      "name": "Spacetime Assemblies",
+      "name": "Spacetime",
       "path": "content/scenes/spacetime/spacetime.json",
       "searchTarget": "content/scenes/spacetime/spacetime.json",
       "implicit": false
@@ -5095,6 +5158,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/support-architrino-research.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/support-architrino-research.md",
+      "name": "Support Architrino Research",
+      "path": "content/markdown/aaa/archie/support-architrino-research.md",
+      "searchTarget": "content/markdown/aaa/archie/support-architrino-research.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
@@ -5413,9 +5485,18 @@
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Bootstrapping the Absolute Frame",
+      "name": "Bootstrapping a Coordinate Frame",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "searchTarget": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "searchTarget": "content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
       "implicit": false
     },
     {
@@ -5518,6 +5599,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "name": "Agency and Internal Causation",
+      "path": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
@@ -5542,15 +5632,6 @@
       "name": "Information / Computation",
       "path": "content/markdown/aaa/philosophy-history/information-computation.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/information-computation.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "name": "Lorentz Ether Comparison",
-      "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
       "implicit": false
     },
     {
@@ -6074,6 +6155,15 @@
       "path": "content/markdown/aaa/validation/validation-protocols.md",
       "searchTarget": "content/markdown/aaa/validation/validation-protocols.md",
       "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-toc.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-toc.md",
+      "name": "Textbook TOC",
+      "path": "content/markdown/generated/textbook-toc.md",
+      "searchTarget": "content/markdown/generated/textbook-toc.md",
+      "implicit": false
     }
   ],
   "edges": [
@@ -6082,84 +6172,98 @@
       "to": "scene:content/scenes/archie/about.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/academic_style_guide.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/composer.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/github_presence_and_community.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/glossary.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/help.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/mathematical_style_guide.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/mathematical_terminology.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/research_notebook.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/scene_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[12]"
+    },
+    {
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/support_architrino_research.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/archie.json",
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/textbook_file_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/textbook_toc.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/archie.json",
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -6334,21 +6438,21 @@
       "to": "scene:content/scenes/cosmology/bbn_constraints.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/cmb.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/cosmology_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
@@ -6362,35 +6466,35 @@
       "to": "scene:content/scenes/cosmology/dark_matter.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/expansion_mechanism.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/hubble_s8_tensions.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/inflation_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/structure_formation.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/cosmology/disk.json",
@@ -9120,6 +9224,13 @@
       "to": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/detecting_the_absolute_frame.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
       "field": "scene.children[1]"
     },
     {
@@ -9127,21 +9238,28 @@
       "to": "scene:content/scenes/foundations/emergence_of_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/euclidean_void.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/foundational_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/philosophy_history/information_computation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -9285,28 +9403,21 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
+      "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+      "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/information_computation.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
+      "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[3]"
@@ -9323,28 +9434,28 @@
       "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -9404,7 +9515,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/cosmic_censorship_holography.json",
+      "to": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[7]"
@@ -10005,10 +10116,24 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/archie/support_architrino_research.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/support-architrino-research.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/support_architrino_research.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/archie/textbook_file_structure.json",
       "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_file_structure.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_toc.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-toc.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_toc.json",
       "field": "scene.source.path"
     },
     {
@@ -10236,6 +10361,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/foundations/detecting_the_absolute_frame.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/detecting-the-absolute-frame.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/detecting_the_absolute_frame.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/foundations/emergence_of_structure.json",
       "to": "markdown_doc:content/markdown/aaa/foundations/emergence.md",
       "edgeType": "markdown_doc",
@@ -10306,6 +10438,20 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "edgeType": "markdown_doc",
@@ -10324,13 +10470,6 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/information-computation.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/information_computation.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/lorentz_ether_comparison.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/lorentz_ether_comparison.json",
       "field": "scene.source.path"
     },
     {
@@ -10422,13 +10561,6 @@
       "to": "markdown_doc:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/wavefunction_ontology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/cosmic_censorship_holography.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/cosmic_censorship_holography.json",
       "field": "scene.source.path"
     },
     {

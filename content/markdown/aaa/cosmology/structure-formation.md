@@ -40,7 +40,7 @@ Each symbol carries a specific medium-level meaning:
   - the outer-binary radius $\bar{R}_{\text{core}}(t)$, which controls the compliance of spacetime assemblies to deformation,
   - potentially the wavenumber $k$, if the medium response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
 
-- **$\bar{\rho}_m(t)$**: the mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with `dark-matter.md`).
+- **$\bar{\rho}_m(t)$**: the mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with [dark-matter.md](./dark-matter.md)).
 
 **Mechanism for the source term.** A local matter overdensity increases the density of architrino assemblies in that region. The additional delayed causal flux emitted by these assemblies modifies the local effective refractive index of the Noether Sea, slowing signal propagation and deepening the effective potential well. At substrate level this is not set by inverse-square dilution alone: the received flux is also Jacobian-weighted, so local branch geometry and source motion can bunch or dilute the effective gravitational signal. Surrounding matter assemblies, following geodesics of the emergent metric (equivalently, responding to the gradient of the effective potential), drift inward. This positive feedback loop is gravitational instability, recast as medium-response dynamics.
 
@@ -75,7 +75,7 @@ Baryons (protons, neutrons, and their composites) are tri-binary assemblies with
 
 ### Neutral Assemblies (Dark-Matter Candidates)
 
-The architrino framework admits multiple dark-matter scenarios (detailed in `dark-matter.md`). For structure formation the relevant properties are:
+The architrino framework admits multiple dark-matter scenarios (detailed in [dark-matter.md](./dark-matter.md)). For structure formation the relevant properties are:
 
 - **Coupling to the Noether Sea**: dark-matter assemblies must couple gravitationally (through the medium) but not electromagnetically (no net charge, minimal dipole coupling). Neutral tri-binary configurations with balanced decoration (analogous to neutrino-like assemblies but more massive and stable) satisfy this requirement.
 - **Thermal history**: if produced thermally in the early medium, their relic abundance and free-streaming length determine the small-scale cutoff of the matter power spectrum. Cold (non-relativistic at decoupling) neutral assemblies reproduce CDM-like behavior; warm candidates (lighter, with residual thermal velocity) suppress small-scale power.
@@ -118,7 +118,7 @@ The CMB power spectrum encodes the primordial perturbation spectrum processed th
 The growth module provides:
 - the matter power spectrum $P(k, z)$ that determines the lensing potential $C_\ell^{\phi\phi}$,
 - the growth history $D(z)$ that sets the amplitude of the lensing signal,
-- any anomalous scale dependence in $G_{\text{eff}}$ that would shift the lensing amplitude relative to the $\Lambda$CDM prediction (interface with `CMB.md`).
+- any anomalous scale dependence in $G_{\text{eff}}$ that would shift the lensing amplitude relative to the $\Lambda$CDM prediction (interface with [CMB.md](./CMB.md)).
 
 ### High-Redshift Structure
 
@@ -273,10 +273,10 @@ In the modular cosmology architecture, this document provides:
 - lensing convergence power spectrum $C_\ell^{\kappa\kappa}$ for CMB and cosmic-shear analyses.
 
 **Bridge variables** shared with:
-- `dark-matter.md`: neutral-assembly properties, relic abundance, interaction rates,
-- `hubble-s8-tensions.md`: $H(z)$, $f\sigma_8(z)$, and tension-resolution diagnostics,
-- `CMB.md`: primordial spectrum inputs, lensing amplitude, acoustic-peak constraints,
-- `spacetime/emergent-metric.md`: the medium state variables from which $G_{\text{eff}}$ is computed.
+- [dark-matter.md](./dark-matter.md): neutral-assembly properties, relic abundance, interaction rates,
+- [hubble-s8-tensions.md](./hubble-s8-tensions.md): $H(z)$, $f\sigma_8(z)$, and tension-resolution diagnostics,
+- [CMB.md](./CMB.md): primordial spectrum inputs, lensing amplitude, acoustic-peak constraints,
+- [spacetime/emergent-metric.md](../spacetime/emergent-metric.md): the medium state variables from which $G_{\text{eff}}$ is computed.
 
 ---
 

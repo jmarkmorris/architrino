@@ -1,6 +1,6 @@
 # Weak Mixing and CKM
 
-## Mapping weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ to the Standard Model
+## Weak Mixing: $\mathbb{A}\mathbb{A}\mathbb{A}$ to SM
 
 This chapter is written as a bridge text: it first states CKM in standard SM language, then translates each ingredient into $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry. The goal is that a reader with QM and introductory QFT can identify exactly what is standard, what is assumed in $\mathbb{A}\mathbb{A}\mathbb{A}$, and what is predicted.
 
@@ -59,7 +59,7 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
 
 - In this $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, a $W^\pm$ is not created ex nihilo and is not treated as a preexisting free field quantum; it is a transient “corridor” assembled during a weak interaction:
   - Assembly mechanism: localized polarization of the Noether Sea provides two neutral cores, while the interacting Active Triad transfers a six-charge excess ($\pm e$ net) into the corridor.
-  - Geometrically it’s a short-lived, high-tension bundle (see `assemblies/bosons/electroweak-bosons.md`) that ferries charge/phase between source and sink.
+  - Geometrically it’s a short-lived, high-tension bundle (see [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md)) that ferries charge/phase between source and sink.
   - It decays/disconnects quickly (lifetime set by corridor instability), matching the short-lived SM W.
   - So: it is a transient, bound excitation of the Noether-Sea medium from reconfiguration of participants’ wakes/decoration structure, not from a standing background field.
 
@@ -344,12 +344,12 @@ so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are cali
 - Extend the same overlap geometry to PMNS and test whether the larger lepton mixing follows from different shielding/transport actions.
 
 ## Pointers
-- Weak-Coupling Triad & shielding definitions: `assemblies/fermions/quantum-number-mapping.md` (Sections on weak isospin, generation hierarchy).
-- Gauge-boson couplings: `assemblies/bosons/electroweak-bosons.md` (W/Z corridors acting on Weak-Coupling Triad).
+- Weak-Coupling Triad & shielding definitions: [assemblies/fermions/quantum-number-mapping.md](./quantum-number-mapping.md) (Sections on weak isospin, generation hierarchy).
+- Gauge-boson couplings: [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md) (W/Z corridors acting on Weak-Coupling Triad).
 
 _Status: speculative scaffold for a derivation. Fill in with explicit states, overlaps, and phase calculations._
 
-## Speculative bookkeeping sketch (particles and architrino counts)
+## Speculative Bookkeeping Sketch
 
 - **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, and architrino counts close. Mark allowed vs. unseen channels and why.
 - **Forward axial sites:** Weak-Coupling Triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
@@ -444,4 +444,4 @@ to satisfy $Z_{\mathrm{closure}}\le z_p$ at the chosen confidence level.
 ### PMNS handoff
 
 Use the same overlap/holonomy machinery in the lepton-neutral sector with a different internal Hamiltonian and weaker exterior coupling. The detailed lepton closure model is integrated in:
-- `assemblies/fermions/neutrinos.md`
+- [assemblies/fermions/neutrinos.md](./neutrinos.md)

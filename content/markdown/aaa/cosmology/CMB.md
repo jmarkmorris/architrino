@@ -110,7 +110,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (BBN: Protons (15:21) and Neutrons (18:18) Bind):** Specific multi-core assemblies corresponding to proton (15:21) and neutron (18:18) configurations bind into light nuclear assemblies. Reaction rates are controlled by assembly topology and wake-coupling cross sections in the Noether sea.
 
-## Acoustic Peak Seeding (late Photon Epoch, pre-recombination)
+## Acoustic Peak Seeding (pre-recombination)
 - Time window: late photon epoch prior to recombination.
 - Regime: standing-wave modes imprint a harmonic ladder.
 - Outcome: peak positions/amplitudes encode medium properties and coupling.
@@ -137,7 +137,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: CMB Counter-Rotating Coaxial Assemblies Launch):** The decoupled photon-like assemblies propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
 
-## Source Interpretation Layer: SMBH Jet and/or Surface Emissions
+## SMBH Jet and/or Surface Emissions
 - Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the effective Big Bang chronology map.
 - Claim: the Big Bang corresponds to the collective surfaces of SMBHs, not a singular origin.
 - Outcome: outbound SMBH emissions map onto the observed CMB after thermalization and redshift.
@@ -154,7 +154,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 | Core difference | Phenomenological source and transport descriptions | Tri-binary medium microphysics with explicit module interfaces |
 | Closure standard | General background consistency goals | Hard closure targets: blackbody precision, $\Delta T/T$, and TT/TE/EE/damping coherence |
 
-## Distributed-Emission Channels (Same Ontology)
+## Distributed-Emission Channels
 
 Within the same ontology, CMB sourcing can be represented through:
 
@@ -170,8 +170,8 @@ Isotropy in this branch is attributed to long-time averaging over many source po
 
 ## Consistency Anchors
 
-- Expansion wording here should remain consistent with `expansion-mechanism.md`.
-- Dark-sector loading language here should remain consistent with `dark-matter.md` and `hubble-s8-tensions.md`.
+- Expansion wording here should remain consistent with [expansion-mechanism.md](./expansion-mechanism.md).
+- Dark-sector loading language here should remain consistent with [dark-matter.md](./dark-matter.md) and [hubble-s8-tensions.md](./hubble-s8-tensions.md).
 - Parameter-bridge wording here should remain consistent with `_meta/ideas/constraints-lcdm-map.md`.
 
 ## CMB-Module Interface

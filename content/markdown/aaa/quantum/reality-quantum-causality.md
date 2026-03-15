@@ -6,7 +6,7 @@
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
 - Define minimal dynamical requirements for agency/decision in assemblies.
 - Connect the **Decider** and **Switch** case studies to those requirements.
-- Tie the chapter to the canonical definition in `foundations/ontology.md`.
+- Tie the chapter to the canonical definition in [foundations/ontology.md](../foundations/ontology.md).
 
 **Blanket hypothesis:** All claims in this chapter are asserted within the architrino framework and reflect our current best understanding unless explicitly labeled otherwise.
 
@@ -202,14 +202,14 @@ So the question becomes: what is the minimal set of features an assembly must ha
 
 ### Justification for the Canonical Definition
 
-This chapter's stance on determinism and agency follows directly from the core dynamics. (This matches the canonical determinism/branching/agency definitions in `foundations/ontology.md`, §4.x.)
+This chapter's stance on determinism and agency follows directly from the core dynamics. (This matches the canonical determinism/branching/agency definitions in [foundations/ontology.md](../foundations/ontology.md), §4.x.)
 
 1. **Lawful micro-dynamics**: the master equation fixes evolution given complete initial conditions.
 2. **Threshold multistability**: self-hit and edge-condition regimes admit multiple coexisting attractors from a single prior state.
 3. **Internal structure matters**: assemblies can tune their own thresholds and thereby shape which attractor they fall into.
 4. **Predictability is limited**: microstate sensitivity makes outcomes effectively unpredictable to operational observers without introducing ontological randomness.
 
-These points motivate the canonical definition of determinism, branching, and agency in `foundations/ontology.md` (see canonical definition).
+These points motivate the canonical definition of determinism, branching, and agency in [foundations/ontology.md](../foundations/ontology.md) (see canonical definition).
 
 ### Position Summary
 
@@ -369,9 +369,7 @@ From the outside, that difference looks like a **change of policy**: “now resp
 
 That is the minimal sense in which an assembly **decides its response** in this deterministic architrino framework.
 
-### Philosophical Implications (Appendix C)
-
-The extended discussion of internal/external causation, functional agency, and compatibilist framing has been moved to **Appendix C** to keep the main narrative focused on dynamical mechanisms.
+The extended discussion of internal/external causation, functional agency, and compatibilist framing now lives in [Agency and Internal Causation](../philosophy-history/agency-and-internal-causation.md) so this chapter can stay focused on dynamical mechanisms.
 
 ---
 
@@ -661,115 +659,3 @@ If the Rb is ionized, subtract **12** per missing electron.
    - I’ve tried here to keep “absolute” vs “emergent” causality distinct. We should standardize this split in the foundations chapters to avoid confusion.
 
 ---
-
-## Appendix C: Philosophical Implications (Supplementary)
-
-### Internal vs External Causation
-
-Here's the critical distinction:
-
-**External Determination (Passive Rock):**
-- A hydrogen atom in a laser beam absorbs a photon → deterministic outcome (away from edge-condition thresholds)
-- The atom has no internal degrees of freedom that modify the absorption probability
-- It's a **fixed-threshold detector**
-
-**Internal Causation (Active Navigator):**
-- The He‑Rb‑He assembly in the same laser beam may or may not absorb, depending on:
-  - Whether it's currently in "Ignore Mode" (He atoms compressed) or "Leverage Mode" (He atoms relaxed)
-  - Which mode it's in depends on its recent history (what transitions it made before)
-  - That history was shaped by prior inputs **plus** the assembly's own structural feedback rules
-
-From the **outside**, this looks like the assembly "chose" to ignore or leverage the input. From the **inside**, it is the assembly's own feedback history shaping which attractor is realized.
-
-### Functional Agency
-
-What we care about practically is whether a system can:
-- **Adapt** (change its behavior based on past outcomes)
-- **Discriminate** (respond differently to different environmental patterns)
-- **Self-regulate** (maintain internal goals/states against perturbations)
-- **Navigate** (steer toward preferred attractors in a complex landscape)
-
-A **Decider** can do all of this **while remaining fully deterministic** (with multistability at thresholds).
-
-**Compatibilist free will in this framework:**
-- Decisions are caused (by the assembly’s microstate + inputs)
-- The causal chain runs **through the assembly** (its internal structure matters)
-- That structure is shaped by **its history** (feedback, adaptation)
-- So in a meaningful sense, the assembly is steering, even though the steering is deterministic
-
-### Determinism and Predictability
-
-**Objection:** "If everything is determined, how is this different from a billiard ball?"
-
-**Answer:** A billiard ball has:
-- No internal tunable thresholds
-- No memory of past collisions
-- No feedback loops that modify future responsiveness
-- No capacity to place itself near or far from bifurcation points
-
-A networked **Decider** can have all of these. The He‑Rb‑He assembly in this document demonstrates **(1) multiple attractors** and **(2) tunable thresholds** only. It is a **Switch**, not a full Decider.
-
-**Key point:** Determinism does not imply **predictability** or **simplicity**. A deterministic system with:
-- High-dimensional state space
-- Nonlinear dynamics
-- Chaotic sensitivity
-- History-dependent feedback
-
-...is **functionally indistinguishable from a random system** to any observer who doesn't have omniscient knowledge of the microstate.
-
-### Will as Threshold Setting
-
-**"Will"** in this framework is the **organized pattern of threshold settings** across a networked assembly.
-
-When a **Decider** "decides" to amplify a signal:
-1. A subset of sub-assemblies shifts into "high-sensitivity" mode (thresholds lowered).
-2. This shift is caused by prior internal updates (history + feedback).
-3. An incoming potential packet arrives and tips the metastable units across their boundaries.
-4. The transition cascades, creating a macroscopic record.
-
-At this scale, threshold boundaries are often modeled as saddle-node boundaries in a high-dimensional network (see 3.1.1).
-
-**At every step:** lawful (with multistability at thresholds).
-**But:** The outcome depends on the assembly’s **current configuration** (shaped by past updates) and **current internal state**.
-
-**So in what sense is it the assembly’s decision?**
-- The causal chain runs through its architecture
-- That architecture was modified by its history
-- The outcome reflects its stored configuration and internal goals
-- No external agent forced this particular threshold configuration
-
-**Compatibilist conclusion:** It's determined, but it is **owned by the assembly**.
-
-### Free Will: Compatibilist vs Libertarian
-
-**Libertarian free will (uncaused causes):** No. Nothing in this universe has that, because it's incoherent. Randomness ≠ freedom.
-
-**Compatibilist free will (autonomous navigation):** Yes, if the assembly has sufficient complexity:
-- Minimum: 3 atoms (He-Rb-He) can exhibit primitive threshold tuning (see Section 6 for counts and caveat)
-- Complex: large networked assemblies can exhibit structured adaptation and self-modification
-
-**The difference is one of degree (complexity), not kind (mechanism).**
-
-### Summary
-
-| Concept | Architrino Framework Position |
-|---------|-------------------------------|
-| **Determinism** | Yes, fundamentally (absolute time + master equation; deterministic multistability at thresholds) |
-| **Ontological Randomness** | No (chaos + ignorance, not dice-rolling) |
-| **Libertarian Free Will** | No (incoherent concept; "uncaused cause" violates causality) |
-| **Compatibilist Free Will / Agency** | Yes (complex assemblies can navigate deterministic dynamics autonomously) |
-| **Mechanism of "Decision"** | Threshold tuning + feedback + memory in networked assemblies |
-| **Can assemblies decide?** | Yes, in the sense of "dynamically modulating responsiveness based on internal state and history" |
-| **Is it "real" agency?** | Yes, if "real" means "has causal efficacy and functional autonomy," not "violates physics" |
-
----
-
-### Closing Statement
-
-The **Decider** doesn't **violate** determinism. It **exploits** determinism.
-
-By sitting on the edge of chaos (middle binary near $v = c_f$), it makes tiny differences in internal configuration lead to vastly different macroscopic outcomes. **That sensitivity is the substrate of agency.**
-
-You're not free **from** the laws of physics. You're free **within** them, because the laws permit extraordinarily complex, self-modifying, history-dependent structures that steer their own futures in ways that are unpredictable to external observers and responsive to internal goals.
-
-**That's as "free" as any physical system can be—and it's enough.**

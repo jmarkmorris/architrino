@@ -56,4 +56,4 @@ Closure requirement:
 - the distribution of $\tau_c$ is consistent with the same coarse-grained model that yields the outcome weights $P_n$,
 - no instantaneous-update limit appears once finite $c_f$ and interaction extent are enforced.
 
-Primary synthesis location: `quantum/pilot-wave-character.md`.
+Primary synthesis location: [quantum/pilot-wave-character.md](./pilot-wave-character.md).

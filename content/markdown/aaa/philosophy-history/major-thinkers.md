@@ -409,7 +409,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ## Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
-### **Ernst Mach (1838–1916)**
+### **Ernst Mach (1838–1916) — relationalism**
 **Subject:** Ernst Mach (1838–1916), physicist-philosopher associated with relational inertia ideas and strong empiricist methodological constraints.
 
 **Era / Context**: Mach worked in late 19th-century physics when mechanics, electromagnetism, and atom debates were converging, and positivist pressures against unobservable ontology were strong.
@@ -436,7 +436,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Hendrik Lorentz (1853–1928)**
+### **Hendrik Lorentz (1853–1928) — ether dynamics**
 **Subject:** Hendrik Antoon Lorentz (1853–1928), theoretical physicist whose electron theory and ether dynamics produced Lorentz transformations.
 
 **Era / Context**: Lorentz worked at the turn of the 20th century under pressure from electrodynamics and null ether-drift results, before Einstein's kinematic reinterpretation became dominant.
@@ -463,8 +463,8 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Relativity**
-**Subject:** Einsteinian relativity program (Special Relativity and General Relativity), treated here as a unified concept-level entry rather than a single-person biography.
+### **Albert Einstein (1879–1955) — relativity**
+**Subject:** Albert Einstein (1879–1955), treated here through the relativity program he originated and shaped, especially Special Relativity and General Relativity.
 
 **Era / Context**: Relativity developed in the early 20th century to resolve electrodynamic and gravitational tensions in classical physics while preserving high-precision empirical closure.
 
@@ -517,7 +517,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory**
+### **Roger Penrose (1931–) — Conformal Cyclic Cosmology**
 **Subject:** Roger Penrose (1931–), mathematical physicist known for geometric realism, twistor programs, and conformal-cyclic cosmology.
 
 **Era / Context**: Penrose's work spans late 20th to 21st century foundational debates where GR, quantum theory, and cosmology lacked a single accepted substrate closure.
@@ -571,7 +571,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Loop Quantum Gravity (Ashtekar 1949–, Smolin 1955–, Rovelli 1956–)**
+### **Ashtekar (1949–), Smolin (1955–), Rovelli (1956–) - LQG**
 **Subject:** Loop Quantum Gravity (Ashtekar, Smolin, Rovelli and collaborators), a research program rather than a single individual.
 
 **Era / Context**: LQG developed under persistent pressure to close GR and QM while maintaining background independence and avoiding perturbative quantum-gravity pathologies.
@@ -598,7 +598,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **String Theory (Witten 1951–, Polchinski 1954–2018, et al.)**
+### **Ed Witten (1951–) - String Theory**
 **Subject:** String theory (Witten, Polchinski, and broad program contributors), a unification framework using extended objects and high-dimensional structure.
 
 **Era / Context**: String theory rose as a candidate UV-complete unification program when particle physics and gravity lacked a common mathematically controlled substrate.
@@ -625,7 +625,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Lee Smolin (1955–) — The Trouble With Physics, Temporal Naturalism**
+### **Lee Smolin (1955–) — The Trouble With Physics**
 **Subject:** Lee Smolin (1955–), physicist and philosopher of physics known for temporal naturalism and critique of unfalsifiable unification programs.
 
 **Era / Context**: Smolin's work emerged during prolonged stagnation in experimentally anchored fundamental-physics progress, especially around quantum gravity and string-theory dominance.
@@ -679,7 +679,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Sabine Hossenfelder (1976–) — Lost in Math, Critique of "Beauty"**
+### **Sabine Hossenfelder (1976–) — Lost in Math**
 **Subject:** Sabine Hossenfelder (1976–), physicist and methodological critic of beauty-driven theory selection.
 
 **Era / Context**: Hossenfelder's critique emerged during a period of limited new high-energy empirical breakthroughs and prolonged reliance on mathematically elegant but weakly testable frameworks.
@@ -708,7 +708,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ## Quantum Foundations & Hidden-Variable Landscape
 
-### **Ludwig Boltzmann (1844–1906)**
+### **Ludwig Boltzmann (1844–1906) — statistical mechanics**
 **Subject:** Ludwig Boltzmann (1844–1906), founder of statistical mechanics and major defender of atomist reduction in modern physics.
 
 **Era / Context**: Boltzmann worked in late 19th-century physics when atomism was still contested and thermodynamics lacked universally accepted microphysical grounding.
@@ -735,7 +735,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Max Planck (1858–1947)**
+### **Max Planck (1858–1947) — quantum action**
 **Subject:** Max Planck (1858–1947), originator of the quantum of action and early architect of quantum transition physics.
 
 **Era / Context**: Planck worked at the turn of the 20th century when blackbody radiation data forced a break from classical equipartition expectations.
@@ -762,7 +762,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Niels Bohr (1885–1962) & Copenhagen Interpretation**
+### **Niels Bohr (1885–1962) Copenhagen Interpretation**
 **Subject:** Niels Bohr (1885–1962) and the Copenhagen school, dominant interpretive program of early quantum mechanics.
 
 **Era / Context**: Copenhagen emerged when quantum experiments were succeeding rapidly while underlying ontology remained unresolved and mathematically counterintuitive.
@@ -789,7 +789,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Erwin Schrödinger (1887–1961)**
+### **Erwin Schrödinger (1887–1961) — wave mechanics**
 **Subject:** Erwin Schrödinger (1887–1961), co-founder of wave mechanics and key critic of unresolved quantum measurement ontology.
 
 **Era / Context**: Schrödinger worked in foundationally unstable early quantum theory when successful equations lacked clear ontology and measurement narratives diverged.
@@ -816,7 +816,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Louis de Broglie (1892–1987)**
+### **Louis de Broglie (1892–1987) — matter waves**
 **Subject:** Louis de Broglie (1892–1987), originator of matter-wave and pilot-wave interpretation strategies.
 
 **Era / Context**: De Broglie developed pilot-wave ideas during the foundational opening phase of quantum mechanics before Copenhagen hegemony consolidated.
@@ -843,7 +843,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Werner Heisenberg (1901–1976)**
+### **Werner Heisenberg (1901–1976) — matrix mechanics**
 **Subject:** Werner Heisenberg (1901–1976), founder of matrix mechanics and principal architect of uncertainty-centered interpretation.
 
 **Era / Context**: Heisenberg developed his framework during the rapid formation of quantum theory, when mathematically successful formalisms outran mechanistic explanation.
@@ -870,7 +870,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **David Bohm (1917–1992)**
+### **David Bohm (1917–1992) — pilot wave**
 **Subject:** David Bohm (1917–1992), developer of a realist hidden-variable quantum theory with guidance dynamics.
 
 **Era / Context**: Bohm worked under Copenhagen dominance, offering a deterministic nonlocal alternative that reproduced core quantum predictions.
@@ -897,7 +897,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **John Bell (1928–1990)**
+### **John Bell (1928–1990) — Bell nonlocality**
 **Subject:** John Bell (1928–1990), physicist who formalized no-go constraints on local hidden-variable reconstructions.
 
 **Era / Context**: Bell worked in a period when quantum interpretation debates lacked sharp discriminators between competing ontologies.
@@ -924,7 +924,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Hugh Everett III (1930–1982) — Many-Worlds Interpretation**
+### **Hugh Everett III (1930–1982) — Many-Worlds**
 **Subject:** Hugh Everett III (1930–1982), originator of the relative-state / Many-Worlds interpretation.
 
 **Era / Context**: Everett proposed Many-Worlds during mid-20th-century measurement-problem debates dominated by collapse/instrumentalist narratives.
@@ -976,8 +976,10 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Legacy Shift**: Valentini's framework becomes an operational testing extension within substrate realism rather than a marginal speculative add-on.
 
-### **Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)**
-**Subject:** Lucien Hardy, Rob Spekkens, and Matthew Leifer, representing operational and $\psi$-epistemic quantum-foundations programs.
+### **Lucien Hardy (1966–) — Quantum Foundations**
+**Subject:** Lucien Hardy, representing operational and $\psi$-epistemic quantum-foundations programs.
+
+**Acknowledgement of Adjacent Work:** This section also draws directly on the closely related contributions of Rob Spekkens and Matthew Leifer, whose work sharpened epistemic-state models, ontology constraints, and theorem-level limits on what an operational quantum description can mean.
 
 **Era / Context**: Their work developed in a mature quantum-foundations era seeking reconstruction principles and ontology-sensitive distinctions beyond textbook interpretation slogans.
 
@@ -1113,7 +1115,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Gerard 't Hooft (1946–) — Deterministic Quantum Mechanics**
+### **Gerard 't Hooft (1946–) — Deterministic Mechanics**
 **Subject:** Gerard 't Hooft (1946–), advocate of deterministic sub-quantum programs including cellular-automaton interpretations.
 
 **Era / Context**: His proposals developed in late 20th and early 21st century debates over whether quantum indeterminacy is fundamental or emergent.
@@ -1493,7 +1495,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Legacy Shift**: Cartwright's caution on context survives, while her anti-unification conclusion is treated as challenge target rather than endpoint.
 
-### **Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project**
+### **Stephen Wolfram (1959–) — A New Kind of Science**
 **Subject:** Stephen Wolfram (1959–), proponent of computation-first foundations and rule-based generative physics.
 
 **Era / Context**: Wolfram's program expanded in an era of high computational power and dissatisfaction with continuous-formalism dominance in foundational physics.

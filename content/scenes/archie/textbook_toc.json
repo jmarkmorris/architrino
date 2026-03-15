@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "philosophy_history__lorentz_ether_comparison",
-    "title": "Lorentz Ether Comparison",
+    "id": "archie__textbook_toc",
+    "title": "Textbook TOC",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,10 +11,11 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/lorentz-ether-comparison.md"
+      "path": "content/markdown/generated/textbook-toc.md"
     },
     "view": {
-      "autoOpen": true
+      "autoOpen": true,
+      "columns": 3
     }
   },
   "objects": []

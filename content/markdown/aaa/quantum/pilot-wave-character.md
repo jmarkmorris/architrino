@@ -57,7 +57,7 @@ The ontological status of $\psi$ is debated: is it a physical field (Valentini),
 
 ---
 
-## Architrino Assembly Architecture: Single-Ontology Guidance
+## $\mathbb{A}\mathbb{A}\mathbb{A}$: Single-Ontology Guidance
 
 ### The Ontological Reduction
 
@@ -151,7 +151,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding mechanism involves the No
 
 In dBB, energy quantization follows from the requirement that $\psi$ be single-valued and normalizable, which selects discrete eigenvalues.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron tri-binary bound to a nucleus) must satisfy a closure condition: the wake field it generates, after propagating through the surrounding medium and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see `quantum/superposition-mechanism.md`). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron tri-binary bound to a nucleus) must satisfy a closure condition: the wake field it generates, after propagating through the surrounding medium and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [quantum/superposition-mechanism.md](./superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
 
 This is the wake-field analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
 
@@ -165,7 +165,7 @@ This is the wake-field analog of the Bohr-Sommerfeld quantization condition, der
 | **Guidance equation** $\dot{\mathbf{q}}_k = (\hbar/m_k)\operatorname{Im}(\nabla_k\psi/\psi)$ | Master Equation: acceleration is the vector sum of all Jacobian-weighted inverse-square causal wake-surface intersections. In the coarse-grained, slow-assembly limit, the net wake gradient produces an effective velocity field identifiable with $\nabla S/m$. |
 | **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent forces from own past emissions) plus Noether Sea medium response (context-dependent effective potential from surrounding tri-binary lattice). |
 | **Quantum equilibrium** $\rho = |\psi|^2$ | Emergent statistical distribution over attractor basin volumes, mapped from the Noether Sea noise floor. The Born rule is a **target derivation**, not an axiom (see Next Steps). |
-| **Configuration-space nonlocality** | Non-separable hidden-variable geometry from shared creation events (see `quantum/entanglement-nonlocality.md`). Correlations are carried in the joint internal configuration, not mediated by a field on $\mathbb{R}^{3N}$. |
+| **Configuration-space nonlocality** | Non-separable hidden-variable geometry from shared creation events (see [quantum/entanglement-nonlocality.md](./entanglement-nonlocality.md)). Correlations are carried in the joint internal configuration, not mediated by a field on $\mathbb{R}^{3N}$. |
 | **Wave passes through both slits** | Wake field passes through both slits; assembly passes through one. Guidance through the modulated wake landscape reproduces the interference pattern. |
 | **Markovian guidance** (given $\psi$) | Non-Markovian guidance: acceleration depends on full past worldline via causal sets $\mathcal{C}_{ij}(t)$ and self-hit history. Richer dynamics; hysteresis and discrete mode-locking absent in standard dBB. |
 | **Two ontological categories** (particles + wave) | **One ontological category**: architrinos generate and are guided by their own causal wake field. Ontological economy is maximal. |
@@ -249,6 +249,6 @@ P_n=\mu_*(B_n)\stackrel{?}{=}\int_{B_n}|\psi_n|^2\,d\Gamma.
 $$
 
 Detailed interface chapters:
-- ontology/statistics side: `quantum/wavefunction-ontology.md`
-- metastability/separatrix side: `quantum/superposition-mechanism.md`
-- dynamical substrate side: `dynamics/master-equation.md`, `dynamics/effective-lagrangian.md`
+- ontology/statistics side: [quantum/wavefunction-ontology.md](./wavefunction-ontology.md)
+- metastability/separatrix side: [quantum/superposition-mechanism.md](./superposition-mechanism.md)
+- dynamical substrate side: [dynamics/master-equation.md](../dynamics/master-equation.md), [dynamics/effective-lagrangian.md](../dynamics/effective-lagrangian.md)

@@ -425,7 +425,7 @@ At large distances, axis‑dependent multipoles from each regime cancel:
 This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether cores: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
 
 
-## Residual Strong Force and Nuclear Binding (Qualitative Hook)
+## Residual Strong Force and Nuclear Binding
 
 Even for color‑singlet nucleons:
 
@@ -463,7 +463,7 @@ This chapter therefore carries:
 - **already closed:** color Hilbert space, generator construction, and $\mathfrak{su}(3)$ algebra closure;
 - **to close quantitatively:** open-vs-closed energy scaling with explicit $\sigma_{\mathrm{eff}}$ extraction from medium shear/torsion.
 
-Primary topology spine: `dynamics/causal-action-functional.md`.
+Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md).
 
 ## Summary and Next Steps
 

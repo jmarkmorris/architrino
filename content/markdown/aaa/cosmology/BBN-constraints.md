@@ -1,6 +1,6 @@
 # BBN in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework
 
-## Standard vs. $\mathbb{A}\mathbb{A}\mathbb{A}$ BBN: Ontological Reframing
+## Standard vs. $\mathbb{A}\mathbb{A}\mathbb{A}$ BBN
 
 ### Standard Big Bang Nucleosynthesis
 
