@@ -14,6 +14,7 @@ Scoring system:
 | Fastest scorecard lift | 9 | 3 | 3.00 |
 | PDG solver | 10 | 4 | 2.50 |
 | Preserve strong-field / tri-binary hypotheses | 5 | 2 | 2.50 |
+| 421 resonance reduced-map program | 7 | 3 | 2.33 |
 | Unified chapter authoring queue | 8 | 4 | 2.00 |
 | Remaining black-hole / strong-field quantitative closure | 4 | 2 | 2.00 |
 | Parameter ledger, couplings, and first mass map | 9 | 5 | 1.80 |
@@ -76,7 +77,26 @@ Scoring system:
   - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
   - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing `c_f`, though that seems doubtful.
 
-### 4. Run the chapter authoring queue
+### 4. Advance the 421 resonance reduced-map program
+- Value `7`, Cost `3`, ROI `2.33`.
+- [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) now has a cleaner math backbone and should be treated as a reduced-map dynamics program, not as a finished derivation.
+- What is now solid enough to build on:
+  - exact periodic closure gives a rational resonance lattice,
+  - self-similar near-horizon closure gives the family $1:s:s^2$,
+  - the live theorem target is a regularized phase-amplitude map near the Jacobian wall,
+  - the exact global invariants are total energy and total angular momentum rather than branchwise action slices.
+- What remains open:
+  - whether the dyadic member $s=2$ is dynamically selected rather than merely the minimal integer candidate,
+  - whether a Lyapunov-Krasovskii or cycle-averaged causal-work functional can be constructed for the reduced map,
+  - whether the $\mathbb{Z}_3$ organization acts as a true adiabatic stabilizer,
+  - whether any branchwise ledger emerges only after the lock is solved rather than before.
+- Immediate next move:
+  1. Use [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics.md](phenomenological-heuristics.md) as the scratch/archive notebook.
+  2. Build the two-layer regularized map first.
+  3. Look for local contraction or a Lyapunov-type quantity near the dyadic fixed point.
+  4. Only promote more of the archive once it is rederived from the reduced dynamics.
+
+### 5. Run the chapter authoring queue
 - Value `8`, Cost `4`, ROI `2.00`.
 - This item is the ranked queue for chapter-writing work.
 - Use it for both:
@@ -108,7 +128,7 @@ Scoring system:
   12. `Reconstructing Physics and Cosmology`
   13. `Vision for the Future / Toward New Technologies`
 
-### 5. Finish the remaining black-hole / strong-field quantitative closure
+### 6. Finish the remaining black-hole / strong-field quantitative closure
 - Value `4`, Cost `2`, ROI `2.00`.
 - The core chapter architecture is now in place:
   - [black-holes.md](../../markdown/aaa/spacetime/black-holes.md),
@@ -121,7 +141,7 @@ Scoring system:
   - and keep neighboring chapters synchronized when the strong-field story changes.
 - Treat this as a mostly-completed architecture item, not as a missing-canonical-home item anymore.
 
-### 6. Finish the parameter ledger, constants, couplings, and first mass map
+### 7. Finish the parameter ledger, constants, couplings, and first mass map
 - Value `9`, Cost `5`, ROI `1.80`.
 - Populate [parameter-ledger.md](../../markdown/aaa/foundations/parameter-ledger.md) with `\kappa`, `\epsilon_0 / \mu_0` analogues, density scales, regularization widths, extraction equations, and observable links.
 - Tie that ledger to [action.md](../../markdown/aaa/foundations/action.md), [architrino-si-base-units.md](../../markdown/aaa/foundations/architrino-si-base-units.md), and [constraint-ledger.md](../../markdown/aaa/validation/constraint-ledger.md).
@@ -129,7 +149,7 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question active: why `h`, `c_f`, and `G`; one spiral; maybe `G` is emergent rather than fundamental.
 
-### 7. Close the remaining Standard Model assembly gaps where the leverage is best
+### 8. Close the remaining Standard Model assembly gaps where the leverage is best
 - Value `7`, Cost `4`, ROI `1.75`.
 - The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
   - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
@@ -138,7 +158,7 @@ Scoring system:
 - Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 
-### 8. Finish the tractable master-equation stack
+### 9. Finish the tractable master-equation stack
 - Value `10`, Cost `8`, ROI `1.25`.
 - Keep dynamics, math, geometry, and mapping centered on [master-equation.md](../../markdown/aaa/dynamics/master-equation.md) as the top theory priority.
 - Use the current tractable footholds as fixed starting points:
@@ -176,7 +196,7 @@ Scoring system:
   6. full attractor landscape for binaries and tri-binaries;
   7. quantum closure from the master equation.
 
-### 9. Scene system, scene builder, applications, and later enhancements
+### 10. Scene system, scene builder, applications, and later enhancements
 - Value `8`, Cost `7`, ROI `1.14`.
 - Build the 3D visualizer for the oblating Noether core and related scenes such as the sphere.
 - Continue the ellipsoid work, aiming to understand time through that geometry.
@@ -201,7 +221,7 @@ Scoring system:
     - export presets for desktop `16:9` and mobile `9:16`,
     - formal narrative / export spec later, not now.
 
-### 10. Lock the simulations, regularization, and shell numerics
+### 11. Lock the simulations, regularization, and shell numerics
 - Value `9`, Cost `8`, ROI `1.13`.
 - Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/simulations/run-protocols.md) and the `synthesis/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
@@ -210,7 +230,7 @@ Scoring system:
 - Tie Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
 - If a quick intuition tool is useful, make a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
 
-### 11. Convert cosmology from narrative strength to equation-level closure
+### 12. Convert cosmology from narrative strength to equation-level closure
 - Value `9`, Cost `8`, ROI `1.13`.
 - Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
 - Build per-component observable interfaces for `\Lambda\mathrm{CDM}` comparison:
@@ -222,7 +242,7 @@ Scoring system:
 - Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where `$\mathbb{A}\mathbb{A}\mathbb{A}$` matches, replaces, or diverges from each component.
 - This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
 
-### 12. Close the metric / clock / ruler bridge to GR
+### 13. Close the metric / clock / ruler bridge to GR
 - Value `10`, Cost `9`, ROI `1.11`.
 - Close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional.
 - Derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
@@ -230,14 +250,14 @@ Scoring system:
 - Keep this as the direct bridge from substrate dynamics to GR tests: match GR in the weak field, then let strong-field differences emerge as predictions rather than assertions.
 - Related mechanical task: derive emergent Lorentz invariance for fast-moving tri-binaries so lifetimes, scattering kinematics, and decay rates recover the standard `\gamma` factor.
 
-### 13. Close the quantum-interpretation gap only after making it testable
+### 14. Close the quantum-interpretation gap only after making it testable
 - Value `10`, Cost `9`, ROI `1.11`.
 - Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
 - Show how receiver-side informational ambiguity can yield the Born rule `P \propto |\psi|^2`.
 - Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
 - Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
 
-### 14. Recover useful old material before rewriting it from scratch
+### 15. Recover useful old material before rewriting it from scratch
 - Value `6`, Cost `6`, ROI `1.00`.
 - Mine material from WordPress where it can save time.
 - Clean up PowerPoints, or better, migrate the worthwhile ones into the web site.

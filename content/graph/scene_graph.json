@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 403,
+      "nodes": 404,
       "edges": 1145,
       "scenes": 280,
       "markdownIndexes": 0,
-      "markdownDocs": 123,
+      "markdownDocs": 124,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2048,6 +2048,12 @@
       "id": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "name": "Causal Action Functional",
       "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "name": "Geometric Analysis of a 1:2:4 Resonant Lock at the Field-Speed Horizon",
+      "path": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5419,6 +5425,15 @@
       "name": "Causal Action Functional",
       "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "searchTarget": "content/markdown/aaa/dynamics/causal-action-functional.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "name": "Geometric Analysis of a 1:2:4 Resonant Lock at the Field-Speed Horizon",
+      "path": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "searchTarget": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
       "implicit": false
     },
     {

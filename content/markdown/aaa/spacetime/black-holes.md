@@ -44,6 +44,8 @@ At the assembly level, opposite-charge binaries driven past the hinge near $c_f$
 
 The constitutive claim is modest but important: singularity language remains a warning that weak-field effective variables have exceeded their domain, while the ontic replacement is a structured maximum-curvature core with finite internal bookkeeping.
 
+One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature tri-binaries pack into a near-crystalline "Noether crystal" core, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation, but it is a useful candidate for how collapse can saturate without an ontic singularity.
+
 ## Horizon Interface
 
 The horizon interface is the most important black-hole concept in the local dialect. It names the layer in which tri-binary assemblies are flattened into an alignment-locked sheet.
@@ -56,6 +58,12 @@ At this interface:
 - information flow is compressed into an interface-like channel rather than ordinary volumetric propagation.
 
 This is why the project treats holographic language as suggestive but not primitive. The horizon behaves like an information-compression interface because the constitutive degrees of freedom have been forced into a constrained alignment state. That motivates the analogy to holography and AdS/CFT without requiring a literal boundary-field ontology.
+
+As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the tri-binary shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
+$$
+\text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}.
+$$
+This is not yet a derived strong-field theorem. It is a compact way of expressing why the horizon is treated as an information-compression layer rather than as a literal ontic edge of space.
 
 ## Cosmological Embedding and Horizon Regularity
 
