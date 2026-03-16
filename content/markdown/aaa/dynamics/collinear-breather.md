@@ -3420,6 +3420,119 @@ The acceleration bound is already part of the hypotheses, so the full tube estim
 
 This lemma does not by itself control Jacobian transversality or branch-count growth. It isolates the easier kinematic part of tube preservation: once monotone inbound motion, bounded crossing time, and bounded acceleration are known, the position-speed tube closes automatically up to the crossing.
 
+**Lemma 9: Crossing-history admissibility.**
+Let
+$$
+\psi\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+$$
+be an inbound history for which the pre-crossing leg satisfies Lemmas 6-8. Let
+$$
+t_{\mathrm{cross}}=t_{\mathrm{cross}}(\psi)
+$$
+denote the first crossing time and define the translated crossing history
+$$
+\phi_{\mathrm{cross}}(\theta)
+\equiv
+x(t_{\mathrm{cross}}+\theta;\psi),
+\qquad
+\theta\in[-h,0].
+$$
+Assume, in addition, that the pre-crossing collapse provides:
+
+- a crossing-speed window
+  $$
+  V_{\min}\le -\dot x(t_{\mathrm{cross}})\le V_{\max},
+  \qquad
+  V_{\min}>c_f,
+  $$
+- a stored-past sorting-map geometry with class-uniform data
+  $$
+  t_{\mathrm{zero}}<t_{\mathrm{hinge}}<0,
+  \qquad
+  \delta_w(\phi_{\mathrm{cross}};\gamma_w)\ge \delta_{w,\min},
+  $$
+- sub-field-speed source transversality on the pre-hinge portion of the translated history,
+  $$
+  \dot\phi_{\mathrm{cross}}(\theta)\ge -c_f+\nu
+  \qquad
+  \text{for }\theta\in[-h,t_{\mathrm{zero}}],
+  $$
+- and the same class-uniform acceleration and root-count bounds used in the definition of
+  $$
+  \mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}.
+  $$
+
+If
+$$
+\eta<\frac{\delta_{w,\min}}{2},
+\qquad
+h\ge \frac{2X_{\max}}{c_f},
+$$
+then
+$$
+\phi_{\mathrm{cross}}\in \mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}.
+$$
+
+In particular, the local origin-crossing recapture theorem applies to the translated crossing history.
+
+Proof.
+By construction of the translated segment,
+$$
+\phi_{\mathrm{cross}}(0)=x(t_{\mathrm{cross}})=0.
+$$
+The crossing-speed hypothesis gives
+$$
+\dot\phi_{\mathrm{cross}}(0)=\dot x(t_{\mathrm{cross}})
+\in[-V_{\max},-V_{\min}],
+$$
+with
+$$
+V_{\min}>c_f,
+$$
+which is exactly the origin-crossing speed requirement of the admissible crossing subclass.
+
+The stored-past sorting-map assumptions are likewise phrased directly on the translated history
+$$
+\phi_{\mathrm{cross}}.
+$$
+They therefore supply the required times
+$$
+t_{\mathrm{zero}}<t_{\mathrm{hinge}}<0,
+$$
+the interior compact-subinterval gap
+$$
+\delta_w(\phi_{\mathrm{cross}};\gamma_w)\ge \delta_{w,\min},
+$$
+and the sub-field-speed source transversality bound
+$$
+\dot\phi_{\mathrm{cross}}(\theta)\ge -c_f+\nu
+\qquad
+\text{for }\theta\in[-h,t_{\mathrm{zero}}].
+$$
+Because
+$$
+\eta<\frac{\delta_{w,\min}}{2},
+$$
+the shell-width condition required in the local post-crossing theorem is also satisfied.
+
+The acceleration and root-count hypotheses are inherited by assumption from the pre-crossing tame tube and the translated-history bounds. Finally, the horizon choice
+$$
+h\ge \frac{2X_{\max}}{c_f}
+$$
+ensures that all causal delays compatible with the position envelope fit inside the stored history window.
+
+Thus every defining condition of
+$$
+\mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}
+$$
+holds for
+$$
+\phi_{\mathrm{cross}},
+$$
+which proves the lemma.
+
+This lemma isolates the exact last handoff in the proof architecture. The collapse phase does not itself prove local recapture; it only has to deliver the trajectory into the admissible crossing subclass where the already-established post-crossing theorem takes over.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
