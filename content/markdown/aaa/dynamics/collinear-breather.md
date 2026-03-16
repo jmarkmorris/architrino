@@ -2819,6 +2819,115 @@ Once these items hold, the remaining step is standard:
 
 At this stage, the remaining nontrivial issue is not the fixed-point theorem itself. It is the construction of a tame class on which all three inputs hold simultaneously: well-definedness, continuity, and invariant-envelope control. That is the precise global bottleneck after the local recapture theorem.
 
+### Full-cycle invariant-envelope target
+
+The next theorem burden can now be stated without ambiguity. One does not yet need a fixed point; one first needs a full-cycle map that lands back inside the tame convex envelope.
+
+> **Target Theorem (Full-Cycle Well-Definedness and Envelope Return).**
+> Fix a dual-mollified tame inbound subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+> Assume the local origin-crossing recapture theorem applies uniformly to every collapse phase launched from this class. Suppose moreover that there exist class constants
+> $$
+> X_{\max},
+> \qquad
+> U_{\max},
+> \qquad
+> A_{\max},
+> \qquad
+> T_{\max}
+> $$
+> such that every trajectory issued from
+> $$
+> \psi\in\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> $$
+> satisfies:
+> 1. **bounded excursion:**
+>    $$
+>    0\le x(t)\le X_{\max}
+>    \qquad
+>    \text{for }0\le t\le T(\psi),
+>    $$
+> 2. **bounded speed and acceleration:**
+>    $$
+>    |\dot x(t)|\le U_{\max},
+>    \qquad
+>    |\ddot x(t)|\le A_{\max}
+>    \qquad
+>    \text{for }0\le t\le T(\psi),
+>    $$
+> 3. **section return in bounded time:**
+>    the first inbound return time exists and obeys
+>    $$
+>    0<T(\psi)\le T_{\max},
+>    $$
+> 4. **bounded return speed:**
+>    $$
+>    -\dot x(T(\psi))\le U_{\max},
+>    $$
+> 5. **root control on the returned history:**
+>    the translated history segment
+>    $$
+>    x_{T(\psi)}
+>    $$
+>    retains the same Jacobian and branch-count bounds used to define tameness.
+>
+> Then
+> $$
+> P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}
+> \qquad
+> \text{for every }\psi\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta},
+> $$
+> and hence
+> $$
+> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+
+This is the exact bridge from the local recapture theorem to the convex-envelope proposition. The point is that the global invariant-set problem is now reduced to four explicit cycle estimates:
+
+- turn around after the crossing,
+- stay inside the position envelope during the outward and return excursion,
+- re-enter the section in bounded time,
+- and do so with bounded returning speed while preserving root control on the stored history.
+
+The first of these is already supplied locally by the recapture theorem. The next serious analytic target is therefore to propagate that local control through the rest of the cycle strongly enough to recover the same envelope at the section return.
+
+### Cycle-estimate ladder
+
+The full-cycle theorem above naturally decomposes into the following proof steps.
+
+1. **Collapse-to-crossing control.**
+   Starting from an inbound section history, show that the trajectory reaches the origin-crossing regime without leaving the tame tube.
+2. **Post-crossing recapture.**
+   Apply the local origin-crossing theorem to obtain a turning point on a class-uniform window.
+3. **Turn-to-section return.**
+   Show that after the turning point, partner attraction and the bounded delayed geometry force a return to
+   $$
+   x=x_\ast
+   $$
+   before any escape beyond
+   $$
+   X_{\max}.
+   $$
+4. **Return-speed bound.**
+   Estimate the inbound speed at the section crossing and show it remains inside the global envelope
+   $$
+   -\dot x(T(\psi))\le U_{\max}.
+   $$
+5. **Returned-history tameness.**
+   Prove that the history segment
+   $$
+   x_{T(\psi)}
+   $$
+   inherits the same acceleration, Jacobian, and branch-count bounds required by the tame class.
+
+Only after these five items are in hand does the convex-envelope target become a theorem rather than a program.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
