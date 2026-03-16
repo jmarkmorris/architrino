@@ -1166,6 +1166,47 @@ N_s^{\max}\,
 $$
 This is the intended bounded self-drive estimate, conditional on the root-multiplicity control already flagged in the red-flags section.
 
+A sharper geometric version is available on a sufficiently short post-crossing window. Since
+$$
+w(t_{\mathrm{zero}})=0
+\qquad
+\Longrightarrow
+\qquad
+x(t_{\mathrm{zero}})=-c_f t_{\mathrm{zero}}
+\equiv
+\rho_{\mathrm{zero}}>0,
+$$
+and the pre-crossing branch is inbound, one has
+$$
+x(t_s)\ge \rho_{\mathrm{zero}}
+\qquad
+\text{for every }t_s\le t_{\mathrm{zero}}.
+$$
+Choose a short window $[0,\tau_\rho]$ on which
+$$
+\rho(t)=|x(t)|\le \frac{\rho_{\mathrm{zero}}}{2}.
+$$
+Then every active self root on that window satisfies
+$$
+|x(t)-x(t_s)|
+=
+\rho(t)+x(t_s)
+\ge
+\frac{\rho_{\mathrm{zero}}}{2}.
+$$
+Hence the same branch-count bound yields the sharper estimate
+$$
+A_s^{\rho}(t)
+\le
+N_s^{\max}\,
+\kappa\epsilon^2\,
+\frac{c_f}{\nu}\,
+\frac{4}{\rho_{\mathrm{zero}}^2}
+\equiv
+\overline A_{s,\mathrm{geom}}^{\rho},
+$$
+which is independent of the core mollifier $\epsilon_c$. This is the version most useful for evaluating the Goldilocks condition.
+
 **Lemma 3: Partner-root linearization and lower bound.**
 Use the linearized partner root
 $$
@@ -1267,6 +1308,57 @@ V_0-
 \Big)\,ds
 $$
 has a zero on the initial window under (H5), and conclude that the true radial speed must vanish there.
+
+Working form:
+fix a window $[0,\tau]$ on which Lemma 2 and Lemma 3 both hold, and define
+$$
+B_\tau\equiv c_f C_p(\tau^2+\eta).
+$$
+Then for $0\le t\le \tau$,
+$$
+\underline A_p^{\rho}(t)
+\ge
+\frac{\kappa\epsilon^2}{
+\left(\beta_p t+B_\tau\right)^2+\epsilon_c^2
+}.
+$$
+
+Integrating this explicit lower bound gives the partner impulse estimate
+$$
+\Delta V_p(\tau)
+\equiv
+\int_0^\tau \underline A_p^{\rho}(s)\,ds
+\ge
+\frac{\kappa\epsilon^2}{\beta_p\epsilon_c}
+\left[
+\arctan\!\left(\frac{\beta_p\tau+B_\tau}{\epsilon_c}\right)
+-
+\arctan\!\left(\frac{B_\tau}{\epsilon_c}\right)
+\right].
+$$
+
+If the self-drive is bounded above by a constant $\overline A_s^\rho$ on the same window, then the total outward impulse from self-hit is at most
+$$
+\Delta V_s(\tau)\le \overline A_s^\rho\,\tau.
+$$
+
+Therefore a sufficient recapture condition is
+$$
+V_0<
+\Delta V_p(\tau)-\overline A_s^\rho\,\tau.
+$$
+
+Using the sharper geometric bound from Lemma 2, this becomes
+$$
+V_0<
+\Delta V_p(\tau)-\overline A_{s,\mathrm{geom}}^\rho\,\tau.
+$$
+
+This is the working form of the Goldilocks condition. It makes the bottleneck explicit: one must show that there exist parameters
+$$
+(\eta,\epsilon_c,V_0,\tau)
+$$
+for which the dual-mollified partner impulse beats the bounded self-drive loss on a nonempty initial window.
 
 ### Bottleneck and proof order
 
