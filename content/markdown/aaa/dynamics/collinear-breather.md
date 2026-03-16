@@ -2840,7 +2840,72 @@ Once these items hold, the remaining step is standard:
 > $$
 > and supports a Schauder fixed-point argument for a fixed point of the dual-mollified return map.
 
-At this stage, the remaining nontrivial issue is not the fixed-point theorem itself. It is the construction of a tame class on which all three inputs hold simultaneously: well-definedness, continuity, and invariant-envelope control. That is the precise global bottleneck after the local recapture theorem.
+The remaining capstone step is to place the now-constructed nonempty tame class, the continuity input, and the precompactness input on the same domain. Once that is done, the fixed-point conclusion can be stated directly:
+
+> **Target Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
+> Assume:
+> 1. the theorem `Nonempty tame class from seed propagation`;
+> 2. the continuity proposition for
+>    $$
+>    P_\eta
+>    $$
+>    on the resulting nonempty class
+>    $$
+>    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta};
+>    $$
+> 3. the precompactness proposition for the image
+>    $$
+>    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big);
+>    $$
+> 4. and the invariant-envelope inclusion
+>    $$
+>    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+>    \subseteq
+>    \mathcal{C}_{x_\ast,\eta},
+>    $$
+>    where
+>    $$
+>    \mathcal{C}_{x_\ast,\eta}
+>    $$
+>    is closed and convex in
+>    $$
+>    C^1([-h,0]).
+>    $$
+>
+> Then the dual-mollified return map supports a Schauder fixed-point argument on a nonempty history class. In particular, there exists a history
+> $$
+> \phi_\eta^\ast
+> \in
+> \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that
+> $$
+> P_\eta(\phi_\eta^\ast)=\phi_\eta^\ast.
+> $$
+> The corresponding delayed trajectory is an exact bounded periodic origin-crossing two-body motion in the dual-mollified collinear model.
+
+Proof sketch.
+By the theorem `Nonempty tame class from seed propagation`, the domain
+$$
+\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+$$
+is nonempty and the return map
+$$
+P_\eta
+$$
+is well defined there. The continuity and precompactness propositions place the return image inside a compact subset of the closed convex envelope
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+The invariant-envelope inclusion prevents escape from that envelope. Therefore the standard Schauder fixed-point mechanism applies on the associated compact convex history set and yields a fixed point
+$$
+\phi_\eta^\ast.
+$$
+By construction of
+$$
+P_\eta,
+$$
+that fixed point is exactly a periodic returned history, hence an exact bounded collinear breather in the dual-mollified delayed dynamics.
 
 ### Full-cycle invariant-envelope target
 
