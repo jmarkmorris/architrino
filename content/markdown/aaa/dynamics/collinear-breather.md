@@ -7060,6 +7060,84 @@ z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
 $$
 which proves the quadratic descent estimate.
 
+**Corollary 40: Outbound-level exclusion from explicit z-descent.**
+Assume the hypotheses of Lemma 39 and let
+$$
+I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+\subseteq
+[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_c]
+$$
+be a trimmed apocenter window on the post-hinge branch. Define the earlier outbound floor
+$$
+m_{\mathrm{out}}^{\mathrm{early}}
+\equiv
+\inf_{0\le s\le t_a} z(s).
+$$
+If
+$$
+z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+-
+\frac{a_{z}^{\mathrm{out}}}{2}
+\big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+<
+m_{\mathrm{out}}^{\mathrm{early}},
+$$
+then the outbound-level exclusion hypothesis of Lemma 34 holds:
+$$
+\sup_{t\in I_{\mathrm{deep}}} z(t)
+<
+\inf_{0\le s\le t_a} z(s).
+$$
+
+Proof.
+Because
+$$
+I_{\mathrm{deep}}\subseteq
+[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_c]
+$$
+and Lemma 39 gives
+$$
+\dot z(t)\le -a_{z}^{\mathrm{out}}\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)\le 0
+$$
+on that interval, the function
+$$
+z
+$$
+is nonincreasing there. Therefore its supremum on
+$$
+I_{\mathrm{deep}}
+$$
+is attained at the left endpoint:
+$$
+\sup_{t\in I_{\mathrm{deep}}} z(t)=z(t_a+\tau_{\mathrm{deep}}).
+$$
+Applying Lemma 39 at
+$$
+t=t_a+\tau_{\mathrm{deep}}
+$$
+yields
+$$
+z(t_a+\tau_{\mathrm{deep}})
+\le
+z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+-
+\frac{a_{z}^{\mathrm{out}}}{2}
+\big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2.
+$$
+If the right-hand side is strictly smaller than
+$$
+m_{\mathrm{out}}^{\mathrm{early}}
+=
+\inf_{0\le s\le t_a} z(s),
+$$
+then
+$$
+\sup_{t\in I_{\mathrm{deep}}} z(t)
+<
+\inf_{0\le s\le t_a} z(s),
+$$
+which is exactly the required outbound-level exclusion.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
