@@ -1519,6 +1519,20 @@ $$
 $$
 for which the dual-mollified partner impulse beats the bounded self-drive loss on a nonempty initial window.
 
+On a fixed admissible crossing subclass, the corresponding class-uniform version replaces
+$$
+V_0\mapsto V_{\max},
+\qquad
+\beta_p\mapsto \beta_{p,\max},
+\qquad
+\sigma\mapsto \sigma_{\min},
+$$
+and uses the common remainder constant
+$$
+C_p=C_p(V_{\max},c_f,a_\ast).
+$$
+That conservative substitution is the bridge from the single-history Lemma 4 estimate to the class-uniform proposition below.
+
 Using monotonicity of the arctangent integrand gives a simpler algebraic lower bound:
 $$
 \Delta V_p(\tau)
@@ -1602,6 +1616,16 @@ $$
 \eta\le \frac{\beta_p^2}{4c_f^2 C_p^2},
 $$
 provided the corresponding roots lie inside the local validity window of Lemmas 1-3.
+
+For class-uniform use on $\mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}$, the corresponding sufficient condition is obtained conservatively by replacing
+$$
+\beta_p\mapsto \beta_{p,\min},
+$$
+since the linear partner term must dominate uniformly for every admissible history. The explicit proposition below avoids mixing $\beta_{p,\min}$ and $\beta_{p,\max}$ in a single window estimate by choosing $\tau_\epsilon$ directly from $\beta_{p,\max}$ and then bounding
+$$
+\beta_p\tau_\epsilon+B_{\tau_\epsilon}
+$$
+in one step.
 
 > **Proposition (Explicit short-window recapture regime).**
 > On a fixed admissible crossing subclass $\mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}$, choose the class-uniform window
