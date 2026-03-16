@@ -117,7 +117,7 @@ The force-as-gradient identity is valid only when taking the gradient at fixed c
 
 ## Energy Conservation and Exchange
 
-The model enforces energy conservation via the continuous exchange of energy between kinetic and interaction forms, plus energy stored in propagating wakes.
+In the exact causal theory, energy conservation is enforced via the continuous exchange of energy between kinetic and interaction forms, plus energy stored in propagating wakes. For mollified working models, the strongest exact conservation claims remain conditional on the regularization being derived from the same time-translation-invariant causal action rather than inserted only at the equation-of-motion level.
 
 For a single architrino:
 
@@ -127,7 +127,7 @@ $$\Delta E_k = \int \mathbf{F}\cdot d\mathbf{s} = -\Delta U$$
 
 $$E_{\text{total}} = \sum_a E_{k,a} + U_{\text{int}} + E_{\text{wake}},$$
 
-and is constant in time (in the limit of perfect regularization and no open boundaries).
+and is constant in time for exact isolated solutions of the causal action. In mollified working models, this same bookkeeping should be treated as exact only when the mollified kernel inherits that action-level time-translation symmetry; otherwise it remains the natural candidate history functional to monitor, but not yet an established exact invariant.
 
 - $U_{\text{int}}$ is an optional effective decomposition of near-field interaction energy.
 - $E_{\text{wake}}$ accounts for the exact nonlocal interaction content carried by wake structures and any radiation-like transport through the tri-binary sea.
@@ -275,7 +275,7 @@ In the **super-field-speed** regime ($|\mathbf{v}_a|>1$ at some emission times),
 - Self-hit repulsion acts as an internal **stiffening mechanism** for tri-binaries and more complex assemblies, contributing to their stability.
 - Energy that an architrino (or assembly) emitted into its local medium (tri-binary sea) can be partially re-absorbed through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and "field/medium energy" associated with the local tri-binary configuration.
 
-Globally, energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → tri-binary medium → back to architrino/assembly).
+At the exact causal-action level, global energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → tri-binary medium → back to architrino/assembly). In dual-mollified local theorem models, the same statement should be read conditionally unless the mollified kernel is explicitly tied to an action-level regularization.
 
 ---
 
@@ -289,7 +289,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 - **At the architrino level:**
   
-  Kinetic energy and potential energy are defined via the Master EOM and are conserved globally. The substrate law is acceleration-first; no particle-specific fundamental mass is assigned to architrinos, and speeds are unbounded in principle.
+  Kinetic energy and potential energy are defined via the Master EOM. Exact global conservation belongs to the exact causal-action theory; in mollified working models it is the target bookkeeping structure and is exact only when the regularization preserves the underlying time-translation symmetry. The substrate law is acceleration-first; no particle-specific fundamental mass is assigned to architrinos, and speeds are unbounded in principle.
 
 - **At the assembly level:**
   
