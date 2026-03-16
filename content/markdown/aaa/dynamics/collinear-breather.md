@@ -3880,6 +3880,81 @@ $$
 \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}.
 $$
 
+> **Proposition (Seed-neighborhood realization of the explicit inner recapture regime).**
+> Let
+> $$
+> \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+> $$
+> be a nonempty subclass on which the collapse-to-crossing control theorem applies with uniform crossing-speed window
+> $$
+> V_{\min}^{\mathrm{seed}}
+> \le
+> -\dot x(t_{\mathrm{cross}};\psi)
+> \le
+> V_{\max}^{\mathrm{seed}}
+> \qquad
+> \text{for every }
+> \psi\in \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}.
+> $$
+> Assume further that the crossing histories issued from this class satisfy the admissible-crossing hypotheses with the same class constants entering Proposition `Explicit short-window recapture regime`, and that
+> $$
+> V_{\max}^{\mathrm{seed}}
+> <
+> \frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}
+> -
+> \frac{\overline A_s^\rho\,\epsilon_c}{2\beta_{p,\max}},
+> $$
+> together with
+> $$
+> \tau_\epsilon=\frac{\epsilon_c}{2\beta_{p,\max}}\le \tau_1,
+> \qquad
+> \eta\le \frac{\epsilon_c}{4c_f C_p},
+> \qquad
+> \epsilon_c\le \frac{\beta_{p,\max}^2}{c_f C_p}.
+> $$
+> Then every first crossing launched from
+> $$
+> \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+> $$
+> lies in the explicit short-window recapture regime, and the corresponding post-crossing branch turns around on the class-uniform window
+> $$
+> [0,\tau_\epsilon].
+> $$
+
+Proof sketch.
+By the collapse-to-crossing theorem, every
+$$
+\psi\in \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+$$
+reaches a crossing history inside the admissible crossing subclass and with outgoing radial speed at most
+$$
+V_{\max}^{\mathrm{seed}}.
+$$
+The displayed inequality is exactly the sufficient recapture condition from Proposition `Explicit short-window recapture regime`, with
+$$
+V_{\max}
+$$
+there replaced by the seed-neighborhood crossing-speed bound
+$$
+V_{\max}^{\mathrm{seed}}.
+$$
+The three displayed small-window inequalities guarantee the same choice
+$$
+\tau_\epsilon=\frac{\epsilon_c}{2\beta_{p,\max}}
+$$
+is admissible. Therefore Proposition `Explicit short-window recapture regime` applies uniformly to every first crossing issued from
+$$
+\mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta},
+$$
+yielding a class-uniform post-crossing turnaround on
+$$
+[0,\tau_\epsilon].
+$$
+
+This proposition closes the inner half of the seed-propagation program at the regime level: once the seed neighborhood is shrunk far enough that its collapse phase lands uniformly in the Goldilocks crossing window, the local post-crossing recapture mechanism becomes available without any additional pointwise tuning.
+
 ### Collapse-to-crossing target
 
 The next concrete theorem should attack Step 1 of the cycle ladder directly. Its role is to connect tame inbound section data to the already-audited local post-crossing recapture theorem.
