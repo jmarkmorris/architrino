@@ -250,6 +250,14 @@ $$
 $$
 with the understanding that the exact Jacobian factors reappear in the branch-sum representation when the mollified shell collapses onto isolated roots.
 
+For theorem work across the origin crossing, shell regularization alone is not enough to control the inverse-square amplitude. A more robust local model therefore introduces a **dual mollification**: the shell mollifier $\delta_\eta$ for delayed root selection together with a short-distance core mollifier $\epsilon_c>0$ in the amplitude denominator,
+$$
+\frac{1}{r^2}
+\quad\leadsto\quad
+\frac{1}{r^2+\epsilon_c^2}.
+$$
+This leaves the delayed shell selection controlled by $\eta$ while the core mollifier caps the near-origin amplitude spike strongly enough for a clean $C^1$ theorem program.
+
 The regularized formulation is the one best suited to:
 
 - local well-posedness,
@@ -921,7 +929,7 @@ on the initial post-crossing window.
 The stronger theorem target suggested by the sorting map is not merely bounded self drive, but a full initial-window braking-dominance statement.
 
 > **Candidate Theorem (Origin-Crossing Braking Dominance).**
-> Let $\phi$ be an admissible signed history with an origin crossing at $t=0$ and outward radial speed
+> Let the 1D kernel be dual-mollified by a shell width $\eta>0$ and a core mollifier $\epsilon_c>0$. Let $\phi$ be an admissible signed history with an origin crossing at $t=0$ and outward radial speed
 > $$
 > V_0\equiv V_\phi(0)>c_f.
 > $$
@@ -946,7 +954,7 @@ The stronger theorem target suggested by the sorting map is not merely bounded s
 > $$
 > the trajectory must experience radial recapture by time $\tau_{\mathrm{env}}$.
 
-This is the theorem-scale target closest to the corrected geometric analysis. It packages the local sorting argument, the bounded self-drive lemma, and the partner-dominance margin into one initial-window recapture statement.
+This is the theorem-scale target closest to the corrected geometric analysis. It packages the local sorting argument, the bounded self-drive lemma, and the partner-dominance margin into one initial-window recapture statement, but it does so in the dual-regularized setting where the origin-crossing amplitude remains finite.
 
 ### Envelope-level sufficient condition
 
@@ -1005,6 +1013,39 @@ A_p^{\rho}(t)
 $$
 
 Near the origin crossing one expects a stronger version of this estimate. The partner source sits at separation $2\rho(t)$, whereas the self roots selected by the sorting map come from much earlier radii in the sub-field-speed past. So on the initial outbound window the partner term carries a strong near-field $1/\rho(t)^2$ advantage, while the self term is controlled by a larger historical separation and a Jacobian bounded away from the caustic.
+
+The linearized partner-root geometry makes this explicit. If the signed crossing speed is approximated by
+$$
+\dot x(0)\approx -V_0,
+\qquad
+V_0>c_f,
+$$
+then the delayed partner root satisfies
+$$
+t_p
+=
+-\left(\frac{V_0-c_f}{V_0+c_f}\right)t,
+$$
+and hence
+$$
+r_p(t)
+=
+c_f(t-t_p)
+=
+\left(\frac{2c_fV_0}{V_0+c_f}\right)t.
+$$
+
+Without the core mollifier this gives the singular scaling
+$$
+A_p^{\rho}(t)\sim \frac{1}{t^2},
+$$
+which produces an infinite braking impulse at the crossing. The dual-mollified theorem therefore relies essentially on $\epsilon_c>0$: with the replacement
+$$
+\frac{1}{r_p(t)^2}
+\leadsto
+\frac{1}{r_p(t)^2+\epsilon_c^2},
+$$
+the partner term remains large but finite and can be compared meaningfully against the bounded self drive.
 
 So the genuinely difficult part of the corrected recapture problem is not partner braking. It is proving that the post-crossing self drive remains bounded strongly enough that
 $$
@@ -1082,7 +1123,7 @@ If even this strong recapture proposition cannot be supported on any nonempty ou
 
 Several issues still need to stay explicit while pushing the 1D proof program forward.
 
-- **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. A clean $C^1$ Banach-space theorem program may therefore need an explicit core mollification of the denominator, for example a replacement of $r^{-2}$ by $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
+- **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced note, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
