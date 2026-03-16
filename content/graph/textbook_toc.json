@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 122,
-      "sections": 792
+      "sections": 794
     }
   },
   "tocRoot": {
@@ -814,6 +814,14 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Purpose",
                 "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
                 "markdownSection": "Purpose",
@@ -906,6 +914,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
                 "markdownSection": "What Counts as Success or Failure",
                 "sectionKey": "what counts as success or failure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Appendix: AI Henri Poincare on the Unlikelihood of a Closed-Form Solution",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Appendix: AI Henri Poincare on the Unlikelihood of a Closed-Form Solution",
+                "sectionKey": "appendix ai henri poincare on the unlikelihood of a closed form solution",
                 "headingLevel": 2
               },
               {

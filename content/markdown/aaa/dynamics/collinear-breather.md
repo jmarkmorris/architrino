@@ -4,6 +4,29 @@ This note isolates the simplest reduced dynamical problem that can test the self
 
 The guiding idea is narrow: if self-hit can stabilize anything at all, it should first be visible in a reflection-symmetric one-dimensional opposite-charge binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, tri-binary locking, and assembly-level closure lose their cleanest analytic foothold.
 
+## Overview
+
+In Lineland there is only a single endless road. Upon it travel two charged points. From a great distance they rush toward one another, drawn together by their mutual pull. Each accelerates as it approaches the other. Yet whatever influence a point emits into the line does not act everywhere at once; it spreads along the road at a finite pace, leaving behind a wake of its past motion. For a time each charge runs ahead of the disturbance it has already sent out. They meet, pass, and continue apart. But presently each encounters the older wake it cast while approaching. This delayed encounter pushes outward, while the partner charge, now behind, continues to pull inward. Thus the whole affair reduces to a contest on a line: a delayed push from one’s own past against the present pull of the other. The purpose of this note is to show that this contest cannot end in escape. The delayed geometry forces the outward flight to fail, the inward pull to recover, and the motion to fold back upon itself into a bounded and repeating course along the road.
+
+
+Formally, this note develops a proof scaffold for the global existence question of a periodic limit cycle in a symmetric two-body collinear system governed by a strongly nonlinear state-dependent delay differential equation. The dynamics use a dual-mollified delayed kernel, separating the short-distance $1/r^2$ singularity from the causal-shell boundary. The main analytic difficulty is the velocity-dependent causal-fold geometry, where Jacobians can approach
+$$
+J\to 0.
+$$
+The note resolves that geometry by constructing the sorting maps
+$$
+w(t)=x(t)+c_f t
+\qquad
+\text{and}
+\qquad
+z(t)=x(t)-c_f t,
+$$
+which isolate root birth, root exclusion, deep-past localization, and bounded caustic transit. From there the delayed dynamics are reduced to explicit conservative force margins for the inner recapture and the outer apocenter turn, and these are assembled into a closed, convex, precompact invariant-envelope program in
+$$
+C^1([-h,0]).
+$$
+The final fixed-point step is then delegated to Arzela-Ascoli compactness and a Schauder-type argument once the nonempty tame class is fully propagated through one cycle.
+
 ## Purpose
 
 The full dynamics stack currently mixes several hard problems at once:
@@ -2627,21 +2650,30 @@ This proposition should still be read as conditional. Its role is to isolate the
 
 ### Convexity caution
 
-The eventual fixed-point set should not be chosen too aggressively at first pass. Some natural-looking lower bounds can destroy convexity:
+The eventual fixed-point set should not be chosen too aggressively at first pass. In signed 1D geometry, however, one point deserves to be stated carefully:
 
-- a minimum inbound speed,
+A lower bound on the **section inbound speed**
+$$
+\dot\phi(0)\le -U_{\min}<0
+$$
+is affine and therefore convex. So a scalar minimum inbound speed at the section is not itself a convexity problem on a signed branch.
+
+What can still destroy convexity are:
+
+- lower bounds on unsigned speed over a mixed-sign stored history,
 - a minimum return time,
-- or a lower bound on excursion amplitude.
+- a lower bound on excursion amplitude,
+- or nonlocal delayed-root constraints written directly into the set definition.
 
 For a first Schauder-style theorem, the safer route is:
 
-- impose closed upper bounds that are visibly convex in history space,
+- impose closed affine or supremum-type bounds that are visibly convex in history space,
 - prove that the return map lands inside that convex envelope,
-- and recover sharper lower bounds later for the resulting fixed point or invariant subset.
+- and only then fold in sharper delayed-root structure if it can be shown to be automatic on the same convex domain.
 
 ### First convex invariant-envelope candidate
 
-Motivated by that caution, define the first global candidate set using only affine and supremum-type upper bounds. Fix constants
+Motivated by that caution, define the first global candidate set using affine and supremum-type convex bounds. Fix constants
 $$
 x_\ast\in(0,X_{\max}),
 \qquad
@@ -2691,13 +2723,16 @@ $$
 h\ge \frac{2X_{\max}}{c_f}.
 $$
 
-This set is closed in the $C^1$ topology, and the bounds above are convex under affine interpolation of histories. In particular, one does not impose:
+This set is closed in the $C^1$ topology, and the bounds above are convex under affine interpolation of histories. In particular, one still does not impose:
 
-- a minimum inbound speed,
 - a minimum return time,
 - or a minimum excursion amplitude.
 
-Those are precisely the types of lower bounds that can puncture convexity and should therefore be postponed until after a first invariant-set theorem is available.
+The genuinely dangerous constraints are the nonlocal or unsigned ones listed above, which should still be postponed until after a first invariant-set theorem is available. If a later theorem produces a uniform strictly inbound section-speed gap
+$$
+\dot\phi(0)\le -U_{\min}<0,
+$$
+that refinement can be added without harming convexity, because in signed 1D it is still an affine condition at the section.
 
 The horizon condition is handled externally rather than as a defining nonlinear constraint. Indeed, if
 $$
@@ -2744,42 +2779,12 @@ The corresponding global target is then:
 
 If this target can be proved and the image is precompact in $C^1([-h,0])$, then the fixed-point program reduces to standard topological machinery on a closed convex envelope rather than on a heavily punctured section set.
 
-So the immediate global target is not yet "stable breather with fixed amplitude," but rather:
+For the actual Schauder step, one needs one more strengthening:
 
-- a well-defined return map on a nonempty class,
-- precompactness of its image,
-- and existence of at least one fixed point of the resulting dual-mollified history map.
-
-### Schauder route
-
-The three global propositions above are designed to feed a single topological conclusion. The intended fixed-point route is:
-
-1. prove that the local recapture theorem and the tame continuation hypotheses make
-   $$
-   P_\eta
-   $$
-   well defined on a nonempty inbound class;
-2. prove the continuity proposition on a tame subclass
-   $$
-   \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta};
-   $$
-3. prove the precompactness proposition for the return image
-   $$
-   P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big);
-   $$
-4. prove the convex-envelope target
-   $$
-   P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
-   \subseteq
-   \mathcal{C}_{x_\ast,\eta}.
-   $$
-
-Once these items hold, the remaining step is standard:
-
-> **Target Theorem (Schauder Fixed Point Route).**
-> Suppose there exists a nonempty tame inbound subclass
+> **Target Proposition (Closed Convex Tame Envelope).**
+> There exists a nonempty closed convex set
 > $$
-> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \mathcal{K}_{x_\ast,\eta}
 > \subseteq
 > \mathcal{C}_{x_\ast,\eta}
 > $$
@@ -2790,34 +2795,175 @@ Once these items hold, the remaining step is standard:
 >    $$
 >    is well defined and continuous on
 >    $$
->    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta},
+>    \mathcal{K}_{x_\ast,\eta},
+>    $$
+> 2. its image is precompact in
+>    $$
+>    C^1([-h,0]),
+>    $$
+> 3. and
+>    $$
+>    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
+>    \subseteq
+>    \mathcal{K}_{x_\ast,\eta}.
+>    $$
+
+This is the exact fixed-point domain required by Schauder. In concrete realizations, one may either prove that
+$$
+\mathcal{C}_{x_\ast,\eta}
+$$
+is already tame, or identify a closed convex tame sub-envelope
+$$
+\mathcal{K}_{x_\ast,\eta}
+$$
+inside it.
+
+So the immediate global target is not yet "stable breather with fixed amplitude," but rather:
+
+- a well-defined return map on a nonempty class,
+- precompactness of its image,
+- and existence of at least one fixed point of the resulting dual-mollified history map.
+
+### Schauder route
+
+The global propositions above are designed to feed a single topological conclusion. The intended fixed-point route is:
+
+1. prove that the local recapture theorem and the tame continuation hypotheses make
+   $$
+   P_\eta
+   $$
+   well defined on a nonempty inbound class;
+2. prove the continuity proposition on a tame class;
+3. identify a nonempty closed convex tame envelope
+   $$
+   \mathcal{K}_{x_\ast,\eta}
+   $$
+   on which the return map is defined;
+4. prove the precompactness proposition for the return image
+   $$
+   P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big);
+   $$
+5. prove the self-map property
+   $$
+   P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
+   \subseteq
+   \mathcal{K}_{x_\ast,\eta}.
+   $$
+
+Once these items hold, the remaining step is standard:
+
+> **Target Theorem (Schauder Fixed Point Route).**
+> Suppose there exists a nonempty closed convex set
+> $$
+> \mathcal{K}_{x_\ast,\eta}
+> \subseteq
+> C^1([-h,0])
+> $$
+> such that:
+> 1. the return map
+>    $$
+>    P_\eta
+>    $$
+>    is well defined and continuous on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta},
 >    $$
 > 2. its image is precompact in $C^1([-h,0])$,
 > 3. and
 >    $$
->    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+>    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
 >    \subseteq
->    \mathcal{C}_{x_\ast,\eta},
+>    \mathcal{K}_{x_\ast,\eta}.
 >    $$
->    where
->    $$
->    \mathcal{C}_{x_\ast,\eta}
->    $$
->    is closed and convex in the $C^1$ topology.
 >
 > Then the closure
 > $$
 > \overline{
-> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
 > }
 > $$
 > is compact in $C^1([-h,0])$, lies inside
 > $$
-> \mathcal{C}_{x_\ast,\eta},
+> \mathcal{K}_{x_\ast,\eta},
 > $$
-> and supports a Schauder fixed-point argument for a fixed point of the dual-mollified return map.
+> and Schauder yields a fixed point of the dual-mollified return map on
+> $$
+> \mathcal{K}_{x_\ast,\eta}.
+> $$
 
-At this stage, the remaining nontrivial issue is not the fixed-point theorem itself. It is the construction of a tame class on which all three inputs hold simultaneously: well-definedness, continuity, and invariant-envelope control. That is the precise global bottleneck after the local recapture theorem.
+The remaining capstone step is therefore to place the now-constructed nonempty tame class, the continuity input, and the precompactness input on one and the same closed convex tame envelope. Once that is done, the fixed-point conclusion can be stated directly:
+
+> **Target Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
+> Assume:
+> 1. the theorem `Nonempty tame class from seed propagation`;
+> 2. the existence of a nonempty closed convex tame envelope
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}
+>    \subseteq
+>    \mathcal{C}_{x_\ast,\eta}
+>    $$
+>    which contains the propagated nonempty tame class and on which
+>    $$
+>    P_\eta
+>    $$
+>    is well defined;
+> 3. the continuity proposition for
+>    $$
+>    P_\eta
+>    $$
+>    on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta};
+>    $$
+> 4. the precompactness proposition for the image
+>    $$
+>    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big);
+>    $$
+> 5. and the self-map property
+>    $$
+>    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
+>    \subseteq
+>    \mathcal{K}_{x_\ast,\eta}.
+>    $$
+>
+> Then the dual-mollified return map supports a Schauder fixed-point argument on a nonempty history class. In particular, there exists a history
+> $$
+> \phi_\eta^\ast
+> \in
+> \mathcal{K}_{x_\ast,\eta}
+> $$
+> such that
+> $$
+> P_\eta(\phi_\eta^\ast)=\phi_\eta^\ast.
+> $$
+> The corresponding delayed trajectory is an exact bounded periodic origin-crossing two-body motion in the dual-mollified collinear model.
+
+Proof sketch.
+By the theorem `Nonempty tame class from seed propagation`, there exists a nonempty propagated tame class. By assumption this class lies inside a nonempty closed convex tame envelope
+$$
+\mathcal{K}_{x_\ast,\eta}.
+$$
+The return map
+$$
+P_\eta
+$$
+is therefore well defined on a nonempty closed convex domain. The continuity and precompactness propositions place the return image inside a compact subset of
+$$
+\mathcal{K}_{x_\ast,\eta}.
+$$
+The self-map property prevents escape from that domain. Therefore the standard Schauder fixed-point mechanism applies on
+$$
+\mathcal{K}_{x_\ast,\eta}
+$$
+and yields a fixed point
+$$
+\phi_\eta^\ast.
+$$
+By construction of
+$$
+P_\eta,
+$$
+that fixed point is exactly a periodic returned history, hence an exact bounded collinear breather in the dual-mollified delayed dynamics.
 
 ### Full-cycle invariant-envelope target
 
@@ -2927,6 +3073,1296 @@ The full-cycle theorem above naturally decomposes into the following proof steps
    inherits the same acceleration, Jacobian, and branch-count bounds required by the tame class.
 
 Only after these five items are in hand does the convex-envelope target become a theorem rather than a program.
+
+### Invariant-envelope synthesis
+
+At this point the remaining global burden is no longer to invent additional local mechanisms. The inner recapture side and the outer-turn side have both been reduced to explicit inequalities. The next layer is therefore to show that these inequalities are compatible on a nonempty parameter set and that, once they are realized on a tame class, the full-cycle map lands back inside the convex envelope.
+
+The two key explicit margins are:
+$$
+\mathfrak M_{\mathrm{in}}
+\equiv
+\frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}
+-
+\frac{\overline A_s^\rho\,\epsilon_c}{2\beta_{p,\max}}
+-
+V_{\max},
+$$
+coming from Proposition `Explicit short-window recapture regime`, and
+$$
+\mathfrak M_{\mathrm{out}}
+\equiv
+\underline A_p^{\mathrm{out}}
+-
+\frac{\kappa\epsilon^2}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
+-
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\epsilon_c^2},
+$$
+coming from the trimmed-apocenter outer-turn analysis. The first margin forces the initial post-crossing turnaround; the second forces the apocenter turnaround on the trimmed outer window.
+
+The global synthesis problem is therefore:
+
+- realize the inward crossing and section-return kinematics with the same envelope constants
+  $$
+  X_{\max},
+  \qquad
+  U_{\max},
+  \qquad
+  A_{\max},
+  \qquad
+  T_{\max},
+  \qquad
+  h;
+  $$
+- enforce
+  $$
+  \mathfrak M_{\mathrm{in}}>0
+  \qquad
+  \text{and}
+  \qquad
+  \mathfrak M_{\mathrm{out}}>0;
+  $$
+- and then show that the resulting one-cycle map preserves the tame convex envelope.
+
+This leads to the following theorem target.
+
+> **Target Theorem (Invariant-Envelope Closure from Compatible Explicit Regimes).**
+> Fix
+> $$
+> x_\ast>0
+> $$
+> and a tame inbound subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+> Assume:
+> 1. the collapse-to-crossing control theorem holds on
+>    $$
+>    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta},
+>    $$
+>    with crossing-speed upper bound
+>    $$
+>    V_{\max};
+>    $$
+> 2. the explicit short-window recapture regime holds at every first crossing issued from this class, so that
+>    $$
+>    \mathfrak M_{\mathrm{in}}>0;
+>    $$
+> 3. the unified trimmed-apocenter outer-turn criterion holds on the final apocenter window, so that
+>    $$
+>    \mathfrak M_{\mathrm{out}}>0;
+>    $$
+> 4. the turn-to-section return lemmas apply with class-uniform section-return bounds
+>    $$
+>    X_{\mathrm{out},\max},
+>    \qquad
+>    U_{\mathrm{sec},\max},
+>    \qquad
+>    A_{\mathrm{cyc},\max},
+>    \qquad
+>    T_{\mathrm{cyc},\max};
+>    $$
+> 5. the envelope parameters satisfy
+>    $$
+>    X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
+>    $$
+>    $$
+>    U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+>    $$
+>    $$
+>    A_{\max}\ge A_{\mathrm{cyc},\max},
+>    \qquad
+>    T_{\max}\ge T_{\mathrm{cyc},\max},
+>    \qquad
+>    h\ge \frac{2X_{\max}}{c_f}.
+>    $$
+>
+> Then
+> $$
+> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+
+Proof sketch.
+Take any
+$$
+\psi\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}.
+$$
+By collapse-to-crossing control, the first inward fall reaches an admissible origin crossing in bounded time and with crossing speed at most
+$$
+V_{\max}.
+$$
+The explicit short-window recapture proposition then supplies a class-uniform inner turnaround because
+$$
+\mathfrak M_{\mathrm{in}}>0.
+$$
+The return-half lemmas reduce the remainder of the cycle to control of the outer turn and the final inbound section speed. The unified trimmed-apocenter outer-turn criterion supplies the outer turnaround because
+$$
+\mathfrak M_{\mathrm{out}}>0,
+$$
+and Lemmas 17-19 then yield return to
+$$
+x=x_\ast
+$$
+with
+$$
+\dot x\le 0,
+$$
+bounded section speed, and returned-history tameness.
+
+The envelope-fitting inequalities in item 5 ensure that the entire one-cycle trajectory and its returned history fit inside the convex bounds defining
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+Therefore
+$$
+P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}.
+$$
+Since
+$$
+\psi
+$$
+was arbitrary, this proves
+$$
+P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+\subseteq
+\mathcal{C}_{x_\ast,\eta}.
+$$
+
+The remaining question is whether the bookkeeping inequalities required by this theorem can be satisfied simultaneously. The answer is yes once the explicit inner and outer margins are strict.
+
+> **Proposition (Nonempty admissible parameter regime).**
+> Fix the geometric and dynamical constants extracted from the cycle estimates:
+> $$
+> V_{\max},
+> \qquad
+> X_{\mathrm{out},\max},
+> \qquad
+> U_{\mathrm{sec},\max},
+> \qquad
+> A_{\mathrm{cyc},\max},
+> \qquad
+> T_{\mathrm{cyc},\max},
+> $$
+> together with the local and outer-turn parameters
+> $$
+> \beta_{p,\max},
+> \qquad
+> C_p,
+> \qquad
+> \tau_1,
+> \qquad
+> \tau_{\mathrm{deep}},
+> \qquad
+> \sigma_{\mathrm{out}},
+> \qquad
+> \underline A_p^{\mathrm{out}}.
+> $$
+> Assume the dual-mollified parameters
+> $$
+> (\eta,\epsilon_c)
+> $$
+> satisfy the explicit inner-window inequalities
+> $$
+> \tau_\epsilon=\frac{\epsilon_c}{2\beta_{p,\max}}\le \tau_1,
+> \qquad
+> \eta\le \frac{\epsilon_c}{4c_f C_p},
+> \qquad
+> \epsilon_c\le \frac{\beta_{p,\max}^2}{c_f C_p},
+> $$
+> and the strict margin conditions
+> $$
+> \mathfrak M_{\mathrm{in}}>0,
+> \qquad
+> \mathfrak M_{\mathrm{out}}>0.
+> $$
+> Then there exist envelope constants
+> $$
+> X_{\max},
+> \qquad
+> U_{\max},
+> \qquad
+> A_{\max},
+> \qquad
+> T_{\max},
+> \qquad
+> h
+> $$
+> satisfying
+> $$
+> X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
+> $$
+> $$
+> U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+> $$
+> $$
+> A_{\max}\ge A_{\mathrm{cyc},\max},
+> \qquad
+> T_{\max}\ge T_{\mathrm{cyc},\max},
+> \qquad
+> h\ge \frac{2X_{\max}}{c_f}.
+> $$
+> In particular, the admissible-parameter set entering the invariant-envelope theorem is nonempty.
+
+Proof.
+The inner-window inequalities and the two strict margin conditions involve only the local and outer-turn parameters and are independent of the envelope bookkeeping constants
+$$
+X_{\max},
+\qquad
+U_{\max},
+\qquad
+A_{\max},
+\qquad
+T_{\max},
+\qquad
+h.
+$$
+Once those explicit inequalities hold, the envelope constants can be chosen with arbitrary positive slack. For example, fix any
+$$
+\delta_X,
+\delta_U,
+\delta_A,
+\delta_T>0
+$$
+and set
+$$
+X_{\max}=\max\{x_\ast,X_{\mathrm{out},\max}\}+\delta_X,
+$$
+$$
+U_{\max}=\max\{V_{\max},U_{\mathrm{sec},\max}\}+\delta_U,
+$$
+$$
+A_{\max}=A_{\mathrm{cyc},\max}+\delta_A,
+$$
+$$
+T_{\max}=T_{\mathrm{cyc},\max}+\delta_T,
+$$
+and then choose
+$$
+h=\frac{2X_{\max}}{c_f}+\delta_h
+$$
+for any
+$$
+\delta_h>0.
+$$
+These choices satisfy all displayed inequalities simultaneously. Hence the admissible-parameter set is nonempty.
+
+This proposition isolates the true compatibility issue. The envelope constants themselves do not create a conflict once the explicit inner and outer margins are positive. The real work is entirely in proving
+$$
+\mathfrak M_{\mathrm{in}}>0
+\qquad
+\text{and}
+\qquad
+\mathfrak M_{\mathrm{out}}>0
+$$
+on one and the same tame class. After that, the invariant-envelope closure theorem above reduces the global fixed-point step to the already stated Schauder route.
+
+### Seed history and tame-class nonemptiness
+
+The remaining global nonvacuity issue is now easy to state. The invariant-envelope theorem is useful only if the section-side tame class is actually nonempty. The next theorem target is therefore to construct at least one explicit inbound history with controlled delayed geometry and then thicken it to a small nonempty tame neighborhood in the section topology.
+
+The simplest seed is a strictly sub-field-speed affine inbound history on the right exterior branch. It is not meant to solve the full forward dynamics; its role is only to prove that the section-side tame constraints are simultaneously realizable.
+
+> **Target Theorem (Seed History and Section-Tame Nonemptiness).**
+> Fix
+> $$
+> x_\ast>0,
+> \qquad
+> 0<u_{\mathrm{seed}}<c_f,
+> \qquad
+> h\ge \frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+> $$
+> Then there exists an explicit inbound history
+> $$
+> \psi_{\mathrm{seed}}\in \Sigma^-_{x_\ast,\eta}\cap \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that:
+> 1. the stored history lies in the position, speed, and acceleration envelope;
+> 2. the stored partner root structure is finite and transversal;
+> 3. there are no exact same-side self roots on the stored interval;
+> 4. and a sufficiently small $C^1$ section neighborhood of
+>    $$
+>    \psi_{\mathrm{seed}}
+>    $$
+>    remains inside a section-level tame subclass
+>    $$
+>    \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+>    \subseteq
+>    \mathcal{C}_{x_\ast,\eta}.
+>    $$
+
+This theorem is intentionally only a section-side nonemptiness statement. It does not yet say that the forward delayed flow preserves the same class for one full cycle. That stronger claim belongs to the later invariant-envelope theorem.
+
+> **Proposition (Explicit affine inbound seed history).**
+> Fix
+> $$
+> x_\ast>0,
+> \qquad
+> 0<u_{\mathrm{seed}}<c_f,
+> \qquad
+> h\ge \frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+> $$
+> Define
+> $$
+> \psi_{\mathrm{seed}}(\theta)
+> \equiv
+> x_\ast-u_{\mathrm{seed}}\theta,
+> \qquad
+> \theta\in[-h,0].
+> $$
+> Then:
+> 1. the section conditions hold:
+>    $$
+>    \psi_{\mathrm{seed}}(0)=x_\ast,
+>    \qquad
+>    \dot\psi_{\mathrm{seed}}(0)=-u_{\mathrm{seed}}<0;
+>    $$
+> 2. the stored path is right exterior and monotone inbound:
+>    $$
+>    x_\ast
+>    \le
+>    \psi_{\mathrm{seed}}(\theta)
+>    \le
+>    x_\ast+u_{\mathrm{seed}}h,
+>    \qquad
+>    \dot\psi_{\mathrm{seed}}(\theta)=-u_{\mathrm{seed}},
+>    \qquad
+>    \ddot\psi_{\mathrm{seed}}(\theta)=0;
+>    $$
+> 3. there is exactly one partner root on the stored interval, located at
+>    $$
+>    \theta_{p,\mathrm{seed}}
+>    =
+>    -\frac{2x_\ast}{c_f-u_{\mathrm{seed}}},
+>    $$
+>    and its Jacobian satisfies
+>    $$
+>    J_{p,\mathrm{seed}}
+>    =
+>    1-\frac{u_{\mathrm{seed}}}{c_f}>0;
+>    $$
+> 4. there are no exact same-side self roots on
+>    $$
+>    [-h,0).
+>    $$
+>
+> Consequently, if
+> $$
+> X_{\max}\ge x_\ast+u_{\mathrm{seed}}h,
+> \qquad
+> U_{\max}\ge u_{\mathrm{seed}},
+> \qquad
+> A_{\max}>0,
+> \qquad
+> \nu_{\mathrm{seed}}\le 1-\frac{u_{\mathrm{seed}}}{c_f},
+> $$
+> then
+> $$
+> \psi_{\mathrm{seed}}\in \mathcal{C}_{x_\ast,\eta},
+> $$
+> and the stored-history transversality bounds hold with
+> $$
+> |J_p|\ge \nu_{\mathrm{seed}},
+> $$
+> while the self-root transversality condition is vacuous on the seed because there are no exact same-side self roots.
+
+Proof.
+The section anchoring and inbound sign are immediate from the definition of
+$$
+\psi_{\mathrm{seed}}.
+$$
+Since
+$$
+\theta\in[-h,0],
+$$
+one has
+$$
+\psi_{\mathrm{seed}}(\theta)=x_\ast-u_{\mathrm{seed}}\theta
+=
+x_\ast+u_{\mathrm{seed}}|\theta|,
+$$
+so the stored path remains on the right exterior branch, decreases monotonically toward the section as
+$$
+\theta\uparrow 0,
+$$
+and satisfies the displayed position, speed, and acceleration bounds.
+
+For a partner root at the section time
+$$
+\theta=0,
+$$
+the delayed causal relation is
+$$
+x_\ast+\psi_{\mathrm{seed}}(\theta_p)=c_f(0-\theta_p).
+$$
+Writing
+$$
+s=-\theta_p>0,
+$$
+this becomes
+$$
+x_\ast+\bigl(x_\ast+u_{\mathrm{seed}}s\bigr)=c_f s,
+$$
+hence
+$$
+2x_\ast=(c_f-u_{\mathrm{seed}})s,
+$$
+and therefore
+$$
+s=\frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+$$
+The lower bound on
+$$
+h
+$$
+ensures that
+$$
+\theta_{p,\mathrm{seed}}=-s
+$$
+lies inside
+$$
+[-h,0].
+$$
+Since the seed velocity is constant,
+$$
+J_{p,\mathrm{seed}}
+=
+1+\frac{\dot\psi_{\mathrm{seed}}(\theta_{p,\mathrm{seed}})}{c_f}
+=
+1-\frac{u_{\mathrm{seed}}}{c_f}>0.
+$$
+
+Now consider exact same-side self roots on the stored interval. Such a root would satisfy
+$$
+|\psi_{\mathrm{seed}}(0)-\psi_{\mathrm{seed}}(\theta_s)|
+=
+c_f(0-\theta_s).
+$$
+Again writing
+$$
+s=-\theta_s>0,
+$$
+the left-hand side equals
+$$
+u_{\mathrm{seed}}s,
+$$
+so the equation becomes
+$$
+u_{\mathrm{seed}}s=c_f s.
+$$
+Because
+$$
+0<u_{\mathrm{seed}}<c_f,
+$$
+this has no solution for
+$$
+s>0.
+$$
+Hence there are no exact same-side self roots on
+$$
+[-h,0).
+$$
+
+The final membership claim is then immediate from the displayed envelope inequalities.
+
+> **Corollary (Nonempty section-level tame neighborhood).**
+> Under the hypotheses of the proposition, there exists
+> $$
+> \varepsilon_{\mathrm{seed}}>0
+> $$
+> such that the set
+> $$
+> \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+> \equiv
+> \left\{
+> \phi\in \mathcal{C}_{x_\ast,\eta}
+> \;\middle|\;
+> \phi(0)=x_\ast,
+> \quad
+> \dot\phi(0)\le -\frac{u_{\mathrm{seed}}}{2},
+> \quad
+> \|\phi-\psi_{\mathrm{seed}}\|_{C^1([-h,0])}\le \varepsilon_{\mathrm{seed}}
+> \right\}
+> $$
+> is nonempty and consists of inbound section histories whose stored partner root persists uniquely and whose stored same-side exact self roots remain absent.
+
+Proof sketch.
+The set is nonempty because
+$$
+\psi_{\mathrm{seed}}\in \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+$$
+for every
+$$
+\varepsilon_{\mathrm{seed}}>0.
+$$
+The seed has a strict sub-field-speed margin
+$$
+\sigma_{\mathrm{seed}}\equiv c_f-u_{\mathrm{seed}}>0
+$$
+and a simple partner root with
+$$
+J_{p,\mathrm{seed}}>0.
+$$
+By continuity of the root equations and of the Jacobian factors under small $C^1$ perturbations of the stored history, these properties persist for all histories sufficiently close to
+$$
+\psi_{\mathrm{seed}}.
+$$
+Likewise, the same-side self-root equation has a strict gap on the seed because
+$$
+u_{\mathrm{seed}}<c_f,
+$$
+so exact same-side self roots cannot appear under a sufficiently small perturbation. Therefore a small enough neighborhood remains inside a section-level tame subclass.
+
+This corollary is the first concrete nonvacuity statement for the theorem program. The remaining task is no longer to show that tame histories exist at all, but to propagate such a seed class through the full delayed cycle strongly enough that it becomes the nonempty class required by the invariant-envelope theorem.
+
+### Seed-to-cycle propagation target
+
+The seed construction resolves only the section-side nonvacuity issue. The next step is to promote a smaller neighborhood of seed histories to a genuinely nonempty tame class for the delayed flow itself. In other words, one wants to replace
+$$
+\mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+$$
+by a forward-propagated subclass on which the collapse, recapture, return, and root-control estimates all hold on one full cycle.
+
+This is the precise bridge from the section-level seed construction to the invariant-envelope theorem.
+
+> **Target Theorem (Seed-to-Tame Full-Cycle Propagation).**
+> Assume the affine seed proposition and the nonempty section-level neighborhood corollary above. Then there exists a nonempty subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that:
+> 1. every
+>    $$
+>    \psi\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+>    $$
+>    admits a unique forward continuation through one full cycle;
+> 2. the collapse-to-crossing control theorem applies uniformly on this class;
+> 3. the explicit inner recapture regime and the unified trimmed-apocenter outer-turn criterion both apply uniformly on this class;
+> 4. the turn-to-section return lemmas apply uniformly on this class;
+> 5. and the returned history satisfies
+>    $$
+>    P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}.
+>    $$
+>
+> In particular,
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\neq \varnothing,
+> $$
+> the return map
+> $$
+> P_\eta
+> $$
+> is well defined on a nonempty tame class, and the invariant-envelope theorem becomes nonvacuous.
+
+This theorem is deliberately phrased as a propagation target rather than a proved proposition. The real remaining work is to show that the estimates already developed later in the note can be made uniform on a sufficiently small seed neighborhood rather than only along a single handpicked history.
+
+### Seed-propagation ladder
+
+The intended proof order is:
+
+1. **Local forward continuation from the seed neighborhood.**
+   Show that a sufficiently small
+   $$
+   C^1
+   $$
+   neighborhood of
+   $$
+   \psi_{\mathrm{seed}}
+   $$
+   evolves uniquely for at least one collapse phase while preserving the initial stored partner-root simplicity and same-side self-root exclusion.
+2. **Seed-neighborhood collapse control.**
+   Prove that the collapse-to-crossing estimates can be made uniform on a smaller neighborhood
+   $$
+   \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+   \subseteq
+   \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}.
+   $$
+3. **Seed-neighborhood realization of the inner regime.**
+   Verify that the first crossing from this neighborhood lands uniformly in the Goldilocks window required by Proposition `Explicit short-window recapture regime`.
+4. **Seed-neighborhood realization of the outer regime.**
+   Verify that the same trajectories satisfy the hypotheses of the unified trimmed-apocenter outer-turn criterion on the final apocenter window.
+5. **Returned-history reentry.**
+   Show that the returned history segment lies back inside
+   $$
+   \mathcal{C}_{x_\ast,\eta}
+   $$
+   and, after shrinking once more if necessary, inside a forward-propagation subclass
+   $$
+   \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}.
+   $$
+
+The conceptual point is simple: the seed history does not need to solve the whole breather problem by itself. It only needs to provide one strict interior point of history space around which all the already-developed cycle estimates can be made uniform. Once such a neighborhood is propagated through one full cycle, the nonempty tame class required by the Schauder program is in hand.
+
+> **Proposition (Local seed-neighborhood continuation with stored-root persistence).**
+> Assume the affine seed proposition above, and strengthen the horizon choice slightly to
+> $$
+> h>\frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+> $$
+> Then there exist constants
+> $$
+> 0<\varepsilon_{\mathrm{loc}}<\min\!\left\{\frac{u_{\mathrm{seed}}}{2},\,c_f-u_{\mathrm{seed}}\right\},
+> \qquad
+> \nu_{\mathrm{loc}}>0,
+> \qquad
+> \tau_{\mathrm{loc}}>0,
+> $$
+> and a nonempty subclass
+> $$
+> \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+> $$
+> such that for every
+> $$
+> \phi\in \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+> $$
+> one has:
+> 1. **strict stored sub-field-speed bound:**
+>    $$
+>    |\dot\phi(\theta)|\le u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}<c_f
+>    \qquad
+>    \text{for }\theta\in[-h,0];
+>    $$
+> 2. **absence of exact same-side self roots on the stored interval:**
+>    there is no
+>    $$
+>    \theta_s\in[-h,0)
+>    $$
+>    such that
+>    $$
+>    |\phi(0)-\phi(\theta_s)|=c_f(0-\theta_s);
+>    $$
+> 3. **unique simple stored partner root:**
+>    there exists a unique
+>    $$
+>    \theta_p(\phi)\in[-h,0)
+>    $$
+>    satisfying
+>    $$
+>    \phi(0)+\phi(\theta_p)=c_f(0-\theta_p),
+>    $$
+>    and its Jacobian obeys
+>    $$
+>    J_p(\phi;\theta_p)\ge \nu_{\mathrm{loc}}>0;
+>    $$
+> 4. **short-time forward continuation:**
+>    if the dual-mollified vector field is locally Lipschitz on the stored-root branch determined above, then the history
+>    $$
+>    \phi
+>    $$
+>    admits a unique forward continuation on
+>    $$
+>    [0,\tau_{\mathrm{loc}}]
+>    $$
+>    with continuous dependence on the initial history in the
+>    $$
+>    C^1([-h,0])
+>    $$
+>    topology.
+>
+> In particular, the first item of the seed-propagation ladder holds on a nonempty neighborhood.
+
+Proof sketch.
+Because
+$$
+h>\frac{2x_\ast}{c_f-u_{\mathrm{seed}}},
+$$
+there is a positive slack
+$$
+\delta_h
+\equiv
+(c_f-u_{\mathrm{seed}})h-2x_\ast
+>0.
+$$
+Choose
+$$
+\varepsilon_{\mathrm{loc}}>0
+$$
+small enough that
+$$
+u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}<c_f
+$$
+and
+$$
+\varepsilon_{\mathrm{loc}}h<\delta_h.
+$$
+Let
+$$
+\mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+\equiv
+\left\{
+\phi\in \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+\;\middle|\;
+\|\phi-\psi_{\mathrm{seed}}\|_{C^1([-h,0])}\le \varepsilon_{\mathrm{loc}}
+\right\}.
+$$
+This set is nonempty because it contains
+$$
+\psi_{\mathrm{seed}}.
+$$
+
+For any
+$$
+\phi\in \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta},
+$$
+the derivative bound gives
+$$
+|\dot\phi(\theta)|
+\le
+u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}
+<c_f
+$$
+on
+$$
+[-h,0].
+$$
+Now suppose a same-side self root
+$$
+\theta_s<0
+$$
+ existed. By the mean value theorem,
+$$
+|\phi(0)-\phi(\theta_s)|
+\le
+(u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}})(0-\theta_s)
+<
+c_f(0-\theta_s),
+$$
+contradicting the exact root equation. Hence no exact same-side self root exists on the stored interval.
+
+For the partner root, define
+$$
+F_\phi(\theta)\equiv \phi(0)+\phi(\theta)+c_f\theta.
+$$
+Then
+$$
+F_\phi(0)=2x_\ast>0,
+$$
+while
+$$
+F_\phi(-h)
+\le
+x_\ast+\bigl(x_\ast+u_{\mathrm{seed}}h+\varepsilon_{\mathrm{loc}}h\bigr)-c_f h
+=
+2x_\ast-(c_f-u_{\mathrm{seed}}-\varepsilon_{\mathrm{loc}})h
+<
+0
+$$
+by the choice of
+$$
+\varepsilon_{\mathrm{loc}}.
+$$
+Moreover,
+$$
+F_\phi'(\theta)=\dot\phi(\theta)+c_f
+\ge
+c_f-(u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}})
+>0,
+$$
+so
+$$
+F_\phi
+$$
+is strictly increasing. Therefore it has a unique zero
+$$
+\theta_p(\phi)\in[-h,0).
+$$
+At that root,
+$$
+J_p(\phi;\theta_p)
+=
+1+\frac{\dot\phi(\theta_p)}{c_f}
+\ge
+1-\frac{u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}}{c_f}
+\equiv
+\nu_{\mathrm{loc}}
+>0.
+$$
+
+Finally, on this branch pattern the dual-mollified force law has one simple stored partner root and no exact same-side self roots on the initial history. Under the stated local Lipschitz hypothesis, standard local existence and continuous-dependence theory for functional differential equations yields a unique forward continuation on a short interval
+$$
+[0,\tau_{\mathrm{loc}}].
+$$
+This proves the proposition.
+
+> **Proposition (Seed-neighborhood collapse control under a uniform inward bracket).**
+> Let
+> $$
+> \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+> $$
+> be a nonempty subclass. Assume there exist constants
+> $$
+> 0<a_-^{\mathrm{seed}}\le a_+^{\mathrm{seed}},
+> \qquad
+> \nu_{\mathrm{coll}}>0,
+> \qquad
+> A_{\mathrm{coll}}>0,
+> $$
+> such that for every
+> $$
+> \psi\in \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+> $$
+> the corresponding forward trajectory satisfies on its pre-crossing leg:
+> 1. the two-sided inward acceleration bracket
+>    $$
+>    -a_+^{\mathrm{seed}}
+>    \le
+>    \ddot x(t;\psi)
+>    \le
+>    -a_-^{\mathrm{seed}}<0;
+>    $$
+> 2. the acceleration ceiling
+>    $$
+>    |\ddot x(t;\psi)|\le A_{\mathrm{coll}};
+>    $$
+> 3. and the active pre-crossing roots satisfy the uniform transversality bound
+>    $$
+>    |J_p|\ge \nu_{\mathrm{coll}},
+>    \qquad
+>    |J_s|\ge \nu_{\mathrm{coll}}.
+>    $$
+>
+> Then:
+> 1. every
+>    $$
+>    \psi\in \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+>    $$
+>    reaches the origin in finite time, with the uniform bound
+>    $$
+>    t_{\mathrm{cross}}(\psi)
+>    \le
+>    \sqrt{\frac{2x_\ast}{a_-^{\mathrm{seed}}}};
+>    $$
+> 2. the pre-crossing tube bounds
+>    $$
+>    0\le x(t;\psi)\le X_{\mathrm{seed},\max},
+>    \qquad
+>    |\dot x(t;\psi)|\le U_{\mathrm{seed},\max},
+>    \qquad
+>    |\ddot x(t;\psi)|\le A_{\mathrm{coll}}
+>    $$
+>    hold on the collapse leg for suitable class constants
+>    $$
+>    X_{\mathrm{seed},\max},
+>    \qquad
+>    U_{\mathrm{seed},\max};
+>    $$
+> 3. and if one chooses constants
+>    $$
+>    V_{\min}^{\mathrm{seed}},
+>    \qquad
+>    V_{\max}^{\mathrm{seed}}
+>    $$
+>    satisfying the uniform speed-window inequalities from Lemma 7 for every admissible section speed in
+>    $$
+>    \left[\frac{u_{\mathrm{seed}}}{2},\,u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}\right],
+>    $$
+>    then the collapse-to-crossing control theorem applies on
+>    $$
+>    \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}.
+>    $$
+
+Proof sketch.
+For every
+$$
+\psi\in \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta},
+$$
+the lower inward acceleration bound implies finite-time crossing by Lemma 6, yielding the displayed uniform bound on
+$$
+t_{\mathrm{cross}}(\psi).
+$$
+The two-sided acceleration bracket and the section-speed interval inherited from
+$$
+\mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+$$
+allow Lemma 7 to be applied with
+$$
+u_0\in
+\left[\frac{u_{\mathrm{seed}}}{2},\,u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}\right].
+$$
+This produces a class-uniform crossing-speed window once
+$$
+V_{\min}^{\mathrm{seed}},
+\qquad
+V_{\max}^{\mathrm{seed}}
+$$
+are chosen to dominate the resulting comparison bounds.
+
+Finally, Lemma 8 upgrades the monotone inbound motion, the crossing-time bound, and the acceleration ceiling to the stated position-speed-acceleration tube bounds on the entire collapse leg. Together with the assumed Jacobian lower bound, these are exactly the ingredients required by the collapse-to-crossing theorem. Hence that theorem applies uniformly on
+$$
+\mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}.
+$$
+
+> **Proposition (Seed-neighborhood realization of the explicit inner recapture regime).**
+> Let
+> $$
+> \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+> $$
+> be a nonempty subclass on which the collapse-to-crossing control theorem applies with uniform crossing-speed window
+> $$
+> V_{\min}^{\mathrm{seed}}
+> \le
+> -\dot x(t_{\mathrm{cross}};\psi)
+> \le
+> V_{\max}^{\mathrm{seed}}
+> \qquad
+> \text{for every }
+> \psi\in \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}.
+> $$
+> Assume further that the crossing histories issued from this class satisfy the admissible-crossing hypotheses with the same class constants entering Proposition `Explicit short-window recapture regime`, and that
+> $$
+> V_{\max}^{\mathrm{seed}}
+> <
+> \frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}
+> -
+> \frac{\overline A_s^\rho\,\epsilon_c}{2\beta_{p,\max}},
+> $$
+> together with
+> $$
+> \tau_\epsilon=\frac{\epsilon_c}{2\beta_{p,\max}}\le \tau_1,
+> \qquad
+> \eta\le \frac{\epsilon_c}{4c_f C_p},
+> \qquad
+> \epsilon_c\le \frac{\beta_{p,\max}^2}{c_f C_p}.
+> $$
+> Then every first crossing launched from
+> $$
+> \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+> $$
+> lies in the explicit short-window recapture regime, and the corresponding post-crossing branch turns around on the class-uniform window
+> $$
+> [0,\tau_\epsilon].
+> $$
+
+Proof sketch.
+By the collapse-to-crossing theorem, every
+$$
+\psi\in \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+$$
+reaches a crossing history inside the admissible crossing subclass and with outgoing radial speed at most
+$$
+V_{\max}^{\mathrm{seed}}.
+$$
+The displayed inequality is exactly the sufficient recapture condition from Proposition `Explicit short-window recapture regime`, with
+$$
+V_{\max}
+$$
+there replaced by the seed-neighborhood crossing-speed bound
+$$
+V_{\max}^{\mathrm{seed}}.
+$$
+The three displayed small-window inequalities guarantee the same choice
+$$
+\tau_\epsilon=\frac{\epsilon_c}{2\beta_{p,\max}}
+$$
+is admissible. Therefore Proposition `Explicit short-window recapture regime` applies uniformly to every first crossing issued from
+$$
+\mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta},
+$$
+yielding a class-uniform post-crossing turnaround on
+$$
+[0,\tau_\epsilon].
+$$
+
+This proposition closes the inner half of the seed-propagation program at the regime level: once the seed neighborhood is shrunk far enough that its collapse phase lands uniformly in the Goldilocks crossing window, the local post-crossing recapture mechanism becomes available without any additional pointwise tuning.
+
+> **Proposition (Seed-neighborhood realization of the unified outer-turn regime).**
+> Let
+> $$
+> \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+> $$
+> be a nonempty subclass such that the post-crossing recapture, return-half, and outer-branch delayed-geometry estimates developed later in the note hold uniformly on the corresponding trajectories. Assume in particular that for every
+> $$
+> \psi\in \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> $$
+> there is a trimmed apocenter window
+> $$
+> I_{\mathrm{deep}}(\psi)=[t_a(\psi)+\tau_{\mathrm{deep}},\,t_b(\psi)]
+> $$
+> on which the unified trimmed-apocenter outer-turn criterion is applicable with the same class constants
+> $$
+> \underline A_p^{\mathrm{out}},
+> \qquad
+> \tau_{\mathrm{deep}},
+> \qquad
+> \sigma_{\mathrm{out}},
+> \qquad
+> a_{z}^{\mathrm{out}},
+> \qquad
+> a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}>0.
+> $$
+> Assume moreover that the explicit inequalities
+> $$
+> z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+> -
+> \frac{a_{z}^{\mathrm{out}}}{2}
+> \big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+> <0,
+> $$
+> $$
+> \underline A_p^{\mathrm{out}}
+> -
+> \frac{\kappa\epsilon^2}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
+> -
+> \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+> \sigma_{\mathrm{out}}\epsilon_c^2}
+> \ge
+> a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}>0
+> $$
+> hold uniformly on that class.
+>
+> Then every trajectory issued from
+> $$
+> \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> $$
+> satisfies the outer-turn recapture mechanism uniformly: the trimmed-apocenter acceleration obeys
+> $$
+> \ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+> \qquad
+> \text{for }t\in I_{\mathrm{deep}}(\psi),
+> $$
+> and, if
+> $$
+> |I_{\mathrm{deep}}(\psi)|
+> \ge
+> \frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}},
+> $$
+> then a finite outer turn occurs on or just beyond the trimmed apocenter window for every member of the class.
+
+Proof sketch.
+By assumption, the same uniform constants entering the outer-turn layer apply to every trajectory launched from
+$$
+\mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}.
+$$
+The first displayed inequality is exactly the outbound-level exclusion condition from the
+$$
+z
+$$
+-descent layer, while the second displayed inequality is the refined trimmed-apocenter force margin. Therefore the unified trimmed-apocenter outer-turn criterion applies uniformly across the class.
+
+It follows that every trajectory on the seed-out neighborhood has:
+
+- outbound-level exclusion on the trimmed apocenter window,
+- deep-past same-side root localization onto the pre-crossing inbound leg,
+- the refined deep-past suppression bound,
+- and the inward acceleration margin
+  $$
+  \ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+  $$
+  on
+  $$
+  I_{\mathrm{deep}}(\psi).
+  $$
+
+The final turning claim is then exactly the conclusion of the unified trimmed-apocenter criterion once the window length dominates
+$$
+\frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}}.
+$$
+
+This proposition closes the outer half of the seed-propagation program at the regime level: once the seed neighborhood is small enough that the outer delayed geometry and trimmed-apocenter bounds are uniform, the outer-turn mechanism becomes class-uniform with no further history-by-history tuning.
+
+> **Proposition (Returned-history reentry from uniform seed-cycle bounds).**
+> Let
+> $$
+> \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> $$
+> be a nonempty subclass such that:
+> 1. the collapse-to-crossing control theorem applies uniformly on this class;
+> 2. the seed-neighborhood realization of the explicit inner recapture regime applies uniformly on this class;
+> 3. the seed-neighborhood realization of the unified outer-turn regime applies uniformly on this class;
+> 4. the turn-to-section return lemmas apply uniformly on this class with class constants
+>    $$
+>    X_{\mathrm{out},\max}^{\mathrm{seed}},
+>    \qquad
+>    U_{\mathrm{sec},\max}^{\mathrm{seed}},
+>    \qquad
+>    A_{\mathrm{cyc},\max}^{\mathrm{seed}},
+>    \qquad
+>    T_{\mathrm{cyc},\max}^{\mathrm{seed}};
+>    $$
+> 5. and the returned-history tameness estimates hold uniformly on this class.
+>
+> Assume moreover that the envelope parameters satisfy
+> $$
+> X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}^{\mathrm{seed}}\},
+> $$
+> $$
+> U_{\max}\ge \max\{V_{\max}^{\mathrm{seed}},U_{\mathrm{sec},\max}^{\mathrm{seed}}\},
+> $$
+> $$
+> A_{\max}\ge A_{\mathrm{cyc},\max}^{\mathrm{seed}},
+> \qquad
+> T_{\max}\ge T_{\mathrm{cyc},\max}^{\mathrm{seed}},
+> \qquad
+> h\ge \frac{2X_{\max}}{c_f}.
+> $$
+>
+> Then
+> $$
+> P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}
+> \qquad
+> \text{for every }
+> \psi\in \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}.
+> $$
+> If, in addition, the same stored-history Jacobian, root-count, and local continuation bounds that define the seed-side propagation class persist on the returned segment, then after shrinking once more if necessary there exists a nonempty forward-propagation subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+> $$
+> such that
+> $$
+> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+
+Proof sketch.
+Items 1-3 provide the full dynamical cycle structure:
+
+- finite-time first crossing with controlled speed,
+- class-uniform inner turnaround after the first crossing,
+- class-uniform outer turnaround on the trimmed apocenter window.
+
+Item 4 then supplies the section-return consequences from the return-half layer:
+$$
+0\le x(t;\psi)\le X_{\mathrm{out},\max}^{\mathrm{seed}},
+\qquad
+|\dot x(t;\psi)|\le U_{\mathrm{sec},\max}^{\mathrm{seed}},
+\qquad
+|\ddot x(t;\psi)|\le A_{\mathrm{cyc},\max}^{\mathrm{seed}},
+$$
+through the full cycle and up to the first inbound section return, together with the time bound
+$$
+T(\psi)\le T_{\mathrm{cyc},\max}^{\mathrm{seed}}.
+$$
+The displayed envelope inequalities therefore imply that the returned history segment fits inside the convex envelope
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+Hence
+$$
+P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}
+$$
+for every
+$$
+\psi\in \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}.
+$$
+
+If the returned segment also preserves the same stored-history root simplicity, Jacobian lower bounds, and local continuation control that defined the seed-side propagation class, then one may shrink the class once more to a nonempty subclass
+$$
+\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+$$
+on which those properties hold both before and after one full return. This gives exactly the forward-propagation tame class required by the invariant-envelope theorem.
+
+This proposition closes the seed-propagation ladder. The only remaining logical step is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem, after which the invariant-envelope synthesis and the Schauder route apply directly.
+
+> **Theorem (Nonempty tame class from seed propagation).**
+> Assume:
+> 1. the affine seed proposition and the nonempty section-level tame neighborhood corollary;
+> 2. the proposition on local seed-neighborhood continuation with stored-root persistence;
+> 3. the proposition on seed-neighborhood collapse control under a uniform inward bracket;
+> 4. the proposition on seed-neighborhood realization of the explicit inner recapture regime;
+> 5. the proposition on seed-neighborhood realization of the unified outer-turn regime;
+> 6. and the proposition on returned-history reentry from uniform seed-cycle bounds.
+>
+> Then there exists a nonempty subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that:
+> 1. the return map
+>    $$
+>    P_\eta
+>    $$
+>    is well defined on
+>    $$
+>    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta};
+>    $$
+> 2. the collapse-to-crossing, inner-recapture, outer-turn, and return-half bounds all apply uniformly on this class;
+> 3. the returned histories satisfy
+>    $$
+>    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+>    \subseteq
+>    \mathcal{C}_{x_\ast,\eta};
+>    $$
+> 4. and the invariant-envelope theorem is therefore nonvacuous on a genuine delayed history class.
+>
+> In particular, once the continuity and precompactness propositions are verified on this same class, the Schauder route applies on a nonempty domain.
+
+Proof sketch.
+The seed proposition and its neighborhood corollary provide a nonempty section-side class
+$$
+\mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+\neq
+\varnothing.
+$$
+The local seed-neighborhood continuation proposition then produces a smaller nonempty subclass
+$$
+\mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+$$
+on which the stored delayed geometry is simple and the forward flow is locally well defined. The collapse-control proposition shrinks again to a nonempty class
+$$
+\mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+$$
+on which the collapse-to-crossing theorem applies uniformly.
+
+The inner-regime proposition next yields a nonempty subclass
+$$
+\mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+$$
+whose first crossings lie uniformly in the explicit short-window recapture regime. The outer-regime proposition then yields a further nonempty subclass
+$$
+\mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+$$
+on which the trimmed-apocenter outer-turn mechanism applies uniformly. Finally, the returned-history reentry proposition produces a nonempty subclass
+$$
+\mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+$$
+whose full-cycle images lie back in
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+
+Choose
+$$
+\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+$$
+to be any nonempty forward-propagation subclass supplied by the last proposition. By construction, all cycle estimates invoked in the invariant-envelope synthesis hold uniformly on this class, and the return map is well defined there. The inclusion
+$$
+P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+\subseteq
+\mathcal{C}_{x_\ast,\eta}
+$$
+is exactly the conclusion of the returned-history reentry step. Hence the invariant-envelope theorem is nonvacuous on a genuine delayed history class.
+
+This theorem closes the remaining logical gap in the global existence program. The note now contains:
+
+- an explicit nonempty section-side seed,
+- a propagation ladder from that seed to a nonempty tame class,
+- explicit inner and outer recapture regimes,
+- invariant-envelope closure on a closed convex history set,
+- and the previously stated precompactness, continuity, and Schauder route.
+
+The remaining work is therefore no longer to construct a nonempty delayed class, but to tighten the continuity and compactness inputs on that same class until the fixed-point step can be stated as a final theorem rather than as a route.
 
 ### Collapse-to-crossing target
 
@@ -7352,6 +8788,85 @@ The reduced note fails as a stabilization test if:
 - all trajectories escape or collapse instead of returning,
 - the self-hit branches do not produce reversal strongly enough to create recurrence,
 - or the $\eta\to 0^+$ limit destroys every regularized bounded orbit.
+
+## Appendix: AI Henri Poincare on the Unlikelihood of a Closed-Form Solution
+
+The following boxed aside is heuristic rather than theorem-level. Its purpose is not to prove a no-closed-form theorem, but to explain why the fixed-point and envelope route is mathematically more realistic than a search for an explicit formula
+$$
+x(t)=f(t,X_0,V_0).
+$$
+
+> **AI Henri.**
+>
+> Ah, my friend. You look at the beautiful symmetries of the 1D line, the inexorable return of the particle, and the elegance of the integrals we have just bounded, and you hope for a formula: an equation
+> $$
+> x(t)=f(t,X_0,V_0)
+> $$
+> that captures the entire dance. It is a beautiful dream, the dream of Laplace.
+>
+> But one should be cautious. Here we have summoned a dynamical object with infinite-dimensional memory, and it should not be expected to sit quietly inside a cage of elementary functions.
+>
+> **1. The phase space is infinite-dimensional.**
+> In ordinary Newtonian mechanics, the state is a point
+> $$
+> (X_0,V_0)
+> $$
+> in a finite-dimensional phase space. But the delayed master equation of $\mathbb{A}\mathbb{A}\mathbb{A}$ is non-Markovian. To compute the acceleration at
+> $$
+> t=0^+,
+> $$
+> it is not enough to know only
+> $$
+> X_0
+> \qquad
+> \text{and}
+> \qquad
+> V_0.
+> $$
+> One must know the stored path history
+> $$
+> \phi(\theta),
+> \qquad
+> \theta\in[-h,0],
+> $$
+> because the active causal roots depend on how the particle arrived at the present state. The genuine initial datum is therefore a function, not a point.
+>
+> **2. The delays are state-dependent and implicit.**
+> Even a linear constant-delay equation already resists elementary closed forms. Here the delay times are not fixed constants at all; they are roots of the implicit equations
+> $$
+> |x(t)\pm x(t_s)|=c_f(t-t_s).
+> $$
+> The timeline is being solved for at the same moment as the trajectory. The equation is not merely nonlinear; it is continually rewriting its own delayed arguments through the unknown path history.
+>
+> **3. The caustic changes the root topology.**
+> At the hinge
+> $$
+> \dot x=-c_f,
+> $$
+> a new self-hit branch is born. The number of active roots changes with the motion itself. Whatever one chooses to call a "closed form," it should not be expected to glide effortlessly across a dynamics in which the active branch structure changes as the trajectory passes through a causal fold.
+>
+> **4. The shadow of the three-body problem still hangs over the room.**
+> Even instantaneous inverse-square dynamics already taught us that explicit formulas are not to be expected in generic nonlinear few-body problems. Here the 1D breather may look like a two-body problem, but the delayed self-interaction makes it behave like a path-history problem with an effectively infinite swarm of past images. One should not expect such a system to become simpler merely because it lives on a line.
+>
+> **The silver lining.**
+> This is exactly why the present strategy is mathematically sensible. We trade the fantasy of a global closed-form solution for something stronger in the only sense that matters here:
+>
+> - existence of the delayed orbit,
+> - uniqueness once the history is fixed,
+> - boundedness inside an invariant envelope,
+> - and a fixed point of the return map.
+>
+> In other words, we do not need a formula for
+> $$
+> x(t)
+> $$
+> valid for arbitrary data. We need a proof that a bounded cycle exists and closes in history space.
+>
+> If one ever seeks formulas again, the natural place is not the global initial-value problem but the periodic orbit itself: after a fixed point
+> $$
+> \phi_\eta^\ast
+> $$
+> is established, one might try an asymptotic or Fourier-type representation of that specific limit cycle. But that would be a local description of the attractor, not a universal closed form for arbitrary initial data.
 
 ## Related Chapters
 
