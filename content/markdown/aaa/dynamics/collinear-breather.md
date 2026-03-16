@@ -2826,7 +2826,7 @@ So the immediate global target is not yet "stable breather with fixed amplitude,
 
 ### Schauder route
 
-The three global propositions above are designed to feed a single topological conclusion. The intended fixed-point route is:
+The global propositions above are designed to feed a single topological conclusion. The intended fixed-point route is:
 
 1. prove that the local recapture theorem and the tame continuation hypotheses make
    $$
