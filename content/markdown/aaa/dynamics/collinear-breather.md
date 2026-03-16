@@ -5642,6 +5642,121 @@ which is impossible. Therefore no such exact same-side self root exists on the s
 
 This shows that on a strictly sub-field-speed apocenter window the exact delayed self geometry is maximally favorable: same-side outer self roots are absent. The remaining issue for the dual-mollified model is then not exact root multiplicity, but control of the shell-smeared near-diagonal contribution.
 
+**Lemma 27: Shell-tail bound on a strictly sub-field-speed outer window.**
+Assume the hypotheses of Lemma 26 on a window
+$$
+[t_a,t_b]\subseteq [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}],
+$$
+and assume that the same-side outer self contribution is evaluated in the dual-mollified integral form with:
+
+- shell mollifier
+  $$
+  \delta_\eta
+  $$
+  supported where its argument lies in
+  $$
+  [-\eta,\eta],
+  $$
+- essential bound
+  $$
+  \|\delta_\eta\|_\infty<\infty,
+  $$
+- core mollifier
+  $$
+  \epsilon_c>0,
+  $$
+- and memory horizon
+  $$
+  h>0.
+  $$
+
+For each fixed
+$$
+t\in[t_a,t_b],
+$$
+let the same-side shell contribution be integrated over delayed times
+$$
+t_0\in[t-h,t]
+$$
+for which the outer sorting-map mismatch
+$$
+z(t_0)-z(t)
+$$
+lies in the shell support. Then the same-side outer self contribution obeys the pointwise bound
+$$
+A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
+\le
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}.
+$$
+
+In particular, on a strictly sub-field-speed apocenter window the outer self term coming from same-side shell leakage is uniformly bounded by an
+$$
+\mathcal{O}\!\left(\frac{\eta}{\sigma_{\mathrm{out}}\epsilon_c^2}\right)
+$$
+quantity, even though the exact same-side root set is empty.
+
+Proof.
+Fix
+$$
+t\in[t_a,t_b].
+$$
+By Lemma 26,
+$$
+z(t)=x(t)-c_f t
+$$
+is strictly decreasing with derivative bounded above by
+$$
+\dot z(t)\le -\sigma_{\mathrm{out}}<0.
+$$
+Hence for any delayed time
+$$
+t_0<t
+$$
+in the same window one has
+$$
+z(t_0)-z(t)\ge \sigma_{\mathrm{out}}(t-t_0).
+$$
+Therefore, if
+$$
+|z(t_0)-z(t)|\le \eta,
+$$
+then necessarily
+$$
+0\le t-t_0\le \frac{\eta}{\sigma_{\mathrm{out}}}.
+$$
+So the set of delayed times inside the shell support has measure at most
+$$
+\frac{\eta}{\sigma_{\mathrm{out}}}
+\le
+\frac{2\eta}{\sigma_{\mathrm{out}}}.
+$$
+
+Evaluating the same-side self term in integral form and using
+$$
+|x(t)-x(t_0)|^2+\epsilon_c^2\ge \epsilon_c^2
+$$
+gives
+$$
+A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
+\le
+\kappa\epsilon^2
+\int_{t-h}^{t}
+\frac{\delta_\eta(\cdots)}{|x(t)-x(t_0)|^2+\epsilon_c^2}\,dt_0
+\le
+\frac{\kappa\epsilon^2\,\|\delta_\eta\|_\infty}{\epsilon_c^2}
+\cdot
+\left|\operatorname{supp}_t(\delta_\eta)\right|.
+$$
+Using the support-measure bound yields
+$$
+A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
+\le
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2},
+$$
+which proves the lemma.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
