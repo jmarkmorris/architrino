@@ -3028,6 +3028,102 @@ Among these, the most delicate step is not finite-time arrival itself, but the q
 
 So the collapse-to-crossing theorem is not merely a reachability statement. It is a controlled entry theorem into the local recapture regime.
 
+**Lemma 5: Inbound partner-dominance lower bound.**
+Assume the pre-crossing leg of a tame inbound trajectory satisfies:
+
+- right exterior inbound geometry,
+  $$
+  0\le x(t)\le X_{\max},
+  \qquad
+  \dot x(t)\le 0,
+  $$
+- at least one active partner branch for each
+  $$
+  t\in[0,t_{\mathrm{cross}}],
+  $$
+- the speed bound
+  $$
+  |\dot x(t)|\le U_{\max},
+  $$
+- and the partner Jacobian transversality bound
+  $$
+  |J_p(t;t_p)|\ge \nu
+  $$
+  on every active partner root.
+
+Then the partner contribution to the inward acceleration obeys the class-uniform lower bound
+$$
+A_p(t)\ge \underline A_p^{\mathrm{in}}
+\equiv
+\frac{\kappa\epsilon^2}{
+\left(4X_{\max}^2+\epsilon_c^2\right)
+\left(1+\frac{U_{\max}}{c_f}\right)
+}.
+$$
+Equivalently, the partner acceleration satisfies
+$$
+a_p(t)=-A_p(t)\le -\underline A_p^{\mathrm{in}}<0.
+$$
+
+Proof.
+Along the right exterior inbound branch, the partner source lies on the opposite side of the origin, so every active partner contribution points inward and has the form
+$$
+a_p(t)=-A_p(t).
+$$
+For any active partner root
+$$
+t_p<t,
+$$
+the delayed separation is
+$$
+r_p(t;t_p)=x(t)+x(t_p).
+$$
+Because both the current and delayed positions lie in the tame position envelope,
+$$
+0\le x(t)\le X_{\max},
+\qquad
+0\le x(t_p)\le X_{\max},
+$$
+one has
+$$
+r_p(t;t_p)\le 2X_{\max}.
+$$
+Hence the dual-mollified amplitude denominator satisfies
+$$
+r_p(t;t_p)^2+\epsilon_c^2\le 4X_{\max}^2+\epsilon_c^2.
+$$
+
+On the same branch the 1D partner line-of-action sign is
+$$
+\hat r_p=+1,
+$$
+so
+$$
+J_p(t;t_p)=1+\frac{\dot x(t_p)}{c_f}.
+$$
+Using the speed bound gives the crude upper estimate
+$$
+|J_p(t;t_p)|\le 1+\frac{U_{\max}}{c_f}.
+$$
+
+Therefore each active partner branch contributes at least
+$$
+\kappa\epsilon^2
+\frac{1}{
+\left(r_p(t;t_p)^2+\epsilon_c^2\right)|J_p(t;t_p)|
+}
+\ge
+\frac{\kappa\epsilon^2}{
+\left(4X_{\max}^2+\epsilon_c^2\right)
+\left(1+\frac{U_{\max}}{c_f}\right)
+}.
+$$
+Since at least one partner branch is active, summing over all active partner roots yields
+$$
+A_p(t)\ge \underline A_p^{\mathrm{in}},
+$$
+which proves the lemma.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
