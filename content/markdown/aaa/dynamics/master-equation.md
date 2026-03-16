@@ -1132,6 +1132,8 @@ We can:
 
 So: **analytic yes** (up to standard quadratures), and corrections doable.
 
+For the self-hit-capable reduced problem that goes beyond the sub-$c_f$ perturbative regime and sets up a return-map breather question, see [collinear-breather.md](./collinear-breather.md).
+
 ---
 
 #### Two‑body uniform circular orbit, sub‑$c_f$ (no self‑hit)

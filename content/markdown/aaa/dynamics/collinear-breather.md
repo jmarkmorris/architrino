@@ -1,0 +1,387 @@
+# 1D Collinear Binary (Reduced Model)
+
+This note isolates the simplest reduced dynamical problem that can test the self-hit stabilization mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
+
+The guiding idea is narrow: if self-hit can stabilize anything at all, it should first be visible in a reflection-symmetric one-dimensional opposite-charge binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, tri-binary locking, and assembly-level closure lose their cleanest analytic foothold.
+
+## Purpose
+
+The full dynamics stack currently mixes several hard problems at once:
+
+- state-dependent delays,
+- Jacobian amplification,
+- self-hit branch birth,
+- tangential drift in 2D and 3D,
+- and multi-scale coupling in tri-binaries.
+
+This note strips away everything except the minimum ingredients needed to test a bounded delayed orbit:
+
+- two architrinos,
+- one spatial dimension,
+- opposite charges,
+- exact partner hits,
+- exact self-hit roots,
+- and an $\eta>0$ regularization suitable for return-map analysis.
+
+The point is not to claim the reduced model is already the physical atom of the theory. The point is to identify the first model in which a breather-like bounded state could be proved or ruled out.
+
+## Exact 1D State Variables
+
+Work on the reflection-symmetric center-of-mass subspace
+$$
+x_1(t)=-x(t),
+\qquad
+x_2(t)=x(t),
+\qquad
+q_1=-\epsilon,
+\qquad
+q_2=+\epsilon.
+$$
+
+Here:
+
+- $x(t)\in\mathbb{R}$ is the signed position of the right-hand architrino,
+- $\dot x(t)$ is its signed velocity,
+- the center of mass is fixed at the origin,
+- and the full two-body state is recovered by reflection.
+
+The exact delayed state lives on a history space
+$$
+\mathcal{H}_h = C^1([-h,0];\mathbb{R}),
+$$
+with history segment
+$$
+x_t(\theta)\equiv x(t+\theta),
+\qquad
+\theta\in[-h,0],
+$$
+for a memory horizon $h>0$ large enough to contain all active causal roots under study.
+
+Useful derived quantities:
+$$
+d(t)\equiv 2|x(t)|,
+\qquad
+u(t)\equiv \dot x(t).
+$$
+
+When $x(t)>0$ and $u(t)<0$, the pair is inbound. When $x(t)>0$ and $u(t)>0$, it is outbound. Crossing $x=0$ corresponds to label-preserving passage through the center on this reduced symmetry subspace.
+
+## Partner-Only Hinge Radius
+
+Before self-hit is active, the natural zeroth-order picture is partner-dominated infall from large separation. In that reduced picture it is useful to define the first dynamically meaningful radius as the location where the inbound speed reaches the field speed.
+
+### Definition
+
+Let $x_{c_f}>0$ denote the **hinge radius** for the partner-only inbound benchmark:
+$$
+|u| = c_f
+\qquad
+\text{at}
+\qquad
+x = x_{c_f}.
+$$
+
+This is not yet a theorem of the full delayed system. It is a reduced-model normalization tied to the inbound partner-attraction phase before the self-hit-capable regime is entered.
+
+### Dimensionless normalization
+
+Define
+$$
+\chi \equiv \frac{x}{x_{c_f}},
+\qquad
+\upsilon \equiv \frac{u}{c_f}.
+$$
+
+Then the hinge is located at
+$$
+\chi = 1,
+\qquad
+|\upsilon|=1.
+$$
+
+This makes the reduced narrative explicit:
+
+- $\chi \gg 1$: far-field partner-dominated infall,
+- $\chi \searrow 1$: approach to the field-speed hinge,
+- $\chi < 1$: self-hit-capable regime becomes dynamically relevant.
+
+### Coulomb-like zeroth-order estimate
+
+If one uses the quadratic kinetic bookkeeping proxy with universal constant $\mu_{\text{arch}}$ and ignores delay at leading order, the partner-only effective potential is
+$$
+U_{\text{pair}}(x)
+\approx
+-\frac{\kappa\epsilon^2}{2x},
+$$
+since the pair separation is $d=2x$.
+
+Starting from rest at infinity, a zeroth-order energy balance gives
+$$
+\frac{1}{2}\mu_{\text{arch}} u^2
+\approx
+\frac{\kappa\epsilon^2}{2x}.
+$$
+
+Imposing the hinge condition $|u|=c_f$ yields
+$$
+\mu_{\text{arch}} c_f^2
+\approx
+\frac{\kappa\epsilon^2}{x_{c_f}},
+\qquad
+x_{c_f}
+\approx
+\frac{\kappa\epsilon^2}{\mu_{\text{arch}} c_f^2}.
+$$
+
+Thus one may, if desired, choose reduced units so that
+$$
+x_{c_f}=1.
+$$
+
+This is the cleanest way to formalize the intuition that the partner-only inbound fall from infinity reaches field speed at a distinguished radius.
+
+## Partner-Hit and Self-Hit Root Equations
+
+For the right-hand architrino $x_2(t)=x(t)$, the exact causal root conditions split naturally into partner and self branches.
+
+### Partner-hit roots
+
+A partner-hit emission time $t_0<t$ satisfies
+$$
+|x(t)+x(t_0)| = c_f(t-t_0).
+$$
+
+Define the partner-root set
+$$
+\mathcal{C}_p(t)
+\equiv
+\left\{
+t_0<t \;\middle|\; |x(t)+x(t_0)| = c_f(t-t_0)
+\right\}.
+$$
+
+On this symmetry subspace the 1D line-of-action sign is
+$$
+\hat r_p(t;t_0)=\mathrm{sgn}\!\big(x(t)+x(t_0)\big),
+$$
+and the partner Jacobian becomes
+$$
+J_p(t;t_0)
+=
+1-\frac{\dot x_1(t_0)\hat r_p(t;t_0)}{c_f}
+=
+1+\frac{\dot x(t_0)\hat r_p(t;t_0)}{c_f}.
+$$
+
+Because $q_1q_2<0$, this branch is attractive.
+
+### Self-hit roots
+
+A nontrivial self-hit emission time $t_0<t$ satisfies
+$$
+|x(t)-x(t_0)| = c_f(t-t_0),
+\qquad
+t_0\neq t.
+$$
+
+Define the self-root set
+$$
+\mathcal{C}_s(t)
+\equiv
+\left\{
+t_0<t \;\middle|\; |x(t)-x(t_0)| = c_f(t-t_0)
+\right\}.
+$$
+
+The self line-of-action sign is
+$$
+\hat r_s(t;t_0)=\mathrm{sgn}\!\big(x(t)-x(t_0)\big),
+$$
+and the self Jacobian is
+$$
+J_s(t;t_0)
+=
+1-\frac{\dot x(t_0)\hat r_s(t;t_0)}{c_f}.
+$$
+
+Because $q_2q_2>0$, each self branch is repulsive.
+
+### Reduced branch-resolved equation
+
+On the exact root-selected model, the right-particle acceleration is
+$$
+\ddot x(t)
+=
+-\,\kappa \epsilon^2
+\sum_{t_0\in\mathcal{C}_p(t)}
+\frac{\hat r_p(t;t_0)}
+{|x(t)+x(t_0)|^2\,|J_p(t;t_0)|}
++
+\kappa \epsilon^2
+\sum_{t_0\in\mathcal{C}_s(t)}
+\frac{\hat r_s(t;t_0)}
+{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|}.
+$$
+
+The first sum is partner attraction. The second is self-hit repulsion. Reflection symmetry gives the left-particle equation automatically.
+
+Plain language: in 1D there is no tangential direction to hide in. The entire competition is between delayed inward attraction and delayed outward self-repulsion, with the Jacobian deciding how sharply each branch is weighted.
+
+## Regularized 1D Equation
+
+For analysis and numerics, replace the shell delta by a smooth mollifier $\delta_\eta$ with width $\eta>0$. Then the reduced equation can be written in integral form:
+$$
+\ddot x(t)
+=
+-\,\kappa \epsilon^2
+\int_{-\infty}^{t} dt_0\;
+\frac{\hat r_p(t;t_0)}
+{|x(t)+x(t_0)|^2}
+\delta_\eta\!\big(|x(t)+x(t_0)|-c_f(t-t_0)\big)
+$$
+$$
+\qquad
++
+\kappa \epsilon^2
+\int_{-\infty}^{t} dt_0\;
+\frac{\hat r_s(t;t_0)}
+{|x(t)-x(t_0)|^2}
+\delta_\eta\!\big(|x(t)-x(t_0)|-c_f(t-t_0)\big),
+$$
+with the understanding that the exact Jacobian factors reappear in the branch-sum representation when the mollified shell collapses onto isolated roots.
+
+The regularized formulation is the one best suited to:
+
+- local well-posedness,
+- continuation criteria,
+- numerical return-map construction,
+- and eventually the controlled limit $\eta\to 0^+$.
+
+## Regularized Return Map
+
+To state a breather problem precisely, define a Poincare-type section on the symmetric history space rather than on instantaneous phase space alone.
+
+Fix:
+
+- a section location $x_\ast>0$,
+- a memory horizon $h$ large enough to contain all active branches on one cycle,
+- and a regularization width $\eta>0$.
+
+Define the inbound section
+$$
+\Sigma^-_{x_\ast,\eta}
+\equiv
+\left\{
+\phi\in\mathcal{H}_h
+\;\middle|\;
+\phi(0)=x_\ast,\;
+\dot\phi(0)<0,\;
+\phi \text{ lies on the reflection-symmetric admissible class}
+\right\}.
+$$
+
+For $\phi\in\Sigma^-_{x_\ast,\eta}$, evolve the $\eta$-regularized dynamics forward until the first return time $T(\phi)>0$ such that:
+
+- the trajectory has completed one collapse-and-rebound cycle,
+- $x(T(\phi))=x_\ast$,
+- and $\dot x(T(\phi))<0$ again.
+
+Then define the exact history-space return map
+$$
+P_\eta:\Sigma^-_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta},
+\qquad
+P_\eta(\phi)=x_{T(\phi)}.
+$$
+
+This is the natural reduced object for theorem work. Any scalar “speed-to-speed” map is only a projection of this history-space map.
+
+### Useful projected map
+
+If a one-parameter family of histories can be parameterized by inbound speed alone, one may project to
+$$
+u_n \equiv -\dot x_n(0)>0,
+\qquad
+u_{n+1} = \Pi\!\big(P_\eta(\phi_n)\big),
+$$
+where $\Pi$ extracts the next inbound speed at the section. This projected map is useful for diagnostics, but the exact delayed system really lives on $\Sigma^-_{x_\ast,\eta}$, not on a scalar interval.
+
+## Conjectured Breather Statement
+
+The reduced 1D target can now be stated cleanly.
+
+> **Conjecture (Regularized Collinear Breather).**
+> For some nonempty parameter regime
+> $$
+> (\kappa,\epsilon,c_f,\eta,h,x_\ast)
+> $$
+> and some admissible reflection-symmetric history class, the return map $P_\eta$ has a fixed point
+> $$
+> \phi^\ast_\eta \in \Sigma^-_{x_\ast,\eta},
+> \qquad
+> P_\eta(\phi^\ast_\eta)=\phi^\ast_\eta.
+> $$
+> The corresponding trajectory is a bounded periodic two-body motion in which:
+> 1. partner attraction drives the inward phase,
+> 2. self-hit repulsion turns the trajectory around after the relevant super-field-speed history is created,
+> 3. the motion returns to the same inbound section data after one full cycle.
+
+The stability version is stronger:
+
+> **Conjecture (Stable Breather).**
+> The Fréchet derivative $DP_\eta(\phi^\ast_\eta)$ has spectral radius $<1$ on the section modulo time-shift symmetry, so the fixed point attracts nearby admissible histories.
+
+This is the first clean theorem target for self-hit stabilization. It avoids the 2D circular tangential obstruction and does not require the full tri-binary architecture.
+
+## Why This Reduced Model Comes First
+
+This model should be attacked before the full circular MCB or full tri-binary for three reasons.
+
+### 1. No tangential obstruction
+
+The circular binary has a tangential no-go problem. The 1D model has no tangential channel at all. That removes the main obstruction already visible in the planar circular analysis.
+
+### 2. Exact scalar Jacobians
+
+In 1D,
+$$
+\hat r \in \{-1,+1\},
+$$
+so the delay-map Jacobians reduce to explicit scalar factors
+$$
+J_p = 1+\frac{\dot x(t_0)\hat r_p}{c_f},
+\qquad
+J_s = 1-\frac{\dot x(t_0)\hat r_s}{c_f}.
+$$
+This makes the branch geometry much easier to track analytically.
+
+### 3. Direct test of the self-hit mechanism
+
+If the collinear breather does not exist even after regularization, then the claim that self-hit alone can stabilize a bound binary is badly weakened. If it does exist, then the theory gains its first rigorous bounded delayed attractor.
+
+## What Counts as Success or Failure
+
+### Success
+
+The reduced note succeeds if it supports a proof program for:
+
+- local well-posedness of the regularized 1D dynamics,
+- well-defined first-return times on a nontrivial section,
+- existence of a fixed point of $P_\eta$,
+- and, ideally, local stability of that fixed point.
+
+### Failure
+
+The reduced note fails as a stabilization test if:
+
+- the return map is not well defined on any robust section,
+- all trajectories escape or collapse instead of returning,
+- the self-hit branches do not produce reversal strongly enough to create recurrence,
+- or the $\eta\to 0^+$ limit destroys every regularized bounded orbit.
+
+## Related Chapters
+
+- [master-equation.md](./master-equation.md)
+- [binary-dynamics.md](./binary-dynamics.md)
+- [causal-action-functional.md](./causal-action-functional.md)
+- [energy.md](./energy.md)
+- [dyadic-resonance-lock.md](./dyadic-resonance-lock.md)

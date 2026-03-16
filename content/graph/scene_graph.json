@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 405,
+      "nodes": 406,
       "edges": 1147,
       "scenes": 281,
       "markdownIndexes": 0,
-      "markdownDocs": 124,
+      "markdownDocs": 125,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2054,6 +2054,12 @@
       "id": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "name": "Causal Action Functional",
       "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/collinear-breather.md",
+      "name": "1D Collinear Binary (Reduced Model)",
+      "path": "content/markdown/aaa/dynamics/collinear-breather.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5440,6 +5446,15 @@
       "name": "Causal Action Functional",
       "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "searchTarget": "content/markdown/aaa/dynamics/causal-action-functional.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/collinear-breather.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/collinear-breather.md",
+      "name": "1D Collinear Binary (Reduced Model)",
+      "path": "content/markdown/aaa/dynamics/collinear-breather.md",
+      "searchTarget": "content/markdown/aaa/dynamics/collinear-breather.md",
       "implicit": false
     },
     {
