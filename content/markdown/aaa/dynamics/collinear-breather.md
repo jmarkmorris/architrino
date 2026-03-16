@@ -4371,6 +4371,82 @@ $$
 $$
 which proves the monotone decrease of the radius on the post-turn window.
 
+**Lemma 15: Finite-time second crossing after the turn.**
+Assume the hypotheses of Lemma 14 and suppose, in addition, that the return window is long enough to satisfy
+$$
+\tau_{\mathrm{ret}}
+\ge
+\sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}}.
+$$
+Then the trajectory reaches the center again in finite time: there exists
+$$
+t_{\mathrm{cross}}^{(2)}
+\in
+\left(
+t_{\mathrm{turn}},
+\,
+t_{\mathrm{turn}}+\sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}}
+\right]
+$$
+such that
+$$
+\rho\!\big(t_{\mathrm{cross}}^{(2)}\big)=0.
+$$
+
+Equivalently, in signed coordinates the trajectory crosses the origin a second time by that time.
+
+Proof.
+Lemma 14 gives the comparison bound
+$$
+\rho(t)\le
+\rho_{\max}
+-
+\frac{a_{\mathrm{ret}}}{2}(t-t_{\mathrm{turn}})^2
+$$
+for
+$$
+t\in[t_{\mathrm{turn}},\,t_{\mathrm{turn}}+\tau_{\mathrm{ret}}].
+$$
+Therefore
+$$
+\rho(t)\le 0
+$$
+whenever
+$$
+t-t_{\mathrm{turn}}
+\ge
+\sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}}.
+$$
+Because the assumed window length satisfies
+$$
+\tau_{\mathrm{ret}}
+\ge
+\sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}},
+$$
+the comparison reaches zero before the end of the return window. Since
+$$
+\rho(t_{\mathrm{turn}})=\rho_{\max}>0
+$$
+and
+$$
+\rho
+$$
+is continuous, there exists a first time
+$$
+t_{\mathrm{cross}}^{(2)}
+\in
+\left(
+t_{\mathrm{turn}},
+\,
+t_{\mathrm{turn}}+\sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}}
+\right]
+$$
+for which
+$$
+\rho\!\big(t_{\mathrm{cross}}^{(2)}\big)=0.
+$$
+This proves the lemma.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
