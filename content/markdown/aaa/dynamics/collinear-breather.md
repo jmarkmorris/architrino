@@ -926,35 +926,49 @@ on the initial post-crossing window.
 
 ### Origin-crossing braking dominance target
 
-The stronger theorem target suggested by the sorting map is not merely bounded self drive, but a full initial-window braking-dominance statement.
+The corrected 1D theorem target is a **local origin-crossing recapture theorem**. The point is not merely to bound the self drive, but to prove that on an explicit initial window the inward partner term wins strongly enough to erase the post-crossing outward radial speed.
 
-> **Candidate Theorem (Origin-Crossing Braking Dominance).**
+> **Candidate Theorem (Local Origin-Crossing Recapture).**
 > Let the 1D kernel be dual-mollified by a shell width $\eta>0$ and a core mollifier $\epsilon_c>0$. Let $\phi$ be an admissible signed history with an origin crossing at $t=0$ and outward radial speed
 > $$
 > V_0\equiv V_\phi(0)>c_f.
 > $$
-> Assume:
-> 1. the sorting-map phase picture above holds on a nontrivial interval $[0,\tau_{\mathrm{env}}]$,
-> 2. the active self roots on that interval satisfy $t_s<t_{\mathrm{zero}}$ and hence lie in the sub-field-speed past,
-> 3. the post-crossing self drive admits a uniform bound
->    $$
->    A_s^{\rho}(t)\le \overline A_s^{\rho},
->    $$
-> 4. the partner term admits a uniform lower bound
->    $$
->    A_p^{\rho}(t)\ge \underline A_p^{\rho},
->    $$
->    with
->    $$
->    \underline A_p^{\rho}-\overline A_s^{\rho}>0.
->    $$
-> Then the radial acceleration is strictly inward on $[0,\tau_{\mathrm{env}}]$. If in addition
+> Assume hypotheses (H1)-(H4) below, and assume either:
+> 1. the abstract Goldilocks hypothesis (H5), or
+> 2. the explicit short-window assumptions of Proposition `Explicit short-window recapture regime`.
+>
+> Then there exists a time window $[0,\tau_{\mathrm{env}}]$ on which:
 > $$
-> \big(\underline A_p^{\rho}-\overline A_s^{\rho}\big)\tau_{\mathrm{env}}\ge V_0,
+> w(t)<0,
+> \qquad
+> t_s<t_{\mathrm{zero}}
+> \text{ for every active self root,}
+> \qquad
+> A_s^{\rho}(t)\le \overline A_s^{\rho},
 > $$
-> the trajectory must experience radial recapture by time $\tau_{\mathrm{env}}$.
+> and the radial acceleration satisfies
+> $$
+> \ddot\rho(t)\le -A_p^{\rho}(t)+A_s^{\rho}(t).
+> $$
+> If the resulting impulse margin obeys
+> $$
+> V_0<
+> \int_0^{\tau_{\mathrm{env}}}
+> \Big(
+> \underline A_p^{\rho}(s)-\overline A_s^{\rho}
+> \Big)\,ds,
+> $$
+> then there exists
+> $$
+> \tau_{\mathrm{turn}}\in(0,\tau_{\mathrm{env}}]
+> $$
+> such that
+> $$
+> \dot\rho(\tau_{\mathrm{turn}})=0.
+> $$
+> In particular, the post-crossing branch is radially recaptured on the initial window.
 
-This is the theorem-scale target closest to the corrected geometric analysis. It packages the local sorting argument, the bounded self-drive lemma, and the partner-dominance margin into one initial-window recapture statement, but it does so in the dual-mollified setting where the origin-crossing amplitude remains finite.
+This is the theorem-scale target closest to the corrected geometric analysis. The abstract form passes through (H5), while the working route in the current note is the explicit short-window proposition proved from Lemmas 1-4.
 
 ### Hypotheses unpacked
 
@@ -1023,6 +1037,20 @@ $$
 \tau_{\mathrm{env}}=\tau_\epsilon\equiv \frac{\epsilon_c}{2\beta_p}
 $$
 and replaces the integral inequality by explicit algebraic bounds on $(\eta,\epsilon_c,V_0,\kappa\epsilon^2)$.
+
+For theorem work on a fixed admissible crossing subclass, the local constants appearing later in Lemmas 1-4 are understood to be uniform over that subclass. In particular, one works with uniform choices of
+$$
+a_{\mathrm{loc}},
+\qquad
+\tau_1,
+\qquad
+\tau_\rho,
+\qquad
+C_p,
+\qquad
+N_s^{\max},
+$$
+so that the local continuation, geometric separation, partner-root estimate, and branch-count bound all close on the same history family.
 
 ### Lemma ladder
 
