@@ -3215,6 +3215,122 @@ x(t_{\mathrm{cross}})=0.
 $$
 This proves the lemma.
 
+**Lemma 7: Crossing-speed bounds under two-sided acceleration control.**
+Assume the pre-crossing leg starts from
+$$
+x(0)=x_\ast>0,
+\qquad
+\dot x(0)=-u_0,
+\qquad
+u_0\ge 0,
+$$
+and suppose there exist positive constants
+$$
+0<a_-\le a_+
+$$
+such that
+$$
+-a_+\le \ddot x(t)\le -a_-
+\qquad
+\text{for }0\le t\le t_{\mathrm{cross}}.
+$$
+Define the quadratic comparison roots
+$$
+\tau_\pm
+\equiv
+\frac{\sqrt{u_0^2+2a_\pm x_\ast}-u_0}{a_\pm}.
+$$
+Then the crossing time satisfies
+$$
+\tau_+\le t_{\mathrm{cross}}\le \tau_-,
+$$
+and the crossing speed obeys
+$$
+u_0+a_-\tau_+
+\le
+-\dot x(t_{\mathrm{cross}})
+\le
+u_0+a_+\tau_-.
+$$
+
+In particular, if the class constants satisfy
+$$
+V_{\min}\le u_0+a_-\tau_+,
+\qquad
+u_0+a_+\tau_-\le V_{\max},
+$$
+then the crossing lands in the Goldilocks speed window
+$$
+V_{\min}\le -\dot x(t_{\mathrm{cross}})\le V_{\max}.
+$$
+
+Proof.
+Integrating the two-sided acceleration bound gives
+$$
+-u_0-a_+t
+\le
+\dot x(t)
+\le
+-u_0-a_-t.
+$$
+Integrating again yields the quadratic comparison bounds
+$$
+x_\ast-u_0 t-\frac{a_+}{2}t^2
+\le
+x(t)
+\le
+x_\ast-u_0 t-\frac{a_-}{2}t^2.
+$$
+
+Let
+$$
+q_\pm(t)\equiv x_\ast-u_0 t-\frac{a_\pm}{2}t^2.
+$$
+Each $q_\pm$ has a unique positive root, namely
+$$
+\tau_\pm
+=
+\frac{\sqrt{u_0^2+2a_\pm x_\ast}-u_0}{a_\pm}.
+$$
+Because
+$$
+x(t)\le q_-(t),
+$$
+the crossing must occur no later than the first time the upper comparison reaches zero:
+$$
+t_{\mathrm{cross}}\le \tau_-.
+$$
+Likewise,
+$$
+x(t)\ge q_+(t),
+$$
+so the trajectory cannot cross before the lower comparison reaches zero:
+$$
+t_{\mathrm{cross}}\ge \tau_+.
+$$
+Hence
+$$
+\tau_+\le t_{\mathrm{cross}}\le \tau_-.
+$$
+
+Evaluating the velocity bounds at the crossing time gives
+$$
+-\dot x(t_{\mathrm{cross}})
+\ge
+u_0+a_- t_{\mathrm{cross}}
+\ge
+u_0+a_-\tau_+,
+$$
+and
+$$
+-\dot x(t_{\mathrm{cross}})
+\le
+u_0+a_+ t_{\mathrm{cross}}
+\le
+u_0+a_+\tau_-.
+$$
+This proves the claimed crossing-speed bracket.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
