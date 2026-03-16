@@ -4217,11 +4217,17 @@ Once the local post-crossing theorem has produced a turning point, the remaining
 >    $$
 >    t_{\mathrm{turn}},
 >    $$
->    crosses the center a second time, and reaches the section
+>    crosses the center a second time, reaches the reflected section state
+>    $$
+>    x=x_\ast,
+>    \qquad
+>    \dot x>0,
+>    $$
+>    on the right exterior branch, and after one further outer turn returns to the section
 >    $$
 >    x=x_\ast
 >    $$
->    again as an inbound branch;
+>    as an inbound branch;
 > 2. **bounded excursion on the return half:**
 >    $$
 >    0\le x(t)\le X_{\max}
@@ -4271,21 +4277,30 @@ The intended proof order for the return half is:
    Show that after the turning time the net delayed force drives the trajectory back toward the origin strongly enough to prevent outward re-escape.
 2. **Second-crossing lemma.**
    Prove that the trajectory crosses the origin a second time in finite time after the turn.
-3. **Section-return lemma.**
+3. **Reflected-section lemma.**
    Show that after the second crossing, the trajectory reaches
    $$
    x=x_\ast
    $$
+   on the right exterior branch with
+   $$
+   \dot x>0.
+   $$
+4. **Outer-turn closure lemma.**
+   Show that after one further outer turn on the right branch, the trajectory returns to
+   $$
+   x=x_\ast
+   $$
    again on an inbound branch.
-4. **Return-speed bound.**
+5. **Return-speed bound.**
    Estimate the inbound speed at the section and show
    $$
    -\dot x(T(\psi))\le U_{\max}.
    $$
-5. **Returned-history tameness.**
+6. **Returned-history tameness.**
    Prove that the translated return segment inherits the tame acceleration, Jacobian, and branch-count bounds.
 
-The first and fourth items are the real analytic bottlenecks on the return half. The middle two are reachability statements once the sign of the post-turn drive is controlled.
+The first, fourth, and fifth items are the real analytic bottlenecks on the return half. The middle two are reachability statements once the sign of the post-turn drive is controlled.
 
 **Lemma 14: Post-turn inward-drive lemma.**
 Let
@@ -4446,6 +4461,466 @@ $$
 \rho\!\big(t_{\mathrm{cross}}^{(2)}\big)=0.
 $$
 This proves the lemma.
+
+**Lemma 16: Return to the reflected section state after the second crossing.**
+Assume the hypotheses of Lemma 15 and let
+$$
+t_{\mathrm{cross}}^{(2)}
+$$
+denote the second origin crossing. Assume, in addition, that there exists a post-second-crossing window
+$$
+[t_{\mathrm{cross}}^{(2)},\,t_{\mathrm{cross}}^{(2)}+\tau_{\ast}]
+$$
+on which:
+
+- the trajectory lies on the right exterior branch,
+  $$
+  x(t)\ge 0,
+  $$
+- the motion is outward,
+  $$
+  \dot x(t)\ge v_{\ast}>0,
+  $$
+- and the position remains bounded above by the global excursion envelope,
+  $$
+  x(t)\le X_{\max}.
+  $$
+
+If
+$$
+\tau_{\ast}\ge \frac{x_\ast}{v_{\ast}},
+$$
+then there exists a first time
+$$
+t_{\ast}
+\in
+\left[
+t_{\mathrm{cross}}^{(2)},
+\,
+t_{\mathrm{cross}}^{(2)}+\frac{x_\ast}{v_{\ast}}
+\right]
+$$
+such that
+$$
+x(t_{\ast})=x_\ast,
+\qquad
+\dot x(t_{\ast})\ge v_{\ast}>0.
+$$
+
+Equivalently, by reflection symmetry of the two-body state, the trajectory has returned to the reflected section state corresponding to the inbound section at radius
+$$
+x_\ast.
+$$
+
+Proof.
+For
+$$
+t\in[t_{\mathrm{cross}}^{(2)},\,t_{\mathrm{cross}}^{(2)}+\tau_{\ast}],
+$$
+the lower speed bound gives
+$$
+x(t)
+=
+x(t_{\mathrm{cross}}^{(2)})
++
+\int_{t_{\mathrm{cross}}^{(2)}}^{t}\dot x(s)\,ds
+\ge
+v_{\ast}(t-t_{\mathrm{cross}}^{(2)}),
+$$
+because
+$$
+x(t_{\mathrm{cross}}^{(2)})=0.
+$$
+Hence
+$$
+x(t)\ge x_\ast
+$$
+whenever
+$$
+t-t_{\mathrm{cross}}^{(2)}\ge \frac{x_\ast}{v_{\ast}}.
+$$
+Since
+$$
+\tau_{\ast}\ge \frac{x_\ast}{v_{\ast}},
+$$
+the trajectory reaches radius
+$$
+x_\ast
+$$
+within the stated window. Continuity of
+$$
+x
+$$
+then gives a first time
+$$
+t_\ast
+\in
+\left[
+t_{\mathrm{cross}}^{(2)},
+\,
+t_{\mathrm{cross}}^{(2)}+\frac{x_\ast}{v_{\ast}}
+\right]
+$$
+such that
+$$
+x(t_\ast)=x_\ast.
+$$
+The outward speed bound on the window implies
+$$
+\dot x(t_\ast)\ge v_\ast>0.
+$$
+Thus the trajectory reaches the reflected section state in finite time.
+
+For the full return-map program this is the natural intermediate object: literal signed return to
+$$
+x=x_\ast
+$$
+with
+$$
+\dot x<0
+$$
+requires one further outer-turn control step, whereas return to the reflected section state is the immediate consequence of the second crossing plus outward continuation on the right branch.
+
+**Lemma 17: Outer-turn closure from the reflected section state.**
+Assume the hypotheses of Lemma 16 and let
+$$
+t_\ast
+$$
+denote the reflected-section time, so that
+$$
+x(t_\ast)=x_\ast,
+\qquad
+\dot x(t_\ast)\ge v_\ast>0.
+$$
+Assume, in addition, that there exists a later outer turning time
+$$
+t_{\mathrm{turn}}^{\mathrm{out}}
+>
+t_\ast
+$$
+with
+$$
+x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}}\ge x_\ast,
+\qquad
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0,
+$$
+and a post-turn window
+$$
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}},
+\,
+t_{\mathrm{turn}}^{\mathrm{out}}+\tau_{\mathrm{in}}
+\right]
+$$
+on which
+$$
+\ddot x(t)\le -a_{\mathrm{in}}^{\mathrm{out}}<0.
+$$
+If
+$$
+\tau_{\mathrm{in}}
+\ge
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}},
+$$
+then there exists a first return time
+$$
+T(\psi)
+\in
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}},
+\,
+t_{\mathrm{turn}}^{\mathrm{out}}+
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
+\right]
+$$
+such that
+$$
+x(T(\psi))=x_\ast,
+\qquad
+\dot x(T(\psi))<0.
+$$
+
+Proof.
+Integrating the acceleration bound from the outer turning time gives
+$$
+\dot x(t)
+=
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)
++
+\int_{t_{\mathrm{turn}}^{\mathrm{out}}}^{t}\ddot x(s)\,ds
+\le
+-a_{\mathrm{in}}^{\mathrm{out}}(t-t_{\mathrm{turn}}^{\mathrm{out}})
+$$
+for
+$$
+t\in
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}},
+\,
+t_{\mathrm{turn}}^{\mathrm{out}}+\tau_{\mathrm{in}}
+\right],
+$$
+because
+$$
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0.
+$$
+Hence
+$$
+\dot x(t)<0
+$$
+for all
+$$
+t>t_{\mathrm{turn}}^{\mathrm{out}}
+$$
+in the window, so the trajectory moves strictly inward on the right branch after the outer turn.
+
+Integrating once more yields
+$$
+x(t)
+\le
+X_{\mathrm{out}}
+-
+\frac{a_{\mathrm{in}}^{\mathrm{out}}}{2}
+\big(t-t_{\mathrm{turn}}^{\mathrm{out}}\big)^2.
+$$
+Therefore
+$$
+x(t)\le x_\ast
+$$
+whenever
+$$
+t-t_{\mathrm{turn}}^{\mathrm{out}}
+\ge
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}.
+$$
+By the assumed lower bound on
+$$
+\tau_{\mathrm{in}},
+$$
+the comparison reaches
+$$
+x_\ast
+$$
+before the end of the window. Since
+$$
+x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}}\ge x_\ast
+$$
+and
+$$
+x
+$$
+is continuous, there exists a first time
+$$
+T(\psi)
+\in
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}},
+\,
+t_{\mathrm{turn}}^{\mathrm{out}}+
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
+\right]
+$$
+for which
+$$
+x(T(\psi))=x_\ast.
+$$
+The strict inward velocity bound implies
+$$
+\dot x(T(\psi))<0.
+$$
+Thus the trajectory returns to the inbound section in finite time.
+
+**Lemma 18: Inbound section-speed bound after the outer turn.**
+Assume the hypotheses of Lemma 17 and, in addition, that on the post-turn window
+$$
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}},
+\,
+T(\psi)
+\right]
+$$
+the acceleration satisfies the two-sided bound
+$$
+-a_{+}^{\mathrm{out}}
+\le
+\ddot x(t)
+\le
+-a_{-}^{\mathrm{out}}
+<
+0,
+\qquad
+0<a_{-}^{\mathrm{out}}\le a_{+}^{\mathrm{out}}.
+$$
+Then the inbound section speed satisfies
+$$
+0<
+-\dot x(T(\psi))
+\le
+a_{+}^{\mathrm{out}}
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{-}^{\mathrm{out}}}}.
+$$
+In particular, a sufficient condition for the tame return-speed bound is
+$$
+a_{+}^{\mathrm{out}}
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{-}^{\mathrm{out}}}}
+\le
+U_{\max}.
+$$
+
+Proof.
+Integrating the upper acceleration bound from the outer turning time to the inbound section return gives
+$$
+\dot x(T(\psi))
+=
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)
++
+\int_{t_{\mathrm{turn}}^{\mathrm{out}}}^{T(\psi)}\ddot x(s)\,ds
+\ge
+-a_{+}^{\mathrm{out}}
+\big(T(\psi)-t_{\mathrm{turn}}^{\mathrm{out}}\big),
+$$
+because
+$$
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0.
+$$
+Since Lemma 17 already gives
+$$
+\dot x(T(\psi))<0,
+$$
+this implies
+$$
+0<
+-\dot x(T(\psi))
+\le
+a_{+}^{\mathrm{out}}
+\big(T(\psi)-t_{\mathrm{turn}}^{\mathrm{out}}\big).
+$$
+
+It remains to bound the elapsed time. By the lower acceleration floor,
+$$
+x(t)
+\le
+X_{\mathrm{out}}
+-
+\frac{a_{-}^{\mathrm{out}}}{2}
+\big(t-t_{\mathrm{turn}}^{\mathrm{out}}\big)^2
+$$
+on
+$$
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}},
+\,
+T(\psi)
+\right].
+$$
+Evaluating at
+$$
+t=T(\psi)
+$$
+and using
+$$
+x(T(\psi))=x_\ast
+$$
+yields
+$$
+T(\psi)-t_{\mathrm{turn}}^{\mathrm{out}}
+\le
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{-}^{\mathrm{out}}}}.
+$$
+Substituting this into the previous speed bound proves
+$$
+0<
+-\dot x(T(\psi))
+\le
+a_{+}^{\mathrm{out}}
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{-}^{\mathrm{out}}}}.
+$$
+The stated sufficient condition for
+$$
+-\dot x(T(\psi))\le U_{\max}
+$$
+is immediate.
+
+**Lemma 19: Returned-history tameness from final-window bounds.**
+Let
+$$
+T(\psi)
+$$
+be an inbound section return time produced by Lemma 17, and define the translated return history
+$$
+x_{T(\psi)}(\theta)=x\!\big(T(\psi)+\theta\big),
+\qquad
+\theta\in[-h,0].
+$$
+Assume that on the final window
+$$
+[T(\psi)-h,\,T(\psi)]
+$$
+the trajectory satisfies:
+
+- the section anchoring and sign conditions
+  $$
+  x(T(\psi))=x_\ast,
+  \qquad
+  \dot x(T(\psi))<0,
+  $$
+- the envelope bounds
+  $$
+  0\le x(t)\le X_{\max},
+  \qquad
+  |\dot x(t)|\le U_{\max},
+  \qquad
+  |\ddot x(t)|\le A_{\max},
+  $$
+- and the same Jacobian and active-root count bounds that define the tame return class.
+
+Then
+$$
+x_{T(\psi)}
+$$
+lies in the tame return envelope. In particular, if those final-window bounds are exactly the defining bounds of
+$$
+\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta},
+$$
+then
+$$
+P_\eta(\psi)=x_{T(\psi)}\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}.
+$$
+
+Proof.
+For
+$$
+\theta\in[-h,0],
+$$
+the translated history satisfies
+$$
+x_{T(\psi)}(\theta)=x\!\big(T(\psi)+\theta\big),
+$$
+so every point of the history segment is sampled from the final window
+$$
+[T(\psi)-h,\,T(\psi)].
+$$
+Therefore the pointwise bounds on
+$$
+x,\qquad \dot x,\qquad \ddot x
+$$
+transfer directly to
+$$
+x_{T(\psi)},\qquad \dot x_{T(\psi)},\qquad \ddot x_{T(\psi)}.
+$$
+The section anchoring conditions at
+$$
+\theta=0
+$$
+follow from
+$$
+x(T(\psi))=x_\ast,
+\qquad
+\dot x(T(\psi))<0.
+$$
+Likewise, because the Jacobian and active-root count bounds are assumed uniformly on the same final window, they transfer directly to the translated segment.
+
+Hence the translated history satisfies the defining bounds of the tame return class, which proves the lemma.
 
 ### Equal-amplitude cycling
 
