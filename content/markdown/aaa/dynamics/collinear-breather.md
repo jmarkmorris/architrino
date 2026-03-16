@@ -954,7 +954,142 @@ The stronger theorem target suggested by the sorting map is not merely bounded s
 > $$
 > the trajectory must experience radial recapture by time $\tau_{\mathrm{env}}$.
 
-This is the theorem-scale target closest to the corrected geometric analysis. It packages the local sorting argument, the bounded self-drive lemma, and the partner-dominance margin into one initial-window recapture statement, but it does so in the dual-regularized setting where the origin-crossing amplitude remains finite.
+This is the theorem-scale target closest to the corrected geometric analysis. It packages the local sorting argument, the bounded self-drive lemma, and the partner-dominance margin into one initial-window recapture statement, but it does so in the dual-mollified setting where the origin-crossing amplitude remains finite.
+
+### Hypotheses unpacked
+
+The current theorem target is intended as a **local-in-time recapture theorem** on an initial post-crossing window. Its hypotheses can be organized as follows.
+
+**(H1) Origin-crossing data.**
+$$
+\phi(0)=0,
+\qquad
+\dot\phi(0)=-V_0,
+\qquad
+V_0>c_f.
+$$
+
+**(H2) Sorting-map phase picture on the stored past.**
+For the history sorting map
+$$
+w(\theta)=\phi(\theta)+c_f\theta,
+\qquad
+\theta\in[-h,0],
+$$
+there exist times
+$$
+t_{\mathrm{zero}}<t_{\mathrm{hinge}}<0
+$$
+such that
+$$
+w(t_{\mathrm{zero}})=0,
+\qquad
+\dot\phi(t_{\mathrm{hinge}})=-c_f,
+$$
+and
+$$
+w(\theta)>\delta_w>0
+\qquad
+\text{for }\theta\in(t_{\mathrm{zero}},0).
+$$
+
+**(H3) Past transversality on the sub-field-speed source region.**
+There exists $\nu>0$ such that
+$$
+\dot\phi(\theta)\ge -c_f+\nu
+\qquad
+\text{for }\theta\in[-h,t_{\mathrm{zero}}].
+$$
+
+**(H4) Shell-mollifier separation from the hinge.**
+The shell mollifier width is small compared with the sorting-map gap:
+$$
+\eta<\frac{c_f\delta_w}{2}.
+$$
+
+**(H5) Goldilocks crossing-speed / core-mollifier regime.**
+There exists a time window $[0,\tau_{\mathrm{env}}]$ such that
+$$
+V_0<
+\int_0^{\tau_{\mathrm{env}}}
+\Big(
+\underline A_p^{\rho}(s;\phi,V_0,\epsilon_c)
+-
+\overline A_s^{\rho}(\phi,\nu)
+\Big)\,ds.
+$$
+
+### Lemma ladder
+
+The theorem target naturally breaks into four lemmas.
+
+**Lemma 1: Short-time continuation and sorting-map monotonicity.**
+Prove that there exists $\tau_1>0$ such that
+$$
+\dot x(t)\le -c_f
+\qquad
+\text{for }0\le t\le \tau_1,
+$$
+so that
+$$
+\dot w(t)\le 0
+\qquad
+\text{and hence}
+\qquad
+w(t)<0
+$$
+on the initial post-crossing window.
+
+**Lemma 2: Caustic isolation and uniform self-drive bound.**
+Use (H2)-(H4) to show that every active self root on the initial window satisfies
+$$
+t_s\le t_{\mathrm{zero}}-\gamma(\eta),
+$$
+for some positive gap $\gamma(\eta)$, and therefore
+$$
+A_s^{\rho}(t)\le \overline A_s^{\rho}.
+$$
+
+**Lemma 3: Partner-root linearization and lower bound.**
+Use the linearized partner root
+$$
+t_p
+=
+-\left(\frac{V_0-c_f}{V_0+c_f}\right)t
+$$
+to derive the partner-distance bound
+$$
+r_p(t)\le
+\left(\frac{2c_fV_0}{V_0+c_f}\right)t+\mathcal{O}(t^2),
+$$
+and hence a lower bound on the core-mollified partner attraction
+$$
+A_p^{\rho}(t)\ge \underline A_p^{\rho}(t).
+$$
+
+**Lemma 4: Recapture integration.**
+Show that the function
+$$
+f(t)
+\equiv
+V_0-
+\int_0^t
+\Big(
+\underline A_p^{\rho}(s)-\overline A_s^{\rho}
+\Big)\,ds
+$$
+has a zero on the initial window under (H5), and conclude that the true radial speed must vanish there.
+
+### Bottleneck and proof order
+
+The genuine bottleneck is **Lemma 4 together with (H5)**. The sorting-map and caustic-isolation pieces are structural consequences of the delayed geometry; the difficult question is whether the constants can be arranged so that the integrated partner impulse actually beats the crossing speed on a nonempty class of histories.
+
+The recommended proof order is:
+
+1. prove Lemma 1 and Lemma 2 first, to lock down the delayed geometry and self-drive bound,
+2. prove Lemma 3 next, to extract the explicit partner lower bound,
+3. then prove Lemma 4 as the recapture step,
+4. and only after that use the local recapture theorem as input toward a proof that $Q_\eta$ is well defined on a nontrivial class.
 
 ### Envelope-level sufficient condition
 
@@ -1126,9 +1261,11 @@ Several issues still need to stay explicit while pushing the 1D proof program fo
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
+- **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced note, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
 - **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
 - **Compactness is conditional.** The added acceleration bound is the right first step toward precompactness in $C^1$, but a later fixed-point theorem will still need the exact topology and continuity properties of the return map to be verified rather than assumed.
+- **Continuity through the crossing.** The theorem uses a history class in which velocity is continuous through $t=0$, but the dual-mollified acceleration can still develop a very sharp gradient near the origin. Any Banach-space formulation must therefore keep enough control on $\ddot\phi$ near the boundary of the history interval that the delayed integrals remain well behaved at the crossing.
 
 ## Conjectured Breather Statement
 
