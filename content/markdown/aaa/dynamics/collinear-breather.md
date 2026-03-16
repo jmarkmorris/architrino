@@ -5818,6 +5818,113 @@ $$
 $$
 which proves the corollary.
 
+**Lemma 29: Final sub-field-speed window before the outer turn.**
+Assume there exists a pre-turn apocenter window
+$$
+[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}]
+$$
+on which:
+
+- the branch remains outbound until the first outer turn,
+  $$
+  0\le \dot x(t),
+  $$
+- the turning condition holds at the endpoint,
+  $$
+  \dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0,
+  $$
+- and the acceleration admits a class-uniform lower bound
+  $$
+  \ddot x(t)\ge -a_{+,\mathrm{pre}}^{\mathrm{out}}
+  \qquad
+  \text{for }
+  t\in[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}].
+  $$
+
+Fix any
+$$
+0<\sigma_{\mathrm{out}}<c_f.
+$$
+If
+$$
+\tau_{\mathrm{apo}}^{\mathrm{pre}}
+\ge
+\frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}},
+$$
+then the final subwindow
+$$
+I_{\mathrm{sub}}
+\equiv
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}}
+-
+\frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}},
+\,
+t_{\mathrm{turn}}^{\mathrm{out}}
+\right]
+$$
+lies inside the pre-turn window and satisfies the strict sub-field-speed bound
+$$
+0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}
+\qquad
+\text{for every }t\in I_{\mathrm{sub}}.
+$$
+
+Proof.
+Fix
+$$
+t\in
+[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}].
+$$
+Integrating the acceleration lower bound from
+$$
+t
+$$
+to the turning time gives
+$$
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)-\dot x(t)
+=
+\int_t^{t_{\mathrm{turn}}^{\mathrm{out}}}\ddot x(s)\,ds
+\ge
+-a_{+,\mathrm{pre}}^{\mathrm{out}}
+\big(t_{\mathrm{turn}}^{\mathrm{out}}-t\big).
+$$
+Using
+$$
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0
+$$
+yields
+$$
+\dot x(t)\le
+a_{+,\mathrm{pre}}^{\mathrm{out}}
+\big(t_{\mathrm{turn}}^{\mathrm{out}}-t\big).
+$$
+Hence, whenever
+$$
+t_{\mathrm{turn}}^{\mathrm{out}}-t
+\le
+\frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}},
+$$
+one obtains
+$$
+\dot x(t)\le c_f-\sigma_{\mathrm{out}}.
+$$
+By the assumed size of the pre-turn window, the entire interval
+$$
+I_{\mathrm{sub}}
+$$
+lies inside
+$$
+[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}],
+$$
+and the outbound sign assumption gives
+$$
+0\le \dot x(t)
+$$
+there. This proves the lemma.
+
+In particular, Lemma 29 supplies the geometric hypothesis needed to apply Lemmas 26 and 27, and therefore to activate Corollary 28 on a final pre-turn apocenter window.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
