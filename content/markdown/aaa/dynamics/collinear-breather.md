@@ -5572,6 +5572,76 @@ z,
 $$
 which proves the lemma.
 
+**Lemma 26: Exact same-side self-root exclusion on a strictly sub-field-speed outer window.**
+Assume there exists an outer-branch window
+$$
+[t_a,t_b]\subseteq [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+$$
+on which the outbound speed stays strictly below field speed:
+$$
+0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}
+<c_f
+\qquad
+\text{for }t\in[t_a,t_b]
+$$
+with some
+$$
+\sigma_{\mathrm{out}}>0.
+$$
+Then the outer sorting map
+$$
+z(t)=x(t)-c_f t
+$$
+is strictly decreasing on that window. Consequently, there are no exact same-side self roots
+$$
+t_s<t
+$$
+with both
+$$
+t_s,t\in[t_a,t_b]
+$$
+and
+$$
+x(t)-x(t_s)=c_f(t-t_s).
+$$
+
+Proof.
+On the stated window one has
+$$
+\dot z(t)=\dot x(t)-c_f\le -\sigma_{\mathrm{out}}<0,
+$$
+so
+$$
+z
+$$
+is strictly decreasing on
+$$
+[t_a,t_b].
+$$
+If there existed an exact same-side self root pair
+$$
+t_s<t
+$$
+with both times in that window, Lemma 25 would give
+$$
+z(t_s)=z(t).
+$$
+But strict monotonicity of
+$$
+z
+$$
+implies
+$$
+z(t_s)>z(t)
+$$
+whenever
+$$
+t_s<t,
+$$
+which is impossible. Therefore no such exact same-side self root exists on the strictly sub-field-speed outer window.
+
+This shows that on a strictly sub-field-speed apocenter window the exact delayed self geometry is maximally favorable: same-side outer self roots are absent. The remaining issue for the dual-mollified model is then not exact root multiplicity, but control of the shell-smeared near-diagonal contribution.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
