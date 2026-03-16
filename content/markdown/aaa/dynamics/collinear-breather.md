@@ -2639,6 +2639,96 @@ For a first Schauder-style theorem, the safer route is:
 - prove that the return map lands inside that convex envelope,
 - and recover sharper lower bounds later for the resulting fixed point or invariant subset.
 
+### First convex invariant-envelope candidate
+
+Motivated by that caution, define the first global candidate set using only affine and supremum-type upper bounds. Fix constants
+$$
+x_\ast\in(0,X_{\max}),
+\qquad
+U_{\max}>0,
+\qquad
+A_{\max}>0,
+\qquad
+h>0,
+$$
+and consider the subset
+$$
+\mathcal{C}_{x_\ast,\eta}
+\subset
+\Sigma^-_{x_\ast,\eta}
+$$
+consisting of histories $\phi\in C^1([-h,0])$ such that:
+
+- section anchoring:
+  $$
+  \phi(0)=x_\ast,
+  $$
+- inbound sign at the section:
+  $$
+  \dot\phi(0)\le 0,
+  $$
+- upper position envelope:
+  $$
+  0\le \phi(\theta)\le X_{\max}
+  \qquad
+  \text{for }\theta\in[-h,0],
+  $$
+- uniform speed bound:
+  $$
+  |\dot\phi(\theta)|\le U_{\max}
+  \qquad
+  \text{for }\theta\in[-h,0],
+  $$
+- uniform acceleration bound:
+  $$
+  |\ddot\phi(\theta)|\le A_{\max}
+  \qquad
+  \text{for }\theta\in[-h,0],
+  $$
+- and memory closure:
+  $$
+  \tau_{\max}(\phi)\le h.
+  $$
+
+This set is closed in the $C^1$ topology, and the bounds above are convex under affine interpolation of histories. In particular, one does not impose:
+
+- a minimum inbound speed,
+- a minimum return time,
+- or a minimum excursion amplitude.
+
+Those are precisely the types of lower bounds that can puncture convexity and should therefore be postponed until after a first invariant-set theorem is available.
+
+The corresponding global target is then:
+
+> **Target Proposition (Convex Invariant Envelope).**
+> There exist class parameters
+> $$
+> X_{\max},
+> \qquad
+> U_{\max},
+> \qquad
+> A_{\max},
+> \qquad
+> h
+> $$
+> and a tame inbound subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that:
+> 1. the return map $P_\eta$ is well defined on $\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}$,
+> 2. the continuity proposition above applies on that class,
+> 3. and
+>    $$
+>    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+>    \subseteq
+>    \mathcal{C}_{x_\ast,\eta}.
+>    $$
+
+If this target can be proved and the image is precompact in $C^1([-h,0])$, then the fixed-point program reduces to standard topological machinery on a closed convex envelope rather than on a heavily punctured section set.
+
 So the immediate global target is not yet "stable breather with fixed amplitude," but rather:
 
 - a well-defined return map on a nonempty class,
