@@ -946,15 +946,25 @@ The corrected 1D theorem target is a **local origin-crossing recapture theorem**
 > $$
 > w(t)<0,
 > \qquad
-> t_s<t_{\mathrm{zero}}
-> \text{ for every active self root,}
-> \qquad
 > A_s^{\rho}(t)\le \overline A_s^{\rho},
 > $$
 > and the radial acceleration satisfies
 > $$
 > \ddot\rho(t)\le -A_p^{\rho}(t)+A_s^{\rho}(t).
 > $$
+> On the delayed subwindow
+> $$
+> [\tau_{\mathrm{sep}},\tau_{\mathrm{env}}],
+> \qquad
+> \sigma\equiv \frac{V_0-c_f}{2},
+> \qquad
+> \tau_{\mathrm{sep}}\equiv \frac{2\eta}{\sigma},
+> $$
+> every active self root satisfies
+> $$
+> t_s\le t_{\mathrm{zero}}-\gamma(\eta),
+> $$
+> so the caustic is separated from the active self branches there.
 > If the resulting impulse margin obeys
 > $$
 > V_0<
@@ -1007,9 +1017,20 @@ w(t_{\mathrm{zero}})=0,
 $$
 and
 $$
-w(\theta)>\delta_w>0
+w(\theta)>0
 \qquad
 \text{for }\theta\in(t_{\mathrm{zero}},0).
+$$
+For any fixed interior margin
+$$
+0<\gamma_w<\min\{t_{\mathrm{hinge}}-t_{\mathrm{zero}},-t_{\mathrm{hinge}}\},
+$$
+continuity then gives the compact-subinterval gap
+$$
+\delta_w
+\equiv
+\min_{\theta\in[t_{\mathrm{zero}}+\gamma_w,-\gamma_w]} w(\theta)
+>0.
 $$
 
 **(H3) Past transversality on the sub-field-speed source region.**
@@ -1020,10 +1041,10 @@ $$
 \text{for }\theta\in[-h,t_{\mathrm{zero}}].
 $$
 
-**(H4) Shell-mollifier separation from the hinge.**
-The shell mollifier width is small compared with the sorting-map gap:
+**(H4) Shell-mollifier separation from the interior sorting gap.**
+For the compact-subinterval gap chosen in (H2), the shell mollifier width is small enough that its support cannot bridge from the negative post-crossing values of $w(t)$ into the positive interior sorting hump:
 $$
-\eta<\frac{c_f\delta_w}{2}.
+\eta<\frac{\delta_w}{2}.
 $$
 
 **(H5) Goldilocks crossing-speed / core-mollifier regime.**
@@ -1048,6 +1069,8 @@ and replaces the integral inequality by explicit algebraic bounds on $(\eta,\eps
 To make those local constants concrete, fix positive class parameters
 $$
 c_f<V_{\min}\le V_{\max},
+\qquad
+\gamma_w,
 \qquad
 \delta_{w,\min},
 \qquad
@@ -1078,7 +1101,7 @@ denote the class of signed crossing histories $\phi$ satisfying:
   $$
   V_{\min}\le V_0(\phi)\le V_{\max},
   \qquad
-  \delta_w(\phi)\ge \delta_{w,\min},
+  \delta_w(\phi;\gamma_w)\ge \delta_{w,\min},
   \qquad
   \nu(\phi)\ge \nu,
   $$
@@ -1108,15 +1131,19 @@ denote the class of signed crossing histories $\phi$ satisfying:
   \qquad
   \text{for }0\le t\le \tau_{\mathrm{tube}},
   $$
+  every active self root on that window obeys
+  $$
+  |J_s(t;t_s)|\ge \frac{\nu}{c_f},
+  $$
   and has at most
   $$
   N_s^{\max}
   $$
   active self roots on the initial post-crossing window.
 
-The shell width is chosen inside the class-uniform hinge gap:
+The shell width is chosen inside the class-uniform interior sorting gap:
 $$
-\eta<\frac{c_f\delta_{w,\min}}{2}.
+\eta<\frac{\delta_{w,\min}}{2}.
 $$
 
 From these class parameters one may fix the derived constants
@@ -1211,14 +1238,7 @@ w(t)\le -\sigma t<0
 $$
 
 **Lemma 2: Caustic isolation and uniform self-drive bound.**
-Use (H2)-(H4) to show that every active self root on the initial window satisfies
-$$
-t_s\le t_{\mathrm{zero}}-\gamma(\eta),
-$$
-for some positive gap $\gamma(\eta)$, and therefore
-$$
-A_s^{\rho}(t)\le \overline A_s^{\rho}.
-$$
+Use the local tube bounds to obtain a crude self-drive estimate on the full post-crossing window, and then use (H2)-(H4) together with Lemma 1 to show that on a delayed subwindow every active self root lies strictly before $t_{\mathrm{zero}}$ and hence stays away from the caustic hinge.
 
 Working form:
 fix $t\in(0,\tau_1]$ and suppose a self-emission time $t_s<t$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support radius $\eta$, then
@@ -1230,27 +1250,20 @@ $$
 \left|w(t_s)-w(t)\right|\le \eta.
 $$
 
-Because $w(t)\le 0$ on $(0,\tau_1]$ and hypothesis (H2) gives
+On the full initial tube one only assumes the class-wide transversality and branch-count bounds. Therefore
 $$
-w(\theta)>\delta_w>0
+A_s^{\rho}(t)
+\le
+N_s^{\max}\,
+\kappa\epsilon^2\,
+\frac{c_f}{\nu}\,
+\frac{1}{\epsilon_c^2}
+\equiv
+\overline A_s^{\rho}
 \qquad
-\text{for }\theta\in(t_{\mathrm{zero}},0),
+\text{for }0\le t\le \tau_1.
 $$
-hypothesis (H4) prevents any active self root from entering the interval $(t_{\mathrm{zero}},0)$. Thus every active self root satisfies
-$$
-t_s\le t_{\mathrm{zero}}.
-$$
-
-This already yields the basic Jacobian bound from (H3):
-$$
-J_s(t;t_s)
-=
-1+\frac{\dot x(t_s)}{c_f}
-\ge
-\frac{\nu}{c_f}
->
-0.
-$$
+This is the basic bounded self-drive estimate used in the local theorem.
 
 One obtains a stronger separated statement on a slightly delayed subwindow. Define
 $$
@@ -1263,6 +1276,10 @@ $$
 so any active self root satisfies
 $$
 w(t_s)\le -\eta.
+$$
+Hence every active self root on that delayed subwindow satisfies
+$$
+t_s<t_{\mathrm{zero}}.
 $$
 Since on the sub-field-speed source region one has
 $$
@@ -1277,26 +1294,9 @@ t_s\le t_{\mathrm{zero}}-\gamma(\eta),
 \gamma(\eta)\equiv \frac{\eta}{\nu}.
 $$
 
-Thus the caustic is uniformly separated from the active self roots on the delayed subwindow, while the weaker bound $t_s\le t_{\mathrm{zero}}$ already holds on the full initial window.
+Thus the caustic is uniformly separated from the active self roots on the delayed subwindow.
 
-If, in addition, the number of active self roots on the initial window is bounded by
-$$
-N_s^{\max},
-$$
-then the dual-mollified amplitude and the Jacobian lower bound give the working estimate
-$$
-A_s^{\rho}(t)
-\le
-N_s^{\max}\,
-\kappa\epsilon^2\,
-\frac{c_f}{\nu}\,
-\frac{1}{\epsilon_c^2}
-\equiv
-\overline A_s^{\rho}.
-$$
-This is the intended bounded self-drive estimate, conditional on the root-multiplicity control already flagged in the red-flags section.
-
-A sharper geometric version is available on a sufficiently short post-crossing window. Since
+A sharper geometric version is available only on the delayed window where the roots have already entered the sub-field-speed source region. Since
 $$
 w(t_{\mathrm{zero}})=0
 \qquad
@@ -1316,7 +1316,11 @@ Choose a short window $[0,\tau_\rho]$ on which
 $$
 \rho(t)=|x(t)|\le \frac{\rho_{\mathrm{zero}}}{2}.
 $$
-Then every active self root on that window satisfies
+Then every active self root on the delayed geometric window
+$$
+t\in[\tau_{\mathrm{sep}},\min\{\tau_1,\tau_\rho\}]
+$$
+satisfies
 $$
 |x(t)-x(t_s)|
 =
@@ -1335,7 +1339,7 @@ N_s^{\max}\,
 \equiv
 \overline A_{s,\mathrm{geom}}^{\rho},
 $$
-which is independent of the core mollifier $\epsilon_c$. This is the version most useful for evaluating the Goldilocks condition.
+which is independent of the core mollifier $\epsilon_c$. This is the delayed-window version that can sharpen the Goldilocks condition once the short-time window extends beyond $\tau_{\mathrm{sep}}$.
 
 **Lemma 3: Partner-root linearization and lower bound.**
 Use the linearized partner root
@@ -1478,10 +1482,30 @@ V_0<
 \Delta V_p(\tau)-\overline A_s^\rho\,\tau.
 $$
 
-Using the sharper geometric bound from Lemma 2, this becomes
+If, in addition, the chosen window reaches the delayed geometric regime,
+$$
+\tau\ge \tau_{\mathrm{sep}}
+\qquad
+\text{and}
+\qquad
+\tau\le \tau_\rho,
+$$
+then one may split the self-drive loss as
+$$
+\Delta V_s(\tau)
+\le
+\overline A_s^\rho\,\tau_{\mathrm{sep}}
++
+\overline A_{s,\mathrm{geom}}^\rho\,(\tau-\tau_{\mathrm{sep}}),
+$$
+and therefore the sharper sufficient recapture condition becomes
 $$
 V_0<
-\Delta V_p(\tau)-\overline A_{s,\mathrm{geom}}^\rho\,\tau.
+\Delta V_p(\tau)
+-
+\overline A_s^\rho\,\tau_{\mathrm{sep}}
+-
+\overline A_{s,\mathrm{geom}}^\rho\,(\tau-\tau_{\mathrm{sep}}).
 $$
 
 This is the working form of the Goldilocks condition. It makes the bottleneck explicit: one must show that there exist parameters
@@ -1569,7 +1593,7 @@ provided the corresponding roots lie inside the local validity window of Lemmas 
 > $$
 > Assume
 > $$
-> \tau_\epsilon\le \min\{\tau_1,\tau_\rho\},
+> \tau_\epsilon\le \tau_1,
 > \qquad
 > \eta\le \frac{\epsilon_c}{4c_f C_p},
 > \qquad
@@ -1612,13 +1636,18 @@ provided the corresponding roots lie inside the local validity window of Lemmas 
 > +
 > 2\overline A_s^\rho\,\epsilon_c^2.
 > $$
-> Using the geometric self-drive bound from Lemma 2 gives the sharper explicit regime
+> If, in addition,
 > $$
-> \kappa\epsilon^2
-> >
-> 4\beta_pV_0\,\epsilon_c
-> +
-> 2\overline A_{s,\mathrm{geom}}^\rho\,\epsilon_c^2.
+> \tau_{\mathrm{sep}}\le \tau_\epsilon\le \tau_\rho,
+> $$
+> then Lemma 2 yields the delayed-window refinement
+> $$
+> V_0<
+> \frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}
+> -
+> \overline A_s^\rho\,\tau_{\mathrm{sep}}
+> -
+> \overline A_{s,\mathrm{geom}}^\rho\,(\tau_\epsilon-\tau_{\mathrm{sep}}).
 > $$
 
 This proposition is the first genuinely explicit realization of (H5) in the note. It converts the abstract impulse inequality into a concrete dual-mollified parameter regime.
