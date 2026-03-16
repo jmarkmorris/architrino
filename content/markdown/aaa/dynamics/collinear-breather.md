@@ -3124,6 +3124,97 @@ A_p(t)\ge \underline A_p^{\mathrm{in}},
 $$
 which proves the lemma.
 
+**Lemma 6: Finite-time crossing under a net inward acceleration floor.**
+Assume the pre-crossing leg starts from the inbound section
+$$
+x(0)=x_\ast>0,
+\qquad
+\dot x(0)\le 0,
+$$
+and suppose there exists a constant
+$$
+a_{\mathrm{in}}>0
+$$
+such that the full pre-crossing acceleration obeys
+$$
+\ddot x(t)\le -a_{\mathrm{in}}
+\qquad
+\text{for }0\le t\le t_{\mathrm{cross}}.
+$$
+Then the trajectory reaches the origin in finite time, with
+$$
+t_{\mathrm{cross}}
+\le
+\sqrt{\frac{2x_\ast}{a_{\mathrm{in}}}}.
+$$
+
+In particular, a sufficient realization is
+$$
+A_s^{\mathrm{in}}(t)-A_s^{\mathrm{out}}(t)
+\le
+\theta\,\underline A_p^{\mathrm{in}}
+\qquad
+\text{for }0\le t\le t_{\mathrm{cross}},
+$$
+for some
+$$
+0\le \theta<1,
+$$
+since then
+$$
+\ddot x(t)
+=
+-A_p(t)-A_s^{\mathrm{out}}(t)+A_s^{\mathrm{in}}(t)
+\le
+-(1-\theta)\underline A_p^{\mathrm{in}}
+\equiv
+-a_{\mathrm{in}}.
+$$
+
+Proof.
+Integrating the acceleration bound once gives
+$$
+\dot x(t)
+\le
+\dot x(0)-a_{\mathrm{in}}t
+\le
+-a_{\mathrm{in}}t,
+$$
+because
+$$
+\dot x(0)\le 0.
+$$
+Integrating again from
+$$
+x(0)=x_\ast
+$$
+yields
+$$
+x(t)
+\le
+x_\ast+\dot x(0)t-\frac{a_{\mathrm{in}}}{2}t^2
+\le
+x_\ast-\frac{a_{\mathrm{in}}}{2}t^2.
+$$
+Therefore
+$$
+x(t)\le 0
+$$
+whenever
+$$
+t\ge \sqrt{\frac{2x_\ast}{a_{\mathrm{in}}}}.
+$$
+By continuity of the trajectory, there is a first crossing time
+$$
+t_{\mathrm{cross}}\in
+\left(0,\sqrt{\frac{2x_\ast}{a_{\mathrm{in}}}}\right]
+$$
+such that
+$$
+x(t_{\mathrm{cross}})=0.
+$$
+This proves the lemma.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
