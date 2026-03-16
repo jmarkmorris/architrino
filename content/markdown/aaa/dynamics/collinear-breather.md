@@ -439,27 +439,59 @@ Fix:
 - a memory horizon $h$ large enough to contain all active branches on one cycle,
 - and a regularization width $\eta>0$.
 
-Define the outbound and inbound sections
+### Admissible history class
+
+The first theorem target should not be the full section $\Sigma^\pm_{x_\ast,\eta}$, but a controlled subset on which the regularized delayed dynamics and return times are well behaved.
+
+Let
+$$
+\mathcal{K}_{x_\ast,\eta}
+\subset
+\mathcal{H}_h
+$$
+denote an admissible reflection-symmetric history class with the following properties on $\theta\in[-h,0]$:
+
+- section anchoring at $\theta=0$,
+- uniform position bounds
+  $$
+  x_{\min}\le \phi(\theta)\le x_{\max},
+  $$
+- uniform speed bounds
+  $$
+  |\dot\phi(\theta)|\le u_{\max},
+  $$
+- and a transversality bound on every active partner and self root,
+  $$
+  |J_p|\ge \nu,
+  \qquad
+  |J_s|\ge \nu,
+  \qquad
+  \nu>0.
+  $$
+
+The role of $\mathcal{K}_{x_\ast,\eta}$ is simple: it isolates a tame region of history space on which the regularized vector field, root selection, and section crossings can plausibly be controlled. Whether the eventual theorem program allows histories that approach $x=0$ arbitrarily closely is a separate question and should not be conflated with the first well-posedness regime.
+
+Define the outbound and inbound sections within this admissible class:
 $$
 \Sigma^+_{x_\ast,\eta}
 \equiv
 \left\{
-\phi\in\mathcal{H}_h
+ \phi\in\mathcal{K}_{x_\ast,\eta}
 \;\middle|\;
-\phi(0)=x_\ast,\;
-\dot\phi(0)>0,\;
-\phi \text{ lies on the reflection-symmetric admissible class}
+\phi(0)=x_\ast,
+\qquad
+\dot\phi(0)>0
 \right\},
 $$
 $$
 \Sigma^-_{x_\ast,\eta}
 \equiv
 \left\{
-\phi\in\mathcal{H}_h
+ \phi\in\mathcal{K}_{x_\ast,\eta}
 \;\middle|\;
-\phi(0)=x_\ast,\;
-\dot\phi(0)<0,\;
-\phi \text{ lies on the reflection-symmetric admissible class}
+\phi(0)=x_\ast,
+\qquad
+\dot\phi(0)<0
 \right\}.
 $$
 
@@ -489,16 +521,24 @@ P_\eta:\Sigma^-_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta},
 P_\eta(\phi)=x_{T(\phi)}.
 $$
 
-This is the natural reduced object for theorem work. Any scalar “speed-to-speed” map is only a projection of this history-space map.
+This is the natural reduced object for theorem work. The core fixed-point question belongs to $P_\eta$ on a controlled subset of history space, not to any scalar speed map by itself.
 
 ### Projected scalar speed map
 
-The cleanest scalar reduction lives on the outbound section. Assume an admissible one-parameter family of outgoing histories can be indexed by the outbound crossing speed alone:
+The scalar map is useful only after choosing a specific way to inject scalar speed data into the outbound history section.
+
+Assume there is a continuous injection
 $$
-\phi^+_{\eta}(u;x_\ast)\in\Sigma^+_{x_\ast,\eta},
+\iota_\eta(\,\cdot\,;x_\ast):I\to\Sigma^+_{x_\ast,\eta},
 \qquad
-\dot\phi^+_{\eta}(u;x_\ast)(0)=u>0.
+u\mapsto \phi^+_{\eta}(u;x_\ast),
 $$
+from an interval $I\subset(0,\infty)$ of outbound speeds into admissible outbound histories, such that
+$$
+\dot\phi^+_{\eta}(u;x_\ast)(0)=u.
+$$
+
+This injection is extra structure. It is not part of the master equation itself; it is a chosen slice through history space.
 
 Write the corresponding trajectory as $x(t;u,x_\ast,\eta)$ with initial section data
 $$
@@ -516,6 +556,21 @@ R_\eta(u;x_\ast)
 $$
 
 Thus $R_\eta(u;x_\ast)$ is the magnitude of the next inbound speed when the trajectory re-crosses the same section $x=x_\ast$.
+
+Equivalently, if
+$$
+\Pi:\Sigma^-_{x_\ast,\eta}\to(0,\infty),
+\qquad
+\Pi(\phi)\equiv -\dot\phi(0),
+$$
+denotes the inbound speed projection on the section, then
+$$
+R_\eta(\,\cdot\,;x_\ast)
+=
+\Pi\circ Q_\eta\circ \iota_\eta(\,\cdot\,;x_\ast).
+$$
+
+This is the correct status of the scalar map: it is a projection of the history-space excursion map through a chosen one-parameter injection, not an autonomous closure law of the delayed system.
 
 Now introduce the net inward braking density
 $$
@@ -571,14 +626,19 @@ The first identity is the outbound recapture condition on the section. The secon
 
 ### Scalar closure condition
 
-The map $R_\eta$ is only a projection of the exact history-space map $Q_\eta$, but it is the sharpest scalar test of recapture on the fixed section $x=x_\ast$.
+The map $R_\eta$ is only a projection of the exact history-space map $Q_\eta$, but it is the sharpest scalar diagnostic for recapture on the fixed section $x=x_\ast$.
 
 If the admissible family is symmetric enough that outbound and inbound section data are parameterized by the same scalar speed, then a scalar breather candidate satisfies
 $$
 u_\ast = R_\eta(u_\ast;x_\ast).
 $$
 
-More generally, periodic closure belongs to the full history maps $Q_\eta$ and $P_\eta$, not to $R_\eta$ alone. The scalar map is therefore best read as a reduced diagnostic and theorem target for the recapture mechanism rather than as the complete delayed dynamics.
+However, this scalar fixed-point condition does not by itself imply periodic closure. The delayed dynamics only closes when the full history is returned:
+$$
+\phi^\ast = P_\eta(\phi^\ast).
+$$
+
+The scalar map is therefore best read as a reduced diagnostic for recapture and speed balance. The actual theorem program should proceed by finding a closed, bounded, invariant subset of $\Sigma^-_{x_\ast,\eta}$ inside $\mathcal{K}_{x_\ast,\eta}$ and studying $P_\eta$ there.
 
 ## Conjectured Breather Statement
 
