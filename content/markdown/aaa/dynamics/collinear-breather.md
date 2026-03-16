@@ -3533,11 +3533,24 @@ which proves the lemma.
 
 This lemma isolates the exact last handoff in the proof architecture. The collapse phase does not itself prove local recapture; it only has to deliver the trajectory into the admissible crossing subclass where the already-established post-crossing theorem takes over.
 
-### Pre-crossing Jacobian and root-count propagation target
+### Pre-crossing caustic-transit target
 
-The collapse-to-crossing ladder now has its kinematic part in place. The remaining hard issue is delayed geometry: one must prevent the active roots and their Jacobians from becoming singular or proliferating uncontrollably during the inbound acceleration toward the crossing.
+The collapse-to-crossing ladder now has its kinematic part in place. The remaining hard issue is delayed geometry, but it must be framed correctly. Because the inbound speed rises from a sub-field-speed regime to a crossing speed strictly larger than $c_f$, the trajectory must pass through the hinge
+$$
+\dot x=-c_f.
+$$
+At that hinge, the self-hit sorting map necessarily creates a self root, and the corresponding self Jacobian reaches
+$$
+J_s=0
+$$
+at the instant of birth. So the correct theorem target is not global self-root transversality on the whole pre-crossing leg. The correct target is a **controlled caustic transit**:
 
-> **Target Theorem (Pre-crossing Jacobian and Root-Count Propagation).**
+- the partner branch stays safely away from the caustic,
+- the self branch is born at the hinge,
+- the resulting inward impulse remains bounded in the dual-mollified model,
+- and the self Jacobian recovers to a strictly positive lower bound before the origin crossing.
+
+> **Target Theorem (Pre-crossing Caustic Transit and Recovery).**
 > Fix a dual-mollified tame inbound subclass
 > $$
 > \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
@@ -3550,29 +3563,37 @@ The collapse-to-crossing ladder now has its kinematic part in place. The remaini
 > $$
 > satisfies the kinematic hypotheses of Lemmas 5-8. Suppose moreover that there exist class constants
 > $$
-> \nu_{\mathrm{pre}}>0,
+> \nu_p>0,
+> \qquad
+> \nu_s>0,
 > \qquad
 > N_{p,\max}\ge 1,
 > \qquad
-> N_{s,\max}\ge 0,
+> N_{s,\max}\ge 1,
+> \qquad
+> \Delta V_{\mathrm{cau},\max}<\infty,
 > \qquad
 > \delta_{w,\min}>0
 > $$
 > such that on the entire pre-crossing leg:
-> 1. every active partner and self root remains transversal,
+> 1. **partner-root safety:** the active partner branch persists continuously and remains transversal,
 >    $$
->    |J_p|\ge \nu_{\mathrm{pre}},
->    \qquad
->    |J_s|\ge \nu_{\mathrm{pre}},
+>    |J_p|\ge \nu_p;
 >    $$
-> 2. the numbers of active partner and self roots are bounded by
+> 2. **hinge birth of the self branch:** exactly one principal self root is born when
 >    $$
->    N_{p,\max},
->    \qquad
->    N_{s,\max},
+>    \dot x=-c_f,
 >    $$
-> 3. no root creation, root collision, or branch merger occurs before the crossing,
-> 4. and the translated crossing history inherits the required sorting-map gap
+>    and no uncontrolled branch proliferation occurs before the crossing;
+> 3. **bounded caustic impulse:** the dual-mollified inward velocity gain contributed during the self-root birth and immediate caustic transit is bounded by
+>    $$
+>    \Delta V_{\mathrm{cau},\max};
+>    $$
+> 4. **post-hinge Jacobian recovery:** by the time of the origin crossing, the active self branch has receded into the sub-field-speed past strongly enough that
+>    $$
+>    |J_s|\ge \nu_s;
+>    $$
+> 5. **sorting-gap inheritance:** the translated crossing history satisfies
 >    $$
 >    \delta_w(\phi_{\mathrm{cross}};\gamma_w)\ge \delta_{w,\min}.
 >    $$
@@ -3582,29 +3603,38 @@ The collapse-to-crossing ladder now has its kinematic part in place. The remaini
 > \mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}.
 > $$
 
-This is the genuine delayed-geometry bottleneck behind the collapse phase. Lemmas 5-8 reduce the kinematic part of the infall to ordinary differential inequalities; the theorem above is what must prevent the state-dependent delay structure from degenerating while those inequalities are being used.
+This is the genuine delayed-geometry bottleneck behind the collapse phase. Lemmas 5-8 reduce the kinematic part of the infall to ordinary differential inequalities; the theorem above is what must control the compulsory self-root birth and show that it helps the collapse without destroying the Goldilocks crossing window.
 
 ### Pre-crossing propagation ladder
 
 The intended proof order for this delayed-geometry step is:
 
-1. **Partner-root persistence lemma.**
-   Show that the active partner branch persists continuously along the inbound leg and never disappears before the crossing.
-2. **Pre-crossing Jacobian lower-bound lemma.**
-   Prove that no active partner or self branch reaches
+1. **Partner-root safety lemma.**
+   Show that the active partner branch persists continuously along the inbound leg and never reaches a caustic before the crossing.
+2. **Hinge-birth lemma.**
+   Prove that exactly one principal self root is born when the trajectory passes through
    $$
-   J=0
+   \dot x=-c_f.
    $$
-   before the crossing.
-3. **Root-count bound.**
-   Show that the number of active branches on the inbound leg remains bounded by class constants
+3. **Caustic-transit impulse bound.**
+   Show that the dual-mollified self-root birth contributes only a bounded inward velocity kick
+   $$
+   \Delta V_{\mathrm{cau}}\le \Delta V_{\mathrm{cau},\max},
+   $$
+   and therefore does not destroy the Goldilocks crossing-speed upper bound.
+4. **Root-count bound.**
+   Show that the total number of active branches on the inbound leg remains bounded by class constants
    $$
    N_{p,\max},\quad N_{s,\max}.
    $$
-4. **Sorting-gap inheritance.**
-   Prove that the translated crossing history inherits the compact-subinterval sorting gap needed by the local post-crossing theorem.
+5. **Sorting-gap inheritance and Jacobian recovery.**
+   Prove that by the time of the origin crossing the active self root has moved far enough into the sub-field-speed past that
+   $$
+   |J_s|\ge \nu_s,
+   $$
+   and the translated crossing history inherits the compact-subinterval sorting gap needed by the local post-crossing theorem.
 
-The first three items are geometric regularity statements for the delayed root structure. The fourth is the exact handoff needed to pass from the inbound collapse theorem to the local origin-crossing recapture theorem.
+The first item is a partner-branch regularity statement. The second and third items explicitly embrace the self-root caustic instead of assuming it away. The fifth is the exact handoff needed to pass from the inbound collapse theorem to the local origin-crossing recapture theorem.
 
 ### Equal-amplitude cycling
 
