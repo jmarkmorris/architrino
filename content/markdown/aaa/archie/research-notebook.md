@@ -8,6 +8,52 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-03-16: 1D Collinear Breather Scaffold Reaches Fixed-Point Closure
+
+The 1D collinear breather note reached a major threshold today. The document now contains an end-to-end proof scaffold from the dual-mollified delayed equation of motion to a Schauder fixed-point existence target for a periodic breather. In practical terms, the note no longer stops at local kinematics or heuristic turnaround arguments. It now tracks the entire cycle: inbound collapse, origin crossing, post-crossing recapture, outer-turn return, tame-history reentry, invariant-envelope closure, and the final closed convex domain needed for the fixed-point route.
+
+The central technical gain was the conversion of the delayed geometry into explicit 1D comparison layers. The inward leg is now controlled by the collapse-to-crossing ladder and the pre-crossing caustic-transit analysis. The outward leg is controlled by the outer sorting map
+$$
+z(t)=x(t)-c_f t,
+$$
+the deep-past suppression estimates, and the explicit trimmed-apocenter force margins. The note also now contains a seed-history construction
+$$
+\psi_{\mathrm{seed}}(\theta)=x_\ast-u_{\mathrm{seed}}\theta,
+$$
+which closes the previous vacuity gap by showing that the section-side tame neighborhood is nonempty.
+
+An important part of this progress came from repeated AI-assisted audit-and-repair cycles. Several of the hardest structural problems were identified and then turned into clearer theorem targets: the self-root birth at the inbound hinge, the integrable caustic impulse, the distinction between the reflected section state and the literal inbound section return, the deep-past outer self-root suppression mechanism, the outbound-level exclusion via $z$-descent, and finally the topological correction that replaced a domain/codomain mismatch in the Schauder step with a closed convex tame envelope. The result is that [The collinear breather program](../dynamics/collinear-breather.md) now reads as a coherent global blueprint rather than a loose collection of local lemmas.
+
+What remains is no longer broad theorem discovery. The scaffold should now be treated as stable and shifted into consolidation work: compress duplicated target-theorem language, unify notation across the local and global sections, and then decide which theorem layers should be promoted from proof-program statements into final theorem prose first.
+
+Key victories inside this milestone:
+
+- The collapse-to-crossing layer was separated cleanly from the delayed-root geometry, making the inbound Goldilocks crossing window an explicit theorem target.
+- The inbound hinge at $\dot x=-c_f$ was reframed correctly: the self-root caustic is not something to forbid, but something to integrate through with a bounded impulse.
+- The pre-crossing delayed geometry was organized around the sorting map
+  $$
+  w(t)=x(t)+c_f t,
+  $$
+  which made hinge birth, self-root uniqueness, Jacobian recovery, and admissible-crossing preparation explicit.
+- The return half was topologically repaired by distinguishing the reflected section state from the literal inbound section return, which fixed the geometry of the Poincaré map.
+- The outer-turn problem was reduced to the outer sorting map
+  $$
+  z(t)=x(t)-c_f t,
+  $$
+  together with explicit post-hinge descent, rather than being left as a vague delayed-force obstacle.
+- Deep-past outward self-roots on the apocenter window were forced back onto the pre-crossing inbound leg, where they become unique and automatically transversal with $J_s>1$.
+- The invariant-envelope synthesis was decoupled from circular bookkeeping by deriving the dynamical bounds first and only then choosing the larger topological slack constants.
+- The affine seed history
+  $$
+  \psi_{\mathrm{seed}}(\theta)=x_\ast-u_{\mathrm{seed}}\theta
+  $$
+  removed the vacuity risk by giving an explicit nonempty section-side tame neighborhood.
+- The final Schauder-domain mismatch was repaired by introducing a closed convex tame envelope
+  $$
+  \mathcal{K}_{x_\ast,\eta},
+  $$
+  so the fixed-point map now acts on a single matching domain.
+
 ## 2026-03-12: Major LLM Induced Error is Corrected with Bill Thurston (AI)
 
 I discovered that an LLM had guided me incorrectly over the previous 2.5 months. The notes below preserve Thurston's description of the issue and the resulting correction path.

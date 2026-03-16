@@ -1,5 +1,7 @@
 # Project Notes For Agents
 
+- Preferred agent name in this workspace: `Codex`.
+- Preferred title/role reference: `Principal Proof Architect & Integrator`; see `content/_meta/entourage/roles-geometry-dynamics/codex.md`.
 - Math rendering target is `KaTeX` in the web app context.
 - Preserve TeX delimiters and content exactly (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
 - Do not allow markdown emphasis parsing to mutate TeX subscripts/superscripts (for example `_i`, `^2`).
