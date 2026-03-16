@@ -2064,7 +2064,7 @@
     },
     {
       "id": "content/markdown/aaa/dynamics/collinear-breather.md",
-      "name": "1D Collinear Binary (Reduced Model)",
+      "name": "1D Collinear Breather",
       "path": "content/markdown/aaa/dynamics/collinear-breather.md",
       "nodeType": "markdown_doc"
     },
@@ -5467,7 +5467,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/collinear-breather.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/collinear-breather.md",
-      "name": "1D Collinear Binary (Reduced Model)",
+      "name": "1D Collinear Breather",
       "path": "content/markdown/aaa/dynamics/collinear-breather.md",
       "searchTarget": "content/markdown/aaa/dynamics/collinear-breather.md",
       "implicit": false

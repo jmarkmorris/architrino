@@ -894,18 +894,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Conjectured Breather Statement",
+                "title": "Capstone Statement",
                 "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
-                "markdownSection": "Conjectured Breather Statement",
-                "sectionKey": "conjectured breather statement",
+                "markdownSection": "Capstone Statement",
+                "sectionKey": "capstone statement",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Why This Reduced Model Comes First",
+                "title": "Why This Reduced Problem Comes First",
                 "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
-                "markdownSection": "Why This Reduced Model Comes First",
-                "sectionKey": "why this reduced model comes first",
+                "markdownSection": "Why This Reduced Problem Comes First",
+                "sectionKey": "why this reduced problem comes first",
                 "headingLevel": 2
               },
               {
