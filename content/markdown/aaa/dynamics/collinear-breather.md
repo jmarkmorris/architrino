@@ -3933,6 +3933,102 @@ J_s(t;t_s)\to 0^+.
 $$
 So the self branch is born exactly at the hinge and is unique.
 
+**Lemma 12: Bounded caustic-transit impulse in the dual-mollified model.**
+Fix a hinge-centered time window
+$$
+I_{\mathrm{cau}}
+\equiv
+[t_{\mathrm{hinge}}-\tau_{\mathrm{cau}},\,t_{\mathrm{hinge}}+\tau_{\mathrm{cau}}]
+$$
+on which the dual-mollified self interaction is evaluated through the regularized time-integral representation with:
+
+- shell mollifier
+  $$
+  \delta_\eta
+  $$
+  bounded by
+  $$
+  \|\delta_\eta\|_\infty<\infty,
+  $$
+- core mollifier
+  $$
+  \epsilon_c>0,
+  $$
+- and memory horizon
+  $$
+  h>0.
+  $$
+
+Assume the self integral on this window is taken only over the stored history
+$$
+t_0\in[t-h,t].
+$$
+Then the total inward velocity kick contributed by the self branch across the hinge window is finite and obeys the crude bound
+$$
+\Delta V_{\mathrm{cau}}
+\le
+\frac{2\kappa\epsilon^2\,h\,\tau_{\mathrm{cau}}\|\delta_\eta\|_\infty}{\epsilon_c^2}
+\equiv
+\Delta V_{\mathrm{cau},\max}.
+$$
+
+In particular, the self-root birth at
+$$
+J_s=0
+$$
+does not produce an infinite velocity jump in the dual-mollified model.
+
+Proof.
+On the hinge window, evaluate the self contribution in the regularized integral form rather than the branch-sum form. By construction of the dual mollification, the self acceleration satisfies the absolute bound
+$$
+|a_s(t)|
+\le
+\kappa\epsilon^2
+\int_{t-h}^{t}
+\frac{\delta_\eta(\cdots)}{|x(t)-x(t_0)|^2+\epsilon_c^2}\,dt_0.
+$$
+Because
+$$
+|x(t)-x(t_0)|^2+\epsilon_c^2\ge \epsilon_c^2
+$$
+and
+$$
+\delta_\eta(\cdots)\le \|\delta_\eta\|_\infty,
+$$
+one obtains
+$$
+|a_s(t)|
+\le
+\kappa\epsilon^2
+\int_{t-h}^{t}
+\frac{\|\delta_\eta\|_\infty}{\epsilon_c^2}\,dt_0
+=
+\frac{\kappa\epsilon^2\,h\,\|\delta_\eta\|_\infty}{\epsilon_c^2}.
+$$
+Integrating over the hinge window gives
+$$
+\Delta V_{\mathrm{cau}}
+\le
+\int_{I_{\mathrm{cau}}}|a_s(t)|\,dt
+\le
+\frac{\kappa\epsilon^2\,h\,\|\delta_\eta\|_\infty}{\epsilon_c^2}
+\cdot
+|I_{\mathrm{cau}}|.
+$$
+Since
+$$
+|I_{\mathrm{cau}}|=2\tau_{\mathrm{cau}},
+$$
+this yields
+$$
+\Delta V_{\mathrm{cau}}
+\le
+\frac{2\kappa\epsilon^2\,h\,\tau_{\mathrm{cau}}\|\delta_\eta\|_\infty}{\epsilon_c^2}
+\equiv
+\Delta V_{\mathrm{cau},\max}.
+$$
+Thus the caustic transit contributes a finite inward impulse in the dual-mollified model.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
