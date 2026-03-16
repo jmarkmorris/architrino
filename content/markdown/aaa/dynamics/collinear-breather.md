@@ -6211,6 +6211,79 @@ r_s(t;t_s)=c_f(t-t_s)\ge c_f\tau_{\mathrm{deep}},
 $$
 which proves the lemma.
 
+**Lemma 31: Deep-past transversality from a sub-field-speed source region.**
+Assume there exists a source interval
+$$
+I_{\mathrm{src}}^{\mathrm{deep}}\subseteq (-\infty,t_a]
+$$
+on which the emitting velocities satisfy the strict sub-field-speed bound
+$$
+0\le \dot x(\theta)\le c_f-\nu_{\mathrm{deep}}
+<c_f
+\qquad
+\text{for every }\theta\in I_{\mathrm{src}}^{\mathrm{deep}}
+$$
+with some
+$$
+\nu_{\mathrm{deep}}>0.
+$$
+Let
+$$
+t\in I_{\mathrm{deep}}
+$$
+and let
+$$
+t_s\in I_{\mathrm{src}}^{\mathrm{deep}}
+$$
+be a same-side outward-driving self root satisfying
+$$
+z(t_s)=z(t).
+$$
+Then the self Jacobian at the emitting time obeys
+$$
+J_s(t;t_s)=1-\frac{\dot x(t_s)}{c_f}
+\ge
+\frac{\nu_{\mathrm{deep}}}{c_f}>0.
+$$
+
+In particular, on such deep-past roots one may take
+$$
+\nu_{s,\mathrm{deep}}^{\mathrm{out}}=\frac{\nu_{\mathrm{deep}}}{c_f}.
+$$
+
+Proof.
+For a same-side outward-driving self root on the right exterior outbound branch one has
+$$
+x(t)-x(t_s)=c_f(t-t_s),
+\qquad
+x(t)>x(t_s),
+$$
+so the line-of-action sign is
+$$
+\hat r_s(t;t_s)=+1.
+$$
+Therefore the self Jacobian reduces to
+$$
+J_s(t;t_s)=1-\frac{\dot x(t_s)}{c_f}.
+$$
+Because
+$$
+t_s\in I_{\mathrm{src}}^{\mathrm{deep}}
+$$
+and the source interval is strictly sub-field-speed, we have
+$$
+\dot x(t_s)\le c_f-\nu_{\mathrm{deep}}.
+$$
+Substituting gives
+$$
+J_s(t;t_s)
+\ge
+1-\frac{c_f-\nu_{\mathrm{deep}}}{c_f}
+=
+\frac{\nu_{\mathrm{deep}}}{c_f}>0,
+$$
+which proves the lemma.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
