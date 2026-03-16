@@ -871,17 +871,82 @@ $$
 \dot w(t)=\dot x(t)+c_f.
 $$
 
-This produces a natural temporal sorting:
+For the corrected theorem program, the intended phase picture is:
 
-- when $-c_f<\dot x(t)<0$, one has $\dot w(t)>0$,
-- at the hinge $\dot x(t)=-c_f$, one has $\dot w(t)=0$,
-- when $\dot x(t)<-c_f$, one has $\dot w(t)<0$.
+- **early inbound sub-field-speed:** if $-c_f<\dot x(t)<0$, then $\dot w(t)>0$,
+- **caustic hinge:** if $\dot x(t)=-c_f$, then $\dot w(t)=0$,
+- **late inbound super-field-speed:** if $\dot x(t)<-c_f$, then $\dot w(t)<0$,
+- **origin crossing:** in signed coordinates one has $x(0)=0$ and hence
+  $$
+  w(0)=0,
+  $$
+- **initial post-crossing outbound:** if the crossing remains super-field-speed on a short window, then $\dot w(t)<0$ persists and therefore
+  $$
+  w(t)<0
+  \qquad
+  \text{for }0<t\le \tau_{\mathrm{loc}}.
+  $$
 
-The theorem target suggested by this geometry is that immediately after a super-field-speed origin crossing, $w(t)$ remains on the descending side of its graph and therefore selects self roots only from the earlier sub-field-speed inbound regime. If true, those roots stay uniformly away from the caustic hinge and the corresponding Jacobians remain bounded below away from zero. That is the intended mechanism behind the bound
+Let $t_{\mathrm{zero}}<0$ denote the earlier inbound time on the ascending branch for which
+$$
+w(t_{\mathrm{zero}})=0.
+$$
+
+If the initial post-crossing window satisfies $w(t)<0$, then every active self root selected by
+$$
+w(t_s)=w(t)
+$$
+must satisfy
+$$
+t_s<t_{\mathrm{zero}}.
+$$
+
+That is the key sorting consequence: the active self roots on the initial post-crossing window are forced into the earlier sub-field-speed inbound regime. In that regime one has
+$$
+-c_f<\dot x(t_s)<0,
+$$
+and therefore on the relevant left-moving branch
+$$
+0<J_s(t;t_s)=1+\frac{\dot x(t_s)}{c_f}\le 1.
+$$
+
+If the roots stay a definite distance before the hinge, this gives a strict lower bound on $J_s$ and isolates the caustic from the initial post-crossing branch. That is the intended mechanism behind the bound
 $$
 A_s^{\rho}(t)\le \overline A_s^{\rho}
 $$
 on the initial post-crossing window.
+
+### Origin-crossing braking dominance target
+
+The stronger theorem target suggested by the sorting map is not merely bounded self drive, but a full initial-window braking-dominance statement.
+
+> **Candidate Theorem (Origin-Crossing Braking Dominance).**
+> Let $\phi$ be an admissible signed history with an origin crossing at $t=0$ and outward radial speed
+> $$
+> V_0\equiv V_\phi(0)>c_f.
+> $$
+> Assume:
+> 1. the sorting-map phase picture above holds on a nontrivial interval $[0,\tau_{\mathrm{env}}]$,
+> 2. the active self roots on that interval satisfy $t_s<t_{\mathrm{zero}}$ and hence lie in the sub-field-speed past,
+> 3. the post-crossing self drive admits a uniform bound
+>    $$
+>    A_s^{\rho}(t)\le \overline A_s^{\rho},
+>    $$
+> 4. the partner term admits a uniform lower bound
+>    $$
+>    A_p^{\rho}(t)\ge \underline A_p^{\rho},
+>    $$
+>    with
+>    $$
+>    \underline A_p^{\rho}-\overline A_s^{\rho}>0.
+>    $$
+> Then the radial acceleration is strictly inward on $[0,\tau_{\mathrm{env}}]$. If in addition
+> $$
+> \big(\underline A_p^{\rho}-\overline A_s^{\rho}\big)\tau_{\mathrm{env}}\ge V_0,
+> $$
+> the trajectory must experience radial recapture by time $\tau_{\mathrm{env}}$.
+
+This is the theorem-scale target closest to the corrected geometric analysis. It packages the local sorting argument, the bounded self-drive lemma, and the partner-dominance margin into one initial-window recapture statement.
 
 ### Envelope-level sufficient condition
 
@@ -939,6 +1004,8 @@ A_p^{\rho}(t)
 \frac{\kappa\epsilon^2}{4\rho_{\max}^2\nu}.
 $$
 
+Near the origin crossing one expects a stronger version of this estimate. The partner source sits at separation $2\rho(t)$, whereas the self roots selected by the sorting map come from much earlier radii in the sub-field-speed past. So on the initial outbound window the partner term carries a strong near-field $1/\rho(t)^2$ advantage, while the self term is controlled by a larger historical separation and a Jacobian bounded away from the caustic.
+
 So the genuinely difficult part of the corrected recapture problem is not partner braking. It is proving that the post-crossing self drive remains bounded strongly enough that
 $$
 \overline A_s^{\rho}
@@ -946,6 +1013,13 @@ $$
 \underline A_p^{\rho}
 $$
 on a nonempty outbound window.
+
+There is also a Goldilocks condition hidden in this picture. The crossing speed must be:
+
+- large enough that the post-crossing branch stays on the descending side of the sorting map and the caustic remains behind it,
+- but small enough that the integrated partner-dominance margin can erase the outward radial speed before the particle exits the initial dominance window.
+
+Showing that this overlap is nonempty is part of the remaining theorem burden.
 
 ### Envelope-level escape criterion
 
