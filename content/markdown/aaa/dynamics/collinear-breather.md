@@ -6040,6 +6040,102 @@ a_{\mathrm{in}}^{\mathrm{out}}=a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}},
 $$
 which yields the stated finite-radius outer-turn bound.
 
+### Deep-past outer self suppression target
+
+The outer-turn program is now reduced to one explicit remaining issue. On the final sub-field-speed apocenter window, the local same-side self roots are annihilated by the monotonicity of
+$$
+z(t)=x(t)-c_f t,
+$$
+so the local outward self-drive is only the shell tail bounded in Lemma 27. The remaining possible outward self contributions are therefore the roots that come from much earlier times
+$$
+t_s<t_a,
+$$
+outside the local sub-field-speed window but still satisfy
+$$
+z(t_s)=z(t).
+$$
+
+> **Target Theorem (Deep-Past Outer Self Suppression).**
+> Fix a final sub-field-speed apocenter window
+> $$
+> [t_a,t_b]\subseteq [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+> $$
+> on which
+> $$
+> 0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f.
+> $$
+> Assume that every outward-driving same-side self root
+> $$
+> t_s<t_a
+> $$
+> satisfying
+> $$
+> z(t_s)=z(t)
+> $$
+> obeys:
+> 1. a macroscopic delayed-separation lower bound
+>    $$
+>    r_s(t;t_s)\ge R_{\mathrm{deep}}^{\mathrm{out}}>0,
+>    $$
+> 2. a deep-past transversality bound
+>    $$
+>    |J_s(t;t_s)|\ge \nu_{s,\mathrm{deep}}^{\mathrm{out}}>0,
+>    $$
+> 3. and a deep-past root-count bound
+>    $$
+>    N_{s,\mathrm{deep}}^{\mathrm{out}}(t)\le N_{s,\mathrm{deep},\max}^{\mathrm{out}}.
+>    $$
+>
+> Then the total outward self contribution from deep-past roots satisfies
+> $$
+> A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+> \le
+> \overline A_{s,\mathrm{deep}}^{\mathrm{out}}
+> \equiv
+> N_{s,\mathrm{deep},\max}^{\mathrm{out}}\,
+> \frac{\kappa\epsilon^2}{
+> \big((R_{\mathrm{deep}}^{\mathrm{out}})^2+\epsilon_c^2\big)\,\nu_{s,\mathrm{deep}}^{\mathrm{out}}}.
+> $$
+> Consequently, if
+> $$
+> \underline A_p^{\mathrm{out}}
+> -
+> \overline A_{s,\mathrm{deep}}^{\mathrm{out}}
+> -
+> \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+> \sigma_{\mathrm{out}}\,\epsilon_c^2}
+> \ge
+> a_{\mathrm{in},\mathrm{full}}^{\mathrm{out}}>0,
+> $$
+> then the full outward self-drive on the apocenter window is dominated and the outer-force margin becomes unconditional there.
+
+This is the final missing outer-branch analogue of the post-crossing self-drive bound: local same-side roots are eliminated by the sub-field-speed sorting geometry, while the deep-past roots must be shown harmless by distance and Jacobian dilution.
+
+### Deep-past suppression ladder
+
+The intended proof order is:
+
+1. **Deep-past separation lemma.**
+   Show that any same-side outer root with
+   $$
+   t_s<t_a
+   $$
+   must satisfy a macroscopic delay gap and hence a macroscopic spatial separation
+   $$
+   r_s(t;t_s)\ge R_{\mathrm{deep}}^{\mathrm{out}}.
+   $$
+2. **Deep-past transversality lemma.**
+   Prove that the emitting velocities at those earlier times stay away from the outer caustic side, giving
+   $$
+   |J_s|\ge \nu_{s,\mathrm{deep}}^{\mathrm{out}}.
+   $$
+3. **Deep-past root-count lemma.**
+   Bound the number of such roots by a class constant.
+4. **Deep-past suppression corollary.**
+   Combine the three bounds into the explicit amplitude estimate above.
+
+The first two items are the real bottlenecks. Once deep-past roots are diluted by distance and Jacobian control, the outer-turn proposition becomes a direct explicit parameter race.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
