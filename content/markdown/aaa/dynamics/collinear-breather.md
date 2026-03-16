@@ -6458,6 +6458,232 @@ $$
 $$
 then integrating the acceleration comparison exactly as in Lemma 23 forces the outward velocity to hit zero in finite time. This yields a finite outer turn on or just beyond the trimmed apocenter interval.
 
+**Lemma 34: Deep-past source localization by outer-level exclusion.**
+Assume the first origin crossing occurs at
+$$
+t=0,
+\qquad
+x(0)=0,
+$$
+and let
+$$
+I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+\subseteq
+[t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+$$
+be a trimmed apocenter window on the later right exterior outbound branch. Assume moreover that the outer sorting levels on the trimmed window lie strictly below the entire earlier outbound range:
+$$
+\sup_{t\in I_{\mathrm{deep}}} z(t)
+<
+\inf_{0\le s\le t_a} z(s).
+$$
+If
+$$
+t\in I_{\mathrm{deep}}
+$$
+and
+$$
+t_s<t_a
+$$
+satisfies
+$$
+z(t_s)=z(t),
+$$
+then necessarily
+$$
+t_s<0.
+$$
+
+In particular, every deep-past same-side root on the trimmed apocenter window is forced onto the pre-crossing leg.
+
+Proof.
+Fix
+$$
+t\in I_{\mathrm{deep}}
+$$
+and suppose for contradiction that
+$$
+0\le t_s\le t_a.
+$$
+Then by the assumed outbound-level exclusion one has
+$$
+z(t)
+\le
+\sup_{r\in I_{\mathrm{deep}}} z(r)
+<
+\inf_{0\le s\le t_a} z(s)
+\le
+z(t_s),
+$$
+which contradicts
+$$
+z(t_s)=z(t).
+$$
+Therefore
+$$
+t_s<0,
+$$
+as claimed.
+
+**Lemma 35: Deep-past root uniqueness and automatic transversality on the pre-crossing inbound leg.**
+Assume the hypotheses of Lemma 34, and assume the pre-crossing source interval
+$$
+[-h,0]
+$$
+satisfies
+$$
+\dot x(s)<0
+\qquad
+\text{for }s\in[-h,0].
+$$
+If
+$$
+t\in I_{\mathrm{deep}}
+$$
+and
+$$
+t_s<0
+$$
+is a same-side outward-driving self root with
+$$
+z(t_s)=z(t),
+$$
+then:
+
+1. the source root is unique on
+   $$
+   [-h,0],
+   $$
+2. the self Jacobian satisfies the automatic lower bound
+   $$
+   J_s(t;t_s)=1-\frac{\dot x(t_s)}{c_f}>1,
+   $$
+3. and hence one may take
+   $$
+   N_{s,\mathrm{deep},\max}^{\mathrm{out}}\le 1,
+   \qquad
+   \nu_{s,\mathrm{deep}}^{\mathrm{out}}\ge 1
+   $$
+   on the trimmed apocenter window.
+
+Proof.
+On the pre-crossing inbound leg one has
+$$
+\dot z(s)=\dot x(s)-c_f<-c_f<0
+\qquad
+\text{for }s\in[-h,0].
+$$
+Therefore
+$$
+z
+$$
+is strictly decreasing on
+$$
+[-h,0].
+$$
+Hence the level equation
+$$
+z(s)=z(t)
+$$
+can have at most one solution
+$$
+s\in[-h,0],
+$$
+which proves uniqueness of the deep-past source root on that interval.
+
+For a same-side outward-driving self root on the right exterior outbound branch one has
+$$
+\hat r_s(t;t_s)=+1,
+$$
+so
+$$
+J_s(t;t_s)=1-\frac{\dot x(t_s)}{c_f}.
+$$
+Since
+$$
+\dot x(t_s)<0,
+$$
+it follows immediately that
+$$
+J_s(t;t_s)>1.
+$$
+Thus
+$$
+|J_s(t;t_s)|\ge 1,
+$$
+and the stated bounds
+$$
+N_{s,\mathrm{deep},\max}^{\mathrm{out}}\le 1,
+\qquad
+\nu_{s,\mathrm{deep}}^{\mathrm{out}}\ge 1
+$$
+follow.
+
+**Corollary 36: Refined deep-past suppression from outbound-level exclusion.**
+Assume:
+
+- the hypotheses of Lemma 30 on the trimmed apocenter window
+  $$
+  I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b],
+  $$
+- the outbound-level exclusion hypothesis of Lemma 34,
+  $$
+  \sup_{t\in I_{\mathrm{deep}}} z(t)
+  <
+  \inf_{0\le s\le t_a} z(s),
+  $$
+- and the pre-crossing inbound monotonicity hypothesis of Lemma 35,
+  $$
+  \dot x(s)<0
+  \qquad
+  \text{for }s\in[-h,0].
+  $$
+
+Then every deep-past same-side outward-driving root on
+$$
+I_{\mathrm{deep}}
+$$
+lies on the pre-crossing inbound leg, is unique, and satisfies
+$$
+|J_s(t;t_s)|\ge 1.
+$$
+Consequently,
+$$
+A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+\le
+\frac{\kappa\epsilon^2}{
+c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
+\qquad
+\text{for every }t\in I_{\mathrm{deep}}.
+$$
+
+Proof.
+By Lemma 34, any deep-past same-side root with
+$$
+z(t_s)=z(t)
+$$
+must satisfy
+$$
+t_s<0.
+$$
+Lemma 35 then shows that on the pre-crossing inbound leg such a root is unique and obeys
+$$
+|J_s(t;t_s)|\ge 1.
+$$
+Lemma 30 gives the separation bound
+$$
+r_s(t;t_s)\ge c_f\tau_{\mathrm{deep}}.
+$$
+Therefore the single deep-past branch contributes at most
+$$
+\frac{\kappa\epsilon^2}{
+\big(r_s(t;t_s)^2+\epsilon_c^2\big)\,|J_s(t;t_s)|}
+\le
+\frac{\kappa\epsilon^2}{
+c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2},
+$$
+which proves the claim.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
