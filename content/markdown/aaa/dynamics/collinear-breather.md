@@ -1242,6 +1242,43 @@ w(t)\le -\sigma t<0
 \text{for }0<t\le \tau_1.
 $$
 
+Proof.
+The forward local tube condition in the admissible crossing subclass gives existence of the dual-mollified continuation on $[0,\tau_{\mathrm{loc}}]$ together with the bound
+$$
+|\ddot x(t)|\le a_{\mathrm{loc}}.
+$$
+Because
+$$
+\dot x(0)=-V_0<-c_f,
+$$
+the fundamental theorem of calculus yields
+$$
+\dot x(t)=\dot x(0)+\int_0^t \ddot x(s)\,ds
+\le
+-V_0+a_{\mathrm{loc}}t.
+$$
+Choosing
+$$
+\tau_1\le \min\!\left\{\tau_{\mathrm{loc}},\frac{\sigma}{a_{\mathrm{loc}}}\right\}
+$$
+forces
+$$
+\dot x(t)\le -V_0+\sigma=-c_f-\sigma<-c_f
+$$
+for every $t\in[0,\tau_1]$. Therefore
+$$
+\dot w(t)=\dot x(t)+c_f\le -\sigma,
+$$
+and integration from the crossing value
+$$
+w(0)=x(0)+c_f\cdot 0=0
+$$
+gives
+$$
+w(t)\le -\sigma t<0
+$$
+on $(0,\tau_1]$. This proves the lemma. On a fixed admissible crossing subclass the same argument is uniform after replacing $\sigma$ by $\sigma_{\min}$ and $a_{\mathrm{loc}}$ by $a_{\mathrm{tube}}$.
+
 **Lemma 2: Caustic isolation and uniform self-drive bound.**
 Use the local tube bounds to obtain a crude self-drive estimate on the full post-crossing window, and then use (H2)-(H4) together with Lemma 1 to show that on a delayed subwindow every active self root lies strictly before $t_{\mathrm{zero}}$ and hence stays away from the caustic hinge.
 
@@ -1346,6 +1383,136 @@ N_s^{\max}\,
 $$
 which is independent of the core mollifier $\epsilon_c$. This is the delayed-window version that can sharpen the Goldilocks condition once the short-time window extends beyond $\tau_{\mathrm{sep}}$.
 
+Proof.
+On the full initial tube, each active self branch contributes a radial acceleration of the form
+$$
+\kappa\epsilon^2\,
+\frac{1}{|J_s|}\,
+\frac{1}{r_s^2+\epsilon_c^2},
+$$
+with
+$$
+|J_s|\ge \frac{\nu}{c_f}
+$$
+by the class definition and
+$$
+r_s^2+\epsilon_c^2\ge \epsilon_c^2
+$$
+by core mollification. Summing over at most
+$$
+N_s^{\max}
+$$
+active self roots gives the crude bound
+$$
+A_s^{\rho}(t)\le \overline A_s^\rho
+$$
+for
+$$
+0\le t\le \tau_1.
+$$
+
+For the delayed separation, Lemma 1 gives
+$$
+w(t)\le -\sigma t.
+$$
+Hence for
+$$
+t\in[\tau_{\mathrm{sep}},\tau_1],
+\qquad
+\tau_{\mathrm{sep}}=\frac{2\eta}{\sigma},
+$$
+one has
+$$
+w(t)\le -2\eta.
+$$
+If a self root $t_s<t$ lies in the shell support, then
+$$
+|w(t_s)-w(t)|\le \eta,
+$$
+so
+$$
+w(t_s)\le -\eta<0.
+$$
+But hypothesis (H2) states that
+$$
+w(\theta)>0
+\qquad
+\text{for }\theta\in(t_{\mathrm{zero}},0),
+$$
+therefore no such $t_s$ can lie in $(t_{\mathrm{zero}},0)$ and hence
+$$
+t_s<t_{\mathrm{zero}}.
+$$
+On the source region
+$$
+[-h,t_{\mathrm{zero}}],
+$$
+hypothesis (H3) gives
+$$
+\dot w(\theta)=\dot x(\theta)+c_f\ge \nu.
+$$
+Applying the mean-value theorem between $t_s$ and $t_{\mathrm{zero}}$ yields
+$$
+w(t_{\mathrm{zero}})-w(t_s)\ge \nu\,(t_{\mathrm{zero}}-t_s).
+$$
+Since
+$$
+w(t_{\mathrm{zero}})=0
+\qquad
+\text{and}
+\qquad
+w(t_s)\le -\eta,
+$$
+it follows that
+$$
+t_s\le t_{\mathrm{zero}}-\frac{\eta}{\nu}
+=
+t_{\mathrm{zero}}-\gamma(\eta).
+$$
+This proves the delayed caustic-separation claim.
+
+For the geometric refinement, use that the selected source branch is inbound before the crossing, so $x(\theta)$ decreases toward the origin on the stored pre-crossing leg. Thus
+$$
+t_s\le t_{\mathrm{zero}}
+\qquad
+\Longrightarrow
+\qquad
+x(t_s)\ge x(t_{\mathrm{zero}})=\rho_{\mathrm{zero}}.
+$$
+If in addition
+$$
+0\le t\le \tau_\rho
+\qquad
+\text{and}
+\qquad
+\rho(t)\le \frac{\rho_{\mathrm{zero}}}{2},
+$$
+then on the delayed geometric window
+$$
+t\in[\tau_{\mathrm{sep}},\min\{\tau_1,\tau_\rho\}]
+$$
+one has
+$$
+|x(t)-x(t_s)|=\rho(t)+x(t_s)\ge \frac{\rho_{\mathrm{zero}}}{2}.
+$$
+Replacing the crude denominator bound
+$$
+r_s^2+\epsilon_c^2\ge \epsilon_c^2
+$$
+by
+$$
+r_s^2+\epsilon_c^2\ge \frac{\rho_{\mathrm{zero}}^2}{4}
+$$
+and summing again over at most
+$$
+N_s^{\max}
+$$
+branches gives
+$$
+A_s^\rho(t)\le \overline A_{s,\mathrm{geom}}^\rho.
+$$
+This proves Lemma 2.
+
 **Lemma 3: Partner-root linearization and lower bound.**
 Use the linearized partner root
 $$
@@ -1433,6 +1600,80 @@ A_p^{\rho}(t)
 \right)^2+\epsilon_c^2}
 \equiv
 \underline A_p^{\rho}(t).
+$$
+
+Proof.
+Let
+$$
+F(t,s)\equiv V_0(t-s)-c_f(t+s)+E_p(t,s).
+$$
+The shell condition on the active partner branch is precisely
+$$
+|F(t,s)|\le \eta.
+$$
+At the linear level,
+$$
+F_0(t,s)=V_0(t-s)-c_f(t+s)
+$$
+has root
+$$
+s=\alpha t,
+\qquad
+\alpha=\frac{V_0-c_f}{V_0+c_f},
+$$
+and
+$$
+\partial_s F_0(0,0)=-(V_0+c_f)\neq 0.
+$$
+Therefore the active partner root is locally nondegenerate. Standard implicit-function stability for a nonvanishing linear coefficient then yields, after shrinking the local window if necessary, a constant
+$$
+C_p=C_p(V_0,c_f,a_\ast)
+$$
+for which
+$$
+s\le \alpha t + C_p(t^2+\eta).
+$$
+Substituting into
+$$
+r_p(t)=c_f(t+s)
+$$
+gives
+$$
+r_p(t)\le c_f(1+\alpha)t+c_f C_p(t^2+\eta)
+=
+\beta_p t + c_f C_p(t^2+\eta).
+$$
+Because the core-mollified partner contribution is monotone decreasing in the delayed distance,
+$$
+r_p(t)\le r_{\mathrm{ub}}(t)
+\qquad
+\Longrightarrow
+\qquad
+\frac{1}{r_p(t)^2+\epsilon_c^2}
+\ge
+\frac{1}{r_{\mathrm{ub}}(t)^2+\epsilon_c^2},
+$$
+where
+$$
+r_{\mathrm{ub}}(t)\equiv \beta_p t + c_f C_p(t^2+\eta).
+$$
+Multiplying by the positive prefactor
+$$
+\kappa\epsilon^2
+$$
+gives
+$$
+A_p^\rho(t)\ge \underline A_p^\rho(t),
+$$
+which proves the lemma. On the admissible crossing subclass the same argument is uniform after replacing
+$$
+V_0\mapsto V_{\max}
+\qquad
+\text{in }C_p
+$$
+and, when desired for a conservative bound, replacing
+$$
+\beta_p\mapsto \beta_{p,\max}.
 $$
 
 **Lemma 4: Recapture integration.**
@@ -1532,6 +1773,82 @@ $$
 C_p=C_p(V_{\max},c_f,a_\ast).
 $$
 That conservative substitution is the bridge from the single-history Lemma 4 estimate to the class-uniform proposition below.
+
+Proof.
+Let
+$$
+V(t)\equiv \dot\rho(t)
+$$
+denote the outward radial speed on the post-crossing branch. Then
+$$
+V(0)=V_0>0.
+$$
+By Lemma 2 and Lemma 3, on every window $[0,\tau]$ where both lemmas hold one has
+$$
+\ddot\rho(t)\le -\underline A_p^\rho(t)+\overline A_s^\rho.
+$$
+Integrating from $0$ to $t\le \tau$ yields
+$$
+V(t)
+=
+V_0+\int_0^t \ddot\rho(s)\,ds
+\le
+V_0-\int_0^t\big(\underline A_p^\rho(s)-\overline A_s^\rho\big)\,ds
+=
+f(t).
+$$
+If the delayed geometric regime is available, the same integration gives the sharper estimate
+$$
+V(t)
+\le
+V_0-\Delta V_p(t)
++
+\overline A_s^\rho\,\tau_{\mathrm{sep}}
++
+\overline A_{s,\mathrm{geom}}^\rho\,(t-\tau_{\mathrm{sep}})
+$$
+for
+$$
+t\in[\tau_{\mathrm{sep}},\tau].
+$$
+
+Now assume the Goldilocks condition holds on $[0,\tau]$, so that
+$$
+f(\tau)<0.
+$$
+If $V$ remained strictly positive on the whole interval $[0,\tau]$, then evaluating the previous bound at $t=\tau$ would give
+$$
+0<V(\tau)\le f(\tau)<0,
+$$
+which is impossible. Therefore the set
+$$
+\{t\in[0,\tau]:V(t)=0\}
+$$
+is nonempty. Define
+$$
+\tau_{\mathrm{turn}}
+\equiv
+\inf\{t\in[0,\tau]:V(t)=0\}.
+$$
+Continuity of $V$ implies
+$$
+V(\tau_{\mathrm{turn}})=0,
+$$
+so the outward radial speed vanishes by time $\tau$. This is the desired recapture statement.
+
+The class-uniform version is the same argument with the conservative substitutions
+$$
+V_0\mapsto V_{\max},
+\qquad
+\beta_p\mapsto \beta_{p,\max},
+\qquad
+\sigma\mapsto \sigma_{\min},
+$$
+and the common remainder constant
+$$
+C_p=C_p(V_{\max},c_f,a_\ast),
+$$
+which is precisely the form used in the explicit short-window proposition below.
 
 Using monotonicity of the arctangent integrand gives a simpler algebraic lower bound:
 $$
