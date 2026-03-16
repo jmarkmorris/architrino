@@ -3636,6 +3636,303 @@ The intended proof order for this delayed-geometry step is:
 
 The first item is a partner-branch regularity statement. The second and third items explicitly embrace the self-root caustic instead of assuming it away. The fifth is the exact handoff needed to pass from the inbound collapse theorem to the local origin-crossing recapture theorem.
 
+**Lemma 10: Partner-root safety on the inbound leg.**
+Assume the pre-crossing leg satisfies:
+
+- right exterior inbound geometry
+  $$
+  x(t)\ge 0,
+  \qquad
+  \dot x(t)\le 0,
+  $$
+- a unique hinge time
+  $$
+  t_{\mathrm{hinge}}\in(0,t_{\mathrm{cross}})
+  $$
+  with
+  $$
+  \dot x(t_{\mathrm{hinge}})=-c_f,
+  $$
+- and strict post-hinge super-field-speed infall
+  $$
+  \dot x(t)<-c_f
+  \qquad
+  \text{for }t\in(t_{\mathrm{hinge}},t_{\mathrm{cross}}].
+  $$
+
+Define
+$$
+w(t)\equiv x(t)+c_f t,
+\qquad
+y(t)\equiv c_f t-x(t).
+$$
+Then the active partner root on the inbound leg is selected by
+$$
+w(t_p)=y(t),
+\qquad
+t_p<t.
+$$
+Moreover:
+
+1. the partner branch persists continuously on
+   $$
+   [0,t_{\mathrm{cross}}],
+   $$
+2. it remains strictly on the ascending side of the sorting map,
+   $$
+   t_p(t)<t_{\mathrm{hinge}},
+   $$
+3. and therefore the partner Jacobian stays strictly positive:
+   $$
+   J_p(t;t_p)=\frac{\dot w(t_p)}{c_f}>0.
+   $$
+
+Proof.
+On the inbound leg,
+$$
+\dot y(t)=c_f-\dot x(t)\ge c_f>0,
+$$
+so $y(t)$ is strictly increasing. Also,
+$$
+\dot w(t)=\dot x(t)+c_f,
+$$
+which is positive before the hinge, zero at the hinge, and negative after the hinge. Hence
+$$
+w(t)
+$$
+has a strict maximum at
+$$
+t=t_{\mathrm{hinge}}.
+$$
+
+It therefore suffices to show that
+$$
+y(t)<w(t_{\mathrm{hinge}})
+\qquad
+\text{for every }t\in[0,t_{\mathrm{cross}}].
+$$
+Since $y$ is increasing, it is enough to check this at the crossing time. Using
+$$
+x(t_{\mathrm{cross}})=0
+$$
+gives
+$$
+y(t_{\mathrm{cross}})=c_f t_{\mathrm{cross}}.
+$$
+On the other hand,
+$$
+w(t_{\mathrm{hinge}})=x(t_{\mathrm{hinge}})+c_f t_{\mathrm{hinge}}.
+$$
+By the mean value theorem and the strict post-hinge inequality
+$$
+\dot x<-c_f
+\qquad
+\text{on }(t_{\mathrm{hinge}},t_{\mathrm{cross}}],
+$$
+one has
+$$
+x(t_{\mathrm{cross}})-x(t_{\mathrm{hinge}})
+<
+-c_f\,(t_{\mathrm{cross}}-t_{\mathrm{hinge}}).
+$$
+Since
+$$
+x(t_{\mathrm{cross}})=0,
+$$
+this rearranges to
+$$
+x(t_{\mathrm{hinge}})
+>
+c_f\,(t_{\mathrm{cross}}-t_{\mathrm{hinge}}),
+$$
+hence
+$$
+w(t_{\mathrm{hinge}})
+=
+x(t_{\mathrm{hinge}})+c_f t_{\mathrm{hinge}}
+>
+c_f t_{\mathrm{cross}}
+=
+y(t_{\mathrm{cross}}).
+$$
+Therefore
+$$
+y(t)<w(t_{\mathrm{hinge}})
+$$
+for all pre-crossing times, so the partner branch never reaches the hinge maximum.
+
+Because
+$$
+w
+$$
+is strictly increasing on the ascending side, there is a unique solution
+$$
+t_p(t)<t_{\mathrm{hinge}}
+$$
+to
+$$
+w(t_p)=y(t)
+$$
+for each
+$$
+t\in[0,t_{\mathrm{cross}}].
+$$
+This gives continuous persistence of the partner branch. Finally, on that ascending side,
+$$
+\dot w(t_p)>0,
+$$
+so
+$$
+J_p(t;t_p)=\frac{\dot w(t_p)}{c_f}>0.
+$$
+Thus the partner branch remains safe from the caustic throughout the infall.
+
+**Lemma 11: Hinge birth and uniqueness of the principal self root.**
+Assume the pre-crossing leg satisfies a strict inward acceleration floor
+$$
+\ddot x(t)\le -a_-<0
+\qquad
+\text{for }0\le t\le t_{\mathrm{cross}},
+$$
+and define
+$$
+w(t)\equiv x(t)+c_f t.
+$$
+Let
+$$
+t_{\mathrm{hinge}}
+$$
+be the unique time at which
+$$
+\dot x(t_{\mathrm{hinge}})=-c_f.
+$$
+Then:
+
+1. $w$ is strictly concave on the pre-crossing interval,
+2. $w$ has a unique global maximum at
+   $$
+   t=t_{\mathrm{hinge}},
+   $$
+3. for each
+   $$
+   t\in(t_{\mathrm{hinge}},t_{\mathrm{cross}}],
+   $$
+   there exists a unique self root
+   $$
+   t_s(t)<t_{\mathrm{hinge}}
+   $$
+   satisfying
+   $$
+   w(t_s)=w(t),
+   $$
+4. and this self branch is born at the hinge with
+   $$
+   \lim_{t\downarrow t_{\mathrm{hinge}}} t_s(t)=t_{\mathrm{hinge}},
+   \qquad
+   J_s(t;t_s)\to 0^+.
+   $$
+
+Proof.
+Differentiate twice:
+$$
+\dot w(t)=\dot x(t)+c_f,
+\qquad
+\ddot w(t)=\ddot x(t).
+$$
+By hypothesis,
+$$
+\ddot w(t)\le -a_-<0,
+$$
+so
+$$
+w
+$$
+is strictly concave on the full pre-crossing interval. Hence
+$$
+\dot w
+$$
+is strictly decreasing and can vanish at most once. Since
+$$
+\dot w(t_{\mathrm{hinge}})=\dot x(t_{\mathrm{hinge}})+c_f=0,
+$$
+the hinge is the unique critical point of
+$$
+w,
+$$
+and therefore its unique global maximum.
+
+For
+$$
+t<t_{\mathrm{hinge}},
+$$
+the function
+$$
+w
+$$
+is strictly increasing, so no earlier time can satisfy
+$$
+w(t_s)=w(t)
+$$
+with
+$$
+t_s<t.
+$$
+For
+$$
+t>t_{\mathrm{hinge}},
+$$
+strict concavity implies that
+$$
+w(t)<w(t_{\mathrm{hinge}}),
+$$
+and because the ascending branch is strictly increasing up to the hinge, there is a unique
+$$
+t_s(t)<t_{\mathrm{hinge}}
+$$
+such that
+$$
+w(t_s)=w(t).
+$$
+This is the unique principal self root on the pre-crossing leg.
+
+As
+$$
+t\downarrow t_{\mathrm{hinge}},
+$$
+continuity and uniqueness force
+$$
+t_s(t)\uparrow t_{\mathrm{hinge}}.
+$$
+On the relevant outer-memory branch,
+$$
+J_s(t;t_s)=1+\frac{\dot x(t_s)}{c_f}=\frac{\dot w(t_s)}{c_f}.
+$$
+Since
+$$
+t_s(t)<t_{\mathrm{hinge}}
+$$
+lies on the ascending side,
+$$
+\dot w(t_s)>0,
+$$
+so
+$$
+J_s(t;t_s)>0.
+$$
+But as
+$$
+t_s(t)\uparrow t_{\mathrm{hinge}},
+$$
+one has
+$$
+\dot w(t_s)\downarrow \dot w(t_{\mathrm{hinge}})=0,
+$$
+hence
+$$
+J_s(t;t_s)\to 0^+.
+$$
+So the self branch is born exactly at the hinge and is unique.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
