@@ -5010,6 +5010,222 @@ The intended proof order for the outer branch is:
 
 The third and fourth items are the main analytic bottlenecks. Once a robust outer-force margin is available, the remaining return-to-section estimates are already in place.
 
+**Lemma 20: Outer-branch partner lower bound.**
+Assume the post-second-crossing outer branch satisfies:
+
+- right exterior outbound geometry,
+  $$
+  x_\ast\le x(t)\le X_{\mathrm{out},\max},
+  \qquad
+  \dot x(t)\ge 0,
+  $$
+- at least one active partner branch for each
+  $$
+  t\in[t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}],
+  $$
+- the speed bound
+  $$
+  |\dot x(t)|\le U_{\max},
+  $$
+- and the partner Jacobian transversality bound
+  $$
+  |J_p(t;t_p)|\ge \nu_p^{\mathrm{out}}>0
+  $$
+  on every active partner root.
+
+Then the partner contribution to the inward acceleration obeys the class-uniform lower bound
+$$
+A_p(t)\ge \underline A_p^{\mathrm{out}}
+\equiv
+\frac{\kappa\epsilon^2\,\nu_p^{\mathrm{out}}}{
+4X_{\mathrm{out},\max}^2+\epsilon_c^2
+}.
+$$
+Equivalently, the partner acceleration satisfies
+$$
+a_p(t)=-A_p(t)\le -\underline A_p^{\mathrm{out}}<0
+$$
+on the outer branch.
+
+Proof.
+Along the right exterior outbound branch, the partner source lies on the opposite side of the origin, so every active partner contribution points inward and therefore contributes with signed acceleration
+$$
+a_p(t)=-A_p(t).
+$$
+For any active partner root
+$$
+t_p<t,
+$$
+the delayed partner separation satisfies
+$$
+r_p(t;t_p)=x(t)+x(t_p).
+$$
+Because both the current and delayed positions remain within the outer excursion envelope,
+$$
+0\le x(t)\le X_{\mathrm{out},\max},
+\qquad
+0\le x(t_p)\le X_{\mathrm{out},\max},
+$$
+we obtain
+$$
+0<r_p(t;t_p)\le 2X_{\mathrm{out},\max}.
+$$
+Hence the core-mollified denominator obeys
+$$
+r_p(t;t_p)^2+\epsilon_c^2
+\le
+4X_{\mathrm{out},\max}^2+\epsilon_c^2.
+$$
+
+Each active partner contribution therefore has magnitude at least
+$$
+\frac{\kappa\epsilon^2\,|J_p(t;t_p)|}{
+r_p(t;t_p)^2+\epsilon_c^2}
+\ge
+\frac{\kappa\epsilon^2\,\nu_p^{\mathrm{out}}}{
+4X_{\mathrm{out},\max}^2+\epsilon_c^2}.
+$$
+Summing over the active partner branches and retaining only one branch yields
+$$
+A_p(t)\ge \underline A_p^{\mathrm{out}},
+$$
+which proves the lemma.
+
+**Lemma 21: Conditional outer-branch self-drive upper bound.**
+Assume that on the outer branch
+$$
+[t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}],
+$$
+the active self branches satisfy:
+
+- a root-count bound
+  $$
+  N_s(t)\le N_{s,\max}^{\mathrm{out}},
+  $$
+- a self-Jacobian transversality bound
+  $$
+  |J_s(t;t_s)|\ge \nu_s^{\mathrm{out}}>0
+  $$
+  on every active self root,
+- and a delayed self-separation lower bound
+  $$
+  r_s(t;t_s)\ge r_{s,\min}^{\mathrm{out}}>0
+  $$
+  on every active self root.
+
+Then the outward self contribution obeys the class-uniform upper bound
+$$
+A_s(t)\le \overline A_s^{\mathrm{out}}
+\equiv
+N_{s,\max}^{\mathrm{out}}\,
+\frac{\kappa\epsilon^2}{
+\big((r_{s,\min}^{\mathrm{out}})^2+\epsilon_c^2\big)\,\nu_s^{\mathrm{out}}}.
+$$
+
+Proof.
+For each active self root
+$$
+t_s<t,
+$$
+the contribution to the outward self-drive has magnitude bounded by
+$$
+\frac{\kappa\epsilon^2}{
+\big(r_s(t;t_s)^2+\epsilon_c^2\big)\,|J_s(t;t_s)|}.
+$$
+Using the assumed lower bounds on
+$$
+r_s(t;t_s)
+\qquad
+\text{and}
+\qquad
+|J_s(t;t_s)|
+$$
+gives the branchwise estimate
+$$
+\frac{\kappa\epsilon^2}{
+\big(r_s(t;t_s)^2+\epsilon_c^2\big)\,|J_s(t;t_s)|}
+\le
+\frac{\kappa\epsilon^2}{
+\big((r_{s,\min}^{\mathrm{out}})^2+\epsilon_c^2\big)\,\nu_s^{\mathrm{out}}}.
+$$
+Summing over at most
+$$
+N_{s,\max}^{\mathrm{out}}
+$$
+active self branches yields
+$$
+A_s(t)\le \overline A_s^{\mathrm{out}},
+$$
+which proves the lemma.
+
+**Lemma 22: Outer-force margin on the apocenter window.**
+Assume that on an outer-branch window
+$$
+[t_\ast,\,t_\ast+\tau_{\mathrm{apo}}],
+$$
+the signed dynamics can be written in the form
+$$
+\ddot x(t)\le -A_p(t)+A_s(t),
+$$
+where
+$$
+A_p(t)
+$$
+is the inward partner contribution and
+$$
+A_s(t)
+$$
+is the total outward delayed self contribution on that window. If
+$$
+A_p(t)\ge \underline A_p^{\mathrm{out}}
+\qquad
+\text{and}
+\qquad
+A_s(t)\le \overline A_s^{\mathrm{out}}
+$$
+there with
+$$
+\underline A_p^{\mathrm{out}}-\overline A_s^{\mathrm{out}}
+\ge
+a_{\mathrm{in}}^{\mathrm{out}}>0,
+$$
+then
+$$
+\ddot x(t)\le -a_{\mathrm{in}}^{\mathrm{out}}<0
+$$
+for every
+$$
+t\in[t_\ast,\,t_\ast+\tau_{\mathrm{apo}}].
+$$
+
+In particular, Lemmas 20 and 21 reduce the outer-turn force margin to the parameter inequality
+$$
+\frac{\kappa\epsilon^2\,\nu_p^{\mathrm{out}}}{
+4X_{\mathrm{out},\max}^2+\epsilon_c^2
+}
+-
+N_{s,\max}^{\mathrm{out}}\,
+\frac{\kappa\epsilon^2}{
+\big((r_{s,\min}^{\mathrm{out}})^2+\epsilon_c^2\big)\,\nu_s^{\mathrm{out}}}
+\ge
+a_{\mathrm{in}}^{\mathrm{out}}>0.
+$$
+
+Proof.
+By hypothesis,
+$$
+\ddot x(t)\le -A_p(t)+A_s(t).
+$$
+Using the lower bound for the inward partner term and the upper bound for the outward self term yields
+$$
+\ddot x(t)
+\le
+-\underline A_p^{\mathrm{out}}+\overline A_s^{\mathrm{out}}
+\le
+-a_{\mathrm{in}}^{\mathrm{out}}<0,
+$$
+which proves the claim.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
