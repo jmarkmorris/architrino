@@ -820,6 +820,63 @@ $$
 $$
 does not erase the partner contribution.
 
+### Envelope-level escape criterion
+
+The same envelope logic also yields a one-sided no-go template. If the available inward braking budget is uniformly too small, then recapture cannot occur within the controlled outbound window.
+
+Suppose there is a nonempty outbound class
+$$
+\mathcal{O}_{x_\ast,\eta}\subset\Sigma^+_{x_\ast,\eta}
+$$
+and a time window $[0,\tau_{\mathrm{esc}}]$ such that every forward trajectory from $\phi\in\mathcal{O}_{x_\ast,\eta}$ satisfies
+$$
+A_p(t)\le \overline A_p,
+\qquad
+A_s^{\text{out}}(t)\le \overline A_s^{\text{out}},
+\qquad
+A_s^{\text{in}}(t)\ge \underline A_s^{\text{in}}
+\qquad
+\text{for }0\le t\le \tau_{\mathrm{esc}}.
+$$
+
+Define the envelope braking ceiling
+$$
+\beta_{\mathrm{esc}}
+\equiv
+\overline A_p+\overline A_s^{\text{out}}-\underline A_s^{\text{in}}.
+$$
+
+If
+$$
+\beta_{\mathrm{esc}}\le 0,
+$$
+then $\ddot x_\phi(t)\ge 0$ throughout the window and the outbound speed cannot decrease there.
+
+More generally, if
+$$
+\beta_{\mathrm{esc}}>0
+\qquad
+\text{but}
+\qquad
+\beta_{\mathrm{esc}}\tau_{\mathrm{esc}}
+<
+\inf_{\phi\in\mathcal{O}_{x_\ast,\eta}}\dot x_\phi(0),
+$$
+then no trajectory in $\mathcal{O}_{x_\ast,\eta}$ can turn around during $[0,\tau_{\mathrm{esc}}]$.
+
+This does not by itself prove escape to infinity. What it does prove is the complementary fact needed by the theorem program: within the controlled outbound window, the available total braking impulse is too small to erase the outgoing speed.
+
+The ideal long-form no-go theorem would strengthen this finite-window criterion into a global one by showing that
+$$
+\int_0^\infty
+\Big(
+A_p(s)+A_s^{\text{out}}(s)-A_s^{\text{in}}(s)
+\Big)\,ds
+<
+\dot x_\phi(0)
+$$
+for an explicit outbound class. That would rule out any turning point at any later time and would show that the outward branch never re-enters the section.
+
 If even this strong recapture proposition cannot be supported on any nonempty outbound class, then the invariant-set program should stop there: the return maps $Q_\eta$ and $P_\eta$ are not defined on a robust domain, and no fixed-point theorem will rescue the model.
 
 ## Conjectured Breather Statement
