@@ -1060,9 +1060,12 @@ V_0<
 $$
 In the current note this remains the abstract bottleneck hypothesis. A concrete sufficient realization is provided later by the proposition `Explicit short-window recapture regime`, which chooses
 $$
-\tau_{\mathrm{env}}=\tau_\epsilon\equiv \frac{\epsilon_c}{2\beta_p}
+\tau_{\mathrm{env}}=\tau_\epsilon\equiv \frac{\epsilon_c}{2\beta_{p,\max}}
 $$
-and replaces the integral inequality by explicit algebraic bounds on $(\eta,\epsilon_c,V_0,\kappa\epsilon^2)$.
+on a fixed admissible crossing subclass and replaces the integral inequality by explicit algebraic bounds on
+$$
+(\eta,\epsilon_c,V_{\max},\kappa\epsilon^2).
+$$
 
 ### Uniform admissible crossing subclass
 
@@ -1553,6 +1556,18 @@ $$
 
 This is the most useful practical form of (H5) in the current note: once the constants in Lemma 2 and Lemma 3 are fixed, recapture reduces to a checkable algebraic inequality.
 
+For a fixed admissible crossing subclass, the same inequality is made class-uniform by replacing
+$$
+V_0\mapsto V_{\max},
+\qquad
+\beta_p\mapsto \beta_{p,\max},
+$$
+and taking the common remainder constant
+$$
+C_p=C_p(V_{\max},c_f,a_\ast).
+$$
+That replacement is exactly what the proposition below implements.
+
 One can simplify further on a short window where the shell-error term is dominated by the linear partner term. If
 $$
 B_\tau\le \beta_p\tau,
@@ -1655,6 +1670,45 @@ provided the corresponding roots lie inside the local validity window of Lemmas 
 > $$
 
 This proposition is the first genuinely explicit realization of (H5) in the note. It converts the abstract impulse inequality into a concrete dual-mollified parameter regime.
+
+Proof sketch:
+
+1. Lemma 1 gives the class-uniform post-crossing monotonicity
+   $$
+   w(t)<0
+   \qquad
+   \text{for }0<t\le \tau_1.
+   $$
+2. Lemma 2 supplies the full-window self-drive bound
+   $$
+   A_s^\rho(t)\le \overline A_s^\rho
+   \qquad
+   \text{for }0\le t\le \tau_1,
+   $$
+   with the delayed-window refinement available once
+   $$
+   \tau_{\mathrm{sep},\max}\le t\le \tau_\rho.
+   $$
+3. Lemma 3 gives the class-uniform partner lower bound with
+   $$
+   \beta_p\le \beta_{p,\max},
+   \qquad
+   B_\tau\le c_f C_p(\tau^2+\eta).
+   $$
+   At
+   $$
+   \tau_\epsilon=\frac{\epsilon_c}{2\beta_{p,\max}},
+   $$
+   the stated assumptions force
+   $$
+   \beta_p\tau_\epsilon+B_{\tau_\epsilon}\le \epsilon_c,
+   $$
+   and hence
+   $$
+   \Delta V_p(\tau_\epsilon)\ge \frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}.
+   $$
+4. The stated algebraic inequality is exactly the condition that this class-uniform inward partner impulse beats the class-uniform outward self-drive loss by time $\tau_\epsilon$.
+5. Lemma 4 then gives a zero of the radial speed on $[0,\tau_\epsilon]$, proving local post-crossing recapture for every history in the subclass.
 
 In the joint short-window regime
 $$
