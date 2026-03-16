@@ -1404,6 +1404,11 @@
       "id": "spacetime__black_holes",
       "name": "Black Holes",
       "path": "content/scenes/spacetime/black_holes.json"
+    },
+    {
+      "id": "dynamics__collinear_breather",
+      "name": "1D Collinear Binary (Reduced Model)",
+      "path": "content/scenes/dynamics/collinear_breather.json"
     }
   ]
 }

@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 121,
-      "sections": 779
+      "entries": 122,
+      "sections": 791
     }
   },
   "tocRoot": {
@@ -800,6 +800,112 @@
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
                 "markdownSection": "Symmetry, Conservation, and Lyapunov Functionals",
                 "sectionKey": "symmetry conservation and lyapunov functionals",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__collinear_breather",
+            "title": "1D Collinear Binary (Reduced Model)",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/collinear_breather.json",
+            "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Purpose",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Purpose",
+                "sectionKey": "purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact 1D State Variables",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Exact 1D State Variables",
+                "sectionKey": "exact 1d state variables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Partner-Only Hinge Radius",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Partner-Only Hinge Radius",
+                "sectionKey": "partner only hinge radius",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Partner-Hit and Self-Hit Root Equations",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Partner-Hit and Self-Hit Root Equations",
+                "sectionKey": "partner hit and self hit root equations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regularized 1D Equation",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Regularized 1D Equation",
+                "sectionKey": "regularized 1d equation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Inbound/Outbound Sign Structure",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Inbound/Outbound Sign Structure",
+                "sectionKey": "inbound outbound sign structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Necessary Recapture Condition",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Necessary Recapture Condition",
+                "sectionKey": "necessary recapture condition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regularized Return Map",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Regularized Return Map",
+                "sectionKey": "regularized return map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Conjectured Breather Statement",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Conjectured Breather Statement",
+                "sectionKey": "conjectured breather statement",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why This Reduced Model Comes First",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Why This Reduced Model Comes First",
+                "sectionKey": "why this reduced model comes first",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Counts as Success or Failure",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "What Counts as Success or Failure",
+                "sectionKey": "what counts as success or failure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]

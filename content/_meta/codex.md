@@ -1,18 +1,8 @@
-## 20260212 - new codex available
 
-  - Codex is now powered by gpt-5.3-codex, our most capable agentic coding model yet. 
-  - It's built for 
-    - long-running, 
-    - project-scale work, 
-    - with mid-turn steering
-    - frequent progress updates 
-    - collaborate while it runs 
-    - (and it's faster too).
+## api vs. plan usage instructions.
 
-
-## 20260214 - Trouble using 5.3 leads to api vs. plan usage instructions.
-
-The situation is confusing because the Codex CLI does **not** expose a clean “mode switch”. Let’s strip this down to what actually works in practice.
+The Codex CLI does **not** expose a clean “mode switch”. Let’s strip this down to what actually works in practice.
+I do not know how the codex app works. I think it uses my plan.
 
 There are **only two real selectors**:
 
@@ -24,7 +14,6 @@ And **environment variables win**.
 If a key is present, Codex uses the API. Period.
 
 If no key is present, Codex falls back to your ChatGPT Plus/Pro login.
-
 
 ---
 

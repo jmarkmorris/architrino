@@ -53,7 +53,7 @@ where:
 - $\mathbf{a}_{ij}(\text{causal history})$: Sum of all per-hit accelerations from source $j \neq i$ arriving at receiver $i$ at time $t$
 - $\mathbf{a}_{ii}(\text{self-hit})$: Sum of all self-hit acceleration contributions (architrino $i$ intersecting its own past emissions)
 
-(The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is defined rigorously in Section 2.1.1. If a force symbol is needed, define $\mathbf{F}_{ij} \equiv m_i \mathbf{a}_{ij}$.)
+(The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is defined rigorously in Section 2.1.1. The substrate law is acceleration-first. If a force-like bookkeeping symbol is desired, introduce one universal conversion constant $\mu_{\text{arch}}$ and define $\mathbf{F}_{ij} \equiv \mu_{\text{arch}} \mathbf{a}_{ij}$.)
 
 **Key insight:** Both terms have the same functional form: a radial inverse-square law modulated by the causal Jacobian $J_{ij}(t;t_0)$. They differ only in source identity ($j = i$ vs $j \neq i$).
 
@@ -116,10 +116,10 @@ Numerical implementations discretize this representation by sampling candidate e
 
 #### Regularized Evaluation of the Exact Energy Charge
 
-For computation with finite shell width $\eta>0$, it is useful to introduce an $\eta$-regularized representation of the same history-aware energy charge tracked by the exact nonlocal action. This smooth expression is used for numerical evaluation of the conserved quantity:
+For computation with finite shell width $\eta>0$, it is useful to introduce an $\eta$-regularized representation of the same history-aware energy charge tracked by the exact nonlocal action. When one wants a quadratic kinetic bookkeeping proxy, use a single universal conversion constant $\mu_{\text{arch}}$ rather than particle-specific substrate masses. This smooth expression is used for numerical evaluation of the conserved quantity:
 $$
 E_{\text{tot}}^{(\eta)}(t)
-= \sum_i \frac{1}{2} m_i \left|\dot{\mathbf{x}}_i(t)\right|^2
+= \sum_i \frac{1}{2} \mu_{\text{arch}} \left|\dot{\mathbf{x}}_i(t)\right|^2
 + E_{\text{wake}}^{(\eta)}(t).
 $$
 For the regularized interaction term, a convenient working expression is:
@@ -391,11 +391,11 @@ $$
 \, \hat{\mathbf{r}}_{ij},
 $$
 
-If a force symbol is desired, we define it via Newton’s law as
+If a force-like bookkeeping symbol is desired, define
 $$
-\mathbf{F}_{ij}(t; t_0) \equiv m_i\,\mathbf{a}_{ij}(t; t_0),
+\mathbf{F}_{ij}(t; t_0) \equiv \mu_{\text{arch}}\,\mathbf{a}_{ij}(t; t_0),
 $$
-where $m_i$ is the inertial parameter of the receiving architrino.
+where $\mu_{\text{arch}}$ is a universal conversion constant used only for force/energy bookkeeping. It is not a particle-specific inertial mass.
 
 where:
 
@@ -552,7 +552,7 @@ $$
 The **instantaneous power** (rate of kinetic energy change) from a single hit is:
 
 $$
-\frac{dE_k}{dt}\Big|_{\text{hit}} = \mathbf{F}_{ij} \cdot \mathbf{v}_i = \big(m_i \mathbf{a}_{ij} \cdot \hat{\mathbf{r}}_{ij}\big) v_r = m_i\,\kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|} \, v_r.
+\frac{dE_k}{dt}\Big|_{\text{hit}} = \mathbf{F}_{ij} \cdot \mathbf{v}_i = \big(\mu_{\text{arch}} \mathbf{a}_{ij} \cdot \hat{\mathbf{r}}_{ij}\big) v_r = \mu_{\text{arch}}\,\kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|} \, v_r.
 $$
 
 **Key insight:** There is **no instantaneous work** on the orthogonal component. Power depends only on the radial velocity $v_r$.
@@ -1132,6 +1132,10 @@ We can:
 
 So: **analytic yes** (up to standard quadratures), and corrections doable.
 
+For the self-hit-capable reduced problem that goes beyond the sub-$c_f$ perturbative regime and sets up a return-map breather question, see [collinear-breather.md](./collinear-breather.md).
+
+For the local origin-crossing theorem program in that reduced note, the working 1D model is dual-mollified rather than merely shell-regularized: the shell mollifier $\delta_\eta$ still selects delayed roots, while a separate core mollifier $\epsilon_c$ is imposed on the inverse-square amplitude so the post-crossing local vector field remains finite. That dual-mollified local model is the one used for the first recapture lemmas there.
+
 ---
 
 #### Two‑body uniform circular orbit, sub‑$c_f$ (no self‑hit)
@@ -1670,19 +1674,20 @@ We work with **absolute time** $t$ and Euclidean 3‑space. For each architrino 
 
 - Position $\mathbf{x}_i(t)$,
 - Velocity $\mathbf{v}_i(t) = d\mathbf{x}_i/dt$,
-- A (possibly effective) inertial parameter $m_i$.
+- Optional universal bookkeeping constant $\mu_{\text{arch}}$ when a quadratic kinetic proxy is desired.
 
 We do **not** a priori assign energy to any continuous field; energy is carried by architrinos and their assemblies and is updated only at the instants where wake surfaces intersect receivers.
 
-**Definition (Kinetic Energy).** For a finite isolated set of architrinos $\{i=1,\dots,N\}$,
+**Definition (Quadratic kinetic bookkeeping proxy).** For a finite isolated set of architrinos $\{i=1,\dots,N\}$,
 
 $$
-K(t) \equiv \sum_{i=1}^N \frac{1}{2} m_i \|\mathbf{v}_i(t)\|^2.
+K_{\mu}(t) \equiv \sum_{i=1}^N \frac{1}{2} \mu_{\text{arch}} \|\mathbf{v}_i(t)\|^2.
 $$
 
 Remarks:
 
-- For bare architrinos one may treat $m_i = m_\text{arch}$ as a fundamental parameter, or,
+- This is a bookkeeping choice for analysis, numerics, and Noether-style energy accounting. The substrate law itself remains acceleration-first.
+- Because $\mu_{\text{arch}}$ is universal, it can be absorbed into units or into an overall normalization of force-like quantities if desired.
 - For assemblies (binaries, tri‑binaries), one defines an effective assembly mass $M_\text{assembly}$ as
   $$
   M_\text{assembly} = \frac{1}{V_\text{CM}} \frac{d}{dV_\text{CM}} \left(\text{total kinetic + interaction energy of internal motion}\right),
@@ -1711,10 +1716,10 @@ $$
 
 The instantaneous power delivered to architrino $i$ by this hit is:
 
-$$
+$$ 
 P_{ij}(t;t_0)
-= m_i\,\mathbf{a}_{ij}\cdot \mathbf{v}_i
-= m_i\,\kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|}\, v_{r,ij},
+= \mu_{\text{arch}}\,\mathbf{a}_{ij}\cdot \mathbf{v}_i
+= \mu_{\text{arch}}\,\kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|}\, v_{r,ij},
 $$
 
 where $v_{r,ij} = \mathbf{v}_i(t)\cdot \hat{\mathbf{r}}_{ij}$ is the radial component of the receiver’s velocity along the line of action. This is the **only instant** when the interaction can change the kinetic energy of $i$. Between hits, $\mathbf{a}_{ij}$ from this specific emission is zero.
@@ -1722,7 +1727,7 @@ where $v_{r,ij} = \mathbf{v}_i(t)\cdot \hat{\mathbf{r}}_{ij}$ is the radial comp
 Summing over all contributing sources and all causal emission times at a given $t$,
 
 $$
-\frac{dK}{dt}(t)
+\frac{dK_{\mu}}{dt}(t)
 = \sum_i \sum_j \sum_{t_0 \in \mathcal{C}_{ij}(t)} P_{ij}(t;t_0),
 $$
 
@@ -1745,7 +1750,7 @@ $$
 For an isolated system, the nonlocal Noether charge associated with $t\mapsto t+\tau$ is
 
 $$
-E_{\text{tot}}(t)=K(t)+E_{\text{wake}}(t),
+E_{\text{tot}}(t)=K_{\mu}(t)+E_{\text{wake}}(t),
 $$
 
 with
@@ -1766,7 +1771,7 @@ Interpretation: the double integral measures interaction links that cross the ti
 For exact solutions of the causal action, nonlocal Noether’s theorem gives
 
 $$
-\frac{d}{dt}\Big(K(t)+E_{\text{wake}}(t)\Big)=0.
+\frac{d}{dt}\Big(K_{\mu}(t)+E_{\text{wake}}(t)\Big)=0.
 $$
 
 No separate spatial field-energy ontology is required; conservation is encoded directly in worldline geometry and the causal kernel.
@@ -1776,7 +1781,7 @@ No separate spatial field-energy ontology is required; conservation is encoded d
 For direct trajectory evaluation, one may compute the same interaction contribution through the accumulated power exchange:
 
 $$
-U(t)=U_\ast-\int_{t_\ast}^{t}\sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
+U(t)=U_\ast-\int_{t_\ast}^{t}\sum_i \mu_{\text{arch}}\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
 $$
 
 This work-integral form differs from $E_{\text{wake}}(t)$ at most by a reference constant and the explicit choice of time boundary. It is therefore a practical reconstruction of the same conserved quantity, not a separate energy concept.
@@ -1799,12 +1804,11 @@ To connect with variational methods and with later continuum approximations, it 
 
 For the focused action-functional development (definitions, theorem spine, and circular branch-count benchmark), see [Causal Action Functional](causal-action-functional.md#core-functional-definitions).
 
-Let the worldline of architrino $i$ be $\mathbf{x}_i(t)$. Consider an action of the form:
-
+Let the worldline of architrino $i$ be $\mathbf{x}_i(t)$. For the exact action-functional discussion, the same universal bookkeeping constant may be inserted in the quadratic kinetic term:
 $$
 S[\{\mathbf{x}_i\}]
 =
-\sum_i \int dt\, \frac{1}{2} m_i \|\mathbf{v}_i(t)\|^2
+\sum_i \int dt\, \frac{1}{2} \mu_{\text{arch}} \|\mathbf{v}_i(t)\|^2
 \;-\;
 \frac{1}{2}\sum_{i\neq j} S_{ij},
 $$
@@ -1864,7 +1868,7 @@ $$
 Varying $S$ with respect to $\mathbf{x}_i(t)$ yields:
 
 $$
-\frac{d}{dt}\left(m_i\mathbf{v}_i(t)\right)
+\frac{d}{dt}\left(\mu_{\text{arch}}\mathbf{v}_i(t)\right)
 = \sum_j \mathbf{F}_{ij}(t),
 $$
 
@@ -1873,7 +1877,7 @@ and the branch-resolved force is
 $$
 \mathbf{F}_{ij}(t)
 =
-\kappa\,\sigma_{ij}\,|q_i q_j|
+\mu_{\text{arch}}\,\kappa\,\sigma_{ij}\,|q_i q_j|
 \sum_{t_0\in\mathcal{C}_{ij}(t)}
 \frac{\hat{\mathbf{r}}_{ij}(t;t_0)}
 {r_{ij}^2(t;t_0)\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|},
@@ -1900,28 +1904,28 @@ Given the kinetic energy definition, we now address the most useful history-awar
 We define a functional $H_{\text{tot}}$ such that:
 
 - $H_{\text{tot}}$ is constant in $t$ for isolated exact trajectories,
-- $H_{\text{tot}}$ reduces to $K+U$ in regimes where an effective potential description is adequate.
+- $H_{\text{tot}}$ reduces to $K_{\mu}+U$ in regimes where an effective potential description is adequate.
 
 Formally, for an isolated system,
 
 $$
 H_{\text{tot}}[\{\mathbf{x}_i(\cdot)\},\{\mathbf{v}_i(\cdot)\}; t]
 \equiv
-K(t) + U(t),
+K_{\mu}(t) + U(t),
 $$
 
 with $U(t)$ defined via:
 
 $$
-U(t) = U_\ast - \int_{t_\ast}^{t} \sum_i m_i\,\mathbf{a}_i(t')\cdot \mathbf{v}_i(t')\,dt',
+U(t) = U_\ast - \int_{t_\ast}^{t} \sum_i \mu_{\text{arch}}\,\mathbf{a}_i(t')\cdot \mathbf{v}_i(t')\,dt',
 $$
 
 where $U_\ast$ is a fixed reference and $\mathbf{a}_i$ is the actual acceleration given by the Master Equation (including self‑hit and partner contributions). Then:
 
 $$
-\frac{dH_{\text{tot}}}{dt} = \frac{dK}{dt} + \frac{dU}{dt}
-= \sum_i m_i\,\mathbf{a}_i\cdot\mathbf{v}_i
-- \sum_i m_i\,\mathbf{a}_i\cdot\mathbf{v}_i
+\frac{dH_{\text{tot}}}{dt} = \frac{dK_{\mu}}{dt} + \frac{dU}{dt}
+= \sum_i \mu_{\text{arch}}\,\mathbf{a}_i\cdot\mathbf{v}_i
+- \sum_i \mu_{\text{arch}}\,\mathbf{a}_i\cdot\mathbf{v}_i
 = 0.
 $$
 
@@ -1973,7 +1977,7 @@ which:
 - An **exact nonlocal action principle** exists: a multi-time Lagrangian whose kernel enforces the causal isochron geometry and reproduces the Master EOM with its Jacobian-weighted inverse-square law.
 - The **total energy** for an isolated trajectory is history-aware; in suitable limits it reduces to a canonical $H_\text{eff} = \sum \mathbf{P}^2/2M + U_\text{eff}$ for effective assemblies, with no separate “field energy” ontology.
 
-All energy accounting remains localized to **architrinos and their assemblies** and is only updated at the instants when **causal wake surfaces intersect receivers** at $t = \text{now}$. The exact conserved charge may be written as $K(t)+E_{\text{wake}}(t)$ or, equivalently up to reference choice, as $K(t)+U(t)$ along realized trajectories.
+All energy accounting remains localized to **architrinos and their assemblies** and is only updated at the instants when **causal wake surfaces intersect receivers** at $t = \text{now}$. The exact conserved charge may be written as $K_{\mu}(t)+E_{\text{wake}}(t)$ or, equivalently up to reference choice, as $K_{\mu}(t)+U(t)$ along realized trajectories.
 
 ---
 
@@ -2004,7 +2008,7 @@ where $E(3)=\mathbb{R}^3 \rtimes O(3)$ acts by spatial translations and rotation
 
 **Definition (Mechanical momentum).**
 $$
-\mathbf{P}_{\text{mech}}(t) = \sum_i m_i \mathbf{v}_i(t).
+\mathbf{P}_{\text{mech}}(t) = \sum_i \mu_{\text{arch}} \mathbf{v}_i(t).
 $$
 Because the forces are delayed, $\dot{\mathbf{P}}_{\text{mech}}(t)$ is generally nonzero.
 
@@ -2012,7 +2016,7 @@ Because the forces are delayed, $\dot{\mathbf{P}}_{\text{mech}}(t)$ is generally
 $$
 \mathbf{P}_{\text{wake}}(t) = \mathbf{P}_{\text{wake}}(t_\ast) - \int_{t_\ast}^{t} \sum_i \mathbf{F}_i(s)\,ds,
 $$
-with $\mathbf{F}_i = m_i \mathbf{a}_i$ from the Master Equation.
+with $\mathbf{F}_i = \mu_{\text{arch}} \mathbf{a}_i$ from the Master Equation.
 
 **Conservation law (total momentum).**
 $$
@@ -2022,7 +2026,7 @@ is constant in time for isolated solutions. It is the momentum decomposition ass
 
 **Definition (Mechanical angular momentum).**
 $$
-\mathbf{L}_{\text{mech}}(t) = \sum_i \mathbf{x}_i(t) \times m_i \mathbf{v}_i(t).
+\mathbf{L}_{\text{mech}}(t) = \sum_i \mathbf{x}_i(t) \times \mu_{\text{arch}} \mathbf{v}_i(t).
 $$
 
 **Definition (Wake angular momentum functional).**
@@ -2042,17 +2046,17 @@ is constant in time for isolated solutions. It is the angular-momentum decomposi
 
 Time-translation invariance implies a conserved history functional, which we write as
 $$
-E_{\text{tot}}(t) = K(t) + E_{\text{wake}}(t),
+E_{\text{tot}}(t) = K_{\mu}(t) + E_{\text{wake}}(t),
 $$
-where $K$ is kinetic energy and $E_{\text{wake}}$ denotes the exact nonlocal interaction charge. In direct trajectory evaluation, $U$ may be used as an equivalent reconstruction up to a constant offset.
+where $K_{\mu}$ is the quadratic kinetic bookkeeping proxy and $E_{\text{wake}}$ denotes the exact nonlocal interaction charge. In direct trajectory evaluation, $U$ may be used as an equivalent reconstruction up to a constant offset.
 
 **Lemma (Bounded work rate under regularization).** If $\eta>0$ and the mollified kernel bounds the per-hit force, then there exists $F_{\max}(\eta)$ such that
 $$
-\bigg|\frac{dK}{dt}\bigg| \le \sum_i \|\mathbf{F}_i\|\,\|\mathbf{v}_i\|
+\bigg|\frac{dK_{\mu}}{dt}\bigg| \le \sum_i \|\mathbf{F}_i\|\,\|\mathbf{v}_i\|
 \le N\,F_{\max}(\eta)\,v_{\max}(t).
 $$
 
-**Theorem (No-runaway criterion).** For an isolated system with fixed $\eta>0$, if the interaction functional $U(t)$ is bounded below on the admissible history class (for example, by enforcing a minimum separation within the regularized kernel support), then $K(t)$ is bounded for all times where the solution exists. In particular, a runaway $v_{\max}(t)\to\infty$ is only possible if $U(t)\to -\infty$, which requires a collapse toward the singular regime or a breakdown of the regularized assumptions.
+**Theorem (No-runaway criterion).** For an isolated system with fixed $\eta>0$, if the interaction functional $U(t)$ is bounded below on the admissible history class (for example, by enforcing a minimum separation within the regularized kernel support), then $K_{\mu}(t)$ is bounded for all times where the solution exists. In particular, a runaway $v_{\max}(t)\to\infty$ is only possible if $U(t)\to -\infty$, which requires a collapse toward the singular regime or a breakdown of the regularized assumptions.
 
 *Interpretation.* Self-hit repulsion can transfer energy between $U$ and $K$, but it cannot generate unbounded kinetic energy without a corresponding unbounded decrease in $U$. This is the core conservation argument for excluding unphysical runaway acceleration in the regularized model.
 
@@ -2060,7 +2064,7 @@ $$
 
 In addition to the convergence checks in Section 4.2, track these conserved functionals in any isolated run:
 
-- **Total energy**: $H_{\text{tot}}(t) = K(t) + U(t)$ (equivalently $K+E_{\text{wake}}$) should remain constant within the chosen numerical tolerance.
+- **Total energy**: $H_{\text{tot}}(t) = K_{\mu}(t) + U(t)$ (equivalently $K_{\mu}+E_{\text{wake}}$) should remain constant within the chosen numerical tolerance.
 - **Total momentum**: $\mathbf{P}_{\text{tot}}(t)$ should be constant; monitor $\|\mathbf{P}_{\text{tot}}(t)-\mathbf{P}_{\text{tot}}(0)\|$.
 - **Total angular momentum**: $\mathbf{L}_{\text{tot}}(t)$ should be constant; in planar runs, the unit axis $\hat{\mathbf{n}} = \mathbf{L}_{\text{tot}}/\|\mathbf{L}_{\text{tot}}\|$ should remain fixed.
 - **Binary symmetry defect** (for symmetric initial data):
@@ -2075,7 +2079,7 @@ These diagnostics operationalize the symmetry constraints and provide early warn
 
 For integration with the quantum closure program, the master equation provides the microscopic gate:
 $$
-m_i\ddot{\mathbf{x}}_i(t)=\text{delayed causal-hit sum over }\mathcal{C}_{ij}(t).
+\ddot{\mathbf{x}}_i(t)=\text{delayed causal-hit sum over }\mathcal{C}_{ij}(t).
 $$
 
 The required next reduction is a controlled map to mesoscopic density dynamics:

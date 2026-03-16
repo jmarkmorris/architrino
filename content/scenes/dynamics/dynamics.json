@@ -16,6 +16,10 @@
         "scenePath": "content/scenes/dynamics/binary_dynamics.json"
       },
       {
+        "nodeId": "collinear_breather",
+        "scenePath": "content/scenes/dynamics/collinear_breather.json"
+      },
+      {
         "nodeId": "causal_action_functional",
         "scenePath": "content/scenes/dynamics/causal_action_functional.json"
       },
@@ -77,6 +81,17 @@
         "type": "fixed"
       },
       "labelTitle": "Binary Dynamics",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "collinear_breather",
+      "title": "1D Collinear Binary",
+      "radius": 2.688,
+      "color": "#7a5c2f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "1D Collinear Binary",
       "labelBadge": "doc"
     },
     {

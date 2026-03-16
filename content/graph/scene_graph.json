@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 405,
-      "edges": 1147,
-      "scenes": 281,
+      "nodes": 407,
+      "edges": 1149,
+      "scenes": 282,
       "markdownIndexes": 0,
-      "markdownDocs": 124,
+      "markdownDocs": 125,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1835,6 +1835,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "dynamics__collinear_breather",
+      "name": "1D Collinear Binary (Reduced Model)",
+      "path": "content/scenes/dynamics/collinear_breather.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2054,6 +2060,12 @@
       "id": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "name": "Causal Action Functional",
       "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/collinear-breather.md",
+      "name": "1D Collinear Binary (Reduced Model)",
+      "path": "content/markdown/aaa/dynamics/collinear-breather.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3064,6 +3076,15 @@
       "name": "Causal Action Functional",
       "path": "content/scenes/dynamics/causal_action_functional.json",
       "searchTarget": "content/scenes/dynamics/causal_action_functional.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/collinear_breather.json",
+      "nodeType": "scene",
+      "id": "dynamics__collinear_breather",
+      "name": "1D Collinear Binary (Reduced Model)",
+      "path": "content/scenes/dynamics/collinear_breather.json",
+      "searchTarget": "content/scenes/dynamics/collinear_breather.json",
       "implicit": false
     },
     {
@@ -5443,6 +5464,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/collinear-breather.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/collinear-breather.md",
+      "name": "1D Collinear Binary (Reduced Model)",
+      "path": "content/markdown/aaa/dynamics/collinear-breather.md",
+      "searchTarget": "content/markdown/aaa/dynamics/collinear-breather.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
@@ -6708,6 +6738,13 @@
       "to": "scene:content/scenes/dynamics/causal_action_functional.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/collinear_breather.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
       "field": "scene.children[2]"
     },
     {
@@ -6715,63 +6752,63 @@
       "to": "scene:content/scenes/dynamics/dyadic_resonance_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/emergence_of_u_1_su_2.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/gauge_symmetries.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/mapping_planck_scale.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/master_equation_of_motion.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/mode_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -10362,6 +10399,13 @@
       "to": "markdown_doc:content/markdown/aaa/dynamics/causal-action-functional.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/causal_action_functional.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/collinear_breather.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/collinear-breather.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/collinear_breather.json",
       "field": "scene.source.path"
     },
     {
