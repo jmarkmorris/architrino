@@ -2650,21 +2650,30 @@ This proposition should still be read as conditional. Its role is to isolate the
 
 ### Convexity caution
 
-The eventual fixed-point set should not be chosen too aggressively at first pass. Some natural-looking lower bounds can destroy convexity:
+The eventual fixed-point set should not be chosen too aggressively at first pass. In signed 1D geometry, however, one point deserves to be stated carefully:
 
-- a minimum inbound speed,
+A lower bound on the **section inbound speed**
+$$
+\dot\phi(0)\le -U_{\min}<0
+$$
+is affine and therefore convex. So a scalar minimum inbound speed at the section is not itself a convexity problem on a signed branch.
+
+What can still destroy convexity are:
+
+- lower bounds on unsigned speed over a mixed-sign stored history,
 - a minimum return time,
-- or a lower bound on excursion amplitude.
+- a lower bound on excursion amplitude,
+- or nonlocal delayed-root constraints written directly into the set definition.
 
 For a first Schauder-style theorem, the safer route is:
 
-- impose closed upper bounds that are visibly convex in history space,
+- impose closed affine or supremum-type bounds that are visibly convex in history space,
 - prove that the return map lands inside that convex envelope,
-- and recover sharper lower bounds later for the resulting fixed point or invariant subset.
+- and only then fold in sharper delayed-root structure if it can be shown to be automatic on the same convex domain.
 
 ### First convex invariant-envelope candidate
 
-Motivated by that caution, define the first global candidate set using only affine and supremum-type upper bounds. Fix constants
+Motivated by that caution, define the first global candidate set using affine and supremum-type convex bounds. Fix constants
 $$
 x_\ast\in(0,X_{\max}),
 \qquad
@@ -2714,13 +2723,16 @@ $$
 h\ge \frac{2X_{\max}}{c_f}.
 $$
 
-This set is closed in the $C^1$ topology, and the bounds above are convex under affine interpolation of histories. In particular, one does not impose:
+This set is closed in the $C^1$ topology, and the bounds above are convex under affine interpolation of histories. In particular, one still does not impose:
 
-- a minimum inbound speed,
 - a minimum return time,
 - or a minimum excursion amplitude.
 
-Those are precisely the types of lower bounds that can puncture convexity and should therefore be postponed until after a first invariant-set theorem is available.
+The genuinely dangerous constraints are the nonlocal or unsigned ones listed above, which should still be postponed until after a first invariant-set theorem is available. If a later theorem produces a uniform strictly inbound section-speed gap
+$$
+\dot\phi(0)\le -U_{\min}<0,
+$$
+that refinement can be added without harming convexity, because in signed 1D it is still an affine condition at the section.
 
 The horizon condition is handled externally rather than as a defining nonlinear constraint. Indeed, if
 $$
@@ -2767,6 +2779,45 @@ The corresponding global target is then:
 
 If this target can be proved and the image is precompact in $C^1([-h,0])$, then the fixed-point program reduces to standard topological machinery on a closed convex envelope rather than on a heavily punctured section set.
 
+For the actual Schauder step, one needs one more strengthening:
+
+> **Target Proposition (Closed Convex Tame Envelope).**
+> There exists a nonempty closed convex set
+> $$
+> \mathcal{K}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that:
+> 1. the return map
+>    $$
+>    P_\eta
+>    $$
+>    is well defined and continuous on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta},
+>    $$
+> 2. its image is precompact in
+>    $$
+>    C^1([-h,0]),
+>    $$
+> 3. and
+>    $$
+>    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
+>    \subseteq
+>    \mathcal{K}_{x_\ast,\eta}.
+>    $$
+
+This is the exact fixed-point domain required by Schauder. In concrete realizations, one may either prove that
+$$
+\mathcal{C}_{x_\ast,\eta}
+$$
+is already tame, or identify a closed convex tame sub-envelope
+$$
+\mathcal{K}_{x_\ast,\eta}
+$$
+inside it.
+
 So the immediate global target is not yet "stable breather with fixed amplitude," but rather:
 
 - a well-defined return map on a nonempty class,
@@ -2782,29 +2833,31 @@ The three global propositions above are designed to feed a single topological co
    P_\eta
    $$
    well defined on a nonempty inbound class;
-2. prove the continuity proposition on a tame subclass
+2. prove the continuity proposition on a tame class;
+3. identify a nonempty closed convex tame envelope
    $$
-   \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta};
+   \mathcal{K}_{x_\ast,\eta}
    $$
-3. prove the precompactness proposition for the return image
+   on which the return map is defined;
+4. prove the precompactness proposition for the return image
    $$
-   P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big);
+   P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big);
    $$
-4. prove the convex-envelope target
+5. prove the self-map property
    $$
-   P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+   P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
    \subseteq
-   \mathcal{C}_{x_\ast,\eta}.
+   \mathcal{K}_{x_\ast,\eta}.
    $$
 
 Once these items hold, the remaining step is standard:
 
 > **Target Theorem (Schauder Fixed Point Route).**
-> Suppose there exists a nonempty tame inbound subclass
+> Suppose there exists a nonempty closed convex set
 > $$
-> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \mathcal{K}_{x_\ast,\eta}
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}
+> C^1([-h,0])
 > $$
 > such that:
 > 1. the return map
@@ -2813,70 +2866,71 @@ Once these items hold, the remaining step is standard:
 >    $$
 >    is well defined and continuous on
 >    $$
->    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta},
+>    \mathcal{K}_{x_\ast,\eta},
 >    $$
 > 2. its image is precompact in $C^1([-h,0])$,
 > 3. and
 >    $$
->    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+>    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
 >    \subseteq
->    \mathcal{C}_{x_\ast,\eta},
+>    \mathcal{K}_{x_\ast,\eta}.
 >    $$
->    where
->    $$
->    \mathcal{C}_{x_\ast,\eta}
->    $$
->    is closed and convex in the $C^1$ topology.
 >
 > Then the closure
 > $$
 > \overline{
-> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
 > }
 > $$
 > is compact in $C^1([-h,0])$, lies inside
 > $$
-> \mathcal{C}_{x_\ast,\eta},
+> \mathcal{K}_{x_\ast,\eta},
 > $$
-> and supports a Schauder fixed-point argument for a fixed point of the dual-mollified return map.
+> and Schauder yields a fixed point of the dual-mollified return map on
+> $$
+> \mathcal{K}_{x_\ast,\eta}.
+> $$
 
-The remaining capstone step is to place the now-constructed nonempty tame class, the continuity input, and the precompactness input on the same domain. Once that is done, the fixed-point conclusion can be stated directly:
+The remaining capstone step is therefore to place the now-constructed nonempty tame class, the continuity input, and the precompactness input on one and the same closed convex tame envelope. Once that is done, the fixed-point conclusion can be stated directly:
 
 > **Target Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
 > Assume:
 > 1. the theorem `Nonempty tame class from seed propagation`;
-> 2. the continuity proposition for
+> 2. the existence of a nonempty closed convex tame envelope
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}
+>    \subseteq
+>    \mathcal{C}_{x_\ast,\eta}
+>    $$
+>    which contains the propagated nonempty tame class and on which
 >    $$
 >    P_\eta
 >    $$
->    on the resulting nonempty class
+>    is well defined;
+> 3. the continuity proposition for
 >    $$
->    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta};
+>    P_\eta
 >    $$
-> 3. the precompactness proposition for the image
+>    on
 >    $$
->    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big);
+>    \mathcal{K}_{x_\ast,\eta};
 >    $$
-> 4. and the invariant-envelope inclusion
+> 4. the precompactness proposition for the image
 >    $$
->    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+>    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big);
+>    $$
+> 5. and the self-map property
+>    $$
+>    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)
 >    \subseteq
->    \mathcal{C}_{x_\ast,\eta},
->    $$
->    where
->    $$
->    \mathcal{C}_{x_\ast,\eta}
->    $$
->    is closed and convex in
->    $$
->    C^1([-h,0]).
+>    \mathcal{K}_{x_\ast,\eta}.
 >    $$
 >
 > Then the dual-mollified return map supports a Schauder fixed-point argument on a nonempty history class. In particular, there exists a history
 > $$
 > \phi_\eta^\ast
 > \in
-> \mathcal{C}_{x_\ast,\eta}
+> \mathcal{K}_{x_\ast,\eta}
 > $$
 > such that
 > $$
@@ -2885,19 +2939,23 @@ The remaining capstone step is to place the now-constructed nonempty tame class,
 > The corresponding delayed trajectory is an exact bounded periodic origin-crossing two-body motion in the dual-mollified collinear model.
 
 Proof sketch.
-By the theorem `Nonempty tame class from seed propagation`, the domain
+By the theorem `Nonempty tame class from seed propagation`, there exists a nonempty propagated tame class. By assumption this class lies inside a nonempty closed convex tame envelope
 $$
-\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+\mathcal{K}_{x_\ast,\eta}.
 $$
-is nonempty and the return map
+The return map
 $$
 P_\eta
 $$
-is well defined there. The continuity and precompactness propositions place the return image inside a compact subset of the closed convex envelope
+is therefore well defined on a nonempty closed convex domain. The continuity and precompactness propositions place the return image inside a compact subset of
 $$
-\mathcal{C}_{x_\ast,\eta}.
+\mathcal{K}_{x_\ast,\eta}.
 $$
-The invariant-envelope inclusion prevents escape from that envelope. Therefore the standard Schauder fixed-point mechanism applies on the associated compact convex history set and yields a fixed point
+The self-map property prevents escape from that domain. Therefore the standard Schauder fixed-point mechanism applies on
+$$
+\mathcal{K}_{x_\ast,\eta}
+$$
+and yields a fixed point
 $$
 \phi_\eta^\ast.
 $$
