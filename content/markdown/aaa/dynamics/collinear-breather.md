@@ -257,6 +257,179 @@ The regularized formulation is the one best suited to:
 - numerical return-map construction,
 - and eventually the controlled limit $\eta\to 0^+$.
 
+## Inbound/Outbound Sign Structure
+
+The first genuine dynamical question is not whether self-hit exists, but whether its sign structure permits recapture. In 1D this can be stated exactly.
+
+### Exterior-branch convention
+
+Fix an interval on which
+$$
+x(t)>0.
+$$
+
+Then:
+
+- **inbound** means $\dot x(t)<0$,
+- **outbound** means $\dot x(t)>0$.
+
+This is the natural branch on which to analyze collapse, rebound, and return to a section at $x=x_\ast>0$.
+
+### Partner term
+
+On the exterior branch, the partner source sits on the opposite side of the origin, so the line of action points inward. Thus the partner contribution always accelerates the right-hand particle toward the origin.
+
+Write
+$$
+A_p(t)
+\equiv
+\kappa \epsilon^2
+\sum_{t_0\in\mathcal{C}_p(t)}
+\frac{1}{|x(t)+x(t_0)|^2\,|J_p(t;t_0)|}
+>0.
+$$
+
+Then the partner contribution is
+$$
+a_p(t)=-A_p(t).
+$$
+
+Therefore:
+
+- on the inbound leg, $a_p$ has the **same sign as the velocity** and speeds the collapse up,
+- on the outbound leg, $a_p$ has the **opposite sign to the velocity** and brakes the escape.
+
+### Self-hit split into outer-memory and inner-memory roots
+
+The self term does not have a fixed sign. Split the active self roots into
+$$
+\mathcal{C}_s^{\text{out}}(t)
+\equiv
+\left\{
+t_0\in\mathcal{C}_s(t)\;\middle|\; x(t_0)>x(t)
+\right\},
+$$
+$$
+\mathcal{C}_s^{\text{in}}(t)
+\equiv
+\left\{
+t_0\in\mathcal{C}_s(t)\;\middle|\; x(t_0)<x(t)
+\right\}.
+$$
+
+For $t_0\in\mathcal{C}_s^{\text{out}}(t)$ one has
+$$
+\hat r_s(t;t_0)=\mathrm{sgn}(x(t)-x(t_0))=-1,
+$$
+so that branch contributes **negative** acceleration.
+
+For $t_0\in\mathcal{C}_s^{\text{in}}(t)$ one has
+$$
+\hat r_s(t;t_0)=\mathrm{sgn}(x(t)-x(t_0))=+1,
+$$
+so that branch contributes **positive** acceleration.
+
+Define the corresponding positive amplitudes
+$$
+A_s^{\text{out}}(t)
+\equiv
+\kappa \epsilon^2
+\sum_{t_0\in\mathcal{C}_s^{\text{out}}(t)}
+\frac{1}{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|},
+$$
+$$
+A_s^{\text{in}}(t)
+\equiv
+\kappa \epsilon^2
+\sum_{t_0\in\mathcal{C}_s^{\text{in}}(t)}
+\frac{1}{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|}.
+$$
+
+Then the total acceleration on the exterior branch is
+$$
+\ddot x(t)= -A_p(t)-A_s^{\text{out}}(t)+A_s^{\text{in}}(t).
+$$
+
+This is the key reduced formula.
+
+### Physical interpretation
+
+- **Inbound** ($\dot x<0$):
+  - the partner term always strengthens infall,
+  - outer-memory self roots also strengthen infall,
+  - inner-memory self roots oppose infall.
+
+- **Outbound** ($\dot x>0$):
+  - the partner term always brakes the outward motion,
+  - outer-memory self roots also brake the outward motion,
+  - inner-memory self roots drive further escape.
+
+So self-hit is not a permanent outward engine. Its effect depends on where the active remembered emission points sit relative to the current position.
+
+## Necessary Recapture Condition
+
+The breather question can now be reduced to one concrete inequality.
+
+Fix an outbound time $t_\sharp$ on the exterior branch with
+$$
+x(t_\sharp)>0,
+\qquad
+\dot x(t_\sharp)=u_\sharp>0.
+$$
+
+If the trajectory is ever to turn around and re-enter as an inbound branch, there must exist a later time $t_{\mathrm{turn}}>t_\sharp$ such that
+$$
+\dot x(t_{\mathrm{turn}})=0.
+$$
+
+Integrating the reduced acceleration identity gives
+$$
+0
+=
+u_\sharp
+\int_{t_\sharp}^{t_{\mathrm{turn}}}
+\Big(
+-A_p(s)-A_s^{\text{out}}(s)+A_s^{\text{in}}(s)
+\Big)\,ds.
+$$
+
+Equivalently,
+$$
+u_\sharp
+=
+\int_{t_\sharp}^{t_{\mathrm{turn}}}
+\Big(
+A_p(s)+A_s^{\text{out}}(s)-A_s^{\text{in}}(s)
+\Big)\,ds.
+$$
+
+Therefore a **necessary condition for recapture** is
+$$
+\sup_{t>t_\sharp}
+\int_{t_\sharp}^{t}
+\Big(
+A_p(s)+A_s^{\text{out}}(s)-A_s^{\text{in}}(s)
+\Big)\,ds
+\ge
+u_\sharp.
+$$
+
+If this inequality fails, then the total accumulated braking from partner attraction plus outer-memory self-hit is never strong enough to overcome the outbound speed and the trajectory cannot turn around.
+
+### Stronger sufficient criterion
+
+If there exists an interval $[t_1,t_2]$ with $t_1\ge t_\sharp$ on which
+$$
+A_p(t)+A_s^{\text{out}}(t)-A_s^{\text{in}}(t)\ge \delta >0
+$$
+for all $t\in[t_1,t_2]$, and
+$$
+\int_{t_1}^{t_2}\delta\,dt \ge \dot x(t_1),
+$$
+then a turning point must occur no later than $t_2$.
+
+This criterion is not expected to be the final theorem, but it gives the correct sign target for both numerics and analysis.
+
 ## Regularized Return Map
 
 To state a breather problem precisely, define a Poincare-type section on the symmetric history space rather than on instantaneous phase space alone.
