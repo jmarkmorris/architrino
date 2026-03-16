@@ -4184,6 +4184,109 @@ $$
 $$
 This proves the lemma.
 
+### Turn-to-section return target
+
+Once the local post-crossing theorem has produced a turning point, the remaining analytic burden is to close the excursion back to the inbound section. This is the return-half analogue of the collapse-to-crossing theorem.
+
+> **Target Theorem (Turn-to-Section Return).**
+> Fix a dual-mollified tame crossing subclass
+> $$
+> \mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}
+> $$
+> and suppose the local origin-crossing recapture theorem produces, for every admissible crossing history, a turning time
+> $$
+> t_{\mathrm{turn}}\le \tau_{\mathrm{env}}
+> $$
+> with
+> $$
+> \dot\rho(t_{\mathrm{turn}})=0.
+> $$
+> Assume there exist class constants
+> $$
+> X_{\max},
+> \qquad
+> U_{\max},
+> \qquad
+> A_{\max},
+> \qquad
+> T_{\mathrm{ret},\max}>0
+> $$
+> such that for every post-turn branch:
+> 1. **inward return after the turn:**
+>    the trajectory re-enters toward the origin after
+>    $$
+>    t_{\mathrm{turn}},
+>    $$
+>    crosses the center a second time, and reaches the section
+>    $$
+>    x=x_\ast
+>    $$
+>    again as an inbound branch;
+> 2. **bounded excursion on the return half:**
+>    $$
+>    0\le x(t)\le X_{\max}
+>    \qquad
+>    \text{for }t_{\mathrm{turn}}\le t\le T(\psi);
+>    $$
+> 3. **bounded speed and acceleration on the return half:**
+>    $$
+>    |\dot x(t)|\le U_{\max},
+>    \qquad
+>    |\ddot x(t)|\le A_{\max}
+>    \qquad
+>    \text{for }t_{\mathrm{turn}}\le t\le T(\psi);
+>    $$
+> 4. **bounded return time:**
+>    the first inbound section return satisfies
+>    $$
+>    0<T(\psi)-t_{\mathrm{turn}}\le T_{\mathrm{ret},\max};
+>    $$
+> 5. **bounded inbound section speed:**
+>    $$
+>    -\dot x(T(\psi))\le U_{\max};
+>    $$
+> 6. **returned-history control:**
+>    the translated segment
+>    $$
+>    x_{T(\psi)}
+>    $$
+>    satisfies the same acceleration, Jacobian, and branch-count bounds required by the tame envelope.
+>
+> Then the post-turn branch closes the full cycle back to the inbound section, and the return map
+> $$
+> P_\eta
+> $$
+> is well defined on the corresponding tame class with
+> $$
+> P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}.
+> $$
+
+This theorem is the last missing dynamical segment of the cycle. The collapse-to-crossing theorem feeds the local recapture theorem; the turn-to-section return theorem feeds the invariant-envelope and Schauder steps.
+
+### Turn-to-section return ladder
+
+The intended proof order for the return half is:
+
+1. **Post-turn inward-drive lemma.**
+   Show that after the turning time the net delayed force drives the trajectory back toward the origin strongly enough to prevent outward re-escape.
+2. **Second-crossing lemma.**
+   Prove that the trajectory crosses the origin a second time in finite time after the turn.
+3. **Section-return lemma.**
+   Show that after the second crossing, the trajectory reaches
+   $$
+   x=x_\ast
+   $$
+   again on an inbound branch.
+4. **Return-speed bound.**
+   Estimate the inbound speed at the section and show
+   $$
+   -\dot x(T(\psi))\le U_{\max}.
+   $$
+5. **Returned-history tameness.**
+   Prove that the translated return segment inherits the tame acceleration, Jacobian, and branch-count bounds.
+
+The first and fourth items are the real analytic bottlenecks on the return half. The middle two are reachability statements once the sign of the post-turn drive is controlled.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
