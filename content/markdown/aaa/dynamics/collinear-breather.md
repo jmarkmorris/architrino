@@ -460,6 +460,10 @@ denote an admissible reflection-symmetric history class with the following prope
   $$
   |\dot\phi(\theta)|\le u_{\max},
   $$
+- uniform acceleration bounds
+  $$
+  |\ddot\phi(\theta)|\le a_{\max},
+  $$
 - and a transversality bound on every active partner and self root,
   $$
   |J_p|\ge \nu,
@@ -469,7 +473,14 @@ denote an admissible reflection-symmetric history class with the following prope
   \nu>0.
   $$
 
-The role of $\mathcal{K}_{x_\ast,\eta}$ is simple: it isolates a tame region of history space on which the regularized vector field, root selection, and section crossings can plausibly be controlled. Whether the eventual theorem program allows histories that approach $x=0$ arbitrarily closely is a separate question and should not be conflated with the first well-posedness regime.
+Also require the active causal memory depth to fit inside the chosen history window:
+$$
+\tau_{\max}(\phi)\le h
+\qquad
+\text{for every }\phi\in\mathcal{K}_{x_\ast,\eta}.
+$$
+
+The role of $\mathcal{K}_{x_\ast,\eta}$ is simple: it isolates a tame region of history space on which the regularized vector field, root selection, and section crossings can plausibly be controlled. The acceleration bound is the first compactness-oriented ingredient for a later Arzela-Ascoli step in $C^1$, and the memory-depth bound ensures the delayed law really closes on the chosen history interval. Whether the eventual theorem program allows histories that approach $x=0$ arbitrarily closely is a separate question and should not be conflated with the first well-posedness regime.
 
 Define the outbound and inbound sections within this admissible class:
 $$
@@ -678,11 +689,21 @@ to be the set of inbound histories $\phi$ satisfying:
   \qquad
   \theta\in[-h,0],
   $$
+- uniform acceleration bound on the stored history,
+  $$
+  |\ddot\phi(\theta)|\le a_{\max},
+  \qquad
+  \theta\in[-h,0],
+  $$
 - Jacobian transversality on all active roots in the stored history,
   $$
   |J_p|\ge \nu,
   \qquad
   |J_s|\ge \nu,
+  $$
+- finite-memory closure on the stored history,
+  $$
+  \tau_{\max}(\phi)\le h,
   $$
 - and a one-cycle return-time window for the forward evolution,
   $$
@@ -704,6 +725,8 @@ That single inclusion naturally breaks into four subproblems:
 - and return-time control: the cycle length remains inside $[T_{\min},T_{\max}]$.
 
 If these items can be proved and $\mathcal{E}_{x_\ast,\eta}$ is chosen closed, bounded, and compact enough for the relevant history topology, then the fixed-point program for $P_\eta$ becomes concrete rather than rhetorical.
+
+The additional acceleration bound is not cosmetic. In a $C^1$ theorem program it is the natural ingredient used to promote a bounded history family toward precompactness, while the memory-depth bound prevents the return map from depending on path-history lying outside the chosen Banach window.
 
 ### First recapture target
 
@@ -754,6 +777,63 @@ For the current theorem program, the recapture problem can therefore be read as 
 - produce a lower bound for $A_p$ on the relevant outbound interval,
 - show that outer-memory self branches do not disappear too quickly if they are needed for braking,
 - and prevent inner-memory self branches from driving a near-null runaway by making $A_s^{\text{in}}$ too large.
+
+### Tame recapture class target
+
+The strongest narrow theorem target suggested by the current 1D geometry is to isolate an outbound family for which the early outbound self-hit support comes entirely from outer-memory roots.
+
+> **Candidate Proposition (Tame Recapture Class).**
+> Fix $(x_\ast,\eta)$ and let
+> $$
+> \mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}\subset\Sigma^+_{x_\ast,\eta}
+> $$
+> be an outbound class satisfying the tame bounds inherited from $\mathcal{K}_{x_\ast,\eta}$.
+> Assume there exists a time window $[0,\tau_{\mathrm{tame}}]$ such that every forward trajectory from $\phi\in\mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}$ satisfies
+> $$
+> \mathcal{C}_s^{\text{in}}(t)=\varnothing
+> \qquad
+> \text{for }0\le t\le \tau_{\mathrm{tame}},
+> $$
+> and
+> $$
+> A_p(t)+A_s^{\text{out}}(t)\ge \beta_{\mathrm{tame}}>0
+> \qquad
+> \text{for }0\le t\le \tau_{\mathrm{tame}}.
+> $$
+> If
+> $$
+> \beta_{\mathrm{tame}}\tau_{\mathrm{tame}}
+> \ge
+> \sup_{\phi\in\mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}}\dot x_\phi(0),
+> $$
+> then every such trajectory turns around by time $\tau_{\mathrm{tame}}$, and $Q_\eta$ is well defined on $\mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}$ provided the post-turn branch remains inside the tame regime.
+
+This proposition isolates the geometric heart of the 1D problem. If one can prove that early outbound self-hits come only from the loaded inbound wake, then the destabilizing term $A_s^{\text{in}}$ disappears on that initial window and recapture reduces to a strictly inward braking problem.
+
+### Delay-geometry lemma target
+
+The tame recapture proposition hides one very specific geometric claim that should be singled out rather than left implicit.
+
+> **Lemma Target (Early Outbound Outer-Memory Dominance).**
+> Let $\phi\in\mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}$ be an outbound history with current speed strictly below field speed:
+> $$
+> 0<\dot x_\phi(0)\le u_{\max}<c_f.
+> $$
+> Assume the recent outbound leg is short compared with the causal travel time from the inner turning region to the section $x=x_\ast$, while the inbound leg has already loaded a nontrivial super-field-speed wake at larger radii. Then there exists a time window $[0,\tau_{\mathrm{tame}}]$ such that every active self root received on that window originates from the inbound branch, and therefore
+> $$
+> \mathcal{C}_s^{\text{in}}(t)=\varnothing
+> \qquad
+> \text{for }0\le t\le \tau_{\mathrm{tame}}.
+> $$
+
+This is the delay-geometry heart of the 1D breather program. The loaded inbound wake is not rhetorical language; it is the mechanism by which outer-memory self roots can dominate the early outbound leg even though the current motion is away from the origin.
+
+The associated proof problem is to compare two causal travel times:
+
+- the time since the inner rebound that generates recent outbound memory,
+- and the longer causal travel times from the already-loaded inbound super-field-speed segment.
+
+If the first time is too short to support active inner-memory self hits at the section while the second remains active, then the early outbound window is forced into the outer-memory regime.
 
 ### Envelope-level sufficient condition
 
@@ -878,6 +958,15 @@ $$
 for an explicit outbound class. That would rule out any turning point at any later time and would show that the outward branch never re-enters the section.
 
 If even this strong recapture proposition cannot be supported on any nonempty outbound class, then the invariant-set program should stop there: the return maps $Q_\eta$ and $P_\eta$ are not defined on a robust domain, and no fixed-point theorem will rescue the model.
+
+### Red flags for the theorem program
+
+Several issues still need to stay explicit while pushing the 1D proof program forward.
+
+- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
+- **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced note, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
+- **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
+- **Compactness is conditional.** The added acceleration bound is the right first step toward precompactness in $C^1$, but a later fixed-point theorem will still need the exact topology and continuity properties of the return map to be verified rather than assumed.
 
 ## Conjectured Breather Statement
 
