@@ -6684,6 +6684,109 @@ c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2},
 $$
 which proves the claim.
 
+**Corollary 37: Refined trimmed-apocenter outer-force margin.**
+Assume on the trimmed apocenter window
+$$
+I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+$$
+that:
+
+- the partner lower bound of Lemma 20 holds,
+  $$
+  A_p(t)\ge \underline A_p^{\mathrm{out}},
+  $$
+- the same-side local self contribution is only the shell tail controlled by Lemma 27,
+- the hypotheses of Corollary 36 hold, so the deep-past same-side contribution satisfies
+  $$
+  A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+  \le
+  \frac{\kappa\epsilon^2}{
+  c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2},
+  $$
+- and there are no additional outward-driving self branches on
+  $$
+  I_{\mathrm{deep}}
+  $$
+  beyond those two channels.
+
+If
+$$
+\underline A_p^{\mathrm{out}}
+-
+\frac{\kappa\epsilon^2}{
+c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
+-
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}
+\ge
+a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}>0,
+$$
+then on
+$$
+I_{\mathrm{deep}}
+$$
+one has the unconditional inward acceleration bound
+$$
+\ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0.
+$$
+
+In particular, if
+$$
+|I_{\mathrm{deep}}|
+\ge
+\frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}},
+$$
+then the same comparison argument as in Lemma 23 forces a finite outer turn on or just beyond the trimmed apocenter window.
+
+Proof.
+By Lemma 20,
+$$
+A_p(t)\ge \underline A_p^{\mathrm{out}}.
+$$
+By Corollary 36,
+$$
+A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+\le
+\frac{\kappa\epsilon^2}{
+c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}.
+$$
+By Lemma 27, the local same-side shell leakage satisfies
+$$
+A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
+\le
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}.
+$$
+Under the stated hypothesis that these exhaust the outward-driving self channels on
+$$
+I_{\mathrm{deep}},
+$$
+the full outward self contribution is bounded by the sum of those two terms. Therefore
+$$
+\ddot x(t)\le -A_p(t)+A_s^{\mathrm{out}}(t)
+\le
+-\underline A_p^{\mathrm{out}}
++
+\frac{\kappa\epsilon^2}{
+c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
++
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}.
+$$
+The assumed parameter inequality gives
+$$
+\ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0,
+$$
+which proves the first claim.
+
+If
+$$
+|I_{\mathrm{deep}}|
+\ge
+\frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}},
+$$
+then integrating the acceleration comparison exactly as in Lemma 23 forces the outward velocity to hit zero in finite time, yielding a finite outer turn on or just beyond the trimmed apocenter interval.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
