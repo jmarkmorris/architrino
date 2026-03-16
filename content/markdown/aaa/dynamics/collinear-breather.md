@@ -5357,6 +5357,102 @@ x_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}},
 $$
 which proves the radius bound.
 
+**Lemma 24: Post-turn acceleration bracket after the outer turn.**
+Assume the hypotheses of Lemma 23 and let
+$$
+t_{\mathrm{turn}}^{\mathrm{out}}
+$$
+be the first outer turning time, with
+$$
+x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}},
+\qquad
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0.
+$$
+Assume, in addition, that there exists a post-turn window
+$$
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}},
+\,
+t_{\mathrm{turn}}^{\mathrm{out}}+\tau_{\mathrm{in}}
+\right]
+$$
+on which the delayed force contributions satisfy
+$$
+A_p(t)\ge \underline A_{p,\mathrm{post}}^{\mathrm{out}},
+\qquad
+A_s(t)\le \overline A_{s,\mathrm{post}}^{\mathrm{out}},
+$$
+with
+$$
+\underline A_{p,\mathrm{post}}^{\mathrm{out}}
+-
+\overline A_{s,\mathrm{post}}^{\mathrm{out}}
+\ge
+a_-^{\mathrm{out}}>0,
+$$
+and also admit a class-uniform upper acceleration bound
+$$
+|\ddot x(t)|\le a_+^{\mathrm{out}}.
+$$
+Then on that post-turn window one has the two-sided acceleration bracket
+$$
+-a_+^{\mathrm{out}}
+\le
+\ddot x(t)
+\le
+-a_-^{\mathrm{out}}
+<
+0.
+$$
+
+Consequently, if
+$$
+\tau_{\mathrm{in}}
+\ge
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_-^{\mathrm{out}}}},
+$$
+then the hypotheses of Lemmas 17 and 18 hold with
+$$
+a_{\mathrm{in}}^{\mathrm{out}}=a_-^{\mathrm{out}}.
+$$
+
+Proof.
+On the post-turn window the signed equation has the form
+$$
+\ddot x(t)\le -A_p(t)+A_s(t).
+$$
+Using the assumed lower bound for the inward partner term and the upper bound for the outward self term yields
+$$
+\ddot x(t)
+\le
+-\underline A_{p,\mathrm{post}}^{\mathrm{out}}
++
+\overline A_{s,\mathrm{post}}^{\mathrm{out}}
+\le
+-a_-^{\mathrm{out}}<0.
+$$
+The assumed absolute acceleration bound gives
+$$
+\ddot x(t)\ge -a_+^{\mathrm{out}},
+$$
+so the stated two-sided bracket follows.
+
+If
+$$
+\tau_{\mathrm{in}}
+\ge
+\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_-^{\mathrm{out}}}},
+$$
+then Lemma 17 applies with
+$$
+a_{\mathrm{in}}^{\mathrm{out}}=a_-^{\mathrm{out}},
+$$
+and Lemma 18 applies with the pair
+$$
+(a_-^{\mathrm{out}},a_+^{\mathrm{out}}).
+$$
+This is exactly the required post-turn handoff.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
