@@ -375,6 +375,8 @@ $$
 
 In that formulation, a full oscillation alternates between the right and left exterior branches with label-preserving passage through $x=0$. The theorem targets later in this note should therefore be read as targets for post-crossing recapture of the radial distance rather than as literal pre-origin bounce statements on a single $x>0$ branch.
 
+In particular, the present 1D geometry should not be treated as a radial simplification of the 2D circular case. Along a true collinear history, the self-hit term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: the self interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The corrected theorem program therefore asks whether partner attraction can recapture the motion **despite** that self-drive, not because self-hit itself creates the turnaround.
+
 ## Necessary Recapture Condition
 
 The breather question can now be reduced to one concrete inequality.
@@ -848,6 +850,39 @@ The key local lemma is therefore not outer-memory dominance, but **bounded post-
 
 This is the local delay-geometry heart of the corrected program. If the self drive can be shown to remain uniformly bounded on the initial post-crossing window, then the recapture question becomes a direct competition between a bounded outward delayed drive and the inward $1/\rho^2$ partner attraction.
 
+### Post-crossing sorting map
+
+The cleanest geometric device for the local lemma is the signed sorting function
+$$
+w(t)\equiv x(t)+c_f t.
+$$
+
+On a post-crossing branch with $\dot x(t)<0$, self-hit roots satisfying the left-moving causal branch obey
+$$
+x(t)-x(t_s)=-c_f(t-t_s),
+$$
+which is equivalent to
+$$
+w(t_s)=w(t).
+$$
+
+Thus the active self roots are organized by level sets of $w$. Its derivative is
+$$
+\dot w(t)=\dot x(t)+c_f.
+$$
+
+This produces a natural temporal sorting:
+
+- when $-c_f<\dot x(t)<0$, one has $\dot w(t)>0$,
+- at the hinge $\dot x(t)=-c_f$, one has $\dot w(t)=0$,
+- when $\dot x(t)<-c_f$, one has $\dot w(t)<0$.
+
+The theorem target suggested by this geometry is that immediately after a super-field-speed origin crossing, $w(t)$ remains on the descending side of its graph and therefore selects self roots only from the earlier sub-field-speed inbound regime. If true, those roots stay uniformly away from the caustic hinge and the corresponding Jacobians remain bounded below away from zero. That is the intended mechanism behind the bound
+$$
+A_s^{\rho}(t)\le \overline A_s^{\rho}
+$$
+on the initial post-crossing window.
+
 ### Envelope-level sufficient condition
 
 One can make the corrected proposition more operational by expressing it directly in terms of post-crossing envelope constants.
@@ -973,6 +1008,7 @@ If even this strong recapture proposition cannot be supported on any nonempty ou
 
 Several issues still need to stay explicit while pushing the 1D proof program forward.
 
+- **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. A clean $C^1$ Banach-space theorem program may therefore need an explicit core mollification of the denominator, for example a replacement of $r^{-2}$ by $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced note, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
