@@ -64,7 +64,7 @@ d(t)\equiv 2|x(t)|,
 u(t)\equiv \dot x(t).
 $$
 
-When $x(t)>0$ and $u(t)<0$, the pair is inbound. When $x(t)>0$ and $u(t)>0$, it is outbound. Crossing $x=0$ corresponds to label-preserving passage through the center on this reduced symmetry subspace.
+When $x(t)>0$ and $u(t)<0$, the labeled right-hand architrino is inbound on the right exterior branch. After label-preserving passage through the center, the same particle continues on the left exterior branch with $x(t)<0$. For theorem work on full oscillations, the safest interpretation is therefore in signed coordinates $x\in\mathbb{R}$ together with the radial distance $d(t)=2|x(t)|$.
 
 ## Partner-Only Hinge Radius
 
@@ -365,6 +365,15 @@ This is the key reduced formula.
   - inner-memory self roots drive further escape.
 
 So self-hit is not a permanent outward engine. Its effect depends on where the active remembered emission points sit relative to the current position.
+
+### Signed-branch caution
+
+The formulas above are exact on a fixed exterior slice $x(t)>0$, but they should not be overread as proving that a physical 1D trajectory can rebound at some $x_{\min}>0$ and then move back out on the same right-hand branch. In the current 1D delayed kernel, the pre-origin inbound leg is driven inward by partner attraction and by the self branches available on that slice. So the physically relevant oscillatory program should be formulated as an **origin-crossing** one in signed coordinates, or equivalently in the radial variable
+$$
+\rho(t)\equiv |x(t)|.
+$$
+
+In that formulation, a full oscillation alternates between the right and left exterior branches with label-preserving passage through $x=0$. The theorem targets later in this note should therefore be read as targets for post-crossing recapture of the radial distance rather than as literal pre-origin bounce statements on a single $x>0$ branch.
 
 ## Necessary Recapture Condition
 
@@ -778,182 +787,183 @@ For the current theorem program, the recapture problem can therefore be read as 
 - show that outer-memory self branches do not disappear too quickly if they are needed for braking,
 - and prevent inner-memory self branches from driving a near-null runaway by making $A_s^{\text{in}}$ too large.
 
-### Tame recapture class target
+### Origin-crossing recapture target
 
-The strongest narrow theorem target suggested by the current 1D geometry is to isolate an outbound family for which the early outbound self-hit support comes entirely from outer-memory roots.
+The strongest narrow theorem target suggested by the corrected 1D geometry is not a pre-origin bounce, but a **post-crossing recapture** statement. After label-preserving passage through the center, the relevant question is whether partner attraction can erase the outward radial speed before the self-hit drive sends the particle to large radius.
 
-> **Candidate Proposition (Tame Recapture Class).**
+Write
+$$
+\rho(t)\equiv |x(t)|
+$$
+for the radial distance on the signed 1D trajectory, and let
+$$
+V_\phi(t)\equiv \dot\rho_\phi(t)
+$$
+denote the outward radial speed on a post-crossing branch where $V_\phi(t)>0$.
+
+> **Candidate Proposition (Origin-Crossing Recapture Class).**
 > Fix $(x_\ast,\eta)$ and let
 > $$
-> \mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}\subset\Sigma^+_{x_\ast,\eta}
+> \mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}
 > $$
-> be an outbound class satisfying the tame bounds inherited from $\mathcal{K}_{x_\ast,\eta}$.
-> Assume there exists a time window $[0,\tau_{\mathrm{tame}}]$ such that every forward trajectory from $\phi\in\mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}$ satisfies
+> be a class of outbound post-crossing histories satisfying the tame bounds inherited from $\mathcal{K}_{x_\ast,\eta}$.
+> Assume there exists a time window $[0,\tau_{\mathrm{cross}}]$ such that every forward trajectory from $\phi\in\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}$ satisfies
 > $$
-> \mathcal{C}_s^{\text{in}}(t)=\varnothing
+> A_p^{\rho}(t)-A_s^{\rho}(t)\ge \beta_{\mathrm{cross}}>0
 > \qquad
-> \text{for }0\le t\le \tau_{\mathrm{tame}},
+> \text{for }0\le t\le \tau_{\mathrm{cross}},
 > $$
-> and
-> $$
-> A_p(t)+A_s^{\text{out}}(t)\ge \beta_{\mathrm{tame}}>0
-> \qquad
-> \text{for }0\le t\le \tau_{\mathrm{tame}}.
-> $$
+> where $A_p^{\rho}$ is the inward radial partner contribution and $A_s^{\rho}$ is the outward radial self-hit contribution on the post-crossing branch.
 > If
 > $$
-> \beta_{\mathrm{tame}}\tau_{\mathrm{tame}}
+> \beta_{\mathrm{cross}}\tau_{\mathrm{cross}}
 > \ge
-> \sup_{\phi\in\mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}}\dot x_\phi(0),
+> \sup_{\phi\in\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}}V_\phi(0),
 > $$
-> then every such trajectory turns around by time $\tau_{\mathrm{tame}}$, and $Q_\eta$ is well defined on $\mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}$ provided the post-turn branch remains inside the tame regime.
+> then every such trajectory turns around by time $\tau_{\mathrm{cross}}$, and the recapture leg of the return map is well defined provided the post-turn branch remains inside the tame regime.
 
-This proposition isolates the geometric heart of the 1D problem. If one can prove that early outbound self-hits come only from the loaded inbound wake, then the destabilizing term $A_s^{\text{in}}$ disappears on that initial window and recapture reduces to a strictly inward braking problem.
+This is the corrected geometric heart of the 1D problem. The theorem burden is no longer to remove the destabilizing self term, but to show that partner attraction can dominate it on a nonempty post-crossing outbound class.
 
-### Delay-geometry lemma target
+### Replacement local lemma target
 
-The tame recapture proposition hides one very specific geometric claim that should be singled out rather than left implicit.
+The key local lemma is therefore not outer-memory dominance, but **bounded post-crossing self drive**.
 
-> **Lemma Target (Early Outbound Outer-Memory Dominance).**
-> Let $\phi\in\mathcal{O}^{\mathrm{tame}}_{x_\ast,\eta}$ be an outbound history with current speed strictly below field speed:
+> **Lemma Target (Initial Post-Crossing Self-Drive Bound).**
+> Let $\phi\in\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}$ be a post-crossing outbound history with
 > $$
-> 0<\dot x_\phi(0)\le u_{\max}<c_f.
+> 0<V_\phi(0)\le u_{\max}.
 > $$
-> Assume the recent outbound leg is short compared with the causal travel time from the inner turning region to the section $x=x_\ast$, while the inbound leg has already loaded a nontrivial super-field-speed wake at larger radii. Then there exists a time window $[0,\tau_{\mathrm{tame}}]$ such that every active self root received on that window originates from the inbound branch, and therefore
+> Assume the active self roots on the initial outbound window arise from noncaustic head-on delayed encounters so that the self Jacobian stays uniformly away from zero. Then there exist constants
 > $$
-> \mathcal{C}_s^{\text{in}}(t)=\varnothing
+> \overline A_s^{\rho}<\infty,
 > \qquad
-> \text{for }0\le t\le \tau_{\mathrm{tame}}.
+> \tau_{\mathrm{loc}}>0,
+> $$
+> such that
+> $$
+> A_s^{\rho}(t)\le \overline A_s^{\rho}
+> \qquad
+> \text{for }0\le t\le \tau_{\mathrm{loc}}.
 > $$
 
-This is the delay-geometry heart of the 1D breather program. The loaded inbound wake is not rhetorical language; it is the mechanism by which outer-memory self roots can dominate the early outbound leg even though the current motion is away from the origin.
-
-The associated proof problem is to compare two causal travel times:
-
-- the time since the inner rebound that generates recent outbound memory,
-- and the longer causal travel times from the already-loaded inbound super-field-speed segment.
-
-If the first time is too short to support active inner-memory self hits at the section while the second remains active, then the early outbound window is forced into the outer-memory regime.
+This is the local delay-geometry heart of the corrected program. If the self drive can be shown to remain uniformly bounded on the initial post-crossing window, then the recapture question becomes a direct competition between a bounded outward delayed drive and the inward $1/\rho^2$ partner attraction.
 
 ### Envelope-level sufficient condition
 
-One can make the previous proposition more operational by expressing it directly in terms of envelope constants.
+One can make the corrected proposition more operational by expressing it directly in terms of post-crossing envelope constants.
 
-Suppose there is a nonempty outbound class
+Suppose there is a nonempty outbound post-crossing class
 $$
-\mathcal{O}_{x_\ast,\eta}\subset\Sigma^+_{x_\ast,\eta}
+\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}
 $$
-and a time window $[0,\tau_{\mathrm{env}}]$ such that every forward trajectory from $\phi\in\mathcal{O}_{x_\ast,\eta}$ satisfies
+and a time window $[0,\tau_{\mathrm{env}}]$ such that every forward trajectory from $\phi\in\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}$ satisfies
 $$
-A_p(t)\ge \underline A_p,
+A_p^{\rho}(t)\ge \underline A_p^{\rho},
 \qquad
-A_s^{\text{out}}(t)\ge \underline A_s^{\text{out}},
-\qquad
-A_s^{\text{in}}(t)\le \overline A_s^{\text{in}}
+A_s^{\rho}(t)\le \overline A_s^{\rho}
 \qquad
 \text{for }0\le t\le \tau_{\mathrm{env}}.
 $$
 
-Define the envelope braking margin
+Define the corrected radial braking margin
 $$
-\beta_{\mathrm{env}}
+\beta_{\mathrm{env}}^{\rho}
 \equiv
-\underline A_p+\underline A_s^{\text{out}}-\overline A_s^{\text{in}}.
+\underline A_p^{\rho}-\overline A_s^{\rho}.
 $$
 
 If
 $$
-\beta_{\mathrm{env}}>0
+\beta_{\mathrm{env}}^{\rho}>0
 \qquad
 \text{and}
 \qquad
-\beta_{\mathrm{env}}\tau_{\mathrm{env}}
+\beta_{\mathrm{env}}^{\rho}\tau_{\mathrm{env}}
 \ge
-\sup_{\phi\in\mathcal{O}_{x_\ast,\eta}}\dot x_\phi(0),
+\sup_{\phi\in\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}}V_\phi(0),
 $$
-then every trajectory in $\mathcal{O}_{x_\ast,\eta}$ turns around by time $\tau_{\mathrm{env}}$.
+then every trajectory in $\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}$ turns around by time $\tau_{\mathrm{env}}$.
 
-This is the cleanest sufficient-condition template currently available in the reduced note. It reduces recapture to three concrete estimates:
+This is the corrected sufficient-condition template. It reduces origin-crossing recapture to two concrete estimates:
 
-- a uniform lower bound for partner braking,
-- a uniform lower bound for any braking outer-memory self contribution,
-- and a uniform upper bound for the destabilizing inner-memory self contribution.
+- a uniform lower bound for inward partner braking on the post-crossing branch,
+- and a uniform upper bound for the outward self-hit drive.
 
-The partner term already admits a simple envelope estimate. If along the relevant outbound interval there is at least one active partner root and
+The partner term still admits a simple envelope estimate. If along the relevant outbound interval there is at least one active partner root and
 $$
-x(t)\le x_{\max},
+\rho(t)\le \rho_{\max},
 \qquad
 |J_p|\ge \nu,
 $$
 then
 $$
-A_p(t)
+A_p^{\rho}(t)
 \ge
-\frac{\kappa\epsilon^2}{(2x_{\max})^2\,\nu}
+\frac{\kappa\epsilon^2}{(2\rho_{\max})^2\,\nu}
 =
-\frac{\kappa\epsilon^2}{4x_{\max}^2\nu}.
+\frac{\kappa\epsilon^2}{4\rho_{\max}^2\nu}.
 $$
 
-So the genuinely difficult part of the recapture problem is not partner braking. It is controlling the self terms strongly enough that
+So the genuinely difficult part of the corrected recapture problem is not partner braking. It is proving that the post-crossing self drive remains bounded strongly enough that
 $$
-\underline A_s^{\text{out}}-\overline A_s^{\text{in}}
+\overline A_s^{\rho}
+<
+\underline A_p^{\rho}
 $$
-does not erase the partner contribution.
+on a nonempty outbound window.
 
 ### Envelope-level escape criterion
 
-The same envelope logic also yields a one-sided no-go template. If the available inward braking budget is uniformly too small, then recapture cannot occur within the controlled outbound window.
+The same envelope logic also yields a one-sided no-go template for the corrected post-crossing problem. If the available inward partner braking is uniformly too small compared with the outward self drive, then recapture cannot occur within the controlled outbound window.
 
-Suppose there is a nonempty outbound class
+Suppose there is a nonempty outbound post-crossing class
 $$
-\mathcal{O}_{x_\ast,\eta}\subset\Sigma^+_{x_\ast,\eta}
+\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}
 $$
-and a time window $[0,\tau_{\mathrm{esc}}]$ such that every forward trajectory from $\phi\in\mathcal{O}_{x_\ast,\eta}$ satisfies
+and a time window $[0,\tau_{\mathrm{esc}}]$ such that every forward trajectory from $\phi\in\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}$ satisfies
 $$
-A_p(t)\le \overline A_p,
+A_p^{\rho}(t)\le \overline A_p^{\rho},
 \qquad
-A_s^{\text{out}}(t)\le \overline A_s^{\text{out}},
-\qquad
-A_s^{\text{in}}(t)\ge \underline A_s^{\text{in}}
+A_s^{\rho}(t)\ge \underline A_s^{\rho}
 \qquad
 \text{for }0\le t\le \tau_{\mathrm{esc}}.
 $$
 
-Define the envelope braking ceiling
+Define the corrected radial braking ceiling
 $$
-\beta_{\mathrm{esc}}
+\beta_{\mathrm{esc}}^{\rho}
 \equiv
-\overline A_p+\overline A_s^{\text{out}}-\underline A_s^{\text{in}}.
+\overline A_p^{\rho}-\underline A_s^{\rho}.
 $$
 
 If
 $$
-\beta_{\mathrm{esc}}\le 0,
+\beta_{\mathrm{esc}}^{\rho}\le 0,
 $$
-then $\ddot x_\phi(t)\ge 0$ throughout the window and the outbound speed cannot decrease there.
+then the outward radial speed cannot decrease on that window.
 
 More generally, if
 $$
-\beta_{\mathrm{esc}}>0
+\beta_{\mathrm{esc}}^{\rho}>0
 \qquad
 \text{but}
 \qquad
-\beta_{\mathrm{esc}}\tau_{\mathrm{esc}}
+\beta_{\mathrm{esc}}^{\rho}\tau_{\mathrm{esc}}
 <
-\inf_{\phi\in\mathcal{O}_{x_\ast,\eta}}\dot x_\phi(0),
+\inf_{\phi\in\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}}V_\phi(0),
 $$
-then no trajectory in $\mathcal{O}_{x_\ast,\eta}$ can turn around during $[0,\tau_{\mathrm{esc}}]$.
+then no trajectory in $\mathcal{O}^{\mathrm{cross}}_{x_\ast,\eta}$ can turn around during $[0,\tau_{\mathrm{esc}}]$.
 
-This does not by itself prove escape to infinity. What it does prove is the complementary fact needed by the theorem program: within the controlled outbound window, the available total braking impulse is too small to erase the outgoing speed.
+This does not by itself prove escape to infinity. What it does prove is the complementary fact needed by the theorem program: within the controlled post-crossing window, the available total inward braking impulse is too small to erase the outgoing radial speed.
 
 The ideal long-form no-go theorem would strengthen this finite-window criterion into a global one by showing that
 $$
 \int_0^\infty
 \Big(
-A_p(s)+A_s^{\text{out}}(s)-A_s^{\text{in}}(s)
+A_p^{\rho}(s)-A_s^{\rho}(s)
 \Big)\,ds
 <
-\dot x_\phi(0)
+V_\phi(0)
 $$
 for an explicit outbound class. That would rule out any turning point at any later time and would show that the outward branch never re-enters the section.
 
@@ -963,6 +973,7 @@ If even this strong recapture proposition cannot be supported on any nonempty ou
 
 Several issues still need to stay explicit while pushing the 1D proof program forward.
 
+- **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced note, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
 - **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
@@ -985,7 +996,7 @@ The reduced 1D target can now be stated cleanly.
 > $$
 > The corresponding trajectory is a bounded periodic two-body motion in which:
 > 1. partner attraction drives the inward phase,
-> 2. self-hit repulsion turns the trajectory around after the relevant super-field-speed history is created,
+> 2. a post-crossing outward self-hit drive is eventually overcome strongly enough for radial recapture,
 > 3. the motion returns to the same inbound section data after one full cycle.
 
 The stability version is stronger:
