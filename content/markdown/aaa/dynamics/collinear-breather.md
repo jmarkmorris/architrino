@@ -7138,6 +7138,125 @@ $$
 $$
 which is exactly the required outbound-level exclusion.
 
+**Remark (Simplified earlier-outbound floor).**
+Under the hypotheses of Lemma 38, the function
+$$
+z(t)=x(t)-c_f t
+$$
+is strictly increasing on
+$$
+[0,t_{\mathrm{hinge}}^{\mathrm{out}})
+$$
+and nonincreasing on
+$$
+[t_{\mathrm{hinge}}^{\mathrm{out}},t_a].
+$$
+Therefore the earlier outbound floor satisfies
+$$
+m_{\mathrm{out}}^{\mathrm{early}}
+=
+\inf_{0\le s\le t_a} z(s)
+=
+\min\{z(0),z(t_a)\}
+=
+\min\{0,z(t_a)\},
+$$
+because
+$$
+z(0)=x(0)-c_f\cdot 0=0.
+$$
+In particular, a sufficient condition for outbound-level exclusion is simply
+$$
+z(t_a+\tau_{\mathrm{deep}})<0,
+$$
+or more conservatively, the explicit descent inequality
+$$
+z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+-
+\frac{a_{z}^{\mathrm{out}}}{2}
+\big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+<0.
+$$
+
+> **Proposition (Unified trimmed-apocenter outer-turn criterion).**
+> Assume:
+> 1. the partner lower bound of Lemma 20 holds on a trimmed apocenter window
+>    $$
+>    I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b],
+>    $$
+> 2. the same-side local self contribution on that window is only the shell tail controlled by Lemma 27,
+> 3. the pre-crossing inbound source interval satisfies
+>    $$
+>    \dot x(s)<0
+>    \qquad
+>    \text{for }s\in[-h,0],
+>    $$
+> 4. the post-hinge branch satisfies the quadratic descent estimate of Lemma 39,
+> 5. and the following two explicit inequalities hold:
+>    $$
+>    z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+>    -
+>    \frac{a_{z}^{\mathrm{out}}}{2}
+>    \big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+>    <0,
+>    $$
+>    $$
+>    \underline A_p^{\mathrm{out}}
+>    -
+>    \frac{\kappa\epsilon^2}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
+>    -
+>    \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+>    \sigma_{\mathrm{out}}\,\epsilon_c^2}
+>    \ge
+>    a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}>0.
+>    $$
+>
+> Then:
+> 1. outbound-level exclusion holds on
+>    $$
+>    I_{\mathrm{deep}},
+>    $$
+> 2. every deep-past same-side outward-driving root is forced onto the pre-crossing inbound leg and is unique there,
+> 3. the trimmed-apocenter acceleration satisfies
+>    $$
+>    \ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+>    \qquad
+>    \text{for }t\in I_{\mathrm{deep}},
+>    $$
+> 4. and if
+>    $$
+>    |I_{\mathrm{deep}}|
+>    \ge
+>    \frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}},
+>    $$
+>    then a finite outer turn occurs on or just beyond the trimmed apocenter window.
+
+Proof.
+The first displayed inequality and Corollary 40 imply the outbound-level exclusion hypothesis of Lemma 34. Lemma 35 then forces any deep-past same-side outward-driving root onto the pre-crossing inbound leg, where it is unique and satisfies
+$$
+|J_s|\ge 1.
+$$
+Therefore Corollary 36 yields the deep-past bound
+$$
+A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+\le
+\frac{\kappa\epsilon^2}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}.
+$$
+Combining that with the shell-tail bound of Lemma 27 and the partner floor of Lemma 20 gives exactly the second displayed inequality, so Corollary 37 applies and yields
+$$
+\ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+\qquad
+\text{on }I_{\mathrm{deep}}.
+$$
+If the trimmed window length dominates
+$$
+\frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}},
+$$
+then the same comparison argument as in Lemma 23 forces the outward velocity to hit zero in finite time, yielding a finite outer turn on or just beyond
+$$
+I_{\mathrm{deep}}.
+$$
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
