@@ -5453,6 +5453,125 @@ $$
 $$
 This is exactly the required post-turn handoff.
 
+### Outer-branch delayed-geometry target
+
+The outer-turn force-margin lemmas are now in place, but Lemma 21 is still conditional on delayed self geometry. The remaining task is to prove that on the right exterior outbound branch the active self roots stay both sparse and noncaustic long enough to make the outer-force margin genuine rather than assumed.
+
+> **Target Theorem (Outer-Branch Self-Root Separation and Transversality).**
+> Fix a tame outer-branch class on the right exterior outbound interval
+> $$
+> [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}].
+> $$
+> Suppose the branch stays within the excursion tube
+> $$
+> x_\ast\le x(t)\le X_{\mathrm{out},\max},
+> \qquad
+> 0\le \dot x(t)\le U_{\max},
+> $$
+> and that its same-side delayed self interactions are organized by the outer sorting map
+> $$
+> z(t)\equiv x(t)-c_f t.
+> $$
+> Assume there exist class constants
+> $$
+> r_{s,\min}^{\mathrm{out}}>0,
+> \qquad
+> \nu_s^{\mathrm{out}}>0,
+> \qquad
+> N_{s,\max}^{\mathrm{out}}\in\mathbb{N}
+> $$
+> such that on the apocenter window:
+> 1. active self roots satisfy a uniform delayed-separation lower bound
+>    $$
+>    r_s(t;t_s)\ge r_{s,\min}^{\mathrm{out}},
+>    $$
+> 2. active self roots stay on a noncaustic side of the outer sorting map with
+>    $$
+>    |J_s(t;t_s)|\ge \nu_s^{\mathrm{out}},
+>    $$
+> 3. and the number of active self branches obeys
+>    $$
+>    N_s(t)\le N_{s,\max}^{\mathrm{out}}.
+>    $$
+>
+> Then Lemma 21 applies, and the outer-force margin reduces to the explicit parameter inequality of Lemma 22.
+
+This theorem is the outer-branch analogue of the earlier pre-crossing and post-crossing delayed-geometry steps: the partner floor is comparatively easy, while the decisive issue is keeping the self branches away from both short-distance concentration and Jacobian collapse.
+
+### Outer-branch delayed-geometry ladder
+
+The intended proof order is:
+
+1. **Outer sorting-map lemma.**
+   Identify the correct same-side sorting map on the right exterior outbound branch and show that active self roots are organized by its level sets.
+2. **Delayed-separation lemma.**
+   Prove that the active outer self roots cannot approach the current point closer than a class-uniform radius
+   $$
+   r_{s,\min}^{\mathrm{out}}>0
+   $$
+   on the apocenter window.
+3. **Outer self-transversality lemma.**
+   Show that the active self roots stay on a noncaustic side of the sorting map, giving
+   $$
+   |J_s|\ge \nu_s^{\mathrm{out}}>0.
+   $$
+4. **Outer root-count lemma.**
+   Prove that the number of active same-side self branches remains bounded by
+   $$
+   N_{s,\max}^{\mathrm{out}}.
+   $$
+5. **Self-drive upper-bound corollary.**
+   Feed the preceding three items into Lemma 21.
+
+The second and third items are the real bottlenecks. Once they are available, the outer-turn recapture theorem becomes a direct comparison argument.
+
+**Lemma 25: Outer sorting-map identity on the right exterior outbound branch.**
+Assume the trajectory lies on the right exterior outbound branch,
+$$
+x(t)\ge 0,
+\qquad
+\dot x(t)\ge 0,
+$$
+and consider same-side self roots
+$$
+t_s<t
+$$
+for which the delayed self-hit condition is
+$$
+x(t)-x(t_s)=c_f(t-t_s).
+$$
+Define the outer sorting map
+$$
+z(t)\equiv x(t)-c_f t.
+$$
+Then every such active self root is selected by the level-set identity
+$$
+z(t_s)=z(t).
+$$
+Consequently, the same-side outer self branches on the right exterior outbound leg are organized by level sets of
+$$
+z.
+$$
+
+Proof.
+The same-side delayed self-hit condition is
+$$
+x(t)-x(t_s)=c_f(t-t_s).
+$$
+Rearranging gives
+$$
+x(t)-c_f t=x(t_s)-c_f t_s,
+$$
+which is exactly
+$$
+z(t)=z(t_s).
+$$
+Thus every active same-side self root on the right exterior outbound branch is a level-set root of
+$$
+z,
+$$
+which proves the lemma.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
