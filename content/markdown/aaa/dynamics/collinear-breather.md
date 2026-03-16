@@ -705,6 +705,58 @@ That single inclusion naturally breaks into four subproblems:
 
 If these items can be proved and $\mathcal{E}_{x_\ast,\eta}$ is chosen closed, bounded, and compact enough for the relevant history topology, then the fixed-point program for $P_\eta$ becomes concrete rather than rhetorical.
 
+### First recapture target
+
+The first nontrivial obligation is to show that $Q_\eta$ is actually defined on a useful outbound family. In the present reduced note, that means proving that an outward crossing of $x=x_\ast$ cannot persist forever inside the candidate envelope.
+
+Take an outbound history
+$$
+\phi\in\Sigma^+_{x_\ast,\eta},
+$$
+and let $x_\phi(t)$ denote the corresponding forward trajectory while it remains in the tame regime defined by $\mathcal{K}_{x_\ast,\eta}$. Define the net inward braking density along that trajectory by
+$$
+B_\phi(t)\equiv A_p(t)+A_s^{\text{out}}(t)-A_s^{\text{in}}(t).
+$$
+
+The exact recapture condition from the scalar reduction says that a turning point occurs whenever there exists a time $t_{\mathrm{turn}}>0$ such that
+$$
+\int_0^{t_{\mathrm{turn}}} B_\phi(s)\,ds
+=
+\dot x_\phi(0).
+$$
+
+This suggests the first theorem-scale target.
+
+> **Candidate Proposition (Recapture on a Tame Outbound Class).**
+> Fix $(x_\ast,\eta)$ and an outbound subset
+> $$
+> \mathcal{O}_{x_\ast,\eta}\subset\Sigma^+_{x_\ast,\eta}
+> $$
+> with uniform bounds inherited from $\mathcal{K}_{x_\ast,\eta}$.
+> Assume there is a constant $\beta_{\min}>0$ and a time window $\tau_{\mathrm{rec}}>0$ such that every trajectory starting from $\phi\in\mathcal{O}_{x_\ast,\eta}$ satisfies
+> $$
+> B_\phi(t)\ge \beta_{\min}
+> \qquad
+> \text{for }0\le t\le \tau_{\mathrm{rec}},
+> $$
+> and
+> $$
+> \beta_{\min}\tau_{\mathrm{rec}}
+> \ge
+> \sup_{\phi\in\mathcal{O}_{x_\ast,\eta}}\dot x_\phi(0).
+> $$
+> Then every such trajectory has a turning point by time $\tau_{\mathrm{rec}}$, and hence admits a well-defined outbound-to-inbound return time $T^-_\eta(\phi)$ provided the post-turn branch remains inside the same tame regime.
+
+This proposition is intentionally stronger than necessary. Its value is that it exposes the actual analytic burden: one must control the negative term $A_s^{\text{in}}$ strongly enough that partner braking plus outer-memory braking dominates for long enough to erase the outbound speed.
+
+For the current theorem program, the recapture problem can therefore be read as three nested tasks:
+
+- produce a lower bound for $A_p$ on the relevant outbound interval,
+- show that outer-memory self branches do not disappear too quickly if they are needed for braking,
+- and prevent inner-memory self branches from driving a near-null runaway by making $A_s^{\text{in}}$ too large.
+
+If even this strong recapture proposition cannot be supported on any nonempty outbound class, then the invariant-set program should stop there: the return maps $Q_\eta$ and $P_\eta$ are not defined on a robust domain, and no fixed-point theorem will rescue the model.
+
 ## Conjectured Breather Statement
 
 The reduced 1D target can now be stated cleanly.
