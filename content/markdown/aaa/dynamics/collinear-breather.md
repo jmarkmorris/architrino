@@ -2928,6 +2928,293 @@ The full-cycle theorem above naturally decomposes into the following proof steps
 
 Only after these five items are in hand does the convex-envelope target become a theorem rather than a program.
 
+### Invariant-envelope synthesis
+
+At this point the remaining global burden is no longer to invent additional local mechanisms. The inner recapture side and the outer-turn side have both been reduced to explicit inequalities. The next layer is therefore to show that these inequalities are compatible on a nonempty parameter set and that, once they are realized on a tame class, the full-cycle map lands back inside the convex envelope.
+
+The two key explicit margins are:
+$$
+\mathfrak M_{\mathrm{in}}
+\equiv
+\frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}
+-
+\frac{\overline A_s^\rho\,\epsilon_c}{2\beta_{p,\max}}
+-
+V_{\max},
+$$
+coming from Proposition `Explicit short-window recapture regime`, and
+$$
+\mathfrak M_{\mathrm{out}}
+\equiv
+\underline A_p^{\mathrm{out}}
+-
+\frac{\kappa\epsilon^2}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
+-
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\epsilon_c^2},
+$$
+coming from the trimmed-apocenter outer-turn analysis. The first margin forces the initial post-crossing turnaround; the second forces the apocenter turnaround on the trimmed outer window.
+
+The global synthesis problem is therefore:
+
+- realize the inward crossing and section-return kinematics with the same envelope constants
+  $$
+  X_{\max},
+  \qquad
+  U_{\max},
+  \qquad
+  A_{\max},
+  \qquad
+  T_{\max},
+  \qquad
+  h;
+  $$
+- enforce
+  $$
+  \mathfrak M_{\mathrm{in}}>0
+  \qquad
+  \text{and}
+  \qquad
+  \mathfrak M_{\mathrm{out}}>0;
+  $$
+- and then show that the resulting one-cycle map preserves the tame convex envelope.
+
+This leads to the following theorem target.
+
+> **Target Theorem (Invariant-Envelope Closure from Compatible Explicit Regimes).**
+> Fix
+> $$
+> x_\ast>0
+> $$
+> and a tame inbound subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+> Assume:
+> 1. the collapse-to-crossing control theorem holds on
+>    $$
+>    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta},
+>    $$
+>    with crossing-speed upper bound
+>    $$
+>    V_{\max};
+>    $$
+> 2. the explicit short-window recapture regime holds at every first crossing issued from this class, so that
+>    $$
+>    \mathfrak M_{\mathrm{in}}>0;
+>    $$
+> 3. the unified trimmed-apocenter outer-turn criterion holds on the final apocenter window, so that
+>    $$
+>    \mathfrak M_{\mathrm{out}}>0;
+>    $$
+> 4. the turn-to-section return lemmas apply with class-uniform section-return bounds
+>    $$
+>    X_{\mathrm{out},\max},
+>    \qquad
+>    U_{\mathrm{sec},\max},
+>    \qquad
+>    A_{\mathrm{cyc},\max},
+>    \qquad
+>    T_{\mathrm{cyc},\max};
+>    $$
+> 5. the envelope parameters satisfy
+>    $$
+>    X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
+>    $$
+>    $$
+>    U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+>    $$
+>    $$
+>    A_{\max}\ge A_{\mathrm{cyc},\max},
+>    \qquad
+>    T_{\max}\ge T_{\mathrm{cyc},\max},
+>    \qquad
+>    h\ge \frac{2X_{\max}}{c_f}.
+>    $$
+>
+> Then
+> $$
+> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+
+Proof sketch.
+Take any
+$$
+\psi\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}.
+$$
+By collapse-to-crossing control, the first inward fall reaches an admissible origin crossing in bounded time and with crossing speed at most
+$$
+V_{\max}.
+$$
+The explicit short-window recapture proposition then supplies a class-uniform inner turnaround because
+$$
+\mathfrak M_{\mathrm{in}}>0.
+$$
+The return-half lemmas reduce the remainder of the cycle to control of the outer turn and the final inbound section speed. The unified trimmed-apocenter outer-turn criterion supplies the outer turnaround because
+$$
+\mathfrak M_{\mathrm{out}}>0,
+$$
+and Lemmas 17-19 then yield return to
+$$
+x=x_\ast
+$$
+with
+$$
+\dot x\le 0,
+$$
+bounded section speed, and returned-history tameness.
+
+The envelope-fitting inequalities in item 5 ensure that the entire one-cycle trajectory and its returned history fit inside the convex bounds defining
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+Therefore
+$$
+P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}.
+$$
+Since
+$$
+\psi
+$$
+was arbitrary, this proves
+$$
+P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+\subseteq
+\mathcal{C}_{x_\ast,\eta}.
+$$
+
+The remaining question is whether the bookkeeping inequalities required by this theorem can be satisfied simultaneously. The answer is yes once the explicit inner and outer margins are strict.
+
+> **Proposition (Nonempty admissible parameter regime).**
+> Fix the geometric and dynamical constants extracted from the cycle estimates:
+> $$
+> V_{\max},
+> \qquad
+> X_{\mathrm{out},\max},
+> \qquad
+> U_{\mathrm{sec},\max},
+> \qquad
+> A_{\mathrm{cyc},\max},
+> \qquad
+> T_{\mathrm{cyc},\max},
+> $$
+> together with the local and outer-turn parameters
+> $$
+> \beta_{p,\max},
+> \qquad
+> C_p,
+> \qquad
+> \tau_1,
+> \qquad
+> \tau_{\mathrm{deep}},
+> \qquad
+> \sigma_{\mathrm{out}},
+> \qquad
+> \underline A_p^{\mathrm{out}}.
+> $$
+> Assume the dual-mollified parameters
+> $$
+> (\eta,\epsilon_c)
+> $$
+> satisfy the explicit inner-window inequalities
+> $$
+> \tau_\epsilon=\frac{\epsilon_c}{2\beta_{p,\max}}\le \tau_1,
+> \qquad
+> \eta\le \frac{\epsilon_c}{4c_f C_p},
+> \qquad
+> \epsilon_c\le \frac{\beta_{p,\max}^2}{c_f C_p},
+> $$
+> and the strict margin conditions
+> $$
+> \mathfrak M_{\mathrm{in}}>0,
+> \qquad
+> \mathfrak M_{\mathrm{out}}>0.
+> $$
+> Then there exist envelope constants
+> $$
+> X_{\max},
+> \qquad
+> U_{\max},
+> \qquad
+> A_{\max},
+> \qquad
+> T_{\max},
+> \qquad
+> h
+> $$
+> satisfying
+> $$
+> X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
+> $$
+> $$
+> U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+> $$
+> $$
+> A_{\max}\ge A_{\mathrm{cyc},\max},
+> \qquad
+> T_{\max}\ge T_{\mathrm{cyc},\max},
+> \qquad
+> h\ge \frac{2X_{\max}}{c_f}.
+> $$
+> In particular, the admissible-parameter set entering the invariant-envelope theorem is nonempty.
+
+Proof.
+The inner-window inequalities and the two strict margin conditions involve only the local and outer-turn parameters and are independent of the envelope bookkeeping constants
+$$
+X_{\max},
+\qquad
+U_{\max},
+\qquad
+A_{\max},
+\qquad
+T_{\max},
+\qquad
+h.
+$$
+Once those explicit inequalities hold, the envelope constants can be chosen with arbitrary positive slack. For example, fix any
+$$
+\delta_X,
+\delta_U,
+\delta_A,
+\delta_T>0
+$$
+and set
+$$
+X_{\max}=\max\{x_\ast,X_{\mathrm{out},\max}\}+\delta_X,
+$$
+$$
+U_{\max}=\max\{V_{\max},U_{\mathrm{sec},\max}\}+\delta_U,
+$$
+$$
+A_{\max}=A_{\mathrm{cyc},\max}+\delta_A,
+$$
+$$
+T_{\max}=T_{\mathrm{cyc},\max}+\delta_T,
+$$
+and then choose
+$$
+h=\frac{2X_{\max}}{c_f}+\delta_h
+$$
+for any
+$$
+\delta_h>0.
+$$
+These choices satisfy all displayed inequalities simultaneously. Hence the admissible-parameter set is nonempty.
+
+This proposition isolates the true compatibility issue. The envelope constants themselves do not create a conflict once the explicit inner and outer margins are positive. The real work is entirely in proving
+$$
+\mathfrak M_{\mathrm{in}}>0
+\qquad
+\text{and}
+\qquad
+\mathfrak M_{\mathrm{out}}>0
+$$
+on one and the same tame class. After that, the invariant-envelope closure theorem above reduces the global fixed-point step to the already stated Schauder route.
+
 ### Collapse-to-crossing target
 
 The next concrete theorem should attack Step 1 of the cycle ladder directly. Its role is to connect tame inbound section data to the already-audited local post-crossing recapture theorem.
