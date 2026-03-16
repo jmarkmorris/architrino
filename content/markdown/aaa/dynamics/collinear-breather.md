@@ -4029,6 +4029,161 @@ $$
 $$
 Thus the caustic transit contributes a finite inward impulse in the dual-mollified model.
 
+**Lemma 13: Post-hinge Jacobian recovery and sorting-gap inheritance.**
+Assume the pre-crossing leg satisfies Lemmas 10-12, and let
+$$
+t_{\mathrm{cross}}
+$$
+denote the first origin crossing. Define
+$$
+w(t)\equiv x(t)+c_f t
+$$
+on the unshifted inbound leg, and let
+$$
+t_{\mathrm{zero}}<t_{\mathrm{hinge}}
+$$
+be the unique time satisfying
+$$
+w(t_{\mathrm{zero}})=w(t_{\mathrm{cross}}).
+$$
+Assume moreover that on the ascending side of the sorting map one has the lower derivative bound
+$$
+\dot w(t)\ge \nu_s>0
+\qquad
+\text{for }t\in[t_{\mathrm{zero}},t_{\mathrm{hinge}}-\gamma_w],
+$$
+for some
+$$
+\gamma_w>0.
+$$
+Then:
+
+1. the active self root at the crossing is exactly
+   $$
+   t_s(t_{\mathrm{cross}})=t_{\mathrm{zero}},
+   $$
+2. the recovered self Jacobian at the crossing satisfies
+   $$
+   J_s(t_{\mathrm{cross}};t_{\mathrm{zero}})
+   =
+   \frac{\dot w(t_{\mathrm{zero}})}{c_f}
+   \ge
+   \frac{\nu_s}{c_f},
+   $$
+3. and the translated crossing history
+   $$
+   \phi_{\mathrm{cross}}(\theta)=x(t_{\mathrm{cross}}+\theta)
+   $$
+   inherits a compact-subinterval sorting gap:
+   for every
+   $$
+   0<\gamma<\min\{t_{\mathrm{hinge}}-t_{\mathrm{zero}},-t_{\mathrm{hinge}}\},
+   $$
+   the translated sorting function
+   $$
+   \widetilde w(\theta)
+   \equiv
+   \phi_{\mathrm{cross}}(\theta)+c_f\theta
+   =
+   w(t_{\mathrm{cross}}+\theta)-w(t_{\mathrm{cross}})
+   $$
+   satisfies
+   $$
+   \widetilde w(\theta)>0
+   \qquad
+   \text{for }\theta\in(t_{\mathrm{zero}}-t_{\mathrm{cross}},0),
+   $$
+   and therefore
+   $$
+   \delta_w(\phi_{\mathrm{cross}};\gamma)>0.
+   $$
+
+Proof.
+By Lemma 11, for each
+$$
+t\in(t_{\mathrm{hinge}},t_{\mathrm{cross}}],
+$$
+there exists a unique principal self root
+$$
+t_s(t)<t_{\mathrm{hinge}}
+$$
+such that
+$$
+w(t_s)=w(t).
+$$
+Evaluating this at the crossing time and using the defining property of
+$$
+t_{\mathrm{zero}}
+$$
+shows
+$$
+t_s(t_{\mathrm{cross}})=t_{\mathrm{zero}}.
+$$
+
+On the relevant outer-memory branch,
+$$
+J_s(t_{\mathrm{cross}};t_{\mathrm{zero}})
+=
+1+\frac{\dot x(t_{\mathrm{zero}})}{c_f}
+=
+\frac{\dot w(t_{\mathrm{zero}})}{c_f}.
+$$
+The assumed lower derivative bound on the ascending side therefore yields
+$$
+J_s(t_{\mathrm{cross}};t_{\mathrm{zero}})
+\ge
+\frac{\nu_s}{c_f}>0,
+$$
+which is the desired post-hinge Jacobian recovery.
+
+For the sorting-gap inheritance, define
+$$
+\widetilde w(\theta)=w(t_{\mathrm{cross}}+\theta)-w(t_{\mathrm{cross}}).
+$$
+Then
+$$
+\widetilde w(0)=0
+$$
+and
+$$
+\widetilde w(t_{\mathrm{zero}}-t_{\mathrm{cross}})=0.
+$$
+Because
+$$
+w(t)<w(t_{\mathrm{hinge}})
+$$
+for all
+$$
+t\neq t_{\mathrm{hinge}},
+$$
+and because the level
+$$
+w(t_{\mathrm{cross}})
+$$
+intersects the strictly concave graph of
+$$
+w
+$$
+exactly at
+$$
+t_{\mathrm{zero}}
+\quad\text{and}\quad
+t_{\mathrm{cross}},
+$$
+it follows that
+$$
+\widetilde w(\theta)>0
+$$
+for every
+$$
+\theta\in(t_{\mathrm{zero}}-t_{\mathrm{cross}},0).
+$$
+Restricting to any compact subinterval away from the two zeros, continuity yields a positive minimum, which is precisely the required compact-subinterval sorting gap
+$$
+\delta_w(\phi_{\mathrm{cross}};\gamma)>0.
+$$
+This proves the lemma.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
