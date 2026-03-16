@@ -5925,6 +5925,121 @@ there. This proves the lemma.
 
 In particular, Lemma 29 supplies the geometric hypothesis needed to apply Lemmas 26 and 27, and therefore to activate Corollary 28 on a final pre-turn apocenter window.
 
+**Proposition: Explicit sub-field-speed apocenter recapture regime.**
+Assume the outer branch reaches a pre-turn window
+$$
+[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}]
+$$
+on which:
+
+- the branch stays outbound up to the first outer turn,
+  $$
+  0\le \dot x(t),
+  $$
+- the partner lower bound of Lemma 20 holds with
+  $$
+  A_p(t)\ge \underline A_p^{\mathrm{out}},
+  $$
+- the pre-turn acceleration lower bound
+  $$
+  \ddot x(t)\ge -a_{+,\mathrm{pre}}^{\mathrm{out}}
+  $$
+  holds,
+- and the window length satisfies
+  $$
+  \tau_{\mathrm{apo}}^{\mathrm{pre}}
+  \ge
+  \frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}}
+  \qquad
+  \text{for some }
+  0<\sigma_{\mathrm{out}}<c_f.
+  $$
+
+If, in addition, the parameter inequality
+$$
+\frac{\kappa\epsilon^2\,\nu_p^{\mathrm{out}}}{
+4X_{\mathrm{out},\max}^2+\epsilon_c^2
+}
+-
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}
+\ge
+a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}>0
+$$
+holds, then on the final subwindow
+$$
+I_{\mathrm{sub}}
+\equiv
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}}
+-
+\frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}},
+\,
+t_{\mathrm{turn}}^{\mathrm{out}}
+\right]
+$$
+one has the unconditional inward acceleration bound
+$$
+\ddot x(t)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0.
+$$
+
+In particular, if this inward margin extends long enough to cover
+$$
+\frac{v_\ast}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}},
+$$
+then Lemma 23 yields a finite outer turn with
+$$
+X_{\mathrm{out}}
+\le
+x_\ast+\frac{v_\ast^2}{2a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}.
+$$
+
+Proof.
+Lemma 29 shows that the stated pre-turn window contains the final strictly sub-field-speed interval
+$$
+I_{\mathrm{sub}}
+\subseteq
+\left[
+t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},
+\,
+t_{\mathrm{turn}}^{\mathrm{out}}
+\right]
+$$
+on which
+$$
+0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f.
+$$
+Lemmas 26 and 27 therefore apply on
+$$
+I_{\mathrm{sub}},
+$$
+so the same-side outer self contribution is reduced to the shell-tail bound
+$$
+A_s^{\mathrm{out}}(t)\le
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}.
+$$
+Combining this with the partner lower bound from Lemma 20 gives exactly the hypothesis of Corollary 28, hence
+$$
+\ddot x(t)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0
+$$
+on
+$$
+I_{\mathrm{sub}}.
+$$
+
+If that inward margin persists long enough to satisfy
+$$
+|I_{\mathrm{sub}}|
+\ge
+\frac{v_\ast}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}},
+$$
+then Lemma 23 applies with
+$$
+a_{\mathrm{in}}^{\mathrm{out}}=a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}},
+$$
+which yields the stated finite-radius outer-turn bound.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
