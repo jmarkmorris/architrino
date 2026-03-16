@@ -755,6 +755,71 @@ For the current theorem program, the recapture problem can therefore be read as 
 - show that outer-memory self branches do not disappear too quickly if they are needed for braking,
 - and prevent inner-memory self branches from driving a near-null runaway by making $A_s^{\text{in}}$ too large.
 
+### Envelope-level sufficient condition
+
+One can make the previous proposition more operational by expressing it directly in terms of envelope constants.
+
+Suppose there is a nonempty outbound class
+$$
+\mathcal{O}_{x_\ast,\eta}\subset\Sigma^+_{x_\ast,\eta}
+$$
+and a time window $[0,\tau_{\mathrm{env}}]$ such that every forward trajectory from $\phi\in\mathcal{O}_{x_\ast,\eta}$ satisfies
+$$
+A_p(t)\ge \underline A_p,
+\qquad
+A_s^{\text{out}}(t)\ge \underline A_s^{\text{out}},
+\qquad
+A_s^{\text{in}}(t)\le \overline A_s^{\text{in}}
+\qquad
+\text{for }0\le t\le \tau_{\mathrm{env}}.
+$$
+
+Define the envelope braking margin
+$$
+\beta_{\mathrm{env}}
+\equiv
+\underline A_p+\underline A_s^{\text{out}}-\overline A_s^{\text{in}}.
+$$
+
+If
+$$
+\beta_{\mathrm{env}}>0
+\qquad
+\text{and}
+\qquad
+\beta_{\mathrm{env}}\tau_{\mathrm{env}}
+\ge
+\sup_{\phi\in\mathcal{O}_{x_\ast,\eta}}\dot x_\phi(0),
+$$
+then every trajectory in $\mathcal{O}_{x_\ast,\eta}$ turns around by time $\tau_{\mathrm{env}}$.
+
+This is the cleanest sufficient-condition template currently available in the reduced note. It reduces recapture to three concrete estimates:
+
+- a uniform lower bound for partner braking,
+- a uniform lower bound for any braking outer-memory self contribution,
+- and a uniform upper bound for the destabilizing inner-memory self contribution.
+
+The partner term already admits a simple envelope estimate. If along the relevant outbound interval there is at least one active partner root and
+$$
+x(t)\le x_{\max},
+\qquad
+|J_p|\ge \nu,
+$$
+then
+$$
+A_p(t)
+\ge
+\frac{\kappa\epsilon^2}{(2x_{\max})^2\,\nu}
+=
+\frac{\kappa\epsilon^2}{4x_{\max}^2\nu}.
+$$
+
+So the genuinely difficult part of the recapture problem is not partner braking. It is controlling the self terms strongly enough that
+$$
+\underline A_s^{\text{out}}-\overline A_s^{\text{in}}
+$$
+does not erase the partner contribution.
+
 If even this strong recapture proposition cannot be supported on any nonempty outbound class, then the invariant-set program should stop there: the return maps $Q_\eta$ and $P_\eta$ are not defined on a robust domain, and no fixed-point theorem will rescue the model.
 
 ## Conjectured Breather Statement
