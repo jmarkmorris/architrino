@@ -15,7 +15,7 @@ Scoring system:
 
 | # | Item | Value | Cost | ROI |
 | ---: | --- | ---: | ---: | ---: |
-| 1 | 1D collinear breather scaffold consolidation and closure | 10 | 2 | 5.00 |
+| 1 | Freeze the 1D breather scaffold and advance the master-equation breather bridge | 10 | 2 | 5.00 |
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
 | 3 | Scene system, scene builder, applications, and later enhancements | 10 | 4 | 2.50 |
 | 4 | Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 5 | 2.00 |
@@ -35,40 +35,41 @@ Scoring system:
 
 ## Overall Task List
 
-### 1. Consolidate and close the 1D collinear breather scaffold
+### 1. Freeze the 1D breather scaffold and advance the master-equation breather bridge
 - Value `10`, Cost `2`, ROI `5.00`.
-- Treat [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) as a near-complete global proof scaffold rather than an open-ended exploration note.
+- Treat [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold, not as the live place for new theorem discovery.
+- Treat [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) as the live bridge note that transports the 1D proof architecture back into the broader delayed master-equation stack.
 - Current state:
-  - the note now has a full theorem ladder from collapse-to-crossing, through pre-crossing delayed geometry, post-crossing recapture, outer-turn closure, seed-history nonvacuity, invariant-envelope synthesis, and the final Schauder fixed-point capstone;
-  - the last major topological defect in the fixed-point route was repaired by replacing the domain/codomain mismatch with a closed convex tame envelope;
-  - the remaining work is now mostly consolidation, compression, and selective promotion of scaffold statements into sharper theorem prose rather than discovery of new geometric mechanisms;
-  - the scaffold should now be treated as frozen unless a later audit finds a real structural defect.
-- Resolved proof pivots to preserve:
-  - the inbound hinge caustic is no longer treated as a pathology to exclude, but as a bounded caustic-transit impulse to integrate through;
+  - the 1D note now has a full theorem ladder from collapse-to-crossing through caustic transit, post-crossing recapture, outer-turn closure, seed-history nonvacuity, invariant-envelope synthesis, and the final Schauder capstone;
+  - the major global packaging defects were audited and made explicit: the convex tame-envelope step is now honestly marked as a target, the admissible parameter regime is now a coupled solvability target rather than a false decoupling argument, and the section anchoring now explicitly quotients out time-translation symmetry;
+  - the notation/domain hierarchy was cleaned so the raw section, the convex macro-envelope, and the closed convex tame envelope are no longer silently conflated;
+  - the new bridge chapter records the portable return-map / tame-envelope / Schauder architecture and the list of 1D-only mechanisms that still need higher-dimensional replacements.
+- Resolved proof pivots to preserve from the frozen 1D scaffold:
+  - the inbound hinge caustic is integrated through as a bounded caustic-transit impulse rather than excluded as a pathology;
   - the outer-turn geometry is organized around the sorting map
     $$
     z(t)=x(t)-c_f t,
     $$
-    which reduces the apocenter delayed topology to explicit descent and exclusion inequalities;
+    which forces explicit descent and exclusion inequalities on the apocenter window;
   - deep-past outward self-roots on the apocenter window are forced back onto the pre-crossing inbound leg, where they become unique and automatically transversal;
-  - the affine seed history removes the vacuity risk by providing an explicit nonempty section-side tame neighborhood;
-  - the final fixed-point route now acts on a closed convex tame envelope
+  - the affine seed history removes section-side vacuity by giving an explicit nonempty tame neighborhood;
+  - the fixed-point route now acts, conditionally, on a closed convex tame envelope
     $$
     \mathcal{K}_{x_\ast,\eta},
     $$
     rather than on a mismatched tame-subclass / macro-envelope pair.
-- Next major tasks:
-  - manuscript compression and cleanup:
-    - remove repeated target-theorem framing where the same dependency chain is restated multiple times,
-    - unify notation and naming across the local, outer, seed, invariant-envelope, and Schauder sections,
-    - scrub obsolete language from earlier stages of the argument so the final story reads as one coherent cycle;
-  - theorem-promotion pass:
-    - decide which scaffold statements are now strong enough to be rewritten as theorem/proposition-level results rather than proof-program targets,
-    - tighten the final global section so the fixed-point route depends on one clean list of inputs instead of scattered restatements;
-  - final structure audit:
-    - read the note as a manuscript rather than a working log,
-    - verify there is no hidden circularity in the seed, tame-envelope, invariant-set, and Schauder packaging,
-    - then freeze the 1D scaffold before shifting effort back to the broader master-equation stack.
+- Next-session prompt / active handoff:
+  - read [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) and [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) together, treating the first as frozen and the second as the live target;
+  - continue in [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md), not in the frozen 1D note, unless a real structural defect is discovered in the reference scaffold;
+  - develop the first higher-dimensional bridge regime, most likely a reflection-symmetric planar binary with a codimension-one return section;
+  - define in that regime the raw inbound/outbound section, the convex Banach envelope, and the closed convex tame envelope needed for a legitimate Schauder route;
+  - replace the 1D-only mechanisms explicitly rather than hand-waving them:
+    - the `w` / `z` sorting maps,
+    - deep-past self-root relocation,
+    - exact scalar Jacobian sign bookkeeping,
+    - affine-seed self-root exclusion,
+    - and scalar inner / outer recapture margins that ignore tangential escape;
+  - phrase the next work as theorem targets and replacement obligations, with any obstruction written down precisely if the planar bridge fails.
 
 ### 2. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
 - Value `10`, Cost `4`, ROI `2.50`.
