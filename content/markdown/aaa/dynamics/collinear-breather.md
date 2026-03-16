@@ -6373,6 +6373,91 @@ which proves the first claim.
 
 If, in addition, the only local same-side outward contribution is the shell tail on the final sub-field-speed window, Lemma 27 supplies the second term, and the stated total bound follows by addition.
 
+**Corollary 33: Full trimmed-apocenter outer-force margin.**
+Assume on the trimmed apocenter window
+$$
+I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+$$
+that:
+
+- the partner lower bound of Lemma 20 holds,
+  $$
+  A_p(t)\ge \underline A_p^{\mathrm{out}},
+  $$
+- the same-side local self contribution is only the shell tail controlled by Lemma 27,
+- and the deep-past outward self contribution satisfies the suppression estimate of Corollary 32.
+
+If
+$$
+\underline A_p^{\mathrm{out}}
+-
+\overline A_{s,\mathrm{deep}}^{\mathrm{out}}
+-
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}
+\ge
+a_{\mathrm{in},\mathrm{trim}}^{\mathrm{out}}>0,
+$$
+then on
+$$
+I_{\mathrm{deep}}
+$$
+the full outward self-drive is dominated and one has the unconditional inward acceleration bound
+$$
+\ddot x(t)\le -a_{\mathrm{in},\mathrm{trim}}^{\mathrm{out}}<0.
+$$
+
+In particular, if
+$$
+|I_{\mathrm{deep}}|
+\ge
+\frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{trim}}^{\mathrm{out}}},
+$$
+where
+$$
+v_{\mathrm{deep}}
+\equiv
+\sup_{t\in I_{\mathrm{deep}}}\dot x(t),
+$$
+then the same comparison argument as in Lemma 23 forces a finite outer turn inside or immediately after the trimmed window.
+
+Proof.
+By Lemma 20,
+$$
+A_p(t)\ge \underline A_p^{\mathrm{out}}.
+$$
+By Corollary 32,
+$$
+A_s^{\mathrm{out}}(t)
+\le
+\overline A_{s,\mathrm{deep}}^{\mathrm{out}}
++
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}.
+$$
+Therefore the signed dynamics satisfy
+$$
+\ddot x(t)\le -A_p(t)+A_s^{\mathrm{out}}(t)
+\le
+-\underline A_p^{\mathrm{out}}
++
+\overline A_{s,\mathrm{deep}}^{\mathrm{out}}
++
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}.
+$$
+The assumed parameter inequality gives
+$$
+\ddot x(t)\le -a_{\mathrm{in},\mathrm{trim}}^{\mathrm{out}}<0,
+$$
+which proves the first claim.
+
+If the trimmed window length dominates
+$$
+\frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{trim}}^{\mathrm{out}}},
+$$
+then integrating the acceleration comparison exactly as in Lemma 23 forces the outward velocity to hit zero in finite time. This yields a finite outer turn on or just beyond the trimmed apocenter interval.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
