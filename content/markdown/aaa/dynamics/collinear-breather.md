@@ -3215,6 +3215,264 @@ $$
 $$
 on one and the same tame class. After that, the invariant-envelope closure theorem above reduces the global fixed-point step to the already stated Schauder route.
 
+### Seed history and tame-class nonemptiness
+
+The remaining global nonvacuity issue is now easy to state. The invariant-envelope theorem is useful only if the section-side tame class is actually nonempty. The next theorem target is therefore to construct at least one explicit inbound history with controlled delayed geometry and then thicken it to a small nonempty tame neighborhood in the section topology.
+
+The simplest seed is a strictly sub-field-speed affine inbound history on the right exterior branch. It is not meant to solve the full forward dynamics; its role is only to prove that the section-side tame constraints are simultaneously realizable.
+
+> **Target Theorem (Seed History and Section-Tame Nonemptiness).**
+> Fix
+> $$
+> x_\ast>0,
+> \qquad
+> 0<u_{\mathrm{seed}}<c_f,
+> \qquad
+> h\ge \frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+> $$
+> Then there exists an explicit inbound history
+> $$
+> \psi_{\mathrm{seed}}\in \Sigma^-_{x_\ast,\eta}\cap \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that:
+> 1. the stored history lies in the position, speed, and acceleration envelope;
+> 2. the stored partner root structure is finite and transversal;
+> 3. there are no exact same-side self roots on the stored interval;
+> 4. and a sufficiently small $C^1$ section neighborhood of
+>    $$
+>    \psi_{\mathrm{seed}}
+>    $$
+>    remains inside a section-level tame subclass
+>    $$
+>    \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+>    \subseteq
+>    \mathcal{C}_{x_\ast,\eta}.
+>    $$
+
+This theorem is intentionally only a section-side nonemptiness statement. It does not yet say that the forward delayed flow preserves the same class for one full cycle. That stronger claim belongs to the later invariant-envelope theorem.
+
+> **Proposition (Explicit affine inbound seed history).**
+> Fix
+> $$
+> x_\ast>0,
+> \qquad
+> 0<u_{\mathrm{seed}}<c_f,
+> \qquad
+> h\ge \frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+> $$
+> Define
+> $$
+> \psi_{\mathrm{seed}}(\theta)
+> \equiv
+> x_\ast-u_{\mathrm{seed}}\theta,
+> \qquad
+> \theta\in[-h,0].
+> $$
+> Then:
+> 1. the section conditions hold:
+>    $$
+>    \psi_{\mathrm{seed}}(0)=x_\ast,
+>    \qquad
+>    \dot\psi_{\mathrm{seed}}(0)=-u_{\mathrm{seed}}<0;
+>    $$
+> 2. the stored path is right exterior and monotone inbound:
+>    $$
+>    x_\ast
+>    \le
+>    \psi_{\mathrm{seed}}(\theta)
+>    \le
+>    x_\ast+u_{\mathrm{seed}}h,
+>    \qquad
+>    \dot\psi_{\mathrm{seed}}(\theta)=-u_{\mathrm{seed}},
+>    \qquad
+>    \ddot\psi_{\mathrm{seed}}(\theta)=0;
+>    $$
+> 3. there is exactly one partner root on the stored interval, located at
+>    $$
+>    \theta_{p,\mathrm{seed}}
+>    =
+>    -\frac{2x_\ast}{c_f-u_{\mathrm{seed}}},
+>    $$
+>    and its Jacobian satisfies
+>    $$
+>    J_{p,\mathrm{seed}}
+>    =
+>    1-\frac{u_{\mathrm{seed}}}{c_f}>0;
+>    $$
+> 4. there are no exact same-side self roots on
+>    $$
+>    [-h,0).
+>    $$
+>
+> Consequently, if
+> $$
+> X_{\max}\ge x_\ast+u_{\mathrm{seed}}h,
+> \qquad
+> U_{\max}\ge u_{\mathrm{seed}},
+> \qquad
+> A_{\max}>0,
+> \qquad
+> \nu_{\mathrm{seed}}\le 1-\frac{u_{\mathrm{seed}}}{c_f},
+> $$
+> then
+> $$
+> \psi_{\mathrm{seed}}\in \mathcal{C}_{x_\ast,\eta},
+> $$
+> and the stored-history transversality bounds hold with
+> $$
+> |J_p|\ge \nu_{\mathrm{seed}},
+> $$
+> while the self-root transversality condition is vacuous on the seed because there are no exact same-side self roots.
+
+Proof.
+The section anchoring and inbound sign are immediate from the definition of
+$$
+\psi_{\mathrm{seed}}.
+$$
+Since
+$$
+\theta\in[-h,0],
+$$
+one has
+$$
+\psi_{\mathrm{seed}}(\theta)=x_\ast-u_{\mathrm{seed}}\theta
+=
+x_\ast+u_{\mathrm{seed}}|\theta|,
+$$
+so the stored path remains on the right exterior branch, decreases monotonically toward the section as
+$$
+\theta\uparrow 0,
+$$
+and satisfies the displayed position, speed, and acceleration bounds.
+
+For a partner root at the section time
+$$
+\theta=0,
+$$
+the delayed causal relation is
+$$
+x_\ast+\psi_{\mathrm{seed}}(\theta_p)=c_f(0-\theta_p).
+$$
+Writing
+$$
+s=-\theta_p>0,
+$$
+this becomes
+$$
+x_\ast+\bigl(x_\ast+u_{\mathrm{seed}}s\bigr)=c_f s,
+$$
+hence
+$$
+2x_\ast=(c_f-u_{\mathrm{seed}})s,
+$$
+and therefore
+$$
+s=\frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+$$
+The lower bound on
+$$
+h
+$$
+ensures that
+$$
+\theta_{p,\mathrm{seed}}=-s
+$$
+lies inside
+$$
+[-h,0].
+$$
+Since the seed velocity is constant,
+$$
+J_{p,\mathrm{seed}}
+=
+1+\frac{\dot\psi_{\mathrm{seed}}(\theta_{p,\mathrm{seed}})}{c_f}
+=
+1-\frac{u_{\mathrm{seed}}}{c_f}>0.
+$$
+
+Now consider exact same-side self roots on the stored interval. Such a root would satisfy
+$$
+|\psi_{\mathrm{seed}}(0)-\psi_{\mathrm{seed}}(\theta_s)|
+=
+c_f(0-\theta_s).
+$$
+Again writing
+$$
+s=-\theta_s>0,
+$$
+the left-hand side equals
+$$
+u_{\mathrm{seed}}s,
+$$
+so the equation becomes
+$$
+u_{\mathrm{seed}}s=c_f s.
+$$
+Because
+$$
+0<u_{\mathrm{seed}}<c_f,
+$$
+this has no solution for
+$$
+s>0.
+$$
+Hence there are no exact same-side self roots on
+$$
+[-h,0).
+$$
+
+The final membership claim is then immediate from the displayed envelope inequalities.
+
+> **Corollary (Nonempty section-level tame neighborhood).**
+> Under the hypotheses of the proposition, there exists
+> $$
+> \varepsilon_{\mathrm{seed}}>0
+> $$
+> such that the set
+> $$
+> \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+> \equiv
+> \left\{
+> \phi\in \mathcal{C}_{x_\ast,\eta}
+> \;\middle|\;
+> \phi(0)=x_\ast,
+> \quad
+> \dot\phi(0)\le -\frac{u_{\mathrm{seed}}}{2},
+> \quad
+> \|\phi-\psi_{\mathrm{seed}}\|_{C^1([-h,0])}\le \varepsilon_{\mathrm{seed}}
+> \right\}
+> $$
+> is nonempty and consists of inbound section histories whose stored partner root persists uniquely and whose stored same-side exact self roots remain absent.
+
+Proof sketch.
+The set is nonempty because
+$$
+\psi_{\mathrm{seed}}\in \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+$$
+for every
+$$
+\varepsilon_{\mathrm{seed}}>0.
+$$
+The seed has a strict sub-field-speed margin
+$$
+\sigma_{\mathrm{seed}}\equiv c_f-u_{\mathrm{seed}}>0
+$$
+and a simple partner root with
+$$
+J_{p,\mathrm{seed}}>0.
+$$
+By continuity of the root equations and of the Jacobian factors under small $C^1$ perturbations of the stored history, these properties persist for all histories sufficiently close to
+$$
+\psi_{\mathrm{seed}}.
+$$
+Likewise, the same-side self-root equation has a strict gap on the seed because
+$$
+u_{\mathrm{seed}}<c_f,
+$$
+so exact same-side self roots cannot appear under a sufficiently small perturbation. Therefore a small enough neighborhood remains inside a section-level tame subclass.
+
+This corollary is the first concrete nonvacuity statement for the theorem program. The remaining task is no longer to show that tame histories exist at all, but to propagate such a seed class through the full delayed cycle strongly enough that it becomes the nonempty class required by the invariant-envelope theorem.
+
 ### Collapse-to-crossing target
 
 The next concrete theorem should attack Step 1 of the cycle ladder directly. Its role is to connect tame inbound section data to the already-audited local post-crossing recapture theorem.
