@@ -49,6 +49,7 @@
       "objects": {
         "binary_dynamics": "Binary Dynamics",
         "causal_action_functional": "Causal Action Functional",
+        "collinear_breather": "1D Collinear Binary",
         "effective_lagrangian": "Effective Lagrangian",
         "emergence_of_u_1_su_2": "Emergence of U(1)/SU(2)",
         "gauge_symmetries": "Gauge Symmetries",

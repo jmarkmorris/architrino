@@ -1183,6 +1183,78 @@ $$
 A_p^{\rho}(t)\ge \underline A_p^{\rho}(t).
 $$
 
+Working form:
+write
+$$
+s\equiv -t_p>0
+$$
+for the past partner-emission time measured backward from the crossing. On the active partner branch, shell support gives
+$$
+\left||x(t)+x(t_p)|-c_f(t+s)\right|\le \eta.
+$$
+
+Assume the signed trajectory is $C^1$ through the crossing and obeys uniform acceleration bounds on both sides of $t=0$. Then there exists
+$$
+a_\ast\equiv \max\{a_{\mathrm{loc}},a_{\max}\}
+$$
+such that the Taylor remainders satisfy
+$$
+x(t)= -V_0 t + R_+(t),
+\qquad
+|R_+(t)|\le \frac{a_\ast}{2}t^2,
+$$
+for $t\in[0,\tau_1]$, and
+$$
+x(t_p)= V_0 s + R_-(s),
+\qquad
+|R_-(s)|\le \frac{a_\ast}{2}s^2,
+$$
+for $s\in[0,\tau_1]$.
+
+Substituting these expansions into the partner-shell condition yields
+$$
+\left|
+V_0(t-s)-c_f(t+s)
++E_p(t,s)
+\right|
+\le \eta,
+$$
+where
+$$
+|E_p(t,s)|\le \frac{a_\ast}{2}(t^2+s^2).
+$$
+
+Let
+$$
+\alpha\equiv \frac{V_0-c_f}{V_0+c_f}\in(0,1),
+\qquad
+\beta_p\equiv \frac{2c_fV_0}{V_0+c_f}.
+$$
+Then the linearized root is $s=\alpha t$. For sufficiently small $t$ and $\eta$, the exact active partner root obeys the one-sided estimate
+$$
+s\le \alpha t + C_p(t^2+\eta)
+$$
+for some constant $C_p$ depending only on $(V_0,c_f,a_\ast)$.
+
+Consequently the delayed partner distance satisfies the upper bound
+$$
+r_p(t)=c_f(t+s)
+\le
+\beta_p t + c_f C_p(t^2+\eta).
+$$
+
+This is the form needed for the theorem program: as the trajectory brakes after the crossing, the true partner distance can only become smaller than this leading linear estimate, which strengthens the partner attraction. Therefore the core-mollified partner term admits the explicit lower bound
+$$
+A_p^{\rho}(t)
+\ge
+\frac{\kappa\epsilon^2}{
+\left(
+\beta_p t + c_f C_p(t^2+\eta)
+\right)^2+\epsilon_c^2}
+\equiv
+\underline A_p^{\rho}(t).
+$$
+
 **Lemma 4: Recapture integration.**
 Show that the function
 $$
