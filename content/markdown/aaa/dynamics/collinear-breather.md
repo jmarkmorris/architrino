@@ -4,6 +4,28 @@ This note isolates the simplest reduced dynamical problem that can test the self
 
 The guiding idea is narrow: if self-hit can stabilize anything at all, it should first be visible in a reflection-symmetric one-dimensional opposite-charge binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, tri-binary locking, and assembly-level closure lose their cleanest analytic foothold.
 
+## Overview
+
+In Lineland, imagine two charged points rushing straight toward one another along a single endless road. They pull on each other so strongly that, for a while, each one outruns the causal disturbance it has already emitted into the line behind it. After they pass through the center and begin to separate, each point eventually crashes into its own older wake. That delayed self-hit kicks outward, while the opposite charge keeps pulling inward. The whole reduced problem is a tug-of-war on a line: delayed self-push against partner attraction. What this note builds is a rigorous trap for that contest. The goal is not to trust a simulation or a lucky picture, but to lock down the delayed geometry strongly enough that the inward pull wins at the right moments, the outward escape is cut off, and the motion is forced into a repeating bounded cycle.
+
+Formally, this note develops a proof scaffold for the global existence question of a periodic limit cycle in a symmetric two-body collinear system governed by a strongly nonlinear state-dependent delay differential equation. The dynamics use a dual-mollified delayed kernel, separating the short-distance $1/r^2$ singularity from the causal-shell boundary. The main analytic difficulty is the velocity-dependent causal-fold geometry, where Jacobians can approach
+$$
+J\to 0.
+$$
+The note resolves that geometry by constructing the sorting maps
+$$
+w(t)=x(t)+c_f t
+\qquad
+\text{and}
+\qquad
+z(t)=x(t)-c_f t,
+$$
+which isolate root birth, root exclusion, deep-past localization, and bounded caustic transit. From there the delayed dynamics are reduced to explicit conservative force margins for the inner recapture and the outer apocenter turn, and these are assembled into a closed, convex, precompact invariant-envelope program in
+$$
+C^1([-h,0]).
+$$
+The final fixed-point step is then delegated to Arzela-Ascoli compactness and a Schauder-type argument once the nonempty tame class is fully propagated through one cycle.
+
 ## Purpose
 
 The full dynamics stack currently mixes several hard problems at once:
@@ -3554,6 +3576,198 @@ The intended proof order is:
    $$
 
 The conceptual point is simple: the seed history does not need to solve the whole breather problem by itself. It only needs to provide one strict interior point of history space around which all the already-developed cycle estimates can be made uniform. Once such a neighborhood is propagated through one full cycle, the nonempty tame class required by the Schauder program is in hand.
+
+> **Proposition (Local seed-neighborhood continuation with stored-root persistence).**
+> Assume the affine seed proposition above, and strengthen the horizon choice slightly to
+> $$
+> h>\frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+> $$
+> Then there exist constants
+> $$
+> 0<\varepsilon_{\mathrm{loc}}<\min\!\left\{\frac{u_{\mathrm{seed}}}{2},\,c_f-u_{\mathrm{seed}}\right\},
+> \qquad
+> \nu_{\mathrm{loc}}>0,
+> \qquad
+> \tau_{\mathrm{loc}}>0,
+> $$
+> and a nonempty subclass
+> $$
+> \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+> $$
+> such that for every
+> $$
+> \phi\in \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+> $$
+> one has:
+> 1. **strict stored sub-field-speed bound:**
+>    $$
+>    |\dot\phi(\theta)|\le u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}<c_f
+>    \qquad
+>    \text{for }\theta\in[-h,0];
+>    $$
+> 2. **absence of exact same-side self roots on the stored interval:**
+>    there is no
+>    $$
+>    \theta_s\in[-h,0)
+>    $$
+>    such that
+>    $$
+>    |\phi(0)-\phi(\theta_s)|=c_f(0-\theta_s);
+>    $$
+> 3. **unique simple stored partner root:**
+>    there exists a unique
+>    $$
+>    \theta_p(\phi)\in[-h,0)
+>    $$
+>    satisfying
+>    $$
+>    \phi(0)+\phi(\theta_p)=c_f(0-\theta_p),
+>    $$
+>    and its Jacobian obeys
+>    $$
+>    J_p(\phi;\theta_p)\ge \nu_{\mathrm{loc}}>0;
+>    $$
+> 4. **short-time forward continuation:**
+>    if the dual-mollified vector field is locally Lipschitz on the stored-root branch determined above, then the history
+>    $$
+>    \phi
+>    $$
+>    admits a unique forward continuation on
+>    $$
+>    [0,\tau_{\mathrm{loc}}]
+>    $$
+>    with continuous dependence on the initial history in the
+>    $$
+>    C^1([-h,0])
+>    $$
+>    topology.
+>
+> In particular, the first item of the seed-propagation ladder holds on a nonempty neighborhood.
+
+Proof sketch.
+Because
+$$
+h>\frac{2x_\ast}{c_f-u_{\mathrm{seed}}},
+$$
+there is a positive slack
+$$
+\delta_h
+\equiv
+(c_f-u_{\mathrm{seed}})h-2x_\ast
+>0.
+$$
+Choose
+$$
+\varepsilon_{\mathrm{loc}}>0
+$$
+small enough that
+$$
+u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}<c_f
+$$
+and
+$$
+\varepsilon_{\mathrm{loc}}h<\delta_h.
+$$
+Let
+$$
+\mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+\equiv
+\left\{
+\phi\in \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+\;\middle|\;
+\|\phi-\psi_{\mathrm{seed}}\|_{C^1([-h,0])}\le \varepsilon_{\mathrm{loc}}
+\right\}.
+$$
+This set is nonempty because it contains
+$$
+\psi_{\mathrm{seed}}.
+$$
+
+For any
+$$
+\phi\in \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta},
+$$
+the derivative bound gives
+$$
+|\dot\phi(\theta)|
+\le
+u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}
+<c_f
+$$
+on
+$$
+[-h,0].
+$$
+Now suppose a same-side self root
+$$
+\theta_s<0
+$$
+ existed. By the mean value theorem,
+$$
+|\phi(0)-\phi(\theta_s)|
+\le
+(u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}})(0-\theta_s)
+<
+c_f(0-\theta_s),
+$$
+contradicting the exact root equation. Hence no exact same-side self root exists on the stored interval.
+
+For the partner root, define
+$$
+F_\phi(\theta)\equiv \phi(0)+\phi(\theta)+c_f\theta.
+$$
+Then
+$$
+F_\phi(0)=2x_\ast>0,
+$$
+while
+$$
+F_\phi(-h)
+\le
+x_\ast+\bigl(x_\ast+u_{\mathrm{seed}}h+\varepsilon_{\mathrm{loc}}h\bigr)-c_f h
+=
+2x_\ast-(c_f-u_{\mathrm{seed}}-\varepsilon_{\mathrm{loc}})h
+<
+0
+$$
+by the choice of
+$$
+\varepsilon_{\mathrm{loc}}.
+$$
+Moreover,
+$$
+F_\phi'(\theta)=\dot\phi(\theta)+c_f
+\ge
+c_f-(u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}})
+>0,
+$$
+so
+$$
+F_\phi
+$$
+is strictly increasing. Therefore it has a unique zero
+$$
+\theta_p(\phi)\in[-h,0).
+$$
+At that root,
+$$
+J_p(\phi;\theta_p)
+=
+1+\frac{\dot\phi(\theta_p)}{c_f}
+\ge
+1-\frac{u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}}{c_f}
+\equiv
+\nu_{\mathrm{loc}}
+>0.
+$$
+
+Finally, on this branch pattern the dual-mollified force law has one simple stored partner root and no exact same-side self roots on the initial history. Under the stated local Lipschitz hypothesis, standard local existence and continuous-dependence theory for functional differential equations yields a unique forward continuation on a short interval
+$$
+[0,\tau_{\mathrm{loc}}].
+$$
+This proves the proposition.
 
 ### Collapse-to-crossing target
 

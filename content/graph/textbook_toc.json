@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 122,
-      "sections": 793
+      "sections": 794
     }
   },
   "tocRoot": {
@@ -812,6 +812,14 @@
             "scenePath": "content/scenes/dynamics/collinear_breather.json",
             "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Purpose",

@@ -99,6 +99,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [State Space and Well-Posedness of the Two-Body Delay System](../aaa/dynamics/binary-dynamics.md?section=State+Space+and+Well-Posedness+of+the+Two-Body+Delay+System)
     - [Symmetry, Conservation, and Lyapunov Functionals](../aaa/dynamics/binary-dynamics.md?section=Symmetry%2C+Conservation%2C+and+Lyapunov+Functionals)
   - [1D Collinear Binary (Reduced Model)](../../scenes/dynamics/collinear_breather.json)
+    - [Overview](../aaa/dynamics/collinear-breather.md?section=Overview)
     - [Purpose](../aaa/dynamics/collinear-breather.md?section=Purpose)
     - [Exact 1D State Variables](../aaa/dynamics/collinear-breather.md?section=Exact+1D+State+Variables)
     - [Partner-Only Hinge Radius](../aaa/dynamics/collinear-breather.md?section=Partner-Only+Hinge+Radius)
