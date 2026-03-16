@@ -483,11 +483,48 @@ Fix:
 
 ### Admissible history class
 
-The first theorem target should not be the full section $\Sigma^\pm_{x_\ast,\eta}$, but a controlled subset on which the regularized delayed dynamics and return times are well behaved.
+Work first with the raw outbound and inbound sections in the full history space
+$$
+\mathcal{H}_h:
+$$
+$$
+\Sigma^+_{x_\ast,\eta}
+\equiv
+\left\{
+ \phi\in\mathcal{H}_h
+\;\middle|\;
+\phi(0)=x_\ast,
+\qquad
+\dot\phi(0)>0
+\right\},
+$$
+$$
+\Sigma^-_{x_\ast,\eta}
+\equiv
+\left\{
+ \phi\in\mathcal{H}_h
+\;\middle|\;
+\phi(0)=x_\ast,
+\qquad
+\dot\phi(0)<0
+\right\}.
+$$
+
+Because the section histories are anchored by
+$$
+\phi(0)=x_\ast
+$$
+with prescribed crossing sign, this Poincare-type section quotients out the absolute time-translation symmetry of the continuous delayed flow. A periodic trajectory therefore appears as a fixed returned history rather than as an unpinned one-parameter family of time shifts.
+
+The first workable theorem domain should not be the full sections
+$$
+\Sigma^\pm_{x_\ast,\eta},
+$$
+but a controlled tame subclass on which the regularized delayed dynamics and return times are well behaved.
 
 Let
 $$
-\mathcal{K}_{x_\ast,\eta}
+\mathcal{H}^{\mathrm{adm}}_{x_\ast,\eta}
 \subset
 \mathcal{H}_h
 $$
@@ -519,63 +556,53 @@ Also require the active causal memory depth to fit inside the chosen history win
 $$
 \tau_{\max}(\phi)\le h
 \qquad
-\text{for every }\phi\in\mathcal{K}_{x_\ast,\eta}.
+\text{for every }\phi\in\mathcal{H}^{\mathrm{adm}}_{x_\ast,\eta}.
 $$
 
-The role of $\mathcal{K}_{x_\ast,\eta}$ is simple: it isolates a tame region of history space on which the regularized vector field, root selection, and section crossings can plausibly be controlled. The acceleration bound is the first compactness-oriented ingredient for a later Arzela-Ascoli step in $C^1$, and the memory-depth bound ensures the delayed law really closes on the chosen history interval. Whether the eventual theorem program allows histories that approach $x=0$ arbitrarily closely is a separate question and should not be conflated with the first well-posedness regime.
+The role of
+$$
+\mathcal{H}^{\mathrm{adm}}_{x_\ast,\eta}
+$$
+is simple: it isolates a tame region of history space on which the regularized vector field, root selection, and section crossings can plausibly be controlled. The acceleration bound is the first compactness-oriented ingredient for a later Arzela-Ascoli step in $C^1$, and the memory-depth bound ensures the delayed law really closes on the chosen history interval. Whether the eventual theorem program allows histories that approach $x=0$ arbitrarily closely is a separate question and should not be conflated with the first well-posedness regime.
 
-Define the outbound and inbound sections within this admissible class:
+For
 $$
-\Sigma^+_{x_\ast,\eta}
-\equiv
-\left\{
- \phi\in\mathcal{K}_{x_\ast,\eta}
-\;\middle|\;
-\phi(0)=x_\ast,
-\qquad
-\dot\phi(0)>0
-\right\},
+\phi\in\Sigma^+_{x_\ast,\eta}
 $$
+for which the $\eta$-regularized dynamics is well defined up to the first later time
 $$
-\Sigma^-_{x_\ast,\eta}
-\equiv
-\left\{
- \phi\in\mathcal{K}_{x_\ast,\eta}
-\;\middle|\;
-\phi(0)=x_\ast,
-\qquad
-\dot\phi(0)<0
-\right\}.
+T^-_\eta(\phi)>0
 $$
-
-Because the section histories are anchored by
-$$
-\phi(0)=x_\ast
-$$
-with prescribed crossing sign, this Poincare-type section quotients out the absolute time-translation symmetry of the continuous delayed flow. A periodic trajectory therefore appears as a fixed returned history rather than as an unpinned one-parameter family of time shifts.
-
-For $\phi\in\Sigma^+_{x_\ast,\eta}$, evolve the $\eta$-regularized dynamics forward until the first later time $T^-_\eta(\phi)>0$ such that:
+such that:
 
 - the trajectory has completed one outbound excursion and recapture,
 - $x(T^-_\eta(\phi))=x_\ast$,
 - and $\dot x(T^-_\eta(\phi))<0$.
 
-Then define the exact outbound-to-inbound history map
+Then define the exact outbound-to-inbound history map on its natural domain
 $$
-Q_\eta:\Sigma^+_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta},
+Q_\eta:\operatorname{Dom}(Q_\eta)\subseteq \Sigma^+_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta},
 \qquad
 Q_\eta(\phi)=x_{T^-_\eta(\phi)}.
 $$
 
-For $\phi\in\Sigma^-_{x_\ast,\eta}$, evolve the $\eta$-regularized dynamics forward until the first return time $T(\phi)>0$ such that:
+For
+$$
+\phi\in\Sigma^-_{x_\ast,\eta}
+$$
+for which the $\eta$-regularized dynamics is well defined up to the first return time
+$$
+T(\phi)>0
+$$
+such that:
 
 - the trajectory has completed one collapse-and-rebound cycle,
 - $x(T(\phi))=x_\ast$,
 - and $\dot x(T(\phi))<0$ again.
 
-Then define the exact history-space return map
+Then define the exact history-space return map on its natural domain
 $$
-P_\eta:\Sigma^-_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta},
+P_\eta:\operatorname{Dom}(P_\eta)\subseteq \Sigma^-_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta},
 \qquad
 P_\eta(\phi)=x_{T(\phi)}.
 $$
@@ -697,7 +724,16 @@ $$
 \phi^\ast = P_\eta(\phi^\ast).
 $$
 
-The scalar map is therefore best read as a reduced diagnostic for recapture and speed balance. The actual theorem program should proceed by finding a closed, bounded, invariant subset of $\Sigma^-_{x_\ast,\eta}$ inside $\mathcal{K}_{x_\ast,\eta}$ and studying $P_\eta$ there.
+The scalar map is therefore best read as a reduced diagnostic for recapture and speed balance. The actual theorem program should proceed by finding a closed, bounded, invariant subset of the raw inbound section
+$$
+\Sigma^-_{x_\ast,\eta}
+$$
+and then packaging it inside the later convex-envelope hierarchy
+$$
+\mathcal{C}_{x_\ast,\eta}
+\supseteq
+\mathcal{K}_{x_\ast,\eta}.
+$$
 
 ### Local recapture architecture
 
@@ -7950,9 +7986,13 @@ The existence capstone of the manuscript is the Schauder theorem target above. I
 > $$
 > (\kappa,\epsilon,c_f,\eta,h,x_\ast)
 > $$
-> and some admissible reflection-symmetric history class, the return map $P_\eta$ has a fixed point
+> and some closed convex tame envelope
 > $$
-> \phi^\ast_\eta \in \Sigma^-_{x_\ast,\eta},
+> \mathcal{K}_{x_\ast,\eta}\subseteq \Sigma^-_{x_\ast,\eta},
+> $$
+> the return map $P_\eta$ has a fixed point
+> $$
+> \phi^\ast_\eta \in \mathcal{K}_{x_\ast,\eta},
 > \qquad
 > P_\eta(\phi^\ast_\eta)=\phi^\ast_\eta.
 > $$
