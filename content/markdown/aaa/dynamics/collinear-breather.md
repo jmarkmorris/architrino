@@ -2735,6 +2735,75 @@ So the immediate global target is not yet "stable breather with fixed amplitude,
 - precompactness of its image,
 - and existence of at least one fixed point of the resulting dual-mollified history map.
 
+### Schauder route
+
+The three global propositions above are designed to feed a single topological conclusion. The intended fixed-point route is:
+
+1. prove that the local recapture theorem and the tame continuation hypotheses make
+   $$
+   P_\eta
+   $$
+   well defined on a nonempty inbound class;
+2. prove the continuity proposition on a tame subclass
+   $$
+   \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta};
+   $$
+3. prove the precompactness proposition for the return image
+   $$
+   P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big);
+   $$
+4. prove the convex-envelope target
+   $$
+   P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+   \subseteq
+   \mathcal{C}_{x_\ast,\eta}.
+   $$
+
+Once these items hold, the remaining step is standard:
+
+> **Target Theorem (Schauder Fixed Point Route).**
+> Suppose there exists a nonempty tame inbound subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that:
+> 1. the return map
+>    $$
+>    P_\eta
+>    $$
+>    is well defined and continuous on
+>    $$
+>    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta},
+>    $$
+> 2. its image is precompact in $C^1([-h,0])$,
+> 3. and
+>    $$
+>    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+>    \subseteq
+>    \mathcal{C}_{x_\ast,\eta},
+>    $$
+>    where
+>    $$
+>    \mathcal{C}_{x_\ast,\eta}
+>    $$
+>    is closed and convex in the $C^1$ topology.
+>
+> Then the closure
+> $$
+> \overline{
+> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> }
+> $$
+> is compact in $C^1([-h,0])$, lies inside
+> $$
+> \mathcal{C}_{x_\ast,\eta},
+> $$
+> and supports a Schauder fixed-point argument for a fixed point of the dual-mollified return map.
+
+At this stage, the remaining nontrivial issue is not the fixed-point theorem itself. It is the construction of a tame class on which all three inputs hold simultaneously: well-definedness, continuity, and invariant-envelope control. That is the precise global bottleneck after the local recapture theorem.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
