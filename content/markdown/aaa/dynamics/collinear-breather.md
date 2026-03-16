@@ -3955,6 +3955,201 @@ $$
 
 This proposition closes the inner half of the seed-propagation program at the regime level: once the seed neighborhood is shrunk far enough that its collapse phase lands uniformly in the Goldilocks crossing window, the local post-crossing recapture mechanism becomes available without any additional pointwise tuning.
 
+> **Proposition (Seed-neighborhood realization of the unified outer-turn regime).**
+> Let
+> $$
+> \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+> $$
+> be a nonempty subclass such that the post-crossing recapture, return-half, and outer-branch delayed-geometry estimates developed later in the note hold uniformly on the corresponding trajectories. Assume in particular that for every
+> $$
+> \psi\in \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> $$
+> there is a trimmed apocenter window
+> $$
+> I_{\mathrm{deep}}(\psi)=[t_a(\psi)+\tau_{\mathrm{deep}},\,t_b(\psi)]
+> $$
+> on which the unified trimmed-apocenter outer-turn criterion is applicable with the same class constants
+> $$
+> \underline A_p^{\mathrm{out}},
+> \qquad
+> \tau_{\mathrm{deep}},
+> \qquad
+> \sigma_{\mathrm{out}},
+> \qquad
+> a_{z}^{\mathrm{out}},
+> \qquad
+> a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}>0.
+> $$
+> Assume moreover that the explicit inequalities
+> $$
+> z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+> -
+> \frac{a_{z}^{\mathrm{out}}}{2}
+> \big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+> <0,
+> $$
+> $$
+> \underline A_p^{\mathrm{out}}
+> -
+> \frac{\kappa\epsilon^2}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
+> -
+> \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+> \sigma_{\mathrm{out}}\epsilon_c^2}
+> \ge
+> a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}>0
+> $$
+> hold uniformly on that class.
+>
+> Then every trajectory issued from
+> $$
+> \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> $$
+> satisfies the outer-turn recapture mechanism uniformly: the trimmed-apocenter acceleration obeys
+> $$
+> \ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+> \qquad
+> \text{for }t\in I_{\mathrm{deep}}(\psi),
+> $$
+> and, if
+> $$
+> |I_{\mathrm{deep}}(\psi)|
+> \ge
+> \frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}},
+> $$
+> then a finite outer turn occurs on or just beyond the trimmed apocenter window for every member of the class.
+
+Proof sketch.
+By assumption, the same uniform constants entering the outer-turn layer apply to every trajectory launched from
+$$
+\mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}.
+$$
+The first displayed inequality is exactly the outbound-level exclusion condition from the
+$$
+z
+$$
+-descent layer, while the second displayed inequality is the refined trimmed-apocenter force margin. Therefore the unified trimmed-apocenter outer-turn criterion applies uniformly across the class.
+
+It follows that every trajectory on the seed-out neighborhood has:
+
+- outbound-level exclusion on the trimmed apocenter window,
+- deep-past same-side root localization onto the pre-crossing inbound leg,
+- the refined deep-past suppression bound,
+- and the inward acceleration margin
+  $$
+  \ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+  $$
+  on
+  $$
+  I_{\mathrm{deep}}(\psi).
+  $$
+
+The final turning claim is then exactly the conclusion of the unified trimmed-apocenter criterion once the window length dominates
+$$
+\frac{v_{\mathrm{deep}}}{a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}}.
+$$
+
+This proposition closes the outer half of the seed-propagation program at the regime level: once the seed neighborhood is small enough that the outer delayed geometry and trimmed-apocenter bounds are uniform, the outer-turn mechanism becomes class-uniform with no further history-by-history tuning.
+
+> **Proposition (Returned-history reentry from uniform seed-cycle bounds).**
+> Let
+> $$
+> \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> $$
+> be a nonempty subclass such that:
+> 1. the collapse-to-crossing control theorem applies uniformly on this class;
+> 2. the seed-neighborhood realization of the explicit inner recapture regime applies uniformly on this class;
+> 3. the seed-neighborhood realization of the unified outer-turn regime applies uniformly on this class;
+> 4. the turn-to-section return lemmas apply uniformly on this class with class constants
+>    $$
+>    X_{\mathrm{out},\max}^{\mathrm{seed}},
+>    \qquad
+>    U_{\mathrm{sec},\max}^{\mathrm{seed}},
+>    \qquad
+>    A_{\mathrm{cyc},\max}^{\mathrm{seed}},
+>    \qquad
+>    T_{\mathrm{cyc},\max}^{\mathrm{seed}};
+>    $$
+> 5. and the returned-history tameness estimates hold uniformly on this class.
+>
+> Assume moreover that the envelope parameters satisfy
+> $$
+> X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}^{\mathrm{seed}}\},
+> $$
+> $$
+> U_{\max}\ge \max\{V_{\max}^{\mathrm{seed}},U_{\mathrm{sec},\max}^{\mathrm{seed}}\},
+> $$
+> $$
+> A_{\max}\ge A_{\mathrm{cyc},\max}^{\mathrm{seed}},
+> \qquad
+> T_{\max}\ge T_{\mathrm{cyc},\max}^{\mathrm{seed}},
+> \qquad
+> h\ge \frac{2X_{\max}}{c_f}.
+> $$
+>
+> Then
+> $$
+> P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}
+> \qquad
+> \text{for every }
+> \psi\in \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}.
+> $$
+> If, in addition, the same stored-history Jacobian, root-count, and local continuation bounds that define the seed-side propagation class persist on the returned segment, then after shrinking once more if necessary there exists a nonempty forward-propagation subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+> $$
+> such that
+> $$
+> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+
+Proof sketch.
+Items 1-3 provide the full dynamical cycle structure:
+
+- finite-time first crossing with controlled speed,
+- class-uniform inner turnaround after the first crossing,
+- class-uniform outer turnaround on the trimmed apocenter window.
+
+Item 4 then supplies the section-return consequences from the return-half layer:
+$$
+0\le x(t;\psi)\le X_{\mathrm{out},\max}^{\mathrm{seed}},
+\qquad
+|\dot x(t;\psi)|\le U_{\mathrm{sec},\max}^{\mathrm{seed}},
+\qquad
+|\ddot x(t;\psi)|\le A_{\mathrm{cyc},\max}^{\mathrm{seed}},
+$$
+through the full cycle and up to the first inbound section return, together with the time bound
+$$
+T(\psi)\le T_{\mathrm{cyc},\max}^{\mathrm{seed}}.
+$$
+The displayed envelope inequalities therefore imply that the returned history segment fits inside the convex envelope
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+Hence
+$$
+P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}
+$$
+for every
+$$
+\psi\in \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}.
+$$
+
+If the returned segment also preserves the same stored-history root simplicity, Jacobian lower bounds, and local continuation control that defined the seed-side propagation class, then one may shrink the class once more to a nonempty subclass
+$$
+\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+$$
+on which those properties hold both before and after one full return. This gives exactly the forward-propagation tame class required by the invariant-envelope theorem.
+
+This proposition closes the seed-propagation ladder. The only remaining logical step is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem, after which the invariant-envelope synthesis and the Schauder route apply directly.
+
 ### Collapse-to-crossing target
 
 The next concrete theorem should attack Step 1 of the cycle ladder directly. Its role is to connect tame inbound section data to the already-audited local post-crossing recapture theorem.
