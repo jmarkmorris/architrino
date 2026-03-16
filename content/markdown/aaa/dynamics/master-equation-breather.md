@@ -589,6 +589,234 @@ z.
 $$
 The higher-dimensional point is not to recover a single total order, but to recover enough directional order to label and propagate the active branch family.
 
+### First theorem package: sectorized directional sorting
+
+The first concrete planar task should be to replace the scalar 1D order by a finite directional atlas.
+
+Fix a sector half-width
+$$
+0<\alpha_{\mathrm{sort}}<\frac{\pi}{4},
+$$
+and choose a finite family of unit directions
+$$
+\mathcal{U}=\{\hat{\mathbf{u}}_1,\dots,\hat{\mathbf{u}}_M\}\subset S^1
+$$
+such that the closed sectors
+$$
+\mathfrak{S}_k
+\equiv
+\left\{
+\hat{\mathbf{u}}\in S^1
+\;\middle|\;
+\angle(\hat{\mathbf{u}},\hat{\mathbf{u}}_k)\le \alpha_{\mathrm{sort}}
+\right\}
+$$
+cover
+$$
+S^1.
+$$
+The sector family is fixed once and for all for the chosen tame class. What varies from trajectory to trajectory is only which subfamily is active on a given controlled window.
+
+Two cycle windows should then be named explicitly:
+$$
+I_{\mathrm{in}}=[t_{\mathrm{in}}^-,t_{\mathrm{x}}],
+\qquad
+I_{\mathrm{ap}}=[t_{\mathrm{ap}}^-,t_{\mathrm{ap}}^+].
+$$
+Here
+$$
+I_{\mathrm{in}}
+$$
+is the final inbound window ending at the first center crossing time
+$$
+t_{\mathrm{x}},
+$$
+and
+$$
+I_{\mathrm{ap}}
+$$
+is the late-apocenter window on the later outbound branch where the outer-turn problem is analyzed.
+
+For any two times
+$$
+s<t,
+$$
+define the exact self and partner chord directions
+$$
+\hat{\mathbf{u}}_{s,t}^{\mathrm{self}}
+\equiv
+\frac{\mathbf{r}(t)-\mathbf{r}(s)}{\|\mathbf{r}(t)-\mathbf{r}(s)\|},
+\qquad
+\hat{\mathbf{u}}_{s,t}^{\mathrm{part}}
+\equiv
+\frac{\mathbf{r}(t)+\mathbf{r}(s)}{\|\mathbf{r}(t)+\mathbf{r}(s)\|},
+$$
+whenever the denominators are nonzero. The sector label of a root is the unique index
+$$
+k
+$$
+for which the corresponding chord direction lies in
+$$
+\mathfrak{S}_k,
+$$
+after shrinking the tame class so that active directions stay a positive angular distance away from sector overlaps.
+
+> **Target Proposition (Windowed directional monotonicity).**
+> There exist positive constants
+> $$
+> \sigma_{\mathrm{in}},
+> \qquad
+> \sigma_{\mathrm{ap}},
+> $$
+> and active sector subfamilies
+> $$
+> \mathcal{U}_{\mathrm{in}},
+> \qquad
+> \mathcal{U}_{\mathrm{ap}}
+> \subseteq
+> \mathcal{U}
+> $$
+> such that:
+> 1. every active self or partner chord direction on
+>    $$
+>    I_{\mathrm{in}}
+>    $$
+>    lies in some sector from
+>    $$
+>    \mathcal{U}_{\mathrm{in}};
+>    $$
+> 2. every active self or partner chord direction on
+>    $$
+>    I_{\mathrm{ap}}
+>    $$
+>    lies in some sector from
+>    $$
+>    \mathcal{U}_{\mathrm{ap}};
+>    $$
+> 3. for every
+>    $$
+>    \hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{in}},
+>    \qquad
+>    t\in I_{\mathrm{in}},
+>    $$
+>    the support function obeys
+>    $$
+>    \frac{d}{dt}\zeta^-_{\hat{\mathbf{u}}_k}(t)\le -\sigma_{\mathrm{in}};
+>    $$
+> 4. for every
+>    $$
+>    \hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{ap}},
+>    \qquad
+>    t\in I_{\mathrm{ap}},
+>    $$
+>    one has
+>    $$
+>    \frac{d}{dt}\zeta^-_{\hat{\mathbf{u}}_k}(t)\le -\sigma_{\mathrm{ap}},
+>    \qquad
+>    \frac{d}{dt}\zeta^+_{\hat{\mathbf{u}}_k}(t)\ge \sigma_{\mathrm{ap}}.
+>    $$
+
+The first monotonicity statement is the planar replacement for the inbound ordered fall that, in the collinear chapter, feeds collapse and root control. The second is the higher-dimensional descendant of the late
+$$
+z
+$$
+-descent package: it separates the outgoing and incoming directional support levels on the apocenter window instead of relying on a single global scalar order.
+
+The exact root equations now reveal why these support functions are the right replacement objects. If
+$$
+s<t
+$$
+is a self root, then with
+$$
+\hat{\mathbf{u}}=\hat{\mathbf{u}}_{s,t}^{\mathrm{self}}
+$$
+one has
+$$
+\mathbf{r}(t)-\mathbf{r}(s)=c_f(t-s)\hat{\mathbf{u}},
+$$
+hence
+$$
+\zeta^-_{\hat{\mathbf{u}}}(t)=\zeta^-_{\hat{\mathbf{u}}}(s).
+$$
+If
+$$
+s<t
+$$
+is a partner root, then with
+$$
+\hat{\mathbf{u}}=\hat{\mathbf{u}}_{s,t}^{\mathrm{part}}
+$$
+one has
+$$
+\mathbf{r}(t)+\mathbf{r}(s)=c_f(t-s)\hat{\mathbf{u}},
+$$
+hence
+$$
+\zeta^-_{\hat{\mathbf{u}}}(t)=-\zeta^+_{\hat{\mathbf{u}}}(s).
+$$
+
+> **Target Corollary (Sector-labeled branch family).**
+> Assume the windowed directional monotonicity proposition. Then on each of the windows
+> $$
+> I_{\mathrm{in}}
+> \qquad
+> \text{and}
+> \qquad
+> I_{\mathrm{ap}},
+> $$
+> every active delayed root belongs to a unique labeled family
+> $$
+> \beta^{\mathrm{self}}_k
+> \qquad
+> \text{or}
+> \qquad
+> \beta^{\mathrm{part}}_k,
+> \qquad
+> \hat{\mathbf{u}}_k\in\mathcal{U},
+> $$
+> with the following consequences:
+> 1. for fixed
+>    $$
+>    t
+>    $$
+>    and fixed sector
+>    $$
+>    \mathfrak{S}_k,
+>    $$
+>    there is at most one earlier self-root time
+>    $$
+>    s<t
+>    $$
+>    in that sector on the window under consideration;
+> 2. for fixed
+>    $$
+>    t
+>    $$
+>    and fixed sector
+>    $$
+>    \mathfrak{S}_k,
+>    $$
+>    there is at most one earlier partner-root time
+>    $$
+>    s<t
+>    $$
+>    in that sector on the window under consideration;
+> 3. the total number of active self and partner roots on either window is therefore bounded by
+>    $$
+>    2M;
+>    $$
+> 4. branch birth, branch death, or branch relabeling can occur only when an active chord direction meets a sector boundary or when the relevant monotonicity margin
+>    $$
+>    \sigma_{\mathrm{in}}
+>    \quad
+>    \text{or}
+>    \quad
+>    \sigma_{\mathrm{ap}}
+>    $$
+>    degenerates, which defines the planar caustic tube that later propositions must control.
+
+This corollary is the exact branch-labeling consequence needed for the rest of the bridge program. It converts the delayed-root picture from an a priori moving continuum of planar chord directions into a finite labeled branch family that can be propagated, bounded, and inserted into the tame-envelope construction.
+
 > **Target Proposition (Deep-past sector relocation or exclusion).**
 > There exist a delay threshold
 > $$
