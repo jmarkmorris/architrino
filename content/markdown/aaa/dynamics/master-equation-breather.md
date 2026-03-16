@@ -1053,15 +1053,190 @@ This corollary is the exact output needed later for the outer-turn comparison ar
 > $$
 > such that for every active delayed branch on the controlled cycle,
 > $$
-> \bigl|\mathbf{v}_j(t_0)\cdot \hat{\mathbf{r}}_{ij}(t;t_0)\bigr|
-> \le c_f-\nu_J.
+> \mathbf{v}_j(t_0)\cdot \hat{\mathbf{r}}_{ij}(t;t_0)
+> \le c_f(1-\nu_J).
 > $$
 > Equivalently,
 > $$
-> |J_{ij}(t;t_0)|\ge \frac{\nu_J}{c_f}.
+> J_{ij}(t;t_0)\ge \nu_J,
+> \qquad
+> \text{hence}
+> \qquad
+> |J_{ij}(t;t_0)|\ge \nu_J.
 > $$
 
 This is the higher-dimensional replacement for exact scalar Jacobian sign bookkeeping. The correct theorem is a vector cone-separation statement, not a sign chase.
+
+### Third theorem package: sectorwise cone transversality
+
+The transversality problem should be stated sectorwise, because the line of sight is already sector-labeled by the first package and the deep-past relocation theorem returns the source to a sector-matched inbound cone.
+
+For each sector
+$$
+\mathfrak{S}_k
+$$
+and each controlled window
+$$
+W\in\{I_{\mathrm{in}},I_{\mathrm{ap}}\},
+$$
+introduce closed velocity cones
+$$
+\mathfrak{V}^{\mathrm{self}}_{k,W}\subset \Pi,
+\qquad
+\mathfrak{V}^{\mathrm{part}}_{k,W}\subset \Pi.
+$$
+These are not spatial source cones. They live in velocity space and encode the admissible emitter velocities for source points whose active chord directions lie in
+$$
+\mathfrak{S}_k.
+$$
+
+For each such cone define the projection ceilings
+$$
+\Gamma^{\mathrm{self}}_{k,W}
+\equiv
+\sup_{\mathbf{v}\in \mathfrak{V}^{\mathrm{self}}_{k,W}}
+\ \sup_{\hat{\mathbf{u}}\in \mathfrak{S}_k}
+\mathbf{v}\cdot \hat{\mathbf{u}},
+$$
+$$
+\Gamma^{\mathrm{part}}_{k,W}
+\equiv
+\sup_{\mathbf{v}\in \mathfrak{V}^{\mathrm{part}}_{k,W}}
+\ \sup_{\hat{\mathbf{u}}\in \mathfrak{S}_k}
+\mathbf{v}\cdot \hat{\mathbf{u}}.
+$$
+The associated dimensionless Jacobian floors are
+$$
+\nu^{\mathrm{self}}_{J,k,W}
+\equiv
+1-\frac{\Gamma^{\mathrm{self}}_{k,W}}{c_f},
+\qquad
+\nu^{\mathrm{part}}_{J,k,W}
+\equiv
+1-\frac{\Gamma^{\mathrm{part}}_{k,W}}{c_f}.
+$$
+Thus any theorem that produces
+$$
+\Gamma^{\mathrm{self}}_{k,W}<c_f,
+\qquad
+\Gamma^{\mathrm{part}}_{k,W}<c_f
+$$
+automatically yields positive transversality margins.
+
+> **Target Proposition (Windowwise velocity-cone realization).**
+> There exist closed cones
+> $$
+> \mathfrak{V}^{\mathrm{self}}_{k,W},
+> \qquad
+> \mathfrak{V}^{\mathrm{part}}_{k,W},
+> \qquad
+> \hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{in}}\cup \mathcal{U}_{\mathrm{ap}},
+> \qquad
+> W\in\{I_{\mathrm{in}},I_{\mathrm{ap}}\},
+> $$
+> such that every active labeled branch family
+> $$
+> \beta^{\mathrm{self}}_k
+> \qquad
+> \text{or}
+> \qquad
+> \beta^{\mathrm{part}}_k
+> $$
+> on
+> $$
+> W
+> $$
+> has its emitter velocity in the corresponding cone and satisfies
+> $$
+> \Gamma^{\mathrm{self}}_{k,W}\le c_f(1-\nu^{\mathrm{self}}_{J,k,W}),
+> \qquad
+> \Gamma^{\mathrm{part}}_{k,W}\le c_f(1-\nu^{\mathrm{part}}_{J,k,W})
+> $$
+> for some positive constants
+> $$
+> \nu^{\mathrm{self}}_{J,k,W},
+> \qquad
+> \nu^{\mathrm{part}}_{J,k,W}.
+> $$
+> Consequently every active branch on those windows obeys
+> $$
+> J_{ij}(t;t_0)\ge \min\{\nu^{\mathrm{self}}_{J,k,W},\nu^{\mathrm{part}}_{J,k,W}\}>0.
+> $$
+
+The content of this proposition is geometric rather than algebraic. One has to prove that admissible emitter velocities stay inside cones whose forward projection onto every active line-of-sight sector remains strictly sub-field-speed. That is the planar replacement for the scalar statement that the 1D Jacobian sign never approaches zero on the controlled branch family.
+
+For later use it is convenient to compress the windowwise floors into
+$$
+\nu_{J,\mathrm{cyc}}
+\equiv
+\min_{k,W}
+\bigl\{
+\nu^{\mathrm{self}}_{J,k,W},
+\nu^{\mathrm{part}}_{J,k,W}
+\bigr\}.
+$$
+Then the entire controlled cycle satisfies
+$$
+|J_{ij}(t;t_0)|\ge \nu_{J,\mathrm{cyc}}>0
+$$
+on every labeled active branch.
+
+The relocated deep-past self branches should carry a stronger inbound version of the same statement. On the pre-crossing source interval the desirable geometry is not merely sub-field-speed projection, but strictly negative projection onto the sector direction.
+
+> **Target Proposition (Inbound cone strengthening for relocated deep-past branches).**
+> Assume the pre-crossing sector relocation theorem. Then for every active apocenter sector
+> $$
+> \mathfrak{S}_k
+> $$
+> there exists a closed inbound velocity cone
+> $$
+> \mathfrak{V}^{\mathrm{dp}}_{k,\mathrm{in}}\subset \Pi
+> $$
+> and a constant
+> $$
+> \mu_{J,\mathrm{dp},k}>0
+> $$
+> such that every relocated deep-past source point on the matching inbound interval satisfies
+> $$
+> \dot{\mathbf{r}}(s)\in \mathfrak{V}^{\mathrm{dp}}_{k,\mathrm{in}},
+> \qquad
+> \dot{\mathbf{r}}(s)\cdot \hat{\mathbf{u}}\le -\mu_{J,\mathrm{dp},k}
+> \qquad
+> \text{for every }
+> \hat{\mathbf{u}}\in \mathfrak{S}_k.
+> $$
+> Therefore every relocated deep-past self branch satisfies
+> $$
+> J_s(t;s)
+> =
+> 1-\frac{\dot{\mathbf{r}}(s)\cdot \hat{\mathbf{u}}_{s,t}^{\mathrm{self}}}{c_f}
+> \ge
+> 1+\frac{\mu_{J,\mathrm{dp},k}}{c_f}.
+> $$
+
+This is the precise higher-dimensional analogue of the collinear fact that a pre-crossing inbound source automatically gives
+$$
+J_s>1.
+$$
+The proof burden is now cone separation on the pre-crossing source interval rather than a one-line sign argument.
+
+> **Target Corollary (Deep-past Jacobian floor from inbound cone separation).**
+> Assume the inbound cone strengthening proposition and define
+> $$
+> \nu_{J,\mathrm{dp}}
+> \equiv
+> 1+\frac{1}{c_f}\min_k \mu_{J,\mathrm{dp},k}.
+> $$
+> Then every relocated deep-past self branch on
+> $$
+> I_{\mathrm{ap}}
+> $$
+> obeys
+> $$
+> |J_s(t;s)|\ge \nu_{J,\mathrm{dp}}>1.
+> $$
+
+This is the exact Jacobian input promised in the deep-past sector suppression corollary above. Once it is available, the late-apocenter deep-past amplitude bound is fully reduced to sector count, delay separation, and the inbound cone geometry.
 
 > **Target Proposition (Section-side seed packet with chord defect).**
 > There exists an explicit seed history
