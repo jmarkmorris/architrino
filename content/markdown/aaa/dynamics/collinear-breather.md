@@ -4150,6 +4150,97 @@ on which those properties hold both before and after one full return. This gives
 
 This proposition closes the seed-propagation ladder. The only remaining logical step is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem, after which the invariant-envelope synthesis and the Schauder route apply directly.
 
+> **Theorem (Nonempty tame class from seed propagation).**
+> Assume:
+> 1. the affine seed proposition and the nonempty section-level tame neighborhood corollary;
+> 2. the proposition on local seed-neighborhood continuation with stored-root persistence;
+> 3. the proposition on seed-neighborhood collapse control under a uniform inward bracket;
+> 4. the proposition on seed-neighborhood realization of the explicit inner recapture regime;
+> 5. the proposition on seed-neighborhood realization of the unified outer-turn regime;
+> 6. and the proposition on returned-history reentry from uniform seed-cycle bounds.
+>
+> Then there exists a nonempty subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that:
+> 1. the return map
+>    $$
+>    P_\eta
+>    $$
+>    is well defined on
+>    $$
+>    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta};
+>    $$
+> 2. the collapse-to-crossing, inner-recapture, outer-turn, and return-half bounds all apply uniformly on this class;
+> 3. the returned histories satisfy
+>    $$
+>    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+>    \subseteq
+>    \mathcal{C}_{x_\ast,\eta};
+>    $$
+> 4. and the invariant-envelope theorem is therefore nonvacuous on a genuine delayed history class.
+>
+> In particular, once the continuity and precompactness propositions are verified on this same class, the Schauder route applies on a nonempty domain.
+
+Proof sketch.
+The seed proposition and its neighborhood corollary provide a nonempty section-side class
+$$
+\mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+\neq
+\varnothing.
+$$
+The local seed-neighborhood continuation proposition then produces a smaller nonempty subclass
+$$
+\mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+$$
+on which the stored delayed geometry is simple and the forward flow is locally well defined. The collapse-control proposition shrinks again to a nonempty class
+$$
+\mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+$$
+on which the collapse-to-crossing theorem applies uniformly.
+
+The inner-regime proposition next yields a nonempty subclass
+$$
+\mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+$$
+whose first crossings lie uniformly in the explicit short-window recapture regime. The outer-regime proposition then yields a further nonempty subclass
+$$
+\mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+$$
+on which the trimmed-apocenter outer-turn mechanism applies uniformly. Finally, the returned-history reentry proposition produces a nonempty subclass
+$$
+\mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+$$
+whose full-cycle images lie back in
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+
+Choose
+$$
+\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+$$
+to be any nonempty forward-propagation subclass supplied by the last proposition. By construction, all cycle estimates invoked in the invariant-envelope synthesis hold uniformly on this class, and the return map is well defined there. The inclusion
+$$
+P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+\subseteq
+\mathcal{C}_{x_\ast,\eta}
+$$
+is exactly the conclusion of the returned-history reentry step. Hence the invariant-envelope theorem is nonvacuous on a genuine delayed history class.
+
+This theorem closes the remaining logical gap in the global existence program. The note now contains:
+
+- an explicit nonempty section-side seed,
+- a propagation ladder from that seed to a nonempty tame class,
+- explicit inner and outer recapture regimes,
+- invariant-envelope closure on a closed convex history set,
+- and the previously stated precompactness, continuity, and Schauder route.
+
+The remaining work is therefore no longer to construct a nonempty delayed class, but to tighten the continuity and compactness inputs on that same class until the fixed-point step can be stated as a final theorem rather than as a route.
+
 ### Collapse-to-crossing target
 
 The next concrete theorem should attack Step 1 of the cycle ladder directly. Its role is to connect tame inbound section data to the already-audited local post-crossing recapture theorem.
