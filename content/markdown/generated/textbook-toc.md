@@ -111,6 +111,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Conjectured Breather Statement](../aaa/dynamics/collinear-breather.md?section=Conjectured+Breather+Statement)
     - [Why This Reduced Model Comes First](../aaa/dynamics/collinear-breather.md?section=Why+This+Reduced+Model+Comes+First)
     - [What Counts as Success or Failure](../aaa/dynamics/collinear-breather.md?section=What+Counts+as+Success+or+Failure)
+    - [Appendix: AI Henri Poincare on the Unlikelihood of a Closed-Form Solution](../aaa/dynamics/collinear-breather.md?section=Appendix%3A+AI+Henri+Poincare+on+the+Unlikelihood+of+a+Closed-Form+Solution)
     - [Related Chapters](../aaa/dynamics/collinear-breather.md?section=Related+Chapters)
   - [Causal Action Functional](../../scenes/dynamics/causal_action_functional.json)
     - [Problem Statement and Goal](../aaa/dynamics/causal-action-functional.md?section=Problem+Statement+and+Goal)
