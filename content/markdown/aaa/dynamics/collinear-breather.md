@@ -1432,6 +1432,77 @@ $$
 $$
 provided the corresponding roots lie inside the local validity window of Lemmas 1-3.
 
+This can be packaged into a concrete short-window corollary by choosing
+$$
+\tau_\epsilon\equiv \frac{\epsilon_c}{2\beta_p}.
+$$
+Assume
+$$
+\tau_\epsilon\le \min\{\tau_1,\tau_\rho\},
+\qquad
+\eta\le \frac{\epsilon_c}{4c_f C_p},
+\qquad
+\epsilon_c\le \frac{\beta_p^2}{c_f C_p}.
+$$
+Then
+$$
+B_{\tau_\epsilon}
+=
+c_f C_p\left(\tau_\epsilon^2+\eta\right)
+\le
+\frac{\epsilon_c}{2}
+=
+\beta_p\tau_\epsilon,
+$$
+so the short-window partner estimate applies. Since
+$$
+\epsilon_c^2+4\beta_p^2\tau_\epsilon^2
+=
+2\epsilon_c^2,
+$$
+one obtains
+$$
+\Delta V_p(\tau_\epsilon)
+\ge
+\frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}.
+$$
+Therefore a fully explicit sufficient recapture condition is
+$$
+V_0<
+\frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}
+-
+\frac{\overline A_s^\rho\,\epsilon_c}{2\beta_p},
+$$
+or equivalently
+$$
+\kappa\epsilon^2
+>
+4\beta_pV_0\,\epsilon_c
++
+2\overline A_s^\rho\,\epsilon_c^2.
+$$
+
+Using the geometric self-drive bound from Lemma 2 gives the sharper explicit regime
+$$
+\kappa\epsilon^2
+>
+4\beta_pV_0\,\epsilon_c
++
+2\overline A_{s,\mathrm{geom}}^\rho\,\epsilon_c^2.
+$$
+
+This makes the nonempty-parameter question much more concrete. In the joint short-window regime
+$$
+\eta=\mathcal{O}(\epsilon_c),
+\qquad
+\epsilon_c\downarrow 0,
+$$
+the right-hand side is
+$$
+\mathcal{O}(\epsilon_c),
+$$
+so any fixed positive coupling scale $\kappa\epsilon^2$ eventually dominates it. Subject to the local validity constraints from Lemmas 1-3, this exhibits a nonempty dual-mollified parameter regime in which local post-crossing recapture follows directly from the explicit inequality.
+
 ### Bottleneck and proof order
 
 The genuine bottleneck is **Lemma 4 together with (H5)**. The sorting-map and caustic-isolation pieces are structural consequences of the delayed geometry; the difficult question is whether the constants can be arranged so that the integrated partner impulse actually beats the crossing speed on a nonempty class of histories.
