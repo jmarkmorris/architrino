@@ -6,7 +6,8 @@ The guiding idea is narrow: if self-hit can stabilize anything at all, it should
 
 ## Overview
 
-In Lineland, imagine two charged points rushing straight toward one another along a single endless road. They pull on each other so strongly that, for a while, each one outruns the causal disturbance it has already emitted into the line behind it. After they pass through the center and begin to separate, each point eventually crashes into its own older wake. That delayed self-hit kicks outward, while the opposite charge keeps pulling inward. The whole reduced problem is a tug-of-war on a line: delayed self-push against partner attraction. What this note builds is a rigorous trap for that contest. The goal is not to trust a simulation or a lucky picture, but to lock down the delayed geometry strongly enough that the inward pull wins at the right moments, the outward escape is cut off, and the motion is forced into a repeating bounded cycle.
+In Lineland there is only a single endless road. Upon it travel two charged points. From a great distance they rush toward one another, drawn together by their mutual pull. Each accelerates as it approaches the other. Yet whatever influence a point emits into the line does not act everywhere at once; it spreads along the road at a finite pace, leaving behind a wake of its past motion. For a time each charge runs ahead of the disturbance it has already sent out. They meet, pass, and continue apart. But presently each encounters the older wake it cast while approaching. This delayed encounter pushes outward, while the partner charge, now behind, continues to pull inward. Thus the whole affair reduces to a contest on a line: a delayed push from one’s own past against the present pull of the other. The purpose of this note is to show that this contest cannot end in escape. The delayed geometry forces the outward flight to fail, the inward pull to recover, and the motion to fold back upon itself into a bounded and repeating course along the road.
+
 
 Formally, this note develops a proof scaffold for the global existence question of a periodic limit cycle in a symmetric two-body collinear system governed by a strongly nonlinear state-dependent delay differential equation. The dynamics use a dual-mollified delayed kernel, separating the short-distance $1/r^2$ singularity from the causal-shell boundary. The main analytic difficulty is the velocity-dependent causal-fold geometry, where Jacobians can approach
 $$
@@ -3768,6 +3769,116 @@ $$
 [0,\tau_{\mathrm{loc}}].
 $$
 This proves the proposition.
+
+> **Proposition (Seed-neighborhood collapse control under a uniform inward bracket).**
+> Let
+> $$
+> \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+> $$
+> be a nonempty subclass. Assume there exist constants
+> $$
+> 0<a_-^{\mathrm{seed}}\le a_+^{\mathrm{seed}},
+> \qquad
+> \nu_{\mathrm{coll}}>0,
+> \qquad
+> A_{\mathrm{coll}}>0,
+> $$
+> such that for every
+> $$
+> \psi\in \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+> $$
+> the corresponding forward trajectory satisfies on its pre-crossing leg:
+> 1. the two-sided inward acceleration bracket
+>    $$
+>    -a_+^{\mathrm{seed}}
+>    \le
+>    \ddot x(t;\psi)
+>    \le
+>    -a_-^{\mathrm{seed}}<0;
+>    $$
+> 2. the acceleration ceiling
+>    $$
+>    |\ddot x(t;\psi)|\le A_{\mathrm{coll}};
+>    $$
+> 3. and the active pre-crossing roots satisfy the uniform transversality bound
+>    $$
+>    |J_p|\ge \nu_{\mathrm{coll}},
+>    \qquad
+>    |J_s|\ge \nu_{\mathrm{coll}}.
+>    $$
+>
+> Then:
+> 1. every
+>    $$
+>    \psi\in \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+>    $$
+>    reaches the origin in finite time, with the uniform bound
+>    $$
+>    t_{\mathrm{cross}}(\psi)
+>    \le
+>    \sqrt{\frac{2x_\ast}{a_-^{\mathrm{seed}}}};
+>    $$
+> 2. the pre-crossing tube bounds
+>    $$
+>    0\le x(t;\psi)\le X_{\mathrm{seed},\max},
+>    \qquad
+>    |\dot x(t;\psi)|\le U_{\mathrm{seed},\max},
+>    \qquad
+>    |\ddot x(t;\psi)|\le A_{\mathrm{coll}}
+>    $$
+>    hold on the collapse leg for suitable class constants
+>    $$
+>    X_{\mathrm{seed},\max},
+>    \qquad
+>    U_{\mathrm{seed},\max};
+>    $$
+> 3. and if one chooses constants
+>    $$
+>    V_{\min}^{\mathrm{seed}},
+>    \qquad
+>    V_{\max}^{\mathrm{seed}}
+>    $$
+>    satisfying the uniform speed-window inequalities from Lemma 7 for every admissible section speed in
+>    $$
+>    \left[\frac{u_{\mathrm{seed}}}{2},\,u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}\right],
+>    $$
+>    then the collapse-to-crossing control theorem applies on
+>    $$
+>    \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}.
+>    $$
+
+Proof sketch.
+For every
+$$
+\psi\in \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta},
+$$
+the lower inward acceleration bound implies finite-time crossing by Lemma 6, yielding the displayed uniform bound on
+$$
+t_{\mathrm{cross}}(\psi).
+$$
+The two-sided acceleration bracket and the section-speed interval inherited from
+$$
+\mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+$$
+allow Lemma 7 to be applied with
+$$
+u_0\in
+\left[\frac{u_{\mathrm{seed}}}{2},\,u_{\mathrm{seed}}+\varepsilon_{\mathrm{loc}}\right].
+$$
+This produces a class-uniform crossing-speed window once
+$$
+V_{\min}^{\mathrm{seed}},
+\qquad
+V_{\max}^{\mathrm{seed}}
+$$
+are chosen to dominate the resulting comparison bounds.
+
+Finally, Lemma 8 upgrades the monotone inbound motion, the crossing-time bound, and the acceleration ceiling to the stated position-speed-acceleration tube bounds on the entire collapse leg. Together with the assumed Jacobian lower bound, these are exactly the ingredients required by the collapse-to-crossing theorem. Hence that theorem applies uniformly on
+$$
+\mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}.
+$$
 
 ### Collapse-to-crossing target
 
