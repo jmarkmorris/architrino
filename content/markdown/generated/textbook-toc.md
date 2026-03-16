@@ -107,6 +107,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Inbound/Outbound Sign Structure](../aaa/dynamics/collinear-breather.md?section=Inbound%2FOutbound+Sign+Structure)
     - [Necessary Recapture Condition](../aaa/dynamics/collinear-breather.md?section=Necessary+Recapture+Condition)
     - [Regularized Return Map](../aaa/dynamics/collinear-breather.md?section=Regularized+Return+Map)
+    - [Global Existence via Arzela-Ascoli](../aaa/dynamics/collinear-breather.md?section=Global+Existence+via+Arzela-Ascoli)
     - [Conjectured Breather Statement](../aaa/dynamics/collinear-breather.md?section=Conjectured+Breather+Statement)
     - [Why This Reduced Model Comes First](../aaa/dynamics/collinear-breather.md?section=Why+This+Reduced+Model+Comes+First)
     - [What Counts as Success or Failure](../aaa/dynamics/collinear-breather.md?section=What+Counts+as+Success+or+Failure)
