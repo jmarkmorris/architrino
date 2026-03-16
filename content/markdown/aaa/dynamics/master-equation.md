@@ -1134,6 +1134,8 @@ So: **analytic yes** (up to standard quadratures), and corrections doable.
 
 For the self-hit-capable reduced problem that goes beyond the sub-$c_f$ perturbative regime and sets up a return-map breather question, see [collinear-breather.md](./collinear-breather.md).
 
+For the local origin-crossing theorem program in that reduced note, the working 1D model is dual-mollified rather than merely shell-regularized: the shell mollifier $\delta_\eta$ still selects delayed roots, while a separate core mollifier $\epsilon_c$ is imposed on the inverse-square amplitude so the post-crossing local vector field remains finite. That dual-mollified local model is the one used for the first recapture lemmas there.
+
 ---
 
 #### Two‑body uniform circular orbit, sub‑$c_f$ (no self‑hit)

@@ -1040,6 +1040,46 @@ w(t)<0
 $$
 on the initial post-crossing window.
 
+Working form:
+let
+$$
+\sigma\equiv \frac{V_0-c_f}{2}>0.
+$$
+Because the dual-mollified vector field is finite on the post-crossing window, there exists a local acceleration bound
+$$
+|\ddot x(t)|\le a_{\mathrm{loc}}
+\qquad
+\text{for }0\le t\le \tau_{\mathrm{loc}}.
+$$
+Choose
+$$
+\tau_1\le \min\!\left\{\tau_{\mathrm{loc}},\frac{\sigma}{a_{\mathrm{loc}}}\right\}.
+$$
+Then
+$$
+\dot x(t)
+\le
+\dot x(0)+a_{\mathrm{loc}}t
+=
+-V_0+a_{\mathrm{loc}}t
+\le
+-V_0+\sigma
+=
+-c_f-\sigma
+<
+-c_f
+$$
+for all $t\in[0,\tau_1]$. Consequently
+$$
+\dot w(t)=\dot x(t)+c_f\le -\sigma,
+$$
+and integrating from $w(0)=0$ gives
+$$
+w(t)\le -\sigma t<0
+\qquad
+\text{for }0<t\le \tau_1.
+$$
+
 **Lemma 2: Caustic isolation and uniform self-drive bound.**
 Use (H2)-(H4) to show that every active self root on the initial window satisfies
 $$
@@ -1049,6 +1089,82 @@ for some positive gap $\gamma(\eta)$, and therefore
 $$
 A_s^{\rho}(t)\le \overline A_s^{\rho}.
 $$
+
+Working form:
+fix $t\in(0,\tau_1]$ and suppose a self-emission time $t_s<t$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support radius $\eta$, then
+$$
+\left|x(t)-x(t_s)+c_f(t-t_s)\right|\le \eta,
+$$
+which is equivalent to
+$$
+\left|w(t_s)-w(t)\right|\le \eta.
+$$
+
+Because $w(t)\le 0$ on $(0,\tau_1]$ and hypothesis (H2) gives
+$$
+w(\theta)>\delta_w>0
+\qquad
+\text{for }\theta\in(t_{\mathrm{zero}},0),
+$$
+hypothesis (H4) prevents any active self root from entering the interval $(t_{\mathrm{zero}},0)$. Thus every active self root satisfies
+$$
+t_s\le t_{\mathrm{zero}}.
+$$
+
+This already yields the basic Jacobian bound from (H3):
+$$
+J_s(t;t_s)
+=
+1+\frac{\dot x(t_s)}{c_f}
+\ge
+\frac{\nu}{c_f}
+>
+0.
+$$
+
+One obtains a stronger separated statement on a slightly delayed subwindow. Define
+$$
+\tau_{\mathrm{sep}}\equiv \frac{2\eta}{\sigma}.
+$$
+Then for $t\in[\tau_{\mathrm{sep}},\tau_1]$,
+$$
+w(t)\le -2\eta,
+$$
+so any active self root satisfies
+$$
+w(t_s)\le -\eta.
+$$
+Since on the sub-field-speed source region one has
+$$
+\dot w(\theta)=\dot x(\theta)+c_f\ge \nu,
+\qquad
+\theta\in[-h,t_{\mathrm{zero}}],
+$$
+monotonicity gives
+$$
+t_s\le t_{\mathrm{zero}}-\gamma(\eta),
+\qquad
+\gamma(\eta)\equiv \frac{\eta}{\nu}.
+$$
+
+Thus the caustic is uniformly separated from the active self roots on the delayed subwindow, while the weaker bound $t_s\le t_{\mathrm{zero}}$ already holds on the full initial window.
+
+If, in addition, the number of active self roots on the initial window is bounded by
+$$
+N_s^{\max},
+$$
+then the dual-mollified amplitude and the Jacobian lower bound give the working estimate
+$$
+A_s^{\rho}(t)
+\le
+N_s^{\max}\,
+\kappa\epsilon^2\,
+\frac{c_f}{\nu}\,
+\frac{1}{\epsilon_c^2}
+\equiv
+\overline A_s^{\rho}.
+$$
+This is the intended bounded self-drive estimate, conditional on the root-multiplicity control already flagged in the red-flags section.
 
 **Lemma 3: Partner-root linearization and lower bound.**
 Use the linearized partner root
