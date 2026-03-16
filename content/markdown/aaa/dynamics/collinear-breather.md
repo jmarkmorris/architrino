@@ -5226,6 +5226,137 @@ $$
 $$
 which proves the claim.
 
+**Lemma 23: Finite-radius outer turn under an apocenter force margin.**
+Assume the hypotheses of Lemma 22 and suppose, in addition, that at the reflected section time
+$$
+t_\ast
+$$
+the trajectory satisfies
+$$
+x(t_\ast)=x_\ast,
+\qquad
+\dot x(t_\ast)=v_\ast>0.
+$$
+If the apocenter window is long enough to satisfy
+$$
+\tau_{\mathrm{apo}}\ge \frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}},
+$$
+then there exists a first outer turning time
+$$
+t_{\mathrm{turn}}^{\mathrm{out}}
+\in
+\left[
+t_\ast,
+\,
+t_\ast+\frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
+\right]
+$$
+such that
+$$
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0.
+$$
+Moreover, the turning radius obeys the explicit bound
+$$
+X_{\mathrm{out}}
+=
+x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)
+\le
+x_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}}.
+$$
+
+In particular, a sufficient condition for the outer-turn radius envelope is
+$$
+x_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}}\le X_{\mathrm{out},\max}.
+$$
+
+Proof.
+Lemma 22 gives the uniform acceleration bound
+$$
+\ddot x(t)\le -a_{\mathrm{in}}^{\mathrm{out}}
+$$
+on
+$$
+[t_\ast,\,t_\ast+\tau_{\mathrm{apo}}].
+$$
+Integrating from
+$$
+t_\ast
+$$
+to any later time
+$$
+t
+$$
+in that window yields
+$$
+\dot x(t)
+=
+\dot x(t_\ast)
++
+\int_{t_\ast}^{t}\ddot x(s)\,ds
+\le
+v_\ast-a_{\mathrm{in}}^{\mathrm{out}}(t-t_\ast).
+$$
+Therefore
+$$
+\dot x(t)\le 0
+$$
+whenever
+$$
+t-t_\ast\ge \frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}.
+$$
+Because
+$$
+\tau_{\mathrm{apo}}\ge \frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}},
+$$
+the comparison velocity reaches zero before the end of the apocenter window. Since
+$$
+\dot x(t_\ast)=v_\ast>0
+$$
+and
+$$
+\dot x
+$$
+is continuous, there exists a first time
+$$
+t_{\mathrm{turn}}^{\mathrm{out}}
+\in
+\left[
+t_\ast,
+\,
+t_\ast+\frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
+\right]
+$$
+for which
+$$
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0.
+$$
+
+Integrating the velocity estimate once more gives
+$$
+x(t)
+\le
+x_\ast+v_\ast(t-t_\ast)
+-
+\frac{a_{\mathrm{in}}^{\mathrm{out}}}{2}(t-t_\ast)^2.
+$$
+Evaluating at
+$$
+t=t_{\mathrm{turn}}^{\mathrm{out}}
+$$
+and using
+$$
+t_{\mathrm{turn}}^{\mathrm{out}}-t_\ast
+\le
+\frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
+$$
+yields
+$$
+X_{\mathrm{out}}
+\le
+x_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}},
+$$
+which proves the radius bound.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
