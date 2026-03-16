@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 122,
-      "sections": 791
+      "sections": 792
     }
   },
   "tocRoot": {
@@ -874,6 +874,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
                 "markdownSection": "Regularized Return Map",
                 "sectionKey": "regularized return map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Global Existence via Arzela-Ascoli",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Global Existence via Arzela-Ascoli",
+                "sectionKey": "global existence via arzela ascoli",
                 "headingLevel": 2
               },
               {

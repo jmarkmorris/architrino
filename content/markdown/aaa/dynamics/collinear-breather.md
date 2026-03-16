@@ -2299,6 +2299,151 @@ for an explicit outbound class. That would rule out any turning point at any lat
 
 If even this strong recapture proposition cannot be supported on any nonempty outbound class, then the invariant-set program should stop there: the return maps $Q_\eta$ and $P_\eta$ are not defined on a robust domain, and no fixed-point theorem will rescue the model.
 
+## Global Existence via Arzela-Ascoli
+
+The local origin-crossing theorem establishes only the first nontrivial step of the bounded-motion program: a post-crossing branch can be forced to turn around on a controlled initial window. The next layer is global and topological. One wants to use that local recapture mechanism to define a nonempty return class, prove precompactness of the returned histories, and then search for a fixed point of the full history-space map
+$$
+P_\eta:\Sigma^-_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta}.
+$$
+
+The correct object to target is therefore not a continuous one-parameter family of equal-amplitude cycles, but an isolated fixed point of the causal-delay return map on a precompact history envelope. In the present delayed setting, the natural global candidate is an isolated limit cycle of $P_\eta$, not a Hamiltonian family parameterized by an instantaneous mechanical energy.
+
+### Conditional invariant structures
+
+The local recapture proof does not yet provide a global invariant. The next theorem layer can draw on several different kinds of structure, which should be kept logically separate.
+
+- **Conditional exact history functional.**
+  If the dual mollification $(\eta,\epsilon_c)$ is introduced at the action level in a way that preserves time-translation symmetry of the delayed kernel, then one may reasonably look for an exact nonlocal history functional
+  $$
+  E_{\mathrm{tot}}^{(\eta,\epsilon_c)}
+  $$
+  that is constant along dual-mollified trajectories. In the current note this should be treated as conditional, not as established fact.
+- **Cycle-balance law.**
+  Even without an exact invariant, the mechanical part of the motion can still satisfy a cycle-to-cycle balance identity of the form
+  $$
+  \Delta H_{\mathrm{mech}}
+  =
+  \int_0^T
+  \Big(
+  P_{\mathrm{partner}}(t)
+  +
+  P_{\mathrm{self}}(t)
+  \Big)\,dt,
+  $$
+  where the right-hand side measures net delayed pumping versus delayed braking over one excursion. This is the correct structure if the eventual periodic state is an isolated limit cycle rather than a conservative orbit family.
+- **Boundedness functionals.**
+  The local theorem already supplies the ingredients for coarse boundedness estimates: uniform position, speed, acceleration, Jacobian, and memory-depth bounds on an admissible history class. These are weaker than conserved quantities, but they are the natural input for a compactness theorem on returned histories.
+
+The safest current stance is therefore:
+
+- do not assert an exact conserved history functional unless the dual mollification is explicitly tied to an action-level regularization;
+- do use the local recapture estimates to build boundedness and compactness results for the return map;
+- and treat any exact energy statement as a later theorem target rather than as a premise of the present fixed-point program.
+
+### Next theorem ladder
+
+With that distinction in place, the global existence program can be organized as follows.
+
+1. **Nonempty recapture domain for $Q_\eta$.**
+   Use the local origin-crossing recapture theorem to show that a nonempty outbound crossing class returns to the inbound section, so that
+   $$
+   Q_\eta:\Sigma^+_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta}
+   $$
+   is defined on a robust subclass.
+2. **Precompactness of returned histories.**
+   Use the class-uniform bounds
+   $$
+   |\dot\phi|\le u_{\max},
+   \qquad
+   |\ddot\phi|\le a_{\max},
+   \qquad
+   \tau_{\max}(\phi)\le h
+   $$
+   to show that returned histories form an equibounded, equicontinuous family in $C^1([-h,0])$. This is the Arzela-Ascoli step.
+3. **Invariant subset construction.**
+   Find a closed subset
+   $$
+   \mathcal{E}^\ast_{x_\ast,\eta}\subseteq \Sigma^-_{x_\ast,\eta}
+   $$
+   such that
+   $$
+   P_\eta(\mathcal{E}^\ast_{x_\ast,\eta})
+   \subseteq
+   \mathcal{E}^\ast_{x_\ast,\eta}.
+   $$
+   At first pass, this set should be built from upper bounds only; lower bounds such as minimum speed or minimum return time can be imposed later if they are recovered a posteriori.
+4. **Continuity and compactness of $P_\eta$.**
+   Verify that on the chosen history topology, the dual-mollified return map is continuous and maps the invariant set into a precompact subset of itself.
+5. **Fixed point for $P_\eta$.**
+   Once the preceding items hold on a suitable closed convex set, a Schauder-type argument becomes available and yields
+   $$
+   \phi^\ast_\eta=P_\eta(\phi^\ast_\eta).
+   $$
+
+This is the clean global theorem ladder suggested by the local proof: first define the return map on a nonempty domain, then prove precompactness, then construct an invariant set, and only then invoke a fixed-point theorem.
+
+### Precompactness target
+
+The candidate envelope $\mathcal{E}_{x_\ast,\eta}$ introduced earlier already contains the correct precompactness ingredients:
+
+- uniform position bounds on $[-h,0]$,
+- uniform speed bounds on $[-h,0]$,
+- uniform acceleration bounds on $[-h,0]$,
+- and a fixed memory horizon $h$.
+
+For a sequence of returned histories
+$$
+\phi_n=P_\eta(\psi_n),
+\qquad
+\psi_n\in \mathcal{E}_{x_\ast,\eta},
+$$
+these conditions imply:
+
+- equiboundedness of $\phi_n$ in $C^0([-h,0])$,
+- equicontinuity of $\phi_n$ from the speed bound,
+- equicontinuity of $\dot\phi_n$ from the acceleration bound.
+
+Thus the natural next compactness target is:
+
+> **Target Proposition (Precompact Return Histories).**
+> On a dual-mollified admissible crossing class for which the one-cycle return map is well defined and the class-uniform position, speed, acceleration, and memory-depth bounds hold, the image
+> $$
+> P_\eta(\mathcal{E}_{x_\ast,\eta})
+> $$
+> is precompact in $C^1([-h,0])$.
+
+This proposition is weaker than invariance, but it is the right bridge from the local recapture theorem to a later fixed-point argument.
+
+### Convexity caution
+
+The eventual fixed-point set should not be chosen too aggressively at first pass. Some natural-looking lower bounds can destroy convexity:
+
+- a minimum inbound speed,
+- a minimum return time,
+- or a lower bound on excursion amplitude.
+
+For a first Schauder-style theorem, the safer route is:
+
+- impose closed upper bounds that are visibly convex in history space,
+- prove that the return map lands inside that convex envelope,
+- and recover sharper lower bounds later for the resulting fixed point or invariant subset.
+
+So the immediate global target is not yet "stable breather with fixed amplitude," but rather:
+
+- a well-defined return map on a nonempty class,
+- precompactness of its image,
+- and existence of at least one fixed point of the resulting dual-mollified history map.
+
+### Equal-amplitude cycling
+
+The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
+
+- net delayed braking at large excursion,
+- net delayed pumping at small excursion,
+- and an isolated balance point where the two effects cancel over one cycle.
+
+If that picture is correct, the relevant mathematical object is an isolated fixed point of $P_\eta$, possibly attracting, rather than a one-parameter conservative orbit family. Equal-amplitude cycling is therefore plausible only if some stronger cycle-balance or exact history-functional structure is present; otherwise one should expect amplitude drift to be the generic behavior away from the fixed point.
+
 ### Red flags for the theorem program
 
 Several issues still need to stay explicit while pushing the 1D proof program forward.
