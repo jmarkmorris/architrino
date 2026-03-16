@@ -640,6 +640,71 @@ $$
 
 The scalar map is therefore best read as a reduced diagnostic for recapture and speed balance. The actual theorem program should proceed by finding a closed, bounded, invariant subset of $\Sigma^-_{x_\ast,\eta}$ inside $\mathcal{K}_{x_\ast,\eta}$ and studying $P_\eta$ there.
 
+### First candidate invariant set
+
+The next mathematical step is to replace the generic admissible class by a more explicit envelope on which an invariance argument could plausibly be attempted.
+
+Fix constants
+$$
+0<x_{\min}<x_\ast<x_{\max},
+\qquad
+0<u_{\min}\le u_{\max},
+\qquad
+\nu>0,
+\qquad
+0<T_{\min}\le T_{\max},
+$$
+and define
+$$
+\mathcal{E}_{x_\ast,\eta}
+\subset
+\Sigma^-_{x_\ast,\eta}
+$$
+to be the set of inbound histories $\phi$ satisfying:
+
+- position envelope on the stored history,
+  $$
+  x_{\min}\le \phi(\theta)\le x_{\max},
+  \qquad
+  \theta\in[-h,0],
+  $$
+- inbound speed envelope at the section,
+  $$
+  u_{\min}\le -\dot\phi(0)\le u_{\max},
+  $$
+- uniform speed bound on the stored history,
+  $$
+  |\dot\phi(\theta)|\le u_{\max},
+  \qquad
+  \theta\in[-h,0],
+  $$
+- Jacobian transversality on all active roots in the stored history,
+  $$
+  |J_p|\ge \nu,
+  \qquad
+  |J_s|\ge \nu,
+  $$
+- and a one-cycle return-time window for the forward evolution,
+  $$
+  T_{\min}\le T(\phi)\le T_{\max}.
+  $$
+
+This is only a candidate theorem set, not a proved invariant set. Its purpose is to spell out what must eventually be shown:
+$$
+P_\eta(\mathcal{E}_{x_\ast,\eta})
+\subseteq
+\mathcal{E}_{x_\ast,\eta}.
+$$
+
+That single inclusion naturally breaks into four subproblems:
+
+- recapture: every $\phi\in\mathcal{E}_{x_\ast,\eta}$ actually returns to the inbound section,
+- envelope preservation: the returned history stays inside the same position and speed bounds,
+- transversality preservation: active roots on the returned history still satisfy the same Jacobian lower bound,
+- and return-time control: the cycle length remains inside $[T_{\min},T_{\max}]$.
+
+If these items can be proved and $\mathcal{E}_{x_\ast,\eta}$ is chosen closed, bounded, and compact enough for the relevant history topology, then the fixed-point program for $P_\eta$ becomes concrete rather than rhetorical.
+
 ## Conjectured Breather Statement
 
 The reduced 1D target can now be stated cleanly.
