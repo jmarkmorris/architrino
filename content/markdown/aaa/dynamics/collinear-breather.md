@@ -548,6 +548,12 @@ $$
 \right\}.
 $$
 
+Because the section histories are anchored by
+$$
+\phi(0)=x_\ast
+$$
+with prescribed crossing sign, this Poincare-type section quotients out the absolute time-translation symmetry of the continuous delayed flow. A periodic trajectory therefore appears as a fixed returned history rather than as an unpinned one-parameter family of time shifts.
+
 For $\phi\in\Sigma^+_{x_\ast,\eta}$, evolve the $\eta$-regularized dynamics forward until the first later time $T^-_\eta(\phi)>0$ such that:
 
 - the trajectory has completed one outbound excursion and recapture,
@@ -1954,7 +1960,7 @@ The local origin-crossing theorem supplies only the inner turnaround. The global
 $$
 P_\eta:\Sigma^-_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta}.
 $$
-In the dual-mollified setting the correct object is therefore a nonempty closed convex tame envelope
+In the dual-mollified setting the final topological target is therefore to construct a nonempty closed convex tame envelope
 $$
 \mathcal{K}_{x_\ast,\eta}\subset C^1([-h,0]),
 $$
@@ -2052,9 +2058,18 @@ $$
 \mathcal{C}_{x_\ast,\eta},
 $$
 while postponing nonlocal tame delayed-root conditions to a sub-envelope.
+Those delayed-root conditions are not visibly convex inside
+$$
+\mathcal{C}_{x_\ast,\eta},
+$$
+so the next proposition is a genuine packaging target rather than an automatic consequence of intersecting
+$$
+\mathcal{C}_{x_\ast,\eta}
+$$
+with the naive tame subclass.
 
 > **Target Proposition (Closed Convex Tame Envelope).**
-> There exists a nonempty closed convex set
+> The remaining topological task is to exhibit a nonempty closed convex set
 > $$
 > \mathcal{K}_{x_\ast,\eta}
 > \subseteq
@@ -2088,7 +2103,7 @@ is to carry the convex bounds; the role of
 $$
 \mathcal{K}_{x_\ast,\eta}
 $$
-is to put the same convex bounds and the tame delayed geometry on one matching domain. The self-map property is a separate dynamical burden supplied later by invariant-envelope closure.
+is to put the same convex bounds and the tame delayed geometry on one matching domain. In particular, this target does not assert that Jacobian lower bounds or branch-count restrictions are convex by inspection. It isolates the additional burden of producing a closed convex subset on which those tame conditions persist. The self-map property is a separate dynamical burden supplied later by invariant-envelope closure.
 
 ### Precompactness of returned histories
 
@@ -2418,7 +2433,7 @@ $$
 P_\eta.
 $$
 
-> **Proposition (Nonempty admissible parameter regime).**
+> **Target Proposition (Coupled admissible parameter regime).**
 > Fix the geometric and dynamical constants extracted from the cycle estimates:
 > $$
 > V_{\max},
@@ -2489,50 +2504,35 @@ $$
 > \qquad
 > h\ge \frac{2X_{\max}}{c_f}.
 > $$
-> In particular, the admissible-parameter set entering the invariant-envelope theorem is nonempty.
+> The remaining compatibility task is to solve these inequalities simultaneously. In particular, the manuscript must not treat the strict local margins
+> $$
+> \mathfrak M_{\mathrm{in}}>0,
+> \qquad
+> \mathfrak M_{\mathrm{out}}>0
+> $$
+> as algebraically independent of the envelope constants. The crossing-speed bound
+> $$
+> V_{\max}
+> $$
+> enters
+> $$
+> U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+> $$
+> while the collapse estimates producing
+> $$
+> V_{\max}
+> $$
+> may themselves depend on the partner acceleration floor and hence on the global position scale
+> $$
+> X_{\max}.
+> $$
+> A valid nonemptiness proof must therefore close a coupled algebraic system in
+> $$
+> (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h),
+> $$
+> rather than verify the local margins first and choose the envelope constants afterward with arbitrary slack.
 
-Proof.
-The inner-window inequalities and the two strict margin conditions involve only the local and outer-turn parameters and are independent of the envelope bookkeeping constants
-$$
-X_{\max},
-\qquad
-U_{\max},
-\qquad
-A_{\max},
-\qquad
-T_{\max},
-\qquad
-h.
-$$
-Once those explicit inequalities hold, the envelope constants can be chosen with arbitrary positive slack. For example, fix any
-$$
-\delta_X,
-\delta_U,
-\delta_A,
-\delta_T>0
-$$
-and set
-$$
-X_{\max}=\max\{x_\ast,X_{\mathrm{out},\max}\}+\delta_X,
-$$
-$$
-U_{\max}=\max\{V_{\max},U_{\mathrm{sec},\max}\}+\delta_U,
-$$
-$$
-A_{\max}=A_{\mathrm{cyc},\max}+\delta_A,
-$$
-$$
-T_{\max}=T_{\mathrm{cyc},\max}+\delta_T,
-$$
-and then choose
-$$
-h=\frac{2X_{\max}}{c_f}+\delta_h
-$$
-for any
-$$
-\delta_h>0.
-$$
-These choices satisfy all displayed inequalities simultaneously.
+This target isolates the remaining algebraic compatibility issue. Once collapse-to-crossing bounds, the inner recapture margin, the outer-turn margin, and the envelope bookkeeping constants are packaged on one coupled regime, invariant-envelope closure becomes an actual self-map statement. Until then, simultaneous solvability of the displayed inequalities remains part of the scaffold rather than a completed proposition.
 
 ### Schauder capstone
 
@@ -2584,203 +2584,7 @@ $$
 \mathcal{K}_{x_\ast,\eta},
 $$
 and by construction that fixed point is exactly a periodic returned history.
->    T_{\mathrm{cyc},\max};
->    $$
-> 5. the envelope parameters satisfy
->    $$
->    X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
->    $$
->    $$
->    U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
->    $$
->    $$
->    A_{\max}\ge A_{\mathrm{cyc},\max},
->    \qquad
->    T_{\max}\ge T_{\mathrm{cyc},\max},
->    \qquad
->    h\ge \frac{2X_{\max}}{c_f}.
->    $$
->
-> Then
-> $$
-> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
-> \subseteq
-> \mathcal{C}_{x_\ast,\eta}.
-> $$
-
-Proof sketch.
-Take any
-$$
-\psi\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}.
-$$
-By collapse-to-crossing control, the first inward fall reaches an admissible origin crossing in bounded time and with crossing speed at most
-$$
-V_{\max}.
-$$
-The explicit short-window recapture proposition then supplies a class-uniform inner turnaround because
-$$
-\mathfrak M_{\mathrm{in}}>0.
-$$
-The return-half lemmas reduce the remainder of the cycle to control of the outer turn and the final inbound section speed. The unified trimmed-apocenter outer-turn criterion supplies the outer turnaround because
-$$
-\mathfrak M_{\mathrm{out}}>0,
-$$
-and Lemmas 17-19 then yield return to
-$$
-x=x_\ast
-$$
-with
-$$
-\dot x\le 0,
-$$
-bounded section speed, and returned-history tameness.
-
-The envelope-fitting inequalities in item 5 ensure that the entire one-cycle trajectory and its returned history fit inside the convex bounds defining
-$$
-\mathcal{C}_{x_\ast,\eta}.
-$$
-Therefore
-$$
-P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}.
-$$
-Since
-$$
-\psi
-$$
-was arbitrary, this proves
-$$
-P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
-\subseteq
-\mathcal{C}_{x_\ast,\eta}.
-$$
-
-The remaining question is whether the bookkeeping inequalities required by this theorem can be satisfied simultaneously. The answer is yes once the explicit inner and outer margins are strict.
-
-> **Proposition (Nonempty admissible parameter regime).**
-> Fix the geometric and dynamical constants extracted from the cycle estimates:
-> $$
-> V_{\max},
-> \qquad
-> X_{\mathrm{out},\max},
-> \qquad
-> U_{\mathrm{sec},\max},
-> \qquad
-> A_{\mathrm{cyc},\max},
-> \qquad
-> T_{\mathrm{cyc},\max},
-> $$
-> together with the local and outer-turn parameters
-> $$
-> \beta_{p,\max},
-> \qquad
-> C_p,
-> \qquad
-> \tau_1,
-> \qquad
-> \tau_{\mathrm{deep}},
-> \qquad
-> \sigma_{\mathrm{out}},
-> \qquad
-> \underline A_p^{\mathrm{out}}.
-> $$
-> Assume the dual-mollified parameters
-> $$
-> (\eta,\epsilon_c)
-> $$
-> satisfy the explicit inner-window inequalities
-> $$
-> \tau_\epsilon=\frac{\epsilon_c}{2\beta_{p,\max}}\le \tau_1,
-> \qquad
-> \eta\le \frac{\epsilon_c}{4c_f C_p},
-> \qquad
-> \epsilon_c\le \frac{\beta_{p,\max}^2}{c_f C_p},
-> $$
-> and the strict margin conditions
-> $$
-> \mathfrak M_{\mathrm{in}}>0,
-> \qquad
-> \mathfrak M_{\mathrm{out}}>0.
-> $$
-> Then there exist envelope constants
-> $$
-> X_{\max},
-> \qquad
-> U_{\max},
-> \qquad
-> A_{\max},
-> \qquad
-> T_{\max},
-> \qquad
-> h
-> $$
-> satisfying
-> $$
-> X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
-> $$
-> $$
-> U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
-> $$
-> $$
-> A_{\max}\ge A_{\mathrm{cyc},\max},
-> \qquad
-> T_{\max}\ge T_{\mathrm{cyc},\max},
-> \qquad
-> h\ge \frac{2X_{\max}}{c_f}.
-> $$
-> In particular, the admissible-parameter set entering the invariant-envelope theorem is nonempty.
-
-Proof.
-The inner-window inequalities and the two strict margin conditions involve only the local and outer-turn parameters and are independent of the envelope bookkeeping constants
-$$
-X_{\max},
-\qquad
-U_{\max},
-\qquad
-A_{\max},
-\qquad
-T_{\max},
-\qquad
-h.
-$$
-Once those explicit inequalities hold, the envelope constants can be chosen with arbitrary positive slack. For example, fix any
-$$
-\delta_X,
-\delta_U,
-\delta_A,
-\delta_T>0
-$$
-and set
-$$
-X_{\max}=\max\{x_\ast,X_{\mathrm{out},\max}\}+\delta_X,
-$$
-$$
-U_{\max}=\max\{V_{\max},U_{\mathrm{sec},\max}\}+\delta_U,
-$$
-$$
-A_{\max}=A_{\mathrm{cyc},\max}+\delta_A,
-$$
-$$
-T_{\max}=T_{\mathrm{cyc},\max}+\delta_T,
-$$
-and then choose
-$$
-h=\frac{2X_{\max}}{c_f}+\delta_h
-$$
-for any
-$$
-\delta_h>0.
-$$
-These choices satisfy all displayed inequalities simultaneously. Hence the admissible-parameter set is nonempty.
-
-This proposition isolates the true compatibility issue. The envelope constants themselves do not create a conflict once the explicit inner and outer margins are positive. The real work is entirely in proving
-$$
-\mathfrak M_{\mathrm{in}}>0
-\qquad
-\text{and}
-\qquad
-\mathfrak M_{\mathrm{out}}>0
-$$
-on one and the same tame class. After that, the remaining global step is the Schauder capstone above.
+This capstone remains conditional on the previous envelope-construction target. Without a single closed convex tame self-map domain, Schauder does not yet apply.
 
 ### Seed history and tame-class nonemptiness
 
