@@ -386,8 +386,7 @@ Integrating the reduced acceleration identity gives
 $$
 0
 =
-u_\sharp
-\int_{t_\sharp}^{t_{\mathrm{turn}}}
+u_\sharp + \int_{t_\sharp}^{t_{\mathrm{turn}}}
 \Big(
 -A_p(s)-A_s^{\text{out}}(s)+A_s^{\text{in}}(s)
 \Big)\,ds.
@@ -440,7 +439,18 @@ Fix:
 - a memory horizon $h$ large enough to contain all active branches on one cycle,
 - and a regularization width $\eta>0$.
 
-Define the inbound section
+Define the outbound and inbound sections
+$$
+\Sigma^+_{x_\ast,\eta}
+\equiv
+\left\{
+\phi\in\mathcal{H}_h
+\;\middle|\;
+\phi(0)=x_\ast,\;
+\dot\phi(0)>0,\;
+\phi \text{ lies on the reflection-symmetric admissible class}
+\right\},
+$$
 $$
 \Sigma^-_{x_\ast,\eta}
 \equiv
@@ -451,6 +461,19 @@ $$
 \dot\phi(0)<0,\;
 \phi \text{ lies on the reflection-symmetric admissible class}
 \right\}.
+$$
+
+For $\phi\in\Sigma^+_{x_\ast,\eta}$, evolve the $\eta$-regularized dynamics forward until the first later time $T^-_\eta(\phi)>0$ such that:
+
+- the trajectory has completed one outbound excursion and recapture,
+- $x(T^-_\eta(\phi))=x_\ast$,
+- and $\dot x(T^-_\eta(\phi))<0$.
+
+Then define the exact outbound-to-inbound history map
+$$
+Q_\eta:\Sigma^+_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta},
+\qquad
+Q_\eta(\phi)=x_{T^-_\eta(\phi)}.
 $$
 
 For $\phi\in\Sigma^-_{x_\ast,\eta}$, evolve the $\eta$-regularized dynamics forward until the first return time $T(\phi)>0$ such that:
@@ -468,15 +491,94 @@ $$
 
 This is the natural reduced object for theorem work. Any scalar “speed-to-speed” map is only a projection of this history-space map.
 
-### Useful projected map
+### Projected scalar speed map
 
-If a one-parameter family of histories can be parameterized by inbound speed alone, one may project to
+The cleanest scalar reduction lives on the outbound section. Assume an admissible one-parameter family of outgoing histories can be indexed by the outbound crossing speed alone:
 $$
-u_n \equiv -\dot x_n(0)>0,
+\phi^+_{\eta}(u;x_\ast)\in\Sigma^+_{x_\ast,\eta},
 \qquad
-u_{n+1} = \Pi\!\big(P_\eta(\phi_n)\big),
+\dot\phi^+_{\eta}(u;x_\ast)(0)=u>0.
 $$
-where $\Pi$ extracts the next inbound speed at the section. This projected map is useful for diagnostics, but the exact delayed system really lives on $\Sigma^-_{x_\ast,\eta}$, not on a scalar interval.
+
+Write the corresponding trajectory as $x(t;u,x_\ast,\eta)$ with initial section data
+$$
+x(0;u,x_\ast,\eta)=x_\ast,
+\qquad
+\dot x(0;u,x_\ast,\eta)=u.
+$$
+
+If the trajectory is recaptured and returns to the inbound section, define the projected scalar map
+$$
+R_\eta(u;x_\ast)
+\equiv
+-\dot x\!\big(T^-_\eta(u;x_\ast);u,x_\ast,\eta\big)
+>0.
+$$
+
+Thus $R_\eta(u;x_\ast)$ is the magnitude of the next inbound speed when the trajectory re-crosses the same section $x=x_\ast$.
+
+Now introduce the net inward braking density
+$$
+B_\eta(t;u,x_\ast)
+\equiv
+A_p(t)+A_s^{\text{out}}(t)-A_s^{\text{in}}(t),
+$$
+so that along the trajectory
+$$
+\ddot x(t;u,x_\ast,\eta) = -B_\eta(t;u,x_\ast).
+$$
+
+Integrating from the outbound crossing at $t=0$ to the next inbound crossing at $t=T^-_\eta(u;x_\ast)$ gives
+$$
+-R_\eta(u;x_\ast)
+=
+u + \int_{0}^{T^-_\eta(u;x_\ast)}
+\ddot x(s;u,x_\ast,\eta)\,ds
+=
+u - \int_{0}^{T^-_\eta(u;x_\ast)}
+B_\eta(s;u,x_\ast)\,ds.
+$$
+
+Equivalently,
+$$
+R_\eta(u;x_\ast)
+=
+-u + \int_{0}^{T^-_\eta(u;x_\ast)}
+B_\eta(s;u,x_\ast)\,ds.
+$$
+
+This is the clean projected scalar map: the next inbound speed equals the total accumulated inward braking budget over the outbound-and-return excursion minus the outbound launch speed at the section.
+
+If $T^\mathrm{turn}_\eta(u;x_\ast)$ denotes the first turning time with
+$$
+\dot x\!\big(T^\mathrm{turn}_\eta(u;x_\ast)\big)=0,
+$$
+then the same map splits into two exact pieces:
+$$
+u
+=
+\int_{0}^{T^\mathrm{turn}_\eta(u;x_\ast)}
+B_\eta(s;u,x_\ast)\,ds,
+$$
+$$
+R_\eta(u;x_\ast)
+=
+\int_{T^\mathrm{turn}_\eta(u;x_\ast)}^{T^-_\eta(u;x_\ast)}
+B_\eta(s;u,x_\ast)\,ds.
+$$
+
+The first identity is the outbound recapture condition on the section. The second states that the next inbound speed is exactly the inward gain accumulated after the turning point.
+
+### Scalar closure condition
+
+The map $R_\eta$ is only a projection of the exact history-space map $Q_\eta$, but it is the sharpest scalar test of recapture on the fixed section $x=x_\ast$.
+
+If the admissible family is symmetric enough that outbound and inbound section data are parameterized by the same scalar speed, then a scalar breather candidate satisfies
+$$
+u_\ast = R_\eta(u_\ast;x_\ast).
+$$
+
+More generally, periodic closure belongs to the full history maps $Q_\eta$ and $P_\eta$, not to $R_\eta$ alone. The scalar map is therefore best read as a reduced diagnostic and theorem target for the recapture mechanism rather than as the complete delayed dynamics.
 
 ## Conjectured Breather Statement
 
