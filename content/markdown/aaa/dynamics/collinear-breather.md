@@ -1156,6 +1156,8 @@ a_\ast\equiv \max\{a_{\max},a_{\mathrm{tube}}\},
 \qquad
 \beta_{p,\min}\equiv \frac{2c_fV_{\min}}{V_{\min}+c_f},
 \qquad
+\beta_{p,\max}\equiv \frac{2c_fV_{\max}}{V_{\max}+c_f},
+\qquad
 \tau_1\equiv \min\!\left\{\tau_{\mathrm{tube}},\frac{\sigma_{\min}}{a_{\mathrm{tube}}}\right\},
 $$
 with $\tau_\rho$ chosen so that
@@ -1172,7 +1174,7 @@ On this subclass:
   $$
   C_p=C_p(V_{\max},c_f,a_\ast),
   $$
-- and the explicit short-window proposition can be written uniformly by replacing $\beta_p$ with the worst-case lower bound $\beta_{p,\min}$ whenever a class-wide estimate is preferred.
+- and the explicit short-window proposition can be written uniformly by replacing $(V_0,\beta_p)$ with the class-wide worst-case pair $(V_{\max},\beta_{p,\max})$, while the delayed-entry time uses the lower-speed bound $\sigma_{\min}$.
 
 This is the sense in which the later local constants are inherited by construction rather than introduced ad hoc.
 
@@ -1587,9 +1589,9 @@ $$
 provided the corresponding roots lie inside the local validity window of Lemmas 1-3.
 
 > **Proposition (Explicit short-window recapture regime).**
-> Choose
+> On a fixed admissible crossing subclass $\mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}$, choose the class-uniform window
 > $$
-> \tau_\epsilon\equiv \frac{\epsilon_c}{2\beta_p}.
+> \tau_\epsilon\equiv \frac{\epsilon_c}{2\beta_{p,\max}}.
 > $$
 > Assume
 > $$
@@ -1597,7 +1599,7 @@ provided the corresponding roots lie inside the local validity window of Lemmas 
 > \qquad
 > \eta\le \frac{\epsilon_c}{4c_f C_p},
 > \qquad
-> \epsilon_c\le \frac{\beta_p^2}{c_f C_p}.
+> \epsilon_c\le \frac{\beta_{p,\max}^2}{c_f C_p}.
 > $$
 > Then
 > $$
@@ -1606,48 +1608,50 @@ provided the corresponding roots lie inside the local validity window of Lemmas 
 > c_f C_p\left(\tau_\epsilon^2+\eta\right)
 > \le
 > \frac{\epsilon_c}{2}
-> =
-> \beta_p\tau_\epsilon,
 > $$
-> so the short-window partner estimate applies. Since
+> and since
 > $$
-> \epsilon_c^2+4\beta_p^2\tau_\epsilon^2
+> \beta_p\tau_\epsilon+B_{\tau_\epsilon}
+> \le
+> \beta_{p,\max}\tau_\epsilon+\frac{\epsilon_c}{2}
 > =
-> 2\epsilon_c^2,
+> \epsilon_c,
 > $$
 > one obtains
 > $$
 > \Delta V_p(\tau_\epsilon)
 > \ge
-> \frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}.
+> \frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}.
 > $$
-> Therefore a fully explicit sufficient recapture condition is
+> Therefore a class-uniform sufficient recapture condition is
 > $$
-> V_0<
-> \frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}
+> V_{\max}<
+> \frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}
 > -
-> \frac{\overline A_s^\rho\,\epsilon_c}{2\beta_p},
+> \frac{\overline A_s^\rho\,\epsilon_c}{2\beta_{p,\max}},
 > $$
 > or equivalently
 > $$
 > \kappa\epsilon^2
 > >
-> 4\beta_pV_0\,\epsilon_c
+> 4\beta_{p,\max}V_{\max}\,\epsilon_c
 > +
 > 2\overline A_s^\rho\,\epsilon_c^2.
 > $$
 > If, in addition,
 > $$
-> \tau_{\mathrm{sep}}\le \tau_\epsilon\le \tau_\rho,
+> \tau_{\mathrm{sep},\max}\le \tau_\epsilon\le \tau_\rho,
+> \qquad
+> \tau_{\mathrm{sep},\max}\equiv \frac{2\eta}{\sigma_{\min}},
 > $$
 > then Lemma 2 yields the delayed-window refinement
 > $$
-> V_0<
-> \frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}
+> V_{\max}<
+> \frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}
 > -
-> \overline A_s^\rho\,\tau_{\mathrm{sep}}
+> \overline A_s^\rho\,\tau_{\mathrm{sep},\max}
 > -
-> \overline A_{s,\mathrm{geom}}^\rho\,(\tau_\epsilon-\tau_{\mathrm{sep}}).
+> \overline A_{s,\mathrm{geom}}^\rho\,(\tau_\epsilon-\tau_{\mathrm{sep},\max}).
 > $$
 
 This proposition is the first genuinely explicit realization of (H5) in the note. It converts the abstract impulse inequality into a concrete dual-mollified parameter regime.
