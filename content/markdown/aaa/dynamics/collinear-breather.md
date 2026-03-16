@@ -1635,9 +1635,9 @@ $$
 $$
 Write
 $$
-E_p(t,s)=R_+(t)+R_-(s),
+E_p(t,s)=-(R_+(t)+R_-(s)),
 $$
-so the remainder bounds imply
+so the absolute remainder bounds imply
 $$
 |E_p(t,\alpha t)|
 \le
@@ -2102,7 +2102,11 @@ Proof sketch:
    $$
    \beta_p\tau_\epsilon+B_{\tau_\epsilon}\le \epsilon_c,
    $$
-   and hence
+   so the denominator of the partner integrand is bounded above by
+   $$
+   \epsilon_c^2+\epsilon_c^2=2\epsilon_c^2.
+   $$
+   The rectangle-area lower bound therefore gives
    $$
    \Delta V_p(\tau_\epsilon)\ge \frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}.
    $$
