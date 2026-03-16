@@ -1625,11 +1625,61 @@ and
 $$
 \partial_s F_0(0,0)=-(V_0+c_f)\neq 0.
 $$
-Therefore the active partner root is locally nondegenerate. Standard implicit-function stability for a nonvanishing linear coefficient then yields, after shrinking the local window if necessary, a constant
+Write
+$$
+E_p(t,s)=R_+(t)+R_-(s),
+$$
+so the remainder bounds imply
+$$
+|E_p(t,\alpha t)|
+\le
+\frac{a_\ast}{2}(1+\alpha^2)t^2
+\equiv
+C_0 t^2.
+$$
+Moreover the integral remainder formula gives
+$$
+|\partial_s E_p(t,s)|\le a_\ast s.
+$$
+After shrinking the local window if necessary, assume
+$$
+0\le s\le \tau_1
+\qquad
+\text{and}
+\qquad
+a_\ast\tau_1\le \frac{V_0+c_f}{2}.
+$$
+Then on that window
+$$
+\partial_s F(t,s)
+=
+-(V_0+c_f)+\partial_s E_p(t,s)
+\le
+-\frac{V_0+c_f}{2}<0.
+$$
+Hence the active partner branch is quantitatively nondegenerate. Applying the mean-value theorem in the $s$ variable between $s$ and $\alpha t$ yields a point $\xi$ between them such that
+$$
+F(t,s)-F(t,\alpha t)=\partial_s F(t,\xi)\,(s-\alpha t).
+$$
+Therefore
+$$
+\frac{V_0+c_f}{2}\,|s-\alpha t|
+\le
+|F(t,s)|+|F(t,\alpha t)|
+\le
+\eta+C_0 t^2,
+$$
+so
+$$
+|s-\alpha t|
+\le
+\frac{2}{V_0+c_f}\big(\eta+C_0 t^2\big).
+$$
+Thus there is an explicit constant
 $$
 C_p=C_p(V_0,c_f,a_\ast)
 $$
-for which
+such that
 $$
 s\le \alpha t + C_p(t^2+\eta).
 $$
