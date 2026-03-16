@@ -4287,6 +4287,90 @@ The intended proof order for the return half is:
 
 The first and fourth items are the real analytic bottlenecks on the return half. The middle two are reachability statements once the sign of the post-turn drive is controlled.
 
+**Lemma 14: Post-turn inward-drive lemma.**
+Let
+$$
+t_{\mathrm{turn}}
+$$
+be a turning time produced by the local origin-crossing recapture theorem, so that
+$$
+\rho(t_{\mathrm{turn}})=\rho_{\max}>0,
+\qquad
+\dot\rho(t_{\mathrm{turn}})=0.
+$$
+Assume there exists a post-turn window
+$$
+[t_{\mathrm{turn}},\,t_{\mathrm{turn}}+\tau_{\mathrm{ret}}]
+$$
+and a constant
+$$
+a_{\mathrm{ret}}>0
+$$
+such that on that window the radial acceleration satisfies
+$$
+\ddot\rho(t)\le -a_{\mathrm{ret}}.
+$$
+Then:
+
+1. the trajectory cannot re-escape outward on that window,
+2. the radial speed becomes strictly inward immediately after the turn,
+   $$
+   \dot\rho(t)\le -a_{\mathrm{ret}}(t-t_{\mathrm{turn}})
+   \qquad
+   \text{for }t\in[t_{\mathrm{turn}},\,t_{\mathrm{turn}}+\tau_{\mathrm{ret}}],
+   $$
+3. and the radius decreases monotonically there, with
+   $$
+   \rho(t)\le
+   \rho_{\max}
+   -
+   \frac{a_{\mathrm{ret}}}{2}(t-t_{\mathrm{turn}})^2.
+   $$
+
+In particular, a sufficient realization is
+$$
+A_p^\rho(t)-A_s^\rho(t)\ge a_{\mathrm{ret}}>0
+\qquad
+\text{for }t\in[t_{\mathrm{turn}},\,t_{\mathrm{turn}}+\tau_{\mathrm{ret}}],
+$$
+because then
+$$
+\ddot\rho(t)\le -a_{\mathrm{ret}}.
+$$
+
+Proof.
+Integrating the radial acceleration bound from the turning time gives
+$$
+\dot\rho(t)
+=
+\dot\rho(t_{\mathrm{turn}})
++
+\int_{t_{\mathrm{turn}}}^{t}\ddot\rho(s)\,ds
+\le
+0-a_{\mathrm{ret}}(t-t_{\mathrm{turn}}),
+$$
+which proves the velocity estimate and shows that
+$$
+\dot\rho(t)<0
+\qquad
+\text{for }t>t_{\mathrm{turn}}.
+$$
+Thus the trajectory moves strictly inward immediately after the turn and cannot re-escape outward on the stated window.
+
+Integrating once more yields
+$$
+\rho(t)
+=
+\rho(t_{\mathrm{turn}})
++
+\int_{t_{\mathrm{turn}}}^{t}\dot\rho(s)\,ds
+\le
+\rho_{\max}
+-
+\frac{a_{\mathrm{ret}}}{2}(t-t_{\mathrm{turn}})^2,
+$$
+which proves the monotone decrease of the radius on the post-turn window.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
