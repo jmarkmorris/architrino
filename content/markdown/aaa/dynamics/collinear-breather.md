@@ -933,6 +933,11 @@ The corrected 1D theorem target is a **local origin-crossing recapture theorem**
 > $$
 > V_0\equiv V_\phi(0)>c_f.
 > $$
+> For the working theorem program, $\phi$ is taken from a fixed admissible crossing subclass
+> $$
+> \mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c},
+> $$
+> defined below so that the local constants used in Lemmas 1-4 are uniform on that class.
 > Assume hypotheses (H1)-(H4) below, and assume either:
 > 1. the abstract Goldilocks hypothesis (H5), or
 > 2. the explicit short-window assumptions of Proposition `Explicit short-window recapture regime`.
@@ -1038,19 +1043,111 @@ $$
 $$
 and replaces the integral inequality by explicit algebraic bounds on $(\eta,\epsilon_c,V_0,\kappa\epsilon^2)$.
 
-For theorem work on a fixed admissible crossing subclass, the local constants appearing later in Lemmas 1-4 are understood to be uniform over that subclass. In particular, one works with uniform choices of
+### Uniform admissible crossing subclass
+
+To make those local constants concrete, fix positive class parameters
 $$
-a_{\mathrm{loc}},
+c_f<V_{\min}\le V_{\max},
 \qquad
-\tau_1,
+\delta_{w,\min},
 \qquad
-\tau_\rho,
+\nu,
 \qquad
-C_p,
+\rho_{0,\min},
 \qquad
-N_s^{\max},
+a_{\max},
+\qquad
+a_{\mathrm{tube}},
+\qquad
+\tau_{\mathrm{tube}},
 $$
-so that the local continuation, geometric separation, partner-root estimate, and branch-count bound all close on the same history family.
+and an integer root-count bound
+$$
+N_s^{\max}\ge 1.
+$$
+
+Let
+$$
+\mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}
+\subset
+C^1([-h,0];\mathbb{R})
+$$
+denote the class of signed crossing histories $\phi$ satisfying:
+
+- the theorem hypotheses (H1)-(H4) with class-wide constants bounded by
+  $$
+  V_{\min}\le V_0(\phi)\le V_{\max},
+  \qquad
+  \delta_w(\phi)\ge \delta_{w,\min},
+  \qquad
+  \nu(\phi)\ge \nu,
+  $$
+- a uniform pre-crossing acceleration bound,
+  $$
+  |\ddot\phi(\theta)|\le a_{\max}
+  \qquad
+  \text{for }\theta\in[-h,0],
+  $$
+- a uniform pre-caustic radius bound,
+  $$
+  \rho_{\mathrm{zero}}(\phi)
+  \equiv
+  -c_f t_{\mathrm{zero}}(\phi)
+  =
+  \phi(t_{\mathrm{zero}}(\phi))
+  \ge
+  \rho_{0,\min},
+  $$
+- and a forward local tube condition: the dual-mollified forward continuation exists on
+  $$
+  [0,\tau_{\mathrm{tube}}],
+  $$
+  satisfies
+  $$
+  |\ddot x_\phi(t)|\le a_{\mathrm{tube}}
+  \qquad
+  \text{for }0\le t\le \tau_{\mathrm{tube}},
+  $$
+  and has at most
+  $$
+  N_s^{\max}
+  $$
+  active self roots on the initial post-crossing window.
+
+The shell width is chosen inside the class-uniform hinge gap:
+$$
+\eta<\frac{c_f\delta_{w,\min}}{2}.
+$$
+
+From these class parameters one may fix the derived constants
+$$
+\sigma_{\min}\equiv \frac{V_{\min}-c_f}{2},
+\qquad
+a_{\mathrm{loc}}\equiv a_{\mathrm{tube}},
+\qquad
+a_\ast\equiv \max\{a_{\max},a_{\mathrm{tube}}\},
+\qquad
+\beta_{p,\min}\equiv \frac{2c_fV_{\min}}{V_{\min}+c_f},
+\qquad
+\tau_1\equiv \min\!\left\{\tau_{\mathrm{tube}},\frac{\sigma_{\min}}{a_{\mathrm{tube}}}\right\},
+$$
+with $\tau_\rho$ chosen so that
+$$
+V_{\max}\tau_\rho+\frac{a_{\mathrm{tube}}}{2}\tau_\rho^2
+\le
+\frac{\rho_{0,\min}}{2}.
+$$
+On this subclass:
+
+- Lemma 1 uses the common continuation constants $(\sigma_{\min},a_{\mathrm{tube}},\tau_1)$,
+- Lemma 2 uses the common geometric separation data $(\rho_{0,\min},\nu,N_s^{\max})$,
+- Lemma 3 admits a common partner-root remainder constant
+  $$
+  C_p=C_p(V_{\max},c_f,a_\ast),
+  $$
+- and the explicit short-window proposition can be written uniformly by replacing $\beta_p$ with the worst-case lower bound $\beta_{p,\min}$ whenever a class-wide estimate is preferred.
+
+This is the sense in which the later local constants are inherited by construction rather than introduced ad hoc.
 
 ### Lemma ladder
 
