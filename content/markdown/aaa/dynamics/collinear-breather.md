@@ -4922,6 +4922,94 @@ Likewise, because the Jacobian and active-root count bounds are assumed uniforml
 
 Hence the translated history satisfies the defining bounds of the tame return class, which proves the lemma.
 
+### Outer-turn recapture target
+
+The remaining major dynamical gap on the return half is no longer kinematic. Lemmas 17 and 18 show that, once an outer turning point exists with a post-turn inward acceleration floor, the literal inbound section return follows by comparison geometry. The unresolved question is therefore whether the delayed forces actually create such an outer turn on the right exterior branch.
+
+> **Target Theorem (Outer-Turn Recapture).**
+> Fix a dual-mollified tame return class and suppose the return-half branch has already reached the reflected section state
+> $$
+> x=x_\ast,
+> \qquad
+> \dot x>0
+> $$
+> on the right exterior branch. Assume there exist class constants
+> $$
+> X_{\mathrm{out},\max},
+> \qquad
+> a_{\mathrm{in}}^{\mathrm{out}}>0,
+> \qquad
+> a_{+}^{\mathrm{out}}>0
+> $$
+> such that on the subsequent outer branch:
+> 1. **bounded outward excursion:**
+>    the trajectory remains in
+>    $$
+>    x_\ast\le x(t)\le X_{\mathrm{out},\max}
+>    $$
+>    until the first outer turn;
+> 2. **outer-turn existence:**
+>    there exists a first time
+>    $$
+>    t_{\mathrm{turn}}^{\mathrm{out}}
+>    $$
+>    with
+>    $$
+>    \dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0,
+>    \qquad
+>    x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}}\in[x_\ast,X_{\mathrm{out},\max}];
+>    $$
+> 3. **post-turn inward-force margin:**
+>    on a window after
+>    $$
+>    t_{\mathrm{turn}}^{\mathrm{out}},
+>    $$
+>    the signed acceleration satisfies
+>    $$
+>    -a_{+}^{\mathrm{out}}
+>    \le
+>    \ddot x(t)
+>    \le
+>    -a_{\mathrm{in}}^{\mathrm{out}}
+>    <
+>    0;
+>    $$
+> 4. **final-window tame bounds:**
+>    the trajectory on the last
+>    $$
+>    h
+>    $$
+>    units before the section return satisfies the same position, speed, acceleration, Jacobian, and root-count bounds used in Lemma 19.
+>
+> Then the outer branch closes back to the literal inbound section by Lemmas 17–19, and the remaining task is reduced to proving the force bounds that realize items 1–3.
+
+This theorem isolates the outer-branch analogue of the inner recapture problem: near the apocenter one must show that delayed partner attraction plus favorable path-history geometry dominate the outward self-drive strongly enough to force one more turn.
+
+### Outer-turn recapture ladder
+
+The intended proof order for the outer branch is:
+
+1. **Outer-branch partner lower bound.**
+   Derive a class-uniform lower bound for the inward partner contribution on the right exterior branch.
+2. **Outer-branch self-drive upper bound.**
+   Bound the outward self contribution there, using the longer partner distance and sub-field-speed Jacobian dilation on the delayed branches.
+3. **Outer-force margin theorem.**
+   Prove a quantitative inequality of the form
+   $$
+   A_p(t)-A_s(t)\ge a_{\mathrm{in}}^{\mathrm{out}}>0
+   $$
+   on an apocenter window.
+4. **Outer-turn existence theorem.**
+   Integrate the force margin to show that the outward branch stops at a finite radius
+   $$
+   X_{\mathrm{out}}\le X_{\mathrm{out},\max}
+   $$
+   and develops a true outer turn.
+5. **Post-turn window theorem.**
+   Show that the same force margin, or a weaker two-sided acceleration bracket, persists long enough after the turn to trigger Lemmas 17 and 18.
+
+The third and fourth items are the main analytic bottlenecks. Once a robust outer-force margin is available, the remaining return-to-section estimates are already in place.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
