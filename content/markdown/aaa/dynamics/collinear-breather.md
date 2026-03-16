@@ -3473,6 +3473,88 @@ so exact same-side self roots cannot appear under a sufficiently small perturbat
 
 This corollary is the first concrete nonvacuity statement for the theorem program. The remaining task is no longer to show that tame histories exist at all, but to propagate such a seed class through the full delayed cycle strongly enough that it becomes the nonempty class required by the invariant-envelope theorem.
 
+### Seed-to-cycle propagation target
+
+The seed construction resolves only the section-side nonvacuity issue. The next step is to promote a smaller neighborhood of seed histories to a genuinely nonempty tame class for the delayed flow itself. In other words, one wants to replace
+$$
+\mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+$$
+by a forward-propagated subclass on which the collapse, recapture, return, and root-control estimates all hold on one full cycle.
+
+This is the precise bridge from the section-level seed construction to the invariant-envelope theorem.
+
+> **Target Theorem (Seed-to-Tame Full-Cycle Propagation).**
+> Assume the affine seed proposition and the nonempty section-level neighborhood corollary above. Then there exists a nonempty subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}
+> $$
+> such that:
+> 1. every
+>    $$
+>    \psi\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+>    $$
+>    admits a unique forward continuation through one full cycle;
+> 2. the collapse-to-crossing control theorem applies uniformly on this class;
+> 3. the explicit inner recapture regime and the unified trimmed-apocenter outer-turn criterion both apply uniformly on this class;
+> 4. the turn-to-section return lemmas apply uniformly on this class;
+> 5. and the returned history satisfies
+>    $$
+>    P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}.
+>    $$
+>
+> In particular,
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\neq \varnothing,
+> $$
+> the return map
+> $$
+> P_\eta
+> $$
+> is well defined on a nonempty tame class, and the invariant-envelope theorem becomes nonvacuous.
+
+This theorem is deliberately phrased as a propagation target rather than a proved proposition. The real remaining work is to show that the estimates already developed later in the note can be made uniform on a sufficiently small seed neighborhood rather than only along a single handpicked history.
+
+### Seed-propagation ladder
+
+The intended proof order is:
+
+1. **Local forward continuation from the seed neighborhood.**
+   Show that a sufficiently small
+   $$
+   C^1
+   $$
+   neighborhood of
+   $$
+   \psi_{\mathrm{seed}}
+   $$
+   evolves uniquely for at least one collapse phase while preserving the initial stored partner-root simplicity and same-side self-root exclusion.
+2. **Seed-neighborhood collapse control.**
+   Prove that the collapse-to-crossing estimates can be made uniform on a smaller neighborhood
+   $$
+   \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+   \subseteq
+   \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}.
+   $$
+3. **Seed-neighborhood realization of the inner regime.**
+   Verify that the first crossing from this neighborhood lands uniformly in the Goldilocks window required by Proposition `Explicit short-window recapture regime`.
+4. **Seed-neighborhood realization of the outer regime.**
+   Verify that the same trajectories satisfy the hypotheses of the unified trimmed-apocenter outer-turn criterion on the final apocenter window.
+5. **Returned-history reentry.**
+   Show that the returned history segment lies back inside
+   $$
+   \mathcal{C}_{x_\ast,\eta}
+   $$
+   and, after shrinking once more if necessary, inside a forward-propagation subclass
+   $$
+   \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}.
+   $$
+
+The conceptual point is simple: the seed history does not need to solve the whole breather problem by itself. It only needs to provide one strict interior point of history space around which all the already-developed cycle estimates can be made uniform. Once such a neighborhood is propagated through one full cycle, the nonempty tame class required by the Schauder program is in hand.
+
 ### Collapse-to-crossing target
 
 The next concrete theorem should attack Step 1 of the cycle ladder directly. Its role is to connect tame inbound section data to the already-audited local post-crossing recapture theorem.
