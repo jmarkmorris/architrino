@@ -3331,6 +3331,95 @@ u_0+a_+\tau_-.
 $$
 This proves the claimed crossing-speed bracket.
 
+**Lemma 8: Pre-crossing tube preservation from monotonicity and bounded acceleration.**
+Assume the pre-crossing leg starts from the inbound section
+$$
+x(0)=x_\ast,
+\qquad
+\dot x(0)=-u_0,
+\qquad
+0\le u_0\le U_{\mathrm{in}},
+$$
+with
+$$
+0<x_\ast\le X_{\max}.
+$$
+Assume moreover that on
+$$
+[0,t_{\mathrm{cross}}],
+$$
+the trajectory satisfies:
+
+- inward monotonicity,
+  $$
+  \dot x(t)\le 0,
+  $$
+- bounded crossing time,
+  $$
+  t_{\mathrm{cross}}\le \tau_{\mathrm{cross},\max},
+  $$
+- and a uniform acceleration bound,
+  $$
+  |\ddot x(t)|\le A_{\max}.
+  $$
+
+If
+$$
+U_{\mathrm{in}}+A_{\max}\tau_{\mathrm{cross},\max}\le U_{\max},
+$$
+then the full pre-crossing tube bounds hold:
+$$
+0\le x(t)\le X_{\max},
+\qquad
+|\dot x(t)|\le U_{\max},
+\qquad
+|\ddot x(t)|\le A_{\max}
+\qquad
+\text{for }0\le t\le t_{\mathrm{cross}}.
+$$
+
+Proof.
+Because
+$$
+\dot x(t)\le 0
+\qquad
+\text{for }0\le t\le t_{\mathrm{cross}},
+$$
+the position is nonincreasing on the pre-crossing leg. Since the first crossing occurs at
+$$
+x(t_{\mathrm{cross}})=0,
+$$
+one has
+$$
+0\le x(t)\le x(0)=x_\ast\le X_{\max}
+\qquad
+\text{for }0\le t\le t_{\mathrm{cross}}.
+$$
+
+For the velocity, the acceleration bound gives
+$$
+|\dot x(t)-\dot x(0)|
+\le
+\int_0^t |\ddot x(s)|\,ds
+\le
+A_{\max} t
+\le
+A_{\max}\tau_{\mathrm{cross},\max}.
+$$
+Therefore
+$$
+|\dot x(t)|
+\le
+|\dot x(0)|+A_{\max}\tau_{\mathrm{cross},\max}
+\le
+U_{\mathrm{in}}+A_{\max}\tau_{\mathrm{cross},\max}
+\le
+U_{\max}.
+$$
+The acceleration bound is already part of the hypotheses, so the full tube estimate follows.
+
+This lemma does not by itself control Jacobian transversality or branch-count growth. It isolates the easier kinematic part of tube preservation: once monotone inbound motion, bounded crossing time, and bounded acceleration are known, the position-speed tube closes automatically up to the crossing.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
