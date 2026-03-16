@@ -6136,6 +6136,81 @@ The intended proof order is:
 
 The first two items are the real bottlenecks. Once deep-past roots are diluted by distance and Jacobian control, the outer-turn proposition becomes a direct explicit parameter race.
 
+**Lemma 30: Deep-past separation on a trimmed apocenter window.**
+Assume the hypotheses of Lemma 26 on a final sub-field-speed apocenter window
+$$
+[t_a,t_b],
+$$
+and fix a trimming parameter
+$$
+0<\tau_{\mathrm{deep}}\le t_b-t_a.
+$$
+Let
+$$
+I_{\mathrm{deep}}
+\equiv
+[t_a+\tau_{\mathrm{deep}},\,t_b].
+$$
+If
+$$
+t\in I_{\mathrm{deep}}
+$$
+and
+$$
+t_s<t_a
+$$
+is a same-side outward-driving self root satisfying
+$$
+z(t_s)=z(t),
+$$
+then:
+
+1. the delayed time gap is uniformly bounded below,
+   $$
+   t-t_s\ge \tau_{\mathrm{deep}},
+   $$
+2. and the causal self separation is therefore macroscopic,
+   $$
+   r_s(t;t_s)=c_f(t-t_s)\ge c_f\tau_{\mathrm{deep}}.
+   $$
+
+In particular, on the trimmed subwindow
+$$
+I_{\mathrm{deep}}
+$$
+one may take
+$$
+R_{\mathrm{deep}}^{\mathrm{out}}=c_f\tau_{\mathrm{deep}}.
+$$
+
+Proof.
+Because
+$$
+t\in[t_a+\tau_{\mathrm{deep}},\,t_b]
+$$
+and
+$$
+t_s<t_a,
+$$
+one immediately has
+$$
+t-t_s>(t_a+\tau_{\mathrm{deep}})-t_a=\tau_{\mathrm{deep}},
+$$
+hence in particular
+$$
+t-t_s\ge \tau_{\mathrm{deep}}.
+$$
+
+For an outward-driving same-side self root on the right exterior outbound branch, the causal relation is
+$$
+x(t)-x(t_s)=c_f(t-t_s).
+$$
+Therefore
+$$
+r_s(t;t_s)=c_f(t-t_s)\ge c_f\tau_{\mathrm{deep}},
+$$
+which proves the lemma.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
