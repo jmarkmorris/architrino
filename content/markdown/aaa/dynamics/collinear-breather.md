@@ -5757,6 +5757,67 @@ A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
 $$
 which proves the lemma.
 
+**Corollary 28: Sub-field-speed outer-force margin from partner floor versus shell tail.**
+Assume there exists an apocenter window
+$$
+[t_a,t_b]\subseteq [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+$$
+on which:
+
+- the outer branch is strictly sub-field-speed,
+  $$
+  0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f,
+  $$
+- the partner lower bound of Lemma 20 holds with
+  $$
+  A_p(t)\ge \underline A_p^{\mathrm{out}},
+  $$
+- and the only outward self contribution on that window is the same-side shell tail estimated in Lemma 27.
+
+If
+$$
+\underline A_p^{\mathrm{out}}
+-
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}
+\ge
+a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}>0,
+$$
+then on that window one has the unconditional inward acceleration bound
+$$
+\ddot x(t)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0.
+$$
+
+In particular, on a strictly sub-field-speed apocenter window the outer-force margin reduces to a direct parameter race between the partner floor and the shell-mollified same-side self leakage.
+
+Proof.
+Lemma 20 gives
+$$
+A_p(t)\ge \underline A_p^{\mathrm{out}}.
+$$
+By Lemma 26, there are no exact same-side self roots on the stated window, and Lemma 27 therefore bounds the surviving same-side shell contribution by
+$$
+A_s^{\mathrm{out}}(t)\le
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}.
+$$
+Using the signed dynamics
+$$
+\ddot x(t)\le -A_p(t)+A_s^{\mathrm{out}}(t)
+$$
+yields
+$$
+\ddot x(t)
+\le
+-\underline A_p^{\mathrm{out}}
++
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2}
+\le
+-a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0,
+$$
+which proves the corollary.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
