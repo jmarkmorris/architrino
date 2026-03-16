@@ -840,6 +840,212 @@ This corollary is the exact branch-labeling consequence needed for the rest of t
 
 This is the replacement for deep-past self-root relocation. In the planar regime the right conclusion is not literal line-order transport, but a controlled sector theorem that either excludes the remote branch or pushes it into a pre-crossing inbound cone where transversality is once again uniform.
 
+### Second theorem package: deep-past sector relocation
+
+The next concrete step is to convert the sector labels from the first package into a genuine exclusion-versus-relocation theorem on the late-apocenter window.
+
+Let
+$$
+I_{\mathrm{out}}=[t_{\mathrm{x}},t_{\mathrm{ap}}^-]
+$$
+denote the earlier outbound interval between the first center crossing and the start of the late-apocenter window. For each active apocenter sector
+$$
+\mathfrak{S}_k,
+\qquad
+\hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{ap}},
+$$
+define the sector support envelopes
+$$
+\zeta^-_{k,\max}(t)
+\equiv
+\sup_{\hat{\mathbf{u}}\in \mathfrak{S}_k}\zeta^-_{\hat{\mathbf{u}}}(t),
+\qquad
+\zeta^-_{k,\min}(t)
+\equiv
+\inf_{\hat{\mathbf{u}}\in \mathfrak{S}_k}\zeta^-_{\hat{\mathbf{u}}}(t).
+$$
+The higher-dimensional replacement for the collinear outbound-level exclusion is the sectorwise gap
+$$
+\Delta^{\mathrm{out}}_k
+\equiv
+\inf_{s\in I_{\mathrm{out}}}\zeta^-_{k,\min}(s)
+-
+\sup_{t\in I_{\mathrm{ap}}}\zeta^-_{k,\max}(t).
+$$
+
+If
+$$
+\Delta^{\mathrm{out}}_k>0,
+$$
+then no self root on
+$$
+I_{\mathrm{ap}}
+$$
+whose chord direction lies in
+$$
+\mathfrak{S}_k
+$$
+can have its source time on
+$$
+I_{\mathrm{out}}.
+$$
+Indeed, a self root with exact direction
+$$
+\hat{\mathbf{u}}\in \mathfrak{S}_k
+$$
+would satisfy
+$$
+\zeta^-_{\hat{\mathbf{u}}}(t)=\zeta^-_{\hat{\mathbf{u}}}(s),
+$$
+hence
+$$
+\zeta^-_{k,\max}(t)\ge \zeta^-_{k,\min}(s),
+$$
+contradicting the strict gap.
+
+The remaining source candidate is therefore the pre-crossing inbound interval. To record that geometry, define the pre-crossing source cones
+$$
+\mathfrak{C}_{\mathrm{in},k}
+\equiv
+\left\{
+\lambda \hat{\mathbf{u}}
+\;\middle|\;
+\lambda\ge 0,
+\quad
+\hat{\mathbf{u}}\in \mathfrak{S}_k
+\right\},
+\qquad
+\mathfrak{C}_{\mathrm{in}}
+\equiv
+\bigcup_{\hat{\mathbf{u}}_k\in\mathcal{U}_{\mathrm{ap}}}\mathfrak{C}_{\mathrm{in},k}.
+$$
+The intended meaning is not that the full inbound leg lies in one cone. The intended meaning is that once a deep-past root is assigned a sector label
+$$
+k,
+$$
+its admissible pre-crossing source point should be confined to the matching inbound cone
+$$
+\mathfrak{C}_{\mathrm{in},k}.
+$$
+
+The first package should also be strengthened sectorwise: after shrinking
+$$
+\alpha_{\mathrm{sort}}
+$$
+and the tame class if necessary, the directional monotonicity bounds should hold uniformly for every
+$$
+\hat{\mathbf{u}}\in\mathfrak{S}_k,
+\qquad
+\hat{\mathbf{u}}_k\in\mathcal{U}_{\mathrm{in}}\cup \mathcal{U}_{\mathrm{ap}},
+$$
+not only for the sector centers. This is the form actually needed for uniqueness and relocation.
+
+> **Target Proposition (Sectorwise outbound exclusion).**
+> Assume the windowed directional monotonicity package and suppose that for every active apocenter sector
+> $$
+> \hat{\mathbf{u}}_k\in\mathcal{U}_{\mathrm{ap}}
+> $$
+> one has
+> $$
+> \Delta^{\mathrm{out}}_k>0.
+> $$
+> Let
+> $$
+> t\in I_{\mathrm{ap}}
+> $$
+> and let
+> $$
+> s<t
+> $$
+> be a self-root time whose chord direction belongs to
+> $$
+> \mathfrak{S}_k.
+> $$
+> Then
+> $$
+> s\notin I_{\mathrm{out}}.
+> $$
+
+This is the direct planar analogue of the 1D statement that late apocenter levels fall below the entire earlier outbound range. The point is the same as in the frozen scaffold, but the comparison is now sectorwise and uses support envelopes rather than a single scalar
+$$
+z.
+$$
+
+> **Target Proposition (Pre-crossing sector relocation).**
+> Assume the sectorwise outbound exclusion proposition, and assume in addition that:
+> 1. every self root on
+>    $$
+>    I_{\mathrm{ap}}
+>    $$
+>    with delay at least
+>    $$
+>    \tau_{\mathrm{dp}}
+>    $$
+>    has source time
+>    $$
+>    s\le t_{\mathrm{ap}}^-;
+>    $$
+> 2. for every active apocenter sector
+>    $$
+>    \mathfrak{S}_k,
+>    $$
+>    the pre-crossing inbound history intersects the matching cone
+>    $$
+>    \mathfrak{C}_{\mathrm{in},k}
+>    $$
+>    in a connected interval on which
+>    $$
+>    \frac{d}{ds}\zeta^-_{\hat{\mathbf{u}}}(s)\le -\sigma_{\mathrm{in}}^{\sharp}<0
+>    \qquad
+>    \text{for every }
+>    \hat{\mathbf{u}}\in \mathfrak{S}_k;
+>    $$
+> 3. outside that connected inbound interval, the pre-crossing history has no source point whose self chord to the late-apocenter window lies in
+>    $$
+>    \mathfrak{S}_k.
+>    $$
+>
+> Then every deep-past self root on
+> $$
+> I_{\mathrm{ap}}
+> $$
+> is either absent or has a unique source time
+> $$
+> s\in I_{\mathrm{in}}
+> $$
+> with
+> $$
+> \mathbf{r}(s)\in \mathfrak{C}_{\mathrm{in},k}
+> $$
+> for the matching sector label
+> $$
+> k.
+> $$
+
+This is the correct replacement for the collinear relocation lemma. The source is not forced onto one signed interval because there is no global line order. It is forced into a sector-matched pre-crossing cone where directional monotonicity restores uniqueness.
+
+> **Target Corollary (Deep-past sector suppression).**
+> Assume the pre-crossing sector relocation proposition and, in addition, a uniform Jacobian lower bound
+> $$
+> |J_s(t;s)|\ge \nu_{J,\mathrm{dp}}>0
+> $$
+> on the relocated deep-past branches. Then the total self contribution from all deep-past late-apocenter roots satisfies
+> $$
+> \|\mathbf{a}^{\mathrm{deep}}_{s}(t)\|
+> \le
+> \frac{M_{\mathrm{ap}}\kappa\epsilon^2}{
+> \bigl(c_f^2\tau_{\mathrm{dp}}^2+\epsilon_c^2\bigr)\nu_{J,\mathrm{dp}}}
+> \qquad
+> \text{for every }
+> t\in I_{\mathrm{ap}},
+> $$
+> where
+> $$
+> M_{\mathrm{ap}}=|\mathcal{U}_{\mathrm{ap}}|.
+> $$
+
+This corollary is the exact output needed later for the outer-turn comparison argument. Once each deep-past sector contributes at most one transversal branch, the full delayed self-drive is reduced to a finite sector count times a single branch amplitude bound.
+
 > **Target Proposition (Cone transversality for active branches).**
 > There exist closed emitter-velocity cones adapted to the chosen section and a constant
 > $$
