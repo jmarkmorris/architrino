@@ -2524,6 +2524,107 @@ is precompact in $C^1([-h,0])$.
 
 This proposition deliberately stops short of invariance. It says only that once the return map is defined on a uniformly controlled envelope, its image cannot spread out arbitrarily in history space. The remaining global burden is then to combine this precompactness with a closed invariant set and continuity of $P_\eta$.
 
+### Continuity target for the return map
+
+Precompactness alone is not enough for a fixed-point theorem. The next ingredient is continuity of the full history return map on a tame class where the delayed root geometry does not bifurcate and the section crossing remains transverse.
+
+> **Target Proposition (Continuity of the Tame Return Map).**
+> Let
+> $$
+> \mathcal{E}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{E}_{x_\ast,\eta}
+> $$
+> be a dual-mollified inbound history class such that:
+> 1. each
+>    $$
+>    \psi\in \mathcal{E}^{\mathrm{tame}}_{x_\ast,\eta}
+>    $$
+>    admits a unique forward continuation on
+>    $$
+>    [0,T_{\max}],
+>    $$
+>    with the same class-uniform position, speed, acceleration, Jacobian, and memory-depth bounds used above;
+> 2. on this forward tube, the dual-mollified vector field is locally Lipschitz as a map of the stored history segment in the $C^1$ topology;
+> 3. the active delayed roots on the tube remain finite in number and persist continuously with the history, with no root creation, root collision, or Jacobian loss of transversality;
+> 4. the first return to the inbound section is uniformly transverse:
+>    $$
+>    x(T(\psi);\psi)=x_\ast,
+>    \qquad
+>    \dot x(T(\psi);\psi)\le -u_{\mathrm{sec}}<0
+>    $$
+>    for a common constant
+>    $$
+>    u_{\mathrm{sec}}>0.
+>    $$
+>
+> Then
+> $$
+> P_\eta:\mathcal{E}^{\mathrm{tame}}_{x_\ast,\eta}\to C^1([-h,0])
+> $$
+> is continuous.
+
+Proof sketch.
+Take a convergent sequence
+$$
+\psi_n\to \psi
+\qquad
+\text{in }C^1([-h,0]).
+$$
+By the local Lipschitz hypothesis on the dual-mollified vector field and the class-uniform forward tube bounds, standard continuous-dependence estimates for functional differential equations give convergence of the corresponding solutions on every compact interval inside
+$$
+[0,T_{\max}]:
+$$
+$$
+x_n\to x,
+\qquad
+\dot x_n\to \dot x
+$$
+uniformly on $[0,T_{\max}]$.
+
+The root-persistence hypothesis ensures that, along the tube, the delayed branch structure and Jacobian denominators vary continuously with the history and do not develop singular branch changes. Hence the forward solution map is continuous on the entire tame class rather than only on a branch-restricted fragment.
+
+Now consider the section function
+$$
+G(t,\psi)\equiv x(t;\psi)-x_\ast.
+$$
+At the return time
+$$
+t=T(\psi)
+$$
+one has
+$$
+G(T(\psi),\psi)=0,
+\qquad
+\partial_t G(T(\psi),\psi)=\dot x(T(\psi);\psi)\le -u_{\mathrm{sec}}<0.
+$$
+Therefore the return crossing is isolated and uniformly transverse. By the implicit-function theorem for a transverse zero of a continuous family, the first return time depends continuously on the history:
+$$
+T(\psi_n)\to T(\psi).
+$$
+
+Finally, for each
+$$
+\theta\in[-h,0],
+$$
+the returned histories satisfy
+$$
+P_\eta(\psi_n)(\theta)
+=
+x_n(T(\psi_n)+\theta).
+$$
+Uniform convergence of
+$$
+x_n,\dot x_n
+$$
+on $[0,T_{\max}]$ together with convergence of the return times implies
+$$
+P_\eta(\psi_n)\to P_\eta(\psi)
+$$
+in $C^1([-h,0])$. This proves continuity of $P_\eta$ on the tame class.
+
+This proposition should still be read as conditional. Its role is to isolate the exact hypotheses under which the global fixed-point program becomes viable: continuous dependence of the forward delayed dynamics, persistence of the active root structure, and a uniformly transverse return section.
+
 ### Convexity caution
 
 The eventual fixed-point set should not be chosen too aggressively at first pass. Some natural-looking lower bounds can destroy convexity:
