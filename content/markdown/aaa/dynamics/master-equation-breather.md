@@ -386,6 +386,340 @@ The natural candidate is a reflection-symmetric planar binary with a codimension
 
 If that planar bridge regime also resists tame-envelope closure, then the obstruction will be informative: it will show exactly where the collinear proof architecture ceases to transport.
 
+## First Planar Bridge Regime
+
+Work on the reflection-symmetric planar two-body subclass
+$$
+\mathbf{x}_1(t)=-\mathbf{r}(t),
+\qquad
+\mathbf{x}_2(t)=\mathbf{r}(t),
+\qquad
+\mathbf{r}(t)\in \Pi\cong \mathbb{R}^2,
+\qquad
+q_1=-\epsilon,
+\qquad
+q_2=+\epsilon.
+$$
+Write
+$$
+\rho(t)\equiv \|\mathbf{r}(t)\|,
+\qquad
+\hat{\mathbf{e}}_r(t)\equiv \frac{\mathbf{r}(t)}{\rho(t)},
+\qquad
+\hat{\mathbf{e}}_\theta(t)\equiv R_{\pi/2}\hat{\mathbf{e}}_r(t),
+$$
+away from the collision set, and decompose the planar velocity as
+$$
+\dot{\mathbf{r}}(t)=u_r(t)\hat{\mathbf{e}}_r(t)+u_\theta(t)\hat{\mathbf{e}}_\theta(t).
+$$
+When a polar-angle coordinate is convenient, write
+$$
+\mathbf{r}(t)=\rho(t)(\cos\vartheta(t),\sin\vartheta(t)).
+$$
+
+The first technical lesson is that the planar bridge should be written on a rotationally reduced chart. If one keeps the full planar rotation symmetry visible, then the most natural fixed-radius section is not affine in the ambient Banach space and the convex-envelope step is obscured from the start. The clean approach is therefore to quotient rigid planar rotations locally at the section by choosing the representative with
+$$
+\mathbf{r}(0)=\rho_\ast \mathbf{e}_1,
+\qquad
+\mathbf{e}_2\cdot \dot{\mathbf{r}}(0)>0.
+$$
+After this gauge choice, the remaining return question is codimension one in the reduced history space: the only equality that defines the section is the fixed section radius
+$$
+\rho(0)=\rho_\ast.
+$$
+
+This regime is the first honest transport problem beyond the line. It preserves reflection symmetry, center-of-mass reduction, and a single binary degree of freedom, but it no longer permits scalar ordering arguments to suppress tangential drift or delayed-root wrapping by inspection.
+
+## Raw Section and Envelope Hierarchy in the Planar Regime
+
+Let
+$$
+\mathcal{H}^{\Pi}_h \equiv C^1([-h,0];\Pi)
+$$
+denote the reduced planar history space in the above gauge.
+
+The raw outbound and inbound sections should be taken as
+$$
+\Sigma^{+}_{\rho_\ast,\Pi}
+\equiv
+\left\{
+\Phi\in\mathcal{H}^{\Pi}_h
+\;\middle|\;
+\Phi(0)=\rho_\ast \mathbf{e}_1,
+\quad
+\mathbf{e}_1\cdot\dot\Phi(0)>0,
+\quad
+\mathbf{e}_2\cdot\dot\Phi(0)>0
+\right\},
+$$
+$$
+\Sigma^{-}_{\rho_\ast,\Pi}
+\equiv
+\left\{
+\Phi\in\mathcal{H}^{\Pi}_h
+\;\middle|\;
+\Phi(0)=\rho_\ast \mathbf{e}_1,
+\quad
+\mathbf{e}_1\cdot\dot\Phi(0)<0,
+\quad
+\mathbf{e}_2\cdot\dot\Phi(0)>0
+\right\}.
+$$
+The fixed position removes the reduced rotational freedom, the sign of
+$$
+\mathbf{e}_1\cdot\dot\Phi(0)
+$$
+selects outbound versus inbound passage, and the sign of
+$$
+\mathbf{e}_2\cdot\dot\Phi(0)
+$$
+fixes the orientation branch so that the returned history does not flip across the reflection symmetry.
+
+The planar analogue of the convex Banach envelope should then be a visibly convex subset
+$$
+\mathcal{C}^{\Pi}_{\rho_\ast,\eta}\subseteq \Sigma^{-}_{\rho_\ast,\Pi}
+$$
+defined only by affine or norm-convex bounds. A workable target is
+$$
+\mathcal{C}^{\Pi}_{\rho_\ast,\eta}
+\equiv
+\left\{
+\Phi\in \Sigma^{-}_{\rho_\ast,\Pi}
+\;\middle|\;
+\begin{array}{l}
+\|\Phi(\theta)-\rho_\ast \mathbf{e}_1\|\le R_{\max},
+\\[0.4em]
+\|\dot\Phi(\theta)\|\le U_{\max},
+\\[0.4em]
+\|\dot\Phi(\theta)-\dot\Phi(\theta')\|\le A_{\max}|\theta-\theta'|,
+\\[0.4em]
+U_{\theta,\min}\le \mathbf{e}_2\cdot\dot\Phi(0)\le U_{\theta,\max}
+\end{array}
+\text{ for all }
+\theta,\theta'\in[-h,0]
+\right\}.
+$$
+Its role is exactly the role played by the section envelope in the frozen collinear chapter: it carries only the convex bookkeeping needed for compactness and for section-side control. It should not yet contain any delayed-root topology.
+
+The tame envelope must then be posed as a stricter target on the same section:
+$$
+\mathcal{K}^{\Pi}_{\rho_\ast,\eta}\subseteq \mathcal{C}^{\Pi}_{\rho_\ast,\eta}.
+$$
+The point is not to redefine
+$$
+\mathcal{K}^{\Pi}_{\rho_\ast,\eta}
+$$
+as an arbitrary nonconvex tame subclass, but to seek a closed convex set on which the delayed geometry can be packaged by quantitative common bounds. Concretely, the intended theorem object is a closed convex set
+$$
+\mathcal{K}^{\Pi}_{\rho_\ast,\eta}
+$$
+and constants
+$$
+N_{\mathrm{br}},
+\quad
+\nu_J,
+\quad
+\delta_{\mathrm{sep}},
+\quad
+I_{\mathrm{cau}},
+\quad
+m_{\mathrm{in}},
+\quad
+m_{\mathrm{out}}
+$$
+such that every
+$$
+\Phi\in \mathcal{K}^{\Pi}_{\rho_\ast,\eta}
+$$
+admits one-cycle continuation with:
+
+- at most
+  $$
+  N_{\mathrm{br}}
+  $$
+  active delayed partner and self branches on the controlled cycle;
+- branch separation at least
+  $$
+  \delta_{\mathrm{sep}};
+  $$
+- causal Jacobian bound
+  $$
+  |J_{ij}(t;t_0)|\ge \nu_J;
+  $$
+- dual-mollified caustic-transit impulse bounded by
+  $$
+  I_{\mathrm{cau}};
+  $$
+- and vector recapture margins at least
+  $$
+  m_{\mathrm{in}}
+  \qquad
+  \text{and}
+  \qquad
+  m_{\mathrm{out}}
+  $$
+  on the inner and outer return windows.
+
+This is the first concrete higher-dimensional target for a legitimate Schauder route.
+
+## Planar Replacement Obligations
+
+The planar bridge note should now advance by replacing each genuinely collinear move with a named higher-dimensional theorem target.
+
+> **Target Proposition (Directional support sorting).**
+> There exists a finite family of unit directions
+> $$
+> \mathcal{U}=\{\hat{\mathbf{u}}_1,\dots,\hat{\mathbf{u}}_M\}\subset S^1
+> $$
+> and controlled cycle windows on which the support functions
+> $$
+> \zeta^{\pm}_{\hat{\mathbf{u}}}(t)
+> \equiv
+> \hat{\mathbf{u}}\cdot \mathbf{r}(t)\pm c_f t
+> $$
+> are strictly monotone for every admissible planar trajectory. Consequently every active delayed root belongs to a fixed directional sector, root birth is confined to a controlled caustic tube, and branch proliferation is reduced to finitely many labeled sector families.
+
+This is the replacement burden for the 1D sorting maps
+$$
+w
+\qquad
+\text{and}
+\qquad
+z.
+$$
+The higher-dimensional point is not to recover a single total order, but to recover enough directional order to label and propagate the active branch family.
+
+> **Target Proposition (Deep-past sector relocation or exclusion).**
+> There exist a delay threshold
+> $$
+> \tau_{\mathrm{dp}}>0
+> $$
+> and an inbound cone family
+> $$
+> \mathfrak{C}_{\mathrm{in}}\subset \Pi
+> $$
+> such that any self-root on the late apocenter window with delay at least
+> $$
+> \tau_{\mathrm{dp}}
+> $$
+> either:
+> 1. is excluded by sector separation from the current apocenter geometry, or
+> 2. has its emission point on the pre-crossing inbound leg inside
+>    $$
+>    \mathfrak{C}_{\mathrm{in}},
+>    $$
+>    where the branch is unique and satisfies a uniform Jacobian lower bound.
+
+This is the replacement for deep-past self-root relocation. In the planar regime the right conclusion is not literal line-order transport, but a controlled sector theorem that either excludes the remote branch or pushes it into a pre-crossing inbound cone where transversality is once again uniform.
+
+> **Target Proposition (Cone transversality for active branches).**
+> There exist closed emitter-velocity cones adapted to the chosen section and a constant
+> $$
+> \nu_J>0
+> $$
+> such that for every active delayed branch on the controlled cycle,
+> $$
+> \bigl|\mathbf{v}_j(t_0)\cdot \hat{\mathbf{r}}_{ij}(t;t_0)\bigr|
+> \le c_f-\nu_J.
+> $$
+> Equivalently,
+> $$
+> |J_{ij}(t;t_0)|\ge \frac{\nu_J}{c_f}.
+> $$
+
+This is the higher-dimensional replacement for exact scalar Jacobian sign bookkeeping. The correct theorem is a vector cone-separation statement, not a sign chase.
+
+> **Target Proposition (Section-side seed packet with chord defect).**
+> There exists an explicit seed history
+> $$
+> \Phi_{\mathrm{seed}}\in \Sigma^{-}_{\rho_\ast,\Pi}
+> $$
+> and a constant
+> $$
+> U_{\mathrm{seed}}<c_f
+> $$
+> such that
+> $$
+> \sup_{\theta\in[-h,0]}\|\dot\Phi_{\mathrm{seed}}(\theta)\|\le U_{\mathrm{seed}}
+> $$
+> and hence
+> $$
+> \|\Phi_{\mathrm{seed}}(0)-\Phi_{\mathrm{seed}}(\theta)\|
+> \le U_{\mathrm{seed}}|\theta|
+> < c_f|\theta|
+> \qquad
+> \text{for all }
+> \theta\in[-h,0).
+> $$
+> Therefore the stored interval has no exact same-source self roots, the partner roots on the section are finite and transversal, and a nonempty
+> $$
+> C^1
+> $$
+> neighborhood of
+> $$
+> \Phi_{\mathrm{seed}}
+> $$
+> remains inside a section-side tame class.
+
+This is the replacement for affine-seed self-root exclusion. The exclusion mechanism is no longer signed monotonicity on the line, but the strict chord-defect inequality created by a sub-field-speed planar seed.
+
+> **Target Proposition (Bounded planar caustic transit).**
+> Whenever an active self branch is born on the inbound half-cycle, the dual-mollified contribution across the associated caustic tube produces a finite net impulse bounded by
+> $$
+> I_{\mathrm{cau}},
+> $$
+> uniformly across the tame class.
+
+This preserves one of the genuinely resolved pivots of the frozen 1D scaffold. The planar bridge should integrate the inbound caustic through as a bounded impulse, not exclude it by fiat.
+
+> **Target Theorem (Vector recapture margins).**
+> There exist controlled post-crossing and late-apocenter windows on which
+> $$
+> \mathfrak{M}^{\Pi}(t)
+> \equiv
+> -\hat{\mathbf{e}}_r(t)\cdot \mathbf{a}_{\mathrm{net}}(t)-\rho(t)\dot\vartheta(t)^2
+> $$
+> satisfies strict lower bounds
+> $$
+> \mathfrak{M}^{\Pi}_{\mathrm{in}}\ge m_{\mathrm{in}}>0,
+> \qquad
+> \mathfrak{M}^{\Pi}_{\mathrm{out}}\ge m_{\mathrm{out}}>0,
+> $$
+> while the tangential forcing obeys
+> $$
+> |\hat{\mathbf{e}}_\theta(t)\cdot \mathbf{a}_{\mathrm{net}}(t)|
+> \le \Gamma_\theta.
+> $$
+> Then the first post-crossing turn and the final outer turn both follow by comparison for the radial equation
+> $$
+> \ddot\rho(t)=\hat{\mathbf{e}}_r(t)\cdot \mathbf{a}_{\mathrm{net}}(t)+\rho(t)\dot\vartheta(t)^2.
+> $$
+
+This is the replacement for the scalar inner and outer recapture inequalities. The planar theorem must dominate the centrifugal leakage term and control tangential spin-up rather than pretending those channels do not exist.
+
+## Precise Failure Alternative for the Planar Bridge
+
+If the planar bridge fails, the failure should be recorded as a theorem-level obstruction rather than as a vague expression of difficulty. The meaningful obstruction alternatives are:
+
+1. no rotationally reduced affine section produces a nonempty convex section envelope on which the first return map is well defined;
+2. every candidate directional sorting family allows either unbounded branch multiplicity or Jacobian collapse
+   $$
+   \inf |J_{ij}|=0
+   $$
+   before one full return;
+3. every candidate tame class loses the bounded-caustic, deep-past, or branch-separation controls needed to define one common return domain;
+4. every candidate inner or outer comparison window satisfies
+   $$
+   \mathfrak{M}^{\Pi}_{\mathrm{in}}\le 0
+   \qquad
+   \text{or}
+   \qquad
+   \mathfrak{M}^{\Pi}_{\mathrm{out}}\le 0,
+   $$
+   so tangential escape cannot be beaten by the delayed restoring geometry.
+
+Any one of these constitutes a precise statement that the frozen 1D scaffold does not transport to the reflection-symmetric planar binary without an additional invariant, symmetry, or coercive mechanism. That is the obstruction that should be written down if the planar program breaks.
+
 ## Capstone Statement
 
 The 1D collinear chapter should now be used as a frozen reference theorem scaffold. The present chapter records the higher-level lesson:
