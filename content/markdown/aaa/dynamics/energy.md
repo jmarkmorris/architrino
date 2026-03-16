@@ -30,20 +30,22 @@ An architrino in motion possesses kinetic energy and momentum.
 
 **No fundamental mass:**
 
-In this model, mass is not an intrinsic property. We do **not** assume $E_k = \frac{1}{2}m v^2$ or $\mathbf{p} = m \mathbf{v}$ at the substrate level. Instead:
+In this model, there is no **particle-specific substrate mass** assigned to individual architrinos. We do **not** assume $E_k = \frac{1}{2}m v^2$ or $\mathbf{p} = m \mathbf{v}$ at the substrate level for distinct architrino species. Instead:
 
 - Kinetic energy and momentum are **primitive kinematic quantities** of architrinos.
-- "Mass" appears **only at the assembly level** as a derived property of how a large internal energy distribution responds to external forcing in the tri-binary sea.
+- The substrate law is written in **acceleration-first** form.
+- If force-like or quadratic-kinetic bookkeeping is needed, one may introduce a single universal conversion constant $\mu_{\text{arch}}$, but this is not a particle-specific inertial mass.
+- "Mass" in the usual observer sense appears **only at the assembly level** as a derived property of how a large internal energy distribution responds to external forcing in the tri-binary sea.
 
 ---
 
 ## Work–Energy Relation and Per-Hit Power
 
-Regardless of the explicit form of $K(v)$, kinetic energy must satisfy the **work–energy theorem** along actual trajectories:
+Regardless of the explicit form of $K(v)$, kinetic-energy accounting is controlled by the acceleration-first master law. If one introduces the optional universal bookkeeping constant $\mu_{\text{arch}}$ and defines $\mathbf{F}_a \equiv \mu_{\text{arch}}\mathbf{a}_a$, then the quadratic bookkeeping proxy satisfies the familiar **work–energy theorem**:
 
 $$\frac{dE_{k,a}}{dt} = \mathbf{F}_a(t)\cdot\mathbf{v}_a(t),$$
 
-where $\mathbf{F}_a$ is the net force from all causal hits, given by the Master Equation of Motion.
+where $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated with the net acceleration from all causal hits.
 
 From the canonical per-hit law
 
@@ -287,7 +289,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 - **At the architrino level:**
   
-  Kinetic energy and potential energy are defined via the Master EOM and are conserved globally. There is no fundamental mass; speeds are unbounded in principle.
+  Kinetic energy and potential energy are defined via the Master EOM and are conserved globally. The substrate law is acceleration-first; no particle-specific fundamental mass is assigned to architrinos, and speeds are unbounded in principle.
 
 - **At the assembly level:**
   
