@@ -2685,10 +2685,11 @@ consisting of histories $\phi\in C^1([-h,0])$ such that:
   \qquad
   \text{for }\theta\in[-h,0],
   $$
-- and memory closure:
-  $$
-  \tau_{\max}(\phi)\le h.
-  $$
+
+Choose the history horizon a priori so that
+$$
+h\ge \frac{2X_{\max}}{c_f}.
+$$
 
 This set is closed in the $C^1$ topology, and the bounds above are convex under affine interpolation of histories. In particular, one does not impose:
 
@@ -2697,6 +2698,20 @@ This set is closed in the $C^1$ topology, and the bounds above are convex under 
 - or a minimum excursion amplitude.
 
 Those are precisely the types of lower bounds that can puncture convexity and should therefore be postponed until after a first invariant-set theorem is available.
+
+The horizon condition is handled externally rather than as a defining nonlinear constraint. Indeed, if
+$$
+0\le \phi(\theta)\le X_{\max}
+$$
+on the stored history, then the largest possible partner or self chord on that interval is at most
+$$
+2X_{\max},
+$$
+so the causal relation implies
+$$
+\tau_{\max}(\phi)\le \frac{2X_{\max}}{c_f}\le h.
+$$
+Thus memory closure is automatic on this envelope once the horizon is chosen large enough, and convexity is not burdened by an additional nonlinear delay constraint.
 
 The corresponding global target is then:
 
