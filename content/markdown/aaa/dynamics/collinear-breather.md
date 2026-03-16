@@ -6787,6 +6787,279 @@ $$
 $$
 then integrating the acceleration comparison exactly as in Lemma 23 forces the outward velocity to hit zero in finite time, yielding a finite outer turn on or just beyond the trimmed apocenter interval.
 
+### z-map descent target
+
+The outer-turn and deep-past layers are now reduced to one remaining geometric hypothesis:
+$$
+\sup_{t\in I_{\mathrm{deep}}} z(t)
+<
+\inf_{0\le s\le t_a} z(s),
+\qquad
+z(t)=x(t)-c_f t.
+$$
+This is an exclusion statement saying that the late apocenter levels of
+$$
+z
+$$
+have descended below the entire earlier outbound range. Once this holds, the deep-past roots are forced onto the pre-crossing inbound leg by Lemma 34, and the refined outer-force margin becomes fully explicit.
+
+> **Target Theorem (Outbound-Level Exclusion by z-Descent).**
+> Assume the right exterior outbound branch starts at the first origin crossing with
+> $$
+> x(0)=0,
+> \qquad
+> \dot x(0)=V_0>c_f,
+> $$
+> and later develops an outer hinge time
+> $$
+> t_{\mathrm{hinge}}^{\mathrm{out}}
+> $$
+> defined by
+> $$
+> \dot x\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)=c_f.
+> $$
+> Assume further that on the post-hinge outbound branch there is a sub-field-speed deceleration window on which
+> $$
+> \ddot x(t)\le -a_{z}^{\mathrm{out}}<0.
+> $$
+> If the resulting descent of
+> $$
+> z(t)=x(t)-c_f t
+> $$
+> is large enough that, on a trimmed apocenter window
+> $$
+> I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b],
+> $$
+> one has
+> $$
+> \sup_{t\in I_{\mathrm{deep}}} z(t)
+> <
+> \inf_{0\le s\le t_a} z(s),
+> $$
+> then Lemma 34 applies and the deep-past same-side roots are forced onto the pre-crossing inbound leg.
+
+This theorem isolates the final missing global shape statement for the outer sorting map. The earlier sections now reduce the outer-turn problem to proving enough descent of
+$$
+z
+$$
+after the outer hinge.
+
+### z-map descent ladder
+
+The intended proof order is:
+
+1. **Outer-hinge lemma.**
+   Show that the outbound branch has a first time
+   $$
+   t_{\mathrm{hinge}}^{\mathrm{out}}
+   $$
+   with
+   $$
+   \dot x=c_f,
+   $$
+   so
+   $$
+   \dot z=0.
+   $$
+2. **Post-hinge monotonicity lemma.**
+   Prove that once
+   $$
+   \dot x<c_f,
+   $$
+   the sorting map
+   $$
+   z(t)=x(t)-c_f t
+   $$
+   is strictly decreasing.
+3. **Quadratic descent lemma.**
+   Use the post-hinge acceleration floor to obtain an explicit estimate
+   $$
+   z(t)\le z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+   -
+   \frac{a_{z}^{\mathrm{out}}}{2}
+   \big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2.
+   $$
+4. **Outbound-level exclusion corollary.**
+   Compare this late-time upper bound with the earlier outbound range
+   $$
+   [0,t_a]
+   $$
+   to verify the hypothesis of Lemma 34.
+
+The third and fourth items are the real bottlenecks. Once the descent estimate pushes the late
+$$
+z
+$$
+levels below the earlier outbound range, the deep-past topology is fully controlled.
+
+**Lemma 38: Outer hinge and z-monotonicity on the outbound branch.**
+Assume the right exterior outbound branch satisfies
+$$
+\dot x(0)=V_0>c_f,
+$$
+and later reaches a first outer turn at time
+$$
+t_{\mathrm{turn}}^{\mathrm{out}}
+$$
+with
+$$
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0.
+$$
+Then there exists a first outer hinge time
+$$
+t_{\mathrm{hinge}}^{\mathrm{out}}
+\in
+(0,t_{\mathrm{turn}}^{\mathrm{out}})
+$$
+such that
+$$
+\dot x\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)=c_f.
+$$
+Moreover, for
+$$
+z(t)=x(t)-c_f t
+$$
+one has
+$$
+\dot z(t)=\dot x(t)-c_f,
+$$
+so
+$$
+\dot z(t)>0
+$$
+for
+$$
+0\le t<t_{\mathrm{hinge}}^{\mathrm{out}},
+$$
+and
+$$
+\dot z(t)\le 0
+$$
+for
+$$
+t_{\mathrm{hinge}}^{\mathrm{out}}\le t\le t_{\mathrm{turn}}^{\mathrm{out}}.
+$$
+
+Proof.
+The velocity
+$$
+\dot x
+$$
+is continuous on the outbound branch. At the crossing,
+$$
+\dot x(0)=V_0>c_f,
+$$
+while at the outer turn,
+$$
+\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0<c_f.
+$$
+By the intermediate value theorem there exists at least one time
+$$
+t\in(0,t_{\mathrm{turn}}^{\mathrm{out}})
+$$
+for which
+$$
+\dot x(t)=c_f.
+$$
+Define
+$$
+t_{\mathrm{hinge}}^{\mathrm{out}}
+$$
+to be the first such time. Then
+$$
+\dot x(t)>c_f
+\qquad
+\text{for }0\le t<t_{\mathrm{hinge}}^{\mathrm{out}},
+$$
+and by definition
+$$
+\dot x\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)=c_f.
+$$
+Therefore
+$$
+\dot z(t)=\dot x(t)-c_f>0
+$$
+before the hinge, and
+$$
+\dot z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)=0.
+$$
+If in addition the post-hinge branch remains sub-field-speed, then
+$$
+\dot z(t)\le 0
+$$
+there. This proves the stated monotonicity.
+
+**Lemma 39: Quadratic post-hinge z-descent.**
+Assume there exists a post-hinge interval
+$$
+[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_c]
+\subseteq
+[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_{\mathrm{turn}}^{\mathrm{out}}]
+$$
+on which
+$$
+\ddot x(t)\le -a_{z}^{\mathrm{out}}<0.
+$$
+Then for every
+$$
+t\in[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_c]
+$$
+one has
+$$
+\dot z(t)\le -a_{z}^{\mathrm{out}}\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+$$
+and
+$$
+z(t)\le z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+-\frac{a_{z}^{\mathrm{out}}}{2}
+\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2.
+$$
+
+Proof.
+Since
+$$
+z(t)=x(t)-c_f t,
+$$
+one has
+$$
+\ddot z(t)=\ddot x(t).
+$$
+On the stated interval this gives
+$$
+\ddot z(t)\le -a_{z}^{\mathrm{out}}<0.
+$$
+At the outer hinge,
+$$
+\dot z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+=
+\dot x\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)-c_f
+=0.
+$$
+Integrating the acceleration bound from
+$$
+t_{\mathrm{hinge}}^{\mathrm{out}}
+$$
+to
+$$
+t
+$$
+yields
+$$
+\dot z(t)
+\le
+-a_{z}^{\mathrm{out}}
+\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big),
+$$
+which is the first claim. Integrating once more gives
+$$
+z(t)
+\le
+z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+-\frac{a_{z}^{\mathrm{out}}}{2}
+\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2,
+$$
+which proves the quadratic descent estimate.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
