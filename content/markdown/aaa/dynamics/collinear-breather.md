@@ -6284,6 +6284,95 @@ J_s(t;t_s)
 $$
 which proves the lemma.
 
+**Corollary 32: Deep-past amplitude suppression on a trimmed apocenter window.**
+Assume:
+
+- the hypotheses of Lemma 30 on the trimmed apocenter window
+  $$
+  I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b],
+  $$
+- the hypotheses of Lemma 31 with a deep-past sub-field-speed source interval
+  $$
+  I_{\mathrm{src}}^{\mathrm{deep}}\subseteq (-\infty,t_a],
+  $$
+- and a deep-past root-count bound
+  $$
+  N_{s,\mathrm{deep}}^{\mathrm{out}}(t)\le N_{s,\mathrm{deep},\max}^{\mathrm{out}}
+  $$
+  for
+  $$
+  t\in I_{\mathrm{deep}}.
+  $$
+
+Then the total outward self contribution from deep-past same-side roots satisfies
+$$
+A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+\le
+\overline A_{s,\mathrm{deep}}^{\mathrm{out}}
+\equiv
+N_{s,\mathrm{deep},\max}^{\mathrm{out}}\,
+\frac{\kappa\epsilon^2}{
+\big(c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2\big)\,(\nu_{\mathrm{deep}}/c_f)}
+$$
+for every
+$$
+t\in I_{\mathrm{deep}}.
+$$
+
+In particular, on the trimmed apocenter window the full outward self-drive is bounded by
+$$
+A_s^{\mathrm{out}}(t)
+\le
+\overline A_{s,\mathrm{deep}}^{\mathrm{out}}
++
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\,\epsilon_c^2},
+$$
+provided the only remaining local same-side contribution is the shell tail of Lemma 27.
+
+Proof.
+Fix
+$$
+t\in I_{\mathrm{deep}}
+$$
+and let
+$$
+t_s<t_a
+$$
+be any outward-driving same-side deep-past root with
+$$
+z(t_s)=z(t).
+$$
+Lemma 30 gives the macroscopic separation bound
+$$
+r_s(t;t_s)\ge c_f\tau_{\mathrm{deep}}.
+$$
+Lemma 31 gives the transversality bound
+$$
+|J_s(t;t_s)|\ge \frac{\nu_{\mathrm{deep}}}{c_f}.
+$$
+Therefore each deep-past branch contributes at most
+$$
+\frac{\kappa\epsilon^2}{
+\big(r_s(t;t_s)^2+\epsilon_c^2\big)\,|J_s(t;t_s)|}
+\le
+\frac{\kappa\epsilon^2}{
+\big(c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2\big)\,(\nu_{\mathrm{deep}}/c_f)}.
+$$
+Summing over at most
+$$
+N_{s,\mathrm{deep},\max}^{\mathrm{out}}
+$$
+deep-past roots yields
+$$
+A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+\le
+\overline A_{s,\mathrm{deep}}^{\mathrm{out}},
+$$
+which proves the first claim.
+
+If, in addition, the only local same-side outward contribution is the shell tail on the final sub-field-speed window, Lemma 27 supplies the second term, and the stated total bound follows by addition.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
