@@ -1360,6 +1360,78 @@ $$
 $$
 for which the dual-mollified partner impulse beats the bounded self-drive loss on a nonempty initial window.
 
+Using monotonicity of the arctangent integrand gives a simpler algebraic lower bound:
+$$
+\Delta V_p(\tau)
+\ge
+\frac{\kappa\epsilon^2\,\tau}{
+\epsilon_c^2+\left(\beta_p\tau+B_\tau\right)^2
+}.
+$$
+Hence a cleaner sufficient recapture condition is
+$$
+V_0<
+\tau
+\left[
+\frac{\kappa\epsilon^2}{
+\epsilon_c^2+\left(\beta_p\tau+B_\tau\right)^2
+}
+-
+\overline A_s^\rho
+\right].
+$$
+
+Equivalently,
+$$
+\kappa\epsilon^2
+>
+\left(
+\frac{V_0}{\tau}
++
+\overline A_s^\rho
+\right)
+\left[
+\epsilon_c^2+\left(\beta_p\tau+B_\tau\right)^2
+\right].
+$$
+
+This is the most useful practical form of (H5) in the current note: once the constants in Lemma 2 and Lemma 3 are fixed, recapture reduces to a checkable algebraic inequality.
+
+One can simplify further on a short window where the shell-error term is dominated by the linear partner term. If
+$$
+B_\tau\le \beta_p\tau,
+$$
+then
+$$
+\Delta V_p(\tau)
+\ge
+\frac{\kappa\epsilon^2\,\tau}{
+\epsilon_c^2+4\beta_p^2\tau^2
+},
+$$
+and therefore a sufficient short-window recapture condition is
+$$
+V_0<
+\tau
+\left[
+\frac{\kappa\epsilon^2}{
+\epsilon_c^2+4\beta_p^2\tau^2
+}
+-
+\overline A_s^\rho
+\right].
+$$
+
+Since
+$$
+B_\tau=c_f C_p(\tau^2+\eta),
+$$
+the dominance condition $B_\tau\le \beta_p\tau$ is itself a quadratic inequality in $\tau$. A nonempty admissible interval exists whenever
+$$
+\eta\le \frac{\beta_p^2}{4c_f^2 C_p^2},
+$$
+provided the corresponding roots lie inside the local validity window of Lemmas 1-3.
+
 ### Bottleneck and proof order
 
 The genuine bottleneck is **Lemma 4 together with (H5)**. The sorting-map and caustic-isolation pieces are structural consequences of the delayed geometry; the difficult question is whether the constants can be arranged so that the integrated partner impulse actually beats the crossing speed on a nonempty class of histories.
