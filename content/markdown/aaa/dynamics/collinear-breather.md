@@ -2414,6 +2414,116 @@ Thus the natural next compactness target is:
 
 This proposition is weaker than invariance, but it is the right bridge from the local recapture theorem to a later fixed-point argument.
 
+> **Proposition (Precompactness of the Return Image).**
+> Fix a dual-mollified admissible envelope
+> $$
+> \mathcal{E}_{x_\ast,\eta}
+> \subset
+> \Sigma^-_{x_\ast,\eta}
+> $$
+> such that:
+> 1. for every
+>    $$
+>    \psi\in\mathcal{E}_{x_\ast,\eta},
+>    $$
+>    the one-cycle return time $T(\psi)$ is well defined and satisfies
+>    $$
+>    T(\psi)\in[T_{\min},T_{\max}],
+>    $$
+> 2. the returned history
+>    $$
+>    \phi=P_\eta(\psi)
+>    $$
+>    satisfies the uniform bounds
+>    $$
+>    x_{\min}\le \phi(\theta)\le x_{\max},
+>    \qquad
+>    |\dot\phi(\theta)|\le u_{\max},
+>    \qquad
+>    |\ddot\phi(\theta)|\le a_{\max},
+>    \qquad
+>    \theta\in[-h,0],
+>    $$
+>    and
+>    $$
+>    \tau_{\max}(\phi)\le h.
+>    $$
+>
+> Then the image
+> $$
+> P_\eta(\mathcal{E}_{x_\ast,\eta})
+> $$
+> is precompact in $C^1([-h,0])$.
+
+Proof.
+Take any sequence
+$$
+\phi_n=P_\eta(\psi_n),
+\qquad
+\psi_n\in\mathcal{E}_{x_\ast,\eta}.
+$$
+By the returned-history bounds,
+$$
+|\phi_n(\theta)|\le \max\{|x_{\min}|,|x_{\max}|\}
+\qquad
+\text{for every }\theta\in[-h,0],
+$$
+so the family $\{\phi_n\}$ is uniformly bounded in $C^0([-h,0])$. Likewise,
+$$
+|\dot\phi_n(\theta)|\le u_{\max}
+\qquad
+\text{for every }\theta\in[-h,0],
+$$
+and therefore
+$$
+|\phi_n(\theta_1)-\phi_n(\theta_2)|
+\le
+u_{\max}|\theta_1-\theta_2|.
+$$
+Hence $\{\phi_n\}$ is equicontinuous.
+
+The acceleration bound gives
+$$
+|\ddot\phi_n(\theta)|\le a_{\max}
+\qquad
+\text{for every }\theta\in[-h,0],
+$$
+so
+$$
+|\dot\phi_n(\theta_1)-\dot\phi_n(\theta_2)|
+\le
+a_{\max}|\theta_1-\theta_2|.
+$$
+Thus $\{\dot\phi_n\}$ is both uniformly bounded and equicontinuous on $[-h,0]$.
+
+Arzela-Ascoli therefore yields a subsequence, still denoted $\phi_n$ for brevity, such that
+$$
+\phi_n\to \phi_\ast
+\qquad
+\text{and}
+\qquad
+\dot\phi_n\to v_\ast
+$$
+uniformly on $[-h,0]$. Since
+$$
+\phi_n(\theta)-\phi_n(0)=\int_0^\theta \dot\phi_n(s)\,ds,
+$$
+passing to the limit gives
+$$
+\phi_\ast(\theta)-\phi_\ast(0)=\int_0^\theta v_\ast(s)\,ds,
+$$
+so $\phi_\ast\in C^1([-h,0])$ and
+$$
+\dot\phi_\ast=v_\ast.
+$$
+Therefore the subsequence converges in the $C^1$ norm, proving that
+$$
+P_\eta(\mathcal{E}_{x_\ast,\eta})
+$$
+is precompact in $C^1([-h,0])$.
+
+This proposition deliberately stops short of invariance. It says only that once the return map is defined on a uniformly controlled envelope, its image cannot spread out arbitrarily in history space. The remaining global burden is then to combine this precompactness with a closed invariant set and continuity of $P_\eta$.
+
 ### Convexity caution
 
 The eventual fixed-point set should not be chosen too aggressively at first pass. Some natural-looking lower bounds can destroy convexity:
