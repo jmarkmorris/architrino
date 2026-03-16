@@ -3533,6 +3533,79 @@ which proves the lemma.
 
 This lemma isolates the exact last handoff in the proof architecture. The collapse phase does not itself prove local recapture; it only has to deliver the trajectory into the admissible crossing subclass where the already-established post-crossing theorem takes over.
 
+### Pre-crossing Jacobian and root-count propagation target
+
+The collapse-to-crossing ladder now has its kinematic part in place. The remaining hard issue is delayed geometry: one must prevent the active roots and their Jacobians from becoming singular or proliferating uncontrollably during the inbound acceleration toward the crossing.
+
+> **Target Theorem (Pre-crossing Jacobian and Root-Count Propagation).**
+> Fix a dual-mollified tame inbound subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+> Assume the pre-crossing leg from every
+> $$
+> \psi\in\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> $$
+> satisfies the kinematic hypotheses of Lemmas 5-8. Suppose moreover that there exist class constants
+> $$
+> \nu_{\mathrm{pre}}>0,
+> \qquad
+> N_{p,\max}\ge 1,
+> \qquad
+> N_{s,\max}\ge 0,
+> \qquad
+> \delta_{w,\min}>0
+> $$
+> such that on the entire pre-crossing leg:
+> 1. every active partner and self root remains transversal,
+>    $$
+>    |J_p|\ge \nu_{\mathrm{pre}},
+>    \qquad
+>    |J_s|\ge \nu_{\mathrm{pre}},
+>    $$
+> 2. the numbers of active partner and self roots are bounded by
+>    $$
+>    N_{p,\max},
+>    \qquad
+>    N_{s,\max},
+>    $$
+> 3. no root creation, root collision, or branch merger occurs before the crossing,
+> 4. and the translated crossing history inherits the required sorting-map gap
+>    $$
+>    \delta_w(\phi_{\mathrm{cross}};\gamma_w)\ge \delta_{w,\min}.
+>    $$
+>
+> Then the collapse phase preserves the full delayed geometry needed by Lemma 9, and the translated crossing history lies in the admissible crossing subclass
+> $$
+> \mathcal{K}^{\mathrm{cross}}_{\eta,\epsilon_c}.
+> $$
+
+This is the genuine delayed-geometry bottleneck behind the collapse phase. Lemmas 5-8 reduce the kinematic part of the infall to ordinary differential inequalities; the theorem above is what must prevent the state-dependent delay structure from degenerating while those inequalities are being used.
+
+### Pre-crossing propagation ladder
+
+The intended proof order for this delayed-geometry step is:
+
+1. **Partner-root persistence lemma.**
+   Show that the active partner branch persists continuously along the inbound leg and never disappears before the crossing.
+2. **Pre-crossing Jacobian lower-bound lemma.**
+   Prove that no active partner or self branch reaches
+   $$
+   J=0
+   $$
+   before the crossing.
+3. **Root-count bound.**
+   Show that the number of active branches on the inbound leg remains bounded by class constants
+   $$
+   N_{p,\max},\quad N_{s,\max}.
+   $$
+4. **Sorting-gap inheritance.**
+   Prove that the translated crossing history inherits the compact-subinterval sorting gap needed by the local post-crossing theorem.
+
+The first three items are geometric regularity statements for the delayed root structure. The fourth is the exact handoff needed to pass from the inbound collapse theorem to the local origin-crossing recapture theorem.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
