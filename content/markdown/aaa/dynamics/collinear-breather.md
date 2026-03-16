@@ -952,17 +952,21 @@ The corrected 1D theorem target is a **local origin-crossing recapture theorem**
 > $$
 > \ddot\rho(t)\le -A_p^{\rho}(t)+A_s^{\rho}(t).
 > $$
-> On the delayed subwindow
+> If, in addition,
 > $$
-> [\tau_{\mathrm{sep}},\tau_{\mathrm{env}}],
+> \tau_{\mathrm{env}}\ge \tau_{\mathrm{sep}},
 > \qquad
 > \sigma\equiv \frac{V_0-c_f}{2},
 > \qquad
 > \tau_{\mathrm{sep}}\equiv \frac{2\eta}{\sigma},
 > $$
+> then on the delayed subwindow
+> $$
+> [\tau_{\mathrm{sep}},\tau_{\mathrm{env}}],
+> $$
 > every active self root satisfies
 > $$
-> t_s\le t_{\mathrm{zero}}-\gamma(\eta),
+> t_s\le t_{\mathrm{zero}}-\frac{\eta}{\nu},
 > $$
 > so the caustic is separated from the active self branches there.
 > If the resulting impulse margin obeys
@@ -1048,7 +1052,11 @@ $$
 $$
 
 **(H5) Goldilocks crossing-speed / core-mollifier regime.**
-There exists a time window $[0,\tau_{\mathrm{env}}]$ such that
+There exists a time window
+$$
+[0,\tau_{\mathrm{env}}]\subseteq [0,\tau_{\mathrm{tube}}],
+$$
+such that
 $$
 V_0<
 \int_0^{\tau_{\mathrm{env}}}
