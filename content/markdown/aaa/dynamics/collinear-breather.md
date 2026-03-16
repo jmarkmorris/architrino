@@ -1018,6 +1018,11 @@ V_0<
 \overline A_s^{\rho}(\phi,\nu)
 \Big)\,ds.
 $$
+In the current note this remains the abstract bottleneck hypothesis. A concrete sufficient realization is provided later by the proposition `Explicit short-window recapture regime`, which chooses
+$$
+\tau_{\mathrm{env}}=\tau_\epsilon\equiv \frac{\epsilon_c}{2\beta_p}
+$$
+and replaces the integral inequality by explicit algebraic bounds on $(\eta,\epsilon_c,V_0,\kappa\epsilon^2)$.
 
 ### Lemma ladder
 
@@ -1432,66 +1437,68 @@ $$
 $$
 provided the corresponding roots lie inside the local validity window of Lemmas 1-3.
 
-This can be packaged into a concrete short-window corollary by choosing
-$$
-\tau_\epsilon\equiv \frac{\epsilon_c}{2\beta_p}.
-$$
-Assume
-$$
-\tau_\epsilon\le \min\{\tau_1,\tau_\rho\},
-\qquad
-\eta\le \frac{\epsilon_c}{4c_f C_p},
-\qquad
-\epsilon_c\le \frac{\beta_p^2}{c_f C_p}.
-$$
-Then
-$$
-B_{\tau_\epsilon}
-=
-c_f C_p\left(\tau_\epsilon^2+\eta\right)
-\le
-\frac{\epsilon_c}{2}
-=
-\beta_p\tau_\epsilon,
-$$
-so the short-window partner estimate applies. Since
-$$
-\epsilon_c^2+4\beta_p^2\tau_\epsilon^2
-=
-2\epsilon_c^2,
-$$
-one obtains
-$$
-\Delta V_p(\tau_\epsilon)
-\ge
-\frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}.
-$$
-Therefore a fully explicit sufficient recapture condition is
-$$
-V_0<
-\frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}
--
-\frac{\overline A_s^\rho\,\epsilon_c}{2\beta_p},
-$$
-or equivalently
-$$
-\kappa\epsilon^2
->
-4\beta_pV_0\,\epsilon_c
-+
-2\overline A_s^\rho\,\epsilon_c^2.
-$$
+> **Proposition (Explicit short-window recapture regime).**
+> Choose
+> $$
+> \tau_\epsilon\equiv \frac{\epsilon_c}{2\beta_p}.
+> $$
+> Assume
+> $$
+> \tau_\epsilon\le \min\{\tau_1,\tau_\rho\},
+> \qquad
+> \eta\le \frac{\epsilon_c}{4c_f C_p},
+> \qquad
+> \epsilon_c\le \frac{\beta_p^2}{c_f C_p}.
+> $$
+> Then
+> $$
+> B_{\tau_\epsilon}
+> =
+> c_f C_p\left(\tau_\epsilon^2+\eta\right)
+> \le
+> \frac{\epsilon_c}{2}
+> =
+> \beta_p\tau_\epsilon,
+> $$
+> so the short-window partner estimate applies. Since
+> $$
+> \epsilon_c^2+4\beta_p^2\tau_\epsilon^2
+> =
+> 2\epsilon_c^2,
+> $$
+> one obtains
+> $$
+> \Delta V_p(\tau_\epsilon)
+> \ge
+> \frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}.
+> $$
+> Therefore a fully explicit sufficient recapture condition is
+> $$
+> V_0<
+> \frac{\kappa\epsilon^2}{4\beta_p\epsilon_c}
+> -
+> \frac{\overline A_s^\rho\,\epsilon_c}{2\beta_p},
+> $$
+> or equivalently
+> $$
+> \kappa\epsilon^2
+> >
+> 4\beta_pV_0\,\epsilon_c
+> +
+> 2\overline A_s^\rho\,\epsilon_c^2.
+> $$
+> Using the geometric self-drive bound from Lemma 2 gives the sharper explicit regime
+> $$
+> \kappa\epsilon^2
+> >
+> 4\beta_pV_0\,\epsilon_c
+> +
+> 2\overline A_{s,\mathrm{geom}}^\rho\,\epsilon_c^2.
+> $$
 
-Using the geometric self-drive bound from Lemma 2 gives the sharper explicit regime
-$$
-\kappa\epsilon^2
->
-4\beta_pV_0\,\epsilon_c
-+
-2\overline A_{s,\mathrm{geom}}^\rho\,\epsilon_c^2.
-$$
+This proposition is the first genuinely explicit realization of (H5) in the note. It converts the abstract impulse inequality into a concrete dual-mollified parameter regime.
 
-This makes the nonempty-parameter question much more concrete. In the joint short-window regime
+In the joint short-window regime
 $$
 \eta=\mathcal{O}(\epsilon_c),
 \qquad
