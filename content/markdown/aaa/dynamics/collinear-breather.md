@@ -2928,6 +2928,106 @@ The full-cycle theorem above naturally decomposes into the following proof steps
 
 Only after these five items are in hand does the convex-envelope target become a theorem rather than a program.
 
+### Collapse-to-crossing target
+
+The next concrete theorem should attack Step 1 of the cycle ladder directly. Its role is to connect tame inbound section data to the already-audited local post-crossing recapture theorem.
+
+> **Target Theorem (Collapse-to-Crossing Control).**
+> Fix a dual-mollified tame inbound subclass
+> $$
+> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \subseteq
+> \mathcal{C}_{x_\ast,\eta}.
+> $$
+> Assume there exist class constants
+> $$
+> 0<V_{\min}\le V_{\max},
+> \qquad
+> A_{\max}>0,
+> \qquad
+> \nu>0,
+> \qquad
+> \tau_{\mathrm{cross},\max}>0
+> $$
+> such that every trajectory launched from
+> $$
+> \psi\in\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> $$
+> satisfies, on its inbound pre-crossing leg:
+> 1. **finite-time crossing:**
+>    there exists a first time
+>    $$
+>    t_{\mathrm{cross}}(\psi)\in(0,\tau_{\mathrm{cross},\max}]
+>    $$
+>    with
+>    $$
+>    x(t_{\mathrm{cross}}(\psi);\psi)=0;
+>    $$
+> 2. **crossing-speed window:**
+>    the signed crossing speed obeys
+>    $$
+>    -V_{\max}\le \dot x(t_{\mathrm{cross}}(\psi);\psi)\le -V_{\min}<-c_f;
+>    $$
+> 3. **tube preservation before crossing:**
+>    $$
+>    0\le x(t;\psi)\le X_{\max},
+>    \qquad
+>    |\dot x(t;\psi)|\le U_{\max},
+>    \qquad
+>    |\ddot x(t;\psi)|\le A_{\max}
+>    $$
+>    for
+>    $$
+>    0\le t\le t_{\mathrm{cross}}(\psi);
+>    $$
+> 4. **pre-crossing transversality:**
+>    all active roots on the pre-crossing leg satisfy the same Jacobian lower bound
+>    $$
+>    |J_p|\ge \nu,
+>    \qquad
+>    |J_s|\ge \nu.
+>    $$
+>
+> Then the translated crossing history belongs to a uniform admissible crossing subclass of the type used by the local origin-crossing recapture theorem. In particular, the post-crossing local recapture theorem applies immediately after the crossing.
+
+This theorem is the missing hinge between the inbound section map and the local post-crossing analysis. It says: if tame inbound histories reach the origin in finite time with a controlled super-field-speed crossing and without losing the tube bounds, then the entire local recapture machine developed earlier becomes available automatically.
+
+### Collapse-to-crossing lemma ladder
+
+The intended proof order for the collapse phase is:
+
+1. **Inbound partner-dominance lemma.**
+   Produce a class-uniform lower bound on inward partner acceleration on the pre-crossing leg.
+2. **Finite-time crossing lemma.**
+   Use the inward acceleration and inbound section sign to show that
+   $$
+   x(t)
+   $$
+   reaches zero in bounded time.
+3. **Crossing-speed bounds.**
+   Estimate the speed gain accumulated before the crossing and show the resulting crossing speed lies inside
+   $$
+   [V_{\min},V_{\max}].
+   $$
+4. **Pre-crossing tube preservation.**
+   Verify that position, speed, and acceleration remain inside the tame envelope up to
+   $$
+   t_{\mathrm{cross}}.
+   $$
+5. **Crossing-history admissibility.**
+   Show that the translated history at
+   $$
+   t_{\mathrm{cross}}
+   $$
+   satisfies the sorting-map, Jacobian, and branch-count hypotheses needed by the local origin-crossing theorem.
+
+Among these, the most delicate step is not finite-time arrival itself, but the quantitative crossing-speed window. The local post-crossing theorem needs the crossing to land in the Goldilocks regime:
+
+- fast enough that the sorting map stays on the descending side and the caustic remains behind the trajectory,
+- but not so fast that the integrated post-crossing partner impulse can no longer erase the outward radial speed.
+
+So the collapse-to-crossing theorem is not merely a reachability statement. It is a controlled entry theorem into the local recapture regime.
+
 ### Equal-amplitude cycling
 
 The current delayed geometry does not naturally point to a continuous family of equal-amplitude cycles. In a purely causal delayed system, the more plausible generic picture is:
