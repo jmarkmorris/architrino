@@ -2250,6 +2250,177 @@ for the planar shape quotient after rigid Euclidean symmetries are removed. The 
    $$
    The returned histories must land back in the same gauge-fixed quotient section, preserve the branch-graph and recapture constants, and define a continuous precompact self-map on that same domain.
 
+#### Section-and-gauge target for the first unreduced planar binary
+
+The first step in that ladder should be made fully explicit. For a labeled planar binary write
+$$
+\mathbf{Y}(t)
+\equiv
+(\mathbf{x}_1(t),\mathbf{x}_2(t))
+\in
+(\mathbb{R}^2)^2,
+$$
+and decompose the instantaneous configuration into midpoint and chord variables
+$$
+\mathbf{m}(t)
+\equiv
+\frac{\mathbf{x}_1(t)+\mathbf{x}_2(t)}{2},
+\qquad
+\mathbf{q}(t)
+\equiv
+\mathbf{x}_2(t)-\mathbf{x}_1(t).
+$$
+This is the reason the unreduced planar binary is the correct next regime. The quotient by translations is still explicit through
+$$
+\mathbf{m},
+$$
+and the quotient by rotations is still explicit through the present chord
+$$
+\mathbf{q}(0),
+$$
+even though the dynamics no longer collapse to one reflection-symmetric relative trajectory.
+
+Fix a return radius
+$$
+\rho_\ast>0.
+$$
+The raw inbound section should be posed on full binary histories by
+$$
+\Sigma^{-,\sharp}_{\rho_\ast}
+\equiv
+\left\{
+\Phi=(\Phi_1,\Phi_2)\in C^1([-h,0];(\mathbb{R}^2)^2)
+\;\middle|\;
+\|\mathbf{q}_{\Phi}(0)\|=\rho_\ast,
+\quad
+\mathbf{q}_{\Phi}(0)\cdot \dot{\mathbf{q}}_{\Phi}(0)<0
+\right\},
+$$
+where
+$$
+\mathbf{q}_{\Phi}(\theta)\equiv \Phi_2(\theta)-\Phi_1(\theta).
+$$
+This is the physical inbound crossing condition before any quotient representative is chosen.
+
+For
+$$
+\Phi\in \Sigma^{-,\sharp}_{\rho_\ast},
+$$
+let
+$$
+\mathbf{a}_{\Phi}\equiv \mathbf{m}_{\Phi}(0),
+\qquad
+\mathbf{m}_{\Phi}(\theta)\equiv \frac{\Phi_1(\theta)+\Phi_2(\theta)}{2},
+$$
+and let
+$$
+\mathcal{R}_{\Phi}\in SO(2)
+$$
+be the unique rotation such that
+$$
+\mathcal{R}_{\Phi}\mathbf{q}_{\Phi}(0)=\rho_\ast \mathbf{e}_1.
+$$
+Define the gauge selector by
+$$
+\mathfrak{G}_{\rho_\ast}(\Phi)(\theta)
+\equiv
+\left(
+\mathcal{R}_{\Phi}\big(\Phi_1(\theta)-\mathbf{a}_{\Phi}\big),
+\mathcal{R}_{\Phi}\big(\Phi_2(\theta)-\mathbf{a}_{\Phi}\big)
+\right),
+\qquad
+\theta\in[-h,0].
+$$
+The corresponding gauge-fixed section is
+$$
+\widehat{\Sigma}^{-,\sharp}_{\rho_\ast}
+\equiv
+\left\{
+\Psi\in C^1([-h,0];(\mathbb{R}^2)^2)
+\;\middle|\;
+\mathbf{m}_{\Psi}(0)=0,
+\quad
+\mathbf{q}_{\Psi}(0)=\rho_\ast \mathbf{e}_1,
+\quad
+\mathbf{e}_1\cdot \dot{\mathbf{q}}_{\Psi}(0)<0
+\right\}.
+$$
+
+> **Target Proposition (Gauge-fixed inbound section for the first unreduced planar bridge).**
+> There exists a nonempty class
+> $$
+> \mathcal{H}^{\sharp,\mathrm{sec}}_{\rho_\ast,\eta}
+> \subseteq
+> \Sigma^{-,\sharp}_{\rho_\ast}
+> $$
+> such that:
+> 1. every
+>    $$
+>    SE(2)
+>    $$
+>    orbit in
+>    $$
+>    \mathcal{H}^{\sharp,\mathrm{sec}}_{\rho_\ast,\eta}
+>    $$
+>    meets the gauge-fixed section
+>    $$
+>    \widehat{\Sigma}^{-,\sharp}_{\rho_\ast}
+>    $$
+>    in exactly one history;
+> 2. the selector
+>    $$
+>    \mathfrak{G}_{\rho_\ast}:
+>    \mathcal{H}^{\sharp,\mathrm{sec}}_{\rho_\ast,\eta}
+>    \to
+>    \widehat{\Sigma}^{-,\sharp}_{\rho_\ast}
+>    $$
+>    is continuous in the
+>    $$
+>    C^1
+>    $$
+>    topology;
+> 3. every
+>    $$
+>    \Psi\in \widehat{\Sigma}^{-,\sharp}_{\rho_\ast}
+>    \cap
+>    \mathfrak{G}_{\rho_\ast}\!\big(
+>    \mathcal{H}^{\sharp,\mathrm{sec}}_{\rho_\ast,\eta}
+>    \big)
+>    $$
+>    admits a first later return time
+>    $$
+>    T^{\sharp}(\Psi)>0
+>    $$
+>    to the raw section
+>    $$
+>    \Sigma^{-,\sharp}_{\rho_\ast}
+>    $$
+>    with uniform transversality
+>    $$
+>    \big|
+>    \mathbf{q}(T^{\sharp}(\Psi))
+>    \cdot
+>    \dot{\mathbf{q}}(T^{\sharp}(\Psi))
+>    \big|
+>    \ge
+>    \lambda^{\sharp}_{\mathrm{sec}}
+>    >0;
+>    $$
+> 4. the gauge-reset return map
+>    $$
+>    P^{\sharp}_{\eta}(\Psi)
+>    \equiv
+>    \mathfrak{G}_{\rho_\ast}\!\big(
+>    \mathbf{Y}_{T^{\sharp}(\Psi)}
+>    \big)
+>    $$
+>    is therefore well defined and lands again in
+>    $$
+>    \widehat{\Sigma}^{-,\sharp}_{\rho_\ast}.
+>    $$
+
+This is the first unreduced-planar replacement for the reduced planar section anchoring. Its purpose is to make the quotient representative, the return section, and the gauge reset part of the theorem burden before any branch-graph or recapture package is attempted.
+
 If that theorem ladder cannot be stated cleanly, then the obstruction should be recorded at that level: either the quotient section is not well posed, the branch graph is not uniformly finite, provenance control fails, the multi-channel recapture estimate loses coercivity, or no convex tame self-map domain survives the gauge reset.
 
 ## Capstone Statement
