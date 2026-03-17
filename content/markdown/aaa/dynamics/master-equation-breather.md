@@ -3654,6 +3654,58 @@ g_{ij}(t;s_\ast)=0,
 \qquad
 \partial_s g_{ij}(t;s_\ast)=0.
 $$
+Write
+$$
+\mathbf{r}_{ij}(t;s)\equiv \mathbf{x}_i(t)-\mathbf{x}_j(s),
+\qquad
+r_{ij}(t;s)\equiv \|\mathbf{r}_{ij}(t;s)\|,
+\qquad
+\hat{\mathbf{r}}_{ij}(t;s)\equiv \frac{\mathbf{r}_{ij}(t;s)}{r_{ij}(t;s)}.
+$$
+Then
+$$
+\partial_s g_{ij}(t;s)
+=
+c_f-\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s),
+$$
+$$
+\partial_s^2 g_{ij}(t;s)
+=
+-\ddot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)
++\frac{
+\|\dot{\mathbf{x}}_j(s)\|^2-
+\big(\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)\big)^2
+}{
+r_{ij}(t;s)
+},
+$$
+and
+$$
+\partial_s^3 g_{ij}(t;s)
+$$
+is a finite linear combination of terms built from
+$$
+\dddot{\mathbf{x}}_j(s),
+\qquad
+\dot{\mathbf{x}}_j(s),
+\qquad
+\ddot{\mathbf{x}}_j(s),
+\qquad
+r_{ij}(t;s)^{-1},
+\qquad
+r_{ij}(t;s)^{-2},
+$$
+so it is controlled by the same
+$$
+U_{\max},
+\quad
+A_{\max},
+\quad
+L_A,
+\quad
+d_{\min}
+$$
+envelope.
 The first analytic bridge theorem should impose one quantitative nondegeneracy regime:
 
 - a uniform acceleration bound
@@ -3700,6 +3752,88 @@ $$
 \partial_s g_{ij}=0
 $$
 is known to be a genuinely curved zero with bounded third derivative, the root geometry cannot oscillate arbitrarily fast nearby.
+
+> **Lemma (Uniform isolation of admissible folds).**
+> Fix one receiver-source family
+> $$
+> (i,j)
+> $$
+> and one admissible fold
+> $$
+> (t,s_\ast)
+> $$
+> with
+> $$
+> \partial_s g_{ij}(t;s_\ast)=0,
+> \qquad
+> |\partial_s^2 g_{ij}(t;s_\ast)|\ge \gamma_{\mathrm{fold}}>0.
+> $$
+> If
+> $$
+> |\partial_s^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g}
+> $$
+> on the corresponding fold tube, then
+> $$
+> \partial_s g_{ij}(t;s)\neq 0
+> $$
+> for every
+> $$
+> 0<|s-s_\ast|<\delta_{\mathrm{fold}},
+> \qquad
+> \delta_{\mathrm{fold}}
+> \equiv
+> \frac{\gamma_{\mathrm{fold}}}{C^{\mathrm{mb}}_{3,g}}.
+> $$
+> In particular, two distinct folds for the same receiver-source family cannot have source-time separation smaller than
+> $$
+> \delta_{\mathrm{fold}}.
+> $$
+>
+> **Proof sketch.**
+> Taylor-expand
+> $$
+> \partial_s g_{ij}(t;s)
+> $$
+> about
+> $$
+> s=s_\ast.
+> $$
+> Since
+> $$
+> \partial_s g_{ij}(t;s_\ast)=0,
+> $$
+> one has
+> $$
+> \partial_s g_{ij}(t;s)
+> =
+> \partial_s^2 g_{ij}(t;s_\ast)(s-s_\ast)
+> +
+> \frac{1}{2}\partial_s^3 g_{ij}(t;\xi_s)(s-s_\ast)^2
+> $$
+> for some
+> $$
+> \xi_s
+> $$
+> between
+> $$
+> s
+> $$
+> and
+> $$
+> s_\ast.
+> $$
+> Therefore
+> $$
+> |\partial_s g_{ij}(t;s)|
+> \ge
+> |s-s_\ast|
+> \left(
+> \gamma_{\mathrm{fold}}
+> -
+> \frac{1}{2}C^{\mathrm{mb}}_{3,g}|s-s_\ast|
+> \right),
+> $$
+> and the bracket stays strictly positive throughout the stated interval.
 
 > **Target Proposition (Quantitative no-accumulation of many-body delay events).**
 > Assume the unreduced local well-posedness package and suppose, in addition, that on the controlled cycle:
@@ -3767,6 +3901,46 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 >    N^{\mathrm{mb}}_{\mathrm{fam}}
 >    $$
 >    is the finite number of receiver-source-sector families allowed by the gauge chart and directional atlas.
+
+One admissible quantitative choice is
+$$
+\Delta\tau_{\mathrm{evt}}
+\equiv
+\min\left\{
+\frac{\gamma_{\mathrm{fold}}}{C^{\mathrm{mb}}_{3,g}},
+\frac{\nu_J^{\mathrm{mb}}}{C^{\mathrm{mb}}_{2,g}},
+\Delta\tau_{\mathrm{sec}},
+\Delta\tau_{\mathrm{exc}}
+\right\},
+$$
+where
+$$
+\Delta\tau_{\mathrm{sec}},
+\qquad
+\Delta\tau_{\mathrm{exc}}
+$$
+are the corresponding sector-boundary and admissible exchange isolation scales produced by the same derivative hierarchy. The second term is the uniform simple-branch persistence scale away from fold tubes: if
+$$
+|\partial_s g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}},
+$$
+then
+$$
+|\partial_s g_{ij}(t;s)|\ge \frac{1}{2}\nu_J^{\mathrm{mb}}
+$$
+whenever
+$$
+|s-s_0|<\frac{\nu_J^{\mathrm{mb}}}{C^{\mathrm{mb}}_{2,g}}.
+$$
+
+> **Corollary (Finite event count on one controlled cycle).**
+> Under the hypotheses of the quantitative no-accumulation proposition,
+> $$
+> N^{\mathrm{mb}}_{\mathrm{edge}}
+> \le
+> \left\lceil \frac{T_{\mathrm{cyc}}}{\Delta\tau_{\mathrm{evt}}}\right\rceil
+> N^{\mathrm{mb}}_{\mathrm{fam}},
+> $$
+> so every admissible fold, relabeling, or exchange family is finite on one controlled cycle.
 
 The intended proof route is short enough to be stated now.
 
