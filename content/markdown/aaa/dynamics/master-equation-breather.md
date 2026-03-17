@@ -1967,6 +1967,53 @@ The dependency chain should be recorded explicitly:
 > $$
 > The only remaining burden is to prove those margins from the earlier sector, cone, caustic, and deep-past packages.
 
+## Synthesis of the Reduced Planar Bridge
+
+At this point the live bridge note is not yet treating the completely general planar master equation. It is treating a symmetry-reduced planar binary with:
+
+- reflection symmetry,
+- center-of-mass reduction,
+- a rotationally fixed section representative,
+- and one relative planar degree of freedom.
+
+That distinction should remain explicit. The present bridge is the first higher-dimensional transport problem beyond the line, but it is still a reduced regime. The note has not yet advanced to arbitrary 2D delayed trajectories, arbitrary planar many-body branch topology, or the full master equation without symmetry reduction.
+
+Within this reduced planar regime, the theorem ladder now has a definite shape:
+
+1. a nonempty section-side seed packet
+   $$
+   \mathcal{C}^{\Pi,\mathrm{seed}}_{\rho_\ast,\eta}
+   $$
+   provides explicit nonvacuity;
+2. directional sorting organizes active delayed roots into finitely many sector-labeled branch families;
+3. deep-past sector relocation or exclusion removes the late-apocenter analogue of uncontrolled remote self roots;
+4. sectorwise cone transversality supplies cycle-wide Jacobian floors together with the stronger deep-past bound
+   $$
+   \nu_{J,\mathrm{dp}}>1;
+   $$
+5. bounded planar caustic transit integrates the compulsory inbound self-branch birth through one controlled fold tube;
+6. unified vector recapture criteria replace the 1D inner and outer turn inequalities by the planar margins
+   $$
+   \mathfrak{M}^{\Pi}_{\mathrm{in}}>0,
+   \qquad
+   \mathfrak{M}^{\Pi}_{\mathrm{out}}>0.
+   $$
+
+This synthesis also isolates the exact difference from the frozen 1D scaffold. The collinear note relies on total order and scalar comparison. The reduced planar bridge replaces those by sector atlases, velocity cones, fold tubes, and a radial comparison law that must pay the centrifugal leakage term
+$$
+\rho\dot\vartheta^2.
+$$
+So the present note is not “the general 2D case.” It is the first reduced 2D bridge in which tangential escape is already real, but still symmetry-controlled.
+
+What remains missing before the Schauder route can be stated as a serious closure theorem is now sharply delimited:
+
+- one closed convex tame self-map domain
+  $$
+  \mathcal{K}^{\Pi}_{\rho_\ast,\eta};
+  $$
+- continuity and precompactness of the reduced planar return map on that same domain;
+- and one coupled parameter regime in which all sorting, relocation, transversality, caustic, and recapture constants are simultaneously realizable.
+
 ## Precise Failure Alternative for the Planar Bridge
 
 If the planar bridge fails, the failure should be recorded as a theorem-level obstruction rather than as a vague expression of difficulty. The meaningful obstruction alternatives are:
