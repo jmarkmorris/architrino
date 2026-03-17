@@ -564,30 +564,20 @@ This is the first concrete higher-dimensional target for a legitimate Schauder r
 
 ## Planar Replacement Obligations
 
-The planar bridge note should now advance by replacing each genuinely collinear move with a named higher-dimensional theorem target.
+The reduced planar bridge now breaks into six concrete packages:
 
-> **Target Proposition (Directional support sorting).**
-> There exists a finite family of unit directions
-> $$
-> \mathcal{U}=\{\hat{\mathbf{u}}_1,\dots,\hat{\mathbf{u}}_M\}\subset S^1
-> $$
-> and controlled cycle windows on which the support functions
-> $$
-> \zeta^{\pm}_{\hat{\mathbf{u}}}(t)
-> \equiv
-> \hat{\mathbf{u}}\cdot \mathbf{r}(t)\pm c_f t
-> $$
-> are strictly monotone for every admissible planar trajectory. Consequently every active delayed root belongs to a fixed directional sector, root birth is confined to a controlled caustic tube, and branch proliferation is reduced to finitely many labeled sector families.
+- sectorized directional sorting, replacing the 1D
+  $$
+  w/z
+  $$
+  order by directional support control;
+- deep-past sector relocation, replacing line-order transport of remote self roots;
+- sectorwise cone transversality, replacing scalar Jacobian sign bookkeeping;
+- an explicit planar seed packet, replacing the 1D affine-seed nonvacuity step;
+- bounded planar caustic transit, integrating the compulsory inbound self-branch birth as a controlled fold impulse;
+- and unified vector recapture criteria, replacing the scalar inner and outer turn inequalities.
 
-This is the replacement burden for the 1D sorting maps
-$$
-w
-\qquad
-\text{and}
-\qquad
-z.
-$$
-The higher-dimensional point is not to recover a single total order, but to recover enough directional order to label and propagate the active branch family.
+The package details below carry the actual theorem statements.
 
 ### First theorem package: sectorized directional sorting
 
@@ -817,28 +807,7 @@ $$
 
 This corollary is the exact branch-labeling consequence needed for the rest of the bridge program. It converts the delayed-root picture from an a priori moving continuum of planar chord directions into a finite labeled branch family that can be propagated, bounded, and inserted into the tame-envelope construction.
 
-> **Target Proposition (Deep-past sector relocation or exclusion).**
-> There exist a delay threshold
-> $$
-> \tau_{\mathrm{dp}}>0
-> $$
-> and an inbound cone family
-> $$
-> \mathfrak{C}_{\mathrm{in}}\subset \Pi
-> $$
-> such that any self-root on the late apocenter window with delay at least
-> $$
-> \tau_{\mathrm{dp}}
-> $$
-> either:
-> 1. is excluded by sector separation from the current apocenter geometry, or
-> 2. has its emission point on the pre-crossing inbound leg inside
->    $$
->    \mathfrak{C}_{\mathrm{in}},
->    $$
->    where the branch is unique and satisfies a uniform Jacobian lower bound.
-
-This is the replacement for deep-past self-root relocation. In the planar regime the right conclusion is not literal line-order transport, but a controlled sector theorem that either excludes the remote branch or pushes it into a pre-crossing inbound cone where transversality is once again uniform.
+The next burden is deep-past sector relocation: remote late-apocenter self roots must either be excluded or forced into a pre-crossing inbound cone where uniqueness and transversality return.
 
 ### Second theorem package: deep-past sector relocation
 
@@ -1046,26 +1015,7 @@ This is the correct replacement for the collinear relocation lemma. The source i
 
 This corollary is the exact output needed later for the outer-turn comparison argument. Once each deep-past sector contributes at most one transversal branch, the full delayed self-drive is reduced to a finite sector count times a single branch amplitude bound.
 
-> **Target Proposition (Cone transversality for active branches).**
-> There exist closed emitter-velocity cones adapted to the chosen section and a constant
-> $$
-> \nu_J>0
-> $$
-> such that for every active delayed branch on the controlled cycle,
-> $$
-> \mathbf{v}_j(t_0)\cdot \hat{\mathbf{r}}_{ij}(t;t_0)
-> \le c_f(1-\nu_J).
-> $$
-> Equivalently,
-> $$
-> J_{ij}(t;t_0)\ge \nu_J,
-> \qquad
-> \text{hence}
-> \qquad
-> |J_{ij}(t;t_0)|\ge \nu_J.
-> $$
-
-This is the higher-dimensional replacement for exact scalar Jacobian sign bookkeeping. The correct theorem is a vector cone-separation statement, not a sign chase.
+The next burden is cone transversality: active branch families need velocity-cone hypotheses that keep the relevant Jacobians uniformly positive throughout the controlled cycle.
 
 ### Third theorem package: sectorwise cone transversality
 
@@ -1238,39 +1188,7 @@ The proof burden is now cone separation on the pre-crossing source interval rath
 
 This is the exact Jacobian input promised in the deep-past sector suppression corollary above. Once it is available, the late-apocenter deep-past amplitude bound is fully reduced to sector count, delay separation, and the inbound cone geometry.
 
-> **Target Proposition (Section-side seed packet with chord defect).**
-> There exists an explicit seed history
-> $$
-> \Phi_{\mathrm{seed}}\in \Sigma^{-}_{\rho_\ast,\Pi}
-> $$
-> and a constant
-> $$
-> U_{\mathrm{seed}}<c_f
-> $$
-> such that
-> $$
-> \sup_{\theta\in[-h,0]}\|\dot\Phi_{\mathrm{seed}}(\theta)\|\le U_{\mathrm{seed}}
-> $$
-> and hence
-> $$
-> \|\Phi_{\mathrm{seed}}(0)-\Phi_{\mathrm{seed}}(\theta)\|
-> \le U_{\mathrm{seed}}|\theta|
-> < c_f|\theta|
-> \qquad
-> \text{for all }
-> \theta\in[-h,0).
-> $$
-> Therefore the stored interval has no exact same-source self roots, the partner roots on the section are finite and transversal, and a nonempty
-> $$
-> C^1
-> $$
-> neighborhood of
-> $$
-> \Phi_{\mathrm{seed}}
-> $$
-> remains inside a section-side tame class.
-
-This is the replacement for affine-seed self-root exclusion. The exclusion mechanism is no longer signed monotonicity on the line, but the strict chord-defect inequality created by a sub-field-speed planar seed.
+The next burden is section-side nonvacuity: the planar seed must realize strict chord defect and finite transversal partner geometry on the reduced section.
 
 ### Fourth theorem package: explicit planar seed packet
 
@@ -1510,14 +1428,7 @@ $$
 
 This is the first honest nonvacuity statement for the planar bridge. It says that the reduced section, the chord-defect self-root exclusion, and the sector-labeled partner geometry are simultaneously realizable on a nonempty open patch of the planar history space.
 
-> **Target Proposition (Bounded planar caustic transit).**
-> Whenever an active self branch is born on the inbound half-cycle, the dual-mollified contribution across the associated caustic tube produces a finite net impulse bounded by
-> $$
-> I_{\mathrm{cau}},
-> $$
-> uniformly across the tame class.
-
-This preserves one of the genuinely resolved pivots of the frozen 1D scaffold. The planar bridge should integrate the inbound caustic through as a bounded impulse, not exclude it by fiat.
+The next burden is bounded planar caustic transit: the first inbound self-branch birth must be integrated through as a controlled shell impulse rather than excluded as a pathology.
 
 ### Fifth theorem package: bounded planar caustic transit
 
@@ -1723,30 +1634,7 @@ The proof architecture should be split into three bounded tasks.
 
 This corollary is the precise output needed before any vector recapture margin can be trusted. Without it, the post-crossing comparison problem would start from a branch topology that may already have disintegrated at the first self-birth event.
 
-> **Target Theorem (Vector recapture margins).**
-> There exist controlled post-crossing and late-apocenter windows on which
-> $$
-> \mathfrak{M}^{\Pi}(t)
-> \equiv
-> -\hat{\mathbf{e}}_r(t)\cdot \mathbf{a}_{\mathrm{net}}(t)-\rho(t)\dot\vartheta(t)^2
-> $$
-> satisfies strict lower bounds
-> $$
-> \mathfrak{M}^{\Pi}_{\mathrm{in}}\ge m_{\mathrm{in}}>0,
-> \qquad
-> \mathfrak{M}^{\Pi}_{\mathrm{out}}\ge m_{\mathrm{out}}>0,
-> $$
-> while the tangential forcing obeys
-> $$
-> |\hat{\mathbf{e}}_\theta(t)\cdot \mathbf{a}_{\mathrm{net}}(t)|
-> \le \Gamma_\theta.
-> $$
-> Then the first post-crossing turn and the final outer turn both follow by comparison for the radial equation
-> $$
-> \ddot\rho(t)=\hat{\mathbf{e}}_r(t)\cdot \mathbf{a}_{\mathrm{net}}(t)+\rho(t)\dot\vartheta(t)^2.
-> $$
-
-This is the replacement for the scalar inner and outer recapture inequalities. The planar theorem must dominate the centrifugal leakage term and control tangential spin-up rather than pretending those channels do not exist.
+The next burden is vector recapture: the planar turn criteria must beat self drive and centrifugal leakage while keeping tangential forcing bounded.
 
 ### Sixth theorem package: unified vector recapture criteria
 
@@ -2246,13 +2134,35 @@ This is the honest endpoint of the current bridge note. It is still conditional,
 
 If the planar bridge fails, the failure should be recorded as a theorem-level obstruction rather than as a vague expression of difficulty. The meaningful obstruction alternatives are:
 
-1. no rotationally reduced affine section produces a nonempty convex section envelope on which the first return map is well defined;
-2. every candidate directional sorting family allows either unbounded branch multiplicity or Jacobian collapse
+1. no rotationally reduced affine section produces a nonempty convex section envelope
    $$
-   \inf |J_{ij}|=0
+   \mathcal{C}^{\Pi}_{\rho_\ast,\eta}
    $$
-   before one full return;
-3. every candidate tame class loses the bounded-caustic, deep-past, or branch-separation controls needed to define one common return domain;
+   together with a well-defined gauge-reset return map
+   $$
+   P^\Pi_\eta;
+   $$
+2. every candidate directional sorting or cone-transversality package loses a positive Jacobian floor, either on the full controlled cycle
+   $$
+   \nu_{J,\mathrm{cyc}}\le 0
+   $$
+   or on the relocated deep-past branches
+   $$
+   \nu_{J,\mathrm{dp}}\le 1,
+   $$
+   so branch persistence cannot be maintained;
+3. every candidate tame class loses one of the delayed-geometry controls needed for one common return domain: bounded branch count
+   $$
+   N_{\mathrm{br}},
+   $$
+   branch separation
+   $$
+   \delta_{\mathrm{sep}},
+   $$
+   or bounded caustic impulse
+   $$
+   I_{\mathrm{cau}}<\infty;
+   $$
 4. every candidate inner or outer comparison window satisfies
    $$
    \mathfrak{M}^{\Pi}_{\mathrm{in}}\le 0
@@ -2261,7 +2171,14 @@ If the planar bridge fails, the failure should be recorded as a theorem-level ob
    \qquad
    \mathfrak{M}^{\Pi}_{\mathrm{out}}\le 0,
    $$
-   so tangential escape cannot be beaten by the delayed restoring geometry.
+   so partner attraction cannot beat self-drive plus centrifugal leakage on the reduced planar windows;
+5. the rotated full-cycle return fails to preserve the same section anchoring, envelope bounds, or tame constants, so that
+   $$
+   P^\Pi_\eta\!\big(\mathcal{K}^{\Pi}_{\rho_\ast,\eta}\big)
+   \nsubseteq
+   \mathcal{K}^{\Pi}_{\rho_\ast,\eta};
+   $$
+6. or the reduced return map fails to be continuous or precompact on the same closed convex domain, so the Schauder capstone has no legitimate domain of application.
 
 Any one of these constitutes a precise statement that the frozen 1D scaffold does not transport to the reflection-symmetric planar binary without an additional invariant, symmetry, or coercive mechanism. That is the obstruction that should be written down if the planar program breaks.
 
