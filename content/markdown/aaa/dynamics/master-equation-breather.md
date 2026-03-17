@@ -2182,6 +2182,34 @@ If the planar bridge fails, the failure should be recorded as a theorem-level ob
 
 Any one of these constitutes a precise statement that the frozen 1D scaffold does not transport to the reflection-symmetric planar binary without an additional invariant, symmetry, or coercive mechanism. That is the obstruction that should be written down if the planar program breaks.
 
+## Beyond the Reduced Planar Bridge
+
+The next genuinely new 2D regime would not yet be the full many-body master equation. It would already arise if one dropped the reflection-symmetric binary reduction while staying in a single plane. Even that smaller step introduces new burdens that are absent from the present bridge.
+
+First, the section and gauge problem becomes genuinely multicomponent. The present note fixes one relative planar degree of freedom and resets the return by a single rotation back to
+$$
+\rho_\ast \mathbf{e}_1.
+$$
+In a less constrained planar regime, the return section would have to be posed on a higher-dimensional shape space modulo rigid Euclidean symmetries, and the gauge reset would no longer be a one-angle correction.
+
+Second, the delayed-root topology ceases to be a single sector-labeled branch family over one relative chord geometry. One should expect a finite branch graph rather than one labeled list: several inequivalent source-receiver chord types, several sector atlases, and potentially competing branch births on the same window.
+
+Third, the deep-past relocation mechanism would need a new replacement. In the reduced planar bridge, remote late-apocenter self roots are pushed back into one pre-crossing inbound cone family. Without that reduction, there may be no single inbound cone or even one distinguished pre-crossing leg. A more general 2D regime would therefore need either a global provenance graph for delayed branches or a new topological exclusion theorem.
+
+Fourth, the escape geometry is no longer exhausted by the scalar leakage term
+$$
+\rho\dot\vartheta^2.
+$$
+That term is the correct planar correction for one relative polar degree of freedom. A less constrained 2D regime would require a genuinely multi-channel escape estimate, with several tangential or shear-like directions that can steal coercivity from the radial comparison argument.
+
+Fifth, the tame-envelope problem itself becomes harder. The reduced planar note asks for one closed convex tame domain in a fixed
+$$
+C^1([-h,0];\Pi)
+$$
+chart. Beyond that regime, even the correct Banach chart and the right convex section envelope may become part of the theorem burden rather than fixed background data.
+
+For that reason, the present chapter should be read as the first 2D bridge, not as the general planar theorem program. Only after these additional burdens are isolated and given their own theorem targets would it be honest to say that the work has moved beyond the reduced planar bridge.
+
 ## Capstone Statement
 
 The 1D collinear chapter should now be used as a frozen reference theorem scaffold. The present chapter records the higher-level lesson:
