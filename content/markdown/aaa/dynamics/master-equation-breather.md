@@ -2224,14 +2224,18 @@ for the planar shape quotient after rigid Euclidean symmetries are removed. The 
 
 1. A section-and-gauge package on
    $$
-   C^1([-h,0];\mathcal{Q}^{\sharp}_{\mathrm{pl}})
+   C^1([-h,0];(\mathbb{R}^2)^2)
+   $$
+   represented in the quotient chart
+   $$
+   \mathcal{Q}^{\sharp}_{\mathrm{pl}},
    $$
    with one codimension-one return condition and one explicit gauge selector that chooses a canonical representative of each returned history. In the reduced planar bridge the gauge reset is one rotation angle. Here the theorem target must identify the correct quotient chart and prove that the returned history depends continuously on that gauge choice.
 2. A finite branch-graph package for the active delayed roots. Instead of one sector-labeled family of self and partner branches, one should expect a finite graph
    $$
-   \mathscr{G}_{\mathrm{br}}(t)
+   \mathscr{G}^{\sharp}_{\mathrm{br}}
    $$
-   whose vertices encode source-receiver chord types and whose edges encode admissible fold births, mergers, or handoffs between windows. The replacement theorem must bound that graph uniformly and exclude uncontrolled simultaneous fold accumulation.
+   whose vertices encode source-receiver chord types and whose edges encode admissible fold births, fold deaths, or branch handoffs between windows. The replacement theorem must bound that graph uniformly and exclude uncontrolled simultaneous fold accumulation.
 3. A provenance or exclusion package for deep-past roots. The reduced planar argument pushes late self roots into one pre-crossing inbound cone family. The unreduced planar target should instead prove that every remote active root either relocates into a finite provenance class on the earlier branch graph or is excluded by a topological obstruction principle. Without such a theorem there is no honest replacement for deep-past relocation.
 4. A multi-channel recapture package. The reduced planar comparison law pays one scalar leakage term
    $$
@@ -2240,15 +2244,15 @@ for the planar shape quotient after rigid Euclidean symmetries are removed. The 
    In the unreduced planar regime the replacement must control several escape channels at once: rotational, tangential, and shear-like components in the quotient dynamics. The correct theorem target is therefore not one scalar inequality, but a coercive inward comparison that dominates every nonradial leakage channel on the chosen inner and outer windows.
 5. A new closure package on one quotient-space convex envelope
    $$
-   \mathcal{C}^{\sharp}_{\eta}
+   \mathcal{C}^{\sharp}_{\rho_\ast,\eta}
    $$
    and one closed convex tame envelope
    $$
-   \mathcal{K}^{\sharp}_{\eta}
+   \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
    \subseteq
-   \mathcal{C}^{\sharp}_{\eta}.
+   \mathcal{C}^{\sharp}_{\rho_\ast,\eta}.
    $$
-   The returned histories must land back in the same gauge-fixed quotient section, preserve the branch-graph and recapture constants, and define a continuous precompact self-map on that same domain.
+   The returned histories must land back in the same gauge-fixed quotient section, preserve the branch-graph, provenance, leakage, and recapture constants, and define a continuous precompact self-map on that same domain.
 
 #### Section-and-gauge target for the first unreduced planar binary
 
@@ -3176,9 +3180,9 @@ This is the unreduced-planar analogue of the earlier envelope-construction targe
 > Assume the closed convex tame envelope proposition and suppose, in addition, that:
 > 1. the returned gauge-fixed histories satisfy the same convex envelope bounds
 >    $$
->    \|\Psi(\theta)\|_{\mathcal{Q}^{\sharp}_{\mathrm{pl}}}\le R^{\sharp}_{\max},
+>    \|\Psi(\theta)\|_{(\mathbb{R}^2)^2}\le R^{\sharp}_{\max},
 >    \qquad
->    \|\dot{\Psi}(\theta)\|_{\mathcal{Q}^{\sharp}_{\mathrm{pl}}}\le U^{\sharp}_{\max},
+>    \|\dot{\Psi}(\theta)\|_{(\mathbb{R}^2)^2}\le U^{\sharp}_{\max},
 >    \qquad
 >    \operatorname{Lip}(\dot{\Psi})\le A^{\sharp}_{\max};
 >    $$
