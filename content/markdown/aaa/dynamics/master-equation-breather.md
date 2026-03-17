@@ -4043,6 +4043,150 @@ $$
 $$
 and the right-hand side depends only on the dual-mollification parameters, the fold-curvature floor, the branch-separation data, and the local multiplicity of the hyperedge.
 
+The first proof-oriented step is to reduce every admissible fold tube to one quantitative normal form.
+
+> **Lemma (Fold-tube normal form with quantitative Jacobian control).**
+> Fix one admissible Type II or Type III fold tube
+> $$
+> W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})
+> $$
+> and one participating branch family
+> $$
+> (i,j,s(t)).
+> $$
+> Assume the no-accumulation derivative hierarchy, the fold-curvature floor
+> $$
+> \gamma_{\mathrm{fold}}>0,
+> $$
+> and the branch-separation floor
+> $$
+> \delta^{\mathrm{mb}}_{\mathrm{sep}}>0.
+> $$
+> Then after translating the fold center to
+> $$
+> (t_\ast,s_\ast)
+> $$
+> and restricting to a sufficiently small controlled tube, there exists a local source parameter
+> $$
+> u=s-s_\ast
+> $$
+> such that
+> $$
+> J_{ij}(t;s)
+> =
+> \partial_s g_{ij}(t;s)
+> =
+> \alpha_{ij}(t)\,u
+> +
+> \mathcal{R}_{ij}(t,u),
+> $$
+> with
+> $$
+> |\alpha_{ij}(t)|\ge \frac{1}{2}\gamma_{\mathrm{fold}},
+> \qquad
+> |\mathcal{R}_{ij}(t,u)|\le C^{\mathrm{mb}}_{3,g}|u|^2
+> $$
+> throughout the tube.
+> Consequently,
+> $$
+> |J_{ij}(t;s)|
+> \gtrsim
+> \gamma_{\mathrm{fold}}\,|u|
+> $$
+> away from the fold center, with constants depending only on
+> $$
+> \gamma_{\mathrm{fold}}
+> \qquad
+> \text{and}
+> \qquad
+> C^{\mathrm{mb}}_{3,g}.
+> $$
+
+This is the exact local reduction needed for the dual-mollified transit bound: every admissible many-body fold tube behaves like one controlled one-dimensional Jacobian zero, up to uniformly bounded error.
+
+Once that reduction is available, the actual impulse bound becomes a finite-dimensional bookkeeping problem.
+
+> **Lemma (Channelwise bounded impulse across one admissible fold block).**
+> Under the same hypotheses, fix one principal channel
+> $$
+> m\in\{1,2,3,4\}.
+> $$
+> Then there exists a constant
+> $$
+> \mathfrak{F}^{\mathrm{mb}}_m
+> \equiv
+> \mathfrak{F}^{\mathrm{mb}}_m
+> \big(
+> \eta,
+> \epsilon_c,
+> \gamma_{\mathrm{fold}},
+> \delta^{\mathrm{mb}}_{\mathrm{sep}},
+> U_{\max},
+> A_{\max}
+> \big)
+> <\infty
+> $$
+> such that for every admissible fold block
+> $$
+> \mathsf{e}
+> $$
+> one has
+> $$
+> \left|
+> \int_{W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})}
+> \Pi_m(t)\cdot
+> \ddot{\mathbf{X}}(t)\,dt
+> \right|
+> \le
+> \mathfrak{F}^{\mathrm{mb}}_m\,
+> M_{\mathrm{loc}}(\mathsf{e}),
+> $$
+> where
+> $$
+> M_{\mathrm{loc}}(\mathsf{e})\in\{1,2,3\}
+> $$
+> is the local admissible multiplicity of the Type II or Type III event block.
+>
+> In particular, if
+> $$
+> M_{\max}^{\mathrm{mb}}
+> \equiv
+> \max_{\mathsf{e}\in\mathscr{E}^{\mathrm{mb}}_{\mathrm{br}}}
+> M_{\mathrm{loc}}(\mathsf{e}),
+> $$
+> then the universal fold ceiling
+> $$
+> F^{\mathrm{mb}}_m
+> \equiv
+> \mathfrak{F}^{\mathrm{mb}}_m M_{\max}^{\mathrm{mb}}
+> $$
+> is finite.
+
+> **Proof sketch.**
+> For a Type II fold, insert the fold-tube normal form into the dual-mollified branch kernel. After the local change of variable from
+> $$
+> s
+> $$
+> to
+> $$
+> u,
+> $$
+> the singular factor is reduced to the same one-dimensional model already controlled in the earlier bridge packages, with all remaining distance and projection factors bounded by the
+> $$
+> d_{\min},
+> \qquad
+> U_{\max},
+> \qquad
+> A_{\max}
+> $$
+> envelope.
+>
+> For a Type III fold block, sum over the finitely many participating branch families. The branch-separation floor excludes uncontrolled secondary collisions away from the common fold center, and the admissible event alphabet bounds the local multiplicity by
+> $$
+> M_{\mathrm{loc}}(\mathsf{e})\le 3.
+> $$
+> So the total channelwise impulse is bounded by a finite sum of the same controlled one-dimensional transit integrals.
+
 The first many-body theorem should be stated with exactly that dependence visible.
 
 > **Target Proposition (Bounded dual-mollified caustic transit for simple and shared-body folds).**
@@ -4103,6 +4247,22 @@ The first many-body theorem should be stated with exactly that dependence visibl
 >    F^{\mathrm{mb}}_m
 >    $$
 >    on every controlled recapture window.
+
+More concretely, one may take
+$$
+F^{\mathrm{mb}}_m
+\equiv
+\mathfrak{F}^{\mathrm{mb}}_m M_{\max}^{\mathrm{mb}},
+$$
+where
+$$
+\mathfrak{F}^{\mathrm{mb}}_m
+$$
+is the single-branch transit constant from the previous lemma and
+$$
+M_{\max}^{\mathrm{mb}}\le 3
+$$
+is the maximal admissible local fold multiplicity in the Type II / Type III event alphabet.
 
 The intended proof mechanism should also be written down now, because this is exactly where the planar three-body program could still fail.
 
