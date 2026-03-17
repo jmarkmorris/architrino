@@ -22,6 +22,7 @@ export function compactMarkdownNodeLabel(title, maxChars = 34) {
     return "";
   }
   text = collapseAaaLabel(text);
+  text = stripIsoDatePrefix(text);
 
   const splitters = [" \u2014 ", " \u2013 ", " - ", ": "];
   for (const splitter of splitters) {
@@ -81,6 +82,17 @@ function shouldPreferTailLabel(head, tail, maxChars) {
     return true;
   }
   return false;
+}
+
+function stripIsoDatePrefix(text) {
+  const match = String(text).match(
+    /^(\d{4}-\d{2}-\d{2})(?:\s*[:\u2014\u2013-]\s+|\s+)(.+)$/
+  );
+  if (!match) {
+    return text;
+  }
+  const stripped = match[2].trim();
+  return stripped || text;
 }
 
 const sphereAaaText = "\u{1D538}\u{1D538}\u{1D538}";
