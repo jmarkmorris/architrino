@@ -4222,9 +4222,196 @@ again denoting the explicit ceiling for fold-tube amplification and local gauge-
 
 So the midpoint-separation channel is likewise reduced to one concrete branch-sum competition: the combined inward opposite-sign attraction against pair breathing, self-drive, transverse rotation, and controlled fold amplification.
 
-These two formulas are the first concrete comparison identities the planar-three-body bridge should use. They say exactly where the useful inward coercivity must come from and exactly where the leakage terms enter.
+For the shear channel
+$$
+\rho^{\mathrm{mb}}_3(\mathbf{a},\mathbf{b})
+=
+\frac{|\det(\mathbf{a},\mathbf{b})|}{\|\mathbf{a}\|+\|\mathbf{b}\|},
+$$
+write
+$$
+\Delta_{ab}\equiv \det(\mathbf{a},\mathbf{b}),
+\qquad
+S_{ab}\equiv \|\mathbf{a}\|+\|\mathbf{b}\|.
+$$
+On one fixed sign branch
+$$
+\operatorname{sign}(\Delta_{ab})=\varsigma\in\{\pm1\},
+$$
+the observable becomes
+$$
+\rho^{\mathrm{mb}}_3=\varsigma\,\frac{\Delta_{ab}}{S_{ab}},
+$$
+so its first derivative may be organized as
+$$
+\dot{\rho}^{\mathrm{mb}}_3
+=
+\varsigma\,
+\frac{
+\det(\dot{\mathbf{a}},\mathbf{b})+\det(\mathbf{a},\dot{\mathbf{b}})
+}{S_{ab}}
+-
+\varsigma\,
+\frac{\Delta_{ab}\,\dot S_{ab}}{S_{ab}^2}.
+$$
+The theorem burden is not to memorize the full second derivative term-by-term, but to split it into:
+$$
+\ddot{\rho}^{\mathrm{mb}}_3(t)
+\le
+-\,\Lambda^{\mathrm{mb}}_3(t)
++L^{\mathrm{mb}}_3(t)
++A^{\mathrm{mb}}_{s,\mathrm{deep}}(t),
+$$
+where
+$$
+\Lambda^{\mathrm{mb}}_3(t)
+$$
+is the net anti-shear projection coming from delayed flattening of the triangle relative to the chosen sign branch, and
+$$
+L^{\mathrm{mb}}_3(t)
+$$
+collects denominator breathing, branch-sign switching near
+$$
+\Delta_{ab}=0,
+$$
+and fold-tube amplification. A first useful decomposition is
+$$
+\Lambda^{\mathrm{mb}}_3
+=
+\Lambda^{\mathrm{mb}}_{3,\mathrm{flat}}
+-\Lambda^{\mathrm{mb}}_{3,\mathrm{swap}}
+-\Lambda^{\mathrm{mb}}_{3,\mathrm{self}},
+$$
+where:
 
-The next step is to specify the first recapture windows for these two channels. Let
+- $$
+  \Lambda^{\mathrm{mb}}_{3,\mathrm{flat}}
+  $$
+  is the inward projection of delayed flattening or anti-shear alignment;
+- $$
+  \Lambda^{\mathrm{mb}}_{3,\mathrm{swap}}
+  $$
+  is the outward projection produced by pair breathing or source-cluster swaps that increase signed area;
+- $$
+  \Lambda^{\mathrm{mb}}_{3,\mathrm{self}}
+  $$
+  is the outward shear contribution of self branches.
+
+The corresponding leakage ceiling should be written as
+$$
+L^{\mathrm{mb}}_3(t)
+\equiv
+\Big(\Lambda^{\mathrm{mb}}_{3,\mathrm{swap}}(t)\Big)_+
++
+\Big(\Lambda^{\mathrm{mb}}_{3,\mathrm{self}}(t)\Big)_+
++
+L^{\mathrm{mb}}_{3,\mathrm{den}}(t)
++
+L^{\mathrm{mb}}_{3,\mathrm{fold}}(t),
+$$
+where
+$$
+L^{\mathrm{mb}}_{3,\mathrm{den}}(t)
+$$
+controls the derivative loss from the breathing denominator
+$$
+S_{ab}^{-1}
+$$
+and
+$$
+L^{\mathrm{mb}}_{3,\mathrm{fold}}(t)
+$$
+controls fold-tube and sign-branch switching errors near the small-area set.
+
+For the role-exchange channel
+$$
+\rho^{\mathrm{mb}}_4
+=
+\max\Big\{
+\|\mathbf{x}_1\|,
+\|\mathbf{x}_2\|,
+\|\mathbf{x}_3\|
+\Big\}
+-\|\mathbf{x}_2\|,
+$$
+the correct local formulation is piecewise. On any subwindow where one outer body, say
+$$
+\mathbf{x}_{i_\ast},
+\qquad
+i_\ast\in\{1,3\},
+$$
+uniquely realizes the maximum radius with a gap
+$$
+\delta_{\mathrm{role}}>0,
+$$
+one has the smooth branch
+$$
+\rho^{\mathrm{mb}}_4
+=
+\|\mathbf{x}_{i_\ast}\|-\|\mathbf{x}_2\|.
+$$
+Then, with
+$$
+\hat{\mathbf{x}}_{i_\ast}\equiv \frac{\mathbf{x}_{i_\ast}}{\|\mathbf{x}_{i_\ast}\|},
+\qquad
+\hat{\mathbf{x}}_{2}\equiv \frac{\mathbf{x}_{2}}{\|\mathbf{x}_{2}\|},
+$$
+the channelwise comparison law should be organized as
+$$
+\ddot{\rho}^{\mathrm{mb}}_4(t)
+\le
+-\,\Lambda^{\mathrm{mb}}_4(t)
++L^{\mathrm{mb}}_4(t)
++A^{\mathrm{mb}}_{s,\mathrm{deep}}(t),
+$$
+with
+$$
+\Lambda^{\mathrm{mb}}_4(t)
+\equiv
+-\hat{\mathbf{x}}_{i_\ast}(t)\cdot \ddot{\mathbf{x}}_{i_\ast}(t)
++\hat{\mathbf{x}}_{2}(t)\cdot \ddot{\mathbf{x}}_{2}(t),
+$$
+interpreted as persistence of the distinguished opposite-sign core role, and with leakage ceiling
+$$
+L^{\mathrm{mb}}_4(t)
+\equiv
+L^{\mathrm{mb}}_{4,\mathrm{curv}}(t)
++
+L^{\mathrm{mb}}_{4,\mathrm{tie}}(t)
++
+L^{\mathrm{mb}}_{4,\mathrm{fold}}(t).
+$$
+Here:
+
+- $$
+  L^{\mathrm{mb}}_{4,\mathrm{curv}}
+  $$
+  collects the usual tangential curvature terms from differentiating the two norms;
+- $$
+  L^{\mathrm{mb}}_{4,\mathrm{tie}}
+  $$
+  controls the loss of smoothness near a near-tie
+  $$
+  \|\mathbf{x}_{i_\ast}\|\approx \|\mathbf{x}_2\|
+  $$
+  or
+  $$
+  \|\mathbf{x}_1\|\approx \|\mathbf{x}_3\|;
+  $$
+- $$
+  L^{\mathrm{mb}}_{4,\mathrm{fold}}
+  $$
+  controls fold-tube amplification on the chosen role branch.
+
+The intended theorem burden is to show that, on controlled subwindows with a strict role gap
+$$
+\delta_{\mathrm{role}}>0,
+$$
+the inward role-persistence term beats curvature, tie, self-drive, and fold leakage strongly enough to keep the opposite-sign body from losing the distinguished core role.
+
+These four formulas are the concrete comparison identities the planar-three-body bridge should use. They say where the useful inward coercivity must come from and where the leakage terms enter for all principal escape channels.
+
+The next step is to specify the first recapture windows for the principal channels, beginning with the first two Jacobi channels for which the cleanest local turning lemma is available. Let
 $$
 t_{\mathrm{x}}^{\mathrm{mb}}
 $$
