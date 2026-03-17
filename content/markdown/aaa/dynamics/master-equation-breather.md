@@ -4187,8 +4187,6 @@ Once that reduction is available, the actual impulse bound becomes a finite-dime
 > $$
 > So the total channelwise impulse is bounded by a finite sum of the same controlled one-dimensional transit integrals.
 
-The first many-body theorem should be stated with exactly that dependence visible.
-
 > **Target Proposition (Bounded dual-mollified caustic transit for simple and shared-body folds).**
 > Assume the unreduced local well-posedness package and the quantitative no-accumulation package. Suppose, in addition, that on every admissible fold tube:
 > 1. the fold-curvature floor
@@ -4582,7 +4580,7 @@ $$
 The point is that a remote contribution should now be forced into one finite ancestry complex rather than into one literal earlier branch family.
 
 > **Target Proposition (Deep-past cluster ancestry or exclusion for the planar three-body bridge).**
-> Assume the gauge-fixed section package, the quantitative no-accumulation package, and the finite active delay hypergraph package. Then on a sufficiently small tame subclass, with the same event-gap and branch-regularity data
+> Assume the preceding section, no-accumulation, and finite-hypergraph packages. Then on a sufficiently small tame subclass, with the same event-gap and branch-regularity data
 > $$
 > \Delta\tau_{\mathrm{evt}},
 > \qquad
@@ -5373,17 +5371,13 @@ $$
 the intended role is late-turn closure: the same observables must already be losing outward momentum before a genuine scattering configuration forms.
 
 > **Target Proposition (Two-channel Jacobi recapture on the first planar-three-body windows).**
-> Assume:
-> 1. the gauge-fixed section package;
-> 2. the bounded many-body caustic-transit package;
-> 3. the finite active delay hypergraph package;
-> 4. the deep-past suppression bound
+> Assume the section package, the bounded caustic-transit package, the finite active delay hypergraph package, and the deep-past suppression bound
 >    $$
 >    A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 >    \le
 >    A^{\mathrm{mb}}_{\mathrm{deep},\max};
 >    $$
-> 5. and the fold ceilings produced there
+> together with the fold ceilings produced there
 >    $$
 >    L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_1,
 >    \qquad
@@ -5687,7 +5681,7 @@ $$
 are the concrete margin versions of the four principal escape-channel inequalities. Whenever all of the many-body margins are positive, each escape observable feels a strictly inward comparison law on the corresponding controlled window.
 
 > **Target Proposition (Principal four-channel recapture closure).**
-> Assume the gauge-fixed section package, the bounded many-body caustic-transit package, the finite active delay hypergraph package, and the deep-past cluster-ancestry suppression bound. Suppose, in addition, that
+> Assume the section package, the bounded caustic-transit package, the finite active delay hypergraph package, and the deep-past cluster-ancestry suppression bound. Suppose, in addition, that
 > $$
 > \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}>0,
 > \quad
@@ -5731,12 +5725,7 @@ are the concrete margin versions of the four principal escape-channel inequaliti
 This proposition is the bridge between the local channel calculations and the full many-body recapture theorem. It says that once the four principal channels are controlled, any residual failure is no longer hidden in the obvious geometry; it must come from either a higher auxiliary channel or an explicit closure-stage obstruction.
 
 > **Target Theorem (Planar-three-body multi-observable recapture criterion).**
-> Assume:
-> 1. the gauge-fixed section package;
-> 2. the bounded many-body caustic-transit package;
-> 3. the finite active delay hypergraph package;
-> 4. the deep-past cluster-ancestry suppression bound;
-> 5. and one coupled parameter regime in which all comparison terms are defined with common constants.
+> Assume the section package, the bounded caustic-transit package, the finite active delay hypergraph package, and the deep-past cluster-ancestry suppression bound, all in one coupled parameter regime in which the comparison terms are defined with common constants.
 >
 > Suppose, in addition, that for every
 > $$
@@ -6034,12 +6023,7 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 This is the correct tame-structure target because the first two Jacobi channels are no longer abstract placeholders. If their window geometry or margin positivity is not propagated through the return map, then the concrete recapture lemma has no stable domain on which to operate.
 
 > **Target Theorem (Planar-three-body invariant-envelope closure and Schauder capstone).**
-> Assume:
-> 1. the convex Banach-envelope proposition;
-> 2. the hypergraph-and-atlas stability proposition on that envelope;
-> 3. the closed tame graph-stable subregion proposition;
-> 4. the corresponding invariant-envelope closure theorem;
-> 5. and continuity and precompactness of the gauge-fixed many-body return map on the relevant convex Banach box together with the tame retraction or projection.
+> Assume the convex Banach-envelope proposition, the hypergraph-and-atlas stability proposition on that envelope, the closed tame graph-stable subregion proposition, the corresponding invariant-envelope closure theorem, and continuity and precompactness of the gauge-fixed many-body return map on the relevant convex Banach box together with the tame retraction or projection.
 >
 > Then the return map has a fixed point
 > $$
