@@ -43,7 +43,10 @@ Scoring system:
   - the 1D note now has a full theorem ladder from collapse-to-crossing through caustic transit, post-crossing recapture, outer-turn closure, seed-history nonvacuity, invariant-envelope synthesis, and the final Schauder capstone;
   - the major global packaging defects were audited and made explicit: the convex tame-envelope step is now honestly marked as a target, the admissible parameter regime is now a coupled solvability target rather than a false decoupling argument, and the section anchoring now explicitly quotients out time-translation symmetry;
   - the notation/domain hierarchy was cleaned so the raw section, the convex macro-envelope, and the closed convex tame envelope are no longer silently conflated;
-  - the new bridge chapter records the portable return-map / tame-envelope / Schauder architecture and the list of 1D-only mechanisms that still need higher-dimensional replacements.
+  - the bridge chapter now records the portable return-map / tame-envelope / Schauder architecture, the completed reduced-planar binary bridge, and the completed first unreduced-planar binary bridge;
+  - the reduced-planar bridge now runs end-to-end through section/gauge fixing, directional sorting, deep-past relocation, cone transversality, bounded caustic transit, vector recapture, tame-envelope closure, Schauder, and precise failure alternatives;
+  - the unreduced-planar binary bridge now runs end-to-end through gauge-fixed sectioning, finite active branch graph control, deep-past provenance or exclusion, multi-channel recapture, tame-envelope closure, Schauder, and precise closure-stage obstruction alternatives;
+  - the live bridge note now also marks the next boundary explicitly: beyond the unreduced planar binary, the first honest many-body step is already a planar three-body regime with higher-rank gauge fixing, a delay hypergraph, cluster ancestry, multiple escape observables, and atlas-level closure.
 - Resolved proof pivots to preserve from the frozen 1D scaffold:
   - the inbound hinge caustic is integrated through as a bounded caustic-transit impulse rather than excluded as a pathology;
   - the outer-turn geometry is organized around the sorting map
@@ -61,15 +64,28 @@ Scoring system:
 - Next-session prompt / active handoff:
   - read [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) and [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) together, treating the first as frozen and the second as the live target;
   - continue in [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md), not in the frozen 1D note, unless a real structural defect is discovered in the reference scaffold;
-  - develop the first higher-dimensional bridge regime, most likely a reflection-symmetric planar binary with a codimension-one return section;
-  - define in that regime the raw inbound/outbound section, the convex Banach envelope, and the closed convex tame envelope needed for a legitimate Schauder route;
-  - replace the 1D-only mechanisms explicitly rather than hand-waving them:
-    - the `w` / `z` sorting maps,
-    - deep-past self-root relocation,
-    - exact scalar Jacobian sign bookkeeping,
-    - affine-seed self-root exclusion,
-    - and scalar inner / outer recapture margins that ignore tangential escape;
-  - phrase the next work as theorem targets and replacement obligations, with any obstruction written down precisely if the planar bridge fails.
+  - treat the reduced-planar and unreduced-planar binary ladders as the current solved bridge scaffolds; do not reopen them unless a real structural defect is discovered;
+  - start the next bridge layer in the same note by formalizing the first honest many-body regime, most likely a planar three-body model before any jump to full spatial generality;
+  - begin that next layer with the many-body section/gauge package on
+    $$
+    \mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}
+    \equiv
+    \mathcal{Q}_{3,\mathrm{pl}}/SE(2),
+    $$
+    defining the codimension-one return section and the canonical gauge selector;
+  - then write the many-body delayed-root replacement package, upgrading the binary branch graph to a finite active delay hypergraph
+    $$
+    \mathscr{H}^{\mathrm{mb}}_{\mathrm{br}},
+    $$
+    with explicit receiver/source/window/sector labels and admissible coupled fold events;
+  - after that, write the cluster-valued ancestry or provenance package, replacing binary deep-past relocation by finite ancestry complexes and explicit exclusion principles for indefinite branch migration;
+  - then write the many-body recapture package using a finite family of escape observables
+    $$
+    \rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_{K_{\mathrm{esc}}},
+    $$
+    rather than one binary escape coordinate;
+  - finally, state the many-body convex-envelope / tame-envelope / self-map closure target and record any obstruction in theorem-level terms if a single-chart closure fails;
+  - phrase the next work as theorem targets and replacement obligations, with any failure written down precisely rather than as general difficulty.
 
 ### 2. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
 - Value `10`, Cost `4`, ROI `2.50`.
