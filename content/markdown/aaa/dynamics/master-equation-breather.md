@@ -3626,7 +3626,101 @@ This is the analytic entry point the later theorem ladder should consume. The br
 
 This is the correct chart-level theorem target because all later many-body bookkeeping depends on having one honest chart in which the delayed branches can even be named, but only after unreduced local well-posedness has already been secured.
 
-### Second many-body theorem package: finite active delay hypergraph
+### Second many-body theorem package: quantitative branch regularity and no-accumulation
+
+Before the active delay hypergraph can be treated as a finite object, one needs an analytic theorem ruling out Zeno-type accumulation of folds, sector crossings, or source-cluster exchanges inside one controlled cycle.
+
+For each ordered receiver-source pair
+$$
+(i,j)\in\{1,2,3\}^2,
+$$
+including
+$$
+i=j,
+$$
+define the exact delay defect
+$$
+g_{ij}(t;s)
+\equiv
+\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s).
+$$
+A fold event is a pair
+$$
+(t,s_\ast)
+$$
+with
+$$
+g_{ij}(t;s_\ast)=0,
+\qquad
+\partial_s g_{ij}(t;s_\ast)=0.
+$$
+The first analytic bridge theorem should impose one quantitative nondegeneracy regime:
+
+- a uniform acceleration bound
+  $$
+  \|\ddot{\mathbf{x}}_i\|\le A_{\max};
+  $$
+- a uniform Lipschitz bound on acceleration or equivalently a bounded third-order defect derivative on controlled windows;
+- a strict fold curvature floor
+  $$
+  |\partial_s^2 g_{ij}(t;s_\ast)|\ge \gamma_{\mathrm{fold}}>0
+  $$
+  at every admissible fold;
+- and a uniform Jacobian floor
+  $$
+  |\partial_s g_{ij}(t;s)|\ge \nu_J^{\mathrm{mb}}>0
+  $$
+  away from the explicitly listed fold tubes.
+
+> **Target Proposition (Quantitative no-accumulation of many-body delay events).**
+> Assume the unreduced local well-posedness package and suppose, in addition, that on the controlled cycle:
+> 1. each defect
+>    $$
+>    g_{ij}(t;s)
+>    $$
+>    is
+>    $$
+>    C^2
+>    $$
+>    in
+>    $$
+>    s
+>    $$
+>    with uniform derivative bounds;
+> 2. every admissible fold is nondegenerate with curvature floor
+>    $$
+>    \gamma_{\mathrm{fold}}>0;
+>    $$
+> 3. away from the listed fold tubes one has the simple-branch floor
+>    $$
+>    |\partial_s g_{ij}(t;s)|\ge \nu_J^{\mathrm{mb}}>0.
+>    $$
+>
+> Then there exists a strict minimum event gap
+> $$
+> \Delta\tau_{\mathrm{evt}}>0
+> $$
+> depending only on the derivative bounds and the floors
+> $$
+> \gamma_{\mathrm{fold}},
+> \qquad
+> \nu_J^{\mathrm{mb}},
+> $$
+> such that:
+> 1. two distinct fold events for the same receiver-source family cannot occur with source-time separation smaller than
+>    $$
+>    \Delta\tau_{\mathrm{evt}};
+>    $$
+> 2. sector-boundary crossings and admissible source-cluster exchanges are likewise separated by at least
+>    $$
+>    \Delta\tau_{\mathrm{evt}}
+>    $$
+>    along every controlled branch family;
+> 3. hence no fold, relabeling, or exchange event can accumulate in finite time on the controlled cycle.
+
+This is the missing analytic bridge from local well-posedness to finite combinatorics. Without it, the later hypergraph package is only suggestive bookkeeping rather than a theorem-level object.
+
+### Third many-body theorem package: finite active delay hypergraph
 
 Once the gauge-fixed section is chosen, the next burden is to replace the binary branch graph by a finite active delay hypergraph over one controlled cycle.
 
@@ -3788,7 +3882,7 @@ and no event that changes receiver, source cluster, sector family, and window la
 
 This is the many-body replacement for the binary branch graph packages. Once it is proved, later ancestry and recapture arguments can consume a finite combinatorial object rather than an open-ended moving family of delayed roots.
 
-### Third many-body theorem package: cluster-valued ancestry and deep-past exclusion
+### Fourth many-body theorem package: cluster-valued ancestry and deep-past exclusion
 
 The next burden is the many-body replacement for deep-past provenance. In the unreduced planar binary, every remote late-turn root was traced back to one finite provenance class on an earlier branch graph. In the planar three-body regime that is no longer the right object, because a delayed influence may pass through changing pair or cluster organization before its geometry becomes simple enough to compare.
 
@@ -3948,7 +4042,7 @@ and the controlled fold or exchange tubes.
 
 This is the quantity the many-body recapture inequalities should consume. Once the remote self drive is reduced to a finite ancestry count times one ceiling, the late-turn comparison law becomes quantitative again.
 
-### Fourth many-body theorem package: finite escape-observable recapture law
+### Fifth many-body theorem package: finite escape-observable recapture law
 
 The next replacement burden is the turn mechanism itself. In the planar three-body regime there is no single honest escape coordinate. The recapture theorem must instead dominate a finite family of outward channels at once.
 
@@ -4923,7 +5017,7 @@ This proposition is the bridge between the local channel calculations and the fu
 
 This is the first honest many-body recapture theorem target. It says that the configuration does not merely avoid one preferred binary escape. It must fail to escape in every channel that the three-body quotient geometry naturally opens.
 
-### Fifth many-body theorem package: atlas-level tame-envelope closure
+### Sixth many-body theorem package: atlas-level tame-envelope closure
 
 The remaining bridge step is now the same structural one that appeared in the 1D, reduced-planar, and unreduced-planar programs: put the whole cycle on one closed convex tame self-map domain. The only difference is that the data to be preserved are now genuinely atlas-level.
 
@@ -4943,7 +5037,32 @@ denote the convex section envelope carrying only visible Banach-space bounds, su
 - memory-depth bounds;
 - and the section-side non-near-collinearity margin.
 
-The many-body tame envelope target should then be a closed convex subset
+This convex envelope should remain purely kinematic. It should not be defined by fixing one hypergraph, one ancestry complex, or one exact branch-count pattern, because those are not visibly convex invariants.
+
+The next theorem burden is therefore not yet a convex tame set, but a stability proposition on the convex Banach box:
+
+> **Target Proposition (Hypergraph and atlas stability on the convex Banach envelope).**
+> On a sufficiently small convex section envelope
+> $$
+> \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta},
+> $$
+> the later branch-regularity, hypergraph, ancestry, and recapture packages remain stable in the following sense:
+> 1. every history in
+>    $$
+>    \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
+>    $$
+>    that satisfies the quantitative no-accumulation floors belongs to one finite admissible event class;
+> 2. the corresponding active hypergraph and ancestry data vary only through the listed local event alphabet;
+> 3. the recapture windows and principal margins remain bounded away from zero on one nonempty tame subregion;
+> 4. and there exists a continuous projection or retraction
+>    $$
+>    \mathfrak{R}^{\mathrm{mb}}:
+>    \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}\to
+>    \mathcal{T}^{\mathrm{mb}}_{A_\ast,\eta}
+>    $$
+>    onto that tame subregion whenever one wants to return from the convex Banach box to the graph-stable class.
+
+Only after this separation should one define the many-body tame target. The many-body tame envelope target should then be a closed subset
 $$
 \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
 \subseteq
@@ -4982,10 +5101,10 @@ on which the following constants are all preserved simultaneously:
   $$
 - and one fixed atlas representative on the relevant quotient chart.
 
-This strengthening matters. In the planar-three-body bridge, the tame envelope cannot merely remember that “some recapture theorem holds.” It must preserve the actual windows and margin constants on which the first concrete recapture lemma was proved, or else the local turning argument could be lost after one return.
+This strengthening matters. In the planar-three-body bridge, the tame layer cannot merely remember that “some recapture theorem holds.” It must preserve the actual windows and margin constants on which the first concrete recapture lemma was proved, or else the local turning argument could be lost after one return. But those data should now be understood as structure carried on a stable tame subregion of the convex Banach box, not as the definition of convexity itself.
 
-> **Target Proposition (Closed convex tame envelope in the planar three-body section).**
-> There exists a nonempty closed convex set
+> **Target Proposition (Closed tame graph-stable subregion in the planar three-body section).**
+> There exists a nonempty closed set
 > $$
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
 > \subseteq
@@ -5035,13 +5154,15 @@ This strengthening matters. In the planar-three-body bridge, the tame envelope c
 >    m=3,\dots,K_{\mathrm{esc}}.
 >    $$
 
-This is the correct closure target because the first two Jacobi channels are no longer abstract placeholders. If their window geometry or margin positivity is not propagated through the return map, then the concrete recapture lemma has no stable domain on which to operate.
+This is the correct tame-structure target because the first two Jacobi channels are no longer abstract placeholders. If their window geometry or margin positivity is not propagated through the return map, then the concrete recapture lemma has no stable domain on which to operate.
 
 > **Target Theorem (Planar-three-body invariant-envelope closure and Schauder capstone).**
 > Assume:
-> 1. the closed convex tame envelope proposition in the planar three-body section;
-> 2. the corresponding invariant-envelope closure theorem;
-> 3. and continuity and precompactness of the gauge-fixed many-body return map on that same domain.
+> 1. the convex Banach-envelope proposition;
+> 2. the hypergraph-and-atlas stability proposition on that envelope;
+> 3. the closed tame graph-stable subregion proposition;
+> 4. the corresponding invariant-envelope closure theorem;
+> 5. and continuity and precompactness of the gauge-fixed many-body return map on the relevant convex Banach box together with the tame retraction or projection.
 >
 > Then the return map has a fixed point
 > $$
