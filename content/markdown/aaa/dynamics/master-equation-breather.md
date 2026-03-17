@@ -3660,7 +3660,12 @@ The first analytic bridge theorem should impose one quantitative nondegeneracy r
   $$
   \|\ddot{\mathbf{x}}_i\|\le A_{\max};
   $$
-- a uniform Lipschitz bound on acceleration or equivalently a bounded third-order defect derivative on controlled windows;
+- a uniform acceleration-Lipschitz bound
+  $$
+  \|\ddot{\mathbf{x}}_i(t)-\ddot{\mathbf{x}}_i(t')\|
+  \le
+  L_A|t-t'|;
+  $$
 - a strict fold curvature floor
   $$
   |\partial_s^2 g_{ij}(t;s_\ast)|\ge \gamma_{\mathrm{fold}}>0
@@ -3672,21 +3677,44 @@ The first analytic bridge theorem should impose one quantitative nondegeneracy r
   $$
   away from the explicitly listed fold tubes.
 
+Under these hypotheses the delay defects should satisfy one explicit derivative hierarchy on the controlled cycle:
+$$
+|\partial_s g_{ij}(t;s)|\le C^{\mathrm{mb}}_{1,g},
+\qquad
+|\partial_s^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,g},
+\qquad
+|\partial_s^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g},
+$$
+for constants determined only by
+$$
+U_{\max},
+\quad
+A_{\max},
+\quad
+L_A,
+\quad
+d_{\min}.
+$$
+The point of this hierarchy is that it makes the fold geometry quantitative rather than qualitative: once
+$$
+\partial_s g_{ij}=0
+$$
+is known to be a genuinely curved zero with bounded third derivative, the root geometry cannot oscillate arbitrarily fast nearby.
+
 > **Target Proposition (Quantitative no-accumulation of many-body delay events).**
 > Assume the unreduced local well-posedness package and suppose, in addition, that on the controlled cycle:
 > 1. each defect
 >    $$
 >    g_{ij}(t;s)
 >    $$
->    is
+>    obeys the derivative hierarchy
 >    $$
->    C^2
+>    C^{\mathrm{mb}}_{1,g},
+>    \qquad
+>    C^{\mathrm{mb}}_{2,g},
+>    \qquad
+>    C^{\mathrm{mb}}_{3,g};
 >    $$
->    in
->    $$
->    s
->    $$
->    with uniform derivative bounds;
 > 2. every admissible fold is nondegenerate with curvature floor
 >    $$
 >    \gamma_{\mathrm{fold}}>0;
@@ -3702,6 +3730,12 @@ The first analytic bridge theorem should impose one quantitative nondegeneracy r
 > $$
 > depending only on the derivative bounds and the floors
 > $$
+> C^{\mathrm{mb}}_{1,g},
+> \qquad
+> C^{\mathrm{mb}}_{2,g},
+> \qquad
+> C^{\mathrm{mb}}_{3,g},
+> \qquad
 > \gamma_{\mathrm{fold}},
 > \qquad
 > \nu_J^{\mathrm{mb}},
@@ -3716,7 +3750,23 @@ The first analytic bridge theorem should impose one quantitative nondegeneracy r
 >    \Delta\tau_{\mathrm{evt}}
 >    $$
 >    along every controlled branch family;
-> 3. hence no fold, relabeling, or exchange event can accumulate in finite time on the controlled cycle.
+> 3. hence no fold, relabeling, or exchange event can accumulate in finite time on the controlled cycle;
+> 4. consequently the total number of admissible event hyperedges on one cycle is bounded by
+>    $$
+>    N^{\mathrm{mb}}_{\mathrm{edge}}
+>    \le
+>    \left\lceil \frac{T_{\mathrm{cyc}}}{\Delta\tau_{\mathrm{evt}}}\right\rceil
+>    N^{\mathrm{mb}}_{\mathrm{fam}},
+>    $$
+>    where
+>    $$
+>    T_{\mathrm{cyc}}
+>    $$
+>    is the controlled cycle length and
+>    $$
+>    N^{\mathrm{mb}}_{\mathrm{fam}}
+>    $$
+>    is the finite number of receiver-source-sector families allowed by the gauge chart and directional atlas.
 
 This is the missing analytic bridge from local well-posedness to finite combinatorics. Without it, the later hypergraph package is only suggestive bookkeeping rather than a theorem-level object.
 
