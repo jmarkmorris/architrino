@@ -3444,6 +3444,33 @@ $$
 \mathcal{Q}_{3,\mathrm{pl}}/SE(2).
 $$
 
+Before fixing any gauge, the first analytic object should be the unreduced history space
+$$
+\widetilde{\mathcal{H}}^{\mathrm{mb}}_h
+\equiv
+C^1([-h,0];\mathcal{Q}_{3,\mathrm{pl}})
+$$
+together with the center-of-mass-compatible admissible class
+$$
+\widetilde{\mathcal{H}}^{\mathrm{adm},\mathrm{mb}}_h
+\equiv
+\left\{
+\widetilde{\Phi}\in \widetilde{\mathcal{H}}^{\mathrm{mb}}_h
+\;\middle|\;
+\begin{array}{l}
+\widetilde{\Phi}_1(\theta)+\widetilde{\Phi}_2(\theta)+\widetilde{\Phi}_3(\theta)=0
+\ \text{for all }\theta\in[-h,0],
+\\[0.4em]
+\min_{i\neq j}\|\widetilde{\Phi}_i(\theta)-\widetilde{\Phi}_j(\theta)\|\ge d_{\min}>0,
+\\[0.4em]
+\big|\det(\mathbf{a}_{\widetilde{\Phi}}(0),\mathbf{b}_{\widetilde{\Phi}}(0))\big|\ge \delta_{\mathrm{col}}>0,
+\\[0.4em]
+\|\dot{\widetilde{\Phi}}(\theta)\|\le U_{\max}
+\end{array}
+\right\}.
+$$
+This is the space on which local existence, uniqueness, and continuous dependence should first be posed. Only after that should one quotient by rigid rotations and choose a canonical representative.
+
 For the first three-body bridge it is useful to distinguish the opposite-sign body from the same-sign pair, but not to hard-code a full ordering beyond that role split. Accordingly, the gauge selector should be permutation-rigid only with respect to the two same-sign outer bodies.
 
 Choose the present-time Jacobi vectors
@@ -3504,7 +3531,61 @@ $$
 
 This is the many-body analogue of the binary section packages: it removes time translation through a codimension-one section, removes planar rotation through a canonical representative, and keeps the same-sign pair quotient visible without pretending that the full three-body shape can be controlled by one scalar radius.
 
-> **Target Proposition (Gauge-fixed sectioned well-posedness for the planar three-body bridge).**
+> **Target Proposition (Unreduced local well-posedness and maximal-time alternative for the planar three-body bridge).**
+> For sufficiently small dual-mollification scales
+> $$
+> \eta>0,
+> \qquad
+> \epsilon_c>0,
+> $$
+> and admissible initial histories
+> $$
+> \widetilde{\Phi}\in \widetilde{\mathcal{H}}^{\mathrm{adm},\mathrm{mb}}_h,
+> $$
+> the dual-mollified master equation defines a unique local solution
+> $$
+> \widetilde{\mathbf{X}}(t)
+> $$
+> depending continuously on the initial history in the
+> $$
+> C^1
+> $$
+> topology.
+>
+> Moreover, there exists a maximal continuation time
+> $$
+> T_{\max}=T_{\max}(\widetilde{\Phi})\in(0,\infty]
+> $$
+> such that if
+> $$
+> T_{\max}<\infty,
+> $$
+> then at least one explicit control quantity must fail as
+> $$
+> t\uparrow T_{\max}:
+> $$
+> 1. a pair distance reaches the collision threshold
+>    $$
+>    d_{\min};
+>    $$
+> 2. the non-collinearity margin
+>    $$
+>    |\det(\mathbf{a}(t),\mathbf{b}(t))|
+>    $$
+>    falls to
+>    $$
+>    \delta_{\mathrm{col}};
+>    $$
+> 3. a Jacobian floor or branch-separation floor from the later hypergraph package collapses;
+> 4. or the required
+>    $$
+>    C^1
+>    $$
+>    norm bound for the controlled cycle blows up.
+
+This is the analytic entry point the later theorem ladder should consume. The bridge program should no longer speak of one-cycle continuation without speaking about distance from this explicit bad set.
+
+> **Target Proposition (Gauge selector and sectioned chart stability for the planar three-body bridge).**
 > For sufficiently small dual-mollification scales
 > $$
 > \eta>0,
@@ -3519,7 +3600,9 @@ This is the many-body analogue of the binary section packages: it removes time t
 > \quad
 > V_{\mathrm{in}},
 > \quad
-> \delta_{\mathrm{col}}
+> \delta_{\mathrm{col}},
+> \quad
+> d_{\min}
 > $$
 > in an admissible regime, there exists a nonempty open subset
 > $$
@@ -3532,11 +3615,16 @@ This is the many-body analogue of the binary section packages: it removes time t
 >    $$
 >    \mathcal{H}^{\mathrm{adm},\mathrm{mb}}_{A_\ast,\eta};
 >    $$
-> 2. every history in that class admits one-cycle continuation for the dual-mollified master equation without leaving the noncollision, non-near-collinear regime on the controlled windows;
-> 3. the first-return time to the same gauge-fixed inbound section is well defined whenever the later recapture packages succeed;
-> 4. the only local failure alternatives are collision approach, near-collinear gauge degeneracy, section-tangency loss, or role-exchange ambiguity of the same-sign pair.
+> 2. every history in that class comes from one unreduced admissible history
+>    $$
+>    \widetilde{\Phi}\in \widetilde{\mathcal{H}}^{\mathrm{adm},\mathrm{mb}}_h
+>    $$
+>    through the canonical gauge map;
+> 3. as long as the unreduced solution stays a positive distance away from the bad set named in the maximal-time alternative, the gauge-fixed representative remains in the same chart and depends continuously on the underlying unreduced solution;
+> 4. the first-return time to the same gauge-fixed inbound section is well defined whenever the later recapture packages succeed;
+> 5. the only local gauge-level failure alternatives are collision approach, near-collinear gauge degeneracy, section-tangency loss, or role-exchange ambiguity of the same-sign pair.
 
-This is the correct first theorem target because all later many-body bookkeeping depends on having one honest chart in which the delayed branches can even be named.
+This is the correct chart-level theorem target because all later many-body bookkeeping depends on having one honest chart in which the delayed branches can even be named, but only after unreduced local well-posedness has already been secured.
 
 ### Second many-body theorem package: finite active delay hypergraph
 
@@ -3619,6 +3707,37 @@ as follows.
 
 The point of the hypergraph language is that in a three-body regime, several branch births can share one body and one geometric degeneracy. Pairwise edges are therefore not enough to encode the admissible local branch moves.
 
+For the first planar-three-body bridge, the admissible hyperedges should be restricted to a finite list of local event types:
+
+- **Type I: single-branch continuation hyperedge.**
+  A one-vertex or two-vertex hyperedge recording continuation of the same simple branch family across adjacent windows with unchanged receiver, source, and sector data.
+- **Type II: simple fold birth or fold death hyperedge.**
+  A hyperedge supported inside one controlled fold tube for one receiver-source pair
+  $$
+  (i,j),
+  $$
+  where exactly one simple branch is created or annihilated.
+- **Type III: shared-body coupled fold hyperedge.**
+  A hyperedge joining two or three vertices when several branch families involving one common body meet one common degeneracy and their births or deaths must be recorded together.
+- **Type IV: sector relabeling hyperedge.**
+  A hyperedge recording passage of one active branch across one sector boundary of the fixed directional atlas without changing the underlying receiver-source family.
+- **Type V: source-cluster exchange hyperedge.**
+  A hyperedge recording one admissible cluster move from the ancestry package:
+  $$
+  \{i\}\leftrightarrow \{i,j\},
+  \qquad
+  \{i,j\}\leftrightarrow \{i\},
+  \qquad
+  \{i,j\}\leftrightarrow \{i,k\},
+  $$
+  always through one local shared-body event already visible in the delayed geometry.
+
+No other hyperedge type should be allowed in the first bridge regime. In particular, there should be no hyperedge representing simultaneous creation of arbitrarily many fresh branches, no instantaneous jump to a source cluster outside
+$$
+\mathfrak{C}^{\mathrm{mb}}_{\mathrm{src}},
+$$
+and no event that changes receiver, source cluster, sector family, and window label all at once without passing through one of the listed local types.
+
 > **Target Proposition (Finite active hypergraph control on the planar three-body cycle).**
 > On a sufficiently small section-side tame subclass of
 > $$
@@ -3659,6 +3778,13 @@ The point of the hypergraph language is that in a three-body regime, several bra
 >    away from the explicitly controlled fold tubes;
 > 4. root birth, root death, sector relabeling, and source-exchange events occurring only through the listed hyperedges;
 > 5. no uncontrolled branch proliferation outside those hypergraph-coded events.
+
+> More concretely:
+> 1. every hyperedge belongs to one of the five admissible types above;
+> 2. every fold tube supports only finitely many Type II or Type III hyperedges;
+> 3. every sector boundary crossing supports only one Type IV relabeling event per active branch family at the chosen scale;
+> 4. every source-cluster exchange belongs to one Type V hyperedge compatible with the ancestry-package move list;
+> 5. hence every backward ancestry chain and every forward recapture chain passes through a finite event alphabet rather than an open-ended combinatorial explosion.
 
 This is the many-body replacement for the binary branch graph packages. Once it is proved, later ancestry and recapture arguments can consume a finite combinatorial object rather than an open-ended moving family of delayed roots.
 
