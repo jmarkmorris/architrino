@@ -3269,7 +3269,57 @@ The extra burden beyond the reduced planar case is that continuity must now abso
 > $$
 > gauge, and therefore a genuine unreduced-planar breather of the dual-mollified master equation in the first non-reflection-symmetric binary regime.
 
-If that theorem ladder cannot be stated cleanly, then the obstruction should be recorded at that level: either the quotient section is not well posed, the branch graph is not uniformly finite, provenance control fails, the multi-channel recapture estimate loses coercivity, or no convex tame self-map domain survives the gauge reset.
+If the unreduced-planar bridge fails, the failure should now be recorded in closure-stage terms rather than as a generic expression of difficulty. The meaningful obstruction alternatives are:
+
+1. no gauge-fixed quotient section produces a nonempty convex envelope
+   $$
+   \mathcal{C}^{\sharp}_{\rho_\ast,\eta}
+   $$
+   together with a well-defined return map
+   $$
+   P^{\sharp}_{\eta};
+   $$
+2. every candidate active branch graph loses one of the finite-control bounds
+   $$
+   N^{\sharp}_{\mathrm{br}}<\infty,
+   \qquad
+   \delta^{\sharp}_{\mathrm{sep}}>0,
+   \qquad
+   \nu^{\sharp}_{J}>0;
+   $$
+3. every candidate deep-past provenance package either forces
+   $$
+   P^{\sharp}_{\mathrm{prov}}=\infty
+   $$
+   or loses the deep-past Jacobian floor
+   $$
+   \nu^{\sharp}_{J,\mathrm{dp}}>0,
+   $$
+   so the remote self contribution is no longer uniformly controlled;
+4. every candidate quotient comparison law either forces
+   $$
+   Q^{\sharp}_{\mathrm{esc}}=\infty
+   $$
+   or yields nonpositive recapture margins
+   $$
+   \mathfrak{M}^{\sharp}_{\mathrm{in}}\le 0
+   \qquad
+   \text{or}
+   \qquad
+   \mathfrak{M}^{\sharp}_{\mathrm{out}}\le 0,
+   $$
+   so partner attraction cannot dominate self-drive plus the full leakage budget on the controlled windows;
+5. or every closed convex tame candidate domain fails one of the closure requirements
+   $$
+   P^{\sharp}_{\eta}\!\big(
+   \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
+   \big)
+   \subseteq
+   \mathcal{K}^{\sharp}_{\rho_\ast,\eta},
+   $$
+   continuity, or precompactness.
+
+Any one of these is the honest statement that the frozen 1D scaffold and the reduced planar bridge do not yet transport to the first non-reflection-symmetric planar binary without an additional invariant, symmetry, or coercive mechanism.
 
 ## Capstone Statement
 
