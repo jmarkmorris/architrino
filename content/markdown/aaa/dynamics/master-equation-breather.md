@@ -2801,6 +2801,247 @@ This is the correct unreduced-planar replacement for deep-past relocation. A rem
 
 This is the quantity the later unreduced-planar recapture package should consume. Once the remote self contribution is reduced to a finite provenance count times one branch amplitude bound, the deep-past part of self-drive is again a controlled term rather than an open-ended graph-combinatorial hazard.
 
+#### Multi-channel recapture target for the unreduced planar bridge
+
+The next replacement burden is the turn mechanism itself. In the reduced planar bridge the recapture inequality was written in polar form and paid the single leakage term
+$$
+\rho\dot\vartheta^2.
+$$
+That is no longer the honest object once the dynamics are organized on the unreduced quotient chart. The correct target is a coercive primary escape coordinate together with a finite family of leakage channels that measure how the remaining quotient modes steal inward control.
+
+Choose a gauge-fixed quotient neighborhood
+$$
+\mathscr{U}^{\sharp}_{\mathrm{turn}}
+\subseteq
+C^1([-h,0];\mathcal{Q}^{\sharp}_{\mathrm{pl}})
+$$
+that contains the relevant post-crossing and late-turn windows. The comparison argument should now be phrased in terms of one smooth escape observable
+$$
+\rho^{\sharp}(t)\ge 0
+$$
+and finitely many nonnegative leakage channels
+$$
+\Lambda^{\sharp}_1(t),
+\dots,
+\Lambda^{\sharp}_{Q^{\sharp}_{\mathrm{esc}}}(t).
+$$
+The intended meaning is:
+
+- $\rho^{\sharp}$ measures excursion size in the primary escape direction on the quotient chart;
+- each
+  $$
+  \Lambda^{\sharp}_{\alpha}
+  $$
+  measures one distinct noncoercive way in which the remaining quotient modes can feed outward motion;
+- the number
+  $$
+  Q^{\sharp}_{\mathrm{esc}}
+  $$
+  should be finite on the chosen chart.
+
+Let
+$$
+W^{\sharp}_{\mathrm{in,turn}}
+$$
+be the first post-crossing recapture window and let
+$$
+W^{\sharp}_{\mathrm{out,turn}}
+\subseteq
+\bigcup_{W\in \mathcal{W}^{\sharp}_{\mathrm{lt}}}W
+$$
+be the late-turn window. The quotient comparison law should then be organized as
+$$
+\ddot{\rho}^{\sharp}(t)
+=
+-A^{\sharp}_{p}(t)
++A^{\sharp}_{s,\mathrm{loc}}(t)
++A^{\sharp}_{s,\mathrm{deep}}(t)
++\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Lambda^{\sharp}_{\alpha}(t),
+$$
+where:
+
+- $A^{\sharp}_{p}(t)\ge 0$ is the inward partner contribution in the primary escape coordinate;
+- $A^{\sharp}_{s,\mathrm{loc}}(t)\ge 0$ is the ceiling coming from non-deep active self branches on the controlled windows;
+- $A^{\sharp}_{s,\mathrm{deep}}(t)\ge 0$ is the deep-past ceiling supplied by the provenance-suppression package.
+
+> **Target Proposition (Windowwise multi-channel quotient-force split).**
+> There exist nonnegative constants
+> $$
+> \underline A^{\sharp}_{p,\mathrm{in}},
+> \qquad
+> \overline A^{\sharp}_{s,\mathrm{loc,in}},
+> \qquad
+> \overline A^{\sharp}_{s,\mathrm{deep,in}},
+> \qquad
+> \Theta^{\sharp}_{\alpha,\mathrm{in}}
+> \quad
+> (1\le \alpha\le Q^{\sharp}_{\mathrm{esc}}),
+> $$
+> and
+> $$
+> \underline A^{\sharp}_{p,\mathrm{out}},
+> \qquad
+> \overline A^{\sharp}_{s,\mathrm{loc,out}},
+> \qquad
+> \overline A^{\sharp}_{s,\mathrm{deep,out}},
+> \qquad
+> \Theta^{\sharp}_{\alpha,\mathrm{out}}
+> \quad
+> (1\le \alpha\le Q^{\sharp}_{\mathrm{esc}})
+> $$
+> such that on
+> $$
+> W^{\sharp}_{\mathrm{in,turn}}
+> $$
+> one has
+> $$
+> A^{\sharp}_{p}(t)\ge \underline A^{\sharp}_{p,\mathrm{in}},
+> \qquad
+> A^{\sharp}_{s,\mathrm{loc}}(t)\le \overline A^{\sharp}_{s,\mathrm{loc,in}},
+> \qquad
+> A^{\sharp}_{s,\mathrm{deep}}(t)\le \overline A^{\sharp}_{s,\mathrm{deep,in}},
+> \qquad
+> \Lambda^{\sharp}_{\alpha}(t)\le \Theta^{\sharp}_{\alpha,\mathrm{in}},
+> $$
+> for every
+> $$
+> \alpha,
+> $$
+> and on
+> $$
+> W^{\sharp}_{\mathrm{out,turn}}
+> $$
+> one has
+> $$
+> A^{\sharp}_{p}(t)\ge \underline A^{\sharp}_{p,\mathrm{out}},
+> \qquad
+> A^{\sharp}_{s,\mathrm{loc}}(t)\le \overline A^{\sharp}_{s,\mathrm{loc,out}},
+> \qquad
+> A^{\sharp}_{s,\mathrm{deep}}(t)\le \overline A^{\sharp}_{s,\mathrm{deep,out}},
+> \qquad
+> \Lambda^{\sharp}_{\alpha}(t)\le \Theta^{\sharp}_{\alpha,\mathrm{out}},
+> $$
+> for every
+> $$
+> \alpha.
+> $$
+
+Define the unreduced-planar recapture margins
+$$
+\mathfrak{M}^{\sharp}_{\mathrm{in}}
+\equiv
+\underline A^{\sharp}_{p,\mathrm{in}}
+-\overline A^{\sharp}_{s,\mathrm{loc,in}}
+-\overline A^{\sharp}_{s,\mathrm{deep,in}}
+-\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\mathrm{in}},
+$$
+$$
+\mathfrak{M}^{\sharp}_{\mathrm{out}}
+\equiv
+\underline A^{\sharp}_{p,\mathrm{out}}
+-\overline A^{\sharp}_{s,\mathrm{loc,out}}
+-\overline A^{\sharp}_{s,\mathrm{deep,out}}
+-\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\mathrm{out}}.
+$$
+Whenever these are positive, the primary escape observable obeys the comparison inequalities
+$$
+\ddot{\rho}^{\sharp}(t)\le -\mathfrak{M}^{\sharp}_{\mathrm{in}}<0
+\qquad
+\text{on }W^{\sharp}_{\mathrm{in,turn}},
+$$
+and
+$$
+\ddot{\rho}^{\sharp}(t)\le -\mathfrak{M}^{\sharp}_{\mathrm{out}}<0
+\qquad
+\text{on }W^{\sharp}_{\mathrm{out,turn}}.
+$$
+
+> **Target Theorem (Unreduced-planar multi-channel recapture criterion).**
+> Assume the windowwise multi-channel quotient-force split proposition and define the initial outward escape speeds
+> $$
+> V^{\sharp}_{\mathrm{in},0}
+> \equiv
+> \dot{\rho}^{\sharp}(t^{\sharp}_{\mathrm{in}}),
+> \qquad
+> V^{\sharp}_{\mathrm{out},0}
+> \equiv
+> \dot{\rho}^{\sharp}(t^{\sharp}_{\mathrm{out}}),
+> $$
+> at the entrance times of
+> $$
+> W^{\sharp}_{\mathrm{in,turn}}
+> \qquad
+> \text{and}
+> \qquad
+> W^{\sharp}_{\mathrm{out,turn}}.
+> $$
+> If
+> $$
+> \mathfrak{M}^{\sharp}_{\mathrm{in}}>0,
+> \qquad
+> |W^{\sharp}_{\mathrm{in,turn}}|
+> \ge
+> \frac{V^{\sharp}_{\mathrm{in},0}}{\mathfrak{M}^{\sharp}_{\mathrm{in}}},
+> $$
+> then the primary escape speed reaches zero on or before the end of
+> $$
+> W^{\sharp}_{\mathrm{in,turn}}.
+> $$
+> If, in addition,
+> $$
+> \mathfrak{M}^{\sharp}_{\mathrm{out}}>0,
+> \qquad
+> |W^{\sharp}_{\mathrm{out,turn}}|
+> \ge
+> \frac{V^{\sharp}_{\mathrm{out},0}}{\mathfrak{M}^{\sharp}_{\mathrm{out}}},
+> $$
+> then the late-turn outward escape speed also reaches zero on or before the end of
+> $$
+> W^{\sharp}_{\mathrm{out,turn}}.
+> $$
+> Consequently the candidate excursion makes both the post-crossing recapture turn and the final late turn inside the controlled unreduced-planar windows.
+
+This is the exact place where the unreduced planar bridge separates from the reduced planar one. The reduced planar note had one leakage ceiling,
+$$
+\rho\dot\vartheta^2.
+$$
+The unreduced planar bridge requires a finite leakage budget
+$$
+\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\bullet},
+$$
+because coercivity can now be lost through several quotient modes rather than through one scalar angular channel.
+
+The dependency chain should be stated explicitly here:
+
+1. the gauge-fixed section package supplies the chart in which
+   $$
+   \rho^{\sharp}
+   $$
+   and the leakage channels are defined;
+2. the finite branch graph supplies the local active-branch ceilings that define
+   $$
+   \overline A^{\sharp}_{s,\mathrm{loc,in}}
+   \quad
+   \text{and}
+   \quad
+   \overline A^{\sharp}_{s,\mathrm{loc,out}};
+   $$
+3. the provenance-or-exclusion package supplies
+   $$
+   \overline A^{\sharp}_{s,\mathrm{deep,in}}
+   \quad
+   \text{and}
+   \quad
+   \overline A^{\sharp}_{s,\mathrm{deep,out}};
+   $$
+4. the remaining new burden is to prove that all quotient leakage channels admit finite ceilings
+   $$
+   \Theta^{\sharp}_{\alpha,\mathrm{in}},
+   \qquad
+   \Theta^{\sharp}_{\alpha,\mathrm{out}},
+   $$
+   on the same windows.
+
 If that theorem ladder cannot be stated cleanly, then the obstruction should be recorded at that level: either the quotient section is not well posed, the branch graph is not uniformly finite, provenance control fails, the multi-channel recapture estimate loses coercivity, or no convex tame self-map domain survives the gauge reset.
 
 ## Capstone Statement
