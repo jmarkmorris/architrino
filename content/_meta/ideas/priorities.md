@@ -13,142 +13,82 @@ Scoring system:
 
 ## Scoring Table
 
-| Item | Value | Cost | ROI |
-| --- | ---: | ---: | ---: |
-| Scene system, scene builder, applications, and later enhancements | 10 | 4 | 2.50 |
-| Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 5 | 2.00 |
-| Dyadic resonance lock reduced-map program | 8 | 4 | 2.00 |
-| Simulations, regularization, and shell numerics | 9 | 5 | 1.80 |
-| Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 6 | 1.67 |
-| PDG solver | 6 | 4 | 1.50 |
-| Lorentz kinematics and metric / clock / ruler bridge to GR | 8 | 6 | 1.33 |
-| Remaining black-hole / strong-field quantitative closure | 5 | 4 | 1.25 |
-| Remaining Standard Model assembly gaps, flavor mixing, and confinement | 6 | 6 | 1.00 |
-| Preserve strong-field / tri-binary hypotheses | 3 | 3 | 1.00 |
-| Fastest scorecard lift | 2 | 3 | 0.67 |
-| Unified chapter authoring queue | 3 | 5 | 0.60 |
-| Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
-| Recover useful old material | 2 | 4 | 0.50 |
-| Cosmology transfer-function closure | 3 | 8 | 0.38 |
-| Deferred product / outlook work | 1 | 6 | 0.17 |
+| # | Item | Value | Cost | ROI |
+| ---: | --- | ---: | ---: | ---: |
+| 1 | Freeze the 1D breather scaffold and advance the master-equation breather bridge | 10 | 2 | 5.00 |
+| 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
+| 3 | Scene system, scene builder, applications, and later enhancements | 10 | 4 | 2.50 |
+| 4 | Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 5 | 2.00 |
+| 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
+| 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
+| 7 | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
+| 8 | Lorentz kinematics and metric / clock / ruler bridge to GR | 9 | 6 | 1.50 |
+| 9 | PDG solver | 6 | 4 | 1.50 |
+| 10 | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
+| 11 | Fastest scorecard lift | 2 | 3 | 0.67 |
+| 12 | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
+| 13 | Unified chapter authoring queue | 3 | 5 | 0.60 |
+| 14 | Recover useful old material | 2 | 4 | 0.50 |
+| 15 | Born-rule / quantum closure with hard tests | 4 | 9 | 0.44 |
+| 16 | Cosmology transfer-function closure | 2 | 9 | 0.22 |
+| 17 | Deferred product / outlook work | 1 | 6 | 0.17 |
 
 ## Overall Task List
 
-### 1. Take the fastest scorecard lift first
-- Value `2`, Cost `3`, ROI `0.67`.
-- Based on the current `$\mathbb{A}\mathbb{A}\mathbb{A}$` scorecard, the fastest lift is still:
-  1. Coverage.
-  2. Parameter Closure.
-  3. Mass Formulas.
-  4. Internal-Core Dynamics.
-  5. Charge-Carrier Dynamics.
-  6. Cross-Regime Bridge.
-  7. UV/IR Completion.
-- If the goal is fastest total-score increase, do Coverage + Parameter Closure first.
-- If the goal is strongest foundational credibility increase, do Mass + Internal-Core / Charge-Carrier + Cross-Regime Bridge + UV/IR.
-- Fast practical lift: fill empty or thin chapters with formal minimums:
-  - definitions,
-  - governing equations,
-  - closure target,
-  - falsification gate.
-- Rule of thumb to retain: each `+10` points in one category adds about `+0.56` to the total 18-category mean.
+### 1. Freeze the 1D breather scaffold and advance the master-equation breather bridge
+- Value `10`, Cost `2`, ROI `5.00`.
+- Treat [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold, not as the live place for new theorem discovery.
+- Treat [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) as the live bridge note that transports the 1D proof architecture back into the broader delayed master-equation stack.
+- Current state:
+  - the 1D note now has a full theorem ladder from collapse-to-crossing through caustic transit, post-crossing recapture, outer-turn closure, seed-history nonvacuity, invariant-envelope synthesis, and the final Schauder capstone;
+  - the major global packaging defects were audited and made explicit: the convex tame-envelope step is now honestly marked as a target, the admissible parameter regime is now a coupled solvability target rather than a false decoupling argument, and the section anchoring now explicitly quotients out time-translation symmetry;
+  - the notation/domain hierarchy was cleaned so the raw section, the convex macro-envelope, and the closed convex tame envelope are no longer silently conflated;
+  - the bridge chapter now records the portable return-map / tame-envelope / Schauder architecture, the completed reduced-planar binary bridge, and the completed first unreduced-planar binary bridge;
+  - the reduced-planar bridge now runs end-to-end through section/gauge fixing, directional sorting, deep-past relocation, cone transversality, bounded caustic transit, vector recapture, tame-envelope closure, Schauder, and precise failure alternatives;
+  - the unreduced-planar binary bridge now runs end-to-end through gauge-fixed sectioning, finite active branch graph control, deep-past provenance or exclusion, multi-channel recapture, tame-envelope closure, Schauder, and precise closure-stage obstruction alternatives;
+  - the live bridge note now also marks the next boundary explicitly: beyond the unreduced planar binary, the first honest many-body step is already a planar three-body regime with higher-rank gauge fixing, a delay hypergraph, cluster ancestry, multiple escape observables, and atlas-level closure.
+- Resolved proof pivots to preserve from the frozen 1D scaffold:
+  - the inbound hinge caustic is integrated through as a bounded caustic-transit impulse rather than excluded as a pathology;
+  - the outer-turn geometry is organized around the sorting map
+    $$
+    z(t)=x(t)-c_f t,
+    $$
+    which forces explicit descent and exclusion inequalities on the apocenter window;
+  - deep-past outward self-roots on the apocenter window are forced back onto the pre-crossing inbound leg, where they become unique and automatically transversal;
+  - the affine seed history removes section-side vacuity by giving an explicit nonempty tame neighborhood;
+  - the fixed-point route now acts, conditionally, on a closed convex tame envelope
+    $$
+    \mathcal{K}_{x_\ast,\eta},
+    $$
+    rather than on a mismatched tame-subclass / macro-envelope pair.
+- Next-session prompt / active handoff:
+  - read [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) and [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) together, treating the first as frozen and the second as the live target;
+  - continue in [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md), not in the frozen 1D note, unless a real structural defect is discovered in the reference scaffold;
+  - treat the reduced-planar and unreduced-planar binary ladders as the current solved bridge scaffolds; do not reopen them unless a real structural defect is discovered;
+  - start the next bridge layer in the same note by formalizing the first honest many-body regime, most likely a planar three-body model before any jump to full spatial generality;
+  - begin that next layer with the many-body section/gauge package on
+    $$
+    \mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}
+    \equiv
+    \mathcal{Q}_{3,\mathrm{pl}}/SE(2),
+    $$
+    defining the codimension-one return section and the canonical gauge selector;
+  - then write the many-body delayed-root replacement package, upgrading the binary branch graph to a finite active delay hypergraph
+    $$
+    \mathscr{H}^{\mathrm{mb}}_{\mathrm{br}},
+    $$
+    with explicit receiver/source/window/sector labels and admissible coupled fold events;
+  - after that, write the cluster-valued ancestry or provenance package, replacing binary deep-past relocation by finite ancestry complexes and explicit exclusion principles for indefinite branch migration;
+  - then write the many-body recapture package using a finite family of escape observables
+    $$
+    \rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_{K_{\mathrm{esc}}},
+    $$
+    rather than one binary escape coordinate;
+  - finally, state the many-body convex-envelope / tame-envelope / self-map closure target and record any obstruction in theorem-level terms if a single-chart closure fails;
+  - phrase the next work as theorem targets and replacement obligations, with any failure written down precisely rather than as general difficulty.
 
-### 2. Build the PDG solver after the scene system is usable
-- Value `6`, Cost `4`, ROI `1.50`.
-- PDG solver tasks:
-  - provenance,
-  - diagrams,
-  - core disposition,
-  - use the API that now exists,
-  - look into MadGraph for reactions,
-  - use the scene builder in API mode.
-
-### 3. Preserve the strong-field / tri-binary hypotheses
-- Value `3`, Cost `3`, ROI `1.00`.
-- Keep the following strong-field / tri-binary ideas alive while the quantitative closures tighten:
-  - the tri-binary may open up inside the black hole, with quadrupole resonance appearing when a given core pops early or late;
-  - the event horizon may not be a clean sphere but a rough surface with significant radial depth;
-  - there may be a brief neck to planar motion before returning to 3D motion while still shrinking;
-  - open questions remain on avoiding zero volume at the event horizon and on whether there is a viable solution exactly at the horizon when all three binaries are at `c_f`;
-  - an alternative horizon geometry may look more like a throat or cylinder than a sphere;
-  - there may be a nontrivial connection to Fermi-Dirac versus Pauli exclusion.
-- Preserve the `4:2:1` model idea even if it turns out to be wrong:
-  - maybe the zero on the `4:2:1` scale is wrong;
-  - maybe the correct baseline is the MCB frequency rather than `1` Hz;
-  - maybe the reference scale is `f_{\mathrm{MCB}}`, with `f_{\max}`, `f_{\max}/2`, `f_{\max}/4`, then subtracting `1`, `2`, `4` from there for each click;
-  - maybe the MCB should be treated as zero potential energy and maximum kinetic energy until freeze-out;
-  - maybe nature wants `v = c_f` and the Planck-scale juncture to define zero;
-  - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
-  - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing `c_f`, though that seems doubtful.
-
-### 4. Advance the dyadic resonance lock reduced-map program
-- Value `8`, Cost `4`, ROI `2.00`.
-- [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) should now be treated as the live note for a **candidate** dyadic lock, not as a proof that the full dynamics uniquely select `1:2:4`.
-- What is now solid enough to build on:
-  - exact periodic closure gives a rational resonance lattice rather than an arbitrary hierarchy,
-  - self-similar near-horizon closure gives the broader family $1:s:s^2$,
-  - the dyadic member $1:2:4$ appears as the minimal integer member of that family, not yet as a theorem of the full master equation,
-  - the theorem-level statements currently established are conditional kinematic radius identities under the dyadic assumptions plus the $\mathbb{Z}_3$ dipole-cancellation identity,
-  - the exact global invariants worth anchoring the reduction are total energy and total angular momentum rather than branchwise action slices.
-- What remains open:
-  - whether the dynamical system actually selects the dyadic member $s=2$ rather than some other rational or self-similar lock,
-  - whether the common-speed and self-similar assumptions are valid only near the horizon or across a wider operating range,
-  - whether a Lyapunov-Krasovskii, phase-slip, or cycle-averaged causal-work functional can contract the reduced map toward the dyadic fixed point,
-  - whether the $\mathbb{Z}_3$ organization is only radiative-stealth bookkeeping or a genuine adiabatic stabilizer,
-  - whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
-- Immediate next move:
-  1. Use [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics.md](phenomenological-heuristics.md) as the scratch/archive notebook.
-  2. Build the regularized two-layer phase-amplitude return map at fixed finite `\eta > 0`, not a pure phase-only reduction.
-  3. Prove or numerically demonstrate a stable `1:2` fixed point in that reduction, then examine whether chaining the second layer yields a stable `1:2:4` state.
-  4. Study the Jacobian and eigenvalues near the suspected dyadic fixed point as `\beta \to 1`.
-  5. Only after that revisit `\eta \to 0^+` and promote archive material that can be rederived from the reduced dynamics.
-
-### 5. Run the chapter authoring queue
-- Value `3`, Cost `5`, ROI `0.60`.
-- This item is the ranked queue for chapter-writing work.
-- Use it for both:
-  1. improving chapters that already have drafts,
-  2. writing missing or thin chapters in the highest-payoff order.
-- Current drafted chapters to deepen:
-  1. `historical-context-and-missed-opportunities.md`
-  2. `information-computation.md`
-  3. `philosophy-of-science.md`
-  4. `religious-ontologies.md`
-  5. `theory-differentials.md`
-  6. `unknowns-paradoxes.md`
-  7. `major-thinkers.md`
-  8. `theory-mapping.md`
-- `crisis-in-physics.md` received a full review on March 12, 2026.
-- When working this queue, apply targeted label polish to `theory-mapping` and `major-thinkers`, then do publication-style prose smoothing on the most important drafted chapter next.
-- Chapter-writing order after that:
-  1. `Assembly Atlas`
-  2. `Chronology of Nature`
-  3. [nuclear-binding.md](../../markdown/aaa/nuclear-atomic/nuclear-binding.md)
-  4. [nucleon-structure.md](../../markdown/aaa/nuclear-atomic/nucleon-structure.md)
-  5. [atomic-spectra.md](../../markdown/aaa/nuclear-atomic/atomic-spectra.md)
-  6. `Dense Matter and Degeneracy Pressure`
-  7. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
-  8. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
-  9. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
-  10. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
-  11. `Hierarchy Problem and Asymptotic Safety`
-  12. `Reconstructing Physics and Cosmology`
-  13. `Vision for the Future / Toward New Technologies`
-
-### 6. Finish the remaining black-hole / strong-field quantitative closure
-- Value `5`, Cost `4`, ROI `1.25`.
-- The core chapter architecture is now in place:
-  - [black-holes.md](../../markdown/aaa/spacetime/black-holes.md),
-  - [singularity-resolution.md](../../markdown/aaa/spacetime/singularity-resolution.md),
-  - the aligned cosmology chapters,
-  - and the equivalence-principle rewrite in [tri-binary-dynamics.md](../../markdown/aaa/dynamics/tri-binary-dynamics.md).
-- The actual priority here is now narrow and quantitative:
-  - derive a stronger observer-level strong-field prediction set,
-  - decide the release-channel selection between jets, diffuse outflow, and dark-sector escape,
-  - and extract at least one discriminating observable that separates this story from GR-like strong-field behavior.
-
-### 7. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
-- Value `10`, Cost `5`, ROI `2.00`.
+### 2. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
+- Value `10`, Cost `4`, ROI `2.50`.
 - Treat [parameter-ledger.md](../../markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The real priority is to turn the open mass-side symbols it names into one reusable derived map.
 - First concrete deliverable: one derived tri-binary attractor family with radii, frequencies, binding scales, and a reproducible shielding-extraction protocol.
 - Second concrete deliverable: derive `\zeta(A)` from the delayed kernel strongly enough to predict a baseline electron mass and at least one next-step hierarchy check such as `m_\mu / m_e`.
@@ -161,23 +101,33 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
-### 8. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
-- Value `6`, Cost `6`, ROI `1.00`.
-- The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
-  - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
-  - finish the remaining quantum-number dictionary pieces from the tri-binary geometry:
-    - move from mixing-angle checks against Standard Model pulls to explicit overlap-integral derivations for CKM / PMNS data.
-- Push the Standard Model bridge from calibration to geometry:
-  - compute the exact 3D charge distributions or effective wavefunctions of the Gen I, II, and III core geometries and use them as mass-basis and weak-basis objects,
-  - derive the overlap integrals `V_{ij} = \int \psi_{j,\text{mass}}^* \psi_{i,\text{weak}} \, d\mu` rather than treating transport costs as fit knobs,
-  - derive `\kappa_{12}`, `\kappa_{23}`, and any analogous transport parameters from radii ratios, field drag, and shielding mismatch,
-  - test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target `\cos\delta = s_{13}/(s_{12}s_{23})`,
-  - derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension `V \propto r` or `\sigma_{\mathrm{eff}} L` and finite relaxed bounds for closed color-singlet configurations.
-- Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
-- Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
+### 3. Scene system, scene builder, applications, and later enhancements
+- Value `10`, Cost `4`, ROI `2.50`.
+- Build the 3D visualizer for the oblating Noether core and related scenes such as the sphere.
+- Continue the ellipsoid work, aiming to understand time through that geometry.
+- Work on the scene builder first.
+- Add a language for describing animations.
+- Port every scene to that format once the format stabilizes.
+- Make the composer use the same frame elements in the corners.
+- Use the scene builder in API mode where it helps.
+- Keep `sim2rewrite.md` as a later porting source, but wait until the scene builder is working before using it.
+- Use the resulting tooling for a few focused exploratory applications:
+  - make application pages that show Gell-Mann's eightfold way and tenfold diagram, placing the relevant particle from the scene creator at each vertex;
+  - use those pages to look for correlations with `T_3`, `Y`, and mass patterns;
+  - keep Kaiser's MIT lecture 22 as a prompt for that direction.
+- Keep later scene/product enhancements explicitly deferred inside the same workstream:
+  - `Vision for the Future / Toward New Technologies` belongs after the core scene and theory work, not in the derivation spine;
+  - future enhancements once core navigation is stable:
+    - branching zoom paths and user-directed exploration,
+    - integration of external data sources for scale-specific content,
+    - richer materials, particles, and effects once core navigation is stable;
+  - narrative export notes to revisit only after the core interaction flow is stable:
+    - scripted navigation paths for smooth MP4 output,
+    - export presets for desktop `16:9` and mobile `9:16`,
+    - formal narrative / export spec later, not now.
 
-### 9. Finish the tractable master-equation stack for Lorentz, quantum, and core closure
-- Value `10`, Cost `6`, ROI `1.67`.
+### 4. Finish the tractable master-equation stack for Lorentz, quantum, and core closure
+- Value `10`, Cost `5`, ROI `2.00`.
 - Keep dynamics, math, geometry, and mapping centered on [master-equation.md](../../markdown/aaa/dynamics/master-equation.md) as the top theory priority.
 - This stack has to carry the whole closure program from the `\eta`-regularized delayed action to the continuum bridges:
   1. full 3D translating tri-binary NFDE / DDE analysis for emergent `\gamma`-scaling,
@@ -219,33 +169,45 @@ Scoring system:
   6. full attractor landscape for binaries and tri-binaries;
   7. quantum closure from the master equation.
 
-### 10. Scene system, scene builder, applications, and later enhancements
-- Value `10`, Cost `4`, ROI `2.50`.
-- Build the 3D visualizer for the oblating Noether core and related scenes such as the sphere.
-- Continue the ellipsoid work, aiming to understand time through that geometry.
-- Work on the scene builder first.
-- Add a language for describing animations.
-- Port every scene to that format once the format stabilizes.
-- Make the composer use the same frame elements in the corners.
-- Use the scene builder in API mode where it helps.
-- Keep `sim2rewrite.md` as a later porting source, but wait until the scene builder is working before using it.
-- Use the resulting tooling for a few focused exploratory applications:
-  - make application pages that show Gell-Mann's eightfold way and tenfold diagram, placing the relevant particle from the scene creator at each vertex;
-  - use those pages to look for correlations with `T_3`, `Y`, and mass patterns;
-  - keep Kaiser's MIT lecture 22 as a prompt for that direction.
-- Keep later scene/product enhancements explicitly deferred inside the same workstream:
-  - `Vision for the Future / Toward New Technologies` belongs after the core scene and theory work, not in the derivation spine;
-  - future enhancements once core navigation is stable:
-    - branching zoom paths and user-directed exploration,
-    - integration of external data sources for scale-specific content,
-    - richer materials, particles, and effects once core navigation is stable;
-  - narrative export notes to revisit only after the core interaction flow is stable:
-    - scripted navigation paths for smooth MP4 output,
-    - export presets for desktop `16:9` and mobile `9:16`,
-    - formal narrative / export spec later, not now.
+### 5. Advance the dyadic resonance lock reduced-map program
+- Value `7`, Cost `4`, ROI `1.75`.
+- [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) should now be treated as the live note for a **candidate** dyadic lock, not as a proof that the full dynamics uniquely select `1:2:4`.
+- What is now solid enough to build on:
+  - exact periodic closure gives a rational resonance lattice rather than an arbitrary hierarchy,
+  - self-similar near-horizon closure gives the broader family $1:s:s^2$,
+  - the dyadic member $1:2:4$ appears as the minimal integer member of that family, not yet as a theorem of the full master equation,
+  - the theorem-level statements currently established are conditional kinematic radius identities under the dyadic assumptions plus the $\mathbb{Z}_3$ dipole-cancellation identity,
+  - the exact global invariants worth anchoring the reduction are total energy and total angular momentum rather than branchwise action slices.
+- What remains open:
+  - whether the dynamical system actually selects the dyadic member $s=2$ rather than some other rational or self-similar lock,
+  - whether the common-speed and self-similar assumptions are valid only near the horizon or across a wider operating range,
+  - whether a Lyapunov-Krasovskii, phase-slip, or cycle-averaged causal-work functional can contract the reduced map toward the dyadic fixed point,
+  - whether the $\mathbb{Z}_3$ organization is only radiative-stealth bookkeeping or a genuine adiabatic stabilizer,
+  - whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
+- Immediate next move:
+  1. Use [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics.md](phenomenological-heuristics.md) as the scratch/archive notebook.
+  2. Build the regularized two-layer phase-amplitude return map at fixed finite `\eta > 0`, not a pure phase-only reduction.
+  3. Prove or numerically demonstrate a stable `1:2` fixed point in that reduction, then examine whether chaining the second layer yields a stable `1:2:4` state.
+  4. Study the Jacobian and eigenvalues near the suspected dyadic fixed point as `\beta \to 1`.
+  5. Only after that revisit `\eta \to 0^+` and promote archive material that can be rederived from the reduced dynamics.
 
-### 11. Lock the simulations, regularization, and shell numerics
-- Value `9`, Cost `5`, ROI `1.80`.
+### 6. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
+- Value `8`, Cost `5`, ROI `1.60`.
+- The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
+  - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
+  - finish the remaining quantum-number dictionary pieces from the tri-binary geometry:
+    - move from mixing-angle checks against Standard Model pulls to explicit overlap-integral derivations for CKM / PMNS data.
+- Push the Standard Model bridge from calibration to geometry:
+  - compute the exact 3D charge distributions or effective wavefunctions of the Gen I, II, and III core geometries and use them as mass-basis and weak-basis objects,
+  - derive the overlap integrals `V_{ij} = \int \psi_{j,\text{mass}}^* \psi_{i,\text{weak}} \, d\mu` rather than treating transport costs as fit knobs,
+  - derive `\kappa_{12}`, `\kappa_{23}`, and any analogous transport parameters from radii ratios, field drag, and shielding mismatch,
+  - test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target `\cos\delta = s_{13}/(s_{12}s_{23})`,
+  - derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension `V \propto r` or `\sigma_{\mathrm{eff}} L` and finite relaxed bounds for closed color-singlet configurations.
+- Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
+- Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
+
+### 7. Lock the simulations, regularization, and shell numerics
+- Value `8`, Cost `5`, ROI `1.60`.
 - Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/validation/simulations/run-protocols.md) and the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
 - Publish convergence plots and `\mathbb{U}_{\text{now}}` provenance logs.
@@ -253,20 +215,8 @@ Scoring system:
 - Tie Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
 - If a quick intuition tool is useful, make a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
 
-### 12. Convert cosmology from narrative strength to equation-level closure
-- Value `3`, Cost `8`, ROI `0.38`.
-- Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
-- Build per-component observable interfaces for `\Lambda\mathrm{CDM}` comparison:
-  1. background expansion,
-  2. recombination / CMB transfer,
-  3. BBN yields,
-  4. growth / lensing,
-  5. distance-ladder calibration.
-- Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where `$\mathbb{A}\mathbb{A}\mathbb{A}$` matches, replaces, or diverges from each component.
-- This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
-
-### 13. Close Lorentz kinematics and the metric / clock / ruler bridge to GR
-- Value `8`, Cost `6`, ROI `1.33`.
+### 8. Close Lorentz kinematics and the metric / clock / ruler bridge to GR
+- Value `9`, Cost `6`, ROI `1.50`.
 - Treat the bridge as a two-stage theorem program:
   1. prove that moving tri-binaries in the Noether Sea realize `R_\parallel = R_\perp / \gamma` and `T(v) = T_0 \gamma` as a stable delayed-dynamics attractor rather than by tuning,
   2. coarse-grain the same causal medium into a constitutive response that yields `g_{\mu\nu}^{\mathrm{eff}}`, weak-field PPN closure, and suppressed preferred-frame leakage.
@@ -284,8 +234,104 @@ Scoring system:
 - Keep this as the direct bridge from substrate dynamics to GR tests: match GR in the weak field, then let strong-field differences emerge as predictions rather than assertions.
 - Related mechanical task: derive emergent Lorentz invariance for fast-moving tri-binaries so lifetimes, scattering kinematics, and decay rates recover the standard `\gamma` factor.
 
-### 14. Close the Born-rule / quantum gap only after making it testable
-- Value `4`, Cost `8`, ROI `0.50`.
+### 9. Build the PDG solver after the scene system is usable
+- Value `6`, Cost `4`, ROI `1.50`.
+- PDG solver tasks:
+  - provenance,
+  - diagrams,
+  - core disposition,
+  - use the API that now exists,
+  - look into MadGraph for reactions,
+  - use the scene builder in API mode.
+
+### 10. Finish the remaining black-hole / strong-field quantitative closure
+- Value `4`, Cost `5`, ROI `0.80`.
+- The core chapter architecture is now in place:
+  - [black-holes.md](../../markdown/aaa/spacetime/black-holes.md),
+  - [singularity-resolution.md](../../markdown/aaa/spacetime/singularity-resolution.md),
+  - the aligned cosmology chapters,
+  - and the equivalence-principle rewrite in [tri-binary-dynamics.md](../../markdown/aaa/dynamics/tri-binary-dynamics.md).
+- The actual priority here is now narrow and quantitative:
+  - derive a stronger observer-level strong-field prediction set,
+  - decide the release-channel selection between jets, diffuse outflow, and dark-sector escape,
+  - and extract at least one discriminating observable that separates this story from GR-like strong-field behavior.
+
+### 11. Take the fastest scorecard lift first
+- Value `2`, Cost `3`, ROI `0.67`.
+- Based on the current `$\mathbb{A}\mathbb{A}\mathbb{A}$` scorecard, the fastest lift is still:
+  1. Coverage.
+  2. Parameter Closure.
+  3. Mass Formulas.
+  4. Internal-Core Dynamics.
+  5. Charge-Carrier Dynamics.
+  6. Cross-Regime Bridge.
+  7. UV/IR Completion.
+- If the goal is fastest total-score increase, do Coverage + Parameter Closure first.
+- If the goal is strongest foundational credibility increase, do Mass + Internal-Core / Charge-Carrier + Cross-Regime Bridge + UV/IR.
+- Fast practical lift: fill empty or thin chapters with formal minimums:
+  - definitions,
+  - governing equations,
+  - closure target,
+  - falsification gate.
+- Rule of thumb to retain: each `+10` points in one category adds about `+0.56` to the total 18-category mean.
+
+### 12. Preserve the strong-field / tri-binary hypotheses
+- Value `2`, Cost `3`, ROI `0.67`.
+- Keep the following strong-field / tri-binary ideas alive while the quantitative closures tighten:
+  - the tri-binary may open up inside the black hole, with quadrupole resonance appearing when a given core pops early or late;
+  - the event horizon may not be a clean sphere but a rough surface with significant radial depth;
+  - there may be a brief neck to planar motion before returning to 3D motion while still shrinking;
+  - open questions remain on avoiding zero volume at the event horizon and on whether there is a viable solution exactly at the horizon when all three binaries are at `c_f`;
+  - an alternative horizon geometry may look more like a throat or cylinder than a sphere;
+  - there may be a nontrivial connection to Fermi-Dirac versus Pauli exclusion.
+- Preserve the `4:2:1` model idea even if it turns out to be wrong:
+  - maybe the zero on the `4:2:1` scale is wrong;
+  - maybe the correct baseline is the MCB frequency rather than `1` Hz;
+  - maybe the reference scale is `f_{\mathrm{MCB}}`, with `f_{\max}`, `f_{\max}/2`, `f_{\max}/4`, then subtracting `1`, `2`, `4` from there for each click;
+  - maybe the MCB should be treated as zero potential energy and maximum kinetic energy until freeze-out;
+  - maybe nature wants `v = c_f` and the Planck-scale juncture to define zero;
+  - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
+  - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing `c_f`, though that seems doubtful.
+
+### 13. Run the chapter authoring queue
+- Value `3`, Cost `5`, ROI `0.60`.
+- This item is the ranked queue for chapter-writing work.
+- Use it for both:
+  1. improving chapters that already have drafts,
+  2. writing missing or thin chapters in the highest-payoff order.
+- Current drafted chapters to deepen:
+  1. `historical-context-and-missed-opportunities.md`
+  2. `information-computation.md`
+  3. `philosophy-of-science.md`
+  4. `religious-ontologies.md`
+  5. `theory-differentials.md`
+  6. `unknowns-paradoxes.md`
+  7. `major-thinkers.md`
+  8. `theory-mapping.md`
+- `crisis-in-physics.md` received a full review on March 12, 2026.
+- When working this queue, apply targeted label polish to `theory-mapping` and `major-thinkers`, then do publication-style prose smoothing on the most important drafted chapter next.
+- Chapter-writing order after that:
+  1. `Assembly Atlas`
+  2. `Chronology of Nature`
+  3. [nuclear-binding.md](../../markdown/aaa/nuclear-atomic/nuclear-binding.md)
+  4. [nucleon-structure.md](../../markdown/aaa/nuclear-atomic/nucleon-structure.md)
+  5. [atomic-spectra.md](../../markdown/aaa/nuclear-atomic/atomic-spectra.md)
+  6. `Dense Matter and Degeneracy Pressure`
+  7. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
+  8. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
+  9. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
+  10. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
+  11. `Hierarchy Problem and Asymptotic Safety`
+  12. `Reconstructing Physics and Cosmology`
+  13. `Vision for the Future / Toward New Technologies`
+
+### 14. Recover useful old material before rewriting it from scratch
+- Value `2`, Cost `4`, ROI `0.50`.
+- Mine material from WordPress where it can save time.
+- Clean up PowerPoints, or better, migrate the worthwhile ones into the web site.
+
+### 15. Close the Born-rule / quantum gap only after making it testable
+- Value `4`, Cost `9`, ROI `0.44`.
 - Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
 - Make the Born-rule target fully measure-theoretic rather than only interpretive:
   - construct the relevant Perron-Frobenius or equivalent transfer operator for metastable assemblies under causal background driving,
@@ -296,10 +342,26 @@ Scoring system:
 - Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
 - Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
 
-### 15. Recover useful old material before rewriting it from scratch
-- Value `2`, Cost `4`, ROI `0.50`.
-- Mine material from WordPress where it can save time.
-- Clean up PowerPoints, or better, migrate the worthwhile ones into the web site.
+### 16. Convert cosmology from narrative strength to equation-level closure
+- Value `2`, Cost `9`, ROI `0.22`.
+- Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
+- Build per-component observable interfaces for `\Lambda\mathrm{CDM}` comparison:
+  1. background expansion,
+  2. recombination / CMB transfer,
+  3. BBN yields,
+  4. growth / lensing,
+  5. distance-ladder calibration.
+- Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where `$\mathbb{A}\mathbb{A}\mathbb{A}$` matches, replaces, or diverges from each component.
+- This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
+
+### 17. Defer product / outlook work until the theory spine is stable
+- Value `1`, Cost `6`, ROI `0.17`.
+- Keep productization, big-picture outlook writing, and future-technology packaging behind the core theory and derivation work.
+- This includes:
+  - broad future-tech narrative material,
+  - product-facing presentation layers that do not sharpen the equations,
+  - and other outlook work that is better handled after the mathematical core is compressed and stable.
+- Preserve the ideas, but do not let them outrank the derivation spine.
 
 ## Info
 
