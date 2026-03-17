@@ -1748,6 +1748,225 @@ This corollary is the precise output needed before any vector recapture margin c
 
 This is the replacement for the scalar inner and outer recapture inequalities. The planar theorem must dominate the centrifugal leakage term and control tangential spin-up rather than pretending those channels do not exist.
 
+### Sixth theorem package: unified vector recapture criteria
+
+The planar comparison problem should be written on two explicit windows:
+$$
+W_{\mathrm{in}}^{\mathrm{turn}}
+\equiv
+[t_{\mathrm{in}}^{\mathrm{turn}},\,t_{\mathrm{in}}^{\mathrm{turn}}+\tau_{\mathrm{in}}],
+\qquad
+W_{\mathrm{out}}^{\mathrm{turn}}
+\equiv
+I_{\mathrm{ap}}
+=[t_{\mathrm{ap}}^-,\,t_{\mathrm{ap}}^+].
+$$
+The first is the short post-crossing window issued by the caustic handoff. The second is the late-apocenter window on the later outbound branch.
+
+Write the net acceleration in the moving polar frame as
+$$
+\mathbf{a}_{\mathrm{net}}(t)
+=
+a_r(t)\hat{\mathbf{e}}_r(t)
++
+a_\theta(t)\hat{\mathbf{e}}_\theta(t),
+\qquad
+a_r(t)=\hat{\mathbf{e}}_r(t)\cdot \mathbf{a}_{\mathrm{net}}(t),
+\qquad
+a_\theta(t)=\hat{\mathbf{e}}_\theta(t)\cdot \mathbf{a}_{\mathrm{net}}(t).
+$$
+Then
+$$
+\ddot\rho(t)=a_r(t)+\rho(t)\dot\vartheta(t)^2.
+$$
+The scalar 1D turn inequalities are therefore replaced by a competition among three windowwise quantities:
+
+- an inward partner floor,
+- an outward self ceiling,
+- and a centrifugal leakage ceiling.
+
+> **Target Proposition (Windowwise vector-force split).**
+> There exist nonnegative constants
+> $$
+> \underline A^{\mathrm{in}}_p,
+> \quad
+> \overline A^{\mathrm{in}}_s,
+> \quad
+> \Theta_{\mathrm{in}},
+> \quad
+> \Gamma_{\theta,\mathrm{in}},
+> $$
+> and
+> $$
+> \underline A^{\mathrm{out}}_p,
+> \quad
+> \overline A^{\mathrm{out}}_s,
+> \quad
+> \Theta_{\mathrm{out}},
+> \quad
+> \Gamma_{\theta,\mathrm{out}},
+> $$
+> such that on
+> $$
+> W_{\mathrm{in}}^{\mathrm{turn}}
+> $$
+> one has
+> $$
+> -a_r^{\mathrm{part}}(t)\ge \underline A^{\mathrm{in}}_p,
+> \qquad
+> a_r^{\mathrm{self}}(t)\le \overline A^{\mathrm{in}}_s,
+> \qquad
+> \rho(t)\dot\vartheta(t)^2\le \Theta_{\mathrm{in}},
+> \qquad
+> |a_\theta(t)|\le \Gamma_{\theta,\mathrm{in}},
+> $$
+> and on
+> $$
+> W_{\mathrm{out}}^{\mathrm{turn}}
+> $$
+> one has
+> $$
+> -a_r^{\mathrm{part}}(t)\ge \underline A^{\mathrm{out}}_p,
+> \qquad
+> a_r^{\mathrm{self}}(t)\le \overline A^{\mathrm{out}}_s,
+> \qquad
+> \rho(t)\dot\vartheta(t)^2\le \Theta_{\mathrm{out}},
+> \qquad
+> |a_\theta(t)|\le \Gamma_{\theta,\mathrm{out}}.
+> $$
+
+Define the reference inward accelerations
+$$
+a^{\mathrm{in}}_{\mathrm{ref}}
+\equiv
+\underline A^{\mathrm{in}}_p-\overline A^{\mathrm{in}}_s-\Theta_{\mathrm{in}},
+\qquad
+a^{\mathrm{out}}_{\mathrm{ref}}
+\equiv
+\underline A^{\mathrm{out}}_p-\overline A^{\mathrm{out}}_s-\Theta_{\mathrm{out}}.
+$$
+Whenever these are positive, the radial comparison inequality becomes
+$$
+\ddot\rho(t)\le -a^{\mathrm{in}}_{\mathrm{ref}}<0
+\qquad
+\text{on }W_{\mathrm{in}}^{\mathrm{turn}},
+$$
+and
+$$
+\ddot\rho(t)\le -a^{\mathrm{out}}_{\mathrm{ref}}<0
+\qquad
+\text{on }W_{\mathrm{out}}^{\mathrm{turn}}.
+$$
+
+This is the exact place where the planar bridge differs from the 1D proof scaffold. In the collinear note the comparison race is partner attraction versus self drive. Here the same race acquires the additional positive leakage term
+$$
+\rho\dot\vartheta^2,
+$$
+and the tangential forcing bound is needed precisely so that the leakage ceiling
+$$
+\Theta_{\mathrm{in}}
+\quad
+\text{or}
+\quad
+\Theta_{\mathrm{out}}
+$$
+can be maintained throughout the comparison window.
+
+> **Target Theorem (Unified planar vector recapture criterion).**
+> Assume the windowwise vector-force split proposition and define the initial outward radial speeds
+> $$
+> V_{\mathrm{in},0}
+> \equiv
+> \dot\rho(t_{\mathrm{in}}^{\mathrm{turn}}),
+> \qquad
+> V_{\mathrm{out},0}
+> \equiv
+> \dot\rho(t_{\mathrm{ap}}^-).
+> $$
+> If
+> $$
+> a^{\mathrm{in}}_{\mathrm{ref}}>0,
+> \qquad
+> |W_{\mathrm{in}}^{\mathrm{turn}}|
+> \ge
+> \frac{V_{\mathrm{in},0}}{a^{\mathrm{in}}_{\mathrm{ref}}},
+> $$
+> then the first post-crossing radial velocity reaches zero on or before the end of
+> $$
+> W_{\mathrm{in}}^{\mathrm{turn}}.
+> $$
+> If, in addition,
+> $$
+> a^{\mathrm{out}}_{\mathrm{ref}}>0,
+> \qquad
+> |W_{\mathrm{out}}^{\mathrm{turn}}|
+> \ge
+> \frac{V_{\mathrm{out},0}}{a^{\mathrm{out}}_{\mathrm{ref}}},
+> $$
+> then the late outbound radial velocity also reaches zero on or before the end of
+> $$
+> W_{\mathrm{out}}^{\mathrm{turn}}.
+> $$
+> Consequently the trajectory makes both the inner post-crossing turn and the final outer turn inside the controlled planar windows.
+
+The proof is a direct comparison argument once the windowwise floors and ceilings are in hand. The real work is therefore not the last line of the proof. It is the production of the constants
+$$
+\underline A^{\mathrm{in}}_p,
+\quad
+\overline A^{\mathrm{in}}_s,
+\quad
+\Theta_{\mathrm{in}},
+\quad
+\underline A^{\mathrm{out}}_p,
+\quad
+\overline A^{\mathrm{out}}_s,
+\quad
+\Theta_{\mathrm{out}}
+$$
+from the earlier bridge packages.
+
+The dependency chain should be recorded explicitly:
+
+1. the caustic handoff theorem supplies the controlled entry data for
+   $$
+   W_{\mathrm{in}}^{\mathrm{turn}};
+   $$
+2. the directional sorting and transversality packages keep the partner floor and local self ceiling stable on the inner window;
+3. the deep-past relocation and suppression packages produce the outer self ceiling on
+   $$
+   W_{\mathrm{out}}^{\mathrm{turn}};
+   $$
+4. the tangential forcing bounds are what keep
+   $$
+   \Theta_{\mathrm{in}}
+   \quad
+   \text{and}
+   \quad
+   \Theta_{\mathrm{out}}
+   $$
+   from becoming uncontrolled.
+
+> **Target Corollary (Inner and outer planar turn margins).**
+> Under the unified planar vector recapture criterion, define
+> $$
+> \mathfrak{M}^{\Pi}_{\mathrm{in}}
+> \equiv
+> a^{\mathrm{in}}_{\mathrm{ref}},
+> \qquad
+> \mathfrak{M}^{\Pi}_{\mathrm{out}}
+> \equiv
+> a^{\mathrm{out}}_{\mathrm{ref}}.
+> $$
+> Then the bridge note has precise higher-dimensional replacements for the 1D quantities
+> $$
+> \mathfrak M_{\mathrm{in}}>0
+> \qquad
+> \text{and}
+> \qquad
+> \mathfrak M_{\mathrm{out}}>0.
+> $$
+> The only remaining burden is to prove those margins from the earlier sector, cone, caustic, and deep-past packages.
+
 ## Precise Failure Alternative for the Planar Bridge
 
 If the planar bridge fails, the failure should be recorded as a theorem-level obstruction rather than as a vague expression of difficulty. The meaningful obstruction alternatives are:
