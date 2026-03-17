@@ -3042,6 +3042,233 @@ The dependency chain should be stated explicitly here:
    $$
    on the same windows.
 
+#### Why the unreduced planar object is still called a breather
+
+The word **breather** does not mean that the motion remains one-dimensional. It means that one controlled size or escape observable repeatedly contracts and expands while the full delayed trajectory stays bounded and returns to a section. In the reduced planar bridge that observable was the relative radius
+$$
+\rho(t).
+$$
+In the unreduced planar bridge it is the quotient escape coordinate
+$$
+\rho^{\sharp}(t).
+$$
+
+So the intended dynamical picture is still a breathing one:
+
+- an inbound contraction toward the near-crossing regime;
+- entry into the self-hit-capable or even super-field-speed regime, where active delayed self branches and caustic tubes can appear;
+- a post-crossing outward excursion;
+- a controlled recapture turn;
+- a later outward excursion;
+- and a final late turn that sends the trajectory back toward the return section.
+
+What is being claimed is therefore a **turnaround**, not a hard elastic bounce. The theorem targets do not say that the architrinos strike a wall and reverse instantaneously. They say that after the super-field-speed episode has activated the relevant delayed geometry, the outward escape observable still reaches zero on controlled windows and changes sign again under the net inward delayed force balance. In that sense the configuration “breathes”: it expands, fails to escape, contracts again, and repeats.
+
+Super-field-speed motion is therefore not the endpoint of the story. It is the regime in which self-hit branches are born and the causal geometry becomes singular enough to require caustic control. The breather claim is precisely that these episodes can be integrated through without converting the trajectory into scattering. Instead they feed a later recapture-and-return mechanism.
+
+#### Unreduced-planar tame-envelope and closure targets
+
+The remaining bridge step is now the same structural one that appeared in the 1D and reduced planar programs: place the entire cycle on one closed convex tame self-map domain.
+
+The unreduced-planar envelope should be phrased in terms of the constants already produced by the local packages:
+$$
+R^{\sharp}_{\max},
+\quad
+U^{\sharp}_{\max},
+\quad
+A^{\sharp}_{\max},
+\quad
+T^{\sharp}_{\mathrm{cyc},\max},
+\quad
+N^{\sharp}_{\mathrm{br}},
+\quad
+\delta^{\sharp}_{\mathrm{sep}},
+\quad
+\nu^{\sharp}_{J},
+\quad
+\nu^{\sharp}_{J,\mathrm{dp}},
+\quad
+P^{\sharp}_{\mathrm{prov}},
+\quad
+Q^{\sharp}_{\mathrm{esc}},
+\quad
+\mathfrak{M}^{\sharp}_{\mathrm{in}},
+\quad
+\mathfrak{M}^{\sharp}_{\mathrm{out}}.
+$$
+The point is again not to define the tame class by pointwise intersection of every branch-graph or provenance predicate. That would generally fail to preserve convexity. The correct theorem target is one closed convex subset on which all of those constants hold uniformly.
+
+Write
+$$
+\mathcal{C}^{\sharp}_{\rho_\ast,\eta}
+\subseteq
+\widehat{\Sigma}^{-,\sharp}_{\rho_\ast}
+$$
+for the unreduced-planar convex section envelope in the gauge-fixed chart and
+$$
+\mathcal{K}^{\sharp}_{\rho_\ast,\eta}
+\subseteq
+\mathcal{C}^{\sharp}_{\rho_\ast,\eta}
+$$
+for the desired closed convex tame envelope.
+
+> **Target Proposition (Closed convex tame envelope in the unreduced planar section).**
+> There exists a nonempty closed convex set
+> $$
+> \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\sharp}_{\rho_\ast,\eta}
+> \subseteq
+> \widehat{\Sigma}^{-,\sharp}_{\rho_\ast}
+> $$
+> such that:
+> 1. a nonempty propagated gauge-fixed class
+>    $$
+>    \mathcal{C}^{\sharp,\mathrm{prop}}_{\rho_\ast,\eta}
+>    $$
+>    lies in
+>    $$
+>    \mathcal{K}^{\sharp}_{\rho_\ast,\eta};
+>    $$
+> 2. every
+>    $$
+>    \Psi\in \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
+>    $$
+>    admits a unique forward continuation on
+>    $$
+>    [0,T^{\sharp}_{\mathrm{cyc},\max}]
+>    $$
+>    with uniform quotient-chart position, speed, acceleration, and memory-depth bounds inside the convex envelope;
+> 3. along that full cycle, the gauge-fixed section, finite branch graph, deep-past provenance-or-exclusion, and multi-channel recapture packages all hold with the same class constants
+>    $$
+>    N^{\sharp}_{\mathrm{br}},
+>    \quad
+>    \delta^{\sharp}_{\mathrm{sep}},
+>    \quad
+>    \nu^{\sharp}_{J},
+>    \quad
+>    \nu^{\sharp}_{J,\mathrm{dp}},
+>    \quad
+>    P^{\sharp}_{\mathrm{prov}},
+>    \quad
+>    Q^{\sharp}_{\mathrm{esc}},
+>    \quad
+>    \mathfrak{M}^{\sharp}_{\mathrm{in}},
+>    \quad
+>    \mathfrak{M}^{\sharp}_{\mathrm{out}};
+>    $$
+> 4. the first full-cycle return time
+>    $$
+>    T^{\sharp}(\Psi)
+>    $$
+>    is uniformly transverse on the raw section, and the gauge-reset return
+>    $$
+>    P^{\sharp}_{\eta}(\Psi)
+>    $$
+>    satisfies the same gauge-fixed section anchoring that defines
+>    $$
+>    \widehat{\Sigma}^{-,\sharp}_{\rho_\ast}.
+>    $$
+
+This is the unreduced-planar analogue of the earlier envelope-construction targets. Its role is to put the entire quotient-space cycle geometry on one domain before asking for a self-map theorem.
+
+> **Target Theorem (Unreduced-planar invariant-envelope closure).**
+> Assume the closed convex tame envelope proposition and suppose, in addition, that:
+> 1. the returned gauge-fixed histories satisfy the same convex envelope bounds
+>    $$
+>    \|\Psi(\theta)\|_{\mathcal{Q}^{\sharp}_{\mathrm{pl}}}\le R^{\sharp}_{\max},
+>    \qquad
+>    \|\dot{\Psi}(\theta)\|_{\mathcal{Q}^{\sharp}_{\mathrm{pl}}}\le U^{\sharp}_{\max},
+>    \qquad
+>    \operatorname{Lip}(\dot{\Psi})\le A^{\sharp}_{\max};
+>    $$
+> 2. the returned active delayed-root topology preserves the same branch-graph bound, separation margin, provenance count, and leakage-channel count
+>    $$
+>    N^{\sharp}_{\mathrm{br}},
+>    \qquad
+>    \delta^{\sharp}_{\mathrm{sep}},
+>    \qquad
+>    P^{\sharp}_{\mathrm{prov}},
+>    \qquad
+>    Q^{\sharp}_{\mathrm{esc}};
+>    $$
+> 3. the returned histories preserve the same Jacobian floors
+>    $$
+>    \nu^{\sharp}_{J},
+>    \qquad
+>    \nu^{\sharp}_{J,\mathrm{dp}};
+>    $$
+> 4. the returned post-crossing and late-turn windows satisfy the same strict recapture margins
+>    $$
+>    \mathfrak{M}^{\sharp}_{\mathrm{in}}>0,
+>    \qquad
+>    \mathfrak{M}^{\sharp}_{\mathrm{out}}>0.
+>    $$
+>
+> Then
+> $$
+> P^{\sharp}_{\eta}\!\big(
+> \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
+> \big)
+> \subseteq
+> \mathcal{K}^{\sharp}_{\rho_\ast,\eta}.
+> $$
+
+This is the self-map statement the unreduced-planar bridge is aiming at. It says that after one full physical excursion and one quotient gauge reset, no branch-graph, provenance, leakage, or recapture constant is lost.
+
+> **Target Proposition (Continuity and precompactness of the unreduced-planar return map).**
+> On
+> $$
+> \mathcal{K}^{\sharp}_{\rho_\ast,\eta},
+> $$
+> the map
+> $$
+> P^{\sharp}_{\eta}:
+> \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
+> \to
+> \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
+> $$
+> is continuous in the
+> $$
+> C^1([-h,0];\mathcal{Q}^{\sharp}_{\mathrm{pl}})
+> $$
+> topology, and its image is precompact.
+
+The extra burden beyond the reduced planar case is that continuity must now absorb the quotient gauge selector together with the returned branch graph. So the proof target is continuity not only of return time and returned history, but also of the canonical representative and the finite graph data used to define the tame class.
+
+> **Target Theorem (Unreduced-planar Schauder capstone).**
+> Assume:
+> 1. the closed convex tame envelope proposition in the unreduced planar section;
+> 2. the unreduced-planar invariant-envelope closure theorem;
+> 3. the continuity and precompactness proposition for
+>    $$
+>    P^{\sharp}_{\eta}
+>    $$
+>    on
+>    $$
+>    \mathcal{K}^{\sharp}_{\rho_\ast,\eta};
+>    $$
+> 4. and the nonempty propagated gauge-fixed class
+>    $$
+>    \mathcal{C}^{\sharp,\mathrm{prop}}_{\rho_\ast,\eta}\neq \varnothing.
+>    $$
+>
+> Then there exists
+> $$
+> \Psi^\ast_{\eta}
+> \in
+> \mathcal{K}^{\sharp}_{\rho_\ast,\eta}
+> $$
+> such that
+> $$
+> P^{\sharp}_{\eta}(\Psi^\ast_{\eta})=\Psi^\ast_{\eta}.
+> $$
+> The corresponding gauge-fixed trajectory is a bounded periodic solution modulo the chosen
+> $$
+> SE(2)
+> $$
+> gauge, and therefore a genuine unreduced-planar breather of the dual-mollified master equation in the first non-reflection-symmetric binary regime.
+
 If that theorem ladder cannot be stated cleanly, then the obstruction should be recorded at that level: either the quotient section is not well posed, the branch graph is not uniformly finite, provenance control fails, the multi-channel recapture estimate loses coercivity, or no convex tame self-map domain survives the gauge reset.
 
 ## Capstone Statement
