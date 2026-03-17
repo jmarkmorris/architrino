@@ -3389,6 +3389,536 @@ Fifth, the tame-envelope problem becomes atlas-level. It is no longer enough to 
 
 For that reason, the present chapter should still be read as a binary bridge note, even after the unreduced planar extension. Only after the many-body section, hypergraph, ancestry, multi-observable recapture, and closure targets are isolated in the same theorem-level way would it be honest to say that the breather program has moved from the binary bridge toward the full master-equation setting.
 
+### First planar three-body bridge regime
+
+The next concrete target should now be fixed more narrowly than the generic
+$$
+N\text{-body}
+$$
+language above. The first honest many-body bridge is best posed as a planar three-body model with one distinguished opposite-sign body and a same-sign outer pair. Up to global sign reversal, write
+$$
+q_1=+\epsilon,
+\qquad
+q_2=-\epsilon,
+\qquad
+q_3=+\epsilon,
+$$
+with all three trajectories constrained to one plane.
+
+This is the smallest regime in which the binary-relative chart fails for structural rather than cosmetic reasons. It preserves enough symmetry to permit a clean gauge discussion, but it already introduces the genuinely new burdens that the binary bridge cannot see:
+
+- no single present chord canonically fixes orientation;
+- each receiver sees more than one source family at once;
+- delayed provenance can pass through changing pair or cluster organization;
+- and recapture must dominate more than one outward channel.
+
+The theorem objective is not yet a classification of all planar three-body bounded motions. It is the first transport test for the breather architecture itself:
+
+> **Planar-three-body bridge objective.**
+> Construct a history-space return map for a charge-neutral planar three-body delayed system and isolate a nonempty closed convex tame domain on which that return map is well defined. If this succeeds, the corresponding Schauder capstone becomes the first many-body breather theorem in the master-equation stack. If it fails, the obstruction should be written down in section/gauge, hypergraph, ancestry, recapture, or atlas-closure terms.
+
+The first two packages below are the right place to resume work. They turn the present many-body discussion from a boundary marker into a live theorem program.
+
+### First many-body theorem package: section and gauge fixing on planar shape space
+
+Let
+$$
+\mathbf{x}(t)=\big(\mathbf{x}_1(t),\mathbf{x}_2(t),\mathbf{x}_3(t)\big)
+\in
+\mathcal{Q}_{3,\mathrm{pl}}
+\equiv
+\big(\mathbb{R}^2\big)^3\setminus\Delta_{\mathrm{coll}}
+$$
+denote the ordered planar three-body configuration away from collisions, where
+$$
+\Delta_{\mathrm{coll}}
+$$
+is the collision locus. Remove translations by imposing the center-of-mass condition
+$$
+\mathbf{x}_1+\mathbf{x}_2+\mathbf{x}_3=0.
+$$
+The remaining quotient by rigid planar rotations defines the reduced shape space
+$$
+\mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}
+\equiv
+\mathcal{Q}_{3,\mathrm{pl}}/SE(2).
+$$
+
+For the first three-body bridge it is useful to distinguish the opposite-sign body from the same-sign pair, but not to hard-code a full ordering beyond that role split. Accordingly, the gauge selector should be permutation-rigid only with respect to the two same-sign outer bodies.
+
+Choose the present-time Jacobi vectors
+$$
+\mathbf{a}(t)\equiv \mathbf{x}_1(t)-\mathbf{x}_3(t),
+\qquad
+\mathbf{b}(t)\equiv \mathbf{x}_2(t)-\frac{\mathbf{x}_1(t)+\mathbf{x}_3(t)}{2}.
+$$
+The first vector tracks the same-sign pair separation, while the second tracks the opposite-sign body's displacement from the outer-pair midpoint. Away from the near-collinear set
+$$
+\mathfrak{D}_{\mathrm{col}}
+\equiv
+\left\{
+(\mathbf{a},\mathbf{b})\;\middle|\;
+\big|\det(\mathbf{a},\mathbf{b})\big|\le \delta_{\mathrm{col}}
+\right\},
+$$
+one may impose the canonical gauge
+$$
+\mathbf{a}(0)=A_\ast \mathbf{e}_1,
+\qquad
+\mathbf{e}_2\cdot \mathbf{b}(0)>0,
+\qquad
+\mathbf{e}_1\cdot \dot{\mathbf{b}}(0)<0,
+$$
+with fixed
+$$
+A_\ast>0.
+$$
+The first condition removes rotation by anchoring the same-sign pair on the horizontal axis, the second chooses the upper-half-plane representative for the opposite-sign body, and the third picks the inbound branch across the section.
+
+The resulting gauge-fixed history space is
+$$
+\mathcal{H}^{\mathrm{mb}}_h
+\equiv
+C^1([-h,0];\mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}),
+$$
+and the raw inbound section should be written as
+$$
+\Sigma^{-,\mathrm{mb}}_{A_\ast}
+\equiv
+\left\{
+\Phi\in \mathcal{H}^{\mathrm{mb}}_h
+\;\middle|\;
+\mathbf{a}_\Phi(0)=A_\ast \mathbf{e}_1,
+\quad
+\mathbf{e}_2\cdot \mathbf{b}_\Phi(0)\ge B_{\min},
+\quad
+\mathbf{e}_1\cdot \dot{\mathbf{b}}_\Phi(0)\le -V_{\mathrm{in}}
+\right\},
+$$
+for fixed positive constants
+$$
+B_{\min},
+\qquad
+V_{\mathrm{in}}.
+$$
+
+This is the many-body analogue of the binary section packages: it removes time translation through a codimension-one section, removes planar rotation through a canonical representative, and keeps the same-sign pair quotient visible without pretending that the full three-body shape can be controlled by one scalar radius.
+
+> **Target Proposition (Gauge-fixed sectioned well-posedness for the planar three-body bridge).**
+> For sufficiently small dual-mollification scales
+> $$
+> \eta>0,
+> \qquad
+> \epsilon_c>0,
+> $$
+> and for section constants
+> $$
+> A_\ast,
+> \quad
+> B_{\min},
+> \quad
+> V_{\mathrm{in}},
+> \quad
+> \delta_{\mathrm{col}}
+> $$
+> in an admissible regime, there exists a nonempty open subset
+> $$
+> \mathcal{H}^{\mathrm{adm},\mathrm{mb}}_{A_\ast,\eta}
+> \subseteq
+> \Sigma^{-,\mathrm{mb}}_{A_\ast}
+> $$
+> such that:
+> 1. the gauge selector is unique and continuous on
+>    $$
+>    \mathcal{H}^{\mathrm{adm},\mathrm{mb}}_{A_\ast,\eta};
+>    $$
+> 2. every history in that class admits one-cycle continuation for the dual-mollified master equation without leaving the noncollision, non-near-collinear regime on the controlled windows;
+> 3. the first-return time to the same gauge-fixed inbound section is well defined whenever the later recapture packages succeed;
+> 4. the only local failure alternatives are collision approach, near-collinear gauge degeneracy, section-tangency loss, or role-exchange ambiguity of the same-sign pair.
+
+This is the correct first theorem target because all later many-body bookkeeping depends on having one honest chart in which the delayed branches can even be named.
+
+### Second many-body theorem package: finite active delay hypergraph
+
+Once the gauge-fixed section is chosen, the next burden is to replace the binary branch graph by a finite active delay hypergraph over one controlled cycle.
+
+Fix a finite family of cycle windows
+$$
+\mathcal{W}^{\mathrm{mb}}
+=
+\left\{
+W_1,\dots,W_{N_W}
+\right\},
+$$
+chosen to separate the inbound compression stage, the crossing or near-core stage, the post-crossing recapture stage, and the late-turn stage. For each ordered receiver-source pair
+$$
+(i,j)\in \{1,2,3\}^2,
+\qquad
+i\neq j,
+$$
+and for the self family
+$$
+(i,i),
+$$
+let
+$$
+g_{ij}(t;s)
+\equiv
+\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s)
+$$
+denote the exact delayed-root equation on a window
+$$
+W_\alpha\in\mathcal{W}^{\mathrm{mb}}.
+$$
+As in the reduced planar bridge, choose a fixed finite directional atlas on
+$$
+S^1,
+$$
+but now each active root must carry receiver index, source index, sector label, and window label.
+
+Define the active delay hypergraph
+$$
+\mathscr{H}^{\mathrm{mb}}_{\mathrm{br}}
+=
+\big(
+\mathscr{V}^{\mathrm{mb}}_{\mathrm{br}},
+\mathscr{E}^{\mathrm{mb}}_{\mathrm{br}}
+\big)
+$$
+as follows.
+
+- A vertex
+  $$
+  \mathsf{v}=(i,j,\alpha,k,\ell)
+  $$
+  records one active branch family with receiver
+  $$
+  i,
+  $$
+  source
+  $$
+  j,
+  $$
+  window
+  $$
+  W_\alpha,
+  $$
+  directional sector
+  $$
+  \mathfrak{S}_k,
+  $$
+  and branch multiplicity label
+  $$
+  \ell.
+  $$
+- A hyperedge
+  $$
+  \mathsf{e}\in \mathscr{E}^{\mathrm{mb}}_{\mathrm{br}}
+  $$
+  joins a finite set of such vertices whenever the corresponding root families can meet in one coupled fold event, one sector-exchange event, or one receiver-source role-exchange event forced by the same body geometry.
+
+The point of the hypergraph language is that in a three-body regime, several branch births can share one body and one geometric degeneracy. Pairwise edges are therefore not enough to encode the admissible local branch moves.
+
+> **Target Proposition (Finite active hypergraph control on the planar three-body cycle).**
+> On a sufficiently small section-side tame subclass of
+> $$
+> \mathcal{H}^{\mathrm{adm},\mathrm{mb}}_{A_\ast,\eta},
+> $$
+> there exist finite constants
+> $$
+> N^{\mathrm{mb}}_{\mathrm{vert}},
+> \qquad
+> N^{\mathrm{mb}}_{\mathrm{edge}},
+> \qquad
+> \nu^{\mathrm{mb}}_J,
+> \qquad
+> \delta^{\mathrm{mb}}_{\mathrm{sep}}
+> $$
+> such that every one-cycle continuation admits an active delay hypergraph
+> $$
+> \mathscr{H}^{\mathrm{mb}}_{\mathrm{br}}
+> $$
+> with:
+> 1. at most
+>    $$
+>    N^{\mathrm{mb}}_{\mathrm{vert}}
+>    $$
+>    active branch vertices and at most
+>    $$
+>    N^{\mathrm{mb}}_{\mathrm{edge}}
+>    $$
+>    admissible coupled fold hyperedges;
+> 2. branch separation at least
+>    $$
+>    \delta^{\mathrm{mb}}_{\mathrm{sep}};
+>    $$
+> 3. causal Jacobian bound
+>    $$
+>    |J_{ij}(t;s)|\ge \nu^{\mathrm{mb}}_J
+>    $$
+>    away from the explicitly controlled fold tubes;
+> 4. root birth, root death, sector relabeling, and source-exchange events occurring only through the listed hyperedges;
+> 5. no uncontrolled branch proliferation outside those hypergraph-coded events.
+
+This is the many-body replacement for the binary branch graph packages. Once it is proved, later ancestry and recapture arguments can consume a finite combinatorial object rather than an open-ended moving family of delayed roots.
+
+### Third many-body theorem package: cluster-valued ancestry and deep-past exclusion
+
+The next burden is the many-body replacement for deep-past provenance. In the unreduced planar binary, every remote late-turn root was traced back to one finite provenance class on an earlier branch graph. In the planar three-body regime that is no longer the right object, because a delayed influence may pass through changing pair or cluster organization before its geometry becomes simple enough to compare.
+
+For each late-turn hypergraph vertex
+$$
+\mathsf{v}_{\mathrm{late}}
+\in
+\mathscr{V}^{\mathrm{mb}}_{\mathrm{br}},
+$$
+define its backward ancestry set
+$$
+\operatorname{Anc}(\mathsf{v}_{\mathrm{late}})
+$$
+to be the sub-hypergraph reached by following admissible backward continuation through the hyperedges of
+$$
+\mathscr{H}^{\mathrm{mb}}_{\mathrm{br}}
+$$
+into earlier windows. A cluster ancestry complex should then mean a finite family
+$$
+\mathfrak{A}^{\mathrm{mb}}
+=
+\left\{
+\mathfrak{a}_1,\dots,\mathfrak{a}_{N_{\mathrm{anc}}}
+\right\}
+$$
+of connected ancestry components, each tagged by:
+
+- the receiver body,
+- the active source cluster, meaning either a single body or an ordered pair acting as the current effective delayed source family,
+- the provenance windows in which that ancestry lives,
+- and the admissible exchange moves by which one source cluster can pass to another.
+
+The point is that a remote contribution should now be forced into one finite ancestry complex rather than into one literal earlier branch family.
+
+> **Target Proposition (Deep-past cluster ancestry or exclusion for the planar three-body bridge).**
+> Assume the gauge-fixed section package and the finite active delay hypergraph package. Then on a sufficiently small tame subclass there exists a finite ancestry complex
+> $$
+> \mathfrak{A}^{\mathrm{mb}}
+> $$
+> such that every late-turn active delayed branch satisfies exactly one of the following:
+> 1. its backward ancestry meets one unique cluster ancestry component
+>    $$
+>    \mathfrak{a}_m\in\mathfrak{A}^{\mathrm{mb}};
+>    $$
+> 2. its backward ancestry enters a controlled fold tube or exchange tube already listed in the active hypergraph;
+> 3. or it is excluded by a no-migration alternative asserting that an infinite chain of fresh source-cluster exchanges cannot occur inside the controlled cycle.
+
+> Moreover:
+> 1. each late-turn branch meets at most one ancestry component;
+> 2. the total number of admissible ancestry components is bounded by
+>    $$
+>    N_{\mathrm{anc}};
+>    $$
+> 3. each ancestry component contributes at most one uniformly transversal deep-past branch per admissible source-cluster channel on the chosen delay scale;
+> 4. therefore the full deep-past contribution on the late-turn windows is bounded by a finite ancestry count times one branch-amplitude ceiling.
+
+This is the many-body replacement for the binary deep-past relocation theorem. A remote root is no longer pushed onto one pre-crossing leg. Instead it is forced into one finite ancestry object, and the only alternative is a precise obstruction: uncontrolled migration through ever-new source clusters.
+
+> **Target Corollary (Deep-past suppression from finite cluster ancestry).**
+> Assume the deep-past cluster-ancestry-or-exclusion proposition. Then on every controlled late-turn window one has a uniform bound
+> $$
+> A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+> \le
+> N_{\mathrm{anc}}\,
+> C^{\mathrm{mb}}_{\mathrm{anc}},
+> $$
+> where
+> $$
+> C^{\mathrm{mb}}_{\mathrm{anc}}
+> $$
+> is the worst admissible branch-amplitude ceiling over one ancestry channel.
+
+This is the quantity the many-body recapture inequalities should consume. Once the remote self drive is reduced to a finite ancestry count times one ceiling, the late-turn comparison law becomes quantitative again.
+
+### Fourth many-body theorem package: finite escape-observable recapture law
+
+The next replacement burden is the turn mechanism itself. In the planar three-body regime there is no single honest escape coordinate. The recapture theorem must instead dominate a finite family of outward channels at once.
+
+Choose smooth quotient observables
+$$
+\rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_{K_{\mathrm{esc}}}
+:
+\mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}
+\to
+[0,\infty)
+$$
+with the following intended roles:
+
+- pair-separation escape for the same-sign outer pair;
+- opposite-sign versus outer-pair cluster separation;
+- shear or shape-deformation escape inside the triangle;
+- and farthest-body exchange escape, which measures loss of a stable core-versus-outer role assignment.
+
+Let
+$$
+I^{\mathrm{mb}}_{\mathrm{post}}
+$$
+and
+$$
+I^{\mathrm{mb}}_{\mathrm{late}}
+$$
+denote the post-crossing and late-turn windows, respectively. For each observable
+$$
+\rho^{\mathrm{mb}}_m
+$$
+write its one-cycle comparison law abstractly as
+$$
+\ddot{\rho}^{\mathrm{mb}}_m(t)
+\le
+-\,\Lambda^{\mathrm{mb}}_m(t)
++L^{\mathrm{mb}}_m(t)
++A^{\mathrm{mb}}_{s,\mathrm{deep}}(t),
+$$
+where:
+
+- $$
+  \Lambda^{\mathrm{mb}}_m(t)\ge 0
+  $$
+  is the net inward or recapturing contribution relevant to channel
+  $$
+  m;
+  $$
+- $$
+  L^{\mathrm{mb}}_m(t)\ge 0
+  $$
+  is the leakage budget from all other channels and gauge-motion terms;
+- $$
+  A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+  $$
+  is the deep-past ceiling supplied by the cluster-ancestry package.
+
+Define the many-body recapture margins
+$$
+\mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{post}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\mathrm{post}}}
+\Big(
+\Lambda^{\mathrm{mb}}_m(t)
+-L^{\mathrm{mb}}_m(t)
+-A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\Big),
+$$
+$$
+\mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{late}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\mathrm{late}}}
+\Big(
+\Lambda^{\mathrm{mb}}_m(t)
+-L^{\mathrm{mb}}_m(t)
+-A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\Big).
+$$
+
+Whenever all of these margins are positive, each escape observable feels a strictly inward comparison law on the corresponding controlled window.
+
+> **Target Theorem (Planar-three-body multi-observable recapture criterion).**
+> Assume:
+> 1. the gauge-fixed section package;
+> 2. the finite active delay hypergraph package;
+> 3. the deep-past cluster-ancestry suppression bound;
+> 4. and one coupled parameter regime in which all comparison terms are defined with common constants.
+>
+> Suppose, in addition, that for every
+> $$
+> m=1,\dots,K_{\mathrm{esc}}
+> $$
+> one has
+> $$
+> \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{post}}>0,
+> \qquad
+> \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{late}}>0.
+> $$
+> Then:
+> 1. no escape observable can continue increasing throughout the full post-crossing window;
+> 2. no escape observable can remain positive and outward-driving throughout the late-turn window;
+> 3. at least one controlled return event forces the shape back toward the gauge-fixed inbound section without opening a new uncontrolled scattering channel;
+> 4. consequently the candidate excursion makes both the post-crossing recapture turn and the late-turn return inside the controlled planar-three-body windows.
+
+This is the first honest many-body recapture theorem target. It says that the configuration does not merely avoid one preferred binary escape. It must fail to escape in every channel that the three-body quotient geometry naturally opens.
+
+### Fifth many-body theorem package: atlas-level tame-envelope closure
+
+The remaining bridge step is now the same structural one that appeared in the 1D, reduced-planar, and unreduced-planar programs: put the whole cycle on one closed convex tame self-map domain. The only difference is that the data to be preserved are now genuinely atlas-level.
+
+Let
+$$
+\mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
+\subseteq
+\Sigma^{-,\mathrm{mb}}_{A_\ast}
+$$
+denote the convex section envelope carrying only visible Banach-space bounds, such as:
+
+- uniform bounds on the Jacobi vectors
+  $$
+  \mathbf{a},\mathbf{b};
+  $$
+- uniform velocity and Lipschitz acceleration bounds;
+- memory-depth bounds;
+- and the section-side non-near-collinearity margin.
+
+The many-body tame envelope target should then be a closed convex subset
+$$
+\mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+\subseteq
+\mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
+$$
+on which the following constants are all preserved simultaneously:
+
+- gauge-selector continuity and uniqueness;
+- finite active hypergraph bounds;
+- finite cluster-ancestry bounds;
+- recapture margins for every
+  $$
+  \rho^{\mathrm{mb}}_m;
+  $$
+- and one fixed atlas representative on the relevant quotient chart.
+
+> **Target Proposition (Closed convex tame envelope in the planar three-body section).**
+> There exists a nonempty closed convex set
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
+> \subseteq
+> \Sigma^{-,\mathrm{mb}}_{A_\ast}
+> $$
+> such that every history in
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+> $$
+> admits one-cycle continuation with the same gauge, hypergraph, ancestry, and recapture constants, and such that the corresponding returned history lands back in the same set after the canonical gauge reset.
+
+> **Target Theorem (Planar-three-body invariant-envelope closure and Schauder capstone).**
+> Assume:
+> 1. the closed convex tame envelope proposition in the planar three-body section;
+> 2. the corresponding invariant-envelope closure theorem;
+> 3. and continuity and precompactness of the gauge-fixed many-body return map on that same domain.
+>
+> Then the return map has a fixed point
+> $$
+> \Phi^{\ast,\mathrm{mb}}_\eta
+> \in
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta},
+> $$
+> and the associated delayed trajectory is a bounded periodic planar-three-body solution of the dual-mollified master equation.
+
+This is the first honest many-body breather target in the chapter. Everything above it is there only to make this statement legitimate.
+
+The planar-three-body bridge now has the same explicit theorem-ladder shape as the earlier binary bridges:
+
+- gauge-fixed section and shape-space well-posedness;
+- finite active delay-hypergraph control;
+- cluster-valued ancestry or exclusion for deep-past branches;
+- finite escape-observable recapture;
+- and atlas-level tame-envelope closure leading to the Schauder capstone.
+
 ## Capstone Statement
 
 The 1D collinear chapter should now be used as a frozen reference theorem scaffold. The present chapter records the higher-level lesson:
