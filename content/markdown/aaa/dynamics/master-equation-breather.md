@@ -2005,7 +2005,7 @@ $$
 $$
 So the present note is not “the general 2D case.” It is the first reduced 2D bridge in which tangential escape is already real, but still symmetry-controlled.
 
-What remains missing before the Schauder route can be stated as a serious closure theorem is now sharply delimited:
+What remains missing before the Schauder route can be executed as a serious closure theorem is now sharply delimited:
 
 - one closed convex tame self-map domain
   $$
@@ -2013,6 +2013,234 @@ What remains missing before the Schauder route can be stated as a serious closur
   $$
 - continuity and precompactness of the reduced planar return map on that same domain;
 - and one coupled parameter regime in which all sorting, relocation, transversality, caustic, and recapture constants are simultaneously realizable.
+
+### Seventh theorem package: reduced planar tame-envelope closure
+
+The final reduced planar closure step should now be stated on the gauge-fixed section itself, not merely on the ungauged physical return slice.
+
+If
+$$
+\Phi\in \Sigma^-_{\rho_\ast,\Pi}
+$$
+admits a first full-cycle return time
+$$
+T^\Pi(\Phi)>0
+$$
+to the physical radius
+$$
+\rho(T^\Pi(\Phi))=\rho_\ast
+$$
+with the same orientation branch
+$$
+\mathbf{e}_2\cdot \dot{\mathbf{r}}(T^\Pi(\Phi))>0,
+$$
+let
+$$
+\mathcal{R}_{\Phi}\in SO(2)
+$$
+be the unique rigid rotation such that
+$$
+\mathcal{R}_{\Phi}\mathbf{r}(T^\Pi(\Phi))=\rho_\ast \mathbf{e}_1,
+\qquad
+\mathbf{e}_2\cdot \mathcal{R}_{\Phi}\dot{\mathbf{r}}(T^\Pi(\Phi))>0.
+$$
+The reduced planar return map should therefore be defined by
+$$
+P^\Pi_\eta(\Phi)(\theta)
+\equiv
+\mathcal{R}_{\Phi}\mathbf{r}(T^\Pi(\Phi)+\theta),
+\qquad
+\theta\in[-h,0].
+$$
+This is the correct reduced return map. Without the gauge reset
+$$
+\mathcal{R}_{\Phi},
+$$
+the returned history would not land back in the fixed representative section
+$$
+\Sigma^-_{\rho_\ast,\Pi}.
+$$
+
+The planar envelope target should now be phrased in terms of the constants already produced by the local packages:
+$$
+R_{\max},
+\quad
+U_{\max},
+\quad
+A_{\max},
+\quad
+T_{\mathrm{cyc},\max},
+\quad
+N_{\mathrm{br}},
+\quad
+\delta_{\mathrm{sep}},
+\quad
+\nu_{J,\mathrm{cyc}},
+\quad
+\nu_{J,\mathrm{dp}},
+\quad
+I_{\mathrm{cau}},
+\quad
+\mathfrak{M}^{\Pi}_{\mathrm{in}},
+\quad
+\mathfrak{M}^{\Pi}_{\mathrm{out}}.
+$$
+The point is not to define
+$$
+\mathcal{K}^{\Pi}_{\rho_\ast,\eta}
+$$
+by naively intersecting
+$$
+\mathcal{C}^{\Pi}_{\rho_\ast,\eta}
+$$
+with all root-label predicates pointwise. That would generally destroy convexity. The correct target is the existence of one closed convex subset on which these constants imply the whole delayed-geometry package uniformly.
+
+> **Target Proposition (Closed convex tame envelope in the reduced planar section).**
+> There exists a nonempty closed convex set
+> $$
+> \mathcal{K}^{\Pi}_{\rho_\ast,\eta}
+> \subseteq
+> \mathcal{C}^{\Pi}_{\rho_\ast,\eta}
+> \subseteq
+> \Sigma^-_{\rho_\ast,\Pi}
+> $$
+> such that:
+> 1. the seed-generated class
+>    $$
+>    \mathcal{C}^{\Pi,\mathrm{seed}}_{\rho_\ast,\eta}
+>    $$
+>    lies in
+>    $$
+>    \mathcal{K}^{\Pi}_{\rho_\ast,\eta};
+>    $$
+> 2. every
+>    $$
+>    \Phi\in \mathcal{K}^{\Pi}_{\rho_\ast,\eta}
+>    $$
+>    admits a unique forward continuation on
+>    $$
+>    [0,T_{\mathrm{cyc},\max}]
+>    $$
+>    with uniform position, speed, acceleration, and memory-depth bounds inside the convex envelope;
+> 3. along that full cycle, the directional sorting, deep-past relocation, cone transversality, caustic-transit, and vector-recapture packages all hold with the same class constants
+>    $$
+>    N_{\mathrm{br}},
+>    \quad
+>    \delta_{\mathrm{sep}},
+>    \quad
+>    \nu_{J,\mathrm{cyc}},
+>    \quad
+>    \nu_{J,\mathrm{dp}},
+>    \quad
+>    I_{\mathrm{cau}},
+>    \quad
+>    \mathfrak{M}^{\Pi}_{\mathrm{in}},
+>    \quad
+>    \mathfrak{M}^{\Pi}_{\mathrm{out}};
+>    $$
+> 4. the first full-cycle return time
+>    $$
+>    T^\Pi(\Phi)
+>    $$
+>    is uniformly transverse on the physical return circle, and the rotated return
+>    $$
+>    P^\Pi_\eta(\Phi)
+>    $$
+>    satisfies the same section anchoring and orientation constraints that define
+>    $$
+>    \Sigma^-_{\rho_\ast,\Pi}.
+>    $$
+
+This proposition is the reduced planar analogue of the 1D envelope-construction target. Its role is to place the entire cycle geometry on one domain before asking for a self-map theorem.
+
+> **Target Theorem (Reduced planar invariant-envelope closure).**
+> Assume the closed convex tame envelope proposition and suppose, in addition, that:
+> 1. the rotated returned histories satisfy the same convex envelope bounds
+>    $$
+>    \|\Phi(\theta)-\rho_\ast \mathbf{e}_1\|\le R_{\max},
+>    \qquad
+>    \|\dot\Phi(\theta)\|\le U_{\max},
+>    \qquad
+>    \operatorname{Lip}(\dot\Phi)\le A_{\max};
+>    $$
+> 2. the returned branch family preserves the same sector labels, branch-count bound, and separation margin;
+> 3. the returned histories preserve the same Jacobian floors
+>    $$
+>    \nu_{J,\mathrm{cyc}},
+>    \qquad
+>    \nu_{J,\mathrm{dp}};
+>    $$
+> 4. the returned inner and outer recapture windows satisfy the same strict planar margins
+>    $$
+>    \mathfrak{M}^{\Pi}_{\mathrm{in}}>0,
+>    \qquad
+>    \mathfrak{M}^{\Pi}_{\mathrm{out}}>0.
+>    $$
+>
+> Then
+> $$
+> P^\Pi_\eta\!\big(\mathcal{K}^{\Pi}_{\rho_\ast,\eta}\big)
+> \subseteq
+> \mathcal{K}^{\Pi}_{\rho_\ast,\eta}.
+> $$
+
+This is the self-map statement the entire bridge has been building toward. It says that after one full physical excursion and one gauge reset back to the reduced section, no envelope constant is lost.
+
+> **Target Proposition (Continuity and precompactness of the reduced planar return map).**
+> On
+> $$
+> \mathcal{K}^{\Pi}_{\rho_\ast,\eta},
+> $$
+> the map
+> $$
+> P^\Pi_\eta:\mathcal{K}^{\Pi}_{\rho_\ast,\eta}\to \mathcal{K}^{\Pi}_{\rho_\ast,\eta}
+> $$
+> is continuous in the
+> $$
+> C^1([-h,0];\Pi)
+> $$
+> topology, and its image is precompact.
+
+The argument should parallel the 1D continuity step, but with one additional ingredient: continuity of the gauge-reset rotation
+$$
+\mathcal{R}_{\Phi}
+$$
+with respect to the returned section data. Once the return time, returned position, and returned velocity vary continuously and transversely, the rotation back to
+$$
+\rho_\ast \mathbf{e}_1
+$$
+also varies continuously.
+
+> **Target Theorem (Reduced planar Schauder capstone).**
+> Assume:
+> 1. the closed convex tame envelope proposition in the reduced planar section;
+> 2. the reduced planar invariant-envelope closure theorem;
+> 3. the continuity and precompactness proposition for
+>    $$
+>    P^\Pi_\eta
+>    $$
+>    on
+>    $$
+>    \mathcal{K}^{\Pi}_{\rho_\ast,\eta};
+>    $$
+> 4. and the nonempty seed-generated class
+>    $$
+>    \mathcal{C}^{\Pi,\mathrm{seed}}_{\rho_\ast,\eta}\neq \varnothing.
+>    $$
+>
+> Then there exists
+> $$
+> \Phi^\ast_\eta
+> \in
+> \mathcal{K}^{\Pi}_{\rho_\ast,\eta}
+> $$
+> such that
+> $$
+> P^\Pi_\eta(\Phi^\ast_\eta)=\Phi^\ast_\eta.
+> $$
+> The corresponding reduced planar trajectory is a bounded periodic solution of the dual-mollified master equation within the reflection-symmetric planar binary regime.
+
+This is the honest endpoint of the current bridge note. It is still conditional, but it is now conditional on one sharply identified reduced planar closure problem rather than on a diffuse collection of unresolved local lemmas.
 
 ## Precise Failure Alternative for the Planar Bridge
 
