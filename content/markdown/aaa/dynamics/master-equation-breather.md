@@ -3666,6 +3666,53 @@ This is the many-body replacement for the binary branch graph packages. Once it 
 
 The next burden is the many-body replacement for deep-past provenance. In the unreduced planar binary, every remote late-turn root was traced back to one finite provenance class on an earlier branch graph. In the planar three-body regime that is no longer the right object, because a delayed influence may pass through changing pair or cluster organization before its geometry becomes simple enough to compare.
 
+Let
+$$
+\mathcal{W}^{\mathrm{mb}}_{\mathrm{lt}}
+\subseteq
+\mathcal{W}^{\mathrm{mb}}
+$$
+denote the late-turn receiver windows, and let
+$$
+\mathcal{W}^{\mathrm{mb}}_{\mathrm{mid}},
+\qquad
+\mathcal{W}^{\mathrm{mb}}_{\mathrm{prov}}
+\subseteq
+\mathcal{W}^{\mathrm{mb}}
+$$
+denote, respectively, the intermediate post-crossing windows and the earlier provenance windows that precede the late-turn block in the cycle order. A deep-past active branch on a late-turn window should mean one with delay
+$$
+t-s\ge \tau^{\mathrm{mb}}_{\mathrm{dp}}.
+$$
+
+For the first planar-three-body bridge, the source-cluster alphabet should be fixed as
+$$
+\mathfrak{C}^{\mathrm{mb}}_{\mathrm{src}}
+\equiv
+\Big\{
+\{1\},\{2\},\{3\},\{1,3\},\{1,2\},\{2,3\}
+\Big\},
+$$
+and only the following backward exchange moves should be admissible:
+
+- singleton-to-pair attachment
+  $$
+  \{i\}\leftrightarrow \{i,j\}
+  $$
+  through one hypergraph-coded fold or sector exchange;
+- pair-to-singleton detachment
+  $$
+  \{i,j\}\leftrightarrow \{i\}
+  $$
+  through one listed fold exit;
+- pair swap
+  $$
+  \{i,j\}\leftrightarrow \{i,k\}
+  $$
+  through one shared-body exchange hyperedge.
+
+No other source-cluster jump should be allowed in the ancestry relation.
+
 For each late-turn hypergraph vertex
 $$
 \mathsf{v}_{\mathrm{late}}
@@ -3680,7 +3727,7 @@ to be the sub-hypergraph reached by following admissible backward continuation t
 $$
 \mathscr{H}^{\mathrm{mb}}_{\mathrm{br}}
 $$
-into earlier windows. A cluster ancestry complex should then mean a finite family
+into earlier windows, never moving to a later receiver window in the cycle order. A cluster ancestry complex should then mean a finite family
 $$
 \mathfrak{A}^{\mathrm{mb}}
 =
@@ -3694,6 +3741,27 @@ of connected ancestry components, each tagged by:
 - the active source cluster, meaning either a single body or an ordered pair acting as the current effective delayed source family,
 - the provenance windows in which that ancestry lives,
 - and the admissible exchange moves by which one source cluster can pass to another.
+
+More concretely, each ancestry component
+$$
+\mathfrak{a}_m
+$$
+should lie entirely in provenance windows
+$$
+W_\alpha\in \mathcal{W}^{\mathrm{mb}}_{\mathrm{prov}},
+$$
+carry one fixed receiver body
+$$
+i_m,
+$$
+one fixed sector label
+$$
+k_m,
+$$
+and one connected source-cluster trace on which the relevant branch parameterizations remain simple with one common Jacobian floor
+$$
+\nu^{\mathrm{mb}}_{J,\mathrm{anc}}>0.
+$$
 
 The point is that a remote contribution should now be forced into one finite ancestry complex rather than into one literal earlier branch family.
 
@@ -3717,23 +3785,40 @@ The point is that a remote contribution should now be forced into one finite anc
 >    N_{\mathrm{anc}};
 >    $$
 > 3. each ancestry component contributes at most one uniformly transversal deep-past branch per admissible source-cluster channel on the chosen delay scale;
-> 4. therefore the full deep-past contribution on the late-turn windows is bounded by a finite ancestry count times one branch-amplitude ceiling.
+> 4. any backward ancestry chain from a late-turn branch that avoids all ancestry components must remain trapped in the union of late-turn windows, mid windows, and controlled fold or exchange tubes, and such a trapped component is forbidden by the finite-cycle parity rule for admissible cluster exchanges;
+> 5. therefore the full deep-past contribution on the late-turn windows is bounded by a finite ancestry count times one branch-amplitude ceiling.
 
 This is the many-body replacement for the binary deep-past relocation theorem. A remote root is no longer pushed onto one pre-crossing leg. Instead it is forced into one finite ancestry object, and the only alternative is a precise obstruction: uncontrolled migration through ever-new source clusters.
+
+The no-migration clause should be read sharply. Because the source-cluster alphabet
+$$
+\mathfrak{C}^{\mathrm{mb}}_{\mathrm{src}}
+$$
+is finite and the admissible exchange moves are local and hypergraph-coded, an endless backward chain would have to revisit one earlier cluster pattern without ever entering a provenance component. The intended obstruction theorem is that no such trapped exchange cycle can persist entirely inside
+$$
+\mathcal{W}^{\mathrm{mb}}_{\mathrm{lt}}
+\cup
+\mathcal{W}^{\mathrm{mb}}_{\mathrm{mid}}
+$$
+and the controlled fold or exchange tubes.
 
 > **Target Corollary (Deep-past suppression from finite cluster ancestry).**
 > Assume the deep-past cluster-ancestry-or-exclusion proposition. Then on every controlled late-turn window one has a uniform bound
 > $$
 > A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 > \le
-> N_{\mathrm{anc}}\,
-> C^{\mathrm{mb}}_{\mathrm{anc}},
+> \frac{
+> N_{\mathrm{anc}}\,\kappa\epsilon^2
+> }{
+> \bigl(c_f^2(\tau^{\mathrm{mb}}_{\mathrm{dp}})^2+\epsilon_c^2\bigr)
+> \nu^{\mathrm{mb}}_{J,\mathrm{anc}}
+> },
 > $$
-> where
+> for every
 > $$
-> C^{\mathrm{mb}}_{\mathrm{anc}}
+> t\in \bigcup_{W\in \mathcal{W}^{\mathrm{mb}}_{\mathrm{lt}}}W,
 > $$
-> is the worst admissible branch-amplitude ceiling over one ancestry channel.
+> because each admissible ancestry component contributes at most one uniformly transversal deep-past branch at the chosen delay scale and Jacobian floor.
 
 This is the quantity the many-body recapture inequalities should consume. Once the remote self drive is reduced to a finite ancestry count times one ceiling, the late-turn comparison law becomes quantitative again.
 
@@ -4425,7 +4510,31 @@ on which the following constants are all preserved simultaneously:
   $$
   \rho^{\mathrm{mb}}_m;
   $$
+- the concrete recapture-window lengths
+  $$
+  \Delta_{\rho,\mathrm{post}},
+  \qquad
+  \Delta_{\rho,\mathrm{late}};
+  $$
+- the fold ceilings
+  $$
+  F^{\mathrm{mb}}_1,
+  \qquad
+  F^{\mathrm{mb}}_2;
+  $$
+- the first four principal margins
+  $$
+  \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}},
+  \quad
+  \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{late}},
+  \quad
+  \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}},
+  \quad
+  \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}};
+  $$
 - and one fixed atlas representative on the relevant quotient chart.
+
+This strengthening matters. In the planar-three-body bridge, the tame envelope cannot merely remember that “some recapture theorem holds.” It must preserve the actual windows and margin constants on which the first concrete recapture lemma was proved, or else the local turning argument could be lost after one return.
 
 > **Target Proposition (Closed convex tame envelope in the planar three-body section).**
 > There exists a nonempty closed convex set
@@ -4440,7 +4549,45 @@ on which the following constants are all preserved simultaneously:
 > $$
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
 > $$
-> admits one-cycle continuation with the same gauge, hypergraph, ancestry, and recapture constants, and such that the corresponding returned history lands back in the same set after the canonical gauge reset.
+> admits one-cycle continuation with the same gauge, hypergraph, ancestry, recapture-window, fold-ceiling, and recapture-margin constants, and such that the corresponding returned history lands back in the same set after the canonical gauge reset.
+
+> Concretely, the preserved data should include:
+> 1. one common gauge-fixed representative and one common non-near-collinear chart;
+> 2. the same active delay-hypergraph size bounds and cluster-ancestry bounds;
+> 3. the same controlled windows
+>    $$
+>    I^{\mathrm{mb}}_{\rho,\mathrm{post}},
+>    \qquad
+>    I^{\mathrm{mb}}_{\rho,\mathrm{late}};
+>    $$
+> 4. the same fold ceilings
+>    $$
+>    F^{\mathrm{mb}}_1,
+>    \qquad
+>    F^{\mathrm{mb}}_2;
+>    $$
+> 5. and the same strict positivity margins
+>    $$
+>    \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}},
+>    \quad
+>    \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{late}},
+>    \quad
+>    \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}},
+>    \quad
+>    \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}},
+>    $$
+>    together with the remaining
+>    $$
+>    \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{post}},
+>    \qquad
+>    \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{late}}
+>    $$
+>    for
+>    $$
+>    m=3,\dots,K_{\mathrm{esc}}.
+>    $$
+
+This is the correct closure target because the first two Jacobi channels are no longer abstract placeholders. If their window geometry or margin positivity is not propagated through the return map, then the concrete recapture lemma has no stable domain on which to operate.
 
 > **Target Theorem (Planar-three-body invariant-envelope closure and Schauder capstone).**
 > Assume:
@@ -4455,6 +4602,8 @@ on which the following constants are all preserved simultaneously:
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta},
 > $$
 > and the associated delayed trajectory is a bounded periodic planar-three-body solution of the dual-mollified master equation.
+>
+> In particular, the fixed-point trajectory preserves one common gauge chart, one common active delay hypergraph, one common ancestry complex, and one common family of post-crossing and late-turn recapture margins through every return. That is the many-body analogue of the earlier bridge closures on one tame self-map domain.
 
 This is the first honest many-body breather target in the chapter. Everything above it is there only to make this statement legitimate.
 
