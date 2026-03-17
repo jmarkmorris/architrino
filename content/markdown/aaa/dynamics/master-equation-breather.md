@@ -3273,6 +3273,30 @@ The extra burden beyond the reduced planar case is that continuity must now abso
 > $$
 > gauge, and therefore a genuine unreduced-planar breather of the dual-mollified master equation in the first non-reflection-symmetric binary regime.
 
+The unreduced-planar bridge can therefore now be read as one explicit ladder:
+gauge-fixed section and return map
+$$
+\longrightarrow
+$$
+finite active branch graph
+$$
+\longrightarrow
+$$
+deep-past provenance or exclusion
+$$
+\longrightarrow
+$$
+multi-channel recapture
+$$
+\longrightarrow
+$$
+closed convex tame envelope and self-map
+$$
+\longrightarrow
+$$
+Schauder closure.
+This is the precise resumable order of proof burden for the first non-reflection-symmetric planar binary.
+
 If the unreduced-planar bridge fails, the failure should now be recorded in closure-stage terms rather than as a generic expression of difficulty. The meaningful obstruction alternatives are:
 
 1. no gauge-fixed quotient section produces a nonempty convex envelope
@@ -3324,6 +3348,46 @@ If the unreduced-planar bridge fails, the failure should now be recorded in clos
    continuity, or precompactness.
 
 Any one of these is the honest statement that the frozen 1D scaffold and the reduced planar bridge do not yet transport to the first non-reflection-symmetric planar binary without an additional invariant, symmetry, or coercive mechanism.
+
+## Beyond the Unreduced Planar Binary
+
+The next genuinely many-body regime does not require an immediate jump to full spatial generality. It already appears when one allows a third active body while remaining in a single plane. So the first honest step beyond the present bridge is not yet the unrestricted master equation on arbitrary configurations. It is the first planar many-body regime in which binary-relative coordinates are no longer sufficient.
+
+That step introduces new burdens that are absent even from the unreduced planar binary.
+
+First, the quotient section and gauge problem becomes higher-rank. In the binary bridge, one present chord is enough to anchor orientation after translation is removed. In a planar many-body regime there is no single distinguished chord that canonically fixes the whole shape. The return section would have to be posed on a higher-dimensional quotient shape space
+$$
+\mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}
+\equiv
+\mathcal{Q}_{N,\mathrm{pl}}/SE(2),
+$$
+and the gauge selector would have to control stabilizers, near-collinear degeneracies, and possible relabeling ambiguities among bodies that play symmetric roles.
+
+Second, the delayed-root combinatorics ceases to be a finite graph over one receiver-source family. Each receiver now sees several active source families at once, and several branch events can interact through shared bodies. The natural replacement object is therefore a finite active delay hypergraph
+$$
+\mathscr{H}^{\mathrm{mb}}_{\mathrm{br}},
+$$
+not merely a graph
+$$
+\mathscr{G}^{\sharp}_{\mathrm{br}}.
+$$
+Its vertices would encode receiver index, source index, sector data, and window data, while its higher-order incidences would record coupled fold events or exchange events that cannot be represented by pairwise edges alone.
+
+Third, provenance control becomes cluster-valued rather than branch-valued. In the unreduced planar binary, a remote late-turn root is forced into one finite provenance class of the earlier branch graph. In a many-body regime, a late remote contribution may pass through several interacting source families before it is geometrically understood. The next theorem target would therefore need a finite ancestry complex for delayed branches, together with an exclusion principle preventing indefinite migration through ever-new source clusters.
+
+Fourth, the recapture problem ceases to be a one-observable comparison. The binary bridge can still organize the turn mechanism around one primary escape coordinate
+$$
+\rho^{\sharp}
+$$
+and a finite leakage budget. In a many-body regime there are several genuine escape channels: pair separation, cluster separation, shear between subclusters, and exchange of the body that is farthest from the current core. The next honest theorem target would therefore require a finite family of escape observables
+$$
+\rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_{K_{\mathrm{esc}}},
+$$
+and a coercive comparison law that dominates all open scattering channels at once, not only one preferred outward mode.
+
+Fifth, the tame-envelope problem becomes atlas-level. It is no longer enough to preserve one branch graph, one provenance count, and one leakage count on one fixed quotient chart. The many-body closure problem must preserve the active delay hypergraph, the cluster ancestry data, the recapture margins for all escape observables, and the choice of gauge representative on one closed convex tame self-map domain, or else state precisely why no such single chart exists.
+
+For that reason, the present chapter should still be read as a binary bridge note, even after the unreduced planar extension. Only after the many-body section, hypergraph, ancestry, multi-observable recapture, and closure targets are isolated in the same theorem-level way would it be honest to say that the breather program has moved from the binary bridge toward the full master-equation setting.
 
 ## Capstone Statement
 
