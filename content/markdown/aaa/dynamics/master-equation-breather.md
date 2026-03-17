@@ -1519,6 +1519,210 @@ This is the first honest nonvacuity statement for the planar bridge. It says tha
 
 This preserves one of the genuinely resolved pivots of the frozen 1D scaffold. The planar bridge should integrate the inbound caustic through as a bounded impulse, not exclude it by fiat.
 
+### Fifth theorem package: bounded planar caustic transit
+
+The first seed-side dynamical obstruction is the birth of the principal inbound self branch. In the planar regime this should be formulated as a controlled fold in the exact self-delay equation, not as a global transversality statement that pretends the fold never occurs.
+
+For
+$$
+s<t,
+$$
+define the self-delay defect by
+$$
+G_s(t,s)
+\equiv
+\|\mathbf{r}(t)-\mathbf{r}(s)\|-c_f(t-s).
+$$
+Self roots satisfy
+$$
+G_s(t,s)=0.
+$$
+Whenever
+$$
+\mathbf{r}(t)\ne \mathbf{r}(s),
+$$
+one has
+$$
+\partial_s G_s(t,s)
+=
+c_f-\dot{\mathbf{r}}(s)\cdot \hat{\mathbf{u}}_{s,t}^{\mathrm{self}}
+=
+c_f J_s(t;s).
+$$
+Thus a self-root caustic is exactly the loss of source transversality
+$$
+J_s(t;s)=0
+$$
+along the same defect equation.
+
+Fix a nonempty seed-generated tame inbound class
+$$
+\mathcal{C}^{\Pi,\mathrm{in}}_{\rho_\ast,\eta}
+\subseteq
+\mathcal{C}^{\Pi,\mathrm{seed}}_{\rho_\ast,\eta}
+$$
+on which the directional sorting, deep-past sector relocation, and cone-transversality packages all hold on the pre-crossing leg.
+
+The planar caustic event should then be organized around one birth pair
+$$
+(t_{\mathrm{cau}},s_{\mathrm{cau}}),
+\qquad
+s_{\mathrm{cau}}<t_{\mathrm{cau}},
+$$
+with associated sector label
+$$
+\hat{\mathbf{u}}_{k_{\mathrm{cau}}}\in \mathcal{U}_{\mathrm{in}}.
+$$
+For a tube radius
+$$
+\delta_{\mathrm{cau}}>0,
+$$
+write the caustic tube in the
+$$
+(t,s)
+$$
+plane as
+$$
+\mathcal{T}_{\mathrm{cau}}(\delta_{\mathrm{cau}})
+\equiv
+\left\{
+(t,s)
+\;\middle|\;
+|t-t_{\mathrm{cau}}|+|s-s_{\mathrm{cau}}|
+\le
+\delta_{\mathrm{cau}},
+\quad
+s<t
+\right\},
+$$
+and let the associated reception-time window be
+$$
+W_{\mathrm{cau}}
+\equiv
+[t_{\mathrm{cau}}-\delta_{\mathrm{cau}},\,t_{\mathrm{cau}}+\delta_{\mathrm{cau}}].
+$$
+
+> **Target Theorem (Inbound planar caustic transit and recovery).**
+> Assume there exist class constants
+> $$
+> \nu_{p,\mathrm{cau}}>0,
+> \qquad
+> \lambda_{\mathrm{cau}}>0,
+> \qquad
+> \chi_{\mathrm{cau}}>0,
+> \qquad
+> \nu_{s,\mathrm{rec}}>0,
+> \qquad
+> N_{s,\mathrm{cau}}\in \mathbb{N},
+> \qquad
+> I_{\mathrm{cau}}<\infty,
+> $$
+> such that for every inbound trajectory issued from
+> $$
+> \mathcal{C}^{\Pi,\mathrm{in}}_{\rho_\ast,\eta}
+> $$
+> the following hold:
+> 1. **partner-branch safety:** every active partner branch on the pre-crossing leg remains simple and satisfies
+>    $$
+>    |J_p|\ge \nu_{p,\mathrm{cau}};
+>    $$
+> 2. **single fold birth of the principal self branch:** there is exactly one pair
+>    $$
+>    (t_{\mathrm{cau}},s_{\mathrm{cau}})
+>    $$
+>    with sector label
+>    $$
+>    k_{\mathrm{cau}}
+>    $$
+>    such that
+>    $$
+>    G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})=0,
+>    \qquad
+>    \partial_s G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})=0,
+>    $$
+>    while the fold is nondegenerate:
+>    $$
+>    \partial_{ss}G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})\ge \lambda_{\mathrm{cau}},
+>    \qquad
+>    \partial_t G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})\le -\chi_{\mathrm{cau}};
+>    $$
+> 3. **controlled branch count through the tube:** outside
+>    $$
+>    \mathcal{T}_{\mathrm{cau}}(\delta_{\mathrm{cau}})
+>    $$
+>    all active self branches are simple and sector-labeled, and the total number of active self branches on the pre-crossing leg is bounded by
+>    $$
+>    N_{s,\mathrm{cau}};
+>    $$
+> 4. **bounded dual-mollified caustic impulse:** if
+>    $$
+>    \mathbf{a}^{\mathrm{self}}_{\eta,\mathrm{cau}}(t)
+>    $$
+>    denotes the self contribution coming from the branch family intersecting
+>    $$
+>    \mathcal{T}_{\mathrm{cau}}(\delta_{\mathrm{cau}}),
+>    $$
+>    then
+>    $$
+>    \left\|
+>    \int_{W_{\mathrm{cau}}}
+>    \mathbf{a}^{\mathrm{self}}_{\eta,\mathrm{cau}}(t)\,dt
+>    \right\|
+>    \le
+>    I_{\mathrm{cau}};
+>    $$
+> 5. **post-tube Jacobian recovery:** once
+>    $$
+>    t\ge t_{\mathrm{cau}}+\delta_{\mathrm{cau}},
+>    $$
+>    the born self branch persists in a fixed sector family and satisfies
+>    $$
+>    |J_s(t;s(t))|\ge \nu_{s,\mathrm{rec}};
+>    $$
+> 6. **sorting-gap handoff:** the exiting post-tube history still lies in the same directional-sorting regime needed for the subsequent post-crossing window.
+
+> Then the compulsory inbound self-branch birth contributes only a finite controlled velocity impulse, does not destroy the tame branch package, and hands the trajectory to the later recapture stage with restored Jacobian control.
+
+This is the exact higher-dimensional analogue of the resolved 1D pivot. The theorem does not deny the caustic. It isolates it to one fold tube, integrates the dual-mollified effect across that tube, and demands recovery of the simple-branch regime immediately afterward.
+
+The proof architecture should be split into three bounded tasks.
+
+1. **Fold-birth localization.**
+   Show that the first loss of self transversality on the pre-crossing leg occurs at one sector-labeled fold pair and not by uncontrolled simultaneous births in several sectors.
+2. **Shell-impulse estimate.**
+   Use dual mollification and the fold normal form to prove integrability of the self contribution across
+   $$
+   W_{\mathrm{cau}},
+   $$
+   with a class-uniform bound by
+   $$
+   I_{\mathrm{cau}}.
+   $$
+3. **Recovery outside the tube.**
+   Prove that the born self branch exits the caustic tube into the same sectorwise cone-transversality regime already used elsewhere, yielding
+   $$
+   |J_s|\ge \nu_{s,\mathrm{rec}}.
+   $$
+
+> **Target Corollary (Planar caustic handoff).**
+> Under the inbound planar caustic-transit theorem, the pre-crossing leg issued from
+> $$
+> \mathcal{C}^{\Pi,\mathrm{in}}_{\rho_\ast,\eta}
+> $$
+> reaches the post-tube inbound window with:
+> 1. the same partner-branch control,
+> 2. one sector-labeled principal self branch with recovered Jacobian floor
+>    $$
+>    \nu_{s,\mathrm{rec}},
+>    $$
+> 3. total self impulse error bounded by
+>    $$
+>    I_{\mathrm{cau}},
+>    $$
+> 4. and no uncontrolled change in branch labels.
+
+This corollary is the precise output needed before any vector recapture margin can be trusted. Without it, the post-crossing comparison problem would start from a branch topology that may already have disintegrated at the first self-birth event.
+
 > **Target Theorem (Vector recapture margins).**
 > There exist controlled post-crossing and late-apocenter windows on which
 > $$
