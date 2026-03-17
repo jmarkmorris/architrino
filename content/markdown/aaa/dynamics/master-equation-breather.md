@@ -3942,66 +3942,195 @@ $$
 > $$
 > so every admissible fold, relabeling, or exchange family is finite on one controlled cycle.
 
-The intended proof route is short enough to be stated now.
+The proof should now be organized in the same theorem-level way as the statement.
 
-1. Fix one receiver-source family
+> **Lemma (Uniform persistence of simple branches away from fold tubes).**
+> Fix one receiver-source family
+> $$
+> (i,j)
+> $$
+> and one point
+> $$
+> (t,s_0)
+> $$
+> outside the controlled fold tubes with
+> $$
+> |\partial_s g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}}.
+> $$
+> If
+> $$
+> |\partial_s^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,g}
+> $$
+> on the corresponding branch neighborhood, then
+> $$
+> |\partial_s g_{ij}(t;s)|\ge \frac{1}{2}\nu_J^{\mathrm{mb}}
+> $$
+> whenever
+> $$
+> |s-s_0|<\delta_{\mathrm{simp}},
+> \qquad
+> \delta_{\mathrm{simp}}
+> \equiv
+> \frac{\nu_J^{\mathrm{mb}}}{2C^{\mathrm{mb}}_{2,g}}.
+> $$
+>
+> **Proof.**
+> By the mean-value theorem,
+> $$
+> |\partial_s g_{ij}(t;s)-\partial_s g_{ij}(t;s_0)|
+> \le
+> C^{\mathrm{mb}}_{2,g}|s-s_0|.
+> $$
+> So on the stated interval one has
+> $$
+> |\partial_s g_{ij}(t;s)|
+> \ge
+> \nu_J^{\mathrm{mb}}-C^{\mathrm{mb}}_{2,g}|s-s_0|
+> \ge
+> \frac{1}{2}\nu_J^{\mathrm{mb}}.
+> $$
+
+The remaining event types are not detected by
 $$
-(i,j)
+\partial_s g_{ij}=0
 $$
-and one admissible fold
+alone, so their proof burden should also be stated explicitly. For each fixed branch family in one atlas chart, let
 $$
-(t,s_\ast).
+\Theta_{\mathrm{sec}}(t)
 $$
-Taylor-expand
+denote the signed distance of the active direction to the nearest sector boundary, and let
 $$
-\partial_s g_{ij}(t;s)
+\Theta_{\mathrm{exc}}(t)
 $$
-about
+denote the signed gap function that distinguishes the currently active admissible source-cluster channel from the next admissible exchange channel in the same local event block. On the controlled cycle these should satisfy one derivative hierarchy
 $$
-s=s_\ast.
-$$
-Because
-$$
-\partial_s g_{ij}(t;s_\ast)=0
-$$
-and
-$$
-|\partial_s^2 g_{ij}(t;s_\ast)|\ge \gamma_{\mathrm{fold}}>0,
-$$
-while
-$$
-|\partial_s^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g},
-$$
-the first derivative cannot return to zero until
-$$
-|s-s_\ast|
-$$
-exceeds a definite scale depending only on
-$$
-\gamma_{\mathrm{fold}}
+|\dot{\Theta}_{\mathrm{sec}}(t)|\le C^{\mathrm{mb}}_{1,\mathrm{sec}},
 \qquad
-\text{and}
+|\ddot{\Theta}_{\mathrm{sec}}(t)|\le C^{\mathrm{mb}}_{2,\mathrm{sec}},
+$$
+$$
+|\dot{\Theta}_{\mathrm{exc}}(t)|\le C^{\mathrm{mb}}_{1,\mathrm{exc}},
 \qquad
-C^{\mathrm{mb}}_{3,g}.
+|\ddot{\Theta}_{\mathrm{exc}}(t)|\le C^{\mathrm{mb}}_{2,\mathrm{exc}},
 $$
+together with transversality floors at admissible relabeling and exchange events:
+$$
+|\dot{\Theta}_{\mathrm{sec}}(t_\ast)|\ge \gamma_{\mathrm{sec}}>0,
+\qquad
+|\dot{\Theta}_{\mathrm{exc}}(t_\ast)|\ge \gamma_{\mathrm{exc}}>0.
+$$
+These are the sector and exchange analogues of the fold-curvature floor. Under those hypotheses one may define
+$$
+\Delta\tau_{\mathrm{sec}}
+\equiv
+\frac{\gamma_{\mathrm{sec}}}{C^{\mathrm{mb}}_{2,\mathrm{sec}}},
+\qquad
+\Delta\tau_{\mathrm{exc}}
+\equiv
+\frac{\gamma_{\mathrm{exc}}}{C^{\mathrm{mb}}_{2,\mathrm{exc}}},
+$$
+and the same Taylor argument shows that sector relabelings and admissible exchanges are isolated in cycle time by at least those scales.
 
-2. Away from the fold tubes, the Jacobian floor
-$$
-|\partial_s g_{ij}(t;s)|\ge \nu_J^{\mathrm{mb}}
-$$
-prevents any hidden simple-root degeneracy. So branch continuation, sector crossing, and admissible source-cluster exchange can only happen at isolated events and cannot pile up between adjacent fold neighborhoods.
-
-3. The same Taylor argument applied at sector-boundary and exchange events, together with the derivative hierarchy, yields one common lower time scale
-$$
-\Delta\tau_{\mathrm{evt}}>0
-$$
-for the full finite event alphabet.
-
-4. Once every event consumes at least
-$$
-\Delta\tau_{\mathrm{evt}}
-$$
-of cycle order, the total number of admissible events on one cycle is bounded by the cycle length times the finite receiver-source-sector family count. That is the step that turns analytic regularity into the finite hypergraph bound.
+> **Proof draft of the quantitative no-accumulation proposition.**
+> Fix one controlled cycle and one admissible receiver-source-sector family.
+>
+> 1. **Fold isolation.**
+>    For each admissible fold
+>    $$
+>    (t,s_\ast),
+>    $$
+>    the previous fold-isolation lemma yields a forbidden source-time interval
+>    $$
+>    (s_\ast-\delta_{\mathrm{fold}},\,s_\ast+\delta_{\mathrm{fold}})
+>    $$
+>    containing no second fold of the same family. Hence fold events for that family are discrete with separation at least
+>    $$
+>    \delta_{\mathrm{fold}}.
+>    $$
+>
+> 2. **Simple-branch persistence between folds.**
+>    Outside the union of those fold neighborhoods, the Jacobian floor
+>    $$
+>    |\partial_s g_{ij}|\ge \nu_J^{\mathrm{mb}}
+>    $$
+>    and the simple-branch persistence lemma imply that every active root branch remains uniformly transversal on intervals of source-time size
+>    $$
+>    \delta_{\mathrm{simp}}
+>    =
+>    \frac{\nu_J^{\mathrm{mb}}}{2C^{\mathrm{mb}}_{2,g}}.
+>    $$
+>    In particular, no hidden tangency can arise between two successive fold neighborhoods.
+>
+> 3. **Sector-event isolation.**
+>    On each active branch family, a sector relabeling occurs precisely when
+>    $$
+>    \Theta_{\mathrm{sec}}(t)=0.
+>    $$
+>    The sector transversality floor
+>    $$
+>    |\dot{\Theta}_{\mathrm{sec}}(t_\ast)|\ge \gamma_{\mathrm{sec}}
+>    $$
+>    and the second-derivative bound
+>    $$
+>    |\ddot{\Theta}_{\mathrm{sec}}(t)|\le C^{\mathrm{mb}}_{2,\mathrm{sec}}
+>    $$
+>    imply, by the same Taylor argument, that two successive sector relabelings on the same branch family are separated by at least
+>    $$
+>    \Delta\tau_{\mathrm{sec}}.
+>    $$
+>
+> 4. **Exchange-event isolation.**
+>    Likewise, an admissible source-cluster exchange occurs only when
+>    $$
+>    \Theta_{\mathrm{exc}}(t)=0.
+>    $$
+>    The exchange transversality floor
+>    $$
+>    |\dot{\Theta}_{\mathrm{exc}}(t_\ast)|\ge \gamma_{\mathrm{exc}}
+>    $$
+>    and the derivative bound
+>    $$
+>    |\ddot{\Theta}_{\mathrm{exc}}(t)|\le C^{\mathrm{mb}}_{2,\mathrm{exc}}
+>    $$
+>    imply separation by at least
+>    $$
+>    \Delta\tau_{\mathrm{exc}}.
+>    $$
+>
+> 5. **Common event gap.**
+>    Set
+>    $$
+>    \Delta\tau_{\mathrm{evt}}
+>    \equiv
+>    \min\left\{
+>    \delta_{\mathrm{fold}},
+>    \delta_{\mathrm{simp}},
+>    \Delta\tau_{\mathrm{sec}},
+>    \Delta\tau_{\mathrm{exc}}
+>    \right\}.
+>    $$
+>    Then no admissible fold, hidden Jacobian loss, sector relabeling, or admissible exchange can recur within cycle-time separation smaller than
+>    $$
+>    \Delta\tau_{\mathrm{evt}}.
+>    $$
+>
+> 6. **Finite event count.**
+>    The gauge chart and directional atlas allow only finitely many receiver-source-sector families
+>    $$
+>    N^{\mathrm{mb}}_{\mathrm{fam}}.
+>    $$
+>    Since each family contributes at most
+>    $$
+>    \lceil T_{\mathrm{cyc}}/\Delta\tau_{\mathrm{evt}}\rceil
+>    $$
+>    admissible events on one cycle, the total number of admissible hyperedges is bounded by
+>    $$
+>    N^{\mathrm{mb}}_{\mathrm{edge}}
+>    \le
+>    \left\lceil \frac{T_{\mathrm{cyc}}}{\Delta\tau_{\mathrm{evt}}}\right\rceil
+>    N^{\mathrm{mb}}_{\mathrm{fam}}.
+>    $$
+>    This proves the proposition.
 
 This is the missing analytic bridge from local well-posedness to finite combinatorics. Without it, the later hypergraph package is only suggestive bookkeeping rather than a theorem-level object.
 
