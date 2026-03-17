@@ -3768,6 +3768,67 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 >    $$
 >    is the finite number of receiver-source-sector families allowed by the gauge chart and directional atlas.
 
+The intended proof route is short enough to be stated now.
+
+1. Fix one receiver-source family
+$$
+(i,j)
+$$
+and one admissible fold
+$$
+(t,s_\ast).
+$$
+Taylor-expand
+$$
+\partial_s g_{ij}(t;s)
+$$
+about
+$$
+s=s_\ast.
+$$
+Because
+$$
+\partial_s g_{ij}(t;s_\ast)=0
+$$
+and
+$$
+|\partial_s^2 g_{ij}(t;s_\ast)|\ge \gamma_{\mathrm{fold}}>0,
+$$
+while
+$$
+|\partial_s^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g},
+$$
+the first derivative cannot return to zero until
+$$
+|s-s_\ast|
+$$
+exceeds a definite scale depending only on
+$$
+\gamma_{\mathrm{fold}}
+\qquad
+\text{and}
+\qquad
+C^{\mathrm{mb}}_{3,g}.
+$$
+
+2. Away from the fold tubes, the Jacobian floor
+$$
+|\partial_s g_{ij}(t;s)|\ge \nu_J^{\mathrm{mb}}
+$$
+prevents any hidden simple-root degeneracy. So branch continuation, sector crossing, and admissible source-cluster exchange can only happen at isolated events and cannot pile up between adjacent fold neighborhoods.
+
+3. The same Taylor argument applied at sector-boundary and exchange events, together with the derivative hierarchy, yields one common lower time scale
+$$
+\Delta\tau_{\mathrm{evt}}>0
+$$
+for the full finite event alphabet.
+
+4. Once every event consumes at least
+$$
+\Delta\tau_{\mathrm{evt}}
+$$
+of cycle order, the total number of admissible events on one cycle is bounded by the cycle length times the finite receiver-source-sector family count. That is the step that turns analytic regularity into the finite hypergraph bound.
+
 This is the missing analytic bridge from local well-posedness to finite combinatorics. Without it, the later hypergraph package is only suggestive bookkeeping rather than a theorem-level object.
 
 ### Third many-body theorem package: finite active delay hypergraph
@@ -4193,6 +4254,98 @@ the comparison terms are understood channelwise:
   A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
   $$
   is the deep-past ceiling supplied by the cluster-ancestry package.
+
+To make these comparison laws honest theorem objects, the principal channels should only be differentiated on windows where the relevant denominators and branches stay uniformly away from their singular sets. Introduce the smooth-window floors
+$$
+\|\mathbf{a}(t)\|\ge a_{\min}>0,
+\qquad
+\|\mathbf{b}(t)\|\ge b_{\min}>0,
+$$
+$$
+|\det(\mathbf{a}(t),\mathbf{b}(t))|\ge \Delta_{\min}>0
+\qquad
+\text{on sign-fixed shear windows,}
+$$
+$$
+\delta_{\mathrm{role}}(t)\ge \delta_{\mathrm{role},\min}>0
+\qquad
+\text{on role windows.}
+$$
+Accordingly, the smooth recapture windows should be refined as:
+$$
+I^{\mathrm{mb}}_{1,\mathrm{post}}
+\equiv
+\left\{
+t\in I^{\mathrm{mb}}_{\mathrm{post}}
+\;\middle|\;
+\|\mathbf{a}(t)\|\ge a_{\min}
+\right\},
+$$
+$$
+I^{\mathrm{mb}}_{1,\mathrm{late}}
+\equiv
+\left\{
+t\in I^{\mathrm{mb}}_{\mathrm{late}}
+\;\middle|\;
+\|\mathbf{a}(t)\|\ge a_{\min}
+\right\},
+$$
+$$
+I^{\mathrm{mb}}_{2,\mathrm{post}}
+\equiv
+\left\{
+t\in I^{\mathrm{mb}}_{\mathrm{post}}
+\;\middle|\;
+\|\mathbf{b}(t)\|\ge b_{\min}
+\right\},
+$$
+$$
+I^{\mathrm{mb}}_{2,\mathrm{late}}
+\equiv
+\left\{
+t\in I^{\mathrm{mb}}_{\mathrm{late}}
+\;\middle|\;
+\|\mathbf{b}(t)\|\ge b_{\min}
+\right\},
+$$
+$$
+I^{\mathrm{mb}}_{3,\mathrm{post}}
+\equiv
+\left\{
+t\in I^{\mathrm{mb}}_{\mathrm{post}}
+\;\middle|\;
+|\det(\mathbf{a}(t),\mathbf{b}(t))|\ge \Delta_{\min}
+\right\},
+$$
+$$
+I^{\mathrm{mb}}_{3,\mathrm{late}}
+\equiv
+\left\{
+t\in I^{\mathrm{mb}}_{\mathrm{late}}
+\;\middle|\;
+|\det(\mathbf{a}(t),\mathbf{b}(t))|\ge \Delta_{\min}
+\right\},
+$$
+$$
+I^{\mathrm{mb}}_{4,\mathrm{post}}
+\equiv
+\left\{
+t\in I^{\mathrm{mb}}_{\mathrm{post}}
+\;\middle|\;
+\delta_{\mathrm{role}}(t)\ge \delta_{\mathrm{role},\min}
+\right\},
+$$
+$$
+I^{\mathrm{mb}}_{4,\mathrm{late}}
+\equiv
+\left\{
+t\in I^{\mathrm{mb}}_{\mathrm{late}}
+\;\middle|\;
+\delta_{\mathrm{role}}(t)\ge \delta_{\mathrm{role},\min}
+\right\}.
+$$
+
+If one of these floors collapses, that should not be hidden inside the recapture inequalities. It is a separate named event: pair-collapse, midpoint-collapse, shear-sign switching, or role-tie loss. The principal channel theorems should therefore be read only on the corresponding smooth windows above.
 
 For the first three-body bridge these terms should be read concretely as follows:
 
@@ -4735,11 +4888,11 @@ the intended role is late-turn closure: the same observables must already be los
 >    $$
 >    on the two windows above.
 >
-> Suppose, in addition, that on each of the windows
+> Suppose, in addition, that on each of the smooth windows
 > $$
-> I^{\mathrm{mb}}_{\rho,\mathrm{post}},
+> I^{\mathrm{mb}}_{1,\mathrm{post}}\cap I^{\mathrm{mb}}_{2,\mathrm{post}},
 > \qquad
-> I^{\mathrm{mb}}_{\rho,\mathrm{late}},
+> I^{\mathrm{mb}}_{1,\mathrm{late}}\cap I^{\mathrm{mb}}_{2,\mathrm{late}},
 > $$
 > one has strict projected inequalities
 > $$
@@ -4799,7 +4952,7 @@ should be defined directly from the projected branch-sum gaps above. Namely,
 $$
 \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{\rho,\mathrm{post}}}
+\inf_{t\in I^{\mathrm{mb}}_{1,\mathrm{post}}}
 \left[
 \Lambda^{\mathrm{mb}}_{1,\mathrm{core}}(t)
 -
@@ -4817,7 +4970,7 @@ $$
 $$
 \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{late}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{\rho,\mathrm{late}}}
+\inf_{t\in I^{\mathrm{mb}}_{1,\mathrm{late}}}
 \left[
 \Lambda^{\mathrm{mb}}_{1,\mathrm{core}}(t)
 -
@@ -4835,7 +4988,7 @@ $$
 $$
 \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{\rho,\mathrm{post}}}
+\inf_{t\in I^{\mathrm{mb}}_{2,\mathrm{post}}}
 \left[
 \Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}(t)
 -
@@ -4853,7 +5006,7 @@ $$
 $$
 \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{\rho,\mathrm{late}}}
+\inf_{t\in I^{\mathrm{mb}}_{2,\mathrm{late}}}
 \left[
 \Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}(t)
 -
@@ -4873,7 +5026,7 @@ For the shear and role-exchange channels, the principal margins should likewise 
 $$
 \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{\mathrm{post}}}
+\inf_{t\in I^{\mathrm{mb}}_{3,\mathrm{post}}}
 \left[
 \Lambda^{\mathrm{mb}}_{3,\mathrm{flat}}(t)
 -
@@ -4891,7 +5044,7 @@ $$
 $$
 \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{late}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{\mathrm{late}}}
+\inf_{t\in I^{\mathrm{mb}}_{3,\mathrm{late}}}
 \left[
 \Lambda^{\mathrm{mb}}_{3,\mathrm{flat}}(t)
 -
@@ -4909,7 +5062,7 @@ $$
 $$
 \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{post}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{\mathrm{post}}\cap I^{\mathrm{mb}}_{\mathrm{role}}}
+\inf_{t\in I^{\mathrm{mb}}_{4,\mathrm{post}}}
 \left[
 \Lambda^{\mathrm{mb}}_4(t)
 -
@@ -4925,7 +5078,7 @@ $$
 $$
 \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{late}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{\mathrm{late}}\cap I^{\mathrm{mb}}_{\mathrm{role}}}
+\inf_{t\in I^{\mathrm{mb}}_{4,\mathrm{late}}}
 \left[
 \Lambda^{\mathrm{mb}}_4(t)
 -
@@ -4938,19 +5091,17 @@ L^{\mathrm{mb}}_{4,\mathrm{fold}}(t)
 A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 \right],
 $$
-where
+where the smooth-window floors
 $$
-I^{\mathrm{mb}}_{\mathrm{role}}
+a_{\min},
+\qquad
+b_{\min},
+\qquad
+\Delta_{\min},
+\qquad
+\delta_{\mathrm{role},\min}
 $$
-denotes the subwindow on which the role gap
-$$
-\delta_{\mathrm{role}}>0
-$$
-keeps the
-$$
-\rho^{\mathrm{mb}}_4
-$$
-branch smooth.
+are part of the recapture hypotheses rather than hidden background assumptions.
 
 For the remaining channels
 $$
