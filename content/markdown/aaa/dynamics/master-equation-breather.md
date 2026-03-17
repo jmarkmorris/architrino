@@ -4139,7 +4139,199 @@ So the midpoint-separation channel is likewise reduced to one concrete branch-su
 
 These two formulas are the first concrete comparison identities the planar-three-body bridge should use. They say exactly where the useful inward coercivity must come from and exactly where the leakage terms enter.
 
-Define the many-body recapture margins
+The next step is to specify the first recapture windows for these two channels. Let
+$$
+t_{\mathrm{x}}^{\mathrm{mb}}
+$$
+denote the first near-core crossing or minimum-core event after the initial inbound section, and let
+$$
+t_{\mathrm{turn}}^{\mathrm{mb}}
+$$
+denote the first later time at which the distinguished opposite-sign body and the same-sign outer pair are both candidates for outward escape rather than continued compression. The first controlled windows should then be taken as
+$$
+I^{\mathrm{mb}}_{\rho,\mathrm{post}}
+\equiv
+\big[t_{\mathrm{x}}^{\mathrm{mb}},\,t_{\mathrm{x}}^{\mathrm{mb}}+\Delta_{\rho,\mathrm{post}}\big],
+$$
+$$
+I^{\mathrm{mb}}_{\rho,\mathrm{late}}
+\equiv
+\big[t_{\mathrm{turn}}^{\mathrm{mb}}-\Delta_{\rho,\mathrm{late}},\,t_{\mathrm{turn}}^{\mathrm{mb}}\big],
+$$
+with positive window lengths
+$$
+\Delta_{\rho,\mathrm{post}},
+\qquad
+\Delta_{\rho,\mathrm{late}}.
+$$
+
+On
+$$
+I^{\mathrm{mb}}_{\rho,\mathrm{post}}
+$$
+the intended role is immediate post-core recapture: the same-sign pair must not continue widening unchecked, and the opposite-sign body must not continue peeling away from the outer-pair midpoint. On
+$$
+I^{\mathrm{mb}}_{\rho,\mathrm{late}}
+$$
+the intended role is late-turn closure: the same observables must already be losing outward momentum before a genuine scattering configuration forms.
+
+> **Target Proposition (Two-channel Jacobi recapture on the first planar-three-body windows).**
+> Assume:
+> 1. the gauge-fixed section package;
+> 2. the finite active delay hypergraph package;
+> 3. the deep-past suppression bound
+>    $$
+>    A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+>    \le
+>    A^{\mathrm{mb}}_{\mathrm{deep},\max};
+>    $$
+> 4. and controlled fold ceilings
+>    $$
+>    L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_1,
+>    \qquad
+>    L^{\mathrm{mb}}_{2,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_2
+>    $$
+>    on the two windows above.
+>
+> Suppose, in addition, that on each of the windows
+> $$
+> I^{\mathrm{mb}}_{\rho,\mathrm{post}},
+> \qquad
+> I^{\mathrm{mb}}_{\rho,\mathrm{late}},
+> $$
+> one has strict projected inequalities
+> $$
+> \Lambda^{\mathrm{mb}}_{1,\mathrm{core}}
+> >
+> \Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{same}}\Big)_+
+> +
+> \Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}\Big)_+
+> +
+> \frac{\|\dot{\mathbf{a}}\|^2-\big(\hat{\mathbf{a}}\cdot\dot{\mathbf{a}}\big)^2}{\|\mathbf{a}\|}
+> +
+> F^{\mathrm{mb}}_1
+> +
+> A^{\mathrm{mb}}_{\mathrm{deep},\max},
+> $$
+> $$
+> \Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}
+> >
+> \Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}\Big)_+
+> +
+> \Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}\Big)_+
+> +
+> \frac{\|\dot{\mathbf{b}}\|^2-\big(\hat{\mathbf{b}}\cdot\dot{\mathbf{b}}\big)^2}{\|\mathbf{b}\|}
+> +
+> F^{\mathrm{mb}}_2
+> +
+> A^{\mathrm{mb}}_{\mathrm{deep},\max}.
+> $$
+> Then the two principal escape observables obey
+> $$
+> \ddot{\rho}^{\mathrm{mb}}_1(t)<0,
+> \qquad
+> \ddot{\rho}^{\mathrm{mb}}_2(t)<0
+> $$
+> throughout those windows.
+>
+> In particular:
+> 1. if
+>    $$
+>    \dot{\rho}^{\mathrm{mb}}_1
+>    $$
+>    or
+>    $$
+>    \dot{\rho}^{\mathrm{mb}}_2
+>    $$
+>    is initially positive at the start of either window, it must strictly decrease along that window;
+> 2. if the window is long enough and the initial outward rates are uniformly bounded, each observable reaches a turning time inside the window;
+> 3. therefore the pair-separation and midpoint-separation channels cannot both sustain monotone outward escape across the first post-crossing or late-turn stages.
+
+This is the first honest recapture lemma for the planar three-body bridge. It does not yet prove the full many-body return, but it reduces the first two escape channels to explicit projected inequalities on controlled windows.
+
+To align the abstract recapture theorem with the first concrete lemma, the principal margins for
+$$
+m=1,2
+$$
+should be defined directly from the projected branch-sum gaps above. Namely,
+$$
+\mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\rho,\mathrm{post}}}
+\left[
+\Lambda^{\mathrm{mb}}_{1,\mathrm{core}}(t)
+-
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{same}}(t)\Big)_+
+-
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}(t)\Big)_+
+-
+\frac{\|\dot{\mathbf{a}}(t)\|^2-\big(\hat{\mathbf{a}}(t)\cdot\dot{\mathbf{a}}(t)\big)^2}{\|\mathbf{a}(t)\|}
+-
+L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)
+-
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\right],
+$$
+$$
+\mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{late}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\rho,\mathrm{late}}}
+\left[
+\Lambda^{\mathrm{mb}}_{1,\mathrm{core}}(t)
+-
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{same}}(t)\Big)_+
+-
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}(t)\Big)_+
+-
+\frac{\|\dot{\mathbf{a}}(t)\|^2-\big(\hat{\mathbf{a}}(t)\cdot\dot{\mathbf{a}}(t)\big)^2}{\|\mathbf{a}(t)\|}
+-
+L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)
+-
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\right],
+$$
+$$
+\mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\rho,\mathrm{post}}}
+\left[
+\Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}(t)
+-
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}(t)\Big)_+
+-
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}(t)\Big)_+
+-
+\frac{\|\dot{\mathbf{b}}(t)\|^2-\big(\hat{\mathbf{b}}(t)\cdot\dot{\mathbf{b}}(t)\big)^2}{\|\mathbf{b}(t)\|}
+-
+L^{\mathrm{mb}}_{2,\mathrm{fold}}(t)
+-
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\right],
+$$
+$$
+\mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\rho,\mathrm{late}}}
+\left[
+\Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}(t)
+-
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}(t)\Big)_+
+-
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}(t)\Big)_+
+-
+\frac{\|\dot{\mathbf{b}}(t)\|^2-\big(\hat{\mathbf{b}}(t)\cdot\dot{\mathbf{b}}(t)\big)^2}{\|\mathbf{b}(t)\|}
+-
+L^{\mathrm{mb}}_{2,\mathrm{fold}}(t)
+-
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\right].
+$$
+
+For the remaining channels
+$$
+m=3,\dots,K_{\mathrm{esc}},
+$$
+retain the abstract definitions
 $$
 \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{post}}
 \equiv
@@ -4161,7 +4353,17 @@ $$
 \Big).
 $$
 
-Whenever all of these margins are positive, each escape observable feels a strictly inward comparison law on the corresponding controlled window.
+With this convention,
+$$
+\mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}>0,
+\quad
+\mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{late}}>0,
+\quad
+\mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}}>0,
+\quad
+\mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}}>0
+$$
+are exactly the margin versions of the two-channel Jacobi recapture inequalities. Whenever all of the many-body margins are positive, each escape observable feels a strictly inward comparison law on the corresponding controlled window.
 
 > **Target Theorem (Planar-three-body multi-observable recapture criterion).**
 > Assume:
