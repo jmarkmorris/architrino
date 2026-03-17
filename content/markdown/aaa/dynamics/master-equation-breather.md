@@ -2609,6 +2609,198 @@ This is the correct replacement object. In the reduced planar bridge the active 
 
 This proposition is the unreduced-planar replacement for the reduced planar branch-count and branch-labeling package. The main difference is not merely higher notation. It is that the theorem now has to control branch continuation across several chord types and windows, not just uniqueness inside one scalar or sector-labeled family.
 
+#### Deep-past provenance-or-exclusion target for the unreduced planar bridge
+
+The next burden is the unreduced-planar replacement for deep-past relocation. In the reduced planar bridge, a remote late-turn self root is pushed back into one pre-crossing inbound cone. That statement is too rigid once several chord types and several window families are active. The correct replacement is weaker in form but still finite: every remote late-turn root must either trace backward to one of finitely many earlier provenance classes in the branch graph, or be excluded altogether.
+
+Let
+$$
+\mathcal{W}^{\sharp}_{\mathrm{lt}}
+\subseteq
+\mathcal{W}^{\sharp}
+$$
+denote the late-turn receiver windows on which outer recapture versus escape is analyzed, and let
+$$
+\mathcal{W}^{\sharp}_{\mathrm{out}},
+\qquad
+\mathcal{W}^{\sharp}_{\mathrm{prov}}
+\subseteq
+\mathcal{W}^{\sharp}
+$$
+denote, respectively, the intermediate outbound windows and the earlier provenance windows that precede
+$$
+\mathcal{W}^{\sharp}_{\mathrm{lt}}
+$$
+in the receiver-time order of the cycle partition. A deep-past active root on a late-turn window should mean one with delay
+$$
+t-s\ge \tau^{\sharp}_{\mathrm{dp}}.
+$$
+
+For a vertex
+$$
+v=(\tau,k,\ell,m)
+$$
+of
+$$
+\mathscr{G}^{\sharp}_{\mathrm{br}}(\Psi),
+$$
+write
+$$
+S(v)
+\equiv
+\beta^{\tau}_{k,\ell,m}\!\bigl(I^{\tau}_{k,\ell,m}\bigr)
+$$
+for its source-time trace. If
+$$
+W_{\ell}\in \mathcal{W}^{\sharp}_{\mathrm{lt}},
+$$
+call
+$$
+v
+$$
+a late-turn vertex. Define the backward ancestry
+$$
+\operatorname{Anc}^{-}(v)
+$$
+to be the set of vertices reachable from
+$$
+v
+$$
+by a chain of continuation or handoff edges that never moves to a later receiver window in the cycle order. This is the graph-theoretic replacement for “going back to the inbound leg.”
+
+The finite provenance objects should now be defined at the graph level rather than at the level of individual root times. A provenance class should mean a connected subgraph
+$$
+\mathfrak{P}^{\sharp}_a
+\subseteq
+\mathscr{G}^{\sharp}_{\mathrm{br}}(\Psi)
+$$
+whose vertices all lie in provenance windows
+$$
+W_{\ell}\in \mathcal{W}^{\sharp}_{\mathrm{prov}},
+$$
+share one chord type
+$$
+\tau
+$$
+and one sector label
+$$
+k,
+$$
+and have connected source traces
+$$
+\bigcup_{v\in \mathfrak{P}^{\sharp}_a}S(v)
+$$
+on which the source parameterization is simple and carries one uniform Jacobian floor
+$$
+\nu^{\sharp}_{J,\mathrm{dp}}>0.
+$$
+
+The unreduced-planar exclusion step must also be stated graphwise. For each chord type
+$$
+\tau
+$$
+and each sector
+$$
+\mathfrak{S}^{\sharp}_k
+$$
+that appears on a late-turn vertex, define the corresponding outbound exclusion slab
+$$
+\mathfrak{E}^{\sharp}_{\tau,k}
+\equiv
+\bigl\{
+(t,s)
+\,\big|\,
+t\in W_{\ell},
+\ s\in W_{\ell'},
+\ W_{\ell}\in\mathcal{W}^{\sharp}_{\mathrm{lt}},
+\ W_{\ell'}\in\mathcal{W}^{\sharp}_{\mathrm{out}},
+\ \hat{\mathbf{u}}_{\tau}(t,s)\in \mathfrak{S}^{\sharp}_k
+\bigr\}.
+$$
+The intended theorem input is that
+$$
+G_{\tau}
+$$
+has fixed nonzero sign on every such slab, so no active late-turn root can draw its source from the intermediate outbound block.
+
+> **Target Proposition (Deep-past provenance or exclusion on the unreduced planar branch graph).**
+> Assume the finite active branch-graph proposition and suppose, in addition, that:
+> 1. for every late-turn type-sector pair
+>    $$
+>    (\tau,k),
+>    $$
+>    the defect
+>    $$
+>    G_{\tau}
+>    $$
+>    has fixed nonzero sign on the outbound exclusion slab
+>    $$
+>    \mathfrak{E}^{\sharp}_{\tau,k},
+>    $$
+>    so no active root with receiver in
+>    $$
+>    \mathcal{W}^{\sharp}_{\mathrm{lt}}
+>    $$
+>    can have source in
+>    $$
+>    \mathcal{W}^{\sharp}_{\mathrm{out}};
+>    $$
+> 2. there exists a finite family of provenance classes
+>    $$
+>    \mathfrak{P}^{\sharp}_1,
+>    \dots,
+>    \mathfrak{P}^{\sharp}_{P^{\sharp}_{\mathrm{prov}}}
+>    $$
+>    with the connected-source and Jacobian-floor properties described above;
+> 3. every connected component of
+>    $$
+>    \mathscr{G}^{\sharp}_{\mathrm{br}}(\Psi)
+>    $$
+>    that meets a late-turn vertex contains at most one provenance class;
+> 4. any backward ancestry chain from a late-turn vertex that avoids all provenance classes must remain trapped in the union of late-turn vertices and caustic tubes, and such a trapped component is forbidden by the branch graph parity rule for fold births and deaths.
+>
+> Then every deep-past active root on a late-turn window is either absent or belongs to a late-turn vertex
+> $$
+> v
+> $$
+> whose backward ancestry
+> $$
+> \operatorname{Anc}^{-}(v)
+> $$
+> meets exactly one provenance class
+> $$
+> \mathfrak{P}^{\sharp}_a.
+> $$
+> In particular, the total family of deep-past late-turn roots is controlled by the finite provenance count
+> $$
+> P^{\sharp}_{\mathrm{prov}}.
+> $$
+
+This is the correct unreduced-planar replacement for deep-past relocation. A remote root is no longer forced onto one literal inbound cone. Instead it is forced into one finite earlier provenance class of the branch graph, and the only alternative is a precise obstruction: a trapped late-turn component unsupported by any earlier provenance source.
+
+> **Target Corollary (Deep-past suppression from finite provenance classes).**
+> Assume the deep-past provenance-or-exclusion proposition. Then on every late-turn receiver window one has the uniform bound
+> $$
+> \bigl\|
+> \mathbf{a}^{\sharp,\mathrm{deep}}(t)
+> \bigr\|
+> \le
+> \frac{
+> P^{\sharp}_{\mathrm{prov}}
+> \kappa\epsilon^2
+> }{
+> \bigl(c_f^2(\tau^{\sharp}_{\mathrm{dp}})^2+\epsilon_c^2\bigr)
+> \nu^{\sharp}_{J,\mathrm{dp}}
+> },
+> $$
+> for every
+> $$
+> t\in \bigcup_{W\in \mathcal{W}^{\sharp}_{\mathrm{lt}}} W,
+> $$
+> because each admissible provenance class contributes at most one uniformly transversal deep-past branch at the chosen delay scale.
+
+This is the quantity the later unreduced-planar recapture package should consume. Once the remote self contribution is reduced to a finite provenance count times one branch amplitude bound, the deep-past part of self-drive is again a controlled term rather than an open-ended graph-combinatorial hazard.
+
 If that theorem ladder cannot be stated cleanly, then the obstruction should be recorded at that level: either the quotient section is not well posed, the branch graph is not uniformly finite, provenance control fails, the multi-channel recapture estimate loses coercivity, or no convex tame self-map domain survives the gauge reset.
 
 ## Capstone Statement
