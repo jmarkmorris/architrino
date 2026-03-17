@@ -2210,6 +2210,48 @@ chart. Beyond that regime, even the correct Banach chart and the right convex se
 
 For that reason, the present chapter should be read as the first 2D bridge, not as the general planar theorem program. Only after these additional burdens are isolated and given their own theorem targets would it be honest to say that the work has moved beyond the reduced planar bridge.
 
+### First unreduced planar theorem targets
+
+The next honest regime should still remain modest: a planar binary without the reflection-symmetric return reduction, but also without yet opening the full many-body master equation. Even there, the bridge should be restarted with a new theorem ladder rather than by informal analogy with the reduced planar case.
+
+Write
+$$
+\mathcal{Q}^{\sharp}_{\mathrm{pl}}
+\equiv
+\mathcal{Q}_{\mathrm{pl}}/SE(2)
+$$
+for the planar shape quotient after rigid Euclidean symmetries are removed. The first unreduced planar bridge should then be organized around the following targets.
+
+1. A section-and-gauge package on
+   $$
+   C^1([-h,0];\mathcal{Q}^{\sharp}_{\mathrm{pl}})
+   $$
+   with one codimension-one return condition and one explicit gauge selector that chooses a canonical representative of each returned history. In the reduced planar bridge the gauge reset is one rotation angle. Here the theorem target must identify the correct quotient chart and prove that the returned history depends continuously on that gauge choice.
+2. A finite branch-graph package for the active delayed roots. Instead of one sector-labeled family of self and partner branches, one should expect a finite graph
+   $$
+   \mathscr{G}_{\mathrm{br}}(t)
+   $$
+   whose vertices encode source-receiver chord types and whose edges encode admissible fold births, mergers, or handoffs between windows. The replacement theorem must bound that graph uniformly and exclude uncontrolled simultaneous fold accumulation.
+3. A provenance or exclusion package for deep-past roots. The reduced planar argument pushes late self roots into one pre-crossing inbound cone family. The unreduced planar target should instead prove that every remote active root either relocates into a finite provenance class on the earlier branch graph or is excluded by a topological obstruction principle. Without such a theorem there is no honest replacement for deep-past relocation.
+4. A multi-channel recapture package. The reduced planar comparison law pays one scalar leakage term
+   $$
+   \rho\dot\vartheta^2.
+   $$
+   In the unreduced planar regime the replacement must control several escape channels at once: rotational, tangential, and shear-like components in the quotient dynamics. The correct theorem target is therefore not one scalar inequality, but a coercive inward comparison that dominates every nonradial leakage channel on the chosen inner and outer windows.
+5. A new closure package on one quotient-space convex envelope
+   $$
+   \mathcal{C}^{\sharp}_{\eta}
+   $$
+   and one closed convex tame envelope
+   $$
+   \mathcal{K}^{\sharp}_{\eta}
+   \subseteq
+   \mathcal{C}^{\sharp}_{\eta}.
+   $$
+   The returned histories must land back in the same gauge-fixed quotient section, preserve the branch-graph and recapture constants, and define a continuous precompact self-map on that same domain.
+
+If that theorem ladder cannot be stated cleanly, then the obstruction should be recorded at that level: either the quotient section is not well posed, the branch graph is not uniformly finite, provenance control fails, the multi-channel recapture estimate loses coercivity, or no convex tame self-map domain survives the gauge reset.
+
 ## Capstone Statement
 
 The 1D collinear chapter should now be used as a frozen reference theorem scaffold. The present chapter records the higher-level lesson:
