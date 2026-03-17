@@ -4728,6 +4728,50 @@ $$
 $$
 are the concrete margin versions of the four principal escape-channel inequalities. Whenever all of the many-body margins are positive, each escape observable feels a strictly inward comparison law on the corresponding controlled window.
 
+> **Target Proposition (Principal four-channel recapture closure).**
+> Assume the gauge-fixed section package, the finite active delay hypergraph package, and the deep-past cluster-ancestry suppression bound. Suppose, in addition, that
+> $$
+> \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}>0,
+> \quad
+> \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{late}}>0,
+> \quad
+> \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}}>0,
+> \quad
+> \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}}>0,
+> $$
+> $$
+> \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}}>0,
+> \quad
+> \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{late}}>0,
+> \quad
+> \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{post}}>0,
+> \quad
+> \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{late}}>0.
+> $$
+> Then the four principal escape channels
+> $$
+> \rho^{\mathrm{mb}}_1,\rho^{\mathrm{mb}}_2,\rho^{\mathrm{mb}}_3,\rho^{\mathrm{mb}}_4
+> $$
+> cannot sustain a simultaneous scattering drift through the post-crossing and late-turn stages.
+>
+> More precisely:
+> 1. the pair-separation channel cannot keep widening monotonically;
+> 2. the midpoint-separation channel cannot keep ejecting the opposite-sign body monotonically;
+> 3. the shear channel cannot keep increasing triangle-area escape monotonically on one fixed sign branch;
+> 4. the role-exchange channel cannot cross into a persistent outer-body takeover on any subwindow with
+>    $$
+>    \delta_{\mathrm{role}}>0;
+>    $$
+> 5. therefore any remaining candidate scattering route must pass through a higher channel
+>    $$
+>    \rho^{\mathrm{mb}}_m,
+>    \qquad
+>    m\ge 5,
+>    $$
+>    or else violate one of the already-listed fold, tie, or chart hypotheses.
+
+This proposition is the bridge between the local channel calculations and the full many-body recapture theorem. It says that once the four principal channels are controlled, any residual failure is no longer hidden in the obvious geometry; it must come from either a higher auxiliary channel or an explicit closure-stage obstruction.
+
 > **Target Theorem (Planar-three-body multi-observable recapture criterion).**
 > Assume:
 > 1. the gauge-fixed section package;
