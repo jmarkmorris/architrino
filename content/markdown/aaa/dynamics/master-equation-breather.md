@@ -1272,6 +1272,244 @@ This is the exact Jacobian input promised in the deep-past sector suppression co
 
 This is the replacement for affine-seed self-root exclusion. The exclusion mechanism is no longer signed monotonicity on the line, but the strict chord-defect inequality created by a sub-field-speed planar seed.
 
+### Fourth theorem package: explicit planar seed packet
+
+The section-side nonvacuity problem should now be made explicit in the reduced planar chart rather than left as an abstract existence claim.
+
+Fix positive constants
+$$
+\rho_\ast>0,
+\qquad
+u_{r,\mathrm{seed}}>0,
+\qquad
+u_{\theta,\mathrm{seed}}>0,
+$$
+and define
+$$
+U_{\mathrm{seed}}
+\equiv
+\sqrt{u_{r,\mathrm{seed}}^2+u_{\theta,\mathrm{seed}}^2}.
+$$
+Assume
+$$
+U_{\mathrm{seed}}<c_f.
+$$
+Set
+$$
+\mathbf{v}_{\mathrm{seed}}
+\equiv
+-u_{r,\mathrm{seed}}\mathbf{e}_1
++
+u_{\theta,\mathrm{seed}}\mathbf{e}_2
+$$
+and define the explicit affine planar seed by
+$$
+\Phi_{\mathrm{seed}}(\theta)
+\equiv
+\rho_\ast \mathbf{e}_1+\theta \mathbf{v}_{\mathrm{seed}},
+\qquad
+\theta\in[-h,0].
+$$
+
+This is the minimal planar analogue of the frozen 1D affine inbound seed. It is still affine in history time, but it already carries the genuinely planar datum that the tangential component is positive at the section.
+
+> **Target Proposition (Explicit planar affine seed history).**
+> Fix
+> $$
+> \rho_\ast>0,
+> \qquad
+> u_{r,\mathrm{seed}}>0,
+> \qquad
+> u_{\theta,\mathrm{seed}}>0,
+> \qquad
+> U_{\mathrm{seed}}<c_f,
+> $$
+> and let
+> $$
+> \Phi_{\mathrm{seed}}(\theta)
+> =
+> \rho_\ast \mathbf{e}_1+\theta \mathbf{v}_{\mathrm{seed}}
+> $$
+> as above. Define
+> $$
+> \sigma_{p,\mathrm{seed}}
+> \equiv
+> \frac{2\rho_\ast}{
+> \sqrt{c_f^2-u_{\theta,\mathrm{seed}}^2}
+> -
+> u_{r,\mathrm{seed}}}.
+> $$
+> If
+> $$
+> h>\sigma_{p,\mathrm{seed}},
+> $$
+> then:
+> 1. the section conditions hold:
+>    $$
+>    \Phi_{\mathrm{seed}}(0)=\rho_\ast \mathbf{e}_1,
+>    \qquad
+>    \mathbf{e}_1\cdot\dot\Phi_{\mathrm{seed}}(0)=-u_{r,\mathrm{seed}}<0,
+>    \qquad
+>    \mathbf{e}_2\cdot\dot\Phi_{\mathrm{seed}}(0)=u_{\theta,\mathrm{seed}}>0;
+>    $$
+> 2. the stored path has constant speed and zero acceleration:
+>    $$
+>    \sup_{\theta\in[-h,0]}
+>    \|\dot\Phi_{\mathrm{seed}}(\theta)\|
+>    =
+>    U_{\mathrm{seed}},
+>    \qquad
+>    \ddot\Phi_{\mathrm{seed}}(\theta)=0;
+>    $$
+> 3. there are no exact same-source self roots on
+>    $$
+>    [-h,0);
+>    $$
+> 4. there is exactly one partner root on the stored interval, located at
+>    $$
+>    \theta_{p,\mathrm{seed}}=-\sigma_{p,\mathrm{seed}},
+>    $$
+>    and its Jacobian obeys
+>    $$
+>    J_{p,\mathrm{seed}}
+>    \ge
+>    1-\frac{U_{\mathrm{seed}}}{c_f}
+>    >0.
+>    $$
+
+The proof is the planar version of the 1D seed argument, but the partner root is now genuinely vectorial. Writing
+$$
+\sigma=-\theta>0,
+$$
+the partner root equation at the section time is
+$$
+\|\rho_\ast \mathbf{e}_1+\Phi_{\mathrm{seed}}(-\sigma)\|
+=
+\sqrt{(2\rho_\ast+u_{r,\mathrm{seed}}\sigma)^2+u_{\theta,\mathrm{seed}}^2\sigma^2}
+=
+c_f\sigma.
+$$
+Because
+$$
+U_{\mathrm{seed}}<c_f,
+$$
+this equation has the unique positive solution
+$$
+\sigma=\sigma_{p,\mathrm{seed}}.
+$$
+Equivalently, the scalar function
+$$
+H_{\mathrm{seed}}(\sigma)
+\equiv
+\|\rho_\ast \mathbf{e}_1+\Phi_{\mathrm{seed}}(-\sigma)\|-c_f\sigma
+$$
+starts from
+$$
+H_{\mathrm{seed}}(0)=2\rho_\ast>0
+$$
+and satisfies
+$$
+H_{\mathrm{seed}}'(\sigma)\le U_{\mathrm{seed}}-c_f<0,
+$$
+so the root is unique once
+$$
+h>\sigma_{p,\mathrm{seed}}.
+$$
+
+For exact self roots on the stored interval one has
+$$
+\|\Phi_{\mathrm{seed}}(0)-\Phi_{\mathrm{seed}}(\theta)\|
+=
+U_{\mathrm{seed}}|\theta|
+<
+c_f|\theta|
+\qquad
+\text{for every }
+\theta\in[-h,0),
+$$
+which is the desired chord-defect inequality. Thus the seed carries no exact same-source self roots at all. For the unique partner root, the source particle velocity has norm
+$$
+U_{\mathrm{seed}},
+$$
+so the causal Jacobian satisfies the uniform lower bound
+$$
+J_{p,\mathrm{seed}}
+=
+1-\frac{\mathbf{v}_{1}(\theta_{p,\mathrm{seed}})\cdot \hat{\mathbf{r}}_{p,\mathrm{seed}}}{c_f}
+\ge
+1-\frac{U_{\mathrm{seed}}}{c_f}
+>0.
+$$
+
+Consequently, if the convex-envelope constants satisfy
+$$
+R_{\max}\ge U_{\mathrm{seed}}h,
+\qquad
+U_{\max}\ge U_{\mathrm{seed}},
+\qquad
+A_{\max}>0,
+\qquad
+0<U_{\theta,\min}\le u_{\theta,\mathrm{seed}}\le U_{\theta,\max},
+$$
+then
+$$
+\Phi_{\mathrm{seed}}\in \mathcal{C}^{\Pi}_{\rho_\ast,\eta}.
+$$
+
+> **Target Corollary (Nonempty planar section-side tame neighborhood).**
+> Under the hypotheses of the explicit planar affine seed proposition, there exist
+> $$
+> \varepsilon_{\mathrm{seed}}>0,
+> \qquad
+> \nu_{\mathrm{seed}}>0,
+> $$
+> and a sector label
+> $$
+> \hat{\mathbf{u}}_{k_{\mathrm{seed}}}\in \mathcal{U}_{\mathrm{in}}
+> $$
+> such that the set
+> $$
+> \mathcal{C}^{\Pi,\mathrm{seed}}_{\rho_\ast,\eta}
+> \equiv
+> \left\{
+> \Phi\in \mathcal{C}^{\Pi}_{\rho_\ast,\eta}
+> \;\middle|\;
+> \Phi(0)=\rho_\ast\mathbf{e}_1,
+> \quad
+> \mathbf{e}_1\cdot\dot\Phi(0)\le -\frac{u_{r,\mathrm{seed}}}{2},
+> \quad
+> \mathbf{e}_2\cdot\dot\Phi(0)\ge \frac{u_{\theta,\mathrm{seed}}}{2},
+> \quad
+> \|\Phi-\Phi_{\mathrm{seed}}\|_{C^1([-h,0])}\le \varepsilon_{\mathrm{seed}}
+> \right\}
+> $$
+> is nonempty and has the following properties:
+> 1. every
+>    $$
+>    \Phi\in\mathcal{C}^{\Pi,\mathrm{seed}}_{\rho_\ast,\eta}
+>    $$
+>    satisfies
+>    $$
+>    \sup_{\theta\in[-h,0]}\|\dot\Phi(\theta)\|
+>    \le
+>    \frac{U_{\mathrm{seed}}+c_f}{2}
+>    <c_f;
+>    $$
+> 2. hence no member of the class has an exact same-source self root on
+>    $$
+>    [-h,0);
+>    $$
+> 3. the stored partner root persists uniquely, remains simple, and satisfies
+>    $$
+>    |J_p|\ge \nu_{\mathrm{seed}};
+>    $$
+> 4. the corresponding partner chord direction remains inside one fixed sector
+>    $$
+>    \mathfrak{S}_{k_{\mathrm{seed}}}.
+>    $$
+
+This is the first honest nonvacuity statement for the planar bridge. It says that the reduced section, the chord-defect self-root exclusion, and the sector-labeled partner geometry are simultaneously realizable on a nonempty open patch of the planar history space.
+
 > **Target Proposition (Bounded planar caustic transit).**
 > Whenever an active self branch is born on the inbound half-cycle, the dual-mollified contribution across the associated caustic tube produces a finite net impulse bounded by
 > $$
