@@ -3749,12 +3749,53 @@ $$
 \to
 [0,\infty)
 $$
-with the following intended roles:
+adapted to the Jacobi coordinates
+$$
+\mathbf{a}=\mathbf{x}_1-\mathbf{x}_3,
+\qquad
+\mathbf{b}=\mathbf{x}_2-\frac{\mathbf{x}_1+\mathbf{x}_3}{2}.
+$$
+For the first three-body bridge the natural concrete choice is
+$$
+\rho^{\mathrm{mb}}_1(\mathbf{a},\mathbf{b})\equiv \|\mathbf{a}\|,
+$$
+$$
+\rho^{\mathrm{mb}}_2(\mathbf{a},\mathbf{b})\equiv \|\mathbf{b}\|,
+$$
+$$
+\rho^{\mathrm{mb}}_3(\mathbf{a},\mathbf{b})\equiv
+\frac{\big|\det(\mathbf{a},\mathbf{b})\big|}{\|\mathbf{a}\|+\|\mathbf{b}\|},
+$$
+$$
+\rho^{\mathrm{mb}}_4(\mathbf{a},\mathbf{b})\equiv
+\max\Big\{
+\|\mathbf{x}_1\|,
+\|\mathbf{x}_2\|,
+\|\mathbf{x}_3\|
+\Big\}
+-\|\mathbf{x}_2\|.
+$$
 
-- pair-separation escape for the same-sign outer pair;
-- opposite-sign versus outer-pair cluster separation;
-- shear or shape-deformation escape inside the triangle;
-- and farthest-body exchange escape, which measures loss of a stable core-versus-outer role assignment.
+Their intended meanings are:
+
+- $$
+  \rho^{\mathrm{mb}}_1
+  $$
+  measures same-sign outer-pair separation;
+- $$
+  \rho^{\mathrm{mb}}_2
+  $$
+  measures separation between the opposite-sign body and the outer-pair midpoint;
+- $$
+  \rho^{\mathrm{mb}}_3
+  $$
+  measures shear or triangle-area escape, normalized to avoid pure scale inflation dominating the shape signal;
+- $$
+  \rho^{\mathrm{mb}}_4
+  $$
+  measures farthest-body exchange, vanishing when the opposite-sign body remains the distinguished core body and becoming positive when one outer body threatens to take over that role.
+
+These are not claimed to be the only possible observables. They are the first concrete family that matches the chosen gauge and the intended failure channels.
 
 Let
 $$
@@ -3776,7 +3817,11 @@ $$
 +L^{\mathrm{mb}}_m(t)
 +A^{\mathrm{mb}}_{s,\mathrm{deep}}(t),
 $$
-where:
+where, for each
+$$
+m,
+$$
+the comparison terms are understood channelwise:
 
 - $$
   \Lambda^{\mathrm{mb}}_m(t)\ge 0
@@ -3793,6 +3838,35 @@ where:
   A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
   $$
   is the deep-past ceiling supplied by the cluster-ancestry package.
+
+For the first three-body bridge these terms should be read concretely as follows:
+
+- for
+  $$
+  \rho^{\mathrm{mb}}_1,
+  $$
+  the leading inward term should come from the delayed attraction of the opposite-sign body on the same-sign pair, while leakage includes tangential rotation of the pair axis and same-sign self-repulsive widening;
+- for
+  $$
+  \rho^{\mathrm{mb}}_2,
+  $$
+  the leading inward term should come from the combined opposite-sign attractions between body
+  $$
+  2
+  $$
+  and the outer pair, while leakage includes pair breathing and quotient-frame acceleration of the midpoint;
+- for
+  $$
+  \rho^{\mathrm{mb}}_3,
+  $$
+  the leading inward term should come from delayed flattening or anti-shear alignment, while leakage includes uniform breathing that preserves aspect ratio only to lower order;
+- for
+  $$
+  \rho^{\mathrm{mb}}_4,
+  $$
+  the leading inward term should come from the persistence of the distinguished opposite-sign core role, while leakage includes any near-tie in body radii that threatens a role exchange.
+
+The point of writing the comparison law channelwise is that one does not need one scalar miracle quantity. One needs a finite family of inequalities whose common positivity excludes all geometrically natural scattering routes.
 
 Define the many-body recapture margins
 $$
