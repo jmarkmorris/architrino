@@ -4599,9 +4599,92 @@ A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 \right].
 $$
 
+For the shear and role-exchange channels, the principal margins should likewise be defined from the concrete decompositions above:
+$$
+\mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\mathrm{post}}}
+\left[
+\Lambda^{\mathrm{mb}}_{3,\mathrm{flat}}(t)
+-
+\Big(\Lambda^{\mathrm{mb}}_{3,\mathrm{swap}}(t)\Big)_+
+-
+\Big(\Lambda^{\mathrm{mb}}_{3,\mathrm{self}}(t)\Big)_+
+-
+L^{\mathrm{mb}}_{3,\mathrm{den}}(t)
+-
+L^{\mathrm{mb}}_{3,\mathrm{fold}}(t)
+-
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\right],
+$$
+$$
+\mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{late}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\mathrm{late}}}
+\left[
+\Lambda^{\mathrm{mb}}_{3,\mathrm{flat}}(t)
+-
+\Big(\Lambda^{\mathrm{mb}}_{3,\mathrm{swap}}(t)\Big)_+
+-
+\Big(\Lambda^{\mathrm{mb}}_{3,\mathrm{self}}(t)\Big)_+
+-
+L^{\mathrm{mb}}_{3,\mathrm{den}}(t)
+-
+L^{\mathrm{mb}}_{3,\mathrm{fold}}(t)
+-
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\right],
+$$
+$$
+\mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{post}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\mathrm{post}}\cap I^{\mathrm{mb}}_{\mathrm{role}}}
+\left[
+\Lambda^{\mathrm{mb}}_4(t)
+-
+L^{\mathrm{mb}}_{4,\mathrm{curv}}(t)
+-
+L^{\mathrm{mb}}_{4,\mathrm{tie}}(t)
+-
+L^{\mathrm{mb}}_{4,\mathrm{fold}}(t)
+-
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\right],
+$$
+$$
+\mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{late}}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{\mathrm{late}}\cap I^{\mathrm{mb}}_{\mathrm{role}}}
+\left[
+\Lambda^{\mathrm{mb}}_4(t)
+-
+L^{\mathrm{mb}}_{4,\mathrm{curv}}(t)
+-
+L^{\mathrm{mb}}_{4,\mathrm{tie}}(t)
+-
+L^{\mathrm{mb}}_{4,\mathrm{fold}}(t)
+-
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\right],
+$$
+where
+$$
+I^{\mathrm{mb}}_{\mathrm{role}}
+$$
+denotes the subwindow on which the role gap
+$$
+\delta_{\mathrm{role}}>0
+$$
+keeps the
+$$
+\rho^{\mathrm{mb}}_4
+$$
+branch smooth.
+
 For the remaining channels
 $$
-m=3,\dots,K_{\mathrm{esc}},
+m=5,\dots,K_{\mathrm{esc}},
 $$
 retain the abstract definitions
 $$
@@ -4633,9 +4716,17 @@ $$
 \quad
 \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}}>0,
 \quad
-\mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}}>0
+\mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}}>0,
+\quad
+\mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}}>0,
+\quad
+\mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{late}}>0,
+\quad
+\mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{post}}>0,
+\quad
+\mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{late}}>0
 $$
-are exactly the margin versions of the two-channel Jacobi recapture inequalities. Whenever all of the many-body margins are positive, each escape observable feels a strictly inward comparison law on the corresponding controlled window.
+are the concrete margin versions of the four principal escape-channel inequalities. Whenever all of the many-body margins are positive, each escape observable feels a strictly inward comparison law on the corresponding controlled window.
 
 > **Target Theorem (Planar-three-body multi-observable recapture criterion).**
 > Assume:
