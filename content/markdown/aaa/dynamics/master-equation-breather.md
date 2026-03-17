@@ -3417,7 +3417,7 @@ The theorem objective is not yet a classification of all planar three-body bound
 > **Planar-three-body bridge objective.**
 > Construct a history-space return map for a charge-neutral planar three-body delayed system and isolate a nonempty closed convex tame domain on which that return map is well defined. If this succeeds, the corresponding Schauder capstone becomes the first many-body breather theorem in the master-equation stack. If it fails, the obstruction should be written down in section/gauge, hypergraph, ancestry, recapture, or atlas-closure terms.
 
-The first two packages below are the right place to resume work. They turn the present many-body discussion from a boundary marker into a live theorem program.
+The package ladder below is now the right place to resume work. It turns the present many-body discussion from a boundary marker into a live theorem program.
 
 ### First many-body theorem package: section and gauge fixing on planar shape space
 
@@ -3944,7 +3944,7 @@ $$
 and no event that changes receiver, source cluster, sector family, and window label all at once without passing through one of the listed local types.
 
 > **Target Proposition (Finite active hypergraph control on the planar three-body cycle).**
-> On a sufficiently small section-side tame subclass of
+> Assume the unreduced local well-posedness package, the gauge-selector package, and the quantitative no-accumulation package. On a sufficiently small section-side tame subclass of
 > $$
 > \mathcal{H}^{\mathrm{adm},\mathrm{mb}}_{A_\ast,\eta},
 > $$
@@ -3956,7 +3956,9 @@ and no event that changes receiver, source cluster, sector family, and window la
 > \qquad
 > \nu^{\mathrm{mb}}_J,
 > \qquad
-> \delta^{\mathrm{mb}}_{\mathrm{sep}}
+> \delta^{\mathrm{mb}}_{\mathrm{sep}},
+> \qquad
+> \Delta\tau_{\mathrm{evt}}
 > $$
 > such that every one-cycle continuation admits an active delay hypergraph
 > $$
@@ -3981,15 +3983,37 @@ and no event that changes receiver, source cluster, sector family, and window la
 >    |J_{ij}(t;s)|\ge \nu^{\mathrm{mb}}_J
 >    $$
 >    away from the explicitly controlled fold tubes;
-> 4. root birth, root death, sector relabeling, and source-exchange events occurring only through the listed hyperedges;
+> 4. root birth, root death, sector relabeling, and source-exchange events occurring only through the listed hyperedges and separated in cycle order by at least
+>    $$
+>    \Delta\tau_{\mathrm{evt}};
+>    $$
 > 5. no uncontrolled branch proliferation outside those hypergraph-coded events.
 
 > More concretely:
 > 1. every hyperedge belongs to one of the five admissible types above;
-> 2. every fold tube supports only finitely many Type II or Type III hyperedges;
+> 2. every fold tube supports only finitely many Type II or Type III hyperedges, with multiplicity bounded by the no-accumulation event-gap constant
+>    $$
+>    \Delta\tau_{\mathrm{evt}};
+>    $$
 > 3. every sector boundary crossing supports only one Type IV relabeling event per active branch family at the chosen scale;
 > 4. every source-cluster exchange belongs to one Type V hyperedge compatible with the ancestry-package move list;
 > 5. hence every backward ancestry chain and every forward recapture chain passes through a finite event alphabet rather than an open-ended combinatorial explosion.
+
+This proposition should also be read together with the smooth-window floors from the recapture package:
+$$
+\|\mathbf{a}\|\ge a_{\min},
+\qquad
+\|\mathbf{b}\|\ge b_{\min},
+\qquad
+|\det(\mathbf{a},\mathbf{b})|\ge \Delta_{\min},
+\qquad
+\delta_{\mathrm{role}}\ge \delta_{\mathrm{role},\min},
+$$
+whenever one asks the same active hypergraph to feed the principal recapture margins. The hypergraph theorem itself does not differentiate the observables
+$$
+\rho^{\mathrm{mb}}_m,
+$$
+but the event structure it produces must be compatible with the smooth windows on which those derivatives are later taken.
 
 This is the many-body replacement for the binary branch graph packages. Once it is proved, later ancestry and recapture arguments can consume a finite combinatorial object rather than an open-ended moving family of delayed roots.
 
@@ -4097,7 +4121,15 @@ $$
 The point is that a remote contribution should now be forced into one finite ancestry complex rather than into one literal earlier branch family.
 
 > **Target Proposition (Deep-past cluster ancestry or exclusion for the planar three-body bridge).**
-> Assume the gauge-fixed section package and the finite active delay hypergraph package. Then on a sufficiently small tame subclass there exists a finite ancestry complex
+> Assume the gauge-fixed section package, the quantitative no-accumulation package, and the finite active delay hypergraph package. Then on a sufficiently small tame subclass, with the same event-gap and branch-regularity data
+> $$
+> \Delta\tau_{\mathrm{evt}},
+> \qquad
+> \nu^{\mathrm{mb}}_J,
+> \qquad
+> \delta^{\mathrm{mb}}_{\mathrm{sep}},
+> $$
+> there exists a finite ancestry complex
 > $$
 > \mathfrak{A}^{\mathrm{mb}}
 > $$
@@ -4117,7 +4149,12 @@ The point is that a remote contribution should now be forced into one finite anc
 >    $$
 > 3. each ancestry component contributes at most one uniformly transversal deep-past branch per admissible source-cluster channel on the chosen delay scale;
 > 4. any backward ancestry chain from a late-turn branch that avoids all ancestry components must remain trapped in the union of late-turn windows, mid windows, and controlled fold or exchange tubes, and such a trapped component is forbidden by the finite-cycle parity rule for admissible cluster exchanges;
-> 5. therefore the full deep-past contribution on the late-turn windows is bounded by a finite ancestry count times one branch-amplitude ceiling.
+> 5. every admissible backward cluster exchange in such a chain is separated from the next by at least
+>    $$
+>    \Delta\tau_{\mathrm{evt}},
+>    $$
+>    so no ancestry chain can hide an infinite migration process inside one controlled cycle;
+> 6. therefore the full deep-past contribution on the late-turn windows is bounded by a finite ancestry count times one branch-amplitude ceiling.
 
 This is the many-body replacement for the binary deep-past relocation theorem. A remote root is no longer pushed onto one pre-crossing leg. Instead it is forced into one finite ancestry object, and the only alternative is a precise obstruction: uncontrolled migration through ever-new source clusters.
 
@@ -5252,10 +5289,40 @@ The next theorem burden is therefore not yet a convex tame set, but a stability 
 >    $$
 >    \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
 >    $$
->    that satisfies the quantitative no-accumulation floors belongs to one finite admissible event class;
+>    that satisfies the quantitative no-accumulation floors
+>    $$
+>    \gamma_{\mathrm{fold}},
+>    \qquad
+>    \nu^{\mathrm{mb}}_J,
+>    \qquad
+>    \Delta\tau_{\mathrm{evt}}
+>    $$
+>    belongs to one finite admissible event class;
 > 2. the corresponding active hypergraph and ancestry data vary only through the listed local event alphabet;
-> 3. the recapture windows and principal margins remain bounded away from zero on one nonempty tame subregion;
-> 4. and there exists a continuous projection or retraction
+> 3. the smooth-window floors
+>    $$
+>    a_{\min},
+>    \qquad
+>    b_{\min},
+>    \qquad
+>    \Delta_{\min},
+>    \qquad
+>    \delta_{\mathrm{role},\min}
+>    $$
+>    and the corresponding principal windows
+>    $$
+>    I^{\mathrm{mb}}_{m,\mathrm{post}},
+>    \qquad
+>    I^{\mathrm{mb}}_{m,\mathrm{late}},
+>    \qquad
+>    m=1,2,3,4,
+>    $$
+>    remain nondegenerate on one nonempty tame subregion;
+> 4. the principal recapture margins on that tame subregion remain bounded away from zero by one common floor
+>    $$
+>    \mathfrak{m}^{\mathrm{mb}}_{\mathrm{prin}}>0;
+>    $$
+> 5. and there exists a continuous projection or retraction
 >    $$
 >    \mathfrak{R}^{\mathrm{mb}}:
 >    \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}\to
@@ -5274,6 +5341,24 @@ on which the following constants are all preserved simultaneously:
 - gauge-selector continuity and uniqueness;
 - finite active hypergraph bounds;
 - finite cluster-ancestry bounds;
+- the branch-regularity and event-gap data
+  $$
+  \Delta\tau_{\mathrm{evt}},
+  \qquad
+  \nu^{\mathrm{mb}}_J,
+  \qquad
+  \delta^{\mathrm{mb}}_{\mathrm{sep}};
+  $$
+- the smooth-window floors
+  $$
+  a_{\min},
+  \qquad
+  b_{\min},
+  \qquad
+  \Delta_{\min},
+  \qquad
+  \delta_{\mathrm{role},\min};
+  $$
 - recapture margins for every
   $$
   \rho^{\mathrm{mb}}_m;
@@ -5322,19 +5407,39 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 > Concretely, the preserved data should include:
 > 1. one common gauge-fixed representative and one common non-near-collinear chart;
 > 2. the same active delay-hypergraph size bounds and cluster-ancestry bounds;
-> 3. the same controlled windows
+> 3. the same branch-regularity and event-gap data
 >    $$
->    I^{\mathrm{mb}}_{\rho,\mathrm{post}},
+>    \Delta\tau_{\mathrm{evt}},
 >    \qquad
->    I^{\mathrm{mb}}_{\rho,\mathrm{late}};
+>    \nu^{\mathrm{mb}}_J,
+>    \qquad
+>    \delta^{\mathrm{mb}}_{\mathrm{sep}};
 >    $$
-> 4. the same fold ceilings
+> 4. the same smooth-window floors
+>    $$
+>    a_{\min},
+>    \qquad
+>    b_{\min},
+>    \qquad
+>    \Delta_{\min},
+>    \qquad
+>    \delta_{\mathrm{role},\min};
+>    $$
+> 5. the same controlled windows
+>    $$
+>    I^{\mathrm{mb}}_{m,\mathrm{post}},
+>    \qquad
+>    I^{\mathrm{mb}}_{m,\mathrm{late}},
+>    \qquad
+>    m=1,2,3,4;
+>    $$
+> 6. the same fold ceilings
 >    $$
 >    F^{\mathrm{mb}}_1,
 >    \qquad
 >    F^{\mathrm{mb}}_2;
 >    $$
-> 5. and the same strict positivity margins
+> 7. and the same strict positivity margins
 >    $$
 >    \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}},
 >    \quad
@@ -5380,9 +5485,10 @@ This is the first honest many-body breather target in the chapter. Everything ab
 The planar-three-body bridge now has the same explicit theorem-ladder shape as the earlier binary bridges:
 
 - gauge-fixed section and shape-space well-posedness;
+- quantitative branch regularity and no-accumulation of delay events;
 - finite active delay-hypergraph control;
 - cluster-valued ancestry or exclusion for deep-past branches;
-- finite escape-observable recapture;
+- finite escape-observable recapture on explicit smooth windows;
 - and atlas-level tame-envelope closure leading to the Schauder capstone.
 
 ## Capstone Statement
