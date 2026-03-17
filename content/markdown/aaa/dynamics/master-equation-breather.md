@@ -3868,6 +3868,277 @@ For the first three-body bridge these terms should be read concretely as follows
 
 The point of writing the comparison law channelwise is that one does not need one scalar miracle quantity. One needs a finite family of inequalities whose common positivity excludes all geometrically natural scattering routes.
 
+The first two channels admit a direct Jacobi-level expansion that should anchor the later recapture estimates.
+
+For
+$$
+\rho^{\mathrm{mb}}_1=\|\mathbf{a}\|,
+\qquad
+\hat{\mathbf{a}}\equiv \frac{\mathbf{a}}{\|\mathbf{a}\|},
+$$
+one has on every noncollision, non-pair-collapse window
+$$
+\dot{\rho}^{\mathrm{mb}}_1
+=
+\hat{\mathbf{a}}\cdot \dot{\mathbf{a}},
+$$
+and
+$$
+\ddot{\rho}^{\mathrm{mb}}_1
+=
+\hat{\mathbf{a}}\cdot \ddot{\mathbf{a}}
+\;+\;
+\frac{\|\dot{\mathbf{a}}\|^2-\big(\hat{\mathbf{a}}\cdot\dot{\mathbf{a}}\big)^2}{\|\mathbf{a}\|}.
+$$
+Writing
+$$
+\ddot{\mathbf{a}}=\ddot{\mathbf{x}}_1-\ddot{\mathbf{x}}_3,
+$$
+the first term is the true pair-axis forcing and the second is the tangential leakage caused by rotation of the same-sign pair axis in the plane. Since the leakage term is nonnegative, the useful inward comparison law is obtained by isolating the pair-axis component
+$$
+\Lambda^{\mathrm{mb}}_1(t)
+\equiv
+-\hat{\mathbf{a}}(t)\cdot\ddot{\mathbf{a}}(t),
+$$
+and the geometric leakage ceiling
+$$
+L^{\mathrm{mb}}_1(t)
+\equiv
+\frac{\|\dot{\mathbf{a}}(t)\|^2-\big(\hat{\mathbf{a}}(t)\cdot\dot{\mathbf{a}}(t)\big)^2}{\|\mathbf{a}(t)\|}
++L^{\mathrm{mb}}_{1,\mathrm{rep}}(t),
+$$
+where
+$$
+L^{\mathrm{mb}}_{1,\mathrm{rep}}(t)
+$$
+is the explicit ceiling for same-sign self-driven widening and any partner-mediated outward component not absorbed into
+$$
+\Lambda^{\mathrm{mb}}_1.
+$$
+The recapture target for
+$$
+\rho^{\mathrm{mb}}_1
+$$
+is therefore
+$$
+\ddot{\rho}^{\mathrm{mb}}_1(t)
+\le
+-\,\Lambda^{\mathrm{mb}}_1(t)
++L^{\mathrm{mb}}_1(t)
++A^{\mathrm{mb}}_{s,\mathrm{deep}}(t).
+$$
+
+To connect this directly to the master equation, write
+$$
+\ddot{\mathbf{x}}_i(t)
+=
+\sum_{j=1}^3
+\sum_{s\in\mathcal{C}_{ij}(t)}
+\kappa\,\sigma_{ij}\,
+\frac{|q_i q_j|}
+{r_{ij}(t;s)^2\,|J_{ij}(t;s)|}
+\hat{\mathbf{r}}_{ij}(t;s),
+$$
+with the usual convention that the
+$$
+j=i
+$$
+terms are self branches. Then
+$$
+\Lambda^{\mathrm{mb}}_1(t)
+=
+-\hat{\mathbf{a}}(t)\cdot\big(\ddot{\mathbf{x}}_1(t)-\ddot{\mathbf{x}}_3(t)\big)
+$$
+splits into branch families:
+$$
+\Lambda^{\mathrm{mb}}_1
+=
+\Lambda^{\mathrm{mb}}_{1,\mathrm{core}}
+-\Lambda^{\mathrm{mb}}_{1,\mathrm{same}}
+-\Lambda^{\mathrm{mb}}_{1,\mathrm{self}},
+$$
+where:
+
+- $$
+  \Lambda^{\mathrm{mb}}_{1,\mathrm{core}}
+  $$
+  is the inward projection of the opposite-sign body
+  $$
+  2
+  $$
+  acting on the same-sign pair
+  $$
+  (1,3);
+  $$
+- $$
+  \Lambda^{\mathrm{mb}}_{1,\mathrm{same}}
+  $$
+  collects the outward projection of the direct same-sign interaction between bodies
+  $$
+  1
+  $$
+  and
+  $$
+  3;
+  $$
+- $$
+  \Lambda^{\mathrm{mb}}_{1,\mathrm{self}}
+  $$
+  collects the outward pair-axis projections of the self branches on bodies
+  $$
+  1
+  $$
+  and
+  $$
+  3.
+  $$
+
+The unresolved but now explicit theorem burden is to prove, on the recapture windows, that the opposite-sign core term dominates the same-sign and self-driven widening after all admissible fold-tube and deep-past ceilings are paid.
+
+Accordingly, a first branch-sum ceiling for the residual widening term should be written as
+$$
+L^{\mathrm{mb}}_{1,\mathrm{rep}}(t)
+\equiv
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{same}}(t)\Big)_+
++
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}(t)\Big)_+
++
+L^{\mathrm{mb}}_{1,\mathrm{fold}}(t),
+$$
+where
+$$
+(\cdot)_+
+$$
+denotes positive part and
+$$
+L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)
+$$
+is the additional local ceiling needed near controlled coupled folds. In other words, the pair-separation channel is reduced to a contest between one inward projected source family and a finite list of outward projected branch families.
+
+For
+$$
+\rho^{\mathrm{mb}}_2=\|\mathbf{b}\|,
+\qquad
+\hat{\mathbf{b}}\equiv \frac{\mathbf{b}}{\|\mathbf{b}\|},
+$$
+one has likewise
+$$
+\dot{\rho}^{\mathrm{mb}}_2
+=
+\hat{\mathbf{b}}\cdot \dot{\mathbf{b}},
+$$
+and
+$$
+\ddot{\rho}^{\mathrm{mb}}_2
+=
+\hat{\mathbf{b}}\cdot \ddot{\mathbf{b}}
+\;+\;
+\frac{\|\dot{\mathbf{b}}\|^2-\big(\hat{\mathbf{b}}\cdot\dot{\mathbf{b}}\big)^2}{\|\mathbf{b}\|}.
+$$
+Since
+$$
+\ddot{\mathbf{b}}
+=
+\ddot{\mathbf{x}}_2-\frac{\ddot{\mathbf{x}}_1+\ddot{\mathbf{x}}_3}{2},
+$$
+the first term measures the net delayed pull of the opposite-sign body toward or away from the outer-pair midpoint, while the second term is the transverse leakage created by midpoint-frame rotation and shape drift. The natural channelwise definitions are therefore
+$$
+\Lambda^{\mathrm{mb}}_2(t)
+\equiv
+-\hat{\mathbf{b}}(t)\cdot \ddot{\mathbf{b}}(t),
+$$
+$$
+L^{\mathrm{mb}}_2(t)
+\equiv
+\frac{\|\dot{\mathbf{b}}(t)\|^2-\big(\hat{\mathbf{b}}(t)\cdot\dot{\mathbf{b}}(t)\big)^2}{\|\mathbf{b}(t)\|}
++L^{\mathrm{mb}}_{2,\mathrm{breath}}(t),
+$$
+where
+$$
+L^{\mathrm{mb}}_{2,\mathrm{breath}}(t)
+$$
+collects the pair-breathing and quotient-frame error terms generated by the simultaneous motion of
+$$
+\mathbf{a}
+$$
+and
+$$
+\mathbf{b}.
+$$
+The recapture target for
+$$
+\rho^{\mathrm{mb}}_2
+$$
+is thus
+$$
+\ddot{\rho}^{\mathrm{mb}}_2(t)
+\le
+-\,\Lambda^{\mathrm{mb}}_2(t)
++L^{\mathrm{mb}}_2(t)
++A^{\mathrm{mb}}_{s,\mathrm{deep}}(t).
+$$
+
+Here the master-equation projection is
+$$
+\Lambda^{\mathrm{mb}}_2(t)
+=
+-\hat{\mathbf{b}}(t)\cdot
+\left(
+\ddot{\mathbf{x}}_2(t)
+-\frac{\ddot{\mathbf{x}}_1(t)+\ddot{\mathbf{x}}_3(t)}{2}
+\right),
+$$
+and this naturally decomposes into:
+$$
+\Lambda^{\mathrm{mb}}_2
+=
+\Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}
+-\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}
+-\Lambda^{\mathrm{mb}}_{2,\mathrm{self}},
+$$
+where:
+
+- $$
+  \Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}
+  $$
+  is the inward projection of the combined opposite-sign attractions between body
+  $$
+  2
+  $$
+  and the outer pair;
+- $$
+  \Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}
+  $$
+  is the outward projection induced by breathing of the same-sign pair midpoint itself;
+- $$
+  \Lambda^{\mathrm{mb}}_{2,\mathrm{self}}
+  $$
+  is the outward projection of self branches on all three bodies onto the
+  $$
+  \hat{\mathbf{b}}
+  $$
+  direction.
+
+The natural branch-sum leakage ceiling is therefore
+$$
+L^{\mathrm{mb}}_{2,\mathrm{breath}}(t)
+\equiv
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}(t)\Big)_+
++
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}(t)\Big)_+
++
+L^{\mathrm{mb}}_{2,\mathrm{fold}}(t),
+$$
+with
+$$
+L^{\mathrm{mb}}_{2,\mathrm{fold}}(t)
+$$
+again denoting the explicit ceiling for fold-tube amplification and local gauge-frame error terms.
+
+So the midpoint-separation channel is likewise reduced to one concrete branch-sum competition: the combined inward opposite-sign attraction against pair breathing, self-drive, transverse rotation, and controlled fold amplification.
+
+These two formulas are the first concrete comparison identities the planar-three-body bridge should use. They say exactly where the useful inward coercivity must come from and exactly where the leakage terms enter.
+
 Define the many-body recapture margins
 $$
 \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{post}}
