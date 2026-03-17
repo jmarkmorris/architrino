@@ -3831,7 +3831,134 @@ of cycle order, the total number of admissible events on one cycle is bounded by
 
 This is the missing analytic bridge from local well-posedness to finite combinatorics. Without it, the later hypergraph package is only suggestive bookkeeping rather than a theorem-level object.
 
-### Third many-body theorem package: finite active delay hypergraph
+### Third many-body theorem package: bounded many-body caustic transit and fold ceilings
+
+The no-accumulation package makes the fold geometry discrete. The next analytic burden is to show that traversing the corresponding fold tubes does not inject an uncontrolled velocity impulse into the many-body comparison channels.
+
+This point is harmless in the binary scaffolds only because the dual-mollified caustic transit bounds were already available there. In the planar three-body regime one must now account not only for simple Type II fold tubes, but also for Type III shared-body coupled folds, where two or three active branch families involving one common body traverse controlled Jacobian collapse in one local event block.
+
+For each principal escape channel
+$$
+m\in\{1,2,3,4\},
+$$
+let
+$$
+W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})
+$$
+denote one controlled fold tube associated with an admissible Type II or Type III hyperedge
+$$
+\mathsf{e}\in\mathscr{E}^{\mathrm{mb}}_{\mathrm{br}}.
+$$
+The theorem target is that the dual-mollified branch sum contributes only a finite channelwise impulse across that tube:
+$$
+\left|
+\int_{W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})}
+\Pi_m(t)\cdot
+\ddot{\mathbf{X}}(t)\,dt
+\right|
+\le
+F^{\mathrm{mb}}_{m,\mathsf{e}},
+$$
+where
+$$
+\Pi_m
+$$
+is the channel projection associated with
+$$
+\rho^{\mathrm{mb}}_m
+$$
+and the right-hand side depends only on the dual-mollification parameters, the fold-curvature floor, the branch-separation data, and the local multiplicity of the hyperedge.
+
+The first many-body theorem should be stated with exactly that dependence visible.
+
+> **Target Proposition (Bounded dual-mollified caustic transit for simple and shared-body folds).**
+> Assume the unreduced local well-posedness package and the quantitative no-accumulation package. Suppose, in addition, that on every admissible fold tube:
+> 1. the fold-curvature floor
+>    $$
+>    \gamma_{\mathrm{fold}}>0
+>    $$
+>    holds;
+> 2. distinct active branches are separated by at least
+>    $$
+>    \delta^{\mathrm{mb}}_{\mathrm{sep}}>0;
+>    $$
+> 3. the local fold multiplicity is restricted to the admissible Type II and Type III event blocks;
+> 4. and the dual-mollification parameters
+>    $$
+>    \eta,
+>    \qquad
+>    \epsilon_c
+>    $$
+>    lie in the same small regime as the earlier binary transit lemmas.
+>
+> Then for each principal channel
+> $$
+> m=1,2,3,4
+> $$
+> there exists a finite universal fold ceiling
+> $$
+> F^{\mathrm{mb}}_m<\infty
+> $$
+> such that:
+> 1. every admissible Type II fold tube contributes at most
+>    $$
+>    F^{\mathrm{mb}}_m
+>    $$
+>    to the channelwise velocity impulse of
+>    $$
+>    \rho^{\mathrm{mb}}_m;
+>    $$
+> 2. every admissible Type III shared-body coupled fold block contributes at most
+>    $$
+>    F^{\mathrm{mb}}_m
+>    $$
+>    after summing all participating branch families in that block;
+> 3. the corresponding post-transit velocity and acceleration remain inside the same
+>    $$
+>    U_{\max},
+>    \qquad
+>    A_{\max},
+>    \qquad
+>    L_A
+>    $$
+>    envelope up to a controlled renormalization of the constants;
+> 4. therefore the fold contribution appearing in the recapture package may be absorbed into one finite channelwise ceiling
+>    $$
+>    L^{\mathrm{mb}}_{m,\mathrm{fold}}(t)
+>    \le
+>    F^{\mathrm{mb}}_m
+>    $$
+>    on every controlled recapture window.
+
+The intended proof mechanism should also be written down now, because this is exactly where the planar three-body program could still fail.
+
+1. Localize one admissible fold tube by the no-accumulation constants
+$$
+\Delta\tau_{\mathrm{evt}},
+\qquad
+\gamma_{\mathrm{fold}},
+\qquad
+\delta^{\mathrm{mb}}_{\mathrm{sep}}.
+$$
+On that tube, use the fold-curvature floor to reduce each singular branch denominator to the standard dual-mollified one-dimensional caustic transit model after a controlled change of source parameter.
+
+2. For a Type II fold, apply the same dual-mollified transit estimate as in the earlier bridge packages, with constants tracked uniformly through the many-body Jacobian and distance floors.
+
+3. For a Type III shared-body coupled fold, decompose the local block into finitely many simultaneously active branch families. The branch-separation floor prevents exact branch collision away from the shared fold event, and the admissible multiplicity list prevents arbitrarily high local singular rank. Hence the total impulse is bounded by a finite sum of controlled dual-mollified transit integrals.
+
+4. Project those local impulse bounds onto the Jacobi channels
+$$
+\rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_4.
+$$
+This yields the finite ceilings
+$$
+F^{\mathrm{mb}}_m
+$$
+consumed later by the recapture windows and also preserves the acceleration-Lipschitz control needed by the next cycle's no-accumulation package.
+
+This is the last missing analytic bridge between finite branch combinatorics and the concrete recapture inequalities. Without it, the fold ceilings in the principal margins remain formal placeholders.
+
+### Fourth many-body theorem package: finite active delay hypergraph
 
 Once the gauge-fixed section is chosen, the next burden is to replace the binary branch graph by a finite active delay hypergraph over one controlled cycle.
 
@@ -4017,7 +4144,7 @@ but the event structure it produces must be compatible with the smooth windows o
 
 This is the many-body replacement for the binary branch graph packages. Once it is proved, later ancestry and recapture arguments can consume a finite combinatorial object rather than an open-ended moving family of delayed roots.
 
-### Fourth many-body theorem package: cluster-valued ancestry and deep-past exclusion
+### Fifth many-body theorem package: cluster-valued ancestry and deep-past exclusion
 
 The next burden is the many-body replacement for deep-past provenance. In the unreduced planar binary, every remote late-turn root was traced back to one finite provenance class on an earlier branch graph. In the planar three-body regime that is no longer the right object, because a delayed influence may pass through changing pair or cluster organization before its geometry becomes simple enough to compare.
 
@@ -4188,9 +4315,13 @@ and the controlled fold or exchange tubes.
 > $$
 > because each admissible ancestry component contributes at most one uniformly transversal deep-past branch at the chosen delay scale and Jacobian floor.
 
-This is the quantity the many-body recapture inequalities should consume. Once the remote self drive is reduced to a finite ancestry count times one ceiling, the late-turn comparison law becomes quantitative again.
+This is the quantity the many-body recapture inequalities should consume. Once the remote self drive is reduced to a finite ancestry count times one ceiling, and once the fold contribution is reduced to the channelwise ceilings
+$$
+F^{\mathrm{mb}}_m
+$$
+from the caustic-transit package, the late-turn comparison law becomes quantitative again.
 
-### Fifth many-body theorem package: finite escape-observable recapture law
+### Sixth many-body theorem package: finite escape-observable recapture law
 
 The next replacement burden is the turn mechanism itself. In the planar three-body regime there is no single honest escape coordinate. The recapture theorem must instead dominate a finite family of outward channels at once.
 
@@ -5187,7 +5318,7 @@ $$
 are the concrete margin versions of the four principal escape-channel inequalities. Whenever all of the many-body margins are positive, each escape observable feels a strictly inward comparison law on the corresponding controlled window.
 
 > **Target Proposition (Principal four-channel recapture closure).**
-> Assume the gauge-fixed section package, the finite active delay hypergraph package, and the deep-past cluster-ancestry suppression bound. Suppose, in addition, that
+> Assume the gauge-fixed section package, the bounded many-body caustic-transit package, the finite active delay hypergraph package, and the deep-past cluster-ancestry suppression bound. Suppose, in addition, that
 > $$
 > \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}>0,
 > \quad
@@ -5233,9 +5364,10 @@ This proposition is the bridge between the local channel calculations and the fu
 > **Target Theorem (Planar-three-body multi-observable recapture criterion).**
 > Assume:
 > 1. the gauge-fixed section package;
-> 2. the finite active delay hypergraph package;
-> 3. the deep-past cluster-ancestry suppression bound;
-> 4. and one coupled parameter regime in which all comparison terms are defined with common constants.
+> 2. the bounded many-body caustic-transit package;
+> 3. the finite active delay hypergraph package;
+> 4. the deep-past cluster-ancestry suppression bound;
+> 5. and one coupled parameter regime in which all comparison terms are defined with common constants.
 >
 > Suppose, in addition, that for every
 > $$
@@ -5255,7 +5387,7 @@ This proposition is the bridge between the local channel calculations and the fu
 
 This is the first honest many-body recapture theorem target. It says that the configuration does not merely avoid one preferred binary escape. It must fail to escape in every channel that the three-body quotient geometry naturally opens.
 
-### Sixth many-body theorem package: atlas-level tame-envelope closure
+### Seventh many-body theorem package: atlas-level tame-envelope closure
 
 The remaining bridge step is now the same structural one that appeared in the 1D, reduced-planar, and unreduced-planar programs: put the whole cycle on one closed convex tame self-map domain. The only difference is that the data to be preserved are now genuinely atlas-level.
 
@@ -5486,6 +5618,7 @@ The planar-three-body bridge now has the same explicit theorem-ladder shape as t
 
 - gauge-fixed section and shape-space well-posedness;
 - quantitative branch regularity and no-accumulation of delay events;
+- bounded many-body caustic transit and fold ceilings;
 - finite active delay-hypergraph control;
 - cluster-valued ancestry or exclusion for deep-past branches;
 - finite escape-observable recapture on explicit smooth windows;
