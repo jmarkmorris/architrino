@@ -5375,20 +5375,30 @@ the intended role is late-turn closure: the same observables must already be los
 > **Target Proposition (Two-channel Jacobi recapture on the first planar-three-body windows).**
 > Assume:
 > 1. the gauge-fixed section package;
-> 2. the finite active delay hypergraph package;
-> 3. the deep-past suppression bound
+> 2. the bounded many-body caustic-transit package;
+> 3. the finite active delay hypergraph package;
+> 4. the deep-past suppression bound
 >    $$
 >    A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 >    \le
 >    A^{\mathrm{mb}}_{\mathrm{deep},\max};
 >    $$
-> 4. and controlled fold ceilings
+> 5. and the fold ceilings produced there
 >    $$
 >    L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_1,
 >    \qquad
 >    L^{\mathrm{mb}}_{2,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_2
 >    $$
->    on the two windows above.
+>    on the two windows above, with
+>    $$
+>    F^{\mathrm{mb}}_1
+>    =
+>    \mathfrak{F}^{\mathrm{mb}}_1 M_{\max}^{\mathrm{mb}},
+>    \qquad
+>    F^{\mathrm{mb}}_2
+>    =
+>    \mathfrak{F}^{\mathrm{mb}}_2 M_{\max}^{\mathrm{mb}}.
+>    $$
 >
 > Suppose, in addition, that on each of the smooth windows
 > $$
@@ -5524,6 +5534,14 @@ A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 \right].
 $$
 
+Here
+$$
+L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_1,
+\qquad
+L^{\mathrm{mb}}_{2,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_2
+$$
+are understood as direct outputs of the bounded many-body caustic-transit package, not as independent recapture assumptions.
+
 For the shear and role-exchange channels, the principal margins should likewise be defined from the concrete decompositions above:
 $$
 \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}}
@@ -5604,6 +5622,23 @@ b_{\min},
 \delta_{\mathrm{role},\min}
 $$
 are part of the recapture hypotheses rather than hidden background assumptions.
+
+Likewise, the fold-loss terms
+$$
+L^{\mathrm{mb}}_{3,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_3,
+\qquad
+L^{\mathrm{mb}}_{4,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_4
+$$
+come from the same bounded caustic-transit package, with
+$$
+F^{\mathrm{mb}}_3
+=
+\mathfrak{F}^{\mathrm{mb}}_3 M_{\max}^{\mathrm{mb}},
+\qquad
+F^{\mathrm{mb}}_4
+=
+\mathfrak{F}^{\mathrm{mb}}_4 M_{\max}^{\mathrm{mb}}.
+$$
 
 For the remaining channels
 $$
@@ -5784,11 +5819,33 @@ The next theorem burden is therefore not yet a convex tame set, but a stability 
 >    m=1,2,3,4,
 >    $$
 >    remain nondegenerate on one nonempty tame subregion;
-> 4. the principal recapture margins on that tame subregion remain bounded away from zero by one common floor
+> 4. the bounded caustic-transit package remains uniform there, with one common local multiplicity cap
+>    $$
+>    M_{\max}^{\mathrm{mb}}\le 3
+>    $$
+>    and one common family of transit constants
+>    $$
+>    \mathfrak{F}^{\mathrm{mb}}_1,
+>    \qquad
+>    \mathfrak{F}^{\mathrm{mb}}_2,
+>    \qquad
+>    \mathfrak{F}^{\mathrm{mb}}_3,
+>    \qquad
+>    \mathfrak{F}^{\mathrm{mb}}_4,
+>    $$
+>    hence one common family of fold ceilings
+>    $$
+>    F^{\mathrm{mb}}_m
+>    =
+>    \mathfrak{F}^{\mathrm{mb}}_m M_{\max}^{\mathrm{mb}},
+>    \qquad
+>    m=1,2,3,4;
+>    $$
+> 5. the principal recapture margins on that tame subregion remain bounded away from zero by one common floor
 >    $$
 >    \mathfrak{m}^{\mathrm{mb}}_{\mathrm{prin}}>0;
 >    $$
-> 5. and there exists a continuous projection or retraction
+> 6. and there exists a continuous projection or retraction
 >    $$
 >    \mathfrak{R}^{\mathrm{mb}}:
 >    \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}\to
@@ -5815,6 +5872,18 @@ on which the following constants are all preserved simultaneously:
   \qquad
   \delta^{\mathrm{mb}}_{\mathrm{sep}};
   $$
+- the bounded caustic-transit data
+  $$
+  M_{\max}^{\mathrm{mb}},
+  \qquad
+  \mathfrak{F}^{\mathrm{mb}}_1,
+  \qquad
+  \mathfrak{F}^{\mathrm{mb}}_2,
+  \qquad
+  \mathfrak{F}^{\mathrm{mb}}_3,
+  \qquad
+  \mathfrak{F}^{\mathrm{mb}}_4;
+  $$
 - the smooth-window floors
   $$
   a_{\min},
@@ -5839,7 +5908,11 @@ on which the following constants are all preserved simultaneously:
   $$
   F^{\mathrm{mb}}_1,
   \qquad
-  F^{\mathrm{mb}}_2;
+  F^{\mathrm{mb}}_2,
+  \qquad
+  F^{\mathrm{mb}}_3,
+  \qquad
+  F^{\mathrm{mb}}_4;
   $$
 - the first four principal margins
   $$
@@ -5849,7 +5922,15 @@ on which the following constants are all preserved simultaneously:
   \quad
   \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}},
   \quad
-  \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}};
+  \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}},
+  \quad
+  \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}},
+  \quad
+  \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{late}},
+  \quad
+  \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{post}},
+  \quad
+  \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{late}};
   $$
 - and one fixed atlas representative on the relevant quotient chart.
 
@@ -5881,7 +5962,19 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 >    \qquad
 >    \delta^{\mathrm{mb}}_{\mathrm{sep}};
 >    $$
-> 4. the same smooth-window floors
+> 4. the same bounded caustic-transit data
+>    $$
+>    M_{\max}^{\mathrm{mb}},
+>    \qquad
+>    \mathfrak{F}^{\mathrm{mb}}_1,
+>    \qquad
+>    \mathfrak{F}^{\mathrm{mb}}_2,
+>    \qquad
+>    \mathfrak{F}^{\mathrm{mb}}_3,
+>    \qquad
+>    \mathfrak{F}^{\mathrm{mb}}_4;
+>    $$
+> 5. the same smooth-window floors
 >    $$
 >    a_{\min},
 >    \qquad
@@ -5891,7 +5984,7 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 >    \qquad
 >    \delta_{\mathrm{role},\min};
 >    $$
-> 5. the same controlled windows
+> 6. the same controlled windows
 >    $$
 >    I^{\mathrm{mb}}_{m,\mathrm{post}},
 >    \qquad
@@ -5899,13 +5992,17 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 >    \qquad
 >    m=1,2,3,4;
 >    $$
-> 6. the same fold ceilings
+> 7. the same fold ceilings
 >    $$
 >    F^{\mathrm{mb}}_1,
 >    \qquad
->    F^{\mathrm{mb}}_2;
+>    F^{\mathrm{mb}}_2,
+>    \qquad
+>    F^{\mathrm{mb}}_3,
+>    \qquad
+>    F^{\mathrm{mb}}_4;
 >    $$
-> 7. and the same strict positivity margins
+> 8. and the same strict positivity margins
 >    $$
 >    \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}},
 >    \quad
@@ -5914,6 +6011,14 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 >    \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}},
 >    \quad
 >    \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}},
+>    \quad
+>    \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}},
+>    \quad
+>    \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{late}},
+>    \quad
+>    \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{post}},
+>    \quad
+>    \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{late}},
 >    $$
 >    together with the remaining
 >    $$
@@ -5923,7 +6028,7 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 >    $$
 >    for
 >    $$
->    m=3,\dots,K_{\mathrm{esc}}.
+>    m=5,\dots,K_{\mathrm{esc}}.
 >    $$
 
 This is the correct tame-structure target because the first two Jacobi channels are no longer abstract placeholders. If their window geometry or margin positivity is not propagated through the return map, then the concrete recapture lemma has no stable domain on which to operate.
