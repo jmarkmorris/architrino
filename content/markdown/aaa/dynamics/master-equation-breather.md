@@ -2421,6 +2421,194 @@ $$
 
 This is the first unreduced-planar replacement for the reduced planar section anchoring. Its purpose is to make the quotient representative, the return section, and the gauge reset part of the theorem burden before any branch-graph or recapture package is attempted.
 
+#### Finite branch-graph target for the unreduced planar bridge
+
+Once the gauge-fixed section is available, the next missing object is the delayed-root replacement for the reduced planar sector-labeled branch family. In the unreduced planar binary one no longer follows a single relative chord geometry. Instead one must track several source-receiver chord types at once.
+
+For
+$$
+\tau=(i\leftarrow j)\in \{1,2\}\times \{1,2\},
+$$
+define the corresponding delayed-root defect by
+$$
+G_{\tau}(t,s)
+\equiv
+\bigl\|
+\mathbf{x}_i(t)-\mathbf{x}_j(s)
+\bigr\|
+-c_f(t-s),
+\qquad
+s<t,
+$$
+and let
+$$
+\hat{\mathbf{u}}_{\tau}(t,s)
+\equiv
+\frac{\mathbf{x}_i(t)-\mathbf{x}_j(s)}
+\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|}
+$$
+be the associated chord direction whenever the denominator is nonzero. The active delayed roots over one candidate cycle should be studied only after the cycle is partitioned into a finite family of windows
+$$
+\mathcal{W}^{\sharp}
+=
+\{W_1,\dots,W_{L^{\sharp}}\},
+$$
+chosen so that no window straddles more than one geometric event of the candidate excursion: section entry, near-crossing passage, outbound expansion, late turn, or returned entry into the section.
+
+Fix also a finite sector atlas
+$$
+\mathcal{U}^{\sharp}
+=
+\{\mathfrak{S}^{\sharp}_1,\dots,\mathfrak{S}^{\sharp}_{M^{\sharp}}\}
+$$
+on
+$$
+S^1,
+$$
+with positive overlap margins removed so that every active chord direction remains a definite angular distance away from sector boundaries except inside the later caustic neighborhoods. For each type
+$$
+\tau,
+$$
+window
+$$
+W_{\ell},
+$$
+and sector
+$$
+\mathfrak{S}^{\sharp}_k,
+$$
+an active local branch should mean a simple root curve
+$$
+s=\beta^{\tau}_{k,\ell,m}(t),
+\qquad
+t\in I^{\tau}_{k,\ell,m}\subseteq W_{\ell},
+$$
+satisfying
+$$
+G_{\tau}\bigl(t,\beta^{\tau}_{k,\ell,m}(t)\bigr)=0,
+\qquad
+\hat{\mathbf{u}}_{\tau}\bigl(t,\beta^{\tau}_{k,\ell,m}(t)\bigr)\in \mathfrak{S}^{\sharp}_k,
+$$
+and
+$$
+\bigl|J_{\tau}\bigl(t,\beta^{\tau}_{k,\ell,m}(t)\bigr)\bigr|>0.
+$$
+
+The branch graph
+$$
+\mathscr{G}^{\sharp}_{\mathrm{br}}
+$$
+should then be defined as follows.
+
+- A vertex is one local branch label
+  $$
+  v=(\tau,k,\ell,m).
+  $$
+- Two vertices are joined by an edge when they represent the same simple root branch continued across adjacent windows, or when they meet one admissible fold tube where a branch birth, branch death, or branch handoff occurs.
+
+This is the correct replacement object. In the reduced planar bridge the active roots could be recorded as a finite list because one relative geometry and one sector family were enough. In the unreduced planar bridge the natural finite object is instead a graph whose vertices remember both the chord type and the local window.
+
+> **Target Proposition (Finite active branch graph on the unreduced planar cycle).**
+> There exist:
+> $$
+> L^{\sharp},
+> \qquad
+> M^{\sharp},
+> \qquad
+> N^{\sharp}_{\mathrm{br}},
+> \qquad
+> \delta^{\sharp}_{\mathrm{sep}},
+> \qquad
+> \nu^{\sharp}_{J},
+> \qquad
+> M^{\sharp}_{\mathrm{cau}},
+> $$
+> a cycle partition
+> $$
+> \mathcal{W}^{\sharp},
+> $$
+> a sector atlas
+> $$
+> \mathcal{U}^{\sharp},
+> $$
+> and a finite family of pairwise separated caustic tubes
+> $$
+> \mathfrak{T}^{\sharp}_{\mathrm{cau},1},
+> \dots,
+> \mathfrak{T}^{\sharp}_{\mathrm{cau},M^{\sharp}_{\mathrm{cau}}},
+> $$
+> such that for every gauge-fixed history
+> $$
+> \Psi\in
+> \widehat{\Sigma}^{-,\sharp}_{\rho_\ast}
+> \cap
+> \mathfrak{G}_{\rho_\ast}\!\big(
+> \mathcal{H}^{\sharp,\mathrm{sec}}_{\rho_\ast,\eta}
+> \big)
+> $$
+> the active delayed roots on one full returned cycle satisfy:
+> 1. every active root of every chord type
+>    $$
+>    \tau
+>    $$
+>    belongs to exactly one vertex
+>    $$
+>    (\tau,k,\ell,m)
+>    $$
+>    of a finite graph
+>    $$
+>    \mathscr{G}^{\sharp}_{\mathrm{br}}(\Psi),
+>    $$
+>    and the total number of vertices is bounded by
+>    $$
+>    N^{\sharp}_{\mathrm{br}};
+>    $$
+> 2. on every vertex domain outside the caustic tubes, the root branch is
+>    $$
+>    C^1
+>    $$
+>    in
+>    $$
+>    t
+>    $$
+>    and satisfies the uniform Jacobian lower bound
+>    $$
+>    \bigl|J_{\tau}\bigl(t,\beta^{\tau}_{k,\ell,m}(t)\bigr)\bigr|
+>    \ge
+>    \nu^{\sharp}_{J}
+>    >0;
+>    $$
+> 3. two distinct active vertices with the same chord type
+>    $$
+>    \tau
+>    $$
+>    and the same sector label
+>    $$
+>    k
+>    $$
+>    on the same window are separated by a delay gap at least
+>    $$
+>    \delta^{\sharp}_{\mathrm{sep}}
+>    >0;
+>    $$
+> 4. every edge of
+>    $$
+>    \mathscr{G}^{\sharp}_{\mathrm{br}}(\Psi)
+>    $$
+>    is of exactly one of the following kinds:
+>    continuation across adjacent windows,
+>    fold birth/death inside one caustic tube,
+>    or one admissible branch handoff between two vertices meeting the same tube;
+> 5. outside the union of the caustic tubes the graph is locally constant in
+>    $$
+>    t,
+>    $$
+>    so no uncontrolled simultaneous fold accumulation or instantaneous infinite relabeling can occur along the cycle.
+>
+> In particular, the active delayed-root topology of the unreduced planar binary is encoded by one finite graph rather than by an a priori continuum of chord directions.
+
+This proposition is the unreduced-planar replacement for the reduced planar branch-count and branch-labeling package. The main difference is not merely higher notation. It is that the theorem now has to control branch continuation across several chord types and windows, not just uniqueness inside one scalar or sector-labeled family.
+
 If that theorem ladder cannot be stated cleanly, then the obstruction should be recorded at that level: either the quotient section is not well posed, the branch graph is not uniformly finite, provenance control fails, the multi-channel recapture estimate loses coercivity, or no convex tame self-map domain survives the gauge reset.
 
 ## Capstone Statement
