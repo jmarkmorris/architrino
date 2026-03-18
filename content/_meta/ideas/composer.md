@@ -671,6 +671,45 @@ Important separation:
 - canonical scene export should contain authored scene semantics,
 - while workspace-only state such as current selection, open panels, temporary gizmo mode, or viewport camera during editing should remain editor state unless explicitly promoted into authored scene data.
 
+### Editor and runtime responsibility split
+
+The composer architecture should keep a hard boundary between:
+
+- the editor
+  - where scenes are authored, revised, inspected, and validated;
+- and the runtime player
+  - where valid composed-animation scenes are rendered and played back.
+
+Editor responsibilities:
+
+- draft editing,
+- panel layout and workspace state,
+- selection state,
+- gizmo and manipulation tools,
+- library browsing,
+- timeline editing operations,
+- lint and validation presentation,
+- checkpoint management,
+- and canonical export.
+
+Runtime player responsibilities:
+
+- load canonical scene data,
+- resolve references,
+- render assemblies, paths, overlays, and camera behavior,
+- play the master timeline,
+- honor pauses, shots, transitions, and tracks,
+- and expose reader-facing playback controls appropriate to the published scene.
+
+The runtime should not need to know:
+
+- which panels were open during authoring,
+- which object was selected last,
+- what temporary gizmo mode the editor used,
+- or other editor-only affordances.
+
+The editor may preview through the runtime, but canonical scene playback should remain possible without the authoring shell.
+
 ### Revision and collaboration workflow
 
 The composer should assume that serious scenes will be revised repeatedly and may eventually be developed collaboratively, even if the first implementation is single-author.
@@ -1318,6 +1357,8 @@ SceneSpec {
   assemblyInstances?: AssemblyInstanceSpec[],
   paths?: PathSpec[],
   cameraPaths?: CameraPathSpec[],
+  cameraShots?: CameraShotSpec[],
+  cameraTransitions?: CameraTransitionSpec[],
   tracks?: TrackSpec[],
   channels?: ChannelSpec[],
   overlays?: OverlaySpec[],
@@ -2123,6 +2164,48 @@ Target:
 
 This phase should make scenes portable and publication-ready without changing the canonical authored model.
 
+### Implementation modules and ticketing direction
+
+The implementation should be decomposed into a small number of coherent modules so product work does not collapse into one monolithic composer blob.
+
+Recommended module families:
+
+- scene document core
+  - canonical scene model, ids, references, normalization, serialization;
+- timeline engine
+  - markers, pauses, clip timing, tracks, retiming operations, playback clock;
+- viewport and staging engine
+  - assembly rendering, transforms, anchors, paths, gizmos, selection framing;
+- camera and shot engine
+  - camera paths, camera shots, transitions, follow modes, shot playback logic;
+- overlay and annotation engine
+  - text, callouts, ellipse and ellipsoid guides, style presets, timing behavior;
+- library and preset engine
+  - reusable definitions, instance overrides, teaching patterns, package import/export;
+- validation and lint engine
+  - structural validation, semantic lint, graphics lint, continuity lint, asset lint;
+- authoring shell
+  - panels, breadcrumbs, level switching, keyboard shortcuts, command routing;
+- runtime player
+  - reader-facing playback for canonical scenes outside the full editor shell.
+
+This module split should also guide ticketing.
+
+Good ticket grain:
+
+- one timeline operation,
+- one overlay kind,
+- one camera-shot behavior,
+- one validation family,
+- one library action,
+- one viewport interaction pattern.
+
+Bad ticket grain:
+
+- “build composer,”
+- “finish timeline,”
+- or other work items that hide multiple semantic systems inside one vague task.
+
 ---
 
 ## Coverage of the target scenes
@@ -2137,6 +2220,152 @@ The draft schema above is intended to be able to describe the target scenes disc
 - Camera action across any of these scenes is covered by `ViewSpec` plus `CameraPathSpec`, either as explicit waypoints with `position`, `lookAt`, or `orientation`, or as authored follow modes such as trail, lead, flank, or orbit around a moving target assembly.
 - Zoomed-out replacement of a detailed assembly by a simple blue sphere or blue labeled `e` sphere is covered by `LodSpec` on the relevant assembly or library-backed assembly instance.
 - Explanation overlays, chapter markers, and pause windows across any of these scenes are covered by `OverlaySpec`, `MarkerSpec`, and `PauseSpec` on the shared master timeline.
+
+---
+
+## MVP canonical scene examples
+
+The best way to keep the architecture honest is to show that the schema can already express a few simple but real scenes.
+
+### Example 1: translating assembly with one pause and one callout
+
+This is not a full production scene. It is a minimum coherent example showing one assembly, one path, one camera path, one pause, one marker, and one explanatory overlay.
+
+```js
+{
+  scene: {
+    id: "electron-flythrough-a",
+    type: "Scene-Composed-Animation",
+    kind: "composed_animation",
+    name: "Electron-like Assembly Flythrough",
+    mode: "3d",
+    time: { timeBase: "seconds", start: 0, end: 12, loop: false },
+    pauses: [{ id: "pause-1", start: 5.0, duration: 1.5, label: "Explain shell" }],
+    markers: [
+      { id: "mk-intro", t: 0.0, kind: "chapter", label: "Overview" },
+      { id: "mk-shell", t: 5.0, kind: "cue", label: "Fourth shell callout" }
+    ]
+  },
+  assemblies: [
+    {
+      id: "electron-1",
+      role: "assembly",
+      transform: { position: [0, 0, 0] },
+      motion: [{ type: "path", pathId: "p-main", speed: 1.0 }],
+      core: {
+        coreType: "noether",
+        profile: "spherical",
+        architrinos: [
+          { id: "a1", orbit: { type: "orbit.circular", center: "electron-1", radius: 0.4, frequencyHz: 0.8 } }
+        ]
+      },
+      charge: {
+        type: "electrino",
+        attach: "bound_to_core",
+        placement: "shell",
+        placementParams: { shell: 4 }
+      }
+    }
+  ],
+  paths: [
+    {
+      id: "p-main",
+      kind: "line",
+      frame: { space: "absolute" },
+      payload: { from: [-6, 0, 0], to: [6, 0, 0] }
+    }
+  ],
+  cameraPaths: [
+    {
+      id: "cam-main",
+      mode: "follow",
+      follow: { target: "electron-1", style: "trail", distance: 5, height: 1.5 }
+    }
+  ],
+  overlays: [
+    {
+      id: "ov-shell-callout",
+      kind: "callout",
+      anchor: "electron-1",
+      timing: { start: 5.0, fadeIn: 0.25, hold: 1.0, fadeOut: 0.25 },
+      payload: {
+        target: "electron-1",
+        label: "Fourth-shell charge structure",
+        lineStyle: "straight",
+        endcap: "dot",
+        attachTo: "center"
+      }
+    }
+  ],
+  tracks: [
+    { id: "trk-overlay", role: "overlay", order: 10, items: ["ov-shell-callout"] }
+  ]
+}
+```
+
+### Example 2: shot-based explanation with comparison beat
+
+This example shows sequence-level and shot-level structure more explicitly.
+
+```js
+{
+  scene: {
+    id: "paired-comparison-a",
+    type: "Scene-Composed-Animation",
+    kind: "composed_animation",
+    name: "Paired Structure Comparison",
+    mode: "3d",
+    time: { timeBase: "seconds", start: 0, end: 16, loop: false },
+    markers: [
+      { id: "mk-establish", t: 0, kind: "chapter", label: "Establishing view" },
+      { id: "mk-compare", t: 8, kind: "chapter", label: "Comparison" }
+    ]
+  },
+  assemblies: [
+    { id: "assembly-left", role: "assembly", transform: { position: [-2, 0, 0] } },
+    { id: "assembly-right", role: "assembly", transform: { position: [2, 0, 0] } }
+  ],
+  cameraPaths: [
+    {
+      id: "cam-establish",
+      mode: "waypoints",
+      waypoints: [
+        { t: 0, position: [0, 2, 10], lookAt: [0, 0, 0] },
+        { t: 8, position: [0, 2, 8], lookAt: [0, 0, 0] }
+      ]
+    },
+    {
+      id: "cam-compare",
+      mode: "waypoints",
+      waypoints: [
+        { t: 8, position: [0, 1, 7], lookAt: [0, 0, 0] },
+        { t: 16, position: [0, 1, 7], lookAt: [0, 0, 0] }
+      ]
+    }
+  ],
+  cameraShots: [
+    {
+      id: "shot-establish",
+      timing: { start: 0, fadeIn: 0, hold: 8, fadeOut: 0 },
+      cameraPath: "cam-establish",
+      kind: "establishing",
+      framing: "wide"
+    },
+    {
+      id: "shot-compare",
+      timing: { start: 8, fadeIn: 0, hold: 8, fadeOut: 0 },
+      cameraPath: "cam-compare",
+      kind: "comparison",
+      framing: "medium"
+    }
+  ],
+  tracks: [
+    { id: "trk-camera", role: "camera", order: 0, items: ["shot-establish", "shot-compare"] }
+  ]
+}
+```
+
+These examples are intentionally compact. Their job is to prove that the architecture can already describe the kind of scenes the tool is supposed to author.
 
 ---
 
