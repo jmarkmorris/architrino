@@ -3929,84 +3929,226 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 >    $$
 
 > **Proof draft.**
-> On the affine seed, every body moves with constant strictly sub-field-speed velocity. Hence the causal defect
+> Fix one history
 > $$
-> g_{ij}(t;s)
-> =
-> \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s)
+> \Phi\in \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
 > $$
-> is strictly decreasing in
+> and one seed-side branch family
 > $$
-> s
+> (i,j)\in \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}.
 > $$
-> on the short seed-side window for the partner/source families present at the section, and its derivative stays uniformly away from zero because
+> Write
 > $$
-> U^{\mathrm{mb}}_{\mathrm{seed}}<c_f.
+> \Delta t_{ij}(t)\equiv t-s_{ij}(t).
 > $$
-> The implicit-function theorem therefore gives one unique simple branch
-> $$
-> s_{ij}(t)
-> $$
-> for each seed-side family, varying continuously with
-> $$
-> t
-> $$
-> and with the history in the seed packet.
+> The proof is a perturbative comparison between the exact delayed branch geometry and the instantaneous seed geometry.
 >
-> Since the seed history is affine,
-> $$
-> \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
-> =
-> \dot{\mathbf{x}}_j\,(t-s_{ij}(t)),
-> $$
-> so the retarded source point differs from the instantaneous source point by one displacement of size
-> $$
-> O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}(t-s_{ij}(t))\right).
-> $$
-> Dividing by the instantaneous scale
-> $$
-> r^{\mathrm{inst}}_{ij}(t)
-> \asymp
-> c_f(t-s_{ij}(t))
-> $$
-> yields the stated
-> $$
-> O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
-> $$
-> relative retardation error. The same estimate gives
-> $$
-> J_{ij}(t;s_{ij}(t))
-> =
-> 1-
-> \frac{\dot{\mathbf{x}}_j(s_{ij}(t))\cdot \hat{\mathbf{r}}_{ij}(t;s_{ij}(t))}{c_f}
-> =
-> 1+O\!\left(\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}\right),
-> $$
-> because the emitter velocity is constant on the affine seed and the chord direction deviates from the instantaneous one by the same small ratio.
->
-> The branchwise master-equation force differs from its instantaneous proxy only through:
-> 1. the retarded distance in the denominator;
-> 2. the Jacobian factor
+> 1. **Uniform branch monotonicity and simplicity.**
+>    On the seed packet, the causal defect is
 >    $$
->    1/|J_{ij}|;
+>    g_{ij}(t;s)
+>    =
+>    \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s).
 >    $$
-> 3. and the retarded chord direction.
+>    Its source derivative obeys
+>    $$
+>    \partial_s g_{ij}(t;s)
+>    =
+>    c_f-\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)
+>    \ge
+>    c_f-U^{\mathrm{mb}}_{\mathrm{seed}}-\varepsilon_V.
+>    $$
+>    Shrink the seed packet if necessary so that
+>    $$
+>    U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V
+>    \le
+>    c_f-\nu^{\mathrm{mb}}_{\mathrm{seed}}
+>    $$
+>    for some
+>    $$
+>    \nu^{\mathrm{mb}}_{\mathrm{seed}}>0.
+>    $$
+>    Then
+>    $$
+>    \partial_s g_{ij}(t;s)\ge \nu^{\mathrm{mb}}_{\mathrm{seed}}>0
+>    $$
+>    on the short seed-side window, so
+>    $$
+>    g_{ij}(t;s)
+>    $$
+>    is strictly increasing in
+>    $$
+>    s.
+>    $$
+>    Therefore each listed seed-side family admits at most one root, and the implicit-function theorem yields one unique simple branch
+>    $$
+>    s_{ij}(t)
+>    $$
+>    varying continuously with
+>    $$
+>    t
+>    $$
+>    and with the history.
 >
-> Each of those changes is
-> $$
-> O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
-> $$
-> relative to the seed-side instantaneous force on the controlled window. Summing over the finite seed-side family list
-> $$
-> \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
-> $$
-> gives the stated constants
-> $$
-> C^{\mathrm{mb}}_{\Lambda,1},
-> \qquad
-> C^{\mathrm{mb}}_{\Lambda,2}.
-> $$
-> The final positivity statement is then immediate from the strict seed-side slack.
+> 2. **Retardation length estimate.**
+>    Along the seed packet, the chord identity gives
+>    $$
+>    c_f\Delta t_{ij}(t)
+>    =
+>    r_{ij}(t;s_{ij}(t)).
+>    $$
+>    Also
+>    $$
+>    \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
+>    =
+>    \int_{s_{ij}(t)}^{t}\dot{\mathbf{x}}_j(\tau)\,d\tau,
+>    $$
+>    so
+>    $$
+>    \bigl\|
+>    \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
+>    \bigr\|
+>    \le
+>    (U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V)\Delta t_{ij}(t).
+>    $$
+>    Hence
+>    $$
+>    \bigl|
+>    r_{ij}(t;s_{ij}(t))-r^{\mathrm{inst}}_{ij}(t)
+>    \bigr|
+>    \le
+>    (U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V)\Delta t_{ij}(t).
+>    $$
+>    Since
+>    $$
+>    r_{ij}(t;s_{ij}(t))=c_f\Delta t_{ij}(t)
+>    $$
+>    and
+>    $$
+>    r^{\mathrm{inst}}_{ij}(t)
+>    $$
+>    stays bounded away from zero on the seed window, this implies
+>    $$
+>    \bigl|
+>    r_{ij}(t;s_{ij}(t))-r^{\mathrm{inst}}_{ij}(t)
+>    \bigr|
+>    \le
+>    C^{\mathrm{mb}}_{\mathrm{ret}}
+>    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V}{c_f}
+>    r^{\mathrm{inst}}_{ij}(t).
+>    $$
+>
+> 3. **Neighborhood acceleration correction.**
+>    On the exact affine seed one has
+>    $$
+>    \ddot{\mathbf{x}}=0,
+>    $$
+>    but on the seed packet only the Lipschitz acceleration bound is available. Therefore
+>    $$
+>    \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
+>    =
+>    \dot{\mathbf{x}}_j(t)\Delta t_{ij}(t)
+>    +
+>    O\!\left(\varepsilon_A\Delta t_{ij}(t)^2\right).
+>    $$
+>    Because
+>    $$
+>    \Delta t_{ij}(t)
+>    \lesssim
+>    r^{\mathrm{inst}}_{ij}(t)/c_f
+>    $$
+>    on the short seed-side window, the extra quadratic term is absorbed into the same constant
+>    $$
+>    C^{\mathrm{mb}}_{\mathrm{ret}}.
+>    $$
+>
+> 4. **Jacobian perturbation.**
+>    The exact Jacobian is
+>    $$
+>    J_{ij}(t;s_{ij}(t))
+>    =
+>    1-\frac{\dot{\mathbf{x}}_j(s_{ij}(t))\cdot \hat{\mathbf{r}}_{ij}(t;s_{ij}(t))}{c_f}.
+>    $$
+>    The emitter velocity differs from its seed value by at most
+>    $$
+>    O(\varepsilon_V+\varepsilon_A\Delta t_{ij}(t)),
+>    $$
+>    and the retarded chord direction differs from the instantaneous one by the same relative retardation estimate from Step 2. Thus
+>    $$
+>    \bigl|
+>    J_{ij}(t;s_{ij}(t))-1
+>    \bigr|
+>    \le
+>    C^{\mathrm{mb}}_{J}
+>    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V+\varepsilon_A\tau^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
+>    $$
+>    and after shrinking the seed packet this has the advertised
+>    $$
+>    O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
+>    $$
+>    form.
+>
+> 5. **Projected force perturbation.**
+>    For every active seed-side branch, the exact branch contribution to the master equation differs from its instantaneous proxy only through:
+>    $$
+>    r_{ij}^{-2},
+>    \qquad
+>    J_{ij}^{-1},
+>    \qquad
+>    \hat{\mathbf{r}}_{ij}.
+>    $$
+>    Steps 2-4 show that each of these factors differs from its instantaneous value by a relative
+>    $$
+>    O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
+>    $$
+>    amount on the seed window. Since the branch list
+>    $$
+>    \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
+>    $$
+>    is finite and the instantaneous distances are bounded away from zero there, summing those perturbations yields
+>    $$
+>    \bigl|
+>    \Lambda^{\mathrm{mb}}_1(t)-\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+>    \bigr|
+>    \le
+>    C^{\mathrm{mb}}_{\Lambda,1}
+>    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
+>    $$
+>    $$
+>    \bigl|
+>    \Lambda^{\mathrm{mb}}_2(t)-\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+>    \bigr|
+>    \le
+>    C^{\mathrm{mb}}_{\Lambda,2}
+>    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
+>    $$
+>    after absorbing the neighborhood constants into
+>    $$
+>    C^{\mathrm{mb}}_{\Lambda,1},
+>    \qquad
+>    C^{\mathrm{mb}}_{\Lambda,2}.
+>    $$
+>
+> 6. **Persistence of positivity.**
+>    If
+>    $$
+>    \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+>    >
+>    2C^{\mathrm{mb}}_{\Lambda,1}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
+>    \qquad
+>    \text{and}
+>    \qquad
+>    \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+>    >
+>    2C^{\mathrm{mb}}_{\Lambda,2}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
+>    $$
+>    then the error bounds from Step 5 imply
+>    $$
+>    \Lambda^{\mathrm{mb}}_1(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0,
+>    \qquad
+>    \Lambda^{\mathrm{mb}}_2(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}>0
+>    $$
+>    on the whole seed window.
 
 > **Target Corollary (Delayed realization of the first seed-side principal margins).**
 > Under the hypotheses of the delayed seed-margin persistence lemma, if
