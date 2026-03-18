@@ -88,16 +88,39 @@ export function createNodeFactory(deps) {
     return normalized.replace(/\s+/g, " ").trim();
   }
 
+  function extractIsoDatePrefix(text) {
+    const match = String(text).match(
+      /^(\d{4}-\d{2}-\d{2})(?:\s*[:\u2014\u2013-]\s+|\s+)(.+)$/
+    );
+    if (!match) {
+      return null;
+    }
+    const title = (match[2] || "").trim();
+    if (!title) {
+      return null;
+    }
+    return {
+      title,
+      dates: match[1].trim(),
+    };
+  }
+
   function parseStructuredLabel(displayName) {
     const raw = normalizeLabelText(displayName);
     let title = raw;
     let subtitle = "";
     let dates = "";
 
-    const dashMatch = raw.match(/\s[—-]\s(.+)$/);
+    const dated = extractIsoDatePrefix(raw);
+    if (dated) {
+      title = dated.title;
+      dates = dated.dates;
+    }
+
+    const dashMatch = title.match(/\s[—-]\s(.+)$/);
     if (dashMatch) {
       subtitle = dashMatch[1].trim();
-      title = raw.slice(0, dashMatch.index).trim();
+      title = title.slice(0, dashMatch.index).trim();
     }
 
     const paren = title.match(/^(.*?)\(([^)]*)\)(.*)$/);

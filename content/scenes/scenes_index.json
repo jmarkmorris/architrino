@@ -976,6 +976,11 @@
       "path": "content/scenes/dynamics/master_equation_of_motion.json"
     },
     {
+      "id": "dynamics__master_equation_breather",
+      "name": "Master Equation Breather",
+      "path": "content/scenes/dynamics/master_equation_breather.json"
+    },
+    {
       "id": "dynamics__mode_taxonomy",
       "name": "Mode Taxonomy",
       "path": "content/scenes/dynamics/mode_taxonomy.json"

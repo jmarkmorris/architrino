@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 122,
-      "sections": 794
+      "entries": 123,
+      "sections": 812
     }
   },
   "tocRoot": {
@@ -1496,6 +1496,160 @@
                 "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
                 "markdownSection": "Energy, Symmetry, and Conservation",
                 "sectionKey": "energy symmetry and conservation",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__master_equation_breather",
+            "title": "Master Equation Breather",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/master_equation_breather.json",
+            "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Purpose",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Purpose",
+                "sectionKey": "purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Position in the Dynamics Stack",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Position in the Dynamics Stack",
+                "sectionKey": "position in the dynamics stack",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Portable Return-Map Architecture",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Portable Return-Map Architecture",
+                "sectionKey": "portable return map architecture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What the 1D Reference Model Already Settled",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "What the 1D Reference Model Already Settled",
+                "sectionKey": "what the 1d reference model already settled",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Abstract Envelope Hierarchy",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Abstract Envelope Hierarchy",
+                "sectionKey": "abstract envelope hierarchy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "1D-Only Mechanisms and Their Replacement Obligations",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "1D-Only Mechanisms and Their Replacement Obligations",
+                "sectionKey": "1d only mechanisms and their replacement obligations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Master-Equation Theorem Spine",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Master-Equation Theorem Spine",
+                "sectionKey": "master equation theorem spine",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Immediate Geometric Research Burdens",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Immediate Geometric Research Burdens",
+                "sectionKey": "immediate geometric research burdens",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Recommended Next Regime",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Recommended Next Regime",
+                "sectionKey": "recommended next regime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "First Planar Bridge Regime",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "First Planar Bridge Regime",
+                "sectionKey": "first planar bridge regime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Raw Section and Envelope Hierarchy in the Planar Regime",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Raw Section and Envelope Hierarchy in the Planar Regime",
+                "sectionKey": "raw section and envelope hierarchy in the planar regime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Planar Replacement Obligations",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Planar Replacement Obligations",
+                "sectionKey": "planar replacement obligations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Synthesis of the Reduced Planar Bridge",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Synthesis of the Reduced Planar Bridge",
+                "sectionKey": "synthesis of the reduced planar bridge",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Precise Failure Alternative for the Planar Bridge",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Precise Failure Alternative for the Planar Bridge",
+                "sectionKey": "precise failure alternative for the planar bridge",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Beyond the Reduced Planar Bridge",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Beyond the Reduced Planar Bridge",
+                "sectionKey": "beyond the reduced planar bridge",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Beyond the Unreduced Planar Binary",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Beyond the Unreduced Planar Binary",
+                "sectionKey": "beyond the unreduced planar binary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Capstone Statement",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Capstone Statement",
+                "sectionKey": "capstone statement",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation-breather.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]

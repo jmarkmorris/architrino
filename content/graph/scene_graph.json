@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 408,
-      "edges": 1149,
-      "scenes": 282,
+      "nodes": 409,
+      "edges": 1151,
+      "scenes": 283,
       "markdownIndexes": 0,
       "markdownDocs": 126,
       "runtimeEdges": 476,
@@ -1316,6 +1316,12 @@
       "id": "dynamics__master_equation_of_motion",
       "name": "Master Equation of Motion",
       "path": "content/scenes/dynamics/master_equation_of_motion.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__master_equation_breather",
+      "name": "Master Equation Breather",
+      "path": "content/scenes/dynamics/master_equation_breather.json",
       "nodeType": "scene"
     },
     {
@@ -3154,6 +3160,15 @@
       "name": "Mapping Planck Scale",
       "path": "content/scenes/dynamics/mapping_planck_scale.json",
       "searchTarget": "content/scenes/dynamics/mapping_planck_scale.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/master_equation_breather.json",
+      "nodeType": "scene",
+      "id": "dynamics__master_equation_breather",
+      "name": "Master Equation Breather",
+      "path": "content/scenes/dynamics/master_equation_breather.json",
+      "searchTarget": "content/scenes/dynamics/master_equation_breather.json",
       "implicit": false
     },
     {
@@ -6806,6 +6821,13 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/master_equation_breather.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/master_equation_of_motion.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
@@ -6816,14 +6838,14 @@
       "to": "scene:content/scenes/dynamics/mode_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -10463,6 +10485,13 @@
       "to": "markdown_doc:content/markdown/aaa/dynamics/mapping-Planck-scale.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/mapping_planck_scale.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/master_equation_breather.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/master-equation-breather.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/master_equation_breather.json",
       "field": "scene.source.path"
     },
     {
