@@ -12,6 +12,8 @@ This note is the single reference for:
 - what requirements the composed-animation scene type must satisfy,
 - and what near-term implementation path makes sense.
 
+The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is the future authoring layer for explicit assembly geometry: nested binaries, Noether-core-like structures, bound personality charges, internal orbital motion, reaction choreography, transport paths, and authored camera motion on one shared timeline. That matters because the theory does not stop at isolated pointlike objects. It claims that larger assemblies and their observable behavior arise from explicit internal organization and delayed dynamics, and the composer is the place where those structures become authorable, inspectable, exportable, and eventually reusable across scenes.
+
 ---
 
 ## Relation to the existing scene system
@@ -253,6 +255,11 @@ Paths should remain first-class objects. Reactions should remain first-class obj
 A first practical composer schema stack could look like this:
 
 - `SceneSpec`
+- `UnitsSpec`
+- `FrameSpec`
+- `TransformSpec`
+- `AnchorSpec`
+- `RepeatSpec`
 - `LayoutSpec`
 - `ViewSpec`
 - `PathSpec`
@@ -266,6 +273,127 @@ A first practical composer schema stack could look like this:
 - `TransferSpec`
 - `ProvenanceSpec`
 - `CameraPathSpec`
+
+### Primitive spec vocabulary
+
+Before the larger scene and assembly objects are defined, the composer should lock a small set of reusable primitive spec types. These are the pieces that make path-relative authoring, nested assembly motion, and canonical export possible without hidden renderer state.
+
+### UnitsSpec
+
+Purpose:
+
+- make length, angle, and time conventions explicit in authored data,
+- keep canonical JSON deterministic,
+- avoid silent interpretation drift between preview, export, and playback.
+
+Draft shape:
+
+```js
+UnitsSpec {
+  length: "scene" | "meters" | "arbitrary",
+  angle: "degrees" | "radians",
+  time: "seconds"
+}
+```
+
+### FrameSpec
+
+Purpose:
+
+- define the reference frame in which a path, camera path, or local assembly motion lives,
+- distinguish absolute motion from parent-relative motion,
+- keep repeat behavior attached to the local frame rather than to world space.
+
+Draft shape:
+
+```js
+FrameSpec {
+  space: "absolute" | "relative",
+  relativeTo?: Ref,
+  repeat?: RepeatSpec
+}
+```
+
+### TransformSpec
+
+Purpose:
+
+- provide explicit placement, orientation, and scale,
+- separate local transform from path motion and other time-dependent motion,
+- keep static geometry readable in canonical JSON.
+
+Draft shape:
+
+```js
+TransformSpec {
+  position?: [number, number, number],
+  rotation?: [number, number, number],
+  scale?: number | [number, number, number]
+}
+```
+
+### AnchorSpec
+
+Purpose:
+
+- define reusable local or derived reference points,
+- support point, axis, or center-of-momentum style references,
+- avoid hiding important attachment logic inside renderer code.
+
+Draft shape:
+
+```js
+AnchorSpec {
+  id: string,
+  kind: "point" | "axis" | "com",
+  target: Ref,
+  offset?: [number, number, number],
+  axis?: [number, number, number]
+}
+```
+
+### RepeatSpec
+
+Purpose:
+
+- define looping behavior explicitly,
+- keep local periodic motion distinct from the world trajectory of the parent frame,
+- make phase offsets and time scaling explicit.
+
+Draft shape:
+
+```js
+RepeatSpec {
+  mode: "loop" | "pingpong" | "clamp",
+  period: number,
+  phase?: number,
+  timeScale?: number
+}
+```
+
+### Path-source taxonomy
+
+Paths should remain first-class authored objects, and their source should be explicit rather than inferred from editor state.
+
+The minimum useful source taxonomy is:
+
+- `function`
+  - parametric primitives such as line, circle, ellipse, helix, spline, or other explicit curve definitions;
+- `points`
+  - explicit 3D samples or control points, with either polyline or spline interpolation;
+- `group`
+  - a center, centroid, anchor, or other group-level transport path tied to a parent assembly;
+- `simulated`
+  - imported or solver-produced sampled motion, when later solver-backed motion is introduced.
+
+This is useful because it lets the same runtime handle:
+
+- hand-authored paths,
+- library-based reusable orbit primitives,
+- assembly transport,
+- and later data- or solver-backed motion
+
+without changing the canonical scene contract.
 
 ### SceneSpec
 
