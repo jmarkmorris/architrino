@@ -10,7 +10,7 @@
       -18
     ],
     "layout": {
-      "type": "manual"
+      "type": "rings"
     }
   },
   "objects": [
@@ -19,11 +19,6 @@
       "label": "b b\u0304 \u2248 58%",
       "radius": 1.2,
       "color": "#2f6b6f",
-      "position": [
-        0,
-        7.5,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -34,11 +29,6 @@
       "label": "W\u207aW\u207b* \u2248 21% (one W off-shell)",
       "radius": 1.2,
       "color": "#7a4a1f",
-      "position": [
-        5.3,
-        5.3,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -50,11 +40,6 @@
       "label": "gg \u2248 8% (via top loop)",
       "radius": 1.2,
       "color": "#3f5f8a",
-      "position": [
-        7.5,
-        0,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -66,11 +51,6 @@
       "label": "\u03c4\u207a\u03c4\u207b \u2248 6%",
       "radius": 1.2,
       "color": "#5a1f2e",
-      "position": [
-        5.3,
-        -5.3,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -81,11 +61,6 @@
       "label": "c c\u0304 \u2248 3%",
       "radius": 1.2,
       "color": "#4a4f7f",
-      "position": [
-        0,
-        -7.5,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -96,11 +71,6 @@
       "label": "Z Z* \u2248 2.6%",
       "radius": 1.2,
       "color": "#2c567a",
-      "position": [
-        -5.3,
-        -5.3,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -111,11 +81,6 @@
       "label": "\u03b3\u03b3 \u2248 0.23% (loop-induced, rare but clean)",
       "radius": 1.2,
       "color": "#d9b86c",
-      "position": [
-        -7.5,
-        0,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
@@ -127,11 +92,6 @@
       "label": "Z\u03b3 \u2248 0.15%",
       "radius": 1.2,
       "color": "#6a4d1b",
-      "position": [
-        -5.3,
-        5.3,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
