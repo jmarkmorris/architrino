@@ -260,6 +260,13 @@ Allowed overlay and guide graphics should be intentionally narrow.
 - These shapes should render as transparent guide or emphasis graphics, in the same spirit as the central UI metaphor but without latitude or longitude linework.
 - The default overlay style should remain quiet, translucent, and academically legible rather than decorative.
 
+Typography and line treatment should also be standardized.
+
+- Overlay text should read like lecture notation or figure annotation, not like advertising copy.
+- Mathematical labels should preserve KaTeX-safe notation when formulas are shown in the viewport.
+- Callout leaders and emphasis strokes should be restrained, with consistency preferred over flourish.
+- The default visual hierarchy should let the assembly geometry remain primary, the overlay remain secondary, and the UI chrome remain tertiary.
+
 This narrow graphics vocabulary is a feature, not a limitation. It keeps scenes visually consistent, protects the mathematical content from presentation clutter, and aligns the composer with the kind of explanatory graphics used in strong classroom or lecture videos.
 
 ---
@@ -307,6 +314,7 @@ A first practical composer schema stack could look like this:
 - `RepeatSpec`
 - `PauseSpec`
 - `MarkerSpec`
+- `ClipTimingSpec`
 - `LayoutSpec`
 - `ViewSpec`
 - `PathSpec`
@@ -464,6 +472,40 @@ MarkerSpec {
 }
 ```
 
+### ClipTimingSpec
+
+Purpose:
+
+- define standard clip-style timing language for overlays and similar authored timeline objects,
+- keep timing semantics legible to authors coming from ordinary video tools,
+- avoid one-off timing fields drifting across object types.
+
+Draft shape:
+
+```js
+ClipTimingSpec {
+  start: number,
+  fadeIn?: number,
+  hold?: number,
+  fadeOut?: number
+}
+```
+
+Derived timing semantics:
+
+- the clip begins at `start`,
+- visible strength ramps in over `fadeIn`,
+- remains fully visible for `hold`,
+- and exits over `fadeOut`.
+
+If all four quantities are present, the total clip span is:
+
+```js
+end = start + fadeIn + hold + fadeOut
+```
+
+This is the terminology the composer should use in the UI as well.
+
 ### Path-source taxonomy
 
 Paths should remain first-class authored objects, and their source should be explicit rather than inferred from editor state.
@@ -584,10 +626,7 @@ OverlaySpec {
   kind: "text" | "callout" | "ellipse" | "ellipsoid",
   frame?: FrameSpec,
   anchor?: Ref,
-  start: number,
-  fadeIn?: number,
-  hold?: number,
-  fadeOut?: number,
+  timing: ClipTimingSpec,
   style?: StyleSpec,
   payload: Record<string, unknown>
 }
@@ -606,6 +645,137 @@ Recommended overlay semantics:
 - overlays should support attachment either to world space, a local frame, or a tracked anchor,
 - and the default authoring vocabulary should favor explanation primitives over decorative graphics.
 
+### Overlay payload vocabulary
+
+The composer should make a small number of overlay types feel excellent rather than exposing a large grab bag of mediocre graphics. The goal is to support the kinds of instructional emphasis that appear in strong classroom, explainer, and lecture videos.
+
+#### Text overlays
+
+Purpose:
+
+- provide short labels, section titles, equation captions, and explanatory notes,
+- support mathematical notation without turning the viewport into a word processor,
+- keep instructional text consistent with the broader academic voice of the corpus.
+
+Draft payload:
+
+```js
+TextOverlayPayload {
+  text: string,
+  textFormat?: "plain" | "markdown" | "tex",
+  role?: "label" | "caption" | "title" | "equation-note",
+  position?: [number, number] | [number, number, number],
+  align?: "start" | "center" | "end",
+  maxWidth?: number,
+  panel?: "none" | "quiet-chip" | "quiet-panel"
+}
+```
+
+Guidance:
+
+- text overlays should be concise and instructional,
+- display math should be used only when the expression genuinely needs it,
+- sentence case should be the default for labels and captions,
+- and text overlays should support KaTeX-safe math rendering when `textFormat` requires it.
+
+#### Callout overlays
+
+Purpose:
+
+- connect an explanatory label to a target assembly, anchor, or local geometric feature,
+- support the standard lecture-video pattern of pointing while naming,
+- keep emphasis tied to actual scene geometry rather than to arbitrary screen positions.
+
+Draft payload:
+
+```js
+CalloutOverlayPayload {
+  target: Ref,
+  label?: string,
+  labelFormat?: "plain" | "markdown" | "tex",
+  lineStyle?: "straight" | "elbow" | "curve",
+  endcap?: "none" | "dot" | "arrow",
+  sourcePosition?: [number, number] | [number, number, number],
+  labelOffset?: [number, number],
+  attachTo?: "anchor" | "bounds" | "center"
+}
+```
+
+Guidance:
+
+- callouts should prefer simple straight or elbow leaders over decorative curves,
+- the line should read as a pointer, not as a diagram object in its own right,
+- and labels should remain short enough that the scene stays primary.
+
+#### Ellipse overlays
+
+Purpose:
+
+- highlight a 2D region or a projected feature with the standard house guide shape,
+- support emphasis, grouping, and local comparison without introducing arbitrary polygons.
+
+Draft payload:
+
+```js
+EllipseOverlayPayload {
+  center?: [number, number] | [number, number, number],
+  attachTo?: Ref,
+  radii: [number, number],
+  rotation?: number,
+  strokeAlign?: "center" | "inside" | "outside"
+}
+```
+
+#### Ellipsoid overlays
+
+Purpose:
+
+- highlight a 3D region, volume, or uncertainty envelope with the standard house guide shape,
+- support spheres as a special case without introducing separate primitive families.
+
+Draft payload:
+
+```js
+EllipsoidOverlayPayload {
+  center?: [number, number, number],
+  attachTo?: Ref,
+  axes: [number, number, number],
+  orientation?: [number, number, number]
+}
+```
+
+Shared geometry guidance:
+
+- ellipse and ellipsoid overlays should default to transparent fill with restrained stroke,
+- they should be usable either as free guide geometry or as target-attached emphasis geometry,
+- and they should support quiet animation through the same clip timing model as other overlays.
+
+### Overlay style language
+
+The style system for overlays should stay small, explicit, and biased toward academic clarity.
+
+Recommended style fields:
+
+```js
+OverlayStyleSpec {
+  stroke?: string,
+  strokeWidth?: number,
+  strokeOpacity?: number,
+  fill?: string,
+  fillOpacity?: number,
+  textColor?: string,
+  lineOpacity?: number,
+  zBias?: number
+}
+```
+
+Style guidance:
+
+- line weights should be restrained and consistent,
+- opacity should do more work than ornament,
+- text should remain readable against the neutral purple background,
+- and the default style presets should look like lecture graphics, not broadcast graphics.
+
 ### BrandGraphicsSpec
 
 Purpose:
@@ -623,6 +793,10 @@ BrandGraphicsSpec {
     architrinoBlue: string,
     neutralPurple: string,
     scalarSpectrum: [string, string, string]
+  },
+  typography?: {
+    overlayTextTone: "academic" | "neutral",
+    mathSupport: true
   },
   overlays: {
     allowedShapes: ["ellipse", "ellipsoid"],
