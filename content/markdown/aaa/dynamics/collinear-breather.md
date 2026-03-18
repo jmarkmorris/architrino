@@ -84,6 +84,8 @@ This chapter strips away everything except the minimum ingredients needed to tes
 
 The point is not to claim that this reduced problem is already the physical atom of the theory. The point is to identify the first model in which a breather-like bounded state could be proved or ruled out.
 
+This chapter should therefore be read as an internal reduced model inside $\mathbb{A}\mathbb{A}\mathbb{A}$, not as a claim about standard electrodynamics. Its delayed kernel, self-hit bookkeeping, and dual-mollified return-map architecture are the working axioms of the present theorem program. The relation of that program to more classical delayed-interaction formalisms, such as action-based Fokker or Wheeler-Feynman-type viewpoints, belongs to the surrounding master-equation discussion rather than being assumed here as an equivalence theorem.
+
 ## Exact 1D State Variables
 
 Work on the reflection-symmetric center-of-mass subspace
@@ -8047,6 +8049,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
+- **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
