@@ -5,6 +5,9 @@
 - Math rendering target is `KaTeX` in the web app context.
 - Preserve TeX delimiters and content exactly (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
 - Do not allow markdown emphasis parsing to mutate TeX subscripts/superscripts (for example `_i`, `^2`).
+- Prefer inline math (`$...$` or `\(...\)`) for short expressions inside prose; reserve display math (`$$...$$` or `\[...\]`) for standalone equations only.
+- Do not place `$$...$$` display math inline inside sentences, headings, list labels, callouts, or preview text; those contexts must use inline-safe math.
+- For inline inequalities or expressions containing `<` or `>` inside prose, prefer `\(...\)` with spaces (for example `\(1 < m < n\)`) to avoid markdown/HTML parsing errors.
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
 - In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
 - For textbook-facing prose and notation in `content/markdown/aaa`, follow the Archie guides in `content/markdown/aaa/archie/academic-style-guide.md`, `content/markdown/aaa/archie/mathematics-style-guide.md`, and `content/markdown/aaa/archie/mathematics-terminology.md` as applicable.

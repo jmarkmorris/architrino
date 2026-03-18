@@ -1,19 +1,19 @@
 # 1D Collinear Breather
 
-This chapter isolates the simplest reduced dynamical problem that can test the self-hit stabilization mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
+This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
-The guiding idea is narrow: if self-hit can stabilize anything at all, it should first be visible in a reflection-symmetric one-dimensional opposite-charge binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, tri-binary locking, and assembly-level closure lose their cleanest analytic foothold.
+The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-charge binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, tri-binary locking, and assembly-level closure lose their cleanest analytic foothold.
 
 ## Overview
 
-In Lineland there is only a single endless road. Upon it travel two charged points. From a great distance they rush toward one another, drawn together by their mutual pull. Each accelerates as it approaches the other. Yet whatever influence a point emits into the line does not act everywhere at once; it spreads along the road at a finite pace, leaving behind a wake of its past motion. For a time each charge runs ahead of the disturbance it has already sent out. They meet, pass, and continue apart. But presently each encounters the older wake it cast while approaching. This delayed encounter pushes outward, while the partner charge, now behind, continues to pull inward. Thus the whole affair reduces to a contest on a line: a delayed push from one’s own past against the present pull of the other. The purpose of this chapter is to show that this contest cannot end in escape. The delayed geometry forces the outward flight to fail, the inward pull to recover, and the motion to fold back upon itself into a bounded and repeating course along the road.
+In Lineland there is only a single endless road. Upon it travel two charged points. From a great distance they rush toward one another, drawn together by their mutual pull. Each accelerates as it approaches the other. Yet whatever influence a point emits into the line does not act everywhere at once; it spreads along the road at a finite pace, leaving behind a wake of its past motion. For a time each charge runs ahead of the disturbance it has already sent out. They meet, pass, and continue apart. But presently each encounters the older wake it cast while approaching. This delayed encounter pushes outward, while the partner charge, now behind, continues to pull inward. Thus the whole affair reduces to a contest on a line: a delayed push from one’s own past against the present pull of the other. The purpose of this chapter is to determine whether that contest can be forced into repeated recapture rather than escape, and to state the theorem program that would make such a bounded cycle rigorous.
 
 
 Formally, this chapter develops a proof scaffold for the global existence question of a periodic limit cycle in a symmetric two-body collinear system governed by a strongly nonlinear state-dependent delay differential equation. The dynamics use a dual-mollified delayed kernel, separating the short-distance $1/r^2$ singularity from the causal-shell boundary. The main analytic difficulty is the velocity-dependent causal-fold geometry, where Jacobians can approach
 $$
 J\to 0.
 $$
-The scaffold resolves that geometry by constructing the sorting maps
+The scaffold attacks that geometry by constructing the sorting maps
 $$
 w(t)=x(t)+c_f t
 \qquad
@@ -25,7 +25,43 @@ which isolate root birth, root exclusion, deep-past localization, and bounded ca
 $$
 C^1([-h,0]).
 $$
-The final fixed-point step is then delegated to Arzela-Ascoli compactness and a Schauder-type argument once the nonempty tame class is fully propagated through one cycle.
+The final fixed-point step is then delegated to Arzela-Ascoli compactness and a Schauder-type argument once the nonempty tame class is fully propagated through one cycle. At present, that capstone remains a theorem target rather than a completed proof.
+
+## Status Map
+
+This chapter now has three different status layers, and they should be read separately:
+
+- completed local and regional lemma packages, especially for delayed-root geometry, caustic transit, inner recapture, and trimmed-apocenter outer-turn control,
+- target propositions that package those estimates into one closed convex tame self-map domain,
+- and the final Schauder capstone, which remains conditional on that domain-level closure.
+
+In particular, the manuscript already contains substantial outer-turn and apocenter material. The main remaining burden is not to invent an outer-turn mechanism from scratch, but to assemble the local theorem packages into one coupled invariant-envelope regime on which the return map is continuous, precompact, and self-mapping.
+
+## Reading Map
+
+Readers looking for the main structural bottlenecks can use the following map.
+
+- The sign and physical interpretation caveat appears in [Signed-branch caution](#signed-branch-caution).
+- The return-map setup begins in [Regularized Return Map](#regularized-return-map).
+- The compactness and fixed-point architecture begins in [Global Existence via Arzela-Ascoli](#global-existence-via-arzela-ascoli).
+- The coupled-envelope bottleneck appears in [Invariant-envelope closure](#invariant-envelope-closure) and the later [Target Proposition (Coupled admissible parameter regime)](#target-proposition-coupled-admissible-parameter-regime).
+- The outer-turn program is developed in [Outer-turn recapture target](#outer-turn-recapture-target), [Deep-past outer self suppression target](#deep-past-outer-self-suppression-target), [z-map descent target](#z-map-descent-target), and the [Proposition (Unified trimmed-apocenter outer-turn criterion)](#proposition-unified-trimmed-apocenter-outer-turn-criterion).
+- The compressed endpoint appears in [Capstone Statement](#capstone-statement).
+
+## Proof-Program Dependency Map
+
+At the highest level, the proof program now runs in the following order:
+
+1. collapse-to-crossing control,
+2. pre-crossing caustic transit and recovery,
+3. local post-crossing recapture,
+4. outer-turn recapture on the trimmed apocenter window,
+5. turn-to-section return,
+6. invariant-envelope closure on one coupled tame domain,
+7. continuity and precompactness of the return map on that same domain,
+8. Schauder fixed-point closure.
+
+This is the dependency chain that should govern future edits. New local estimates are useful only insofar as they feed one of these eight loads.
 
 ## Purpose
 
@@ -47,6 +83,8 @@ This chapter strips away everything except the minimum ingredients needed to tes
 - and an $\eta>0$ regularization suitable for return-map analysis.
 
 The point is not to claim that this reduced problem is already the physical atom of the theory. The point is to identify the first model in which a breather-like bounded state could be proved or ruled out.
+
+This chapter should therefore be read as an internal reduced model inside $\mathbb{A}\mathbb{A}\mathbb{A}$, not as a claim about standard electrodynamics. Its delayed kernel, self-hit bookkeeping, and dual-mollified return-map architecture are the working axioms of the present theorem program. The relation of that program to more classical delayed-interaction formalisms, such as action-based Fokker or Wheeler-Feynman-type viewpoints, belongs to the surrounding master-equation discussion rather than being assumed here as an equivalence theorem.
 
 ## Exact 1D State Variables
 
@@ -2030,6 +2068,19 @@ The global input list is now fixed:
 
 Only after those inputs live on the same domain does Schauder apply.
 
+### Status of the global capstone ingredients
+
+The theorem status of the global program should be read in three layers.
+
+- The local and regional geometry is already organized into serious theorem packages: branch control, caustic transit, inner recapture, outer-turn recapture, and return-to-section.
+- The compactness mechanism is conceptually standard once one has class-uniform bounds on one closed domain: this is the Arzela-Ascoli side of the argument.
+- The active unresolved burden is domain production: the manuscript still has to place nonempty tame propagation, closed convexity, continuity, precompactness, and the self-map property on one and the same set
+  $$
+  \mathcal{K}_{x_\ast,\eta}.
+  $$
+
+So the true blocker is not the abstract fixed-point theorem. It is the production of one legitimate tame self-map domain carrying all of the hypotheses at once.
+
 ### Convex section envelope
 
 The visible Banach-space constraints should be separated from the delayed-root constraints. Fix constants
@@ -2469,6 +2520,8 @@ $$
 P_\eta.
 $$
 
+This target should be read narrowly. It records the exact self-map statement one wants once the tame envelope exists and the compatibility inequalities are jointly solvable. It does not by itself close either of those two burdens.
+
 > **Target Proposition (Coupled admissible parameter regime).**
 > Fix the geometric and dynamical constants extracted from the cycle estimates:
 > $$
@@ -2570,6 +2623,32 @@ $$
 
 This target isolates the remaining algebraic compatibility issue. Once collapse-to-crossing bounds, the inner recapture margin, the outer-turn margin, and the envelope bookkeeping constants are packaged on one coupled regime, invariant-envelope closure becomes an actual self-map statement. Until then, simultaneous solvability of the displayed inequalities remains part of the scaffold rather than a completed proposition.
 
+### Remaining blockers before Schauder
+
+At this stage the remaining blockers are narrow and explicit:
+
+1. produce a nonempty closed convex tame envelope
+   $$
+   \mathcal{K}_{x_\ast,\eta};
+   $$
+2. solve the coupled regime inequalities in
+   $$
+   (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h)
+   $$
+   rather than treating local margins and envelope constants as independent;
+3. verify continuity and precompactness of
+   $$
+   P_\eta
+   $$
+   on that same closed convex domain;
+4. and prove the self-map property
+   $$
+   P_\eta(\mathcal{K}_{x_\ast,\eta})\subseteq \mathcal{K}_{x_\ast,\eta}
+   $$
+   on that same domain.
+
+Once these four items are theorem-level, the remaining Schauder step is formally routine.
+
 ### Schauder capstone
 
 > **Target Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
@@ -2620,7 +2699,7 @@ $$
 \mathcal{K}_{x_\ast,\eta},
 $$
 and by construction that fixed point is exactly a periodic returned history.
-This capstone remains conditional on the previous envelope-construction target. Without a single closed convex tame self-map domain, Schauder does not yet apply.
+This capstone remains fully conditional on the previous domain-production targets. Without one nonempty closed convex tame self-map domain carrying propagation, continuity, precompactness, and invariance all at once, Schauder does not yet apply.
 
 ### Seed history and tame-class nonemptiness
 
@@ -7970,6 +8049,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
+- **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
@@ -8006,7 +8086,7 @@ The stability version is stronger:
 > **Further Target (Stable Breather).**
 > The Fréchet derivative $DP_\eta(\phi^\ast_\eta)$ has spectral radius $<1$ on the section modulo time-shift symmetry, so the fixed point attracts nearby admissible histories.
 
-This is the first clean theorem target for self-hit stabilization. It avoids the 2D circular tangential obstruction and does not require the full tri-binary architecture.
+This is the first clean theorem target for a self-hit-assisted bounded-recapture mechanism. It avoids the 2D circular tangential obstruction and does not require the full tri-binary architecture.
 
 ## Why This Reduced Problem Comes First
 
@@ -8032,7 +8112,7 @@ This makes the branch geometry much easier to track analytically.
 
 ### 3. Direct test of the self-hit mechanism
 
-If the collinear breather does not exist even after regularization, then the claim that self-hit alone can stabilize a bound binary is badly weakened. If it does exist, then the theory gains its first rigorous bounded delayed attractor.
+If the collinear breather does not exist even after regularization, then the claim that delayed self-interaction can participate in a bounded binary-recapture mechanism is badly weakened. If the target theorem is eventually closed, then the theory would gain its first rigorous bounded delayed attractor.
 
 ## What Counts as Success or Failure
 

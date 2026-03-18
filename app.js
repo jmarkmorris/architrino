@@ -118,8 +118,8 @@ const composerCameraWaypointClear = document.getElementById("composer-camera-way
 const composerCameraWaypointCount = document.getElementById("composer-camera-waypoint-count");
 const composerCameraFlightToggle = document.getElementById("composer-camera-flight-toggle");
 const defaultRootLayoutMarginPx = { x: 160, y: 140 };
-const zoomToastDismissedKey = "architrino.zoomToastDismissed";
 let zoomToastTimeoutId = null;
+let zoomToastDismissedForSession = false;
 const periodicTableDataPath = "content/scenes/chemistry/periodic_table.json";
 const elementScenePathPattern = /content\/scenes\/elements\/([a-z0-9]+)\.json$/i;
 const elementNavDirectionByKey = {
@@ -1656,19 +1656,11 @@ function hideHoverTooltip() {
 }
 
 function hasDismissedZoomToast() {
-  try {
-    return window.localStorage.getItem(zoomToastDismissedKey) === "1";
-  } catch (_error) {
-    return false;
-  }
+  return zoomToastDismissedForSession;
 }
 
 function setZoomToastDismissed() {
-  try {
-    window.localStorage.setItem(zoomToastDismissedKey, "1");
-  } catch (_error) {
-    // Ignore storage failures.
-  }
+  zoomToastDismissedForSession = true;
 }
 
 function hideZoomToast() {
@@ -1699,7 +1691,7 @@ function showZoomToastIfNeeded() {
   }
   zoomToastTimeoutId = window.setTimeout(() => {
     hideZoomToast();
-  }, 5200);
+  }, 12000);
 }
 
 const markdownRuntime = createMarkdownRuntime({
@@ -2055,6 +2047,7 @@ async function resetToRootScene(options = {}) {
   fitCameraToLevel(currentLevel);
   updateSceneLabel();
   updateSceneMarkdown();
+  showZoomToastIfNeeded();
 }
 
 async function jumpToScene(scenePath, options = {}) {

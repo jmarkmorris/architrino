@@ -343,6 +343,7 @@ export class SceneRepository {
         scenePath.startsWith("runtime:markdown:") ||
         scenePath === "content/scenes/architrino-theory/electrino.json" ||
         scenePath === "content/scenes/architrino-theory/positrino.json" ||
+        scenePath === "content/scenes/standard-model-particles/higgs_boson.json" ||
         scenePath === "content/scenes/nuclear/proton.json" ||
         scenePath === "content/scenes/nuclear/neutron.json" ||
         scenePath.startsWith("content/scenes/elements/") ||
@@ -354,6 +355,7 @@ export class SceneRepository {
     if (
       sceneId === "electrino" ||
       sceneId === "positrino" ||
+      sceneId === "higgs_boson" ||
       sceneId === "proton" ||
       sceneId === "neutron"
     ) {
@@ -692,10 +694,10 @@ export class SceneRepository {
       return;
     }
     const layoutType = String(config.layoutType ?? "").toLowerCase();
-    const isRingLayout = layoutType === "rings";
+    const usesStructuredMarkdownLayout = layoutType === "rings" || layoutType === "grid";
     const hasSplitSource =
       typeof config.splitSourcePath === "string" && config.splitSourcePath.length > 0;
-    if (!isRingLayout || !hasSplitSource) {
+    if (!usesStructuredMarkdownLayout || !hasSplitSource) {
       return;
     }
     if (!Array.isArray(config.nodes)) {
