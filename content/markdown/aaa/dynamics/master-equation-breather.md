@@ -5989,8 +5989,82 @@ This finite-cycle parity rule should now be treated as an explicit upstream geom
 > \mathcal{W}^{\mathrm{mb}}_{\mathrm{mid}}
 > $$
 > and the controlled fold or exchange tubes can avoid the provenance region indefinitely while preserving the admissible receiver, sector, and cluster bookkeeping.
+>
+> **Proof draft.**
+> The intended mechanism is that every admissible backward exchange consumes a definite amount of source-time depth, while the late-turn and mid-window block has only finite cycle extent.
+>
+> 1. **Backward source-time drift on one simple branch.**
+>    Along one simple delayed branch
+>    $$
+>    g_{ij}(t;s(t))=0,
+>    $$
+>    one has
+>    $$
+>    \frac{ds}{dt}
+>    =
+>    -\frac{\partial_t g_{ij}}{\partial_s g_{ij}}.
+>    $$
+>    On the controlled late-turn and mid windows, the no-accumulation package gives the receiver-time passage floor
+>    $$
+>    |\partial_t g_{ij}|\ge \chi_{\mathrm{evt}}>0,
+>    $$
+>    while away from the explicitly listed fold tubes the simple-branch Jacobian floor gives
+>    $$
+>    |\partial_s g_{ij}|\ge \nu^{\mathrm{mb}}_J>0.
+>    $$
+>    Hence
+>    $$
+>    \left|\frac{ds}{dt}\right|
+>    \ge
+>    \frac{\chi_{\mathrm{evt}}}{\sup|\partial_s g_{ij}|}
+>    \equiv
+>    c^{\mathrm{mb}}_{s,\mathrm{drift}}>0
+>    $$
+>    on every simple branch segment in those windows. In backward continuation, the source time therefore moves strictly toward earlier history at a controlled rate.
+>
+> 2. **Macroscopic drop across one admissible exchange block.**
+>    Distinct admissible exchanges are separated in receiver time by at least
+>    $$
+>    \Delta\tau_{\mathrm{evt}}.
+>    $$
+>    Therefore, between two successive exchange blocks on one backward chain, the source time drops by at least
+>    $$
+>    \Delta s_{\min}^{\mathrm{mb}}
+>    \equiv
+>    c^{\mathrm{mb}}_{s,\mathrm{drift}}\Delta\tau_{\mathrm{evt}}
+>    >0,
+>    $$
+>    up to the uniformly controlled fold-tube and exchange-tube widths already absorbed into the event constants.
+>
+> 3. **No indefinite cycling inside the late/mid block.**
+>    Suppose a closed loop of admissible cluster exchanges were supported entirely inside
+>    $$
+>    \mathcal{W}^{\mathrm{mb}}_{\mathrm{lt}}
+>    \cup
+>    \mathcal{W}^{\mathrm{mb}}_{\mathrm{mid}}.
+>    $$
+>    After traversing one full loop with
+>    $$
+>    q\ge 1
+>    $$
+>    exchange blocks, the cumulative backward source-time drop would be at least
+>    $$
+>    q\,\Delta s_{\min}^{\mathrm{mb}}.
+>    $$
+>    But the receiver bookkeeping is assumed to return to the same late/mid combinatorial state, so the corresponding source time would also have to return to the same bounded portion of the history strip attached to that state. This is impossible once
+>    $$
+>    q\,\Delta s_{\min}^{\mathrm{mb}}
+>    $$
+>    exceeds the total width of the late/mid source-time slab.
+>
+> 4. **Finite-state closure contradiction.**
+>    Because the state alphabet
+>    $$
+>    (i,\alpha,k,\mathfrak{c}_{\mathrm{src}},\ell)
+>    $$
+>    is finite, any putative infinite trapped exchange process would eventually repeat one previous state. Repeating the same state after a nonzero source-time drop contradicts the deterministic branch continuation on simple segments and the controlled local event alphabet at folds or exchanges. Therefore no trapped admissible exchange cycle can persist entirely inside the late-turn and mid-window region without entering the provenance zone.
 
-The ancestry package may continue to consume this as an explicit geometric input until it is proved separately.
+This is now the exact topological/kinematic input consumed by the ancestry package: finite-state recurrence alone is not enough, but finite-state recurrence plus monotone source-time drift rules out the only remaining migration loophole.
 
 > **Proof draft of the deep-past cluster-ancestry-or-exclusion proposition.**
 > Fix one late-turn vertex
@@ -6106,7 +6180,7 @@ The ancestry package may continue to consume this as an explicit geometric input
 >    $$
 >    \Delta\tau_{\mathrm{evt}}.
 >    $$
->    The target lemma on no trapped admissible exchange cycles rules out exactly such a closed loop. Therefore every backward ancestry chain either reaches one unique ancestry component or terminates through one listed local event tube without generating uncontrolled migration.
+>    The target lemma on no trapped admissible exchange cycles rules out exactly such a closed loop by showing that each exchange block forces a definite backward drop in source time. Therefore every backward ancestry chain either reaches one unique ancestry component or terminates through one listed local event tube without generating uncontrolled migration.
 >
 > 6. **Componentwise deep-past amplitude bound.**
 >    Fix one ancestry component
