@@ -2066,6 +2066,19 @@ The global input list is now fixed:
 
 Only after those inputs live on the same domain does Schauder apply.
 
+### Status of the global capstone ingredients
+
+The theorem status of the global program should be read in three layers.
+
+- The local and regional geometry is already organized into serious theorem packages: branch control, caustic transit, inner recapture, outer-turn recapture, and return-to-section.
+- The compactness mechanism is conceptually standard once one has class-uniform bounds on one closed domain: this is the Arzela-Ascoli side of the argument.
+- The active unresolved burden is domain production: the manuscript still has to place nonempty tame propagation, closed convexity, continuity, precompactness, and the self-map property on one and the same set
+  $$
+  \mathcal{K}_{x_\ast,\eta}.
+  $$
+
+So the true blocker is not the abstract fixed-point theorem. It is the production of one legitimate tame self-map domain carrying all of the hypotheses at once.
+
 ### Convex section envelope
 
 The visible Banach-space constraints should be separated from the delayed-root constraints. Fix constants
@@ -2505,6 +2518,8 @@ $$
 P_\eta.
 $$
 
+This target should be read narrowly. It records the exact self-map statement one wants once the tame envelope exists and the compatibility inequalities are jointly solvable. It does not by itself close either of those two burdens.
+
 > **Target Proposition (Coupled admissible parameter regime).**
 > Fix the geometric and dynamical constants extracted from the cycle estimates:
 > $$
@@ -2606,6 +2621,32 @@ $$
 
 This target isolates the remaining algebraic compatibility issue. Once collapse-to-crossing bounds, the inner recapture margin, the outer-turn margin, and the envelope bookkeeping constants are packaged on one coupled regime, invariant-envelope closure becomes an actual self-map statement. Until then, simultaneous solvability of the displayed inequalities remains part of the scaffold rather than a completed proposition.
 
+### Remaining blockers before Schauder
+
+At this stage the remaining blockers are narrow and explicit:
+
+1. produce a nonempty closed convex tame envelope
+   $$
+   \mathcal{K}_{x_\ast,\eta};
+   $$
+2. solve the coupled regime inequalities in
+   $$
+   (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h)
+   $$
+   rather than treating local margins and envelope constants as independent;
+3. verify continuity and precompactness of
+   $$
+   P_\eta
+   $$
+   on that same closed convex domain;
+4. and prove the self-map property
+   $$
+   P_\eta(\mathcal{K}_{x_\ast,\eta})\subseteq \mathcal{K}_{x_\ast,\eta}
+   $$
+   on that same domain.
+
+Once these four items are theorem-level, the remaining Schauder step is formally routine.
+
 ### Schauder capstone
 
 > **Target Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
@@ -2656,7 +2697,7 @@ $$
 \mathcal{K}_{x_\ast,\eta},
 $$
 and by construction that fixed point is exactly a periodic returned history.
-This capstone remains conditional on the previous envelope-construction target. Without a single closed convex tame self-map domain, Schauder does not yet apply.
+This capstone remains fully conditional on the previous domain-production targets. Without one nonempty closed convex tame self-map domain carrying propagation, continuity, precompactness, and invariance all at once, Schauder does not yet apply.
 
 ### Seed history and tame-class nonemptiness
 
