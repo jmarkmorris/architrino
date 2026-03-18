@@ -15,7 +15,7 @@ Scoring system:
 
 | # | Item | Value | Cost | ROI |
 | ---: | --- | ---: | ---: | ---: |
-| 1 | Freeze the 1D breather scaffold and advance the master-equation breather bridge | 10 | 2 | 5.00 |
+| 1 | Execute the frozen breather proof program | 10 | 2 | 5.00 |
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
 | 3 | Scene system, scene builder, applications, and later enhancements | 10 | 4 | 2.50 |
 | 4 | Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 5 | 2.00 |
@@ -35,7 +35,7 @@ Scoring system:
 
 ## Overall Task List
 
-### 1. Freeze the 1D breather scaffold and advance the master-equation breather bridge
+### 1. Execute the frozen breather proof program
 - Value `10`, Cost `2`, ROI `5.00`.
 - Treat [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold, not as the live place for new theorem discovery.
 - Treat [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) as a frozen proof-program blueprint rather than a live architecture notebook. The current task is now proof execution inside that already-built theorem DAG, not further scaffold expansion unless a real defect is found.

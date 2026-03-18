@@ -2,7 +2,7 @@
 
 ## Why this note exists
 
-The webapp already contains an early composer surface. It is no longer just a vague future idea. There is a working UI path for scene preview, JSON export, path editing, frame editing, and camera flight preview. That existing work is enough to justify one clear architecture note before the composer expands into full assembly authoring.
+The webapp already contains an early composer surface. It is no longer just a vague future idea. There is a working UI path for scene preview, JSON export, path editing, frame editing, and camera-path preview. That existing work is enough to justify one clear architecture note before the composer expands into full assembly authoring.
 
 This note is the single reference for:
 
@@ -12,7 +12,7 @@ This note is the single reference for:
 - what requirements the composed-animation scene type must satisfy,
 - and what near-term implementation path makes sense.
 
-The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is the future authoring layer for explicit assembly geometry: nested binaries, Noether-core-like structures, bound personality charges, internal orbital motion, reaction choreography, transport paths, and authored camera motion on one shared timeline. That matters because the theory does not stop at isolated pointlike objects. It claims that larger assemblies and their observable behavior arise from explicit internal organization and delayed dynamics, and the composer is the place where those structures become authorable, inspectable, exportable, and eventually reusable across scenes.
+The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is the future authoring layer for explicit assembly geometry: nested binaries, Noether-core-like structures, bound personality charges, internal orbital motion, reaction choreography, transport paths, and authored camera motion on one shared timeline. That matters because the theory does not stop at isolated pointlike objects. It claims that larger assemblies and their observable behavior arise from explicit internal organization and delayed dynamics, and the composer is the place where those structures become authorable, inspectable, exportable, and eventually reusable across scenes. It should be strong enough to depict either an imaginative construction or an observation-grounded reconstruction with the same rigorous timeline and graphics language.
 
 ---
 
@@ -69,7 +69,7 @@ Observed composer capabilities in the runtime:
 - frame edit toggle, frame reset, and frame scale control,
 - camera POI mode,
 - camera waypoint add and clear,
-- camera flight preview toggle,
+- camera-path preview toggle,
 - camera speed and camera radius controls,
 - preview panel,
 - docs panel,
@@ -83,7 +83,7 @@ The current composer surface already suggests an intended authoring loop:
 4. preview the scene live,
 5. export canonical JSON.
 
-The composer is already more than a scene-form generator. It is the start of an authoring environment.
+The composer is already more than a scene-form generator. It is the start of an authoring environment for explanatory motion design.
 
 ---
 
@@ -127,10 +127,12 @@ This section merges the remaining useful requirements into one set.
 ### 2. General design requirements
 
 - One canonical authored model should cover both static diagrams and time-based animated assembly scenes.
+- The same authored model should support both imaginative construction and observation-grounded reconstruction, so a scene can be used either to express a theory picture or to explain a measured or inferred phenomenon.
 - Declarative authored data should be the default. Imperative or solver-backed behavior should be optional and explicitly marked.
 - Deterministic defaults are required, but every meaningful default should be overrideable.
 - Stable ids are required for all authored entities, assemblies, charges, paths, reactions, annotations, and anchors.
 - Every composed-animation scene should have an explicit master timeline in seconds so frequencies in Hz and timed reaction events are unambiguous.
+- The master timeline should be understandable in standard motion-design terms, with clips, markers, overlays, pauses, and camera moves all reading as authored events on one shared time axis.
 - The terminology throughout the composer should follow standard video-authoring language wherever that improves clarity for authors, including timeline, clip, track, overlay, fade in, hold, fade out, cue, playback, and scrub.
 - The authored model should support one or more non-overlapping pauses on the master timeline, with each pause carrying its own pause duration.
 - Pauses should behave like authored timeline holds rather than hidden playback hacks, so preview, export, and runtime playback all agree about when and how long motion is paused.
@@ -186,7 +188,7 @@ This section merges the remaining useful requirements into one set.
 - The composer should support straight-line paths, circles, ellipses, splines, polylines, and arbitrary smoothed point sets at minimum.
 - A path should declare its reference frame, time domain, repeat behavior, geometric payload, and preview style.
 - Parent motion and local path motion should combine predictably so that nested transport is authorable without ad hoc exceptions.
-- Camera flight paths and assembly motion paths should both be explicit structured objects, not implicit editor state.
+- Camera paths and assembly motion paths should both be explicit structured objects, not implicit editor state.
 
 ### 9. Reaction requirements
 
@@ -200,8 +202,10 @@ This section merges the remaining useful requirements into one set.
 ### 10. View and workflow requirements
 
 - The composer should keep the current pattern of structured side panels plus live viewport preview.
+- The primary authoring surface should include a timeline view or timeline inspector that makes clips, pauses, overlays, cue markers, and camera moves legible on one shared time axis.
 - Preview should update from authored draft state with minimal guesswork.
-- The viewport should support camera framing, camera flights, and scene playback without entangling view state with assembly semantics.
+- Preview should support play, pause, scrub, loop, and step controls in standard video-authoring terms.
+- The viewport should support camera framing, camera paths, and scene playback without entangling view state with assembly semantics.
 - In any authored scene, camera path and camera orientation may also evolve over the same scene timeline as the assembly animation.
 - Camera paths should be first-class authored objects that can be saved, edited, reused, and attached to scene playback.
 - The system should support authored automatic camera-follow modes analogous to photo-drone follow shots, but adapted to moving assemblies so the camera can orbit, trail, lead, flank, or otherwise observe a moving particle from changing orientations over time.
@@ -212,6 +216,7 @@ This section merges the remaining useful requirements into one set.
 - Every overlay should support explicit fade-in duration, on-screen display duration, and fade-out duration.
 - The overlay and playback UI should prioritize the needs of explanatory academic video rather than trying to match the full complexity of Camtasia, OBS, or Resolve.
 - Useful explanatory controls to consider include cue markers, chapter markers, scrubbing, frame-step or small time-step stepping, temporary focus or spotlight states, authored captions or labels, and presenter-safe composition guides.
+- The explanatory toolset should also consider comparison-friendly controls such as ghosted previous or next positions, optional trajectory traces, and quick isolate or dim-others actions for the currently discussed assembly.
 
 ### 11. Validation and migration requirements
 
@@ -266,16 +271,19 @@ The composer should use explicit structured data rather than inferred state.
 The data model should distinguish at least these layers:
 
 - scene identity and runtime type,
+- timeline and playback state,
 - spatial layout,
 - view/camera state,
 - path definitions,
 - assembly definitions,
+- overlays and explanatory graphics,
 - reactions and transfers,
 - provenance records.
 
 Important distinction:
 
 - `type`: what runtime scene type this is,
+- `timeline`: how clips, pauses, markers, overlays, and playback windows are organized,
 - `layout`: where things are arranged in space,
 - `view`: how the camera or observer sees them,
 - `time`: how animation evolves,
@@ -283,7 +291,7 @@ Important distinction:
 
 None of these should be collapsed into one overloaded field.
 
-Paths should remain first-class objects. Reactions should remain first-class objects. Provenance should remain explicit data, not just a rendered effect.
+Paths should remain first-class objects. Overlays should remain first-class objects. Reactions should remain first-class objects. Provenance should remain explicit data, not just a rendered effect.
 
 ---
 
@@ -298,6 +306,7 @@ A first practical composer schema stack could look like this:
 - `AnchorSpec`
 - `RepeatSpec`
 - `PauseSpec`
+- `MarkerSpec`
 - `LayoutSpec`
 - `ViewSpec`
 - `PathSpec`
@@ -436,6 +445,25 @@ Requirements:
 - pause timing should be validated against the master timeline,
 - and pause duration should extend playback time without mutating the underlying scene geometry.
 
+### MarkerSpec
+
+Purpose:
+
+- define cue markers, chapter markers, and other authored timeline reference points,
+- support classroom-style explanation and navigation,
+- keep preview, playback, and export aligned around the same timeline landmarks.
+
+Draft shape:
+
+```js
+MarkerSpec {
+  id: string,
+  t: number,
+  kind: "cue" | "chapter" | "beat" | "note",
+  label?: string
+}
+```
+
 ### Path-source taxonomy
 
 Paths should remain first-class authored objects, and their source should be explicit rather than inferred from editor state.
@@ -486,6 +514,7 @@ SceneSpec {
     palette?: PaletteBinding,
     controls?: ControlSpec,
     pauses?: PauseSpec[],
+    markers?: MarkerSpec[],
     brandGraphics?: BrandGraphicsSpec
   },
   assemblies: AssemblySpec[],
@@ -523,7 +552,7 @@ Purpose:
 - support automatic follow-camera modes for moving assemblies,
 - support playback views without rewriting assembly layout.
 
-This is important because the composer already has camera waypoint and flight concepts in the runtime.
+This is important because the composer already has camera waypoint and camera-path concepts in the runtime.
 
 Draft shape:
 
@@ -570,6 +599,12 @@ Notes:
 - `text` should support concise instructional captions and labels,
 - `ellipse` and `ellipsoid` should be the only general-purpose highlight-shape primitives,
 - and overlay timing should use the standard video phases of fade in, hold, and fade out.
+
+Recommended overlay semantics:
+
+- overlays should read like timeline clips with explicit in and out behavior,
+- overlays should support attachment either to world space, a local frame, or a tracked anchor,
+- and the default authoring vocabulary should favor explanation primitives over decorative graphics.
 
 ### BrandGraphicsSpec
 
@@ -889,7 +924,7 @@ The right near-term stance is:
 1. keep the current overlay-based authoring shell,
 2. strengthen the exported scene/spec structure,
 3. add a dedicated `Scene-Composed-Animation` runtime path,
-4. make paths, frame state, and camera state more explicit,
+4. make paths, frame state, timeline markers, pauses, overlays, and camera state more explicit,
 5. add recursive assembly authoring,
 6. add explicit Noether core authoring,
 7. add bound personality charge authoring,
@@ -913,6 +948,7 @@ The draft schema above is intended to be able to describe the target scenes disc
 - A photon-like paired-core assembly is covered by one parent `AssemblySpec` containing two child flat `CoreSpec` objects, a small authored offset in local transforms, and explicit `binaries` whose motions carry `direction: "cw"` or `direction: "ccw"`.
 - Camera action across any of these scenes is covered by `ViewSpec` plus `CameraPathSpec`, either as explicit waypoints with `position`, `lookAt`, or `orientation`, or as authored follow modes such as trail, lead, flank, or orbit around a moving target assembly.
 - Zoomed-out replacement of a detailed assembly by a simple blue sphere or blue labeled `e` sphere is covered by `LodSpec` on the relevant assembly or library-backed assembly instance.
+- Explanation overlays, chapter markers, and pause windows across any of these scenes are covered by `OverlaySpec`, `MarkerSpec`, and `PauseSpec` on the shared master timeline.
 
 ---
 
@@ -1052,6 +1088,7 @@ These are broader authored-animation families worth carrying in the design now s
 - Provenance color modes that keep transferred constituents visibly tied to their source assembly.
 - Time-warp controls that allow selected intervals to run in slow motion without changing the authored master timeline semantics.
 - Multi-camera storytelling inside one authored scene rather than requiring a separate scene file per camera idea.
+- Timeline markers and overlay clips that make a scene teachable as well as renderable.
 
 One especially important modeling distinction is:
 
