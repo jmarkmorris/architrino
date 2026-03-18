@@ -198,6 +198,14 @@ Preserve TeX delimiters and content exactly:
 
 Do not rewrite prose in ways that break KaTeX rendering or accidentally trigger markdown emphasis inside TeX expressions.
 
+KaTeX authoring rules:
+
+- Use inline math for short expressions that live inside prose sentences.
+- Use display math only for standalone equations, not for sentence fragments or preview-style summary lines.
+- Do not place `$$...$$` inline inside headings, list items, callouts, captions, or notebook summary sentences.
+- For inline inequalities or expressions containing `<` or `>` in prose, prefer `\(...\)` with spaces, for example `\(1 < m < n\)`.
+- When a short formula is part of a narrative sentence, prefer one inline expression over a stacked display unless the derivation truly needs display layout.
+
 ### Causal-delay terminology
 
 Prefer:

@@ -201,6 +201,10 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 - Emitters/receivers are individual architrinos; composite assemblies never emit or receive as wholes; their behavior emerges from constituent architrinos.
 - Use “surrogate location” to denote a stationary, hypothetical emitter placed on the receiver’s current unoriented line of action that reproduces the same instantaneous hit; use “surrogate-location recast” when referring to this rewriting.
 - On first occurrence in a doc: “We work in units with field speed v=1 unless stated otherwise.”
+- KaTeX lint:
+  - Use inline math for short symbols or ratios in prose.
+  - Use display math only for standalone equations.
+  - For inline inequalities with `<` or `>` in prose, prefer `\(...\)` with spaces, for example `\(1 < m < n\)`.
 
 - Notation lint (common mistakes):
   - Use bold for vectors: $\mathbf{v}$, not plain v.
