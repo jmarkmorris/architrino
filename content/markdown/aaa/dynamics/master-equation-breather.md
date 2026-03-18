@@ -7055,6 +7055,250 @@ The coupled parameter regime underlying this closed tame target should likewise 
 >
 > Therefore the admissible parameter region is the intersection of finitely many open inequalities, all already satisfied by the seed with slack; hence it is nonempty.
 
+The proposition above gives the right abstract dependency structure, but the next proof burden is to write one explicit sufficient corridor analogous to the short-window recapture regime in the frozen 1D scaffold. For the first planar-three-body bridge, the natural corridor is controlled by the four principal channels together with the branch-regularity and trapping slack budgets.
+
+For
+$$
+m=1,2,3,4
+$$
+and
+$$
+W\in\left\{
+\mathrm{post},
+\mathrm{late}
+\right\},
+$$
+introduce:
+$$
+\underline{\Lambda}^{\mathrm{mb}}_{m,W}
+\equiv
+\inf_{t\in I^{\mathrm{mb}}_{m,W}}
+\Lambda^{\mathrm{mb}}_m(t),
+$$
+$$
+\overline{L}^{\mathrm{mb}}_{m,W}
+\equiv
+\sup_{t\in I^{\mathrm{mb}}_{m,W}}
+\Bigl(
+L^{\mathrm{mb}}_{m,\mathrm{geom}}(t)
++
+L^{\mathrm{mb}}_{m,\mathrm{fold}}(t)
+\Bigr),
+$$
+$$
+\overline{A}^{\mathrm{mb}}_{\mathrm{deep}}
+\equiv
+\sup_{t\in I^{\mathrm{mb}}_{\mathrm{post}}\cup I^{\mathrm{mb}}_{\mathrm{late}}}
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t),
+$$
+and the strict principal margin floors
+$$
+\mathfrak{m}^{\mathrm{mb}}_{m,W}
+\equiv
+\underline{\Lambda}^{\mathrm{mb}}_{m,W}
+-
+\overline{L}^{\mathrm{mb}}_{m,W}
+-
+\overline{A}^{\mathrm{mb}}_{\mathrm{deep}}.
+$$
+Here
+$$
+L^{\mathrm{mb}}_{m,\mathrm{geom}}
+$$
+collects all non-fold leakage already isolated in the channel decompositions, so that
+$$
+\overline{L}^{\mathrm{mb}}_{m,W}
+$$
+is a genuine channelwise ceiling.
+
+Likewise define the maximal outward initial speeds
+$$
+V^{\mathrm{mb}}_{m,W,\max}
+\equiv
+\sup_{\Phi\in\mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}}
+\bigl(\dot{\rho}^{\mathrm{mb}}_m\bigr)_+(t^{\Phi}_{m,W,\mathrm{in}}),
+$$
+where
+$$
+t^{\Phi}_{m,W,\mathrm{in}}
+$$
+is the entry time of the history
+$$
+\Phi
+$$
+into the corresponding controlled window, and let
+$$
+\ell^{\mathrm{mb}}_{m,W}
+\equiv
+|I^{\mathrm{mb}}_{m,W}|
+$$
+denote the window length.
+
+The trapping-region bookkeeping should then use the excursion ceilings
+$$
+E^{\mathrm{mb}}_{m,W}
+\equiv
+\frac{\bigl(V^{\mathrm{mb}}_{m,W,\max}\bigr)^2}
+{2\mathfrak{m}^{\mathrm{mb}}_{m,W}},
+$$
+whenever
+$$
+\mathfrak{m}^{\mathrm{mb}}_{m,W}>0,
+$$
+because
+$$
+\ddot{\rho}^{\mathrm{mb}}_m\le -\mathfrak{m}^{\mathrm{mb}}_{m,W}
+$$
+on the corresponding window then bounds every outward excursion before turning by the usual one-dimensional comparison estimate.
+
+> **Target Proposition (Explicit principal-channel parameter corridor for the first planar-three-body tame regime).**
+> Assume the explicit convex tame core proposition and define the principal channel floors above. Suppose there exist positive constants
+> $$
+> \mathfrak{m}^{\mathrm{mb}}_{\mathrm{prin}},
+> \qquad
+> s^{a}_{\mathrm{trap}},
+> \qquad
+> s^{b}_{\mathrm{trap}},
+> \qquad
+> s^{\Delta}_{\mathrm{trap}},
+> \qquad
+> s^{\mathrm{role}}_{\mathrm{trap}}
+> $$
+> such that:
+> 1. for every
+>    $$
+>    m=1,2,3,4
+>    \qquad
+>    \text{and}
+>    \qquad
+>    W\in\{\mathrm{post},\mathrm{late}\},
+>    $$
+>    one has
+>    $$
+>    \mathfrak{m}^{\mathrm{mb}}_{m,W}
+>    \ge
+>    \mathfrak{m}^{\mathrm{mb}}_{\mathrm{prin}}>0;
+>    $$
+> 2. the controlled windows are long enough for turning:
+>    $$
+>    \ell^{\mathrm{mb}}_{m,W}
+>    \ge
+>    \frac{V^{\mathrm{mb}}_{m,W,\max}}{\mathfrak{m}^{\mathrm{mb}}_{m,W}}
+>    \qquad
+>    \text{for all }
+>    m=1,2,3,4;
+>    $$
+> 3. the resulting excursion ceilings satisfy
+>    $$
+>    E^{\mathrm{mb}}_{1,W}<s^{a}_{\mathrm{trap}},
+>    \qquad
+>    E^{\mathrm{mb}}_{2,W}<s^{b}_{\mathrm{trap}},
+>    \qquad
+>    E^{\mathrm{mb}}_{3,W}<s^{\Delta}_{\mathrm{trap}},
+>    \qquad
+>    E^{\mathrm{mb}}_{4,W}<s^{\mathrm{role}}_{\mathrm{trap}}
+>    $$
+>    on both windows;
+> 4. the support and cone slack in the explicit convex core dominate those trapping budgets:
+>    $$
+>    a_{\min}^{\mathrm{cvx}}-\alpha^{a}_{\partial}>s^{a}_{\mathrm{trap}},
+>    \qquad
+>    b_{\min}^{\mathrm{cvx}}-\alpha^{b}_{\partial}>s^{b}_{\mathrm{trap}},
+>    $$
+>    $$
+>    \Delta_{\min}^{\mathrm{cvx}}-\Delta_{\partial}>s^{\Delta}_{\mathrm{trap}},
+>    \qquad
+>    \delta_{\mathrm{role},\min}^{\mathrm{cvx}}-\delta^{\mathrm{role}}_{\partial}>s^{\mathrm{role}}_{\mathrm{trap}},
+>    $$
+>    where the boundary thresholds
+>    $$
+>    \alpha^{a}_{\partial},
+>    \qquad
+>    \alpha^{b}_{\partial},
+>    \qquad
+>    \Delta_{\partial},
+>    \qquad
+>    \delta^{\mathrm{role}}_{\partial}
+>    $$
+>    are the defining support values of the convex-core boundary faces;
+> 5. the branchwise Jacobian floor and fold ceilings satisfy
+>    $$
+>    \nu^{\mathrm{cvx}}_{J,\beta}\ge \nu^{\mathrm{mb}}_{J,\min}>0,
+>    \qquad
+>    F^{\mathrm{mb}}_m\le \overline{F}^{\mathrm{mb}}_m
+>    $$
+>    with the chosen
+>    $$
+>    \overline{F}^{\mathrm{mb}}_m
+>    $$
+>    already absorbed into
+>    $$
+>    \overline{L}^{\mathrm{mb}}_{m,W}.
+>    $$
+>
+> Then all four principal recapture channels turn inward before exhausting the convex-core slack, and the principal part of the boundary-trapping lemma follows. In particular, these inequalities are a concrete sufficient realization of the coupled parameter solvability proposition for the principal many-body corridor.
+
+> **Proof draft.**
+> On each controlled window,
+> $$
+> \ddot{\rho}^{\mathrm{mb}}_m
+> \le
+> -\mathfrak{m}^{\mathrm{mb}}_{m,W}
+> $$
+> by definition of the principal floor. Therefore the outward speed can persist for at most
+> $$
+> V^{\mathrm{mb}}_{m,W,\max}/\mathfrak{m}^{\mathrm{mb}}_{m,W}
+> $$
+> time, which is available by hypothesis. Integrating once more gives the excursion ceiling
+> $$
+> E^{\mathrm{mb}}_{m,W}
+> \le
+> \frac{\bigl(V^{\mathrm{mb}}_{m,W,\max}\bigr)^2}
+> {2\mathfrak{m}^{\mathrm{mb}}_{m,W}}.
+> $$
+> The slack inequalities in Step 4 then prevent the corresponding support, shear, or role boundary from being reached before turning. The Jacobian and fold hypotheses ensure that no fold or transversality loss invalidates the comparison law on the same windows. Hence the four principal channels remain trapped inside the explicit convex core.
+
+One should also record a practical scaling corridor for later proofs. The first planar-three-body bridge should be pursued in a regime where
+$$
+\eta,\epsilon_c\downarrow 0,
+\qquad
+\tau^{\mathrm{mb}}_{\mathrm{dp}}\uparrow\infty,
+$$
+with:
+
+- the branchwise Jacobian floors and cone apertures fixed away from zero;
+- the fold ceilings
+  $$
+  F^{\mathrm{mb}}_m
+  $$
+  remaining
+  $$
+  o(1)
+  $$
+  relative to the inward branch-sum floors
+  $$
+  \underline{\Lambda}^{\mathrm{mb}}_{m,W};
+  $$
+- the deep-past ceiling
+  $$
+  \overline{A}^{\mathrm{mb}}_{\mathrm{deep}}
+  $$
+  tending to zero;
+- and the entry speeds
+  $$
+  V^{\mathrm{mb}}_{m,W,\max}
+  $$
+  small enough that the excursion ceilings stay below the fixed convex-core slack.
+
+In that corridor the coupled parameter problem is no longer a vague compatibility hope. It is reduced to checking a finite family of explicit inequalities against one seed-centered slack budget.
+
+Accordingly, the abstract coupled parameter solvability proposition should be read as proved once one verifies:
+
+1. the explicit convex tame core proposition;
+2. the explicit principal-channel parameter corridor above;
+3. the branchwise Jacobian and no-accumulation floors on the same parameter slab;
+4. and the deep-past / ancestry suppression inequalities on that slab.
+
 This is the planar-three-body analogue of the explicit short-window recapture regime in the frozen 1D scaffold. The closure packages may now consume it as a named parameter-intersection target rather than a silent background hope.
 
 This strengthening matters. In the planar-three-body bridge, the tame layer cannot merely remember that “some recapture theorem holds.” It must preserve the actual windows and margin constants on which the first concrete recapture lemma was proved, or else the local turning argument could be lost after one return. But those data should now be understood as structure carried on a stable tame subregion of the convex Banach box, not as the definition of convexity itself.
