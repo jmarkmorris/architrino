@@ -7050,6 +7050,9 @@ The coupled parameter regime underlying this closed tame target should likewise 
 >    $$
 >    large enough that the deep-past ceiling remains below the recapture slack already reserved in Step 4.
 >
+> 6. **Reserve trapping slack on the convex-core boundary.**
+>    Tighten the support floors and tube radii so that the seed and its one-cycle image satisfy every cone and support inequality with a strictly positive margin. The same open-parameter argument then leaves room for the inward-pointing boundary estimates used in the convex-core trapping lemma below.
+>
 > Therefore the admissible parameter region is the intersection of finitely many open inequalities, all already satisfied by the seed with slack; hence it is nonempty.
 
 This is the planar-three-body analogue of the explicit short-window recapture regime in the frozen 1D scaffold. The closure packages may now consume it as a named parameter-intersection target rather than a silent background hope.
@@ -7200,9 +7203,155 @@ This is the correct tame-structure target because the first two Jacobi channels 
 >    $$
 >    completes one controlled cycle with the same preserved constants. After the canonical gauge reset, the returned history therefore lies in the same closed tame data class.
 
+> **Lemma (Boundary trapping for the explicit convex core).**
+> Assume the explicit convex tame core proposition, the coupled parameter solvability proposition, the principal four-channel recapture closure proposition, and the closed tame graph-stable subregion proposition.
+> Then every codimension-one boundary face of
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+> $$
+> coming from one defining tube, cone, or affine support inequality is strictly inward-pointing under one controlled return.
+>
+> More precisely:
+> 1. if the returned history touched one pair-axis support face
+>    $$
+>    \mathbf{n}^{a}_W\cdot \mathbf{a}=\alpha^{a}_W
+>    $$
+>    or one boundary ray of
+>    $$
+>    \mathfrak{C}^{a}_W,
+>    $$
+>    then the corresponding boundary defect would force a nonnegative outward drift in
+>    $$
+>    \rho^{\mathrm{mb}}_1,
+>    $$
+>    contradicting
+>    $$
+>    \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}>0
+>    \qquad
+>    \text{or}
+>    \qquad
+>    \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{late}}>0;
+>    $$
+> 2. if it touched one midpoint support face or one boundary ray of
+>    $$
+>    \mathfrak{C}^{b}_W,
+>    $$
+>    the same argument contradicts the
+>    $$
+>    \rho^{\mathrm{mb}}_2
+>    $$
+>    margins;
+> 3. if it touched the shear-separation boundary determined by the cone pair
+>    $$
+>    (\mathfrak{C}^{a}_W,\mathfrak{C}^{b}_W),
+>    $$
+>    then the resulting loss of signed-area slack contradicts the
+>    $$
+>    \rho^{\mathrm{mb}}_3
+>    $$
+>    margin positivity;
+> 4. if it touched one role-gap support face or one boundary ray of
+>    $$
+>    \mathfrak{C}^{\mathrm{role}}_W,
+>    $$
+>    the resulting near-tie contradicts the
+>    $$
+>    \rho^{\mathrm{mb}}_4
+>    $$
+>    margin positivity;
+> 5. if it touched one velocity-cone face
+>    $$
+>    \partial\mathfrak{V}^{i}_W,
+>    $$
+>    then the corresponding chord projection reaches the Jacobian transversality threshold and contradicts the preserved branch-regularity floor
+>    $$
+>    \nu^{\mathrm{cvx}}_{J,\beta}>0;
+>    $$
+> 6. and if it touched one outer Banach-tube face in the ambient
+>    $$
+>    C^0/C^1
+>    $$
+>    box, then the resulting extremal history would violate the reserved post-transit and recapture slack from the coupled parameter regime.
+
+> **Proof draft.**
+> Let one returned history touch a boundary face of
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}.
+> $$
+> Because the closed tame graph-stable subregion proposition already preserves the event class, fold ceilings, deep-past bounds, smooth windows, and principal margins, only the explicit convex-core inequalities need to be checked.
+>
+> 1. **Support faces for**
+>    $$
+>    \mathbf{a},
+>    \mathbf{b}.
+>    $$
+>    Touching
+>    $$
+>    \mathbf{n}^{a}_W\cdot \mathbf{a}=\alpha^{a}_W
+>    $$
+>    means the pair axis has exhausted its inward slack on one controlled window. But the corresponding margin positivity forces
+>    $$
+>    \ddot{\rho}^{\mathrm{mb}}_1<0
+>    $$
+>    there, so the returned history cannot remain on or beyond that support face. The same argument with
+>    $$
+>    \rho^{\mathrm{mb}}_2
+>    $$
+>    excludes contact with the midpoint support face.
+>
+> 2. **Cone rays and shear boundary.**
+>    Contact with a boundary ray of
+>    $$
+>    \mathfrak{C}^{a}_W
+>    \qquad
+>    \text{or}
+>    \qquad
+>    \mathfrak{C}^{b}_W
+>    $$
+>    is exactly the loss of angular slack that drives
+>    $$
+>    |\det(\mathbf{a},\mathbf{b})|
+>    $$
+>    toward its minimum. The
+>    $$
+>    \rho^{\mathrm{mb}}_3
+>    $$
+>    comparison law forbids persistent outward motion toward that shear boundary while
+>    $$
+>    \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}},
+>    \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{late}}>0.
+>    $$
+>
+> 3. **Role boundary.**
+>    Contact with one support face or boundary ray of
+>    $$
+>    \mathfrak{C}^{\mathrm{role}}_W
+>    $$
+>    is precisely the collapse of the distinguished-core role gap. But the role-exchange margin positivity forces
+>    $$
+>    \ddot{\rho}^{\mathrm{mb}}_4<0
+>    $$
+>    on the role windows, so this boundary cannot be reached under one controlled return.
+>
+> 4. **Velocity-cone faces.**
+>    If one returned history touched
+>    $$
+>    \partial\mathfrak{V}^{i}_W,
+>    $$
+>    the corresponding emitter velocity would saturate the branchwise transversality inequality against one admissible chord-direction cone. That contradicts the preserved positive Jacobian floor and hence the no-accumulation / branch-regularity package.
+>
+> 5. **Outer Banach-tube faces.**
+>    On the remaining ambient tube faces, use the reserved trapping slack from the coupled-parameter regime together with the bounded caustic-transit ceilings and the recapture margins. Any returned history touching the outer
+>    $$
+>    C^0/C^1
+>    $$
+>    boundary would require one principal observable or one kinematic ceiling to use up all reserved slack, contradicting the previously established inward comparison laws and post-transit bounds.
+>
+> Hence every defining boundary face is inward-pointing.
+
 > **Lemma (One-cycle preservation of the explicit convex core inequalities).**
-> Assume the explicit convex tame core proposition, the coupled parameter solvability proposition, and the closed tame graph-stable subregion proposition.
-> Then, after shrinking the seed-centered tube radii if necessary, the gauge-reset return map sends every history in
+> Assume the explicit convex tame core proposition, the coupled parameter solvability proposition, the boundary trapping lemma above, and the closed tame graph-stable subregion proposition.
+> Then the gauge-reset return map sends every history in
 > $$
 > \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
 > $$
@@ -7235,45 +7384,34 @@ This is the correct tame-structure target because the first two Jacobi channels 
 >    $$
 
 > **Proof draft.**
-> The returned history already lies in the same closed tame data class by the previous proposition, so the active event class, smooth-window floors, fold ceilings, and principal margins are preserved. It remains only to preserve the explicit convex inequalities.
+> The returned history already lies in the same closed tame data class by the previous proposition, so the active event class, smooth-window floors, fold ceilings, and principal margins are preserved.
 >
-> 1. **Tube bounds.**
->    Continuity of the gauge-reset return map on the convex Banach envelope implies that, after shrinking the tube radii around the seed, the returned history remains inside the same
->    $$
->    \varepsilon_X,
->    \qquad
->    \varepsilon_V,
->    \qquad
->    \varepsilon_A
->    $$
->    tube.
->
-> 2. **Cone preservation.**
->    The seed satisfies all cone conditions with strict angular slack. Because the active event class and the gauge representative are preserved, the relevant Jacobi and role-gap vectors vary continuously under one return. Shrinking the convex core if necessary, those vectors therefore stay inside the same closed cones
->    $$
->    \mathfrak{C}^{a}_W,
->    \qquad
->    \mathfrak{C}^{b}_W,
->    \qquad
->    \mathfrak{C}^{\mathrm{role}}_W,
->    \qquad
->    \mathfrak{V}^{i}_W.
->    $$
->
-> 3. **Support-inequality preservation.**
->    The affine support functionals are continuous on the history space and are strictly positive at the seed with reserved slack from the coupled-parameter regime. Therefore the returned history still satisfies
->    $$
->    \mathbf{n}^{a}_W\cdot \mathbf{a}\ge \alpha^{a}_W,
->    \qquad
->    \mathbf{n}^{b}_W\cdot \mathbf{b}\ge \alpha^{b}_W,
->    \qquad
->    \mathbf{n}^{\mathrm{role}}_W\cdot
->    (\mathbf{x}_{i_\ast}-\mathbf{x}_2)
->    \ge
->    \alpha^{\mathrm{role}}_W.
->    $$
->
-> Hence the returned history belongs to the same explicit convex core.
+> Assume for contradiction that the returned history does not lie in
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}.
+> $$
+> Since the convex core is closed and the seed lies strictly in its interior relative to the preserved tame class, there is a first defining boundary face touched by the returned history. But the boundary trapping lemma rules out contact with every such face: pair and midpoint support faces are excluded by
+> $$
+> \rho^{\mathrm{mb}}_1,
+> \rho^{\mathrm{mb}}_2,
+> $$
+> the shear boundary by
+> $$
+> \rho^{\mathrm{mb}}_3,
+> $$
+> the role boundary by
+> $$
+> \rho^{\mathrm{mb}}_4,
+> $$
+> the velocity-cone faces by the preserved Jacobian floors, and the remaining ambient tube faces by the reserved trapping slack in the coupled-parameter regime. This contradiction proves
+> $$
+> \mathcal{P}^{\mathrm{mb}}_{\eta}
+> \big(
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+> \big)
+> \subseteq
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}.
+> $$
 
 > **Proof draft of the invariant-envelope closure theorem.**
 > Assume the coupled parameter solvability proposition and the explicit convex tame core proposition.
