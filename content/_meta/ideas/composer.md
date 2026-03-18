@@ -4,7 +4,7 @@
 
 The webapp already contains an early composer surface. It is no longer just a vague future idea. There is a working UI path for scene preview, JSON export, path editing, frame editing, and camera flight preview. That existing work is enough to justify one clear architecture note before the composer expands into full assembly authoring.
 
-This note now serves as the single merged reference for:
+This note is the single reference for:
 
 - what the composer is in the current app,
 - how it relates to the existing scene system,
@@ -81,7 +81,7 @@ The current composer surface already suggests an intended authoring loop:
 4. preview the scene live,
 5. export canonical JSON.
 
-That means the composer is already conceptually more than a scene-form generator. It is the start of an authoring environment.
+The composer is already more than a scene-form generator. It is the start of an authoring environment.
 
 ---
 
@@ -113,7 +113,7 @@ The runtime should be general enough to read any valid composed-animation JSON s
 
 ## Consolidated requirements
 
-This section merges the useful requirements from the earlier split notes into one set.
+This section merges the remaining useful requirements into one set.
 
 ### 1. Scene-system requirements
 
@@ -128,6 +128,7 @@ This section merges the useful requirements from the earlier split notes into on
 - Declarative authored data should be the default. Imperative or solver-backed behavior should be optional and explicitly marked.
 - Deterministic defaults are required, but every meaningful default should be overrideable.
 - Stable ids are required for all authored entities, assemblies, charges, paths, reactions, annotations, and anchors.
+- Every composed-animation scene should have an explicit master timeline in seconds so frequencies in Hz and timed reaction events are unambiguous.
 
 ### 3. Scene and assembly requirements
 
@@ -288,7 +289,9 @@ SceneSpec {
     controls?: ControlSpec
   },
   assemblies: AssemblySpec[],
+  libraryRefs?: string[],
   paths?: PathSpec[],
+  cameraPaths?: CameraPathSpec[],
   reactions?: ReactionSpec[],
   transfers?: TransferSpec[],
   provenance?: ProvenanceSpec[],
@@ -316,6 +319,20 @@ Purpose:
 - support playback views without rewriting assembly layout.
 
 This is important because the composer already has camera waypoint and flight concepts in the runtime.
+
+Draft shape:
+
+```js
+ViewSpec {
+  activeCameraPath?: string,
+  cameraPaths?: CameraPathSpec[],
+  defaultCamera?: {
+    position?: [number, number, number],
+    lookAt?: [number, number, number],
+    orientation?: [number, number, number]
+  }
+}
+```
 
 ### PathSpec
 
@@ -370,6 +387,19 @@ Purpose:
 - support insertable presets without losing explicit authored structure,
 - allow versioned reuse across multiple composed-animation scenes.
 
+Draft shape:
+
+```js
+AssemblyLibrarySpec {
+  entries: Array<{
+    id: string,
+    version?: string,
+    assembly: AssemblySpec,
+    metadata?: Record<string, unknown>
+  }>
+}
+```
+
 ### CoreSpec
 
 Purpose:
@@ -382,11 +412,16 @@ Draft shape:
 ```js
 CoreSpec {
   coreType: "noether",
+  profile?: "spherical" | "flat" | "custom",
   shell?: GeometrySpec,
   bands?: Array<{
     id: string,
     radius: number,
     color?: ColorRef
+  }>,
+  binaries?: Array<{
+    id: string,
+    motion: MotionSpec
   }>,
   architrinos?: Array<{
     id: string,
@@ -431,11 +466,63 @@ Draft shape:
 MotionSpec =
   | { type: "fixed" }
   | { type: "translate", velocity?: [number, number, number], angularVelocity?: [number, number, number] }
-  | { type: "orbit.circular", center: Ref, radius: number, speed: number, phase?: number }
-  | { type: "orbit.elliptical", center: Ref, a: number, b: number, speed: number, phase?: number, tilt?: [number, number, number] }
+  | { type: "orbit.circular", center: Ref, radius: number, frequencyHz: number, phase?: number, direction?: "cw" | "ccw" }
+  | { type: "orbit.elliptical", center: Ref, a: number, b: number, frequencyHz: number, phase?: number, tilt?: [number, number, number], direction?: "cw" | "ccw" }
   | { type: "path", pathId: string, speed?: number, phase?: number }
   | { type: "jiggle", amplitude: number, frequency?: number, seed?: number }
   | { type: "deform", profile: "lorentz_oblate" | string, target?: Ref, params?: Record<string, number> }
+```
+
+### TimeSpec
+
+Purpose:
+
+- define the master scene timeline in seconds,
+- make playback length, rate, and looping explicit,
+- provide the base clock for Hz-based motion.
+
+Draft shape:
+
+```js
+TimeSpec {
+  timeBase: "seconds",
+  start: number,
+  end: number,
+  playbackRate?: number,
+  loop?: boolean
+}
+```
+
+### CameraPathSpec
+
+Purpose:
+
+- define camera position and viewing orientation over the same scene timeline as assembly animation,
+- support both explicit authored paths and automatic follow-camera modes.
+
+Draft shape:
+
+```js
+CameraPathSpec {
+  id: string,
+  mode: "waypoints" | "follow",
+  frame?: FrameSpec,
+  timing?: TimeMapSpec,
+  waypoints?: Array<{
+    t: number,
+    position?: [number, number, number],
+    lookAt?: [number, number, number],
+    orientation?: [number, number, number]
+  }>,
+  follow?: {
+    target: Ref,
+    style: "trail" | "lead" | "flank" | "orbit" | "custom",
+    distance?: number,
+    height?: number,
+    lateralOffset?: number,
+    lookAtTarget?: Ref
+  }
+}
 ```
 
 ### ReactionSpec and TransferSpec
@@ -503,6 +590,19 @@ That path respects the current implementation while still aiming at the correct 
 
 ---
 
+## Coverage of the target scenes
+
+The draft schema above is intended to be able to describe the target scenes discussed so far.
+
+- A translating electron-like assembly is covered by `TimeSpec`, a root `AssemblySpec`, a straight-line `PathSpec`, a `CoreSpec` with internal `architrinos`, and bound `ChargeSpec` entries for the six electrino personality charges.
+- A high-velocity Lorentz-oblate flythrough is covered by parent transport motion plus `CoreSpec.deformation` with `type: "lorentz_oblate"` and an axis derived from velocity or path tangent.
+- A curved-path assembly with charge jiggle is covered by spline or point-based `PathSpec` plus local `jiggle` motions on the charge specs.
+- A reaction with disassembly and reassembly is covered by `ReactionSpec`, `TransferSpec`, and `ProvenanceSpec` on the shared scene timeline.
+- A photon-like paired-core assembly is covered by one parent `AssemblySpec` containing two child flat `CoreSpec` objects, a small authored offset in local transforms, and explicit `binaries` whose motions carry `direction: "cw"` or `direction: "ccw"`.
+- Camera action across any of these scenes is covered by `ViewSpec` plus `CameraPathSpec`, either as explicit waypoints with `position`, `lookAt`, or `orientation`, or as authored follow modes such as trail, lead, flank, or orbit around a moving target assembly.
+
+---
+
 ## Recommended direction
 
 The long-term vision should be:
@@ -522,9 +622,9 @@ The correct next step is to treat this document as the single source of truth fo
 
 ## Example scenes this model should be able to author
 
-These are not simulation claims. They are authored animation targets that the canonical JSON model and runtime should be able to express deterministically on a shared scene timeline.
+These are authored animation targets that the canonical JSON model and runtime should be able to express deterministically on a shared scene timeline in seconds.
 
-In any of these scenes, the camera path and camera orientation may also change as the timeline progresses.
+In any of these scenes, camera path and camera orientation may also change as the timeline progresses.
 
 ### 1. Translating electron-like assembly
 
