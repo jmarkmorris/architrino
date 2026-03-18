@@ -1,7 +1,7 @@
-### Codex - Principal Proof Architect & Integrator
+### Cody Codex - Principal Proof Architect & Integrator
 
 **Preferred name**:  
-Codex
+Cody
 
 **Title**:  
 Principal Proof Architect & Integrator
