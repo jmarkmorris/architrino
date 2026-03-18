@@ -78,6 +78,52 @@ The practical design rule is:
 
 That is the path toward an elegant design. The tool should feel more like a Gaudi work whose many forms are generated from one coherent structural language than like a bag of unrelated editing features.
 
+### Canonical rendered primitive set
+
+If the tool is to stay elegant, its rendered primitive vocabulary should remain very small.
+
+The canonical rendered primitives should be:
+
+- sphere
+  - the basic visible body or scale-collapsed proxy;
+- path
+  - a directed spatial trace that encodes motion through position and velocity;
+- orbit or shell trace
+  - a persistent or highlightable trace for repeating or structured motion;
+- ellipse or ellipsoid guide
+  - the one allowed general explanatory shape family;
+- callout leader
+  - a restrained pointer line attached to a geometric target;
+- text label
+  - a quiet explanatory label or caption.
+
+Everything else should preferably be composed from these.
+
+That means:
+
+- a larger assembly should often reduce to a sphere-like proxy at the right scale,
+- a fixed or repeating motion should usually be legible as a path or orbital trace,
+- and explanatory emphasis should usually be handled by ellipses, ellipsoids, callouts, labels, opacity, and timing rather than by introducing new primitive families.
+
+### Canonical zoom and reveal behavior
+
+The zoom model should follow the same architecture.
+
+The preferred reveal sequence is:
+
+1. sphere-like proxy at coarse scale,
+2. reveal path when motion matters,
+3. reveal orbit or shell trace when repeated structure matters,
+4. reveal constituent spheres and local paths when constitution matters.
+
+This should feel like one continuous disclosure of structure rather than a jump between incompatible modes.
+
+The preferred hide sequence is simply the reverse:
+
+- collapse local constituents into a larger organized object,
+- collapse visible orbit or shell structure into a cleaner proxy,
+- and preserve just enough path or directional information to keep the large-scale scene intelligible.
+
 ---
 
 ## UI metaphor and design levels
@@ -393,6 +439,16 @@ Selection state should support:
 - solo or isolate behavior for focused editing,
 - and dimmed context for nearby but currently unselected objects.
 
+The preferred direct-selection targets should reflect the native geometry of the system:
+
+- a sphere body,
+- a path,
+- an orbital or shell trace,
+- an anchor,
+- or an explanatory overlay attached to one of those objects.
+
+If the user clicks empty space, the UI should resist inventing arbitrary free-floating objects by default.
+
 ### Scene graph and assembly tree interaction model
 
 The left-side structural browser should not be a passive file outline. It is one of the primary authoring surfaces of the composer.
@@ -471,6 +527,16 @@ Gizmos should therefore support the architecture rather than fight it:
 
 - they should make it easy to place sphere-like proxies, path anchors, and shell or orbit references,
 - and they should not encourage free-form deformation language that breaks the underlying assembly metaphor.
+
+The preferred manipulation language should be:
+
+- move a sphere,
+- reshape or retime a path,
+- reveal or hide an orbit trace,
+- adjust a shell or ellipsoid guide,
+- and drill into or collapse scale.
+
+That is a more natural fit to the theory than a generic 3D modeling vocabulary.
 
 ### Presets and teaching patterns
 
@@ -860,6 +926,7 @@ This section merges the remaining useful requirements into one set.
 - Deterministic defaults are required, but every meaningful default should be overrideable.
 - Stable ids are required for all authored entities, assemblies, charges, paths, reactions, annotations, and anchors.
 - The entire tool should exploit one native visual grammar built from spheres, paths, orbit or shell traces, and scale collapse, rather than introducing unrelated representational systems at different levels.
+- The rendered primitive vocabulary should remain intentionally narrow so most scenes can be expressed as compositions of spheres, paths, orbit or shell traces, ellipses or ellipsoids, callouts, and labels.
 - Every composed-animation scene should have an explicit master timeline in seconds so frequencies in Hz and timed reaction events are unambiguous.
 - The master timeline should be understandable in standard motion-design terms, with clips, markers, overlays, pauses, and camera moves all reading as authored events on one shared time axis.
 - The terminology throughout the composer should follow standard video-authoring language wherever that improves clarity for authors, including timeline, clip, track, overlay, fade in, hold, fade out, cue, playback, and scrub.
@@ -947,6 +1014,7 @@ This section merges the remaining useful requirements into one set.
 - Preview should update from authored draft state with minimal guesswork.
 - Preview should support play, pause, scrub, loop, and step controls in standard video-authoring terms.
 - The viewport should support camera framing, camera paths, and scene playback without entangling view state with assembly semantics.
+- Direct viewport interaction should preferentially target spheres, paths, orbit or shell traces, anchors, and overlays attached to them rather than encouraging free-floating scene semantics.
 - In any authored scene, camera path and camera orientation may also evolve over the same scene timeline as the assembly animation.
 - Camera paths should be first-class authored objects that can be saved, edited, reused, and attached to scene playback.
 - The system should support authored automatic camera-follow modes analogous to photo-drone follow shots, but adapted to moving assemblies so the camera can orbit, trail, lead, flank, or otherwise observe a moving particle from changing orientations over time.
@@ -966,6 +1034,7 @@ This section merges the remaining useful requirements into one set.
 - The author should be able to select, multiselect, hide, show, lock, unlock, and isolate authored objects without changing their canonical semantics.
 - Snapping should be available for useful authoring targets such as timeline markers, pause boundaries, anchors, path points, and nearby guide geometry.
 - The tool should support basic shot-transition semantics, including hard cut, dissolve, and continuous move, without requiring a full nonlinear editor feature set.
+- Zoom and drill-down behavior should follow a consistent reveal model in which sphere-like proxies expand into paths, orbit or shell traces, and constituent structure as explanatory need increases.
 - The workspace should preserve a stable left-browser, central viewport, right-inspector, and bottom-timeline grammar even as panel emphasis changes by level.
 - The composer should support reusable teaching-pattern presets that insert editable authored objects rather than opaque effects.
 - Pointer, keyboard, and transport behavior should be intentionally standardized so the tool feels closer to a disciplined motion-design workspace than to an ad hoc scene debugger.
