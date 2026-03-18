@@ -6681,6 +6681,73 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 
 This is the correct tame-structure target because the first two Jacobi channels are no longer abstract placeholders. If their window geometry or margin positivity is not propagated through the return map, then the concrete recapture lemma has no stable domain on which to operate.
 
+> **Proof draft of the closed tame graph-stable subregion proposition.**
+> Let
+> $$
+> \mathcal{T}^{\mathrm{mb}}_{A_\ast,\eta}
+> $$
+> be the tame subregion produced by the hypergraph-and-atlas stability proposition. Define
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+> $$
+> to be the closed subset of that tame region on which the same gauge chart, event class, ancestry bounds, smooth-window floors, fold ceilings, and principal margins are all preserved with the same constants.
+>
+> 1. **Closedness.**
+>    Each defining inequality for
+>    $$
+>    \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+>    $$
+>    is closed in the ambient
+>    $$
+>    C^1
+>    $$
+>    topology: non-strict norm bounds are closed, lower bounds on the preserved floors are closed after the margins are frozen with positive slack, and the event class is constant on the tame region by construction. Hence
+>    $$
+>    \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+>    $$
+>    is closed.
+>
+> 2. **Nonemptiness.**
+>    The seed history used to define the tame region belongs to
+>    $$
+>    \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta},
+>    $$
+>    so the set is nonempty.
+>
+> 3. **Return-map invariance at the level of tame data.**
+>    By the earlier well-posedness, no-accumulation, caustic-transit, ancestry, and recapture packages, every history in
+>    $$
+>    \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+>    $$
+>    completes one controlled cycle with the same preserved constants. After the canonical gauge reset, the returned history therefore lies in the same closed tame data class.
+
+> **Proof draft of the invariant-envelope closure theorem.**
+> The remaining closure burden is to show that the gauge-reset return map
+> $$
+> \mathcal{P}^{\mathrm{mb}}_{\eta}
+> $$
+> sends
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+> $$
+> into itself.
+>
+> 1. The well-posedness and continuation packages ensure the map is defined on the whole tame region.
+> 2. The no-accumulation and caustic-transit packages preserve the event class and fold ceilings.
+> 3. The ancestry package preserves the deep-past ceiling.
+> 4. The recapture package preserves the principal margin positivity and the controlled windows.
+> 5. The gauge reset preserves the chosen chart representative.
+>
+> Therefore
+> $$
+> \mathcal{P}^{\mathrm{mb}}_{\eta}
+> \big(
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+> \big)
+> \subseteq
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}.
+> $$
+
 > **Target Theorem (Planar-three-body invariant-envelope closure and Schauder capstone).**
 > Assume the convex Banach-envelope proposition, the hypergraph-and-atlas stability proposition on that envelope, the closed tame graph-stable subregion proposition, the corresponding invariant-envelope closure theorem, and continuity and precompactness of the gauge-fixed many-body return map on the relevant convex Banach box together with the tame retraction or projection.
 >
@@ -6693,6 +6760,27 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > and the associated delayed trajectory is a bounded periodic planar-three-body solution of the dual-mollified master equation.
 >
 > In particular, the fixed-point trajectory preserves one common gauge chart, one common active delay hypergraph, one common ancestry complex, and one common family of post-crossing and late-turn recapture margins through every return. That is the many-body analogue of the earlier bridge closures on one tame self-map domain.
+
+> **Proof draft of the Schauder capstone.**
+> Consider the composite map
+> $$
+> \mathfrak{R}^{\mathrm{mb}}\circ \mathcal{P}^{\mathrm{mb}}_{\eta}
+> $$
+> on the convex Banach envelope
+> $$
+> \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}.
+> $$
+> By assumption it is continuous and precompact, and its image lies in the closed tame subregion
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}.
+> $$
+> The invariant-envelope closure theorem upgrades this from a map into the tame region to a map that preserves the same tame data after one full return. Therefore the standard Schauder fixed-point theorem yields one fixed history
+> $$
+> \Phi^{\ast,\mathrm{mb}}_\eta
+> \in
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}.
+> $$
+> The corresponding trajectory is periodic by construction of the return map and remains bounded because it never leaves the same controlled Banach box and tame data class.
 
 This is the first honest many-body breather target in the chapter. Everything above it is there only to make this statement legitimate.
 
