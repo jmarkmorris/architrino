@@ -5434,22 +5434,38 @@ The proof should now be written one local fold block at a time.
 >    $$
 >
 > 5. **Uniform finite impulse bound.**
->    After this cancellation, the branch contribution is bounded by
+>    Let
+>    $$
+>    U^{\mathrm{mb}}_{\mathrm{tube}}
+>    \equiv
+>    \sup_{(t,s)\in W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})}|u|.
+>    $$
+>    The fold-tube width is already controlled by the no-accumulation and normal-form constants, so
+>    $$
+>    U^{\mathrm{mb}}_{\mathrm{tube}}<\infty
+>    $$
+>    depends only on the same geometric data. After cancellation, the branch contribution is bounded by
 >    $$
 >    \frac{C_m^{\mathrm{proj}}\kappa\epsilon^2}{
 >    \chi_{\mathrm{fold}}\bigl(d_{\min}^2+\epsilon_c^2\bigr)
 >    }
->    \int_{|u|\le u_{\max}}du,
+>    \int_{|u|\le U^{\mathrm{mb}}_{\mathrm{tube}}}du,
 >    $$
->    where
+>    hence by
 >    $$
->    u_{\max}
+>    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}
+>    \le
+>    \frac{
+>    2C_m^{\mathrm{proj}}\kappa\epsilon^2U^{\mathrm{mb}}_{\mathrm{tube}}
+>    }{
+>    \chi_{\mathrm{fold}}\bigl(d_{\min}^2+\epsilon_c^2\bigr)
+>    }.
 >    $$
->    is controlled by the fold-tube width and hence by the no-accumulation constants. This bound is finite and remains uniformly finite as
+>    This bound is finite and remains uniformly finite as
 >    $$
 >    \eta\downarrow 0.
 >    $$
->    Thus
+>    Thus the fold impulse ceiling is controlled by one geometric transit width and one receiver-time passage floor rather than by a logarithmic mollifier loss. Therefore
 >    $$
 >    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}
 >    $$
@@ -5460,7 +5476,8 @@ The proof should now be written one local fold block at a time.
 >    d_{\min},
 >    U_{\max},
 >    A_{\max},
->    \chi_{\mathrm{fold}}.
+>    \chi_{\mathrm{fold}},
+>    U^{\mathrm{mb}}_{\mathrm{tube}}.
 >    $$
 >
 > 6. **Conclusion.**
@@ -5537,6 +5554,21 @@ The proof should now be written one local fold block at a time.
 > \operatorname{Lip}(\ddot{\mathbf{X}})\le L_A^{+}.
 > $$
 > In the eventual invariant-envelope argument one must choose the kinematic box so that these renormalized constants are absorbed back into the same admissible class.
+>
+> **Proof draft.**
+> The channelwise impulse bounds give a finite change in every projected velocity component across one admissible fold block, bounded by
+> $$
+> F^{\mathrm{mb}}_m.
+> $$
+> Away from the fold tube, the pre-transit trajectory already obeys the ambient kinematic envelope. Therefore the total post-transit velocity bound is obtained by adding the finite fold-impulse ceilings to the pre-transit velocity box. The same localization and tube-width bounds show that acceleration and acceleration-Lipschitz norms can increase by only a finite amount depending on the same transit constants. Hence one obtains finite renormalized constants
+> $$
+> U_{\max}^{+},
+> \qquad
+> A_{\max}^{+},
+> \qquad
+> L_A^{+}
+> $$
+> depending only on the pre-transit envelope and the fold ceilings.
 
 > **Proof draft of the bounded caustic-transit proposition.**
 > Fix one admissible fold block.
@@ -5553,6 +5585,11 @@ The proof should now be written one local fold block at a time.
 >    $$
 >    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}.
 >    $$
+>    By the exact fold-time cancellation, this bound is uniform in
+>    $$
+>    \eta\downarrow 0
+>    $$
+>    and is governed by the receiver-time passage floor and the geometric source-width of the tube.
 >
 > 3. **Type III superposition.**
 >    For a shared-body coupled fold, decompose into the finitely many participating branch families and use the superposition lemma. This yields
@@ -5594,7 +5631,7 @@ The proof should now be written one local fold block at a time.
 >    =
 >    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}M_{\max}^{\mathrm{mb}}
 >    $$
->    controls every block on the cycle. This is exactly the ceiling consumed later by the recapture margins.
+>    controls every block on the cycle. This is now a genuine geometric transit invariant of the controlled fold alphabet, and it is exactly the ceiling consumed later by the recapture margins.
 
 This is the last missing analytic bridge between finite branch combinatorics and the concrete recapture inequalities. Without it, the fold ceilings in the principal margins remain formal placeholders.
 
