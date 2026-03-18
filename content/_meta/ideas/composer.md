@@ -13,6 +13,111 @@ This note describes:
 
 ---
 
+## Consolidated requirements
+
+This section merges the requirements already implied in this note, the draft JS-facing language note, and the near-term needs for assembly authoring.
+
+### 1. Product direction
+
+- The composer should remain an overlay editor controlling a live 3D viewport.
+- The current initial UI is a valid starting point and should be preserved as the shell that expands into fuller assembly authoring.
+- The composer should support both static diagrams and time-based animated assembly scenes through one canonical authored model.
+- Declarative authored data should be the default. Imperative or solver-backed behavior should be optional and explicitly marked.
+
+### 2. Canonical authored output
+
+- The composer should export canonical JSON from structured authored data rather than from inferred renderer state.
+- Exported data should round-trip through preview, save, load, edit, re-export, and validation.
+- The canonical model should keep scene identity, layout, view, path, assembly structure, reactions, and provenance distinct rather than collapsing them into overloaded fields.
+- Stable ids are required for all authored entities, assemblies, charges, paths, reactions, annotations, and anchors.
+- The exported artifact should be an authored scene file that participates in the existing scene graph as a special scene type rather than as a markdown-target sphere scene.
+
+### 3. Scene and assembly model
+
+- Assemblies should be recursive. A scene may contain nested assemblies, and an assembly may contain sub-assemblies with their own local frames, transforms, and motion.
+- The same composition model should work for simple scene nodes, Noether cores, bound charges, and larger particle-like assemblies.
+- The composer should support reusable presets, but every preset instance must remain editable as explicit structured data.
+- Assemblies should support metadata, links, drill-down targets, and inspectable annotations.
+
+### 4. Noether core authoring
+
+- The composer should support explicit authoring of a Noether core as a first-class assembly component.
+- A Noether core should support shell geometry, orbital bands or layers, internal architrino organization, and optional multi-core composition.
+- Core state should distinguish rest geometry from runtime deformation and motion state.
+- A moving Noether core should be able to oblate along the axis of travel according to the Lorentz contraction law as velocity approaches \(c_f\).
+- The deformation model should make the direction of travel explicit so the contracted axis is not ambiguous.
+- The composer should allow both static inspection of a core and time-based playback of the core while it moves and deforms.
+
+### 5. Architrino orbital dynamics
+
+- Internal architrinos should be authorable as explicit orbiting constituents of the Noether core rather than as hidden renderer effects.
+- The composer should support circular and elliptical orbit families at minimum, with room for more general path-based internal motion later.
+- Internal orbital motion should continue coherently while the containing assembly is translating, rotating, or deforming.
+- Local orbital motion should compose cleanly with parent assembly transforms and parent path motion.
+- Phase, angular speed, tilt, and band attachment should be explicit authored parameters.
+
+### 6. Personality charges
+
+- Personality charges should be first-class typed entities such as `electrino` and `positrino`, with room for future extensions.
+- Charges should support both independent scene-level placement and bound-to-core attachment derived from core configuration.
+- Charge placement, count, sizing, orientation, and attachment policy should be declarative.
+- The composer should support secondary small-scale charge motion such as jiggle, wobble, or bounded local perturbation without hiding that behavior in renderer-only code.
+- Charge motion should be able to ride on top of larger assembly translation, rotation, and reaction choreography.
+
+### 7. Motion, transforms, and frames
+
+- Every assembly should be able to translate and/or rotate independently of its internal motion.
+- Motion must be frame-aware. Local motion, parent-relative motion, and absolute motion should be distinct and composable.
+- The authored model should support fixed placement, straight-line motion, circular orbit, elliptical orbit, arbitrary paths, and deforming motion.
+- Arbitrary paths should support explicit points, spline-smoothed points, and primitive parameterizations where useful.
+- Time mapping, repeat behavior, phase offsets, and playback rate should be explicit.
+- Path, orbit, spin, translation, deformation, and jiggle should be composable rather than mutually exclusive.
+
+### 8. Path authoring
+
+- Path authoring must be 3D-native even when early editing flows are visually simple.
+- The composer should support straight-line paths, circles, ellipses, splines, polylines, and arbitrary smoothed point sets at minimum.
+- A path should declare its reference frame, time domain, repeat behavior, geometric payload, and preview style.
+- Parent motion and local path motion should combine predictably so that nested transport is authorable without ad hoc exceptions.
+- Camera flight paths and assembly motion paths should both be explicit structured objects, not implicit editor state.
+
+### 9. Reactions, disassembly, and reassembly
+
+- The composer should support reactions as first-class authored objects, not just as animation presets.
+- A reaction should be able to involve multiple assemblies and multiple timed stages.
+- Reaction authoring should support disassembly of reactants into constituent parts, transfer or handoff of those parts, and reassembly into products.
+- Participants, timelines, triggers, branches, emissions, products, and handoff paths should be explicit.
+- Reaction playback should support both structural changes and geometric choreography through space and time.
+- Provenance should be preserved through reaction steps so authored outputs can show where components came from and where they went.
+
+### 10. View, preview, and authoring workflow
+
+- The composer should keep the current pattern of structured side panels plus live viewport preview.
+- Preview should update from authored draft state with minimal guesswork.
+- The viewport should support camera framing, camera flights, and scene playback without entangling view state with assembly semantics.
+- The authoring loop should remain: define, adjust, preview, validate, export.
+- Guided and advanced editing modes are desirable so the same tool can serve both preset-first authoring and direct schema-level editing.
+- Runtime controls should likely remain in the corners, but the visible set should be abbreviated to the controls relevant to composed animation playback, inspection, and drill-down.
+
+### 11. Validation, determinism, and migration
+
+- Structural validation should be provided by schema, with semantic lint on ids, references, motion targets, path references, palette names, and unsupported enums.
+- Deterministic defaults are required, but every meaningful default should be overrideable.
+- Authored data should separate canonical saved values from preview-only helpers or temporary editing state.
+- The migration path from the current `{ scene, objects[] }` runtime model to a fuller canonical assembly model should be explicit and incremental.
+- The minimum useful subset should be implementable before the full reaction and provenance system is complete.
+- Migration should preserve compatibility with the existing scene network so higher-level collection scenes can still link to these authored animation scenes using the current navigation model.
+
+### 12. Additional requirements worth carrying now
+
+- Units, time base, and angle conventions should be explicit in authored data.
+- Palette and visual assignment policy should be explicit and deterministic.
+- The model should support both 2D-facing presentation scenes and true 3D assembly scenes without forcing the same layout semantics onto both.
+- Performance and preview quality controls should be explicit so dense assemblies and reactions can remain inspectable during authoring.
+- The schema should leave room for future solver-backed motion without making the initial authoring model depend on a full physics solver.
+
+---
+
 ## What exists today
 
 The current webapp runtime already exposes a composer overlay with multiple panels and export flow.
@@ -40,6 +145,36 @@ The current composer surface already suggests an intended authoring loop:
 5. export canonical JSON.
 
 That means the composer is already conceptually more than a scene-form generator. It is the start of an authoring environment.
+
+---
+
+## Relation to the existing scene system
+
+The composer should not replace the existing scene system. It should add a new authored special scene type within it.
+
+The intended runtime pattern is:
+
+- a higher-level collection or index scene can still show selectable spheres or nodes,
+- one of those nodes can point to a composed animation scene,
+- opening that node should switch into the composed animation runtime rather than into a markdown reader scene,
+- and the composed animation scene should then render its own authored assemblies, paths, reactions, and playback controls.
+
+This is closer to the current handling of special interactive scenes such as the periodic table and atom drill-down flow than to the standard sphere-to-markdown pattern.
+
+Important consequences:
+
+- these scenes are authored scene files, not markdown leaves,
+- they should not assume that the primary interaction target is `markdownPath`,
+- they belong in the explicit scene network and should remain searchable and navigable through the same manifest pipeline,
+- and their internal content should be driven by authored animation data rather than by the normal `objects[]` plus markdown drill-down contract alone.
+
+Taxonomically, these scenes sit closest to tool scenes and animation scenes. In runtime terms, they likely need a dedicated scene type such as `Scene-Composed-Animation` rather than being treated as an ordinary diagram or markdown scene.
+
+The current UI direction still fits this well:
+
+- keep the corner-control language used elsewhere in the app,
+- keep the overlay-based authoring model for the composer itself,
+- and present an abbreviated in-runtime control set for playback, camera, selection, and relevant inspection.
 
 ---
 

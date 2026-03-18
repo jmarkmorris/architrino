@@ -23,9 +23,7 @@ This is a requirements and wireframe draft, not a final spec.
 2. Tight coupling to Three.js internals.
 
 ## Core Requirements
-1. **Scene Types**
-- `branching`, `diagram`, `markdown_split` must be representable.
-- Scene may include both content and simulation components.
+
 
 2. **Entity Model**
 - Any node can be a body, core, charge, field marker, reaction node, or annotation.
