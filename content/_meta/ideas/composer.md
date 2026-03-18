@@ -131,6 +131,9 @@ This section merges the remaining useful requirements into one set.
 - Deterministic defaults are required, but every meaningful default should be overrideable.
 - Stable ids are required for all authored entities, assemblies, charges, paths, reactions, annotations, and anchors.
 - Every composed-animation scene should have an explicit master timeline in seconds so frequencies in Hz and timed reaction events are unambiguous.
+- The terminology throughout the composer should follow standard video-authoring language wherever that improves clarity for authors, including timeline, clip, track, overlay, fade in, hold, fade out, cue, playback, and scrub.
+- The authored model should support one or more non-overlapping pauses on the master timeline, with each pause carrying its own pause duration.
+- Pauses should behave like authored timeline holds rather than hidden playback hacks, so preview, export, and runtime playback all agree about when and how long motion is paused.
 
 ### 3. Scene and assembly requirements
 
@@ -204,6 +207,11 @@ This section merges the remaining useful requirements into one set.
 - The system should support authored automatic camera-follow modes analogous to photo-drone follow shots, but adapted to moving assemblies so the camera can orbit, trail, lead, flank, or otherwise observe a moving particle from changing orientations over time.
 - Guided and advanced editing modes are desirable so the same tool can serve both preset-first authoring and direct schema-level editing.
 - Runtime controls should fit the app's existing corner-control language, but allow an abbreviated animation-specific control set.
+- The composer should support first-class overlays for explanation, including callout lines, text overlays, and shape overlays.
+- Overlays should be authored on the same timeline as scene motion and camera motion, not added as post hoc editor-only decorations.
+- Every overlay should support explicit fade-in duration, on-screen display duration, and fade-out duration.
+- The overlay and playback UI should prioritize the needs of explanatory academic video rather than trying to match the full complexity of Camtasia, OBS, or Resolve.
+- Useful explanatory controls to consider include cue markers, chapter markers, scrubbing, frame-step or small time-step stepping, temporary focus or spotlight states, authored captions or labels, and presenter-safe composition guides.
 
 ### 11. Validation and migration requirements
 
@@ -219,6 +227,35 @@ This section merges the remaining useful requirements into one set.
 - The model should support both 2D-facing presentation scenes and true 3D assembly scenes without forcing the same layout semantics onto both.
 - Performance and preview quality controls should be explicit so dense assemblies and reactions can remain inspectable during authoring.
 - The schema should leave room for future solver-backed motion without making the initial authoring model depend on a full physics solver.
+
+---
+
+## Brand graphics standard
+
+The composer should follow one house visual language across the webapp so authored scenes feel like one academic instrument rather than a set of unrelated demos.
+
+Core palette commitments:
+
+- architrino red is the standard red-channel assembly color,
+- architrino blue is the standard blue-channel assembly color,
+- the standard purple neutral is the default neutral field or neutral-potential background color,
+- and when scalar potential is depicted pointwise, the standard spectrum should run blue to purple to red.
+
+Interpretive meaning:
+
+- purple should be documented as the neutral-potential color rather than as an arbitrary accent,
+- blue-to-purple-to-red should be used when a scene needs to depict signed potential scalars across a region,
+- and the neutral purple background should remain visually compatible with academic diagrams, readable overlays, and subdued viewport chrome.
+
+Allowed overlay and guide graphics should be intentionally narrow.
+
+- The only general-purpose geometric shape primitive should be an ellipse in 2D or an ellipsoid in 3D.
+- Axis lengths and axis orientation angles should be explicit authored parameters.
+- Circles and spheres should be treated as special cases of those same ellipse or ellipsoid primitives.
+- These shapes should render as transparent guide or emphasis graphics, in the same spirit as the central UI metaphor but without latitude or longitude linework.
+- The default overlay style should remain quiet, translucent, and academically legible rather than decorative.
+
+This narrow graphics vocabulary is a feature, not a limitation. It keeps scenes visually consistent, protects the mathematical content from presentation clutter, and aligns the composer with the kind of explanatory graphics used in strong classroom or lecture videos.
 
 ---
 
@@ -260,6 +297,7 @@ A first practical composer schema stack could look like this:
 - `TransformSpec`
 - `AnchorSpec`
 - `RepeatSpec`
+- `PauseSpec`
 - `LayoutSpec`
 - `ViewSpec`
 - `PathSpec`
@@ -273,6 +311,8 @@ A first practical composer schema stack could look like this:
 - `TransferSpec`
 - `ProvenanceSpec`
 - `CameraPathSpec`
+- `OverlaySpec`
+- `BrandGraphicsSpec`
 
 ### Primitive spec vocabulary
 
@@ -371,6 +411,31 @@ RepeatSpec {
 }
 ```
 
+### PauseSpec
+
+Purpose:
+
+- define authored holds on the master timeline,
+- ensure pauses are explicit timeline objects rather than preview-only controls,
+- keep educational timing aligned across authoring, export, and playback.
+
+Draft shape:
+
+```js
+PauseSpec {
+  id: string,
+  start: number,
+  duration: number,
+  label?: string
+}
+```
+
+Requirements:
+
+- pauses must not overlap,
+- pause timing should be validated against the master timeline,
+- and pause duration should extend playback time without mutating the underlying scene geometry.
+
 ### Path-source taxonomy
 
 Paths should remain first-class authored objects, and their source should be explicit rather than inferred from editor state.
@@ -419,7 +484,9 @@ SceneSpec {
     view?: ViewSpec,
     time?: TimeSpec,
     palette?: PaletteBinding,
-    controls?: ControlSpec
+    controls?: ControlSpec,
+    pauses?: PauseSpec[],
+    brandGraphics?: BrandGraphicsSpec
   },
   assemblies: AssemblySpec[],
   libraryRefs?: Array<{
@@ -429,6 +496,7 @@ SceneSpec {
   assemblyInstances?: AssemblyInstanceSpec[],
   paths?: PathSpec[],
   cameraPaths?: CameraPathSpec[],
+  overlays?: OverlaySpec[],
   reactions?: ReactionSpec[],
   transfers?: TransferSpec[],
   provenance?: ProvenanceSpec[],
@@ -467,6 +535,63 @@ ViewSpec {
     position?: [number, number, number],
     lookAt?: [number, number, number],
     orientation?: [number, number, number]
+  }
+}
+```
+
+### OverlaySpec
+
+Purpose:
+
+- define explanatory overlays as first-class authored objects,
+- align composer terminology with standard video-authoring language,
+- support instructional graphics without coupling them to the underlying assembly geometry.
+
+Draft shape:
+
+```js
+OverlaySpec {
+  id: string,
+  kind: "text" | "callout" | "ellipse" | "ellipsoid",
+  frame?: FrameSpec,
+  anchor?: Ref,
+  start: number,
+  fadeIn?: number,
+  hold?: number,
+  fadeOut?: number,
+  style?: StyleSpec,
+  payload: Record<string, unknown>
+}
+```
+
+Notes:
+
+- `callout` should cover line-based pointer overlays aimed at a target, label, or anchor,
+- `text` should support concise instructional captions and labels,
+- `ellipse` and `ellipsoid` should be the only general-purpose highlight-shape primitives,
+- and overlay timing should use the standard video phases of fade in, hold, and fade out.
+
+### BrandGraphicsSpec
+
+Purpose:
+
+- document the house graphics language for composed scenes,
+- make palette semantics and guide-shape constraints explicit,
+- and keep authoring outputs visually consistent across the webapp.
+
+Draft shape:
+
+```js
+BrandGraphicsSpec {
+  palette: {
+    architrinoRed: string,
+    architrinoBlue: string,
+    neutralPurple: string,
+    scalarSpectrum: [string, string, string]
+  },
+  overlays: {
+    allowedShapes: ["ellipse", "ellipsoid"],
+    translucentByDefault: true
   }
 }
 ```
