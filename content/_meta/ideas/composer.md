@@ -2512,6 +2512,55 @@ The draft schema above is intended to be able to describe the target scenes disc
 
 The best way to keep the architecture honest is to show that the schema can already express a few simple but real scenes.
 
+### MVP schema snapshot
+
+For the first implementation, the most important thing is not to expose every theoretical field at once. It is to freeze one compact schema subset that already expresses the native AAA scene language.
+
+Recommended MVP schema surface:
+
+- `SceneSpec.scene`
+  - `id`
+  - `type`
+  - `kind`
+  - `name`
+  - `mode`
+  - `time`
+  - `pauses`
+  - `markers`
+  - `brandGraphics`
+- `assemblies`
+  - root staged objects and nested children
+- `paths`
+  - line, points, and basic function paths
+- `cameraPaths`
+  - waypoints and follow modes
+- `cameraShots`
+  - establishing, detail, comparison, follow, orbit
+- `overlays`
+  - text, callout, ellipse, ellipsoid
+- `tracks`
+  - at minimum `camera` and `overlay`
+- `teachingPatterns`
+  - optional, but supported as an insertion layer
+
+Recommended MVP exclusions:
+
+- solver-backed motion,
+- advanced reaction choreography,
+- transfer/provenance-heavy scenes,
+- broad asset pipelines,
+- and full graph-editor-style channel editing.
+
+The MVP should already be able to author:
+
+- one or more sphere-like bodies,
+- motion along one or more paths,
+- one or more orbit or shell reveals,
+- shot-driven explanation,
+- pauses,
+- markers,
+- and restrained overlays.
+
 ### Example 1: translating assembly with one pause and one callout
 
 This is not a full production scene. It is a minimum coherent example showing one assembly, one path, one camera path, one pause, one marker, and one explanatory overlay.
@@ -2651,6 +2700,157 @@ This example shows sequence-level and shot-level structure more explicitly.
 ```
 
 These examples are intentionally compact. Their job is to prove that the architecture can already describe the kind of scenes the tool is supposed to author.
+
+---
+
+## Workspace wireframe and panel map
+
+The implementation should begin from one stable workspace grammar rather than from ad hoc floating tools.
+
+### Canonical workspace layout
+
+```text
++----------------------------------------------------------------------------------+
+| Top context bar: breadcrumbs | level switcher | scene title | mode | playback   |
++----------------------+---------------------------------------+-------------------+
+| Left rail            | Central viewport                      | Right inspector   |
+|                      |                                       |                   |
+| - scene/assembly     | - bodies as spheres                  | - selection       |
+|   tree               | - paths and orbit traces             | - primitive props |
+| - tracks             | - guides and overlays                | - timing          |
+| - library            | - camera framing preview             | - style           |
+| - search             |                                       | - frame binding   |
++----------------------+---------------------------------------+-------------------+
+| Bottom timeline: markers | pauses | camera shots | overlay clips | playhead       |
++----------------------------------------------------------------------------------+
+```
+
+### Panel ownership by concern
+
+- Top context bar
+  - scene identity, editing level, mode, playback state, publish state
+- Left rail
+  - structure and reuse
+- Central viewport
+  - geometry and explanation
+- Right inspector
+  - properties and validation context
+- Bottom timeline
+  - time and editorial control
+
+### Default panel emphasis by level
+
+- Sequence
+  - emphasize bottom timeline and camera/overlay tracks
+- Shot
+  - emphasize bottom timeline and right inspector
+- Assembly
+  - emphasize central viewport and left structural tree
+- Constituent
+  - emphasize central viewport and constituent-specific inspector controls
+
+### First wireframe principle
+
+If a control does not clearly belong to one of these five regions, it is probably either:
+
+- the wrong control,
+- the wrong abstraction,
+- or a feature that should wait until later.
+
+---
+
+## Module-by-module implementation checklist
+
+This checklist is meant to turn the architecture into actionable engineering slices.
+
+### 1. Scene document core
+
+- Define the MVP `SceneSpec` TypeScript shape.
+- Implement stable id generation policy.
+- Implement reference resolution helpers.
+- Implement canonical save/load round-trip.
+- Implement normalization for omitted defaults.
+
+### 2. Timeline engine
+
+- Implement playhead and playback clock.
+- Implement markers.
+- Implement non-overlapping pauses.
+- Implement clip timing helpers.
+- Implement basic track ordering.
+- Implement snap targets and snap policy.
+
+### 3. Viewport and staging engine
+
+- Render sphere bodies and sphere-like proxies.
+- Render paths and orbit/shell traces.
+- Render ellipse/ellipsoid guides.
+- Implement selection and framing.
+- Implement translate/rotate gizmos.
+- Implement scale-collapse reveal logic.
+
+### 4. Camera and shot engine
+
+- Implement waypoint camera paths.
+- Implement follow camera paths.
+- Implement camera shots.
+- Implement cut / dissolve / continuous-move transitions.
+- Bind camera playback to the master timeline.
+
+### 5. Overlay and annotation engine
+
+- Implement text overlays.
+- Implement callout overlays.
+- Implement ellipse overlays.
+- Implement ellipsoid overlays.
+- Implement overlay timing and fade phases.
+- Enforce the house graphics defaults.
+
+### 6. Library and preset engine
+
+- Implement reusable assembly insertion.
+- Implement teaching-pattern insertion.
+- Implement instance overrides.
+- Implement library browsing in the left rail.
+- Implement portable library package draft model.
+
+### 7. Validation and lint engine
+
+- Implement structural schema validation.
+- Implement timeline lint.
+- Implement shot and continuity lint.
+- Implement graphics lint.
+- Implement asset-boundary lint.
+- Surface findings in the inspector without blocking useful drafts too early.
+
+### 8. Authoring shell
+
+- Implement the 5-region workspace shell.
+- Implement level switching and breadcrumbs.
+- Implement keyboard shortcuts for core commands.
+- Implement left-rail structural views.
+- Implement right-inspector property sections.
+
+### 9. Runtime player
+
+- Load canonical scenes without editor state.
+- Render the viewport primitive stack.
+- Play camera, overlays, paths, and pauses from the master timeline.
+- Expose reader-facing transport controls.
+- Respect publication state when launched outside the editor.
+
+### MVP definition of done
+
+The MVP is done when an author can create one polished explanatory scene in the native AAA grammar:
+
+- a sphere-like assembly,
+- moving on a path,
+- with one orbital or shell reveal,
+- with one or more pauses,
+- with one or more markers,
+- with one or more overlays,
+- with camera shots on the shared timeline,
+- and export it as canonical JSON that the runtime player can render correctly.
 
 ---
 
