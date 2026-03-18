@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 123,
-      "sections": 816
+      "sections": 819
     }
   },
   "tocRoot": {
@@ -818,6 +818,30 @@
                 "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Status Map",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Status Map",
+                "sectionKey": "status map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reading Map",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Reading Map",
+                "sectionKey": "reading map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proof-Program Dependency Map",
+                "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
+                "markdownSection": "Proof-Program Dependency Map",
+                "sectionKey": "proof program dependency map",
                 "headingLevel": 2
               },
               {

@@ -27,6 +27,42 @@ C^1([-h,0]).
 $$
 The final fixed-point step is then delegated to Arzela-Ascoli compactness and a Schauder-type argument once the nonempty tame class is fully propagated through one cycle. At present, that capstone remains a theorem target rather than a completed proof.
 
+## Status Map
+
+This chapter now has three different status layers, and they should be read separately:
+
+- completed local and regional lemma packages, especially for delayed-root geometry, caustic transit, inner recapture, and trimmed-apocenter outer-turn control,
+- target propositions that package those estimates into one closed convex tame self-map domain,
+- and the final Schauder capstone, which remains conditional on that domain-level closure.
+
+In particular, the manuscript already contains substantial outer-turn and apocenter material. The main remaining burden is not to invent an outer-turn mechanism from scratch, but to assemble the local theorem packages into one coupled invariant-envelope regime on which the return map is continuous, precompact, and self-mapping.
+
+## Reading Map
+
+Readers looking for the main structural bottlenecks can use the following map.
+
+- The sign and physical interpretation caveat appears in [Signed-branch caution](#signed-branch-caution).
+- The return-map setup begins in [Regularized Return Map](#regularized-return-map).
+- The compactness and fixed-point architecture begins in [Global Existence via Arzela-Ascoli](#global-existence-via-arzela-ascoli).
+- The coupled-envelope bottleneck appears in [Invariant-envelope closure](#invariant-envelope-closure) and the later [Target Proposition (Coupled admissible parameter regime)](#target-proposition-coupled-admissible-parameter-regime).
+- The outer-turn program is developed in [Outer-turn recapture target](#outer-turn-recapture-target), [Deep-past outer self suppression target](#deep-past-outer-self-suppression-target), [z-map descent target](#z-map-descent-target), and the [Proposition (Unified trimmed-apocenter outer-turn criterion)](#proposition-unified-trimmed-apocenter-outer-turn-criterion).
+- The compressed endpoint appears in [Capstone Statement](#capstone-statement).
+
+## Proof-Program Dependency Map
+
+At the highest level, the proof program now runs in the following order:
+
+1. collapse-to-crossing control,
+2. pre-crossing caustic transit and recovery,
+3. local post-crossing recapture,
+4. outer-turn recapture on the trimmed apocenter window,
+5. turn-to-section return,
+6. invariant-envelope closure on one coupled tame domain,
+7. continuity and precompactness of the return map on that same domain,
+8. Schauder fixed-point closure.
+
+This is the dependency chain that should govern future edits. New local estimates are useful only insofar as they feed one of these eight loads.
+
 ## Purpose
 
 The full dynamics stack currently mixes several hard problems at once:
