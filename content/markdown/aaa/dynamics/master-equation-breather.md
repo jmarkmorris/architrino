@@ -5041,6 +5041,19 @@ $$
 $$
 and the controlled fold or exchange tubes.
 
+This finite-cycle parity rule should now be treated as an explicit upstream geometric target, not as invisible background logic:
+
+> **Target Lemma (No trapped admissible exchange cycles in the planar three-body ancestry graph).**
+> No closed loop of admissible source-cluster exchanges supported entirely inside
+> $$
+> \mathcal{W}^{\mathrm{mb}}_{\mathrm{lt}}
+> \cup
+> \mathcal{W}^{\mathrm{mb}}_{\mathrm{mid}}
+> $$
+> and the controlled fold or exchange tubes can avoid the provenance region indefinitely while preserving the admissible receiver, sector, and cluster bookkeeping.
+
+The ancestry package may continue to consume this as an explicit geometric input until it is proved separately.
+
 > **Proof draft of the deep-past cluster-ancestry-or-exclusion proposition.**
 > Fix one late-turn vertex
 > $$
@@ -6428,13 +6441,13 @@ The next theorem burden is therefore not yet a convex tame set, but a stability 
 >    $$
 >    \mathfrak{m}^{\mathrm{mb}}_{\mathrm{prin}}>0;
 >    $$
-> 6. and there exists a continuous projection or retraction
+> 6. and there exists a nonempty convex subset
 >    $$
->    \mathfrak{R}^{\mathrm{mb}}:
->    \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}\to
->    \mathcal{T}^{\mathrm{mb}}_{A_\ast,\eta}
+>    \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+>    \subseteq
+>    \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
 >    $$
->    onto that tame subregion whenever one wants to return from the convex Banach box to the graph-stable class.
+>    lying entirely inside that tame subregion and carrying the same preserved event class, smooth-window floors, fold ceilings, and principal-margin floors.
 
 > **Proof draft of the hypergraph-and-atlas stability proposition.**
 > Start from one seed history in the convex Banach envelope for which the no-accumulation, caustic-transit, ancestry, and principal recapture packages all hold. Because the envelope controls
@@ -6494,12 +6507,16 @@ The next theorem burden is therefore not yet a convex tame set, but a stability 
 >    $$
 >    varies continuously on the smooth windows, and the fold-loss terms are uniformly bounded by the same caustic-transit constants. Therefore strict positivity at the seed persists on a sufficiently small tame subregion.
 >
-> 4. **Retraction to the tame subregion.**
->    One may therefore define
+> 4. **Convex tame core.**
+>    One may therefore choose a sufficiently small convex subset
 >    $$
->    \mathcal{T}^{\mathrm{mb}}_{A_\ast,\eta}
+>    \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+>    \subseteq
+>    \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
 >    $$
->    as the closed subregion where the same event class, smooth-window floors, transit constants, and principal margins are preserved. A continuous projection or retraction onto that subregion is then the standard step that returns the convex Banach box to the graph-stable class.
+>    around the seed, lying entirely inside the tame region where the same event class, smooth-window floors, transit constants, and principal margins are preserved.
+
+The remaining closure burden is then purely analytic: prove that the return map sends this convex tame core into itself.
 
 Only after this separation should one define the many-body tame target. The many-body tame envelope target should then be a closed subset
 $$
@@ -6581,6 +6598,30 @@ on which the following constants are all preserved simultaneously:
   \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{late}};
   $$
 - and one fixed atlas representative on the relevant quotient chart.
+
+The coupled parameter regime underlying this closed tame target should likewise be made explicit:
+
+> **Target Proposition (Coupled parameter solvability for the first planar-three-body tame regime).**
+> There exists a nonempty parameter region in
+> $$
+> (\eta,\epsilon_c,A_\ast,B_{\min},V_{\mathrm{in}},a_{\min},b_{\min},\Delta_{\min},\delta_{\mathrm{role},\min},\tau^{\mathrm{mb}}_{\mathrm{dp}},\dots)
+> $$
+> such that all of the following hold simultaneously:
+> 1. the no-accumulation floors and event-gap bounds;
+> 2. the bounded caustic-transit ceilings
+>    $$
+>    F^{\mathrm{mb}}_m;
+>    $$
+> 3. the ancestry and deep-past suppression bounds;
+> 4. the strict positivity of the principal margins
+>    $$
+>    \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{post}},
+>    \qquad
+>    \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{late}};
+>    $$
+> 5. and the nondegeneracy of the smooth recapture windows.
+
+This is the planar-three-body analogue of the explicit short-window recapture regime in the frozen 1D scaffold. The closure packages may now consume it as a named parameter-intersection target rather than a silent background hope.
 
 This strengthening matters. In the planar-three-body bridge, the tame layer cannot merely remember that “some recapture theorem holds.” It must preserve the actual windows and margin constants on which the first concrete recapture lemma was proved, or else the local turning argument could be lost after one return. But those data should now be understood as structure carried on a stable tame subregion of the convex Banach box, not as the definition of convexity itself.
 
@@ -6682,7 +6723,7 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 This is the correct tame-structure target because the first two Jacobi channels are no longer abstract placeholders. If their window geometry or margin positivity is not propagated through the return map, then the concrete recapture lemma has no stable domain on which to operate.
 
 > **Proof draft of the closed tame graph-stable subregion proposition.**
-> Let
+> Assume the coupled parameter solvability proposition. Let
 > $$
 > \mathcal{T}^{\mathrm{mb}}_{A_\ast,\eta}
 > $$
@@ -6691,6 +6732,13 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
 > $$
 > to be the closed subset of that tame region on which the same gauge chart, event class, ancestry bounds, smooth-window floors, fold ceilings, and principal margins are all preserved with the same constants.
+> Choose in addition a nonempty convex subset
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+> \subseteq
+> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+> $$
+> lying entirely inside the same tame region.
 >
 > 1. **Closedness.**
 >    Each defining inequality for
@@ -6712,7 +6760,7 @@ This is the correct tame-structure target because the first two Jacobi channels 
 >    $$
 >    \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta},
 >    $$
->    so the set is nonempty.
+>    and the coupled parameter solvability proposition guarantees that the defining margins and floors are simultaneously satisfiable, so the set is nonempty.
 >
 > 3. **Return-map invariance at the level of tame data.**
 >    By the earlier well-posedness, no-accumulation, caustic-transit, ancestry, and recapture packages, every history in
@@ -6722,13 +6770,14 @@ This is the correct tame-structure target because the first two Jacobi channels 
 >    completes one controlled cycle with the same preserved constants. After the canonical gauge reset, the returned history therefore lies in the same closed tame data class.
 
 > **Proof draft of the invariant-envelope closure theorem.**
+> Assume the coupled parameter solvability proposition.
 > The remaining closure burden is to show that the gauge-reset return map
 > $$
 > \mathcal{P}^{\mathrm{mb}}_{\eta}
 > $$
 > sends
 > $$
-> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
 > $$
 > into itself.
 >
@@ -6742,14 +6791,14 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > $$
 > \mathcal{P}^{\mathrm{mb}}_{\eta}
 > \big(
-> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
 > \big)
 > \subseteq
-> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}.
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}.
 > $$
 
 > **Target Theorem (Planar-three-body invariant-envelope closure and Schauder capstone).**
-> Assume the convex Banach-envelope proposition, the hypergraph-and-atlas stability proposition on that envelope, the closed tame graph-stable subregion proposition, the corresponding invariant-envelope closure theorem, and continuity and precompactness of the gauge-fixed many-body return map on the relevant convex Banach box together with the tame retraction or projection.
+> Assume the convex Banach-envelope proposition, the hypergraph-and-atlas stability proposition on that envelope, the coupled parameter solvability proposition, the closed tame graph-stable subregion proposition, the corresponding invariant-envelope closure theorem, and continuity and precompactness of the gauge-fixed many-body return map on the relevant convex Banach box.
 >
 > Then the return map has a fixed point
 > $$
@@ -6762,22 +6811,31 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > In particular, the fixed-point trajectory preserves one common gauge chart, one common active delay hypergraph, one common ancestry complex, and one common family of post-crossing and late-turn recapture margins through every return. That is the many-body analogue of the earlier bridge closures on one tame self-map domain.
 
 > **Proof draft of the Schauder capstone.**
-> Consider the composite map
+> Apply Schauder directly to the return map
 > $$
-> \mathfrak{R}^{\mathrm{mb}}\circ \mathcal{P}^{\mathrm{mb}}_{\eta}
+> \mathcal{P}^{\mathrm{mb}}_{\eta}
 > $$
-> on the convex Banach envelope
+> on the convex subset
 > $$
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+> \subseteq
 > \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}.
 > $$
-> By assumption it is continuous and precompact, and its image lies in the closed tame subregion
+> By the closure theorem,
 > $$
-> \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}.
+> \mathcal{P}^{\mathrm{mb}}_{\eta}
+> \big(
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+> \big)
+> \subseteq
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}},
 > $$
-> The invariant-envelope closure theorem upgrades this from a map into the tame region to a map that preserves the same tame data after one full return. Therefore the standard Schauder fixed-point theorem yields one fixed history
+> and by assumption the map is continuous and precompact there. Therefore the standard Schauder fixed-point theorem yields one fixed history
 > $$
 > \Phi^{\ast,\mathrm{mb}}_\eta
 > \in
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+> \subseteq
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}.
 > $$
 > The corresponding trajectory is periodic by construction of the return map and remains bounded because it never leaves the same controlled Banach box and tame data class.
