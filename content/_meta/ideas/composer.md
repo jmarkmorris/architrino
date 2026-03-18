@@ -57,11 +57,36 @@ The composer should be treated as a future core capability, not as a side panel.
 
 ---
 
+## Unifying simplification principle
+
+The strongest simplification available to the composer is already present in the Architrino Assembly Architecture itself.
+
+At the lowest useful level, the scene is made from:
+
+- red or blue spheres,
+- paths that encode position and velocity,
+- orbital or shell traces where motion is structured or repeating,
+- and a small number of quiet explanatory overlays attached to that geometry.
+
+Everything larger is built from that lower level. A compound assembly is still a structured set of spheres on paths. A shell is still an organized orbit family. A larger object, when viewed from farther away, should be allowed to collapse into a sphere-like proxy carrying the memory of the same underlying structure.
+
+This means the composer should not behave like a generic media tool that happens to render Architrino scenes. It should behave like a unified authoring instrument whose geometry, staging, semantic zoom, and explanatory overlays are all consequences of one core visual grammar.
+
+The practical design rule is:
+
+- at every level, prefer the simplest representation that still preserves the underlying sphere-orbit-path logic.
+
+That is the path toward an elegant design. The tool should feel more like a Gaudi work whose many forms are generated from one coherent structural language than like a bag of unrelated editing features.
+
+---
+
 ## UI metaphor and design levels
 
 The composer should not be treated as one flat editing surface. It needs a small number of semantic design levels so authors can move between corpus navigation, explanation design, spatial staging, and internal constituent modeling without losing orientation.
 
-The key principle is that not every zoom is a geometric zoom. Some transitions should be continuous spatial zooms, while others should be semantic zooms or mode changes between levels of authoring intent.
+The key principle is that these levels are not separate visual worlds. They are transparent semantic layers built from one underlying sphere-orbit-path grammar. Not every zoom is a geometric zoom, but every level should still feel like a different reading of the same scene fabric rather than a switch into a foreign tool.
+
+Some transitions should be continuous spatial zooms, while others should be semantic zooms or mode changes between levels of authoring intent.
 
 The recommended stack is five levels.
 
@@ -83,6 +108,8 @@ Typical objects and controls:
 
 This level is about orientation and selection, not about editing a shot or manipulating geometry.
 
+Even here, the sphere metaphor remains correct: scene nodes are still spheres because they are the coarse-scale public face of deeper structured objects.
+
 ### 2. Sequence level
 
 Question this level answers:
@@ -102,6 +129,8 @@ Typical objects and controls:
 - and overall playback structure.
 
 This level should make the scene legible as one explanatory sequence rather than as a pile of independent objects.
+
+At this scale, the geometry is not abandoned. It is summarized. Paths, pauses, overlays, and camera attention become the large-scale reading of the same underlying scene.
 
 ### 3. Shot or beat level
 
@@ -124,6 +153,8 @@ Typical objects and controls:
 
 This is the right level for terms such as shot, clip, cut, hold, fade, cue, and playback beat.
 
+Shot design should still remain faithful to the sphere-orbit-path logic of the scene rather than imposing arbitrary cinematic flourish.
+
 ### 4. Assembly or staging level
 
 Question this level answers:
@@ -145,6 +176,8 @@ Typical objects and controls:
 
 This level should be the default workspace for most scene building.
 
+This is where the underlying grammar is most visibly explicit: staged spheres, shell-like envelopes, paths, and orbital traces.
+
 ### 5. Constituent or internal-dynamics level
 
 Question this level answers:
@@ -163,6 +196,8 @@ Typical objects and controls:
 - and constituent-level explanatory overlays.
 
 This level should be a drill-down mode, not the default surface.
+
+At this deepest level, the author is not entering a different metaphor. The author is simply seeing the finer-grained sphere-path constitution out of which higher-scale objects were already built.
 
 ### How level transitions should work
 
@@ -202,6 +237,12 @@ Each level should answer one simple authoring question.
 - Constituent: how does it work inside?
 
 If the UI keeps these questions clear, the composer can stay powerful without becoming cognitively noisy.
+
+The same simplification principle should apply across all five levels:
+
+- larger structures may collapse into a sphere-like proxy at distance,
+- paths may collapse into a trace or directional hint when detail is unnecessary,
+- and drill-down should reveal more of the same underlying architecture rather than replacing it with a new representational system.
 
 ### Immediate design implication
 
@@ -280,6 +321,12 @@ Primary interactions:
 - edit paths,
 - place callouts and guide shapes,
 - and set the spatial relationship between key scene elements.
+
+Default staging posture:
+
+- if a structure is too detailed for the current scale, it should be shown as a sphere-like proxy rather than as clutter;
+- if a motion is central to understanding, its path or orbital trace should be available directly in the viewport;
+- and if a path is fixed or repeating, the author should be able to reveal that orbital logic without manually rebuilding it as annotation.
 
 #### Constituent or internal-dynamics level
 
@@ -388,6 +435,11 @@ The tree should also support multiple useful views over the same scene:
 
 This matters because the same authored scene may need to be understood as geometry, explanation sequence, and constitutive hierarchy all at once.
 
+The tree should therefore privilege structural truth over arbitrary file-like nesting:
+
+- an assembly should read as a higher-order object made from lower-order sphere-path structures,
+- and level changes should reveal or summarize that structure rather than replacing it with unrelated node types.
+
 ### Transform and gizmo behavior
 
 The transform system should be deliberately small, consistent, and legible.
@@ -415,6 +467,11 @@ The gizmo should expose the active frame clearly:
 
 This matters because the same assembly may need to be staged in world space while its internal constituents are edited in a local frame.
 
+Gizmos should therefore support the architecture rather than fight it:
+
+- they should make it easy to place sphere-like proxies, path anchors, and shell or orbit references,
+- and they should not encourage free-form deformation language that breaks the underlying assembly metaphor.
+
 ### Presets and teaching patterns
 
 The composer should support reusable authoring patterns, but they should be treated as editable structured motifs rather than opaque canned effects.
@@ -437,6 +494,14 @@ Useful first teaching-pattern presets include:
   - place an establishing text overlay or chapter marker at the start of a beat.
 
 These patterns should be authored as editable scene objects after insertion. Their value is speed and consistency, not hidden behavior.
+
+The best presets will be the ones that expose the native architecture of the scene:
+
+- show path,
+- show orbit,
+- show shell,
+- compare two sphere-centered structures,
+- or collapse or reveal scale.
 
 ### Authoring commands and gesture model
 
@@ -515,6 +580,12 @@ The timeline should also support a small set of retiming modes:
 
 The point is not to imitate a full nonlinear editor. It is to give explanatory scenes enough timing discipline to remain teachable and easy to revise.
 
+The timeline should help the author reveal the structure already present in the architecture:
+
+- when something moves on a path, the timeline should help show that path clearly;
+- when something is orbiting, the timeline should help expose the orbital rhythm;
+- and when a larger object is really a scaled summary of a lower-level structure, the timing model should make that reveal natural.
+
 ### Shot construction rules
 
 Shots should be treated as explanatory units, not merely as camera intervals.
@@ -549,6 +620,11 @@ That means the camera should usually help the viewer read:
 - what path it follows,
 - what shell or orbit frame it inhabits,
 - and what neighboring structure it relates to.
+
+The camera should also respect scale collapse:
+
+- when a detailed object is functioning as a sphere-like proxy at the current scale, the shot should not over-insist on hidden detail;
+- when the purpose of the shot is to reveal deeper constitution, the transition into that detail should feel like a natural descent through the same geometric language.
 
 Continuity guidance:
 
@@ -783,6 +859,7 @@ This section merges the remaining useful requirements into one set.
 - Declarative authored data should be the default. Imperative or solver-backed behavior should be optional and explicitly marked.
 - Deterministic defaults are required, but every meaningful default should be overrideable.
 - Stable ids are required for all authored entities, assemblies, charges, paths, reactions, annotations, and anchors.
+- The entire tool should exploit one native visual grammar built from spheres, paths, orbit or shell traces, and scale collapse, rather than introducing unrelated representational systems at different levels.
 - Every composed-animation scene should have an explicit master timeline in seconds so frequencies in Hz and timed reaction events are unambiguous.
 - The master timeline should be understandable in standard motion-design terms, with clips, markers, overlays, pauses, and camera moves all reading as authored events on one shared time axis.
 - The terminology throughout the composer should follow standard video-authoring language wherever that improves clarity for authors, including timeline, clip, track, overlay, fade in, hold, fade out, cue, playback, and scrub.
@@ -800,6 +877,7 @@ This section merges the remaining useful requirements into one set.
 
 - Assemblies should be recursive. A scene may contain nested assemblies, and an assembly may contain sub-assemblies with their own local frames, transforms, and motion.
 - The same composition model should work for simple scene nodes, Noether cores, bound charges, and larger particle-like assemblies.
+- Larger-scale authored objects should be allowed to collapse to sphere-like proxies when detail is not useful at the current scale, provided the deeper structure remains recoverable by drill-down or reveal.
 - Assemblies should support metadata, links, drill-down targets, and inspectable annotations.
 - Presets are useful, but every preset instance must remain editable as explicit structured data.
 - Assemblies should be saveable to a reusable library so authored structures can be inserted, versioned, and reused across scenes.
@@ -878,6 +956,7 @@ This section merges the remaining useful requirements into one set.
 - The composer should support first-class overlays for explanation, including callout lines, text overlays, and shape overlays.
 - Overlays should be authored on the same timeline as scene motion and camera motion, not added as post hoc editor-only decorations.
 - Every overlay should support explicit fade-in duration, on-screen display duration, and fade-out duration.
+- Overlays should preferentially attach to native geometric features such as spheres, paths, shells, orbit traces, and anchors rather than floating free without geometric meaning.
 - The overlay and playback UI should prioritize the needs of explanatory academic video rather than trying to match the full complexity of Camtasia, OBS, or Resolve.
 - Useful explanatory controls to consider include cue markers, chapter markers, scrubbing, frame-step or small time-step stepping, temporary focus or spotlight states, authored captions or labels, and presenter-safe composition guides.
 - The explanatory toolset should also consider comparison-friendly controls such as ghosted previous or next positions, optional trajectory traces, and quick isolate or dim-others actions for the currently discussed assembly.
