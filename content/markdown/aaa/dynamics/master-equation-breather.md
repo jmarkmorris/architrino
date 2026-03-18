@@ -6508,15 +6508,382 @@ The next theorem burden is therefore not yet a convex tame set, but a stability 
 >    varies continuously on the smooth windows, and the fold-loss terms are uniformly bounded by the same caustic-transit constants. Therefore strict positivity at the seed persists on a sufficiently small tame subregion.
 >
 > 4. **Convex tame core.**
->    One may therefore choose a sufficiently small convex subset
+>    The next proposition below shows how to realize such a subset by explicit tube-and-cone inequalities around the seed. Therefore one may choose a sufficiently small convex subset
 >    $$
 >    \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
 >    \subseteq
 >    \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
 >    $$
->    around the seed, lying entirely inside the tame region where the same event class, smooth-window floors, transit constants, and principal margins are preserved.
+>    lying entirely inside the tame region where the same event class, smooth-window floors, transit constants, and principal margins are preserved.
 
 The remaining closure burden is then purely analytic: prove that the return map sends this convex tame core into itself.
+
+To make this convex core theorem-level rather than rhetorical, one should define it by visibly convex seed-centered tube and cone conditions, not by delayed-root predicates.
+
+Fix one seed history
+$$
+\Phi^{\mathrm{mb}}_{\mathrm{seed}}
+\in
+\mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
+$$
+for which the no-accumulation, caustic-transit, ancestry, and principal recapture packages already hold. Let
+$$
+W\in\left\{
+I^{\mathrm{mb}}_{\mathrm{post}},
+I^{\mathrm{mb}}_{\mathrm{late}}
+\right\}.
+$$
+Choose:
+
+- closed planar cones
+  $$
+  \mathfrak{C}^{a}_W,
+  \qquad
+  \mathfrak{C}^{b}_W,
+  \qquad
+  \mathfrak{C}^{\mathrm{role}}_W
+  \subset \Pi
+  $$
+  for the pair axis
+  $$
+  \mathbf{a},
+  $$
+  the midpoint axis
+  $$
+  \mathbf{b},
+  $$
+  and the distinguished role-gap vector
+  $$
+  \mathbf{x}_{i_\ast}-\mathbf{x}_2;
+  $$
+- closed velocity cones
+  $$
+  \mathfrak{V}^{i}_W\subset \Pi,
+  \qquad
+  i=1,2,3,
+  $$
+  and, for each active branch family
+  $$
+  \beta
+  $$
+  in the preserved event class, one closed chord-direction cone
+  $$
+  \mathfrak{U}^{\beta}_W\subset \Pi;
+  $$
+- support vectors
+  $$
+  \mathbf{n}^{a}_W,
+  \qquad
+  \mathbf{n}^{b}_W,
+  \qquad
+  \mathbf{n}^{\mathrm{role}}_W
+  \in \Pi;
+  $$
+- and positive support floors
+  $$
+  \alpha^{a}_W,
+  \qquad
+  \alpha^{b}_W,
+  \qquad
+  \alpha^{\mathrm{role}}_W.
+  $$
+
+Choose the seed-centered tube radii small enough that every active branch family
+$$
+\beta
+$$
+arising from a history in that tube has its unnormalized chord vector in one fixed narrow spatial cone whose normalized directions lie in
+$$
+\mathfrak{U}^{\beta}_W.
+$$
+This induced chord-direction control is part of the geometric setup, not an extra defining predicate of the convex set.
+
+The intended geometric compatibility conditions are:
+
+1. for every
+   $$
+   \mathbf{u}_a\in \mathfrak{C}^{a}_W,
+   \qquad
+   \mathbf{u}_b\in \mathfrak{C}^{b}_W,
+   $$
+   one has
+   $$
+   \mathbf{n}^{a}_W\cdot \mathbf{u}_a\ge \alpha^{a}_W\|\mathbf{u}_a\|,
+   \qquad
+   \mathbf{n}^{b}_W\cdot \mathbf{u}_b\ge \alpha^{b}_W\|\mathbf{u}_b\|,
+   $$
+   and the cone pair is angle-separated so that
+   $$
+   |\det(\mathbf{u}_a,\mathbf{u}_b)|
+   \ge
+   \varsigma^{ab}_W\,
+   \|\mathbf{u}_a\|\,\|\mathbf{u}_b\|
+   $$
+   for some
+   $$
+   \varsigma^{ab}_W>0;
+   $$
+2. for every
+   $$
+   \mathbf{u}_{\mathrm{role}}
+   \in
+   \mathfrak{C}^{\mathrm{role}}_W
+   $$
+   one has
+   $$
+   \mathbf{n}^{\mathrm{role}}_W\cdot \mathbf{u}_{\mathrm{role}}
+   \ge
+   \alpha^{\mathrm{role}}_W
+   \|\mathbf{u}_{\mathrm{role}}\|;
+   $$
+3. for every active branch family
+   $$
+   \beta=(i,j)
+   $$
+   and every
+   $$
+   \mathbf{v}\in \mathfrak{V}^{j}_W,
+   \qquad
+   \hat{\mathbf{u}}\in \mathfrak{U}^{\beta}_W,
+   $$
+   one has
+   $$
+   \mathbf{v}\cdot \hat{\mathbf{u}}
+   \le
+   c_f(1-\nu^{\mathrm{cvx}}_{\beta,W})
+   $$
+   for some
+   $$
+   \nu^{\mathrm{cvx}}_{\beta,W}>0.
+   $$
+
+These are the many-body closure analogues of the earlier sectorwise cone-transversality package: they are visibly convex restrictions on unnormalized vectors, but they imply the nonconvex Jacobian, shear, and role-gap floors used later.
+
+> **Target Proposition (Explicit convex tame core inside the planar-three-body Banach envelope).**
+> There exist positive tube radii
+> $$
+> \varepsilon_X,
+> \qquad
+> \varepsilon_V,
+> \qquad
+> \varepsilon_A
+> $$
+> and closed cones
+> $$
+> \mathfrak{C}^{a}_W,
+> \qquad
+> \mathfrak{C}^{b}_W,
+> \qquad
+> \mathfrak{C}^{\mathrm{role}}_W,
+> \qquad
+> \mathfrak{V}^{i}_W,
+> \qquad
+> \mathfrak{U}^{\beta}_W
+> $$
+> satisfying the compatibility conditions above such that the set
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+> $$
+> of all gauge-fixed histories
+> $$
+> \Phi=(\mathbf{X},\dot{\mathbf{X}})
+> \in
+> \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
+> $$
+> obeying
+> 1. the seed-centered tube bounds
+>    $$
+>    \sup_t
+>    \|\mathbf{X}(t)-\mathbf{X}_{\mathrm{seed}}(t)\|
+>    \le
+>    \varepsilon_X,
+>    $$
+>    $$
+>    \sup_t
+>    \|\dot{\mathbf{X}}(t)-\dot{\mathbf{X}}_{\mathrm{seed}}(t)\|
+>    \le
+>    \varepsilon_V,
+>    $$
+>    $$
+>    \operatorname{Lip}(\dot{\mathbf{X}})
+>    \le
+>    A_\ast+\varepsilon_A;
+>    $$
+> 2. the pointwise cone conditions
+>    $$
+>    \mathbf{a}(t)\in \mathfrak{C}^{a}_W,
+>    \qquad
+>    \mathbf{b}(t)\in \mathfrak{C}^{b}_W,
+>    \qquad
+>    \mathbf{x}_{i_\ast}(t)-\mathbf{x}_2(t)\in \mathfrak{C}^{\mathrm{role}}_W,
+>    \qquad
+>    \dot{\mathbf{x}}_i(t)\in \mathfrak{V}^{i}_W
+>    $$
+>    on every controlled window
+>    $$
+>    W,
+>    $$
+> 3. the affine support inequalities
+>    $$
+>    \mathbf{n}^{a}_W\cdot \mathbf{a}(t)\ge \alpha^{a}_W,
+>    \qquad
+>    \mathbf{n}^{b}_W\cdot \mathbf{b}(t)\ge \alpha^{b}_W,
+>    \qquad
+>    \mathbf{n}^{\mathrm{role}}_W\cdot
+>    \bigl(\mathbf{x}_{i_\ast}(t)-\mathbf{x}_2(t)\bigr)
+>    \ge
+>    \alpha^{\mathrm{role}}_W
+>    $$
+>    on every controlled window,
+>
+> is a nonempty closed convex subset of
+> $$
+> \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
+> $$
+> and lies entirely inside the tame region where the following nonconvex data are forced with uniform floors:
+> 1. the pair and midpoint floors
+>    $$
+>    \|\mathbf{a}(t)\|\ge a_{\min}^{\mathrm{cvx}},
+>    \qquad
+>    \|\mathbf{b}(t)\|\ge b_{\min}^{\mathrm{cvx}};
+>    $$
+> 2. the shear floor
+>    $$
+>    |\det(\mathbf{a}(t),\mathbf{b}(t))|
+>    \ge
+>    \Delta_{\min}^{\mathrm{cvx}};
+>    $$
+> 3. the role-gap floor
+>    $$
+>    \delta_{\mathrm{role}}(t)
+>    \ge
+>    \delta_{\mathrm{role},\min}^{\mathrm{cvx}};
+>    $$
+> 4. and the branchwise Jacobian floors
+>    $$
+>    |J_\beta(t)|
+>    \ge
+>    \nu^{\mathrm{cvx}}_{J,\beta}
+>    \qquad
+>    \text{for every active branch family }
+>    \beta.
+>    $$
+
+> **Proof draft.**
+> The defining inequalities are visibly convex: the seed-centered
+> $$
+> C^0/C^1
+> $$
+> tube bounds are norm-convex, the Lipschitz bound is convex, pointwise membership in each closed cone is convex, and the support inequalities are affine.
+>
+> 1. **Closedness and convexity.**
+>    Every defining condition is closed under uniform convergence on the history interval, hence
+>    $$
+>    \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+>    $$
+>    is closed. Intersections of closed convex tube, cone, and affine constraints remain convex.
+>
+> 2. **Nonemptiness.**
+>    Choose the cones and support vectors around the seed with aperture small enough that the seed itself satisfies them with strict slack. Then the seed belongs to
+>    $$
+>    \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}.
+>    $$
+>
+> 3. **Norm floors from affine support.**
+>    Since
+>    $$
+>    \mathbf{n}^{a}_W\cdot \mathbf{a}\ge \alpha^{a}_W
+>    \qquad
+>    \text{and}
+>    \qquad
+>    \|\mathbf{n}^{a}_W\|=1,
+>    $$
+>    one gets
+>    $$
+>    \|\mathbf{a}\|\ge \alpha^{a}_W.
+>    $$
+>    Likewise
+>    $$
+>    \|\mathbf{b}\|\ge \alpha^{b}_W.
+>    $$
+>    Hence one may take
+>    $$
+>    a_{\min}^{\mathrm{cvx}}
+>    =
+>    \min_W \alpha^{a}_W,
+>    \qquad
+>    b_{\min}^{\mathrm{cvx}}
+>    =
+>    \min_W \alpha^{b}_W.
+>    $$
+>
+> 4. **Shear and role-gap floors from cone separation.**
+>    The angular separation of
+>    $$
+>    \mathfrak{C}^{a}_W
+>    \qquad
+>    \text{and}
+>    \qquad
+>    \mathfrak{C}^{b}_W
+>    $$
+>    implies
+>    $$
+>    |\det(\mathbf{a},\mathbf{b})|
+>    \ge
+>    \varsigma^{ab}_W\,
+>    \|\mathbf{a}\|\,\|\mathbf{b}\|
+>    \ge
+>    \varsigma^{ab}_W\alpha^{a}_W\alpha^{b}_W.
+>    $$
+>    Therefore
+>    $$
+>    \Delta_{\min}^{\mathrm{cvx}}
+>    =
+>    \min_W
+>    \varsigma^{ab}_W\alpha^{a}_W\alpha^{b}_W
+>    >0.
+>    $$
+>    Likewise the role cone and support inequality give a positive lower bound
+>    $$
+>    \delta_{\mathrm{role},\min}^{\mathrm{cvx}}
+>    $$
+>    after shrinking the role-cone aperture if necessary.
+>
+> 5. **Jacobian floors from cone transversality.**
+>    On each active branch family
+>    $$
+>    \beta=(i,j),
+>    $$
+>    the induced chord-direction cone
+>    $$
+>    \mathfrak{U}^{\beta}_W
+>    $$
+>    and the emitter velocity cone
+>    $$
+>    \mathfrak{V}^{j}_W
+>    $$
+>    satisfy
+>    $$
+>    \dot{\mathbf{x}}_j\cdot \hat{\mathbf{r}}_\beta
+>    \le
+>    c_f(1-\nu^{\mathrm{cvx}}_{\beta,W}),
+>    $$
+>    so
+>    $$
+>    J_\beta(t)
+>    =
+>    1-\frac{\dot{\mathbf{x}}_j\cdot \hat{\mathbf{r}}_\beta}{c_f}
+>    \ge
+>    \nu^{\mathrm{cvx}}_{\beta,W}.
+>    $$
+>    Taking the minimum over the finite branch family list yields one common Jacobian floor.
+>
+> 6. **Containment in the tame region.**
+>    These floors imply the smooth-window, branch-regularity, and role-gap hypotheses used in the recapture and closure packages. Therefore
+>    $$
+>    \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+>    $$
+>    lies entirely inside the tame region where the preserved event class, fold ceilings, and principal margins are already stable.
 
 Only after this separation should one define the many-body tame target. The many-body tame envelope target should then be a closed subset
 $$
@@ -6621,6 +6988,70 @@ The coupled parameter regime underlying this closed tame target should likewise 
 >    $$
 > 5. and the nondegeneracy of the smooth recapture windows.
 
+> **Proof draft of the coupled parameter solvability proposition.**
+> The constants are coupled, but their dependencies are triangular once the previous packages are ordered correctly.
+>
+> 1. **Choose the kinematic box first.**
+>    Fix
+>    $$
+>    A_\ast
+>    $$
+>    and the seed-centered tube radii
+>    $$
+>    \varepsilon_X,
+>    \qquad
+>    \varepsilon_V,
+>    \qquad
+>    \varepsilon_A
+>    $$
+>    so that the explicit convex core proposition applies.
+>
+> 2. **Choose cone apertures and support floors.**
+>    Pick the spatial and velocity cones narrow enough that the induced constants
+>    $$
+>    a_{\min}^{\mathrm{cvx}},
+>    \qquad
+>    b_{\min}^{\mathrm{cvx}},
+>    \qquad
+>    \Delta_{\min}^{\mathrm{cvx}},
+>    \qquad
+>    \delta_{\mathrm{role},\min}^{\mathrm{cvx}},
+>    \qquad
+>    \nu^{\mathrm{cvx}}_{J,\beta}
+>    $$
+>    are positive with slack relative to the seed history.
+>
+> 3. **Choose the mollification regime.**
+>    Then take
+>    $$
+>    \eta,
+>    \qquad
+>    \epsilon_c
+>    $$
+>    small enough for the Type II / Type III caustic-transit estimates, but not so small that the resulting fold ceilings
+>    $$
+>    F^{\mathrm{mb}}_m
+>    $$
+>    dominate the inward recapture floors.
+>
+> 4. **Balance recapture against leakage.**
+>    Because the inward branch-sum terms and the leakage terms vary continuously with these parameters on the smooth windows, the strict seed inequalities persist on one nonempty open parameter neighborhood. Hence the principal margins
+>    $$
+>    \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{post}},
+>    \qquad
+>    \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{late}}
+>    $$
+>    remain positive there.
+>
+> 5. **Preserve deep-past suppression.**
+>    Finally choose
+>    $$
+>    \tau^{\mathrm{mb}}_{\mathrm{dp}}
+>    $$
+>    large enough that the deep-past ceiling remains below the recapture slack already reserved in Step 4.
+>
+> Therefore the admissible parameter region is the intersection of finitely many open inequalities, all already satisfied by the seed with slack; hence it is nonempty.
+
 This is the planar-three-body analogue of the explicit short-window recapture regime in the frozen 1D scaffold. The closure packages may now consume it as a named parameter-intersection target rather than a silent background hope.
 
 This strengthening matters. In the planar-three-body bridge, the tame layer cannot merely remember that “some recapture theorem holds.” It must preserve the actual windows and margin constants on which the first concrete recapture lemma was proved, or else the local turning argument could be lost after one return. But those data should now be understood as structure carried on a stable tame subregion of the convex Banach box, not as the definition of convexity itself.
@@ -6723,7 +7154,7 @@ This strengthening matters. In the planar-three-body bridge, the tame layer cann
 This is the correct tame-structure target because the first two Jacobi channels are no longer abstract placeholders. If their window geometry or margin positivity is not propagated through the return map, then the concrete recapture lemma has no stable domain on which to operate.
 
 > **Proof draft of the closed tame graph-stable subregion proposition.**
-> Assume the coupled parameter solvability proposition. Let
+> Assume the coupled parameter solvability proposition and the explicit convex tame core proposition. Let
 > $$
 > \mathcal{T}^{\mathrm{mb}}_{A_\ast,\eta}
 > $$
@@ -6738,7 +7169,7 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > \subseteq
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}
 > $$
-> lying entirely inside the same tame region.
+> given by the explicit tube-and-cone construction and lying entirely inside the same tame region.
 >
 > 1. **Closedness.**
 >    Each defining inequality for
@@ -6769,8 +7200,83 @@ This is the correct tame-structure target because the first two Jacobi channels 
 >    $$
 >    completes one controlled cycle with the same preserved constants. After the canonical gauge reset, the returned history therefore lies in the same closed tame data class.
 
+> **Lemma (One-cycle preservation of the explicit convex core inequalities).**
+> Assume the explicit convex tame core proposition, the coupled parameter solvability proposition, and the closed tame graph-stable subregion proposition.
+> Then, after shrinking the seed-centered tube radii if necessary, the gauge-reset return map sends every history in
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+> $$
+> to a returned history satisfying the same:
+> 1. seed-centered tube bounds
+>    $$
+>    \varepsilon_X,
+>    \qquad
+>    \varepsilon_V,
+>    \qquad
+>    \varepsilon_A;
+>    $$
+> 2. pointwise cone conditions
+>    $$
+>    \mathfrak{C}^{a}_W,
+>    \qquad
+>    \mathfrak{C}^{b}_W,
+>    \qquad
+>    \mathfrak{C}^{\mathrm{role}}_W,
+>    \qquad
+>    \mathfrak{V}^{i}_W;
+>    $$
+> 3. and affine support inequalities
+>    $$
+>    \alpha^{a}_W,
+>    \qquad
+>    \alpha^{b}_W,
+>    \qquad
+>    \alpha^{\mathrm{role}}_W.
+>    $$
+
+> **Proof draft.**
+> The returned history already lies in the same closed tame data class by the previous proposition, so the active event class, smooth-window floors, fold ceilings, and principal margins are preserved. It remains only to preserve the explicit convex inequalities.
+>
+> 1. **Tube bounds.**
+>    Continuity of the gauge-reset return map on the convex Banach envelope implies that, after shrinking the tube radii around the seed, the returned history remains inside the same
+>    $$
+>    \varepsilon_X,
+>    \qquad
+>    \varepsilon_V,
+>    \qquad
+>    \varepsilon_A
+>    $$
+>    tube.
+>
+> 2. **Cone preservation.**
+>    The seed satisfies all cone conditions with strict angular slack. Because the active event class and the gauge representative are preserved, the relevant Jacobi and role-gap vectors vary continuously under one return. Shrinking the convex core if necessary, those vectors therefore stay inside the same closed cones
+>    $$
+>    \mathfrak{C}^{a}_W,
+>    \qquad
+>    \mathfrak{C}^{b}_W,
+>    \qquad
+>    \mathfrak{C}^{\mathrm{role}}_W,
+>    \qquad
+>    \mathfrak{V}^{i}_W.
+>    $$
+>
+> 3. **Support-inequality preservation.**
+>    The affine support functionals are continuous on the history space and are strictly positive at the seed with reserved slack from the coupled-parameter regime. Therefore the returned history still satisfies
+>    $$
+>    \mathbf{n}^{a}_W\cdot \mathbf{a}\ge \alpha^{a}_W,
+>    \qquad
+>    \mathbf{n}^{b}_W\cdot \mathbf{b}\ge \alpha^{b}_W,
+>    \qquad
+>    \mathbf{n}^{\mathrm{role}}_W\cdot
+>    (\mathbf{x}_{i_\ast}-\mathbf{x}_2)
+>    \ge
+>    \alpha^{\mathrm{role}}_W.
+>    $$
+>
+> Hence the returned history belongs to the same explicit convex core.
+
 > **Proof draft of the invariant-envelope closure theorem.**
-> Assume the coupled parameter solvability proposition.
+> Assume the coupled parameter solvability proposition and the explicit convex tame core proposition.
 > The remaining closure burden is to show that the gauge-reset return map
 > $$
 > \mathcal{P}^{\mathrm{mb}}_{\eta}
@@ -6785,7 +7291,8 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > 2. The no-accumulation and caustic-transit packages preserve the event class and fold ceilings.
 > 3. The ancestry package preserves the deep-past ceiling.
 > 4. The recapture package preserves the principal margin positivity and the controlled windows.
-> 5. The gauge reset preserves the chosen chart representative.
+> 5. The one-cycle convex-core preservation lemma preserves the same tube-and-cone inequalities.
+> 6. The gauge reset preserves the chosen chart representative.
 >
 > Therefore
 > $$
@@ -6798,7 +7305,7 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > $$
 
 > **Target Theorem (Planar-three-body invariant-envelope closure and Schauder capstone).**
-> Assume the convex Banach-envelope proposition, the hypergraph-and-atlas stability proposition on that envelope, the coupled parameter solvability proposition, the closed tame graph-stable subregion proposition, the corresponding invariant-envelope closure theorem, and continuity and precompactness of the gauge-fixed many-body return map on the relevant convex Banach box.
+> Assume the convex Banach-envelope proposition, the hypergraph-and-atlas stability proposition on that envelope, the explicit convex tame core proposition, the coupled parameter solvability proposition, the closed tame graph-stable subregion proposition, the corresponding invariant-envelope closure theorem, and continuity and precompactness of the gauge-fixed many-body return map on the relevant convex Banach box.
 >
 > Then the return map has a fixed point
 > $$
