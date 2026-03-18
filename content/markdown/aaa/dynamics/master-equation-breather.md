@@ -3669,6 +3669,11 @@ $$
 c_f-\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s),
 $$
 $$
+\partial_t g_{ij}(t;s)
+=
+\dot{\mathbf{x}}_i(t)\cdot \hat{\mathbf{r}}_{ij}(t;s)-c_f,
+$$
+$$
 \partial_s^2 g_{ij}(t;s)
 =
 -\ddot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)
@@ -3835,6 +3840,67 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > and the bracket stays strictly positive throughout the stated interval.
 
+> **Lemma (Uniform receiver-time passage through admissible folds).**
+> Fix one admissible fold
+> $$
+> (t_\ast,s_\ast)
+> $$
+> and assume, in addition, that the receiver-time derivative is transversal there:
+> $$
+> |\partial_t g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0.
+> $$
+> If
+> $$
+> |\partial_t^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,tg}
+> $$
+> on the corresponding controlled fold tube, then the same receiver-source family cannot produce a second fold event with receiver-time separation smaller than
+> $$
+> \delta_{\mathrm{fold},t}
+> \equiv
+> \frac{\chi_{\mathrm{fold}}}{C^{\mathrm{mb}}_{2,tg}}.
+> $$
+>
+> **Proof sketch.**
+> Taylor-expand
+> $$
+> \partial_t g_{ij}(t;s_\ast)
+> $$
+> about
+> $$
+> t=t_\ast.
+> $$
+> Then for some intermediate point
+> $$
+> \xi_t
+> $$
+> between
+> $$
+> t
+> $$
+> and
+> $$
+> t_\ast
+> $$
+> one has
+> $$
+> \partial_t g_{ij}(t;s_\ast)
+> =
+> \partial_t g_{ij}(t_\ast;s_\ast)
+> +
+> \partial_t^2 g_{ij}(\xi_t;s_\ast)(t-t_\ast).
+> $$
+> Therefore
+> $$
+> |\partial_t g_{ij}(t;s_\ast)|
+> \ge
+> \chi_{\mathrm{fold}}-C^{\mathrm{mb}}_{2,tg}|t-t_\ast|,
+> $$
+> which stays strictly positive whenever
+> $$
+> 0<|t-t_\ast|<\chi_{\mathrm{fold}}/C^{\mathrm{mb}}_{2,tg}.
+> $$
+> So the same fold family cannot complete a second receiver-time passage through a fold inside that interval.
+
 > **Target Proposition (Quantitative no-accumulation of many-body delay events).**
 > Assume the unreduced local well-posedness package and suppose, in addition, that on the controlled cycle:
 > 1. each defect
@@ -3857,6 +3923,14 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 >    $$
 >    |\partial_s g_{ij}(t;s)|\ge \nu_J^{\mathrm{mb}}>0.
 >    $$
+> 4. every admissible fold is also transversal in receiver time:
+>    $$
+>    |\partial_t g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0,
+>    $$
+>    and the controlled cycle carries one receiver-time second-derivative ceiling
+>    $$
+>    |\partial_t^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,tg}.
+>    $$
 >
 > Then there exists a strict minimum event gap
 > $$
@@ -3873,6 +3947,10 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > \gamma_{\mathrm{fold}},
 > \qquad
 > \nu_J^{\mathrm{mb}},
+> \qquad
+> \chi_{\mathrm{fold}},
+> \qquad
+> C^{\mathrm{mb}}_{2,tg},
 > $$
 > such that:
 > 1. two distinct fold events for the same receiver-source family cannot occur with source-time separation smaller than
@@ -3907,7 +3985,7 @@ $$
 \Delta\tau_{\mathrm{evt}}
 \equiv
 \min\left\{
-\frac{\gamma_{\mathrm{fold}}}{C^{\mathrm{mb}}_{3,g}},
+\frac{\chi_{\mathrm{fold}}}{C^{\mathrm{mb}}_{2,tg}},
 \frac{\nu_J^{\mathrm{mb}}}{C^{\mathrm{mb}}_{2,g}},
 \Delta\tau_{\mathrm{sec}},
 \Delta\tau_{\mathrm{exc}}
@@ -4030,6 +4108,23 @@ $$
 \frac{\gamma_{\mathrm{exc}}}{C^{\mathrm{mb}}_{2,\mathrm{exc}}},
 $$
 and the same Taylor argument shows that sector relabelings and admissible exchanges are isolated in cycle time by at least those scales.
+Along any active branch away from the fold tubes one also has
+$$
+\dot{s}(t)
+=
+-\frac{\partial_t g_{ij}(t;s(t))}{\partial_s g_{ij}(t;s(t))},
+$$
+so the simple-branch persistence lemma supplies the denominator floor needed to keep
+$$
+\dot{s}(t)
+$$
+uniformly bounded there. That is the analytic input behind the bounded first and second derivatives of
+$$
+\Theta_{\mathrm{sec}}(t),
+\qquad
+\Theta_{\mathrm{exc}}(t)
+$$
+on the corresponding branch segments.
 
 > **Proof draft of the quantitative no-accumulation proposition.**
 > Fix one controlled cycle and one admissible receiver-source-sector family.
@@ -4039,13 +4134,13 @@ and the same Taylor argument shows that sector relabelings and admissible exchan
 >    $$
 >    (t,s_\ast),
 >    $$
->    the previous fold-isolation lemma yields a forbidden source-time interval
+>    the source-time fold-isolation lemma yields one local branch parameterization of the fold tube, while the receiver-time passage lemma yields a forbidden cycle-time interval
 >    $$
->    (s_\ast-\delta_{\mathrm{fold}},\,s_\ast+\delta_{\mathrm{fold}})
+>    (t_\ast-\delta_{\mathrm{fold},t},\,t_\ast+\delta_{\mathrm{fold},t})
 >    $$
->    containing no second fold of the same family. Hence fold events for that family are discrete with separation at least
+>    containing no second fold event of the same family. Hence fold events for that family are discrete in receiver time with separation at least
 >    $$
->    \delta_{\mathrm{fold}}.
+>    \delta_{\mathrm{fold},t}.
 >    $$
 >
 > 2. **Simple-branch persistence between folds.**
@@ -4103,7 +4198,7 @@ and the same Taylor argument shows that sector relabelings and admissible exchan
 >    \Delta\tau_{\mathrm{evt}}
 >    \equiv
 >    \min\left\{
->    \delta_{\mathrm{fold}},
+>    \delta_{\mathrm{fold},t},
 >    \delta_{\mathrm{simp}},
 >    \Delta\tau_{\mathrm{sec}},
 >    \Delta\tau_{\mathrm{exc}}
@@ -4391,31 +4486,177 @@ M_{\max}^{\mathrm{mb}}\le 3
 $$
 is the maximal admissible local fold multiplicity in the Type II / Type III event alphabet.
 
-The intended proof mechanism should also be written down now, because this is exactly where the planar three-body program could still fail.
+The proof should now be written one local fold block at a time.
 
-1. Localize one admissible fold tube by the no-accumulation constants
-$$
-\Delta\tau_{\mathrm{evt}},
-\qquad
-\gamma_{\mathrm{fold}},
-\qquad
-\delta^{\mathrm{mb}}_{\mathrm{sep}}.
-$$
-On that tube, use the fold-curvature floor to reduce each singular branch denominator to the standard dual-mollified one-dimensional caustic transit model after a controlled change of source parameter.
+> **Lemma (Type II fold-tube transit estimate).**
+> Fix one admissible Type II fold tube
+> $$
+> W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})
+> $$
+> and one principal channel
+> $$
+> m\in\{1,2,3,4\}.
+> $$
+> Under the fold-tube normal form, the corresponding branch contribution to the channelwise impulse satisfies
+> $$
+> \left|
+> \int_{W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})}
+> \Pi_m(t)\cdot
+> \mathbf{a}^{(ij)}_{\eta}(t)\,dt
+> \right|
+> \le
+> \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}},
+> $$
+> for some finite constant depending only on
+> $$
+> \eta,
+> \qquad
+> \epsilon_c,
+> \qquad
+> \gamma_{\mathrm{fold}},
+> \qquad
+> d_{\min},
+> \qquad
+> U_{\max},
+> \qquad
+> A_{\max}.
+> $$
+>
+> **Proof draft.**
+> On the fold tube, write
+> $$
+> J_{ij}(t;s)=\alpha_{ij}(t)u+\mathcal{R}_{ij}(t,u),
+> \qquad
+> u=s-s_\ast,
+> $$
+> with
+> $$
+> |\alpha_{ij}(t)|\ge \gamma_{\mathrm{fold}}/2
+> $$
+> and
+> $$
+> |\mathcal{R}_{ij}(t,u)|\le C^{\mathrm{mb}}_{3,g}|u|^2.
+> $$
+> Shrinking the tube if necessary, this gives
+> $$
+> |J_{ij}(t;s)|\ge c_{\mathrm{fold}}|u|
+> $$
+> for some
+> $$
+> c_{\mathrm{fold}}\asymp \gamma_{\mathrm{fold}}.
+> $$
+> The dual-mollified branch kernel is then bounded by
+> $$
+> \frac{C_m^{\mathrm{proj}}}{d_{\min}^2\bigl(|u|+\eta\bigr)+\epsilon_c^2},
+> $$
+> with
+> $$
+> C_m^{\mathrm{proj}}
+> $$
+> determined by the channel projection and the
+> $$
+> U_{\max},A_{\max}
+> $$
+> envelope. Integration in receiver time across the finite tube therefore reduces to the same one-dimensional dual-mollified transit integral as in the binary bridge, which is finite.
 
-2. For a Type II fold, apply the same dual-mollified transit estimate as in the earlier bridge packages, with constants tracked uniformly through the many-body Jacobian and distance floors.
+> **Lemma (Type III shared-body superposition estimate).**
+> Fix one admissible Type III shared-body coupled fold block
+> $$
+> \mathsf{e}.
+> $$
+> Then for each principal channel
+> $$
+> m
+> $$
+> one has
+> $$
+> \left|
+> \int_{W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})}
+> \Pi_m(t)\cdot
+> \ddot{\mathbf{X}}(t)\,dt
+> \right|
+> \le
+> M_{\mathrm{loc}}(\mathsf{e})\,\mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}},
+> $$
+> where
+> $$
+> M_{\mathrm{loc}}(\mathsf{e})\le 3.
+> $$
+>
+> **Proof draft.**
+> Decompose the block into its finitely many participating branch families. The branch-separation floor
+> $$
+> \delta^{\mathrm{mb}}_{\mathrm{sep}}>0
+> $$
+> rules out any uncontrolled secondary collision away from the common fold center, and the admissible event alphabet forbids multiplicity larger than three. Apply the Type II estimate to each participating family and sum.
 
-3. For a Type III shared-body coupled fold, decompose the local block into finitely many simultaneously active branch families. The branch-separation floor prevents exact branch collision away from the shared fold event, and the admissible multiplicity list prevents arbitrarily high local singular rank. Hence the total impulse is bounded by a finite sum of controlled dual-mollified transit integrals.
+> **Corollary (Renormalized post-transit envelope constants).**
+> There exist finite constants
+> $$
+> U_{\max}^{+},
+> \qquad
+> A_{\max}^{+},
+> \qquad
+> L_A^{+}
+> $$
+> depending only on the pre-transit envelope and the fold ceilings
+> $$
+> F^{\mathrm{mb}}_m
+> $$
+> such that every admissible fold block sends the controlled tube data into a post-transit state satisfying
+> $$
+> \|\dot{\mathbf{X}}\|\le U_{\max}^{+},
+> \qquad
+> \|\ddot{\mathbf{X}}\|\le A_{\max}^{+},
+> \qquad
+> \operatorname{Lip}(\ddot{\mathbf{X}})\le L_A^{+}.
+> $$
+> In the eventual invariant-envelope argument one must choose the kinematic box so that these renormalized constants are absorbed back into the same admissible class.
 
-4. Project those local impulse bounds onto the Jacobi channels
-$$
-\rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_4.
-$$
-This yields the finite ceilings
-$$
-F^{\mathrm{mb}}_m
-$$
-consumed later by the recapture windows and also preserves the acceleration-Lipschitz control needed by the next cycle's no-accumulation package.
+> **Proof draft of the bounded caustic-transit proposition.**
+> Fix one admissible fold block.
+>
+> 1. **Tube localization.**
+>    By the no-accumulation package, the fold block lies in one isolated receiver-time tube of width controlled by
+>    $$
+>    \Delta\tau_{\mathrm{evt}}.
+>    $$
+>    So no second singular event interacts with the tube at the same scale.
+>
+> 2. **Type II local model.**
+>    For a simple fold, apply the fold-tube normal form and the Type II transit estimate. This gives one finite channelwise impulse bound
+>    $$
+>    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}.
+>    $$
+>
+> 3. **Type III superposition.**
+>    For a shared-body coupled fold, decompose into the finitely many participating branch families and use the superposition lemma. This yields
+>    $$
+>    \mathfrak{F}^{\mathrm{mb}}_m
+>    =
+>    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}M_{\max}^{\mathrm{mb}}.
+>    $$
+>
+> 4. **Projection to the principal channels.**
+>    The projections
+>    $$
+>    \Pi_m
+>    $$
+>    defining
+>    $$
+>    \rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_4
+>    $$
+>    are uniformly bounded on the smooth windows. Therefore the same finite impulse controls the fold-loss terms
+>    $$
+>    L^{\mathrm{mb}}_{m,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_m.
+>    $$
+>
+> 5. **Post-transit regularity.**
+>    The renormalized envelope corollary shows that the post-transit trajectory still satisfies a controlled
+>    $$
+>    C^1
+>    $$
+>    and acceleration-Lipschitz bound, so the next no-accumulation cycle remains available.
 
 This is the last missing analytic bridge between finite branch combinatorics and the concrete recapture inequalities. Without it, the fold ceilings in the principal margins remain formal placeholders.
 
@@ -4603,6 +4844,48 @@ $$
 $$
 but the event structure it produces must be compatible with the smooth windows on which those derivatives are later taken.
 
+> **Proof draft of the finite active hypergraph proposition.**
+> Fix one controlled one-cycle continuation in the admissible gauge chart.
+>
+> 1. **Finite event alphabet.**
+>    By construction, every allowed topological change of an active branch family belongs to one of the five admissible local types: continuation, simple fold, shared-body coupled fold, sector relabeling, or source-cluster exchange. No other event type is permitted.
+>
+> 2. **Finite event times.**
+>    The no-accumulation package gives one common cycle-time gap
+>    $$
+>    \Delta\tau_{\mathrm{evt}}>0
+>    $$
+>    between any two admissible events on the same controlled family. Hence the total number of event times on one cycle is finite.
+>
+> 3. **Finite vertex set.**
+>    Away from event times, every active branch is simple, sector-labeled, and carried by one receiver-source-window-sector family. Since the receiver index, source index, window label, and sector label all range over finite sets, and since the event count is finite, only finitely many branch segments can occur over the full cycle. This yields
+>    $$
+>    N^{\mathrm{mb}}_{\mathrm{vert}}<\infty.
+>    $$
+>
+> 4. **Finite hyperedge set.**
+>    Each admissible event time contributes exactly one local hyperedge of Type I-V. Since the admissible event times are finite and every event block has multiplicity bounded by the admissible alphabet, the total hyperedge count is finite and obeys
+>    $$
+>    N^{\mathrm{mb}}_{\mathrm{edge}}
+>    \le
+>    \left\lceil \frac{T_{\mathrm{cyc}}}{\Delta\tau_{\mathrm{evt}}}\right\rceil
+>    N^{\mathrm{mb}}_{\mathrm{fam}}.
+>    $$
+>
+> 5. **Branch separation and Jacobian control.**
+>    The simple-branch persistence lemma and the caustic-transit package guarantee that outside the explicitly controlled fold tubes one retains the uniform Jacobian floor
+>    $$
+>    |J_{ij}(t;s)|\ge \nu^{\mathrm{mb}}_J
+>    $$
+>    and branch-separation floor
+>    $$
+>    \delta^{\mathrm{mb}}_{\mathrm{sep}}>0.
+>    $$
+>    Therefore no uncontrolled branch proliferation can occur between hypergraph-coded event blocks.
+>
+> 6. **Compatibility with later packages.**
+>    Because the hypergraph changes only through the listed event alphabet and does so at finitely many isolated times, every later backward ancestry chain and every later forward recapture chain may be read on one finite combinatorial object. That is exactly the content needed by the ancestry and recapture packages.
+
 This is the many-body replacement for the binary branch graph packages. Once it is proved, later ancestry and recapture arguments can consume a finite combinatorial object rather than an open-ended moving family of delayed roots.
 
 ### Fifth many-body theorem package: cluster-valued ancestry and deep-past exclusion
@@ -4757,6 +5040,70 @@ $$
 \mathcal{W}^{\mathrm{mb}}_{\mathrm{mid}}
 $$
 and the controlled fold or exchange tubes.
+
+> **Proof draft of the deep-past cluster-ancestry-or-exclusion proposition.**
+> Fix one late-turn vertex
+> $$
+> \mathsf{v}_{\mathrm{late}}
+> \in
+> \mathscr{V}^{\mathrm{mb}}_{\mathrm{br}}.
+> $$
+>
+> 1. **Finite backward search space.**
+>    By the finite-hypergraph package, the backward continuation graph from
+>    $$
+>    \mathsf{v}_{\mathrm{late}}
+>    $$
+>    lies in a finite directed hypergraph whose event times are separated by
+>    $$
+>    \Delta\tau_{\mathrm{evt}}.
+>    $$
+>    So every backward ancestry chain either terminates, enters a previously visited combinatorial state, or enters one of the explicitly listed fold or exchange tubes.
+>
+> 2. **Provenance-component extraction.**
+>    Collect all backward-connected components that lie entirely in the provenance windows
+>    $$
+>    \mathcal{W}^{\mathrm{mb}}_{\mathrm{prov}}
+>    $$
+>    and retain only those on which the receiver label, sector label, and admissible source-cluster trace stay fixed and the Jacobian floor
+>    $$
+>    \nu^{\mathrm{mb}}_{J,\mathrm{anc}}>0
+>    $$
+>    holds. These are the ancestry components
+>    $$
+>    \mathfrak{a}_1,\dots,\mathfrak{a}_{N_{\mathrm{anc}}}.
+>    $$
+>
+> 3. **Uniqueness of ancestry attachment.**
+>    Suppose one late-turn branch met two distinct ancestry components. Then the backward chain would have to cross either a forbidden receiver-window reversal or an unlisted exchange move between them, contradicting the admissible hypergraph alphabet. Hence each late-turn branch meets at most one ancestry component.
+>
+> 4. **Exclusion of infinite migration.**
+>    If a backward chain avoids all ancestry components, then by finiteness of the hypergraph and finiteness of the source-cluster alphabet it must eventually revisit one earlier combinatorial state. That forces a trapped exchange loop inside
+>    $$
+>    \mathcal{W}^{\mathrm{mb}}_{\mathrm{lt}}
+>    \cup
+>    \mathcal{W}^{\mathrm{mb}}_{\mathrm{mid}}
+>    $$
+>    and the controlled fold or exchange tubes. But every admissible exchange in such a loop consumes at least
+>    $$
+>    \Delta\tau_{\mathrm{evt}},
+>    $$
+>    and the finite-cycle parity rule forbids a closed loop of admissible source-cluster moves that never lands in a provenance component. Therefore infinite migration is excluded.
+>
+> 5. **Deep-past amplitude bound.**
+>    On each ancestry component, the Jacobian floor
+>    $$
+>    \nu^{\mathrm{mb}}_{J,\mathrm{anc}}
+>    $$
+>    and the deep-past delay threshold
+>    $$
+>    t-s\ge \tau^{\mathrm{mb}}_{\mathrm{dp}}
+>    $$
+>    bound every surviving branch contribution by the stated ceiling. Summing over at most
+>    $$
+>    N_{\mathrm{anc}}
+>    $$
+>    components yields the deep-past suppression estimate.
 
 > **Target Corollary (Deep-past suppression from finite cluster ancestry).**
 > Assume the deep-past cluster-ancestry-or-exclusion proposition. Then on every controlled late-turn window one has a uniform bound
@@ -5578,6 +5925,79 @@ the intended role is late-turn closure: the same observables must already be los
 > 3. therefore the pair-separation and midpoint-separation channels cannot both sustain monotone outward escape across the first post-crossing or late-turn stages.
 
 This is the first honest recapture lemma for the planar three-body bridge. It does not yet prove the full many-body return, but it reduces the first two escape channels to explicit projected inequalities on controlled windows.
+
+> **Proof draft of the two-channel Jacobi recapture proposition.**
+> On the smooth windows
+> $$
+> I^{\mathrm{mb}}_{1,\mathrm{post}}\cap I^{\mathrm{mb}}_{2,\mathrm{post}},
+> \qquad
+> I^{\mathrm{mb}}_{1,\mathrm{late}}\cap I^{\mathrm{mb}}_{2,\mathrm{late}},
+> $$
+> the observables
+> $$
+> \rho^{\mathrm{mb}}_1=\|\mathbf{a}\|,
+> \qquad
+> \rho^{\mathrm{mb}}_2=\|\mathbf{b}\|
+> $$
+> are twice differentiable and obey the comparison identities already derived above.
+>
+> 1. **Channel `\rho^{\mathrm{mb}}_1`.**
+>    Insert the decomposition
+>    $$
+>    \Lambda^{\mathrm{mb}}_1
+>    =
+>    \Lambda^{\mathrm{mb}}_{1,\mathrm{core}}
+>    -
+>    \Lambda^{\mathrm{mb}}_{1,\mathrm{same}}
+>    -
+>    \Lambda^{\mathrm{mb}}_{1,\mathrm{self}}
+>    $$
+>    into the identity for
+>    $$
+>    \ddot{\rho}^{\mathrm{mb}}_1.
+>    $$
+>    Bound the outward pieces by positive part, control the fold contribution by
+>    $$
+>    L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_1,
+>    $$
+>    and bound the deep-past term by
+>    $$
+>    A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)\le A^{\mathrm{mb}}_{\mathrm{deep},\max}.
+>    $$
+>    The stated projected inequality then gives
+>    $$
+>    \ddot{\rho}^{\mathrm{mb}}_1(t)<0.
+>    $$
+>
+> 2. **Channel `\rho^{\mathrm{mb}}_2`.**
+>    The same argument applied to
+>    $$
+>    \Lambda^{\mathrm{mb}}_2
+>    =
+>    \Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}
+>    -
+>    \Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}
+>    -
+>    \Lambda^{\mathrm{mb}}_{2,\mathrm{self}}
+>    $$
+>    yields
+>    $$
+>    \ddot{\rho}^{\mathrm{mb}}_2(t)<0.
+>    $$
+>
+> 3. **Turning inside the window.**
+>    If either outward rate is initially positive, strict negativity of the second derivative forces that outward rate to decrease monotonically. Therefore, provided the window length dominates the initial slope divided by the corresponding margin, the observable reaches an inward-turning time before the end of the window.
+>
+> 4. **Joint exclusion of monotone escape.**
+>    Since both
+>    $$
+>    \ddot{\rho}^{\mathrm{mb}}_1
+>    \qquad
+>    \text{and}
+>    \qquad
+>    \ddot{\rho}^{\mathrm{mb}}_2
+>    $$
+>    are strictly negative on the same controlled windows, the pair-separation and midpoint-separation channels cannot both sustain monotone outward escape through the post-crossing or late-turn stage.
 
 To align the abstract recapture theorem with the first concrete lemma, the principal margins for
 $$
