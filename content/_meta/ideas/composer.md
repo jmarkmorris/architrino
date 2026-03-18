@@ -135,6 +135,7 @@ This section merges the useful requirements from the earlier split notes into on
 - The same composition model should work for simple scene nodes, Noether cores, bound charges, and larger particle-like assemblies.
 - Assemblies should support metadata, links, drill-down targets, and inspectable annotations.
 - Presets are useful, but every preset instance must remain editable as explicit structured data.
+- Assemblies should be saveable to a reusable library so authored structures can be inserted, versioned, and reused across scenes.
 
 ### 4. Noether core requirements
 
@@ -192,6 +193,9 @@ This section merges the useful requirements from the earlier split notes into on
 - The composer should keep the current pattern of structured side panels plus live viewport preview.
 - Preview should update from authored draft state with minimal guesswork.
 - The viewport should support camera framing, camera flights, and scene playback without entangling view state with assembly semantics.
+- In any authored scene, camera path and camera orientation may also evolve over the same scene timeline as the assembly animation.
+- Camera paths should be first-class authored objects that can be saved, edited, reused, and attached to scene playback.
+- The system should support authored automatic camera-follow modes analogous to photo-drone follow shots, but adapted to moving assemblies so the camera can orbit, trail, lead, flank, or otherwise observe a moving particle from changing orientations over time.
 - Guided and advanced editing modes are desirable so the same tool can serve both preset-first authoring and direct schema-level editing.
 - Runtime controls should fit the app's existing corner-control language, but allow an abbreviated animation-specific control set.
 
@@ -249,6 +253,7 @@ A first practical composer schema stack could look like this:
 - `ViewSpec`
 - `PathSpec`
 - `AssemblySpec`
+- `AssemblyLibrarySpec`
 - `CoreSpec`
 - `ChargeSpec`
 - `ReactionSpec`
@@ -307,6 +312,7 @@ Purpose:
 
 - define camera framing,
 - support orbit, fly, or waypoint-based motion,
+- support automatic follow-camera modes for moving assemblies,
 - support playback views without rewriting assembly layout.
 
 This is important because the composer already has camera waypoint and flight concepts in the runtime.
@@ -355,6 +361,14 @@ AssemblySpec {
   metadata?: Record<string, unknown>
 }
 ```
+
+### AssemblyLibrarySpec
+
+Purpose:
+
+- store reusable authored assemblies outside one scene,
+- support insertable presets without losing explicit authored structure,
+- allow versioned reuse across multiple composed-animation scenes.
 
 ### CoreSpec
 
@@ -503,3 +517,55 @@ The long-term vision should be:
 - explicit provenance and path-history.
 
 The correct next step is to treat this document as the single source of truth for the composer architecture and composed-animation scene model.
+
+---
+
+## Example scenes this model should be able to author
+
+These are not simulation claims. They are authored animation targets that the canonical JSON model and runtime should be able to express deterministically on a shared scene timeline.
+
+In any of these scenes, the camera path and camera orientation may also change as the timeline progresses.
+
+### 1. Translating electron-like assembly
+
+- A low apparent energy Noether core.
+- Internal orbital planes are approximately orthogonal.
+- The nested assembly is configured as an electron-like structure with six electrino personality charges arranged in a fourth shell.
+- The full assembly travels through the scene on a straight-line path.
+- Internal architrinos continue their authored orbital motion while the assembly translates.
+- Bound personality charges remain attached to the assembly while preserving their own placement and optional secondary motion.
+
+### 2. Translating and rotating bound assembly
+
+- A Noether core assembly translates along an authored path while the whole assembly also rotates.
+- Internal orbit motion remains coherent in the assembly frame during transport and rotation.
+- The runtime composes local orbit motion with parent translation and parent rotation.
+
+### 3. High-velocity Lorentz-oblate flythrough
+
+- A Noether core assembly accelerates into a high-velocity segment.
+- The deformation profile becomes Lorentz-oblate along the direction of travel as velocity approaches \(c_f\).
+- Internal constituents and bound charges remain visually attached to the deformed assembly through the authored motion.
+
+### 4. Curved-path assembly with charge jiggle
+
+- A bound assembly follows a curved spline path through the scene.
+- Personality charges are attached declaratively to the core.
+- Charges exhibit small local jiggle motion superposed on the larger assembly transport.
+
+### 5. Reaction with disassembly and reassembly
+
+- Two or more incoming assemblies follow authored approach paths.
+- At specified timeline moments, reactants disassemble into explicit constituent parts.
+- Selected parts transfer across handoff paths or reaction corridors.
+- Product assemblies reassemble from those parts and continue on authored outgoing paths.
+- Provenance records preserve where each transferred component came from.
+
+### 6. Photon-like paired-core assembly
+
+- A photon-like assembly is authored as two flat Noether cores inside one parent assembly.
+- The second core follows the first at a small authored offset.
+- The first core carries three binary internal motions rotating clockwise.
+- The second core carries three binary internal motions rotating counterclockwise.
+- Both cores remain explicit authored sub-assemblies rather than hidden procedural effects.
+- The full paired-core assembly may itself translate, rotate, and follow an authored path while the internal motions continue.
