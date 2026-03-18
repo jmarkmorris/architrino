@@ -6232,6 +6232,29 @@ F^{\mathrm{mb}}_m
 $$
 from the caustic-transit package, the late-turn comparison law becomes quantitative again.
 
+For the later recapture and closure packages, abbreviate this ancestry ceiling by
+$$
+\overline{A}^{\mathrm{mb}}_{\mathrm{deep}}
+\equiv
+\frac{
+N_{\mathrm{anc}}\,\kappa\epsilon^2
+}{
+\bigl(c_f^2(\tau^{\mathrm{mb}}_{\mathrm{dp}})^2+\epsilon_c^2\bigr)
+\nu^{\mathrm{mb}}_{J,\mathrm{anc}}
+}.
+$$
+Then
+$$
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\le
+\overline{A}^{\mathrm{mb}}_{\mathrm{deep}}
+$$
+on every controlled late-turn window, and the recapture margins below may treat
+$$
+\overline{A}^{\mathrm{mb}}_{\mathrm{deep}}
+$$
+as one fixed arithmetic input.
+
 ### Sixth many-body theorem package: finite escape-observable recapture law
 
 The next replacement burden is the turn mechanism itself. In the planar three-body regime there is no single honest escape coordinate. The recapture theorem must instead dominate a finite family of outward channels at once.
@@ -6954,7 +6977,7 @@ the intended role is late-turn closure: the same observables must already be los
 >    $$
 >    A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 >    \le
->    A^{\mathrm{mb}}_{\mathrm{deep},\max};
+>    \overline{A}^{\mathrm{mb}}_{\mathrm{deep}};
 >    $$
 > together with the fold ceilings produced there
 >    $$
@@ -6991,7 +7014,7 @@ the intended role is late-turn closure: the same observables must already be los
 > +
 > F^{\mathrm{mb}}_1
 > +
-> A^{\mathrm{mb}}_{\mathrm{deep},\max},
+> \overline{A}^{\mathrm{mb}}_{\mathrm{deep}},
 > $$
 > $$
 > \Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}
@@ -7004,7 +7027,7 @@ the intended role is late-turn closure: the same observables must already be los
 > +
 > F^{\mathrm{mb}}_2
 > +
-> A^{\mathrm{mb}}_{\mathrm{deep},\max}.
+> \overline{A}^{\mathrm{mb}}_{\mathrm{deep}}.
 > $$
 > Then the two principal escape observables obey
 > $$
@@ -7065,7 +7088,7 @@ This is the first honest recapture lemma for the planar three-body bridge. It do
 >    $$
 >    and bound the deep-past term by
 >    $$
->    A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)\le A^{\mathrm{mb}}_{\mathrm{deep},\max}.
+>    A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)\le \overline{A}^{\mathrm{mb}}_{\mathrm{deep}}.
 >    $$
 >    The stated projected inequality then gives
 >    $$
@@ -7187,6 +7210,13 @@ L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_1,
 L^{\mathrm{mb}}_{2,\mathrm{fold}}(t)\le F^{\mathrm{mb}}_2
 $$
 are understood as direct outputs of the bounded many-body caustic-transit package, not as independent recapture assumptions.
+On the late-turn windows, the ancestry package likewise provides the fixed ceiling
+$$
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\le
+\overline{A}^{\mathrm{mb}}_{\mathrm{deep}}.
+$$
+So the first two principal margins may be read as explicit arithmetic inequalities with already-settled fold and deep-past inputs.
 
 For the shear and role-exchange channels, the principal margins should likewise be defined from the concrete decompositions above:
 $$
@@ -7285,6 +7315,13 @@ F^{\mathrm{mb}}_4
 =
 \mathfrak{F}^{\mathrm{mb}}_4 M_{\max}^{\mathrm{mb}}.
 $$
+Together with
+$$
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+\le
+\overline{A}^{\mathrm{mb}}_{\mathrm{deep}},
+$$
+this means the principal four-channel closure theorem below consumes only fixed ceilings coming from the caustic-transit and ancestry packages, not any additional unresolved path-history term.
 
 For the remaining channels
 $$
@@ -7408,6 +7445,15 @@ This proposition is the bridge between the local channel calculations and the fu
 > \ddot{\rho}^{\mathrm{mb}}_4<0
 > $$
 > on the role-gap windows.
+> Because the principal margins were defined using
+> $$
+> F^{\mathrm{mb}}_1,\dots,F^{\mathrm{mb}}_4
+> $$
+> and
+> $$
+> \overline{A}^{\mathrm{mb}}_{\mathrm{deep}},
+> $$
+> this already accounts for every controlled fold loss and every controlled deep-past contribution in the four principal channels.
 >
 > Therefore none of the four principal channels can maintain a positive outward-driving second derivative throughout the controlled post-crossing and late-turn stages. Any candidate excursion that still avoids return must therefore do so through either:
 > 1. one auxiliary channel
@@ -7439,6 +7485,18 @@ This proposition is the bridge between the local channel calculations and the fu
 > 2. no escape observable can remain positive and outward-driving throughout the late-turn window;
 > 3. at least one controlled return event forces the shape back toward the gauge-fixed inbound section without opening a new uncontrolled scattering channel;
 > 4. consequently the candidate excursion makes both the post-crossing recapture turn and the late-turn return inside the controlled planar-three-body windows.
+
+> Here the only nonlocal error budgets entering the comparison laws are the fixed ceilings
+> $$
+> F^{\mathrm{mb}}_m,
+> \qquad
+> m=1,\dots,4,
+> $$
+> from the bounded caustic-transit package and
+> $$
+> \overline{A}^{\mathrm{mb}}_{\mathrm{deep}}
+> $$
+> from the cluster-ancestry package. Once those constants are fixed, the recapture criterion is reduced to strict positivity of finitely many margin inequalities on the controlled windows.
 
 This is the first honest many-body recapture theorem target. It says that the configuration does not merely avoid one preferred binary escape. It must fail to escape in every channel that the three-body quotient geometry naturally opens.
 
