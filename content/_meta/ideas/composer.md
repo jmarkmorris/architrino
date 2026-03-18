@@ -396,6 +396,101 @@ Useful first teaching-pattern presets include:
 
 These patterns should be authored as editable scene objects after insertion. Their value is speed and consistency, not hidden behavior.
 
+### Authoring commands and gesture model
+
+The composer should use a small, stable command vocabulary rather than a sprawling tool palette.
+
+Core authoring commands should include:
+
+- select,
+- multiselect,
+- pan,
+- orbit,
+- zoom,
+- scrub,
+- play or pause,
+- insert,
+- duplicate,
+- delete,
+- group or ungroup where grouping is semantically valid,
+- isolate,
+- lock or unlock,
+- hide or show,
+- frame selection,
+- add marker,
+- add pause,
+- add overlay,
+- add camera shot,
+- and apply teaching pattern.
+
+The first serious version should prefer consistency over abundance. A smaller command language that behaves predictably across levels is better than many brittle tool modes.
+
+Gesture guidance:
+
+- click should primarily select,
+- double click should enter or drill down where level transitions are appropriate,
+- drag in the viewport should either orbit the camera or manipulate the active gizmo depending on the current tool,
+- drag in the timeline should move the playhead, trim a clip, or reposition a marker depending on selection,
+- and modifier-assisted gestures should extend selection, constrain transforms, or temporarily enable alternate navigation.
+
+Keyboard guidance:
+
+- common commands should have stable shortcuts across levels where possible,
+- destructive actions should require explicit intent,
+- and transport controls should feel familiar to anyone who has used standard video or animation tools.
+
+### Library packaging and reuse
+
+Reusable authored structures should be treated as first-class portable assets, not as copy-pasted fragments.
+
+The composer should support:
+
+- scene-local reusable presets,
+- shared library entries for assemblies, overlays, camera motifs, and teaching patterns,
+- versioned library items,
+- per-instance overrides that do not mutate the library source,
+- and a clear distinction between a library definition and an instance placed in one scene.
+
+Packaging guidance:
+
+- a library item should preserve stable ids for the definition layer,
+- instances should carry their own instance ids,
+- overrides should be explicit and local,
+- and package export should preserve enough metadata to round-trip library-backed scenes cleanly.
+
+Reusable motifs worth supporting in the library layer include:
+
+- assembly templates,
+- camera shot templates,
+- overlay styles,
+- teaching-pattern templates,
+- and reaction or transfer templates where those become stable enough to reuse.
+
+### Asset support boundaries
+
+The composer should define a conservative first asset boundary so the tool stays academically coherent and technically manageable.
+
+The first serious version should clearly distinguish:
+
+- authored geometric and explanatory primitives,
+- imported reference assets,
+- and rendered output.
+
+Recommended first-version asset support:
+
+- imported still images for reference or limited panel use,
+- imported SVG for simple vector reference diagrams where needed,
+- and no dependency on external video compositing assets for the core authoring loop.
+
+Recommended first-version exclusions:
+
+- arbitrary decorative 3D mesh libraries,
+- unrestricted shape libraries beyond the ellipse or ellipsoid house primitive,
+- timeline-native video compositing as a core requirement,
+- and broad asset pipelines that would turn the composer into a general media editor.
+
+The priority should remain authored explanatory geometry. Imported assets may support that work, but they should not dominate the ontology or the UI.
+
 ---
 
 ## What exists today
@@ -503,6 +598,7 @@ This section merges the remaining useful requirements into one set.
 - Level transitions should distinguish between continuous spatial zoom and semantic zoom or mode shift, depending on whether the user is moving into deeper geometry or into a different kind of authoring task.
 - The authored model should support a small, explicit interpolation vocabulary for motion, opacity, overlay timing, and camera behavior, including at minimum linear, ease in, ease out, ease in/out, and stepped or hold behavior.
 - The authoring model should support keyframeable property channels where continuous change over time is required, even if the first UI exposes those channels through simplified controls rather than a full graph editor.
+- The tool should use a compact, stable authoring-command vocabulary rather than a sprawling set of ad hoc modes.
 
 ### 3. Scene and assembly requirements
 
@@ -512,6 +608,7 @@ This section merges the remaining useful requirements into one set.
 - Presets are useful, but every preset instance must remain editable as explicit structured data.
 - Assemblies should be saveable to a reusable library so authored structures can be inserted, versioned, and reused across scenes.
 - Library assemblies should support instance-level scaling so the same authored assembly can be reused at different sizes without redefining its internal structure.
+- Library-backed authored motifs should support explicit per-instance overrides without mutating the reusable source definition.
 - Any assembly should be able to be surrounded by a large population of additional spacetime assemblies that are instanced at small but still visible scale so the main assembly remains readable while its surrounding context is shown.
 - Any detailed assembly should be able to collapse to a simpler proxy representation when zoomed out, such as a colored sphere or labeled sphere, so scenes remain legible and performant at multiple viewing scales.
 - Assemblies and their constituents should support clear frame-aware selection so authors can edit parent staging and internal structure without losing orientation.
@@ -595,6 +692,7 @@ This section merges the remaining useful requirements into one set.
 - The tool should support basic shot-transition semantics, including hard cut, dissolve, and continuous move, without requiring a full nonlinear editor feature set.
 - The workspace should preserve a stable left-browser, central viewport, right-inspector, and bottom-timeline grammar even as panel emphasis changes by level.
 - The composer should support reusable teaching-pattern presets that insert editable authored objects rather than opaque effects.
+- Pointer, keyboard, and transport behavior should be intentionally standardized so the tool feels closer to a disciplined motion-design workspace than to an ad hoc scene debugger.
 
 ### 11. Validation and migration requirements
 
@@ -603,6 +701,7 @@ This section merges the remaining useful requirements into one set.
 - The migration path from the current `{ scene, objects[] }` runtime model to a fuller canonical assembly model should be explicit and incremental.
 - The minimum useful subset should be implementable before the full reaction and provenance system is complete.
 - Export architecture should distinguish canonical scene export, portable package export, and rendered media export even if only the first class is implemented initially.
+- Imported assets should be validated against a deliberately narrow support boundary so reference media do not silently become a second uncontrolled scene language.
 
 ### 12. Additional requirements worth carrying now
 
@@ -696,6 +795,7 @@ A first practical composer schema stack could look like this:
 - `ClipTimingSpec`
 - `KeyframeSpec`
 - `ChannelSpec`
+- `AssetSpec`
 - `LayoutSpec`
 - `ViewSpec`
 - `PathSpec`
@@ -714,6 +814,7 @@ A first practical composer schema stack could look like this:
 - `OverlaySpec`
 - `TrackSpec`
 - `TeachingPatternSpec`
+- `LibraryPackageSpec`
 - `BrandGraphicsSpec`
 
 ### Primitive spec vocabulary
@@ -928,6 +1029,32 @@ ChannelSpec {
 }
 ```
 
+### AssetSpec
+
+Purpose:
+
+- register imported reference assets explicitly,
+- keep imported media subordinate to authored scene semantics,
+- and make supported asset boundaries reviewable and validatable.
+
+Draft shape:
+
+```js
+AssetSpec {
+  id: string,
+  kind: "image" | "svg" | "reference",
+  src: string,
+  usage?: "panel" | "overlay-reference" | "backplate-reference",
+  metadata?: Record<string, unknown>
+}
+```
+
+Guidance:
+
+- assets should be explicit references rather than hidden editor attachments,
+- supported kinds should remain intentionally narrow in the first serious version,
+- and the runtime should remain functional even when a scene uses no imported assets at all.
+
 ### Path-source taxonomy
 
 Paths should remain first-class authored objects, and their source should be explicit rather than inferred from editor state.
@@ -981,6 +1108,7 @@ SceneSpec {
     markers?: MarkerSpec[],
     brandGraphics?: BrandGraphicsSpec
   },
+  assets?: AssetSpec[],
   assemblies: AssemblySpec[],
   libraryRefs?: Array<{
     entryId: string,
@@ -1054,6 +1182,34 @@ Guidance:
 - a teaching pattern should insert ordinary authored objects such as overlays, pauses, markers, or camera shots,
 - `generatedItems` should point to those ordinary objects after insertion,
 - and authors should be free to edit the inserted objects directly without breaking the scene model.
+
+### LibraryPackageSpec
+
+Purpose:
+
+- describe a portable bundle of reusable authored definitions,
+- support versioned reuse across scenes and workspaces,
+- and keep library-backed authoring explicit rather than hidden in editor memory.
+
+Draft shape:
+
+```js
+LibraryPackageSpec {
+  id: string,
+  version?: string,
+  assemblies?: AssemblyLibrarySpec,
+  teachingPatterns?: TeachingPatternSpec[],
+  cameraShots?: CameraShotSpec[],
+  overlays?: OverlaySpec[],
+  metadata?: Record<string, unknown>
+}
+```
+
+Guidance:
+
+- package contents should remain ordinary canonical objects,
+- package import should preserve stable definition ids,
+- and instance placement inside a scene should still create explicit scene-local references or overrides.
 
 ### LayoutSpec
 
