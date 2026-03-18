@@ -6273,6 +6273,51 @@ are the concrete margin versions of the four principal escape-channel inequaliti
 
 This proposition is the bridge between the local channel calculations and the full many-body recapture theorem. It says that once the four principal channels are controlled, any residual failure is no longer hidden in the obvious geometry; it must come from either a higher auxiliary channel or an explicit closure-stage obstruction.
 
+> **Proof draft of the principal four-channel recapture closure proposition.**
+> On the corresponding smooth windows, positivity of
+> $$
+> \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}},
+> \qquad
+> \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{late}},
+> \qquad
+> \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}},
+> \qquad
+> \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}}
+> $$
+> gives the two-channel Jacobi turning result already proved above. Likewise, positivity of
+> $$
+> \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{post}},
+> \qquad
+> \mathfrak{M}^{\mathrm{mb}}_{3,\mathrm{late}}
+> $$
+> forces
+> $$
+> \ddot{\rho}^{\mathrm{mb}}_3<0
+> $$
+> on the sign-fixed shear windows, and positivity of
+> $$
+> \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{post}},
+> \qquad
+> \mathfrak{M}^{\mathrm{mb}}_{4,\mathrm{late}}
+> $$
+> forces
+> $$
+> \ddot{\rho}^{\mathrm{mb}}_4<0
+> $$
+> on the role-gap windows.
+>
+> Therefore none of the four principal channels can maintain a positive outward-driving second derivative throughout the controlled post-crossing and late-turn stages. Any candidate excursion that still avoids return must therefore do so through either:
+> 1. one auxiliary channel
+>    $$
+>    \rho^{\mathrm{mb}}_m,
+>    \qquad
+>    m\ge 5,
+>    $$
+>    not already covered by the principal four-channel block; or
+> 2. breakdown of one named hypothesis, namely collapse of a smooth-window floor, failure of the chart, or one unaccounted fold/tie event.
+>
+> This is exactly the claimed alternative.
+
 > **Target Theorem (Planar-three-body multi-observable recapture criterion).**
 > Assume the section package, the bounded caustic-transit package, the finite active delay hypergraph package, and the deep-past cluster-ancestry suppression bound, all in one coupled parameter regime in which the comparison terms are defined with common constants.
 >
@@ -6390,6 +6435,71 @@ The next theorem burden is therefore not yet a convex tame set, but a stability 
 >    \mathcal{T}^{\mathrm{mb}}_{A_\ast,\eta}
 >    $$
 >    onto that tame subregion whenever one wants to return from the convex Banach box to the graph-stable class.
+
+> **Proof draft of the hypergraph-and-atlas stability proposition.**
+> Start from one seed history in the convex Banach envelope for which the no-accumulation, caustic-transit, ancestry, and principal recapture packages all hold. Because the envelope controls
+> $$
+> \|\mathbf{X}\|,
+> \qquad
+> \|\dot{\mathbf{X}}\|,
+> \qquad
+> \operatorname{Lip}(\dot{\mathbf{X}}),
+> $$
+> the delay defects and the sector/exchange gap functions depend continuously on the history in the
+> $$
+> C^1
+> $$
+> topology.
+>
+> 1. **Persistence of the event class.**
+>    Transversal zeros of
+>    $$
+>    \partial_s g_{ij},
+>    \qquad
+>    \Theta_{\mathrm{sec}},
+>    \qquad
+>    \Theta_{\mathrm{exc}}
+>    $$
+>    are structurally stable under sufficiently small
+>    $$
+>    C^1
+>    $$
+>    perturbations. Therefore, on a sufficiently small convex neighborhood of the seed, no new event type is created and no listed event disappears except by leaving the neighborhood.
+>
+> 2. **Persistence of the smooth windows.**
+>    The floors
+>    $$
+>    a_{\min},
+>    \qquad
+>    b_{\min},
+>    \qquad
+>    \Delta_{\min},
+>    \qquad
+>    \delta_{\mathrm{role},\min}
+>    $$
+>    depend continuously on the trajectory. Hence on a sufficiently small tame subregion they remain positive, and the corresponding windows
+>    $$
+>    I^{\mathrm{mb}}_{m,\mathrm{post}},
+>    \qquad
+>    I^{\mathrm{mb}}_{m,\mathrm{late}}
+>    $$
+>    remain nondegenerate.
+>
+> 3. **Persistence of the principal margins.**
+>    Every term entering
+>    $$
+>    \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{post}},
+>    \qquad
+>    \mathfrak{M}^{\mathrm{mb}}_{m,\mathrm{late}}
+>    $$
+>    varies continuously on the smooth windows, and the fold-loss terms are uniformly bounded by the same caustic-transit constants. Therefore strict positivity at the seed persists on a sufficiently small tame subregion.
+>
+> 4. **Retraction to the tame subregion.**
+>    One may therefore define
+>    $$
+>    \mathcal{T}^{\mathrm{mb}}_{A_\ast,\eta}
+>    $$
+>    as the closed subregion where the same event class, smooth-window floors, transit constants, and principal margins are preserved. A continuous projection or retraction onto that subregion is then the standard step that returns the convex Banach box to the graph-stable class.
 
 Only after this separation should one define the many-body tame target. The many-body tame envelope target should then be a closed subset
 $$
