@@ -265,6 +265,23 @@ The runtime should be general enough to read any valid composed-animation JSON s
 
 ---
 
+## Export classes
+
+The composer should distinguish between authored scene export and rendered media export. Those are related, but they are not the same product surface.
+
+The immediate source of truth should remain canonical JSON scene export.
+
+The model should also leave room for two later export classes:
+
+- portable scene package export
+  - a bundle containing canonical scene JSON plus any referenced assets, preview metadata, and house-style bindings needed to move a scene between environments;
+- rendered media export
+  - outputs such as still frames, image sequences, or encoded video generated from a valid composed-animation scene.
+
+The document does not need to lock final rendered media formats yet. It is enough to reserve the architectural distinction now so the composer does not assume that canonical JSON is the only meaningful export surface forever.
+
+---
+
 ## Consolidated requirements
 
 This section merges the remaining useful requirements into one set.
@@ -290,6 +307,8 @@ This section merges the remaining useful requirements into one set.
 - Pauses should behave like authored timeline holds rather than hidden playback hacks, so preview, export, and runtime playback all agree about when and how long motion is paused.
 - The UI architecture should explicitly support multiple semantic design levels rather than treating all editing as one flat mode.
 - Level transitions should distinguish between continuous spatial zoom and semantic zoom or mode shift, depending on whether the user is moving into deeper geometry or into a different kind of authoring task.
+- The authored model should support a small, explicit interpolation vocabulary for motion, opacity, overlay timing, and camera behavior, including at minimum linear, ease in, ease out, ease in/out, and stepped or hold behavior.
+- The authoring model should support keyframeable property channels where continuous change over time is required, even if the first UI exposes those channels through simplified controls rather than a full graph editor.
 
 ### 3. Scene and assembly requirements
 
@@ -343,6 +362,7 @@ This section merges the remaining useful requirements into one set.
 - A path should declare its reference frame, time domain, repeat behavior, geometric payload, and preview style.
 - Parent motion and local path motion should combine predictably so that nested transport is authorable without ad hoc exceptions.
 - Camera paths and assembly motion paths should both be explicit structured objects, not implicit editor state.
+- Time-varying transform and path behavior should support keyframe or channel-based interpolation rather than relying only on one-shot path presets.
 
 ### 9. Reaction requirements
 
@@ -373,6 +393,10 @@ This section merges the remaining useful requirements into one set.
 - The explanatory toolset should also consider comparison-friendly controls such as ghosted previous or next positions, optional trajectory traces, and quick isolate or dim-others actions for the currently discussed assembly.
 - The UI should present different tools and panel emphasis at sequence, shot, assembly, and constituent levels while keeping one stable sense of scene context.
 - The default workspace should favor assembly or staging authoring, with sequence and shot work reachable through the timeline and constituent editing reachable by drill-down.
+- The composer should support a simple but explicit layer or track ordering model for overlays, camera clips, and other timeline objects whose visual or editorial precedence matters.
+- The author should be able to select, multiselect, hide, show, lock, unlock, and isolate authored objects without changing their canonical semantics.
+- Snapping should be available for useful authoring targets such as timeline markers, pause boundaries, anchors, path points, and nearby guide geometry.
+- The tool should support basic shot-transition semantics, including hard cut, dissolve, and continuous move, without requiring a full nonlinear editor feature set.
 
 ### 11. Validation and migration requirements
 
@@ -380,6 +404,7 @@ This section merges the remaining useful requirements into one set.
 - Authored data should separate canonical saved values from preview-only helpers or temporary editing state.
 - The migration path from the current `{ scene, objects[] }` runtime model to a fuller canonical assembly model should be explicit and incremental.
 - The minimum useful subset should be implementable before the full reaction and provenance system is complete.
+- Export architecture should distinguish canonical scene export, portable package export, and rendered media export even if only the first class is implemented initially.
 
 ### 12. Additional requirements worth carrying now
 
@@ -471,6 +496,8 @@ A first practical composer schema stack could look like this:
 - `PauseSpec`
 - `MarkerSpec`
 - `ClipTimingSpec`
+- `KeyframeSpec`
+- `ChannelSpec`
 - `LayoutSpec`
 - `ViewSpec`
 - `PathSpec`
@@ -485,6 +512,7 @@ A first practical composer schema stack could look like this:
 - `ProvenanceSpec`
 - `CameraPathSpec`
 - `OverlaySpec`
+- `TrackSpec`
 - `BrandGraphicsSpec`
 
 ### Primitive spec vocabulary
@@ -662,6 +690,43 @@ end = start + fadeIn + hold + fadeOut
 
 This is the terminology the composer should use in the UI as well.
 
+### KeyframeSpec
+
+Purpose:
+
+- define authored value changes at specific times,
+- support camera, transform, opacity, and other time-varying properties,
+- keep interpolation explicit rather than hidden in renderer behavior.
+
+Draft shape:
+
+```js
+KeyframeSpec {
+  t: number,
+  value: unknown,
+  interpolation?: "linear" | "ease-in" | "ease-out" | "ease-in-out" | "hold"
+}
+```
+
+### ChannelSpec
+
+Purpose:
+
+- group keyframes by animated property,
+- give the composer a lightweight property-track model without requiring a full graph-editor design,
+- and keep animation semantics portable across preview, export, and runtime playback.
+
+Draft shape:
+
+```js
+ChannelSpec {
+  id: string,
+  target: Ref,
+  property: string,
+  keyframes: KeyframeSpec[]
+}
+```
+
 ### Path-source taxonomy
 
 Paths should remain first-class authored objects, and their source should be explicit rather than inferred from editor state.
@@ -723,11 +788,34 @@ SceneSpec {
   assemblyInstances?: AssemblyInstanceSpec[],
   paths?: PathSpec[],
   cameraPaths?: CameraPathSpec[],
+  tracks?: TrackSpec[],
+  channels?: ChannelSpec[],
   overlays?: OverlaySpec[],
   reactions?: ReactionSpec[],
   transfers?: TransferSpec[],
   provenance?: ProvenanceSpec[],
   metadata?: Record<string, unknown>
+}
+```
+
+### TrackSpec
+
+Purpose:
+
+- define editorial or visual ordering for authored timeline objects,
+- keep overlay and shot organization legible,
+- and provide a small layer model without committing to a heavyweight NLE architecture.
+
+Draft shape:
+
+```js
+TrackSpec {
+  id: string,
+  role: "overlay" | "camera" | "annotation" | "editorial",
+  order: number,
+  items: Ref[],
+  locked?: boolean,
+  hidden?: boolean
 }
 ```
 
@@ -800,6 +888,12 @@ Recommended overlay semantics:
 - overlays should read like timeline clips with explicit in and out behavior,
 - overlays should support attachment either to world space, a local frame, or a tracked anchor,
 - and the default authoring vocabulary should favor explanation primitives over decorative graphics.
+
+Editorial implications:
+
+- overlays should be placeable on explicit overlay tracks,
+- overlapping overlays should resolve according to track order and local z-bias,
+- and authors should be able to lock or hide overlay tracks during editing.
 
 ### Overlay payload vocabulary
 
@@ -1254,7 +1348,7 @@ The right near-term stance is:
 1. keep the current overlay-based authoring shell,
 2. strengthen the exported scene/spec structure,
 3. add a dedicated `Scene-Composed-Animation` runtime path,
-4. make paths, frame state, timeline markers, pauses, overlays, and camera state more explicit,
+4. make paths, frame state, timeline markers, pauses, overlays, interpolation channels, and camera state more explicit,
 5. add recursive assembly authoring,
 6. add explicit Noether core authoring,
 7. add bound personality charge authoring,
