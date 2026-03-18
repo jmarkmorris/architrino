@@ -3811,6 +3811,231 @@ Then the first two inward channels are positive before any refined delay bookkee
 
 This is the many-body analogue of the old seed-neighborhood realization step in the frozen 1D chapter. Its role is only to certify that the principal inward hierarchy is not attached to one isolated affine history, but persists on one genuine local seed packet from which the later delayed and hypergraph packages may start.
 
+The remaining seed-side burden is to pass from these Coulomb-like proxy margins to the true delayed branch-sum law. On the affine seed this should be a perturbative step, because every emitter speed is strictly sub-field-speed and the recent history is exactly linear.
+
+For the affine seed and its small
+$$
+C^1
+$$
+thickenings, denote by
+$$
+r^{\mathrm{inst}}_{ij}(t)
+\equiv
+\|\mathbf{x}_i(t)-\mathbf{x}_j(t)\|
+$$
+the instantaneous pair distances and by
+$$
+s_{ij}(t)
+$$
+the exact delayed partner/source times on the preserved seed-side branch families, whenever those branches exist on a short controlled window.
+
+> **Target Lemma (Delayed seed-margin persistence on the symmetric planar seed packet).**
+> Assume the explicit symmetric planar-three-body seed proposition and fix one seed-side neighborhood
+> $$
+> \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
+> $$
+> with
+> $$
+> U^{\mathrm{mb}}_{\mathrm{seed}}<c_f.
+> $$
+> Then there exist:
+> 1. a short controlled seed window
+>    $$
+>    [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}],
+>    $$
+> 2. a finite list of seed-side branch families
+>    $$
+>    \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}},
+>    $$
+> 3. and constants
+>    $$
+>    C^{\mathrm{mb}}_{\mathrm{ret}},
+>    \qquad
+>    C^{\mathrm{mb}}_{J},
+>    \qquad
+>    C^{\mathrm{mb}}_{\Lambda,1},
+>    \qquad
+>    C^{\mathrm{mb}}_{\Lambda,2}
+>    $$
+> depending only on the seed parameters and the local seed neighborhood,
+>
+> such that every history
+> $$
+> \Phi\in \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
+> $$
+> satisfies, on that window:
+> 1. each active seed-side branch in
+>    $$
+>    \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
+>    $$
+>    is unique and simple;
+> 2. the exact retarded distances obey
+>    $$
+>    \bigl|
+>    r_{ij}(t;s_{ij}(t))
+>    -
+>    r^{\mathrm{inst}}_{ij}(t)
+>    \bigr|
+>    \le
+>    C^{\mathrm{mb}}_{\mathrm{ret}}
+>    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
+>    r^{\mathrm{inst}}_{ij}(t);
+>    $$
+> 3. the exact causal Jacobians obey
+>    $$
+>    \bigl|
+>    J_{ij}(t;s_{ij}(t))-1
+>    \bigr|
+>    \le
+>    C^{\mathrm{mb}}_{J}
+>    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f};
+>    $$
+> 4. the exact delayed principal inward terms satisfy
+>    $$
+>    \bigl|
+>    \Lambda^{\mathrm{mb}}_1(t)-\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+>    \bigr|
+>    \le
+>    C^{\mathrm{mb}}_{\Lambda,1}
+>    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
+>    $$
+>    $$
+>    \bigl|
+>    \Lambda^{\mathrm{mb}}_2(t)-\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+>    \bigr|
+>    \le
+>    C^{\mathrm{mb}}_{\Lambda,2}
+>    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f};
+>    $$
+> 5. and therefore, if
+>    $$
+>    \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+>    >
+>    2C^{\mathrm{mb}}_{\Lambda,1}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
+>    \qquad
+>    \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+>    >
+>    2C^{\mathrm{mb}}_{\Lambda,2}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
+>    $$
+>    then the true delayed inward terms satisfy the uniform seed-side bounds
+>    $$
+>    \Lambda^{\mathrm{mb}}_1(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0,
+>    \qquad
+>    \Lambda^{\mathrm{mb}}_2(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}>0
+>    $$
+>    on
+>    $$
+>    [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}].
+>    $$
+
+> **Proof draft.**
+> On the affine seed, every body moves with constant strictly sub-field-speed velocity. Hence the causal defect
+> $$
+> g_{ij}(t;s)
+> =
+> \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s)
+> $$
+> is strictly decreasing in
+> $$
+> s
+> $$
+> on the short seed-side window for the partner/source families present at the section, and its derivative stays uniformly away from zero because
+> $$
+> U^{\mathrm{mb}}_{\mathrm{seed}}<c_f.
+> $$
+> The implicit-function theorem therefore gives one unique simple branch
+> $$
+> s_{ij}(t)
+> $$
+> for each seed-side family, varying continuously with
+> $$
+> t
+> $$
+> and with the history in the seed packet.
+>
+> Since the seed history is affine,
+> $$
+> \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
+> =
+> \dot{\mathbf{x}}_j\,(t-s_{ij}(t)),
+> $$
+> so the retarded source point differs from the instantaneous source point by one displacement of size
+> $$
+> O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}(t-s_{ij}(t))\right).
+> $$
+> Dividing by the instantaneous scale
+> $$
+> r^{\mathrm{inst}}_{ij}(t)
+> \asymp
+> c_f(t-s_{ij}(t))
+> $$
+> yields the stated
+> $$
+> O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
+> $$
+> relative retardation error. The same estimate gives
+> $$
+> J_{ij}(t;s_{ij}(t))
+> =
+> 1-
+> \frac{\dot{\mathbf{x}}_j(s_{ij}(t))\cdot \hat{\mathbf{r}}_{ij}(t;s_{ij}(t))}{c_f}
+> =
+> 1+O\!\left(\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}\right),
+> $$
+> because the emitter velocity is constant on the affine seed and the chord direction deviates from the instantaneous one by the same small ratio.
+>
+> The branchwise master-equation force differs from its instantaneous proxy only through:
+> 1. the retarded distance in the denominator;
+> 2. the Jacobian factor
+>    $$
+>    1/|J_{ij}|;
+>    $$
+> 3. and the retarded chord direction.
+>
+> Each of those changes is
+> $$
+> O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
+> $$
+> relative to the seed-side instantaneous force on the controlled window. Summing over the finite seed-side family list
+> $$
+> \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> gives the stated constants
+> $$
+> C^{\mathrm{mb}}_{\Lambda,1},
+> \qquad
+> C^{\mathrm{mb}}_{\Lambda,2}.
+> $$
+> The final positivity statement is then immediate from the strict seed-side slack.
+
+> **Target Corollary (Delayed realization of the first seed-side principal margins).**
+> Under the hypotheses of the delayed seed-margin persistence lemma, if
+> $$
+> \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+> -
+> 2C^{\mathrm{mb}}_{\Lambda,1}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
+> >
+> 0,
+> $$
+> $$
+> \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+> -
+> 2C^{\mathrm{mb}}_{\Lambda,2}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
+> >
+> 2L^{\mathrm{mb}}_{2,\mathrm{geom,seed}},
+> $$
+> and the seed-side fold and deep-past ceilings are smaller than the remaining slack, then the true delayed principal margins for
+> $$
+> \rho^{\mathrm{mb}}_1
+> \qquad
+> \text{and}
+> \qquad
+> \rho^{\mathrm{mb}}_2
+> $$
+> are strictly positive on the first seed-side controlled window.
+
+This is the missing bridge from the explicit geometric seed packet to the real delayed master equation. Once this perturbative upgrade is available, the many-body seed no longer lives only in the Coulomb-like proxy model; it enters the exact branch-sum dynamics with quantitative slack.
+
 This is the first genuine many-body seed-side margin calculation in the chapter. It does not yet prove the full delayed recapture theorem, but it identifies one concrete planar geometry in which the desired inward hierarchy is already visible in the bare Jacobi dynamics.
 
 ### First many-body theorem package: section and gauge fixing on planar shape space
