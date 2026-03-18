@@ -439,6 +439,83 @@ Keyboard guidance:
 - destructive actions should require explicit intent,
 - and transport controls should feel familiar to anyone who has used standard video or animation tools.
 
+### Timeline editing model
+
+The timeline should not behave like a generic spreadsheet of timestamps. It should feel like an authored explanatory sequence built from beats, holds, paths, and camera attention.
+
+The first serious timeline should support these editing operations:
+
+- move playhead,
+- set in or out region for focused editing,
+- add, move, rename, and delete markers,
+- insert, move, resize, and delete pauses,
+- trim clip start or end,
+- split a clip at the playhead,
+- duplicate a clip,
+- move a clip along the timeline,
+- and snap clips to markers, pause edges, or neighboring clip boundaries.
+
+Timeline behavior should respect the logic of the scene:
+
+- pauses should extend playback time without corrupting authored geometry,
+- marker edits should not silently retime scene content,
+- trimming a shot should preserve its target and editorial role,
+- and moving a clip should keep stable references intact unless the author explicitly rebinds them.
+
+The timeline should also support a small set of retiming modes:
+
+- direct move
+  - reposition only the selected item;
+- ripple move
+  - move the selected item and downstream editorial timing together;
+- hold insertion
+  - add a pause window while preserving underlying motion semantics.
+
+The point is not to imitate a full nonlinear editor. It is to give explanatory scenes enough timing discipline to remain teachable and easy to revise.
+
+### Shot construction rules
+
+Shots should be treated as explanatory units, not merely as camera intervals.
+
+Each shot should ideally answer one clear teaching question:
+
+- what structure is being introduced,
+- what motion is being emphasized,
+- what comparison is being made,
+- or what internal mechanism is being revealed.
+
+Default shot guidance:
+
+- an establishing shot should orient the viewer before detail work begins,
+- a detail shot should isolate one target or one relation,
+- a comparison shot should keep the compared objects visually legible at the same time,
+- a follow shot should privilege continuity of motion,
+- and an orbit shot should reveal geometry that is better understood through rotation around the target.
+
+The shot system should leverage the natural visual language of the theory:
+
+- spheres,
+- shells,
+- ellipses,
+- ellipsoids,
+- orbits,
+- and paths.
+
+That means the camera should usually help the viewer read:
+
+- what object is central,
+- what path it follows,
+- what shell or orbit frame it inhabits,
+- and what neighboring structure it relates to.
+
+Continuity guidance:
+
+- avoid disorienting cuts when a continuous move would better preserve spatial understanding,
+- preserve directional continuity when tracking along a path or orbit,
+- and use dissolves sparingly, mainly for soft comparison or passage rather than as a default transition.
+
+Good shot design in this tool should feel like guided spatial reasoning, not like decorative cinematography.
+
 ### Library packaging and reuse
 
 Reusable authored structures should be treated as first-class portable assets, not as copy-pasted fragments.
@@ -599,6 +676,7 @@ This section merges the remaining useful requirements into one set.
 - The authored model should support a small, explicit interpolation vocabulary for motion, opacity, overlay timing, and camera behavior, including at minimum linear, ease in, ease out, ease in/out, and stepped or hold behavior.
 - The authoring model should support keyframeable property channels where continuous change over time is required, even if the first UI exposes those channels through simplified controls rather than a full graph editor.
 - The tool should use a compact, stable authoring-command vocabulary rather than a sprawling set of ad hoc modes.
+- Timeline editing should support a small but explicit set of operations such as trim, split, move, duplicate, snap, and pause insertion.
 
 ### 3. Scene and assembly requirements
 
@@ -676,6 +754,7 @@ This section merges the remaining useful requirements into one set.
 - In any authored scene, camera path and camera orientation may also evolve over the same scene timeline as the assembly animation.
 - Camera paths should be first-class authored objects that can be saved, edited, reused, and attached to scene playback.
 - The system should support authored automatic camera-follow modes analogous to photo-drone follow shots, but adapted to moving assemblies so the camera can orbit, trail, lead, flank, or otherwise observe a moving particle from changing orientations over time.
+- Camera shots should be authored as explanatory units with explicit editorial purpose, not only as raw path intervals.
 - Guided and advanced editing modes are desirable so the same tool can serve both preset-first authoring and direct schema-level editing.
 - Runtime controls should fit the app's existing corner-control language, but allow an abbreviated animation-specific control set.
 - The composer should support first-class overlays for explanation, including callout lines, text overlays, and shape overlays.
@@ -697,6 +776,7 @@ This section merges the remaining useful requirements into one set.
 ### 11. Validation and migration requirements
 
 - Structural validation should be provided by schema, with semantic lint on ids, references, motion targets, path references, palette names, and unsupported enums.
+- Semantic lint should also check timeline consistency, shot continuity constraints, invalid overlap classes, unsupported asset kinds, and violations of the house graphics rules.
 - Authored data should separate canonical saved values from preview-only helpers or temporary editing state.
 - The migration path from the current `{ scene, objects[] }` runtime model to a fuller canonical assembly model should be explicit and incremental.
 - The minimum useful subset should be implementable before the full reaction and provenance system is complete.
@@ -1210,6 +1290,65 @@ Guidance:
 - package contents should remain ordinary canonical objects,
 - package import should preserve stable definition ids,
 - and instance placement inside a scene should still create explicit scene-local references or overrides.
+
+### Validation and lint model
+
+The composer should distinguish three levels of scene checking.
+
+#### 1. Structural validation
+
+These are schema-level failures.
+
+Examples:
+
+- missing ids,
+- malformed timing objects,
+- invalid enum values,
+- missing required references,
+- and impossible primitive payload shapes.
+
+#### 2. Semantic lint
+
+These are authored-scene problems that may still parse but should be surfaced clearly to the author.
+
+Examples:
+
+- overlapping pauses,
+- clips with negative or zero meaningful duration,
+- shot transitions pointing to missing shots,
+- overlays with no useful target or placement,
+- illegal shape kinds outside ellipse or ellipsoid,
+- invalid asset kinds,
+- track items that point to incompatible object types,
+- and references that cross frames or levels in a way the runtime cannot interpret.
+
+#### 3. Editorial or graphics lint
+
+These are not syntax errors, but they protect the quality bar of the tool.
+
+Examples:
+
+- text overlays that are too long to read comfortably,
+- excessive simultaneous overlays,
+- camera shots that cut so quickly they defeat explanation,
+- abrupt framing jumps that break spatial continuity without an explicit editorial reason,
+- callout density that obscures the primary geometry,
+- and color assignments that violate the house palette semantics.
+
+Recommended lint families:
+
+- timeline lint
+  - overlaps, gaps where forbidden, impossible transitions, invalid pause placement;
+- shot lint
+  - orphan shots, empty shots, shots with no target or no editorial role, disorienting continuity jumps;
+- graphics lint
+  - unsupported shapes, off-brand palette use, unreadable text contrast, excessive overlay clutter;
+- structural lint
+  - broken references, cyclic parentage where forbidden, invalid frame bindings, invalid overrides;
+- asset lint
+  - unsupported asset kinds, missing asset references, imported assets used where authored primitives should be used instead.
+
+The validator should not merely reject malformed scenes. It should help authors produce scenes that are mathematically legible, visually disciplined, and instructionally effective.
 
 ### LayoutSpec
 
