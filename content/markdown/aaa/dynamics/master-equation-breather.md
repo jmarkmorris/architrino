@@ -7278,6 +7278,75 @@ The intended geometric compatibility conditions are:
 
 These are the many-body closure analogues of the earlier sectorwise cone-transversality package: they are visibly convex restrictions on unnormalized vectors, but they imply the nonconvex Jacobian, shear, and role-gap floors used later.
 
+For the explicit symmetric seed packet above, these abstract cones and supports should be specialized rather than left anonymous. At the section time the seed directions are
+$$
+\hat{\mathbf{a}}_{\mathrm{seed}}(0)=\mathbf{e}_1,
+\qquad
+\hat{\mathbf{b}}_{\mathrm{seed}}(0)=\mathbf{e}_2,
+$$
+and the relevant role-gap vector may be taken as
+$$
+\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}
+\equiv
+\mathbf{x}_{1,\mathrm{seed}}(0)-\mathbf{x}_{2,\mathrm{seed}}(0)
+=
+\frac{1}{2}A_\ast \mathbf{e}_1-B_\ast \mathbf{e}_2.
+$$
+Accordingly one should choose
+$$
+\mathbf{n}^{a}_W=\mathbf{e}_1,
+\qquad
+\mathbf{n}^{b}_W=\mathbf{e}_2,
+\qquad
+\mathbf{n}^{\mathrm{role}}_W
+=
+\frac{\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}}{\|\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}\|},
+$$
+on the seed-side windows, and one should center the corresponding cones on:
+$$
+\mathfrak{C}^{a}_W
+\ \text{around}\ 
+\mathbf{e}_1,
+\qquad
+\mathfrak{C}^{b}_W
+\ \text{around}\ 
+\mathbf{e}_2,
+$$
+$$
+\mathfrak{C}^{\mathrm{role}}_W
+\ \text{around}\ 
+\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}},
+\qquad
+\mathfrak{V}^{i}_W
+\ \text{around}\ 
+\dot{\mathbf{x}}_{i,\mathrm{seed}}.
+$$
+The support floors should be chosen from the seed values with explicit slack:
+$$
+\alpha^{a}_W
+=
+A_\ast-\sigma^{a}_{\mathrm{seed}},
+\qquad
+\alpha^{b}_W
+=
+B_\ast-\sigma^{b}_{\mathrm{seed}},
+$$
+$$
+\alpha^{\mathrm{role}}_W
+=
+\|\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}\|
+-\sigma^{\mathrm{role}}_{\mathrm{seed}},
+$$
+for positive seed slacks
+$$
+\sigma^{a}_{\mathrm{seed}},
+\qquad
+\sigma^{b}_{\mathrm{seed}},
+\qquad
+\sigma^{\mathrm{role}}_{\mathrm{seed}}
+$$
+small enough that the corresponding inequalities still hold strictly on the whole seed packet. This is the concrete way in which the symmetric seed should sit inside the later convex core.
+
 > **Target Proposition (Explicit convex tame core inside the planar-three-body Banach envelope).**
 > There exist positive tube radii
 > $$
@@ -7503,6 +7572,72 @@ These are the many-body closure analogues of the earlier sectorwise cone-transve
 >    \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
 >    $$
 >    lies entirely inside the tame region where the preserved event class, fold ceilings, and principal margins are already stable.
+
+> **Target Corollary (Seed-centered realization of the explicit convex tame core).**
+> Assume the explicit symmetric planar-three-body seed proposition, the seed-neighborhood realization of the leading principal margins, and the delayed seed-margin persistence lemma. Then one may choose:
+> 1. seed-centered support vectors
+>    $$
+>    \mathbf{n}^{a}_W=\mathbf{e}_1,
+>    \qquad
+>    \mathbf{n}^{b}_W=\mathbf{e}_2,
+>    \qquad
+>    \mathbf{n}^{\mathrm{role}}_W
+>    =
+>    \frac{\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}}{\|\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}\|};
+>    $$
+> 2. narrow closed cones centered on
+>    $$
+>    \mathbf{e}_1,
+>    \qquad
+>    \mathbf{e}_2,
+>    \qquad
+>    \mathbf{r}^{\mathrm{role}}_{\mathrm{seed}},
+>    \qquad
+>    \dot{\mathbf{x}}_{i,\mathrm{seed}};
+>    $$
+> 3. and positive support slacks
+>    $$
+>    \sigma^{a}_{\mathrm{seed}},
+>    \qquad
+>    \sigma^{b}_{\mathrm{seed}},
+>    \qquad
+>    \sigma^{\mathrm{role}}_{\mathrm{seed}},
+>    $$
+>
+> such that the resulting convex core
+> $$
+> \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}
+> $$
+> is nonempty and contains the whole delayed seed packet
+> $$
+> \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
+> $$
+> as a strict interior subset relative to the preserved tame class.
+
+> **Proof draft.**
+> The explicit symmetric seed satisfies:
+> 1. the support inequalities with margins
+>    $$
+>    A_\ast,
+>    \qquad
+>    B_\ast,
+>    \qquad
+>    \|\mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}\|;
+>    $$
+> 2. the cone conditions with zero angular defect, since
+>    $$
+>    \mathbf{a}_{\mathrm{seed}}(0)\parallel \mathbf{e}_1,
+>    \qquad
+>    \mathbf{b}_{\mathrm{seed}}(0)\parallel \mathbf{e}_2;
+>    $$
+> 3. and the delayed seed-margin persistence lemma gives one seed-side window on which the same branch families remain unique and the same principal inward margins stay positive.
+>
+> Therefore one may choose the cone apertures and support slacks small enough that:
+> - the whole local seed packet remains inside the same tube-and-cone inequalities;
+> - the induced Jacobian, shear, and role-gap floors remain strictly positive;
+> - and the corresponding convex core is nonempty because it already contains that seed packet.
+>
+> This is the explicit nonvacuity step for the many-body convex core. After this corollary, the convex-core package is no longer merely compatible with the seed geometry; it is concretely centered on it.
 
 Only after this separation should one define the many-body tame target. The many-body tame envelope target should then be a closed subset
 $$
