@@ -5087,6 +5087,69 @@ The first proof-oriented step is to reduce every admissible fold tube to one qua
 > C^{\mathrm{mb}}_{3,g}.
 > $$
 
+> **Proof draft.**
+> Translate the fold center to
+> $$
+> (t_\ast,s_\ast)
+> $$
+> and write
+> $$
+> u=s-s_\ast.
+> $$
+> Since
+> $$
+> \partial_s g_{ij}(t_\ast;s_\ast)=0
+> $$
+> and
+> $$
+> |\partial_s^2 g_{ij}(t_\ast;s_\ast)|\ge \gamma_{\mathrm{fold}},
+> $$
+> Taylor expansion in
+> $$
+> s
+> $$
+> gives
+> $$
+> \partial_s g_{ij}(t;s)
+> =
+> \partial_s^2 g_{ij}(t;s_\ast)\,u
+> +
+> \mathcal{R}_{ij}(t,u),
+> $$
+> with remainder satisfying
+> $$
+> |\mathcal{R}_{ij}(t,u)|
+> \le
+> C^{\mathrm{mb}}_{3,g}|u|^2.
+> $$
+> Define
+> $$
+> \alpha_{ij}(t)\equiv \partial_s^2 g_{ij}(t;s_\ast).
+> $$
+> By continuity in
+> $$
+> t
+> $$
+> and by shrinking the receiver-time tube if necessary, the fold-curvature floor persists:
+> $$
+> |\alpha_{ij}(t)|\ge \frac{1}{2}\gamma_{\mathrm{fold}}.
+> $$
+> Choose the source-width of the tube so that
+> $$
+> C^{\mathrm{mb}}_{3,g}|u|
+> \le
+> \frac{1}{4}\gamma_{\mathrm{fold}}
+> $$
+> there. Then
+> $$
+> |J_{ij}(t;s)|
+> =
+> |\alpha_{ij}(t)u+\mathcal{R}_{ij}(t,u)|
+> \ge
+> \frac{1}{4}\gamma_{\mathrm{fold}}|u|,
+> $$
+> which is the required normal form and lower bound.
+
 This is the exact local reduction needed for the dual-mollified transit bound: every admissible many-body fold tube behaves like one controlled one-dimensional Jacobian zero, up to uniformly bounded error.
 
 Once that reduction is available, the actual impulse bound becomes a finite-dimensional bookkeeping problem.
@@ -5270,8 +5333,6 @@ The proof should now be written one local fold block at a time.
 > $$
 > for some finite constant depending only on
 > $$
-> \eta,
-> \qquad
 > \epsilon_c,
 > \qquad
 > \gamma_{\mathrm{fold}},
@@ -5284,41 +5345,130 @@ The proof should now be written one local fold block at a time.
 > $$
 >
 > **Proof draft.**
-> On the fold tube, write
+> Write
 > $$
 > J_{ij}(t;s)=\alpha_{ij}(t)u+\mathcal{R}_{ij}(t,u),
 > \qquad
 > u=s-s_\ast,
 > $$
-> with
-> $$
-> |\alpha_{ij}(t)|\ge \gamma_{\mathrm{fold}}/2
-> $$
-> and
-> $$
-> |\mathcal{R}_{ij}(t,u)|\le C^{\mathrm{mb}}_{3,g}|u|^2.
-> $$
-> Shrinking the tube if necessary, this gives
-> $$
-> |J_{ij}(t;s)|\ge c_{\mathrm{fold}}|u|
-> $$
-> for some
-> $$
-> c_{\mathrm{fold}}\asymp \gamma_{\mathrm{fold}}.
-> $$
-> The dual-mollified branch kernel is then bounded by
-> $$
-> \frac{C_m^{\mathrm{proj}}}{d_{\min}^2\bigl(|u|+\eta\bigr)+\epsilon_c^2},
-> $$
-> with
-> $$
-> C_m^{\mathrm{proj}}
-> $$
-> determined by the channel projection and the
-> $$
-> U_{\max},A_{\max}
-> $$
-> envelope. Integration in receiver time across the finite tube therefore reduces to the same one-dimensional dual-mollified transit integral as in the binary bridge, which is finite.
+> as in the fold-tube normal form. The proof is then an explicit reduction to a one-dimensional singular integral.
+>
+> 1. **Jacobian lower bound on the tube.**
+>    By the normal form lemma,
+>    $$
+>    |J_{ij}(t;s)|\ge c_{\mathrm{fold}}|u|
+>    $$
+>    with
+>    $$
+>    c_{\mathrm{fold}}\asymp \gamma_{\mathrm{fold}}.
+>    $$
+>
+> 2. **Distance and projection control.**
+>    On the controlled tube, the pair distance obeys
+>    $$
+>    r_{ij}(t;s)\ge d_{\min},
+>    $$
+>    while the channel projection satisfies
+>    $$
+>    |\Pi_m(t)\cdot \hat{\mathbf{r}}_{ij}(t;s)|
+>    \le
+>    C_m^{\mathrm{proj}}
+>    $$
+>    for some
+>    $$
+>    C_m^{\mathrm{proj}}
+>    =
+>    C_m^{\mathrm{proj}}(U_{\max},A_{\max}).
+>    $$
+>
+> 3. **Kernel reduction.**
+>    The dual-mollified branch kernel is therefore bounded by
+>    $$
+>    \frac{C_m^{\mathrm{proj}}\kappa\epsilon^2}{
+>    \bigl(d_{\min}^2+\epsilon_c^2\bigr)\bigl(c_{\mathrm{fold}}|u|+\eta\bigr)
+>    }
+>    $$
+>    up to a harmless change of constants. Thus the entire fold singularity is reduced to the one-dimensional factor
+>    $$
+>    \frac{1}{|u|+\eta}.
+>    $$
+>
+> 4. **Exact fold-time cancellation.**
+>    Since the source branch
+>    $$
+>    s=s(t)
+>    $$
+>    is simple, differentiating the root relation
+>    $$
+>    g_{ij}(t;s(t))=0
+>    $$
+>    yields
+>    $$
+>    \frac{ds}{dt}
+>    =
+>    -\frac{\partial_t g_{ij}(t;s(t))}{\partial_s g_{ij}(t;s(t))}.
+>    $$
+>    Hence
+>    $$
+>    dt
+>    =
+>    \frac{|\partial_s g_{ij}(t;s(t))|}{|\partial_t g_{ij}(t;s(t))|}\,ds
+>    =
+>    \frac{|J_{ij}(t;s)|}{|\partial_t g_{ij}(t;s)|}\,du.
+>    $$
+>    On every admissible fold tube, the receiver-time passage floor from the no-accumulation package gives
+>    $$
+>    |\partial_t g_{ij}(t;s)|\ge \chi_{\mathrm{fold}}>0.
+>    $$
+>    Therefore the singular factor
+>    $$
+>    |J_{ij}|^{-1}
+>    $$
+>    in the force kernel is exactly cancelled by the
+>    $$
+>    |J_{ij}|
+>    $$
+>    factor in the time-volume element
+>    $$
+>    dt.
+>    $$
+>
+> 5. **Uniform finite impulse bound.**
+>    After this cancellation, the branch contribution is bounded by
+>    $$
+>    \frac{C_m^{\mathrm{proj}}\kappa\epsilon^2}{
+>    \chi_{\mathrm{fold}}\bigl(d_{\min}^2+\epsilon_c^2\bigr)
+>    }
+>    \int_{|u|\le u_{\max}}du,
+>    $$
+>    where
+>    $$
+>    u_{\max}
+>    $$
+>    is controlled by the fold-tube width and hence by the no-accumulation constants. This bound is finite and remains uniformly finite as
+>    $$
+>    \eta\downarrow 0.
+>    $$
+>    Thus
+>    $$
+>    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}
+>    $$
+>    depends only on
+>    $$
+>    \epsilon_c,
+>    \gamma_{\mathrm{fold}},
+>    d_{\min},
+>    U_{\max},
+>    A_{\max},
+>    \chi_{\mathrm{fold}}.
+>    $$
+>
+> 6. **Conclusion.**
+>    The resulting finite bound is
+>    $$
+>    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}},
+>    $$
+>    as required.
 
 > **Lemma (Type III shared-body superposition estimate).**
 > Fix one admissible Type III shared-body coupled fold block
@@ -5345,11 +5495,25 @@ The proof should now be written one local fold block at a time.
 > $$
 >
 > **Proof draft.**
-> Decompose the block into its finitely many participating branch families. The branch-separation floor
+> Decompose the block into its participating branch families
+> $$
+> \beta_1,\dots,\beta_{M_{\mathrm{loc}}(\mathsf{e})}.
+> $$
+> The branch-separation floor
 > $$
 > \delta^{\mathrm{mb}}_{\mathrm{sep}}>0
 > $$
-> rules out any uncontrolled secondary collision away from the common fold center, and the admissible event alphabet forbids multiplicity larger than three. Apply the Type II estimate to each participating family and sum.
+> ensures that away from the common fold center these branches do not produce any additional unresolved near-collision or near-fold singularity. Each branch therefore satisfies the hypotheses of the Type II estimate on the same controlled tube. Summing the finitely many bounds gives
+> $$
+> \sum_{\ell=1}^{M_{\mathrm{loc}}(\mathsf{e})}
+> \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}
+> =
+> M_{\mathrm{loc}}(\mathsf{e})\,\mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}},
+> $$
+> and the admissible event alphabet gives
+> $$
+> M_{\mathrm{loc}}(\mathsf{e})\le 3.
+> $$
 
 > **Corollary (Renormalized post-transit envelope constants).**
 > There exist finite constants
@@ -5418,6 +5582,19 @@ The proof should now be written one local fold block at a time.
 >    C^1
 >    $$
 >    and acceleration-Lipschitz bound, so the next no-accumulation cycle remains available.
+>
+> 6. **Universal ceiling.**
+>    Since every admissible fold block is of Type II or Type III and the local multiplicity is bounded by
+>    $$
+>    M_{\max}^{\mathrm{mb}}\le 3,
+>    $$
+>    the universal choice
+>    $$
+>    F^{\mathrm{mb}}_m
+>    =
+>    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}M_{\max}^{\mathrm{mb}}
+>    $$
+>    controls every block on the cycle. This is exactly the ceiling consumed later by the recapture margins.
 
 This is the last missing analytic bridge between finite branch combinatorics and the concrete recapture inequalities. Without it, the fold ceilings in the principal margins remain formal placeholders.
 
@@ -5823,61 +6000,139 @@ The ancestry package may continue to consume this as an explicit geometric input
 > \mathscr{V}^{\mathrm{mb}}_{\mathrm{br}}.
 > $$
 >
-> 1. **Finite backward search space.**
->    By the finite-hypergraph package, the backward continuation graph from
+> 1. **Finite backward state space.**
+>    By the finite-hypergraph package, every backward continuation path from
 >    $$
 >    \mathsf{v}_{\mathrm{late}}
 >    $$
->    lies in a finite directed hypergraph whose event times are separated by
+>    runs inside one finite directed hypergraph whose event times are separated by
 >    $$
 >    \Delta\tau_{\mathrm{evt}}.
 >    $$
->    So every backward ancestry chain either terminates, enters a previously visited combinatorial state, or enters one of the explicitly listed fold or exchange tubes.
+>    Introduce the combinatorial state
+>    $$
+>    \Sigma(\mathsf{v})
+>    \equiv
+>    \bigl(
+>    i(\mathsf{v}),
+>    \alpha(\mathsf{v}),
+>    k(\mathsf{v}),
+>    \mathfrak{c}_{\mathrm{src}}(\mathsf{v}),
+>    \ell(\mathsf{v})
+>    \bigr),
+>    $$
+>    consisting of receiver label, window label, sector label, active source cluster, and branch multiplicity label. Because each factor ranges over a finite alphabet, the total number of such states is finite. Hence every backward ancestry chain either:
+>    $$
+>    \text{(a) terminates in an earlier window,}
+>    \qquad
+>    \text{(b) reaches the provenance region,}
+>    \qquad
+>    \text{or (c) revisits one previous state.}
+>    $$
 >
-> 2. **Provenance-component extraction.**
->    Collect all backward-connected components that lie entirely in the provenance windows
+> 2. **Monotone window descent.**
+>    By definition of backward ancestry, continuation is only allowed into earlier receiver windows in the cycle order, except for passage through one listed fold tube or one listed exchange tube already recorded in the hypergraph. Therefore no ancestry chain can oscillate indefinitely between unrelated window families. Once the chain has entered
+>    $$
+>    \mathcal{W}^{\mathrm{mb}}_{\mathrm{prov}},
+>    $$
+>    it stays inside the earlier part of the cycle unless one of the admissible hypergraph moves forces it out again; but such an exit would have to be encoded by one of the same finitely many state transitions above.
+>
+> 3. **Provenance-component extraction.**
+>    Collect all backward-connected sub-hypergraphs lying entirely in the provenance windows
 >    $$
 >    \mathcal{W}^{\mathrm{mb}}_{\mathrm{prov}}
 >    $$
->    and retain only those on which the receiver label, sector label, and admissible source-cluster trace stay fixed and the Jacobian floor
+>    for which the receiver label and sector label remain fixed and the admissible source-cluster trace stays inside the allowed move list
+>    $$
+>    \{i\}\leftrightarrow \{i,j\},
+>    \qquad
+>    \{i,j\}\leftrightarrow \{i\},
+>    \qquad
+>    \{i,j\}\leftrightarrow \{i,k\}.
+>    $$
+>    On each such component the branchwise Jacobian floor
 >    $$
 >    \nu^{\mathrm{mb}}_{J,\mathrm{anc}}>0
 >    $$
->    holds. These are the ancestry components
+>    and the branch-separation floor
+>    $$
+>    \delta^{\mathrm{mb}}_{\mathrm{sep}}>0
+>    $$
+>    exclude secondary unresolved branching. The resulting connected pieces are the ancestry components
 >    $$
 >    \mathfrak{a}_1,\dots,\mathfrak{a}_{N_{\mathrm{anc}}}.
 >    $$
+>    Their total number is finite because both the state alphabet and the finite hypergraph are finite.
 >
-> 3. **Uniqueness of ancestry attachment.**
->    Suppose one late-turn branch met two distinct ancestry components. Then the backward chain would have to cross either a forbidden receiver-window reversal or an unlisted exchange move between them, contradicting the admissible hypergraph alphabet. Hence each late-turn branch meets at most one ancestry component.
+> 4. **Uniqueness of ancestry attachment.**
+>    Suppose one late-turn branch met two distinct ancestry components
+>    $$
+>    \mathfrak{a}_p\neq \mathfrak{a}_q.
+>    $$
+>    Then a backward path from
+>    $$
+>    \mathsf{v}_{\mathrm{late}}
+>    $$
+>    to
+>    $$
+>    \mathfrak{a}_p
+>    $$
+>    and one to
+>    $$
+>    \mathfrak{a}_q
+>    $$
+>    would have to split through either:
+>    $$
+>    \text{(a) a receiver-window reversal,}
+>    \qquad
+>    \text{(b) an unlisted cluster exchange,}
+>    \qquad
+>    \text{or (c) a repeated branch birth unsupported by the hypergraph alphabet.}
+>    $$
+>    Each alternative contradicts the finite-hypergraph proposition. Hence every late-turn branch meets at most one ancestry component.
 >
-> 4. **Exclusion of infinite migration.**
->    If a backward chain avoids all ancestry components, then by finiteness of the hypergraph and finiteness of the source-cluster alphabet it must eventually revisit one earlier combinatorial state. That forces a trapped exchange loop inside
+> 5. **Exclusion of trapped migration.**
+>    Assume now that one backward ancestry chain avoids all ancestry components. By Step 1, it must eventually revisit one previous combinatorial state
+>    $$
+>    \Sigma(\mathsf{v}).
+>    $$
+>    By Step 2, this repeated state cannot be realized by wandering through infinitely many earlier windows; it must close into one trapped loop inside
 >    $$
 >    \mathcal{W}^{\mathrm{mb}}_{\mathrm{lt}}
 >    \cup
 >    \mathcal{W}^{\mathrm{mb}}_{\mathrm{mid}}
 >    $$
->    and the controlled fold or exchange tubes. But every admissible exchange in such a loop consumes at least
+>    together with the explicitly controlled fold or exchange tubes. Every jump in that loop is one admissible cluster exchange separated from the next by at least
 >    $$
->    \Delta\tau_{\mathrm{evt}},
+>    \Delta\tau_{\mathrm{evt}}.
 >    $$
->    and the finite-cycle parity rule forbids a closed loop of admissible source-cluster moves that never lands in a provenance component. Therefore infinite migration is excluded.
+>    The target lemma on no trapped admissible exchange cycles rules out exactly such a closed loop. Therefore every backward ancestry chain either reaches one unique ancestry component or terminates through one listed local event tube without generating uncontrolled migration.
 >
-> 5. **Deep-past amplitude bound.**
->    On each ancestry component, the Jacobian floor
+> 6. **Componentwise deep-past amplitude bound.**
+>    Fix one ancestry component
 >    $$
+>    \mathfrak{a}_m.
+>    $$
+>    On that component,
+>    $$
+>    t-s\ge \tau^{\mathrm{mb}}_{\mathrm{dp}},
+>    \qquad
+>    |J_{ij}(t;s)|\ge \nu^{\mathrm{mb}}_{J,\mathrm{anc}},
+>    \qquad
+>    r_{ij}(t;s)\ge c_f\tau^{\mathrm{mb}}_{\mathrm{dp}},
+>    $$
+>    so one branch contribution is bounded by
+>    $$
+>    \frac{\kappa\epsilon^2}{
+>    \bigl(c_f^2(\tau^{\mathrm{mb}}_{\mathrm{dp}})^2+\epsilon_c^2\bigr)
 >    \nu^{\mathrm{mb}}_{J,\mathrm{anc}}
+>    }.
 >    $$
->    and the deep-past delay threshold
->    $$
->    t-s\ge \tau^{\mathrm{mb}}_{\mathrm{dp}}
->    $$
->    bound every surviving branch contribution by the stated ceiling. Summing over at most
+>    Because branch simplicity and the admissible source-cluster alphabet allow at most one uniformly transversal deep-past branch per source-cluster channel on the chosen delay scale, each ancestry component contributes at most a fixed finite multiple of that ceiling. Summing over at most
 >    $$
 >    N_{\mathrm{anc}}
 >    $$
->    components yields the deep-past suppression estimate.
+>    ancestry components gives the claimed finite deep-past suppression bound.
 
 > **Target Corollary (Deep-past suppression from finite cluster ancestry).**
 > Assume the deep-past cluster-ancestry-or-exclusion proposition. Then on every controlled late-turn window one has a uniform bound
