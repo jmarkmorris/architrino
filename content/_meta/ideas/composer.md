@@ -207,6 +207,106 @@ If the UI keeps these questions clear, the composer can stay powerful without be
 
 The default composed-animation workspace should center on assembly or staging level authoring, with sequence and shot views available through the timeline, and constituent editing available by drill-down. That gives the tool a clear center of gravity while still supporting deep theory visualization.
 
+### Panel and control map by level
+
+The composer should expose a stable workspace shell while changing panel emphasis and default controls by semantic level.
+
+#### Corpus level
+
+Primary panel emphasis:
+
+- scene browser,
+- search,
+- recent or nearby scenes,
+- and scene summary metadata.
+
+Primary interactions:
+
+- select scene,
+- enter scene,
+- compare candidate scenes,
+- and return to branch context.
+
+#### Sequence level
+
+Primary panel emphasis:
+
+- master timeline,
+- marker and chapter list,
+- pause list,
+- global overlay list,
+- camera track overview,
+- and scene-level playback settings.
+
+Primary interactions:
+
+- set scene duration,
+- author chapter markers,
+- place pauses,
+- arrange major overlay clips,
+- and choose the overall camera strategy.
+
+#### Shot or beat level
+
+Primary panel emphasis:
+
+- local timeline clip inspector,
+- camera-shot inspector,
+- transition controls,
+- beat-level overlays,
+- and explanatory cue controls.
+
+Primary interactions:
+
+- trim shot timing,
+- adjust camera clip behavior,
+- place beat-local overlays,
+- and refine what the viewer should notice during one explanatory interval.
+
+#### Assembly or staging level
+
+Primary panel emphasis:
+
+- scene graph or assembly tree,
+- spatial inspector,
+- transform and path controls,
+- anchor and reaction controls,
+- and overlay placement tools.
+
+Primary interactions:
+
+- select assemblies,
+- move or rotate staged objects,
+- edit paths,
+- place callouts and guide shapes,
+- and set the spatial relationship between key scene elements.
+
+#### Constituent or internal-dynamics level
+
+Primary panel emphasis:
+
+- constituent tree,
+- local motion controls,
+- orbit or binary controls,
+- charge placement controls,
+- and local explanatory overlays.
+
+Primary interactions:
+
+- edit internal motion,
+- inspect attachment rules,
+- tune deformation or modulation,
+- and step through the internal behavior of the selected structure.
+
+### Default controls by level
+
+The same input device should not mean the same thing everywhere.
+
+- At sequence and shot level, the mouse wheel or trackpad should primarily scrub or zoom the timeline context unless the user deliberately enters camera navigation mode.
+- At assembly and constituent level, the same gesture should primarily navigate the 3D viewport.
+- Selection should always preserve a visible breadcrumb of the current level and selected object.
+- A persistent level switcher or breadcrumb should make it obvious whether the user is editing sequence, shot, assembly, or constituent structure.
+
 ---
 
 ## What exists today
@@ -511,6 +611,8 @@ A first practical composer schema stack could look like this:
 - `TransferSpec`
 - `ProvenanceSpec`
 - `CameraPathSpec`
+- `CameraShotSpec`
+- `CameraTransitionSpec`
 - `OverlaySpec`
 - `TrackSpec`
 - `BrandGraphicsSpec`
@@ -1296,6 +1398,61 @@ CameraPathSpec {
 }
 ```
 
+### CameraShotSpec
+
+Purpose:
+
+- define shot-level camera intent on the shared timeline,
+- separate editorial shot design from lower-level path geometry,
+- and support common explanatory shot patterns without requiring a cinema-grade camera system.
+
+Draft shape:
+
+```js
+CameraShotSpec {
+  id: string,
+  timing: ClipTimingSpec,
+  cameraPath?: Ref,
+  kind?: "establishing" | "detail" | "follow" | "orbit" | "comparison" | "custom",
+  target?: Ref,
+  framing?: "wide" | "medium" | "close" | "detail",
+  notes?: string
+}
+```
+
+Guidance:
+
+- `CameraPathSpec` defines where the camera can move,
+- `CameraShotSpec` defines why that interval exists and how it should read editorially,
+- and the shot model should stay small, explicit, and aligned with explanatory video rather than cinematic flourish for its own sake.
+
+### CameraTransitionSpec
+
+Purpose:
+
+- define how the viewer moves from one camera shot to the next,
+- keep shot transitions explicit on the same timeline,
+- and support a minimal but useful editorial vocabulary.
+
+Draft shape:
+
+```js
+CameraTransitionSpec {
+  id: string,
+  from: Ref,
+  to: Ref,
+  at: number,
+  kind: "cut" | "dissolve" | "continuous-move",
+  duration?: number
+}
+```
+
+Guidance:
+
+- `cut` should be the default editorial transition,
+- `dissolve` should be reserved for intentional soft comparison or passage,
+- `continuous-move` should be used when the same camera motion remains conceptually continuous across adjacent shots.
+
 ### ReactionSpec and TransferSpec
 
 Purpose:
@@ -1358,6 +1515,62 @@ The right near-term stance is:
 11. move progressively toward a truly 3D-first authoring model.
 
 That path respects the current implementation while still aiming at the correct long-term ontology.
+
+### Practical implementation phases
+
+To keep the tool world-class without making the first implementation impossible, the build should proceed in deliberately bounded phases.
+
+#### Phase 1: sequence and staging MVP
+
+Target:
+
+- one composed-animation scene type,
+- canonical JSON export,
+- master timeline,
+- markers,
+- pauses,
+- basic overlays,
+- assembly transforms,
+- path authoring,
+- and camera-path preview.
+
+This phase should already be able to produce polished instructional scenes with a clear beginning, middle, and end.
+
+#### Phase 2: shot and editorial refinement
+
+Target:
+
+- camera shots,
+- camera transitions,
+- explicit track ordering,
+- snap behavior,
+- hide, lock, and isolate controls,
+- and stronger timeline editing.
+
+This phase should make the tool feel like a real explanatory motion-design system rather than a geometry editor with playback.
+
+#### Phase 3: constituent and reaction depth
+
+Target:
+
+- constituent drill-down editing,
+- stronger internal-dynamics controls,
+- reaction choreography,
+- transfer and provenance objects,
+- and reusable explanatory templates.
+
+This phase should make the composer capable of expressing the deeper assembly logic of $\mathbb{A}\mathbb{A}\mathbb{A}$ rather than only outer staging.
+
+#### Phase 4: portability and rendering outputs
+
+Target:
+
+- portable scene package export,
+- rendered-media export classes,
+- scene-library reuse,
+- and stronger validation or lint around authoring semantics.
+
+This phase should make scenes portable and publication-ready without changing the canonical authored model.
 
 ---
 
