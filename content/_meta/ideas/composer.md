@@ -53,6 +53,13 @@ That means:
 - export/import remains canonical JSON,
 - and in-runtime controls likely remain in the corners, but with an abbreviated set relevant to composed animation playback, camera, selection, and inspection.
 
+The viewport should therefore privilege AAA-native reading order:
+
+- first body,
+- then path,
+- then orbit or shell structure,
+- then deeper constituent revelation if needed.
+
 The composer should be treated as a future core capability, not as a side panel.
 
 ---
@@ -124,6 +131,125 @@ The preferred hide sequence is simply the reverse:
 - collapse visible orbit or shell structure into a cleaner proxy,
 - and preserve just enough path or directional information to keep the large-scale scene intelligible.
 
+### Canonical viewport rendering stack
+
+The viewport should render these primitives in a stable visual order so the scene remains legible as structure becomes denser.
+
+Recommended rendering stack:
+
+1. background field
+   - neutral purple field or other scene background layer;
+2. path and orbit traces
+   - quiet structural traces that establish motion context;
+3. sphere bodies and sphere-like proxies
+   - the primary visible bodies of the scene;
+4. shell and ellipsoid guides
+   - transparent guide geometry for emphasis or structural reading;
+5. callout leaders
+   - restrained explanatory pointers;
+6. text labels
+   - the highest-priority explanatory layer, used sparingly.
+
+This stack should remain conceptually stable even when implementation details vary. The viewer should feel that the scene always reads from motion context to bodies to explanation.
+
+### Canonical primitive property model
+
+The primitive set is only useful if each primitive has a small, inspectable property surface.
+
+#### Sphere primitive
+
+Canonical inspectable properties:
+
+- position,
+- radius or scale,
+- color role,
+- opacity,
+- label,
+- parent frame,
+- path binding if moving,
+- and collapse source if acting as a proxy for deeper structure.
+
+#### Path primitive
+
+Canonical inspectable properties:
+
+- path kind,
+- control points or parametric payload,
+- frame,
+- visible trace mode,
+- directionality,
+- timing or speed mapping,
+- and bound objects using the path.
+
+#### Orbit or shell trace primitive
+
+Canonical inspectable properties:
+
+- center or anchor,
+- radii or axes,
+- orientation,
+- repetition or frequency relation,
+- trace visibility mode,
+- and whether the trace is structural, instructional, or both.
+
+#### Ellipse or ellipsoid guide primitive
+
+Canonical inspectable properties:
+
+- center or attached target,
+- axes or radii,
+- orientation,
+- stroke and fill styling,
+- and timing if introduced as an explanatory guide.
+
+#### Callout leader primitive
+
+Canonical inspectable properties:
+
+- target,
+- source position or label offset,
+- line style,
+- endcap style,
+- timing,
+- and label binding if present.
+
+#### Text label primitive
+
+Canonical inspectable properties:
+
+- text content,
+- text format,
+- role,
+- placement,
+- width or wrapping rule,
+- timing,
+- and attachment target if anchored to geometry.
+
+The point of this property model is not to expose endless controls. It is to ensure that every visible thing in the viewport can be understood, edited, and validated through a small, native set of properties.
+
+### Canonical reveal and collapse animation policy
+
+Reveal and collapse should be governed by one consistent policy instead of being improvised scene by scene.
+
+Preferred reveal behavior:
+
+- fade in motion context before or alongside the body when path understanding matters,
+- introduce the sphere-like body before secondary explanation layers,
+- reveal orbit or shell traces when repeated structure becomes the teaching focus,
+- and descend into constituent spheres and local paths only when the explanation truly requires internal constitution.
+
+Preferred collapse behavior:
+
+- remove local constituent clutter first,
+- preserve the dominant body and its principal path as long as they still carry explanatory value,
+- and collapse to a sphere-like proxy when detailed structure no longer helps at the current scale.
+
+Transition guidance:
+
+- reveal should usually feel like clarification, not like surprise,
+- collapse should usually feel like abstraction, not like disappearance,
+- and the same structure should remain visually recognizable as it moves between proxy, path-emphasized, and constituent-emphasized states.
+
 ---
 
 ## UI metaphor and design levels
@@ -178,6 +304,8 @@ This level should make the scene legible as one explanatory sequence rather than
 
 At this scale, the geometry is not abandoned. It is summarized. Paths, pauses, overlays, and camera attention become the large-scale reading of the same underlying scene.
 
+The sequence view should therefore summarize geometry rather than replace it. If the scene is about one sphere moving on one path with one orbital reveal, the sequence layer should make that legible immediately.
+
 ### 3. Shot or beat level
 
 Question this level answers:
@@ -200,6 +328,13 @@ Typical objects and controls:
 This is the right level for terms such as shot, clip, cut, hold, fade, cue, and playback beat.
 
 Shot design should still remain faithful to the sphere-orbit-path logic of the scene rather than imposing arbitrary cinematic flourish.
+
+The best shots in this system should help the viewer answer:
+
+- which body matters,
+- which path it follows,
+- which shell or orbit is active,
+- and whether deeper constitution now needs to be revealed.
 
 ### 4. Assembly or staging level
 
@@ -568,6 +703,8 @@ The best presets will be the ones that expose the native architecture of the sce
 - show shell,
 - compare two sphere-centered structures,
 - or collapse or reveal scale.
+
+That is also the standard the product should apply to future features: if a new control does not help the author reveal sphere-body, path, shell, orbit, or scale relations more clearly, it is probably not part of the core system.
 
 ### Authoring commands and gesture model
 
@@ -2525,6 +2662,7 @@ The long-term vision should be:
 - a dedicated composed-animation scene type inside the existing scene graph,
 - canonical JSON export from structured authored data,
 - a general runtime that can render any valid composed-animation scene,
+- one coherent sphere-path-orbit visual grammar across all authoring scales,
 - explicit Noether core, charge, path, and reaction authoring,
 - explicit time-aware playback,
 - recursive assembly construction,
