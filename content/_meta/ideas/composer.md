@@ -307,6 +307,95 @@ The same input device should not mean the same thing everywhere.
 - Selection should always preserve a visible breadcrumb of the current level and selected object.
 - A persistent level switcher or breadcrumb should make it obvious whether the user is editing sequence, shot, assembly, or constituent structure.
 
+### Workspace regions
+
+The workspace should keep a stable spatial grammar so the user does not need to re-learn the UI at each design level.
+
+Recommended persistent regions:
+
+- left rail
+  - structure browser, scene tree, assembly tree, track list, and library access;
+- central viewport
+  - the live geometric and explanatory truth of the scene;
+- right inspector
+  - properties for the current selection, current level, and active tool;
+- bottom timeline
+  - the shared time axis for sequence, shot, camera, overlay, and reaction timing;
+- top context bar
+  - breadcrumbs, level switcher, scene title, playback state, and current mode status.
+
+The relative emphasis of these regions should change by level, but the regions themselves should remain stable.
+
+### Selection model
+
+Selection behavior should be explicit and predictable.
+
+The composer should support:
+
+- single selection as the default,
+- multiselect for bulk timing, styling, or visibility changes,
+- hierarchical selection so a parent assembly can be selected without collapsing access to its children,
+- direct selection in the viewport,
+- structural selection in the scene or assembly tree,
+- and selection breadcrumbs so the user can see the ancestry of the current target.
+
+Selection state should support:
+
+- locked items that cannot be accidentally moved or edited,
+- hidden items that remain in the authored scene but are temporarily removed from view,
+- solo or isolate behavior for focused editing,
+- and dimmed context for nearby but currently unselected objects.
+
+### Transform and gizmo behavior
+
+The transform system should be deliberately small, consistent, and legible.
+
+At assembly and constituent levels, the composer should support:
+
+- translate,
+- rotate,
+- scale where scale is semantically valid,
+- path-handle editing,
+- and anchor editing.
+
+Gizmo guidance:
+
+- translation should use axis-constrained handles,
+- rotation should use explicit axis rings or equivalent directional controls,
+- scaling should be disabled for semantically fixed objects when scaling would misrepresent the underlying structure,
+- and local versus parent-relative transforms should be visually distinguished.
+
+The gizmo should expose the active frame clearly:
+
+- world or absolute frame,
+- parent-relative frame,
+- local object frame.
+
+This matters because the same assembly may need to be staged in world space while its internal constituents are edited in a local frame.
+
+### Presets and teaching patterns
+
+The composer should support reusable authoring patterns, but they should be treated as editable structured motifs rather than opaque canned effects.
+
+Useful first teaching-pattern presets include:
+
+- highlight assembly
+  - briefly introduce an ellipse or ellipsoid overlay around a selected target;
+- callout and label
+  - place a callout leader with a short instructional label;
+- pause and explain
+  - insert a timeline pause plus one or more explanatory overlays;
+- trace path
+  - reveal a path or corridor while dimming unrelated motion;
+- compare two structures
+  - place matched labels or overlays on two selected assemblies;
+- reveal internal structure
+  - drill from assembly to constituent level while preserving orientation and context;
+- shot introduction
+  - place an establishing text overlay or chapter marker at the start of a beat.
+
+These patterns should be authored as editable scene objects after insertion. Their value is speed and consistency, not hidden behavior.
+
 ---
 
 ## What exists today
@@ -362,6 +451,11 @@ This is the cleanest contract because the authored artifact should be:
 Programmatic builders or helpers may still exist, but they should compile down to the same canonical JSON before save/export.
 
 The runtime should be general enough to read any valid composed-animation JSON scene and render it, rather than requiring a custom program per scene.
+
+Important separation:
+
+- canonical scene export should contain authored scene semantics,
+- while workspace-only state such as current selection, open panels, temporary gizmo mode, or viewport camera during editing should remain editor state unless explicitly promoted into authored scene data.
 
 ---
 
@@ -420,6 +514,7 @@ This section merges the remaining useful requirements into one set.
 - Library assemblies should support instance-level scaling so the same authored assembly can be reused at different sizes without redefining its internal structure.
 - Any assembly should be able to be surrounded by a large population of additional spacetime assemblies that are instanced at small but still visible scale so the main assembly remains readable while its surrounding context is shown.
 - Any detailed assembly should be able to collapse to a simpler proxy representation when zoomed out, such as a colored sphere or labeled sphere, so scenes remain legible and performant at multiple viewing scales.
+- Assemblies and their constituents should support clear frame-aware selection so authors can edit parent staging and internal structure without losing orientation.
 
 ### 4. Noether core requirements
 
@@ -454,6 +549,7 @@ This section merges the remaining useful requirements into one set.
 - Arbitrary paths should support explicit points, spline-smoothed points, and primitive parameterizations where useful.
 - Path, orbit, spin, translation, deformation, and jiggle should be composable rather than mutually exclusive.
 - Time mapping, repeat behavior, phase offsets, and playback rate should be explicit.
+- Transform editing should distinguish world, parent-relative, and local frames explicitly in both data and UI.
 
 ### 8. Path authoring requirements
 
@@ -497,6 +593,8 @@ This section merges the remaining useful requirements into one set.
 - The author should be able to select, multiselect, hide, show, lock, unlock, and isolate authored objects without changing their canonical semantics.
 - Snapping should be available for useful authoring targets such as timeline markers, pause boundaries, anchors, path points, and nearby guide geometry.
 - The tool should support basic shot-transition semantics, including hard cut, dissolve, and continuous move, without requiring a full nonlinear editor feature set.
+- The workspace should preserve a stable left-browser, central viewport, right-inspector, and bottom-timeline grammar even as panel emphasis changes by level.
+- The composer should support reusable teaching-pattern presets that insert editable authored objects rather than opaque effects.
 
 ### 11. Validation and migration requirements
 
@@ -615,6 +713,7 @@ A first practical composer schema stack could look like this:
 - `CameraTransitionSpec`
 - `OverlaySpec`
 - `TrackSpec`
+- `TeachingPatternSpec`
 - `BrandGraphicsSpec`
 
 ### Primitive spec vocabulary
@@ -893,6 +992,7 @@ SceneSpec {
   tracks?: TrackSpec[],
   channels?: ChannelSpec[],
   overlays?: OverlaySpec[],
+  teachingPatterns?: TeachingPatternSpec[],
   reactions?: ReactionSpec[],
   transfers?: TransferSpec[],
   provenance?: ProvenanceSpec[],
@@ -920,6 +1020,40 @@ TrackSpec {
   hidden?: boolean
 }
 ```
+
+### TeachingPatternSpec
+
+Purpose:
+
+- capture reusable explanatory motifs as explicit authored structures,
+- speed up scene construction without hiding what was inserted,
+- and keep the instructional vocabulary of the composer portable across scenes.
+
+Draft shape:
+
+```js
+TeachingPatternSpec {
+  id: string,
+  kind:
+    | "highlight-assembly"
+    | "callout-and-label"
+    | "pause-and-explain"
+    | "trace-path"
+    | "compare-two-structures"
+    | "reveal-internal-structure"
+    | "shot-introduction"
+    | "custom",
+  targets?: Ref[],
+  generatedItems?: Ref[],
+  params?: Record<string, unknown>
+}
+```
+
+Guidance:
+
+- a teaching pattern should insert ordinary authored objects such as overlays, pauses, markers, or camera shots,
+- `generatedItems` should point to those ordinary objects after insertion,
+- and authors should be free to edit the inserted objects directly without breaking the scene model.
 
 ### LayoutSpec
 
