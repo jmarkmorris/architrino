@@ -11,6 +11,27 @@ Define a canonical JavaScript-facing interface for authoring and running AAA sce
 
 This is a requirements and wireframe draft, not a final spec.
 
+## Relation to the existing scene system
+
+This format should not replace the current explicit scene network. It should define the authored payload for a new special runtime scene type inside that network.
+
+The intended relationship is:
+
+- higher-level collection or index scenes may still present selectable spheres or nodes,
+- one of those nodes may target a composed animation scene,
+- opening that node should switch into a dedicated composed-animation runtime rather than a markdown-reader flow,
+- and the composed animation scene should then render authored assemblies, paths, reactions, and playback.
+
+This makes the format closer to the current family of special interactive scenes, such as periodic-table-driven drill-down flows, than to the standard sphere-to-markdown pattern.
+
+In practical terms:
+
+- composed animation scenes should remain authored scene files that participate in the same manifest and navigation graph,
+- they should not rely on `markdownPath` as their primary content contract,
+- and higher-level scenes may still reference them through the existing navigation model even if the opened runtime mode is different.
+
+Taxonomically, these scenes are best understood as tool scenes and animation scenes. A dedicated runtime `scene.type` such as `Scene-Composed-Animation` is likely the cleanest way to distinguish them from ordinary diagram and markdown-view scenes, while the canonical authored payload below defines what such a scene contains.
+
 ## Design Goals
 1. One model for static diagrams and animated assemblies.
 2. Declarative first, imperative optional.
@@ -24,12 +45,21 @@ This is a requirements and wireframe draft, not a final spec.
 
 ## Core Requirements
 
+1. **Scene System Relationship**
+- The format must work as the authored payload of a dedicated composed-animation scene type inside the existing scene graph.
+- Higher-level collection scenes must be able to link to these scenes without forcing a markdown-target interaction model.
+- Scene-level runtime controls should fit the app's existing corner-control language, but allow an abbreviated animation-specific control set.
 
-2. **Entity Model**
+2. **Scene Types**
+- `branching`, `diagram`, `markdown_split`, and `composed_animation` must be representable at the semantic level.
+- `composed_animation` is the key new special case for authored assembly playback scenes.
+- Scene may include both content and simulation components.
+
+3. **Entity Model**
 - Any node can be a body, core, charge, field marker, reaction node, or annotation.
 - Entity must support geometry, material, motion, metadata, and links.
 
-3. **Motion Model**
+4. **Motion Model**
 - Built-in motion primitives:
   - `fixed`
   - `orbit.circular`
@@ -38,7 +68,7 @@ This is a requirements and wireframe draft, not a final spec.
   - `deform`
 - Time-based parameters with optional phase and modulation.
 
-4. **Noether Core Model**
+5. **Noether Core Model**
 - Canonical core object with:
   - shell geometry
   - binary/tri-band orbital layers
@@ -46,14 +76,14 @@ This is a requirements and wireframe draft, not a final spec.
   - attached charges
 - Support single-core and multi-core assemblies.
 
-5. **Charges / Personality Nodes**
+6. **Charges / Personality Nodes**
 - Typed charge entities (`electrino`, `positrino`, future extensions).
 - Attach modes:
   - `independent` (scene-level nodes)
   - `bound_to_core` (derived from core config)
 - Sizing/placement policies must be declarative.
 
-6. **Color System**
+7. **Color System**
 - Global palette registry (named schemes like `legacy`, `spectrum19`, `jewel`).
 - Scene-level and component-level palette binding.
 - Deterministic assignment modes:
@@ -61,23 +91,23 @@ This is a requirements and wireframe draft, not a final spec.
   - by angular order
   - by role/type
 
-7. **2D / 3D Support**
+8. **2D / 3D Support**
 - Scene-level dimension mode: `2d`, `2.5d`, `3d`.
 - Camera and layout policies independent from model semantics.
 
-8. **Reactions Between Assemblies**
+9. **Reactions Between Assemblies**
 - Reaction graph with typed edges (`reactant`, `product`, `emission`, etc.).
 - Reactions may spawn/consume/transform entities over time.
 - Event hooks for transitions and drill-downs.
 
-9. **Interactivity**
+10. **Interactivity**
 - First-class actions:
   - drill-down to scene
   - open markdown/doc
   - inspect metadata/details
 - Selection and hover IDs must be stable.
 
-10. **Validation & CI**
+11. **Validation & CI**
 - JSON schema for structural validity.
 - semantic lint:
   - missing targets
@@ -90,12 +120,14 @@ This is a requirements and wireframe draft, not a final spec.
 Scene {
   scene: {
     id: string,
-    kind: "branching" | "diagram" | "markdown_split",
+    type: "Scene-Index" | "Scene-Diagram" | "Scene-Markdown-View" | "Scene-Composed-Animation",
+    kind: "branching" | "diagram" | "markdown_split" | "composed_animation",
     name: string,
     mode?: "2d" | "2.5d" | "3d",
     layout?: LayoutSpec,
     palette?: PaletteBinding,
-    camera?: CameraSpec
+    camera?: CameraSpec,
+    controls?: ControlSpec
   },
   entities: Entity[],
   interactions?: InteractionSpec[],
@@ -191,10 +223,13 @@ ReactionSpec {
 
 ## Migration Notes (Current App -> Canonical)
 1. Map `objects[]` -> `entities[]`.
-2. Preserve `scene.kind` (`branching`, `diagram`, `markdown_split`).
-3. Map `renderStyle: binarySphere/binaryShell` -> `role: core` + `CoreSpec`.
-4. Map `binaryBands` + orbit runtime fields into explicit `bands` and `MotionSpec`.
-5. Keep `subScenes`/`markdownPath` as interaction bindings.
+2. Preserve current scene-graph participation and add a dedicated runtime `scene.type` for authored composed animation scenes.
+3. Preserve `scene.kind` (`branching`, `diagram`, `markdown_split`) for existing scenes and introduce `composed_animation` for this new class.
+4. Allow higher-level collection scenes to keep their normal selectable node presentation while routing into composed animation scenes at open time.
+5. Map ordinary markdown-target nodes to interaction bindings where applicable, but do not require `markdownPath` for composed animation scenes.
+6. Map `renderStyle: binarySphere/binaryShell` -> `role: core` + `CoreSpec`.
+7. Map `binaryBands` + orbit runtime fields into explicit `bands` and `MotionSpec`.
+8. Keep `subScenes`/`markdownPath` as interaction bindings where they are still relevant.
 
 ## Open Questions
 1. Should charge placement be procedural-only, declarative-only, or both?
