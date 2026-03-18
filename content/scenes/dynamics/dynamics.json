@@ -52,6 +52,10 @@
         "scenePath": "content/scenes/dynamics/master_equation_of_motion.json"
       },
       {
+        "nodeId": "master_equation_breather",
+        "scenePath": "content/scenes/dynamics/master_equation_breather.json"
+      },
+      {
         "nodeId": "mode_taxonomy",
         "scenePath": "content/scenes/dynamics/mode_taxonomy.json"
       },
@@ -180,6 +184,17 @@
         "type": "fixed"
       },
       "labelTitle": "Master Equation of Motion",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "master_equation_breather",
+      "title": "Master Equation Breather",
+      "radius": 2.688,
+      "color": "#5b3f7a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Master Equation Breather",
       "labelBadge": "doc"
     },
     {

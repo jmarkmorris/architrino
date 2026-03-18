@@ -3419,6 +3419,400 @@ The theorem objective is not yet a classification of all planar three-body bound
 
 The package ladder below is now the right place to resume work. It turns the present many-body discussion from a boundary marker into a live theorem program.
 
+### Seed-side leading-order geometry for the planar three-body bridge
+
+Before tightening the full delay geometry, one should record one explicit planar seed family for which the leading partner attraction is already stronger than the obvious geometric leakage. That is the many-body analogue of the frozen 1D affine seed packet: it does not prove the breather by itself, but it shows that the first recapture margins are not vacuous.
+
+Work in the center-of-mass chart and write
+$$
+\mathbf{x}_1
+=
+\frac{1}{2}\mathbf{a}-\frac{1}{3}\mathbf{b},
+\qquad
+\mathbf{x}_2
+=
+\frac{2}{3}\mathbf{b},
+\qquad
+\mathbf{x}_3
+=
+-\frac{1}{2}\mathbf{a}-\frac{1}{3}\mathbf{b}.
+$$
+Choose seed parameters
+$$
+A_\ast>0,
+\qquad
+B_\ast>0,
+\qquad
+u_{a,\mathrm{seed}}>0,
+\qquad
+u_{b,\mathrm{seed}}>0,
+\qquad
+V_{x,\mathrm{seed}}>0,
+$$
+and define the Jacobi seed history by
+$$
+\mathbf{a}_{\mathrm{seed}}(\theta)
+\equiv
+\bigl(A_\ast-u_{a,\mathrm{seed}}\theta\bigr)\mathbf{e}_1,
+$$
+$$
+\mathbf{b}_{\mathrm{seed}}(\theta)
+\equiv
+-V_{x,\mathrm{seed}}\theta\,\mathbf{e}_1
++
+\bigl(B_\ast-u_{b,\mathrm{seed}}\theta\bigr)\mathbf{e}_2,
+\qquad
+\theta\in[-h,0].
+$$
+Since
+$$
+\theta\le 0,
+$$
+the same-sign pair is farther apart in the recent past and the opposite-sign body sits higher in the recent past. At the section time
+$$
+\theta=0
+$$
+one has
+$$
+\mathbf{a}_{\mathrm{seed}}(0)=A_\ast\mathbf{e}_1,
+\qquad
+\mathbf{b}_{\mathrm{seed}}(0)=B_\ast\mathbf{e}_2,
+\qquad
+\dot{\mathbf{b}}_{\mathrm{seed}}(0)
+=
+-V_{x,\mathrm{seed}}\mathbf{e}_1-u_{b,\mathrm{seed}}\mathbf{e}_2,
+$$
+so the gauge conditions
+$$
+\mathbf{e}_2\cdot \mathbf{b}(0)>0,
+\qquad
+\mathbf{e}_1\cdot \dot{\mathbf{b}}(0)<0
+$$
+are automatic.
+
+The associated seed body velocities are
+$$
+\dot{\mathbf{x}}_{1,\mathrm{seed}}
+=
+-\left(
+\frac{u_{a,\mathrm{seed}}}{2}
+-\frac{V_{x,\mathrm{seed}}}{3}
+\right)\mathbf{e}_1
++\frac{u_{b,\mathrm{seed}}}{3}\mathbf{e}_2,
+$$
+$$
+\dot{\mathbf{x}}_{2,\mathrm{seed}}
+=
+-\frac{2V_{x,\mathrm{seed}}}{3}\mathbf{e}_1
+-\frac{2u_{b,\mathrm{seed}}}{3}\mathbf{e}_2,
+$$
+$$
+\dot{\mathbf{x}}_{3,\mathrm{seed}}
+=
+\left(
+\frac{u_{a,\mathrm{seed}}}{2}
++\frac{V_{x,\mathrm{seed}}}{3}
+\right)\mathbf{e}_1
++\frac{u_{b,\mathrm{seed}}}{3}\mathbf{e}_2.
+$$
+Hence one sufficient sub-field-speed condition is
+$$
+U^{\mathrm{mb}}_{\mathrm{seed}}
+\equiv
+\max\left\{
+\left\|
+\dot{\mathbf{x}}_{1,\mathrm{seed}}
+\right\|,
+\left\|
+\dot{\mathbf{x}}_{2,\mathrm{seed}}
+\right\|,
+\left\|
+\dot{\mathbf{x}}_{3,\mathrm{seed}}
+\right\|
+\right\}
+<c_f.
+$$
+
+At the section time define the common partner distance
+$$
+R_{\mathrm{pair}}
+\equiv
+\left\|
+\frac{1}{2}A_\ast \mathbf{e}_1-B_\ast \mathbf{e}_2
+\right\|
+=
+\sqrt{\frac{A_\ast^2}{4}+B_\ast^2}.
+$$
+Then the instantaneous Coulomb-like partner projections satisfy
+$$
+\ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{part}}
+=
+-\,\frac{\kappa\epsilon^2}{R_{\mathrm{pair}}^3}\,
+\mathbf{a}_{\mathrm{seed}}(0),
+$$
+while the direct same-sign pair repulsion contributes
+$$
+\ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{same}}
+=
+\frac{2\kappa\epsilon^2}{A_\ast^3}\,
+\mathbf{a}_{\mathrm{seed}}(0).
+$$
+Therefore the leading pair-axis seed forcing is
+$$
+\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+\equiv
+-\hat{\mathbf{a}}_{\mathrm{seed}}(0)\cdot
+\left(
+\ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{part}}
++
+\ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{same}}
+\right)
+=
+\kappa\epsilon^2
+\left(
+\frac{A_\ast}{R_{\mathrm{pair}}^3}
+-\frac{2}{A_\ast^2}
+\right).
+$$
+
+Likewise, the leading midpoint-axis attraction from the opposite-sign body against the outer-pair midpoint is
+$$
+\ddot{\mathbf{b}}_{\mathrm{seed}}^{\mathrm{part}}
+=
+-\,\frac{3\kappa\epsilon^2}{R_{\mathrm{pair}}^3}\,
+\mathbf{b}_{\mathrm{seed}}(0),
+$$
+so
+$$
+\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+\equiv
+-\hat{\mathbf{b}}_{\mathrm{seed}}(0)\cdot
+\ddot{\mathbf{b}}_{\mathrm{seed}}^{\mathrm{part}}
+=
+\frac{3\kappa\epsilon^2 B_\ast}{R_{\mathrm{pair}}^3}.
+$$
+At this symmetric seed, the direct same-sign pair force does not contribute to
+$$
+\mathbf{b}
+$$
+at leading order.
+
+The leading geometric leakage ceilings at the section are equally explicit:
+$$
+L^{\mathrm{mb}}_{1,\mathrm{geom,seed}}
+=
+0,
+$$
+because
+$$
+\dot{\mathbf{a}}_{\mathrm{seed}}(0)
+=
+-u_{a,\mathrm{seed}}\mathbf{e}_1
+$$
+is parallel to
+$$
+\mathbf{a}_{\mathrm{seed}}(0),
+$$
+and
+$$
+L^{\mathrm{mb}}_{2,\mathrm{geom,seed}}
+=
+\frac{V_{x,\mathrm{seed}}^2}{B_\ast},
+$$
+because
+$$
+\hat{\mathbf{b}}_{\mathrm{seed}}(0)=\mathbf{e}_2
+$$
+while the transverse component of
+$$
+\dot{\mathbf{b}}_{\mathrm{seed}}(0)
+$$
+is exactly
+$$
+V_{x,\mathrm{seed}}\mathbf{e}_1.
+$$
+
+These formulas already show the right geometric sweet spot: choose
+$$
+B_\ast
+$$
+not too large compared with
+$$
+A_\ast,
+$$
+and choose
+$$
+V_{x,\mathrm{seed}}
+$$
+small relative to
+$$
+\kappa\epsilon^2 B_\ast/R_{\mathrm{pair}}^3.
+$$
+Then the first two inward channels are positive before any refined delay bookkeeping is invoked.
+
+> **Target Proposition (Explicit symmetric planar-three-body seed packet with positive leading principal margins).**
+> Fix
+> $$
+> A_\ast>0,
+> \qquad
+> B_\ast>0
+> $$
+> such that
+> $$
+> B_\ast^2
+> <
+> \left(
+> 2^{-2/3}-\frac{1}{4}
+> \right)
+> A_\ast^2,
+> \qquad
+> B_\ast
+> <
+> \frac{\sqrt{3}}{2}A_\ast.
+> $$
+> Then:
+> 1. the pair-axis seed attraction is strictly inward,
+>    $$
+>    \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0;
+>    $$
+> 2. the midpoint-axis seed attraction is strictly inward,
+>    $$
+>    \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}>0;
+>    $$
+> 3. the role gap at the seed is strictly positive,
+>    $$
+>    \|\mathbf{x}_{1,\mathrm{seed}}(0)\|
+>    =
+>    \|\mathbf{x}_{3,\mathrm{seed}}(0)\|
+>    >
+>    \|\mathbf{x}_{2,\mathrm{seed}}(0)\|;
+>    $$
+> 4. and if
+>    $$
+>    0<V_{x,\mathrm{seed}}
+>    <
+>    \sqrt{
+>    \frac{3\kappa\epsilon^2 B_\ast^2}{2R_{\mathrm{pair}}^3}
+>    },
+>    $$
+>    then the leading midpoint leakage satisfies
+>    $$
+>    L^{\mathrm{mb}}_{2,\mathrm{geom,seed}}
+>    <
+>    \frac{1}{2}\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}.
+>    $$
+>
+> Consequently the first two principal margins and the role-gap floor are nonvacuous on a nonempty open neighborhood of this seed, provided the delayed fold and deep-past ceilings are chosen smaller than the remaining slack.
+
+> **Proof draft.**
+> The inequality
+> $$
+> \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0
+> $$
+> is equivalent to
+> $$
+> \frac{A_\ast}{R_{\mathrm{pair}}^3}
+> >
+> \frac{2}{A_\ast^2},
+> $$
+> which is
+> $$
+> R_{\mathrm{pair}}^3<\frac{A_\ast^3}{2}
+> $$
+> and therefore
+> $$
+> R_{\mathrm{pair}}^2<2^{-2/3}A_\ast^2.
+> $$
+> Since
+> $$
+> R_{\mathrm{pair}}^2=\frac{A_\ast^2}{4}+B_\ast^2,
+> $$
+> the stated bound on
+> $$
+> B_\ast
+> $$
+> is exactly the desired condition.
+>
+> The positivity of
+> $$
+> \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+> $$
+> is immediate from
+> $$
+> B_\ast>0.
+> $$
+> The role-gap inequality becomes
+> $$
+> \frac{A_\ast^2}{4}+\frac{B_\ast^2}{9}
+> >
+> \frac{4B_\ast^2}{9},
+> $$
+> which is equivalent to
+> $$
+> B_\ast<\frac{\sqrt{3}}{2}A_\ast.
+> $$
+> Finally,
+> $$
+> L^{\mathrm{mb}}_{2,\mathrm{geom,seed}}
+> =
+> \frac{V_{x,\mathrm{seed}}^2}{B_\ast}
+> <
+> \frac{1}{2}\cdot
+> \frac{3\kappa\epsilon^2 B_\ast}{R_{\mathrm{pair}}^3}
+> =
+> \frac{1}{2}\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+> $$
+> is exactly the displayed upper bound on
+> $$
+> V_{x,\mathrm{seed}}.
+> $$
+> These inequalities are strict, so they persist on one nonempty
+> $$
+> C^1
+> $$
+> neighborhood of the seed history.
+
+> **Target Corollary (Seed-neighborhood realization of the leading planar-three-body principal margins).**
+> Under the hypotheses of the explicit symmetric seed proposition, there exists
+> $$
+> \varepsilon^{\mathrm{mb}}_{\mathrm{seed}}>0
+> $$
+> and a nonempty
+> $$
+> C^1
+> $$
+> neighborhood
+> $$
+> \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
+> $$
+> of
+> $$
+> \Phi^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> inside the gauge-fixed section such that every
+> $$
+> \Phi\in \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
+> $$
+> retains:
+> 1. the same-sign pair axis in one fixed narrow cone around
+>    $$
+>    \mathbf{e}_1;
+>    $$
+> 2. the opposite-sign midpoint axis in one fixed upper-half-plane cone;
+> 3. a strictly positive role gap;
+> 4. and strictly positive leading-order seed-side margins for
+>    $$
+>    \rho^{\mathrm{mb}}_1
+>    \qquad
+>    \text{and}
+>    \qquad
+>    \rho^{\mathrm{mb}}_2.
+>    $$
+
+This is the many-body analogue of the old seed-neighborhood realization step in the frozen 1D chapter. Its role is only to certify that the principal inward hierarchy is not attached to one isolated affine history, but persists on one genuine local seed packet from which the later delayed and hypergraph packages may start.
+
+This is the first genuine many-body seed-side margin calculation in the chapter. It does not yet prove the full delayed recapture theorem, but it identifies one concrete planar geometry in which the desired inward hierarchy is already visible in the bare Jacobi dynamics.
+
 ### First many-body theorem package: section and gauge fixing on planar shape space
 
 Let
