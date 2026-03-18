@@ -729,3 +729,80 @@ In any of these scenes, camera path and camera orientation may also change as th
 - The second core carries three binary internal motions rotating counterclockwise.
 - Both cores remain explicit authored sub-assemblies rather than hidden procedural effects.
 - The full paired-core assembly may itself translate, rotate, and follow an authored path while the internal motions continue.
+
+---
+
+## Future scene families this model should support
+
+These are broader authored-animation families worth carrying in the design now so the model does not trap itself in single-particle flythroughs only.
+
+### PDG-style reaction and decay scenes
+
+- Authored decay chains following known PDG reaction families.
+- Multi-stage disassembly and reassembly of constituents over the shared timeline.
+- Branching authored outcomes with probabilities or confidence metadata.
+- Reaction libraries keyed to named channels or reusable reaction templates.
+
+### Atomic reaction scenes
+
+- Ionization, recombination, excitation, and de-excitation scenes.
+- Photon emission and absorption sequences tied to authored atomic transitions.
+- Electron capture, scattering, and exchange scenes.
+- Multi-assembly atomic reactions where incoming particles perturb a bound atomic structure.
+
+### Neutrino scenes
+
+- Neutrino-like assemblies passing through matter with mostly non-interacting authored trajectories.
+- Rare authored interaction moments highlighted against a large background of pass-through traffic.
+- Mixed scenes where neutrino traffic crosses atomic or reaction environments.
+
+### Photon-field scenes
+
+- Large populations of photon-like paired-core assemblies moving through a scene.
+- Distinct authored photon classes by color, energy band, or other visual coding.
+- Crossing photon baths, beam scenes, or ambient radiation environments.
+- Mixed photon and matter scenes where some photons merely pass through while others participate in authored reaction moments.
+
+### Radiation and traffic environments
+
+- Scenes containing many simultaneous passing assemblies such as photons, neutrinos, electrons, or ions.
+- Dense flux environments around a hero assembly.
+- Traffic layers that communicate how much is moving through a region without requiring every passing object to be rendered in full detail at all times.
+
+### Detector and observation scenes
+
+- Detector-like scenes where invisible or subtle interaction regions produce visible authored traces or hit events.
+- Observer-mode scenes that switch between lab frame, particle-follow frame, reaction-center frame, or detector frame.
+- Inspection scenes that pause or slow local time around reaction events.
+
+### Provenance and explanation scenes
+
+- Reaction walkthroughs where outgoing constituents remain color-coded by source ancestry.
+- Step-through provenance scenes showing exactly which component moved where and when.
+- Comparison scenes showing several possible authored outcomes side by side.
+
+### Camera and storytelling scenes
+
+- Multi-camera authored scenes with cuts between waypoint and follow-camera tracks.
+- Cinematic chase, trail, flank, lead, and orbit camera behavior around moving assemblies.
+- Slow-motion emphasis windows around key interaction moments.
+- Ghosted past and future overlays that show trajectory context around the current time.
+
+---
+
+## Additional design ideas worth keeping
+
+- Reaction template libraries keyed to PDG channels.
+- Atomic-reaction template libraries keyed to common ionization, excitation, and emission patterns.
+- Particle traffic emitters for authored streams of photons, neutrinos, or other assemblies moving through a region.
+- Event-density controls so a scene can move between sparse, moderate, and intense traffic conditions.
+- Provenance color modes that keep transferred constituents visibly tied to their source assembly.
+- Time-warp controls that allow selected intervals to run in slow motion without changing the authored master timeline semantics.
+- Multi-camera storytelling inside one authored scene rather than requiring a separate scene file per camera idea.
+
+One especially important modeling distinction is:
+
+- hero assemblies: fully detailed, inspectable, and suitable for drill-down,
+- traffic assemblies: library-backed, heavily instanced, small, LOD-driven, and often simplified until selected.
+
+That distinction should make it possible to show photon fields, neutrino traffic, and dense reaction environments without overwhelming readability or runtime performance.
