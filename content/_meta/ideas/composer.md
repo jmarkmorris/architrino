@@ -346,6 +346,48 @@ Selection state should support:
 - solo or isolate behavior for focused editing,
 - and dimmed context for nearby but currently unselected objects.
 
+### Scene graph and assembly tree interaction model
+
+The left-side structural browser should not be a passive file outline. It is one of the primary authoring surfaces of the composer.
+
+The composer should distinguish clearly between:
+
+- scene graph
+  - high-level authored scene objects and their timeline-facing roles;
+- assembly tree
+  - recursive spatial and constitutive structure inside the current scene;
+- track list
+  - editorial and overlay ordering on the shared timeline;
+- library browser
+  - reusable authored motifs and assembly definitions.
+
+The tree model should support:
+
+- expand and collapse,
+- reveal in viewport,
+- frame selection,
+- drag to reorder where ordering is semantically meaningful,
+- drag to reparent where hierarchy allows it,
+- duplicate branch,
+- convert selection to reusable library item,
+- instantiate library item into the current scene,
+- and inspect references without losing the current editing level.
+
+Reparenting rules should be explicit:
+
+- reparenting should be allowed only when the target hierarchy preserves valid frames and authored semantics,
+- when reparenting changes reference frames, the user should be able to choose whether to preserve world transform or local transform,
+- and prohibited reparenting cases should be blocked clearly rather than guessed silently.
+
+The tree should also support multiple useful views over the same scene:
+
+- structural view,
+- timing or editorial view,
+- provenance or transfer view where relevant,
+- and library-instance view for reusable motifs.
+
+This matters because the same authored scene may need to be understood as geometry, explanation sequence, and constitutive hierarchy all at once.
+
 ### Transform and gizmo behavior
 
 The transform system should be deliberately small, consistent, and legible.
@@ -629,6 +671,42 @@ Important separation:
 - canonical scene export should contain authored scene semantics,
 - while workspace-only state such as current selection, open panels, temporary gizmo mode, or viewport camera during editing should remain editor state unless explicitly promoted into authored scene data.
 
+### Revision and collaboration workflow
+
+The composer should assume that serious scenes will be revised repeatedly and may eventually be developed collaboratively, even if the first implementation is single-author.
+
+The workflow model should distinguish:
+
+- draft scene state
+  - the current editable workspace state;
+- canonical authored scene
+  - the validated semantic scene export;
+- revision checkpoints
+  - named or timestamped snapshots worth returning to;
+- published or presentation-ready scene state
+  - a scene revision suitable for reader-facing use or rendered export.
+
+Useful first workflow features:
+
+- save draft,
+- restore last draft,
+- save named checkpoint,
+- compare current draft to canonical export,
+- compare one checkpoint to another,
+- and publish one selected revision to the scene graph or render pipeline.
+
+Near-term collaboration assumptions:
+
+- the first system may still be effectively single-user,
+- but the scene format should not prevent later review, annotation, or handoff,
+- and revision metadata should be clear enough that another author can understand what changed and why.
+
+Collaboration-ready design guidance:
+
+- canonical scene files should remain diffable,
+- reusable library items should remain inspectable as ordinary structured data,
+- and review should be able to comment on stable scene objects, not only on pixel output.
+
 ---
 
 ## Export classes
@@ -677,6 +755,7 @@ This section merges the remaining useful requirements into one set.
 - The authoring model should support keyframeable property channels where continuous change over time is required, even if the first UI exposes those channels through simplified controls rather than a full graph editor.
 - The tool should use a compact, stable authoring-command vocabulary rather than a sprawling set of ad hoc modes.
 - Timeline editing should support a small but explicit set of operations such as trim, split, move, duplicate, snap, and pause insertion.
+- The scene model should support revision checkpoints and publication-ready scene states without confusing editor-only draft state with canonical authored output.
 
 ### 3. Scene and assembly requirements
 
@@ -782,6 +861,7 @@ This section merges the remaining useful requirements into one set.
 - The minimum useful subset should be implementable before the full reaction and provenance system is complete.
 - Export architecture should distinguish canonical scene export, portable package export, and rendered media export even if only the first class is implemented initially.
 - Imported assets should be validated against a deliberately narrow support boundary so reference media do not silently become a second uncontrolled scene language.
+- Revision checkpoints and publication metadata should remain explicit enough that scenes can be reviewed, handed off, and restored predictably.
 
 ### 12. Additional requirements worth carrying now
 
@@ -895,6 +975,8 @@ A first practical composer schema stack could look like this:
 - `TrackSpec`
 - `TeachingPatternSpec`
 - `LibraryPackageSpec`
+- `RevisionCheckpointSpec`
+- `PublicationSpec`
 - `BrandGraphicsSpec`
 
 ### Primitive spec vocabulary
@@ -1109,6 +1191,44 @@ ChannelSpec {
 }
 ```
 
+### RevisionCheckpointSpec
+
+Purpose:
+
+- record named restore points during authoring,
+- support handoff and recovery,
+- and distinguish editor workflow history from the canonical authored scene state.
+
+Draft shape:
+
+```js
+RevisionCheckpointSpec {
+  id: string,
+  label?: string,
+  createdAt?: string,
+  note?: string
+}
+```
+
+### PublicationSpec
+
+Purpose:
+
+- mark which revision or scene state is intended for reader-facing or render-facing use,
+- support publish versus draft distinction,
+- and keep publication metadata explicit.
+
+Draft shape:
+
+```js
+PublicationSpec {
+  status: "draft" | "review" | "published",
+  checkpointId?: string,
+  publishedAt?: string,
+  note?: string
+}
+```
+
 ### AssetSpec
 
 Purpose:
@@ -1186,7 +1306,8 @@ SceneSpec {
     controls?: ControlSpec,
     pauses?: PauseSpec[],
     markers?: MarkerSpec[],
-    brandGraphics?: BrandGraphicsSpec
+    brandGraphics?: BrandGraphicsSpec,
+    publication?: PublicationSpec
   },
   assets?: AssetSpec[],
   assemblies: AssemblySpec[],
@@ -1204,6 +1325,7 @@ SceneSpec {
   reactions?: ReactionSpec[],
   transfers?: TransferSpec[],
   provenance?: ProvenanceSpec[],
+  checkpoints?: RevisionCheckpointSpec[],
   metadata?: Record<string, unknown>
 }
 ```
@@ -2032,6 +2154,64 @@ The long-term vision should be:
 - explicit provenance and path-history.
 
 The correct next step is to treat this document as the single source of truth for the composer architecture and composed-animation scene model.
+
+---
+
+## Authoring glossary
+
+The composer should use a small, stable vocabulary. The same words should mean the same thing in the UI, the schema, the documentation, and later implementation notes.
+
+Recommended core terms:
+
+- scene
+  - one complete composed-animation work with one master timeline;
+- sequence
+  - the whole explanatory progression of one scene across that timeline;
+- shot
+  - one editorial interval with a clear explanatory purpose;
+- beat
+  - a smaller instructional moment inside or alongside a shot;
+- track
+  - an ordered timeline lane for overlays, camera, annotation, or editorial objects;
+- clip
+  - one timed authored object on a track or the timeline;
+- marker
+  - a named time reference point such as a cue or chapter;
+- pause
+  - an authored hold that extends playback time without changing the underlying scene geometry;
+- overlay
+  - explanatory text, callout, ellipse, or ellipsoid graphics shown on the timeline;
+- assembly
+  - a staged or constitutive structure in the scene;
+- constituent
+  - an internal part of an assembly viewed at the deeper dynamics level;
+- anchor
+  - a reusable positional or directional reference;
+- path
+  - an authored spatial trajectory;
+- camera path
+  - the camera’s geometric motion;
+- camera shot
+  - the camera’s editorial intent for one interval;
+- transition
+  - the move from one shot to another, such as a cut, dissolve, or continuous move;
+- teaching pattern
+  - a reusable explanatory motif that inserts ordinary authored scene objects;
+- library item
+  - a reusable authored definition stored for insertion across scenes;
+- checkpoint
+  - a named authoring restore point;
+- publication state
+  - whether a scene is draft, under review, or published.
+
+Terms to avoid where possible:
+
+- vague synonyms for shot such as “camera thing” or “view move”;
+- vague synonyms for overlay such as “label stuff”;
+- generic “object” when assembly, constituent, overlay, marker, or track would be more precise;
+- and terminology that suggests the composer is a general video editor rather than an authored explanatory geometry system.
+
+This glossary is intentionally narrow. The tool should feel elegant because the concepts are few, stable, and composable.
 
 ---
 
