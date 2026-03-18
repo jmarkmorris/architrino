@@ -57,6 +57,158 @@ The composer should be treated as a future core capability, not as a side panel.
 
 ---
 
+## UI metaphor and design levels
+
+The composer should not be treated as one flat editing surface. It needs a small number of semantic design levels so authors can move between corpus navigation, explanation design, spatial staging, and internal constituent modeling without losing orientation.
+
+The key principle is that not every zoom is a geometric zoom. Some transitions should be continuous spatial zooms, while others should be semantic zooms or mode changes between levels of authoring intent.
+
+The recommended stack is five levels.
+
+### 1. Corpus level
+
+Question this level answers:
+
+- What scene or authored animation am I opening?
+
+This is the current scene-graph world of selectable spheres and branch navigation.
+
+Typical objects and controls:
+
+- scene nodes,
+- scene labels and subtitles,
+- branch navigation,
+- search and selection,
+- and entry into a composed-animation scene.
+
+This level is about orientation and selection, not about editing a shot or manipulating geometry.
+
+### 2. Sequence level
+
+Question this level answers:
+
+- What is the whole explanatory sequence from beginning to end?
+
+This is the director view of one composed-animation scene.
+
+Typical objects and controls:
+
+- the master timeline,
+- timeline chapters,
+- cue markers,
+- pauses,
+- global overlays,
+- camera strategy,
+- and overall playback structure.
+
+This level should make the scene legible as one explanatory sequence rather than as a pile of independent objects.
+
+### 3. Shot or beat level
+
+Question this level answers:
+
+- During this interval, what should the viewer be looking at, and why?
+
+This is the level at which standard video-authoring terminology becomes especially valuable.
+
+Typical objects and controls:
+
+- shot clips,
+- beat-level markers,
+- local overlays,
+- emphasis windows,
+- camera clips,
+- hold segments,
+- transitions,
+- and short explanatory timing decisions.
+
+This is the right level for terms such as shot, clip, cut, hold, fade, cue, and playback beat.
+
+### 4. Assembly or staging level
+
+Question this level answers:
+
+- What is arranged where in the scene?
+
+This is the main composer level in the strict sense.
+
+Typical objects and controls:
+
+- assemblies,
+- transforms,
+- paths,
+- anchors,
+- reactions,
+- transport corridors,
+- guide ellipses and ellipsoids,
+- and relative staging in 2D or 3D.
+
+This level should be the default workspace for most scene building.
+
+### 5. Constituent or internal-dynamics level
+
+Question this level answers:
+
+- How does this thing work internally?
+
+This is the deepest theory-facing level.
+
+Typical objects and controls:
+
+- internal architrino motion,
+- binary and orbital structure,
+- charge placement,
+- local modulation,
+- deformation rules,
+- and constituent-level explanatory overlays.
+
+This level should be a drill-down mode, not the default surface.
+
+### How level transitions should work
+
+The composer should support two kinds of movement between levels.
+
+#### Continuous zoom
+
+Continuous spatial zoom is the right metaphor when the user is moving deeper into geometry that remains the same object under magnification.
+
+Best fits:
+
+- corpus to scene entry,
+- scene to assembly,
+- and assembly to constituent.
+
+#### Semantic zoom or mode shift
+
+Semantic zoom is the right metaphor when the user is moving between different kinds of authorship rather than merely getting closer to the same geometry.
+
+Best fits:
+
+- sequence to shot,
+- shot to assembly,
+- assembly back to sequence,
+- and constituent back to staging.
+
+At those boundaries, the UI should preserve context while changing tools, visible controls, and the dominant editing question.
+
+### What the user should feel at each level
+
+Each level should answer one simple authoring question.
+
+- Corpus: what do I open?
+- Sequence: what is the whole explanation?
+- Shot: what is this beat showing?
+- Assembly: what is arranged where?
+- Constituent: how does it work inside?
+
+If the UI keeps these questions clear, the composer can stay powerful without becoming cognitively noisy.
+
+### Immediate design implication
+
+The default composed-animation workspace should center on assembly or staging level authoring, with sequence and shot views available through the timeline, and constituent editing available by drill-down. That gives the tool a clear center of gravity while still supporting deep theory visualization.
+
+---
+
 ## What exists today
 
 The current webapp runtime already exposes a composer overlay with multiple panels and export flow.
@@ -136,6 +288,8 @@ This section merges the remaining useful requirements into one set.
 - The terminology throughout the composer should follow standard video-authoring language wherever that improves clarity for authors, including timeline, clip, track, overlay, fade in, hold, fade out, cue, playback, and scrub.
 - The authored model should support one or more non-overlapping pauses on the master timeline, with each pause carrying its own pause duration.
 - Pauses should behave like authored timeline holds rather than hidden playback hacks, so preview, export, and runtime playback all agree about when and how long motion is paused.
+- The UI architecture should explicitly support multiple semantic design levels rather than treating all editing as one flat mode.
+- Level transitions should distinguish between continuous spatial zoom and semantic zoom or mode shift, depending on whether the user is moving into deeper geometry or into a different kind of authoring task.
 
 ### 3. Scene and assembly requirements
 
@@ -217,6 +371,8 @@ This section merges the remaining useful requirements into one set.
 - The overlay and playback UI should prioritize the needs of explanatory academic video rather than trying to match the full complexity of Camtasia, OBS, or Resolve.
 - Useful explanatory controls to consider include cue markers, chapter markers, scrubbing, frame-step or small time-step stepping, temporary focus or spotlight states, authored captions or labels, and presenter-safe composition guides.
 - The explanatory toolset should also consider comparison-friendly controls such as ghosted previous or next positions, optional trajectory traces, and quick isolate or dim-others actions for the currently discussed assembly.
+- The UI should present different tools and panel emphasis at sequence, shot, assembly, and constituent levels while keeping one stable sense of scene context.
+- The default workspace should favor assembly or staging authoring, with sequence and shot work reachable through the timeline and constituent editing reachable by drill-down.
 
 ### 11. Validation and migration requirements
 
