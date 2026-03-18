@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 123,
-      "sections": 812
+      "sections": 816
     }
   },
   "tocRoot": {
@@ -1082,18 +1082,50 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Proof-Structured Core",
+                "title": "Status and Assumptions",
                 "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Proof-Structured Core",
-                "sectionKey": "proof structured core",
+                "markdownSection": "Status and Assumptions",
+                "sectionKey": "status and assumptions",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "What the Delay Math Actually Gives You About Frequency Multiples",
+                "title": "Immediate Consequences",
                 "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "What the Delay Math Actually Gives You About Frequency Multiples",
-                "sectionKey": "what the delay math actually gives you about frequency multiples",
+                "markdownSection": "Immediate Consequences",
+                "sectionKey": "immediate consequences",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "sectionKey": "proposition 1 exterior integer lock formulas",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Could $1{:}2{:}4$ Be a Solution?",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
+                "sectionKey": "could 1 2 4 be a solution",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Exact Periodicity Gives, and What It Does Not",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
+                "sectionKey": "what exact periodicity gives and what it does not",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interpreting the Cancellation Principle",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Interpreting the Cancellation Principle",
+                "sectionKey": "interpreting the cancellation principle",
                 "headingLevel": 2
               },
               {
@@ -1106,10 +1138,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Invariant Backbone",
+                "title": "Ancillary Symmetry Check",
                 "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Invariant Backbone",
-                "sectionKey": "invariant backbone",
+                "markdownSection": "Ancillary Symmetry Check",
+                "sectionKey": "ancillary symmetry check",
                 "headingLevel": 2
               }
             ]

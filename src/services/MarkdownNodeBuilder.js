@@ -56,7 +56,8 @@ export function createMarkdownNodeBuilder(deps) {
   return async function buildAutoMarkdownNodes(scene, existingNodes) {
     const layoutType = typeof scene?.layoutType === "string" ? scene.layoutType.toLowerCase() : "";
     const usesRingLayout = layoutType === "rings";
-    if (!usesRingLayout || !scene?.splitSourcePath) {
+    const usesGridLayout = layoutType === "grid";
+    if ((!usesRingLayout && !usesGridLayout) || !scene?.splitSourcePath) {
       return [];
     }
     const currentNodes = Array.isArray(existingNodes) ? existingNodes : [];
@@ -200,8 +201,14 @@ export function createMarkdownNodeBuilder(deps) {
       typeof scene.splitGridSpacing === "number"
         ? scene.splitGridSpacing
         : layoutRadius * 2.6;
-    const useRing = layoutCount <= maxRingCount;
-    const columns = useRing ? 1 : Math.ceil(Math.sqrt(layoutCount));
+    const useRing = usesRingLayout && layoutCount <= maxRingCount;
+    const requestedColumns =
+      Number.isInteger(scene.layoutColumns) && scene.layoutColumns > 0
+        ? scene.layoutColumns
+        : null;
+    const columns = useRing
+      ? 1
+      : Math.max(1, Math.min(layoutCount || 1, requestedColumns ?? Math.ceil(Math.sqrt(layoutCount))));
     const rows = useRing ? layoutCount : Math.ceil(layoutCount / columns);
     const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
     const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;

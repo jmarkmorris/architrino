@@ -145,6 +145,13 @@ Responsibilities:
 
 Use this type when the document has a flat conceptual segmentation and each major section should function as a peer navigation node.
 
+Display behavior may use more than one local placement mode.
+
+- `scene.layout.type = "rings"` is appropriate when the split behaves like a conceptual cluster of peer topics.
+- `scene.layout.type = "grid"` is appropriate when the split behaves like an ordered notebook, ledger, dated sequence, or other list-like surface where row-by-row scanning is more legible than radial symmetry.
+
+The choice is a presentation decision about how locally generated nodes are arranged. It does not change the underlying scene role.
+
 ### Scene-Markdown-Tree
 
 `Scene-Markdown-Tree` derives a bounded local hierarchy from one markdown document.
@@ -163,6 +170,8 @@ Core configuration logic:
 - deeper headings remain ordinary markdown content inside the leaf.
 
 Use this type when a document has real internal conceptual hierarchy that should remain local to that file.
+
+As with split scenes, local generated-node placement may use ring or grid presentation when that improves legibility of the derived structure.
 
 ## Boundary Between Generated Nodes and Ordinary Document Structure
 

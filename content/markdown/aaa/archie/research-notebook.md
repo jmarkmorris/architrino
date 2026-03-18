@@ -82,6 +82,32 @@ Key victories inside this milestone:
   $$
   so the fixed-point map now acts on a single matching domain.
 
+## 2026-03-14: Dyadic Resonance Lock
+
+Today the dyadic-lock note, [dyadic-resonance-lock.md](../dynamics/dyadic-resonance-lock.md), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
+$$
+v_k=2\pi f_k r_k=\beta_k c_f
+$$
+and then states explicitly the four assumptions that are actually doing the work.
+
+The first assumption is the one that now carries the regime claim: outside the black-hole event horizon, and through the horizon-transition regime, the Middle binary is pinned at the field speed,
+$$
+v_M=c_f.
+$$
+The second assumption is exact integer phase closure relative to the Outer period, $f_O:f_M:f_I=1:m:n$ with \(1 < m < n\), so that when the Outer completes one cycle, the Middle and Inner also return to cycle start. The third assumption is fixed relative phase lock, and the fourth is a selection principle: among admissible integer locks, the realized one should be the one that maximizes cycle-averaged cancellation of the low-order far-field or effective potential signal.
+
+Under these assumptions, the geometry is controlled by the integer pair $(m,n)$ together with the remaining speed factors $\beta_O$ and $\beta_I$. The immediate formulas are
+$$
+r_M=\frac{r_O}{m\beta_O},
+\qquad
+r_I=\frac{\beta_I}{n\beta_O}\,r_O.
+$$
+So even if one later tests the dyadic candidate $(m,n)=(2,4)$, the frequency lock $1:2:4$ does not force equal speeds and does not force self-similar radii.
+
+The conceptual gain is that the note now separates three different burdens cleanly. Kinematics gives the exact identity above. Integer phase closure gives commensurate frequencies. The cancellation principle is then the extra ingredient that might select one preferred integer lock from the commensurate lattice.
+
+This mattered for the larger program because the tri-binary has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
+
 ## 2026-03-12: Major LLM Induced Error is Corrected with Bill Thurston (AI)
 
 I discovered that an LLM had guided me incorrectly over the previous 2.5 months. The notes below preserve Thurston's description of the issue and the resulting correction path.

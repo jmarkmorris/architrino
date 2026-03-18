@@ -694,10 +694,10 @@ export class SceneRepository {
       return;
     }
     const layoutType = String(config.layoutType ?? "").toLowerCase();
-    const isRingLayout = layoutType === "rings";
+    const usesStructuredMarkdownLayout = layoutType === "rings" || layoutType === "grid";
     const hasSplitSource =
       typeof config.splitSourcePath === "string" && config.splitSourcePath.length > 0;
-    if (!isRingLayout || !hasSplitSource) {
+    if (!usesStructuredMarkdownLayout || !hasSplitSource) {
       return;
     }
     if (!Array.isArray(config.nodes)) {

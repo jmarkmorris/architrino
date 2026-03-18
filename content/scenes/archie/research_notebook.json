@@ -7,8 +7,9 @@
     "units": "relative",
     "wrapLabels": true,
     "centerOn": "research_notebook_overview",
+    "layoutColumns": 3,
     "layout": {
-      "type": "rings"
+      "type": "grid"
     },
     "labelDocIconOwnLine": true,
     "source": {
@@ -30,11 +31,15 @@
           "labelSubtitle": "2026-03-17"
         },
         "2026 03 16 1d collinear breather scaffold reaches fixed point closure": {
-          "labelTitle": "1D Collinear Breather Scaffold Reaches Fixed-Point Closure",
+          "labelTitle": "1D Collinear Breather Scaffold Closure",
           "labelSubtitle": "2026-03-16"
         },
+        "2026 03 14 dyadic resonance lock": {
+          "labelTitle": "Dyadic Resonance Lock",
+          "labelSubtitle": "2026-03-14"
+        },
           "2026 03 12 major llm induced error is corrected with bill thurston ai": {
-            "labelTitle": "Major LLM Induced Error is Corrected with Bill Thurston (AI)",
+            "labelTitle": "Major LLM Induced Error is Corrected",
             "labelSubtitle": "2026-03-12"
           },
           "2026 03 09 github presence and community": {
@@ -62,7 +67,7 @@
             "labelSubtitle": "2026-03-06"
           },
           "2026 03 03 ckm closure reaches three digit predictive accuracy": {
-            "labelTitle": "CKM Closure Reaches Three-Digit Predictive Accuracy",
+            "labelTitle": "CKM Predictive Accuracy",
             "labelSubtitle": "2026-03-03"
           }
         }
