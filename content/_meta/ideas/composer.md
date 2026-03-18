@@ -137,6 +137,9 @@ This section merges the remaining useful requirements into one set.
 - Assemblies should support metadata, links, drill-down targets, and inspectable annotations.
 - Presets are useful, but every preset instance must remain editable as explicit structured data.
 - Assemblies should be saveable to a reusable library so authored structures can be inserted, versioned, and reused across scenes.
+- Library assemblies should support instance-level scaling so the same authored assembly can be reused at different sizes without redefining its internal structure.
+- Any assembly should be able to be surrounded by a large population of additional spacetime assemblies that are instanced at small but still visible scale so the main assembly remains readable while its surrounding context is shown.
+- Any detailed assembly should be able to collapse to a simpler proxy representation when zoomed out, such as a colored sphere or labeled sphere, so scenes remain legible and performant at multiple viewing scales.
 
 ### 4. Noether core requirements
 
@@ -255,6 +258,8 @@ A first practical composer schema stack could look like this:
 - `PathSpec`
 - `AssemblySpec`
 - `AssemblyLibrarySpec`
+- `AssemblyInstanceSpec`
+- `LodSpec`
 - `CoreSpec`
 - `ChargeSpec`
 - `ReactionSpec`
@@ -289,7 +294,11 @@ SceneSpec {
     controls?: ControlSpec
   },
   assemblies: AssemblySpec[],
-  libraryRefs?: string[],
+  libraryRefs?: Array<{
+    entryId: string,
+    transform?: TransformSpec
+  }>,
+  assemblyInstances?: AssemblyInstanceSpec[],
   paths?: PathSpec[],
   cameraPaths?: CameraPathSpec[],
   reactions?: ReactionSpec[],
@@ -372,6 +381,7 @@ AssemblySpec {
   transform?: TransformSpec,
   motion?: MotionSpec | MotionSpec[],
   children?: AssemblySpec[],
+  lod?: LodSpec,
   core?: CoreSpec,
   charge?: ChargeSpec,
   annotations?: Record<string, unknown>,
@@ -385,7 +395,8 @@ Purpose:
 
 - store reusable authored assemblies outside one scene,
 - support insertable presets without losing explicit authored structure,
-- allow versioned reuse across multiple composed-animation scenes.
+- allow versioned reuse across multiple composed-animation scenes,
+- allow per-instance transform overrides such as scale when a library entry is inserted into a scene.
 
 Draft shape:
 
@@ -396,6 +407,54 @@ AssemblyLibrarySpec {
     version?: string,
     assembly: AssemblySpec,
     metadata?: Record<string, unknown>
+  }>
+}
+```
+
+### AssemblyInstanceSpec
+
+Purpose:
+
+- place many reusable assemblies into one scene without redefining each assembly body,
+- support context populations such as many nearby spacetime assemblies,
+- allow per-instance transform overrides, especially small visible scaling.
+
+Draft shape:
+
+```js
+AssemblyInstanceSpec {
+  id: string,
+  source: { assemblyId?: string, libraryEntryId?: string },
+  transform?: TransformSpec,
+  motion?: MotionSpec | MotionSpec[],
+  count?: number,
+  distribution?: {
+    type: "points" | "ring" | "shell" | "grid" | "path" | "custom",
+    params?: Record<string, unknown>
+  },
+  visibility?: {
+    minVisualScale?: number
+  }
+}
+```
+
+### LodSpec
+
+Purpose:
+
+- define zoom-dependent or distance-dependent replacement of a detailed assembly with simpler proxy representations,
+- preserve scene readability and performance without losing authored semantic identity.
+
+Draft shape:
+
+```js
+LodSpec {
+  levels: Array<{
+    minScreenSize?: number,
+    maxDistance?: number,
+    renderAs: "full" | "sphere" | "labeled_sphere" | "custom",
+    color?: string,
+    label?: string
   }>
 }
 ```
@@ -600,6 +659,7 @@ The draft schema above is intended to be able to describe the target scenes disc
 - A reaction with disassembly and reassembly is covered by `ReactionSpec`, `TransferSpec`, and `ProvenanceSpec` on the shared scene timeline.
 - A photon-like paired-core assembly is covered by one parent `AssemblySpec` containing two child flat `CoreSpec` objects, a small authored offset in local transforms, and explicit `binaries` whose motions carry `direction: "cw"` or `direction: "ccw"`.
 - Camera action across any of these scenes is covered by `ViewSpec` plus `CameraPathSpec`, either as explicit waypoints with `position`, `lookAt`, or `orientation`, or as authored follow modes such as trail, lead, flank, or orbit around a moving target assembly.
+- Zoomed-out replacement of a detailed assembly by a simple blue sphere or blue labeled `e` sphere is covered by `LodSpec` on the relevant assembly or library-backed assembly instance.
 
 ---
 
