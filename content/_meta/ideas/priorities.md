@@ -38,7 +38,7 @@ Scoring system:
 ### 1. Freeze the 1D breather scaffold and advance the master-equation breather bridge
 - Value `10`, Cost `2`, ROI `5.00`.
 - Treat [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold, not as the live place for new theorem discovery.
-- Treat [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) as the live bridge note that transports the 1D proof architecture back into the broader delayed master-equation stack.
+- Treat [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) as a frozen proof-program blueprint rather than a live architecture notebook. The current task is now proof execution inside that already-built theorem DAG, not further scaffold expansion unless a real defect is found.
 - Current state:
   - the 1D note now has a full theorem ladder from collapse-to-crossing through caustic transit, post-crossing recapture, outer-turn closure, seed-history nonvacuity, invariant-envelope synthesis, and the final Schauder capstone;
   - the major global packaging defects were audited and made explicit: the convex tame-envelope step is now honestly marked as a target, the admissible parameter regime is now a coupled solvability target rather than a false decoupling argument, and the section anchoring now explicitly quotients out time-translation symmetry;
@@ -46,7 +46,22 @@ Scoring system:
   - the bridge chapter now records the portable return-map / tame-envelope / Schauder architecture, the completed reduced-planar binary bridge, and the completed first unreduced-planar binary bridge;
   - the reduced-planar bridge now runs end-to-end through section/gauge fixing, directional sorting, deep-past relocation, cone transversality, bounded caustic transit, vector recapture, tame-envelope closure, Schauder, and precise failure alternatives;
   - the unreduced-planar binary bridge now runs end-to-end through gauge-fixed sectioning, finite active branch graph control, deep-past provenance or exclusion, multi-channel recapture, tame-envelope closure, Schauder, and precise closure-stage obstruction alternatives;
-  - the live bridge note now also marks the next boundary explicitly: beyond the unreduced planar binary, the first honest many-body step is already a planar three-body regime with higher-rank gauge fixing, a delay hypergraph, cluster ancestry, multiple escape observables, and atlas-level closure.
+  - the live bridge note has now completed that next boundary: the planar three-body bridge in [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) now carries a full theorem-program ladder through unreduced well-posedness, gauge selection, no-accumulation, bounded caustic transit, finite active delay hypergraph, cluster-valued ancestry and deep-past exclusion, multi-observable recapture, explicit convex-core construction, boundary trapping, invariant-envelope closure, and the final Schauder capstone;
+  - the planar three-body bridge now includes an explicit symmetric seed packet, a delayed seed-margin persistence lemma, a seed-centered realization of the convex tame core, an explicit principal-channel parameter corridor, and a sharpened caustic-transit package with exact fold-time cancellation and uniform fold ceilings;
+  - the ancestry package now reduces deep-past memory to a finite-state backward-search problem with explicit trapped-cycle exclusion via monotone source-time drift, so the deep-past contribution has been converted into one fixed arithmetic ceiling
+    $$
+    \overline{A}^{\mathrm{mb}}_{\mathrm{deep}};
+    $$
+  - the recapture package now consumes only fixed fold ceilings
+    $$
+    F^{\mathrm{mb}}_m
+    $$
+    and the fixed deep-past ceiling
+    $$
+    \overline{A}^{\mathrm{mb}}_{\mathrm{deep}},
+    $$
+    rather than qualitative “smallness” language;
+  - repeated review-and-repair cycles have now frozen the bridge architecturally: there are no remaining known structural gaps in the theorem program, and the next phase should be literal proof writing.
 - Resolved proof pivots to preserve from the frozen 1D scaffold:
   - the inbound hinge caustic is integrated through as a bounded caustic-transit impulse rather than excluded as a pathology;
   - the outer-turn geometry is organized around the sorting map
@@ -62,30 +77,50 @@ Scoring system:
     $$
     rather than on a mismatched tame-subclass / macro-envelope pair.
 - Next-session prompt / active handoff:
-  - read [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) and [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) together, treating the first as frozen and the second as the live target;
-  - continue in [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md), not in the frozen 1D note, unless a real structural defect is discovered in the reference scaffold;
-  - treat the reduced-planar and unreduced-planar binary ladders as the current solved bridge scaffolds; do not reopen them unless a real structural defect is discovered;
-  - start the next bridge layer in the same note by formalizing the first honest many-body regime, most likely a planar three-body model before any jump to full spatial generality;
-  - begin that next layer with the many-body section/gauge package on
-    $$
-    \mathcal{Q}^{\mathrm{mb}}_{\mathrm{pl}}
-    \equiv
-    \mathcal{Q}_{3,\mathrm{pl}}/SE(2),
-    $$
-    defining the codimension-one return section and the canonical gauge selector;
-  - then write the many-body delayed-root replacement package, upgrading the binary branch graph to a finite active delay hypergraph
-    $$
-    \mathscr{H}^{\mathrm{mb}}_{\mathrm{br}},
-    $$
-    with explicit receiver/source/window/sector labels and admissible coupled fold events;
-  - after that, write the cluster-valued ancestry or provenance package, replacing binary deep-past relocation by finite ancestry complexes and explicit exclusion principles for indefinite branch migration;
-  - then write the many-body recapture package using a finite family of escape observables
-    $$
-    \rho^{\mathrm{mb}}_1,\dots,\rho^{\mathrm{mb}}_{K_{\mathrm{esc}}},
-    $$
-    rather than one binary escape coordinate;
-  - finally, state the many-body convex-envelope / tame-envelope / self-map closure target and record any obstruction in theorem-level terms if a single-chart closure fails;
-  - phrase the next work as theorem targets and replacement obligations, with any failure written down precisely rather than as general difficulty.
+  - read [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) from the seed-side section through the no-accumulation, caustic-transit, ancestry, recapture, convex-core, and Schauder closure packages, treating the architecture as frozen;
+  - do not add new theorem layers or new replacement packages unless a real proof-breaking defect is discovered;
+  - begin formal proof execution inside the existing DAG, starting with the seed-side and early branch-regularity lemmas that feed everything else;
+  - first target:
+    - turn the delayed seed-margin persistence lemma into a clean formal proof, including:
+      - the explicit implicit-function argument for unique simple seed-side branches,
+      - the retardation estimate,
+      - the `\varepsilon_A` neighborhood correction,
+      - the Jacobian perturbation estimate,
+      - and the projected-force perturbation bound for
+        $$
+        \Lambda^{\mathrm{mb}}_1
+        \qquad
+        \text{and}
+        \qquad
+        \Lambda^{\mathrm{mb}}_2;
+        $$
+  - second target:
+    - formalize the no-accumulation / simple-branch persistence proof chain into polished lemmas with explicit dependence on
+      $$
+      \gamma_{\mathrm{fold}},
+      \qquad
+      \nu^{\mathrm{mb}}_J,
+      \qquad
+      \chi_{\mathrm{fold}},
+      \qquad
+      \Delta\tau_{\mathrm{evt}};
+      $$
+  - third target:
+    - if time remains in the session, convert the sharpened Type II caustic-transit estimate into a more formal integral proof using the exact cancellation
+      $$
+      dt=\frac{|\partial_s g|}{|\partial_t g|}\,du
+      $$
+      and the explicit ceiling
+      $$
+      \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}
+      \le
+      \frac{
+      2C_m^{\mathrm{proj}}\kappa\epsilon^2U^{\mathrm{mb}}_{\mathrm{tube}}
+      }{
+      \chi_{\mathrm{fold}}\bigl(d_{\min}^2+\epsilon_c^2\bigr)
+      };
+      $$
+  - preserve the theorem-program structure exactly as written; the next work is proof writing, not architectural redesign.
 
 ### 2. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
 - Value `10`, Cost `4`, ROI `2.50`.
