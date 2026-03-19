@@ -15,7 +15,7 @@ Scoring system:
 
 | # | Item | Value | Cost | ROI |
 | ---: | --- | ---: | ---: | ---: |
-| 1 | Execute the frozen breather proof program | 10 | 2 | 5.00 |
+| 1 | Execute the frozen breather proof program | 10 | 4 | 2.50 |
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
 | 3 | Scene system, composer-II, applications, and later enhancements | 10 | 3 | 3.33 |
 | 4 | Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 5 | 2.00 |
