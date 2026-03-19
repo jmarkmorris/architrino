@@ -410,7 +410,7 @@ function updateComposerCameraPoiStatus() {
       composerCameraPoiStatus.textContent = `Selected point: ${composerSelectedPointIndex + 1} (${selectedPoint.x.toFixed(2)}, ${selectedPoint.y.toFixed(2)}, ${selectedPoint.z.toFixed(2)})`;
       composerCameraPoiStatus.classList.remove("is-warning");
     } else {
-      composerCameraPoiStatus.textContent = "Selected point: none. Click an amber path point in the canvas to target it.";
+      composerCameraPoiStatus.textContent = "Selected point: none. Click one of the numbered amber path points in the canvas to target it.";
       composerCameraPoiStatus.classList.add("is-warning");
     }
     return;
@@ -521,6 +521,10 @@ function updateComposerPointMaterials(activeIndex = null) {
     const isActive =
       index === activeIndex || index === composerSelectedPointIndex;
     mesh.material = isActive ? composerPointMaterialActive : composerPointMaterial;
+    const labelElement = mesh.userData.pointLabelElement;
+    if (labelElement) {
+      labelElement.classList.toggle("is-active", isActive);
+    }
   });
   updateComposerCameraPoiStatus();
 }
@@ -971,13 +975,25 @@ function initComposerCanvas() {
   composerPathGeometry = new THREE.BufferGeometry();
   composerPathLine = new THREE.Line(
     composerPathGeometry,
-    new THREE.LineBasicMaterial({ color: 0x7dd3fc })
+    new THREE.LineBasicMaterial({
+      color: 0x8bdcff,
+      transparent: true,
+      opacity: 0.9,
+    })
   );
   composerFrameGroup.add(composerPathLine);
 
-  composerPointGeometry = new THREE.SphereGeometry(0.08, 16, 16);
-  composerPointMaterial = new THREE.MeshBasicMaterial({ color: 0xffc26a });
-  composerPointMaterialActive = new THREE.MeshBasicMaterial({ color: 0x7dd3fc });
+  composerPointGeometry = new THREE.SphereGeometry(0.11, 18, 18);
+  composerPointMaterial = new THREE.MeshBasicMaterial({
+    color: 0xffc26a,
+    transparent: true,
+    opacity: 0.98,
+  });
+  composerPointMaterialActive = new THREE.MeshBasicMaterial({
+    color: 0x7dd3fc,
+    transparent: true,
+    opacity: 1,
+  });
 
   composerRaycaster = new THREE.Raycaster();
 
@@ -1086,6 +1102,13 @@ function rebuildComposerControlPoints() {
     const mesh = new THREE.Mesh(composerPointGeometry, composerPointMaterial);
     mesh.position.copy(point);
     mesh.userData.pointIndex = index;
+    const labelElement = document.createElement("div");
+    labelElement.className = "composer-point-label";
+    labelElement.textContent = String(index + 1);
+    mesh.userData.pointLabelElement = labelElement;
+    const labelObject = new CSS2DObject(labelElement);
+    labelObject.position.set(0, 0.18, 0);
+    mesh.add(labelObject);
     composerFrameGroup.add(mesh);
     return mesh;
   });
