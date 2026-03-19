@@ -5,6 +5,7 @@ export function wireComposerCanvasUiListeners(deps) {
     onComposerPointerMove,
     onComposerPointerUp,
     onComposerWheel,
+    onComposerContextMenu,
   } = deps;
 
   composerCanvas.addEventListener("pointerdown", onComposerPointerDown);
@@ -21,5 +22,6 @@ export function wireComposerCanvasUiListeners(deps) {
   );
   composerCanvas.addEventListener("contextmenu", (event) => {
     event.preventDefault();
+    onComposerContextMenu?.(event);
   });
 }

@@ -116,6 +116,8 @@ const composerPlayheadScrubInput = document.getElementById("composer-playhead-sc
 const composerStatus = document.getElementById("composer-status");
 const composerJsonPreview = document.getElementById("composer-json-preview");
 const composerCanvas = document.getElementById("composer-canvas");
+const composerCanvasWrap = composerCanvas?.parentElement ?? null;
+const composerAssemblyMenu = document.getElementById("composer-assembly-menu");
 const composerPathModeSelect = document.getElementById("composer-path-mode");
 const composerPathResetButton = document.getElementById("composer-path-reset");
 const composerFrameEditToggle = document.getElementById("composer-frame-edit-toggle");
@@ -383,6 +385,41 @@ function createDefaultComposerAssemblyDraft(index = 0) {
   };
 }
 
+function createComposerDefaultCoreSpec(assemblyId) {
+  const shellUnit = 0.45;
+  return {
+    coreType: "noether",
+    shells: [
+      { id: `${assemblyId}_shell_1`, radius: shellUnit, role: "inner", color: "#a9d8ff", opacity: 0.12 },
+      { id: `${assemblyId}_shell_2`, radius: shellUnit * 2, role: "middle", color: "#7fb9ff", opacity: 0.1 },
+      { id: `${assemblyId}_shell_3`, radius: shellUnit * 3, role: "outer", color: "#5b99ea", opacity: 0.08 },
+      { id: `${assemblyId}_shell_4`, radius: shellUnit * 4, role: "decorator", color: "#365f9f", opacity: 0.05 },
+    ],
+    binaries: [
+      {
+        id: `${assemblyId}_binary_1`,
+        motion: { type: "orbit.circular", center: assemblyId, radius: shellUnit, frequencyHz: 0.42, planeNormal: [0, 1, 0] },
+      },
+      {
+        id: `${assemblyId}_binary_2`,
+        motion: { type: "orbit.circular", center: assemblyId, radius: shellUnit * 2, frequencyHz: 0.26, planeNormal: [1, 0, 0] },
+      },
+      {
+        id: `${assemblyId}_binary_3`,
+        motion: { type: "orbit.circular", center: assemblyId, radius: shellUnit * 3, frequencyHz: 0.16, planeNormal: [0, 0, 1] },
+      },
+    ],
+    alignment: {
+      regime: "3d",
+      planeNormals: [
+        [0, 1, 0],
+        [1, 0, 0],
+        [0, 0, 1],
+      ],
+    },
+  };
+}
+
 function normalizeComposerMemberPosition(rawPosition) {
   if (!Array.isArray(rawPosition) || rawPosition.length < 3) {
     return null;
@@ -536,10 +573,12 @@ function normalizeComposerAssemblyDraft(draft = {}, index = 0) {
   return {
     id,
     name,
+    role: draft.role || fallback.role || "assembly",
     parentId: draft.parentId ? sanitizeComposerEntityId(draft.parentId, "") : "",
     position,
     members: normalizeComposerMemberList(draft.members),
     subassemblies: normalizeComposerSubassemblyList(draft.subassemblies),
+    core: draft.core,
   };
 }
 
@@ -1532,6 +1571,120 @@ function syncComposerAssemblyPositionInputs(assemblyId, position = [0, 0, 0]) {
   });
 }
 
+function getComposerCanvasLocalPointFromEvent(event) {
+  if (!composerCanvas || !composerCamera || !composerRaycaster || !composerFrameGroup) {
+    return new THREE.Vector3();
+  }
+  const { x, y } = getComposerPointerNdc(event);
+  composerRaycaster.setFromCamera({ x, y }, composerCamera);
+  const worldOrigin = composerFrameGroup.getWorldPosition(new THREE.Vector3());
+  const planeNormal = new THREE.Vector3(0, 0, 1).applyQuaternion(
+    composerFrameGroup.quaternion
+  );
+  const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(planeNormal, worldOrigin);
+  const intersection = new THREE.Vector3();
+  if (composerRaycaster.ray.intersectPlane(plane, intersection)) {
+    return composerFrameGroup.worldToLocal(intersection.clone());
+  }
+  return new THREE.Vector3();
+}
+
+function closeComposerAssemblyMenu() {
+  if (!composerAssemblyMenu) {
+    return;
+  }
+  composerAssemblyMenu.classList.remove("is-open");
+  composerAssemblyMenu.setAttribute("aria-hidden", "true");
+}
+
+function openComposerAssemblyMenuAt(event) {
+  if (!composerAssemblyMenu || !composerCanvasWrap) {
+    return;
+  }
+  const localPoint = getComposerCanvasLocalPointFromEvent(event);
+  composerAssemblyMenu.dataset.position = JSON.stringify([
+    Number(localPoint.x.toFixed(3)),
+    Number(localPoint.y.toFixed(3)),
+    Number(localPoint.z.toFixed(3)),
+  ]);
+  const wrapRect = composerCanvasWrap.getBoundingClientRect();
+  const menuWidth = 180;
+  const menuHeight = 132;
+  const left = clamp(event.clientX - wrapRect.left, 12, Math.max(12, wrapRect.width - menuWidth - 12));
+  const top = clamp(event.clientY - wrapRect.top, 12, Math.max(12, wrapRect.height - menuHeight - 12));
+  composerAssemblyMenu.style.left = `${left}px`;
+  composerAssemblyMenu.style.top = `${top}px`;
+  composerAssemblyMenu.classList.add("is-open");
+  composerAssemblyMenu.setAttribute("aria-hidden", "false");
+}
+
+function getNextComposerAssemblyId(baseId) {
+  const normalizedBase = sanitizeComposerEntityId(baseId, "assembly");
+  let suffix = 1;
+  let candidate = normalizedBase;
+  const existingIds = new Set(composerAssemblyDrafts.map((assembly) => assembly?.id));
+  while (existingIds.has(candidate)) {
+    suffix += 1;
+    candidate = `${normalizedBase}_${suffix}`;
+  }
+  return candidate;
+}
+
+function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
+  const normalizedPosition = Array.isArray(position)
+    ? [
+        Number(position[0] ?? 0) || 0,
+        Number(position[1] ?? 0) || 0,
+        Number(position[2] ?? 0) || 0,
+      ]
+    : [0, 0, 0];
+  if (templateId === "positrino") {
+    const id = getNextComposerAssemblyId("positrino");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Positrino",
+      role: "positrino",
+      position: normalizedPosition,
+      members: ["positrino_1"],
+      subassemblies: [],
+    }, composerAssemblyDrafts.length);
+  }
+  if (templateId === "electrino") {
+    const id = getNextComposerAssemblyId("electrino");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Electrino",
+      role: "electrino",
+      position: normalizedPosition,
+      members: ["electrino_1"],
+      subassemblies: [],
+    }, composerAssemblyDrafts.length);
+  }
+  const id = getNextComposerAssemblyId("noether_core");
+  return normalizeComposerAssemblyDraft({
+    id,
+    name: "Noether Core",
+    role: "assembly",
+    position: normalizedPosition,
+    members: [
+      "positrino_1",
+      "electrino_1",
+      "positrino_2",
+      "electrino_2",
+      "positrino_3",
+      "electrino_3",
+    ],
+    subassemblies: [],
+    core: createComposerDefaultCoreSpec(id),
+  }, composerAssemblyDrafts.length);
+}
+
+function addBuiltInComposerAssembly(templateId, position) {
+  composerAssemblyDrafts.push(createBuiltInComposerAssemblyDraft(templateId, position));
+  renderComposerAssemblyEditor();
+  renderComposerJsonPreview();
+}
+
 function readComposerFormState() {
   const rawId = composerSceneIdInput?.value ?? "composer_scene";
   const id = sanitizeComposerId(rawId);
@@ -2310,7 +2463,37 @@ function initComposerCanvas() {
     onComposerPointerMove,
     onComposerPointerUp,
     onComposerWheel,
+    onComposerContextMenu,
   });
+
+  if (composerAssemblyMenu && !composerAssemblyMenu.dataset.wired) {
+    composerAssemblyMenu.dataset.wired = "true";
+    composerAssemblyMenu.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-template]");
+      if (!button) {
+        return;
+      }
+      const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
+      addBuiltInComposerAssembly(button.dataset.template, position);
+      closeComposerAssemblyMenu();
+    });
+  }
+
+  if (composerOverlay && !composerOverlay.dataset.assemblyMenuWired) {
+    composerOverlay.dataset.assemblyMenuWired = "true";
+    composerOverlay.addEventListener("pointerdown", (event) => {
+      if (!composerAssemblyMenu?.classList.contains("is-open")) {
+        return;
+      }
+      if (composerAssemblyMenu.contains(event.target)) {
+        return;
+      }
+      if (event.target === composerCanvas && event.button === 2) {
+        return;
+      }
+      closeComposerAssemblyMenu();
+    }, { passive: true });
+  }
 }
 
 function resizeComposerCanvas() {
@@ -3401,8 +3584,9 @@ function addComposerAssemblyProxy(center, assembly, index) {
     position: getComposerMemberPosition(member),
   }));
   const memberCount = members.length;
-  const hasCore = index === 0 && Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
+  const hasCore = Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
   const baseColor = composerPalette[index % Math.max(1, composerPalette.length)] ?? "#6ea8fe";
+  let proxyBadgeOffset = new THREE.Vector3(0.52, 0.52, 0);
 
   if (!hasCore) {
     const baseRadius = 0.17 + Math.min(memberCount, 8) * 0.018;
@@ -3511,9 +3695,12 @@ function addComposerAssemblyProxy(center, assembly, index) {
         group.add(memberDot);
       });
     });
+    proxyBadgeOffset = new THREE.Vector3(baseRadius + 0.16, baseRadius + 0.12, 0);
+  }
 
+  if (index !== 0) {
     const numberBadge = createComposerAssemblyNumberSprite(index + 1);
-    numberBadge.position.set(baseRadius + 0.16, baseRadius + 0.12, 0);
+    numberBadge.position.copy(proxyBadgeOffset);
     group.add(numberBadge);
   }
 
@@ -3623,7 +3810,7 @@ function updateComposerViewportFromDocument(documentData) {
     const center = computeComposerAssemblyBasePosition(assembly, index, assemblies.length, pathById);
     addComposerAssemblyProxy(center, assembly, index);
 
-    const hasCore = index === 0 && Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
+    const hasCore = Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
     if (!hasCore) {
       return;
     }
@@ -3855,6 +4042,10 @@ function onComposerPointerDown(event) {
   if (!composerCanvas || !composerCamera || !composerRaycaster) {
     return;
   }
+  if (event.button === 2) {
+    return;
+  }
+  closeComposerAssemblyMenu();
   if (composerCameraFlightState.preview) {
     stopComposerCameraFlightPreview();
   }
@@ -3910,7 +4101,7 @@ function onComposerPointerDown(event) {
       }
     }
   }
-  const wantsPan = event.shiftKey || event.button === 2;
+  const wantsPan = event.shiftKey;
   if (composerFrameEditMode && event.button === 0 && !wantsPan) {
     composerDragState.mode = "frame";
     composerDragState.startFrameRot.copy(composerFrameState.rotation);
@@ -3922,6 +4113,10 @@ function onComposerPointerDown(event) {
   composerDragState.startY = event.clientY;
   composerDragState.startOrbitTheta = composerCameraOrbitState.theta;
   composerDragState.startOrbitPhi = composerCameraOrbitState.phi;
+}
+
+function onComposerContextMenu(event) {
+  openComposerAssemblyMenuAt(event);
 }
 
 function onComposerPointerMove(event) {
