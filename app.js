@@ -680,6 +680,113 @@ function formatComposerReactionList(reactions = []) {
     .join("\n");
 }
 
+function getComposerMemberColor(memberId, index = 0) {
+  const normalized = String(memberId ?? "").trim().toLowerCase();
+  if (normalized.startsWith("electrino")) {
+    return binaryStyle.electrinoColor;
+  }
+  if (normalized.startsWith("positrino")) {
+    return binaryStyle.positrinoColor;
+  }
+  return index % 2 === 0 ? binaryStyle.positrinoColor : binaryStyle.electrinoColor;
+}
+
+function getComposerProxyMemberOffset(memberIndex, memberCount, baseRadius) {
+  const safeCount = Math.max(1, Number(memberCount) || 1);
+  const ringCapacity = Math.min(8, safeCount);
+  const ringIndex = Math.floor(memberIndex / ringCapacity);
+  const slotIndex = memberIndex % ringCapacity;
+  const slotsThisRing = Math.min(ringCapacity, Math.max(1, safeCount - ringIndex * ringCapacity));
+  const angle = (slotIndex / slotsThisRing) * Math.PI * 2;
+  const orbitRadius = baseRadius + 0.11 + ringIndex * 0.09;
+  const zOffset = ringIndex === 0 ? 0 : (ringIndex % 2 === 0 ? 0.05 : -0.05);
+  return new THREE.Vector3(
+    Math.cos(angle) * orbitRadius,
+    Math.sin(angle) * orbitRadius,
+    zOffset
+  );
+}
+
+function setComposerMemberAnchor(assemblyId, memberId, anchor) {
+  if (!assemblyId || !memberId) {
+    return;
+  }
+  if (!(composerMemberAnchors instanceof Map)) {
+    composerMemberAnchors = new Map();
+  }
+  if (!composerMemberAnchors.has(assemblyId)) {
+    composerMemberAnchors.set(assemblyId, new Map());
+  }
+  composerMemberAnchors.get(assemblyId).set(memberId, anchor);
+}
+
+function getComposerOrbitOffsetAtTime(motion, chargeType, timeSeconds) {
+  const radius = Number(motion?.radius ?? 0.65);
+  const frequency = Number(motion?.frequencyHz ?? 0.25);
+  const phase = Number(motion?.phase ?? 0);
+  const direction = motion?.direction === "cw" ? -1 : 1;
+  const phaseOffset = chargeType === "electrino" ? Math.PI : 0;
+  const angle = phase + phaseOffset + direction * timeSeconds * Math.PI * 2 * frequency;
+  const { u, v } = getComposerOrbitBasis(motion);
+  return u
+    .clone()
+    .multiplyScalar(Math.cos(angle) * radius)
+    .add(v.clone().multiplyScalar(Math.sin(angle) * radius));
+}
+
+function resolveComposerMemberAnchorPosition(anchor, assemblyCenter, timeSeconds) {
+  if (!anchor || !assemblyCenter) {
+    return null;
+  }
+  if (anchor.type === "proxy") {
+    return assemblyCenter.clone().add(vectorFromTriplet(anchor.offset));
+  }
+  if (anchor.type === "orbit" && anchor.motion?.type === "orbit.circular") {
+    return assemblyCenter.clone().add(
+      getComposerOrbitOffsetAtTime(anchor.motion, anchor.chargeType, timeSeconds)
+    );
+  }
+  return assemblyCenter.clone();
+}
+
+function resolveComposerTransferEndpointPosition(endpoint, assemblyCenters, timeSeconds) {
+  const assemblyId = endpoint?.assemblyId;
+  if (!assemblyId || !(assemblyCenters instanceof Map)) {
+    return null;
+  }
+  const assemblyCenter = assemblyCenters.get(assemblyId);
+  if (!assemblyCenter) {
+    return null;
+  }
+  const memberId = endpoint?.memberId;
+  if (memberId && composerMemberAnchors instanceof Map) {
+    const assemblyAnchorMap = composerMemberAnchors.get(assemblyId);
+    const anchor = assemblyAnchorMap?.get(memberId) ?? null;
+    const memberPosition = resolveComposerMemberAnchorPosition(anchor, assemblyCenter, timeSeconds);
+    if (memberPosition) {
+      return memberPosition;
+    }
+  }
+  return assemblyCenter.clone();
+}
+
+function findComposerCoreMemberId(members, chargeType, binaryIndex) {
+  const targetPrefix = chargeType === "electrino" ? "electrino" : "positrino";
+  const targetSuffix = String(binaryIndex + 1);
+  const candidates = Array.isArray(members) ? members : [];
+  const exactMatch = candidates.find((memberId) => {
+    const normalized = String(memberId ?? "").trim().toLowerCase();
+    return normalized === `${targetPrefix}_${targetSuffix}` || normalized === `${targetPrefix}${targetSuffix}`;
+  });
+  if (exactMatch) {
+    return exactMatch;
+  }
+  const prefixMatches = candidates.filter((memberId) =>
+    String(memberId ?? "").trim().toLowerCase().startsWith(targetPrefix)
+  );
+  return prefixMatches[binaryIndex] ?? null;
+}
+
 function readNumberInput(input, fallback = 0) {
   if (!input) {
     return fallback;
@@ -2111,6 +2218,7 @@ function clearComposerViewportVisuals() {
     mesh.material?.dispose?.();
   });
   composerOrbitParticleMeshes = [];
+  composerMemberAnchors = new Map();
   if (composerDocumentCameraPathLine) {
     composerViewportGroup?.remove(composerDocumentCameraPathLine);
     composerDocumentCameraPathLine.geometry?.dispose?.();
@@ -2774,6 +2882,25 @@ function updateComposerAnimatedViewport(timeSeconds) {
     }
   });
 
+  composerAxisGuideLines.forEach((line) => {
+    const assemblyId = line.userData.assemblyId;
+    const center = assemblyCenters.get(assemblyId);
+    if (center) {
+      line.position.copy(center);
+    }
+  });
+
+  composerOrbitParticleMeshes.forEach((mesh) => {
+    const assemblyId = mesh.userData.assemblyId;
+    const center = assemblyCenters.get(assemblyId);
+    const motion = mesh.userData.motion;
+    if (!center || motion?.type !== "orbit.circular") {
+      return;
+    }
+    const offset = getComposerOrbitOffsetAtTime(motion, mesh.userData.chargeType, timeSeconds);
+    mesh.position.copy(center).add(offset);
+  });
+
   const activeReactionTransferIds = getComposerActiveReactionTransferIds(
     composerCurrentDocument,
     timeSeconds
@@ -2782,14 +2909,22 @@ function updateComposerAnimatedViewport(timeSeconds) {
   const hasReactionFocus = activeReactionTransferIds.size > 0;
   composerTransferLines.forEach((line) => {
     const transfer = line.userData.transfer;
-    const sourceCenter = assemblyCenters.get(transfer?.source?.assemblyId);
-    const targetCenter = assemblyCenters.get(transfer?.target?.assemblyId);
-    if (!sourceCenter || !targetCenter) {
+    const sourcePoint = resolveComposerTransferEndpointPosition(
+      transfer?.source,
+      assemblyCenters,
+      timeSeconds
+    );
+    const targetPoint = resolveComposerTransferEndpointPosition(
+      transfer?.target,
+      assemblyCenters,
+      timeSeconds
+    );
+    if (!sourcePoint || !targetPoint) {
       line.visible = false;
       return;
     }
     line.visible = true;
-    line.geometry.setFromPoints([sourceCenter.clone(), targetCenter.clone()]);
+    line.geometry.setFromPoints([sourcePoint, targetPoint]);
     line.computeLineDistances();
     const isActiveReactionTransfer = transfer?.id && activeReactionTransferIds.has(transfer.id);
     const isActiveByTime = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
@@ -2815,35 +2950,6 @@ function updateComposerAnimatedViewport(timeSeconds) {
       : isActiveByTime
         ? 0.82
         : 0.32;
-  });
-
-  composerAxisGuideLines.forEach((line) => {
-    const assemblyId = line.userData.assemblyId;
-    const center = assemblyCenters.get(assemblyId);
-    if (center) {
-      line.position.copy(center);
-    }
-  });
-
-  composerOrbitParticleMeshes.forEach((mesh) => {
-    const assemblyId = mesh.userData.assemblyId;
-    const center = assemblyCenters.get(assemblyId);
-    const motion = mesh.userData.motion;
-    if (!center || motion?.type !== "orbit.circular") {
-      return;
-    }
-    const radius = Number(motion.radius ?? 0.65);
-    const frequency = Number(motion.frequencyHz ?? 0.25);
-    const phase = Number(motion.phase ?? 0);
-    const direction = motion.direction === "cw" ? -1 : 1;
-    const phaseOffset = Number(mesh.userData.phaseOffset ?? 0);
-    const angle = phase + phaseOffset + direction * timeSeconds * Math.PI * 2 * frequency;
-    const { u, v } = getComposerOrbitBasis(motion);
-    const offset = u
-      .clone()
-      .multiplyScalar(Math.cos(angle) * radius)
-      .add(v.clone().multiplyScalar(Math.sin(angle) * radius));
-    mesh.position.copy(center).add(offset);
   });
 
   updateComposerDocumentCameraPreview(timeSeconds, composerCurrentDocument);
@@ -2939,7 +3045,7 @@ function addComposerShell(center, shell) {
   composerShellMeshes.push(mesh);
 }
 
-function addComposerOrbitParticle(center, motion, chargeType) {
+function addComposerOrbitParticle(center, motion, chargeType, memberId = null) {
   if (motion?.type !== "orbit.circular") {
     return;
   }
@@ -2955,6 +3061,7 @@ function addComposerOrbitParticle(center, motion, chargeType) {
   mesh.userData.motion = motion;
   mesh.userData.chargeType = chargeType;
   mesh.userData.phaseOffset = chargeType === "electrino" ? Math.PI : 0;
+  mesh.userData.memberId = memberId;
   composerViewportGroup?.add(mesh);
   composerOrbitParticleMeshes.push(mesh);
 }
@@ -3004,23 +3111,27 @@ function addComposerAssemblyProxy(center, assembly, index) {
     group.add(coreMesh);
 
     const visibleMembers = Math.min(memberCount, 8);
-    if (visibleMembers > 0) {
-      const memberOrbitRadius = baseRadius + 0.11;
-      for (let memberIndex = 0; memberIndex < visibleMembers; memberIndex += 1) {
-        const angle = (memberIndex / visibleMembers) * Math.PI * 2;
+    if (memberCount > 0) {
+      for (let memberIndex = 0; memberIndex < memberCount; memberIndex += 1) {
+        const memberId = members[memberIndex];
+        const memberOffset = getComposerProxyMemberOffset(memberIndex, memberCount, baseRadius);
+        setComposerMemberAnchor(assembly?.id, memberId, {
+          type: "proxy",
+          offset: [memberOffset.x, memberOffset.y, memberOffset.z],
+        });
+        if (memberIndex >= visibleMembers) {
+          continue;
+        }
         const memberDot = new THREE.Mesh(
           new THREE.SphereGeometry(0.03, 12, 10),
           new THREE.MeshBasicMaterial({
-            color: memberIndex % 2 === 0 ? binaryStyle.positrinoColor : binaryStyle.electrinoColor,
+            color: getComposerMemberColor(memberId, memberIndex),
             transparent: true,
             opacity: 0.95,
           })
         );
-        memberDot.position.set(
-          Math.cos(angle) * memberOrbitRadius,
-          Math.sin(angle) * memberOrbitRadius,
-          0
-        );
+        memberDot.position.copy(memberOffset);
+        memberDot.userData.memberId = memberId;
         group.add(memberDot);
       }
     }
@@ -3155,10 +3266,26 @@ function updateComposerViewportFromDocument(documentData) {
     });
 
     const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
-    binaries.forEach((binary) => {
+    binaries.forEach((binary, binaryIndex) => {
       if (binary?.motion?.type === "orbit.circular") {
-        addComposerOrbitParticle(center, binary.motion, "positrino");
-        addComposerOrbitParticle(center, binary.motion, "electrino");
+        const positrinoMemberId = findComposerCoreMemberId(assembly?.members, "positrino", binaryIndex);
+        const electrinoMemberId = findComposerCoreMemberId(assembly?.members, "electrino", binaryIndex);
+        if (positrinoMemberId) {
+          setComposerMemberAnchor(assembly.id, positrinoMemberId, {
+            type: "orbit",
+            motion: binary.motion,
+            chargeType: "positrino",
+          });
+        }
+        if (electrinoMemberId) {
+          setComposerMemberAnchor(assembly.id, electrinoMemberId, {
+            type: "orbit",
+            motion: binary.motion,
+            chargeType: "electrino",
+          });
+        }
+        addComposerOrbitParticle(center, binary.motion, "positrino", positrinoMemberId);
+        addComposerOrbitParticle(center, binary.motion, "electrino", electrinoMemberId);
         const particleCount = composerOrbitParticleMeshes.length;
         if (composerOrbitParticleMeshes[particleCount - 1]) {
           composerOrbitParticleMeshes[particleCount - 1].userData.assemblyId = assembly.id;
@@ -3740,6 +3867,7 @@ let composerOrbitTraceLines = [];
 let composerTransferLines = [];
 let composerAxisGuideLines = [];
 let composerOrbitParticleMeshes = [];
+let composerMemberAnchors = new Map();
 let composerDocumentCameraPathLine = null;
 let composerDocumentCameraWaypointMeshes = [];
 let composerDocumentCameraShotMesh = null;
