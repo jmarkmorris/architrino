@@ -17,7 +17,7 @@ Scoring system:
 | ---: | --- | ---: | ---: | ---: |
 | 1 | Execute the frozen breather proof program | 10 | 2 | 5.00 |
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | Scene system, scene builder, applications, and later enhancements | 10 | 4 | 2.50 |
+| 3 | Scene system, composer-II, applications, and later enhancements | 10 | 3 | 3.33 |
 | 4 | Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
@@ -136,30 +136,54 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
-### 3. Scene system, scene builder, applications, and later enhancements
-- Value `10`, Cost `4`, ROI `2.50`.
-- Build the 3D visualizer for the oblating Noether core and related scenes such as the sphere.
-- Continue the ellipsoid work, aiming to understand time through that geometry.
-- Work on the scene builder first.
-- Add a language for describing animations.
-- Port every scene to that format once the format stabilizes.
-- Make the composer use the same frame elements in the corners.
-- Use the scene builder in API mode where it helps.
-- Keep `sim2rewrite.md` as a later porting source, but wait until the scene builder is working before using it.
-- Use the resulting tooling for a few focused exploratory applications:
-  - make application pages that show Gell-Mann's eightfold way and tenfold diagram, placing the relevant particle from the scene creator at each vertex;
+### 3. Scene system, composer-II, applications, and later enhancements
+- Value `10`, Cost `3`, ROI `3.33`.
+- The architectural discovery phase for the composer is no longer the main task. The canonical architecture/spec now exists in [composer.md](composer.md), and the incremental migration strategy now exists in [composer-plan.md](composer-plan.md). Priority 3 is now implementation of that plan rather than further speculative composer design.
+- Current state:
+  - the composer now has a serious top-level architecture document, not just scattered requirements;
+  - the note now defines the $\mathbb{A}\mathbb{A}\mathbb{A}$-native simplification principle: one coherent sphere-path-orbit grammar across all authoring scales;
+  - the UI metaphor is now explicit as five transparent semantic levels:
+    - corpus,
+    - sequence,
+    - shot,
+    - assembly,
+    - constituent;
+  - the note now defines a narrow primitive vocabulary:
+    - spheres,
+    - paths,
+    - orbit/shell traces,
+    - ellipse/ellipsoid guides,
+    - callout leaders,
+    - text labels;
+  - the note now defines the timeline/editing language, overlays, camera shots, transitions, tracks, keyframes, reusable teaching patterns, library packaging, validation/lint families, and a native $\mathbb{A}\mathbb{A}\mathbb{A}$ reveal/collapse policy;
+  - the note now includes MVP canonical scene examples, a workspace wireframe, a module split, and a module-by-module implementation checklist;
+  - the integration problem is now explicitly solved in planning terms: keep the existing composer operational, and build `composer-II` inside it until the new canonical scene model is strong enough to replace the old ad hoc builder.
+- The practical task is now:
+  - keep the current composer shell and scene entry working;
+  - implement `composer-II` incrementally behind that shell;
+  - start with the MVP scene document, viewport primitive stack, timeline engine, camera/shot layer, overlays, and runtime-player preview described in [composer.md](composer.md) and staged in [composer-plan.md](composer-plan.md);
+  - only retire the old builder once `composer-II` can author one polished $\mathbb{A}\mathbb{A}\mathbb{A}$-native scene end to end.
+- This workstream should now be treated as cheaper than before because the design uncertainty has been paid down sharply. The remaining burden is mostly implementation, decomposition, and disciplined iteration rather than invention.
+- Immediate next steps:
+  - define the MVP scene schema in code;
+  - add the scene document core and normalization layer;
+  - upgrade the existing composer canvas from path/frame demo behavior to sphere/path/orbit primitives;
+  - implement markers, pauses, overlays, camera shots, and tracks against the canonical scene model;
+  - route preview/export through canonical `composer-II` scene data instead of the old builder state.
+- Use the resulting tooling for a few focused exploratory applications once the MVP authoring loop is working:
+  - make application pages that show Gell-Mann's eightfold way and tenfold diagram, placing the relevant particle from the composer at each vertex;
   - use those pages to look for correlations with `T_3`, `Y`, and mass patterns;
   - keep Kaiser's MIT lecture 22 as a prompt for that direction.
 - Keep later scene/product enhancements explicitly deferred inside the same workstream:
   - `Vision for the Future / Toward New Technologies` belongs after the core scene and theory work, not in the derivation spine;
-  - future enhancements once core navigation is stable:
+  - future enhancements once core navigation and MVP authoring are stable:
     - branching zoom paths and user-directed exploration,
     - integration of external data sources for scale-specific content,
     - richer materials, particles, and effects once core navigation is stable;
-  - narrative export notes to revisit only after the core interaction flow is stable:
+  - narrative/render export notes to revisit only after the core interaction flow is stable:
     - scripted navigation paths for smooth MP4 output,
     - export presets for desktop `16:9` and mobile `9:16`,
-    - formal narrative / export spec later, not now.
+    - formal narrative/render export spec later, not now.
 
 ### 4. Finish the tractable master-equation stack for Lorentz, quantum, and core closure
 - Value `10`, Cost `5`, ROI `2.00`.
