@@ -102,6 +102,11 @@ const composerNodeCountInput = document.getElementById("composer-node-count");
 const composerNodeLabelsInput = document.getElementById("composer-node-labels");
 const composerPreviewButton = document.getElementById("composer-preview-button");
 const composerExportButton = document.getElementById("composer-export-button");
+const composerLibrarySaveButton = document.getElementById("composer-library-save");
+const composerLibrarySelect = document.getElementById("composer-library-select");
+const composerLibraryLoadButton = document.getElementById("composer-library-load");
+const composerLibraryDeleteButton = document.getElementById("composer-library-delete");
+const composerLibraryStatus = document.getElementById("composer-library-status");
 const composerPlayToggleButton = document.getElementById("composer-play-toggle");
 const composerPlayResetButton = document.getElementById("composer-play-reset");
 const composerMarkerPrevButton = document.getElementById("composer-marker-prev");
@@ -143,6 +148,7 @@ const composerTimelineWarps = document.getElementById("composer-timeline-warps")
 const composerTimelinePauses = document.getElementById("composer-timeline-pauses");
 const composerTimelineMarkers = document.getElementById("composer-timeline-markers");
 const composerTimelinePlayhead = document.getElementById("composer-timeline-playhead");
+const composerLibraryStorageKey = "architrino.composer.library.v1";
 const defaultRootLayoutMarginPx = { x: 160, y: 140 };
 let zoomToastTimeoutId = null;
 let zoomToastDismissedForSession = false;
@@ -599,11 +605,14 @@ function readComposerFormState() {
   }
   const rawName = composerSceneNameInput?.value ?? "";
   const name = rawName.trim() || "Composer Scene";
-  const countRaw = Number(composerNodeCountInput?.value ?? 6);
-  const nodeCount = clamp(Math.round(countRaw || 6), 1, 18);
-  if (composerNodeCountInput) {
-    composerNodeCountInput.value = String(nodeCount);
-  }
+  const countText = typeof composerNodeCountInput?.value === "string"
+    ? composerNodeCountInput.value.trim()
+    : "";
+  const countRaw = Number(countText);
+  const nodeCount =
+    countText && Number.isFinite(countRaw)
+      ? clamp(Math.round(countRaw), 1, 18)
+      : 6;
   const labelsRaw = composerNodeLabelsInput?.value ?? "";
   const labelList = labelsRaw
     .split(",")
@@ -867,11 +876,281 @@ function readComposerDraftState() {
   return {
     ...state,
     ...timing,
+    markerListRaw: composerMarkerListInput?.value ?? "",
+    pauseListRaw: composerPauseListInput?.value ?? "",
+    warpListRaw: composerWarpListInput?.value ?? "",
     pathPoints,
     pathInterpolate: composerPathState.interpolate,
     pathClosed: composerPathState.closed,
+    frameRotation: [
+      Number(composerFrameState.rotation.x.toFixed(4)),
+      Number(composerFrameState.rotation.y.toFixed(4)),
+      Number(composerFrameState.rotation.z.toFixed(4)),
+    ],
+    frameScale: Number(composerFrameState.scale.toFixed(4)),
+    cameraSpeed: Number(composerCameraState.speed.toFixed(4)),
+    cameraRadius: Number(composerCameraOrbitState.radius.toFixed(4)),
+    cameraOrbit: {
+      theta: Number(composerCameraOrbitState.theta.toFixed(4)),
+      phi: Number(composerCameraOrbitState.phi.toFixed(4)),
+    },
+    cameraPoiMode: composerCameraFlightState.poiMode,
+    selectedPointIndex: Number.isInteger(composerSelectedPointIndex)
+      ? composerSelectedPointIndex
+      : null,
     cameraWaypoints,
   };
+}
+
+function formatComposerMarkerList(markers = []) {
+  return markers
+    .filter((marker) => marker?.id !== "marker_start")
+    .map((marker) => `${Number(marker.t ?? 0)}: ${marker.label ?? marker.id ?? "Cue"}`)
+    .join("\n");
+}
+
+function formatComposerPauseList(pauses = []) {
+  return pauses
+    .map((pause) => `${Number(pause.start ?? 0)}, ${Number(pause.duration ?? 0)}`)
+    .join("\n");
+}
+
+function formatComposerWarpList(timeWarps = []) {
+  return timeWarps
+    .map((warp) => `${Number(warp.start ?? 0)}, ${Number(warp.end ?? 0)}, ${Number(warp.rate ?? 1)}`)
+    .join("\n");
+}
+
+function getComposerLibraryEntries() {
+  try {
+    const raw = window.localStorage.getItem(composerLibraryStorageKey);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (_error) {
+    return [];
+  }
+}
+
+function writeComposerLibraryEntries(entries) {
+  try {
+    window.localStorage.setItem(composerLibraryStorageKey, JSON.stringify(entries));
+    return true;
+  } catch (_error) {
+    return false;
+  }
+}
+
+function refreshComposerLibraryUi(selectedId = null) {
+  const entries = getComposerLibraryEntries().sort((left, right) => {
+    const leftTime = Date.parse(left?.updatedAt ?? "") || 0;
+    const rightTime = Date.parse(right?.updatedAt ?? "") || 0;
+    return rightTime - leftTime;
+  });
+
+  if (composerLibrarySelect) {
+    composerLibrarySelect.innerHTML = "";
+    if (!entries.length) {
+      const option = document.createElement("option");
+      option.value = "";
+      option.textContent = "No saved scenes";
+      composerLibrarySelect.appendChild(option);
+      composerLibrarySelect.value = "";
+    } else {
+      entries.forEach((entry) => {
+        const option = document.createElement("option");
+        option.value = entry.id;
+        option.textContent = entry.name || entry.id;
+        composerLibrarySelect.appendChild(option);
+      });
+      const preferredId = selectedId || composerLibrarySelect.value || entries[0].id;
+      composerLibrarySelect.value = entries.some((entry) => entry.id === preferredId)
+        ? preferredId
+        : entries[0].id;
+    }
+    composerLibrarySelect.disabled = !entries.length;
+  }
+
+  if (composerLibraryLoadButton) {
+    composerLibraryLoadButton.disabled = !entries.length;
+  }
+  if (composerLibraryDeleteButton) {
+    composerLibraryDeleteButton.disabled = !entries.length;
+  }
+  if (composerLibraryStatus) {
+    composerLibraryStatus.textContent = entries.length
+      ? `${entries.length} saved scene${entries.length === 1 ? "" : "s"} in this browser. Export JSON to place one in the repo.`
+      : "Library storage is browser-local for now. Save keeps drafts in this browser only.";
+  }
+}
+
+function applyComposerDraftState(draftState = {}) {
+  if (composerSceneIdInput) {
+    composerSceneIdInput.value = sanitizeComposerId(draftState.id || "composer_scene");
+  }
+  if (composerSceneNameInput) {
+    composerSceneNameInput.value = (draftState.name || "Composer Scene").trim() || "Composer Scene";
+  }
+  if (composerNodeCountInput) {
+    const nodeCount = clamp(Number(draftState.nodeCount ?? 6) || 6, 1, 18);
+    composerNodeCountInput.value = String(nodeCount);
+  }
+  if (composerNodeLabelsInput) {
+    composerNodeLabelsInput.value = Array.isArray(draftState.labels) ? draftState.labels.join(", ") : "";
+  }
+
+  const duration = Math.max(1, Number(draftState?.time?.end ?? draftState?.time?.duration ?? 12) || 12);
+  if (composerSceneDurationInput) {
+    composerSceneDurationInput.value = String(duration);
+  }
+  if (composerSceneLoopInput) {
+    composerSceneLoopInput.checked = !!draftState?.time?.loop;
+  }
+  if (composerMarkerListInput) {
+    composerMarkerListInput.value =
+      typeof draftState.markerListRaw === "string"
+        ? draftState.markerListRaw
+        : formatComposerMarkerList(draftState.markers);
+  }
+  if (composerPauseListInput) {
+    composerPauseListInput.value =
+      typeof draftState.pauseListRaw === "string"
+        ? draftState.pauseListRaw
+        : formatComposerPauseList(draftState.pauses);
+  }
+  if (composerWarpListInput) {
+    composerWarpListInput.value =
+      typeof draftState.warpListRaw === "string"
+        ? draftState.warpListRaw
+        : formatComposerWarpList(draftState.timeWarps);
+  }
+
+  composerPathState.interpolate = draftState.pathInterpolate === "polyline" ? "polyline" : "spline";
+  if (composerPathModeSelect) {
+    composerPathModeSelect.value = composerPathState.interpolate;
+  }
+  composerPathState.closed = !!draftState.pathClosed;
+  composerPathState.points = Array.isArray(draftState.pathPoints) && draftState.pathPoints.length
+    ? draftState.pathPoints.map((point) => vectorFromTriplet(point))
+    : [
+        new THREE.Vector3(-1.6, 0, 0),
+        new THREE.Vector3(-0.5, 0.8, 0.35),
+        new THREE.Vector3(0.9, 0.25, -0.5),
+        new THREE.Vector3(2.0, 1.05, 0.15),
+      ];
+  composerSelectedPointIndex =
+    Number.isInteger(draftState.selectedPointIndex) &&
+    draftState.selectedPointIndex >= 0 &&
+    draftState.selectedPointIndex < composerPathState.points.length
+      ? draftState.selectedPointIndex
+      : null;
+  rebuildComposerControlPoints();
+  updateComposerPathGeometry();
+  updateComposerPointMaterials();
+
+  const frameRotation = Array.isArray(draftState.frameRotation) ? draftState.frameRotation : [0, 0, 0];
+  composerFrameState.rotation.set(
+    Number(frameRotation[0] ?? 0) || 0,
+    Number(frameRotation[1] ?? 0) || 0,
+    Number(frameRotation[2] ?? 0) || 0,
+    "YXZ"
+  );
+  composerFrameState.scale = Math.max(0.01, Number(draftState.frameScale ?? 1) || 1);
+  if (composerFrameScaleInput) {
+    composerFrameScaleInput.value = Math.log10(composerFrameState.scale).toFixed(2);
+  }
+  if (composerFrameScaleLabel) {
+    composerFrameScaleLabel.textContent = formatScaleLabel(composerFrameState.scale);
+  }
+  updateComposerFrame();
+
+  composerCameraState.speed = Math.max(0.01, Number(draftState.cameraSpeed ?? 1) || 1);
+  if (composerCameraSpeedInput) {
+    composerCameraSpeedInput.value = Math.log10(composerCameraState.speed).toFixed(2);
+  }
+  if (composerCameraSpeedLabel) {
+    composerCameraSpeedLabel.textContent = formatScaleLabel(composerCameraState.speed);
+  }
+  composerCameraOrbitState.radius = Math.max(
+    composerCameraOrbitState.minDistance,
+    Number(draftState.cameraRadius ?? composerCameraOrbitState.radius ?? 1) || 1
+  );
+  composerCameraOrbitState.theta = Number(draftState?.cameraOrbit?.theta ?? composerCameraOrbitState.theta) || 0;
+  composerCameraOrbitState.phi = clamp(
+    Number(draftState?.cameraOrbit?.phi ?? composerCameraOrbitState.phi) || Math.PI / 2,
+    0.05,
+    Math.PI - 0.05
+  );
+  syncComposerCameraRadiusInput();
+
+  composerCameraFlightState.poiMode = draftState.cameraPoiMode === "selected" ? "selected" : "origin";
+  if (composerCameraPoiSelect) {
+    composerCameraPoiSelect.value = composerCameraFlightState.poiMode;
+  }
+  composerCameraFlightState.waypoints = Array.isArray(draftState.cameraWaypoints)
+    ? draftState.cameraWaypoints.map((waypoint) => ({
+        position: vectorFromTriplet(waypoint?.position),
+        lookAt: vectorFromTriplet(waypoint?.lookAt),
+      }))
+    : [];
+  stopComposerCameraFlightPreview();
+  updateComposerCameraFlightDisplay();
+  updateComposerWaypointCount();
+  updateComposerCameraPoiStatus();
+  updateComposerCamera();
+}
+
+function saveComposerSceneToLibrary() {
+  const draftState = readComposerDraftState();
+  const sceneDocument = buildComposerDocumentData(draftState);
+  const entries = getComposerLibraryEntries().filter((entry) => entry?.id !== draftState.id);
+  entries.push({
+    id: draftState.id,
+    name: draftState.name,
+    updatedAt: new Date().toISOString(),
+    draftState,
+    sceneDocument,
+  });
+  if (!writeComposerLibraryEntries(entries)) {
+    setComposerStatus("Library save failed. Browser storage is unavailable.");
+    refreshComposerLibraryUi();
+    return;
+  }
+  refreshComposerLibraryUi(draftState.id);
+  setComposerStatus(`Saved ${draftState.name} to the browser library.`);
+}
+
+function loadComposerSceneFromLibrary(sceneId = composerLibrarySelect?.value) {
+  const entry = getComposerLibraryEntries().find((candidate) => candidate?.id === sceneId);
+  if (!entry?.draftState) {
+    setComposerStatus("Select a saved scene to load.");
+    refreshComposerLibraryUi();
+    return;
+  }
+  applyComposerDraftState(entry.draftState);
+  refreshComposerLibraryUi(entry.id);
+  renderComposerJsonPreview();
+  setComposerStatus(`Loaded ${entry.name || entry.id} from the browser library.`);
+}
+
+function deleteComposerSceneFromLibrary(sceneId = composerLibrarySelect?.value) {
+  if (!sceneId) {
+    setComposerStatus("Select a saved scene to delete.");
+    refreshComposerLibraryUi();
+    return;
+  }
+  const entries = getComposerLibraryEntries();
+  const nextEntries = entries.filter((entry) => entry?.id !== sceneId);
+  if (nextEntries.length === entries.length) {
+    refreshComposerLibraryUi();
+    return;
+  }
+  if (!writeComposerLibraryEntries(nextEntries)) {
+    setComposerStatus("Library delete failed. Browser storage is unavailable.");
+    refreshComposerLibraryUi(sceneId);
+    return;
+  }
+  refreshComposerLibraryUi();
+  setComposerStatus(`Deleted ${sceneId} from the browser library.`);
 }
 
 function buildComposerDocumentData(draftState, options = {}) {
@@ -890,6 +1169,7 @@ function renderComposerJsonPreview() {
   const documentData = buildComposerDocumentData(draftState);
   updateComposerViewportFromDocument(documentData);
   updateComposerTimingDiagnostics(documentData, draftState.diagnostics);
+  refreshComposerLibraryUi();
   setComposerStatus(formatComposerTimingStatus(documentData, draftState.diagnostics));
   if (composerJsonPreview) {
     composerJsonPreview.textContent = JSON.stringify(documentData, null, 2);
@@ -916,6 +1196,13 @@ function initComposerCanvas() {
   composerRenderer.setClearColor(0x000000, 0);
 
   composerScene = new THREE.Scene();
+  composerScene.add(new THREE.AmbientLight(0xc7dbff, 0.85));
+  const composerKeyLight = new THREE.DirectionalLight(0xc9e7ff, 1.15);
+  composerKeyLight.position.set(4.5, 6.5, 8);
+  composerScene.add(composerKeyLight);
+  const composerFillLight = new THREE.DirectionalLight(0x6a8dff, 0.35);
+  composerFillLight.position.set(-5, -3, -4);
+  composerScene.add(composerFillLight);
   composerCamera = new THREE.PerspectiveCamera(45, 1, 0.01, 10000);
   composerCamera.rotation.order = "YXZ";
 
@@ -993,6 +1280,7 @@ function initComposerCanvas() {
   } else {
     rebuildComposerControlPoints();
   }
+  refreshComposerLibraryUi(composerSceneIdInput?.value ?? null);
   renderComposerJsonPreview();
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
@@ -1819,10 +2107,14 @@ function addComposerShell(center, shell) {
   }
   const mesh = new THREE.Mesh(
     new THREE.SphereGeometry(radius, 32, 20),
-    new THREE.MeshBasicMaterial({
+    new THREE.MeshPhongMaterial({
       color: shell?.color ?? "#7fb9ff",
+      emissive: shell?.color ?? "#7fb9ff",
+      emissiveIntensity: 0.1,
+      shininess: 28,
+      specular: new THREE.Color("#d7e8ff"),
       transparent: true,
-      opacity: shell?.opacity ?? 0.08,
+      opacity: shell?.opacity ?? 0.16,
       depthWrite: false,
       side: THREE.DoubleSide,
     })
@@ -1909,7 +2201,7 @@ function addComposerDocumentCameraVisuals(documentData) {
 
   waypoints.forEach((waypoint, index) => {
     const marker = new THREE.Mesh(
-      new THREE.SphereGeometry(index === 0 ? 0.035 : 0.026, 12, 10),
+      new THREE.SphereGeometry(index === 0 ? 0.028 : 0.022, 12, 10),
       new THREE.MeshBasicMaterial({
         color: index === 0 ? 0x9af0c9 : 0xb9e7ff,
         transparent: true,
@@ -1966,19 +2258,8 @@ function updateComposerViewportFromDocument(documentData) {
     });
 
     const binaries = Array.isArray(primaryAssembly?.core?.binaries) ? primaryAssembly.core.binaries : [];
-    binaries.forEach((binary, index) => {
-      const orbitLineCount = composerOrbitTraceLines.length;
+    binaries.forEach((binary) => {
       if (binary?.motion?.type === "orbit.circular") {
-        const orbitColor = index === 0 ? 0xa9d8ff : index === 1 ? 0x7fb9ff : 0x5b99ea;
-        addComposerOrbitTrace(center, binary.motion, orbitColor);
-        const orbitLine =
-          composerOrbitTraceLines.length > orbitLineCount
-            ? composerOrbitTraceLines[composerOrbitTraceLines.length - 1]
-            : null;
-        if (orbitLine) {
-          orbitLine.userData.assemblyId = primaryAssembly.id;
-          orbitLine.userData.motion = binary.motion;
-        }
         addComposerOrbitParticle(center, binary.motion, "positrino");
         addComposerOrbitParticle(center, binary.motion, "electrino");
         const particleCount = composerOrbitParticleMeshes.length;
@@ -2024,7 +2305,7 @@ function updateComposerCameraFlightDisplay() {
     );
     composerCameraFlightGroup.add(composerCameraFlightLine);
     composerFrameGroup.add(composerCameraFlightGroup);
-    composerCameraWaypointGeometry = new THREE.SphereGeometry(0.07, 12, 12);
+    composerCameraWaypointGeometry = new THREE.SphereGeometry(0.045, 12, 12);
     composerCameraWaypointMaterial = new THREE.MeshBasicMaterial({ color: 0x9af0c9 });
   }
 
@@ -5014,6 +5295,10 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerExitButton,
   composerPreviewButton,
   composerExportButton,
+  composerLibrarySaveButton,
+  composerLibrarySelect,
+  composerLibraryLoadButton,
+  composerLibraryDeleteButton,
   composerPlayToggleButton,
   composerPlayResetButton,
   composerMarkerPrevButton,
@@ -5070,6 +5355,9 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   jumpComposerMarkerByOffset,
   scrubComposerPlayback,
   renderComposerJsonPreview,
+  saveComposerSceneToLibrary,
+  loadComposerSceneFromLibrary,
+  deleteComposerSceneFromLibrary,
   isTransitionActive: () => transitionState.active,
 });
 

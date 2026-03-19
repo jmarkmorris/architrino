@@ -5,6 +5,10 @@ export function createComposerControlsUiRuntime(deps) {
     composerExitButton,
     composerPreviewButton,
     composerExportButton,
+    composerLibrarySaveButton,
+    composerLibrarySelect,
+    composerLibraryLoadButton,
+    composerLibraryDeleteButton,
     composerPlayToggleButton,
     composerPlayResetButton,
     composerMarkerPrevButton,
@@ -59,6 +63,9 @@ export function createComposerControlsUiRuntime(deps) {
     jumpComposerMarkerByOffset,
     scrubComposerPlayback,
     renderComposerJsonPreview,
+    saveComposerSceneToLibrary,
+    loadComposerSceneFromLibrary,
+    deleteComposerSceneFromLibrary,
     isTransitionActive,
   } = deps;
 
@@ -92,6 +99,30 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerExportButton) {
       composerExportButton.addEventListener("click", () => {
         composerUiRuntime.exportComposerScene();
+      });
+    }
+
+    if (composerLibrarySaveButton) {
+      composerLibrarySaveButton.addEventListener("click", () => {
+        saveComposerSceneToLibrary();
+      });
+    }
+
+    if (composerLibraryLoadButton) {
+      composerLibraryLoadButton.addEventListener("click", () => {
+        loadComposerSceneFromLibrary(composerLibrarySelect?.value);
+      });
+    }
+
+    if (composerLibraryDeleteButton) {
+      composerLibraryDeleteButton.addEventListener("click", () => {
+        deleteComposerSceneFromLibrary(composerLibrarySelect?.value);
+      });
+    }
+
+    if (composerLibrarySelect) {
+      composerLibrarySelect.addEventListener("dblclick", () => {
+        loadComposerSceneFromLibrary(composerLibrarySelect.value);
       });
     }
 
@@ -184,6 +215,19 @@ export function createComposerControlsUiRuntime(deps) {
         input.addEventListener("input", () => {
           renderComposerJsonPreview();
         });
+      });
+    }
+
+    if (composerNodeCountInput) {
+      composerNodeCountInput.addEventListener("blur", () => {
+        const rawValue = composerNodeCountInput.value.trim();
+        const parsedValue = Number(rawValue);
+        const normalizedValue =
+          rawValue && Number.isFinite(parsedValue)
+            ? Math.min(Math.max(Math.round(parsedValue), 1), 18)
+            : 6;
+        composerNodeCountInput.value = String(normalizedValue);
+        renderComposerJsonPreview();
       });
     }
 

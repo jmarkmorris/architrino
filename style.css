@@ -930,8 +930,8 @@ body {
 }
 
 .composer-sidebar {
-  width: 320px;
-  max-width: 34vw;
+  width: 280px;
+  max-width: 28vw;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -1138,8 +1138,8 @@ body {
 .composer-canvas-wrap {
   position: relative;
   flex: 1;
-  min-height: clamp(360px, 46vh, 560px);
-  max-height: 560px;
+  min-height: clamp(420px, 54vh, 680px);
+  max-height: 680px;
   margin-bottom: 0;
   border-radius: 12px;
   border: 1px solid rgba(160, 170, 220, 0.25);
@@ -1321,6 +1321,11 @@ body {
   flex: 1;
 }
 
+.composer-button-row-single button {
+  flex: initial;
+  width: 100%;
+}
+
 .composer-control-group button,
 .composer-card button {
   height: 30px;
@@ -1360,12 +1365,31 @@ body {
   opacity: 0.7;
 }
 
-.composer-json-preview {
+.composer-json-details {
   margin-top: 10px;
-  padding: 10px 12px;
   border-radius: 10px;
-  background: rgba(10, 12, 24, 0.9);
-  border: 1px solid rgba(160, 170, 220, 0.2);
+  border: 1px solid rgba(160, 170, 220, 0.18);
+  background: rgba(12, 16, 28, 0.66);
+}
+
+.composer-json-details summary {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  color: rgba(245, 247, 255, 0.82);
+}
+
+.composer-json-details[open] summary {
+  border-bottom: 1px solid rgba(160, 170, 220, 0.12);
+}
+
+.composer-json-preview {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 0 0 10px 10px;
+  background: rgba(10, 12, 24, 0.88);
+  border: 0;
   max-height: 220px;
   overflow: auto;
   font-size: 11px;
@@ -1375,7 +1399,7 @@ body {
 .composer-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 12px;
   padding: 12px 20px 14px;
@@ -1443,7 +1467,10 @@ body {
 }
 
 #composer-preview-button,
-#composer-export-button {
+#composer-export-button,
+#composer-library-save,
+#composer-library-load,
+#composer-library-delete {
   height: 30px;
   padding: 0 12px;
   border-radius: 8px;
@@ -1457,8 +1484,14 @@ body {
 
 #composer-preview-button:hover,
 #composer-export-button:hover,
+#composer-library-save:hover,
+#composer-library-load:hover,
+#composer-library-delete:hover,
 #composer-preview-button:focus-visible,
-#composer-export-button:focus-visible {
+#composer-export-button:focus-visible,
+#composer-library-save:focus-visible,
+#composer-library-load:focus-visible,
+#composer-library-delete:focus-visible {
   border-color: rgba(160, 170, 220, 0.55);
   background: rgba(25, 30, 48, 0.9);
 }
@@ -1473,6 +1506,11 @@ body {
 @media (max-width: 1500px) {
   .composer-controls {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .composer-sidebar {
+    width: 256px;
+    max-width: 26vw;
   }
 }
 

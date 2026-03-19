@@ -217,8 +217,8 @@
                 <ol class="composer-steps">
                   <li>Set a scene id + name.</li>
                   <li>Pick how many nodes you want.</li>
-                  <li>Click Preview Scene to render.</li>
-                  <li>Click Export JSON to save.</li>
+                  <li>Shape the path, shells, and timing.</li>
+                  <li>Save to Library or Export JSON.</li>
                 </ol>
               </div>
               <div class="composer-form">
@@ -251,10 +251,32 @@
               </ul>
             </section>
             <section class="composer-card">
-              <h3>Export / Validate</h3>
-              <p>Emit canonical JSON with explicit units, defaults, and schema checks.</p>
-              <p class="composer-hint">Preview updates live from the editor.</p>
-              <pre id="composer-json-preview" class="composer-json-preview"></pre>
+              <h3>Save / Library</h3>
+              <p>Scene ID and Scene Name label the animation. Save stores it in this browser; Export downloads the canonical JSON.</p>
+              <div class="composer-button-row">
+                <button id="composer-library-save" type="button">Save to Library</button>
+                <button id="composer-export-button" type="button">Export JSON</button>
+              </div>
+              <div class="composer-button-row composer-button-row-single">
+                <button id="composer-preview-button" type="button">Preview Scene</button>
+              </div>
+              <label class="composer-field">
+                <span>Saved Scenes</span>
+                <select id="composer-library-select">
+                  <option value="">No saved scenes</option>
+                </select>
+              </label>
+              <div class="composer-button-row">
+                <button id="composer-library-load" type="button">Load Selected</button>
+                <button id="composer-library-delete" type="button">Delete</button>
+              </div>
+              <div id="composer-library-status" class="composer-inline-status">
+                Library storage is browser-local for now.
+              </div>
+              <details class="composer-json-details">
+                <summary>JSON Preview</summary>
+                <pre id="composer-json-preview" class="composer-json-preview"></pre>
+              </details>
             </section>
           </aside>
           <main class="composer-main">
@@ -435,10 +457,6 @@
           </main>
         </div>
         <div class="composer-footer">
-          <div class="composer-footer-actions">
-            <button id="composer-preview-button" type="button">Preview Scene</button>
-            <button id="composer-export-button" type="button">Export JSON</button>
-          </div>
           <div class="composer-transport">
             <button id="composer-play-toggle" type="button">Pause</button>
             <button id="composer-play-reset" type="button">Restart</button>
