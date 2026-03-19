@@ -69,6 +69,42 @@ function normalizeMembers(rawMembers) {
   return [];
 }
 
+function normalizeAssemblyChildren(rawChildren, members = []) {
+  if (!Array.isArray(rawChildren) || !rawChildren.length) {
+    return [];
+  }
+  const memberIds = new Set(
+    (Array.isArray(members) ? members : []).map((member, index) =>
+      typeof member === "object" && member !== null ? member.id : sanitizeAssemblyId(member, `member_${index + 1}`)
+    )
+  );
+  return rawChildren
+    .map((child, index) => {
+      const id = sanitizeAssemblyId(child?.id ?? child?.name, `subassembly_${index + 1}`);
+      const position = clonePoint(child?.position ?? child?.transform?.position ?? [0, 0, 0]);
+      const childMembers = Array.isArray(child?.members)
+        ? child.members
+            .map((memberId, memberIndex) =>
+              typeof memberId === "object" && memberId !== null
+                ? sanitizeAssemblyId(memberId.id, `member_${memberIndex + 1}`)
+                : sanitizeAssemblyId(memberId, `member_${memberIndex + 1}`)
+            )
+            .filter((memberId) => memberIds.has(memberId))
+        : [];
+      if (!childMembers.length) {
+        return null;
+      }
+      return {
+        id,
+        transform: {
+          position,
+        },
+        members: [...new Set(childMembers)],
+      };
+    })
+    .filter(Boolean);
+}
+
 function normalizeTransferEndpoint(rawEndpoint) {
   if (!rawEndpoint) {
     return null;
@@ -459,6 +495,13 @@ function normalizeAssemblies(rawAssemblies, primaryPathId) {
       },
       members: normalizeMembers(rawAssembly?.members ?? rawAssembly?.metadata?.members),
     };
+    const children = normalizeAssemblyChildren(
+      rawAssembly?.children ?? rawAssembly?.subassemblies,
+      assembly.members
+    );
+    if (children.length) {
+      assembly.children = children;
+    }
     if (Array.isArray(rawAssembly?.motion) && rawAssembly.motion.length) {
       assembly.motion = rawAssembly.motion;
     } else if (index === 0 && primaryPathId) {

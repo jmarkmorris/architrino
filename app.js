@@ -368,6 +368,7 @@ function createDefaultComposerAssemblyDraft(index = 0) {
     name: ordinal === 1 ? "Primary Assembly" : `Assembly ${ordinal}`,
     parentId: "",
     position: [0, 0, 0],
+    subassemblies: [],
     members:
       ordinal === 1
         ? [
@@ -462,6 +463,65 @@ function formatComposerMemberList(members = []) {
     .join("\n");
 }
 
+function parseComposerSubassemblyEntry(rawEntry, index = 0) {
+  if (rawEntry && typeof rawEntry === "object" && !Array.isArray(rawEntry)) {
+    const id = sanitizeComposerEntityId(rawEntry.id || rawEntry.name, `subassembly_${index + 1}`);
+    const position = normalizeComposerMemberPosition(rawEntry.position) ?? [0, 0, 0];
+    const members = Array.isArray(rawEntry.members)
+      ? rawEntry.members.map((memberId, memberIndex) => getComposerMemberId(memberId, memberIndex)).filter(Boolean)
+      : [];
+    return { id, position, members };
+  }
+  const source = String(rawEntry ?? "").trim();
+  if (!source) {
+    return null;
+  }
+  const match = source.match(
+    /^(.+?)\s*@\s*(-?\d*\.?\d+)\s*,\s*(-?\d*\.?\d+)\s*,\s*(-?\d*\.?\d+)\s*:\s*(.+)$/
+  );
+  if (!match) {
+    return null;
+  }
+  const id = sanitizeComposerEntityId(match[1], `subassembly_${index + 1}`);
+  const position = [Number(match[2]), Number(match[3]), Number(match[4])];
+  const members = match[5]
+    .split(",")
+    .map((memberId, memberIndex) => getComposerMemberId(memberId.trim(), memberIndex))
+    .filter(Boolean);
+  if (!position.every(Number.isFinite) || !members.length) {
+    return null;
+  }
+  return { id, position, members: [...new Set(members)] };
+}
+
+function normalizeComposerSubassemblyList(rawSubassemblies) {
+  if (Array.isArray(rawSubassemblies)) {
+    return rawSubassemblies
+      .map((entry, index) => parseComposerSubassemblyEntry(entry, index))
+      .filter(Boolean);
+  }
+  if (typeof rawSubassemblies === "string") {
+    return rawSubassemblies
+      .split(/\n/)
+      .map((entry, index) => parseComposerSubassemblyEntry(entry, index))
+      .filter(Boolean);
+  }
+  return [];
+}
+
+function formatComposerSubassemblyList(subassemblies = []) {
+  return subassemblies
+    .map((entry, index) => {
+      const parsed = parseComposerSubassemblyEntry(entry, index);
+      if (!parsed) {
+        return null;
+      }
+      return `${parsed.id} @ ${parsed.position[0]}, ${parsed.position[1]}, ${parsed.position[2]}: ${parsed.members.join(", ")}`;
+    })
+    .filter(Boolean)
+    .join("\n");
+}
+
 function normalizeComposerAssemblyDraft(draft = {}, index = 0) {
   const fallback = createDefaultComposerAssemblyDraft(index);
   const name = String(draft.name ?? draft.label ?? fallback.name).trim() || fallback.name;
@@ -479,6 +539,7 @@ function normalizeComposerAssemblyDraft(draft = {}, index = 0) {
     parentId: draft.parentId ? sanitizeComposerEntityId(draft.parentId, "") : "",
     position,
     members: normalizeComposerMemberList(draft.members),
+    subassemblies: normalizeComposerSubassemblyList(draft.subassemblies),
   };
 }
 
@@ -1057,6 +1118,12 @@ function createComposerAssemblyBadgeSprite(title, subtitle = "") {
   return sprite;
 }
 
+function createComposerChildBadgeSprite(title, subtitle = "") {
+  const sprite = createComposerAssemblyBadgeSprite(title, subtitle);
+  sprite.scale.set(0.52, 0.26, 1);
+  return sprite;
+}
+
 function formatScaleLabel(value) {
   const normalized = Number.isFinite(value) ? value : 1;
   if (normalized >= 1000 || normalized <= 0.001) {
@@ -1238,6 +1305,7 @@ function renderComposerAssemblyEditor() {
   composerAssemblyList.innerHTML = "";
 
   composerAssemblyDrafts.forEach((assembly, index) => {
+    const getLiveAssembly = () => composerAssemblyDrafts[index];
     const card = document.createElement("section");
     card.className = "composer-assembly-card";
 
@@ -1289,8 +1357,12 @@ function renderComposerAssemblyEditor() {
     idInput.type = "text";
     idInput.value = assembly.id;
     idInput.addEventListener("input", () => {
-      assembly.id = sanitizeComposerEntityId(idInput.value, `assembly_${index + 1}`);
-      idInput.value = assembly.id;
+      const liveAssembly = getLiveAssembly();
+      if (!liveAssembly) {
+        return;
+      }
+      liveAssembly.id = sanitizeComposerEntityId(idInput.value, `assembly_${index + 1}`);
+      idInput.value = liveAssembly.id;
       updateAssemblyTitle();
       renderComposerJsonPreview();
     });
@@ -1305,7 +1377,11 @@ function renderComposerAssemblyEditor() {
     nameInput.type = "text";
     nameInput.value = assembly.name;
     nameInput.addEventListener("input", () => {
-      assembly.name = nameInput.value;
+      const liveAssembly = getLiveAssembly();
+      if (!liveAssembly) {
+        return;
+      }
+      liveAssembly.name = nameInput.value;
       updateAssemblyTitle();
       renderComposerJsonPreview();
     });
@@ -1332,7 +1408,11 @@ function renderComposerAssemblyEditor() {
     });
     parentSelect.value = assembly.parentId || "";
     parentSelect.addEventListener("change", () => {
-      assembly.parentId = parentSelect.value;
+      const liveAssembly = getLiveAssembly();
+      if (!liveAssembly) {
+        return;
+      }
+      liveAssembly.parentId = parentSelect.value;
       renderComposerJsonPreview();
     });
     parentField.appendChild(parentLabel);
@@ -1351,9 +1431,13 @@ function renderComposerAssemblyEditor() {
       axisInput.step = "0.1";
       axisInput.value = String(Number(assembly.position?.[axisIndex] ?? 0));
       axisInput.addEventListener("input", () => {
-        const nextPosition = Array.isArray(assembly.position) ? [...assembly.position] : [0, 0, 0];
+        const liveAssembly = getLiveAssembly();
+        if (!liveAssembly) {
+          return;
+        }
+        const nextPosition = Array.isArray(liveAssembly.position) ? [...liveAssembly.position] : [0, 0, 0];
         nextPosition[axisIndex] = Number(axisInput.value) || 0;
-        assembly.position = nextPosition;
+        liveAssembly.position = nextPosition;
         renderComposerJsonPreview();
       });
       axisField.appendChild(axisLabel);
@@ -1370,7 +1454,11 @@ function renderComposerAssemblyEditor() {
     membersInput.placeholder = "positrino_1\nelectrino_1\nmember_3 @ 0.2, 0.1, -0.1";
     membersInput.value = Array.isArray(assembly.members) ? formatComposerMemberList(assembly.members) : "";
     membersInput.addEventListener("input", () => {
-      assembly.members = normalizeComposerMemberList(membersInput.value);
+      const liveAssembly = getLiveAssembly();
+      if (!liveAssembly) {
+        return;
+      }
+      liveAssembly.members = normalizeComposerMemberList(membersInput.value);
       renderComposerJsonPreview();
     });
     const membersNote = document.createElement("div");
@@ -1383,11 +1471,38 @@ function renderComposerAssemblyEditor() {
     membersField.appendChild(membersInput);
     membersField.appendChild(membersNote);
 
+    const subassembliesField = document.createElement("label");
+    subassembliesField.className = "composer-field";
+    const subassembliesLabel = document.createElement("span");
+    subassembliesLabel.textContent = "Subassemblies";
+    const subassembliesInput = document.createElement("textarea");
+    subassembliesInput.rows = 3;
+    subassembliesInput.placeholder = "cluster_a @ 0.2, 0, 0: member_a, member_b";
+    subassembliesInput.value = Array.isArray(assembly.subassemblies)
+      ? formatComposerSubassemblyList(assembly.subassemblies)
+      : "";
+    subassembliesInput.addEventListener("input", () => {
+      const liveAssembly = getLiveAssembly();
+      if (!liveAssembly) {
+        return;
+      }
+      liveAssembly.subassemblies = normalizeComposerSubassemblyList(subassembliesInput.value);
+      renderComposerJsonPreview();
+    });
+    const subassembliesNote = document.createElement("div");
+    subassembliesNote.className = "composer-field-note";
+    subassembliesNote.textContent =
+      "Optional child groups: subassembly_id @ x, y, z: member_a, member_b";
+    subassembliesField.appendChild(subassembliesLabel);
+    subassembliesField.appendChild(subassembliesInput);
+    subassembliesField.appendChild(subassembliesNote);
+
     form.appendChild(idField);
     form.appendChild(nameField);
     form.appendChild(parentField);
     form.appendChild(positionGrid);
     form.appendChild(membersField);
+    form.appendChild(subassembliesField);
     card.appendChild(form);
     composerAssemblyList.appendChild(card);
   });
@@ -2393,10 +2508,11 @@ function clearComposerViewportVisuals() {
 
 function computeComposerAssemblyBasePosition(assembly, index, count, pathById) {
   const transformPosition = assembly?.transform?.position;
+  const hasParent = !!assembly?.parentId;
   const hasExplicitTransformPosition =
     Array.isArray(transformPosition) &&
     transformPosition.length >= 3 &&
-    transformPosition.some((value) => Number(value ?? 0) !== 0);
+    (transformPosition.some((value) => Number(value ?? 0) !== 0) || hasParent);
   if (hasExplicitTransformPosition) {
     return new THREE.Vector3(transformPosition[0], transformPosition[1], transformPosition[2]);
   }
@@ -3260,37 +3376,112 @@ function addComposerAssemblyProxy(center, assembly, index) {
   const baseColor = composerPalette[index % Math.max(1, composerPalette.length)] ?? "#6ea8fe";
 
   if (!hasCore) {
-    const baseRadius = 0.12 + Math.min(memberCount, 8) * 0.012;
+    const baseRadius = 0.17 + Math.min(memberCount, 8) * 0.018;
     const coreMesh = new THREE.Mesh(
       new THREE.SphereGeometry(baseRadius, 18, 14),
       new THREE.MeshBasicMaterial({
         color: baseColor,
         transparent: true,
-        opacity: 0.66,
+        opacity: 0.82,
       })
     );
     group.add(coreMesh);
+    const coreOutline = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.SphereGeometry(baseRadius, 14, 10)),
+      new THREE.LineBasicMaterial({
+        color: 0xd9ecff,
+        transparent: true,
+        opacity: 0.24,
+      })
+    );
+    group.add(coreOutline);
 
-    const visibleMembers = Math.min(memberCount, 8);
-    if (memberCount > 0) {
-      for (let memberIndex = 0; memberIndex < memberCount; memberIndex += 1) {
-        const memberEntry = members[memberIndex];
+    const children = Array.isArray(assembly?.children) ? assembly.children : [];
+    const childMemberIds = new Set(children.flatMap((child) => child?.members ?? []));
+    const rootMembers = members.filter((memberEntry) => !childMemberIds.has(memberEntry.id));
+    const visibleRootMembers = Math.min(rootMembers.length, 8);
+    rootMembers.forEach((memberEntry, memberIndex) => {
+      const memberId = memberEntry.id;
+      const authoredPosition = memberEntry.position;
+      const memberOffset = authoredPosition
+        ? new THREE.Vector3(authoredPosition[0], authoredPosition[1], authoredPosition[2])
+        : getComposerProxyMemberOffset(memberIndex, rootMembers.length, baseRadius);
+      setComposerMemberAnchor(assembly?.id, memberId, {
+        type: "proxy",
+        offset: [memberOffset.x, memberOffset.y, memberOffset.z],
+      });
+      if (memberIndex >= visibleRootMembers) {
+        return;
+      }
+      const memberDot = new THREE.Mesh(
+        new THREE.SphereGeometry(0.03, 12, 10),
+        new THREE.MeshBasicMaterial({
+          color: getComposerMemberColor(memberId, memberIndex),
+          transparent: true,
+          opacity: 0.95,
+        })
+      );
+      memberDot.position.copy(memberOffset);
+      memberDot.userData.memberId = memberId;
+      group.add(memberDot);
+      addComposerMemberLabel(assembly?.id, memberId, getComposerMemberColor(memberId, memberIndex), {
+        offset: [0, 0.065, 0],
+      });
+    });
+
+    children.forEach((child, childIndex) => {
+      const childMembers = members.filter((memberEntry) => (child?.members ?? []).includes(memberEntry.id));
+      if (!childMembers.length) {
+        return;
+      }
+      const childPosition = vectorFromTriplet(child?.transform?.position ?? [0, 0, 0]);
+      const childRadius = 0.11 + Math.min(childMembers.length, 6) * 0.016;
+      const childColor = childIndex % 2 === 0 ? "#89c6ff" : "#8fe8cf";
+      const childMesh = new THREE.Mesh(
+        new THREE.SphereGeometry(childRadius, 16, 12),
+        new THREE.MeshBasicMaterial({
+          color: childColor,
+          transparent: true,
+          opacity: 0.62,
+        })
+      );
+      childMesh.position.copy(childPosition);
+      group.add(childMesh);
+      const childOutline = new THREE.LineSegments(
+        new THREE.WireframeGeometry(new THREE.SphereGeometry(childRadius, 12, 9)),
+        new THREE.LineBasicMaterial({
+          color: 0xe8f6ff,
+          transparent: true,
+          opacity: 0.28,
+        })
+      );
+      childOutline.position.copy(childPosition);
+      group.add(childOutline);
+      const childBadge = createComposerChildBadgeSprite(
+        child?.id ?? `group_${childIndex + 1}`,
+        `${childMembers.length}`
+      );
+      childBadge.position.copy(childPosition).add(new THREE.Vector3(0, childRadius + 0.12, 0));
+      group.add(childBadge);
+
+      const visibleChildMembers = Math.min(childMembers.length, 6);
+      childMembers.forEach((memberEntry, memberIndex) => {
         const memberId = memberEntry.id;
-        const authoredPosition = memberEntry.position;
-        const memberOffset = authoredPosition
-          ? new THREE.Vector3(authoredPosition[0], authoredPosition[1], authoredPosition[2])
-          : getComposerProxyMemberOffset(memberIndex, memberCount, baseRadius);
+        const localMemberOffset = memberEntry.position
+          ? new THREE.Vector3(memberEntry.position[0], memberEntry.position[1], memberEntry.position[2])
+          : getComposerProxyMemberOffset(memberIndex, childMembers.length, childRadius);
+        const memberOffset = childPosition.clone().add(localMemberOffset);
         setComposerMemberAnchor(assembly?.id, memberId, {
           type: "proxy",
           offset: [memberOffset.x, memberOffset.y, memberOffset.z],
         });
-        if (memberIndex >= visibleMembers) {
-          continue;
+        if (memberIndex >= visibleChildMembers) {
+          return;
         }
         const memberDot = new THREE.Mesh(
-          new THREE.SphereGeometry(0.03, 12, 10),
+          new THREE.SphereGeometry(0.038, 12, 10),
           new THREE.MeshBasicMaterial({
-            color: getComposerMemberColor(memberId, memberIndex),
+            color: getComposerMemberColor(memberId, memberIndex + childIndex),
             transparent: true,
             opacity: 0.95,
           })
@@ -3298,14 +3489,21 @@ function addComposerAssemblyProxy(center, assembly, index) {
         memberDot.position.copy(memberOffset);
         memberDot.userData.memberId = memberId;
         group.add(memberDot);
-        addComposerMemberLabel(assembly?.id, memberId, getComposerMemberColor(memberId, memberIndex), {
-          offset: [0, 0.065, 0],
-        });
-      }
-    }
+        addComposerMemberLabel(
+          assembly?.id,
+          memberId,
+          getComposerMemberColor(memberId, memberIndex + childIndex),
+          {
+            offset: [0, 0.055, 0],
+          }
+        );
+      });
+    });
 
     const badgeTitle = assembly?.metadata?.label || assembly?.id || `A${index + 1}`;
-    const badgeSubtitle = memberCount ? `${memberCount} members` : "empty";
+    const badgeSubtitle = `${rawMembers.length} member${rawMembers.length === 1 ? "" : "s"}${
+      children.length ? ` • ${children.length} group${children.length === 1 ? "" : "s"}` : ""
+    }`;
     const badge = createComposerAssemblyBadgeSprite(badgeTitle, badgeSubtitle);
     badge.position.set(0, baseRadius + 0.28, 0);
     group.add(badge);
@@ -3391,6 +3589,7 @@ function updateComposerDocumentCameraPreview(timeSeconds, documentData) {
 
 function updateComposerViewportFromDocument(documentData) {
   const previousSceneId = composerCurrentDocument?.scene?.id ?? null;
+  const previousPlaybackPlaying = composerPlaybackState.playing;
   composerCurrentDocument = documentData;
   if (!composerViewportGroup || !composerPathGeometry) {
     return;
@@ -3487,7 +3686,7 @@ function updateComposerViewportFromDocument(documentData) {
     );
   }
   composerPlaybackState.pauseRemaining = 0;
-  composerPlaybackState.playing = true;
+  composerPlaybackState.playing = previousPlaybackPlaying;
   composerPlaybackState.lastTickMs = 0;
   renderComposerTimeline(documentData);
   updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
