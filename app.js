@@ -489,6 +489,62 @@ function createComposerPointLabelSprite(text) {
   return sprite;
 }
 
+function createComposerAssemblyBadgeTexture(title, subtitle = "") {
+  const canvas = document.createElement("canvas");
+  canvas.width = 176;
+  canvas.height = 88;
+  const context = canvas.getContext("2d");
+  if (context) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "rgba(18, 24, 42, 0.94)";
+    context.strokeStyle = "rgba(143, 220, 255, 0.7)";
+    context.lineWidth = 3;
+    const x = 8;
+    const y = 8;
+    const width = canvas.width - 16;
+    const height = canvas.height - 16;
+    const radius = 18;
+    context.beginPath();
+    context.moveTo(x + radius, y);
+    context.lineTo(x + width - radius, y);
+    context.quadraticCurveTo(x + width, y, x + width, y + radius);
+    context.lineTo(x + width, y + height - radius);
+    context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    context.lineTo(x + radius, y + height);
+    context.quadraticCurveTo(x, y + height, x, y + height - radius);
+    context.lineTo(x, y + radius);
+    context.quadraticCurveTo(x, y, x + radius, y);
+    context.closePath();
+    context.fill();
+    context.stroke();
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillStyle = "rgba(239, 248, 255, 0.98)";
+    context.font = "700 24px sans-serif";
+    context.fillText(title, canvas.width / 2, subtitle ? 34 : canvas.height / 2);
+    if (subtitle) {
+      context.fillStyle = "rgba(183, 230, 255, 0.92)";
+      context.font = "600 18px sans-serif";
+      context.fillText(subtitle, canvas.width / 2, 59);
+    }
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function createComposerAssemblyBadgeSprite(title, subtitle = "") {
+  const material = new THREE.SpriteMaterial({
+    map: createComposerAssemblyBadgeTexture(title, subtitle),
+    transparent: true,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(0.78, 0.39, 1);
+  return sprite;
+}
+
 function formatScaleLabel(value) {
   const normalized = Number.isFinite(value) ? value : 1;
   if (normalized >= 1000 || normalized <= 0.001) {
@@ -1604,8 +1660,17 @@ function updateComposerPathGeometry(points = composerPathState.points) {
 function clearComposerViewportVisuals() {
   composerAssemblyMeshes.forEach((mesh) => {
     composerViewportGroup?.remove(mesh);
+    mesh.traverse?.((child) => {
+      if (child === mesh) {
+        return;
+      }
+      child.geometry?.dispose?.();
+      child.material?.dispose?.();
+      child.material?.map?.dispose?.();
+    });
     mesh.geometry?.dispose?.();
     mesh.material?.dispose?.();
+    mesh.material?.map?.dispose?.();
   });
   composerAssemblyMeshes = [];
   composerShellMeshes.forEach((mesh) => {
@@ -2340,6 +2405,61 @@ function addComposerOrbitParticle(center, motion, chargeType) {
   composerOrbitParticleMeshes.push(mesh);
 }
 
+function addComposerAssemblyProxy(center, assembly, index) {
+  const group = new THREE.Group();
+  group.position.copy(center);
+  group.userData.assemblyId = assembly?.id ?? null;
+
+  const members = Array.isArray(assembly?.members) ? assembly.members : [];
+  const memberCount = members.length;
+  const hasCore = index === 0 && Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
+  const baseColor = composerPalette[index % Math.max(1, composerPalette.length)] ?? "#6ea8fe";
+
+  if (!hasCore) {
+    const baseRadius = 0.12 + Math.min(memberCount, 8) * 0.012;
+    const coreMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(baseRadius, 18, 14),
+      new THREE.MeshBasicMaterial({
+        color: baseColor,
+        transparent: true,
+        opacity: 0.66,
+      })
+    );
+    group.add(coreMesh);
+
+    const visibleMembers = Math.min(memberCount, 8);
+    if (visibleMembers > 0) {
+      const memberOrbitRadius = baseRadius + 0.11;
+      for (let memberIndex = 0; memberIndex < visibleMembers; memberIndex += 1) {
+        const angle = (memberIndex / visibleMembers) * Math.PI * 2;
+        const memberDot = new THREE.Mesh(
+          new THREE.SphereGeometry(0.03, 12, 10),
+          new THREE.MeshBasicMaterial({
+            color: memberIndex % 2 === 0 ? binaryStyle.positrinoColor : binaryStyle.electrinoColor,
+            transparent: true,
+            opacity: 0.95,
+          })
+        );
+        memberDot.position.set(
+          Math.cos(angle) * memberOrbitRadius,
+          Math.sin(angle) * memberOrbitRadius,
+          0
+        );
+        group.add(memberDot);
+      }
+    }
+
+    const badgeTitle = assembly?.metadata?.label || assembly?.id || `A${index + 1}`;
+    const badgeSubtitle = memberCount ? `${memberCount} members` : "empty";
+    const badge = createComposerAssemblyBadgeSprite(badgeTitle, badgeSubtitle);
+    badge.position.set(0, baseRadius + 0.28, 0);
+    group.add(badge);
+  }
+
+  composerViewportGroup?.add(group);
+  composerAssemblyMeshes.push(group);
+}
+
 function resolveComposerShotInterval(shot, timeWindow) {
   const timing = shot?.timing ?? {};
   const start = Number(timing.start ?? timeWindow.start);
@@ -2437,36 +2557,42 @@ function updateComposerViewportFromDocument(documentData) {
 
   const pathById = new Map(paths.map((path) => [path.id, path]));
   const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
-  const primaryAssembly = assemblies[0] ?? null;
-  if (primaryAssembly) {
-    const center = computeComposerAssemblyBasePosition(primaryAssembly, 0, assemblies.length, pathById);
-    const shells = Array.isArray(primaryAssembly?.core?.shells) ? primaryAssembly.core.shells : [];
+  assemblies.forEach((assembly, index) => {
+    const center = computeComposerAssemblyBasePosition(assembly, index, assemblies.length, pathById);
+    addComposerAssemblyProxy(center, assembly, index);
+
+    const hasCore = index === 0 && Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
+    if (!hasCore) {
+      return;
+    }
+
+    const shells = Array.isArray(assembly?.core?.shells) ? assembly.core.shells : [];
     shells.forEach((shell) => {
       addComposerShell(center, {
         ...shell,
-        assemblyId: primaryAssembly.id,
+        assemblyId: assembly.id,
       });
       const shellMesh = composerShellMeshes[composerShellMeshes.length - 1] ?? null;
       if (shellMesh) {
-        shellMesh.userData.assemblyId = primaryAssembly.id;
+        shellMesh.userData.assemblyId = assembly.id;
       }
     });
 
-    const binaries = Array.isArray(primaryAssembly?.core?.binaries) ? primaryAssembly.core.binaries : [];
+    const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
     binaries.forEach((binary) => {
       if (binary?.motion?.type === "orbit.circular") {
         addComposerOrbitParticle(center, binary.motion, "positrino");
         addComposerOrbitParticle(center, binary.motion, "electrino");
         const particleCount = composerOrbitParticleMeshes.length;
         if (composerOrbitParticleMeshes[particleCount - 1]) {
-          composerOrbitParticleMeshes[particleCount - 1].userData.assemblyId = primaryAssembly.id;
+          composerOrbitParticleMeshes[particleCount - 1].userData.assemblyId = assembly.id;
         }
         if (composerOrbitParticleMeshes[particleCount - 2]) {
-          composerOrbitParticleMeshes[particleCount - 2].userData.assemblyId = primaryAssembly.id;
+          composerOrbitParticleMeshes[particleCount - 2].userData.assemblyId = assembly.id;
         }
       }
     });
-  }
+  });
   addComposerDocumentCameraVisuals(documentData);
 
   const timeWindow = getComposerSceneTimeWindow(documentData);

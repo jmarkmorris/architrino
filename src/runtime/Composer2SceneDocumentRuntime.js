@@ -383,19 +383,52 @@ export function createComposerSceneDocument(input = {}, options = {}) {
   });
 }
 
+function computePreviewAssemblyPosition(assembly, index, count, pathPoints) {
+  const position = Array.isArray(assembly?.transform?.position) ? assembly.transform.position : null;
+  const hasExplicitPosition =
+    Array.isArray(position) &&
+    position.length >= 3 &&
+    position.some((value) => Number(value ?? 0) !== 0);
+  if (hasExplicitPosition) {
+    return [roundNumber(position[0]), roundNumber(position[1]), roundNumber(position[2])];
+  }
+  if (index === 0 && Array.isArray(pathPoints) && pathPoints.length) {
+    return clonePoint(pathPoints[0]);
+  }
+  if (count <= 1) {
+    return [0, 0, 0];
+  }
+  const angle = (index / count) * Math.PI * 2;
+  const radius = 1.6 + count * 0.08;
+  return [
+    roundNumber(Math.cos(angle) * radius),
+    0,
+    roundNumber(Math.sin(angle) * radius),
+  ];
+}
+
 export function buildComposerPreviewSceneData(document, options = {}) {
   const normalized = normalizeComposerSceneDocument(document);
   const title = options.sceneTitle ?? normalized.scene.name;
   const sceneId = options.sceneId ?? normalized.scene.id;
   const palette = Array.isArray(options.palette) ? options.palette : [];
-  const objects = normalized.assemblies.map((assembly, index) => ({
-    id: assembly.id,
-    title: normalizeString(assembly.metadata?.label, assembly.id),
-    radius: 1.1,
-    color: palette[index % Math.max(1, palette.length)] ?? "#6ea8fe",
-    position: [0, 0, 0],
-    wrapLabel: true,
-  }));
+  const primaryPathPoints = normalized.paths?.[0]?.payload?.points ?? [];
+  const objects = normalized.assemblies.map((assembly, index) => {
+    const memberCount = Array.isArray(assembly?.members) ? assembly.members.length : 0;
+    return {
+      id: assembly.id,
+      title: normalizeString(assembly.metadata?.label, assembly.id),
+      radius: roundNumber(index === 0 ? 1.1 : 0.72 + Math.min(memberCount, 8) * 0.05),
+      color: palette[index % Math.max(1, palette.length)] ?? "#6ea8fe",
+      position: computePreviewAssemblyPosition(
+        assembly,
+        index,
+        normalized.assemblies.length,
+        primaryPathPoints
+      ),
+      wrapLabel: true,
+    };
+  });
 
   return {
     schemaVersion: "0.1",
