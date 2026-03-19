@@ -36,6 +36,37 @@ function normalizeLabels(labels, fallbackCount = 0) {
   return Array.from({ length: Math.max(0, fallbackCount) }, (_, index) => `Node ${index + 1}`);
 }
 
+function createDefaultAssemblyCore(assemblyId) {
+  return {
+    coreType: "noether",
+    binaries: [
+      {
+        id: `${assemblyId}_binary_1`,
+        motion: {
+          type: "orbit.circular",
+          center: assemblyId,
+          radius: 0.65,
+          frequencyHz: 0.25,
+        },
+        axisGuide: {
+          visible: true,
+          source: "orbit_normal",
+          axis: [0, 1, 0],
+          length: 1.4,
+          style: {
+            stroke: "#cbd5e1",
+            strokeOpacity: 0.75,
+          },
+        },
+      },
+    ],
+    alignment: {
+      regime: "3d",
+      planeNormals: [[0, 1, 0]],
+    },
+  };
+}
+
 export function normalizeComposerSceneDocument(rawDocument = {}) {
   const rawScene = rawDocument.scene ?? {};
   const rawControls = rawScene.controls ?? {};
@@ -50,8 +81,9 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
     Array.isArray(rawDocument.assemblies) && rawDocument.assemblies.length
       ? rawDocument.assemblies
       : labels.map((label, index) => {
+          const assemblyId = `assembly_${index + 1}`;
           const assembly = {
-            id: `assembly_${index + 1}`,
+            id: assemblyId,
             role: "assembly",
             transform: { position: [0, 0, 0] },
             metadata: {
@@ -61,6 +93,9 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
           };
           if (index === 0 && primaryPathId) {
             assembly.motion = [{ type: "path.transport", pathId: primaryPathId }];
+          }
+          if (index === 0) {
+            assembly.core = createDefaultAssemblyCore(assemblyId);
           }
           return assembly;
         });

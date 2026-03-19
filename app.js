@@ -529,12 +529,12 @@ function buildComposerPreviewData(documentData, options = {}) {
 }
 
 function renderComposerJsonPreview() {
-  if (!composerJsonPreview) {
-    return;
-  }
   const draftState = readComposerDraftState();
   const documentData = buildComposerDocumentData(draftState);
-  composerJsonPreview.textContent = JSON.stringify(documentData, null, 2);
+  updateComposerViewportFromDocument(documentData);
+  if (composerJsonPreview) {
+    composerJsonPreview.textContent = JSON.stringify(documentData, null, 2);
+  }
 }
 
 function setComposerStatus(message) {
@@ -672,6 +672,9 @@ function initComposerCanvas() {
     )
   );
 
+  composerViewportGroup = new THREE.Group();
+  composerFrameGroup.add(composerViewportGroup);
+
   composerPathGeometry = new THREE.BufferGeometry();
   composerPathLine = new THREE.Line(
     composerPathGeometry,
@@ -696,8 +699,8 @@ function initComposerCanvas() {
     resetComposerPathPoints();
   } else {
     rebuildComposerControlPoints();
-    updateComposerPathGeometry();
   }
+  renderComposerJsonPreview();
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
 
@@ -795,28 +798,195 @@ function rebuildComposerControlPoints() {
   updateComposerPointMaterials();
 }
 
-function updateComposerPathGeometry() {
+function sampleComposerPath(points, interpolate = "spline", closed = false) {
+  const source = Array.isArray(points)
+    ? points.map((point) =>
+        point instanceof THREE.Vector3 ? point.clone() : new THREE.Vector3(point[0], point[1], point[2])
+      )
+    : [];
+  if (!source.length) {
+    return [];
+  }
+  if (interpolate === "spline" && source.length > 2) {
+    const curve = new THREE.CatmullRomCurve3(source, closed, "catmullrom", 0.5);
+    return curve.getPoints(160);
+  }
+  if (closed) {
+    return [...source, source[0].clone()];
+  }
+  return source;
+}
+
+function updateComposerPathGeometry(points = composerPathState.points) {
   if (!composerPathGeometry) {
-    return;
+    return [];
   }
-  if (!composerPathState.points.length) {
-    composerPathGeometry.setFromPoints([]);
-    return;
-  }
-  let samples = composerPathState.points;
-  if (composerPathState.interpolate === "spline" && composerPathState.points.length > 2) {
-    const curve = new THREE.CatmullRomCurve3(
-      composerPathState.points,
-      composerPathState.closed,
-      "catmullrom",
-      0.5
-    );
-    samples = curve.getPoints(160);
-  } else if (composerPathState.closed) {
-    samples = [...composerPathState.points, composerPathState.points[0]];
-  }
+  const samples = sampleComposerPath(
+    points,
+    composerPathState.interpolate,
+    composerPathState.closed
+  );
   composerPathGeometry.setFromPoints(samples);
-  composerPathGeometry.computeBoundingSphere();
+  if (samples.length) {
+    composerPathGeometry.computeBoundingSphere();
+  }
+  return samples;
+}
+
+function clearComposerViewportVisuals() {
+  composerAssemblyMeshes.forEach((mesh) => {
+    composerViewportGroup?.remove(mesh);
+    mesh.geometry?.dispose?.();
+    mesh.material?.dispose?.();
+  });
+  composerAssemblyMeshes = [];
+  composerOrbitTraceLines.forEach((line) => {
+    composerViewportGroup?.remove(line);
+    line.geometry?.dispose?.();
+    line.material?.dispose?.();
+  });
+  composerOrbitTraceLines = [];
+  composerAxisGuideLines.forEach((line) => {
+    composerViewportGroup?.remove(line);
+    line.geometry?.dispose?.();
+    line.material?.dispose?.();
+  });
+  composerAxisGuideLines = [];
+}
+
+function computeComposerAssemblyBasePosition(assembly, index, count, pathById) {
+  const transformPosition = assembly?.transform?.position;
+  const hasExplicitTransformPosition =
+    Array.isArray(transformPosition) &&
+    transformPosition.length >= 3 &&
+    transformPosition.some((value) => Number(value ?? 0) !== 0);
+  if (hasExplicitTransformPosition) {
+    return new THREE.Vector3(transformPosition[0], transformPosition[1], transformPosition[2]);
+  }
+  const motions = Array.isArray(assembly?.motion)
+    ? assembly.motion
+    : assembly?.motion
+      ? [assembly.motion]
+      : [];
+  const transportMotion = motions.find((motion) => motion?.type === "path.transport");
+  if (transportMotion?.pathId && pathById.has(transportMotion.pathId)) {
+    const path = pathById.get(transportMotion.pathId);
+    if (Array.isArray(path?.payload?.points) && path.payload.points.length) {
+      const [x = 0, y = 0, z = 0] = path.payload.points[0];
+      return new THREE.Vector3(x, y, z);
+    }
+  }
+  if (count <= 1) {
+    return new THREE.Vector3(0, 0, 0);
+  }
+  const angle = (index / count) * Math.PI * 2;
+  const radius = 1.6 + count * 0.08;
+  return new THREE.Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+}
+
+function addComposerOrbitTrace(center, motion, color) {
+  const radius = Number(motion?.radius ?? 0);
+  if (!radius || radius <= 0) {
+    return;
+  }
+  const points = [];
+  const segments = 96;
+  for (let i = 0; i <= segments; i += 1) {
+    const t = (i / segments) * Math.PI * 2;
+    points.push(new THREE.Vector3(Math.cos(t) * radius, 0, Math.sin(t) * radius));
+  }
+  const geometry = new THREE.BufferGeometry().setFromPoints(points);
+  const material = new THREE.LineBasicMaterial({
+    color,
+    transparent: true,
+    opacity: 0.45,
+  });
+  const line = new THREE.Line(geometry, material);
+  line.position.copy(center);
+  if (Array.isArray(motion?.tilt) && motion.tilt.length >= 3) {
+    line.rotation.set(
+      THREE.MathUtils.degToRad(motion.tilt[0] ?? 0),
+      THREE.MathUtils.degToRad(motion.tilt[1] ?? 0),
+      THREE.MathUtils.degToRad(motion.tilt[2] ?? 0)
+    );
+  }
+  composerViewportGroup?.add(line);
+  composerOrbitTraceLines.push(line);
+}
+
+function addComposerAxisGuide(center, axisGuide) {
+  if (!axisGuide?.visible) {
+    return;
+  }
+  const axis = Array.isArray(axisGuide.axis)
+    ? new THREE.Vector3(axisGuide.axis[0] ?? 0, axisGuide.axis[1] ?? 1, axisGuide.axis[2] ?? 0)
+    : new THREE.Vector3(0, 1, 0);
+  if (axis.lengthSq() === 0) {
+    axis.set(0, 1, 0);
+  }
+  axis.normalize();
+  const length = Number(axisGuide.length ?? 1.2);
+  const half = axis.clone().multiplyScalar(length * 0.5);
+  const geometry = new THREE.BufferGeometry().setFromPoints([
+    center.clone().sub(half),
+    center.clone().add(half),
+  ]);
+  const material = new THREE.LineBasicMaterial({
+    color: axisGuide.style?.stroke ?? 0xcbd5e1,
+    transparent: true,
+    opacity: axisGuide.style?.strokeOpacity ?? 0.75,
+  });
+  const line = new THREE.Line(geometry, material);
+  composerViewportGroup?.add(line);
+  composerAxisGuideLines.push(line);
+}
+
+function updateComposerViewportFromDocument(documentData) {
+  composerCurrentDocument = documentData;
+  if (!composerViewportGroup || !composerPathGeometry) {
+    return;
+  }
+
+  const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
+  const primaryPath = paths[0];
+  const sampledPath = sampleComposerPath(
+    primaryPath?.payload?.points ?? [],
+    primaryPath?.payload?.interpolate ?? "spline",
+    !!primaryPath?.payload?.closed
+  );
+  composerPathGeometry.setFromPoints(sampledPath);
+  if (sampledPath.length) {
+    composerPathGeometry.computeBoundingSphere();
+  }
+
+  clearComposerViewportVisuals();
+
+  const pathById = new Map(paths.map((path) => [path.id, path]));
+  const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
+  const count = assemblies.length;
+
+  assemblies.forEach((assembly, index) => {
+    const center = computeComposerAssemblyBasePosition(assembly, index, count, pathById);
+    const radius = index === 0 ? 0.22 : 0.16;
+    const color = composerPalette[index % composerPalette.length] ?? "#6ea8fe";
+    const material = new THREE.MeshBasicMaterial({
+      color,
+      transparent: true,
+      opacity: index === 0 ? 0.95 : 0.82,
+    });
+    const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 22, 18), material);
+    mesh.position.copy(center);
+    composerViewportGroup.add(mesh);
+    composerAssemblyMeshes.push(mesh);
+
+    const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
+    binaries.forEach((binary) => {
+      if (binary?.motion?.type === "orbit.circular") {
+        addComposerOrbitTrace(center, binary.motion, color);
+      }
+      addComposerAxisGuide(center, binary?.axisGuide);
+    });
+  });
 }
 
 function updateComposerCameraFlightDisplay() {
@@ -1340,6 +1510,7 @@ let composerRenderer = null;
 let composerScene = null;
 let composerCamera = null;
 let composerFrameGroup = null;
+let composerViewportGroup = null;
 let composerPathLine = null;
 let composerPathGeometry = null;
 let composerPointMeshes = [];
@@ -1354,6 +1525,10 @@ let composerCameraFlightGeometry = null;
 let composerCameraWaypointMeshes = [];
 let composerCameraWaypointGeometry = null;
 let composerCameraWaypointMaterial = null;
+let composerAssemblyMeshes = [];
+let composerOrbitTraceLines = [];
+let composerAxisGuideLines = [];
+let composerCurrentDocument = null;
 
 const levels = new Map();
 const navigationStack = [];
