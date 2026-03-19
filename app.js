@@ -1196,7 +1196,22 @@ function createComposerLozengeTexture(text, options = {}) {
 }
 
 function createComposerPointLabelTexture(text, isActive = false) {
-  return createComposerLozengeTexture(text, { isActive });
+  const label = String(text ?? "").trim() || "A";
+  const canvas = document.createElement("canvas");
+  canvas.width = 96;
+  canvas.height = 96;
+  const context = canvas.getContext("2d");
+  if (context) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.font = "700 42px sans-serif";
+    context.fillStyle = isActive ? "rgba(16, 24, 38, 0.98)" : "rgba(18, 24, 36, 0.96)";
+    context.fillText(label, canvas.width / 2, canvas.height / 2 + 1);
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
 }
 
 function createComposerMemberLabelTexture(text, color = "#ffd894") {
@@ -1258,43 +1273,22 @@ function createComposerPointLabelSprite(text) {
     depthWrite: false,
   });
   const sprite = new THREE.Sprite(material);
-  sprite.scale.set(0.42, 0.28, 1);
+  sprite.scale.set(0.16, 0.16, 1);
   return sprite;
 }
 
 function createComposerCameraWaypointLabelTexture(text, isActive = false) {
-  const label = String(text ?? "").trim() || "🎥1";
+  const label = String(text ?? "").trim() || "🎥";
   const canvas = document.createElement("canvas");
-  canvas.width = 124;
-  canvas.height = 64;
+  canvas.width = 96;
+  canvas.height = 96;
   const context = canvas.getContext("2d");
   if (context) {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillStyle = isActive ? "rgba(255, 255, 255, 0.98)" : "rgba(244, 248, 252, 0.96)";
-    context.strokeStyle = isActive ? "rgba(210, 218, 228, 0.98)" : "rgba(198, 208, 220, 0.92)";
-    context.lineWidth = 4;
-    const x = 8;
-    const y = 8;
-    const width = canvas.width - 16;
-    const height = canvas.height - 16;
-    const radius = 18;
-    context.beginPath();
-    context.moveTo(x + radius, y);
-    context.lineTo(x + width - radius, y);
-    context.quadraticCurveTo(x + width, y, x + width, y + radius);
-    context.lineTo(x + width, y + height - radius);
-    context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-    context.lineTo(x + radius, y + height);
-    context.quadraticCurveTo(x, y + height, x, y + height - radius);
-    context.lineTo(x, y + radius);
-    context.quadraticCurveTo(x, y, x + radius, y);
-    context.closePath();
-    context.fill();
-    context.stroke();
     context.textBaseline = "middle";
     context.textAlign = "center";
-    context.font = "700 26px sans-serif";
-    context.fillStyle = "rgba(0, 0, 0, 0.98)";
+    context.font = "700 40px sans-serif";
+    context.fillStyle = isActive ? "rgba(10, 16, 24, 0.98)" : "rgba(8, 14, 22, 0.96)";
     context.fillText(label, canvas.width / 2, canvas.height / 2 + 1);
   }
   const texture = new THREE.CanvasTexture(canvas);
@@ -1321,7 +1315,7 @@ function createComposerCameraWaypointLabelSprite(text) {
     depthWrite: false,
   });
   const sprite = new THREE.Sprite(material);
-  sprite.scale.set(0.46, 0.3, 1);
+  sprite.scale.set(0.18, 0.18, 1);
   return sprite;
 }
 
@@ -1452,7 +1446,7 @@ function updateComposerCameraWaypointMaterials(activeIndex = null) {
     mesh.material.color.setHex(isActive ? 0xcfffe8 : 0x7fe7cb);
     const labelSprite = mesh.userData?.labelSprite;
     if (labelSprite) {
-      updateComposerCameraWaypointLabelSprite(labelSprite, `🎥${index + 1}`, isActive);
+      updateComposerCameraWaypointLabelSprite(labelSprite, "🎥", isActive);
     }
   });
 }
@@ -1607,7 +1601,7 @@ function updateComposerPointMaterials(activeIndex = null) {
     mesh.material = isActive ? composerPointMaterialActive : composerPointMaterial;
     const labelSprite = mesh.userData.pointLabelSprite;
     if (labelSprite) {
-      updateComposerPointLabelSprite(labelSprite, `${pathLabelPrefix}${index + 2}`, isActive);
+      updateComposerPointLabelSprite(labelSprite, pathLabelPrefix, isActive);
     }
   });
   updateComposerCameraPoiStatus();
@@ -1876,11 +1870,11 @@ function rebuildComposerPathDisplayFromDocument(documentData) {
     const labelPrefix = path?.metadata?.labelPrefix ?? "";
     const pathPoints = Array.isArray(path?.payload?.points) ? path.payload.points : [];
     if (pathPoints.length && labelPrefix && composerPointGeometry && composerPointMaterial) {
-      pathPoints.forEach((point, index) => {
+      pathPoints.forEach((point) => {
         const marker = new THREE.Mesh(composerPointGeometry, composerPointMaterial);
         marker.position.copy(vectorFromTriplet(point));
-        const labelSprite = createComposerPointLabelSprite(`${labelPrefix}${index + 2}`);
-        labelSprite.position.set(0, 0.2, 0);
+        const labelSprite = createComposerPointLabelSprite(labelPrefix);
+        labelSprite.position.set(0, 0, 0);
         marker.userData.pointLabelSprite = labelSprite;
         marker.add(labelSprite);
         composerFrameGroup.add(marker);
@@ -3188,7 +3182,7 @@ function initComposerCanvas() {
   );
   composerFrameGroup.add(composerPathLine);
 
-  composerPointGeometry = new THREE.SphereGeometry(0.06, 18, 18);
+  composerPointGeometry = new THREE.SphereGeometry(0.085, 20, 20);
   composerPointMaterial = new THREE.MeshBasicMaterial({
     color: 0xffc26a,
     transparent: true,
@@ -3355,8 +3349,8 @@ function rebuildComposerControlPoints() {
     const mesh = new THREE.Mesh(composerPointGeometry, composerPointMaterial);
     mesh.position.copy(point);
     mesh.userData.pointIndex = index;
-    const labelSprite = createComposerPointLabelSprite(`${getComposerSelectedAssemblyLetter()}${index + 2}`);
-    labelSprite.position.set(0, 0.2, 0);
+    const labelSprite = createComposerPointLabelSprite(getComposerSelectedAssemblyLetter());
+    labelSprite.position.set(0, 0, 0);
     mesh.userData.pointLabelSprite = labelSprite;
     mesh.add(labelSprite);
     composerFrameGroup.add(mesh);
@@ -4487,7 +4481,7 @@ function addComposerAssemblyProxy(center, assembly, index) {
   group.userData.draggable = true;
 
   const centerMarker = new THREE.Mesh(
-    new THREE.SphereGeometry(0.06, 18, 18),
+    new THREE.SphereGeometry(0.085, 20, 20),
     new THREE.MeshBasicMaterial({
       color: 0xffc26a,
       transparent: true,
@@ -4498,8 +4492,8 @@ function addComposerAssemblyProxy(center, assembly, index) {
   centerMarker.userData.assemblyIndex = index;
   centerMarker.userData.draggable = true;
   centerMarker.userData.isAssemblyCenterMarker = true;
-  const centerLabel = createComposerPointLabelSprite(`${getComposerAssemblyLetter(index)}1`);
-  centerLabel.position.set(0, 0.2, 0);
+  const centerLabel = createComposerPointLabelSprite(getComposerAssemblyLetter(index));
+  centerLabel.position.set(0, 0, 0);
   centerMarker.userData.pointLabelSprite = centerLabel;
   centerMarker.add(centerLabel);
   group.add(centerMarker);
@@ -4848,7 +4842,7 @@ function updateComposerCameraFlightDisplay() {
     composerCameraFlightLine.renderOrder = 10;
     composerCameraFlightGroup.add(composerCameraFlightLine);
     composerFrameGroup.add(composerCameraFlightGroup);
-    composerCameraWaypointGeometry = new THREE.SphereGeometry(0.06, 16, 16);
+    composerCameraWaypointGeometry = new THREE.SphereGeometry(0.085, 18, 18);
     composerCameraWaypointMaterial = new THREE.MeshBasicMaterial({
       color: 0x7fe7cb,
       transparent: true,
@@ -4890,7 +4884,7 @@ function updateComposerCameraFlightDisplay() {
       marker.renderOrder = 10;
       marker.userData.cameraWaypointIndex = composerCameraWaypointMeshes.length;
       const labelSprite = createComposerCameraWaypointLabelSprite(`🎥${composerCameraWaypointMeshes.length + 1}`);
-      labelSprite.position.set(0, 0.2, 0);
+      labelSprite.position.set(0, 0, 0);
       marker.userData.labelSprite = labelSprite;
       marker.add(labelSprite);
       composerCameraFlightGroup.add(marker);
