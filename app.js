@@ -1124,6 +1124,12 @@ function createComposerChildBadgeSprite(title, subtitle = "") {
   return sprite;
 }
 
+function createComposerAssemblyNumberSprite(number) {
+  const sprite = createComposerPointLabelSprite(String(number));
+  sprite.scale.set(0.34, 0.22, 1);
+  return sprite;
+}
+
 function formatScaleLabel(value) {
   const normalized = Number.isFinite(value) ? value : 1;
   if (normalized >= 1000 || normalized <= 0.001) {
@@ -1302,6 +1308,7 @@ function renderComposerAssemblyEditor() {
     return;
   }
   ensureComposerAssemblyDrafts();
+  composerAssemblyPositionInputs.clear();
   composerAssemblyList.innerHTML = "";
 
   composerAssemblyDrafts.forEach((assembly, index) => {
@@ -1430,6 +1437,10 @@ function renderComposerAssemblyEditor() {
       axisInput.type = "number";
       axisInput.step = "0.1";
       axisInput.value = String(Number(assembly.position?.[axisIndex] ?? 0));
+      if (!composerAssemblyPositionInputs.has(assembly.id)) {
+        composerAssemblyPositionInputs.set(assembly.id, []);
+      }
+      composerAssemblyPositionInputs.get(assembly.id)[axisIndex] = axisInput;
       axisInput.addEventListener("input", () => {
         const liveAssembly = getLiveAssembly();
         if (!liveAssembly) {
@@ -1505,6 +1516,19 @@ function renderComposerAssemblyEditor() {
     form.appendChild(subassembliesField);
     card.appendChild(form);
     composerAssemblyList.appendChild(card);
+  });
+}
+
+function syncComposerAssemblyPositionInputs(assemblyId, position = [0, 0, 0]) {
+  const inputs = composerAssemblyPositionInputs.get(assemblyId);
+  if (!Array.isArray(inputs)) {
+    return;
+  }
+  inputs.forEach((input, axisIndex) => {
+    if (!input) {
+      return;
+    }
+    input.value = String(Number(position?.[axisIndex] ?? 0));
   });
 }
 
@@ -3121,6 +3145,9 @@ function updateComposerAnimatedViewport(timeSeconds) {
       mesh.position.copy(center);
     }
   });
+  composerAssemblyWorldCenters = new Map(
+    [...assemblyCenters.entries()].map(([assemblyId, center]) => [assemblyId, center.clone()])
+  );
 
   composerShellMeshes.forEach((mesh) => {
     const assemblyId = mesh.userData.assemblyId;
@@ -3365,6 +3392,8 @@ function addComposerAssemblyProxy(center, assembly, index) {
   const group = new THREE.Group();
   group.position.copy(center);
   group.userData.assemblyId = assembly?.id ?? null;
+  group.userData.assemblyIndex = index;
+  group.userData.draggable = index !== 0;
 
   const rawMembers = Array.isArray(assembly?.members) ? assembly.members : [];
   const members = rawMembers.map((member, memberIndex) => ({
@@ -3424,9 +3453,6 @@ function addComposerAssemblyProxy(center, assembly, index) {
       memberDot.position.copy(memberOffset);
       memberDot.userData.memberId = memberId;
       group.add(memberDot);
-      addComposerMemberLabel(assembly?.id, memberId, getComposerMemberColor(memberId, memberIndex), {
-        offset: [0, 0.065, 0],
-      });
     });
 
     children.forEach((child, childIndex) => {
@@ -3457,12 +3483,6 @@ function addComposerAssemblyProxy(center, assembly, index) {
       );
       childOutline.position.copy(childPosition);
       group.add(childOutline);
-      const childBadge = createComposerChildBadgeSprite(
-        child?.id ?? `group_${childIndex + 1}`,
-        `${childMembers.length}`
-      );
-      childBadge.position.copy(childPosition).add(new THREE.Vector3(0, childRadius + 0.12, 0));
-      group.add(childBadge);
 
       const visibleChildMembers = Math.min(childMembers.length, 6);
       childMembers.forEach((memberEntry, memberIndex) => {
@@ -3489,24 +3509,12 @@ function addComposerAssemblyProxy(center, assembly, index) {
         memberDot.position.copy(memberOffset);
         memberDot.userData.memberId = memberId;
         group.add(memberDot);
-        addComposerMemberLabel(
-          assembly?.id,
-          memberId,
-          getComposerMemberColor(memberId, memberIndex + childIndex),
-          {
-            offset: [0, 0.055, 0],
-          }
-        );
       });
     });
 
-    const badgeTitle = assembly?.metadata?.label || assembly?.id || `A${index + 1}`;
-    const badgeSubtitle = `${rawMembers.length} member${rawMembers.length === 1 ? "" : "s"}${
-      children.length ? ` • ${children.length} group${children.length === 1 ? "" : "s"}` : ""
-    }`;
-    const badge = createComposerAssemblyBadgeSprite(badgeTitle, badgeSubtitle);
-    badge.position.set(0, baseRadius + 0.28, 0);
-    group.add(badge);
+    const numberBadge = createComposerAssemblyNumberSprite(index + 1);
+    numberBadge.position.set(baseRadius + 0.16, baseRadius + 0.12, 0);
+    group.add(numberBadge);
   }
 
   composerViewportGroup?.add(group);
@@ -3643,18 +3651,12 @@ function updateComposerViewportFromDocument(documentData) {
             motion: binary.motion,
             chargeType: "positrino",
           });
-          addComposerMemberLabel(assembly.id, positrinoMemberId, getComposerMemberColor(positrinoMemberId), {
-            offset: [0, 0.085, 0],
-          });
         }
         if (electrinoMemberId) {
           setComposerMemberAnchor(assembly.id, electrinoMemberId, {
             type: "orbit",
             motion: binary.motion,
             chargeType: "electrino",
-          });
-          addComposerMemberLabel(assembly.id, electrinoMemberId, getComposerMemberColor(electrinoMemberId), {
-            offset: [0, 0.085, 0],
           });
         }
         addComposerOrbitParticle(center, binary.motion, "positrino", positrinoMemberId);
@@ -3831,6 +3833,24 @@ function getComposerPointerNdc(event) {
   return { x, y };
 }
 
+function resolveComposerAssemblyHit(object) {
+  let current = object;
+  while (current) {
+    const assemblyIndex = current.userData?.assemblyIndex;
+    const assemblyId = current.userData?.assemblyId;
+    if (Number.isInteger(assemblyIndex) && assemblyId) {
+      return {
+        assemblyIndex,
+        assemblyId,
+        draggable: current.userData?.draggable !== false,
+        object: current,
+      };
+    }
+    current = current.parent ?? null;
+  }
+  return null;
+}
+
 function onComposerPointerDown(event) {
   if (!composerCanvas || !composerCamera || !composerRaycaster) {
     return;
@@ -3858,6 +3878,37 @@ function onComposerPointerDown(event) {
     composerDragState.altMode = event.altKey;
     updateComposerPointMaterials(composerDragState.pointIndex);
     return;
+  }
+  const assemblyHits = composerRaycaster.intersectObjects(composerAssemblyMeshes, true);
+  if (event.button === 0 && assemblyHits.length) {
+    const assemblyHit = resolveComposerAssemblyHit(assemblyHits[0].object);
+    if (assemblyHit?.draggable) {
+      const assembly = composerAssemblyDrafts[assemblyHit.assemblyIndex];
+      if (assembly) {
+        composerSelectedAssemblyId = assemblyHit.assemblyId;
+        composerDragState.mode = "assembly";
+        composerDragState.assemblyIndex = assemblyHit.assemblyIndex;
+        composerDragState.assemblyId = assemblyHit.assemblyId;
+        composerDragState.startX = event.clientX;
+        composerDragState.startY = event.clientY;
+        const startPosition = Array.isArray(assembly.position) ? assembly.position : [0, 0, 0];
+        composerDragState.startAssemblyPosition.set(
+          Number(startPosition[0] ?? 0) || 0,
+          Number(startPosition[1] ?? 0) || 0,
+          Number(startPosition[2] ?? 0) || 0
+        );
+        const parentCenter = assembly.parentId
+          ? composerAssemblyWorldCenters.get(assembly.parentId) ?? new THREE.Vector3()
+          : new THREE.Vector3();
+        composerDragState.startAssemblyParentCenter.copy(parentCenter);
+        const worldPoint =
+          composerAssemblyWorldCenters.get(assemblyHit.assemblyId) ??
+          assemblyHit.object.getWorldPosition(new THREE.Vector3());
+        const planeNormal = composerCamera.getWorldDirection(new THREE.Vector3()).normalize();
+        composerDragState.plane.setFromNormalAndCoplanarPoint(planeNormal, worldPoint);
+        return;
+      }
+    }
   }
   const wantsPan = event.shiftKey || event.button === 2;
   if (composerFrameEditMode && event.button === 0 && !wantsPan) {
@@ -3907,6 +3958,28 @@ function onComposerPointerMove(event) {
     return;
   }
 
+  if (composerDragState.mode === "assembly") {
+    const assemblyIndex = composerDragState.assemblyIndex;
+    if (assemblyIndex == null || !composerAssemblyDrafts[assemblyIndex]) {
+      return;
+    }
+    const { x, y } = getComposerPointerNdc(event);
+    composerRaycaster.setFromCamera({ x, y }, composerCamera);
+    const intersection = new THREE.Vector3();
+    if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
+      const liveAssembly = composerAssemblyDrafts[assemblyIndex];
+      const localPosition = intersection.sub(composerDragState.startAssemblyParentCenter);
+      liveAssembly.position = [
+        Number(localPosition.x.toFixed(3)),
+        Number(localPosition.y.toFixed(3)),
+        Number(localPosition.z.toFixed(3)),
+      ];
+      syncComposerAssemblyPositionInputs(liveAssembly.id, liveAssembly.position);
+      renderComposerJsonPreview();
+    }
+    return;
+  }
+
   if (composerDragState.mode === "camera") {
     const speed = composerCameraState.speed * 0.004;
     composerCameraOrbitState.theta =
@@ -3934,6 +4007,8 @@ function onComposerPointerUp(event) {
   }
   composerDragState.mode = null;
   composerDragState.pointIndex = null;
+  composerDragState.assemblyIndex = null;
+  composerDragState.assemblyId = null;
   if (composerCanvas && composerCanvas.hasPointerCapture(event.pointerId)) {
     composerCanvas.releasePointerCapture(event.pointerId);
   }
@@ -4202,13 +4277,19 @@ const composerCameraFlightState = {
 };
 let composerAssemblyDrafts = [createDefaultComposerAssemblyDraft(0)];
 let composerSelectedPointIndex = null;
+let composerSelectedAssemblyId = null;
+const composerAssemblyPositionInputs = new Map();
 const composerDragState = {
   mode: null,
   button: 0,
   pointIndex: null,
+  assemblyIndex: null,
+  assemblyId: null,
   startX: 0,
   startY: 0,
   startPoint: new THREE.Vector3(),
+  startAssemblyPosition: new THREE.Vector3(),
+  startAssemblyParentCenter: new THREE.Vector3(),
   startFrameRot: new THREE.Euler(0, 0, 0, "YXZ"),
   startOrbitTheta: 0,
   startOrbitPhi: 0,
@@ -4235,6 +4316,7 @@ let composerCameraWaypointMeshes = [];
 let composerCameraWaypointGeometry = null;
 let composerCameraWaypointMaterial = null;
 let composerAssemblyMeshes = [];
+let composerAssemblyWorldCenters = new Map();
 let composerShellMeshes = [];
 let composerOrbitTraceLines = [];
 let composerTransferLines = [];
@@ -4249,7 +4331,7 @@ let composerDocumentCameraTargetMesh = null;
 let composerDocumentCameraLookLine = null;
 let composerCurrentDocument = null;
 const composerPlaybackState = {
-  playing: true,
+  playing: false,
   playheadSeconds: 0,
   pauseRemaining: 0,
   lastTickMs: 0,
