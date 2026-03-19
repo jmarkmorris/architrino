@@ -1101,6 +1101,7 @@ This section merges the remaining useful requirements into one set.
 - A Noether core should support explicit precession, inter-plane alignment state, and terminal planar-lock state rather than treating core geometry as a static shell plus ad hoc animation.
 - The authored core model should be able to represent that the outer binary sets the dominant exclusion or shell geometry while inner binaries remain visible as deeper dynamical structure.
 - Exclusion geometry should be authorable as a first-class envelope that can be swept, tilted, or flattened over time without pretending it is just another transport path.
+- Each binary should be able to expose an optional orbital axis or plane-normal guide as a first-class visual helper, and that guide should remain correctly attached while the parent assembly translates, rotates, precesses, or deforms.
 - The composer should allow both static inspection of a core and time-based playback of the core while it moves and deforms.
 
 ### 5. Internal dynamics requirements
@@ -1128,6 +1129,7 @@ This section merges the remaining useful requirements into one set.
 - Path, orbit, spin, translation, deformation, and jiggle should be composable rather than mutually exclusive.
 - The schema should distinguish transport paths from internal orbits, delayed or causal-history traces, and shell or exclusion envelopes, even when those are rendered together in one viewport.
 - A transport path should answer where an assembly moves; an internal orbit should answer how a constituent moves inside its parent; a history trace should answer what delayed branch or wake geometry is being shown; an envelope should answer what shell or exclusion volume is being shown.
+- Local time-rate control should be authorable for selected intervals so a scene can run a chosen section in slow motion or fast motion without forcing ad hoc geometry edits.
 - Time mapping, repeat behavior, phase offsets, and playback rate should be explicit.
 - Transform editing should distinguish world, parent-relative, and local frames explicitly in both data and UI.
 
@@ -1275,11 +1277,14 @@ A first practical composer schema stack could look like this:
 
 - `SceneSpec`
 - `UnitsSpec`
+- `ControlSpec`
 - `FrameSpec`
 - `TransformSpec`
 - `AnchorSpec`
 - `RepeatSpec`
+- `TimeMapSpec`
 - `PauseSpec`
+- `TimeWarpSpec`
 - `MarkerSpec`
 - `ClipTimingSpec`
 - `KeyframeSpec`
@@ -1287,11 +1292,15 @@ A first practical composer schema stack could look like this:
 - `AssetSpec`
 - `LayoutSpec`
 - `ViewSpec`
+- `StyleSpec`
 - `PathSpec`
+- `HistoryTraceSpec`
 - `AssemblySpec`
 - `AssemblyLibrarySpec`
 - `AssemblyInstanceSpec`
 - `LodSpec`
+- `GeometrySpec`
+- `EnvelopeSpec`
 - `CoreSpec`
 - `ChargeSpec`
 - `ReactionSpec`
@@ -1311,6 +1320,26 @@ A first practical composer schema stack could look like this:
 ### Primitive spec vocabulary
 
 Before the larger scene and assembly objects are defined, the composer should lock a small set of reusable primitive spec types. These are the pieces that make path-relative authoring, nested assembly motion, and canonical export possible without hidden renderer state.
+
+### Shared type aliases
+
+These lightweight aliases keep the larger specs readable without forcing every commonly reused scalar to become its own heavyweight object.
+
+```js
+type Ref = string
+type ColorRef = string
+
+PaletteBinding {
+  preset?: string,
+  overrides?: Record<string, string>
+}
+```
+
+Guidance:
+
+- `Ref` should resolve to a stable authored id in the canonical scene document,
+- `ColorRef` may be a literal color string or a named palette role,
+- and `PaletteBinding` should let a scene opt into a palette preset while still allowing explicit local overrides where needed.
 
 ### UnitsSpec
 
@@ -1405,6 +1434,33 @@ RepeatSpec {
 }
 ```
 
+### TimeMapSpec
+
+Purpose:
+
+- define when an authored object is active on the master timeline,
+- allow local rate adjustment or clipping without mutating the underlying object definition,
+- keep preview, export, and runtime timing behavior aligned.
+
+Draft shape:
+
+```js
+TimeMapSpec {
+  start?: number,
+  end?: number,
+  offset?: number,
+  rate?: number,
+  clamp?: boolean
+}
+```
+
+Guidance:
+
+- `start` and `end` define the active window on the master timeline,
+- `offset` shifts how the object samples its own local time,
+- `rate` adjusts local playback rate without changing authored geometry,
+- and `clamp` determines whether evaluation freezes at the boundary instead of continuing past it.
+
 ### PauseSpec
 
 Purpose:
@@ -1429,6 +1485,33 @@ Requirements:
 - pauses must not overlap,
 - pause timing should be validated against the master timeline,
 - and pause duration should extend playback time without mutating the underlying scene geometry.
+
+### TimeWarpSpec
+
+Purpose:
+
+- define authored slow-motion or fast-motion playback windows on the master timeline,
+- keep time-rate changes explicit rather than burying them in preview-only controls,
+- preserve export and runtime agreement about how a selected interval is presented.
+
+Draft shape:
+
+```js
+TimeWarpSpec {
+  id: string,
+  start: number,
+  end: number,
+  rate: number,
+  label?: string
+}
+```
+
+Requirements:
+
+- `rate > 0`,
+- time-warp windows should not overlap unless a later rule explicitly defines composition,
+- a time warp should change presentation rate for the selected interval without mutating authored geometry or object identity,
+- and preview, export, and runtime playback should all interpret the same time-warp window the same way.
 
 ### MarkerSpec
 
@@ -1584,6 +1667,34 @@ Guidance:
 - supported kinds should remain intentionally narrow in the first serious version,
 - and the runtime should remain functional even when a scene uses no imported assets at all.
 
+### ControlSpec
+
+Purpose:
+
+- define runtime-facing playback and viewport control preferences,
+- keep scene-level control choices explicit rather than buried in editor chrome,
+- and allow the same canonical scene to express a minimal but intentional playback surface.
+
+Draft shape:
+
+```js
+ControlSpec {
+  playback?: {
+    allowPlayPause?: boolean,
+    allowScrub?: boolean,
+    allowLoop?: boolean,
+    showTimeline?: boolean
+  },
+  viewport?: {
+    showAxes?: boolean,
+    showScaleHints?: boolean
+  },
+  selection?: {
+    allowDrillDown?: boolean
+  }
+}
+```
+
 ### Path-source taxonomy
 
 Paths should remain first-class authored objects, and their source should be explicit rather than inferred from editor state.
@@ -1634,6 +1745,7 @@ SceneSpec {
     palette?: PaletteBinding,
     controls?: ControlSpec,
     pauses?: PauseSpec[],
+    timeWarps?: TimeWarpSpec[],
     markers?: MarkerSpec[],
     brandGraphics?: BrandGraphicsSpec,
     publication?: PublicationSpec
@@ -1840,6 +1952,32 @@ ViewSpec {
 }
 ```
 
+### StyleSpec
+
+Purpose:
+
+- provide one small shared style vocabulary for paths, traces, envelopes, overlays, and guides,
+- keep visual semantics explicit without creating separate incompatible style systems,
+- and preserve the lecture-graphics discipline of the composer.
+
+Draft shape:
+
+```js
+StyleSpec {
+  color?: string,
+  stroke?: string,
+  strokeWidth?: number,
+  strokeOpacity?: number,
+  fill?: string,
+  fillOpacity?: number,
+  opacity?: number,
+  textColor?: string,
+  lineOpacity?: number,
+  dashed?: boolean,
+  zBias?: number
+}
+```
+
 ### OverlaySpec
 
 Purpose:
@@ -1988,21 +2126,12 @@ Shared geometry guidance:
 
 ### Overlay style language
 
-The style system for overlays should stay small, explicit, and biased toward academic clarity.
+The shared `StyleSpec` should stay small, explicit, and biased toward academic clarity. Overlays are simply the first place where the style vocabulary becomes concrete.
 
 Recommended style fields:
 
 ```js
-OverlayStyleSpec {
-  stroke?: string,
-  strokeWidth?: number,
-  strokeOpacity?: number,
-  fill?: string,
-  fillOpacity?: number,
-  textColor?: string,
-  lineOpacity?: number,
-  zBias?: number
-}
+StyleSpec { ... }
 ```
 
 Style guidance:
@@ -2080,11 +2209,32 @@ HistoryTraceSpec {
   kind: "partner" | "self" | "branch_family" | "wake_shell" | "custom",
   frame?: FrameSpec,
   timing?: TimeMapSpec,
+  window?: {
+    mode: "seconds" | "turns" | "full",
+    lookback?: number,
+    maxSegments?: number,
+    anchor?: "playhead" | "receiver" | "custom"
+  },
+  fade?: {
+    mode: "none" | "tail" | "head-tail",
+    opacityStart?: number,
+    opacityEnd?: number,
+    curve?: "linear" | "ease-in" | "ease-out" | "ease-in-out"
+  },
   style?: StyleSpec,
   payload?: Record<string, unknown>,
   metadata?: Record<string, unknown>
 }
 ```
+
+Guidance:
+
+- `timing` answers when the history trace is shown in the scene,
+- `window` answers how much past path-history is visible,
+- `mode: "seconds"` is the direct way to author “show the last N seconds,”
+- `mode: "turns"` is useful for orbital or branch-count-based history displays,
+- `mode: "full"` is the explicit full-history option,
+- and `fade` controls whether the visible trace stays uniform or fades along its shown extent.
 
 ### AssemblySpec
 
@@ -2181,6 +2331,25 @@ LodSpec {
 }
 ```
 
+### GeometrySpec
+
+Purpose:
+
+- define reusable shell and envelope geometry primitives,
+- avoid hiding simple geometric forms inside untyped payloads,
+- and keep Noether-core and exclusion-volume geometry inspectable.
+
+Draft shape:
+
+```js
+GeometrySpec =
+  | { type: "sphere", radius: number }
+  | { type: "ellipsoid", axes: [number, number, number], orientation?: [number, number, number] }
+  | { type: "ring", radius: number, thickness?: number, orientation?: [number, number, number] }
+  | { type: "shell_band", innerRadius: number, outerRadius: number, orientation?: [number, number, number] }
+  | { type: "custom", payload?: Record<string, unknown> }
+```
+
 ### EnvelopeSpec
 
 Purpose:
@@ -2230,7 +2399,14 @@ CoreSpec {
   }>,
   binaries?: Array<{
     id: string,
-    motion: MotionSpec
+    motion: MotionSpec,
+    axisGuide?: {
+      visible?: boolean,
+      source?: "orbit_normal" | "binary_axis" | "custom",
+      axis?: [number, number, number],
+      length?: number,
+      style?: StyleSpec
+    }
   }>,
   architrinos?: Array<{
     id: string,
