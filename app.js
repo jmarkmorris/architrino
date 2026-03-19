@@ -345,6 +345,16 @@ function readNumberInput(input, fallback = 0) {
   return Number.isFinite(value) ? value : fallback;
 }
 
+function vectorFromTriplet(source) {
+  if (source instanceof THREE.Vector3) {
+    return source.clone();
+  }
+  if (Array.isArray(source)) {
+    return new THREE.Vector3(source[0] ?? 0, source[1] ?? 0, source[2] ?? 0);
+  }
+  return new THREE.Vector3(source?.x ?? 0, source?.y ?? 0, source?.z ?? 0);
+}
+
 function formatScaleLabel(value) {
   const normalized = Number.isFinite(value) ? value : 1;
   if (normalized >= 1000 || normalized <= 0.001) {
@@ -1114,6 +1124,36 @@ function clearComposerViewportVisuals() {
     mesh.material?.dispose?.();
   });
   composerOrbitParticleMeshes = [];
+  if (composerDocumentCameraPathLine) {
+    composerViewportGroup?.remove(composerDocumentCameraPathLine);
+    composerDocumentCameraPathLine.geometry?.dispose?.();
+    composerDocumentCameraPathLine.material?.dispose?.();
+    composerDocumentCameraPathLine = null;
+  }
+  composerDocumentCameraWaypointMeshes.forEach((mesh) => {
+    composerViewportGroup?.remove(mesh);
+    mesh.geometry?.dispose?.();
+    mesh.material?.dispose?.();
+  });
+  composerDocumentCameraWaypointMeshes = [];
+  if (composerDocumentCameraShotMesh) {
+    composerViewportGroup?.remove(composerDocumentCameraShotMesh);
+    composerDocumentCameraShotMesh.geometry?.dispose?.();
+    composerDocumentCameraShotMesh.material?.dispose?.();
+    composerDocumentCameraShotMesh = null;
+  }
+  if (composerDocumentCameraTargetMesh) {
+    composerViewportGroup?.remove(composerDocumentCameraTargetMesh);
+    composerDocumentCameraTargetMesh.geometry?.dispose?.();
+    composerDocumentCameraTargetMesh.material?.dispose?.();
+    composerDocumentCameraTargetMesh = null;
+  }
+  if (composerDocumentCameraLookLine) {
+    composerViewportGroup?.remove(composerDocumentCameraLookLine);
+    composerDocumentCameraLookLine.geometry?.dispose?.();
+    composerDocumentCameraLookLine.material?.dispose?.();
+    composerDocumentCameraLookLine = null;
+  }
 }
 
 function computeComposerAssemblyBasePosition(assembly, index, count, pathById) {
@@ -1178,6 +1218,45 @@ function sampleComposerPointAt(points, normalizedT) {
     THREE.MathUtils.lerp(from[1] ?? 0, to[1] ?? 0, localT),
     THREE.MathUtils.lerp(from[2] ?? 0, to[2] ?? 0, localT)
   );
+}
+
+function sampleComposerCurvePoints(points, segments = 80) {
+  const source = Array.isArray(points) ? points : [];
+  if (!source.length) {
+    return [];
+  }
+  if (source.length === 1) {
+    const [x = 0, y = 0, z = 0] = source[0];
+    return [new THREE.Vector3(x, y, z)];
+  }
+  const vectors = source.map(([x = 0, y = 0, z = 0]) => new THREE.Vector3(x, y, z));
+  const curve = new THREE.CatmullRomCurve3(vectors, false, "catmullrom", 0.5);
+  return curve.getPoints(Math.max(2, segments));
+}
+
+function sampleComposerCameraWaypointState(waypoints, normalizedT) {
+  const source = Array.isArray(waypoints) ? waypoints : [];
+  if (!source.length) {
+    return {
+      position: new THREE.Vector3(),
+      lookAt: new THREE.Vector3(),
+    };
+  }
+  if (source.length === 1) {
+    return {
+      position: vectorFromTriplet(source[0]?.position),
+      lookAt: vectorFromTriplet(source[0]?.lookAt),
+    };
+  }
+  const positions = source.map((waypoint) => vectorFromTriplet(waypoint?.position));
+  const lookAts = source.map((waypoint) => vectorFromTriplet(waypoint?.lookAt));
+  const curve = new THREE.CatmullRomCurve3(positions, false, "catmullrom", 0.5);
+  const lookCurve = new THREE.CatmullRomCurve3(lookAts, false, "catmullrom", 0.5);
+  const t = clamp(normalizedT, 0, 1);
+  return {
+    position: curve.getPointAt(t),
+    lookAt: lookCurve.getPointAt(t),
+  };
 }
 
 function getComposerPlaybackRateAtTime(documentData, timeSeconds) {
@@ -1601,6 +1680,8 @@ function updateComposerAnimatedViewport(timeSeconds) {
       center.z + Math.sin(angle) * radius
     );
   });
+
+  updateComposerDocumentCameraPreview(timeSeconds, composerCurrentDocument);
 }
 
 function addComposerOrbitTrace(center, motion, color) {
@@ -1680,6 +1761,155 @@ function addComposerOrbitParticle(center, motion, color) {
   composerOrbitParticleMeshes.push(mesh);
 }
 
+function resolveComposerShotInterval(shot, timeWindow) {
+  const timing = shot?.timing ?? {};
+  const start = Number(timing.start ?? timeWindow.start);
+  const fadeIn = Math.max(0, Number(timing.fadeIn ?? 0));
+  const hold = Math.max(0, Number(timing.hold ?? 0));
+  const fadeOut = Math.max(0, Number(timing.fadeOut ?? 0));
+  const end = start + fadeIn + hold + fadeOut;
+  return {
+    start,
+    end: Math.max(start, end),
+  };
+}
+
+function getComposerActiveCameraShot(documentData, timeSeconds) {
+  const shots = Array.isArray(documentData?.cameraShots) ? documentData.cameraShots : [];
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  return shots.find((shot) => {
+    const interval = resolveComposerShotInterval(shot, timeWindow);
+    return timeSeconds >= interval.start && timeSeconds <= interval.end;
+  }) ?? null;
+}
+
+function addComposerDocumentCameraVisuals(documentData) {
+  const cameraPaths = Array.isArray(documentData?.cameraPaths) ? documentData.cameraPaths : [];
+  const pathById = new Map(cameraPaths.map((path) => [path.id, path]));
+  const activeCameraPathId =
+    documentData?.scene?.view?.activeCameraPath ??
+    documentData?.cameraShots?.[0]?.cameraPath ??
+    cameraPaths[0]?.id ??
+    null;
+  const cameraPath = activeCameraPathId ? pathById.get(activeCameraPathId) : null;
+  const waypoints = Array.isArray(cameraPath?.waypoints) ? cameraPath.waypoints : [];
+  if (!waypoints.length || !composerViewportGroup) {
+    return;
+  }
+
+  const pathPoints = sampleComposerCurvePoints(
+    waypoints.map((waypoint) => waypoint.position),
+    Math.max(20, waypoints.length * 18)
+  );
+  if (pathPoints.length) {
+    const geometry = new THREE.BufferGeometry().setFromPoints(pathPoints);
+    const material = new THREE.LineDashedMaterial({
+      color: 0x84d8ff,
+      transparent: true,
+      opacity: 0.75,
+      dashSize: 0.18,
+      gapSize: 0.12,
+    });
+    composerDocumentCameraPathLine = new THREE.Line(geometry, material);
+    composerDocumentCameraPathLine.computeLineDistances();
+    composerViewportGroup.add(composerDocumentCameraPathLine);
+  }
+
+  waypoints.forEach((waypoint, index) => {
+    const marker = new THREE.Mesh(
+      new THREE.SphereGeometry(index === 0 ? 0.06 : 0.045, 14, 12),
+      new THREE.MeshBasicMaterial({
+        color: index === 0 ? 0x9af0c9 : 0xb9e7ff,
+        transparent: true,
+        opacity: 0.9,
+      })
+    );
+    marker.position.copy(vectorFromTriplet(waypoint.position));
+    composerViewportGroup.add(marker);
+    composerDocumentCameraWaypointMeshes.push(marker);
+  });
+
+  composerDocumentCameraShotMesh = new THREE.Mesh(
+    new THREE.ConeGeometry(0.09, 0.22, 12),
+    new THREE.MeshBasicMaterial({
+      color: 0xfff2a8,
+      transparent: true,
+      opacity: 0.95,
+    })
+  );
+  composerDocumentCameraShotMesh.rotation.x = Math.PI / 2;
+  composerDocumentCameraShotMesh.visible = false;
+  composerViewportGroup.add(composerDocumentCameraShotMesh);
+
+  composerDocumentCameraTargetMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(0.05, 12, 10),
+    new THREE.MeshBasicMaterial({
+      color: 0xffb36b,
+      transparent: true,
+      opacity: 0.92,
+    })
+  );
+  composerDocumentCameraTargetMesh.visible = false;
+  composerViewportGroup.add(composerDocumentCameraTargetMesh);
+
+  composerDocumentCameraLookLine = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]),
+    new THREE.LineBasicMaterial({
+      color: 0xffd289,
+      transparent: true,
+      opacity: 0.75,
+    })
+  );
+  composerDocumentCameraLookLine.visible = false;
+  composerViewportGroup.add(composerDocumentCameraLookLine);
+}
+
+function updateComposerDocumentCameraPreview(timeSeconds, documentData) {
+  if (
+    !composerDocumentCameraShotMesh ||
+    !composerDocumentCameraTargetMesh ||
+    !composerDocumentCameraLookLine
+  ) {
+    return;
+  }
+
+  const cameraPaths = Array.isArray(documentData?.cameraPaths) ? documentData.cameraPaths : [];
+  const pathById = new Map(cameraPaths.map((path) => [path.id, path]));
+  const activeShot = getComposerActiveCameraShot(documentData, timeSeconds);
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  const interval = activeShot ? resolveComposerShotInterval(activeShot, timeWindow) : null;
+  const cameraPath = activeShot?.cameraPath ? pathById.get(activeShot.cameraPath) : cameraPaths[0];
+  const waypoints = Array.isArray(cameraPath?.waypoints) ? cameraPath.waypoints : [];
+
+  if (!activeShot || !interval || !waypoints.length) {
+    composerDocumentCameraShotMesh.visible = false;
+    composerDocumentCameraTargetMesh.visible = false;
+    composerDocumentCameraLookLine.visible = false;
+    return;
+  }
+
+  const duration = Math.max(0.001, interval.end - interval.start);
+  const shotT = clamp((timeSeconds - interval.start) / duration, 0, 1);
+  const state = sampleComposerCameraWaypointState(waypoints, shotT);
+  const lookDirection = state.lookAt.clone().sub(state.position);
+
+  composerDocumentCameraShotMesh.visible = true;
+  composerDocumentCameraShotMesh.position.copy(state.position);
+  if (lookDirection.lengthSq() > 1e-6) {
+    composerDocumentCameraShotMesh.quaternion.setFromUnitVectors(
+      new THREE.Vector3(0, -1, 0),
+      lookDirection.clone().normalize()
+    );
+  }
+
+  composerDocumentCameraTargetMesh.visible = true;
+  composerDocumentCameraTargetMesh.position.copy(state.lookAt);
+
+  composerDocumentCameraLookLine.visible = true;
+  composerDocumentCameraLookLine.geometry.setFromPoints([state.position, state.lookAt]);
+  composerDocumentCameraLookLine.geometry.computeBoundingSphere();
+}
+
 function updateComposerViewportFromDocument(documentData) {
   const previousSceneId = composerCurrentDocument?.scene?.id ?? null;
   composerCurrentDocument = documentData;
@@ -1754,6 +1984,7 @@ function updateComposerViewportFromDocument(documentData) {
       }
     });
   });
+  addComposerDocumentCameraVisuals(documentData);
 
   const timeWindow = getComposerSceneTimeWindow(documentData);
   if (composerPlaybackState.playheadSeconds < timeWindow.start || previousSceneId !== documentData?.scene?.id) {
@@ -2317,6 +2548,11 @@ let composerAssemblyMeshes = [];
 let composerOrbitTraceLines = [];
 let composerAxisGuideLines = [];
 let composerOrbitParticleMeshes = [];
+let composerDocumentCameraPathLine = null;
+let composerDocumentCameraWaypointMeshes = [];
+let composerDocumentCameraShotMesh = null;
+let composerDocumentCameraTargetMesh = null;
+let composerDocumentCameraLookLine = null;
 let composerCurrentDocument = null;
 const composerPlaybackState = {
   playing: true,
