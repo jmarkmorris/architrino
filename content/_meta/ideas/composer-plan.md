@@ -1,346 +1,175 @@
-# Composer Integration Plan
+# Composer Remaining Work Plan
 
 ## Purpose
 
-This note turns the architecture in [composer.md](composer.md) into a practical implementation plan for the current webapp.
+This note tracks what still needs to be built in Composer.
 
-The central decision is:
-
-- keep the existing composer working,
-- do not destabilize its current scene entry and overlay shell,
-- and build the next system as **composer-II** behind new runtime seams until it is strong enough to replace the old internal draft model.
-
-That means the migration should be evolutionary, not destructive.
+It is not a migration pitch anymore. The Composer shell, the `composer-II` document path, and the first viewport/timeline/editor hooks already exist. This note should stay focused on the unfinished work.
 
 ---
 
-## Core decision
+## Current Baseline
 
-Yes, we should leave the existing composer as it is while building `composer-II`.
+Already implemented:
 
-That is the safest and most productive approach.
+- the Archie composer entry and overlay shell;
+- canonical `composer-II` scene document generation and canonical JSON export;
+- browser-local save/load library for draft scenes;
+- explicit assembly authoring instead of node-count bootstrapping;
+- path editing, frame editing, camera waypoint authoring, timing lists, and scrub/play transport;
+- primary assembly shell/core preview;
+- additional assembly proxies with member lists;
+- explicit assembly parenting and local positioning;
+- first transfer-map authoring and preview lines;
+- bridge preview through the current temporary `Scene-Diagram` host.
 
-Why:
-
-- the current composer already has the correct entrypoint in the app,
-- it already owns a dedicated overlay and live canvas,
-- it already supports preview and export flow,
-- and it already gives us a visible place to integrate the new system incrementally.
-
-So the plan is not:
-
-- delete the old composer,
-- pause work until the new one is complete,
-- and then attempt a big-bang replacement.
-
-The plan is:
-
-1. preserve the current composer scene and shell,
-2. introduce a parallel `composer-II` document/runtime model,
-3. let the new model coexist with the old one during development,
-4. gradually rewire panels and preview/export onto the new engines,
-5. and only then retire the older ad hoc draft internals.
+That baseline is good enough to stop planning Phase A or early Phase B work. The remaining plan starts after that point.
 
 ---
 
-## What exists today
+## Remaining Priorities
 
-The current composer entry and shell already live in the right place.
+### 1. Native composed-animation runtime
 
-Current integration points:
+The current preview still depends on a bridge `Scene-Diagram` scene.
 
-- [app.js](../../app.js)
-- [src/runtime/ComposerUiRuntime.js](../../src/runtime/ComposerUiRuntime.js)
-- [src/runtime/ComposerControlsUiRuntime.js](../../src/runtime/ComposerControlsUiRuntime.js)
-- [src/runtime/ComposerCanvasUiRuntime.js](../../src/runtime/ComposerCanvasUiRuntime.js)
-- [content/scenes/archie/composer.json](../../scenes/archie/composer.json)
+What remains:
 
-Current behavior, in practical terms:
+- add a dedicated composed-animation runtime boundary;
+- make preview play the canonical document directly instead of converting through the temporary bridge;
+- decide when the current host scene should stop pretending to be `Scene-Diagram` and become an explicit composed-animation or tool scene.
 
-- a dedicated Archie scene launches the composer overlay,
-- the overlay owns several panels,
-- the canvas supports path editing, frame editing, and camera preview,
-- preview can generate a temporary scene,
-- export can dump JSON.
+This is the next architectural threshold. Until this exists, preview semantics will keep carrying bridge compromises.
 
-That is enough to serve as the host shell for `composer-II`.
+### 2. Real assembly structure
 
----
+Assemblies now exist explicitly, but their internal structure is still shallow outside the primary shell/core demonstration.
 
-## Composer vs Composer-II
+What remains:
 
-The cleanest near-term structure is:
+- explicit constituent placement inside assemblies, not just member ids in a list;
+- parent/child nesting that can show subassemblies as actual local structures;
+- assembly-level transforms beyond simple local offset;
+- reusable assembly presets and instance overrides.
 
-- **Composer**
-  - the current stable overlay, panels, and preview/export shell;
-- **Composer-II**
-  - the new AAA-native authoring model, scene document core, timeline model, viewport primitive stack, and validation model.
+This is what will let the composer show true subassembly organization instead of only named containers.
 
-This should not initially be treated as a separate user-facing product. It is a development architecture boundary.
+### 3. Reaction objects and staged choreography
 
-The user-facing flow can still say “Composer.”
+Transfers exist, but reactions do not yet exist as first-class authored objects.
 
-Internally, however, we should distinguish:
+What remains:
 
-- old draft builder code,
-- from the new canonical scene authoring system.
+- introduce authored `ReactionSpec` objects on the shared timeline;
+- group transfers into named reaction stages;
+- define reactants, products, and stage boundaries explicitly;
+- support disassembly, handoff, and reassembly as staged authored behavior rather than loose transfer lines;
+- surface reaction timing in the timeline UI.
 
-Recommended practical rule:
+This is the most important missing theory-facing layer.
 
-- old composer stays as the fallback authoring path until `composer-II` can produce one polished MVP scene end to end.
+### 4. Provenance and member identity through change
 
----
+Stable ids now exist, but provenance is still only lightly represented.
 
-## Integration strategy
+What remains:
 
-The current shell should remain the host.
+- record where each transferred member came from and where it ends up;
+- make provenance inspectable in the editor and visible in preview;
+- distinguish persistent identity from temporary proxy visuals;
+- support constituent continuity across reactions and regrouping.
 
-The replacement should happen in layers.
+Without this, reaction scenes will remain visually suggestive but not rigorously traceable.
 
-### Layer 1. Preserve the current scene and overlay entry
+### 5. History traces and exclusion envelopes
 
-Do not change the basic launch model yet.
+Schema hooks exist, but the viewport/editor still does not author or render these as real AAA structures.
 
-Keep:
+What remains:
 
-- the Archie composer scene,
-- the overlay mode,
-- the docs button,
-- the preview button,
-- the export button,
-- and the current live canvas region.
+- author `historyTraces` in the UI;
+- render path-history traces with window and fade semantics;
+- author and render `envelopes` for shell/exclusion geometry;
+- connect those displays to the delayed/path-history model rather than treating them as generic effects.
 
-This preserves continuity while the new system is developed.
+These are theory-critical and should not remain placeholders for too long.
 
-For now, the existing host scene can remain the current `Scene-Diagram` entry because that is the live route already wired into the app. But the planning target should remain a dedicated composed-animation or tool-scene runtime boundary once `composer-II` canonical scene playback is established. The scene-type rename should follow working runtime semantics, not block Phase A or Phase B.
+### 6. Camera and editorial depth
 
-### Layer 2. Introduce a new scene document core
+The timeline exists, but the editorial layer is still light.
 
-The first major replacement should be the internal draft data model.
+What remains:
 
-Current draft behavior is still largely shaped by:
+- real camera shot objects, not only waypoint paths and guide previews;
+- shot transitions and follow/framing behavior in the canonical runtime;
+- overlays and callouts on tracks;
+- track ordering and clip-level editorial control;
+- section-level time-warp authoring that reads as a first-class timeline feature rather than textarea-only configuration.
 
-- node count,
-- node labels,
-- one editable path,
-- frame state,
-- camera flight preview.
+This is what will turn the current preview player into an authored sequence editor.
 
-`composer-II` should replace that with the MVP canonical scene model from [composer.md](composer.md):
+### 7. Workspace reorganization
 
-- `scene`
-- `assemblies`
-- `paths`
-- `historyTraces`
-- `envelopes`
-- `cameraPaths`
-- `cameraShots`
-- `overlays`
-- `tracks`
-- `markers`
-- `pauses`
+The current UI is usable, but it is still a transitional layout.
 
-The important planning nuance is that these extra slots do not mean the first UI must expose every deep theory control immediately. They do mean the canonical document should reserve clean semantics for:
+What remains:
 
-- transport paths,
-- delayed or path-history traces,
-- shell or exclusion envelopes,
-- and minimal provenance-ready identity hooks.
+- move toward a stable workspace grammar:
+  - top context bar;
+  - left structure rail;
+  - central viewport;
+  - right inspector;
+  - bottom timeline;
+- reduce remaining text-heavy controls in favor of visual authoring where possible;
+- shift freeform textarea authoring toward structured list/item editors where that improves clarity.
 
-At first, this can live beside the older draft builder rather than replacing it immediately.
+This is a usability pass, not the core runtime blocker.
 
-### Layer 3. Replace the viewport primitive model
+### 8. Validation and persistence
 
-The current canvas is already the right conceptual place, but its primitives are still too thin.
+The browser-local library is useful for drafts, but it is not the final persistence model.
 
-The new viewport should render the AAA-native primitive set:
+What remains:
 
-- spheres,
-- paths,
-- orbit or shell traces,
-- ellipse or ellipsoid guides,
-- callout leaders,
-- text labels.
+- structural validation for assemblies, transfers, reactions, and references;
+- lint for malformed ids, missing members, impossible parent chains, and invalid transfer endpoints;
+- repo-facing save path for authored scenes and reusable assemblies;
+- library semantics for reusable motifs, presets, and overrides.
 
-This is the key design transition from “demo editor” to “native AAA authoring surface.”
-
-### Layer 4. Replace the editorial model
-
-Once the scene document and viewport primitives are in place, the next layer is the timeline/editorial model:
-
-- markers,
-- pauses,
-- overlay clips,
-- camera shots,
-- transitions,
-- track ordering.
-
-This is where the sequence and shot levels become real.
-
-### Layer 5. Replace the panel logic
-
-The current panel set can remain initially, but the new architecture should gradually take over panel ownership.
-
-The end state should follow the stable workspace grammar from [composer.md](composer.md):
-
-- top context bar,
-- left rail,
-- central viewport,
-- right inspector,
-- bottom timeline.
-
-This does not need to be delivered all at once.
-
-### Layer 6. Promote the new preview/export flow
-
-The preview and export buttons should eventually target only `composer-II` canonical scene data.
-
-That is the moment when the old builder becomes unnecessary.
+Draft persistence is solved. Authoritative content persistence is not.
 
 ---
 
-## Recommended file/module plan
+## Recommended Order
 
-The current files suggest a clean incremental split.
+### Next
 
-### Existing host files to keep
+1. Native composed-animation runtime.
+2. Reaction objects with staged transfer choreography.
+3. Member-level placement and subassembly structure.
 
-- [app.js](../../app.js)
-  - keep as the top-level integration point for now;
-- [src/runtime/ComposerUiRuntime.js](../../src/runtime/ComposerUiRuntime.js)
-  - keep as the shell/runtime controller, but gradually route actions to new engines;
-- [src/runtime/ComposerControlsUiRuntime.js](../../src/runtime/ComposerControlsUiRuntime.js)
-  - keep as the UI event host, but migrate controls to structured command handling;
-- [src/runtime/ComposerCanvasUiRuntime.js](../../src/runtime/ComposerCanvasUiRuntime.js)
-  - keep as the canvas event wiring seam.
+### After that
 
-### New modules to add
+1. Provenance visualization.
+2. History traces and exclusion envelopes.
+3. Camera/editorial depth.
 
-Recommended new runtime modules under `src/runtime/` or a composer-specific subfolder:
+### Later
 
-- `Composer2SceneDocumentRuntime`
-  - canonical MVP scene state, normalization, ids, references;
-- `Composer2TimelineRuntime`
-  - playhead, markers, pauses, clip timing, tracks;
-- `Composer2ViewportRuntime`
-  - sphere/path/orbit/guide rendering and selection;
-- `Composer2CameraRuntime`
-  - camera paths, shots, transitions, follow behavior;
-- `Composer2OverlayRuntime`
-  - text, callout, ellipse, ellipsoid overlays;
-- `Composer2LibraryRuntime`
-  - reusable motifs, instances, overrides;
-- `Composer2ValidationRuntime`
-  - structural validation and lint;
-- `Composer2WorkspaceRuntime`
-  - level switching, selection context, panel state.
-
-The point is not to create layers for the sake of purity. The point is to separate:
-
-- scene semantics,
-- timeline semantics,
-- viewport semantics,
-- and editor-shell semantics.
+1. Workspace reorganization.
+2. Repo-facing save/library model.
+3. Strong validation and lint.
 
 ---
 
-## Panel migration plan
+## Stop Conditions
 
-The current panel ids in [content/scenes/archie/composer.json](../../scenes/archie/composer.json) are:
+Composer should not be considered complete until it can do all of the following in one authored scene:
 
-- `composer_tree`
-- `composer_path`
-- `composer_orbit`
-- `composer_interactions`
-- `composer_preview`
-- `composer_export`
+- multiple explicit assemblies and subassemblies;
+- constituent continuity through at least one staged reaction;
+- visible transfer/provenance semantics;
+- path-history and exclusion-envelope rendering;
+- direct canonical runtime playback without the temporary bridge.
 
-These are workable temporary seeds.
-
-Recommended migration:
-
-- `composer_tree`
-  - becomes scene tree / assembly tree / library browser;
-- `composer_path`
-  - becomes path and timeline staging controls;
-- `composer_orbit`
-  - becomes shell/orbit reveal and constituent controls;
-- `composer_interactions`
-  - becomes overlays, markers, pauses, and shot controls;
-- `composer_preview`
-  - becomes runtime-player preview of canonical scene data;
-- `composer_export`
-  - becomes canonical JSON export, later package/render export.
-
-This lets the current panel architecture evolve instead of being discarded.
-
----
-
-## MVP definition for Composer-II
-
-`composer-II` should be considered real when it can author one polished scene that demonstrates the native AAA grammar:
-
-- one sphere-like assembly,
-- moving on one transport path,
-- with one internal orbit or shell reveal that remains coherent while the parent assembly transports,
-- with one or more pauses,
-- with one or more markers,
-- with one or more overlays,
-- with one or more camera shots,
-- with reserved canonical slots for delayed-history traces, exclusion envelopes, and provenance-ready identity even if those remain light-touch in the first UI,
-- and export canonical JSON that the runtime player can render correctly.
-
-That is the threshold after which it becomes rational to retire the old draft builder.
-
----
-
-## Suggested implementation order
-
-### Phase A. Establish the new scene document
-
-1. Define the MVP scene schema in code.
-2. Add normalization and reference helpers, including stable ids and reserved hooks for `historyTraces`, `envelopes`, and provenance-ready identity.
-3. Add canonical export from that schema.
-
-### Phase B. Replace the viewport primitives
-
-1. Render sphere bodies/proxies.
-2. Render paths.
-3. Render orbit or shell traces.
-4. Add selection on those primitives.
-
-### Phase C. Add the timeline/editorial layer
-
-1. Markers.
-2. Pauses.
-3. Overlays.
-4. Camera shots and transitions.
-5. Track ordering.
-
-### Phase D. Rewire the shell
-
-1. Repoint current panels to the new engines.
-2. Make preview use canonical scene data.
-3. Make export use canonical scene data.
-
-### Phase E. Add deeper AAA structure
-
-1. Constituent drill-down.
-2. Shell/orbit reveal logic.
-3. Larger assembly collapse/proxy logic.
-4. Later: full reactions, transfer tooling, and rich provenance visualization on top of the earlier reserved schema hooks.
-
----
-
-## Practical answer to the integration question
-
-Yes, we should integrate this into the existing composer app.
-
-But we should do it by:
-
-- preserving the current shell,
-- building `composer-II` inside it,
-- letting both coexist for a while,
-- and only removing the older internal builder once the new AAA-native scene model is demonstrably better and complete enough to carry real scenes.
-
-That is the most stable path, the fastest path to visible progress, and the path that best protects the current app while the architecture matures.
+That is the remaining target.
