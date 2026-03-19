@@ -254,18 +254,15 @@
                   <div class="composer-help-popover" role="tooltip">
                     <div class="composer-section-title">Assemblies</div>
                     <ul class="composer-help-list">
-                      <li>Build nested scenes and assemblies with explicit frames and transforms.</li>
-                      <li>Add, reorder, and group child scenes.</li>
-                      <li>Assign frame anchors and local transforms.</li>
-                      <li>Reuse scene presets for assemblies.</li>
+                      <li>Right-click empty canvas space to add a built-in assembly.</li>
+                      <li>Right-click an assembly marker to edit its properties.</li>
+                      <li>Open the text fallback only when you need member or subassembly fine-tuning.</li>
                     </ul>
                   </div>
                 </div>
               </div>
               <div id="composer-assembly-list" class="composer-assembly-list"></div>
-              <div class="composer-button-row composer-button-row-single">
-                <button id="composer-assembly-add" type="button">Add Assembly</button>
-              </div>
+              <div id="composer-assembly-detail" class="composer-assembly-detail"></div>
               <div class="composer-card-meta">
                 <span>Transfers</span>
                 <div class="composer-help">
@@ -362,11 +359,7 @@
           <main class="composer-main">
             <div class="composer-canvas-wrap">
               <canvas id="composer-canvas"></canvas>
-              <div id="composer-assembly-menu" class="composer-assembly-menu" aria-hidden="true">
-                <button type="button" data-template="positrino">Positrino</button>
-                <button type="button" data-template="electrino">Electrino</button>
-                <button type="button" data-template="noether_core">Noether Core</button>
-              </div>
+              <div id="composer-assembly-menu" class="composer-assembly-menu" aria-hidden="true"></div>
               <div class="composer-timeline-overlay">
                 <div class="composer-timeline-summary">
                   <span id="composer-timeline-summary">0.0s / 12.0s</span>
