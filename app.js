@@ -1620,7 +1620,7 @@ function updateComposerCameraPoiStatus() {
       composerCameraPoiStatus.textContent = `Selected point: ${composerSelectedPointIndex + 1} (${selectedPoint.x.toFixed(2)}, ${selectedPoint.y.toFixed(2)}, ${selectedPoint.z.toFixed(2)})`;
       composerCameraPoiStatus.classList.remove("is-warning");
     } else {
-      composerCameraPoiStatus.textContent = "Selected point: none. Click one of the numbered amber path points in the canvas to target it.";
+      composerCameraPoiStatus.textContent = "Selected point: none. Click a path point in the canvas to target it.";
       composerCameraPoiStatus.classList.add("is-warning");
     }
     return;
@@ -2193,6 +2193,32 @@ function openComposerAssemblyTemplateMenuAt(event) {
     composerAssemblyMenu.appendChild(clearCameraButton);
   }
 
+  const poiButton = document.createElement("button");
+  poiButton.type = "button";
+  poiButton.textContent =
+    composerCameraFlightState.poiMode === "selected" ? "POI: Selected Point" : "POI: Local Origin";
+  poiButton.addEventListener("click", () => {
+    composerCameraFlightState.poiMode =
+      composerCameraFlightState.poiMode === "selected" ? "origin" : "selected";
+    updateComposerCameraPoiStatus();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(poiButton);
+
+  const flightButton = document.createElement("button");
+  flightButton.type = "button";
+  flightButton.textContent = composerCameraFlightState.preview ? "Stop Flight Preview" : "Play Flight Preview";
+  flightButton.disabled = composerCameraFlightState.waypoints.length < 2;
+  flightButton.addEventListener("click", () => {
+    if (composerCameraFlightState.preview) {
+      stopComposerCameraFlightPreview();
+    } else {
+      startComposerCameraFlightPreview();
+    }
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(flightButton);
+
   const selectedAssemblyLetter = getComposerSelectedAssemblyLetter();
   const pathLabel = document.createElement("div");
   pathLabel.className = "composer-assembly-menu-subtitle";
@@ -2209,6 +2235,21 @@ function openComposerAssemblyTemplateMenuAt(event) {
     closeComposerAssemblyMenu();
   });
   composerAssemblyMenu.appendChild(addPathPointButton);
+
+  const pathModeButton = document.createElement("button");
+  pathModeButton.type = "button";
+  pathModeButton.textContent =
+    composerPathState.interpolate === "spline"
+      ? `Use ${selectedAssemblyLetter} Polyline`
+      : `Use ${selectedAssemblyLetter} Spline`;
+  pathModeButton.addEventListener("click", () => {
+    composerPathState.interpolate = composerPathState.interpolate === "spline" ? "polyline" : "spline";
+    persistComposerPathStateToSelectedAssembly();
+    updateComposerPathGeometry();
+    renderComposerJsonPreview();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(pathModeButton);
 
   const resetPathButton = document.createElement("button");
   resetPathButton.type = "button";
@@ -4079,6 +4120,80 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
   positionComposerAssemblyMenu(clientX, clientY, 260, reaction ? 340 : 380);
 }
 
+function removeComposerPathPoint(pointIndex) {
+  if (!Number.isInteger(pointIndex) || pointIndex < 0 || pointIndex >= composerPathState.points.length) {
+    return;
+  }
+  composerPathState.points.splice(pointIndex, 1);
+  composerSelectedPointIndex =
+    composerPathState.points.length > 0
+      ? Math.min(pointIndex, composerPathState.points.length - 1)
+      : null;
+  persistComposerPathStateToSelectedAssembly();
+  rebuildComposerControlPoints();
+  updateComposerPathGeometry();
+}
+
+function openComposerPathPointMenuAt(clientX, clientY, pointIndex) {
+  if (!composerAssemblyMenu || !Number.isInteger(pointIndex)) {
+    return;
+  }
+  const assemblyLetter = getComposerSelectedAssemblyLetter();
+  composerSelectedPointIndex = pointIndex;
+  composerAssemblyMenu.innerHTML = "";
+
+  const title = document.createElement("div");
+  title.className = "composer-assembly-menu-title";
+  title.textContent = `Path ${assemblyLetter}`;
+  composerAssemblyMenu.appendChild(title);
+
+  const subtitle = document.createElement("div");
+  subtitle.className = "composer-assembly-menu-subtitle";
+  subtitle.textContent = `Point ${pointIndex + 1}`;
+  composerAssemblyMenu.appendChild(subtitle);
+
+  const modeButton = document.createElement("button");
+  modeButton.type = "button";
+  modeButton.textContent =
+    composerPathState.interpolate === "spline"
+      ? `Use ${assemblyLetter} Polyline`
+      : `Use ${assemblyLetter} Spline`;
+  modeButton.addEventListener("click", () => {
+    composerPathState.interpolate = composerPathState.interpolate === "spline" ? "polyline" : "spline";
+    persistComposerPathStateToSelectedAssembly();
+    updateComposerPathGeometry();
+    renderComposerJsonPreview();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(modeButton);
+
+  const poiButton = document.createElement("button");
+  poiButton.type = "button";
+  poiButton.textContent = "Use This Point As POI";
+  poiButton.addEventListener("click", () => {
+    composerSelectedPointIndex = pointIndex;
+    composerCameraFlightState.poiMode = "selected";
+    updateComposerPointMaterials(pointIndex);
+    updateComposerCameraPoiStatus();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(poiButton);
+
+  const removeButton = document.createElement("button");
+  removeButton.type = "button";
+  removeButton.textContent = `Remove ${assemblyLetter} Point`;
+  removeButton.className = "composer-assembly-menu-danger";
+  removeButton.disabled = composerPathState.points.length <= 1;
+  removeButton.addEventListener("click", () => {
+    removeComposerPathPoint(pointIndex);
+    renderComposerJsonPreview();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(removeButton);
+
+  positionComposerAssemblyMenu(clientX, clientY, 236, 210);
+}
+
 function describeComposerTimelineState(timeSeconds, documentData) {
   const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
@@ -5466,17 +5581,20 @@ function onComposerPointerDown(event) {
           Number(startPosition[1] ?? 0) || 0,
           Number(startPosition[2] ?? 0) || 0
         );
-        composerDragState.startAssemblyPathPoints = normalizeComposerAssemblyPathPoints(liveAssembly.pathPoints);
-        const parentCenter = assembly.parentId
+        composerDragState.startAssemblyPathPoints = normalizeComposerAssemblyPathPoints(assembly.pathPoints);
+        const parentWorldCenter = assembly.parentId
           ? composerAssemblyWorldCenters.get(assembly.parentId) ?? new THREE.Vector3()
           : new THREE.Vector3();
-        composerDragState.startAssemblyParentCenter.copy(parentCenter);
-        composerDragState.startAssemblyCenter.copy(
-          composerAssemblyWorldCenters.get(assemblyHit.assemblyId) ?? new THREE.Vector3()
-        );
-        const worldPoint =
+        const assemblyWorldCenter =
           composerAssemblyWorldCenters.get(assemblyHit.assemblyId) ??
           assemblyHit.object.getWorldPosition(new THREE.Vector3());
+        composerDragState.startAssemblyParentCenter.copy(
+          composerFrameGroup.worldToLocal(parentWorldCenter.clone())
+        );
+        composerDragState.startAssemblyCenter.copy(
+          composerFrameGroup.worldToLocal(assemblyWorldCenter.clone())
+        );
+        const worldPoint = assemblyWorldCenter;
         const planeNormal = composerCamera.getWorldDirection(new THREE.Vector3()).normalize();
         composerDragState.plane.setFromNormalAndCoplanarPoint(planeNormal, worldPoint);
         return;
@@ -5503,6 +5621,15 @@ function onComposerContextMenu(event) {
   }
   const { x, y } = getComposerPointerNdc(event);
   composerRaycaster.setFromCamera({ x, y }, composerCamera);
+  const pointHits = composerRaycaster.intersectObjects(composerPointMeshes, false);
+  if (pointHits.length) {
+    const pointIndex = pointHits[0].object?.userData?.pointIndex;
+    if (Number.isInteger(pointIndex)) {
+      event.preventDefault();
+      openComposerPathPointMenuAt(event.clientX, event.clientY, pointIndex);
+      return;
+    }
+  }
   const assemblyHits = composerRaycaster.intersectObjects(composerAssemblyMeshes, true);
   if (assemblyHits.length) {
     const assemblyHit = resolveComposerAssemblyHit(assemblyHits[0].object);
