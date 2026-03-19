@@ -860,85 +860,6 @@ function initComposerCanvas() {
   composerFrameGroup = new THREE.Group();
   composerScene.add(composerFrameGroup);
 
-  const referenceGroup = new THREE.Group();
-  const ringRadii = [0.6, 1, 1.6];
-  const shellPalette = [0xa9d8ff, 0x7fb9ff, 0x4f8fe6];
-  const thetaAngles = [0, 30, 60, 90, 120, 150];
-  const phiAngles = [0, 15, 30, 45, 60, 75];
-  const axisNormals = [
-    new THREE.Vector3(0, 0, 1),
-    new THREE.Vector3(0, 1, 0),
-    new THREE.Vector3(1, 0, 0),
-  ];
-  const up = new THREE.Vector3(0, 1, 0);
-
-  const makeOrbitRing = (radius, thetaDeg, phiDeg, color, opacity) => {
-    const points = [];
-    const segments = 120;
-    for (let i = 0; i <= segments; i += 1) {
-      const t = (i / segments) * Math.PI * 2;
-      points.push(new THREE.Vector3(Math.cos(t) * radius, 0, Math.sin(t) * radius));
-    }
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const material = new THREE.LineBasicMaterial({
-      color,
-      transparent: true,
-      opacity,
-    });
-    const line = new THREE.Line(geometry, material);
-    const theta = THREE.MathUtils.degToRad(thetaDeg);
-    const phi = THREE.MathUtils.degToRad(phiDeg);
-    const normal = new THREE.Vector3(
-      Math.sin(phi) * Math.sin(theta),
-      Math.cos(phi),
-      Math.sin(phi) * Math.cos(theta)
-    );
-    if (normal.lengthSq() > 0) {
-      normal.normalize();
-      line.quaternion.setFromUnitVectors(up, normal);
-    }
-    return line;
-  };
-
-  ringRadii.forEach((radius, radiusIndex) => {
-    const axisNormal = axisNormals[radiusIndex % axisNormals.length]
-      .clone()
-      .normalize();
-    const axisRotation = new THREE.Quaternion().setFromUnitVectors(
-      up,
-      axisNormal
-    );
-    const radiusGroup = new THREE.Group();
-    radiusGroup.quaternion.copy(axisRotation);
-    const thetaOpacity = 0.5 - radiusIndex * 0.08;
-    const phiOpacity = 0.32 - radiusIndex * 0.06;
-    const shellOpacity = 0.1 - radiusIndex * 0.02;
-    const shellColor = shellPalette[radiusIndex % shellPalette.length];
-    const shell = new THREE.Mesh(
-      new THREE.SphereGeometry(radius, 32, 20),
-      new THREE.MeshBasicMaterial({
-        color: shellColor,
-        transparent: true,
-        opacity: shellOpacity,
-        depthWrite: false,
-        side: THREE.DoubleSide,
-      })
-    );
-    radiusGroup.add(shell);
-    const ringColor = shellColor;
-    thetaAngles.forEach((theta) => {
-      radiusGroup.add(
-        makeOrbitRing(radius, theta, 90, ringColor, thetaOpacity)
-      );
-    });
-    phiAngles.forEach((phi) => {
-      radiusGroup.add(makeOrbitRing(radius, 0, phi, ringColor, phiOpacity));
-    });
-    referenceGroup.add(radiusGroup);
-  });
-
-  composerFrameGroup.add(referenceGroup);
-
   const axisLength = 2.4;
   const axisColor = 0xd6dbe6;
   const axisMaterial = new THREE.LineBasicMaterial({
@@ -1157,6 +1078,12 @@ function clearComposerViewportVisuals() {
     mesh.material?.dispose?.();
   });
   composerAssemblyMeshes = [];
+  composerShellMeshes.forEach((mesh) => {
+    composerViewportGroup?.remove(mesh);
+    mesh.geometry?.dispose?.();
+    mesh.material?.dispose?.();
+  });
+  composerShellMeshes = [];
   composerOrbitTraceLines.forEach((line) => {
     composerViewportGroup?.remove(line);
     line.geometry?.dispose?.();
@@ -1308,6 +1235,25 @@ function sampleComposerCameraWaypointState(waypoints, normalizedT) {
     position: curve.getPointAt(t),
     lookAt: lookCurve.getPointAt(t),
   };
+}
+
+function getComposerOrbitBasis(motion) {
+  const normal = Array.isArray(motion?.planeNormal)
+    ? new THREE.Vector3(
+        motion.planeNormal[0] ?? 0,
+        motion.planeNormal[1] ?? 1,
+        motion.planeNormal[2] ?? 0
+      )
+    : new THREE.Vector3(0, 1, 0);
+  if (normal.lengthSq() === 0) {
+    normal.set(0, 1, 0);
+  }
+  normal.normalize();
+  const reference =
+    Math.abs(normal.y) < 0.9 ? new THREE.Vector3(0, 1, 0) : new THREE.Vector3(1, 0, 0);
+  const u = new THREE.Vector3().crossVectors(reference, normal).normalize();
+  const v = new THREE.Vector3().crossVectors(normal, u).normalize();
+  return { normal, u, v };
 }
 
 function getComposerPlaybackRateAtTime(documentData, timeSeconds) {
@@ -1669,11 +1615,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
       : 0;
   const assemblyCenters = new Map();
 
-  composerAssemblyMeshes.forEach((mesh, index) => {
-    const assembly = assemblies[index];
-    if (!assembly) {
-      return;
-    }
+  assemblies.forEach((assembly, index) => {
     const motions = Array.isArray(assembly.motion)
       ? assembly.motion
       : assembly.motion
@@ -1693,8 +1635,19 @@ function updateComposerAnimatedViewport(timeSeconds) {
         center = sampleComposerPointAt(points, motionT);
       }
     }
-    mesh.position.copy(center);
+    const mesh = composerAssemblyMeshes[index];
+    if (mesh) {
+      mesh.position.copy(center);
+    }
     assemblyCenters.set(assembly.id, center);
+  });
+
+  composerShellMeshes.forEach((mesh) => {
+    const assemblyId = mesh.userData.assemblyId;
+    const center = assemblyCenters.get(assemblyId);
+    if (center) {
+      mesh.position.copy(center);
+    }
   });
 
   composerOrbitTraceLines.forEach((line) => {
@@ -1724,12 +1677,14 @@ function updateComposerAnimatedViewport(timeSeconds) {
     const frequency = Number(motion.frequencyHz ?? 0.25);
     const phase = Number(motion.phase ?? 0);
     const direction = motion.direction === "cw" ? -1 : 1;
-    const angle = phase + direction * timeSeconds * Math.PI * 2 * frequency;
-    mesh.position.set(
-      center.x + Math.cos(angle) * radius,
-      center.y,
-      center.z + Math.sin(angle) * radius
-    );
+    const phaseOffset = Number(mesh.userData.phaseOffset ?? 0);
+    const angle = phase + phaseOffset + direction * timeSeconds * Math.PI * 2 * frequency;
+    const { u, v } = getComposerOrbitBasis(motion);
+    const offset = u
+      .clone()
+      .multiplyScalar(Math.cos(angle) * radius)
+      .add(v.clone().multiplyScalar(Math.sin(angle) * radius));
+    mesh.position.copy(center).add(offset);
   });
 
   updateComposerDocumentCameraPreview(timeSeconds, composerCurrentDocument);
@@ -1740,27 +1695,26 @@ function addComposerOrbitTrace(center, motion, color) {
   if (!radius || radius <= 0) {
     return;
   }
+  const { u, v } = getComposerOrbitBasis(motion);
   const points = [];
   const segments = 96;
   for (let i = 0; i <= segments; i += 1) {
     const t = (i / segments) * Math.PI * 2;
-    points.push(new THREE.Vector3(Math.cos(t) * radius, 0, Math.sin(t) * radius));
+    points.push(
+      u
+        .clone()
+        .multiplyScalar(Math.cos(t) * radius)
+        .add(v.clone().multiplyScalar(Math.sin(t) * radius))
+    );
   }
   const geometry = new THREE.BufferGeometry().setFromPoints(points);
   const material = new THREE.LineBasicMaterial({
     color,
     transparent: true,
-    opacity: 0.45,
+    opacity: 0.55,
   });
   const line = new THREE.Line(geometry, material);
   line.position.copy(center);
-  if (Array.isArray(motion?.tilt) && motion.tilt.length >= 3) {
-    line.rotation.set(
-      THREE.MathUtils.degToRad(motion.tilt[0] ?? 0),
-      THREE.MathUtils.degToRad(motion.tilt[1] ?? 0),
-      THREE.MathUtils.degToRad(motion.tilt[2] ?? 0)
-    );
-  }
   composerViewportGroup?.add(line);
   composerOrbitTraceLines.push(line);
 }
@@ -1794,20 +1748,43 @@ function addComposerAxisGuide(center, axisGuide) {
   composerAxisGuideLines.push(line);
 }
 
-function addComposerOrbitParticle(center, motion, color) {
+function addComposerShell(center, shell) {
+  const radius = Number(shell?.radius ?? 0);
+  if (!radius || radius <= 0) {
+    return;
+  }
+  const mesh = new THREE.Mesh(
+    new THREE.SphereGeometry(radius, 32, 20),
+    new THREE.MeshBasicMaterial({
+      color: shell?.color ?? "#7fb9ff",
+      transparent: true,
+      opacity: shell?.opacity ?? 0.08,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    })
+  );
+  mesh.position.copy(center);
+  mesh.userData.assemblyId = shell?.assemblyId ?? null;
+  composerViewportGroup?.add(mesh);
+  composerShellMeshes.push(mesh);
+}
+
+function addComposerOrbitParticle(center, motion, chargeType) {
   if (motion?.type !== "orbit.circular") {
     return;
   }
   const mesh = new THREE.Mesh(
-    new THREE.SphereGeometry(0.055, 16, 12),
+    new THREE.SphereGeometry(0.06, 16, 12),
     new THREE.MeshBasicMaterial({
-      color,
+      color: chargeType === "electrino" ? binaryStyle.electrinoColor : binaryStyle.positrinoColor,
       transparent: true,
       opacity: 0.95,
     })
   );
   mesh.position.copy(center);
   mesh.userData.motion = motion;
+  mesh.userData.chargeType = chargeType;
+  mesh.userData.phaseOffset = chargeType === "electrino" ? Math.PI : 0;
   composerViewportGroup?.add(mesh);
   composerOrbitParticleMeshes.push(mesh);
 }
@@ -1868,7 +1845,7 @@ function addComposerDocumentCameraVisuals(documentData) {
 
   waypoints.forEach((waypoint, index) => {
     const marker = new THREE.Mesh(
-      new THREE.SphereGeometry(index === 0 ? 0.06 : 0.045, 14, 12),
+      new THREE.SphereGeometry(index === 0 ? 0.035 : 0.026, 12, 10),
       new THREE.MeshBasicMaterial({
         color: index === 0 ? 0x9af0c9 : 0xb9e7ff,
         transparent: true,
@@ -1879,86 +1856,11 @@ function addComposerDocumentCameraVisuals(documentData) {
     composerViewportGroup.add(marker);
     composerDocumentCameraWaypointMeshes.push(marker);
   });
-
-  composerDocumentCameraShotMesh = new THREE.Mesh(
-    new THREE.ConeGeometry(0.09, 0.22, 12),
-    new THREE.MeshBasicMaterial({
-      color: 0xfff2a8,
-      transparent: true,
-      opacity: 0.95,
-    })
-  );
-  composerDocumentCameraShotMesh.rotation.x = Math.PI / 2;
-  composerDocumentCameraShotMesh.visible = false;
-  composerViewportGroup.add(composerDocumentCameraShotMesh);
-
-  composerDocumentCameraTargetMesh = new THREE.Mesh(
-    new THREE.SphereGeometry(0.05, 12, 10),
-    new THREE.MeshBasicMaterial({
-      color: 0xffb36b,
-      transparent: true,
-      opacity: 0.92,
-    })
-  );
-  composerDocumentCameraTargetMesh.visible = false;
-  composerViewportGroup.add(composerDocumentCameraTargetMesh);
-
-  composerDocumentCameraLookLine = new THREE.Line(
-    new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]),
-    new THREE.LineBasicMaterial({
-      color: 0xffd289,
-      transparent: true,
-      opacity: 0.75,
-    })
-  );
-  composerDocumentCameraLookLine.visible = false;
-  composerViewportGroup.add(composerDocumentCameraLookLine);
 }
 
 function updateComposerDocumentCameraPreview(timeSeconds, documentData) {
-  if (
-    !composerDocumentCameraShotMesh ||
-    !composerDocumentCameraTargetMesh ||
-    !composerDocumentCameraLookLine
-  ) {
-    return;
-  }
-
-  const cameraPaths = Array.isArray(documentData?.cameraPaths) ? documentData.cameraPaths : [];
-  const pathById = new Map(cameraPaths.map((path) => [path.id, path]));
-  const activeShot = getComposerActiveCameraShot(documentData, timeSeconds);
-  const timeWindow = getComposerSceneTimeWindow(documentData);
-  const interval = activeShot ? resolveComposerShotInterval(activeShot, timeWindow) : null;
-  const cameraPath = activeShot?.cameraPath ? pathById.get(activeShot.cameraPath) : cameraPaths[0];
-  const waypoints = Array.isArray(cameraPath?.waypoints) ? cameraPath.waypoints : [];
-
-  if (!activeShot || !interval || !waypoints.length) {
-    composerDocumentCameraShotMesh.visible = false;
-    composerDocumentCameraTargetMesh.visible = false;
-    composerDocumentCameraLookLine.visible = false;
-    return;
-  }
-
-  const duration = Math.max(0.001, interval.end - interval.start);
-  const shotT = clamp((timeSeconds - interval.start) / duration, 0, 1);
-  const state = sampleComposerCameraWaypointState(waypoints, shotT);
-  const lookDirection = state.lookAt.clone().sub(state.position);
-
-  composerDocumentCameraShotMesh.visible = true;
-  composerDocumentCameraShotMesh.position.copy(state.position);
-  if (lookDirection.lengthSq() > 1e-6) {
-    composerDocumentCameraShotMesh.quaternion.setFromUnitVectors(
-      new THREE.Vector3(0, -1, 0),
-      lookDirection.clone().normalize()
-    );
-  }
-
-  composerDocumentCameraTargetMesh.visible = true;
-  composerDocumentCameraTargetMesh.position.copy(state.lookAt);
-
-  composerDocumentCameraLookLine.visible = true;
-  composerDocumentCameraLookLine.geometry.setFromPoints([state.position, state.lookAt]);
-  composerDocumentCameraLookLine.geometry.computeBoundingSphere();
+  void timeSeconds;
+  void documentData;
 }
 
 function updateComposerViewportFromDocument(documentData) {
@@ -1984,57 +1886,47 @@ function updateComposerViewportFromDocument(documentData) {
 
   const pathById = new Map(paths.map((path) => [path.id, path]));
   const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
-  const count = assemblies.length;
-
-  assemblies.forEach((assembly, index) => {
-    const center = computeComposerAssemblyBasePosition(assembly, index, count, pathById);
-    const radius = index === 0 ? 0.22 : 0.16;
-    const color = composerPalette[index % composerPalette.length] ?? "#6ea8fe";
-    const material = new THREE.MeshBasicMaterial({
-      color,
-      transparent: true,
-      opacity: index === 0 ? 0.95 : 0.82,
+  const primaryAssembly = assemblies[0] ?? null;
+  if (primaryAssembly) {
+    const center = computeComposerAssemblyBasePosition(primaryAssembly, 0, assemblies.length, pathById);
+    const shells = Array.isArray(primaryAssembly?.core?.shells) ? primaryAssembly.core.shells : [];
+    shells.forEach((shell) => {
+      addComposerShell(center, {
+        ...shell,
+        assemblyId: primaryAssembly.id,
+      });
+      const shellMesh = composerShellMeshes[composerShellMeshes.length - 1] ?? null;
+      if (shellMesh) {
+        shellMesh.userData.assemblyId = primaryAssembly.id;
+      }
     });
-    const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 22, 18), material);
-    mesh.position.copy(center);
-    mesh.userData.assemblyId = assembly.id;
-    composerViewportGroup.add(mesh);
-    composerAssemblyMeshes.push(mesh);
 
-    const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
-    binaries.forEach((binary) => {
+    const binaries = Array.isArray(primaryAssembly?.core?.binaries) ? primaryAssembly.core.binaries : [];
+    binaries.forEach((binary, index) => {
       const orbitLineCount = composerOrbitTraceLines.length;
-      const orbitParticleCount = composerOrbitParticleMeshes.length;
-      const axisLineCount = composerAxisGuideLines.length;
       if (binary?.motion?.type === "orbit.circular") {
-        addComposerOrbitTrace(center, binary.motion, color);
+        const orbitColor = index === 0 ? 0xa9d8ff : index === 1 ? 0x7fb9ff : 0x5b99ea;
+        addComposerOrbitTrace(center, binary.motion, orbitColor);
         const orbitLine =
           composerOrbitTraceLines.length > orbitLineCount
             ? composerOrbitTraceLines[composerOrbitTraceLines.length - 1]
             : null;
         if (orbitLine) {
-          orbitLine.userData.assemblyId = assembly.id;
+          orbitLine.userData.assemblyId = primaryAssembly.id;
           orbitLine.userData.motion = binary.motion;
         }
-        addComposerOrbitParticle(center, binary.motion, color);
-        const orbitParticle =
-          composerOrbitParticleMeshes.length > orbitParticleCount
-            ? composerOrbitParticleMeshes[composerOrbitParticleMeshes.length - 1]
-            : null;
-        if (orbitParticle) {
-          orbitParticle.userData.assemblyId = assembly.id;
+        addComposerOrbitParticle(center, binary.motion, "positrino");
+        addComposerOrbitParticle(center, binary.motion, "electrino");
+        const particleCount = composerOrbitParticleMeshes.length;
+        if (composerOrbitParticleMeshes[particleCount - 1]) {
+          composerOrbitParticleMeshes[particleCount - 1].userData.assemblyId = primaryAssembly.id;
+        }
+        if (composerOrbitParticleMeshes[particleCount - 2]) {
+          composerOrbitParticleMeshes[particleCount - 2].userData.assemblyId = primaryAssembly.id;
         }
       }
-      addComposerAxisGuide(center, binary?.axisGuide);
-      const axisLine =
-        composerAxisGuideLines.length > axisLineCount
-          ? composerAxisGuideLines[composerAxisGuideLines.length - 1]
-          : null;
-      if (axisLine) {
-        axisLine.userData.assemblyId = assembly.id;
-      }
     });
-  });
+  }
   addComposerDocumentCameraVisuals(documentData);
 
   const timeWindow = getComposerSceneTimeWindow(documentData);
@@ -2596,6 +2488,7 @@ let composerCameraWaypointMeshes = [];
 let composerCameraWaypointGeometry = null;
 let composerCameraWaypointMaterial = null;
 let composerAssemblyMeshes = [];
+let composerShellMeshes = [];
 let composerOrbitTraceLines = [];
 let composerAxisGuideLines = [];
 let composerOrbitParticleMeshes = [];

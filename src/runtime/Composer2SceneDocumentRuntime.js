@@ -96,32 +96,78 @@ function normalizeTimeWarps(rawTimeWarps, start, end) {
 }
 
 function createDefaultAssemblyCore(assemblyId) {
+  const shellUnit = 0.45;
   return {
     coreType: "noether",
+    shells: [
+      {
+        id: `${assemblyId}_shell_1`,
+        radius: shellUnit,
+        role: "inner",
+        color: "#a9d8ff",
+        opacity: 0.12,
+      },
+      {
+        id: `${assemblyId}_shell_2`,
+        radius: shellUnit * 2,
+        role: "middle",
+        color: "#7fb9ff",
+        opacity: 0.1,
+      },
+      {
+        id: `${assemblyId}_shell_3`,
+        radius: shellUnit * 3,
+        role: "outer",
+        color: "#5b99ea",
+        opacity: 0.08,
+      },
+      {
+        id: `${assemblyId}_shell_4`,
+        radius: shellUnit * 4,
+        role: "decorator",
+        color: "#365f9f",
+        opacity: 0.05,
+      },
+    ],
     binaries: [
       {
         id: `${assemblyId}_binary_1`,
         motion: {
           type: "orbit.circular",
           center: assemblyId,
-          radius: 0.65,
-          frequencyHz: 0.25,
+          radius: shellUnit,
+          frequencyHz: 0.42,
+          planeNormal: [0, 1, 0],
         },
-        axisGuide: {
-          visible: true,
-          source: "orbit_normal",
-          axis: [0, 1, 0],
-          length: 1.4,
-          style: {
-            stroke: "#cbd5e1",
-            strokeOpacity: 0.75,
-          },
+      },
+      {
+        id: `${assemblyId}_binary_2`,
+        motion: {
+          type: "orbit.circular",
+          center: assemblyId,
+          radius: shellUnit * 2,
+          frequencyHz: 0.26,
+          planeNormal: [1, 0, 0],
+        },
+      },
+      {
+        id: `${assemblyId}_binary_3`,
+        motion: {
+          type: "orbit.circular",
+          center: assemblyId,
+          radius: shellUnit * 3,
+          frequencyHz: 0.16,
+          planeNormal: [0, 0, 1],
         },
       },
     ],
     alignment: {
       regime: "3d",
-      planeNormals: [[0, 1, 0]],
+      planeNormals: [
+        [0, 1, 0],
+        [1, 0, 0],
+        [0, 0, 1],
+      ],
     },
   };
 }
