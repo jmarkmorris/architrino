@@ -111,10 +111,15 @@ function normalizeReactionParticipants(rawParticipants) {
     .filter(Boolean);
 }
 
-function normalizeReactionStages(rawStages, start, end) {
+function normalizeReactionStages(rawStages, start, end, reactionTransferIds = [], transferById = new Map()) {
   if (!Array.isArray(rawStages) || !rawStages.length) {
     return [];
   }
+  const allowedTransferIds = new Set(
+    (Array.isArray(reactionTransferIds) ? reactionTransferIds : []).filter((transferId) =>
+      transferById.has(transferId)
+    )
+  );
   return rawStages
     .map((stage, index) => {
       const stageStart = clampNumber(
@@ -130,11 +135,17 @@ function normalizeReactionStages(rawStages, start, end) {
       if (stageEnd <= stageStart) {
         return null;
       }
+      const stageTransferIds = Array.isArray(stage?.transferIds)
+        ? stage.transferIds
+            .map((transferId) => normalizeString(transferId, ""))
+            .filter((transferId) => allowedTransferIds.has(transferId))
+        : [];
       return {
         id: normalizeString(stage?.id, `stage_${index + 1}`),
         action: normalizeString(stage?.action, "handoff"),
         start: stageStart,
         end: stageEnd,
+        transferIds: stageTransferIds.length ? [...new Set(stageTransferIds)] : [...allowedTransferIds],
       };
     })
     .filter(Boolean)
@@ -171,7 +182,13 @@ function normalizeReactions(rawReactions, transfers, start, end) {
       if (!transferIds.length) {
         return null;
       }
-      const normalizedStages = normalizeReactionStages(reaction?.stages, reactionStart, reactionEnd);
+      const normalizedStages = normalizeReactionStages(
+        reaction?.stages,
+        reactionStart,
+        reactionEnd,
+        transferIds,
+        transferById
+      );
       const stages = normalizedStages.length
         ? normalizedStages
         : [
@@ -180,6 +197,7 @@ function normalizeReactions(rawReactions, transfers, start, end) {
               action: "handoff",
               start: reactionStart,
               end: reactionEnd,
+              transferIds,
             },
           ];
       const participantMap = new Map();
@@ -218,7 +236,7 @@ function normalizeReactions(rawReactions, transfers, start, end) {
           target: "transfer-set",
           params: {
             end: stage.end,
-            transferIds,
+            transferIds: stage.transferIds,
           },
         })),
         participants: [...participantMap.values()],

@@ -463,23 +463,87 @@ function normalizeComposerReactionAction(rawAction) {
   return composerReactionActionKinds.has(normalized) ? normalized : null;
 }
 
-function buildComposerReactionStages(actionNames = [], start = 0, end = 0) {
-  const normalizedActions = Array.isArray(actionNames) ? actionNames.filter(Boolean) : [];
-  if (!normalizedActions.length || end <= start) {
+function splitComposerDelimitedTopLevel(rawText, delimiter = ",") {
+  const source = String(rawText ?? "");
+  const parts = [];
+  let depth = 0;
+  let current = "";
+  for (let index = 0; index < source.length; index += 1) {
+    const character = source[index];
+    if (character === "(") {
+      depth += 1;
+      current += character;
+      continue;
+    }
+    if (character === ")") {
+      depth = Math.max(0, depth - 1);
+      current += character;
+      continue;
+    }
+    if (character === delimiter && depth === 0) {
+      parts.push(current.trim());
+      current = "";
+      continue;
+    }
+    current += character;
+  }
+  if (current.trim()) {
+    parts.push(current.trim());
+  }
+  return parts.filter(Boolean);
+}
+
+function parseComposerReactionStageSpecs(rawActions, transferById, allowedTransferIds) {
+  const allowed = new Set(Array.isArray(allowedTransferIds) ? allowedTransferIds : []);
+  const tokens = splitComposerDelimitedTopLevel(rawActions || "handoff");
+  return tokens
+    .map((token) => {
+      const match = token.match(/^([a-zA-Z_\s-]+?)(?:\(([^)]*)\))?$/);
+      if (!match) {
+        return null;
+      }
+      const action = normalizeComposerReactionAction(match[1]);
+      if (!action) {
+        return null;
+      }
+      const stageTransferIds = match[2]
+        ? splitComposerDelimitedTopLevel(match[2])
+            .map((part) => normalizeComposerReactionTransferRef(part, transferById))
+            .filter((transferId) => transferId && allowed.has(transferId))
+        : [];
+      if (match[2] && !stageTransferIds.length) {
+        return null;
+      }
+      return {
+        action,
+        transferIds: stageTransferIds,
+      };
+    })
+    .filter(Boolean);
+}
+
+function buildComposerReactionStages(stageSpecs = [], start = 0, end = 0, fallbackTransferIds = []) {
+  const normalizedStages = Array.isArray(stageSpecs) ? stageSpecs.filter(Boolean) : [];
+  if (!normalizedStages.length || end <= start) {
     return [];
   }
   const duration = end - start;
-  return normalizedActions.map((action, index) => {
-    const stageStart = Number((start + (duration * index) / normalizedActions.length).toFixed(3));
+  const fallbackIds = Array.isArray(fallbackTransferIds) ? [...new Set(fallbackTransferIds)] : [];
+  return normalizedStages.map((stageSpec, index) => {
+    const stageStart = Number((start + (duration * index) / normalizedStages.length).toFixed(3));
     const stageEnd =
-      index === normalizedActions.length - 1
+      index === normalizedStages.length - 1
         ? Number(end.toFixed(3))
-        : Number((start + (duration * (index + 1)) / normalizedActions.length).toFixed(3));
+        : Number((start + (duration * (index + 1)) / normalizedStages.length).toFixed(3));
     return {
       id: `stage_${index + 1}`,
-      action,
+      action: stageSpec.action,
       start: stageStart,
       end: stageEnd,
+      transferIds:
+        Array.isArray(stageSpec.transferIds) && stageSpec.transferIds.length
+          ? [...new Set(stageSpec.transferIds)]
+          : fallbackIds,
     };
   });
 }
@@ -564,10 +628,9 @@ function parseComposerReactions(rawText, transfers = [], duration = 12) {
     if (!transferIds.length) {
       return null;
     }
-    const actionNames = (rawActions ? rawActions.split(",") : ["handoff"])
-      .map((part) => normalizeComposerReactionAction(part))
-      .filter(Boolean);
-    if (!actionNames.length) {
+    const dedupedTransferIds = [...new Set(transferIds)];
+    const stageSpecs = parseComposerReactionStageSpecs(rawActions, transferById, dedupedTransferIds);
+    if (!stageSpecs.length) {
       return null;
     }
     return {
@@ -575,8 +638,8 @@ function parseComposerReactions(rawText, transfers = [], duration = 12) {
       label: rawLabel.trim() || `Reaction ${lineNumber}`,
       start,
       end,
-      transferIds: [...new Set(transferIds)],
-      stages: buildComposerReactionStages(actionNames, start, end),
+      transferIds: dedupedTransferIds,
+      stages: buildComposerReactionStages(stageSpecs, start, end, dedupedTransferIds),
     };
   });
 }
@@ -597,8 +660,20 @@ function formatComposerReactionList(reactions = []) {
       const start = Number(reaction?.start ?? reaction?.timing?.start ?? 0);
       const end = Number(reaction?.end ?? reaction?.timing?.end ?? 0);
       const transferRefs = formatComposerReactionTransferRefs(reaction?.transferIds);
+      const fallbackRefs = transferRefs;
       const actionRefs = Array.isArray(reaction?.stages)
-        ? reaction.stages.map((stage) => stage?.action).filter(Boolean).join(", ")
+        ? reaction.stages
+            .map((stage) => {
+              if (!stage?.action) {
+                return null;
+              }
+              const stageRefs = formatComposerReactionTransferRefs(stage?.transferIds);
+              return stageRefs && stageRefs !== fallbackRefs
+                ? `${stage.action}(${stageRefs})`
+                : stage.action;
+            })
+            .filter(Boolean)
+            .join(", ")
         : "";
       return `${label} @ ${start}-${end}: ${transferRefs}${actionRefs ? ` | ${actionRefs}` : ""}`;
     })
@@ -2309,6 +2384,10 @@ function getComposerActiveReactionStage(documentData, timeSeconds) {
 }
 
 function getComposerActiveReactionTransferIds(documentData, timeSeconds) {
+  const activeReactionStage = getComposerActiveReactionStage(documentData, timeSeconds);
+  if (Array.isArray(activeReactionStage?.transferIds) && activeReactionStage.transferIds.length) {
+    return new Set(activeReactionStage.transferIds);
+  }
   const activeReaction = getComposerActiveReaction(documentData, timeSeconds);
   return new Set(Array.isArray(activeReaction?.transferIds) ? activeReaction.transferIds : []);
 }
@@ -2410,7 +2489,18 @@ function renderComposerTimeline(documentData) {
     const start = getComposerTimelineFraction(documentData, reaction.start);
     const end = getComposerTimelineFraction(documentData, reaction.end);
     const actions = Array.isArray(reaction?.stages)
-      ? reaction.stages.map((stage) => stage?.action).filter(Boolean)
+      ? reaction.stages
+          .map((stage) => {
+            if (!stage?.action) {
+              return null;
+            }
+            const stageRefs = formatComposerReactionTransferRefs(stage?.transferIds);
+            const reactionRefs = formatComposerReactionTransferRefs(reaction?.transferIds);
+            return stageRefs && stageRefs !== reactionRefs
+              ? `${stage.action}(${stageRefs})`
+              : stage.action;
+          })
+          .filter(Boolean)
       : [];
     composerTimelineReactions?.appendChild(
       createComposerTimelineBand(

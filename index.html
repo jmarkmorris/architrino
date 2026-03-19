@@ -312,7 +312,8 @@
                     <ul class="composer-help-list">
                       <li>Group transfer lines into named timeline stages.</li>
                       <li>Use `label @ start-end: transfer-lines | action, action`.</li>
-                      <li>Example: `handoff @ 5.2-6.4: 1, 2 | detach, handoff, reassemble`</li>
+                      <li>Stages can target subsets like `detach(1), handoff(1,2), reassemble(2)`.</li>
+                      <li>Example: `handoff @ 5.2-6.4: 1, 2 | detach(1), handoff(1,2), reassemble(2)`</li>
                     </ul>
                   </div>
                 </div>
@@ -323,7 +324,7 @@
                   <textarea
                     id="composer-reaction-list"
                     rows="3"
-                    placeholder="handoff @ 5.2-6.4: 1, 2 | detach, handoff, reassemble"
+                    placeholder="handoff @ 5.2-6.4: 1, 2 | detach(1), handoff(1,2), reassemble(2)"
                   ></textarea>
                 </label>
                 <div id="composer-reaction-status" class="composer-inline-status">No reactions staged.</div>
