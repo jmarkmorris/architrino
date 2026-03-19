@@ -898,24 +898,28 @@ The current webapp runtime already exposes a composer overlay with multiple pane
 Observed composer capabilities in the runtime:
 
 - scene id and scene name inputs,
-- node count and node label inputs,
+- explicit assembly cards with stable assembly ids, display names, member lists, parent assignment, and local positioning,
 - path mode selection and path reset,
 - frame edit toggle, frame reset, and frame scale control,
 - camera POI mode,
 - camera waypoint add and clear,
 - camera-path preview toggle,
 - camera speed and camera radius controls,
+- cue, pause, warp, and transfer text-based authoring,
+- browser-local save/load library for draft scenes,
 - preview panel,
 - docs panel,
-- JSON export.
+- canonical JSON export,
+- and live viewport playback with scrub, play, pause, restart, cue jump, and timeline overlays.
 
 The current composer surface already suggests an intended authoring loop:
 
 1. define a scene draft,
-2. adjust path and frame geometry,
-3. define camera behavior,
-4. preview the scene live,
-5. export canonical JSON.
+2. define one or more assemblies and their member identities,
+3. adjust path, frame, and local assembly placement,
+4. define timing, transfer, and camera behavior,
+5. preview the scene live,
+6. save a browser-local draft or export canonical JSON.
 
 The composer is already more than a scene-form generator. It is the start of an authoring environment for explanatory motion design.
 
@@ -1054,6 +1058,7 @@ This section merges the remaining useful requirements into one set.
 - Higher-level collection scenes must be able to link to these scenes without forcing a markdown-target interaction model.
 - The authored output should be an authored scene file that participates in the existing scene graph as a special scene type.
 - Migration should preserve compatibility with the existing scene network so higher-level collection scenes can still link to these authored animation scenes using the current navigation model.
+- The current preview bridge may continue to pass through a temporary `Scene-Diagram` host while the native composed-animation runtime is unfinished, but the canonical authored scene should not be designed around that bridge forever.
 
 ### 2. General design requirements
 
@@ -1062,6 +1067,7 @@ This section merges the remaining useful requirements into one set.
 - Declarative authored data should be the default. Imperative or solver-backed behavior should be optional and explicitly marked.
 - Deterministic defaults are required, but every meaningful default should be overrideable.
 - Stable ids are required for all authored entities, assemblies, charges, paths, reactions, annotations, and anchors.
+- The authoring center of gravity should be explicit assemblies and members, not inferred node-count bootstrapping.
 - The entire tool should exploit one native visual grammar built from spheres, paths, orbit or shell traces, and scale collapse, rather than introducing unrelated representational systems at different levels.
 - The rendered primitive vocabulary should remain intentionally narrow so most scenes can be expressed as compositions of spheres, paths, orbit or shell traces, ellipses or ellipsoids, callouts, and labels.
 - Every composed-animation scene should have an explicit master timeline in seconds so frequencies in Hz and timed reaction events are unambiguous.
@@ -1076,11 +1082,14 @@ This section merges the remaining useful requirements into one set.
 - The tool should use a compact, stable authoring-command vocabulary rather than a sprawling set of ad hoc modes.
 - Timeline editing should support a small but explicit set of operations such as trim, split, move, duplicate, snap, and pause insertion.
 - The scene model should support revision checkpoints and publication-ready scene states without confusing editor-only draft state with canonical authored output.
+- A browser-local draft library is acceptable as an interim persistence layer, but it should remain clearly distinct from canonical scene export and from any future repo-backed library model.
 
 ### 3. Scene and assembly requirements
 
 - Assemblies should be recursive. A scene may contain nested assemblies, and an assembly may contain sub-assemblies with their own local frames, transforms, and motion.
 - The same composition model should work for simple scene nodes, Noether cores, bound charges, and larger particle-like assemblies.
+- Each authored assembly should expose, at minimum, a stable assembly id, a display name, a member list, an optional parent assembly id, and a local position relative to its parent or the scene root.
+- Member ids should be treated as stable authored identities so later transfers, provenance, and reaction steps can refer to them directly.
 - Larger-scale authored objects should be allowed to collapse to sphere-like proxies when detail is not useful at the current scale, provided the deeper structure remains recoverable by drill-down or reveal.
 - Assemblies should support metadata, links, drill-down targets, and inspectable annotations.
 - Presets are useful, but every preset instance must remain editable as explicit structured data.
@@ -1145,6 +1154,7 @@ This section merges the remaining useful requirements into one set.
 ### 9. Reaction requirements
 
 - The composer should support reactions as first-class authored objects, not just as animation presets.
+- Transfers should already exist as first-class authored mappings even before the full reaction editor is complete, so member identity can move explicitly from one assembly to another on the shared timeline.
 - A reaction should be able to involve multiple assemblies and multiple timed stages.
 - Reaction authoring should support disassembly of reactants into constituent parts, transfer or handoff of those parts, and reassembly into products.
 - Participants, timelines, triggers, branches, emissions, products, and handoff paths should be explicit.
@@ -1154,6 +1164,7 @@ This section merges the remaining useful requirements into one set.
 ### 10. View and workflow requirements
 
 - The composer should keep the current pattern of structured side panels plus live viewport preview.
+- The present shell may remain a transitional overlay with left-side structure cards, a central viewport, and compact transport controls while the fuller left-rail / right-inspector / bottom-timeline grammar is still being built.
 - The primary authoring surface should include a timeline view or timeline inspector that makes clips, pauses, overlays, cue markers, and camera moves legible on one shared time axis.
 - Preview should update from authored draft state with minimal guesswork.
 - Preview should support play, pause, scrub, loop, and step controls in standard video-authoring terms.
@@ -2622,114 +2633,95 @@ Possible fields include:
 
 ## Near-term implementation stance
 
-The near-term composer should not try to solve the full final problem all at once.
+The near-term composer should be treated as an assembly-centered canonical editor that already has a working shell, export path, draft library, and first viewport runtime. The remaining work should therefore focus on the unfinished semantics rather than on re-proving the early scaffold.
 
-The right near-term stance is:
+The right near-term stance now is:
 
-1. keep the current overlay-based authoring shell,
-2. strengthen the exported scene/spec structure,
-3. add a dedicated `Scene-Composed-Animation` runtime path,
-4. make paths, frame state, timeline markers, pauses, overlays, interpolation channels, and camera state more explicit,
-5. add recursive assembly authoring,
-6. add explicit Noether core authoring,
-7. add bound personality charge authoring,
-8. add explicit translation, rotation, and internal orbit motion,
-9. add reaction objects,
-10. add provenance objects,
-11. move progressively toward a truly 3D-first authoring model.
+1. keep the current overlay-based authoring shell while it remains productive,
+2. preserve the canonical `composer-II` document as the single authored source of truth,
+3. replace the remaining preview bridge with a dedicated `Scene-Composed-Animation` runtime path,
+4. deepen explicit assembly structure from named members to spatially resolved constituents and subassemblies,
+5. promote transfers into staged reaction objects with timeline-visible choreography,
+6. add provenance, history traces, and exclusion envelopes as real authored and rendered objects,
+7. deepen camera/editorial control beyond waypoint preview,
+8. and only then revisit larger workspace rearrangements or package/export concerns.
 
-That path respects the current implementation while still aiming at the correct long-term ontology.
+That path respects the current implementation while focusing effort on the missing theory-facing layers.
 
 ### Practical implementation phases
 
-To keep the tool world-class without making the first implementation impossible, the build should proceed in deliberately bounded phases.
+The remaining work should proceed in deliberately bounded phases.
 
-#### Phase 1: sequence and staging MVP
-
-Target:
-
-- one composed-animation scene type,
-- canonical JSON export,
-- master timeline,
-- markers,
-- pauses,
-- basic overlays,
-- assembly transforms,
-- path authoring,
-- and camera-path preview.
-
-This phase should already be able to produce polished instructional scenes with a clear beginning, middle, and end.
-
-#### Phase 2: shot and editorial refinement
+#### Phase 1: native runtime and editorial replacement
 
 Target:
 
-- camera shots,
-- camera transitions,
-- explicit track ordering,
-- snap behavior,
-- hide, lock, and isolate controls,
-- and stronger timeline editing.
+- replace the temporary preview bridge with a native composed-animation runtime,
+- make camera shots and camera transitions real runtime objects,
+- add overlay tracks and stronger clip-level editorial control,
+- and keep canonical playback, preview, and export aligned on one timeline.
 
-This phase should make the tool feel like a real explanatory motion-design system rather than a geometry editor with playback.
-
-#### Phase 3: constituent and reaction depth
+#### Phase 2: constituent and subassembly depth
 
 Target:
 
-- constituent drill-down editing,
-- stronger internal-dynamics controls,
-- reaction choreography,
-- transfer and provenance objects,
-- and reusable explanatory templates.
+- spatially resolve members inside authored assemblies,
+- support explicit subassemblies as local structures rather than only named containers,
+- improve local transform editing for nested assemblies,
+- and carry explicit constituent identity through drill-down and collapse.
 
-This phase should make the composer capable of expressing the deeper assembly logic of $\mathbb{A}\mathbb{A}\mathbb{A}$ rather than only outer staging.
-
-#### Phase 4: portability and rendering outputs
+#### Phase 3: staged reactions, transfers, and provenance
 
 Target:
 
-- portable scene package export,
-- rendered-media export classes,
-- scene-library reuse,
-- and stronger validation or lint around authoring semantics.
+- add first-class `ReactionSpec` authoring,
+- group transfers into named reaction stages,
+- render disassembly, handoff, and reassembly as authored choreography,
+- and preserve provenance across those stages.
 
-This phase should make scenes portable and publication-ready without changing the canonical authored model.
+#### Phase 4: delayed-history and envelope depth
+
+Target:
+
+- author and render `historyTraces`,
+- author and render shell or exclusion `envelopes`,
+- connect those views explicitly to delayed/path-history semantics,
+- and make them inspectable alongside reactions and assembly motion.
+
+#### Phase 5: persistence, validation, and publishing
+
+Target:
+
+- add stronger semantic lint around assemblies, transfers, reactions, and references,
+- establish a repo-facing save/library model beyond the browser-local draft store,
+- and support publication-ready scene states without changing canonical authored semantics.
 
 ### Implementation modules and ticketing direction
 
-The implementation should be decomposed into a small number of coherent modules so product work does not collapse into one monolithic composer blob.
+The implementation should keep the existing document core and shell seams, and concentrate new work in these module families:
 
-Recommended module families:
-
-- scene document core
-  - canonical scene model, ids, references, normalization, serialization;
-- timeline engine
-  - markers, pauses, clip timing, tracks, retiming operations, playback clock;
-- viewport and staging engine
-  - assembly rendering, transforms, anchors, paths, gizmos, selection framing;
-- camera and shot engine
-  - camera paths, camera shots, transitions, follow modes, shot playback logic;
-- overlay and annotation engine
-  - text, callouts, ellipse and ellipsoid guides, style presets, timing behavior;
-- library and preset engine
-  - reusable definitions, instance overrides, teaching patterns, package import/export;
-- validation and lint engine
-  - structural validation, semantic lint, graphics lint, continuity lint, asset lint;
-- authoring shell
-  - panels, breadcrumbs, level switching, keyboard shortcuts, command routing;
-- runtime player
-  - reader-facing playback for canonical scenes outside the full editor shell.
+- native runtime player
+  - direct playback of canonical composed-animation scenes without the temporary bridge;
+- assembly and constituent engine
+  - nested assembly transforms, explicit constituent placement, collapse/reveal, and selection;
+- reaction and provenance engine
+  - staged reactions, transfers, handoff paths, and provenance views;
+- history and envelope engine
+  - delayed/path-history traces and shell or exclusion envelopes;
+- camera and editorial engine
+  - shots, transitions, overlays, track ordering, and stronger timeline editing;
+- validation and persistence engine
+  - semantic lint, repo-facing library persistence, and publication states.
 
 This module split should also guide ticketing.
 
 Good ticket grain:
 
-- one timeline operation,
-- one overlay kind,
-- one camera-shot behavior,
+- one runtime behavior,
+- one reaction or provenance behavior,
+- one history or envelope behavior,
 - one validation family,
-- one library action,
+- one persistence action,
 - one viewport interaction pattern.
 
 Bad ticket grain:
