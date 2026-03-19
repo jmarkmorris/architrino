@@ -18,6 +18,15 @@ export function createComposerControlsUiRuntime(deps) {
     composerCameraWaypointAdd,
     composerCameraWaypointClear,
     composerCameraFlightToggle,
+    composerSceneDurationInput,
+    composerSceneLoopInput,
+    composerMarkerTimeInput,
+    composerMarkerLabelInput,
+    composerPauseStartInput,
+    composerPauseDurationInput,
+    composerWarpStartInput,
+    composerWarpEndInput,
+    composerWarpRateInput,
     composerCameraSpeedInput,
     composerCameraRadiusInput,
     composerCameraResetButton,
@@ -82,10 +91,27 @@ export function createComposerControlsUiRuntime(deps) {
       composerSceneNameInput,
       composerNodeCountInput,
       composerNodeLabelsInput,
+      composerSceneDurationInput,
+      composerMarkerTimeInput,
+      composerMarkerLabelInput,
+      composerPauseStartInput,
+      composerPauseDurationInput,
+      composerWarpStartInput,
+      composerWarpEndInput,
+      composerWarpRateInput,
     ].filter(Boolean);
     if (composerInputs.length) {
       composerInputs.forEach((input) => {
         input.addEventListener("input", () => {
+          renderComposerJsonPreview();
+        });
+      });
+    }
+
+    const composerToggleInputs = [composerSceneLoopInput].filter(Boolean);
+    if (composerToggleInputs.length) {
+      composerToggleInputs.forEach((input) => {
+        input.addEventListener("change", () => {
           renderComposerJsonPreview();
         });
       });

@@ -36,6 +36,65 @@ function normalizeLabels(labels, fallbackCount = 0) {
   return Array.from({ length: Math.max(0, fallbackCount) }, (_, index) => `Node ${index + 1}`);
 }
 
+function clampNumber(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function normalizeMarkers(rawMarkers, start, end) {
+  if (!Array.isArray(rawMarkers) || !rawMarkers.length) {
+    return createDefaultMarkers(rawMarkers, start, end);
+  }
+  return rawMarkers
+    .map((marker, index) => {
+      const t = clampNumber(roundNumber(marker?.t ?? start), start, end);
+      return {
+        id: normalizeString(marker?.id, `marker_${index + 1}`),
+        t,
+        kind: normalizeString(marker?.kind, "cue"),
+        label: normalizeString(marker?.label, `Marker ${index + 1}`),
+      };
+    })
+    .sort((left, right) => left.t - right.t);
+}
+
+function normalizePauses(rawPauses, start, end) {
+  if (!Array.isArray(rawPauses) || !rawPauses.length) {
+    return [];
+  }
+  return rawPauses
+    .map((pause, index) => {
+      const pauseStart = clampNumber(roundNumber(pause?.start ?? start), start, end);
+      const maxDuration = Math.max(0, end - pauseStart);
+      const duration = clampNumber(roundNumber(pause?.duration ?? 0), 0, maxDuration);
+      return {
+        id: normalizeString(pause?.id, `pause_${index + 1}`),
+        start: pauseStart,
+        duration,
+      };
+    })
+    .filter((pause) => pause.duration > 0)
+    .sort((left, right) => left.start - right.start);
+}
+
+function normalizeTimeWarps(rawTimeWarps, start, end) {
+  if (!Array.isArray(rawTimeWarps) || !rawTimeWarps.length) {
+    return [];
+  }
+  return rawTimeWarps
+    .map((warp, index) => {
+      const warpStart = clampNumber(roundNumber(warp?.start ?? start), start, end);
+      const warpEnd = clampNumber(roundNumber(warp?.end ?? end), warpStart, end);
+      return {
+        id: normalizeString(warp?.id, `warp_${index + 1}`),
+        start: warpStart,
+        end: warpEnd,
+        rate: Math.max(0.01, roundNumber(warp?.rate ?? 1)),
+      };
+    })
+    .filter((warp) => warp.end > warp.start)
+    .sort((left, right) => left.start - right.start);
+}
+
 function createDefaultAssemblyCore(assemblyId) {
   return {
     coreType: "noether",
@@ -168,9 +227,9 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
           ...(rawControls.playback ?? {}),
         },
       },
-      pauses: Array.isArray(rawScene.pauses) ? rawScene.pauses : [],
-      timeWarps: Array.isArray(rawScene.timeWarps) ? rawScene.timeWarps : [],
-      markers: createDefaultMarkers(rawScene.markers, sceneStart, normalizedSceneEnd),
+      pauses: normalizePauses(rawScene.pauses, sceneStart, normalizedSceneEnd),
+      timeWarps: normalizeTimeWarps(rawScene.timeWarps, sceneStart, normalizedSceneEnd),
+      markers: normalizeMarkers(rawScene.markers, sceneStart, normalizedSceneEnd),
       publication: rawScene.publication ?? { status: "draft" },
     },
     assets: Array.isArray(rawDocument.assets) ? rawDocument.assets : [],
@@ -238,6 +297,10 @@ export function createComposerSceneDocument(input = {}, options = {}) {
     scene: {
       id: options.sceneId ?? input.id,
       name: options.sceneName ?? input.name,
+      time: input.time,
+      markers: input.markers,
+      pauses: input.pauses,
+      timeWarps: input.timeWarps,
     },
     labels: input.labels,
     nodeCount: input.nodeCount,

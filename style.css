@@ -1044,6 +1044,14 @@ body {
   letter-spacing: 0.01em;
 }
 
+.composer-field input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border-radius: 4px;
+  accent-color: #9af0c9;
+}
+
 .composer-field select {
   height: 30px;
   padding: 0 10px;

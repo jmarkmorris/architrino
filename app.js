@@ -121,6 +121,15 @@ const composerCameraWaypointAdd = document.getElementById("composer-camera-waypo
 const composerCameraWaypointClear = document.getElementById("composer-camera-waypoint-clear");
 const composerCameraWaypointCount = document.getElementById("composer-camera-waypoint-count");
 const composerCameraFlightToggle = document.getElementById("composer-camera-flight-toggle");
+const composerSceneDurationInput = document.getElementById("composer-scene-duration");
+const composerSceneLoopInput = document.getElementById("composer-scene-loop");
+const composerMarkerTimeInput = document.getElementById("composer-marker-time");
+const composerMarkerLabelInput = document.getElementById("composer-marker-label");
+const composerPauseStartInput = document.getElementById("composer-pause-start");
+const composerPauseDurationInput = document.getElementById("composer-pause-duration");
+const composerWarpStartInput = document.getElementById("composer-warp-start");
+const composerWarpEndInput = document.getElementById("composer-warp-end");
+const composerWarpRateInput = document.getElementById("composer-warp-rate");
 const defaultRootLayoutMarginPx = { x: 160, y: 140 };
 let zoomToastTimeoutId = null;
 let zoomToastDismissedForSession = false;
@@ -324,6 +333,18 @@ function readNumberInput(input, fallback = 0) {
   return Number.isFinite(value) ? value : fallback;
 }
 
+function readOptionalNumberInput(input) {
+  if (!input) {
+    return null;
+  }
+  const rawValue = typeof input.value === "string" ? input.value.trim() : "";
+  if (!rawValue) {
+    return null;
+  }
+  const value = Number(rawValue);
+  return Number.isFinite(value) ? value : null;
+}
+
 function formatScaleLabel(value) {
   const normalized = Number.isFinite(value) ? value : 1;
   if (normalized >= 1000 || normalized <= 0.001) {
@@ -486,8 +507,80 @@ function readComposerFormState() {
   return { id, name, nodeCount, labels };
 }
 
+function readComposerTimingState() {
+  const durationRaw = readNumberInput(composerSceneDurationInput, 12);
+  const duration = Math.max(1, Number(durationRaw.toFixed(3)));
+  if (composerSceneDurationInput) {
+    composerSceneDurationInput.value = String(duration);
+  }
+
+  const markerTime = readOptionalNumberInput(composerMarkerTimeInput);
+  const markerLabel = (composerMarkerLabelInput?.value ?? "").trim();
+  const normalizedMarkerTime =
+    markerTime === null ? null : clamp(Number(markerTime.toFixed(3)), 0, duration);
+  const markers = normalizedMarkerTime === null
+    ? []
+    : [
+        { id: "marker_start", t: 0, kind: "chapter", label: "Start" },
+        {
+          id: "marker_authored",
+          t: normalizedMarkerTime,
+          kind: "cue",
+          label: markerLabel || "Focus",
+        },
+      ];
+
+  const pauseStart = readOptionalNumberInput(composerPauseStartInput);
+  const pauseDuration = readOptionalNumberInput(composerPauseDurationInput);
+  const pauses =
+    pauseStart === null || pauseDuration === null || pauseDuration <= 0
+      ? []
+      : [
+          {
+            id: "pause_authored",
+            start: clamp(Number(pauseStart.toFixed(3)), 0, duration),
+            duration: Number(Math.max(0, pauseDuration).toFixed(3)),
+          },
+        ];
+
+  const warpStart = readOptionalNumberInput(composerWarpStartInput);
+  const warpEnd = readOptionalNumberInput(composerWarpEndInput);
+  const warpRate = readOptionalNumberInput(composerWarpRateInput);
+  const normalizedWarpStart = warpStart === null ? null : clamp(Number(warpStart.toFixed(3)), 0, duration);
+  const normalizedWarpEnd = warpEnd === null ? null : clamp(Number(warpEnd.toFixed(3)), 0, duration);
+  const timeWarps =
+    normalizedWarpStart === null ||
+    normalizedWarpEnd === null ||
+    warpRate === null ||
+    warpRate <= 0 ||
+    normalizedWarpEnd <= normalizedWarpStart
+      ? []
+      : [
+          {
+            id: "warp_authored",
+            start: normalizedWarpStart,
+            end: normalizedWarpEnd,
+            rate: Number(warpRate.toFixed(3)),
+          },
+        ];
+
+  return {
+    time: {
+      timeBase: "seconds",
+      start: 0,
+      end: duration,
+      playbackRate: 1,
+      loop: !!composerSceneLoopInput?.checked,
+    },
+    markers,
+    pauses,
+    timeWarps,
+  };
+}
+
 function readComposerDraftState() {
   const state = readComposerFormState();
+  const timing = readComposerTimingState();
   if (!composerPathState.points.length) {
     resetComposerPathPoints();
   }
@@ -510,6 +603,7 @@ function readComposerDraftState() {
   }));
   return {
     ...state,
+    ...timing,
     pathPoints,
     pathInterpolate: composerPathState.interpolate,
     pathClosed: composerPathState.closed,
@@ -4231,6 +4325,15 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerCameraWaypointAdd,
   composerCameraWaypointClear,
   composerCameraFlightToggle,
+  composerSceneDurationInput,
+  composerSceneLoopInput,
+  composerMarkerTimeInput,
+  composerMarkerLabelInput,
+  composerPauseStartInput,
+  composerPauseDurationInput,
+  composerWarpStartInput,
+  composerWarpEndInput,
+  composerWarpRateInput,
   composerCameraSpeedInput,
   composerCameraRadiusInput,
   composerCameraResetButton,

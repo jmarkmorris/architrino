@@ -368,6 +368,56 @@
                 </div>
                 <div id="composer-camera-waypoint-count" class="composer-hint">Waypoints: 0</div>
               </section>
+              <section class="composer-card">
+                <div class="composer-section-title">Timing</div>
+                <div class="composer-form composer-form-grid">
+                  <label class="composer-field">
+                    <span>Duration (s)</span>
+                    <input id="composer-scene-duration" type="number" min="1" step="0.5" value="12" />
+                  </label>
+                  <label class="composer-field">
+                    <span>Loop</span>
+                    <input id="composer-scene-loop" type="checkbox" />
+                  </label>
+                </div>
+                <div class="composer-form composer-form-grid">
+                  <label class="composer-field">
+                    <span>Marker Time (s)</span>
+                    <input id="composer-marker-time" type="number" min="0" step="0.1" placeholder="6.0" />
+                  </label>
+                  <label class="composer-field">
+                    <span>Marker Label</span>
+                    <input id="composer-marker-label" type="text" placeholder="Focus" />
+                  </label>
+                </div>
+                <div class="composer-form composer-form-grid">
+                  <label class="composer-field">
+                    <span>Pause Start (s)</span>
+                    <input id="composer-pause-start" type="number" min="0" step="0.1" placeholder="3.0" />
+                  </label>
+                  <label class="composer-field">
+                    <span>Pause Duration (s)</span>
+                    <input id="composer-pause-duration" type="number" min="0" step="0.1" placeholder="1.0" />
+                  </label>
+                </div>
+                <div class="composer-form composer-form-grid">
+                  <label class="composer-field">
+                    <span>Warp Start (s)</span>
+                    <input id="composer-warp-start" type="number" min="0" step="0.1" placeholder="7.0" />
+                  </label>
+                  <label class="composer-field">
+                    <span>Warp End (s)</span>
+                    <input id="composer-warp-end" type="number" min="0" step="0.1" placeholder="10.0" />
+                  </label>
+                </div>
+                <div class="composer-form composer-form-grid">
+                  <label class="composer-field">
+                    <span>Warp Rate</span>
+                    <input id="composer-warp-rate" type="number" min="0.1" step="0.1" placeholder="0.5" />
+                  </label>
+                </div>
+                <p class="composer-hint">Leave marker, pause, or warp fields blank to use defaults only.</p>
+              </section>
             </div>
           </main>
         </div>
