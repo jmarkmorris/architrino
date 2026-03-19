@@ -261,94 +261,33 @@
                   </div>
                 </div>
               </div>
-              <div class="composer-card-meta">
-                <span>Transfers</span>
-                <div class="composer-help">
-                  <button
-                    type="button"
-                    class="composer-help-trigger"
-                    aria-label="Show transfer guidance"
-                  >
-                    i
-                  </button>
-                  <div class="composer-help-popover" role="tooltip">
-                    <div class="composer-section-title">Transfers</div>
-                    <ul class="composer-help-list">
-                      <li>Map a member from one assembly to another.</li>
-                      <li>Use `assembly.member -> assembly.member @ time`.</li>
-                      <li>Example: `assembly_1.positrino_1 -> assembly_2.positrino_1 @ 6.0`</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="composer-form">
-                <label class="composer-field">
-                  <span>Transfer Map</span>
-                  <textarea
-                    id="composer-transfer-list"
-                    rows="3"
-                    placeholder="assembly_1.positrino_1 -> assembly_2.positrino_1 @ 6.0"
-                  ></textarea>
-                </label>
-                <div id="composer-transfer-status" class="composer-inline-status">No transfers authored.</div>
-              </div>
-              <div class="composer-card-meta">
-                <span>Reactions</span>
-                <div class="composer-help">
-                  <button
-                    type="button"
-                    class="composer-help-trigger"
-                    aria-label="Show reaction guidance"
-                  >
-                    i
-                  </button>
-                  <div class="composer-help-popover" role="tooltip">
-                    <div class="composer-section-title">Reactions</div>
-                    <ul class="composer-help-list">
-                      <li>Group transfer lines into named timeline stages.</li>
-                      <li>Use `label @ start-end: transfer-lines | action, action`.</li>
-                      <li>Stages can target subsets like `detach(1), handoff(1,2), reassemble(2)`.</li>
-                      <li>Example: `handoff @ 5.2-6.4: 1, 2 | detach(1), handoff(1,2), reassemble(2)`</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="composer-form">
-                <label class="composer-field">
-                  <span>Reaction Stages</span>
-                  <textarea
-                    id="composer-reaction-list"
-                    rows="3"
-                    placeholder="handoff @ 5.2-6.4: 1, 2 | detach(1), handoff(1,2), reassemble(2)"
-                  ></textarea>
-                </label>
-                <div id="composer-reaction-status" class="composer-inline-status">No reactions staged.</div>
-              </div>
             </section>
             <section class="composer-card">
               <h3>Save / Library</h3>
-              <p>Scene ID and Scene Name label the animation. Save stores it in this browser; repo save writes a canonical JSON file you can place under <code>content/scenes/</code>.</p>
               <div class="composer-button-row">
-                <button id="composer-library-save" type="button">Save to Library</button>
                 <button id="composer-repo-save-button" type="button">Save to Repo File</button>
+                <button id="composer-library-save" type="button">Save to Library</button>
                 <button id="composer-export-button" type="button">Export JSON</button>
               </div>
               <div class="composer-button-row composer-button-row-single">
                 <button id="composer-preview-button" type="button">Preview Scene</button>
               </div>
-              <label class="composer-field">
-                <span>Saved Scenes</span>
-                <select id="composer-library-select">
-                  <option value="">No saved scenes</option>
-                </select>
-              </label>
-              <div class="composer-button-row">
-                <button id="composer-library-load" type="button">Load Selected</button>
-                <button id="composer-library-delete" type="button">Delete</button>
-              </div>
-              <div id="composer-library-status" class="composer-inline-status">
-                Library storage is browser-local for now.
-              </div>
+              <details class="composer-json-details">
+                <summary>Library</summary>
+                <label class="composer-field">
+                  <span>Saved Scenes</span>
+                  <select id="composer-library-select">
+                    <option value="">No saved scenes</option>
+                  </select>
+                </label>
+                <div class="composer-button-row">
+                  <button id="composer-library-load" type="button">Load Selected</button>
+                  <button id="composer-library-delete" type="button">Delete</button>
+                </div>
+                <div id="composer-library-status" class="composer-inline-status">
+                  Library storage is browser-local for now.
+                </div>
+              </details>
               <details class="composer-json-details">
                 <summary>JSON Preview</summary>
                 <pre id="composer-json-preview" class="composer-json-preview"></pre>
