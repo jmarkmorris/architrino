@@ -4,7 +4,7 @@
 
 This note tracks what still needs to be built in Composer.
 
-It is not a migration pitch anymore. The Composer shell, the `composer-II` document path, and the first viewport/timeline/editor hooks already exist. This note should stay focused on the unfinished work.
+It is not a migration pitch anymore. The Composer shell, the canonical scene-document path, and the first viewport/timeline/editor hooks already exist. This note should stay focused on the unfinished work.
 
 ---
 
@@ -13,7 +13,7 @@ It is not a migration pitch anymore. The Composer shell, the `composer-II` docum
 Already implemented:
 
 - the Archie composer entry and overlay shell;
-- canonical `composer-II` scene document generation and canonical JSON export;
+- canonical scene document generation and canonical JSON export;
 - browser-local save/load library for draft scenes;
 - explicit assembly authoring instead of node-count bootstrapping;
 - path editing, frame editing, camera waypoint authoring, timing lists, and scrub/play transport;

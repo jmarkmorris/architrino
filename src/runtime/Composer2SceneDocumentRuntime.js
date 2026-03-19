@@ -399,7 +399,7 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
     provenance: Array.isArray(rawDocument.provenance) ? rawDocument.provenance : [],
     checkpoints: Array.isArray(rawDocument.checkpoints) ? rawDocument.checkpoints : [],
     metadata: {
-      source: "composer-II",
+      source: "composer",
       ...(rawDocument.metadata ?? {}),
     },
   };
@@ -544,7 +544,7 @@ export function buildComposerPreviewSceneData(document, options = {}) {
       },
       composer: {
         schemaVersion: "0.2.0",
-        mode: "composer2-bridge",
+        mode: "composer-bridge",
         document: normalized,
       },
     },

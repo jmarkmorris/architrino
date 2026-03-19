@@ -1376,19 +1376,9 @@ function applyComposerDraftState(draftState = {}) {
   if (composerSceneNameInput) {
     composerSceneNameInput.value = (draftState.name || "Composer Scene").trim() || "Composer Scene";
   }
-  const legacyLabels = Array.isArray(draftState.labels) ? draftState.labels : [];
-  const fallbackAssemblyDrafts = legacyLabels.length
-    ? legacyLabels.map((label, index) => ({
-        id: `assembly_${index + 1}`,
-        name: String(label || `Assembly ${index + 1}`),
-        parentId: "",
-        position: [0, 0, 0],
-        members: [],
-      }))
-    : [createDefaultComposerAssemblyDraft(0)];
   composerAssemblyDrafts = Array.isArray(draftState.assembliesDraft) && draftState.assembliesDraft.length
     ? draftState.assembliesDraft.map((draft, index) => normalizeComposerAssemblyDraft(draft, index))
-    : fallbackAssemblyDrafts;
+    : [createDefaultComposerAssemblyDraft(0)];
   renderComposerAssemblyEditor();
 
   const duration = Math.max(1, Number(draftState?.time?.end ?? draftState?.time?.duration ?? 12) || 12);

@@ -2638,7 +2638,7 @@ The near-term composer should be treated as an assembly-centered canonical edito
 The right near-term stance now is:
 
 1. keep the current overlay-based authoring shell while it remains productive,
-2. preserve the canonical `composer-II` document as the single authored source of truth,
+2. preserve the canonical composer document as the single authored source of truth,
 3. replace the remaining preview bridge with a dedicated `Scene-Composed-Animation` runtime path,
 4. deepen explicit assembly structure from named members to spatially resolved constituents and subassemblies,
 5. promote transfers into staged reaction objects with timeline-visible choreography,
