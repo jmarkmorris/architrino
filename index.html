@@ -402,33 +402,27 @@
                     ></textarea>
                   </label>
                 </div>
-                <div class="composer-form composer-form-grid">
+                <div class="composer-form">
                   <label class="composer-field">
-                    <span>Pause Start (s)</span>
-                    <input id="composer-pause-start" type="number" min="0" step="0.1" placeholder="3.0" />
-                  </label>
-                  <label class="composer-field">
-                    <span>Pause Duration (s)</span>
-                    <input id="composer-pause-duration" type="number" min="0" step="0.1" placeholder="1.0" />
-                  </label>
-                </div>
-                <div class="composer-form composer-form-grid">
-                  <label class="composer-field">
-                    <span>Warp Start (s)</span>
-                    <input id="composer-warp-start" type="number" min="0" step="0.1" placeholder="7.0" />
-                  </label>
-                  <label class="composer-field">
-                    <span>Warp End (s)</span>
-                    <input id="composer-warp-end" type="number" min="0" step="0.1" placeholder="10.0" />
+                    <span>Pause List</span>
+                    <textarea
+                      id="composer-pause-list"
+                      rows="2"
+                      placeholder="3.0, 1.0&#10;8.5, 0.6"
+                    ></textarea>
                   </label>
                 </div>
-                <div class="composer-form composer-form-grid">
+                <div class="composer-form">
                   <label class="composer-field">
-                    <span>Warp Rate</span>
-                    <input id="composer-warp-rate" type="number" min="0.1" step="0.1" placeholder="0.5" />
+                    <span>Warp List</span>
+                    <textarea
+                      id="composer-warp-list"
+                      rows="2"
+                      placeholder="7.0, 10.0, 0.5&#10;11.0, 12.0, 1.8"
+                    ></textarea>
                   </label>
                 </div>
-                <p class="composer-hint">Cue list format: one `time: label` entry per line. Leave it blank to use default cues only.</p>
+                <p class="composer-hint">Cue list: one `time: label` entry per line. Pause list: `start, duration`. Warp list: `start, end, rate`. Leave any list blank to use defaults or none.</p>
               </section>
             </div>
           </main>

@@ -130,11 +130,8 @@ const composerCameraFlightToggle = document.getElementById("composer-camera-flig
 const composerSceneDurationInput = document.getElementById("composer-scene-duration");
 const composerSceneLoopInput = document.getElementById("composer-scene-loop");
 const composerMarkerListInput = document.getElementById("composer-marker-list");
-const composerPauseStartInput = document.getElementById("composer-pause-start");
-const composerPauseDurationInput = document.getElementById("composer-pause-duration");
-const composerWarpStartInput = document.getElementById("composer-warp-start");
-const composerWarpEndInput = document.getElementById("composer-warp-end");
-const composerWarpRateInput = document.getElementById("composer-warp-rate");
+const composerPauseListInput = document.getElementById("composer-pause-list");
+const composerWarpListInput = document.getElementById("composer-warp-list");
 const composerTimelineSummary = document.getElementById("composer-timeline-summary");
 const composerTimelineActive = document.getElementById("composer-timeline-active");
 const composerTimelineTrack = document.getElementById("composer-timeline-track");
@@ -345,18 +342,6 @@ function readNumberInput(input, fallback = 0) {
   return Number.isFinite(value) ? value : fallback;
 }
 
-function readOptionalNumberInput(input) {
-  if (!input) {
-    return null;
-  }
-  const rawValue = typeof input.value === "string" ? input.value.trim() : "";
-  if (!rawValue) {
-    return null;
-  }
-  const value = Number(rawValue);
-  return Number.isFinite(value) ? value : null;
-}
-
 function formatScaleLabel(value) {
   const normalized = Number.isFinite(value) ? value : 1;
   if (normalized >= 1000 || normalized <= 0.001) {
@@ -562,40 +547,54 @@ function readComposerTimingState() {
         ...(hasStartMarker ? [] : [{ id: "marker_start", t: 0, kind: "chapter", label: "Start" }]),
         ...authoredMarkers,
       ];
+  const pauseListRaw = composerPauseListInput?.value ?? "";
+  const pauses = pauseListRaw
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line, index) => {
+      const [rawStart, rawDuration] = line.split(",").map((part) => Number(part.trim()));
+      if (!Number.isFinite(rawStart) || !Number.isFinite(rawDuration) || rawDuration <= 0) {
+        return null;
+      }
+      return {
+        id: `pause_authored_${index + 1}`,
+        start: clamp(Number(rawStart.toFixed(3)), 0, duration),
+        duration: Number(Math.max(0, rawDuration).toFixed(3)),
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.start - right.start);
 
-  const pauseStart = readOptionalNumberInput(composerPauseStartInput);
-  const pauseDuration = readOptionalNumberInput(composerPauseDurationInput);
-  const pauses =
-    pauseStart === null || pauseDuration === null || pauseDuration <= 0
-      ? []
-      : [
-          {
-            id: "pause_authored",
-            start: clamp(Number(pauseStart.toFixed(3)), 0, duration),
-            duration: Number(Math.max(0, pauseDuration).toFixed(3)),
-          },
-        ];
-
-  const warpStart = readOptionalNumberInput(composerWarpStartInput);
-  const warpEnd = readOptionalNumberInput(composerWarpEndInput);
-  const warpRate = readOptionalNumberInput(composerWarpRateInput);
-  const normalizedWarpStart = warpStart === null ? null : clamp(Number(warpStart.toFixed(3)), 0, duration);
-  const normalizedWarpEnd = warpEnd === null ? null : clamp(Number(warpEnd.toFixed(3)), 0, duration);
-  const timeWarps =
-    normalizedWarpStart === null ||
-    normalizedWarpEnd === null ||
-    warpRate === null ||
-    warpRate <= 0 ||
-    normalizedWarpEnd <= normalizedWarpStart
-      ? []
-      : [
-          {
-            id: "warp_authored",
-            start: normalizedWarpStart,
-            end: normalizedWarpEnd,
-            rate: Number(warpRate.toFixed(3)),
-          },
-        ];
+  const warpListRaw = composerWarpListInput?.value ?? "";
+  const timeWarps = warpListRaw
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line, index) => {
+      const [rawStart, rawEnd, rawRate] = line.split(",").map((part) => Number(part.trim()));
+      if (
+        !Number.isFinite(rawStart) ||
+        !Number.isFinite(rawEnd) ||
+        !Number.isFinite(rawRate) ||
+        rawRate <= 0
+      ) {
+        return null;
+      }
+      const start = clamp(Number(rawStart.toFixed(3)), 0, duration);
+      const end = clamp(Number(rawEnd.toFixed(3)), 0, duration);
+      if (end <= start) {
+        return null;
+      }
+      return {
+        id: `warp_authored_${index + 1}`,
+        start,
+        end,
+        rate: Number(rawRate.toFixed(3)),
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.start - right.start);
 
   return {
     time: {
@@ -4650,11 +4649,8 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerSceneDurationInput,
   composerSceneLoopInput,
   composerMarkerListInput,
-  composerPauseStartInput,
-  composerPauseDurationInput,
-  composerWarpStartInput,
-  composerWarpEndInput,
-  composerWarpRateInput,
+  composerPauseListInput,
+  composerWarpListInput,
   composerCameraSpeedInput,
   composerCameraRadiusInput,
   composerCameraResetButton,

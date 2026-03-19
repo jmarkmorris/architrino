@@ -28,11 +28,8 @@ export function createComposerControlsUiRuntime(deps) {
     composerSceneDurationInput,
     composerSceneLoopInput,
     composerMarkerListInput,
-    composerPauseStartInput,
-    composerPauseDurationInput,
-    composerWarpStartInput,
-    composerWarpEndInput,
-    composerWarpRateInput,
+    composerPauseListInput,
+    composerWarpListInput,
     composerCameraSpeedInput,
     composerCameraRadiusInput,
     composerCameraResetButton,
@@ -178,11 +175,8 @@ export function createComposerControlsUiRuntime(deps) {
       composerNodeLabelsInput,
       composerSceneDurationInput,
       composerMarkerListInput,
-      composerPauseStartInput,
-      composerPauseDurationInput,
-      composerWarpStartInput,
-      composerWarpEndInput,
-      composerWarpRateInput,
+      composerPauseListInput,
+      composerWarpListInput,
     ].filter(Boolean);
     if (composerInputs.length) {
       composerInputs.forEach((input) => {
