@@ -192,7 +192,6 @@
         <div class="composer-header">
           <div>
             <div class="composer-title">Composer</div>
-            <div class="composer-subtitle">Scene animation designer</div>
           </div>
           <div class="composer-actions">
             <button
@@ -211,15 +210,26 @@
         <div class="composer-workspace">
           <aside class="composer-sidebar">
             <section class="composer-card">
-              <h3>Scene Tree</h3>
-              <div class="composer-section">
-                <div class="composer-section-title">Quick Start</div>
-                <ol class="composer-steps">
-                  <li>Set a scene id + name.</li>
-                  <li>Pick how many nodes you want.</li>
-                  <li>Shape the path, shells, and timing.</li>
-                  <li>Save to Library or Export JSON.</li>
-                </ol>
+              <div class="composer-card-header">
+                <h3>Scene Tree</h3>
+                <div class="composer-help">
+                  <button
+                    type="button"
+                    class="composer-help-trigger"
+                    aria-label="Show quick start guidance"
+                  >
+                    i
+                  </button>
+                  <div class="composer-help-popover" role="tooltip">
+                    <div class="composer-section-title">Quick Start</div>
+                    <ol class="composer-steps">
+                      <li>Set a scene id + name.</li>
+                      <li>Place and shape the path.</li>
+                      <li>Shape the path, shells, and timing.</li>
+                      <li>Save to Library or Export JSON.</li>
+                    </ol>
+                  </div>
+                </div>
               </div>
               <div class="composer-form">
                 <label class="composer-field">
@@ -243,12 +253,27 @@
                   />
                 </label>
               </div>
-              <p>Build nested scenes and assemblies with explicit frames and transforms.</p>
-              <ul>
-                <li>Add, reorder, and group child scenes.</li>
-                <li>Assign frame anchors and local transforms.</li>
-                <li>Reuse scene presets for assemblies.</li>
-              </ul>
+              <div class="composer-card-meta">
+                <span>Assemblies</span>
+                <div class="composer-help">
+                  <button
+                    type="button"
+                    class="composer-help-trigger"
+                    aria-label="Show assembly guidance"
+                  >
+                    i
+                  </button>
+                  <div class="composer-help-popover" role="tooltip">
+                    <div class="composer-section-title">Assemblies</div>
+                    <ul class="composer-help-list">
+                      <li>Build nested scenes and assemblies with explicit frames and transforms.</li>
+                      <li>Add, reorder, and group child scenes.</li>
+                      <li>Assign frame anchors and local transforms.</li>
+                      <li>Reuse scene presets for assemblies.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </section>
             <section class="composer-card">
               <h3>Save / Library</h3>
