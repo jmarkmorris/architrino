@@ -311,8 +311,8 @@
                     <div class="composer-section-title">Reactions</div>
                     <ul class="composer-help-list">
                       <li>Group transfer lines into named timeline stages.</li>
-                      <li>Use `label @ start-end: transfer-lines`.</li>
-                      <li>Example: `handoff @ 5.2-6.4: 1, 2`</li>
+                      <li>Use `label @ start-end: transfer-lines | action, action`.</li>
+                      <li>Example: `handoff @ 5.2-6.4: 1, 2 | detach, handoff, reassemble`</li>
                     </ul>
                   </div>
                 </div>
@@ -323,7 +323,7 @@
                   <textarea
                     id="composer-reaction-list"
                     rows="3"
-                    placeholder="handoff @ 5.2-6.4: 1, 2"
+                    placeholder="handoff @ 5.2-6.4: 1, 2 | detach, handoff, reassemble"
                   ></textarea>
                 </label>
                 <div id="composer-reaction-status" class="composer-inline-status">No reactions staged.</div>

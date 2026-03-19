@@ -445,6 +445,45 @@ function normalizeComposerTransferEndpoint(rawEndpoint) {
   return assemblyId && memberId ? { assemblyId, memberId } : null;
 }
 
+const composerReactionActionKinds = new Set([
+  "spawn",
+  "despawn",
+  "transform",
+  "detach",
+  "attach",
+  "handoff",
+  "reassemble",
+]);
+
+function normalizeComposerReactionAction(rawAction) {
+  const normalized = String(rawAction ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "_");
+  return composerReactionActionKinds.has(normalized) ? normalized : null;
+}
+
+function buildComposerReactionStages(actionNames = [], start = 0, end = 0) {
+  const normalizedActions = Array.isArray(actionNames) ? actionNames.filter(Boolean) : [];
+  if (!normalizedActions.length || end <= start) {
+    return [];
+  }
+  const duration = end - start;
+  return normalizedActions.map((action, index) => {
+    const stageStart = Number((start + (duration * index) / normalizedActions.length).toFixed(3));
+    const stageEnd =
+      index === normalizedActions.length - 1
+        ? Number(end.toFixed(3))
+        : Number((start + (duration * (index + 1)) / normalizedActions.length).toFixed(3));
+    return {
+      id: `stage_${index + 1}`,
+      action,
+      start: stageStart,
+      end: stageEnd,
+    };
+  });
+}
+
 function parseComposerTransfers(rawText) {
   return parseComposerTimingLines(rawText, (line, lineNumber) => {
     const [mappingPart, rawTimePart] = line.split("@").map((part) => part.trim());
@@ -506,11 +545,13 @@ function parseComposerReactions(rawText, transfers = [], duration = 12) {
     (Array.isArray(transfers) ? transfers : []).map((transfer) => [transfer?.id, transfer])
   );
   return parseComposerTimingLines(rawText, (line, lineNumber) => {
-    const match = line.match(/^(.+?)\s*@\s*(-?\d*\.?\d+)\s*-\s*(-?\d*\.?\d+)\s*:\s*(.+)$/);
+    const match = line.match(
+      /^(.+?)\s*@\s*(-?\d*\.?\d+)\s*-\s*(-?\d*\.?\d+)\s*:\s*([^|]+?)(?:\s*\|\s*(.+))?$/
+    );
     if (!match) {
       return null;
     }
-    const [, rawLabel, rawStart, rawEnd, rawTransfers] = match;
+    const [, rawLabel, rawStart, rawEnd, rawTransfers, rawActions] = match;
     const start = clamp(Number(Number(rawStart).toFixed(3)), 0, duration);
     const end = clamp(Number(Number(rawEnd).toFixed(3)), 0, duration);
     if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
@@ -523,12 +564,19 @@ function parseComposerReactions(rawText, transfers = [], duration = 12) {
     if (!transferIds.length) {
       return null;
     }
+    const actionNames = (rawActions ? rawActions.split(",") : ["handoff"])
+      .map((part) => normalizeComposerReactionAction(part))
+      .filter(Boolean);
+    if (!actionNames.length) {
+      return null;
+    }
     return {
       id: `reaction_authored_${lineNumber}`,
       label: rawLabel.trim() || `Reaction ${lineNumber}`,
       start,
       end,
       transferIds: [...new Set(transferIds)],
+      stages: buildComposerReactionStages(actionNames, start, end),
     };
   });
 }
@@ -549,7 +597,10 @@ function formatComposerReactionList(reactions = []) {
       const start = Number(reaction?.start ?? reaction?.timing?.start ?? 0);
       const end = Number(reaction?.end ?? reaction?.timing?.end ?? 0);
       const transferRefs = formatComposerReactionTransferRefs(reaction?.transferIds);
-      return `${label} @ ${start}-${end}: ${transferRefs}`;
+      const actionRefs = Array.isArray(reaction?.stages)
+        ? reaction.stages.map((stage) => stage?.action).filter(Boolean).join(", ")
+        : "";
+      return `${label} @ ${start}-${end}: ${transferRefs}${actionRefs ? ` | ${actionRefs}` : ""}`;
     })
     .join("\n");
 }
@@ -2209,6 +2260,9 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   const activeReaction = reactions.find(
     (reaction) => timeSeconds >= reaction.start && timeSeconds <= reaction.end
   );
+  const activeReactionStage = Array.isArray(activeReaction?.stages)
+    ? activeReaction.stages.find((stage) => timeSeconds >= stage.start && timeSeconds <= stage.end)
+    : null;
   const currentCue = [...markers]
     .sort((left, right) => left.t - right.t)
     .filter((marker) => marker.t <= timeSeconds + 0.001)
@@ -2229,6 +2283,9 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   if (activeReaction?.label) {
     parts.push(`Reaction: ${activeReaction.label}`);
   }
+  if (activeReactionStage?.action) {
+    parts.push(`Stage: ${activeReactionStage.action}`);
+  }
   return parts.join(" | ") || "Steady";
 }
 
@@ -2236,6 +2293,18 @@ function getComposerActiveReaction(documentData, timeSeconds) {
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
   return (
     reactions.find((reaction) => timeSeconds >= reaction.start && timeSeconds <= reaction.end) ?? null
+  );
+}
+
+function getComposerActiveReactionStage(documentData, timeSeconds) {
+  const activeReaction = getComposerActiveReaction(documentData, timeSeconds);
+  if (!Array.isArray(activeReaction?.stages)) {
+    return null;
+  }
+  return (
+    activeReaction.stages.find((stage) => timeSeconds >= stage.start && timeSeconds <= stage.end) ??
+    activeReaction.stages[0] ??
+    null
   );
 }
 
@@ -2340,6 +2409,9 @@ function renderComposerTimeline(documentData) {
   reactions.forEach((reaction) => {
     const start = getComposerTimelineFraction(documentData, reaction.start);
     const end = getComposerTimelineFraction(documentData, reaction.end);
+    const actions = Array.isArray(reaction?.stages)
+      ? reaction.stages.map((stage) => stage?.action).filter(Boolean)
+      : [];
     composerTimelineReactions?.appendChild(
       createComposerTimelineBand(
         start,
@@ -2347,7 +2419,7 @@ function renderComposerTimeline(documentData) {
         "is-reaction",
         `${reaction.label ?? reaction.id ?? "Reaction"}: ${formatComposerTimeLabel(
           reaction.start
-        )} to ${formatComposerTimeLabel(reaction.end)}`,
+        )} to ${formatComposerTimeLabel(reaction.end)}${actions.length ? ` | ${actions.join(" -> ")}` : ""}`,
         reaction.label ?? reaction.id ?? "Reaction"
       )
     );
@@ -2616,6 +2688,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
     composerCurrentDocument,
     timeSeconds
   );
+  const activeReactionStage = getComposerActiveReactionStage(composerCurrentDocument, timeSeconds);
   const hasReactionFocus = activeReactionTransferIds.size > 0;
   composerTransferLines.forEach((line) => {
     const transfer = line.userData.transfer;
@@ -2630,6 +2703,21 @@ function updateComposerAnimatedViewport(timeSeconds) {
     line.computeLineDistances();
     const isActiveReactionTransfer = transfer?.id && activeReactionTransferIds.has(transfer.id);
     const isActiveByTime = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
+    if (activeReactionStage?.action === "reassemble") {
+      line.material.color.set(0x8ef0c2);
+    } else if (activeReactionStage?.action === "detach") {
+      line.material.color.set(0xffc978);
+    } else if (activeReactionStage?.action === "attach") {
+      line.material.color.set(0x85d9ff);
+    } else if (activeReactionStage?.action === "transform") {
+      line.material.color.set(0xd0a7ff);
+    } else if (activeReactionStage?.action === "spawn") {
+      line.material.color.set(0x9ceef7);
+    } else if (activeReactionStage?.action === "despawn") {
+      line.material.color.set(0xc2c8d8);
+    } else {
+      line.material.color.set(0xffd17a);
+    }
     line.material.opacity = hasReactionFocus
       ? isActiveReactionTransfer
         ? 0.88

@@ -111,6 +111,36 @@ function normalizeReactionParticipants(rawParticipants) {
     .filter(Boolean);
 }
 
+function normalizeReactionStages(rawStages, start, end) {
+  if (!Array.isArray(rawStages) || !rawStages.length) {
+    return [];
+  }
+  return rawStages
+    .map((stage, index) => {
+      const stageStart = clampNumber(
+        roundNumber(stage?.start ?? stage?.t ?? start),
+        start,
+        end
+      );
+      const stageEnd = clampNumber(
+        roundNumber(stage?.end ?? stage?.params?.end ?? end),
+        stageStart,
+        end
+      );
+      if (stageEnd <= stageStart) {
+        return null;
+      }
+      return {
+        id: normalizeString(stage?.id, `stage_${index + 1}`),
+        action: normalizeString(stage?.action, "handoff"),
+        start: stageStart,
+        end: stageEnd,
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.start - right.start);
+}
+
 function normalizeReactions(rawReactions, transfers, start, end) {
   if (!Array.isArray(rawReactions) || !rawReactions.length) {
     return [];
@@ -141,6 +171,17 @@ function normalizeReactions(rawReactions, transfers, start, end) {
       if (!transferIds.length) {
         return null;
       }
+      const normalizedStages = normalizeReactionStages(reaction?.stages, reactionStart, reactionEnd);
+      const stages = normalizedStages.length
+        ? normalizedStages
+        : [
+            {
+              id: "stage_1",
+              action: "handoff",
+              start: reactionStart,
+              end: reactionEnd,
+            },
+          ];
       const participantMap = new Map();
       transferIds.forEach((transferId) => {
         const transfer = transferById.get(transferId);
@@ -170,6 +211,16 @@ function normalizeReactions(rawReactions, transfers, start, end) {
         start: reactionStart,
         end: reactionEnd,
         transferIds,
+        stages,
+        timeline: stages.map((stage) => ({
+          t: stage.start,
+          action: stage.action,
+          target: "transfer-set",
+          params: {
+            end: stage.end,
+            transferIds,
+          },
+        })),
         participants: [...participantMap.values()],
       };
     })
