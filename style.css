@@ -1112,7 +1112,8 @@ body {
 .composer-canvas-wrap {
   position: relative;
   flex: 1;
-  min-height: 280px;
+  min-height: clamp(360px, 46vh, 560px);
+  max-height: 560px;
   margin-bottom: 0;
   border-radius: 12px;
   border: 1px solid rgba(160, 170, 220, 0.25);
@@ -1349,6 +1350,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 12px;
   padding: 12px 20px 14px;
   border-top: 1px solid rgba(160, 170, 220, 0.2);
@@ -1364,10 +1366,11 @@ body {
 .composer-transport {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   flex: 1;
   min-width: 220px;
-  max-width: 760px;
+  max-width: 100%;
 }
 
 .composer-transport-scrub {
@@ -1437,7 +1440,14 @@ body {
 .composer-status {
   font-size: 11px;
   opacity: 0.8;
-  text-align: right;
+  text-align: left;
+  flex-basis: 100%;
+}
+
+@media (max-width: 1500px) {
+  .composer-controls {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
 }
 
 @media (max-width: 960px) {
