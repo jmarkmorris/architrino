@@ -1531,6 +1531,35 @@ function closeComposerAssemblyMenu() {
   composerAssemblyMenu.setAttribute("aria-hidden", "true");
 }
 
+function applyComposerViewportDisplayState() {
+  const showTransportPath = composerViewportDisplayState.showTransportPath !== false;
+  const showCameraGuides = composerViewportDisplayState.showCameraGuides !== false;
+  if (composerPathLine) {
+    composerPathLine.visible = showTransportPath;
+  }
+  composerPointMeshes.forEach((mesh) => {
+    mesh.visible = showTransportPath;
+  });
+  if (composerDocumentCameraPathLine) {
+    composerDocumentCameraPathLine.visible = showCameraGuides;
+  }
+  composerDocumentCameraWaypointMeshes.forEach((mesh) => {
+    mesh.visible = showCameraGuides;
+  });
+  if (composerDocumentCameraShotMesh) {
+    composerDocumentCameraShotMesh.visible = showCameraGuides;
+  }
+  if (composerDocumentCameraTargetMesh) {
+    composerDocumentCameraTargetMesh.visible = showCameraGuides;
+  }
+  if (composerDocumentCameraLookLine) {
+    composerDocumentCameraLookLine.visible = showCameraGuides;
+  }
+  if (composerCameraFlightGroup) {
+    composerCameraFlightGroup.visible = showCameraGuides;
+  }
+}
+
 function positionComposerAssemblyMenu(clientX, clientY, width = 220, height = 160) {
   if (!composerAssemblyMenu || !composerCanvasWrap) {
     return;
@@ -1554,13 +1583,65 @@ function openComposerAssemblyTemplateMenuAt(event) {
     Number(localPoint.y.toFixed(3)),
     Number(localPoint.z.toFixed(3)),
   ]);
-  composerAssemblyMenu.innerHTML = `
-    <div class="composer-assembly-menu-title">Add Assembly</div>
-    <button type="button" data-template="positrino">Positrino</button>
-    <button type="button" data-template="electrino">Electrino</button>
-    <button type="button" data-template="noether_core">Noether Core</button>
-  `;
-  positionComposerAssemblyMenu(event.clientX, event.clientY, 188, 168);
+  composerAssemblyMenu.innerHTML = "";
+
+  const title = document.createElement("div");
+  title.className = "composer-assembly-menu-title";
+  title.textContent = "Canvas";
+  composerAssemblyMenu.appendChild(title);
+
+  const addLabel = document.createElement("div");
+  addLabel.className = "composer-assembly-menu-subtitle";
+  addLabel.textContent = "Add Assembly";
+  composerAssemblyMenu.appendChild(addLabel);
+
+  ["positrino", "electrino", "noether_core"].forEach((templateId) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.template = templateId;
+    button.textContent =
+      templateId === "noether_core"
+        ? "Noether Core"
+        : templateId === "positrino"
+          ? "Positrino"
+          : "Electrino";
+    composerAssemblyMenu.appendChild(button);
+  });
+
+  const viewLabel = document.createElement("div");
+  viewLabel.className = "composer-assembly-menu-subtitle";
+  viewLabel.textContent = "View";
+  composerAssemblyMenu.appendChild(viewLabel);
+
+  const transportButton = document.createElement("button");
+  transportButton.type = "button";
+  transportButton.textContent = `${
+    composerViewportDisplayState.showTransportPath !== false ? "Hide" : "Show"
+  } Transport Path`;
+  transportButton.addEventListener("click", () => {
+    composerViewportDisplayState.showTransportPath = !(
+      composerViewportDisplayState.showTransportPath !== false
+    );
+    applyComposerViewportDisplayState();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(transportButton);
+
+  const cameraButton = document.createElement("button");
+  cameraButton.type = "button";
+  cameraButton.textContent = `${
+    composerViewportDisplayState.showCameraGuides !== false ? "Hide" : "Show"
+  } Camera Guides`;
+  cameraButton.addEventListener("click", () => {
+    composerViewportDisplayState.showCameraGuides = !(
+      composerViewportDisplayState.showCameraGuides !== false
+    );
+    applyComposerViewportDisplayState();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(cameraButton);
+
+  positionComposerAssemblyMenu(event.clientX, event.clientY, 220, 284);
 }
 
 function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
@@ -2670,6 +2751,7 @@ function rebuildComposerControlPoints() {
     return mesh;
   });
   updateComposerPointMaterials();
+  applyComposerViewportDisplayState();
 }
 
 function sampleComposerPath(points, interpolate = "spline", closed = false) {
@@ -3782,13 +3864,19 @@ function addComposerAssemblyProxy(center, assembly, index) {
       });
     });
     proxyBadgeOffset = new THREE.Vector3(baseRadius + 0.16, baseRadius + 0.12, 0);
+  } else {
+    const shellRadii = Array.isArray(assembly?.core?.shells)
+      ? assembly.core.shells
+          .map((shell) => Number(shell?.radius ?? 0) || 0)
+          .filter((radius) => radius > 0)
+      : [];
+    const outerRadius = shellRadii.length ? Math.max(...shellRadii) : 1;
+    proxyBadgeOffset = new THREE.Vector3(outerRadius + 0.18, outerRadius + 0.12, 0);
   }
 
-  if (index !== 0) {
-    const numberBadge = createComposerAssemblyNumberSprite(index + 1);
-    numberBadge.position.copy(proxyBadgeOffset);
-    group.add(numberBadge);
-  }
+  const numberBadge = createComposerAssemblyNumberSprite(index + 1);
+  numberBadge.position.copy(proxyBadgeOffset);
+  group.add(numberBadge);
 
   composerViewportGroup?.add(group);
   composerAssemblyMeshes.push(group);
@@ -3949,6 +4037,7 @@ function updateComposerViewportFromDocument(documentData) {
     addComposerTransferLine(transfer);
   });
   addComposerDocumentCameraVisuals(documentData);
+  applyComposerViewportDisplayState();
 
   const timeWindow = getComposerSceneTimeWindow(documentData);
   if (composerPlaybackState.playheadSeconds < timeWindow.start || previousSceneId !== documentData?.scene?.id) {
@@ -4006,6 +4095,7 @@ function updateComposerCameraFlightDisplay() {
       composerCameraWaypointMeshes.push(marker);
     });
   }
+  applyComposerViewportDisplayState();
 }
 
 function startComposerCameraFlightPreview() {
@@ -4627,6 +4717,10 @@ let composerDocumentCameraShotMesh = null;
 let composerDocumentCameraTargetMesh = null;
 let composerDocumentCameraLookLine = null;
 let composerCurrentDocument = null;
+const composerViewportDisplayState = {
+  showTransportPath: true,
+  showCameraGuides: true,
+};
 const composerPlaybackState = {
   playing: false,
   playheadSeconds: 0,
