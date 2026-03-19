@@ -5,10 +5,19 @@ export function createComposerControlsUiRuntime(deps) {
     composerExitButton,
     composerPreviewButton,
     composerExportButton,
+    composerLibrarySaveButton,
+    composerLibrarySelect,
+    composerLibraryLoadButton,
+    composerLibraryDeleteButton,
+    composerPlayToggleButton,
+    composerPlayResetButton,
+    composerMarkerPrevButton,
+    composerMarkerNextButton,
+    composerMarkerJumpSelect,
+    composerPlayheadScrubInput,
+    composerTimelineTrack,
     composerSceneIdInput,
     composerSceneNameInput,
-    composerNodeCountInput,
-    composerNodeLabelsInput,
     composerPathModeSelect,
     composerPathResetButton,
     composerFrameEditToggle,
@@ -18,6 +27,12 @@ export function createComposerControlsUiRuntime(deps) {
     composerCameraWaypointAdd,
     composerCameraWaypointClear,
     composerCameraFlightToggle,
+    composerSceneDurationInput,
+    composerSceneLoopInput,
+    composerMarkerListInput,
+    composerPauseListInput,
+    composerWarpListInput,
+    composerTransferListInput,
     composerCameraSpeedInput,
     composerCameraRadiusInput,
     composerCameraResetButton,
@@ -40,7 +55,16 @@ export function createComposerControlsUiRuntime(deps) {
     applyComposerCameraRadiusInput,
     setComposerCameraDefaults,
     updateComposerCamera,
+    updateComposerCameraPoiStatus,
+    toggleComposerPlayback,
+    restartComposerPlayback,
+    jumpToComposerMarker,
+    jumpComposerMarkerByOffset,
+    scrubComposerPlayback,
     renderComposerJsonPreview,
+    saveComposerSceneToLibrary,
+    loadComposerSceneFromLibrary,
+    deleteComposerSceneFromLibrary,
     isTransitionActive,
   } = deps;
 
@@ -77,15 +101,125 @@ export function createComposerControlsUiRuntime(deps) {
       });
     }
 
+    if (composerLibrarySaveButton) {
+      composerLibrarySaveButton.addEventListener("click", () => {
+        saveComposerSceneToLibrary();
+      });
+    }
+
+    if (composerLibraryLoadButton) {
+      composerLibraryLoadButton.addEventListener("click", () => {
+        loadComposerSceneFromLibrary(composerLibrarySelect?.value);
+      });
+    }
+
+    if (composerLibraryDeleteButton) {
+      composerLibraryDeleteButton.addEventListener("click", () => {
+        deleteComposerSceneFromLibrary(composerLibrarySelect?.value);
+      });
+    }
+
+    if (composerLibrarySelect) {
+      composerLibrarySelect.addEventListener("dblclick", () => {
+        loadComposerSceneFromLibrary(composerLibrarySelect.value);
+      });
+    }
+
+    if (composerPlayToggleButton) {
+      composerPlayToggleButton.addEventListener("click", () => {
+        toggleComposerPlayback();
+      });
+    }
+
+    if (composerPlayResetButton) {
+      composerPlayResetButton.addEventListener("click", () => {
+        restartComposerPlayback();
+      });
+    }
+
+    if (composerMarkerPrevButton) {
+      composerMarkerPrevButton.addEventListener("click", () => {
+        jumpComposerMarkerByOffset(-1);
+      });
+    }
+
+    if (composerMarkerNextButton) {
+      composerMarkerNextButton.addEventListener("click", () => {
+        jumpComposerMarkerByOffset(1);
+      });
+    }
+
+    if (composerMarkerJumpSelect) {
+      composerMarkerJumpSelect.addEventListener("change", () => {
+        jumpToComposerMarker(composerMarkerJumpSelect.value, { playing: false });
+      });
+    }
+
+    if (composerPlayheadScrubInput) {
+      composerPlayheadScrubInput.addEventListener("input", () => {
+        const fraction = Number(composerPlayheadScrubInput.value) / 1000;
+        scrubComposerPlayback(fraction);
+      });
+    }
+
+    if (composerTimelineTrack) {
+      let timelinePointerActive = false;
+      const scrubTimelineFromClientX = (clientX) => {
+        const rect = composerTimelineTrack.getBoundingClientRect();
+        if (!rect.width) {
+          return;
+        }
+        const fraction = (clientX - rect.left) / rect.width;
+        scrubComposerPlayback(fraction, { playing: false });
+      };
+
+      composerTimelineTrack.addEventListener("pointerdown", (event) => {
+        timelinePointerActive = true;
+        composerTimelineTrack.setPointerCapture?.(event.pointerId);
+        scrubTimelineFromClientX(event.clientX);
+        event.preventDefault();
+      });
+
+      composerTimelineTrack.addEventListener("pointermove", (event) => {
+        if (!timelinePointerActive) {
+          return;
+        }
+        scrubTimelineFromClientX(event.clientX);
+      });
+
+      const stopTimelinePointer = (event) => {
+        if (!timelinePointerActive) {
+          return;
+        }
+        timelinePointerActive = false;
+        composerTimelineTrack.releasePointerCapture?.(event.pointerId);
+      };
+
+      composerTimelineTrack.addEventListener("pointerup", stopTimelinePointer);
+      composerTimelineTrack.addEventListener("pointercancel", stopTimelinePointer);
+    }
+
     const composerInputs = [
       composerSceneIdInput,
       composerSceneNameInput,
-      composerNodeCountInput,
-      composerNodeLabelsInput,
+      composerSceneDurationInput,
+      composerMarkerListInput,
+      composerPauseListInput,
+      composerWarpListInput,
+      composerTransferListInput,
     ].filter(Boolean);
     if (composerInputs.length) {
       composerInputs.forEach((input) => {
         input.addEventListener("input", () => {
+          renderComposerJsonPreview();
+        });
+      });
+    }
+
+    const composerToggleInputs = [composerSceneLoopInput].filter(Boolean);
+    if (composerToggleInputs.length) {
+      composerToggleInputs.forEach((input) => {
+        input.addEventListener("change", () => {
           renderComposerJsonPreview();
         });
       });
@@ -125,6 +259,7 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerCameraPoiSelect) {
       composerCameraPoiSelect.addEventListener("change", () => {
         composerCameraFlightState.poiMode = composerCameraPoiSelect.value;
+        updateComposerCameraPoiStatus();
       });
     }
 

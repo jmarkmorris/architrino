@@ -14,8 +14,9 @@ export function createComposerUiRuntime(deps) {
     renderComposerJsonPreview,
     stopComposerCameraFlightPreview,
     showMarkdownPanel,
-    readComposerFormState,
-    buildComposerSceneData,
+    readComposerDraftState,
+    buildComposerSceneDocument,
+    buildComposerPreviewSceneData,
     jumpToScene,
     setComposerStatus,
   } = deps;
@@ -87,16 +88,20 @@ export function createComposerUiRuntime(deps) {
     if (isTransitionActive) {
       return;
     }
-    const state = readComposerFormState();
-    const sceneData = buildComposerSceneData(state, {
+    const draftState = readComposerDraftState();
+    const document = buildComposerSceneDocument(draftState, {
       sceneId: composerPreviewSceneId,
-      sceneTitle: `${state.name} (Preview)`,
+      sceneName: `${draftState.name} (Preview)`,
+    });
+    const sceneData = buildComposerPreviewSceneData(document, {
+      sceneId: composerPreviewSceneId,
+      sceneTitle: `${draftState.name} (Preview)`,
     });
     levelConfigs[composerPreviewScenePath] = sceneData;
     levels.delete(composerPreviewScenePath);
     composerActivePanel = "preview";
     setComposerPanel("preview");
-    setComposerStatus(`Previewing "${state.name}". Use Back to return.`);
+    setComposerStatus(`Previewing "${draftState.name}". Use Back to return.`);
     jumpToScene(composerPreviewScenePath, {
       mode: "jump",
       startScale: 0.6,
@@ -105,19 +110,19 @@ export function createComposerUiRuntime(deps) {
   }
 
   function exportComposerScene() {
-    const state = readComposerFormState();
-    const sceneData = buildComposerSceneData(state);
-    const json = JSON.stringify(sceneData, null, 2);
+    const draftState = readComposerDraftState();
+    const sceneDocument = buildComposerSceneDocument(draftState);
+    const json = JSON.stringify(sceneDocument, null, 2);
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${state.id || "composer_scene"}.json`;
+    link.download = `${draftState.id || "composer_scene"}.json`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-    setComposerStatus(`Exported ${state.id}.json`);
+    setComposerStatus(`Exported ${draftState.id}.json`);
     renderComposerJsonPreview();
   }
 

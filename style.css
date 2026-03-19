@@ -855,7 +855,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 16px 20px 14px;
+  padding: 10px 16px 9px;
   border-bottom: 1px solid rgba(160, 170, 220, 0.2);
   background: rgba(8, 10, 18, 0.98);
 }
@@ -865,12 +865,6 @@ body {
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-}
-
-.composer-subtitle {
-  margin-top: 4px;
-  font-size: 12px;
-  opacity: 0.8;
 }
 
 .composer-actions {
@@ -930,8 +924,8 @@ body {
 }
 
 .composer-sidebar {
-  width: 320px;
-  max-width: 34vw;
+  width: 280px;
+  max-width: 28vw;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -944,16 +938,20 @@ body {
 .composer-main {
   flex: 1;
   min-width: 0;
+  min-height: 0;
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  overflow-y: auto;
 }
 
 .composer-controls {
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-content: start;
+  padding-bottom: 8px;
 }
 
 .composer-card {
@@ -968,6 +966,18 @@ body {
   font-size: 13px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+}
+
+.composer-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.composer-card-header h3 {
+  margin: 0;
 }
 
 .composer-card p {
@@ -989,12 +999,77 @@ body {
   margin-bottom: 6px;
 }
 
-.composer-section {
-  margin: 6px 0 12px;
-  padding: 10px 12px;
+.composer-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 2px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 255, 0.62);
+}
+
+.composer-assembly-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.composer-assembly-card {
+  padding: 10px;
   border-radius: 10px;
-  background: rgba(15, 18, 32, 0.7);
-  border: 1px solid rgba(160, 170, 220, 0.2);
+  border: 1px solid rgba(160, 170, 220, 0.18);
+  background: rgba(12, 16, 28, 0.72);
+}
+
+.composer-assembly-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.composer-assembly-card-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.composer-assembly-card-title strong {
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: rgba(245, 247, 255, 0.95);
+}
+
+.composer-assembly-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 218, 255, 0.45);
+  background: rgba(28, 60, 88, 0.7);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(188, 235, 255, 0.92);
+}
+
+.composer-assembly-remove {
+  min-width: 64px;
+}
+
+.composer-field-note {
+  margin-top: 4px;
+  font-size: 10px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: rgba(245, 247, 255, 0.55);
 }
 
 .composer-section-title {
@@ -1012,6 +1087,68 @@ body {
   line-height: 1.4;
 }
 
+.composer-help-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  color: rgba(245, 247, 255, 0.86);
+}
+
+.composer-help {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.composer-help-trigger {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(160, 170, 220, 0.38);
+  background: rgba(15, 18, 32, 0.9);
+  color: rgba(245, 247, 255, 0.9);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+}
+
+.composer-help-trigger:hover,
+.composer-help-trigger:focus-visible {
+  border-color: rgba(167, 196, 255, 0.75);
+  background: rgba(26, 34, 56, 0.95);
+}
+
+.composer-help-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 240px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 170, 220, 0.22);
+  background: rgba(10, 12, 24, 0.98);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 140ms ease, transform 140ms ease;
+  z-index: 2;
+}
+
+.composer-help:hover .composer-help-popover,
+.composer-help:focus-within .composer-help-popover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 .composer-form {
   display: grid;
   gap: 8px;
@@ -1020,6 +1157,10 @@ body {
 
 .composer-form-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.composer-form-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .composer-field {
@@ -1044,6 +1185,29 @@ body {
   letter-spacing: 0.01em;
 }
 
+.composer-field textarea {
+  min-height: 72px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  background: rgba(10, 12, 24, 0.9);
+  color: #f5f7ff;
+  font-size: 12px;
+  line-height: 1.35;
+  font-family: inherit;
+  resize: vertical;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+.composer-field input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border-radius: 4px;
+  accent-color: #9af0c9;
+}
+
 .composer-field select {
   height: 30px;
   padding: 0 10px;
@@ -1065,10 +1229,54 @@ body {
   outline-offset: 2px;
 }
 
+.composer-field textarea:focus-visible {
+  outline: 2px solid #a7c4ff;
+  outline-offset: 2px;
+}
+
+.composer-field textarea.is-invalid {
+  border-color: rgba(255, 130, 130, 0.72);
+  background: rgba(36, 10, 14, 0.92);
+}
+
+.composer-inline-status {
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: rgba(245, 247, 255, 0.64);
+}
+
+.composer-inline-status.is-invalid {
+  color: rgba(255, 173, 173, 0.96);
+}
+
+.composer-inline-status.is-warning {
+  color: rgba(255, 211, 136, 0.96);
+}
+
+.composer-point-label {
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 194, 106, 0.5);
+  background: rgba(20, 24, 40, 0.9);
+  color: rgba(255, 216, 148, 0.95);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 0 16px rgba(255, 194, 106, 0.18);
+}
+
+.composer-point-label.is-active {
+  border-color: rgba(125, 211, 252, 0.72);
+  color: rgba(214, 243, 255, 0.98);
+  box-shadow: 0 0 18px rgba(125, 211, 252, 0.28);
+}
+
 .composer-canvas-wrap {
   position: relative;
   flex: 1;
-  min-height: 280px;
+  min-height: clamp(420px, 54vh, 680px);
+  max-height: 680px;
   margin-bottom: 0;
   border-radius: 12px;
   border: 1px solid rgba(160, 170, 220, 0.25);
@@ -1095,6 +1303,116 @@ body {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: rgba(245, 247, 255, 0.75);
+}
+
+.composer-timeline-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 170, 220, 0.18);
+  background: rgba(10, 12, 24, 0.72);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
+.composer-timeline-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 255, 0.82);
+}
+
+.composer-timeline-active {
+  color: rgba(154, 240, 201, 0.92);
+}
+
+.composer-timeline-track {
+  position: relative;
+  height: 28px;
+  border-radius: 999px;
+  overflow: visible;
+  cursor: ew-resize;
+  border: 1px solid rgba(160, 170, 220, 0.18);
+  background:
+    linear-gradient(180deg, rgba(18, 24, 42, 0.95), rgba(12, 16, 28, 0.95)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 0,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 24px
+    );
+  pointer-events: auto;
+}
+
+.composer-timeline-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.composer-timeline-band {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  min-width: 2px;
+  border-radius: 999px;
+}
+
+.composer-timeline-band.is-warp {
+  background: rgba(64, 170, 255, 0.28);
+  border: 1px solid rgba(110, 195, 255, 0.55);
+}
+
+.composer-timeline-band.is-pause {
+  background: rgba(255, 180, 84, 0.28);
+  border: 1px solid rgba(255, 205, 120, 0.65);
+}
+
+.composer-timeline-marker {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  width: 2px;
+  border-radius: 999px;
+  background: rgba(230, 234, 255, 0.92);
+}
+
+.composer-timeline-marker-label {
+  position: absolute;
+  top: -16px;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 255, 0.68);
+  white-space: nowrap;
+}
+
+.composer-timeline-marker.is-edge-start .composer-timeline-marker-label {
+  transform: translateX(0);
+}
+
+.composer-timeline-marker.is-edge-end .composer-timeline-marker-label {
+  transform: translateX(-100%);
+}
+
+.composer-timeline-playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(154, 240, 201, 0.92));
+  box-shadow: 0 0 12px rgba(154, 240, 201, 0.65);
+  transform: translateX(-1px);
 }
 
 .composer-control-grid {
@@ -1140,6 +1458,11 @@ body {
   flex: 1;
 }
 
+.composer-button-row-single button {
+  flex: initial;
+  width: 100%;
+}
+
 .composer-control-group button,
 .composer-card button {
   height: 30px;
@@ -1179,12 +1502,31 @@ body {
   opacity: 0.7;
 }
 
-.composer-json-preview {
+.composer-json-details {
   margin-top: 10px;
-  padding: 10px 12px;
   border-radius: 10px;
-  background: rgba(10, 12, 24, 0.9);
-  border: 1px solid rgba(160, 170, 220, 0.2);
+  border: 1px solid rgba(160, 170, 220, 0.18);
+  background: rgba(12, 16, 28, 0.66);
+}
+
+.composer-json-details summary {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  color: rgba(245, 247, 255, 0.82);
+}
+
+.composer-json-details[open] summary {
+  border-bottom: 1px solid rgba(160, 170, 220, 0.12);
+}
+
+.composer-json-preview {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 0 0 10px 10px;
+  background: rgba(10, 12, 24, 0.88);
+  border: 0;
   max-height: 220px;
   overflow: auto;
   font-size: 11px;
@@ -1194,9 +1536,10 @@ body {
 .composer-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
   gap: 12px;
-  padding: 12px 20px 14px;
+  padding: 8px 16px 9px;
   border-top: 1px solid rgba(160, 170, 220, 0.2);
   background: rgba(8, 10, 18, 0.98);
 }
@@ -1207,8 +1550,64 @@ body {
   gap: 8px;
 }
 
+.composer-transport {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+  min-width: 220px;
+  max-width: 100%;
+}
+
+.composer-transport-scrub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 255, 0.76);
+}
+
+.composer-transport-marker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 180px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 255, 0.76);
+}
+
+.composer-transport-marker select {
+  min-width: 150px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  background: rgba(10, 12, 24, 0.9);
+  color: #f5f7ff;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+}
+
+.composer-transport-marker select:focus-visible {
+  outline: 2px solid #a7c4ff;
+  outline-offset: 2px;
+}
+
+.composer-transport-scrub input {
+  flex: 1;
+}
+
 #composer-preview-button,
-#composer-export-button {
+#composer-export-button,
+#composer-library-save,
+#composer-library-load,
+#composer-library-delete {
   height: 30px;
   padding: 0 12px;
   border-radius: 8px;
@@ -1222,16 +1621,27 @@ body {
 
 #composer-preview-button:hover,
 #composer-export-button:hover,
+#composer-library-save:hover,
+#composer-library-load:hover,
+#composer-library-delete:hover,
 #composer-preview-button:focus-visible,
-#composer-export-button:focus-visible {
+#composer-export-button:focus-visible,
+#composer-library-save:focus-visible,
+#composer-library-load:focus-visible,
+#composer-library-delete:focus-visible {
   border-color: rgba(160, 170, 220, 0.55);
   background: rgba(25, 30, 48, 0.9);
 }
 
-.composer-status {
-  font-size: 11px;
-  opacity: 0.8;
-  text-align: right;
+@media (max-width: 1500px) {
+  .composer-controls {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .composer-sidebar {
+    width: 256px;
+    max-width: 26vw;
+  }
 }
 
 @media (max-width: 960px) {
@@ -1249,10 +1659,6 @@ body {
   .composer-footer {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .composer-status {
-    text-align: left;
   }
 }
 
