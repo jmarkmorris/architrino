@@ -988,15 +988,24 @@ function vectorFromTriplet(source) {
   return new THREE.Vector3(source?.x ?? 0, source?.y ?? 0, source?.z ?? 0);
 }
 
-function createComposerPointLabelTexture(text, isActive = false) {
+function createComposerLozengeTexture(text, options = {}) {
+  const {
+    isActive = false,
+    fill = "rgba(20, 24, 40, 0.92)",
+    fillActive = "rgba(13, 24, 42, 0.96)",
+    stroke = "rgba(255, 194, 106, 0.75)",
+    strokeActive = "rgba(125, 211, 252, 0.95)",
+    textColor = "rgba(255, 216, 148, 0.98)",
+    textColorActive = "rgba(214, 243, 255, 0.98)",
+  } = options;
   const canvas = document.createElement("canvas");
   canvas.width = 96;
   canvas.height = 64;
   const context = canvas.getContext("2d");
   if (context) {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillStyle = isActive ? "rgba(13, 24, 42, 0.96)" : "rgba(20, 24, 40, 0.92)";
-    context.strokeStyle = isActive ? "rgba(125, 211, 252, 0.95)" : "rgba(255, 194, 106, 0.75)";
+    context.fillStyle = isActive ? fillActive : fill;
+    context.strokeStyle = isActive ? strokeActive : stroke;
     context.lineWidth = 4;
     const x = 8;
     const y = 8;
@@ -1016,7 +1025,7 @@ function createComposerPointLabelTexture(text, isActive = false) {
     context.closePath();
     context.fill();
     context.stroke();
-    context.fillStyle = isActive ? "rgba(214, 243, 255, 0.98)" : "rgba(255, 216, 148, 0.98)";
+    context.fillStyle = isActive ? textColorActive : textColor;
     context.font = "700 28px sans-serif";
     context.textAlign = "center";
     context.textBaseline = "middle";
@@ -1025,6 +1034,10 @@ function createComposerPointLabelTexture(text, isActive = false) {
   const texture = new THREE.CanvasTexture(canvas);
   texture.needsUpdate = true;
   return texture;
+}
+
+function createComposerPointLabelTexture(text, isActive = false) {
+  return createComposerLozengeTexture(text, { isActive });
 }
 
 function createComposerMemberLabelTexture(text, color = "#ffd894") {
@@ -1087,6 +1100,41 @@ function createComposerPointLabelSprite(text) {
   });
   const sprite = new THREE.Sprite(material);
   sprite.scale.set(0.42, 0.28, 1);
+  return sprite;
+}
+
+function createComposerCameraWaypointLabelTexture(text, isActive = false) {
+  return createComposerLozengeTexture(text, {
+    isActive,
+    fill: "rgba(18, 36, 40, 0.92)",
+    fillActive: "rgba(34, 72, 76, 0.96)",
+    stroke: "rgba(154, 240, 201, 0.75)",
+    strokeActive: "rgba(214, 255, 240, 0.95)",
+    textColor: "rgba(210, 255, 235, 0.98)",
+    textColorActive: "rgba(250, 255, 252, 0.98)",
+  });
+}
+
+function updateComposerCameraWaypointLabelSprite(sprite, text, isActive = false) {
+  if (!sprite) {
+    return;
+  }
+  const previousMap = sprite.material?.map ?? null;
+  const nextTexture = createComposerCameraWaypointLabelTexture(text, isActive);
+  sprite.material.map = nextTexture;
+  sprite.material.needsUpdate = true;
+  previousMap?.dispose?.();
+}
+
+function createComposerCameraWaypointLabelSprite(text) {
+  const material = new THREE.SpriteMaterial({
+    map: createComposerCameraWaypointLabelTexture(text, false),
+    transparent: true,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(0.46, 0.3, 1);
   return sprite;
 }
 
@@ -1165,7 +1213,7 @@ function createComposerChildBadgeSprite(title, subtitle = "") {
 }
 
 function createComposerAssemblyNumberSprite(number) {
-  const sprite = createComposerPointLabelSprite(String(number));
+  const sprite = createComposerPointLabelSprite(`A${number}`);
   sprite.scale.set(0.34, 0.22, 1);
   return sprite;
 }
@@ -1211,6 +1259,21 @@ function updateComposerWaypointCount() {
     composerCameraFlightToggle.disabled =
       composerCameraFlightState.waypoints.length < 2;
   }
+}
+
+function updateComposerCameraWaypointMaterials(activeIndex = null) {
+  composerCameraWaypointMeshes.forEach((mesh, index) => {
+    if (!mesh?.material) {
+      return;
+    }
+    const isActive = index === activeIndex;
+    mesh.material.opacity = isActive ? 1 : 0.95;
+    mesh.material.color.setHex(isActive ? 0xcfffe8 : 0x7fe7cb);
+    const labelSprite = mesh.userData?.labelSprite;
+    if (labelSprite) {
+      updateComposerCameraWaypointLabelSprite(labelSprite, `C${index + 1}`, isActive);
+    }
+  });
 }
 
 function updateComposerCameraPoiStatus() {
@@ -1290,18 +1353,23 @@ function getComposerPoiLocal() {
   return new THREE.Vector3(0, 0, 0);
 }
 
-function addComposerCameraWaypoint() {
-  if (!composerFrameGroup || !composerCamera) {
+function addComposerCameraWaypoint(position = null) {
+  if (!composerFrameGroup) {
     return;
   }
-  const localPos = composerFrameGroup.worldToLocal(
-    composerCamera.position.clone()
-  );
+  const localPos = Array.isArray(position)
+    ? vectorFromTriplet(position)
+    : position instanceof THREE.Vector3
+      ? position.clone()
+      : composerCamera
+        ? composerFrameGroup.worldToLocal(composerCamera.position.clone())
+        : new THREE.Vector3();
   const localLookAt = getComposerPoiLocal();
   composerCameraFlightState.waypoints.push({
     position: localPos,
     lookAt: localLookAt,
   });
+  composerSelectedCameraWaypointIndex = composerCameraFlightState.waypoints.length - 1;
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
   renderComposerJsonPreview();
@@ -1309,6 +1377,7 @@ function addComposerCameraWaypoint() {
 
 function clearComposerCameraWaypoints() {
   composerCameraFlightState.waypoints = [];
+  composerSelectedCameraWaypointIndex = null;
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
   stopComposerCameraFlightPreview();
@@ -1337,7 +1406,7 @@ function updateComposerPointMaterials(activeIndex = null) {
     mesh.material = isActive ? composerPointMaterialActive : composerPointMaterial;
     const labelSprite = mesh.userData.pointLabelSprite;
     if (labelSprite) {
-      updateComposerPointLabelSprite(labelSprite, String(index + 1), isActive);
+      updateComposerPointLabelSprite(labelSprite, `P${index + 1}`, isActive);
     }
   });
   updateComposerCameraPoiStatus();
@@ -1534,11 +1603,16 @@ function closeComposerAssemblyMenu() {
 function applyComposerViewportDisplayState() {
   const showTransportPath = composerViewportDisplayState.showTransportPath !== false;
   const showCameraGuides = composerViewportDisplayState.showCameraGuides !== false;
+  const showLabels = composerViewportDisplayState.showLabels !== false;
   if (composerPathLine) {
     composerPathLine.visible = showTransportPath;
   }
   composerPointMeshes.forEach((mesh) => {
     mesh.visible = showTransportPath;
+    const labelSprite = mesh.userData?.pointLabelSprite;
+    if (labelSprite) {
+      labelSprite.visible = showLabels;
+    }
   });
   if (composerDocumentCameraPathLine) {
     composerDocumentCameraPathLine.visible = showCameraGuides;
@@ -1558,6 +1632,28 @@ function applyComposerViewportDisplayState() {
   if (composerCameraFlightGroup) {
     composerCameraFlightGroup.visible = showCameraGuides;
   }
+  composerCameraWaypointMeshes.forEach((mesh) => {
+    const labelSprite = mesh.userData?.labelSprite;
+    if (labelSprite) {
+      labelSprite.visible = showLabels;
+    }
+  });
+  composerAssemblyMeshes.forEach((group) => {
+    const labelSprite = group.userData?.numberBadge;
+    if (labelSprite) {
+      labelSprite.visible = showLabels;
+    }
+  });
+}
+
+function composerHasCameraGuidesAvailable() {
+  if ((composerCameraFlightState?.waypoints?.length ?? 0) >= 2) {
+    return true;
+  }
+  const cameraPaths = Array.isArray(composerCurrentDocument?.cameraPaths)
+    ? composerCurrentDocument.cameraPaths
+    : [];
+  return cameraPaths.some((path) => Array.isArray(path?.waypoints) && path.waypoints.length >= 2);
 }
 
 function positionComposerAssemblyMenu(clientX, clientY, width = 220, height = 160) {
@@ -1610,14 +1706,52 @@ function openComposerAssemblyTemplateMenuAt(event) {
 
   const viewLabel = document.createElement("div");
   viewLabel.className = "composer-assembly-menu-subtitle";
-  viewLabel.textContent = "View";
+  viewLabel.textContent = "Camera";
   composerAssemblyMenu.appendChild(viewLabel);
+
+  const addCameraButton = document.createElement("button");
+  addCameraButton.type = "button";
+  addCameraButton.textContent = "Add Camera Waypoint";
+  addCameraButton.addEventListener("click", () => {
+    const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
+    addComposerCameraWaypoint(position);
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(addCameraButton);
+
+  if ((composerCameraFlightState?.waypoints?.length ?? 0) > 0) {
+    const clearCameraButton = document.createElement("button");
+    clearCameraButton.type = "button";
+    clearCameraButton.textContent = "Clear Camera Waypoints";
+    clearCameraButton.addEventListener("click", () => {
+      clearComposerCameraWaypoints();
+      closeComposerAssemblyMenu();
+    });
+    composerAssemblyMenu.appendChild(clearCameraButton);
+  }
+
+  const guideLabel = document.createElement("div");
+  guideLabel.className = "composer-assembly-menu-subtitle";
+  guideLabel.textContent = "View";
+  composerAssemblyMenu.appendChild(guideLabel);
+
+  const labelsButton = document.createElement("button");
+  labelsButton.type = "button";
+  labelsButton.textContent = `${
+    composerViewportDisplayState.showLabels !== false ? "Hide" : "Show"
+  } All Labels`;
+  labelsButton.addEventListener("click", () => {
+    composerViewportDisplayState.showLabels = !(composerViewportDisplayState.showLabels !== false);
+    applyComposerViewportDisplayState();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(labelsButton);
 
   const transportButton = document.createElement("button");
   transportButton.type = "button";
   transportButton.textContent = `${
     composerViewportDisplayState.showTransportPath !== false ? "Hide" : "Show"
-  } Transport Path`;
+  } Transport Paths`;
   transportButton.addEventListener("click", () => {
     composerViewportDisplayState.showTransportPath = !(
       composerViewportDisplayState.showTransportPath !== false
@@ -1627,21 +1761,25 @@ function openComposerAssemblyTemplateMenuAt(event) {
   });
   composerAssemblyMenu.appendChild(transportButton);
 
+  const hasCameraGuides = composerHasCameraGuidesAvailable();
   const cameraButton = document.createElement("button");
   cameraButton.type = "button";
   cameraButton.textContent = `${
     composerViewportDisplayState.showCameraGuides !== false ? "Hide" : "Show"
   } Camera Guides`;
-  cameraButton.addEventListener("click", () => {
-    composerViewportDisplayState.showCameraGuides = !(
-      composerViewportDisplayState.showCameraGuides !== false
-    );
-    applyComposerViewportDisplayState();
-    closeComposerAssemblyMenu();
-  });
+  cameraButton.disabled = !hasCameraGuides;
+  if (hasCameraGuides) {
+    cameraButton.addEventListener("click", () => {
+      composerViewportDisplayState.showCameraGuides = !(
+        composerViewportDisplayState.showCameraGuides !== false
+      );
+      applyComposerViewportDisplayState();
+      closeComposerAssemblyMenu();
+    });
+  }
   composerAssemblyMenu.appendChild(cameraButton);
 
-  positionComposerAssemblyMenu(event.clientX, event.clientY, 220, 284);
+  positionComposerAssemblyMenu(event.clientX, event.clientY, 220, 350);
 }
 
 function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
@@ -2576,7 +2714,7 @@ function initComposerCanvas() {
   );
   composerFrameGroup.add(composerPathLine);
 
-  composerPointGeometry = new THREE.SphereGeometry(0.11, 18, 18);
+  composerPointGeometry = new THREE.SphereGeometry(0.06, 18, 18);
   composerPointMaterial = new THREE.MeshBasicMaterial({
     color: 0xffc26a,
     transparent: true,
@@ -2743,7 +2881,7 @@ function rebuildComposerControlPoints() {
     const mesh = new THREE.Mesh(composerPointGeometry, composerPointMaterial);
     mesh.position.copy(point);
     mesh.userData.pointIndex = index;
-    const labelSprite = createComposerPointLabelSprite(String(index + 1));
+    const labelSprite = createComposerPointLabelSprite(`P${index + 1}`);
     labelSprite.position.set(0, 0.2, 0);
     mesh.userData.pointLabelSprite = labelSprite;
     mesh.add(labelSprite);
@@ -2983,6 +3121,18 @@ function sampleComposerCameraWaypointState(waypoints, normalizedT) {
     position: curve.getPointAt(t),
     lookAt: lookCurve.getPointAt(t),
   };
+}
+
+function getComposerCameraWaypointDisplayPosition(waypoint) {
+  const position = vectorFromTriplet(waypoint?.position);
+  const lookAt = vectorFromTriplet(waypoint?.lookAt);
+  const towardTarget = lookAt.clone().sub(position);
+  const distance = towardTarget.length();
+  if (distance <= 0.001) {
+    return position;
+  }
+  const shiftDistance = Math.min(0.6, distance * 0.18);
+  return position.clone().add(towardTarget.normalize().multiplyScalar(shiftDistance));
 }
 
 function getComposerOrbitBasis(motion) {
@@ -3871,11 +4021,14 @@ function addComposerAssemblyProxy(center, assembly, index) {
           .filter((radius) => radius > 0)
       : [];
     const outerRadius = shellRadii.length ? Math.max(...shellRadii) : 1;
-    proxyBadgeOffset = new THREE.Vector3(outerRadius + 0.18, outerRadius + 0.12, 0);
+    const markerRadius = outerRadius + 0.06;
+    const diagonal = markerRadius * Math.SQRT1_2;
+    proxyBadgeOffset = new THREE.Vector3(diagonal, diagonal, 0);
   }
 
   const numberBadge = createComposerAssemblyNumberSprite(index + 1);
   numberBadge.position.copy(proxyBadgeOffset);
+  group.userData.numberBadge = numberBadge;
   group.add(numberBadge);
 
   composerViewportGroup?.add(group);
@@ -3905,6 +4058,9 @@ function getComposerActiveCameraShot(documentData, timeSeconds) {
 }
 
 function addComposerDocumentCameraVisuals(documentData) {
+  if ((composerCameraFlightState?.waypoints?.length ?? 0) > 0) {
+    return;
+  }
   const cameraPaths = Array.isArray(documentData?.cameraPaths) ? documentData.cameraPaths : [];
   const pathById = new Map(cameraPaths.map((path) => [path.id, path]));
   const activeCameraPathId =
@@ -3919,7 +4075,10 @@ function addComposerDocumentCameraVisuals(documentData) {
   }
 
   const pathPoints = sampleComposerCurvePoints(
-    waypoints.map((waypoint) => waypoint.position),
+    waypoints.map((waypoint) => {
+      const visiblePosition = getComposerCameraWaypointDisplayPosition(waypoint);
+      return [visiblePosition.x, visiblePosition.y, visiblePosition.z];
+    }),
     Math.max(20, waypoints.length * 18)
   );
   if (pathPoints.length) {
@@ -3930,8 +4089,11 @@ function addComposerDocumentCameraVisuals(documentData) {
       opacity: 0.75,
       dashSize: 0.18,
       gapSize: 0.12,
+      depthTest: false,
+      depthWrite: false,
     });
     composerDocumentCameraPathLine = new THREE.Line(geometry, material);
+    composerDocumentCameraPathLine.renderOrder = 9;
     composerDocumentCameraPathLine.computeLineDistances();
     composerViewportGroup.add(composerDocumentCameraPathLine);
   }
@@ -3943,9 +4105,12 @@ function addComposerDocumentCameraVisuals(documentData) {
         color: index === 0 ? 0x9af0c9 : 0xb9e7ff,
         transparent: true,
         opacity: 0.9,
+        depthTest: false,
+        depthWrite: false,
       })
     );
-    marker.position.copy(vectorFromTriplet(waypoint.position));
+    marker.position.copy(getComposerCameraWaypointDisplayPosition(waypoint));
+    marker.renderOrder = 9;
     composerViewportGroup.add(marker);
     composerDocumentCameraWaypointMeshes.push(marker);
   });
@@ -4066,35 +4231,67 @@ function updateComposerCameraFlightDisplay() {
     composerCameraFlightGeometry = new THREE.BufferGeometry();
     composerCameraFlightLine = new THREE.Line(
       composerCameraFlightGeometry,
-      new THREE.LineBasicMaterial({ color: 0xb1f1ff })
+      new THREE.LineBasicMaterial({
+        color: 0x7fe7cb,
+        transparent: true,
+        opacity: 0.95,
+        depthTest: false,
+        depthWrite: false,
+      })
     );
+    composerCameraFlightLine.renderOrder = 10;
     composerCameraFlightGroup.add(composerCameraFlightLine);
     composerFrameGroup.add(composerCameraFlightGroup);
-    composerCameraWaypointGeometry = new THREE.SphereGeometry(0.045, 12, 12);
-    composerCameraWaypointMaterial = new THREE.MeshBasicMaterial({ color: 0x9af0c9 });
+    composerCameraWaypointGeometry = new THREE.SphereGeometry(0.06, 16, 16);
+    composerCameraWaypointMaterial = new THREE.MeshBasicMaterial({
+      color: 0x7fe7cb,
+      transparent: true,
+      opacity: 0.95,
+      depthTest: false,
+      depthWrite: false,
+    });
   }
 
   composerCameraWaypointMeshes.forEach((mesh) => {
+    const labelSprite = mesh.userData?.labelSprite;
+    if (labelSprite?.material?.map) {
+      labelSprite.material.map.dispose?.();
+    }
+    labelSprite?.material?.dispose?.();
     composerCameraFlightGroup.remove(mesh);
   });
   composerCameraWaypointMeshes = [];
 
-  const points = composerCameraFlightState.waypoints.map((waypoint) => {
-    return waypoint.position.clone();
-  });
-  composerCameraFlightGeometry.setFromPoints(points.length ? points : []);
+  const displayPoints = composerCameraFlightState.waypoints.map((waypoint) =>
+    getComposerCameraWaypointDisplayPosition(waypoint)
+  );
+  const curvePoints =
+    displayPoints.length >= 2
+      ? sampleComposerCurvePoints(
+          displayPoints.map((point) => [point.x, point.y, point.z]),
+          Math.max(20, displayPoints.length * 18)
+        )
+      : displayPoints;
+  composerCameraFlightGeometry.setFromPoints(curvePoints.length ? curvePoints : []);
 
-  if (points.length && composerCameraWaypointGeometry && composerCameraWaypointMaterial) {
-    points.forEach((point) => {
+  if (displayPoints.length && composerCameraWaypointGeometry && composerCameraWaypointMaterial) {
+    displayPoints.forEach((point) => {
       const marker = new THREE.Mesh(
         composerCameraWaypointGeometry,
-        composerCameraWaypointMaterial
+        composerCameraWaypointMaterial.clone()
       );
       marker.position.copy(point);
+      marker.renderOrder = 10;
+      marker.userData.cameraWaypointIndex = composerCameraWaypointMeshes.length;
+      const labelSprite = createComposerCameraWaypointLabelSprite(`C${composerCameraWaypointMeshes.length + 1}`);
+      labelSprite.position.set(0, 0.12, 0);
+      marker.userData.labelSprite = labelSprite;
+      marker.add(labelSprite);
       composerCameraFlightGroup.add(marker);
       composerCameraWaypointMeshes.push(marker);
     });
   }
+  updateComposerCameraWaypointMaterials(composerSelectedCameraWaypointIndex);
   applyComposerViewportDisplayState();
 }
 
@@ -4228,6 +4425,34 @@ function onComposerPointerDown(event) {
   composerCanvas.setPointerCapture(event.pointerId);
   const { x, y } = getComposerPointerNdc(event);
   composerRaycaster.setFromCamera({ x, y }, composerCamera);
+  const cameraWaypointHits = composerRaycaster.intersectObjects(composerCameraWaypointMeshes, true);
+  if (cameraWaypointHits.length) {
+    const hitObject = cameraWaypointHits[0].object;
+    const hitMesh =
+      Number.isInteger(hitObject.userData?.cameraWaypointIndex)
+        ? hitObject
+        : hitObject.parent && Number.isInteger(hitObject.parent.userData?.cameraWaypointIndex)
+          ? hitObject.parent
+          : null;
+    const waypointIndex = hitMesh?.userData?.cameraWaypointIndex;
+    if (Number.isInteger(waypointIndex) && composerCameraFlightState.waypoints[waypointIndex]) {
+      composerDragState.mode = "camera_waypoint";
+      composerDragState.cameraWaypointIndex = waypointIndex;
+      composerSelectedCameraWaypointIndex = waypointIndex;
+      composerDragState.startX = event.clientX;
+      composerDragState.startY = event.clientY;
+      composerDragState.startCameraWaypoint.copy(
+        composerCameraFlightState.waypoints[waypointIndex].position
+      );
+      const worldPoint = hitMesh.getWorldPosition(new THREE.Vector3());
+      const normal = new THREE.Vector3(0, 0, 1).applyQuaternion(
+        composerFrameGroup.quaternion
+      );
+      composerDragState.plane.setFromNormalAndCoplanarPoint(normal, worldPoint);
+      updateComposerCameraWaypointMaterials(waypointIndex);
+      return;
+    }
+  }
   const hits = composerRaycaster.intersectObjects(composerPointMeshes, false);
   if (hits.length) {
     const hit = hits[0];
@@ -4366,6 +4591,23 @@ function onComposerPointerMove(event) {
     return;
   }
 
+  if (composerDragState.mode === "camera_waypoint") {
+    const waypointIndex = composerDragState.cameraWaypointIndex;
+    if (waypointIndex == null || !composerCameraFlightState.waypoints[waypointIndex]) {
+      return;
+    }
+    const { x, y } = getComposerPointerNdc(event);
+    composerRaycaster.setFromCamera({ x, y }, composerCamera);
+    const intersection = new THREE.Vector3();
+    if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
+      const localPoint = composerFrameGroup.worldToLocal(intersection.clone());
+      composerCameraFlightState.waypoints[waypointIndex].position.copy(localPoint);
+      updateComposerCameraFlightDisplay();
+      renderComposerJsonPreview();
+    }
+    return;
+  }
+
   if (composerDragState.mode === "camera") {
     const speed = composerCameraState.speed * 0.004;
     composerCameraOrbitState.theta =
@@ -4391,8 +4633,12 @@ function onComposerPointerUp(event) {
   if (composerDragState.mode === "point" && composerDragState.pointIndex != null) {
     updateComposerPointMaterials();
   }
+  if (composerDragState.mode === "camera_waypoint") {
+    updateComposerCameraWaypointMaterials(composerSelectedCameraWaypointIndex);
+  }
   composerDragState.mode = null;
   composerDragState.pointIndex = null;
+  composerDragState.cameraWaypointIndex = null;
   composerDragState.assemblyIndex = null;
   composerDragState.assemblyId = null;
   if (composerCanvas && composerCanvas.hasPointerCapture(event.pointerId)) {
@@ -4663,6 +4909,7 @@ const composerCameraFlightState = {
 };
 let composerAssemblyDrafts = [createDefaultComposerAssemblyDraft(0)];
 let composerSelectedPointIndex = null;
+let composerSelectedCameraWaypointIndex = null;
 let composerSelectedAssemblyId = null;
 let composerAssemblyAdvancedOpen = false;
 const composerAssemblyPositionInputs = new Map();
@@ -4670,11 +4917,13 @@ const composerDragState = {
   mode: null,
   button: 0,
   pointIndex: null,
+  cameraWaypointIndex: null,
   assemblyIndex: null,
   assemblyId: null,
   startX: 0,
   startY: 0,
   startPoint: new THREE.Vector3(),
+  startCameraWaypoint: new THREE.Vector3(),
   startAssemblyPosition: new THREE.Vector3(),
   startAssemblyParentCenter: new THREE.Vector3(),
   startFrameRot: new THREE.Euler(0, 0, 0, "YXZ"),
@@ -4720,6 +4969,7 @@ let composerCurrentDocument = null;
 const composerViewportDisplayState = {
   showTransportPath: true,
   showCameraGuides: true,
+  showLabels: true,
 };
 const composerPlaybackState = {
   playing: false,
