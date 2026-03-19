@@ -130,6 +130,13 @@ const composerPauseDurationInput = document.getElementById("composer-pause-durat
 const composerWarpStartInput = document.getElementById("composer-warp-start");
 const composerWarpEndInput = document.getElementById("composer-warp-end");
 const composerWarpRateInput = document.getElementById("composer-warp-rate");
+const composerTimelineSummary = document.getElementById("composer-timeline-summary");
+const composerTimelineActive = document.getElementById("composer-timeline-active");
+const composerTimelineTrack = document.getElementById("composer-timeline-track");
+const composerTimelineWarps = document.getElementById("composer-timeline-warps");
+const composerTimelinePauses = document.getElementById("composer-timeline-pauses");
+const composerTimelineMarkers = document.getElementById("composer-timeline-markers");
+const composerTimelinePlayhead = document.getElementById("composer-timeline-playhead");
 const defaultRootLayoutMarginPx = { x: 160, y: 140 };
 let zoomToastTimeoutId = null;
 let zoomToastDismissedForSession = false;
@@ -351,6 +358,11 @@ function formatScaleLabel(value) {
     return `${normalized.toExponential(1)}x`;
   }
   return `${normalized.toFixed(2)}x`;
+}
+
+function formatComposerTimeLabel(value) {
+  const normalized = Number.isFinite(value) ? value : 0;
+  return `${normalized.toFixed(1)}s`;
 }
 
 function setComposerFrameDefaults() {
@@ -1024,6 +1036,150 @@ function getComposerPlaybackRateAtTime(documentData, timeSeconds) {
   return Number(activeWarp?.rate ?? 1) || 1;
 }
 
+function getComposerTimelineFraction(documentData, timeSeconds) {
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  const duration = Math.max(0.001, timeWindow.end - timeWindow.start);
+  return clamp((timeSeconds - timeWindow.start) / duration, 0, 1);
+}
+
+function clearComposerTimelineLayer(layer) {
+  if (!layer) {
+    return;
+  }
+  while (layer.firstChild) {
+    layer.removeChild(layer.firstChild);
+  }
+}
+
+function createComposerTimelineBand(fractionStart, fractionEnd, className, title) {
+  const band = document.createElement("div");
+  band.className = `composer-timeline-band ${className}`;
+  const widthFraction = Math.max(0.002, fractionEnd - fractionStart);
+  band.style.left = `${fractionStart * 100}%`;
+  band.style.width = `${widthFraction * 100}%`;
+  if (title) {
+    band.title = title;
+  }
+  return band;
+}
+
+function createComposerTimelineMarker(fraction, label, title) {
+  const marker = document.createElement("div");
+  marker.className = "composer-timeline-marker";
+  if (fraction <= 0.02) {
+    marker.classList.add("is-edge-start");
+  } else if (fraction >= 0.98) {
+    marker.classList.add("is-edge-end");
+  }
+  marker.style.left = `${fraction * 100}%`;
+  if (title) {
+    marker.title = title;
+  }
+  const markerLabel = document.createElement("span");
+  markerLabel.className = "composer-timeline-marker-label";
+  markerLabel.textContent = label;
+  marker.appendChild(markerLabel);
+  return marker;
+}
+
+function describeComposerTimelineState(timeSeconds, documentData) {
+  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const activeWarp = timeWarps.find((warp) => timeSeconds >= warp.start && timeSeconds < warp.end);
+  const currentCue = [...markers]
+    .sort((left, right) => left.t - right.t)
+    .filter((marker) => marker.t <= timeSeconds + 0.001)
+    .pop();
+  const parts = [];
+  if (currentCue?.label) {
+    parts.push(`Cue: ${currentCue.label}`);
+  }
+  if (composerPlaybackState.pauseRemaining > 0) {
+    const activePause = pauses.find((pause) => Math.abs(pause.start - timeSeconds) < 0.001);
+    if (activePause) {
+      parts.push(`Pause ${formatComposerTimeLabel(activePause.duration)}`);
+    }
+  }
+  if (activeWarp) {
+    parts.push(`Warp ${Number(activeWarp.rate ?? 1).toFixed(2)}x`);
+  }
+  return parts.join(" | ") || "Steady";
+}
+
+function renderComposerTimeline(documentData) {
+  clearComposerTimelineLayer(composerTimelineWarps);
+  clearComposerTimelineLayer(composerTimelinePauses);
+  clearComposerTimelineLayer(composerTimelineMarkers);
+  if (!documentData || !composerTimelineTrack) {
+    return;
+  }
+
+  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+
+  timeWarps.forEach((warp) => {
+    const start = getComposerTimelineFraction(documentData, warp.start);
+    const end = getComposerTimelineFraction(documentData, warp.end);
+    composerTimelineWarps?.appendChild(
+      createComposerTimelineBand(
+        start,
+        end,
+        "is-warp",
+        `Warp ${Number(warp.rate ?? 1).toFixed(2)}x: ${formatComposerTimeLabel(warp.start)} to ${formatComposerTimeLabel(warp.end)}`
+      )
+    );
+  });
+
+  pauses.forEach((pause) => {
+    const start = getComposerTimelineFraction(documentData, pause.start);
+    const end = getComposerTimelineFraction(
+      documentData,
+      Number(pause.start ?? 0) + Number(pause.duration ?? 0)
+    );
+    composerTimelinePauses?.appendChild(
+      createComposerTimelineBand(
+        start,
+        end,
+        "is-pause",
+        `Pause ${formatComposerTimeLabel(pause.duration)} at ${formatComposerTimeLabel(pause.start)}`
+      )
+    );
+  });
+
+  markers.forEach((marker) => {
+    const fraction = getComposerTimelineFraction(documentData, marker.t);
+    composerTimelineMarkers?.appendChild(
+      createComposerTimelineMarker(
+        fraction,
+        marker.label ?? marker.id ?? "Marker",
+        `${marker.label ?? marker.id ?? "Marker"} at ${formatComposerTimeLabel(marker.t)}`
+      )
+    );
+  });
+}
+
+function updateComposerTimelinePlayhead(timeSeconds, documentData) {
+  if (!documentData) {
+    return;
+  }
+  const fraction = getComposerTimelineFraction(documentData, timeSeconds);
+  if (composerTimelinePlayhead) {
+    composerTimelinePlayhead.style.left = `${fraction * 100}%`;
+  }
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  if (composerTimelineSummary) {
+    const loopSuffix = timeWindow.loop ? " | loop" : "";
+    composerTimelineSummary.textContent = `${formatComposerTimeLabel(timeSeconds)} / ${formatComposerTimeLabel(
+      timeWindow.end
+    )}${loopSuffix}`;
+  }
+  if (composerTimelineActive) {
+    composerTimelineActive.textContent = describeComposerTimelineState(timeSeconds, documentData);
+  }
+}
+
 function updateComposerPlaybackState(now) {
   if (!composerCurrentDocument || !composerPlaybackState.playing) {
     composerPlaybackState.lastTickMs = now;
@@ -1327,7 +1483,9 @@ function updateComposerViewportFromDocument(documentData) {
   composerPlaybackState.pauseRemaining = 0;
   composerPlaybackState.playing = true;
   composerPlaybackState.lastTickMs = 0;
+  renderComposerTimeline(documentData);
   updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
+  updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
 }
 
 function updateComposerCameraFlightDisplay() {
@@ -1457,6 +1615,7 @@ function renderComposerCanvas() {
   updateComposerCameraFlightPreview(now);
   const playheadSeconds = updateComposerPlaybackState(now);
   updateComposerAnimatedViewport(playheadSeconds);
+  updateComposerTimelinePlayhead(playheadSeconds, composerCurrentDocument);
   composerRenderer.render(composerScene, composerCamera);
 }
 

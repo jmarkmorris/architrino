@@ -1105,6 +1105,114 @@ body {
   color: rgba(245, 247, 255, 0.75);
 }
 
+.composer-timeline-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 170, 220, 0.18);
+  background: rgba(10, 12, 24, 0.72);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
+.composer-timeline-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 255, 0.82);
+}
+
+.composer-timeline-active {
+  color: rgba(154, 240, 201, 0.92);
+}
+
+.composer-timeline-track {
+  position: relative;
+  height: 28px;
+  border-radius: 999px;
+  overflow: visible;
+  border: 1px solid rgba(160, 170, 220, 0.18);
+  background:
+    linear-gradient(180deg, rgba(18, 24, 42, 0.95), rgba(12, 16, 28, 0.95)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 0,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 24px
+    );
+}
+
+.composer-timeline-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.composer-timeline-band {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  min-width: 2px;
+  border-radius: 999px;
+}
+
+.composer-timeline-band.is-warp {
+  background: rgba(64, 170, 255, 0.28);
+  border: 1px solid rgba(110, 195, 255, 0.55);
+}
+
+.composer-timeline-band.is-pause {
+  background: rgba(255, 180, 84, 0.28);
+  border: 1px solid rgba(255, 205, 120, 0.65);
+}
+
+.composer-timeline-marker {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  width: 2px;
+  border-radius: 999px;
+  background: rgba(230, 234, 255, 0.92);
+}
+
+.composer-timeline-marker-label {
+  position: absolute;
+  top: -16px;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 255, 0.68);
+  white-space: nowrap;
+}
+
+.composer-timeline-marker.is-edge-start .composer-timeline-marker-label {
+  transform: translateX(0);
+}
+
+.composer-timeline-marker.is-edge-end .composer-timeline-marker-label {
+  transform: translateX(-100%);
+}
+
+.composer-timeline-playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(154, 240, 201, 0.92));
+  box-shadow: 0 0 12px rgba(154, 240, 201, 0.65);
+  transform: translateX(-1px);
+}
+
 .composer-control-grid {
   display: grid;
   gap: 12px;
