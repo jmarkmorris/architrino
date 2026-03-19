@@ -6,6 +6,10 @@ import { createMarkdownRuntime } from "./src/runtime/MarkdownRuntime.js";
 import { createNodeFactory } from "./src/runtime/NodeFactoryRuntime.js";
 import { createComposerUiRuntime } from "./src/runtime/ComposerUiRuntime.js";
 import { createComposerControlsUiRuntime } from "./src/runtime/ComposerControlsUiRuntime.js";
+import {
+  buildComposerPreviewSceneData,
+  createComposerSceneDocument,
+} from "./src/runtime/Composer2SceneDocumentRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
@@ -482,9 +486,8 @@ function readComposerFormState() {
   return { id, name, nodeCount, labels };
 }
 
-function buildComposerSceneData(state, options = {}) {
-  const sceneId = options.sceneId ?? state.id;
-  const sceneTitle = options.sceneTitle ?? state.name;
+function readComposerDraftState() {
+  const state = readComposerFormState();
   if (!composerPathState.points.length) {
     resetComposerPathPoints();
   }
@@ -505,61 +508,33 @@ function buildComposerSceneData(state, options = {}) {
       Number(waypoint.lookAt.z.toFixed(3)),
     ],
   }));
-  const objects = state.labels.map((label, index) => ({
-    id: `node_${index + 1}`,
-    title: label,
-    radius: 1.1,
-    color: composerPalette[index % composerPalette.length],
-    position: [0, 0, 0],
-    wrapLabel: true,
-  }));
   return {
-    schemaVersion: "0.1",
-    scene: {
-      id: sceneId,
-      title: sceneTitle,
-      type: "Scene-Diagram",
-      units: "relative",
-      wrapLabels: true,
-      hideScaleLabels: true,
-      layout: {
-        type: "rings",
-      },
-      composer: {
-        schemaVersion: "0.1.0",
-        frame: { space: "relative", relativeTo: "parent" },
-        path: {
-          kind: "points",
-          frame: { space: "relative", relativeTo: "parent" },
-          payload: {
-            points: pathPoints,
-            interpolate: composerPathState.interpolate,
-            closed: composerPathState.closed,
-          },
-        },
-        cameraPath: cameraWaypoints.length
-          ? {
-              mode: "waypoints",
-              frame: { space: "relative", relativeTo: "parent" },
-              smooth: "spline",
-              points: cameraWaypoints,
-            }
-          : undefined,
-        annotations: { label: state.name },
-      },
-    },
-    objects,
-    links: [],
+    ...state,
+    pathPoints,
+    pathInterpolate: composerPathState.interpolate,
+    pathClosed: composerPathState.closed,
+    cameraWaypoints,
   };
+}
+
+function buildComposerDocumentData(draftState, options = {}) {
+  return createComposerSceneDocument(draftState, options);
+}
+
+function buildComposerPreviewData(documentData, options = {}) {
+  return buildComposerPreviewSceneData(documentData, {
+    palette: composerPalette,
+    ...options,
+  });
 }
 
 function renderComposerJsonPreview() {
   if (!composerJsonPreview) {
     return;
   }
-  const state = readComposerFormState();
-  const sceneData = buildComposerSceneData(state);
-  composerJsonPreview.textContent = JSON.stringify(sceneData, null, 2);
+  const draftState = readComposerDraftState();
+  const documentData = buildComposerDocumentData(draftState);
+  composerJsonPreview.textContent = JSON.stringify(documentData, null, 2);
 }
 
 function setComposerStatus(message) {
@@ -3668,8 +3643,9 @@ const composerUiRuntime = createComposerUiRuntime({
   renderComposerJsonPreview,
   stopComposerCameraFlightPreview,
   showMarkdownPanel: (level) => markdownRuntime.showMarkdownPanel(level),
-  readComposerFormState,
-  buildComposerSceneData,
+  readComposerDraftState,
+  buildComposerSceneDocument: buildComposerDocumentData,
+  buildComposerPreviewSceneData: buildComposerPreviewData,
   jumpToScene,
   setComposerStatus,
   setComposerNeedsResize: (value) => {
