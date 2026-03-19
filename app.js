@@ -852,6 +852,12 @@ function clearComposerViewportVisuals() {
     line.material?.dispose?.();
   });
   composerAxisGuideLines = [];
+  composerOrbitParticleMeshes.forEach((mesh) => {
+    composerViewportGroup?.remove(mesh);
+    mesh.geometry?.dispose?.();
+    mesh.material?.dispose?.();
+  });
+  composerOrbitParticleMeshes = [];
 }
 
 function computeComposerAssemblyBasePosition(assembly, index, count, pathById) {
@@ -882,6 +888,184 @@ function computeComposerAssemblyBasePosition(assembly, index, count, pathById) {
   const angle = (index / count) * Math.PI * 2;
   const radius = 1.6 + count * 0.08;
   return new THREE.Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+}
+
+function getComposerSceneTimeWindow(documentData) {
+  const sceneTime = documentData?.scene?.time ?? {};
+  const start = Number(sceneTime.start ?? 0);
+  const end = Number(sceneTime.end ?? Math.max(12, start + 1));
+  return {
+    start,
+    end: end > start ? end : start + 1,
+    loop: !!sceneTime.loop,
+    playbackRate: Number(sceneTime.playbackRate ?? 1) || 1,
+  };
+}
+
+function sampleComposerPointAt(points, normalizedT) {
+  if (!Array.isArray(points) || !points.length) {
+    return new THREE.Vector3();
+  }
+  if (points.length === 1) {
+    const [x = 0, y = 0, z = 0] = points[0];
+    return new THREE.Vector3(x, y, z);
+  }
+  const clamped = clamp(normalizedT, 0, 1);
+  const scaled = clamped * (points.length - 1);
+  const baseIndex = Math.floor(scaled);
+  const nextIndex = Math.min(points.length - 1, baseIndex + 1);
+  const localT = scaled - baseIndex;
+  const from = points[baseIndex];
+  const to = points[nextIndex];
+  return new THREE.Vector3(
+    THREE.MathUtils.lerp(from[0] ?? 0, to[0] ?? 0, localT),
+    THREE.MathUtils.lerp(from[1] ?? 0, to[1] ?? 0, localT),
+    THREE.MathUtils.lerp(from[2] ?? 0, to[2] ?? 0, localT)
+  );
+}
+
+function getComposerPlaybackRateAtTime(documentData, timeSeconds) {
+  const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const activeWarp = timeWarps.find((warp) => timeSeconds >= warp.start && timeSeconds < warp.end);
+  return Number(activeWarp?.rate ?? 1) || 1;
+}
+
+function updateComposerPlaybackState(now) {
+  if (!composerCurrentDocument || !composerPlaybackState.playing) {
+    composerPlaybackState.lastTickMs = now;
+    return composerPlaybackState.playheadSeconds;
+  }
+  if (!composerPlaybackState.lastTickMs) {
+    composerPlaybackState.lastTickMs = now;
+    return composerPlaybackState.playheadSeconds;
+  }
+  const deltaSeconds = Math.max(0, (now - composerPlaybackState.lastTickMs) / 1000);
+  composerPlaybackState.lastTickMs = now;
+
+  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
+  if (composerPlaybackState.playheadSeconds < timeWindow.start) {
+    composerPlaybackState.playheadSeconds = timeWindow.start;
+  }
+
+  if (composerPlaybackState.pauseRemaining > 0) {
+    composerPlaybackState.pauseRemaining = Math.max(
+      0,
+      composerPlaybackState.pauseRemaining - deltaSeconds
+    );
+    return composerPlaybackState.playheadSeconds;
+  }
+
+  const sceneRate = timeWindow.playbackRate;
+  const warpRate = getComposerPlaybackRateAtTime(
+    composerCurrentDocument,
+    composerPlaybackState.playheadSeconds
+  );
+  const step = deltaSeconds * sceneRate * warpRate;
+  const pauses = Array.isArray(composerCurrentDocument?.scene?.pauses)
+    ? composerCurrentDocument.scene.pauses
+    : [];
+  const nextPause = pauses.find(
+    (pause) =>
+      composerPlaybackState.playheadSeconds < pause.start &&
+      composerPlaybackState.playheadSeconds + step >= pause.start
+  );
+  if (nextPause) {
+    composerPlaybackState.playheadSeconds = nextPause.start;
+    composerPlaybackState.pauseRemaining = Number(nextPause.duration ?? 0);
+    return composerPlaybackState.playheadSeconds;
+  }
+
+  composerPlaybackState.playheadSeconds += step;
+  if (composerPlaybackState.playheadSeconds > timeWindow.end) {
+    if (timeWindow.loop) {
+      composerPlaybackState.playheadSeconds = timeWindow.start;
+      composerPlaybackState.pauseRemaining = 0;
+    } else {
+      composerPlaybackState.playheadSeconds = timeWindow.end;
+      composerPlaybackState.playing = false;
+    }
+  }
+  return composerPlaybackState.playheadSeconds;
+}
+
+function updateComposerAnimatedViewport(timeSeconds) {
+  if (!composerCurrentDocument) {
+    return;
+  }
+  const paths = Array.isArray(composerCurrentDocument.paths) ? composerCurrentDocument.paths : [];
+  const pathById = new Map(paths.map((path) => [path.id, path]));
+  const assemblies = Array.isArray(composerCurrentDocument.assemblies)
+    ? composerCurrentDocument.assemblies
+    : [];
+  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
+  const normalizedSceneT =
+    timeWindow.end > timeWindow.start
+      ? clamp((timeSeconds - timeWindow.start) / (timeWindow.end - timeWindow.start), 0, 1)
+      : 0;
+  const assemblyCenters = new Map();
+
+  composerAssemblyMeshes.forEach((mesh, index) => {
+    const assembly = assemblies[index];
+    if (!assembly) {
+      return;
+    }
+    const motions = Array.isArray(assembly.motion)
+      ? assembly.motion
+      : assembly.motion
+        ? [assembly.motion]
+        : [];
+    const transportMotion = motions.find((motion) => motion?.type === "path.transport");
+    let center = computeComposerAssemblyBasePosition(assembly, index, assemblies.length, pathById);
+    if (transportMotion?.pathId && pathById.has(transportMotion.pathId)) {
+      const path = pathById.get(transportMotion.pathId);
+      const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
+      if (points.length) {
+        const motionT = clamp(
+          normalizedSceneT * (Number(transportMotion.speed ?? 1) || 1) + Number(transportMotion.phase ?? 0),
+          0,
+          1
+        );
+        center = sampleComposerPointAt(points, motionT);
+      }
+    }
+    mesh.position.copy(center);
+    assemblyCenters.set(assembly.id, center);
+  });
+
+  composerOrbitTraceLines.forEach((line) => {
+    const assemblyId = line.userData.assemblyId;
+    const center = assemblyCenters.get(assemblyId);
+    if (center) {
+      line.position.copy(center);
+    }
+  });
+
+  composerAxisGuideLines.forEach((line) => {
+    const assemblyId = line.userData.assemblyId;
+    const center = assemblyCenters.get(assemblyId);
+    if (center) {
+      line.position.copy(center);
+    }
+  });
+
+  composerOrbitParticleMeshes.forEach((mesh) => {
+    const assemblyId = mesh.userData.assemblyId;
+    const center = assemblyCenters.get(assemblyId);
+    const motion = mesh.userData.motion;
+    if (!center || motion?.type !== "orbit.circular") {
+      return;
+    }
+    const radius = Number(motion.radius ?? 0.65);
+    const frequency = Number(motion.frequencyHz ?? 0.25);
+    const phase = Number(motion.phase ?? 0);
+    const direction = motion.direction === "cw" ? -1 : 1;
+    const angle = phase + direction * timeSeconds * Math.PI * 2 * frequency;
+    mesh.position.set(
+      center.x + Math.cos(angle) * radius,
+      center.y,
+      center.z + Math.sin(angle) * radius
+    );
+  });
 }
 
 function addComposerOrbitTrace(center, motion, color) {
@@ -928,8 +1112,8 @@ function addComposerAxisGuide(center, axisGuide) {
   const length = Number(axisGuide.length ?? 1.2);
   const half = axis.clone().multiplyScalar(length * 0.5);
   const geometry = new THREE.BufferGeometry().setFromPoints([
-    center.clone().sub(half),
-    center.clone().add(half),
+    half.clone().multiplyScalar(-1),
+    half.clone(),
   ]);
   const material = new THREE.LineBasicMaterial({
     color: axisGuide.style?.stroke ?? 0xcbd5e1,
@@ -937,11 +1121,32 @@ function addComposerAxisGuide(center, axisGuide) {
     opacity: axisGuide.style?.strokeOpacity ?? 0.75,
   });
   const line = new THREE.Line(geometry, material);
+  line.position.copy(center);
+  line.userData.axisGuide = axisGuide;
   composerViewportGroup?.add(line);
   composerAxisGuideLines.push(line);
 }
 
+function addComposerOrbitParticle(center, motion, color) {
+  if (motion?.type !== "orbit.circular") {
+    return;
+  }
+  const mesh = new THREE.Mesh(
+    new THREE.SphereGeometry(0.055, 16, 12),
+    new THREE.MeshBasicMaterial({
+      color,
+      transparent: true,
+      opacity: 0.95,
+    })
+  );
+  mesh.position.copy(center);
+  mesh.userData.motion = motion;
+  composerViewportGroup?.add(mesh);
+  composerOrbitParticleMeshes.push(mesh);
+}
+
 function updateComposerViewportFromDocument(documentData) {
+  const previousSceneId = composerCurrentDocument?.scene?.id ?? null;
   composerCurrentDocument = documentData;
   if (!composerViewportGroup || !composerPathGeometry) {
     return;
@@ -976,17 +1181,59 @@ function updateComposerViewportFromDocument(documentData) {
     });
     const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 22, 18), material);
     mesh.position.copy(center);
+    mesh.userData.assemblyId = assembly.id;
     composerViewportGroup.add(mesh);
     composerAssemblyMeshes.push(mesh);
 
     const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
     binaries.forEach((binary) => {
+      const orbitLineCount = composerOrbitTraceLines.length;
+      const orbitParticleCount = composerOrbitParticleMeshes.length;
+      const axisLineCount = composerAxisGuideLines.length;
       if (binary?.motion?.type === "orbit.circular") {
         addComposerOrbitTrace(center, binary.motion, color);
+        const orbitLine =
+          composerOrbitTraceLines.length > orbitLineCount
+            ? composerOrbitTraceLines[composerOrbitTraceLines.length - 1]
+            : null;
+        if (orbitLine) {
+          orbitLine.userData.assemblyId = assembly.id;
+          orbitLine.userData.motion = binary.motion;
+        }
+        addComposerOrbitParticle(center, binary.motion, color);
+        const orbitParticle =
+          composerOrbitParticleMeshes.length > orbitParticleCount
+            ? composerOrbitParticleMeshes[composerOrbitParticleMeshes.length - 1]
+            : null;
+        if (orbitParticle) {
+          orbitParticle.userData.assemblyId = assembly.id;
+        }
       }
       addComposerAxisGuide(center, binary?.axisGuide);
+      const axisLine =
+        composerAxisGuideLines.length > axisLineCount
+          ? composerAxisGuideLines[composerAxisGuideLines.length - 1]
+          : null;
+      if (axisLine) {
+        axisLine.userData.assemblyId = assembly.id;
+      }
     });
   });
+
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  if (composerPlaybackState.playheadSeconds < timeWindow.start || previousSceneId !== documentData?.scene?.id) {
+    composerPlaybackState.playheadSeconds = timeWindow.start;
+  } else {
+    composerPlaybackState.playheadSeconds = clamp(
+      composerPlaybackState.playheadSeconds,
+      timeWindow.start,
+      timeWindow.end
+    );
+  }
+  composerPlaybackState.pauseRemaining = 0;
+  composerPlaybackState.playing = true;
+  composerPlaybackState.lastTickMs = 0;
+  updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
 }
 
 function updateComposerCameraFlightDisplay() {
@@ -1112,7 +1359,10 @@ function renderComposerCanvas() {
   if (composerNeedsResize) {
     resizeComposerCanvas();
   }
-  updateComposerCameraFlightPreview(performance.now());
+  const now = performance.now();
+  updateComposerCameraFlightPreview(now);
+  const playheadSeconds = updateComposerPlaybackState(now);
+  updateComposerAnimatedViewport(playheadSeconds);
   composerRenderer.render(composerScene, composerCamera);
 }
 
@@ -1528,7 +1778,14 @@ let composerCameraWaypointMaterial = null;
 let composerAssemblyMeshes = [];
 let composerOrbitTraceLines = [];
 let composerAxisGuideLines = [];
+let composerOrbitParticleMeshes = [];
 let composerCurrentDocument = null;
+const composerPlaybackState = {
+  playing: true,
+  playheadSeconds: 0,
+  pauseRemaining: 0,
+  lastTickMs: 0,
+};
 
 const levels = new Map();
 const navigationStack = [];

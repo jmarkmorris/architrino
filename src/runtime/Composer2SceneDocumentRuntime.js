@@ -67,6 +67,40 @@ function createDefaultAssemblyCore(assemblyId) {
   };
 }
 
+function createDefaultMarkers(rawMarkers, start, end) {
+  if (Array.isArray(rawMarkers) && rawMarkers.length) {
+    return rawMarkers;
+  }
+  const midpoint = roundNumber(start + (end - start) * 0.5);
+  return [
+    { id: "marker_start", t: start, kind: "chapter", label: "Start" },
+    { id: "marker_focus", t: midpoint, kind: "cue", label: "Focus" },
+  ];
+}
+
+function createDefaultCameraShots(rawCameraShots, cameraPathId, start, end) {
+  if (Array.isArray(rawCameraShots) && rawCameraShots.length) {
+    return rawCameraShots;
+  }
+  if (!cameraPathId) {
+    return [];
+  }
+  return [
+    {
+      id: "shot_main",
+      timing: {
+        start,
+        fadeIn: 0,
+        hold: Math.max(0, end - start),
+        fadeOut: 0,
+      },
+      cameraPath: cameraPathId,
+      kind: "follow",
+      framing: "medium",
+    },
+  ];
+}
+
 export function normalizeComposerSceneDocument(rawDocument = {}) {
   const rawScene = rawDocument.scene ?? {};
   const rawControls = rawScene.controls ?? {};
@@ -77,6 +111,10 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
   const labels = normalizeLabels(rawDocument.labels, rawDocument.nodeCount);
   const primaryPathId = pathPoints.length ? "path_main" : null;
   const primaryCameraPathId = cameraWaypoints.length ? "camera_main" : null;
+  const rawTime = rawScene.time ?? {};
+  const sceneStart = Number(rawTime.start ?? 0);
+  const sceneEnd = Number(rawTime.end ?? 12);
+  const normalizedSceneEnd = sceneEnd > sceneStart ? sceneEnd : sceneStart + 12;
   const assemblies =
     Array.isArray(rawDocument.assemblies) && rawDocument.assemblies.length
       ? rawDocument.assemblies
@@ -110,11 +148,11 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
       mode: rawScene.mode ?? "3d",
       time: {
         timeBase: "seconds",
-        start: 0,
-        end: 12,
+        start: sceneStart,
+        end: normalizedSceneEnd,
         playbackRate: 1,
         loop: false,
-        ...(rawScene.time ?? {}),
+        ...rawTime,
       },
       view: {
         activeCameraPath: primaryCameraPathId ?? undefined,
@@ -132,7 +170,7 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
       },
       pauses: Array.isArray(rawScene.pauses) ? rawScene.pauses : [],
       timeWarps: Array.isArray(rawScene.timeWarps) ? rawScene.timeWarps : [],
-      markers: Array.isArray(rawScene.markers) ? rawScene.markers : [],
+      markers: createDefaultMarkers(rawScene.markers, sceneStart, normalizedSceneEnd),
       publication: rawScene.publication ?? { status: "draft" },
     },
     assets: Array.isArray(rawDocument.assets) ? rawDocument.assets : [],
@@ -167,7 +205,12 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
           },
         ]
       : [],
-    cameraShots: Array.isArray(rawDocument.cameraShots) ? rawDocument.cameraShots : [],
+    cameraShots: createDefaultCameraShots(
+      rawDocument.cameraShots,
+      primaryCameraPathId,
+      sceneStart,
+      normalizedSceneEnd
+    ),
     cameraTransitions: Array.isArray(rawDocument.cameraTransitions)
       ? rawDocument.cameraTransitions
       : [],
