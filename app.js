@@ -356,6 +356,68 @@ function vectorFromTriplet(source) {
   return new THREE.Vector3(source?.x ?? 0, source?.y ?? 0, source?.z ?? 0);
 }
 
+function createComposerPointLabelTexture(text, isActive = false) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 96;
+  canvas.height = 64;
+  const context = canvas.getContext("2d");
+  if (context) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = isActive ? "rgba(13, 24, 42, 0.96)" : "rgba(20, 24, 40, 0.92)";
+    context.strokeStyle = isActive ? "rgba(125, 211, 252, 0.95)" : "rgba(255, 194, 106, 0.75)";
+    context.lineWidth = 4;
+    const x = 8;
+    const y = 8;
+    const width = canvas.width - 16;
+    const height = canvas.height - 16;
+    const radius = 18;
+    context.beginPath();
+    context.moveTo(x + radius, y);
+    context.lineTo(x + width - radius, y);
+    context.quadraticCurveTo(x + width, y, x + width, y + radius);
+    context.lineTo(x + width, y + height - radius);
+    context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    context.lineTo(x + radius, y + height);
+    context.quadraticCurveTo(x, y + height, x, y + height - radius);
+    context.lineTo(x, y + radius);
+    context.quadraticCurveTo(x, y, x + radius, y);
+    context.closePath();
+    context.fill();
+    context.stroke();
+    context.fillStyle = isActive ? "rgba(214, 243, 255, 0.98)" : "rgba(255, 216, 148, 0.98)";
+    context.font = "700 28px sans-serif";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillText(text, canvas.width / 2, canvas.height / 2 + 1);
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function updateComposerPointLabelSprite(sprite, text, isActive = false) {
+  if (!sprite) {
+    return;
+  }
+  const previousMap = sprite.material?.map ?? null;
+  const nextTexture = createComposerPointLabelTexture(text, isActive);
+  sprite.material.map = nextTexture;
+  sprite.material.needsUpdate = true;
+  previousMap?.dispose?.();
+}
+
+function createComposerPointLabelSprite(text) {
+  const material = new THREE.SpriteMaterial({
+    map: createComposerPointLabelTexture(text, false),
+    transparent: true,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(0.42, 0.28, 1);
+  return sprite;
+}
+
 function formatScaleLabel(value) {
   const normalized = Number.isFinite(value) ? value : 1;
   if (normalized >= 1000 || normalized <= 0.001) {
@@ -521,9 +583,9 @@ function updateComposerPointMaterials(activeIndex = null) {
     const isActive =
       index === activeIndex || index === composerSelectedPointIndex;
     mesh.material = isActive ? composerPointMaterialActive : composerPointMaterial;
-    const labelElement = mesh.userData.pointLabelElement;
-    if (labelElement) {
-      labelElement.classList.toggle("is-active", isActive);
+    const labelSprite = mesh.userData.pointLabelSprite;
+    if (labelSprite) {
+      updateComposerPointLabelSprite(labelSprite, String(index + 1), isActive);
     }
   });
   updateComposerCameraPoiStatus();
@@ -1017,19 +1079,21 @@ function rebuildComposerControlPoints() {
     return;
   }
   composerPointMeshes.forEach((mesh) => {
+    const labelSprite = mesh.userData.pointLabelSprite;
+    if (labelSprite?.material?.map) {
+      labelSprite.material.map.dispose?.();
+    }
+    labelSprite?.material?.dispose?.();
     composerFrameGroup.remove(mesh);
   });
   composerPointMeshes = composerPathState.points.map((point, index) => {
     const mesh = new THREE.Mesh(composerPointGeometry, composerPointMaterial);
     mesh.position.copy(point);
     mesh.userData.pointIndex = index;
-    const labelElement = document.createElement("div");
-    labelElement.className = "composer-point-label";
-    labelElement.textContent = String(index + 1);
-    mesh.userData.pointLabelElement = labelElement;
-    const labelObject = new CSS2DObject(labelElement);
-    labelObject.position.set(0, 0.18, 0);
-    mesh.add(labelObject);
+    const labelSprite = createComposerPointLabelSprite(String(index + 1));
+    labelSprite.position.set(0, 0.2, 0);
+    mesh.userData.pointLabelSprite = labelSprite;
+    mesh.add(labelSprite);
     composerFrameGroup.add(mesh);
     return mesh;
   });
