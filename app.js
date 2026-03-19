@@ -139,15 +139,18 @@ const composerMarkerListInput = document.getElementById("composer-marker-list");
 const composerPauseListInput = document.getElementById("composer-pause-list");
 const composerWarpListInput = document.getElementById("composer-warp-list");
 const composerTransferListInput = document.getElementById("composer-transfer-list");
+const composerReactionListInput = document.getElementById("composer-reaction-list");
 const composerMarkerStatus = document.getElementById("composer-marker-status");
 const composerPauseStatus = document.getElementById("composer-pause-status");
 const composerWarpStatus = document.getElementById("composer-warp-status");
 const composerTransferStatus = document.getElementById("composer-transfer-status");
+const composerReactionStatus = document.getElementById("composer-reaction-status");
 const composerTimelineSummary = document.getElementById("composer-timeline-summary");
 const composerTimelineActive = document.getElementById("composer-timeline-active");
 const composerTimelineTrack = document.getElementById("composer-timeline-track");
 const composerTimelineWarps = document.getElementById("composer-timeline-warps");
 const composerTimelinePauses = document.getElementById("composer-timeline-pauses");
+const composerTimelineReactions = document.getElementById("composer-timeline-reactions");
 const composerTimelineMarkers = document.getElementById("composer-timeline-markers");
 const composerTimelinePlayhead = document.getElementById("composer-timeline-playhead");
 const composerLibraryStorageKey = "architrino.composer.library.v1";
@@ -478,6 +481,75 @@ function formatComposerTransferList(transfers = []) {
       const target = `${transfer?.target?.assemblyId ?? ""}.${transfer?.target?.memberId ?? ""}`;
       const suffix = Number.isFinite(Number(transfer?.t)) ? ` @ ${Number(transfer.t)}` : "";
       return `${source} -> ${target}${suffix}`;
+    })
+    .join("\n");
+}
+
+function normalizeComposerReactionTransferRef(rawRef, transferById) {
+  const token = String(rawRef ?? "").trim();
+  if (!token) {
+    return null;
+  }
+  const explicitId = sanitizeComposerEntityId(token, "");
+  if (explicitId && transferById.has(explicitId)) {
+    return explicitId;
+  }
+  if (/^\d+$/.test(token)) {
+    const lineId = `transfer_authored_${Number(token)}`;
+    return transferById.has(lineId) ? lineId : null;
+  }
+  return null;
+}
+
+function parseComposerReactions(rawText, transfers = [], duration = 12) {
+  const transferById = new Map(
+    (Array.isArray(transfers) ? transfers : []).map((transfer) => [transfer?.id, transfer])
+  );
+  return parseComposerTimingLines(rawText, (line, lineNumber) => {
+    const match = line.match(/^(.+?)\s*@\s*(-?\d*\.?\d+)\s*-\s*(-?\d*\.?\d+)\s*:\s*(.+)$/);
+    if (!match) {
+      return null;
+    }
+    const [, rawLabel, rawStart, rawEnd, rawTransfers] = match;
+    const start = clamp(Number(Number(rawStart).toFixed(3)), 0, duration);
+    const end = clamp(Number(Number(rawEnd).toFixed(3)), 0, duration);
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+      return null;
+    }
+    const transferIds = rawTransfers
+      .split(",")
+      .map((part) => normalizeComposerReactionTransferRef(part, transferById))
+      .filter(Boolean);
+    if (!transferIds.length) {
+      return null;
+    }
+    return {
+      id: `reaction_authored_${lineNumber}`,
+      label: rawLabel.trim() || `Reaction ${lineNumber}`,
+      start,
+      end,
+      transferIds: [...new Set(transferIds)],
+    };
+  });
+}
+
+function formatComposerReactionTransferRefs(transferIds = []) {
+  return transferIds
+    .map((transferId) => {
+      const match = String(transferId ?? "").match(/^transfer_authored_(\d+)$/);
+      return match ? match[1] : transferId;
+    })
+    .join(", ");
+}
+
+function formatComposerReactionList(reactions = []) {
+  return reactions
+    .map((reaction) => {
+      const label = reaction?.label ?? reaction?.id ?? "reaction";
+      const start = Number(reaction?.start ?? reaction?.timing?.start ?? 0);
+      const end = Number(reaction?.end ?? reaction?.timing?.end ?? 0);
+      const transferRefs = formatComposerReactionTransferRefs(reaction?.transferIds);
+      return `${label} @ ${start}-${end}: ${transferRefs}`;
     })
     .join("\n");
 }
@@ -1063,12 +1135,14 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
+  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
 
   const markerCount = diagnostics?.markerHasInput
     ? markers.filter((marker) => marker.id !== "marker_start").length
     : 0;
   const pauseCount = diagnostics?.pauseHasInput ? pauses.length : 0;
   const warpCount = diagnostics?.warpHasInput ? timeWarps.length : 0;
+  const reactionCount = diagnostics?.reactionHasInput ? reactions.length : 0;
 
   const markerStatus = formatComposerInlineTimingStatus("marker", diagnostics, markerCount);
   const pauseStatus = formatComposerInlineTimingStatus("pause", diagnostics, pauseCount);
@@ -1088,6 +1162,23 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
           text: `Parsed ${transfers.length} transfer${transfers.length === 1 ? "" : "s"}.`,
           invalid: false,
         };
+  const reactionErrors = Array.isArray(diagnostics?.reactionErrorLines)
+    ? diagnostics.reactionErrorLines
+    : [];
+  const reactionHasInput = !!diagnostics?.reactionHasInput;
+  const reactionStatus = !reactionHasInput
+    ? { text: "No reactions staged.", invalid: false }
+    : reactionErrors.length
+      ? {
+          text: `Parsed ${reactionCount} reaction stage${reactionCount === 1 ? "" : "s"}. Ignored invalid line${
+            reactionErrors.length === 1 ? "" : "s"
+          } ${reactionErrors.join(", ")}.`,
+          invalid: true,
+        }
+      : {
+          text: `Parsed ${reactionCount} reaction stage${reactionCount === 1 ? "" : "s"}.`,
+          invalid: false,
+        };
 
   if (composerMarkerStatus) {
     composerMarkerStatus.textContent = markerStatus.text;
@@ -1105,6 +1196,10 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
     composerTransferStatus.textContent = transferStatus.text;
     composerTransferStatus.classList.toggle("is-invalid", transferStatus.invalid);
   }
+  if (composerReactionStatus) {
+    composerReactionStatus.textContent = reactionStatus.text;
+    composerReactionStatus.classList.toggle("is-invalid", reactionStatus.invalid);
+  }
 
   if (composerMarkerListInput) {
     composerMarkerListInput.classList.toggle("is-invalid", markerStatus.invalid);
@@ -1117,6 +1212,9 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
   }
   if (composerTransferListInput) {
     composerTransferListInput.classList.toggle("is-invalid", transferStatus.invalid);
+  }
+  if (composerReactionListInput) {
+    composerReactionListInput.classList.toggle("is-invalid", reactionStatus.invalid);
   }
 }
 
@@ -1233,6 +1331,13 @@ function readComposerTimingState() {
 function readComposerDraftState() {
   const state = readComposerFormState();
   const timing = readComposerTimingState();
+  const reactionListRaw = composerReactionListInput?.value ?? "";
+  const reactionHasInput = reactionListRaw.trim().length > 0;
+  const reactionParse = parseComposerReactions(
+    reactionListRaw,
+    state.transfers,
+    Number(timing?.time?.end ?? 12) || 12
+  );
   if (!composerPathState.points.length) {
     resetComposerPathPoints();
   }
@@ -1257,13 +1362,17 @@ function readComposerDraftState() {
     ...state,
     ...timing,
     transfers: state.transfers,
+    reactions: reactionParse.entries,
     markerListRaw: composerMarkerListInput?.value ?? "",
     pauseListRaw: composerPauseListInput?.value ?? "",
     warpListRaw: composerWarpListInput?.value ?? "",
     transferListRaw: composerTransferListInput?.value ?? "",
+    reactionListRaw,
     diagnostics: {
       ...(timing.diagnostics ?? {}),
       ...(state.diagnostics ?? {}),
+      reactionHasInput,
+      reactionErrorLines: reactionParse.errors,
     },
     pathPoints,
     pathInterpolate: composerPathState.interpolate,
@@ -1411,6 +1520,12 @@ function applyComposerDraftState(draftState = {}) {
       typeof draftState.transferListRaw === "string"
         ? draftState.transferListRaw
         : formatComposerTransferList(draftState.transfers);
+  }
+  if (composerReactionListInput) {
+    composerReactionListInput.value =
+      typeof draftState.reactionListRaw === "string"
+        ? draftState.reactionListRaw
+        : formatComposerReactionList(draftState.reactions);
   }
 
   composerPathState.interpolate = draftState.pathInterpolate === "polyline" ? "polyline" : "spline";
@@ -2045,7 +2160,7 @@ function clearComposerTimelineLayer(layer) {
   }
 }
 
-function createComposerTimelineBand(fractionStart, fractionEnd, className, title) {
+function createComposerTimelineBand(fractionStart, fractionEnd, className, title, label = "") {
   const band = document.createElement("div");
   band.className = `composer-timeline-band ${className}`;
   const widthFraction = Math.max(0.002, fractionEnd - fractionStart);
@@ -2053,6 +2168,12 @@ function createComposerTimelineBand(fractionStart, fractionEnd, className, title
   band.style.width = `${widthFraction * 100}%`;
   if (title) {
     band.title = title;
+  }
+  if (label) {
+    const bandLabel = document.createElement("span");
+    bandLabel.className = "composer-timeline-band-label";
+    bandLabel.textContent = label;
+    band.appendChild(bandLabel);
   }
   return band;
 }
@@ -2083,7 +2204,11 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
   const activeWarp = timeWarps.find((warp) => timeSeconds >= warp.start && timeSeconds < warp.end);
+  const activeReaction = reactions.find(
+    (reaction) => timeSeconds >= reaction.start && timeSeconds <= reaction.end
+  );
   const currentCue = [...markers]
     .sort((left, right) => left.t - right.t)
     .filter((marker) => marker.t <= timeSeconds + 0.001)
@@ -2101,7 +2226,22 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   if (activeWarp) {
     parts.push(`Warp ${Number(activeWarp.rate ?? 1).toFixed(2)}x`);
   }
+  if (activeReaction?.label) {
+    parts.push(`Reaction: ${activeReaction.label}`);
+  }
   return parts.join(" | ") || "Steady";
+}
+
+function getComposerActiveReaction(documentData, timeSeconds) {
+  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
+  return (
+    reactions.find((reaction) => timeSeconds >= reaction.start && timeSeconds <= reaction.end) ?? null
+  );
+}
+
+function getComposerActiveReactionTransferIds(documentData, timeSeconds) {
+  const activeReaction = getComposerActiveReaction(documentData, timeSeconds);
+  return new Set(Array.isArray(activeReaction?.transferIds) ? activeReaction.transferIds : []);
 }
 
 function getComposerSortedMarkers(documentData) {
@@ -2157,6 +2297,7 @@ function syncComposerMarkerNavigation(documentData, timeSeconds) {
 function renderComposerTimeline(documentData) {
   clearComposerTimelineLayer(composerTimelineWarps);
   clearComposerTimelineLayer(composerTimelinePauses);
+  clearComposerTimelineLayer(composerTimelineReactions);
   clearComposerTimelineLayer(composerTimelineMarkers);
   if (!documentData || !composerTimelineTrack) {
     return;
@@ -2165,6 +2306,7 @@ function renderComposerTimeline(documentData) {
   const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
 
   timeWarps.forEach((warp) => {
     const start = getComposerTimelineFraction(documentData, warp.start);
@@ -2191,6 +2333,22 @@ function renderComposerTimeline(documentData) {
         end,
         "is-pause",
         `Pause ${formatComposerTimeLabel(pause.duration)} at ${formatComposerTimeLabel(pause.start)}`
+      )
+    );
+  });
+
+  reactions.forEach((reaction) => {
+    const start = getComposerTimelineFraction(documentData, reaction.start);
+    const end = getComposerTimelineFraction(documentData, reaction.end);
+    composerTimelineReactions?.appendChild(
+      createComposerTimelineBand(
+        start,
+        end,
+        "is-reaction",
+        `${reaction.label ?? reaction.id ?? "Reaction"}: ${formatComposerTimeLabel(
+          reaction.start
+        )} to ${formatComposerTimeLabel(reaction.end)}`,
+        reaction.label ?? reaction.id ?? "Reaction"
       )
     );
   });
@@ -2454,6 +2612,11 @@ function updateComposerAnimatedViewport(timeSeconds) {
     }
   });
 
+  const activeReactionTransferIds = getComposerActiveReactionTransferIds(
+    composerCurrentDocument,
+    timeSeconds
+  );
+  const hasReactionFocus = activeReactionTransferIds.size > 0;
   composerTransferLines.forEach((line) => {
     const transfer = line.userData.transfer;
     const sourceCenter = assemblyCenters.get(transfer?.source?.assemblyId);
@@ -2465,8 +2628,15 @@ function updateComposerAnimatedViewport(timeSeconds) {
     line.visible = true;
     line.geometry.setFromPoints([sourceCenter.clone(), targetCenter.clone()]);
     line.computeLineDistances();
-    const isActive = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
-    line.material.opacity = isActive ? 0.82 : 0.32;
+    const isActiveReactionTransfer = transfer?.id && activeReactionTransferIds.has(transfer.id);
+    const isActiveByTime = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
+    line.material.opacity = hasReactionFocus
+      ? isActiveReactionTransfer
+        ? 0.88
+        : 0.16
+      : isActiveByTime
+        ? 0.82
+        : 0.32;
   });
 
   composerAxisGuideLines.forEach((line) => {
@@ -5878,6 +6048,7 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerPauseListInput,
   composerWarpListInput,
   composerTransferListInput,
+  composerReactionListInput,
   composerCameraSpeedInput,
   composerCameraRadiusInput,
   composerCameraResetButton,

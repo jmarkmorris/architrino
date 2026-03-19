@@ -297,6 +297,37 @@
                 </label>
                 <div id="composer-transfer-status" class="composer-inline-status">No transfers authored.</div>
               </div>
+              <div class="composer-card-meta">
+                <span>Reactions</span>
+                <div class="composer-help">
+                  <button
+                    type="button"
+                    class="composer-help-trigger"
+                    aria-label="Show reaction guidance"
+                  >
+                    i
+                  </button>
+                  <div class="composer-help-popover" role="tooltip">
+                    <div class="composer-section-title">Reactions</div>
+                    <ul class="composer-help-list">
+                      <li>Group transfer lines into named timeline stages.</li>
+                      <li>Use `label @ start-end: transfer-lines`.</li>
+                      <li>Example: `handoff @ 5.2-6.4: 1, 2`</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="composer-form">
+                <label class="composer-field">
+                  <span>Reaction Stages</span>
+                  <textarea
+                    id="composer-reaction-list"
+                    rows="3"
+                    placeholder="handoff @ 5.2-6.4: 1, 2"
+                  ></textarea>
+                </label>
+                <div id="composer-reaction-status" class="composer-inline-status">No reactions staged.</div>
+              </div>
             </section>
             <section class="composer-card">
               <h3>Save / Library</h3>
@@ -338,6 +369,7 @@
                 <div id="composer-timeline-track" class="composer-timeline-track">
                   <div id="composer-timeline-warps" class="composer-timeline-layer"></div>
                   <div id="composer-timeline-pauses" class="composer-timeline-layer"></div>
+                  <div id="composer-timeline-reactions" class="composer-timeline-layer"></div>
                   <div id="composer-timeline-markers" class="composer-timeline-layer"></div>
                   <div id="composer-timeline-playhead" class="composer-timeline-playhead"></div>
                 </div>

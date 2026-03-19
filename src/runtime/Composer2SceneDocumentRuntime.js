@@ -90,6 +90,93 @@ function normalizeTransfers(rawTransfers) {
     .filter(Boolean);
 }
 
+function normalizeReactionParticipants(rawParticipants) {
+  if (!Array.isArray(rawParticipants) || !rawParticipants.length) {
+    return [];
+  }
+  return rawParticipants
+    .map((participant) => {
+      const assembly = sanitizeAssemblyId(
+        participant?.assembly ?? participant?.assemblyId,
+        ""
+      );
+      if (!assembly) {
+        return null;
+      }
+      return {
+        assembly,
+        role: normalizeString(participant?.role, "reactant"),
+      };
+    })
+    .filter(Boolean);
+}
+
+function normalizeReactions(rawReactions, transfers, start, end) {
+  if (!Array.isArray(rawReactions) || !rawReactions.length) {
+    return [];
+  }
+  const transferById = new Map(
+    (Array.isArray(transfers) ? transfers : []).map((transfer) => [transfer.id, transfer])
+  );
+  return rawReactions
+    .map((reaction, index) => {
+      const reactionStart = clampNumber(
+        roundNumber(reaction?.start ?? reaction?.timing?.start ?? start),
+        start,
+        end
+      );
+      const reactionEnd = clampNumber(
+        roundNumber(reaction?.end ?? reaction?.timing?.end ?? end),
+        reactionStart,
+        end
+      );
+      if (reactionEnd <= reactionStart) {
+        return null;
+      }
+      const transferIds = Array.isArray(reaction?.transferIds)
+        ? reaction.transferIds
+            .map((transferId) => normalizeString(transferId, ""))
+            .filter((transferId) => transferById.has(transferId))
+        : [];
+      if (!transferIds.length) {
+        return null;
+      }
+      const participantMap = new Map();
+      transferIds.forEach((transferId) => {
+        const transfer = transferById.get(transferId);
+        if (!transfer) {
+          return;
+        }
+        if (transfer.source?.assemblyId) {
+          participantMap.set(transfer.source.assemblyId, {
+            assembly: transfer.source.assemblyId,
+            role: "reactant",
+          });
+        }
+        if (transfer.target?.assemblyId) {
+          participantMap.set(transfer.target.assemblyId, {
+            assembly: transfer.target.assemblyId,
+            role: transfer.target.assemblyId === transfer.source?.assemblyId ? "reactant" : "product",
+          });
+        }
+      });
+      const explicitParticipants = normalizeReactionParticipants(reaction?.participants);
+      explicitParticipants.forEach((participant) => {
+        participantMap.set(participant.assembly, participant);
+      });
+      return {
+        id: normalizeString(reaction?.id, `reaction_${index + 1}`),
+        label: normalizeString(reaction?.label, `Reaction ${index + 1}`),
+        start: reactionStart,
+        end: reactionEnd,
+        transferIds,
+        participants: [...participantMap.values()],
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.start - right.start);
+}
+
 function normalizeMarkers(rawMarkers, start, end) {
   if (!Array.isArray(rawMarkers) || !rawMarkers.length) {
     return createDefaultMarkers(rawMarkers, start, end);
@@ -311,6 +398,7 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
   const sceneEnd = Number(rawTime.end ?? 12);
   const normalizedSceneEnd = sceneEnd > sceneStart ? sceneEnd : sceneStart + 12;
   const assemblies = normalizeAssemblies(rawDocument.assemblies, primaryPathId);
+  const transfers = normalizeTransfers(rawDocument.transfers);
 
   return {
     schemaVersion: rawDocument.schemaVersion ?? "0.1.0",
@@ -394,8 +482,8 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
     teachingPatterns: Array.isArray(rawDocument.teachingPatterns)
       ? rawDocument.teachingPatterns
       : [],
-    reactions: Array.isArray(rawDocument.reactions) ? rawDocument.reactions : [],
-    transfers: normalizeTransfers(rawDocument.transfers),
+    reactions: normalizeReactions(rawDocument.reactions, transfers, sceneStart, normalizedSceneEnd),
+    transfers,
     provenance: Array.isArray(rawDocument.provenance) ? rawDocument.provenance : [],
     checkpoints: Array.isArray(rawDocument.checkpoints) ? rawDocument.checkpoints : [],
     metadata: {
@@ -425,6 +513,7 @@ export function createComposerSceneDocument(input = {}, options = {}) {
     cameraPath: {
       waypoints: input.cameraWaypoints,
     },
+    reactions: input.reactions,
     transfers: input.transfers,
   });
 }
