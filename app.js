@@ -132,6 +132,9 @@ const composerSceneLoopInput = document.getElementById("composer-scene-loop");
 const composerMarkerListInput = document.getElementById("composer-marker-list");
 const composerPauseListInput = document.getElementById("composer-pause-list");
 const composerWarpListInput = document.getElementById("composer-warp-list");
+const composerMarkerStatus = document.getElementById("composer-marker-status");
+const composerPauseStatus = document.getElementById("composer-pause-status");
+const composerWarpStatus = document.getElementById("composer-warp-status");
 const composerTimelineSummary = document.getElementById("composer-timeline-summary");
 const composerTimelineActive = document.getElementById("composer-timeline-active");
 const composerTimelineTrack = document.getElementById("composer-timeline-track");
@@ -553,6 +556,78 @@ function formatComposerTimingStatus(documentData, diagnostics = {}) {
   return `Timing OK: ${parts.join(" • ")}. Ignored invalid ${detail}.`;
 }
 
+function formatComposerInlineTimingStatus(kind, diagnostics = {}, parsedCount = 0) {
+  const invalidLines = Array.isArray(diagnostics?.[`${kind}ErrorLines`])
+    ? diagnostics[`${kind}ErrorLines`]
+    : [];
+  const hasInput = !!diagnostics?.[`${kind}HasInput`];
+  const label =
+    kind === "marker" ? "cue" : kind === "pause" ? "pause" : "warp";
+  if (!hasInput) {
+    if (kind === "marker") {
+      return {
+        text: "Blank cue list. Preview uses default cues.",
+        invalid: false,
+      };
+    }
+    return {
+      text: `No ${label}s authored.`,
+      invalid: false,
+    };
+  }
+  if (invalidLines.length) {
+    return {
+      text: `Parsed ${parsedCount} ${label}${parsedCount === 1 ? "" : "s"}. Ignored invalid line${
+        invalidLines.length === 1 ? "" : "s"
+      } ${invalidLines.join(", ")}.`,
+      invalid: true,
+    };
+  }
+  return {
+    text: `Parsed ${parsedCount} ${label}${parsedCount === 1 ? "" : "s"}.`,
+    invalid: false,
+  };
+}
+
+function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
+  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+
+  const markerCount = diagnostics?.markerHasInput
+    ? markers.filter((marker) => marker.id !== "marker_start").length
+    : 0;
+  const pauseCount = diagnostics?.pauseHasInput ? pauses.length : 0;
+  const warpCount = diagnostics?.warpHasInput ? timeWarps.length : 0;
+
+  const markerStatus = formatComposerInlineTimingStatus("marker", diagnostics, markerCount);
+  const pauseStatus = formatComposerInlineTimingStatus("pause", diagnostics, pauseCount);
+  const warpStatus = formatComposerInlineTimingStatus("warp", diagnostics, warpCount);
+
+  if (composerMarkerStatus) {
+    composerMarkerStatus.textContent = markerStatus.text;
+    composerMarkerStatus.classList.toggle("is-invalid", markerStatus.invalid);
+  }
+  if (composerPauseStatus) {
+    composerPauseStatus.textContent = pauseStatus.text;
+    composerPauseStatus.classList.toggle("is-invalid", pauseStatus.invalid);
+  }
+  if (composerWarpStatus) {
+    composerWarpStatus.textContent = warpStatus.text;
+    composerWarpStatus.classList.toggle("is-invalid", warpStatus.invalid);
+  }
+
+  if (composerMarkerListInput) {
+    composerMarkerListInput.classList.toggle("is-invalid", markerStatus.invalid);
+  }
+  if (composerPauseListInput) {
+    composerPauseListInput.classList.toggle("is-invalid", pauseStatus.invalid);
+  }
+  if (composerWarpListInput) {
+    composerWarpListInput.classList.toggle("is-invalid", warpStatus.invalid);
+  }
+}
+
 function readComposerTimingState() {
   const durationRaw = readNumberInput(composerSceneDurationInput, 12);
   const duration = Math.max(1, Number(durationRaw.toFixed(3)));
@@ -561,6 +636,7 @@ function readComposerTimingState() {
   }
 
   const markerListRaw = composerMarkerListInput?.value ?? "";
+  const markerHasInput = markerListRaw.trim().length > 0;
   const markerParse = parseComposerTimingLines(markerListRaw, (line, lineNumber, entryIndex) => {
     const separatorIndex = line.indexOf(":");
     if (separatorIndex === -1) {
@@ -587,6 +663,7 @@ function readComposerTimingState() {
         ...authoredMarkers,
       ];
   const pauseListRaw = composerPauseListInput?.value ?? "";
+  const pauseHasInput = pauseListRaw.trim().length > 0;
   const pauseParse = parseComposerTimingLines(pauseListRaw, (line, lineNumber) => {
     const parts = line.split(",").map((part) => part.trim());
     if (parts.length !== 2) {
@@ -605,6 +682,7 @@ function readComposerTimingState() {
   const pauses = [...pauseParse.entries].sort((left, right) => left.start - right.start);
 
   const warpListRaw = composerWarpListInput?.value ?? "";
+  const warpHasInput = warpListRaw.trim().length > 0;
   const warpParse = parseComposerTimingLines(warpListRaw, (line, lineNumber) => {
     const parts = line.split(",").map((part) => part.trim());
     if (parts.length !== 3) {
@@ -645,6 +723,12 @@ function readComposerTimingState() {
     pauses,
     timeWarps,
     diagnostics: {
+      markerHasInput,
+      pauseHasInput,
+      warpHasInput,
+      markerErrorLines: markerParse.errors,
+      pauseErrorLines: pauseParse.errors,
+      warpErrorLines: warpParse.errors,
       timingErrors: [
         ...markerParse.errors.map((line) => ({ kind: "cue", line })),
         ...pauseParse.errors.map((line) => ({ kind: "pause", line })),
@@ -702,6 +786,7 @@ function renderComposerJsonPreview() {
   const draftState = readComposerDraftState();
   const documentData = buildComposerDocumentData(draftState);
   updateComposerViewportFromDocument(documentData);
+  updateComposerTimingDiagnostics(documentData, draftState.diagnostics);
   setComposerStatus(formatComposerTimingStatus(documentData, draftState.diagnostics));
   if (composerJsonPreview) {
     composerJsonPreview.textContent = JSON.stringify(documentData, null, 2);
