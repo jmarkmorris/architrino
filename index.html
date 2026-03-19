@@ -242,7 +242,7 @@
                 </label>
               </div>
               <div class="composer-card-meta">
-                <span>Assemblies</span>
+                <span>Assembly Editing</span>
                 <div class="composer-help">
                   <button
                     type="button"
@@ -252,75 +252,89 @@
                     i
                   </button>
                   <div class="composer-help-popover" role="tooltip">
-                    <div class="composer-section-title">Assemblies</div>
+                    <div class="composer-section-title">Assembly Editing</div>
                     <ul class="composer-help-list">
-                      <li>Build nested scenes and assemblies with explicit frames and transforms.</li>
-                      <li>Add, reorder, and group child scenes.</li>
-                      <li>Assign frame anchors and local transforms.</li>
-                      <li>Reuse scene presets for assemblies.</li>
+                      <li>Click or drag the assembly center handle labeled A, B, C, and so on.</li>
+                      <li>Right-click an assembly center handle to edit that assembly.</li>
+                      <li>Right-click empty canvas space to add built-in assemblies or path points.</li>
                     </ul>
                   </div>
                 </div>
-              </div>
-              <div id="composer-assembly-list" class="composer-assembly-list"></div>
-              <div class="composer-button-row composer-button-row-single">
-                <button id="composer-assembly-add" type="button">Add Assembly</button>
-              </div>
-              <div class="composer-card-meta">
-                <span>Transfers</span>
-                <div class="composer-help">
-                  <button
-                    type="button"
-                    class="composer-help-trigger"
-                    aria-label="Show transfer guidance"
-                  >
-                    i
-                  </button>
-                  <div class="composer-help-popover" role="tooltip">
-                    <div class="composer-section-title">Transfers</div>
-                    <ul class="composer-help-list">
-                      <li>Map a member from one assembly to another.</li>
-                      <li>Use `assembly.member -> assembly.member @ time`.</li>
-                      <li>Example: `assembly_1.positrino_1 -> assembly_2.positrino_1 @ 6.0`</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="composer-form">
-                <label class="composer-field">
-                  <span>Transfer Map</span>
-                  <textarea
-                    id="composer-transfer-list"
-                    rows="3"
-                    placeholder="assembly_1.positrino_1 -> assembly_2.positrino_1 @ 6.0"
-                  ></textarea>
-                </label>
-                <div id="composer-transfer-status" class="composer-inline-status">No transfers authored.</div>
               </div>
             </section>
             <section class="composer-card">
+              <div class="composer-section-title">Timing</div>
+              <div class="composer-form composer-form-grid">
+                <label class="composer-field">
+                  <span>Duration (s)</span>
+                  <input id="composer-scene-duration" type="number" min="1" step="0.5" value="12" />
+                </label>
+                <label class="composer-field">
+                  <span>Loop</span>
+                  <input id="composer-scene-loop" type="checkbox" />
+                </label>
+              </div>
+              <div class="composer-form">
+                <label class="composer-field">
+                  <span>Cue List</span>
+                  <textarea
+                    id="composer-marker-list"
+                    rows="3"
+                    placeholder="0: Start&#10;3.5: Shell Lock&#10;7.0: Slow Branch"
+                  ></textarea>
+                </label>
+                <div id="composer-marker-status" class="composer-inline-status">Blank cue list. Preview uses default cues.</div>
+              </div>
+              <div class="composer-form">
+                <label class="composer-field">
+                  <span>Pause List</span>
+                  <textarea
+                    id="composer-pause-list"
+                    rows="2"
+                    placeholder="3.0, 1.0&#10;8.5, 0.6"
+                  ></textarea>
+                </label>
+                <div id="composer-pause-status" class="composer-inline-status">No pauses authored.</div>
+              </div>
+              <div class="composer-form">
+                <label class="composer-field">
+                  <span>Warp List</span>
+                  <textarea
+                    id="composer-warp-list"
+                    rows="2"
+                    placeholder="7.0, 10.0, 0.5&#10;11.0, 12.0, 1.8"
+                  ></textarea>
+                </label>
+                <div id="composer-warp-status" class="composer-inline-status">No warps authored.</div>
+              </div>
+              <p class="composer-hint">Cue list: one `time: label` entry per line. Pause list: `start, duration`. Warp list: `start, end, rate`.</p>
+            </section>
+            <section class="composer-card">
               <h3>Save / Library</h3>
-              <p>Scene ID and Scene Name label the animation. Save stores it in this browser; Export downloads the canonical JSON.</p>
               <div class="composer-button-row">
+                <button id="composer-repo-save-button" type="button">Save to Repo File</button>
                 <button id="composer-library-save" type="button">Save to Library</button>
                 <button id="composer-export-button" type="button">Export JSON</button>
               </div>
               <div class="composer-button-row composer-button-row-single">
                 <button id="composer-preview-button" type="button">Preview Scene</button>
               </div>
-              <label class="composer-field">
-                <span>Saved Scenes</span>
-                <select id="composer-library-select">
-                  <option value="">No saved scenes</option>
-                </select>
-              </label>
-              <div class="composer-button-row">
-                <button id="composer-library-load" type="button">Load Selected</button>
-                <button id="composer-library-delete" type="button">Delete</button>
-              </div>
-              <div id="composer-library-status" class="composer-inline-status">
-                Library storage is browser-local for now.
-              </div>
+              <details class="composer-json-details">
+                <summary>Library</summary>
+                <label class="composer-field">
+                  <span>Saved Scenes</span>
+                  <select id="composer-library-select">
+                    <option value="">No saved scenes</option>
+                  </select>
+                </label>
+                <div class="composer-button-row">
+                  <button id="composer-library-load" type="button">Load Selected</button>
+                  <button id="composer-library-delete" type="button">Delete</button>
+                </div>
+                <div id="composer-library-status" class="composer-inline-status">
+                  Library storage is browser-local for now.
+                </div>
+              </details>
               <details class="composer-json-details">
                 <summary>JSON Preview</summary>
                 <pre id="composer-json-preview" class="composer-json-preview"></pre>
@@ -330,6 +344,7 @@
           <main class="composer-main">
             <div class="composer-canvas-wrap">
               <canvas id="composer-canvas"></canvas>
+              <div id="composer-assembly-menu" class="composer-assembly-menu" aria-hidden="true"></div>
               <div class="composer-timeline-overlay">
                 <div class="composer-timeline-summary">
                   <span id="composer-timeline-summary">0.0s / 12.0s</span>
@@ -338,6 +353,7 @@
                 <div id="composer-timeline-track" class="composer-timeline-track">
                   <div id="composer-timeline-warps" class="composer-timeline-layer"></div>
                   <div id="composer-timeline-pauses" class="composer-timeline-layer"></div>
+                  <div id="composer-timeline-reactions" class="composer-timeline-layer"></div>
                   <div id="composer-timeline-markers" class="composer-timeline-layer"></div>
                   <div id="composer-timeline-playhead" class="composer-timeline-playhead"></div>
                 </div>
@@ -444,62 +460,9 @@
                     <button id="composer-camera-flight-toggle" type="button">Play Flight</button>
                   </label>
                 </div>
-                <div class="composer-button-row">
-                  <button id="composer-camera-waypoint-add" type="button">Add Waypoint</button>
-                  <button id="composer-camera-waypoint-clear" type="button">Clear</button>
-                </div>
                 <div id="composer-camera-poi-status" class="composer-inline-status">
                   Selected point: none. Click one of the numbered amber path points in the canvas to target it.
                 </div>
-                <div id="composer-camera-waypoint-count" class="composer-hint">Waypoints: 0</div>
-                <div class="composer-hint">`Add Waypoint` captures the current camera pose. `Selected Point` only changes what that waypoint looks at.</div>
-              </section>
-              <section class="composer-card">
-                <div class="composer-section-title">Timing</div>
-                <div class="composer-form composer-form-grid">
-                  <label class="composer-field">
-                    <span>Duration (s)</span>
-                    <input id="composer-scene-duration" type="number" min="1" step="0.5" value="12" />
-                  </label>
-                  <label class="composer-field">
-                    <span>Loop</span>
-                    <input id="composer-scene-loop" type="checkbox" />
-                  </label>
-                </div>
-                <div class="composer-form">
-                  <label class="composer-field">
-                    <span>Cue List</span>
-                    <textarea
-                      id="composer-marker-list"
-                      rows="3"
-                      placeholder="0: Start&#10;3.5: Shell Lock&#10;7.0: Slow Branch"
-                    ></textarea>
-                  </label>
-                  <div id="composer-marker-status" class="composer-inline-status">Blank cue list. Preview uses default cues.</div>
-                </div>
-                <div class="composer-form">
-                  <label class="composer-field">
-                    <span>Pause List</span>
-                    <textarea
-                      id="composer-pause-list"
-                      rows="2"
-                      placeholder="3.0, 1.0&#10;8.5, 0.6"
-                    ></textarea>
-                  </label>
-                  <div id="composer-pause-status" class="composer-inline-status">No pauses authored.</div>
-                </div>
-                <div class="composer-form">
-                  <label class="composer-field">
-                    <span>Warp List</span>
-                    <textarea
-                      id="composer-warp-list"
-                      rows="2"
-                      placeholder="7.0, 10.0, 0.5&#10;11.0, 12.0, 1.8"
-                    ></textarea>
-                  </label>
-                  <div id="composer-warp-status" class="composer-inline-status">No warps authored.</div>
-                </div>
-                <p class="composer-hint">Cue list: one `time: label` entry per line. Pause list: `start, duration`. Warp list: `start, end, rate`. Leave any list blank to use defaults or none.</p>
               </section>
             </div>
           </main>

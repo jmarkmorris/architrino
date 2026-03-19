@@ -19,6 +19,82 @@ function normalizePathPoints(points) {
   return source.map((point) => clonePoint(point));
 }
 
+function getAssemblyLetter(index = 0) {
+  let value = Math.max(0, Number(index) || 0);
+  let label = "";
+  do {
+    label = String.fromCharCode(65 + (value % 26)) + label;
+    value = Math.floor(value / 26) - 1;
+  } while (value >= 0);
+  return label;
+}
+
+function normalizeComposerPaths(rawPaths, rawAssemblies) {
+  if (Array.isArray(rawPaths) && rawPaths.length) {
+    return rawPaths
+      .map((rawPath, index) => {
+        const points = normalizePathPoints(rawPath?.payload?.points ?? rawPath?.points);
+        if (!points.length) {
+          return null;
+        }
+        const ownerAssemblyId = rawPath?.metadata?.ownerAssemblyId
+          ? sanitizeAssemblyId(rawPath.metadata.ownerAssemblyId, "")
+          : rawPath?.ownerAssemblyId
+            ? sanitizeAssemblyId(rawPath.ownerAssemblyId, "")
+            : "";
+        const ownerIndex = Array.isArray(rawAssemblies)
+          ? rawAssemblies.findIndex((assembly) => {
+              const assemblyId = sanitizeAssemblyId(
+                assembly?.id ?? assembly?.name,
+                `assembly_${index + 1}`
+              );
+              return assemblyId === ownerAssemblyId;
+            })
+          : -1;
+        return {
+          id: normalizeString(rawPath?.id, `path_${ownerAssemblyId || index + 1}`),
+          kind: rawPath?.kind ?? "points",
+          frame: { space: "relative", ...(rawPath?.frame ?? {}) },
+          style: rawPath?.style ?? { color: "palette:accent-1" },
+          metadata: {
+            ...(rawPath?.metadata ?? {}),
+            ownerAssemblyId: ownerAssemblyId || undefined,
+            labelPrefix: getAssemblyLetter(ownerIndex >= 0 ? ownerIndex : index),
+          },
+          payload: {
+            points,
+            interpolate: rawPath?.payload?.interpolate ?? rawPath?.interpolate ?? "spline",
+            closed: !!(rawPath?.payload?.closed ?? rawPath?.closed),
+          },
+        };
+      })
+      .filter(Boolean);
+  }
+
+  const legacyPoints = normalizePathPoints(rawPaths ?? []);
+  if (!legacyPoints.length) {
+    return [];
+  }
+  const primaryAssemblyId = sanitizeAssemblyId(rawAssemblies?.[0]?.id ?? "assembly_1", "assembly_1");
+  return [
+    {
+      id: "path_main",
+      kind: "points",
+      frame: { space: "relative" },
+      style: { color: "palette:accent-1" },
+      metadata: {
+        ownerAssemblyId: primaryAssemblyId,
+        labelPrefix: "A",
+      },
+      payload: {
+        points: legacyPoints,
+        interpolate: "spline",
+        closed: false,
+      },
+    },
+  ];
+}
+
 function normalizeCameraWaypoints(waypoints) {
   const source = Array.isArray(waypoints) ? waypoints : [];
   return source.map((waypoint, index) => ({
@@ -40,13 +116,69 @@ function sanitizeAssemblyId(raw, fallback) {
   return normalized || fallback;
 }
 
+function normalizeMemberPosition(rawPosition) {
+  if (!Array.isArray(rawPosition) || rawPosition.length < 3) {
+    return null;
+  }
+  const x = Number(rawPosition[0]);
+  const y = Number(rawPosition[1]);
+  const z = Number(rawPosition[2]);
+  if (![x, y, z].every(Number.isFinite)) {
+    return null;
+  }
+  return [roundNumber(x), roundNumber(y), roundNumber(z)];
+}
+
 function normalizeMembers(rawMembers) {
   if (Array.isArray(rawMembers)) {
     return rawMembers
-      .map((member, index) => normalizeString(member, `member_${index + 1}`))
+      .map((member, index) => {
+        if (member && typeof member === "object" && !Array.isArray(member)) {
+          const id = sanitizeAssemblyId(member.id ?? member.name, `member_${index + 1}`);
+          const position = normalizeMemberPosition(member.position);
+          return position ? { id, position } : { id };
+        }
+        return { id: sanitizeAssemblyId(member, `member_${index + 1}`) };
+      })
       .filter(Boolean);
   }
   return [];
+}
+
+function normalizeAssemblyChildren(rawChildren, members = []) {
+  if (!Array.isArray(rawChildren) || !rawChildren.length) {
+    return [];
+  }
+  const memberIds = new Set(
+    (Array.isArray(members) ? members : []).map((member, index) =>
+      typeof member === "object" && member !== null ? member.id : sanitizeAssemblyId(member, `member_${index + 1}`)
+    )
+  );
+  return rawChildren
+    .map((child, index) => {
+      const id = sanitizeAssemblyId(child?.id ?? child?.name, `subassembly_${index + 1}`);
+      const position = clonePoint(child?.position ?? child?.transform?.position ?? [0, 0, 0]);
+      const childMembers = Array.isArray(child?.members)
+        ? child.members
+            .map((memberId, memberIndex) =>
+              typeof memberId === "object" && memberId !== null
+                ? sanitizeAssemblyId(memberId.id, `member_${memberIndex + 1}`)
+                : sanitizeAssemblyId(memberId, `member_${memberIndex + 1}`)
+            )
+            .filter((memberId) => memberIds.has(memberId))
+        : [];
+      if (!childMembers.length) {
+        return null;
+      }
+      return {
+        id,
+        transform: {
+          position,
+        },
+        members: [...new Set(childMembers)],
+      };
+    })
+    .filter(Boolean);
 }
 
 function normalizeTransferEndpoint(rawEndpoint) {
@@ -88,6 +220,162 @@ function normalizeTransfers(rawTransfers) {
       };
     })
     .filter(Boolean);
+}
+
+function normalizeReactionParticipants(rawParticipants) {
+  if (!Array.isArray(rawParticipants) || !rawParticipants.length) {
+    return [];
+  }
+  return rawParticipants
+    .map((participant) => {
+      const assembly = sanitizeAssemblyId(
+        participant?.assembly ?? participant?.assemblyId,
+        ""
+      );
+      if (!assembly) {
+        return null;
+      }
+      return {
+        assembly,
+        role: normalizeString(participant?.role, "reactant"),
+      };
+    })
+    .filter(Boolean);
+}
+
+function normalizeReactionStages(rawStages, start, end, reactionTransferIds = [], transferById = new Map()) {
+  if (!Array.isArray(rawStages) || !rawStages.length) {
+    return [];
+  }
+  const allowedTransferIds = new Set(
+    (Array.isArray(reactionTransferIds) ? reactionTransferIds : []).filter((transferId) =>
+      transferById.has(transferId)
+    )
+  );
+  return rawStages
+    .map((stage, index) => {
+      const stageStart = clampNumber(
+        roundNumber(stage?.start ?? stage?.t ?? start),
+        start,
+        end
+      );
+      const stageEnd = clampNumber(
+        roundNumber(stage?.end ?? stage?.params?.end ?? end),
+        stageStart,
+        end
+      );
+      if (stageEnd <= stageStart) {
+        return null;
+      }
+      const stageTransferIds = Array.isArray(stage?.transferIds)
+        ? stage.transferIds
+            .map((transferId) => normalizeString(transferId, ""))
+            .filter((transferId) => allowedTransferIds.has(transferId))
+        : [];
+      return {
+        id: normalizeString(stage?.id, `stage_${index + 1}`),
+        action: normalizeString(stage?.action, "handoff"),
+        start: stageStart,
+        end: stageEnd,
+        transferIds: stageTransferIds.length ? [...new Set(stageTransferIds)] : [...allowedTransferIds],
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.start - right.start);
+}
+
+function normalizeReactions(rawReactions, transfers, start, end) {
+  if (!Array.isArray(rawReactions) || !rawReactions.length) {
+    return [];
+  }
+  const transferById = new Map(
+    (Array.isArray(transfers) ? transfers : []).map((transfer) => [transfer.id, transfer])
+  );
+  return rawReactions
+    .map((reaction, index) => {
+      const reactionStart = clampNumber(
+        roundNumber(reaction?.start ?? reaction?.timing?.start ?? start),
+        start,
+        end
+      );
+      const reactionEnd = clampNumber(
+        roundNumber(reaction?.end ?? reaction?.timing?.end ?? end),
+        reactionStart,
+        end
+      );
+      if (reactionEnd <= reactionStart) {
+        return null;
+      }
+      const transferIds = Array.isArray(reaction?.transferIds)
+        ? reaction.transferIds
+            .map((transferId) => normalizeString(transferId, ""))
+            .filter((transferId) => transferById.has(transferId))
+        : [];
+      if (!transferIds.length) {
+        return null;
+      }
+      const normalizedStages = normalizeReactionStages(
+        reaction?.stages,
+        reactionStart,
+        reactionEnd,
+        transferIds,
+        transferById
+      );
+      const stages = normalizedStages.length
+        ? normalizedStages
+        : [
+            {
+              id: "stage_1",
+              action: "handoff",
+              start: reactionStart,
+              end: reactionEnd,
+              transferIds,
+            },
+          ];
+      const participantMap = new Map();
+      transferIds.forEach((transferId) => {
+        const transfer = transferById.get(transferId);
+        if (!transfer) {
+          return;
+        }
+        if (transfer.source?.assemblyId) {
+          participantMap.set(transfer.source.assemblyId, {
+            assembly: transfer.source.assemblyId,
+            role: "reactant",
+          });
+        }
+        if (transfer.target?.assemblyId) {
+          participantMap.set(transfer.target.assemblyId, {
+            assembly: transfer.target.assemblyId,
+            role: transfer.target.assemblyId === transfer.source?.assemblyId ? "reactant" : "product",
+          });
+        }
+      });
+      const explicitParticipants = normalizeReactionParticipants(reaction?.participants);
+      explicitParticipants.forEach((participant) => {
+        participantMap.set(participant.assembly, participant);
+      });
+      return {
+        id: normalizeString(reaction?.id, `reaction_${index + 1}`),
+        label: normalizeString(reaction?.label, `Reaction ${index + 1}`),
+        start: reactionStart,
+        end: reactionEnd,
+        transferIds,
+        stages,
+        timeline: stages.map((stage) => ({
+          t: stage.start,
+          action: stage.action,
+          target: "transfer-set",
+          params: {
+            end: stage.end,
+            transferIds: stage.transferIds,
+          },
+        })),
+        participants: [...participantMap.values()],
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.start - right.start);
 }
 
 function normalizeMarkers(rawMarkers, start, end) {
@@ -256,7 +544,7 @@ function createDefaultCameraShots(rawCameraShots, cameraPathId, start, end) {
   ];
 }
 
-function normalizeAssemblies(rawAssemblies, primaryPathId) {
+function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPathId = null) {
   const source = Array.isArray(rawAssemblies) && rawAssemblies.length
     ? rawAssemblies
     : [{ id: "assembly_1", name: "Primary Assembly", members: [] }];
@@ -283,10 +571,20 @@ function normalizeAssemblies(rawAssemblies, primaryPathId) {
       },
       members: normalizeMembers(rawAssembly?.members ?? rawAssembly?.metadata?.members),
     };
+    const children = normalizeAssemblyChildren(
+      rawAssembly?.children ?? rawAssembly?.subassemblies,
+      assembly.members
+    );
+    if (children.length) {
+      assembly.children = children;
+    }
     if (Array.isArray(rawAssembly?.motion) && rawAssembly.motion.length) {
       assembly.motion = rawAssembly.motion;
-    } else if (index === 0 && primaryPathId) {
-      assembly.motion = [{ type: "path.transport", pathId: primaryPathId }];
+    } else {
+      const ownedPathId = ownerPathIds.get(id) ?? (index === 0 ? primaryPathId : null);
+      if (ownedPathId) {
+        assembly.motion = [{ type: "path.transport", pathId: ownedPathId }];
+      }
     }
     if (rawAssembly?.core) {
       assembly.core = rawAssembly.core;
@@ -300,17 +598,28 @@ function normalizeAssemblies(rawAssemblies, primaryPathId) {
 export function normalizeComposerSceneDocument(rawDocument = {}) {
   const rawScene = rawDocument.scene ?? {};
   const rawControls = rawScene.controls ?? {};
-  const pathPoints = normalizePathPoints(rawDocument.pathPoints ?? rawDocument.path?.points);
+  const normalizedPaths = normalizeComposerPaths(
+    rawDocument.paths?.length
+      ? rawDocument.paths
+      : rawDocument.pathPoints ?? rawDocument.path?.points,
+    rawDocument.assemblies
+  );
   const cameraWaypoints = normalizeCameraWaypoints(
     rawDocument.cameraWaypoints ?? rawDocument.cameraPath?.waypoints
   );
-  const primaryPathId = pathPoints.length ? "path_main" : null;
+  const primaryPathId = normalizedPaths[0]?.id ?? null;
+  const ownerPathIds = new Map(
+    normalizedPaths
+      .map((path) => [path?.metadata?.ownerAssemblyId, path?.id])
+      .filter(([ownerAssemblyId, pathId]) => ownerAssemblyId && pathId)
+  );
   const primaryCameraPathId = cameraWaypoints.length ? "camera_main" : null;
   const rawTime = rawScene.time ?? {};
   const sceneStart = Number(rawTime.start ?? 0);
   const sceneEnd = Number(rawTime.end ?? 12);
   const normalizedSceneEnd = sceneEnd > sceneStart ? sceneEnd : sceneStart + 12;
-  const assemblies = normalizeAssemblies(rawDocument.assemblies, primaryPathId);
+  const assemblies = normalizeAssemblies(rawDocument.assemblies, ownerPathIds, primaryPathId);
+  const transfers = normalizeTransfers(rawDocument.transfers);
 
   return {
     schemaVersion: rawDocument.schemaVersion ?? "0.1.0",
@@ -352,21 +661,7 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
     assemblyInstances: Array.isArray(rawDocument.assemblyInstances)
       ? rawDocument.assemblyInstances
       : [],
-    paths: primaryPathId
-      ? [
-          {
-            id: primaryPathId,
-            kind: "points",
-            frame: { space: "relative" },
-            style: rawDocument.path?.style ?? { color: "palette:accent-1" },
-            payload: {
-              points: pathPoints,
-              interpolate: rawDocument.path?.interpolate ?? "spline",
-              closed: !!rawDocument.path?.closed,
-            },
-          },
-        ]
-      : [],
+    paths: normalizedPaths,
     historyTraces: Array.isArray(rawDocument.historyTraces) ? rawDocument.historyTraces : [],
     envelopes: Array.isArray(rawDocument.envelopes) ? rawDocument.envelopes : [],
     cameraPaths: primaryCameraPathId
@@ -394,8 +689,8 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
     teachingPatterns: Array.isArray(rawDocument.teachingPatterns)
       ? rawDocument.teachingPatterns
       : [],
-    reactions: Array.isArray(rawDocument.reactions) ? rawDocument.reactions : [],
-    transfers: normalizeTransfers(rawDocument.transfers),
+    reactions: normalizeReactions(rawDocument.reactions, transfers, sceneStart, normalizedSceneEnd),
+    transfers,
     provenance: Array.isArray(rawDocument.provenance) ? rawDocument.provenance : [],
     checkpoints: Array.isArray(rawDocument.checkpoints) ? rawDocument.checkpoints : [],
     metadata: {
@@ -406,6 +701,110 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
 }
 
 export function createComposerSceneDocument(input = {}, options = {}) {
+  const assemblyDrafts = Array.isArray(input.assembliesDraft) ? input.assembliesDraft : [];
+  const authoredPaths = assemblyDrafts
+    .map((assembly, index) => {
+      const assemblyId = sanitizeAssemblyId(assembly?.id ?? assembly?.name, `assembly_${index + 1}`);
+      const points = normalizePathPoints(assembly?.pathPoints);
+      if (!points.length) {
+        return null;
+      }
+      return {
+        id: `path_${assemblyId}`,
+        ownerAssemblyId: assemblyId,
+        metadata: {
+          ownerAssemblyId: assemblyId,
+          labelPrefix: getAssemblyLetter(index),
+        },
+        payload: {
+          points,
+          interpolate: assembly?.pathInterpolate === "polyline" ? "polyline" : "spline",
+          closed: !!assembly?.pathClosed,
+        },
+      };
+    })
+    .filter(Boolean);
+  const authoredHistoryTraces = assemblyDrafts
+    .map((assembly, index) => {
+      const assemblyId = sanitizeAssemblyId(assembly?.id ?? assembly?.name, `assembly_${index + 1}`);
+      const pathId = `path_${assemblyId}`;
+      if (!assembly?.historyTraceEnabled || !authoredPaths.some((path) => path.id === pathId)) {
+        return null;
+      }
+      return {
+        id: `history_${assemblyId}`,
+        assemblyId,
+        pathId,
+        kind: "transport",
+        style: {
+          color: "#8bdcff",
+          opacity: 0.42,
+        },
+        window: {
+          mode: "full",
+        },
+        fade: {
+          mode: "tail",
+        },
+      };
+    })
+    .filter(Boolean);
+  const authoredEnvelopes = assemblyDrafts
+    .map((assembly, index) => {
+      const assemblyId = sanitizeAssemblyId(assembly?.id ?? assembly?.name, `assembly_${index + 1}`);
+      if (!assembly?.envelopeEnabled) {
+        return null;
+      }
+      const shellRadii = Array.isArray(assembly?.core?.shells)
+        ? assembly.core.shells
+            .map((shell) => Number(shell?.radius ?? 0))
+            .filter((radius) => Number.isFinite(radius) && radius > 0)
+        : [];
+      const radius = shellRadii.length ? Math.max(...shellRadii) * 1.08 : 0.42;
+      return {
+        id: `envelope_${assemblyId}`,
+        assemblyId,
+        geometry: {
+          kind: "sphere",
+          radius: roundNumber(radius),
+        },
+        style: {
+          color: "#9fd4ff",
+          opacity: 0.06,
+        },
+      };
+    })
+    .filter(Boolean);
+  const transferList = Array.isArray(input.transfers) ? input.transfers : [];
+  const authoredProvenance = transferList
+    .map((transfer, index) => {
+      const sourceAssembly = sanitizeAssemblyId(transfer?.source?.assemblyId, "");
+      const sourceMember = sanitizeAssemblyId(transfer?.source?.memberId, "");
+      const targetAssembly = sanitizeAssemblyId(transfer?.target?.assemblyId, "");
+      const targetMember = sanitizeAssemblyId(transfer?.target?.memberId, "");
+      if (!sourceAssembly || !sourceMember || !targetAssembly || !targetMember) {
+        return null;
+      }
+      const owningReaction = Array.isArray(input.reactions)
+        ? input.reactions.find((reaction) => Array.isArray(reaction?.transferIds) && reaction.transferIds.includes(transfer?.id))
+        : null;
+      return {
+        id: `provenance_${transfer?.id ?? index + 1}`,
+        transferId: transfer?.id ?? `transfer_${index + 1}`,
+        memberId: sourceMember,
+        source: {
+          assemblyId: sourceAssembly,
+          memberId: sourceMember,
+        },
+        target: {
+          assemblyId: targetAssembly,
+          memberId: targetMember,
+        },
+        t: transfer?.t ?? null,
+        reactionId: owningReaction?.id ?? null,
+      };
+    })
+    .filter(Boolean);
   return normalizeComposerSceneDocument({
     schemaVersion: "0.1.0",
     scene: {
@@ -416,20 +815,20 @@ export function createComposerSceneDocument(input = {}, options = {}) {
       pauses: input.pauses,
       timeWarps: input.timeWarps,
     },
-    assemblies: input.assembliesDraft,
-    path: {
-      points: input.pathPoints,
-      interpolate: input.pathInterpolate,
-      closed: input.pathClosed,
-    },
+    assemblies: assemblyDrafts,
+    paths: authoredPaths,
+    historyTraces: authoredHistoryTraces,
+    envelopes: authoredEnvelopes,
     cameraPath: {
       waypoints: input.cameraWaypoints,
     },
+    reactions: input.reactions,
     transfers: input.transfers,
+    provenance: authoredProvenance,
   });
 }
 
-function computePreviewAssemblyLocalPosition(assembly, index, count, pathPoints) {
+function computePreviewAssemblyLocalPosition(assembly, index, count, pathById) {
   const position = Array.isArray(assembly?.transform?.position) ? assembly.transform.position : null;
   const hasExplicitPosition =
     Array.isArray(position) &&
@@ -438,8 +837,14 @@ function computePreviewAssemblyLocalPosition(assembly, index, count, pathPoints)
   if (hasExplicitPosition) {
     return [roundNumber(position[0]), roundNumber(position[1]), roundNumber(position[2])];
   }
-  if (index === 0 && Array.isArray(pathPoints) && pathPoints.length) {
-    return clonePoint(pathPoints[0]);
+  const motions = Array.isArray(assembly?.motion) ? assembly.motion : [];
+  const transportMotion = motions.find((motion) => motion?.type === "path.transport");
+  const ownedPoints =
+    transportMotion?.pathId && pathById instanceof Map
+      ? pathById.get(transportMotion.pathId)?.payload?.points
+      : null;
+  if (Array.isArray(ownedPoints) && ownedPoints.length) {
+    return clonePoint(ownedPoints[0]);
   }
   if (count <= 1) {
     return [0, 0, 0];
@@ -453,18 +858,18 @@ function computePreviewAssemblyLocalPosition(assembly, index, count, pathPoints)
   ];
 }
 
-function computePreviewAssemblyPosition(assembly, index, assemblies, pathPoints, cache, stack = new Set()) {
+function computePreviewAssemblyPosition(assembly, index, assemblies, pathById, cache, stack = new Set()) {
   const assemblyId = assembly?.id ?? `assembly_${index + 1}`;
   if (cache.has(assemblyId)) {
     return cache.get(assemblyId);
   }
   if (stack.has(assemblyId)) {
-    const fallback = computePreviewAssemblyLocalPosition(assembly, index, assemblies.length, pathPoints);
+    const fallback = computePreviewAssemblyLocalPosition(assembly, index, assemblies.length, pathById);
     cache.set(assemblyId, fallback);
     return fallback;
   }
   stack.add(assemblyId);
-  const local = computePreviewAssemblyLocalPosition(assembly, index, assemblies.length, pathPoints);
+  const local = computePreviewAssemblyLocalPosition(assembly, index, assemblies.length, pathById);
   const parentId = assembly?.parentId;
   if (!parentId) {
     cache.set(assemblyId, local);
@@ -479,12 +884,12 @@ function computePreviewAssemblyPosition(assembly, index, assemblies, pathPoints,
   }
   const parentPosition = computePreviewAssemblyPosition(
     assemblies[parentIndex],
-    parentIndex,
-    assemblies,
-    pathPoints,
-    cache,
-    stack
-  );
+      parentIndex,
+      assemblies,
+      pathById,
+      cache,
+      stack
+    );
   const resolved = [
     roundNumber((parentPosition[0] ?? 0) + (local[0] ?? 0)),
     roundNumber((parentPosition[1] ?? 0) + (local[1] ?? 0)),
@@ -500,7 +905,7 @@ export function buildComposerPreviewSceneData(document, options = {}) {
   const title = options.sceneTitle ?? normalized.scene.name;
   const sceneId = options.sceneId ?? normalized.scene.id;
   const palette = Array.isArray(options.palette) ? options.palette : [];
-  const primaryPathPoints = normalized.paths?.[0]?.payload?.points ?? [];
+  const pathById = new Map((Array.isArray(normalized.paths) ? normalized.paths : []).map((path) => [path.id, path]));
   const previewPositionCache = new Map();
   const objects = normalized.assemblies.map((assembly, index) => {
     const memberCount = Array.isArray(assembly?.members) ? assembly.members.length : 0;
@@ -513,7 +918,7 @@ export function buildComposerPreviewSceneData(document, options = {}) {
         assembly,
         index,
         normalized.assemblies,
-        primaryPathPoints,
+        pathById,
         previewPositionCache
       ),
       wrapLabel: true,

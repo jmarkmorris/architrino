@@ -6,6 +6,7 @@ export function createComposerControlsUiRuntime(deps) {
     composerPreviewButton,
     composerExportButton,
     composerLibrarySaveButton,
+    composerRepoSaveButton,
     composerLibrarySelect,
     composerLibraryLoadButton,
     composerLibraryDeleteButton,
@@ -33,6 +34,7 @@ export function createComposerControlsUiRuntime(deps) {
     composerPauseListInput,
     composerWarpListInput,
     composerTransferListInput,
+    composerReactionListInput,
     composerCameraSpeedInput,
     composerCameraRadiusInput,
     composerCameraResetButton,
@@ -56,6 +58,7 @@ export function createComposerControlsUiRuntime(deps) {
     setComposerCameraDefaults,
     updateComposerCamera,
     updateComposerCameraPoiStatus,
+    persistComposerPathStateToSelectedAssembly,
     toggleComposerPlayback,
     restartComposerPlayback,
     jumpToComposerMarker,
@@ -98,6 +101,12 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerExportButton) {
       composerExportButton.addEventListener("click", () => {
         composerUiRuntime.exportComposerScene();
+      });
+    }
+
+    if (composerRepoSaveButton) {
+      composerRepoSaveButton.addEventListener("click", () => {
+        composerUiRuntime.saveComposerSceneToRepoFile();
       });
     }
 
@@ -207,6 +216,7 @@ export function createComposerControlsUiRuntime(deps) {
       composerPauseListInput,
       composerWarpListInput,
       composerTransferListInput,
+      composerReactionListInput,
     ].filter(Boolean);
     if (composerInputs.length) {
       composerInputs.forEach((input) => {
@@ -228,6 +238,7 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerPathModeSelect) {
       composerPathModeSelect.addEventListener("change", () => {
         composerPathState.interpolate = composerPathModeSelect.value;
+        persistComposerPathStateToSelectedAssembly();
         updateComposerPathGeometry();
         renderComposerJsonPreview();
       });
