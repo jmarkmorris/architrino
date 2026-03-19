@@ -1098,6 +1098,9 @@ This section merges the remaining useful requirements into one set.
 - Core state should distinguish rest geometry from runtime deformation and motion state.
 - A moving Noether core should be able to oblate along the axis of travel according to the Lorentz contraction law as velocity approaches \(c_f\).
 - The deformation model should make the direction of travel explicit so the contracted axis is not ambiguous.
+- A Noether core should support explicit precession, inter-plane alignment state, and terminal planar-lock state rather than treating core geometry as a static shell plus ad hoc animation.
+- The authored core model should be able to represent that the outer binary sets the dominant exclusion or shell geometry while inner binaries remain visible as deeper dynamical structure.
+- Exclusion geometry should be authorable as a first-class envelope that can be swept, tilted, or flattened over time without pretending it is just another transport path.
 - The composer should allow both static inspection of a core and time-based playback of the core while it moves and deforms.
 
 ### 5. Internal dynamics requirements
@@ -1123,6 +1126,8 @@ This section merges the remaining useful requirements into one set.
 - The authored model should support fixed placement, straight-line motion, circular orbit, elliptical orbit, arbitrary paths, spin, and deforming motion.
 - Arbitrary paths should support explicit points, spline-smoothed points, and primitive parameterizations where useful.
 - Path, orbit, spin, translation, deformation, and jiggle should be composable rather than mutually exclusive.
+- The schema should distinguish transport paths from internal orbits, delayed or causal-history traces, and shell or exclusion envelopes, even when those are rendered together in one viewport.
+- A transport path should answer where an assembly moves; an internal orbit should answer how a constituent moves inside its parent; a history trace should answer what delayed branch or wake geometry is being shown; an envelope should answer what shell or exclusion volume is being shown.
 - Time mapping, repeat behavior, phase offsets, and playback rate should be explicit.
 - Transform editing should distinguish world, parent-relative, and local frames explicitly in both data and UI.
 
@@ -1641,6 +1646,8 @@ SceneSpec {
   }>,
   assemblyInstances?: AssemblyInstanceSpec[],
   paths?: PathSpec[],
+  historyTraces?: HistoryTraceSpec[],
+  envelopes?: EnvelopeSpec[],
   cameraPaths?: CameraPathSpec[],
   cameraShots?: CameraShotSpec[],
   cameraTransitions?: CameraTransitionSpec[],
@@ -2041,6 +2048,7 @@ Purpose:
 - define how an object moves through its frame,
 - allow function paths, point paths, straight-line paths, or group paths,
 - preserve repeat and sampling behavior explicitly.
+- keep authored transport paths distinct from delayed-history traces and shell or exclusion envelopes.
 
 Draft shape:
 
@@ -2052,6 +2060,29 @@ PathSpec {
   time?: TimeMapSpec,
   style?: StyleSpec,
   payload: Record<string, unknown>
+}
+```
+
+### HistoryTraceSpec
+
+Purpose:
+
+- represent delayed branch or wake geometry without overloading transport motion,
+- support self-hit, partner-hit, branch-family, or path-history visualization,
+- keep history-aware explanatory traces exportable and inspectable.
+
+Draft shape:
+
+```js
+HistoryTraceSpec {
+  id: string,
+  source: Ref,
+  kind: "partner" | "self" | "branch_family" | "wake_shell" | "custom",
+  frame?: FrameSpec,
+  timing?: TimeMapSpec,
+  style?: StyleSpec,
+  payload?: Record<string, unknown>,
+  metadata?: Record<string, unknown>
 }
 ```
 
@@ -2150,6 +2181,33 @@ LodSpec {
 }
 ```
 
+### EnvelopeSpec
+
+Purpose:
+
+- define shell, exclusion, or causal-envelope geometry explicitly,
+- separate assembly boundaries from transport paths and constituent orbits,
+- support oblate, tilted, precessing, or swept exclusion forms.
+
+Draft shape:
+
+```js
+EnvelopeSpec {
+  id: string,
+  kind: "shell" | "exclusion" | "causal_envelope" | "guide",
+  attachTo: Ref,
+  frame?: FrameSpec,
+  geometry?: GeometrySpec,
+  deformation?: {
+    type: "none" | "lorentz_oblate" | "precess" | "sweep" | "custom",
+    params?: Record<string, number>
+  },
+  timing?: TimeMapSpec,
+  style?: StyleSpec,
+  metadata?: Record<string, unknown>
+}
+```
+
 ### CoreSpec
 
 Purpose:
@@ -2164,6 +2222,7 @@ CoreSpec {
   coreType: "noether",
   profile?: "spherical" | "flat" | "custom",
   shell?: GeometrySpec,
+  envelopeRef?: Ref,
   bands?: Array<{
     id: string,
     radius: number,
@@ -2181,6 +2240,11 @@ CoreSpec {
     type: "none" | "lorentz_oblate" | "pulse" | "custom",
     axisSource?: "velocity" | "path_tangent" | "custom",
     params?: Record<string, number>
+  },
+  alignment?: {
+    planeNormals?: Array<[number, number, number]>,
+    precessionConeAngle?: number,
+    regime?: "3d" | "aligning" | "planar_lock" | "custom"
   }
 }
 ```
@@ -2218,10 +2282,17 @@ MotionSpec =
   | { type: "translate", velocity?: [number, number, number], angularVelocity?: [number, number, number] }
   | { type: "orbit.circular", center: Ref, radius: number, frequencyHz: number, phase?: number, direction?: "cw" | "ccw" }
   | { type: "orbit.elliptical", center: Ref, a: number, b: number, frequencyHz: number, phase?: number, tilt?: [number, number, number], direction?: "cw" | "ccw" }
-  | { type: "path", pathId: string, speed?: number, phase?: number }
+  | { type: "path.transport", pathId: string, speed?: number, phase?: number }
   | { type: "jiggle", amplitude: number, frequency?: number, seed?: number }
   | { type: "deform", profile: "lorentz_oblate" | string, target?: Ref, params?: Record<string, number> }
 ```
+
+Guidance:
+
+- `MotionSpec` should remain the home of live kinematics only.
+- Delayed branch geometry belongs in `HistoryTraceSpec`, not in transport motion.
+- Shell or exclusion geometry belongs in `EnvelopeSpec`, not in transport motion.
+- If an early implementation still uses a generic `path` motion label internally, treat it as a temporary alias for `path.transport`, not as a reason to blur the semantic distinction in the canonical model.
 
 ### TimeSpec
 
@@ -2844,11 +2915,12 @@ This checklist is meant to turn the architecture into actionable engineering sli
 The MVP is done when an author can create one polished explanatory scene in the native AAA grammar:
 
 - a sphere-like assembly,
-- moving on a path,
-- with one orbital or shell reveal,
+- moving on a transport path,
+- with one internal orbit or shell reveal that remains coherent while the parent assembly moves,
 - with one or more pauses,
 - with one or more markers,
 - with one or more overlays,
+- with the canonical scene data preserving explicit slots for path-history or exclusion-envelope semantics even if the first UI only exercises them lightly,
 - with camera shots on the shared timeline,
 - and export it as canonical JSON that the runtime player can render correctly.
 

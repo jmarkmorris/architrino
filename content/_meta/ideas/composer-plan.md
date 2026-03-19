@@ -112,6 +112,8 @@ Keep:
 
 This preserves continuity while the new system is developed.
 
+For now, the existing host scene can remain the current `Scene-Diagram` entry because that is the live route already wired into the app. But the planning target should remain a dedicated composed-animation or tool-scene runtime boundary once `composer-II` canonical scene playback is established. The scene-type rename should follow working runtime semantics, not block Phase A or Phase B.
+
 ### Layer 2. Introduce a new scene document core
 
 The first major replacement should be the internal draft data model.
@@ -129,12 +131,21 @@ Current draft behavior is still largely shaped by:
 - `scene`
 - `assemblies`
 - `paths`
+- `historyTraces`
+- `envelopes`
 - `cameraPaths`
 - `cameraShots`
 - `overlays`
 - `tracks`
 - `markers`
 - `pauses`
+
+The important planning nuance is that these extra slots do not mean the first UI must expose every deep theory control immediately. They do mean the canonical document should reserve clean semantics for:
+
+- transport paths,
+- delayed or path-history traces,
+- shell or exclusion envelopes,
+- and minimal provenance-ready identity hooks.
 
 At first, this can live beside the older draft builder rather than replacing it immediately.
 
@@ -270,12 +281,13 @@ This lets the current panel architecture evolve instead of being discarded.
 `composer-II` should be considered real when it can author one polished scene that demonstrates the native AAA grammar:
 
 - one sphere-like assembly,
-- moving on one path,
-- with one orbital or shell reveal,
+- moving on one transport path,
+- with one internal orbit or shell reveal that remains coherent while the parent assembly transports,
 - with one or more pauses,
 - with one or more markers,
 - with one or more overlays,
 - with one or more camera shots,
+- with reserved canonical slots for delayed-history traces, exclusion envelopes, and provenance-ready identity even if those remain light-touch in the first UI,
 - and export canonical JSON that the runtime player can render correctly.
 
 That is the threshold after which it becomes rational to retire the old draft builder.
@@ -287,7 +299,7 @@ That is the threshold after which it becomes rational to retire the old draft bu
 ### Phase A. Establish the new scene document
 
 1. Define the MVP scene schema in code.
-2. Add normalization and reference helpers.
+2. Add normalization and reference helpers, including stable ids and reserved hooks for `historyTraces`, `envelopes`, and provenance-ready identity.
 3. Add canonical export from that schema.
 
 ### Phase B. Replace the viewport primitives
@@ -316,7 +328,7 @@ That is the threshold after which it becomes rational to retire the old draft bu
 1. Constituent drill-down.
 2. Shell/orbit reveal logic.
 3. Larger assembly collapse/proxy logic.
-4. Later: reactions, transfer, provenance.
+4. Later: full reactions, transfer tooling, and rich provenance visualization on top of the earlier reserved schema hooks.
 
 ---
 
