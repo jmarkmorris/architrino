@@ -40,10 +40,30 @@ function sanitizeAssemblyId(raw, fallback) {
   return normalized || fallback;
 }
 
+function normalizeMemberPosition(rawPosition) {
+  if (!Array.isArray(rawPosition) || rawPosition.length < 3) {
+    return null;
+  }
+  const x = Number(rawPosition[0]);
+  const y = Number(rawPosition[1]);
+  const z = Number(rawPosition[2]);
+  if (![x, y, z].every(Number.isFinite)) {
+    return null;
+  }
+  return [roundNumber(x), roundNumber(y), roundNumber(z)];
+}
+
 function normalizeMembers(rawMembers) {
   if (Array.isArray(rawMembers)) {
     return rawMembers
-      .map((member, index) => normalizeString(member, `member_${index + 1}`))
+      .map((member, index) => {
+        if (member && typeof member === "object" && !Array.isArray(member)) {
+          const id = sanitizeAssemblyId(member.id ?? member.name, `member_${index + 1}`);
+          const position = normalizeMemberPosition(member.position);
+          return position ? { id, position } : { id };
+        }
+        return { id: sanitizeAssemblyId(member, `member_${index + 1}`) };
+      })
       .filter(Boolean);
   }
   return [];

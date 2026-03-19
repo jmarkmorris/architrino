@@ -382,17 +382,84 @@ function createDefaultComposerAssemblyDraft(index = 0) {
   };
 }
 
+function normalizeComposerMemberPosition(rawPosition) {
+  if (!Array.isArray(rawPosition) || rawPosition.length < 3) {
+    return null;
+  }
+  const x = Number(rawPosition[0]);
+  const y = Number(rawPosition[1]);
+  const z = Number(rawPosition[2]);
+  if (![x, y, z].every(Number.isFinite)) {
+    return null;
+  }
+  return [x, y, z];
+}
+
+function parseComposerMemberEntry(rawMember, index = 0) {
+  if (rawMember && typeof rawMember === "object" && !Array.isArray(rawMember)) {
+    const id = sanitizeComposerEntityId(rawMember.id || rawMember.name, `member_${index + 1}`);
+    const position = normalizeComposerMemberPosition(rawMember.position);
+    return position ? { id, position } : { id };
+  }
+  const source = String(rawMember ?? "").trim();
+  if (!source) {
+    return null;
+  }
+  const match = source.match(/^(.+?)(?:\s*@\s*(-?\d*\.?\d+)\s*,\s*(-?\d*\.?\d+)\s*,\s*(-?\d*\.?\d+))?$/);
+  if (!match) {
+    return null;
+  }
+  const id = sanitizeComposerEntityId(match[1], `member_${index + 1}`);
+  if (!id) {
+    return null;
+  }
+  if (match[2] == null) {
+    return { id };
+  }
+  const position = [Number(match[2]), Number(match[3]), Number(match[4])];
+  if (!position.every(Number.isFinite)) {
+    return { id };
+  }
+  return { id, position };
+}
+
 function normalizeComposerMemberList(rawMembers) {
   if (Array.isArray(rawMembers)) {
-    return rawMembers.map((member) => String(member ?? "").trim()).filter(Boolean);
+    return rawMembers
+      .map((member, index) => parseComposerMemberEntry(member, index))
+      .filter(Boolean);
   }
   if (typeof rawMembers === "string") {
     return rawMembers
-      .split(/\n|,/)
-      .map((member) => member.trim())
+      .split(/\n/)
+      .map((member, index) => parseComposerMemberEntry(member, index))
       .filter(Boolean);
   }
   return [];
+}
+
+function getComposerMemberId(member, index = 0) {
+  if (member && typeof member === "object" && !Array.isArray(member)) {
+    return sanitizeComposerEntityId(member.id, `member_${index + 1}`);
+  }
+  return sanitizeComposerEntityId(member, `member_${index + 1}`);
+}
+
+function getComposerMemberPosition(member) {
+  if (member && typeof member === "object" && !Array.isArray(member)) {
+    return normalizeComposerMemberPosition(member.position);
+  }
+  return null;
+}
+
+function formatComposerMemberList(members = []) {
+  return members
+    .map((member, index) => {
+      const id = getComposerMemberId(member, index);
+      const position = getComposerMemberPosition(member);
+      return position ? `${id} @ ${position[0]}, ${position[1]}, ${position[2]}` : id;
+    })
+    .join("\n");
 }
 
 function normalizeComposerAssemblyDraft(draft = {}, index = 0) {
@@ -789,16 +856,16 @@ function findComposerCoreMemberId(members, chargeType, binaryIndex) {
   const targetPrefix = chargeType === "electrino" ? "electrino" : "positrino";
   const targetSuffix = String(binaryIndex + 1);
   const candidates = Array.isArray(members) ? members : [];
-  const exactMatch = candidates.find((memberId) => {
-    const normalized = String(memberId ?? "").trim().toLowerCase();
+  const exactMatch = candidates.find((member, memberIndex) => {
+    const normalized = getComposerMemberId(member, memberIndex).trim().toLowerCase();
     return normalized === `${targetPrefix}_${targetSuffix}` || normalized === `${targetPrefix}${targetSuffix}`;
   });
   if (exactMatch) {
-    return exactMatch;
+    return getComposerMemberId(exactMatch, candidates.indexOf(exactMatch));
   }
-  const prefixMatches = candidates.filter((memberId) =>
-    String(memberId ?? "").trim().toLowerCase().startsWith(targetPrefix)
-  );
+  const prefixMatches = candidates
+    .map((member, memberIndex) => getComposerMemberId(member, memberIndex))
+    .filter((memberId) => memberId.trim().toLowerCase().startsWith(targetPrefix));
   return prefixMatches[binaryIndex] ?? null;
 }
 
@@ -1300,8 +1367,8 @@ function renderComposerAssemblyEditor() {
     membersLabel.textContent = "Members";
     const membersInput = document.createElement("textarea");
     membersInput.rows = 4;
-    membersInput.placeholder = "positrino_1\nelectrino_1";
-    membersInput.value = Array.isArray(assembly.members) ? assembly.members.join("\n") : "";
+    membersInput.placeholder = "positrino_1\nelectrino_1\nmember_3 @ 0.2, 0.1, -0.1";
+    membersInput.value = Array.isArray(assembly.members) ? formatComposerMemberList(assembly.members) : "";
     membersInput.addEventListener("input", () => {
       assembly.members = normalizeComposerMemberList(membersInput.value);
       renderComposerJsonPreview();
@@ -1311,7 +1378,7 @@ function renderComposerAssemblyEditor() {
     membersNote.textContent =
       index === 0
         ? "Primary assembly drives the current shell preview."
-        : "One member id per line.";
+        : "One member per line. Optional: member_id @ x, y, z.";
     membersField.appendChild(membersLabel);
     membersField.appendChild(membersInput);
     membersField.appendChild(membersNote);
@@ -3183,7 +3250,11 @@ function addComposerAssemblyProxy(center, assembly, index) {
   group.position.copy(center);
   group.userData.assemblyId = assembly?.id ?? null;
 
-  const members = Array.isArray(assembly?.members) ? assembly.members : [];
+  const rawMembers = Array.isArray(assembly?.members) ? assembly.members : [];
+  const members = rawMembers.map((member, memberIndex) => ({
+    id: getComposerMemberId(member, memberIndex),
+    position: getComposerMemberPosition(member),
+  }));
   const memberCount = members.length;
   const hasCore = index === 0 && Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
   const baseColor = composerPalette[index % Math.max(1, composerPalette.length)] ?? "#6ea8fe";
@@ -3203,8 +3274,12 @@ function addComposerAssemblyProxy(center, assembly, index) {
     const visibleMembers = Math.min(memberCount, 8);
     if (memberCount > 0) {
       for (let memberIndex = 0; memberIndex < memberCount; memberIndex += 1) {
-        const memberId = members[memberIndex];
-        const memberOffset = getComposerProxyMemberOffset(memberIndex, memberCount, baseRadius);
+        const memberEntry = members[memberIndex];
+        const memberId = memberEntry.id;
+        const authoredPosition = memberEntry.position;
+        const memberOffset = authoredPosition
+          ? new THREE.Vector3(authoredPosition[0], authoredPosition[1], authoredPosition[2])
+          : getComposerProxyMemberOffset(memberIndex, memberCount, baseRadius);
         setComposerMemberAnchor(assembly?.id, memberId, {
           type: "proxy",
           offset: [memberOffset.x, memberOffset.y, memberOffset.z],
