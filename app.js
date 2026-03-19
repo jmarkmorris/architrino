@@ -383,6 +383,19 @@ function createDefaultComposerAssemblyDraft(index = 0) {
             "electrino_3",
           ]
         : [],
+    pathPoints:
+      ordinal === 1
+        ? [
+            [-1.6, 0, 0],
+            [-0.5, 0.8, 0.35],
+            [0.9, 0.25, -0.5],
+            [2.0, 1.05, 0.15],
+          ]
+        : [],
+    pathInterpolate: "spline",
+    pathClosed: false,
+    historyTraceEnabled: false,
+    envelopeEnabled: false,
   };
 }
 
@@ -432,6 +445,47 @@ function normalizeComposerMemberPosition(rawPosition) {
     return null;
   }
   return [x, y, z];
+}
+
+function normalizeComposerPathPoint(rawPoint) {
+  if (rawPoint instanceof THREE.Vector3) {
+    return [
+      Number(rawPoint.x.toFixed(3)),
+      Number(rawPoint.y.toFixed(3)),
+      Number(rawPoint.z.toFixed(3)),
+    ];
+  }
+  if (!Array.isArray(rawPoint) || rawPoint.length < 3) {
+    return null;
+  }
+  const x = Number(rawPoint[0]);
+  const y = Number(rawPoint[1]);
+  const z = Number(rawPoint[2]);
+  if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(z)) {
+    return null;
+  }
+  return [
+    Number(x.toFixed(3)),
+    Number(y.toFixed(3)),
+    Number(z.toFixed(3)),
+  ];
+}
+
+function normalizeComposerAssemblyPathPoints(rawPoints) {
+  const source = Array.isArray(rawPoints) ? rawPoints : [];
+  return source
+    .map((point) => normalizeComposerPathPoint(point))
+    .filter(Boolean);
+}
+
+function createComposerDefaultPathPoints(anchor = [0, 0, 0]) {
+  const [baseX = 0, baseY = 0, baseZ = 0] = Array.isArray(anchor) ? anchor : [0, 0, 0];
+  return [
+    [baseX - 1.6, baseY, baseZ],
+    [baseX - 0.5, baseY + 0.8, baseZ + 0.35],
+    [baseX + 0.9, baseY + 0.25, baseZ - 0.5],
+    [baseX + 2.0, baseY + 1.05, baseZ + 0.15],
+  ];
 }
 
 function parseComposerMemberEntry(rawMember, index = 0) {
@@ -579,6 +633,11 @@ function normalizeComposerAssemblyDraft(draft = {}, index = 0) {
     position,
     members: normalizeComposerMemberList(draft.members),
     subassemblies: normalizeComposerSubassemblyList(draft.subassemblies),
+    pathPoints: normalizeComposerAssemblyPathPoints(draft.pathPoints ?? fallback.pathPoints),
+    pathInterpolate: draft.pathInterpolate === "polyline" ? "polyline" : fallback.pathInterpolate,
+    pathClosed: !!draft.pathClosed,
+    historyTraceEnabled: !!draft.historyTraceEnabled,
+    envelopeEnabled: !!draft.envelopeEnabled,
     core: draft.core,
   };
 }
@@ -874,6 +933,54 @@ function getComposerPrimaryPathAssemblyLetter() {
     return motions.some((motion) => motion?.type === "path.transport" && motion?.pathId === primaryPathId);
   });
   return getComposerAssemblyLetter(ownerIndex >= 0 ? ownerIndex : 0);
+}
+
+function getComposerSelectedAssembly() {
+  ensureComposerAssemblyDrafts();
+  return getComposerAssemblyDraftById(composerSelectedAssemblyId) ?? composerAssemblyDrafts[0] ?? null;
+}
+
+function getComposerSelectedAssemblyLetter() {
+  ensureComposerAssemblyDrafts();
+  const index = composerAssemblyDrafts.findIndex((assembly) => assembly?.id === composerSelectedAssemblyId);
+  return getComposerAssemblyLetter(index >= 0 ? index : 0);
+}
+
+function loadComposerPathStateFromSelectedAssembly() {
+  const selectedAssembly = getComposerSelectedAssembly();
+  if (
+    selectedAssembly &&
+    (!Array.isArray(selectedAssembly.pathPoints) || !selectedAssembly.pathPoints.length)
+  ) {
+    const anchor = Array.isArray(selectedAssembly.position) ? selectedAssembly.position : [0, 0, 0];
+    selectedAssembly.pathPoints = createComposerDefaultPathPoints(anchor);
+    selectedAssembly.pathInterpolate = selectedAssembly.pathInterpolate === "polyline" ? "polyline" : "spline";
+    selectedAssembly.pathClosed = !!selectedAssembly.pathClosed;
+  }
+  composerPathState.interpolate = selectedAssembly?.pathInterpolate === "polyline" ? "polyline" : "spline";
+  composerPathState.closed = !!selectedAssembly?.pathClosed;
+  composerPathState.points = normalizeComposerAssemblyPathPoints(selectedAssembly?.pathPoints).map((point) =>
+    vectorFromTriplet(point)
+  );
+  if (composerPathModeSelect) {
+    composerPathModeSelect.value = composerPathState.interpolate;
+  }
+  composerSelectedPointIndex =
+    Number.isInteger(composerSelectedPointIndex) && composerSelectedPointIndex < composerPathState.points.length
+      ? composerSelectedPointIndex
+      : null;
+  rebuildComposerControlPoints();
+  updateComposerPathGeometry();
+}
+
+function persistComposerPathStateToSelectedAssembly() {
+  const selectedAssembly = getComposerSelectedAssembly();
+  if (!selectedAssembly) {
+    return;
+  }
+  selectedAssembly.pathPoints = composerPathState.points.map((point) => normalizeComposerPathPoint(point));
+  selectedAssembly.pathInterpolate = composerPathState.interpolate;
+  selectedAssembly.pathClosed = composerPathState.closed;
 }
 
 function getComposerMemberColor(memberId, index = 0) {
@@ -1435,22 +1542,41 @@ function clearComposerCameraWaypoints() {
 }
 
 function resetComposerPathPoints() {
-  composerPathState.points = [
-    new THREE.Vector3(-1.6, 0, 0),
-    new THREE.Vector3(-0.5, 0.8, 0.35),
-    new THREE.Vector3(0.9, 0.25, -0.5),
-    new THREE.Vector3(2.0, 1.05, 0.15),
-  ];
+  const selectedAssembly = getComposerSelectedAssembly();
+  const anchor = Array.isArray(selectedAssembly?.position) ? selectedAssembly.position : [0, 0, 0];
+  composerPathState.points = createComposerDefaultPathPoints(anchor).map((point) => vectorFromTriplet(point));
   composerPathState.interpolate = composerPathModeSelect?.value || "spline";
   composerPathState.closed = false;
   composerSelectedPointIndex = null;
   updateComposerCameraPoiStatus();
+  persistComposerPathStateToSelectedAssembly();
+  rebuildComposerControlPoints();
+  updateComposerPathGeometry();
+}
+
+function addComposerPathPoint(position = null) {
+  const selectedAssembly = getComposerSelectedAssembly();
+  if (!selectedAssembly) {
+    return;
+  }
+  const nextPoint = Array.isArray(position)
+    ? vectorFromTriplet(position)
+    : position instanceof THREE.Vector3
+      ? position.clone()
+      : new THREE.Vector3();
+  if (!composerPathState.points.length) {
+    composerPathState.points = [nextPoint];
+  } else {
+    composerPathState.points.push(nextPoint);
+  }
+  composerSelectedPointIndex = composerPathState.points.length - 1;
+  persistComposerPathStateToSelectedAssembly();
   rebuildComposerControlPoints();
   updateComposerPathGeometry();
 }
 
 function updateComposerPointMaterials(activeIndex = null) {
-  const pathLabelPrefix = getComposerPrimaryPathAssemblyLetter();
+  const pathLabelPrefix = getComposerSelectedAssemblyLetter();
   composerPointMeshes.forEach((mesh, index) => {
     const isActive =
       index === activeIndex || index === composerSelectedPointIndex;
@@ -1504,11 +1630,13 @@ function renderComposerAssemblyEditor() {
     chip.addEventListener("click", () => {
       composerSelectedAssemblyId = assembly.id;
       renderComposerAssemblyEditor();
+      renderComposerJsonPreview();
     });
     chip.addEventListener("contextmenu", (event) => {
       event.preventDefault();
       composerSelectedAssemblyId = assembly.id;
       renderComposerAssemblyEditor();
+      renderComposerJsonPreview();
       openComposerAssemblyPropertiesMenuAt(event.clientX, event.clientY, assembly.id);
     });
     composerAssemblyList.appendChild(chip);
@@ -1521,6 +1649,7 @@ function renderComposerAssemblyEditor() {
   if (!selectedAssembly) {
     return;
   }
+  loadComposerPathStateFromSelectedAssembly();
 
   const details = document.createElement("details");
   details.className = "composer-assembly-advanced";
@@ -1651,13 +1780,78 @@ function closeComposerAssemblyMenu() {
   composerAssemblyMenu.setAttribute("aria-hidden", "true");
 }
 
+function getComposerPathOwnerAssemblyId(path) {
+  return path?.metadata?.ownerAssemblyId ?? path?.ownerAssemblyId ?? null;
+}
+
+function clearComposerBackgroundPathLines() {
+  composerBackgroundPathLines.forEach((line) => {
+    composerFrameGroup?.remove(line);
+    line.geometry?.dispose?.();
+    line.material?.dispose?.();
+  });
+  composerBackgroundPathLines = [];
+}
+
+function rebuildComposerPathDisplayFromDocument(documentData) {
+  clearComposerBackgroundPathLines();
+  if (!composerPathGeometry || !composerFrameGroup) {
+    return;
+  }
+  const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
+  const selectedAssemblyId = composerSelectedAssemblyId ?? composerAssemblyDrafts[0]?.id ?? null;
+  const selectedPath =
+    paths.find((path) => getComposerPathOwnerAssemblyId(path) === selectedAssemblyId) ??
+    paths.find((path) => path?.id === "path_main") ??
+    null;
+  const selectedSamples = sampleComposerPath(
+    selectedPath?.payload?.points ?? [],
+    selectedPath?.payload?.interpolate ?? composerPathState.interpolate,
+    !!selectedPath?.payload?.closed
+  );
+  composerPathGeometry.setFromPoints(selectedSamples);
+  if (selectedSamples.length) {
+    composerPathGeometry.computeBoundingSphere();
+  }
+
+  paths.forEach((path) => {
+    if (path === selectedPath) {
+      return;
+    }
+    const samples = sampleComposerPath(
+      path?.payload?.points ?? [],
+      path?.payload?.interpolate ?? "spline",
+      !!path?.payload?.closed
+    );
+    if (!samples.length) {
+      return;
+    }
+    const line = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(samples),
+      new THREE.LineBasicMaterial({
+        color: 0x8bdcff,
+        transparent: true,
+        opacity: 0.28,
+      })
+    );
+    line.userData.ownerAssemblyId = getComposerPathOwnerAssemblyId(path);
+    composerFrameGroup.add(line);
+    composerBackgroundPathLines.push(line);
+  });
+}
+
 function applyComposerViewportDisplayState() {
   const showTransportPath = composerViewportDisplayState.showTransportPath !== false;
   const showCameraGuides = composerViewportDisplayState.showCameraGuides !== false;
   const showLabels = composerViewportDisplayState.showLabels !== false;
+  const showHistoryTraces = composerViewportDisplayState.showHistoryTraces !== false;
+  const showEnvelopes = composerViewportDisplayState.showEnvelopes !== false;
   if (composerPathLine) {
     composerPathLine.visible = showTransportPath;
   }
+  composerBackgroundPathLines.forEach((line) => {
+    line.visible = showTransportPath;
+  });
   composerPointMeshes.forEach((mesh) => {
     mesh.visible = showTransportPath;
     const labelSprite = mesh.userData?.pointLabelSprite;
@@ -1683,6 +1877,12 @@ function applyComposerViewportDisplayState() {
   if (composerCameraFlightGroup) {
     composerCameraFlightGroup.visible = showCameraGuides;
   }
+  composerHistoryTraceLines.forEach((line) => {
+    line.visible = showHistoryTraces;
+  });
+  composerEnvelopeMeshes.forEach((mesh) => {
+    mesh.visible = showEnvelopes;
+  });
   composerCameraWaypointMeshes.forEach((mesh) => {
     const labelSprite = mesh.userData?.labelSprite;
     if (labelSprite) {
@@ -1775,6 +1975,33 @@ function openComposerAssemblyTemplateMenuAt(event) {
     composerAssemblyMenu.appendChild(clearCameraButton);
   }
 
+  const selectedAssemblyLetter = getComposerSelectedAssemblyLetter();
+  const pathLabel = document.createElement("div");
+  pathLabel.className = "composer-assembly-menu-subtitle";
+  pathLabel.textContent = "Path";
+  composerAssemblyMenu.appendChild(pathLabel);
+
+  const addPathPointButton = document.createElement("button");
+  addPathPointButton.type = "button";
+  addPathPointButton.textContent = `Add ${selectedAssemblyLetter} Path Point`;
+  addPathPointButton.addEventListener("click", () => {
+    const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
+    addComposerPathPoint(position);
+    renderComposerJsonPreview();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(addPathPointButton);
+
+  const resetPathButton = document.createElement("button");
+  resetPathButton.type = "button";
+  resetPathButton.textContent = `Reset ${selectedAssemblyLetter} Path`;
+  resetPathButton.addEventListener("click", () => {
+    resetComposerPathPoints();
+    renderComposerJsonPreview();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(resetPathButton);
+
   const guideLabel = document.createElement("div");
   guideLabel.className = "composer-assembly-menu-subtitle";
   guideLabel.textContent = "View";
@@ -1806,6 +2033,32 @@ function openComposerAssemblyTemplateMenuAt(event) {
   });
   composerAssemblyMenu.appendChild(transportButton);
 
+  const historyButton = document.createElement("button");
+  historyButton.type = "button";
+  historyButton.textContent = `${
+    composerViewportDisplayState.showHistoryTraces !== false ? "Hide" : "Show"
+  } History Traces`;
+  historyButton.addEventListener("click", () => {
+    composerViewportDisplayState.showHistoryTraces = !(
+      composerViewportDisplayState.showHistoryTraces !== false
+    );
+    applyComposerViewportDisplayState();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(historyButton);
+
+  const envelopeButton = document.createElement("button");
+  envelopeButton.type = "button";
+  envelopeButton.textContent = `${
+    composerViewportDisplayState.showEnvelopes !== false ? "Hide" : "Show"
+  } Envelopes`;
+  envelopeButton.addEventListener("click", () => {
+    composerViewportDisplayState.showEnvelopes = !(composerViewportDisplayState.showEnvelopes !== false);
+    applyComposerViewportDisplayState();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(envelopeButton);
+
   const hasCameraGuides = composerHasCameraGuidesAvailable();
   const cameraButton = document.createElement("button");
   cameraButton.type = "button";
@@ -1824,7 +2077,7 @@ function openComposerAssemblyTemplateMenuAt(event) {
   }
   composerAssemblyMenu.appendChild(cameraButton);
 
-  positionComposerAssemblyMenu(event.clientX, event.clientY, 220, 350);
+  positionComposerAssemblyMenu(event.clientX, event.clientY, 220, 430);
 }
 
 function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
@@ -1937,6 +2190,47 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
   const actions = document.createElement("div");
   actions.className = "composer-button-row";
 
+  const pathButton = document.createElement("button");
+  pathButton.type = "button";
+  pathButton.textContent = "Edit Path";
+  pathButton.addEventListener("click", () => {
+    composerSelectedAssemblyId = assembly.id;
+    loadComposerPathStateFromSelectedAssembly();
+    closeComposerAssemblyMenu();
+    renderComposerJsonPreview();
+  });
+  actions.appendChild(pathButton);
+
+  const historyButton = document.createElement("button");
+  historyButton.type = "button";
+  historyButton.textContent = assembly.historyTraceEnabled ? "Hide History" : "Show History";
+  historyButton.addEventListener("click", () => {
+    const liveAssembly = getComposerAssemblyDraftById(assembly.id);
+    if (!liveAssembly) {
+      return;
+    }
+    liveAssembly.historyTraceEnabled = !liveAssembly.historyTraceEnabled;
+    closeComposerAssemblyMenu();
+    renderComposerJsonPreview();
+    openComposerAssemblyPropertiesMenuAt(clientX, clientY, assembly.id);
+  });
+  actions.appendChild(historyButton);
+
+  const envelopeButton = document.createElement("button");
+  envelopeButton.type = "button";
+  envelopeButton.textContent = assembly.envelopeEnabled ? "Hide Envelope" : "Show Envelope";
+  envelopeButton.addEventListener("click", () => {
+    const liveAssembly = getComposerAssemblyDraftById(assembly.id);
+    if (!liveAssembly) {
+      return;
+    }
+    liveAssembly.envelopeEnabled = !liveAssembly.envelopeEnabled;
+    closeComposerAssemblyMenu();
+    renderComposerJsonPreview();
+    openComposerAssemblyPropertiesMenuAt(clientX, clientY, assembly.id);
+  });
+  actions.appendChild(envelopeButton);
+
   const advancedButton = document.createElement("button");
   advancedButton.type = "button";
   advancedButton.textContent = "Advanced";
@@ -1958,12 +2252,13 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
     composerSelectedAssemblyId = composerAssemblyDrafts[0]?.id ?? null;
     closeComposerAssemblyMenu();
     renderComposerAssemblyEditor();
+    loadComposerPathStateFromSelectedAssembly();
     renderComposerJsonPreview();
   });
   actions.appendChild(removeButton);
 
   composerAssemblyMenu.appendChild(actions);
-  positionComposerAssemblyMenu(clientX, clientY, 248, 286);
+  positionComposerAssemblyMenu(clientX, clientY, 248, 340);
 }
 
 function getNextComposerAssemblyId(baseId) {
@@ -1995,6 +2290,7 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       position: normalizedPosition,
       members: ["positrino_1"],
       subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
     }, composerAssemblyDrafts.length);
   }
   if (templateId === "electrino") {
@@ -2006,6 +2302,7 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       position: normalizedPosition,
       members: ["electrino_1"],
       subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
     }, composerAssemblyDrafts.length);
   }
   const id = getNextComposerAssemblyId("noether_core");
@@ -2023,6 +2320,7 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       "electrino_3",
     ],
     subassemblies: [],
+    pathPoints: createComposerDefaultPathPoints(normalizedPosition),
     core: createComposerDefaultCoreSpec(id),
   }, composerAssemblyDrafts.length);
 }
@@ -2032,6 +2330,7 @@ function addBuiltInComposerAssembly(templateId, position) {
   composerAssemblyDrafts.push(nextAssembly);
   composerSelectedAssemblyId = nextAssembly.id;
   renderComposerAssemblyEditor();
+  loadComposerPathStateFromSelectedAssembly();
   renderComposerJsonPreview();
 }
 
@@ -2338,6 +2637,7 @@ function readComposerTimingState() {
 }
 
 function readComposerDraftState() {
+  persistComposerPathStateToSelectedAssembly();
   const state = readComposerFormState();
   const timing = readComposerTimingState();
   const reactionListRaw = composerReactionListInput?.value ?? "";
@@ -2347,14 +2647,8 @@ function readComposerDraftState() {
     state.transfers,
     Number(timing?.time?.end ?? 12) || 12
   );
-  if (!composerPathState.points.length) {
-    resetComposerPathPoints();
-  }
-  const pathPoints = composerPathState.points.map((point) => [
-    Number(point.x.toFixed(3)),
-    Number(point.y.toFixed(3)),
-    Number(point.z.toFixed(3)),
-  ]);
+  const primaryAssembly = Array.isArray(state.assembliesDraft) ? state.assembliesDraft[0] ?? null : null;
+  const pathPoints = normalizeComposerAssemblyPathPoints(primaryAssembly?.pathPoints);
   const cameraWaypoints = composerCameraFlightState.waypoints.map((waypoint) => ({
     position: [
       Number(waypoint.position.x.toFixed(3)),
@@ -2384,8 +2678,8 @@ function readComposerDraftState() {
       reactionErrorLines: reactionParse.errors,
     },
     pathPoints,
-    pathInterpolate: composerPathState.interpolate,
-    pathClosed: composerPathState.closed,
+    pathInterpolate: primaryAssembly?.pathInterpolate ?? composerPathState.interpolate,
+    pathClosed: !!primaryAssembly?.pathClosed,
     frameRotation: [
       Number(composerFrameState.rotation.x.toFixed(4)),
       Number(composerFrameState.rotation.y.toFixed(4)),
@@ -2497,6 +2791,18 @@ function applyComposerDraftState(draftState = {}) {
   composerAssemblyDrafts = Array.isArray(draftState.assembliesDraft) && draftState.assembliesDraft.length
     ? draftState.assembliesDraft.map((draft, index) => normalizeComposerAssemblyDraft(draft, index))
     : [createDefaultComposerAssemblyDraft(0)];
+  if (
+    Array.isArray(draftState.pathPoints) &&
+    draftState.pathPoints.length &&
+    !composerAssemblyDrafts.some((assembly) => Array.isArray(assembly?.pathPoints) && assembly.pathPoints.length)
+  ) {
+    composerAssemblyDrafts[0].pathPoints = normalizeComposerAssemblyPathPoints(draftState.pathPoints);
+    composerAssemblyDrafts[0].pathInterpolate = draftState.pathInterpolate === "polyline" ? "polyline" : "spline";
+    composerAssemblyDrafts[0].pathClosed = !!draftState.pathClosed;
+  }
+  if (!composerAssemblyDrafts.some((assembly) => assembly?.id === composerSelectedAssemblyId)) {
+    composerSelectedAssemblyId = composerAssemblyDrafts[0]?.id ?? null;
+  }
   renderComposerAssemblyEditor();
 
   const duration = Math.max(1, Number(draftState?.time?.end ?? draftState?.time?.duration ?? 12) || 12);
@@ -2537,19 +2843,7 @@ function applyComposerDraftState(draftState = {}) {
         : formatComposerReactionList(draftState.reactions);
   }
 
-  composerPathState.interpolate = draftState.pathInterpolate === "polyline" ? "polyline" : "spline";
-  if (composerPathModeSelect) {
-    composerPathModeSelect.value = composerPathState.interpolate;
-  }
-  composerPathState.closed = !!draftState.pathClosed;
-  composerPathState.points = Array.isArray(draftState.pathPoints) && draftState.pathPoints.length
-    ? draftState.pathPoints.map((point) => vectorFromTriplet(point))
-    : [
-        new THREE.Vector3(-1.6, 0, 0),
-        new THREE.Vector3(-0.5, 0.8, 0.35),
-        new THREE.Vector3(0.9, 0.25, -0.5),
-        new THREE.Vector3(2.0, 1.05, 0.15),
-      ];
+  loadComposerPathStateFromSelectedAssembly();
   composerSelectedPointIndex =
     Number.isInteger(draftState.selectedPointIndex) &&
     draftState.selectedPointIndex >= 0 &&
@@ -2678,6 +2972,7 @@ function buildComposerPreviewData(documentData, options = {}) {
 }
 
 function renderComposerJsonPreview() {
+  persistComposerPathStateToSelectedAssembly();
   const draftState = readComposerDraftState();
   const documentData = buildComposerDocumentData(draftState);
   updateComposerViewportFromDocument(documentData);
@@ -2926,7 +3221,7 @@ function rebuildComposerControlPoints() {
     const mesh = new THREE.Mesh(composerPointGeometry, composerPointMaterial);
     mesh.position.copy(point);
     mesh.userData.pointIndex = index;
-    const labelSprite = createComposerPointLabelSprite(`${getComposerPrimaryPathAssemblyLetter()}${index + 1}`);
+    const labelSprite = createComposerPointLabelSprite(`${getComposerSelectedAssemblyLetter()}${index + 1}`);
     labelSprite.position.set(0, 0.2, 0);
     mesh.userData.pointLabelSprite = labelSprite;
     mesh.add(labelSprite);
@@ -3001,12 +3296,31 @@ function clearComposerViewportVisuals() {
     mesh.material?.dispose?.();
   });
   composerShellMeshes = [];
+  composerEnvelopeMeshes.forEach((mesh) => {
+    composerViewportGroup?.remove(mesh);
+    mesh.traverse?.((child) => {
+      if (child === mesh) {
+        return;
+      }
+      child.geometry?.dispose?.();
+      child.material?.dispose?.();
+    });
+    mesh.geometry?.dispose?.();
+    mesh.material?.dispose?.();
+  });
+  composerEnvelopeMeshes = [];
   composerOrbitTraceLines.forEach((line) => {
     composerViewportGroup?.remove(line);
     line.geometry?.dispose?.();
     line.material?.dispose?.();
   });
   composerOrbitTraceLines = [];
+  composerHistoryTraceLines.forEach((line) => {
+    composerViewportGroup?.remove(line);
+    line.geometry?.dispose?.();
+    line.material?.dispose?.();
+  });
+  composerHistoryTraceLines = [];
   composerTransferLines.forEach((line) => {
     composerViewportGroup?.remove(line);
     line.geometry?.dispose?.();
@@ -3703,6 +4017,14 @@ function updateComposerAnimatedViewport(timeSeconds) {
     }
   });
 
+  composerEnvelopeMeshes.forEach((mesh) => {
+    const assemblyId = mesh.userData.assemblyId;
+    const center = assemblyCenters.get(assemblyId);
+    if (center) {
+      mesh.position.copy(center);
+    }
+  });
+
   composerOrbitTraceLines.forEach((line) => {
     const assemblyId = line.userData.assemblyId;
     const center = assemblyCenters.get(assemblyId);
@@ -3717,6 +4039,43 @@ function updateComposerAnimatedViewport(timeSeconds) {
     if (center) {
       line.position.copy(center);
     }
+  });
+
+  composerHistoryTraceLines.forEach((line) => {
+    const historyTrace = line.userData.historyTrace;
+    const path = historyTrace?.pathId ? pathById.get(historyTrace.pathId) : null;
+    const assemblyId = historyTrace?.assemblyId ?? null;
+    const assemblyCenter = assemblyId ? assemblyCenters.get(assemblyId) : null;
+    const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
+    if (!assemblyCenter || !points.length) {
+      line.visible = false;
+      return;
+    }
+    const sampledPoints = sampleComposerPath(
+      points,
+      path?.payload?.interpolate ?? "spline",
+      !!path?.payload?.closed
+    );
+    if (!sampledPoints.length) {
+      line.visible = false;
+      return;
+    }
+    const currentSample = sampleComposerPointAt(points, normalizedSceneT);
+    const anchorOffset = assemblyCenter.clone().sub(currentSample);
+    const maxIndex = clamp(
+      Math.round(normalizedSceneT * (sampledPoints.length - 1)),
+      1,
+      sampledPoints.length - 1
+    );
+    const visiblePoints = sampledPoints
+      .slice(0, maxIndex + 1)
+      .map((point) => point.clone().add(anchorOffset));
+    if (visiblePoints.length < 2) {
+      line.visible = false;
+      return;
+    }
+    line.visible = true;
+    line.geometry.setFromPoints(visiblePoints);
   });
 
   composerOrbitParticleMeshes.forEach((mesh) => {
@@ -3889,6 +4248,58 @@ function addComposerShell(center, shell) {
   mesh.userData.assemblyId = shell?.assemblyId ?? null;
   composerViewportGroup?.add(mesh);
   composerShellMeshes.push(mesh);
+}
+
+function addComposerEnvelope(center, envelope) {
+  const radius = Number(
+    envelope?.geometry?.radius ??
+      envelope?.radius ??
+      0
+  );
+  if (!radius || radius <= 0) {
+    return;
+  }
+  const geometry = new THREE.SphereGeometry(radius, 28, 18);
+  const mesh = new THREE.Mesh(
+    geometry,
+    new THREE.MeshBasicMaterial({
+      color: envelope?.style?.color ?? "#9fd4ff",
+      transparent: true,
+      opacity: envelope?.style?.opacity ?? 0.06,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    })
+  );
+  const wireframe = new THREE.LineSegments(
+    new THREE.WireframeGeometry(geometry),
+    new THREE.LineBasicMaterial({
+      color: envelope?.style?.color ?? "#9fd4ff",
+      transparent: true,
+      opacity: Math.min(0.3, Math.max(0.1, Number(envelope?.style?.opacity ?? 0.06) * 2.8)),
+    })
+  );
+  mesh.add(wireframe);
+  mesh.position.copy(center);
+  mesh.userData.assemblyId = envelope?.assemblyId ?? null;
+  composerViewportGroup?.add(mesh);
+  composerEnvelopeMeshes.push(mesh);
+}
+
+function addComposerHistoryTrace(historyTrace) {
+  if (!composerViewportGroup) {
+    return;
+  }
+  const line = new THREE.Line(
+    new THREE.BufferGeometry(),
+    new THREE.LineBasicMaterial({
+      color: historyTrace?.style?.color ?? 0x8bdcff,
+      transparent: true,
+      opacity: historyTrace?.style?.opacity ?? 0.42,
+    })
+  );
+  line.userData.historyTrace = historyTrace;
+  composerViewportGroup.add(line);
+  composerHistoryTraceLines.push(line);
 }
 
 function addComposerOrbitParticle(center, motion, chargeType, memberId = null) {
@@ -4169,20 +4580,10 @@ function updateComposerViewportFromDocument(documentData) {
     return;
   }
 
-  const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
-  const primaryPath = paths[0];
-  const sampledPath = sampleComposerPath(
-    primaryPath?.payload?.points ?? [],
-    primaryPath?.payload?.interpolate ?? "spline",
-    !!primaryPath?.payload?.closed
-  );
-  composerPathGeometry.setFromPoints(sampledPath);
-  if (sampledPath.length) {
-    composerPathGeometry.computeBoundingSphere();
-  }
-
+  rebuildComposerPathDisplayFromDocument(documentData);
   clearComposerViewportVisuals();
 
+  const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
   const pathById = new Map(paths.map((path) => [path.id, path]));
   const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
   assemblies.forEach((assembly, index) => {
@@ -4236,6 +4637,19 @@ function updateComposerViewportFromDocument(documentData) {
         }
       }
     });
+  });
+  const historyTraces = Array.isArray(documentData?.historyTraces) ? documentData.historyTraces : [];
+  historyTraces.forEach((historyTrace) => {
+    addComposerHistoryTrace(historyTrace);
+  });
+  const envelopes = Array.isArray(documentData?.envelopes) ? documentData.envelopes : [];
+  envelopes.forEach((envelope) => {
+    const assemblyIndex = assemblies.findIndex((assembly) => assembly?.id === envelope?.assemblyId);
+    const center =
+      assemblyIndex >= 0
+        ? computeComposerAssemblyBasePosition(assemblies[assemblyIndex], assemblyIndex, assemblies.length, pathById)
+        : new THREE.Vector3();
+    addComposerEnvelope(center, envelope);
   });
   const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
   transfers.forEach((transfer) => {
@@ -4568,6 +4982,7 @@ function onComposerContextMenu(event) {
     if (assemblyHit?.assemblyId) {
       composerSelectedAssemblyId = assemblyHit.assemblyId;
       renderComposerAssemblyEditor();
+      renderComposerJsonPreview();
       openComposerAssemblyPropertiesMenuAt(event.clientX, event.clientY, assemblyHit.assemblyId);
       return;
     }
@@ -4979,6 +5394,7 @@ let composerFrameGroup = null;
 let composerViewportGroup = null;
 let composerPathLine = null;
 let composerPathGeometry = null;
+let composerBackgroundPathLines = [];
 let composerPointMeshes = [];
 let composerPointGeometry = null;
 let composerPointMaterial = null;
@@ -4994,7 +5410,9 @@ let composerCameraWaypointMaterial = null;
 let composerAssemblyMeshes = [];
 let composerAssemblyWorldCenters = new Map();
 let composerShellMeshes = [];
+let composerEnvelopeMeshes = [];
 let composerOrbitTraceLines = [];
+let composerHistoryTraceLines = [];
 let composerTransferLines = [];
 let composerAxisGuideLines = [];
 let composerOrbitParticleMeshes = [];
@@ -5010,6 +5428,8 @@ const composerViewportDisplayState = {
   showTransportPath: true,
   showCameraGuides: true,
   showLabels: true,
+  showHistoryTraces: true,
+  showEnvelopes: true,
 };
 const composerPlaybackState = {
   playing: false,
@@ -7517,6 +7937,7 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   setComposerCameraDefaults,
   updateComposerCamera,
   updateComposerCameraPoiStatus,
+  persistComposerPathStateToSelectedAssembly,
   toggleComposerPlayback,
   restartComposerPlayback,
   jumpToComposerMarker,

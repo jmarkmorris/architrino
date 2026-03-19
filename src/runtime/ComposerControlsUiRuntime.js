@@ -57,6 +57,7 @@ export function createComposerControlsUiRuntime(deps) {
     setComposerCameraDefaults,
     updateComposerCamera,
     updateComposerCameraPoiStatus,
+    persistComposerPathStateToSelectedAssembly,
     toggleComposerPlayback,
     restartComposerPlayback,
     jumpToComposerMarker,
@@ -230,6 +231,7 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerPathModeSelect) {
       composerPathModeSelect.addEventListener("change", () => {
         composerPathState.interpolate = composerPathModeSelect.value;
+        persistComposerPathStateToSelectedAssembly();
         updateComposerPathGeometry();
         renderComposerJsonPreview();
       });
