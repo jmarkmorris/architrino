@@ -49,6 +49,47 @@ function normalizeMembers(rawMembers) {
   return [];
 }
 
+function normalizeTransferEndpoint(rawEndpoint) {
+  if (!rawEndpoint) {
+    return null;
+  }
+  if (typeof rawEndpoint === "string") {
+    const match = rawEndpoint.match(/^([a-zA-Z0-9_-]+)[.:/]([a-zA-Z0-9_-]+)$/);
+    if (!match) {
+      return null;
+    }
+    return {
+      assemblyId: sanitizeAssemblyId(match[1], "assembly_1"),
+      memberId: sanitizeAssemblyId(match[2], "member_1"),
+    };
+  }
+  const assemblyId = sanitizeAssemblyId(rawEndpoint.assemblyId, "assembly_1");
+  const memberId = sanitizeAssemblyId(rawEndpoint.memberId, "member_1");
+  return { assemblyId, memberId };
+}
+
+function normalizeTransfers(rawTransfers) {
+  if (!Array.isArray(rawTransfers) || !rawTransfers.length) {
+    return [];
+  }
+  return rawTransfers
+    .map((transfer, index) => {
+      const source = normalizeTransferEndpoint(transfer?.source);
+      const target = normalizeTransferEndpoint(transfer?.target);
+      if (!source || !target) {
+        return null;
+      }
+      const t = transfer?.t == null ? null : roundNumber(transfer.t);
+      return {
+        id: normalizeString(transfer?.id, `transfer_${index + 1}`),
+        source,
+        target,
+        t,
+      };
+    })
+    .filter(Boolean);
+}
+
 function normalizeMarkers(rawMarkers, start, end) {
   if (!Array.isArray(rawMarkers) || !rawMarkers.length) {
     return createDefaultMarkers(rawMarkers, start, end);
@@ -230,7 +271,11 @@ function normalizeAssemblies(rawAssemblies, primaryPathId) {
     const assembly = {
       id,
       role: rawAssembly?.role ?? "assembly",
-      transform: rawAssembly?.transform ?? { position: [0, 0, 0] },
+      parentId: rawAssembly?.parentId ? sanitizeAssemblyId(rawAssembly.parentId, "") : undefined,
+      transform: {
+        ...(rawAssembly?.transform ?? {}),
+        position: clonePoint(rawAssembly?.position ?? rawAssembly?.transform?.position ?? [0, 0, 0]),
+      },
       metadata: {
         label,
         order: index,
@@ -350,7 +395,7 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
       ? rawDocument.teachingPatterns
       : [],
     reactions: Array.isArray(rawDocument.reactions) ? rawDocument.reactions : [],
-    transfers: Array.isArray(rawDocument.transfers) ? rawDocument.transfers : [],
+    transfers: normalizeTransfers(rawDocument.transfers),
     provenance: Array.isArray(rawDocument.provenance) ? rawDocument.provenance : [],
     checkpoints: Array.isArray(rawDocument.checkpoints) ? rawDocument.checkpoints : [],
     metadata: {
@@ -380,10 +425,11 @@ export function createComposerSceneDocument(input = {}, options = {}) {
     cameraPath: {
       waypoints: input.cameraWaypoints,
     },
+    transfers: input.transfers,
   });
 }
 
-function computePreviewAssemblyPosition(assembly, index, count, pathPoints) {
+function computePreviewAssemblyLocalPosition(assembly, index, count, pathPoints) {
   const position = Array.isArray(assembly?.transform?.position) ? assembly.transform.position : null;
   const hasExplicitPosition =
     Array.isArray(position) &&
@@ -407,12 +453,55 @@ function computePreviewAssemblyPosition(assembly, index, count, pathPoints) {
   ];
 }
 
+function computePreviewAssemblyPosition(assembly, index, assemblies, pathPoints, cache, stack = new Set()) {
+  const assemblyId = assembly?.id ?? `assembly_${index + 1}`;
+  if (cache.has(assemblyId)) {
+    return cache.get(assemblyId);
+  }
+  if (stack.has(assemblyId)) {
+    const fallback = computePreviewAssemblyLocalPosition(assembly, index, assemblies.length, pathPoints);
+    cache.set(assemblyId, fallback);
+    return fallback;
+  }
+  stack.add(assemblyId);
+  const local = computePreviewAssemblyLocalPosition(assembly, index, assemblies.length, pathPoints);
+  const parentId = assembly?.parentId;
+  if (!parentId) {
+    cache.set(assemblyId, local);
+    stack.delete(assemblyId);
+    return local;
+  }
+  const parentIndex = assemblies.findIndex((candidate) => candidate?.id === parentId);
+  if (parentIndex === -1) {
+    cache.set(assemblyId, local);
+    stack.delete(assemblyId);
+    return local;
+  }
+  const parentPosition = computePreviewAssemblyPosition(
+    assemblies[parentIndex],
+    parentIndex,
+    assemblies,
+    pathPoints,
+    cache,
+    stack
+  );
+  const resolved = [
+    roundNumber((parentPosition[0] ?? 0) + (local[0] ?? 0)),
+    roundNumber((parentPosition[1] ?? 0) + (local[1] ?? 0)),
+    roundNumber((parentPosition[2] ?? 0) + (local[2] ?? 0)),
+  ];
+  cache.set(assemblyId, resolved);
+  stack.delete(assemblyId);
+  return resolved;
+}
+
 export function buildComposerPreviewSceneData(document, options = {}) {
   const normalized = normalizeComposerSceneDocument(document);
   const title = options.sceneTitle ?? normalized.scene.name;
   const sceneId = options.sceneId ?? normalized.scene.id;
   const palette = Array.isArray(options.palette) ? options.palette : [];
   const primaryPathPoints = normalized.paths?.[0]?.payload?.points ?? [];
+  const previewPositionCache = new Map();
   const objects = normalized.assemblies.map((assembly, index) => {
     const memberCount = Array.isArray(assembly?.members) ? assembly.members.length : 0;
     return {
@@ -423,12 +512,23 @@ export function buildComposerPreviewSceneData(document, options = {}) {
       position: computePreviewAssemblyPosition(
         assembly,
         index,
-        normalized.assemblies.length,
-        primaryPathPoints
+        normalized.assemblies,
+        primaryPathPoints,
+        previewPositionCache
       ),
       wrapLabel: true,
     };
   });
+  const links = normalized.transfers.map((transfer, index) => ({
+    id: transfer.id ?? `transfer_link_${index + 1}`,
+    from: transfer.source.assemblyId,
+    to: transfer.target.assemblyId,
+    kind: "transfer",
+    label:
+      transfer.source.memberId === transfer.target.memberId
+        ? transfer.source.memberId
+        : `${transfer.source.memberId} -> ${transfer.target.memberId}`,
+  }));
 
   return {
     schemaVersion: "0.1",
@@ -449,6 +549,6 @@ export function buildComposerPreviewSceneData(document, options = {}) {
       },
     },
     objects,
-    links: [],
+    links,
   };
 }

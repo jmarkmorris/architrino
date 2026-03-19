@@ -138,9 +138,11 @@ const composerSceneLoopInput = document.getElementById("composer-scene-loop");
 const composerMarkerListInput = document.getElementById("composer-marker-list");
 const composerPauseListInput = document.getElementById("composer-pause-list");
 const composerWarpListInput = document.getElementById("composer-warp-list");
+const composerTransferListInput = document.getElementById("composer-transfer-list");
 const composerMarkerStatus = document.getElementById("composer-marker-status");
 const composerPauseStatus = document.getElementById("composer-pause-status");
 const composerWarpStatus = document.getElementById("composer-warp-status");
+const composerTransferStatus = document.getElementById("composer-transfer-status");
 const composerTimelineSummary = document.getElementById("composer-timeline-summary");
 const composerTimelineActive = document.getElementById("composer-timeline-active");
 const composerTimelineTrack = document.getElementById("composer-timeline-track");
@@ -361,6 +363,8 @@ function createDefaultComposerAssemblyDraft(index = 0) {
   return {
     id: `assembly_${ordinal}`,
     name: ordinal === 1 ? "Primary Assembly" : `Assembly ${ordinal}`,
+    parentId: "",
+    position: [0, 0, 0],
     members:
       ordinal === 1
         ? [
@@ -392,9 +396,18 @@ function normalizeComposerAssemblyDraft(draft = {}, index = 0) {
   const fallback = createDefaultComposerAssemblyDraft(index);
   const name = String(draft.name ?? draft.label ?? fallback.name).trim() || fallback.name;
   const id = sanitizeComposerEntityId(draft.id || name, fallback.id);
+  const position = Array.isArray(draft.position)
+    ? [
+        Number(draft.position[0] ?? 0) || 0,
+        Number(draft.position[1] ?? 0) || 0,
+        Number(draft.position[2] ?? 0) || 0,
+      ]
+    : [0, 0, 0];
   return {
     id,
     name,
+    parentId: draft.parentId ? sanitizeComposerEntityId(draft.parentId, "") : "",
+    position,
     members: normalizeComposerMemberList(draft.members),
   };
 }
@@ -407,6 +420,66 @@ function ensureComposerAssemblyDrafts() {
   composerAssemblyDrafts = composerAssemblyDrafts.map((draft, index) =>
     normalizeComposerAssemblyDraft(draft, index)
   );
+}
+
+function normalizeComposerTransferEndpoint(rawEndpoint) {
+  if (!rawEndpoint) {
+    return null;
+  }
+  if (typeof rawEndpoint === "object") {
+    const assemblyId = sanitizeComposerEntityId(rawEndpoint.assemblyId, "");
+    const memberId = sanitizeComposerEntityId(rawEndpoint.memberId, "");
+    return assemblyId && memberId ? { assemblyId, memberId } : null;
+  }
+  const match = String(rawEndpoint)
+    .trim()
+    .match(/^([a-zA-Z0-9_-]+)[.:/]([a-zA-Z0-9_-]+)$/);
+  if (!match) {
+    return null;
+  }
+  const assemblyId = sanitizeComposerEntityId(match[1], "");
+  const memberId = sanitizeComposerEntityId(match[2], "");
+  return assemblyId && memberId ? { assemblyId, memberId } : null;
+}
+
+function parseComposerTransfers(rawText) {
+  return parseComposerTimingLines(rawText, (line, lineNumber) => {
+    const [mappingPart, rawTimePart] = line.split("@").map((part) => part.trim());
+    const mappingMatch = mappingPart.match(/^(.+?)\s*->\s*(.+)$/);
+    if (!mappingMatch) {
+      return null;
+    }
+    const source = normalizeComposerTransferEndpoint(mappingMatch[1]);
+    const target = normalizeComposerTransferEndpoint(mappingMatch[2]);
+    if (!source || !target) {
+      return null;
+    }
+    let t = null;
+    if (rawTimePart) {
+      const parsedTime = Number(rawTimePart);
+      if (!Number.isFinite(parsedTime)) {
+        return null;
+      }
+      t = Number(parsedTime.toFixed(3));
+    }
+    return {
+      id: `transfer_authored_${lineNumber}`,
+      source,
+      target,
+      t,
+    };
+  });
+}
+
+function formatComposerTransferList(transfers = []) {
+  return transfers
+    .map((transfer) => {
+      const source = `${transfer?.source?.assemblyId ?? ""}.${transfer?.source?.memberId ?? ""}`;
+      const target = `${transfer?.target?.assemblyId ?? ""}.${transfer?.target?.memberId ?? ""}`;
+      const suffix = Number.isFinite(Number(transfer?.t)) ? ` @ ${Number(transfer.t)}` : "";
+      return `${source} -> ${target}${suffix}`;
+    })
+    .join("\n");
 }
 
 function readNumberInput(input, fallback = 0) {
@@ -800,6 +873,55 @@ function renderComposerAssemblyEditor() {
     nameField.appendChild(nameLabel);
     nameField.appendChild(nameInput);
 
+    const parentField = document.createElement("label");
+    parentField.className = "composer-field";
+    const parentLabel = document.createElement("span");
+    parentLabel.textContent = "Parent";
+    const parentSelect = document.createElement("select");
+    const rootOption = document.createElement("option");
+    rootOption.value = "";
+    rootOption.textContent = "Scene Root";
+    parentSelect.appendChild(rootOption);
+    composerAssemblyDrafts.forEach((candidate, candidateIndex) => {
+      if (candidateIndex === index) {
+        return;
+      }
+      const option = document.createElement("option");
+      option.value = candidate.id;
+      option.textContent = candidate.name.trim() || candidate.id;
+      parentSelect.appendChild(option);
+    });
+    parentSelect.value = assembly.parentId || "";
+    parentSelect.addEventListener("change", () => {
+      assembly.parentId = parentSelect.value;
+      renderComposerJsonPreview();
+    });
+    parentField.appendChild(parentLabel);
+    parentField.appendChild(parentSelect);
+
+    const positionGrid = document.createElement("div");
+    positionGrid.className = "composer-form composer-form-grid composer-form-grid-3";
+    const axes = ["x", "y", "z"];
+    axes.forEach((axis, axisIndex) => {
+      const axisField = document.createElement("label");
+      axisField.className = "composer-field";
+      const axisLabel = document.createElement("span");
+      axisLabel.textContent = `${axis.toUpperCase()} Pos`;
+      const axisInput = document.createElement("input");
+      axisInput.type = "number";
+      axisInput.step = "0.1";
+      axisInput.value = String(Number(assembly.position?.[axisIndex] ?? 0));
+      axisInput.addEventListener("input", () => {
+        const nextPosition = Array.isArray(assembly.position) ? [...assembly.position] : [0, 0, 0];
+        nextPosition[axisIndex] = Number(axisInput.value) || 0;
+        assembly.position = nextPosition;
+        renderComposerJsonPreview();
+      });
+      axisField.appendChild(axisLabel);
+      axisField.appendChild(axisInput);
+      positionGrid.appendChild(axisField);
+    });
+
     const membersField = document.createElement("label");
     membersField.className = "composer-field";
     const membersLabel = document.createElement("span");
@@ -824,6 +946,8 @@ function renderComposerAssemblyEditor() {
 
     form.appendChild(idField);
     form.appendChild(nameField);
+    form.appendChild(parentField);
+    form.appendChild(positionGrid);
     form.appendChild(membersField);
     card.appendChild(form);
     composerAssemblyList.appendChild(card);
@@ -839,12 +963,21 @@ function readComposerFormState() {
   const rawName = composerSceneNameInput?.value ?? "";
   const name = rawName.trim() || "Composer Scene";
   ensureComposerAssemblyDrafts();
+  const transferListRaw = composerTransferListInput?.value ?? "";
+  const transferHasInput = transferListRaw.trim().length > 0;
+  const transferParse = parseComposerTransfers(transferListRaw);
   return {
     id,
     name,
     assembliesDraft: composerAssemblyDrafts.map((draft, index) =>
       normalizeComposerAssemblyDraft(draft, index)
     ),
+    transfers: transferParse.entries,
+    transferListRaw,
+    diagnostics: {
+      transferHasInput,
+      transferErrorLines: transferParse.errors,
+    },
   };
 }
 
@@ -929,6 +1062,7 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
   const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
 
   const markerCount = diagnostics?.markerHasInput
     ? markers.filter((marker) => marker.id !== "marker_start").length
@@ -939,6 +1073,21 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
   const markerStatus = formatComposerInlineTimingStatus("marker", diagnostics, markerCount);
   const pauseStatus = formatComposerInlineTimingStatus("pause", diagnostics, pauseCount);
   const warpStatus = formatComposerInlineTimingStatus("warp", diagnostics, warpCount);
+  const transferErrors = Array.isArray(diagnostics?.transferErrorLines) ? diagnostics.transferErrorLines : [];
+  const transferHasInput = !!diagnostics?.transferHasInput;
+  const transferStatus = !transferHasInput
+    ? { text: "No transfers authored.", invalid: false }
+    : transferErrors.length
+      ? {
+          text: `Parsed ${transfers.length} transfer${transfers.length === 1 ? "" : "s"}. Ignored invalid line${
+            transferErrors.length === 1 ? "" : "s"
+          } ${transferErrors.join(", ")}.`,
+          invalid: true,
+        }
+      : {
+          text: `Parsed ${transfers.length} transfer${transfers.length === 1 ? "" : "s"}.`,
+          invalid: false,
+        };
 
   if (composerMarkerStatus) {
     composerMarkerStatus.textContent = markerStatus.text;
@@ -952,6 +1101,10 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
     composerWarpStatus.textContent = warpStatus.text;
     composerWarpStatus.classList.toggle("is-invalid", warpStatus.invalid);
   }
+  if (composerTransferStatus) {
+    composerTransferStatus.textContent = transferStatus.text;
+    composerTransferStatus.classList.toggle("is-invalid", transferStatus.invalid);
+  }
 
   if (composerMarkerListInput) {
     composerMarkerListInput.classList.toggle("is-invalid", markerStatus.invalid);
@@ -961,6 +1114,9 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
   }
   if (composerWarpListInput) {
     composerWarpListInput.classList.toggle("is-invalid", warpStatus.invalid);
+  }
+  if (composerTransferListInput) {
+    composerTransferListInput.classList.toggle("is-invalid", transferStatus.invalid);
   }
 }
 
@@ -1100,9 +1256,15 @@ function readComposerDraftState() {
   return {
     ...state,
     ...timing,
+    transfers: state.transfers,
     markerListRaw: composerMarkerListInput?.value ?? "",
     pauseListRaw: composerPauseListInput?.value ?? "",
     warpListRaw: composerWarpListInput?.value ?? "",
+    transferListRaw: composerTransferListInput?.value ?? "",
+    diagnostics: {
+      ...(timing.diagnostics ?? {}),
+      ...(state.diagnostics ?? {}),
+    },
     pathPoints,
     pathInterpolate: composerPathState.interpolate,
     pathClosed: composerPathState.closed,
@@ -1219,6 +1381,8 @@ function applyComposerDraftState(draftState = {}) {
     ? legacyLabels.map((label, index) => ({
         id: `assembly_${index + 1}`,
         name: String(label || `Assembly ${index + 1}`),
+        parentId: "",
+        position: [0, 0, 0],
         members: [],
       }))
     : [createDefaultComposerAssemblyDraft(0)];
@@ -1251,6 +1415,12 @@ function applyComposerDraftState(draftState = {}) {
       typeof draftState.warpListRaw === "string"
         ? draftState.warpListRaw
         : formatComposerWarpList(draftState.timeWarps);
+  }
+  if (composerTransferListInput) {
+    composerTransferListInput.value =
+      typeof draftState.transferListRaw === "string"
+        ? draftState.transferListRaw
+        : formatComposerTransferList(draftState.transfers);
   }
 
   composerPathState.interpolate = draftState.pathInterpolate === "polyline" ? "polyline" : "spline";
@@ -1692,6 +1862,12 @@ function clearComposerViewportVisuals() {
     line.material?.dispose?.();
   });
   composerOrbitTraceLines = [];
+  composerTransferLines.forEach((line) => {
+    composerViewportGroup?.remove(line);
+    line.geometry?.dispose?.();
+    line.material?.dispose?.();
+  });
+  composerTransferLines = [];
   composerAxisGuideLines.forEach((line) => {
     composerViewportGroup?.remove(line);
     line.geometry?.dispose?.();
@@ -2219,8 +2395,19 @@ function updateComposerAnimatedViewport(timeSeconds) {
       ? clamp((timeSeconds - timeWindow.start) / (timeWindow.end - timeWindow.start), 0, 1)
       : 0;
   const assemblyCenters = new Map();
+  const assemblyById = new Map(assemblies.map((assembly) => [assembly.id, assembly]));
 
-  assemblies.forEach((assembly, index) => {
+  const resolveAssemblyCenter = (assembly, index, stack = new Set()) => {
+    if (!assembly?.id) {
+      return new THREE.Vector3();
+    }
+    if (assemblyCenters.has(assembly.id)) {
+      return assemblyCenters.get(assembly.id).clone();
+    }
+    if (stack.has(assembly.id)) {
+      return computeComposerAssemblyBasePosition(assembly, index, assemblies.length, pathById);
+    }
+    stack.add(assembly.id);
     const motions = Array.isArray(assembly.motion)
       ? assembly.motion
       : assembly.motion
@@ -2240,11 +2427,25 @@ function updateComposerAnimatedViewport(timeSeconds) {
         center = sampleComposerPointAt(points, motionT);
       }
     }
+    const parentId = assembly?.parentId;
+    if (parentId && assemblyById.has(parentId)) {
+      const parentAssembly = assemblyById.get(parentId);
+      const parentIndex = assemblies.findIndex((candidate) => candidate?.id === parentId);
+      if (parentAssembly && parentIndex !== -1) {
+        center.add(resolveAssemblyCenter(parentAssembly, parentIndex, stack));
+      }
+    }
+    assemblyCenters.set(assembly.id, center.clone());
+    stack.delete(assembly.id);
+    return center.clone();
+  };
+
+  assemblies.forEach((assembly, index) => {
+    const center = resolveAssemblyCenter(assembly, index);
     const mesh = composerAssemblyMeshes[index];
     if (mesh) {
       mesh.position.copy(center);
     }
-    assemblyCenters.set(assembly.id, center);
   });
 
   composerShellMeshes.forEach((mesh) => {
@@ -2261,6 +2462,21 @@ function updateComposerAnimatedViewport(timeSeconds) {
     if (center) {
       line.position.copy(center);
     }
+  });
+
+  composerTransferLines.forEach((line) => {
+    const transfer = line.userData.transfer;
+    const sourceCenter = assemblyCenters.get(transfer?.source?.assemblyId);
+    const targetCenter = assemblyCenters.get(transfer?.target?.assemblyId);
+    if (!sourceCenter || !targetCenter) {
+      line.visible = false;
+      return;
+    }
+    line.visible = true;
+    line.geometry.setFromPoints([sourceCenter.clone(), targetCenter.clone()]);
+    line.computeLineDistances();
+    const isActive = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
+    line.material.opacity = isActive ? 0.82 : 0.32;
   });
 
   composerAxisGuideLines.forEach((line) => {
@@ -2403,6 +2619,28 @@ function addComposerOrbitParticle(center, motion, chargeType) {
   mesh.userData.phaseOffset = chargeType === "electrino" ? Math.PI : 0;
   composerViewportGroup?.add(mesh);
   composerOrbitParticleMeshes.push(mesh);
+}
+
+function addComposerTransferLine(transfer) {
+  if (!composerViewportGroup) {
+    return;
+  }
+  const geometry = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(),
+    new THREE.Vector3(),
+  ]);
+  const material = new THREE.LineDashedMaterial({
+    color: 0xffd17a,
+    transparent: true,
+    opacity: 0.55,
+    dashSize: 0.12,
+    gapSize: 0.08,
+  });
+  const line = new THREE.Line(geometry, material);
+  line.computeLineDistances();
+  line.userData.transfer = transfer;
+  composerViewportGroup.add(line);
+  composerTransferLines.push(line);
 }
 
 function addComposerAssemblyProxy(center, assembly, index) {
@@ -2592,6 +2830,10 @@ function updateComposerViewportFromDocument(documentData) {
         }
       }
     });
+  });
+  const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
+  transfers.forEach((transfer) => {
+    addComposerTransferLine(transfer);
   });
   addComposerDocumentCameraVisuals(documentData);
 
@@ -3157,6 +3399,7 @@ let composerCameraWaypointMaterial = null;
 let composerAssemblyMeshes = [];
 let composerShellMeshes = [];
 let composerOrbitTraceLines = [];
+let composerTransferLines = [];
 let composerAxisGuideLines = [];
 let composerOrbitParticleMeshes = [];
 let composerDocumentCameraPathLine = null;
@@ -5644,6 +5887,7 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerMarkerListInput,
   composerPauseListInput,
   composerWarpListInput,
+  composerTransferListInput,
   composerCameraSpeedInput,
   composerCameraRadiusInput,
   composerCameraResetButton,

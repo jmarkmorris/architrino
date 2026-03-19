@@ -266,6 +266,37 @@
               <div class="composer-button-row composer-button-row-single">
                 <button id="composer-assembly-add" type="button">Add Assembly</button>
               </div>
+              <div class="composer-card-meta">
+                <span>Transfers</span>
+                <div class="composer-help">
+                  <button
+                    type="button"
+                    class="composer-help-trigger"
+                    aria-label="Show transfer guidance"
+                  >
+                    i
+                  </button>
+                  <div class="composer-help-popover" role="tooltip">
+                    <div class="composer-section-title">Transfers</div>
+                    <ul class="composer-help-list">
+                      <li>Map a member from one assembly to another.</li>
+                      <li>Use `assembly.member -> assembly.member @ time`.</li>
+                      <li>Example: `assembly_1.positrino_1 -> assembly_2.positrino_1 @ 6.0`</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="composer-form">
+                <label class="composer-field">
+                  <span>Transfer Map</span>
+                  <textarea
+                    id="composer-transfer-list"
+                    rows="3"
+                    placeholder="assembly_1.positrino_1 -> assembly_2.positrino_1 @ 6.0"
+                  ></textarea>
+                </label>
+                <div id="composer-transfer-status" class="composer-inline-status">No transfers authored.</div>
+              </div>
             </section>
             <section class="composer-card">
               <h3>Save / Library</h3>
