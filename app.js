@@ -509,6 +509,50 @@ function readComposerFormState() {
   return { id, name, nodeCount, labels };
 }
 
+function parseComposerTimingLines(rawText, parseLine) {
+  const entries = [];
+  const errors = [];
+  const lines = typeof rawText === "string" ? rawText.split(/\n/) : [];
+  lines.forEach((rawLine, index) => {
+    const line = rawLine.trim();
+    if (!line) {
+      return;
+    }
+    const parsed = parseLine(line, index + 1, entries.length);
+    if (parsed) {
+      entries.push(parsed);
+      return;
+    }
+    errors.push(index + 1);
+  });
+  return { entries, errors };
+}
+
+function formatComposerTimingStatus(documentData, diagnostics = {}) {
+  const cueCount = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers.length : 0;
+  const pauseCount = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses.length : 0;
+  const warpCount = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps.length : 0;
+  const parts = [
+    `${cueCount} cue${cueCount === 1 ? "" : "s"}`,
+    `${pauseCount} pause${pauseCount === 1 ? "" : "s"}`,
+    `${warpCount} warp${warpCount === 1 ? "" : "s"}`,
+  ];
+  const timingErrors = Array.isArray(diagnostics?.timingErrors) ? diagnostics.timingErrors : [];
+  if (!timingErrors.length) {
+    return `Timing OK: ${parts.join(" • ")}`;
+  }
+  const grouped = timingErrors.reduce((accumulator, entry) => {
+    const existing = accumulator.get(entry.kind) ?? [];
+    existing.push(entry.line);
+    accumulator.set(entry.kind, existing);
+    return accumulator;
+  }, new Map());
+  const detail = [...grouped.entries()]
+    .map(([kind, lines]) => `${kind} line${lines.length === 1 ? "" : "s"} ${lines.join(", ")}`)
+    .join("; ");
+  return `Timing OK: ${parts.join(" • ")}. Ignored invalid ${detail}.`;
+}
+
 function readComposerTimingState() {
   const durationRaw = readNumberInput(composerSceneDurationInput, 12);
   const duration = Math.max(1, Number(durationRaw.toFixed(3)));
@@ -517,29 +561,24 @@ function readComposerTimingState() {
   }
 
   const markerListRaw = composerMarkerListInput?.value ?? "";
-  const authoredMarkers = markerListRaw
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line, index) => {
-      const separatorIndex = line.indexOf(":");
-      if (separatorIndex === -1) {
-        return null;
-      }
-      const rawTime = Number(line.slice(0, separatorIndex).trim());
-      if (!Number.isFinite(rawTime)) {
-        return null;
-      }
-      const label = line.slice(separatorIndex + 1).trim() || `Cue ${index + 1}`;
-      return {
-        id: `marker_authored_${index + 1}`,
-        t: clamp(Number(rawTime.toFixed(3)), 0, duration),
-        kind: index === 0 ? "chapter" : "cue",
-        label,
-      };
-    })
-    .filter(Boolean)
-    .sort((left, right) => left.t - right.t);
+  const markerParse = parseComposerTimingLines(markerListRaw, (line, lineNumber, entryIndex) => {
+    const separatorIndex = line.indexOf(":");
+    if (separatorIndex === -1) {
+      return null;
+    }
+    const rawTime = Number(line.slice(0, separatorIndex).trim());
+    if (!Number.isFinite(rawTime)) {
+      return null;
+    }
+    const label = line.slice(separatorIndex + 1).trim() || `Cue ${entryIndex + 1}`;
+    return {
+      id: `marker_authored_${lineNumber}`,
+      t: clamp(Number(rawTime.toFixed(3)), 0, duration),
+      kind: entryIndex === 0 ? "chapter" : "cue",
+      label,
+    };
+  });
+  const authoredMarkers = [...markerParse.entries].sort((left, right) => left.t - right.t);
   const hasStartMarker = authoredMarkers.some((marker) => Math.abs(marker.t) < 0.001);
   const markers = !authoredMarkers.length
     ? []
@@ -548,53 +587,51 @@ function readComposerTimingState() {
         ...authoredMarkers,
       ];
   const pauseListRaw = composerPauseListInput?.value ?? "";
-  const pauses = pauseListRaw
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line, index) => {
-      const [rawStart, rawDuration] = line.split(",").map((part) => Number(part.trim()));
-      if (!Number.isFinite(rawStart) || !Number.isFinite(rawDuration) || rawDuration <= 0) {
-        return null;
-      }
-      return {
-        id: `pause_authored_${index + 1}`,
-        start: clamp(Number(rawStart.toFixed(3)), 0, duration),
-        duration: Number(Math.max(0, rawDuration).toFixed(3)),
-      };
-    })
-    .filter(Boolean)
-    .sort((left, right) => left.start - right.start);
+  const pauseParse = parseComposerTimingLines(pauseListRaw, (line, lineNumber) => {
+    const parts = line.split(",").map((part) => part.trim());
+    if (parts.length !== 2) {
+      return null;
+    }
+    const [rawStart, rawDuration] = parts.map((part) => Number(part));
+    if (!Number.isFinite(rawStart) || !Number.isFinite(rawDuration) || rawDuration <= 0) {
+      return null;
+    }
+    return {
+      id: `pause_authored_${lineNumber}`,
+      start: clamp(Number(rawStart.toFixed(3)), 0, duration),
+      duration: Number(Math.max(0, rawDuration).toFixed(3)),
+    };
+  });
+  const pauses = [...pauseParse.entries].sort((left, right) => left.start - right.start);
 
   const warpListRaw = composerWarpListInput?.value ?? "";
-  const timeWarps = warpListRaw
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line, index) => {
-      const [rawStart, rawEnd, rawRate] = line.split(",").map((part) => Number(part.trim()));
-      if (
-        !Number.isFinite(rawStart) ||
-        !Number.isFinite(rawEnd) ||
-        !Number.isFinite(rawRate) ||
-        rawRate <= 0
-      ) {
-        return null;
-      }
-      const start = clamp(Number(rawStart.toFixed(3)), 0, duration);
-      const end = clamp(Number(rawEnd.toFixed(3)), 0, duration);
-      if (end <= start) {
-        return null;
-      }
-      return {
-        id: `warp_authored_${index + 1}`,
-        start,
-        end,
-        rate: Number(rawRate.toFixed(3)),
-      };
-    })
-    .filter(Boolean)
-    .sort((left, right) => left.start - right.start);
+  const warpParse = parseComposerTimingLines(warpListRaw, (line, lineNumber) => {
+    const parts = line.split(",").map((part) => part.trim());
+    if (parts.length !== 3) {
+      return null;
+    }
+    const [rawStart, rawEnd, rawRate] = parts.map((part) => Number(part));
+    if (
+      !Number.isFinite(rawStart) ||
+      !Number.isFinite(rawEnd) ||
+      !Number.isFinite(rawRate) ||
+      rawRate <= 0
+    ) {
+      return null;
+    }
+    const start = clamp(Number(rawStart.toFixed(3)), 0, duration);
+    const end = clamp(Number(rawEnd.toFixed(3)), 0, duration);
+    if (end <= start) {
+      return null;
+    }
+    return {
+      id: `warp_authored_${lineNumber}`,
+      start,
+      end,
+      rate: Number(rawRate.toFixed(3)),
+    };
+  });
+  const timeWarps = [...warpParse.entries].sort((left, right) => left.start - right.start);
 
   return {
     time: {
@@ -607,6 +644,13 @@ function readComposerTimingState() {
     markers,
     pauses,
     timeWarps,
+    diagnostics: {
+      timingErrors: [
+        ...markerParse.errors.map((line) => ({ kind: "cue", line })),
+        ...pauseParse.errors.map((line) => ({ kind: "pause", line })),
+        ...warpParse.errors.map((line) => ({ kind: "warp", line })),
+      ],
+    },
   };
 }
 
@@ -658,6 +702,7 @@ function renderComposerJsonPreview() {
   const draftState = readComposerDraftState();
   const documentData = buildComposerDocumentData(draftState);
   updateComposerViewportFromDocument(documentData);
+  setComposerStatus(formatComposerTimingStatus(documentData, draftState.diagnostics));
   if (composerJsonPreview) {
     composerJsonPreview.textContent = JSON.stringify(documentData, null, 2);
   }
