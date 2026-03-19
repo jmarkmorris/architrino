@@ -1314,6 +1314,7 @@ body {
   z-index: 6;
   min-width: 188px;
   max-width: 280px;
+  max-height: calc(100% - 24px);
   display: none;
   padding: 8px;
   border-radius: 12px;
@@ -1321,6 +1322,8 @@ body {
   background: rgba(10, 12, 24, 0.96);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.36);
   backdrop-filter: blur(10px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .composer-assembly-menu.is-open {

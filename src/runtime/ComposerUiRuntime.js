@@ -126,11 +126,59 @@ export function createComposerUiRuntime(deps) {
     renderComposerJsonPreview();
   }
 
+  async function saveComposerSceneToRepoFile() {
+    const draftState = readComposerDraftState();
+    const sceneDocument = buildComposerSceneDocument(draftState);
+    const json = JSON.stringify(sceneDocument, null, 2);
+    const suggestedName = `${draftState.id || "composer_scene"}.json`;
+    const picker = globalThis.window?.showSaveFilePicker;
+
+    if (typeof picker === "function") {
+      try {
+        const handle = await picker({
+          suggestedName,
+          types: [
+            {
+              description: "JSON Scene",
+              accept: {
+                "application/json": [".json"],
+              },
+            },
+          ],
+        });
+        const writable = await handle.createWritable();
+        await writable.write(json);
+        await writable.close();
+        setComposerStatus(`Saved ${suggestedName}. Place it under content/scenes/ where you want it in the repo.`);
+        renderComposerJsonPreview();
+        return;
+      } catch (error) {
+        if (error?.name === "AbortError") {
+          setComposerStatus("Repo save canceled.");
+          return;
+        }
+      }
+    }
+
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = suggestedName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    setComposerStatus(`Downloaded ${suggestedName}. Move it into content/scenes/ to add it to the repo.`);
+    renderComposerJsonPreview();
+  }
+
   return {
     setComposerPanel,
     updateComposerOverlay,
     openComposerDocs,
     openComposerPreview,
     exportComposerScene,
+    saveComposerSceneToRepoFile,
   };
 }

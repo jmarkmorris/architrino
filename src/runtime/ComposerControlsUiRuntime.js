@@ -6,6 +6,7 @@ export function createComposerControlsUiRuntime(deps) {
     composerPreviewButton,
     composerExportButton,
     composerLibrarySaveButton,
+    composerRepoSaveButton,
     composerLibrarySelect,
     composerLibraryLoadButton,
     composerLibraryDeleteButton,
@@ -100,6 +101,12 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerExportButton) {
       composerExportButton.addEventListener("click", () => {
         composerUiRuntime.exportComposerScene();
+      });
+    }
+
+    if (composerRepoSaveButton) {
+      composerRepoSaveButton.addEventListener("click", () => {
+        composerUiRuntime.saveComposerSceneToRepoFile();
       });
     }
 
