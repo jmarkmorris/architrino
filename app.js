@@ -1196,13 +1196,6 @@ function initComposerCanvas() {
   composerRenderer.setClearColor(0x000000, 0);
 
   composerScene = new THREE.Scene();
-  composerScene.add(new THREE.AmbientLight(0xc7dbff, 0.85));
-  const composerKeyLight = new THREE.DirectionalLight(0xc9e7ff, 1.15);
-  composerKeyLight.position.set(4.5, 6.5, 8);
-  composerScene.add(composerKeyLight);
-  const composerFillLight = new THREE.DirectionalLight(0x6a8dff, 0.35);
-  composerFillLight.position.set(-5, -3, -4);
-  composerScene.add(composerFillLight);
   composerCamera = new THREE.PerspectiveCamera(45, 1, 0.01, 10000);
   composerCamera.rotation.order = "YXZ";
 
@@ -1432,6 +1425,13 @@ function clearComposerViewportVisuals() {
   composerAssemblyMeshes = [];
   composerShellMeshes.forEach((mesh) => {
     composerViewportGroup?.remove(mesh);
+    mesh.traverse?.((child) => {
+      if (child === mesh) {
+        return;
+      }
+      child.geometry?.dispose?.();
+      child.material?.dispose?.();
+    });
     mesh.geometry?.dispose?.();
     mesh.material?.dispose?.();
   });
@@ -2105,20 +2105,27 @@ function addComposerShell(center, shell) {
   if (!radius || radius <= 0) {
     return;
   }
+  const shellGeometry = new THREE.SphereGeometry(radius, 32, 20);
   const mesh = new THREE.Mesh(
-    new THREE.SphereGeometry(radius, 32, 20),
-    new THREE.MeshPhongMaterial({
+    shellGeometry,
+    new THREE.MeshBasicMaterial({
       color: shell?.color ?? "#7fb9ff",
-      emissive: shell?.color ?? "#7fb9ff",
-      emissiveIntensity: 0.1,
-      shininess: 28,
-      specular: new THREE.Color("#d7e8ff"),
       transparent: true,
-      opacity: shell?.opacity ?? 0.16,
+      opacity: shell?.opacity ?? 0.08,
       depthWrite: false,
       side: THREE.DoubleSide,
     })
   );
+  const wireframe = new THREE.LineSegments(
+    new THREE.WireframeGeometry(shellGeometry),
+    new THREE.LineBasicMaterial({
+      color: shell?.color ?? "#7fb9ff",
+      transparent: true,
+      opacity: Math.min(0.4, Math.max(0.14, Number(shell?.opacity ?? 0.08) * 2.2)),
+    })
+  );
+  wireframe.userData.isComposerShellGuide = true;
+  mesh.add(wireframe);
   mesh.position.copy(center);
   mesh.userData.assemblyId = shell?.assemblyId ?? null;
   composerViewportGroup?.add(mesh);
