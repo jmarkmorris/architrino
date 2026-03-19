@@ -770,6 +770,21 @@ function resolveComposerTransferEndpointPosition(endpoint, assemblyCenters, time
   return assemblyCenter.clone();
 }
 
+function addComposerMemberLabel(assemblyId, memberId, color, options = {}) {
+  if (!composerViewportGroup || !assemblyId || !memberId) {
+    return;
+  }
+  const sprite = createComposerMemberLabelSprite(memberId, color);
+  const offset = Array.isArray(options.offset)
+    ? new THREE.Vector3(options.offset[0] ?? 0, options.offset[1] ?? 0.08, options.offset[2] ?? 0)
+    : new THREE.Vector3(0, 0.08, 0);
+  sprite.userData.assemblyId = assemblyId;
+  sprite.userData.memberId = memberId;
+  sprite.userData.offset = offset;
+  composerViewportGroup.add(sprite);
+  composerMemberLabelSprites.push(sprite);
+}
+
 function findComposerCoreMemberId(members, chargeType, binaryIndex) {
   const targetPrefix = chargeType === "electrino" ? "electrino" : "positrino";
   const targetSuffix = String(binaryIndex + 1);
@@ -844,6 +859,46 @@ function createComposerPointLabelTexture(text, isActive = false) {
   return texture;
 }
 
+function createComposerMemberLabelTexture(text, color = "#ffd894") {
+  const label = String(text ?? "").trim() || "?";
+  const canvas = document.createElement("canvas");
+  canvas.width = 220;
+  canvas.height = 64;
+  const context = canvas.getContext("2d");
+  if (context) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "rgba(16, 20, 34, 0.88)";
+    context.strokeStyle = color;
+    context.lineWidth = 3;
+    const x = 8;
+    const y = 10;
+    const width = canvas.width - 16;
+    const height = canvas.height - 20;
+    const radius = 18;
+    context.beginPath();
+    context.moveTo(x + radius, y);
+    context.lineTo(x + width - radius, y);
+    context.quadraticCurveTo(x + width, y, x + width, y + radius);
+    context.lineTo(x + width, y + height - radius);
+    context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    context.lineTo(x + radius, y + height);
+    context.quadraticCurveTo(x, y + height, x, y + height - radius);
+    context.lineTo(x, y + radius);
+    context.quadraticCurveTo(x, y, x + radius, y);
+    context.closePath();
+    context.fill();
+    context.stroke();
+    context.fillStyle = "rgba(244, 247, 255, 0.96)";
+    context.font = "600 24px sans-serif";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillText(label, canvas.width / 2, canvas.height / 2 + 1);
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
+}
+
 function updateComposerPointLabelSprite(sprite, text, isActive = false) {
   if (!sprite) {
     return;
@@ -864,6 +919,18 @@ function createComposerPointLabelSprite(text) {
   });
   const sprite = new THREE.Sprite(material);
   sprite.scale.set(0.42, 0.28, 1);
+  return sprite;
+}
+
+function createComposerMemberLabelSprite(text, color = "#ffd894") {
+  const material = new THREE.SpriteMaterial({
+    map: createComposerMemberLabelTexture(text, color),
+    transparent: true,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(0.56, 0.16, 1);
   return sprite;
 }
 
@@ -2218,6 +2285,12 @@ function clearComposerViewportVisuals() {
     mesh.material?.dispose?.();
   });
   composerOrbitParticleMeshes = [];
+  composerMemberLabelSprites.forEach((sprite) => {
+    composerViewportGroup?.remove(sprite);
+    sprite.material?.map?.dispose?.();
+    sprite.material?.dispose?.();
+  });
+  composerMemberLabelSprites = [];
   composerMemberAnchors = new Map();
   if (composerDocumentCameraPathLine) {
     composerViewportGroup?.remove(composerDocumentCameraPathLine);
@@ -2901,6 +2974,23 @@ function updateComposerAnimatedViewport(timeSeconds) {
     mesh.position.copy(center).add(offset);
   });
 
+  composerMemberLabelSprites.forEach((sprite) => {
+    const assemblyId = sprite.userData.assemblyId;
+    const memberId = sprite.userData.memberId;
+    const anchorPosition = resolveComposerTransferEndpointPosition(
+      { assemblyId, memberId },
+      assemblyCenters,
+      timeSeconds
+    );
+    if (!anchorPosition) {
+      sprite.visible = false;
+      return;
+    }
+    sprite.visible = true;
+    const offset = vectorFromTriplet(sprite.userData.offset);
+    sprite.position.copy(anchorPosition).add(offset);
+  });
+
   const activeReactionTransferIds = getComposerActiveReactionTransferIds(
     composerCurrentDocument,
     timeSeconds
@@ -3133,6 +3223,9 @@ function addComposerAssemblyProxy(center, assembly, index) {
         memberDot.position.copy(memberOffset);
         memberDot.userData.memberId = memberId;
         group.add(memberDot);
+        addComposerMemberLabel(assembly?.id, memberId, getComposerMemberColor(memberId, memberIndex), {
+          offset: [0, 0.065, 0],
+        });
       }
     }
 
@@ -3276,12 +3369,18 @@ function updateComposerViewportFromDocument(documentData) {
             motion: binary.motion,
             chargeType: "positrino",
           });
+          addComposerMemberLabel(assembly.id, positrinoMemberId, getComposerMemberColor(positrinoMemberId), {
+            offset: [0, 0.085, 0],
+          });
         }
         if (electrinoMemberId) {
           setComposerMemberAnchor(assembly.id, electrinoMemberId, {
             type: "orbit",
             motion: binary.motion,
             chargeType: "electrino",
+          });
+          addComposerMemberLabel(assembly.id, electrinoMemberId, getComposerMemberColor(electrinoMemberId), {
+            offset: [0, 0.085, 0],
           });
         }
         addComposerOrbitParticle(center, binary.motion, "positrino", positrinoMemberId);
@@ -3868,6 +3967,7 @@ let composerTransferLines = [];
 let composerAxisGuideLines = [];
 let composerOrbitParticleMeshes = [];
 let composerMemberAnchors = new Map();
+let composerMemberLabelSprites = [];
 let composerDocumentCameraPathLine = null;
 let composerDocumentCameraWaypointMeshes = [];
 let composerDocumentCameraShotMesh = null;
