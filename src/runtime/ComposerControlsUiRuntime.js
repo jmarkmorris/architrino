@@ -5,6 +5,9 @@ export function createComposerControlsUiRuntime(deps) {
     composerExitButton,
     composerPreviewButton,
     composerExportButton,
+    composerPlayToggleButton,
+    composerPlayResetButton,
+    composerPlayheadScrubInput,
     composerSceneIdInput,
     composerSceneNameInput,
     composerNodeCountInput,
@@ -49,6 +52,9 @@ export function createComposerControlsUiRuntime(deps) {
     applyComposerCameraRadiusInput,
     setComposerCameraDefaults,
     updateComposerCamera,
+    toggleComposerPlayback,
+    restartComposerPlayback,
+    scrubComposerPlayback,
     renderComposerJsonPreview,
     isTransitionActive,
   } = deps;
@@ -83,6 +89,25 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerExportButton) {
       composerExportButton.addEventListener("click", () => {
         composerUiRuntime.exportComposerScene();
+      });
+    }
+
+    if (composerPlayToggleButton) {
+      composerPlayToggleButton.addEventListener("click", () => {
+        toggleComposerPlayback();
+      });
+    }
+
+    if (composerPlayResetButton) {
+      composerPlayResetButton.addEventListener("click", () => {
+        restartComposerPlayback();
+      });
+    }
+
+    if (composerPlayheadScrubInput) {
+      composerPlayheadScrubInput.addEventListener("input", () => {
+        const fraction = Number(composerPlayheadScrubInput.value) / 1000;
+        scrubComposerPlayback(fraction);
       });
     }
 

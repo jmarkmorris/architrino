@@ -1323,6 +1323,30 @@ body {
   gap: 8px;
 }
 
+.composer-transport {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 220px;
+  max-width: 460px;
+}
+
+.composer-transport-scrub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 255, 0.76);
+}
+
+.composer-transport-scrub input {
+  flex: 1;
+}
+
 #composer-preview-button,
 #composer-export-button {
   height: 30px;

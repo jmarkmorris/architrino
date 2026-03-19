@@ -102,6 +102,9 @@ const composerNodeCountInput = document.getElementById("composer-node-count");
 const composerNodeLabelsInput = document.getElementById("composer-node-labels");
 const composerPreviewButton = document.getElementById("composer-preview-button");
 const composerExportButton = document.getElementById("composer-export-button");
+const composerPlayToggleButton = document.getElementById("composer-play-toggle");
+const composerPlayResetButton = document.getElementById("composer-play-reset");
+const composerPlayheadScrubInput = document.getElementById("composer-playhead-scrub");
 const composerStatus = document.getElementById("composer-status");
 const composerJsonPreview = document.getElementById("composer-json-preview");
 const composerCanvas = document.getElementById("composer-canvas");
@@ -1168,6 +1171,9 @@ function updateComposerTimelinePlayhead(timeSeconds, documentData) {
   if (composerTimelinePlayhead) {
     composerTimelinePlayhead.style.left = `${fraction * 100}%`;
   }
+  if (composerPlayheadScrubInput) {
+    composerPlayheadScrubInput.value = String(Math.round(fraction * 1000));
+  }
   const timeWindow = getComposerSceneTimeWindow(documentData);
   if (composerTimelineSummary) {
     const loopSuffix = timeWindow.loop ? " | loop" : "";
@@ -1178,6 +1184,49 @@ function updateComposerTimelinePlayhead(timeSeconds, documentData) {
   if (composerTimelineActive) {
     composerTimelineActive.textContent = describeComposerTimelineState(timeSeconds, documentData);
   }
+  if (composerPlayToggleButton) {
+    composerPlayToggleButton.textContent = composerPlaybackState.playing ? "Pause" : "Play";
+    composerPlayToggleButton.classList.toggle("is-active", composerPlaybackState.playing);
+  }
+}
+
+function setComposerPlaybackPlayhead(timeSeconds, options = {}) {
+  const documentData = options.documentData ?? composerCurrentDocument;
+  if (!documentData) {
+    return;
+  }
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  composerPlaybackState.playheadSeconds = clamp(timeSeconds, timeWindow.start, timeWindow.end);
+  composerPlaybackState.pauseRemaining = 0;
+  composerPlaybackState.lastTickMs = performance.now();
+  if (options.playing !== undefined) {
+    composerPlaybackState.playing = !!options.playing;
+  }
+  updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
+  updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
+}
+
+function toggleComposerPlayback() {
+  composerPlaybackState.playing = !composerPlaybackState.playing;
+  composerPlaybackState.lastTickMs = performance.now();
+  updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, composerCurrentDocument);
+}
+
+function restartComposerPlayback() {
+  if (!composerCurrentDocument) {
+    return;
+  }
+  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
+  setComposerPlaybackPlayhead(timeWindow.start, { documentData: composerCurrentDocument, playing: true });
+}
+
+function scrubComposerPlayback(fraction) {
+  if (!composerCurrentDocument) {
+    return;
+  }
+  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
+  const nextTime = THREE.MathUtils.lerp(timeWindow.start, timeWindow.end, clamp(fraction, 0, 1));
+  setComposerPlaybackPlayhead(nextTime, { documentData: composerCurrentDocument });
 }
 
 function updateComposerPlaybackState(now) {
@@ -4471,6 +4520,9 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerExitButton,
   composerPreviewButton,
   composerExportButton,
+  composerPlayToggleButton,
+  composerPlayResetButton,
+  composerPlayheadScrubInput,
   composerSceneIdInput,
   composerSceneNameInput,
   composerNodeCountInput,
@@ -4517,6 +4569,9 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   applyComposerCameraRadiusInput,
   setComposerCameraDefaults,
   updateComposerCamera,
+  toggleComposerPlayback,
+  restartComposerPlayback,
+  scrubComposerPlayback,
   renderComposerJsonPreview,
   isTransitionActive: () => transitionState.active,
 });

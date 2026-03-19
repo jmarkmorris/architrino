@@ -438,6 +438,22 @@
             <button id="composer-preview-button" type="button">Preview Scene</button>
             <button id="composer-export-button" type="button">Export JSON</button>
           </div>
+          <div class="composer-transport">
+            <button id="composer-play-toggle" type="button">Pause</button>
+            <button id="composer-play-reset" type="button">Restart</button>
+            <label class="composer-transport-scrub" for="composer-playhead-scrub">
+              <span>Scrub</span>
+              <input
+                id="composer-playhead-scrub"
+                class="composer-range"
+                type="range"
+                min="0"
+                max="1000"
+                step="1"
+                value="0"
+              />
+            </label>
+          </div>
           <div id="composer-status" class="composer-status" aria-live="polite"></div>
         </div>
       </div>
