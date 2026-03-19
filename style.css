@@ -1044,6 +1044,21 @@ body {
   letter-spacing: 0.01em;
 }
 
+.composer-field textarea {
+  min-height: 72px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  background: rgba(10, 12, 24, 0.9);
+  color: #f5f7ff;
+  font-size: 12px;
+  line-height: 1.35;
+  font-family: inherit;
+  resize: vertical;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
 .composer-field input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -1069,6 +1084,11 @@ body {
 }
 
 .composer-field select:focus-visible {
+  outline: 2px solid #a7c4ff;
+  outline-offset: 2px;
+}
+
+.composer-field textarea:focus-visible {
   outline: 2px solid #a7c4ff;
   outline-offset: 2px;
 }

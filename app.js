@@ -129,8 +129,7 @@ const composerCameraWaypointCount = document.getElementById("composer-camera-way
 const composerCameraFlightToggle = document.getElementById("composer-camera-flight-toggle");
 const composerSceneDurationInput = document.getElementById("composer-scene-duration");
 const composerSceneLoopInput = document.getElementById("composer-scene-loop");
-const composerMarkerTimeInput = document.getElementById("composer-marker-time");
-const composerMarkerLabelInput = document.getElementById("composer-marker-label");
+const composerMarkerListInput = document.getElementById("composer-marker-list");
 const composerPauseStartInput = document.getElementById("composer-pause-start");
 const composerPauseDurationInput = document.getElementById("composer-pause-duration");
 const composerWarpStartInput = document.getElementById("composer-warp-start");
@@ -532,20 +531,36 @@ function readComposerTimingState() {
     composerSceneDurationInput.value = String(duration);
   }
 
-  const markerTime = readOptionalNumberInput(composerMarkerTimeInput);
-  const markerLabel = (composerMarkerLabelInput?.value ?? "").trim();
-  const normalizedMarkerTime =
-    markerTime === null ? null : clamp(Number(markerTime.toFixed(3)), 0, duration);
-  const markers = normalizedMarkerTime === null
+  const markerListRaw = composerMarkerListInput?.value ?? "";
+  const authoredMarkers = markerListRaw
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line, index) => {
+      const separatorIndex = line.indexOf(":");
+      if (separatorIndex === -1) {
+        return null;
+      }
+      const rawTime = Number(line.slice(0, separatorIndex).trim());
+      if (!Number.isFinite(rawTime)) {
+        return null;
+      }
+      const label = line.slice(separatorIndex + 1).trim() || `Cue ${index + 1}`;
+      return {
+        id: `marker_authored_${index + 1}`,
+        t: clamp(Number(rawTime.toFixed(3)), 0, duration),
+        kind: index === 0 ? "chapter" : "cue",
+        label,
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.t - right.t);
+  const hasStartMarker = authoredMarkers.some((marker) => Math.abs(marker.t) < 0.001);
+  const markers = !authoredMarkers.length
     ? []
     : [
-        { id: "marker_start", t: 0, kind: "chapter", label: "Start" },
-        {
-          id: "marker_authored",
-          t: normalizedMarkerTime,
-          kind: "cue",
-          label: markerLabel || "Focus",
-        },
+        ...(hasStartMarker ? [] : [{ id: "marker_start", t: 0, kind: "chapter", label: "Start" }]),
+        ...authoredMarkers,
       ];
 
   const pauseStart = readOptionalNumberInput(composerPauseStartInput);
@@ -4634,8 +4649,7 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerCameraFlightToggle,
   composerSceneDurationInput,
   composerSceneLoopInput,
-  composerMarkerTimeInput,
-  composerMarkerLabelInput,
+  composerMarkerListInput,
   composerPauseStartInput,
   composerPauseDurationInput,
   composerWarpStartInput,

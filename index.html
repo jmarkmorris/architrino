@@ -392,14 +392,14 @@
                     <input id="composer-scene-loop" type="checkbox" />
                   </label>
                 </div>
-                <div class="composer-form composer-form-grid">
+                <div class="composer-form">
                   <label class="composer-field">
-                    <span>Marker Time (s)</span>
-                    <input id="composer-marker-time" type="number" min="0" step="0.1" placeholder="6.0" />
-                  </label>
-                  <label class="composer-field">
-                    <span>Marker Label</span>
-                    <input id="composer-marker-label" type="text" placeholder="Focus" />
+                    <span>Cue List</span>
+                    <textarea
+                      id="composer-marker-list"
+                      rows="3"
+                      placeholder="0: Start&#10;3.5: Shell Lock&#10;7.0: Slow Branch"
+                    ></textarea>
                   </label>
                 </div>
                 <div class="composer-form composer-form-grid">
@@ -428,7 +428,7 @@
                     <input id="composer-warp-rate" type="number" min="0.1" step="0.1" placeholder="0.5" />
                   </label>
                 </div>
-                <p class="composer-hint">Leave marker, pause, or warp fields blank to use defaults only.</p>
+                <p class="composer-hint">Cue list format: one `time: label` entry per line. Leave it blank to use default cues only.</p>
               </section>
             </div>
           </main>
