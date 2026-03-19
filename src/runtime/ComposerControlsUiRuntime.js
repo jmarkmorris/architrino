@@ -7,6 +7,9 @@ export function createComposerControlsUiRuntime(deps) {
     composerExportButton,
     composerPlayToggleButton,
     composerPlayResetButton,
+    composerMarkerPrevButton,
+    composerMarkerNextButton,
+    composerMarkerJumpSelect,
     composerPlayheadScrubInput,
     composerTimelineTrack,
     composerSceneIdInput,
@@ -55,6 +58,8 @@ export function createComposerControlsUiRuntime(deps) {
     updateComposerCamera,
     toggleComposerPlayback,
     restartComposerPlayback,
+    jumpToComposerMarker,
+    jumpComposerMarkerByOffset,
     scrubComposerPlayback,
     renderComposerJsonPreview,
     isTransitionActive,
@@ -102,6 +107,24 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerPlayResetButton) {
       composerPlayResetButton.addEventListener("click", () => {
         restartComposerPlayback();
+      });
+    }
+
+    if (composerMarkerPrevButton) {
+      composerMarkerPrevButton.addEventListener("click", () => {
+        jumpComposerMarkerByOffset(-1);
+      });
+    }
+
+    if (composerMarkerNextButton) {
+      composerMarkerNextButton.addEventListener("click", () => {
+        jumpComposerMarkerByOffset(1);
+      });
+    }
+
+    if (composerMarkerJumpSelect) {
+      composerMarkerJumpSelect.addEventListener("change", () => {
+        jumpToComposerMarker(composerMarkerJumpSelect.value, { playing: false });
       });
     }
 

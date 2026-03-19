@@ -104,6 +104,9 @@ const composerPreviewButton = document.getElementById("composer-preview-button")
 const composerExportButton = document.getElementById("composer-export-button");
 const composerPlayToggleButton = document.getElementById("composer-play-toggle");
 const composerPlayResetButton = document.getElementById("composer-play-reset");
+const composerMarkerPrevButton = document.getElementById("composer-marker-prev");
+const composerMarkerNextButton = document.getElementById("composer-marker-next");
+const composerMarkerJumpSelect = document.getElementById("composer-marker-jump");
 const composerPlayheadScrubInput = document.getElementById("composer-playhead-scrub");
 const composerStatus = document.getElementById("composer-status");
 const composerJsonPreview = document.getElementById("composer-json-preview");
@@ -1110,6 +1113,56 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   return parts.join(" | ") || "Steady";
 }
 
+function getComposerSortedMarkers(documentData) {
+  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  return [...markers].sort((left, right) => left.t - right.t);
+}
+
+function syncComposerMarkerNavigation(documentData, timeSeconds) {
+  const markers = getComposerSortedMarkers(documentData);
+  if (composerMarkerJumpSelect) {
+    const existingSignature = composerMarkerJumpSelect.dataset.signature ?? "";
+    const nextSignature = markers.map((marker) => `${marker.id}:${marker.t}:${marker.label ?? ""}`).join("|");
+    if (existingSignature !== nextSignature) {
+      composerMarkerJumpSelect.innerHTML = "";
+      if (!markers.length) {
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "No Markers";
+        composerMarkerJumpSelect.appendChild(option);
+      } else {
+        markers.forEach((marker) => {
+          const option = document.createElement("option");
+          option.value = marker.id;
+          option.textContent = `${marker.label ?? marker.id ?? "Marker"} (${formatComposerTimeLabel(marker.t)})`;
+          composerMarkerJumpSelect.appendChild(option);
+        });
+      }
+      composerMarkerJumpSelect.dataset.signature = nextSignature;
+    }
+
+    if (markers.length) {
+      const activeMarker = [...markers]
+        .filter((marker) => marker.t <= timeSeconds + 0.001)
+        .pop() ?? markers[0];
+      if (composerMarkerJumpSelect.value !== activeMarker.id) {
+        composerMarkerJumpSelect.value = activeMarker.id;
+      }
+      composerMarkerJumpSelect.disabled = false;
+    } else {
+      composerMarkerJumpSelect.value = "";
+      composerMarkerJumpSelect.disabled = true;
+    }
+  }
+
+  if (composerMarkerPrevButton) {
+    composerMarkerPrevButton.disabled = !markers.some((marker) => marker.t < timeSeconds - 0.001);
+  }
+  if (composerMarkerNextButton) {
+    composerMarkerNextButton.disabled = !markers.some((marker) => marker.t > timeSeconds + 0.001);
+  }
+}
+
 function renderComposerTimeline(documentData) {
   clearComposerTimelineLayer(composerTimelineWarps);
   clearComposerTimelineLayer(composerTimelinePauses);
@@ -1184,6 +1237,7 @@ function updateComposerTimelinePlayhead(timeSeconds, documentData) {
   if (composerTimelineActive) {
     composerTimelineActive.textContent = describeComposerTimelineState(timeSeconds, documentData);
   }
+  syncComposerMarkerNavigation(documentData, timeSeconds);
   if (composerPlayToggleButton) {
     composerPlayToggleButton.textContent = composerPlaybackState.playing ? "Pause" : "Play";
     composerPlayToggleButton.classList.toggle("is-active", composerPlaybackState.playing);
@@ -1218,6 +1272,41 @@ function restartComposerPlayback() {
   }
   const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
   setComposerPlaybackPlayhead(timeWindow.start, { documentData: composerCurrentDocument, playing: true });
+}
+
+function jumpToComposerMarker(markerId, options = {}) {
+  if (!composerCurrentDocument || !markerId) {
+    return;
+  }
+  const marker = getComposerSortedMarkers(composerCurrentDocument).find((entry) => entry.id === markerId);
+  if (!marker) {
+    return;
+  }
+  setComposerPlaybackPlayhead(marker.t, {
+    documentData: composerCurrentDocument,
+    playing: options.playing,
+  });
+}
+
+function jumpComposerMarkerByOffset(direction) {
+  if (!composerCurrentDocument) {
+    return;
+  }
+  const markers = getComposerSortedMarkers(composerCurrentDocument);
+  if (!markers.length) {
+    return;
+  }
+  const epsilon = 0.001;
+  let target = null;
+  if (direction < 0) {
+    target = [...markers].reverse().find((marker) => marker.t < composerPlaybackState.playheadSeconds - epsilon);
+  } else {
+    target = markers.find((marker) => marker.t > composerPlaybackState.playheadSeconds + epsilon);
+  }
+  if (!target) {
+    target = direction < 0 ? markers[0] : markers[markers.length - 1];
+  }
+  jumpToComposerMarker(target.id, { playing: false });
 }
 
 function scrubComposerPlayback(fraction, options = {}) {
@@ -4525,6 +4614,9 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerExportButton,
   composerPlayToggleButton,
   composerPlayResetButton,
+  composerMarkerPrevButton,
+  composerMarkerNextButton,
+  composerMarkerJumpSelect,
   composerPlayheadScrubInput,
   composerTimelineTrack,
   composerSceneIdInput,
@@ -4575,6 +4667,8 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   updateComposerCamera,
   toggleComposerPlayback,
   restartComposerPlayback,
+  jumpToComposerMarker,
+  jumpComposerMarkerByOffset,
   scrubComposerPlayback,
   renderComposerJsonPreview,
   isTransitionActive: () => transitionState.active,

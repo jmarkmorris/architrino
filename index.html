@@ -441,6 +441,14 @@
           <div class="composer-transport">
             <button id="composer-play-toggle" type="button">Pause</button>
             <button id="composer-play-reset" type="button">Restart</button>
+            <button id="composer-marker-prev" type="button">Prev Cue</button>
+            <button id="composer-marker-next" type="button">Next Cue</button>
+            <label class="composer-transport-marker" for="composer-marker-jump">
+              <span>Cue</span>
+              <select id="composer-marker-jump">
+                <option value="">No Markers</option>
+              </select>
+            </label>
             <label class="composer-transport-scrub" for="composer-playhead-scrub">
               <span>Scrub</span>
               <input
