@@ -1220,13 +1220,16 @@ function restartComposerPlayback() {
   setComposerPlaybackPlayhead(timeWindow.start, { documentData: composerCurrentDocument, playing: true });
 }
 
-function scrubComposerPlayback(fraction) {
+function scrubComposerPlayback(fraction, options = {}) {
   if (!composerCurrentDocument) {
     return;
   }
   const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
   const nextTime = THREE.MathUtils.lerp(timeWindow.start, timeWindow.end, clamp(fraction, 0, 1));
-  setComposerPlaybackPlayhead(nextTime, { documentData: composerCurrentDocument });
+  setComposerPlaybackPlayhead(nextTime, {
+    documentData: composerCurrentDocument,
+    playing: options.playing,
+  });
 }
 
 function updateComposerPlaybackState(now) {
@@ -4523,6 +4526,7 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerPlayToggleButton,
   composerPlayResetButton,
   composerPlayheadScrubInput,
+  composerTimelineTrack,
   composerSceneIdInput,
   composerSceneNameInput,
   composerNodeCountInput,

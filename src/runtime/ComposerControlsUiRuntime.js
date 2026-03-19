@@ -8,6 +8,7 @@ export function createComposerControlsUiRuntime(deps) {
     composerPlayToggleButton,
     composerPlayResetButton,
     composerPlayheadScrubInput,
+    composerTimelineTrack,
     composerSceneIdInput,
     composerSceneNameInput,
     composerNodeCountInput,
@@ -109,6 +110,43 @@ export function createComposerControlsUiRuntime(deps) {
         const fraction = Number(composerPlayheadScrubInput.value) / 1000;
         scrubComposerPlayback(fraction);
       });
+    }
+
+    if (composerTimelineTrack) {
+      let timelinePointerActive = false;
+      const scrubTimelineFromClientX = (clientX) => {
+        const rect = composerTimelineTrack.getBoundingClientRect();
+        if (!rect.width) {
+          return;
+        }
+        const fraction = (clientX - rect.left) / rect.width;
+        scrubComposerPlayback(fraction, { playing: false });
+      };
+
+      composerTimelineTrack.addEventListener("pointerdown", (event) => {
+        timelinePointerActive = true;
+        composerTimelineTrack.setPointerCapture?.(event.pointerId);
+        scrubTimelineFromClientX(event.clientX);
+        event.preventDefault();
+      });
+
+      composerTimelineTrack.addEventListener("pointermove", (event) => {
+        if (!timelinePointerActive) {
+          return;
+        }
+        scrubTimelineFromClientX(event.clientX);
+      });
+
+      const stopTimelinePointer = (event) => {
+        if (!timelinePointerActive) {
+          return;
+        }
+        timelinePointerActive = false;
+        composerTimelineTrack.releasePointerCapture?.(event.pointerId);
+      };
+
+      composerTimelineTrack.addEventListener("pointerup", stopTimelinePointer);
+      composerTimelineTrack.addEventListener("pointercancel", stopTimelinePointer);
     }
 
     const composerInputs = [
