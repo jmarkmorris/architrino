@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 409,
+      "nodes": 408,
       "edges": 1151,
       "scenes": 283,
       "markdownIndexes": 0,
-      "markdownDocs": 126,
+      "markdownDocs": 125,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1928,12 +1928,6 @@
       "id": "content/markdown/aaa/assemblies/bosons/gluons.md",
       "name": "Gluons and the Strong Force: Geometric Origins",
       "path": "content/markdown/aaa/assemblies/bosons/gluons.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/assemblies/composer.md",
-      "name": "Architrino Assembly Animation API",
-      "path": "content/markdown/aaa/assemblies/composer.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5275,15 +5269,6 @@
       "name": "Gluons and the Strong Force: Geometric Origins",
       "path": "content/markdown/aaa/assemblies/bosons/gluons.md",
       "searchTarget": "content/markdown/aaa/assemblies/bosons/gluons.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/assemblies/composer.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/assemblies/composer.md",
-      "name": "Architrino Assembly Animation API",
-      "path": "content/markdown/aaa/assemblies/composer.md",
-      "searchTarget": "content/markdown/aaa/assemblies/composer.md",
       "implicit": false
     },
     {
