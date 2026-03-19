@@ -1011,6 +1011,67 @@ body {
   color: rgba(245, 247, 255, 0.62);
 }
 
+.composer-assembly-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.composer-assembly-card {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 170, 220, 0.18);
+  background: rgba(12, 16, 28, 0.72);
+}
+
+.composer-assembly-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.composer-assembly-card-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.composer-assembly-card-title strong {
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: rgba(245, 247, 255, 0.95);
+}
+
+.composer-assembly-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 218, 255, 0.45);
+  background: rgba(28, 60, 88, 0.7);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(188, 235, 255, 0.92);
+}
+
+.composer-assembly-remove {
+  min-width: 64px;
+}
+
+.composer-field-note {
+  margin-top: 4px;
+  font-size: 10px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: rgba(245, 247, 255, 0.55);
+}
+
 .composer-section-title {
   font-size: 11px;
   text-transform: uppercase;

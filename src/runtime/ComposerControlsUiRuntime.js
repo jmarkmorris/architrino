@@ -18,8 +18,6 @@ export function createComposerControlsUiRuntime(deps) {
     composerTimelineTrack,
     composerSceneIdInput,
     composerSceneNameInput,
-    composerNodeCountInput,
-    composerNodeLabelsInput,
     composerPathModeSelect,
     composerPathResetButton,
     composerFrameEditToggle,
@@ -203,8 +201,6 @@ export function createComposerControlsUiRuntime(deps) {
     const composerInputs = [
       composerSceneIdInput,
       composerSceneNameInput,
-      composerNodeCountInput,
-      composerNodeLabelsInput,
       composerSceneDurationInput,
       composerMarkerListInput,
       composerPauseListInput,
@@ -215,19 +211,6 @@ export function createComposerControlsUiRuntime(deps) {
         input.addEventListener("input", () => {
           renderComposerJsonPreview();
         });
-      });
-    }
-
-    if (composerNodeCountInput) {
-      composerNodeCountInput.addEventListener("blur", () => {
-        const rawValue = composerNodeCountInput.value.trim();
-        const parsedValue = Number(rawValue);
-        const normalizedValue =
-          rawValue && Number.isFinite(parsedValue)
-            ? Math.min(Math.max(Math.round(parsedValue), 1), 18)
-            : 6;
-        composerNodeCountInput.value = String(normalizedValue);
-        renderComposerJsonPreview();
       });
     }
 

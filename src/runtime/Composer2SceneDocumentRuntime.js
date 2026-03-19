@@ -28,16 +28,25 @@ function normalizeCameraWaypoints(waypoints) {
   }));
 }
 
-function normalizeLabels(labels, fallbackCount = 0) {
-  const source = Array.isArray(labels) ? labels : [];
-  if (source.length) {
-    return source.map((label, index) => normalizeString(label, `Node ${index + 1}`));
-  }
-  return Array.from({ length: Math.max(0, fallbackCount) }, (_, index) => `Node ${index + 1}`);
-}
-
 function clampNumber(value, min, max) {
   return Math.min(Math.max(value, min), max);
+}
+
+function sanitizeAssemblyId(raw, fallback) {
+  const normalized = normalizeString(raw, fallback)
+    .toLowerCase()
+    .replace(/\s+/g, "_")
+    .replace(/[^a-z0-9_-]/g, "");
+  return normalized || fallback;
+}
+
+function normalizeMembers(rawMembers) {
+  if (Array.isArray(rawMembers)) {
+    return rawMembers
+      .map((member, index) => normalizeString(member, `member_${index + 1}`))
+      .filter(Boolean);
+  }
+  return [];
 }
 
 function normalizeMarkers(rawMarkers, start, end) {
@@ -206,6 +215,43 @@ function createDefaultCameraShots(rawCameraShots, cameraPathId, start, end) {
   ];
 }
 
+function normalizeAssemblies(rawAssemblies, primaryPathId) {
+  const source = Array.isArray(rawAssemblies) && rawAssemblies.length
+    ? rawAssemblies
+    : [{ id: "assembly_1", name: "Primary Assembly", members: [] }];
+
+  return source.map((rawAssembly, index) => {
+    const fallbackId = `assembly_${index + 1}`;
+    const id = sanitizeAssemblyId(rawAssembly?.id ?? rawAssembly?.name, fallbackId);
+    const label = normalizeString(
+      rawAssembly?.name ?? rawAssembly?.label ?? rawAssembly?.metadata?.label,
+      index === 0 ? "Primary Assembly" : `Assembly ${index + 1}`
+    );
+    const assembly = {
+      id,
+      role: rawAssembly?.role ?? "assembly",
+      transform: rawAssembly?.transform ?? { position: [0, 0, 0] },
+      metadata: {
+        label,
+        order: index,
+        ...(rawAssembly?.metadata ?? {}),
+      },
+      members: normalizeMembers(rawAssembly?.members ?? rawAssembly?.metadata?.members),
+    };
+    if (Array.isArray(rawAssembly?.motion) && rawAssembly.motion.length) {
+      assembly.motion = rawAssembly.motion;
+    } else if (index === 0 && primaryPathId) {
+      assembly.motion = [{ type: "path.transport", pathId: primaryPathId }];
+    }
+    if (rawAssembly?.core) {
+      assembly.core = rawAssembly.core;
+    } else if (index === 0) {
+      assembly.core = createDefaultAssemblyCore(id);
+    }
+    return assembly;
+  });
+}
+
 export function normalizeComposerSceneDocument(rawDocument = {}) {
   const rawScene = rawDocument.scene ?? {};
   const rawControls = rawScene.controls ?? {};
@@ -213,35 +259,13 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
   const cameraWaypoints = normalizeCameraWaypoints(
     rawDocument.cameraWaypoints ?? rawDocument.cameraPath?.waypoints
   );
-  const labels = normalizeLabels(rawDocument.labels, rawDocument.nodeCount);
   const primaryPathId = pathPoints.length ? "path_main" : null;
   const primaryCameraPathId = cameraWaypoints.length ? "camera_main" : null;
   const rawTime = rawScene.time ?? {};
   const sceneStart = Number(rawTime.start ?? 0);
   const sceneEnd = Number(rawTime.end ?? 12);
   const normalizedSceneEnd = sceneEnd > sceneStart ? sceneEnd : sceneStart + 12;
-  const assemblies =
-    Array.isArray(rawDocument.assemblies) && rawDocument.assemblies.length
-      ? rawDocument.assemblies
-      : labels.map((label, index) => {
-          const assemblyId = `assembly_${index + 1}`;
-          const assembly = {
-            id: assemblyId,
-            role: "assembly",
-            transform: { position: [0, 0, 0] },
-            metadata: {
-              label,
-              order: index,
-            },
-          };
-          if (index === 0 && primaryPathId) {
-            assembly.motion = [{ type: "path.transport", pathId: primaryPathId }];
-          }
-          if (index === 0) {
-            assembly.core = createDefaultAssemblyCore(assemblyId);
-          }
-          return assembly;
-        });
+  const assemblies = normalizeAssemblies(rawDocument.assemblies, primaryPathId);
 
   return {
     schemaVersion: rawDocument.schemaVersion ?? "0.1.0",
@@ -331,7 +355,6 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
     checkpoints: Array.isArray(rawDocument.checkpoints) ? rawDocument.checkpoints : [],
     metadata: {
       source: "composer-II",
-      labels,
       ...(rawDocument.metadata ?? {}),
     },
   };
@@ -348,8 +371,7 @@ export function createComposerSceneDocument(input = {}, options = {}) {
       pauses: input.pauses,
       timeWarps: input.timeWarps,
     },
-    labels: input.labels,
-    nodeCount: input.nodeCount,
+    assemblies: input.assembliesDraft,
     path: {
       points: input.pathPoints,
       interpolate: input.pathInterpolate,

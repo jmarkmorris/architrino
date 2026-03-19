@@ -240,18 +240,6 @@
                   <span>Scene Name</span>
                   <input id="composer-scene-name" type="text" value="Composer Scene" />
                 </label>
-                <label class="composer-field">
-                  <span>Node Count</span>
-                  <input id="composer-node-count" type="number" min="1" max="18" step="1" value="6" />
-                </label>
-                <label class="composer-field">
-                  <span>Node Labels (comma-separated)</span>
-                  <input
-                    id="composer-node-labels"
-                    type="text"
-                    placeholder="Node A, Node B, Node C"
-                  />
-                </label>
               </div>
               <div class="composer-card-meta">
                 <span>Assemblies</span>
@@ -273,6 +261,10 @@
                     </ul>
                   </div>
                 </div>
+              </div>
+              <div id="composer-assembly-list" class="composer-assembly-list"></div>
+              <div class="composer-button-row composer-button-row-single">
+                <button id="composer-assembly-add" type="button">Add Assembly</button>
               </div>
             </section>
             <section class="composer-card">
