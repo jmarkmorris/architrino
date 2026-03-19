@@ -126,6 +126,7 @@ const composerCameraPoiSelect = document.getElementById("composer-camera-poi");
 const composerCameraWaypointAdd = document.getElementById("composer-camera-waypoint-add");
 const composerCameraWaypointClear = document.getElementById("composer-camera-waypoint-clear");
 const composerCameraWaypointCount = document.getElementById("composer-camera-waypoint-count");
+const composerCameraPoiStatus = document.getElementById("composer-camera-poi-status");
 const composerCameraFlightToggle = document.getElementById("composer-camera-flight-toggle");
 const composerSceneDurationInput = document.getElementById("composer-scene-duration");
 const composerSceneLoopInput = document.getElementById("composer-scene-loop");
@@ -398,6 +399,30 @@ function updateComposerWaypointCount() {
   }
 }
 
+function updateComposerCameraPoiStatus() {
+  if (!composerCameraPoiStatus) {
+    return;
+  }
+  const selectedPoint =
+    composerSelectedPointIndex != null ? composerPathState.points[composerSelectedPointIndex] : null;
+  if (composerCameraFlightState.poiMode === "selected") {
+    if (selectedPoint) {
+      composerCameraPoiStatus.textContent = `Selected point: ${composerSelectedPointIndex + 1} (${selectedPoint.x.toFixed(2)}, ${selectedPoint.y.toFixed(2)}, ${selectedPoint.z.toFixed(2)})`;
+      composerCameraPoiStatus.classList.remove("is-warning");
+    } else {
+      composerCameraPoiStatus.textContent = "Selected point: none. Click an amber path point in the canvas to target it.";
+      composerCameraPoiStatus.classList.add("is-warning");
+    }
+    return;
+  }
+  if (selectedPoint) {
+    composerCameraPoiStatus.textContent = `POI target: local origin. Selected point ${composerSelectedPointIndex + 1} is available if you switch modes.`;
+  } else {
+    composerCameraPoiStatus.textContent = "POI target: local origin.";
+  }
+  composerCameraPoiStatus.classList.remove("is-warning");
+}
+
 function getComposerOrbitTargetWorld() {
   if (!composerFrameGroup) {
     return new THREE.Vector3(0, 0, 0);
@@ -486,6 +511,7 @@ function resetComposerPathPoints() {
   composerPathState.interpolate = composerPathModeSelect?.value || "spline";
   composerPathState.closed = false;
   composerSelectedPointIndex = null;
+  updateComposerCameraPoiStatus();
   rebuildComposerControlPoints();
   updateComposerPathGeometry();
 }
@@ -496,6 +522,7 @@ function updateComposerPointMaterials(activeIndex = null) {
       index === activeIndex || index === composerSelectedPointIndex;
     mesh.material = isActive ? composerPointMaterialActive : composerPointMaterial;
   });
+  updateComposerCameraPoiStatus();
 }
 
 function readComposerFormState() {
@@ -959,6 +986,7 @@ function initComposerCanvas() {
   if (composerCameraPoiSelect) {
     composerCameraPoiSelect.value = composerCameraFlightState.poiMode;
   }
+  updateComposerCameraPoiStatus();
   syncComposerCameraRadiusInput();
 
   if (!composerPathState.points.length) {
@@ -4788,6 +4816,20 @@ function wireElementNavigationControls() {
   }
 
   window.addEventListener("keydown", async (event) => {
+    if (
+      event.code === "Space" &&
+      composerOverlay?.classList.contains("is-open") &&
+      !event.defaultPrevented &&
+      !event.metaKey &&
+      !event.ctrlKey &&
+      !event.altKey &&
+      !isEditingTextInput(event.target)
+    ) {
+      toggleComposerPlayback();
+      event.preventDefault();
+      return;
+    }
+
     const direction = elementNavDirectionByKey[event.key];
     if (!direction) {
       return;
@@ -5041,6 +5083,7 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   applyComposerCameraRadiusInput,
   setComposerCameraDefaults,
   updateComposerCamera,
+  updateComposerCameraPoiStatus,
   toggleComposerPlayback,
   restartComposerPlayback,
   jumpToComposerMarker,

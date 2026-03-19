@@ -52,6 +52,7 @@ export function createComposerControlsUiRuntime(deps) {
     applyComposerCameraRadiusInput,
     setComposerCameraDefaults,
     updateComposerCamera,
+    updateComposerCameraPoiStatus,
     toggleComposerPlayback,
     restartComposerPlayback,
     jumpToComposerMarker,
@@ -229,6 +230,7 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerCameraPoiSelect) {
       composerCameraPoiSelect.addEventListener("change", () => {
         composerCameraFlightState.poiMode = composerCameraPoiSelect.value;
+        updateComposerCameraPoiStatus();
       });
     }
 
