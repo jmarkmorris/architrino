@@ -1575,6 +1575,45 @@ function createComposerChildBadgeSprite(title, subtitle = "") {
   return sprite;
 }
 
+function setComposerTransportButtonIcon(button, kind) {
+  if (!button) {
+    return;
+  }
+  const icons = {
+    play: {
+      label: "Play",
+      svg: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <polygon points="8,6 18,12 8,18" fill="currentColor"></polygon>
+        </svg>
+      `,
+    },
+    pause: {
+      label: "Pause",
+      svg: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="7" y="6" width="4" height="12" rx="1" fill="currentColor"></rect>
+          <rect x="13" y="6" width="4" height="12" rx="1" fill="currentColor"></rect>
+        </svg>
+      `,
+    },
+    restart: {
+      label: "Restart",
+      svg: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="5" y="6" width="2.5" height="12" rx="0.8" fill="currentColor"></rect>
+          <polygon points="18.5,6 11.5,12 18.5,18" fill="currentColor"></polygon>
+          <polygon points="13,6 6,12 13,18" fill="currentColor"></polygon>
+        </svg>
+      `,
+    },
+  };
+  const icon = icons[kind] ?? icons.play;
+  button.innerHTML = icon.svg;
+  button.setAttribute("aria-label", icon.label);
+  button.title = icon.label;
+}
+
 function createComposerMarkerHitProxy(radius) {
   const material = new THREE.MeshBasicMaterial({
     transparent: true,
@@ -3674,6 +3713,8 @@ function initComposerCanvas() {
 
   setComposerFrameDefaults();
   setComposerCameraDefaults();
+  setComposerTransportButtonIcon(composerPlayToggleButton, "play");
+  setComposerTransportButtonIcon(composerPlayResetButton, "restart");
   if (composerCameraPoiSelect) {
     composerCameraPoiSelect.value = composerCameraFlightState.poiMode;
   }
@@ -4646,7 +4687,10 @@ function updateComposerTimelinePlayhead(timeSeconds, documentData) {
   }
   syncComposerMarkerNavigation(documentData, timeSeconds);
   if (composerPlayToggleButton) {
-    composerPlayToggleButton.textContent = composerPlaybackState.playing ? "Pause" : "Play";
+    setComposerTransportButtonIcon(
+      composerPlayToggleButton,
+      composerPlaybackState.playing ? "pause" : "play"
+    );
     composerPlayToggleButton.classList.toggle("is-active", composerPlaybackState.playing);
   }
 }
@@ -4668,9 +4712,28 @@ function setComposerPlaybackPlayhead(timeSeconds, options = {}) {
 }
 
 function toggleComposerPlayback() {
-  composerPlaybackState.playing = !composerPlaybackState.playing;
-  composerPlaybackState.lastTickMs = performance.now();
-  updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, composerCurrentDocument);
+  if (!composerCurrentDocument) {
+    return;
+  }
+  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
+  if (composerPlaybackState.playing) {
+    setComposerPlaybackPlayhead(composerPlaybackState.playheadSeconds, {
+      documentData: composerCurrentDocument,
+      playing: false,
+    });
+    return;
+  }
+  if (composerPlaybackState.playheadSeconds >= timeWindow.end - 0.001) {
+    setComposerPlaybackPlayhead(timeWindow.start, {
+      documentData: composerCurrentDocument,
+      playing: true,
+    });
+    return;
+  }
+  setComposerPlaybackPlayhead(composerPlaybackState.playheadSeconds, {
+    documentData: composerCurrentDocument,
+    playing: true,
+  });
 }
 
 function restartComposerPlayback() {

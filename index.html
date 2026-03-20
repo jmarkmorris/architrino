@@ -346,9 +346,23 @@
               <canvas id="composer-canvas"></canvas>
               <div id="composer-assembly-menu" class="composer-assembly-menu" aria-hidden="true"></div>
               <div class="composer-timeline-overlay">
-                <div class="composer-timeline-summary">
-                  <span id="composer-timeline-summary">0.0s / 12.0s</span>
-                  <span id="composer-timeline-active" class="composer-timeline-active">Cue: Start</span>
+                <div class="composer-timeline-toolbar">
+                  <div class="composer-timeline-transport">
+                    <button id="composer-play-toggle" type="button" class="composer-transport-icon" aria-label="Play"></button>
+                    <button id="composer-play-reset" type="button" class="composer-transport-icon" aria-label="Restart"></button>
+                    <button id="composer-marker-prev" type="button" class="composer-transport-text" aria-label="Previous cue">&lt;&lt;</button>
+                    <button id="composer-marker-next" type="button" class="composer-transport-text" aria-label="Next cue">&gt;&gt;</button>
+                    <label class="composer-transport-marker" for="composer-marker-jump">
+                      <span>Cue</span>
+                      <select id="composer-marker-jump">
+                        <option value="">No Markers</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="composer-timeline-summary">
+                    <span id="composer-timeline-summary">0.0s / 12.0s</span>
+                    <span id="composer-timeline-active" class="composer-timeline-active">Cue: Start</span>
+                  </div>
                 </div>
                 <div id="composer-timeline-track" class="composer-timeline-track">
                   <div id="composer-timeline-warps" class="composer-timeline-layer"></div>
@@ -368,32 +382,6 @@
               </div>
             </div>
           </main>
-        </div>
-        <div class="composer-footer">
-          <div class="composer-transport">
-            <button id="composer-play-toggle" type="button">Pause</button>
-            <button id="composer-play-reset" type="button">Restart</button>
-            <button id="composer-marker-prev" type="button">Prev Cue</button>
-            <button id="composer-marker-next" type="button">Next Cue</button>
-            <label class="composer-transport-marker" for="composer-marker-jump">
-              <span>Cue</span>
-              <select id="composer-marker-jump">
-                <option value="">No Markers</option>
-              </select>
-            </label>
-            <label class="composer-transport-scrub" for="composer-playhead-scrub">
-              <span>Scrub</span>
-              <input
-                id="composer-playhead-scrub"
-                class="composer-range"
-                type="range"
-                min="0"
-                max="1000"
-                step="1"
-                value="0"
-              />
-            </label>
-          </div>
         </div>
       </div>
       <div id="element-legend" aria-hidden="true">
