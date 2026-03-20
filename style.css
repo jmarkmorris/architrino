@@ -1416,12 +1416,29 @@ body {
   background: rgba(14, 18, 32, 0.68);
 }
 
+.composer-assembly-menu-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .composer-assembly-menu-block .composer-assembly-menu-subtitle {
   margin: 0;
 }
 
 .composer-assembly-menu-block .composer-button-row {
   margin-top: 0;
+}
+
+.composer-assembly-menu-inline-action {
+  width: auto !important;
+  min-width: 76px;
+  justify-content: center !important;
+  padding: 6px 12px !important;
+  font-size: 11px !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .composer-assembly-menu-danger {

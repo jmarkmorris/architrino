@@ -2685,18 +2685,30 @@ function appendComposerMenuField(parent, options = {}) {
   return input;
 }
 
-function appendComposerMenuBlock(parent, title) {
+function appendComposerMenuBlock(parent, title, actionConfig = null) {
   if (!parent) {
     return null;
   }
   const block = document.createElement("div");
   block.className = "composer-assembly-menu-block";
+  const header = document.createElement("div");
+  header.className = "composer-assembly-menu-block-header";
   const titleNode = document.createElement("div");
   titleNode.className = "composer-assembly-menu-subtitle";
   titleNode.textContent = title;
-  block.appendChild(titleNode);
+  header.appendChild(titleNode);
+  let actionButton = null;
+  if (actionConfig && typeof actionConfig.onClick === "function") {
+    actionButton = document.createElement("button");
+    actionButton.type = "button";
+    actionButton.className = "composer-assembly-menu-inline-action";
+    actionButton.textContent = actionConfig.text ?? "Add";
+    actionButton.addEventListener("click", actionConfig.onClick);
+    header.appendChild(actionButton);
+  }
+  block.appendChild(header);
   parent.appendChild(block);
-  return block;
+  return { block, header, titleNode, actionButton };
 }
 
 function appendComposerMenuNote(parent, text) {
@@ -4991,7 +5003,25 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           : `At ${formatComposerTimeLabel(timeSeconds)}`;
   composerAssemblyMenu.appendChild(subtitle);
 
-  const noteBlock = appendComposerMenuBlock(composerAssemblyMenu, "Note / Graphic");
+  const noteBlock = appendComposerMenuBlock(composerAssemblyMenu, "Note / Graphic", {
+    text: authoredMarker ? "Update" : "Add",
+    onClick: () => {
+      const noteTime = Number(noteTimeInput?.value);
+      const label = String(noteLabelInput?.value ?? "").trim();
+      if (!Number.isFinite(noteTime) || !label) {
+        return;
+      }
+      const nextLine = `${Number(clamp(noteTime, 0, duration).toFixed(3))}: ${label}`;
+      const current = composerMarkerListInput?.value ?? "";
+      if (composerMarkerListInput) {
+        composerMarkerListInput.value = authoredMarker?.id
+          ? replaceComposerAuthoringLineById(current, authoredMarker.id, nextLine)
+          : appendComposerAuthoringLine(current, nextLine);
+      }
+      closeComposerAssemblyMenu();
+      renderComposerJsonPreview();
+    },
+  });
   const noteForm = document.createElement("div");
   noteForm.className = "composer-form composer-assembly-menu-grid-2";
   const noteTimeInput = appendComposerMenuField(noteForm, {
@@ -5005,31 +5035,10 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     label: "Label",
     value: authoredMarker?.label ?? "note",
   });
-  noteBlock?.appendChild(noteForm);
-  appendComposerMenuButtonRow(noteBlock, [
-    {
-      text: authoredMarker ? "Update Note / Graphic" : "Add Note / Graphic",
-      onClick: () => {
-        const noteTime = Number(noteTimeInput?.value);
-        const label = String(noteLabelInput?.value ?? "").trim();
-        if (!Number.isFinite(noteTime) || !label) {
-          return;
-        }
-        const nextLine = `${Number(clamp(noteTime, 0, duration).toFixed(3))}: ${label}`;
-        const current = composerMarkerListInput?.value ?? "";
-        if (composerMarkerListInput) {
-          composerMarkerListInput.value = authoredMarker?.id
-            ? replaceComposerAuthoringLineById(current, authoredMarker.id, nextLine)
-            : appendComposerAuthoringLine(current, nextLine);
-        }
-        closeComposerAssemblyMenu();
-        renderComposerJsonPreview();
-      },
-    },
-  ]);
+  noteBlock?.block?.appendChild(noteForm);
 
   if (authoredMarker?.id) {
-    appendComposerMenuButtonRow(noteBlock, [
+    appendComposerMenuButtonRow(noteBlock?.block, [
       {
         text: "Remove Note / Graphic",
         className: "composer-assembly-menu-danger",
@@ -5048,7 +5057,25 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     ]);
   }
 
-  const pauseBlock = appendComposerMenuBlock(composerAssemblyMenu, "Pause");
+  const pauseBlock = appendComposerMenuBlock(composerAssemblyMenu, "Pause", {
+    text: pause ? "Update" : "Add",
+    onClick: () => {
+      const start = Number(pauseStartInput?.value);
+      const pauseDuration = Number(pauseDurationInput?.value);
+      if (!Number.isFinite(start) || !Number.isFinite(pauseDuration) || pauseDuration <= 0) {
+        return;
+      }
+      const nextLine = `${Number(clamp(start, 0, duration).toFixed(3))}, ${Number(pauseDuration.toFixed(3))}`;
+      const current = composerPauseListInput?.value ?? "";
+      if (composerPauseListInput) {
+        composerPauseListInput.value = pause?.id
+          ? replaceComposerAuthoringLineById(current, pause.id, nextLine)
+          : appendComposerAuthoringLine(current, nextLine);
+      }
+      closeComposerAssemblyMenu();
+      renderComposerJsonPreview();
+    },
+  });
   const pauseForm = document.createElement("div");
   pauseForm.className = "composer-form composer-assembly-menu-grid-2";
   const pauseStartInput = appendComposerMenuField(pauseForm, {
@@ -5065,31 +5092,10 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     step: 0.1,
     min: 0.001,
   });
-  pauseBlock?.appendChild(pauseForm);
-  appendComposerMenuButtonRow(pauseBlock, [
-    {
-      text: pause ? "Update Pause" : "Add Pause",
-      onClick: () => {
-        const start = Number(pauseStartInput?.value);
-        const pauseDuration = Number(pauseDurationInput?.value);
-        if (!Number.isFinite(start) || !Number.isFinite(pauseDuration) || pauseDuration <= 0) {
-          return;
-        }
-        const nextLine = `${Number(clamp(start, 0, duration).toFixed(3))}, ${Number(pauseDuration.toFixed(3))}`;
-        const current = composerPauseListInput?.value ?? "";
-        if (composerPauseListInput) {
-          composerPauseListInput.value = pause?.id
-            ? replaceComposerAuthoringLineById(current, pause.id, nextLine)
-            : appendComposerAuthoringLine(current, nextLine);
-        }
-        closeComposerAssemblyMenu();
-        renderComposerJsonPreview();
-      },
-    },
-  ]);
+  pauseBlock?.block?.appendChild(pauseForm);
 
   if (pause?.id) {
-    appendComposerMenuButtonRow(pauseBlock, [
+    appendComposerMenuButtonRow(pauseBlock?.block, [
       {
         text: "Remove Pause",
         className: "composer-assembly-menu-danger",
@@ -5108,7 +5114,28 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     ]);
   }
 
-  const warpBlock = appendComposerMenuBlock(composerAssemblyMenu, "Warp");
+  const warpBlock = appendComposerMenuBlock(composerAssemblyMenu, "Warp", {
+    text: warp ? "Update" : "Add",
+    onClick: () => {
+      const start = Number(warpStartInput?.value);
+      const end = Number(warpEndInput?.value);
+      const rate = Number(warpRateInput?.value);
+      if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(rate) || end <= start || rate <= 0) {
+        return;
+      }
+      const nextLine = `${Number(clamp(start, 0, duration).toFixed(3))}, ${Number(
+        clamp(end, 0, duration).toFixed(3)
+      )}, ${Number(rate.toFixed(3))}`;
+      const current = composerWarpListInput?.value ?? "";
+      if (composerWarpListInput) {
+        composerWarpListInput.value = warp?.id
+          ? replaceComposerAuthoringLineById(current, warp.id, nextLine)
+          : appendComposerAuthoringLine(current, nextLine);
+      }
+      closeComposerAssemblyMenu();
+      renderComposerJsonPreview();
+    },
+  });
   const warpForm = document.createElement("div");
   warpForm.className = "composer-form composer-assembly-menu-grid-2";
   const warpStartInput = appendComposerMenuField(warpForm, {
@@ -5133,34 +5160,10 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     min: 0.001,
   });
   warpRateInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
-  warpBlock?.appendChild(warpForm);
-  appendComposerMenuButtonRow(warpBlock, [
-    {
-      text: warp ? "Update Warp" : "Add Warp",
-      onClick: () => {
-        const start = Number(warpStartInput?.value);
-        const end = Number(warpEndInput?.value);
-        const rate = Number(warpRateInput?.value);
-        if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(rate) || end <= start || rate <= 0) {
-          return;
-        }
-        const nextLine = `${Number(clamp(start, 0, duration).toFixed(3))}, ${Number(
-          clamp(end, 0, duration).toFixed(3)
-        )}, ${Number(rate.toFixed(3))}`;
-        const current = composerWarpListInput?.value ?? "";
-        if (composerWarpListInput) {
-          composerWarpListInput.value = warp?.id
-            ? replaceComposerAuthoringLineById(current, warp.id, nextLine)
-            : appendComposerAuthoringLine(current, nextLine);
-        }
-        closeComposerAssemblyMenu();
-        renderComposerJsonPreview();
-      },
-    },
-  ]);
+  warpBlock?.block?.appendChild(warpForm);
 
   if (warp?.id) {
-    appendComposerMenuButtonRow(warpBlock, [
+    appendComposerMenuButtonRow(warpBlock?.block, [
       {
         text: "Remove Warp",
         className: "composer-assembly-menu-danger",
@@ -5179,7 +5182,29 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     ]);
   }
 
-  const reactionBlock = appendComposerMenuBlock(composerAssemblyMenu, "Reaction");
+  const reactionBlock = appendComposerMenuBlock(composerAssemblyMenu, "Reaction", {
+    text: reaction ? "Update" : "Add",
+    onClick: () => {
+      const label = String(reactionLabelInput?.value ?? "").trim();
+      const start = Number(reactionStartInput?.value);
+      const end = Number(reactionEndInput?.value);
+      const transferRefs = String(reactionTransfersInput?.value ?? "").trim();
+      const actions = String(reactionActionsInput?.value ?? "").trim();
+      if (!label || !Number.isFinite(start) || !Number.isFinite(end) || end <= start || !transferRefs) {
+        return;
+      }
+      const nextLine = `${label} @ ${Number(start.toFixed(3))}-${Number(end.toFixed(3))}: ${transferRefs}${
+        actions ? ` | ${actions}` : ""
+      }`;
+      setComposerReactionListRaw(
+        reaction?.id
+          ? replaceComposerAuthoringLineById(getComposerReactionListRaw(), reaction.id, nextLine)
+          : appendComposerAuthoringLine(getComposerReactionListRaw(), nextLine)
+      );
+      closeComposerAssemblyMenu();
+      renderComposerJsonPreview();
+    },
+  });
   const reactionForm = document.createElement("div");
   reactionForm.className = "composer-form composer-assembly-menu-grid-2";
   const reactionLabelInput = appendComposerMenuField(reactionForm, {
@@ -5226,35 +5251,10 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     placeholder: "detach(1), handoff(1,2)",
   });
   reactionActionsInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
-  reactionBlock?.appendChild(reactionForm);
-  appendComposerMenuButtonRow(reactionBlock, [
-    {
-      text: reaction ? "Update Reaction" : "Add Reaction",
-      onClick: () => {
-        const label = String(reactionLabelInput?.value ?? "").trim();
-        const start = Number(reactionStartInput?.value);
-        const end = Number(reactionEndInput?.value);
-        const transferRefs = String(reactionTransfersInput?.value ?? "").trim();
-        const actions = String(reactionActionsInput?.value ?? "").trim();
-        if (!label || !Number.isFinite(start) || !Number.isFinite(end) || end <= start || !transferRefs) {
-          return;
-        }
-        const nextLine = `${label} @ ${Number(start.toFixed(3))}-${Number(end.toFixed(3))}: ${transferRefs}${
-          actions ? ` | ${actions}` : ""
-        }`;
-        setComposerReactionListRaw(
-          reaction?.id
-            ? replaceComposerAuthoringLineById(getComposerReactionListRaw(), reaction.id, nextLine)
-            : appendComposerAuthoringLine(getComposerReactionListRaw(), nextLine)
-        );
-        closeComposerAssemblyMenu();
-        renderComposerJsonPreview();
-      },
-    },
-  ]);
+  reactionBlock?.block?.appendChild(reactionForm);
 
   if (reaction?.id) {
-    appendComposerMenuButtonRow(reactionBlock, [
+    appendComposerMenuButtonRow(reactionBlock?.block, [
       {
         text: "Remove Reaction",
         className: "composer-assembly-menu-danger",
