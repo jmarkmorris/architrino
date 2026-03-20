@@ -346,9 +346,23 @@
               <canvas id="composer-canvas"></canvas>
               <div id="composer-assembly-menu" class="composer-assembly-menu" aria-hidden="true"></div>
               <div class="composer-timeline-overlay">
-                <div class="composer-timeline-summary">
-                  <span id="composer-timeline-summary">0.0s / 12.0s</span>
-                  <span id="composer-timeline-active" class="composer-timeline-active">Cue: Start</span>
+                <div class="composer-timeline-toolbar">
+                  <div class="composer-timeline-transport">
+                    <button id="composer-play-toggle" type="button" class="composer-transport-icon" aria-label="Play"></button>
+                    <button id="composer-play-reset" type="button" class="composer-transport-icon" aria-label="Restart"></button>
+                    <button id="composer-marker-prev" type="button" class="composer-transport-text" aria-label="Previous cue">&lt;&lt;</button>
+                    <button id="composer-marker-next" type="button" class="composer-transport-text" aria-label="Next cue">&gt;&gt;</button>
+                    <label class="composer-transport-marker" for="composer-marker-jump">
+                      <span>Cue</span>
+                      <select id="composer-marker-jump">
+                        <option value="">No Markers</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="composer-timeline-summary">
+                    <span id="composer-timeline-summary">0.0s / 12.0s</span>
+                    <span id="composer-timeline-active" class="composer-timeline-active">Cue: Start</span>
+                  </div>
                 </div>
                 <div id="composer-timeline-track" class="composer-timeline-track">
                   <div id="composer-timeline-warps" class="composer-timeline-layer"></div>
@@ -361,137 +375,13 @@
               <div class="composer-canvas-hud">
                 <span>Drag: orbit (globe)</span>
                 <span>Two-finger scroll: orbit</span>
-                <span>Radius slider: zoom</span>
+                <span>Wheel: zoom</span>
                 <span>Edit Frame: drag to rotate frame</span>
+                <span>Right-click canvas: scene, frame, and camera controls</span>
                 <span>Alt-drag point: move along normal</span>
               </div>
             </div>
-            <div class="composer-controls">
-              <section class="composer-card">
-                <div class="composer-section-title">Path</div>
-                <div class="composer-form composer-form-grid">
-                  <label class="composer-field">
-                    <span>Interpolation</span>
-                    <select id="composer-path-mode">
-                      <option value="spline">Spline</option>
-                      <option value="polyline">Polyline</option>
-                    </select>
-                  </label>
-                  <label class="composer-field">
-                    <span>Reset</span>
-                    <button id="composer-path-reset" type="button">Reset Path</button>
-                  </label>
-                </div>
-              </section>
-              <section class="composer-card">
-                <div class="composer-section-title">Frame</div>
-                <div class="composer-form composer-form-grid">
-                  <label class="composer-field">
-                    <span>Frame Edit</span>
-                    <button id="composer-frame-edit-toggle" type="button">Edit Frame</button>
-                  </label>
-                  <label class="composer-field">
-                    <span>Reset</span>
-                    <button id="composer-frame-reset" type="button">Reset Frame</button>
-                  </label>
-                </div>
-                <div class="composer-field composer-range-field">
-                  <span>Scale (10^x)</span>
-                  <div class="composer-range-row">
-                    <input
-                      id="composer-frame-scale"
-                      class="composer-range"
-                      type="range"
-                      min="-2"
-                      max="3"
-                      step="0.1"
-                      value="0"
-                    />
-                    <span id="composer-frame-scale-label" class="composer-range-value">1x</span>
-                  </div>
-                </div>
-              </section>
-              <section class="composer-card">
-                <div class="composer-section-title">Camera</div>
-                <div class="composer-field composer-range-field">
-                  <span>Orbit Speed (10^x)</span>
-                  <div class="composer-range-row">
-                    <input
-                      id="composer-camera-speed"
-                      class="composer-range"
-                      type="range"
-                      min="-2"
-                      max="2"
-                      step="0.1"
-                      value="0"
-                    />
-                    <span id="composer-camera-speed-label" class="composer-range-value">1x</span>
-                  </div>
-                </div>
-                <div class="composer-field composer-range-field">
-                  <span>Orbit Radius (10^x)</span>
-                  <div class="composer-range-row">
-                    <input
-                      id="composer-camera-radius"
-                      class="composer-range"
-                      type="range"
-                      min="-2"
-                      max="3"
-                      step="0.1"
-                      value="0"
-                    />
-                    <span id="composer-camera-radius-label" class="composer-range-value">1x</span>
-                  </div>
-                </div>
-                <button id="composer-camera-reset" type="button">Reset Camera</button>
-              </section>
-              <section class="composer-card">
-                <div class="composer-section-title">Camera Flight</div>
-                <div class="composer-form composer-form-grid">
-                  <label class="composer-field">
-                    <span>POI Target</span>
-                    <select id="composer-camera-poi">
-                      <option value="origin">Local Origin</option>
-                      <option value="selected">Selected Point</option>
-                    </select>
-                  </label>
-                  <label class="composer-field">
-                    <span>Preview</span>
-                    <button id="composer-camera-flight-toggle" type="button">Play Flight</button>
-                  </label>
-                </div>
-                <div id="composer-camera-poi-status" class="composer-inline-status">
-                  Selected point: none. Click one of the numbered amber path points in the canvas to target it.
-                </div>
-              </section>
-            </div>
           </main>
-        </div>
-        <div class="composer-footer">
-          <div class="composer-transport">
-            <button id="composer-play-toggle" type="button">Pause</button>
-            <button id="composer-play-reset" type="button">Restart</button>
-            <button id="composer-marker-prev" type="button">Prev Cue</button>
-            <button id="composer-marker-next" type="button">Next Cue</button>
-            <label class="composer-transport-marker" for="composer-marker-jump">
-              <span>Cue</span>
-              <select id="composer-marker-jump">
-                <option value="">No Markers</option>
-              </select>
-            </label>
-            <label class="composer-transport-scrub" for="composer-playhead-scrub">
-              <span>Scrub</span>
-              <input
-                id="composer-playhead-scrub"
-                class="composer-range"
-                type="range"
-                min="0"
-                max="1000"
-                step="1"
-                value="0"
-              />
-            </label>
-          </div>
         </div>
       </div>
       <div id="element-legend" aria-hidden="true">

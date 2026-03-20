@@ -2,7 +2,7 @@
 
 ## Why this note exists
 
-The webapp already contains an early composer surface. It is no longer just a vague future idea. There is a working UI path for scene preview, JSON export, path editing, frame editing, and camera-path preview. That existing work is enough to justify one clear architecture note before the composer expands into full assembly authoring.
+The webapp already contains a substantial composer surface. It is no longer just an early mockup. There is now a working UI path for canonical scene-document generation, JSON export, assembly authoring, per-assembly paths, timeline markers and pauses, transfers, reactions, camera waypoint authoring, and live preview. That existing work is enough to justify one clear architecture note that reflects the current shell and the current direction.
 
 This note is the single reference for:
 
@@ -48,10 +48,13 @@ The current initial UI is a valid starting point and should be preserved as the 
 
 That means:
 
-- structured side panels remain primary,
+- the live canvas is the primary authoring surface,
+- persistent side panels should shrink toward scene-level controls only,
+- assembly-specific authoring should happen from the assembly center handle and nearby canvas interactions,
+- path-specific authoring should happen from path points or empty-canvas context menus while keeping path points directly draggable,
 - the central viewport remains the live visual truth,
 - export/import remains canonical JSON,
-- and in-runtime controls likely remain in the corners, but with an abbreviated set relevant to composed animation playback, camera, selection, and inspection.
+- and transport and playback controls should stay compact and timeline-adjacent rather than spread across redundant bars.
 
 The viewport should therefore privilege AAA-native reading order:
 
@@ -61,6 +64,18 @@ The viewport should therefore privilege AAA-native reading order:
 - then deeper constituent revelation if needed.
 
 The composer should be treated as a future core capability, not as a side panel.
+
+### Current UI requirements
+
+The current requirements/design posture is now more specific than when this note was first written.
+
+- The composer should be visual and canvas-first, with as little persistent text-panel authoring as practical.
+- Anything about a given assembly should be manageable through that assembly's center control point.
+- Path markers should remain directly draggable.
+- The left panel should keep shrinking toward scene-level controls only.
+- The canvas should keep gaining screen real estate as panel content is removed or compacted.
+- Large persistent text forms should not be reintroduced unless there is no workable canvas-first alternative.
+- Context menus are not a side convenience. They are now part of the intended authoring grammar for assembly, path, timeline, and scene actions.
 
 ---
 
@@ -893,31 +908,36 @@ The priority should remain authored explanatory geometry. Imported assets may su
 
 ## What exists today
 
-The current webapp runtime already exposes a composer overlay with multiple panels and export flow.
+The current webapp runtime already exposes a composer overlay with canonical export, draft persistence, viewport editing, and timeline playback.
 
 Observed composer capabilities in the runtime:
 
 - scene id and scene name inputs,
-- explicit assembly cards with stable assembly ids, display names, member lists, parent assignment, and local positioning,
-- path mode selection and path reset,
-- frame edit toggle, frame reset, and frame scale control,
-- camera POI mode,
-- camera waypoint add and clear,
-- camera-path preview toggle,
-- camera speed and camera radius controls,
+- explicit assemblies with stable ids, parent assignment, local positioning, and canonical per-assembly path data,
+- assembly center handles rendered as circular markers with centered letters `A`, `B`, `C`, ...,
+- path points rendered as circular markers with the owning assembly letter centered inside,
+- camera waypoints rendered as circular markers with a centered camera glyph,
+- larger marker hit targets to improve selection,
+- per-assembly path editing with direct point dragging,
+- frame edit and frame reset controls, now largely living in canvas context menus,
+- camera POI selection and camera waypoint add/clear flows,
+- viewport camera speed and radius controls,
 - cue, pause, warp, and transfer text-based authoring,
+- timeline reaction authoring from right-click menus,
+- transfer authoring from assembly-handle context menus,
+- history traces, envelopes, and derived provenance in the canonical document/runtime path,
 - browser-local save/load library for draft scenes,
-- preview panel,
+- compact canvas and assembly context menus,
 - docs panel,
 - canonical JSON export,
-- and live viewport playback with scrub, play, pause, restart, cue jump, and timeline overlays.
+- and live viewport playback with top-bar scrub, play, pause, restart, cue jump, and timeline overlays.
 
 The current composer surface already suggests an intended authoring loop:
 
 1. define a scene draft,
-2. define one or more assemblies and their member identities,
-3. adjust path, frame, and local assembly placement,
-4. define timing, transfer, and camera behavior,
+2. add one or more assemblies,
+3. author assembly placement and path behavior directly in the viewport,
+4. define timing, reaction, transfer, and camera behavior from the timeline and context menus,
 5. preview the scene live,
 6. save a browser-local draft or export canonical JSON.
 
@@ -1145,7 +1165,10 @@ This section merges the remaining useful requirements into one set.
 ### 8. Path authoring requirements
 
 - Path authoring must be 3D-native even when early editing flows are visually simple.
-- The composer should support straight-line paths, circles, ellipses, splines, polylines, and arbitrary smoothed point sets at minimum.
+- The canonical model may support straight-line paths, circles, ellipses, splines, polylines, and arbitrary smoothed point sets.
+- Normal UI authoring should default to spline paths.
+- Polyline support may remain in code and schema, but it does not need to remain exposed as a normal UI choice.
+- Path points should be directly draggable in the viewport and should stay easy to select even when guide geometry is nearby.
 - A path should declare its reference frame, time domain, repeat behavior, geometric payload, and preview style.
 - Parent motion and local path motion should combine predictably so that nested transport is authorable without ad hoc exceptions.
 - Camera paths and assembly motion paths should both be explicit structured objects, not implicit editor state.
@@ -1163,8 +1186,8 @@ This section merges the remaining useful requirements into one set.
 
 ### 10. View and workflow requirements
 
-- The composer should keep the current pattern of structured side panels plus live viewport preview.
-- The present shell may remain a transitional overlay with left-side structure cards, a central viewport, and compact transport controls while the fuller left-rail / right-inspector / bottom-timeline grammar is still being built.
+- The composer should keep the current overlay shell with live viewport preview, but the viewport should be the dominant authoring surface.
+- The present shell may remain transitional, but the direction is not toward heavier inspector-driven editing. It is toward a compact scene-level sidebar, a dominant central viewport, and timeline-adjacent transport and editing.
 - The primary authoring surface should include a timeline view or timeline inspector that makes clips, pauses, overlays, cue markers, and camera moves legible on one shared time axis.
 - Preview should update from authored draft state with minimal guesswork.
 - Preview should support play, pause, scrub, loop, and step controls in standard video-authoring terms.
@@ -1190,7 +1213,9 @@ This section merges the remaining useful requirements into one set.
 - Snapping should be available for useful authoring targets such as timeline markers, pause boundaries, anchors, path points, and nearby guide geometry.
 - The tool should support basic shot-transition semantics, including hard cut, dissolve, and continuous move, without requiring a full nonlinear editor feature set.
 - Zoom and drill-down behavior should follow a consistent reveal model in which sphere-like proxies expand into paths, orbit or shell traces, and constituent structure as explanatory need increases.
-- The workspace should preserve a stable left-browser, central viewport, right-inspector, and bottom-timeline grammar even as panel emphasis changes by level.
+- The workspace does not need to preserve a heavy left-browser / right-inspector / bottom-timeline grammar if that conflicts with canvas-first authoring. A lighter top-and-left shell around a dominant viewport is acceptable.
+- Assembly detail should not depend on a large persistent panel.
+- Transport should remain merged with or immediately adjacent to the main timeline scrub surface rather than split across multiple bars.
 - The composer should support reusable teaching-pattern presets that insert editable authored objects rather than opaque effects.
 - Pointer, keyboard, and transport behavior should be intentionally standardized so the tool feels closer to a disciplined motion-design workspace than to an ad hoc scene debugger.
 
@@ -2639,12 +2664,13 @@ The right near-term stance now is:
 
 1. keep the current overlay-based authoring shell while it remains productive,
 2. preserve the canonical composer document as the single authored source of truth,
-3. replace the remaining preview bridge with a dedicated `Scene-Composed-Animation` runtime path,
+3. continue the canvas-first migration by removing controls that still belong on canvas objects or the timeline,
 4. deepen explicit assembly structure from named members to spatially resolved constituents and subassemblies,
-5. promote transfers into staged reaction objects with timeline-visible choreography,
-6. add provenance, history traces, and exclusion envelopes as real authored and rendered objects,
-7. deepen camera/editorial control beyond waypoint preview,
-8. and only then revisit larger workspace rearrangements or package/export concerns.
+5. promote transfers and reactions into clearer staged choreography on the shared timeline,
+6. improve provenance, history traces, and exclusion envelopes as real authored and rendered objects,
+7. stabilize top-bar transport, camera behavior, and timeline-native editorial control,
+8. replace the remaining preview bridge with a dedicated `Scene-Composed-Animation` runtime path,
+9. and only then revisit larger workspace rearrangements or package/export concerns.
 
 That path respects the current implementation while focusing effort on the missing theory-facing layers.
 
@@ -2652,13 +2678,13 @@ That path respects the current implementation while focusing effort on the missi
 
 The remaining work should proceed in deliberately bounded phases.
 
-#### Phase 1: native runtime and editorial replacement
+#### Phase 1: canvas-first shell completion
 
 Target:
 
-- replace the temporary preview bridge with a native composed-animation runtime,
-- make camera shots and camera transitions real runtime objects,
-- add overlay tracks and stronger clip-level editorial control,
+- finish the canvas-first migration of the current shell,
+- make transport, playback, and timeline interaction reliable and compact,
+- keep assembly/path/timeline actions attached to the objects they govern,
 - and keep canonical playback, preview, and export aligned on one timeline.
 
 #### Phase 2: constituent and subassembly depth
