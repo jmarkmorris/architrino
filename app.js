@@ -2003,6 +2003,37 @@ function getComposerAssemblyDraftById(assemblyId) {
   return index >= 0 ? composerAssemblyDrafts[index] : null;
 }
 
+function getComposerAssemblyWorldCenterById(assemblyId) {
+  if (!assemblyId) {
+    return new THREE.Vector3();
+  }
+  return composerAssemblyWorldCenters.get(assemblyId)?.clone() ?? new THREE.Vector3();
+}
+
+function shiftComposerPointTriplets(points, delta) {
+  const offset = delta instanceof THREE.Vector3 ? delta : new THREE.Vector3();
+  return normalizeComposerAssemblyPathPoints(points).map((point) => [
+    Number(((point[0] ?? 0) + offset.x).toFixed(3)),
+    Number(((point[1] ?? 0) + offset.y).toFixed(3)),
+    Number(((point[2] ?? 0) + offset.z).toFixed(3)),
+  ]);
+}
+
+function rebaseComposerAssemblyParentFrame(assembly, nextParentId = "") {
+  if (!assembly) {
+    return;
+  }
+  const previousParentCenter = getComposerAssemblyWorldCenterById(assembly.parentId);
+  const nextParentCenter = getComposerAssemblyWorldCenterById(nextParentId);
+  const delta = previousParentCenter.sub(nextParentCenter);
+  assembly.position = [
+    Number(((assembly.position?.[0] ?? 0) + delta.x).toFixed(3)),
+    Number(((assembly.position?.[1] ?? 0) + delta.y).toFixed(3)),
+    Number(((assembly.position?.[2] ?? 0) + delta.z).toFixed(3)),
+  ];
+  assembly.pathPoints = shiftComposerPointTriplets(assembly.pathPoints, delta);
+}
+
 function syncComposerAssemblyPositionInputs(assemblyId, position = [0, 0, 0]) {
   const inputs = composerAssemblyPositionInputs.get(assemblyId);
   if (!Array.isArray(inputs)) {
@@ -2679,7 +2710,16 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
     if (!liveAssembly) {
       return;
     }
-    liveAssembly.parentId = parentSelect.value;
+    const nextParentId = parentSelect.value;
+    rebaseComposerAssemblyParentFrame(liveAssembly, nextParentId);
+    liveAssembly.parentId = nextParentId;
+    syncComposerAssemblyPositionInputs(liveAssembly.id, liveAssembly.position);
+    if (composerPathState.ownerAssemblyId === liveAssembly.id) {
+      composerPathState.points = normalizeComposerAssemblyPathPoints(liveAssembly.pathPoints).map((point) =>
+        vectorFromTriplet(point)
+      );
+      updateComposerPathGeometry();
+    }
     renderComposerJsonPreview();
   });
   parentField.append(parentLabel, parentSelect);
