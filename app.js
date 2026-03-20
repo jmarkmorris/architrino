@@ -4873,7 +4873,7 @@ function openComposerTimelineSummaryMenuAt(clientX, clientY) {
   subtitle.textContent = `${formatComposerTimeLabel(currentDuration)} total${isLooping ? " | loop on" : " | loop off"}`;
   composerAssemblyMenu.appendChild(subtitle);
   const form = document.createElement("div");
-  form.className = "composer-form";
+  form.className = "composer-form composer-assembly-menu-grid-2";
   const durationInput = appendComposerMenuField(form, {
     label: "Total Duration (s)",
     type: "number",
@@ -4886,6 +4886,7 @@ function openComposerTimelineSummaryMenuAt(clientX, clientY) {
     type: "checkbox",
     value: isLooping,
   });
+  loopInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
   composerAssemblyMenu.appendChild(form);
 
   appendComposerMenuButtonRow(composerAssemblyMenu, [
@@ -4978,7 +4979,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
 
   appendComposerMenuSectionHeader(composerAssemblyMenu, "Note / Graphic");
   const noteForm = document.createElement("div");
-  noteForm.className = "composer-form";
+  noteForm.className = "composer-form composer-assembly-menu-grid-2";
   const noteTimeInput = appendComposerMenuField(noteForm, {
     label: "Time (s)",
     type: "number",
@@ -5034,7 +5035,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
 
   appendComposerMenuSectionHeader(composerAssemblyMenu, "Pause");
   const pauseForm = document.createElement("div");
-  pauseForm.className = "composer-form";
+  pauseForm.className = "composer-form composer-assembly-menu-grid-2";
   const pauseStartInput = appendComposerMenuField(pauseForm, {
     label: "Start (s)",
     type: "number",
@@ -5093,7 +5094,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
 
   appendComposerMenuSectionHeader(composerAssemblyMenu, "Warp");
   const warpForm = document.createElement("div");
-  warpForm.className = "composer-form";
+  warpForm.className = "composer-form composer-assembly-menu-grid-2";
   const warpStartInput = appendComposerMenuField(warpForm, {
     label: "Start (s)",
     type: "number",
@@ -5115,6 +5116,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     step: 0.1,
     min: 0.001,
   });
+  warpRateInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
   composerAssemblyMenu.appendChild(warpForm);
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
@@ -5162,7 +5164,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
 
   appendComposerMenuSectionHeader(composerAssemblyMenu, "Reaction");
   const reactionForm = document.createElement("div");
-  reactionForm.className = "composer-form";
+  reactionForm.className = "composer-form composer-assembly-menu-grid-2";
   const reactionLabelInput = appendComposerMenuField(reactionForm, {
     label: "Label",
     value: reaction?.label ?? "reaction",
@@ -5206,6 +5208,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     value: defaultActions,
     placeholder: "detach(1), handoff(1,2)",
   });
+  reactionActionsInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
   composerAssemblyMenu.appendChild(reactionForm);
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
