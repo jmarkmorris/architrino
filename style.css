@@ -1304,7 +1304,7 @@ body {
   position: absolute;
   z-index: 6;
   min-width: 188px;
-  max-width: 280px;
+  max-width: min(440px, calc(100% - 24px));
   max-height: calc(100% - 24px);
   display: none;
   padding: 8px;
@@ -1351,6 +1351,27 @@ body {
 
 .composer-assembly-menu .composer-button-row button {
   min-width: 0;
+}
+
+.composer-assembly-menu-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.composer-assembly-menu-section-header .composer-assembly-menu-subtitle {
+  margin-bottom: 0;
+}
+
+.composer-assembly-menu-section-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(245, 247, 255, 0.88);
+}
+
+.composer-assembly-menu-spacer {
+  flex: 1;
 }
 
 .composer-assembly-menu .composer-form {

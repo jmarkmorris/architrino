@@ -1437,18 +1437,40 @@ function createComposerPointLabelSprite(text) {
 }
 
 function createComposerCameraWaypointLabelTexture(text, isActive = false) {
-  const label = String(text ?? "").trim() || "🎥";
   const canvas = document.createElement("canvas");
   canvas.width = 96;
   canvas.height = 96;
   const context = canvas.getContext("2d");
   if (context) {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.textBaseline = "middle";
-    context.textAlign = "center";
-    context.font = "700 40px sans-serif";
-    context.fillStyle = isActive ? "rgba(10, 16, 24, 0.98)" : "rgba(8, 14, 22, 0.96)";
-    context.fillText(label, canvas.width / 2, canvas.height / 2 + 1);
+    const stroke = isActive ? "rgba(10, 16, 24, 0.98)" : "rgba(8, 14, 22, 0.96)";
+    const fill = isActive ? "rgba(10, 16, 24, 0.94)" : "rgba(8, 14, 22, 0.9)";
+    context.fillStyle = fill;
+    context.strokeStyle = stroke;
+    context.lineWidth = 5;
+    context.lineJoin = "round";
+    context.lineCap = "round";
+
+    context.beginPath();
+    context.roundRect(24, 34, 34, 24, 8);
+    context.fill();
+
+    context.beginPath();
+    context.moveTo(58, 40);
+    context.lineTo(72, 32);
+    context.lineTo(72, 60);
+    context.lineTo(58, 52);
+    context.closePath();
+    context.fill();
+
+    context.beginPath();
+    context.arc(35, 30, 6, 0, Math.PI * 2);
+    context.arc(48, 30, 6, 0, Math.PI * 2);
+    context.fill();
+
+    context.beginPath();
+    context.arc(41, 46, 6.5, 0, Math.PI * 2);
+    context.stroke();
   }
   const texture = new THREE.CanvasTexture(canvas);
   texture.needsUpdate = true;
@@ -2220,6 +2242,61 @@ function appendComposerMenuRangeControl(parent, options = {}) {
   return { field, input, output };
 }
 
+function appendComposerMenuSectionHeader(parent, title, tag = "") {
+  if (!parent) {
+    return null;
+  }
+  const header = document.createElement("div");
+  header.className = "composer-assembly-menu-section-header";
+  const titleNode = document.createElement("div");
+  titleNode.className = "composer-assembly-menu-subtitle";
+  titleNode.textContent = title;
+  header.appendChild(titleNode);
+  if (tag) {
+    const tagNode = document.createElement("div");
+    tagNode.className = "composer-assembly-menu-section-tag";
+    tagNode.textContent = tag;
+    header.appendChild(tagNode);
+  }
+  parent.appendChild(header);
+  return header;
+}
+
+function appendComposerMenuButtonRow(parent, configs = []) {
+  if (!parent || !Array.isArray(configs) || !configs.length) {
+    return [];
+  }
+  const row = document.createElement("div");
+  row.className = "composer-button-row";
+  const buttons = configs.map((config) => {
+    if (!config) {
+      const spacer = document.createElement("div");
+      spacer.className = "composer-assembly-menu-spacer";
+      row.appendChild(spacer);
+      return null;
+    }
+    const button = document.createElement("button");
+    button.type = "button";
+    if (config.className) {
+      button.className = config.className;
+    }
+    if (config.dataset && typeof config.dataset === "object") {
+      Object.entries(config.dataset).forEach(([key, value]) => {
+        button.dataset[key] = String(value);
+      });
+    }
+    button.textContent = config.text ?? "";
+    button.disabled = !!config.disabled;
+    if (typeof config.onClick === "function") {
+      button.addEventListener("click", config.onClick);
+    }
+    row.appendChild(button);
+    return button;
+  });
+  parent.appendChild(row);
+  return buttons;
+}
+
 function openComposerAssemblyTemplateMenuAt(event) {
   if (!composerAssemblyMenu) {
     return;
@@ -2242,126 +2319,114 @@ function openComposerAssemblyTemplateMenuAt(event) {
   addLabel.textContent = "Add Assembly";
   composerAssemblyMenu.appendChild(addLabel);
 
-  ["positrino", "electrino", "noether_core"].forEach((templateId) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.dataset.template = templateId;
-    button.textContent =
-      templateId === "noether_core"
-        ? "Noether Core"
-        : templateId === "positrino"
-          ? "Positrino"
-          : "Electrino";
-    composerAssemblyMenu.appendChild(button);
-  });
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Electrino",
+      dataset: { template: "electrino" },
+    },
+    {
+      text: "Positrino",
+      dataset: { template: "positrino" },
+    },
+  ]);
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Noether Core",
+      dataset: { template: "noether_core" },
+    },
+    null,
+  ]);
 
-  const viewLabel = document.createElement("div");
-  viewLabel.className = "composer-assembly-menu-subtitle";
-  viewLabel.textContent = "Camera";
-  composerAssemblyMenu.appendChild(viewLabel);
+  appendComposerMenuSectionHeader(composerAssemblyMenu, "Camera");
 
-  const addCameraButton = document.createElement("button");
-  addCameraButton.type = "button";
-  addCameraButton.textContent = "Add Camera Waypoint";
-  addCameraButton.addEventListener("click", () => {
-    const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
-    addComposerCameraWaypoint(position);
-    closeComposerAssemblyMenu();
-  });
-  composerAssemblyMenu.appendChild(addCameraButton);
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Add Waypoint",
+      onClick: () => {
+        const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
+        addComposerCameraWaypoint(position);
+        closeComposerAssemblyMenu();
+      },
+    },
+    {
+      text:
+        composerCameraFlightState.poiMode === "selected"
+          ? "POI: Selected Point"
+          : "POI: Local Origin",
+      onClick: () => {
+        composerCameraFlightState.poiMode =
+          composerCameraFlightState.poiMode === "selected" ? "origin" : "selected";
+        updateComposerCameraPoiStatus();
+        closeComposerAssemblyMenu();
+      },
+    },
+  ]);
 
   if ((composerCameraFlightState?.waypoints?.length ?? 0) > 0) {
-    const clearCameraButton = document.createElement("button");
-    clearCameraButton.type = "button";
-    clearCameraButton.textContent = "Clear Camera Waypoints";
-    clearCameraButton.addEventListener("click", () => {
-      clearComposerCameraWaypoints();
-      closeComposerAssemblyMenu();
-    });
-    composerAssemblyMenu.appendChild(clearCameraButton);
+    appendComposerMenuButtonRow(composerAssemblyMenu, [
+      {
+        text: "Clear Waypoints",
+        onClick: () => {
+          clearComposerCameraWaypoints();
+          closeComposerAssemblyMenu();
+        },
+      },
+      null,
+    ]);
   }
 
-  const poiButton = document.createElement("button");
-  poiButton.type = "button";
-  poiButton.textContent =
-    composerCameraFlightState.poiMode === "selected" ? "POI: Selected Point" : "POI: Local Origin";
-  poiButton.addEventListener("click", () => {
-    composerCameraFlightState.poiMode =
-      composerCameraFlightState.poiMode === "selected" ? "origin" : "selected";
-    updateComposerCameraPoiStatus();
-    closeComposerAssemblyMenu();
-  });
-  composerAssemblyMenu.appendChild(poiButton);
-
-  const flightButton = document.createElement("button");
-  flightButton.type = "button";
-  flightButton.textContent = composerCameraFlightState.preview ? "Stop Flight Preview" : "Play Flight Preview";
-  flightButton.disabled = composerCameraFlightState.waypoints.length < 2;
-  flightButton.addEventListener("click", () => {
-    if (composerCameraFlightState.preview) {
-      stopComposerCameraFlightPreview();
-    } else {
-      startComposerCameraFlightPreview();
-    }
-    closeComposerAssemblyMenu();
-  });
-  composerAssemblyMenu.appendChild(flightButton);
-
   const selectedAssemblyLetter = getComposerSelectedAssemblyLetter();
-  const pathLabel = document.createElement("div");
-  pathLabel.className = "composer-assembly-menu-subtitle";
-  pathLabel.textContent = "Path";
-  composerAssemblyMenu.appendChild(pathLabel);
+  appendComposerMenuSectionHeader(
+    composerAssemblyMenu,
+    `Path ${selectedAssemblyLetter}`.trim()
+  );
 
-  const addPathPointButton = document.createElement("button");
-  addPathPointButton.type = "button";
-  addPathPointButton.textContent = `Add ${selectedAssemblyLetter} Path Point`;
-  addPathPointButton.addEventListener("click", () => {
-    const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
-    addComposerPathPoint(position);
-    renderComposerJsonPreview();
-    closeComposerAssemblyMenu();
-  });
-  composerAssemblyMenu.appendChild(addPathPointButton);
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Add Point",
+      onClick: () => {
+        const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
+        addComposerPathPoint(position);
+        renderComposerJsonPreview();
+        closeComposerAssemblyMenu();
+      },
+    },
+    {
+      text: "Reset",
+      onClick: () => {
+        resetComposerPathPoints();
+        renderComposerJsonPreview();
+        closeComposerAssemblyMenu();
+      },
+    },
+  ]);
 
-  const resetPathButton = document.createElement("button");
-  resetPathButton.type = "button";
-  resetPathButton.textContent = `Reset ${selectedAssemblyLetter} Path`;
-  resetPathButton.addEventListener("click", () => {
-    resetComposerPathPoints();
-    renderComposerJsonPreview();
-    closeComposerAssemblyMenu();
-  });
-  composerAssemblyMenu.appendChild(resetPathButton);
+  appendComposerMenuSectionHeader(composerAssemblyMenu, "Frame");
 
-  const frameLabel = document.createElement("div");
-  frameLabel.className = "composer-assembly-menu-subtitle";
-  frameLabel.textContent = "Frame";
-  composerAssemblyMenu.appendChild(frameLabel);
-
-  const frameEditButton = document.createElement("button");
-  frameEditButton.type = "button";
-  frameEditButton.textContent = composerFrameEditMode ? "Stop Frame Edit" : "Edit Frame";
-  frameEditButton.addEventListener("click", () => {
-    composerFrameEditMode = !composerFrameEditMode;
-    frameEditButton.textContent = composerFrameEditMode ? "Stop Frame Edit" : "Edit Frame";
-  });
-  composerAssemblyMenu.appendChild(frameEditButton);
-
-  const resetFrameButton = document.createElement("button");
-  resetFrameButton.type = "button";
-  resetFrameButton.textContent = "Reset Frame";
   let frameScaleControl = null;
-  resetFrameButton.addEventListener("click", () => {
-    setComposerFrameDefaults();
-    updateComposerFrame();
-    if (frameScaleControl) {
-      frameScaleControl.input.value = "0";
-      frameScaleControl.output.textContent = formatScaleLabel(composerFrameState.scale);
-    }
-    renderComposerJsonPreview();
-  });
-  composerAssemblyMenu.appendChild(resetFrameButton);
+  const [frameEditButton] = appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: composerFrameEditMode ? "Stop Edit" : "Edit",
+      onClick: () => {
+        composerFrameEditMode = !composerFrameEditMode;
+        if (frameEditButton) {
+          frameEditButton.textContent = composerFrameEditMode ? "Stop Edit" : "Edit";
+        }
+      },
+    },
+    {
+      text: "Reset",
+      onClick: () => {
+        setComposerFrameDefaults();
+        updateComposerFrame();
+        if (frameScaleControl) {
+          frameScaleControl.input.value = "0";
+          frameScaleControl.output.textContent = formatScaleLabel(composerFrameState.scale);
+        }
+        renderComposerJsonPreview();
+      },
+    },
+  ]);
 
   frameScaleControl = appendComposerMenuRangeControl(composerAssemblyMenu, {
     label: "Scale (10^x)",
@@ -2378,30 +2443,29 @@ function openComposerAssemblyTemplateMenuAt(event) {
     },
   });
 
-  const orbitLabel = document.createElement("div");
-  orbitLabel.className = "composer-assembly-menu-subtitle";
-  orbitLabel.textContent = "Orbit Camera";
-  composerAssemblyMenu.appendChild(orbitLabel);
+  appendComposerMenuSectionHeader(composerAssemblyMenu, "Viewport");
 
-  const resetCameraButton = document.createElement("button");
-  resetCameraButton.type = "button";
-  resetCameraButton.textContent = "Reset Camera";
   let orbitSpeedControl = null;
   let orbitRadiusControl = null;
-  resetCameraButton.addEventListener("click", () => {
-    setComposerCameraDefaults();
-    updateComposerCamera();
-    if (orbitSpeedControl) {
-      orbitSpeedControl.input.value = "0";
-      orbitSpeedControl.output.textContent = formatScaleLabel(composerCameraState.speed);
-    }
-    if (orbitRadiusControl) {
-      orbitRadiusControl.input.value = Math.log10(composerCameraOrbitState.radius || 1).toFixed(2);
-      orbitRadiusControl.output.textContent = formatScaleLabel(composerCameraOrbitState.radius);
-    }
-    renderComposerJsonPreview();
-  });
-  composerAssemblyMenu.appendChild(resetCameraButton);
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Reset",
+      onClick: () => {
+        setComposerCameraDefaults();
+        updateComposerCamera();
+        if (orbitSpeedControl) {
+          orbitSpeedControl.input.value = "0";
+          orbitSpeedControl.output.textContent = formatScaleLabel(composerCameraState.speed);
+        }
+        if (orbitRadiusControl) {
+          orbitRadiusControl.input.value = Math.log10(composerCameraOrbitState.radius || 1).toFixed(2);
+          orbitRadiusControl.output.textContent = formatScaleLabel(composerCameraOrbitState.radius);
+        }
+        renderComposerJsonPreview();
+      },
+    },
+    null,
+  ]);
 
   orbitSpeedControl = appendComposerMenuRangeControl(composerAssemblyMenu, {
     label: "Speed (10^x)",
@@ -2432,62 +2496,51 @@ function openComposerAssemblyTemplateMenuAt(event) {
     },
   });
 
-  const guideLabel = document.createElement("div");
-  guideLabel.className = "composer-assembly-menu-subtitle";
-  guideLabel.textContent = "View";
-  composerAssemblyMenu.appendChild(guideLabel);
+  appendComposerMenuSectionHeader(composerAssemblyMenu, "View");
 
-  const labelsButton = document.createElement("button");
-  labelsButton.type = "button";
-  labelsButton.textContent = `${
-    composerViewportDisplayState.showLabels !== false ? "Hide" : "Show"
-  } Camera Labels`;
-  labelsButton.addEventListener("click", () => {
-    composerViewportDisplayState.showLabels = !(composerViewportDisplayState.showLabels !== false);
-    applyComposerViewportDisplayState();
-    closeComposerAssemblyMenu();
-  });
-  composerAssemblyMenu.appendChild(labelsButton);
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: `${composerViewportDisplayState.showLabels !== false ? "Hide" : "Show"} Camera Labels`,
+      onClick: () => {
+        composerViewportDisplayState.showLabels = !(composerViewportDisplayState.showLabels !== false);
+        applyComposerViewportDisplayState();
+        closeComposerAssemblyMenu();
+      },
+    },
+    {
+      text: `${composerViewportDisplayState.showTransportPath !== false ? "Hide" : "Show"} Transport Paths`,
+      onClick: () => {
+        composerViewportDisplayState.showTransportPath = !(
+          composerViewportDisplayState.showTransportPath !== false
+        );
+        applyComposerViewportDisplayState();
+        closeComposerAssemblyMenu();
+      },
+    },
+  ]);
 
-  const transportButton = document.createElement("button");
-  transportButton.type = "button";
-  transportButton.textContent = `${
-    composerViewportDisplayState.showTransportPath !== false ? "Hide" : "Show"
-  } Transport Paths`;
-  transportButton.addEventListener("click", () => {
-    composerViewportDisplayState.showTransportPath = !(
-      composerViewportDisplayState.showTransportPath !== false
-    );
-    applyComposerViewportDisplayState();
-    closeComposerAssemblyMenu();
-  });
-  composerAssemblyMenu.appendChild(transportButton);
-
-  const historyButton = document.createElement("button");
-  historyButton.type = "button";
-  historyButton.textContent = `${
-    composerViewportDisplayState.showHistoryTraces !== false ? "Hide" : "Show"
-  } History Traces`;
-  historyButton.addEventListener("click", () => {
-    composerViewportDisplayState.showHistoryTraces = !(
-      composerViewportDisplayState.showHistoryTraces !== false
-    );
-    applyComposerViewportDisplayState();
-    closeComposerAssemblyMenu();
-  });
-  composerAssemblyMenu.appendChild(historyButton);
-
-  const envelopeButton = document.createElement("button");
-  envelopeButton.type = "button";
-  envelopeButton.textContent = `${
-    composerViewportDisplayState.showEnvelopes !== false ? "Hide" : "Show"
-  } Envelopes`;
-  envelopeButton.addEventListener("click", () => {
-    composerViewportDisplayState.showEnvelopes = !(composerViewportDisplayState.showEnvelopes !== false);
-    applyComposerViewportDisplayState();
-    closeComposerAssemblyMenu();
-  });
-  composerAssemblyMenu.appendChild(envelopeButton);
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: `${composerViewportDisplayState.showHistoryTraces !== false ? "Hide" : "Show"} History Traces`,
+      onClick: () => {
+        composerViewportDisplayState.showHistoryTraces = !(
+          composerViewportDisplayState.showHistoryTraces !== false
+        );
+        applyComposerViewportDisplayState();
+        closeComposerAssemblyMenu();
+      },
+    },
+    {
+      text: `${composerViewportDisplayState.showEnvelopes !== false ? "Hide" : "Show"} Envelopes`,
+      onClick: () => {
+        composerViewportDisplayState.showEnvelopes = !(
+          composerViewportDisplayState.showEnvelopes !== false
+        );
+        applyComposerViewportDisplayState();
+        closeComposerAssemblyMenu();
+      },
+    },
+  ]);
 
   const hasCameraGuides = composerHasCameraGuidesAvailable();
   const cameraButton = document.createElement("button");
@@ -2505,9 +2558,24 @@ function openComposerAssemblyTemplateMenuAt(event) {
       closeComposerAssemblyMenu();
     });
   }
-  composerAssemblyMenu.appendChild(cameraButton);
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: cameraButton.textContent,
+      disabled: cameraButton.disabled,
+      onClick: hasCameraGuides
+        ? () => {
+            composerViewportDisplayState.showCameraGuides = !(
+              composerViewportDisplayState.showCameraGuides !== false
+            );
+            applyComposerViewportDisplayState();
+            closeComposerAssemblyMenu();
+          }
+        : null,
+    },
+    null,
+  ]);
 
-  positionComposerAssemblyMenu(event.clientX, event.clientY, 260, 720);
+  positionComposerAssemblyMenu(event.clientX, event.clientY, 420, 640);
 }
 
 function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
