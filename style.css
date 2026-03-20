@@ -1074,6 +1074,10 @@ body {
   padding: 0 12px 12px;
 }
 
+.composer-assembly-advanced > .composer-assembly-advanced-body:first-child {
+  padding-top: 12px;
+}
+
 .composer-assembly-advanced-meta {
   font-size: 10px;
   letter-spacing: 0.04em;

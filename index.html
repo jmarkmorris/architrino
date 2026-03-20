@@ -191,7 +191,7 @@
       <div id="composer-overlay" aria-hidden="true">
         <div class="composer-header">
           <div>
-            <div class="composer-title">Composer</div>
+            <div class="composer-title">Composer v7</div>
           </div>
           <div class="composer-actions">
             <button
@@ -274,16 +274,16 @@
                   <input id="composer-scene-loop" type="checkbox" />
                 </label>
               </div>
-              <div class="composer-form">
+              <div class="composer-form" hidden>
                 <label class="composer-field">
-                  <span>Cue List</span>
+                  <span>Timeline Notes</span>
                   <textarea
                     id="composer-marker-list"
                     rows="3"
                     placeholder="0: Start&#10;3.5: Shell Lock&#10;7.0: Slow Branch"
                   ></textarea>
                 </label>
-                <div id="composer-marker-status" class="composer-inline-status">Blank cue list. Preview uses default cues.</div>
+                <div id="composer-marker-status" class="composer-inline-status">No timeline notes authored.</div>
               </div>
               <div class="composer-form">
                 <label class="composer-field">
@@ -307,7 +307,7 @@
                 </label>
                 <div id="composer-warp-status" class="composer-inline-status">No warps authored.</div>
               </div>
-              <p class="composer-hint">Cue list: one `time: label` entry per line. Pause list: `start, duration`. Warp list: `start, end, rate`.</p>
+              <p class="composer-hint">Pause list: `start, duration`. Warp list: `start, end, rate`.</p>
             </section>
             <section class="composer-card">
               <h3>Save / Library</h3>
@@ -350,18 +350,18 @@
                   <div class="composer-timeline-transport">
                     <button id="composer-play-toggle" type="button" class="composer-transport-icon" aria-label="Play"></button>
                     <button id="composer-play-reset" type="button" class="composer-transport-icon" aria-label="Restart"></button>
-                    <button id="composer-marker-prev" type="button" class="composer-transport-text" aria-label="Previous cue">&lt;&lt;</button>
-                    <button id="composer-marker-next" type="button" class="composer-transport-text" aria-label="Next cue">&gt;&gt;</button>
-                    <label class="composer-transport-marker" for="composer-marker-jump">
-                      <span>Cue</span>
+                    <button id="composer-marker-prev" type="button" class="composer-transport-text" aria-label="Previous timeline point" hidden>&lt;&lt;</button>
+                    <button id="composer-marker-next" type="button" class="composer-transport-text" aria-label="Next timeline point" hidden>&gt;&gt;</button>
+                    <label class="composer-transport-marker" for="composer-marker-jump" hidden>
+                      <span>Jump</span>
                       <select id="composer-marker-jump">
-                        <option value="">No Markers</option>
+                        <option value="">Timeline</option>
                       </select>
                     </label>
                   </div>
                   <div class="composer-timeline-summary">
                     <span id="composer-timeline-summary">0.0s / 12.0s</span>
-                    <span id="composer-timeline-active" class="composer-timeline-active">Cue: Start</span>
+                    <span id="composer-timeline-active" class="composer-timeline-active">Steady</span>
                   </div>
                 </div>
                 <div id="composer-timeline-track" class="composer-timeline-track">
