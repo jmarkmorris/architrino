@@ -1474,6 +1474,16 @@ body {
   pointer-events: none;
 }
 
+#composer-timeline-summary {
+  pointer-events: auto;
+  cursor: context-menu;
+  user-select: none;
+}
+
+#composer-timeline-summary:hover {
+  color: rgba(255, 232, 193, 0.96);
+}
+
 .composer-timeline-active {
   color: rgba(154, 240, 201, 0.92);
   text-align: right;
