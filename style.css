@@ -924,8 +924,8 @@ body {
 }
 
 .composer-sidebar {
-  width: 300px;
-  max-width: 30vw;
+  width: 272px;
+  max-width: 25vw;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -939,19 +939,11 @@ body {
   flex: 1;
   min-width: 0;
   min-height: 0;
-  padding: 14px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0;
   overflow-y: auto;
-}
-
-.composer-controls {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  align-content: start;
-  padding-bottom: 4px;
 }
 
 .composer-card {
@@ -1300,8 +1292,7 @@ body {
 .composer-canvas-wrap {
   position: relative;
   flex: 1;
-  min-height: clamp(500px, 64vh, 780px);
-  max-height: 780px;
+  min-height: clamp(560px, 72vh, 920px);
   margin-bottom: 0;
   border-radius: 12px;
   border: 1px solid rgba(160, 170, 220, 0.25);
@@ -1766,13 +1757,9 @@ body {
 }
 
 @media (max-width: 1500px) {
-  .composer-controls {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-
   .composer-sidebar {
-    width: 270px;
-    max-width: 28vw;
+    width: 248px;
+    max-width: 23vw;
   }
 }
 
