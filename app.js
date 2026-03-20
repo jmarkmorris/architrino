@@ -1953,6 +1953,13 @@ function formatScaleLabel(value) {
   return `${normalized.toFixed(2)}x`;
 }
 
+const COMPOSER_FRAME_SCALE_BASELINE = 0.4;
+
+function getComposerEffectiveFrameScale(value = composerFrameState.scale) {
+  const normalized = Math.max(0.01, Number(value ?? 1) || 1);
+  return normalized * COMPOSER_FRAME_SCALE_BASELINE;
+}
+
 function formatComposerTimeLabel(value) {
   const normalized = Number.isFinite(value) ? value : 0;
   return `${normalized.toFixed(1)}s`;
@@ -4361,7 +4368,7 @@ function updateComposerFrame() {
     return;
   }
   composerFrameGroup.rotation.copy(composerFrameState.rotation);
-  composerFrameGroup.scale.setScalar(composerFrameState.scale);
+  composerFrameGroup.scale.setScalar(getComposerEffectiveFrameScale());
 }
 
 function applyComposerFrameScaleInput() {
@@ -4629,7 +4636,7 @@ function getComposerSceneTimeWindow(documentData) {
   };
 }
 
-function sampleComposerPointAt(points, normalizedT) {
+function sampleComposerPointAt(points, normalizedT, options = {}) {
   if (!Array.isArray(points) || !points.length) {
     return new THREE.Vector3();
   }
@@ -4637,13 +4644,21 @@ function sampleComposerPointAt(points, normalizedT) {
     const [x = 0, y = 0, z = 0] = points[0];
     return new THREE.Vector3(x, y, z);
   }
+  const interpolate = options.interpolate ?? "spline";
+  const closed = !!options.closed;
+  if (interpolate === "spline" && points.length > 2) {
+    const vectors = points.map(([x = 0, y = 0, z = 0]) => new THREE.Vector3(x, y, z));
+    const curve = new THREE.CatmullRomCurve3(vectors, closed, "catmullrom", 0.5);
+    return curve.getPoint(clamp(normalizedT, 0, 1));
+  }
+  const source = closed ? [...points, points[0]] : points;
   const clamped = clamp(normalizedT, 0, 1);
-  const scaled = clamped * (points.length - 1);
+  const scaled = clamped * (source.length - 1);
   const baseIndex = Math.floor(scaled);
-  const nextIndex = Math.min(points.length - 1, baseIndex + 1);
+  const nextIndex = Math.min(source.length - 1, baseIndex + 1);
   const localT = scaled - baseIndex;
-  const from = points[baseIndex];
-  const to = points[nextIndex];
+  const from = source[baseIndex];
+  const to = source[nextIndex];
   return new THREE.Vector3(
     THREE.MathUtils.lerp(from[0] ?? 0, to[0] ?? 0, localT),
     THREE.MathUtils.lerp(from[1] ?? 0, to[1] ?? 0, localT),
@@ -5445,7 +5460,10 @@ function updateComposerAnimatedViewport(timeSeconds) {
           0,
           1
         );
-        center = sampleComposerPointAt(points, motionT);
+        center = sampleComposerPointAt(points, motionT, {
+          interpolate: path?.payload?.interpolate ?? "spline",
+          closed: !!path?.payload?.closed,
+        });
       }
     }
     const parentId = assembly?.parentId;
@@ -5523,7 +5541,10 @@ function updateComposerAnimatedViewport(timeSeconds) {
       line.visible = false;
       return;
     }
-    const currentSample = sampleComposerPointAt(points, normalizedSceneT);
+    const currentSample = sampleComposerPointAt(points, normalizedSceneT, {
+      interpolate: path?.payload?.interpolate ?? "spline",
+      closed: !!path?.payload?.closed,
+    });
     const anchorOffset = assemblyCenter.clone().sub(currentSample);
     const maxIndex = clamp(
       Math.round(normalizedSceneT * (sampledPoints.length - 1)),
@@ -6750,7 +6771,7 @@ function onComposerPointerMove(event) {
       return;
     }
     if (composerDragState.altMode || event.altKey) {
-      const lift = -dy * 0.01 * composerFrameState.scale;
+      const lift = -dy * 0.01 * getComposerEffectiveFrameScale();
       const localNormal = new THREE.Vector3(0, 0, 1);
       composerPathState.points[index]
         .copy(composerDragState.startPoint)

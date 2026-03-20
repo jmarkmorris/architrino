@@ -1623,6 +1623,15 @@ body {
 
 .composer-button-row button {
   flex: 1;
+  min-height: 42px;
+  height: auto;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  white-space: normal;
 }
 
 .composer-button-row-single button {
@@ -1777,13 +1786,14 @@ body {
   cursor: not-allowed;
 }
 
-#composer-preview-button,
 #composer-export-button,
+#composer-repo-save-button,
 #composer-library-save,
 #composer-library-load,
 #composer-library-delete {
-  height: 30px;
-  padding: 0 12px;
+  min-height: 42px;
+  height: auto;
+  padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid rgba(160, 170, 220, 0.25);
   background: rgba(15, 18, 32, 0.8);
@@ -1791,15 +1801,21 @@ body {
   font-size: 12px;
   letter-spacing: 0.01em;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  white-space: normal;
 }
 
-#composer-preview-button:hover,
 #composer-export-button:hover,
+#composer-repo-save-button:hover,
 #composer-library-save:hover,
 #composer-library-load:hover,
 #composer-library-delete:hover,
-#composer-preview-button:focus-visible,
 #composer-export-button:focus-visible,
+#composer-repo-save-button:focus-visible,
 #composer-library-save:focus-visible,
 #composer-library-load:focus-visible,
 #composer-library-delete:focus-visible {
