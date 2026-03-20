@@ -2685,6 +2685,20 @@ function appendComposerMenuField(parent, options = {}) {
   return input;
 }
 
+function appendComposerMenuBlock(parent, title) {
+  if (!parent) {
+    return null;
+  }
+  const block = document.createElement("div");
+  block.className = "composer-assembly-menu-block";
+  const titleNode = document.createElement("div");
+  titleNode.className = "composer-assembly-menu-subtitle";
+  titleNode.textContent = title;
+  block.appendChild(titleNode);
+  parent.appendChild(block);
+  return block;
+}
+
 function appendComposerMenuNote(parent, text) {
   if (!parent || !text) {
     return null;
@@ -4977,7 +4991,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           : `At ${formatComposerTimeLabel(timeSeconds)}`;
   composerAssemblyMenu.appendChild(subtitle);
 
-  appendComposerMenuSectionHeader(composerAssemblyMenu, "Note / Graphic");
+  const noteBlock = appendComposerMenuBlock(composerAssemblyMenu, "Note / Graphic");
   const noteForm = document.createElement("div");
   noteForm.className = "composer-form composer-assembly-menu-grid-2";
   const noteTimeInput = appendComposerMenuField(noteForm, {
@@ -4991,8 +5005,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     label: "Label",
     value: authoredMarker?.label ?? "note",
   });
-  composerAssemblyMenu.appendChild(noteForm);
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
+  noteBlock?.appendChild(noteForm);
+  appendComposerMenuButtonRow(noteBlock, [
     {
       text: authoredMarker ? "Update Note / Graphic" : "Add Note / Graphic",
       onClick: () => {
@@ -5015,25 +5029,26 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
   ]);
 
   if (authoredMarker?.id) {
-    const removeNoteButton = document.createElement("button");
-    removeNoteButton.type = "button";
-    removeNoteButton.className = "composer-assembly-menu-danger";
-    removeNoteButton.textContent = "Remove Note / Graphic";
-    removeNoteButton.addEventListener("click", () => {
-      if (composerMarkerListInput) {
-        composerMarkerListInput.value = replaceComposerAuthoringLineById(
-          composerMarkerListInput.value,
-          authoredMarker.id,
-          null
-        );
-      }
-      closeComposerAssemblyMenu();
-      renderComposerJsonPreview();
-    });
-    composerAssemblyMenu.appendChild(removeNoteButton);
+    appendComposerMenuButtonRow(noteBlock, [
+      {
+        text: "Remove Note / Graphic",
+        className: "composer-assembly-menu-danger",
+        onClick: () => {
+          if (composerMarkerListInput) {
+            composerMarkerListInput.value = replaceComposerAuthoringLineById(
+              composerMarkerListInput.value,
+              authoredMarker.id,
+              null
+            );
+          }
+          closeComposerAssemblyMenu();
+          renderComposerJsonPreview();
+        },
+      },
+    ]);
   }
 
-  appendComposerMenuSectionHeader(composerAssemblyMenu, "Pause");
+  const pauseBlock = appendComposerMenuBlock(composerAssemblyMenu, "Pause");
   const pauseForm = document.createElement("div");
   pauseForm.className = "composer-form composer-assembly-menu-grid-2";
   const pauseStartInput = appendComposerMenuField(pauseForm, {
@@ -5050,8 +5065,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     step: 0.1,
     min: 0.001,
   });
-  composerAssemblyMenu.appendChild(pauseForm);
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
+  pauseBlock?.appendChild(pauseForm);
+  appendComposerMenuButtonRow(pauseBlock, [
     {
       text: pause ? "Update Pause" : "Add Pause",
       onClick: () => {
@@ -5074,25 +5089,26 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
   ]);
 
   if (pause?.id) {
-    const removePauseButton = document.createElement("button");
-    removePauseButton.type = "button";
-    removePauseButton.className = "composer-assembly-menu-danger";
-    removePauseButton.textContent = "Remove Pause";
-    removePauseButton.addEventListener("click", () => {
-      if (composerPauseListInput) {
-        composerPauseListInput.value = replaceComposerAuthoringLineById(
-          composerPauseListInput.value,
-          pause.id,
-          null
-        );
-      }
-      closeComposerAssemblyMenu();
-      renderComposerJsonPreview();
-    });
-    composerAssemblyMenu.appendChild(removePauseButton);
+    appendComposerMenuButtonRow(pauseBlock, [
+      {
+        text: "Remove Pause",
+        className: "composer-assembly-menu-danger",
+        onClick: () => {
+          if (composerPauseListInput) {
+            composerPauseListInput.value = replaceComposerAuthoringLineById(
+              composerPauseListInput.value,
+              pause.id,
+              null
+            );
+          }
+          closeComposerAssemblyMenu();
+          renderComposerJsonPreview();
+        },
+      },
+    ]);
   }
 
-  appendComposerMenuSectionHeader(composerAssemblyMenu, "Warp");
+  const warpBlock = appendComposerMenuBlock(composerAssemblyMenu, "Warp");
   const warpForm = document.createElement("div");
   warpForm.className = "composer-form composer-assembly-menu-grid-2";
   const warpStartInput = appendComposerMenuField(warpForm, {
@@ -5117,8 +5133,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     min: 0.001,
   });
   warpRateInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
-  composerAssemblyMenu.appendChild(warpForm);
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
+  warpBlock?.appendChild(warpForm);
+  appendComposerMenuButtonRow(warpBlock, [
     {
       text: warp ? "Update Warp" : "Add Warp",
       onClick: () => {
@@ -5144,25 +5160,26 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
   ]);
 
   if (warp?.id) {
-    const removeWarpButton = document.createElement("button");
-    removeWarpButton.type = "button";
-    removeWarpButton.className = "composer-assembly-menu-danger";
-    removeWarpButton.textContent = "Remove Warp";
-    removeWarpButton.addEventListener("click", () => {
-      if (composerWarpListInput) {
-        composerWarpListInput.value = replaceComposerAuthoringLineById(
-          composerWarpListInput.value,
-          warp.id,
-          null
-        );
-      }
-      closeComposerAssemblyMenu();
-      renderComposerJsonPreview();
-    });
-    composerAssemblyMenu.appendChild(removeWarpButton);
+    appendComposerMenuButtonRow(warpBlock, [
+      {
+        text: "Remove Warp",
+        className: "composer-assembly-menu-danger",
+        onClick: () => {
+          if (composerWarpListInput) {
+            composerWarpListInput.value = replaceComposerAuthoringLineById(
+              composerWarpListInput.value,
+              warp.id,
+              null
+            );
+          }
+          closeComposerAssemblyMenu();
+          renderComposerJsonPreview();
+        },
+      },
+    ]);
   }
 
-  appendComposerMenuSectionHeader(composerAssemblyMenu, "Reaction");
+  const reactionBlock = appendComposerMenuBlock(composerAssemblyMenu, "Reaction");
   const reactionForm = document.createElement("div");
   reactionForm.className = "composer-form composer-assembly-menu-grid-2";
   const reactionLabelInput = appendComposerMenuField(reactionForm, {
@@ -5209,8 +5226,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     placeholder: "detach(1), handoff(1,2)",
   });
   reactionActionsInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
-  composerAssemblyMenu.appendChild(reactionForm);
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
+  reactionBlock?.appendChild(reactionForm);
+  appendComposerMenuButtonRow(reactionBlock, [
     {
       text: reaction ? "Update Reaction" : "Add Reaction",
       onClick: () => {
@@ -5237,21 +5254,22 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
   ]);
 
   if (reaction?.id) {
-    const removeReactionButton = document.createElement("button");
-    removeReactionButton.type = "button";
-    removeReactionButton.textContent = "Remove Reaction";
-    removeReactionButton.className = "composer-assembly-menu-danger";
-    removeReactionButton.addEventListener("click", () => {
-      setComposerReactionListRaw(
-        replaceComposerAuthoringLineById(getComposerReactionListRaw(), reaction.id, null)
-      );
-      closeComposerAssemblyMenu();
-      renderComposerJsonPreview();
-    });
-    composerAssemblyMenu.appendChild(removeReactionButton);
+    appendComposerMenuButtonRow(reactionBlock, [
+      {
+        text: "Remove Reaction",
+        className: "composer-assembly-menu-danger",
+        onClick: () => {
+          setComposerReactionListRaw(
+            replaceComposerAuthoringLineById(getComposerReactionListRaw(), reaction.id, null)
+          );
+          closeComposerAssemblyMenu();
+          renderComposerJsonPreview();
+        },
+      },
+    ]);
   }
 
-  positionComposerAssemblyMenu(clientX, clientY, 280, reaction ? 460 : 520);
+  positionComposerAssemblyMenu(clientX, clientY, 320, reaction ? 540 : 600);
 }
 
 function removeComposerPathPoint(pointIndex) {
