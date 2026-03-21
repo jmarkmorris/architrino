@@ -39,7 +39,8 @@ export function buildComposerTimelineMenu(config) {
     getComposerGraphicOverlayDraftIndexById,
     findComposerTimelineOverlap,
     showComposerStatus,
-    composerGraphicOverlayDrafts,
+    upsertComposerGraphicOverlayDraft,
+    removeComposerGraphicOverlayDraftById,
     closeComposerAssemblyMenu,
     renderComposerJsonPreview,
     encodeComposerGraphicTargetValue,
@@ -168,12 +169,7 @@ export function buildComposerTimelineMenu(config) {
           Math.max(0, getComposerGraphicOverlayDraftIndexById(graphic?.id)),
           duration
         );
-        const existingIndex = getComposerGraphicOverlayDraftIndexById(nextOverlay.id);
-        if (existingIndex >= 0) {
-          composerGraphicOverlayDrafts[existingIndex] = nextOverlay;
-        } else {
-          composerGraphicOverlayDrafts.push(nextOverlay);
-        }
+        upsertComposerGraphicOverlayDraft(nextOverlay);
         closeComposerAssemblyMenu();
         renderComposerJsonPreview();
       },
@@ -224,10 +220,7 @@ export function buildComposerTimelineMenu(config) {
           text: "Remove Graphic",
           className: "composer-assembly-menu-danger",
           onClick: () => {
-            const overlayIndex = getComposerGraphicOverlayDraftIndexById(graphic.id);
-            if (overlayIndex >= 0) {
-              composerGraphicOverlayDrafts.splice(overlayIndex, 1);
-            }
+            removeComposerGraphicOverlayDraftById(graphic.id);
             closeComposerAssemblyMenu();
             renderComposerJsonPreview();
           },
@@ -295,12 +288,7 @@ export function buildComposerTimelineMenu(config) {
           Math.max(0, getComposerGraphicOverlayDraftIndexById(currentOverlay?.id)),
           duration
         );
-        const existingIndex = getComposerGraphicOverlayDraftIndexById(nextOverlay.id);
-        if (existingIndex >= 0) {
-          composerGraphicOverlayDrafts[existingIndex] = nextOverlay;
-        } else {
-          composerGraphicOverlayDrafts.push(nextOverlay);
-        }
+        upsertComposerGraphicOverlayDraft(nextOverlay);
         closeComposerAssemblyMenu();
         renderComposerJsonPreview();
       },
@@ -340,10 +328,7 @@ export function buildComposerTimelineMenu(config) {
           text: `Remove ${kind === "image" ? "Image" : "Video"}`,
           className: "composer-assembly-menu-danger",
           onClick: () => {
-            const overlayIndex = getComposerGraphicOverlayDraftIndexById(currentOverlay.id);
-            if (overlayIndex >= 0) {
-              composerGraphicOverlayDrafts.splice(overlayIndex, 1);
-            }
+            removeComposerGraphicOverlayDraftById(currentOverlay.id);
             closeComposerAssemblyMenu();
             renderComposerJsonPreview();
           },

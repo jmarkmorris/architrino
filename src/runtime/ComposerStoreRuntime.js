@@ -25,9 +25,32 @@ export function createComposerEditorStore(initialState = {}) {
       state.assemblyDrafts = Array.isArray(nextValue) ? nextValue : [];
       return state.assemblyDrafts;
     },
+    appendAssemblyDraft: (draft) => {
+      state.assemblyDrafts = [...state.assemblyDrafts, draft];
+      return state.assemblyDrafts;
+    },
+    removeAssemblyDraftById: (assemblyId) => {
+      state.assemblyDrafts = state.assemblyDrafts.filter((entry) => entry?.id !== assemblyId);
+      return state.assemblyDrafts;
+    },
     getGraphicOverlayDrafts: () => state.graphicOverlayDrafts,
     setGraphicOverlayDrafts: (nextValue) => {
       state.graphicOverlayDrafts = Array.isArray(nextValue) ? nextValue : [];
+      return state.graphicOverlayDrafts;
+    },
+    upsertGraphicOverlayDraft: (overlayDraft) => {
+      const existingIndex = state.graphicOverlayDrafts.findIndex((entry) => entry?.id === overlayDraft?.id);
+      if (existingIndex >= 0) {
+        const nextDrafts = [...state.graphicOverlayDrafts];
+        nextDrafts[existingIndex] = overlayDraft;
+        state.graphicOverlayDrafts = nextDrafts;
+      } else {
+        state.graphicOverlayDrafts = [...state.graphicOverlayDrafts, overlayDraft];
+      }
+      return state.graphicOverlayDrafts;
+    },
+    removeGraphicOverlayDraftById: (overlayId) => {
+      state.graphicOverlayDrafts = state.graphicOverlayDrafts.filter((entry) => entry?.id !== overlayId);
       return state.graphicOverlayDrafts;
     },
     getSelectedPointIndex: () => state.selectedPointIndex,

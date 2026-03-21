@@ -73,6 +73,7 @@ import {
   openComposerPersonalitySlotMenu,
   openComposerSubassemblyMenu,
 } from "./src/runtime/ComposerCanvasMenuRuntime.js";
+import { createBuiltInComposerAssemblyDraftRuntime } from "./src/runtime/ComposerAssemblyFactoryRuntime.js";
 import { createComposerEditorStore } from "./src/runtime/ComposerStoreRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
@@ -1583,8 +1584,28 @@ function setComposerAssemblyDraftsState(nextValue) {
   return composerAssemblyDrafts;
 }
 
+function appendComposerAssemblyDraftState(draft) {
+  composerAssemblyDrafts = composerEditorStore.appendAssemblyDraft(draft);
+  return composerAssemblyDrafts;
+}
+
+function removeComposerAssemblyDraftByIdState(assemblyId) {
+  composerAssemblyDrafts = composerEditorStore.removeAssemblyDraftById(assemblyId);
+  return composerAssemblyDrafts;
+}
+
 function setComposerGraphicOverlayDraftsState(nextValue) {
   composerGraphicOverlayDrafts = composerEditorStore.setGraphicOverlayDrafts(nextValue);
+  return composerGraphicOverlayDrafts;
+}
+
+function upsertComposerGraphicOverlayDraftState(overlayDraft) {
+  composerGraphicOverlayDrafts = composerEditorStore.upsertGraphicOverlayDraft(overlayDraft);
+  return composerGraphicOverlayDrafts;
+}
+
+function removeComposerGraphicOverlayDraftByIdState(overlayId) {
+  composerGraphicOverlayDrafts = composerEditorStore.removeGraphicOverlayDraftById(overlayId);
   return composerGraphicOverlayDrafts;
 }
 
@@ -3664,154 +3685,23 @@ function getNextComposerAssemblyId(baseId) {
 }
 
 function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0], options = {}) {
-  const normalizedPosition = Array.isArray(position)
-    ? [
-        Number(position[0] ?? 0) || 0,
-        Number(position[1] ?? 0) || 0,
-        Number(position[2] ?? 0) || 0,
-      ]
-    : [0, 0, 0];
-  const sceneRole = normalizeComposerAssemblySceneRole(options.sceneRole);
-  const buildDraft = (draft) => normalizeComposerAssemblyDraft(draft, composerAssemblyDrafts.length);
-  const assemblyFactories = {
-    positrino: () => {
-      const id = getNextComposerAssemblyId("positrino");
-      return buildDraft({
-        id,
-        name: "Positrino",
-        role: "positrino",
-        sceneRole,
-        position: normalizedPosition,
-        members: ["positrino_1"],
-        subassemblies: [],
-        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-      });
-    },
-    electrino: () => {
-      const id = getNextComposerAssemblyId("electrino");
-      return buildDraft({
-        id,
-        name: "Electrino",
-        role: "electrino",
-        sceneRole,
-        position: normalizedPosition,
-        members: ["electrino_1"],
-        subassemblies: [],
-        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-      });
-    },
-    electron: () => {
-      const id = getNextComposerAssemblyId("electron");
-      return buildDraft({
-        id,
-        name: "Electron",
-        role: "electron",
-        sceneRole,
-        position: normalizedPosition,
-        members: [
-          "positrino_1",
-          "electrino_1",
-          "positrino_2",
-          "electrino_2",
-          "positrino_3",
-          "electrino_3",
-          ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("electron")),
-        ],
-        subassemblies: [],
-        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-        core: createComposerDefaultCoreSpec(id),
-      });
-    },
-    fermion_gen1: () => {
-      const id = getNextComposerAssemblyId("fermion");
-      return buildDraft({
-        id,
-        name: "Gen I Fermion",
-        role: "fermion_gen1",
-        sceneRole,
-        position: normalizedPosition,
-        members: [
-          "positrino_1",
-          "electrino_1",
-          "positrino_2",
-          "electrino_2",
-          "positrino_3",
-          "electrino_3",
-          ...createComposerGenIFermionPersonalityMembers(),
-        ],
-        subassemblies: [],
-        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-        core: createComposerDefaultCoreSpec(id),
-      });
-    },
-    down_quark: () => {
-      const id = getNextComposerAssemblyId("down_quark");
-      return buildDraft({
-        id,
-        name: "Down Quark",
-        role: "down_quark",
-        sceneRole,
-        position: normalizedPosition,
-        members: [
-          "positrino_1",
-          "electrino_1",
-          "positrino_2",
-          "electrino_2",
-          "positrino_3",
-          "electrino_3",
-          ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("down_quark")),
-        ],
-        subassemblies: [],
-        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-        core: createComposerDefaultCoreSpec(id),
-      });
-    },
-    up_quark: () => {
-      const id = getNextComposerAssemblyId("up_quark");
-      return buildDraft({
-        id,
-        name: "Up Quark",
-        role: "up_quark",
-        sceneRole,
-        position: normalizedPosition,
-        members: [
-          "positrino_1",
-          "electrino_1",
-          ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("up_quark")),
-        ],
-        subassemblies: [],
-        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-        core: createComposerDefaultCoreSpec(id),
-      });
-    },
-    noether_core: () => {
-      const id = getNextComposerAssemblyId("noether_core");
-      return buildDraft({
-        id,
-        name: "Noether Core",
-        role: "assembly",
-        sceneRole,
-        position: normalizedPosition,
-        members: [
-          "positrino_1",
-          "electrino_1",
-          "positrino_2",
-          "electrino_2",
-          "positrino_3",
-          "electrino_3",
-        ],
-        subassemblies: [],
-        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-        core: createComposerDefaultCoreSpec(id),
-      });
-    },
-  };
-  return (assemblyFactories[templateId] ?? assemblyFactories.noether_core)();
+  return createBuiltInComposerAssemblyDraftRuntime(templateId, position, {
+    sceneRole: options.sceneRole,
+    normalizeSceneRole: normalizeComposerAssemblySceneRole,
+    normalizeAssemblyDraft: normalizeComposerAssemblyDraft,
+    getDraftCount: () => composerAssemblyDrafts.length,
+    getNextAssemblyId: getNextComposerAssemblyId,
+    createDefaultPathPoints: createComposerDefaultPathPoints,
+    createDefaultCoreSpec: createComposerDefaultCoreSpec,
+    createPersonalityMembers: createComposerPersonalityMembers,
+    getBuiltInPersonalityStates: getComposerBuiltInPersonalityStates,
+    createGenIFermionPersonalityMembers: createComposerGenIFermionPersonalityMembers,
+  });
 }
 
 function addBuiltInComposerAssembly(templateId, position, options = {}) {
   const nextAssembly = createBuiltInComposerAssemblyDraft(templateId, position, options);
-  composerAssemblyDrafts.push(nextAssembly);
+  appendComposerAssemblyDraftState(nextAssembly);
   setComposerSelectedAssembly(nextAssembly.id);
   renderComposerAssemblyEditor();
   renderComposerJsonPreview();
@@ -4595,9 +4485,7 @@ function initComposerCanvas() {
   if (composerAssemblyAddButton && !composerAssemblyAddButton.dataset.bound) {
     composerAssemblyAddButton.addEventListener("click", () => {
       ensureComposerAssemblyDrafts();
-      composerAssemblyDrafts.push(
-        createDefaultComposerAssemblyDraft(composerAssemblyDrafts.length)
-      );
+      appendComposerAssemblyDraftState(createDefaultComposerAssemblyDraft(composerAssemblyDrafts.length));
       renderComposerAssemblyEditor();
       renderComposerJsonPreview();
     });
@@ -5447,7 +5335,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     getComposerGraphicOverlayDraftIndexById,
     findComposerTimelineOverlap,
     showComposerStatus: setComposerStatus,
-    composerGraphicOverlayDrafts,
+    upsertComposerGraphicOverlayDraft: upsertComposerGraphicOverlayDraftState,
+    removeComposerGraphicOverlayDraftById: removeComposerGraphicOverlayDraftByIdState,
     closeComposerAssemblyMenu,
     renderComposerJsonPreview,
     encodeComposerGraphicTargetValue,
