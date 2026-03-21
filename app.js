@@ -1440,6 +1440,16 @@ function getComposerGraphicTimelineOverlays(documentData = composerCurrentDocume
   );
 }
 
+function isComposerTimeWithinSpan(timeSeconds, startSeconds, endSeconds, epsilon = 0.001) {
+  const time = Number(timeSeconds);
+  const start = Number(startSeconds);
+  const end = Number(endSeconds);
+  if (!Number.isFinite(time) || !Number.isFinite(start) || !Number.isFinite(end)) {
+    return false;
+  }
+  return time >= start - epsilon && time <= end + epsilon;
+}
+
 function resolveComposerGraphicTargetPosition(target, assemblyCenters = new Map(), documentData = composerCurrentDocument) {
   if (!target) {
     return null;
@@ -2032,6 +2042,18 @@ function createComposerGraphicOverlayTextSprite(text, radius = 0.42) {
   sprite.scale.set(scale[0], scale[1], scale[2]);
   sprite.renderOrder = 19;
   return sprite;
+}
+
+function updateComposerGraphicOverlayTextSprite(sprite, text, radius = 0.42) {
+  if (!sprite?.material) {
+    return;
+  }
+  const previousMap = sprite.material.map ?? null;
+  const { texture, scale } = createComposerGraphicOverlayTextTexture(text, radius);
+  sprite.material.map = texture;
+  sprite.material.needsUpdate = true;
+  sprite.scale.set(scale[0], scale[1], scale[2]);
+  previousMap?.dispose?.();
 }
 
 function updateComposerPointLabelSprite(sprite, text, isActive = false) {
@@ -5048,7 +5070,6 @@ function clearComposerViewportVisuals() {
   });
   composerGraphicOverlayGroups = [];
   composerGraphicOverlayHandleMeshes = [];
-  composerGraphicOverlayResizeMeshes = [];
   composerMemberAnchors = new Map();
   if (composerDocumentCameraPathLine) {
     composerViewportGroup?.remove(composerDocumentCameraPathLine);
@@ -5751,7 +5772,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const graphicTextInput = appendComposerMenuField(graphicForm, {
       label: "Text",
       value: initialGraphicDraft.text,
-      placeholder: "Text sphere",
+      placeholder: "Graphic text",
     });
     graphicTextInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
     const graphicSizeInput = appendComposerMenuField(graphicForm, {
@@ -5764,7 +5785,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     graphicBlock?.block?.appendChild(graphicForm);
     appendComposerMenuNote(
       graphicBlock?.block,
-      "Drag the text sphere to place it. Drag the small outer orb to resize it."
+      "Drag the text to place it. Edit size here when needed."
     );
 
     if (graphic?.id) {
@@ -6178,7 +6199,7 @@ function describeComposerTimelineState(timeSeconds, documentData) {
     : null;
   const activeGraphic = [...graphics]
     .sort((left, right) => left.start - right.start)
-    .filter((graphic) => timeSeconds + 0.001 >= graphic.start && timeSeconds <= graphic.end + 0.001)
+    .filter((graphic) => isComposerTimeWithinSpan(timeSeconds, graphic.start, graphic.end))
     .pop();
   const parts = [];
   if (activeGraphic?.label) {
@@ -6999,41 +7020,6 @@ function addComposerGraphicOverlayVisual(overlay) {
   group.userData.isComposerGraphicOverlay = true;
 
   const haloRadius = Math.max(0.18, Number(overlay.size ?? 0.42) || 0.42);
-  const haloMesh = new THREE.Mesh(
-    new THREE.SphereGeometry(haloRadius * 1.06, 24, 18),
-    new THREE.MeshBasicMaterial({
-      color: 0x8cd2ff,
-      transparent: true,
-      opacity: 0.08,
-      depthWrite: false,
-      depthTest: false,
-      side: THREE.DoubleSide,
-    })
-  );
-  haloMesh.renderOrder = 16;
-  group.add(haloMesh);
-
-  const sphereMesh = new THREE.Mesh(
-    new THREE.SphereGeometry(haloRadius, 28, 20),
-    new THREE.MeshBasicMaterial({
-      color: 0x7ebeff,
-      transparent: true,
-      opacity: 0.12,
-      depthWrite: false,
-      depthTest: false,
-      side: THREE.DoubleSide,
-    })
-  );
-  sphereMesh.renderOrder = 17;
-  sphereMesh.userData.overlayId = overlay.id;
-  sphereMesh.userData.isComposerGraphicHandle = true;
-  sphereMesh.userData.draggable = true;
-  const sphereHitProxy = createComposerMarkerHitProxy(Math.max(0.18, haloRadius * 0.92));
-  sphereMesh.userData.hitProxy = sphereHitProxy;
-  sphereMesh.add(sphereHitProxy);
-  group.add(sphereMesh);
-  composerGraphicOverlayHandleMeshes.push(sphereMesh);
-
   const calloutLine = new THREE.Line(
     new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]),
     new THREE.LineBasicMaterial({
@@ -7064,33 +7050,19 @@ function addComposerGraphicOverlayVisual(overlay) {
 
   const textSprite = createComposerGraphicOverlayTextSprite(overlay.text, haloRadius);
   textSprite.userData.overlayId = overlay.id;
+  textSprite.userData.isComposerGraphicHandle = true;
+  textSprite.userData.draggable = true;
+  const textHitProxy = createComposerMarkerHitProxy(Math.max(0.24, haloRadius * 0.84));
+  textSprite.userData.hitProxy = textHitProxy;
+  textSprite.add(textHitProxy);
   group.add(textSprite);
-
-  const resizeHandle = new THREE.Mesh(
-    new THREE.SphereGeometry(0.045, 12, 10),
-    new THREE.MeshBasicMaterial({
-      color: 0xffd690,
-      transparent: true,
-      opacity: 0.96,
-      depthTest: false,
-      depthWrite: false,
-    })
-  );
-  resizeHandle.renderOrder = 18;
-  resizeHandle.userData.overlayId = overlay.id;
-  resizeHandle.userData.isComposerGraphicResizeHandle = true;
-  resizeHandle.userData.draggable = true;
-  const resizeHitProxy = createComposerMarkerHitProxy(0.16);
-  resizeHandle.userData.hitProxy = resizeHitProxy;
-  resizeHandle.add(resizeHitProxy);
-  group.add(resizeHandle);
-  composerGraphicOverlayResizeMeshes.push(resizeHandle);
+  composerGraphicOverlayHandleMeshes.push(textSprite);
 
   group.userData.calloutLine = calloutLine;
   group.userData.anchorPin = anchorPin;
   group.userData.textSprite = textSprite;
-  group.userData.resizeHandle = resizeHandle;
   group.userData.radius = haloRadius;
+  group.userData.textSignature = "";
 
   composerViewportGroup.add(group);
   composerGraphicOverlayGroups.push(group);
@@ -7105,7 +7077,7 @@ function updateComposerGraphicOverlayVisuals(timeSeconds, documentData, assembly
       group.visible = false;
       return;
     }
-    const isActive = timeSeconds + 0.001 >= overlay.start && timeSeconds <= overlay.end + 0.001;
+    const isActive = isComposerTimeWithinSpan(timeSeconds, overlay.start, overlay.end);
     group.visible = isActive;
     if (!isActive) {
       return;
@@ -7121,20 +7093,22 @@ function updateComposerGraphicOverlayVisuals(timeSeconds, documentData, assembly
 
     const calloutLine = group.userData.calloutLine ?? null;
     const anchorPin = group.userData.anchorPin ?? null;
-    const resizeHandle = group.userData.resizeHandle ?? null;
     const radius = group.userData.radius;
+    const textSprite = group.userData.textSprite ?? null;
+    const nextSignature = `${overlay.text}|${radius.toFixed(3)}`;
+    if (textSprite && group.userData.textSignature !== nextSignature) {
+      updateComposerGraphicOverlayTextSprite(textSprite, overlay.text, radius);
+      group.userData.textSignature = nextSignature;
+    }
     if (calloutLine) {
       const direction = anchorPosition.clone().sub(sphereCenter);
       const endPoint = direction.lengthSq() > 0.0001
-        ? direction.normalize().multiplyScalar(radius * 0.86)
-        : new THREE.Vector3(-radius * 0.86, 0, 0);
+        ? direction.normalize().multiplyScalar(radius * 0.64)
+        : new THREE.Vector3(-radius * 0.64, 0, 0);
       calloutLine.geometry.setFromPoints([offset.clone().negate(), endPoint]);
     }
     if (anchorPin) {
       anchorPin.position.copy(offset.clone().negate());
-    }
-    if (resizeHandle) {
-      resizeHandle.position.set(radius * 0.82, radius * 0.82, 0);
     }
   });
 }
@@ -7761,22 +7735,6 @@ function resolveComposerGraphicOverlayHit(object) {
   return null;
 }
 
-function resolveComposerGraphicResizeHandleHit(object) {
-  let current = object;
-  while (current) {
-    const overlayId = current.userData?.overlayId;
-    if (overlayId && current.userData?.isComposerGraphicResizeHandle) {
-      return {
-        overlayId,
-        draggable: current.userData?.draggable !== false,
-        object: current,
-      };
-    }
-    current = current.parent ?? null;
-  }
-  return null;
-}
-
 function findComposerCenterMarkerIntersection(hits = []) {
   for (const hit of Array.isArray(hits) ? hits : []) {
     const assemblyHit = resolveComposerAssemblyHit(hit?.object);
@@ -7871,28 +7829,6 @@ function onComposerPointerDown(event) {
       );
       composerDragState.plane.setFromNormalAndCoplanarPoint(normal, worldPoint);
       updateComposerCameraWaypointMaterials(waypointIndex);
-      return;
-    }
-  }
-  const graphicResizeHits = composerRaycaster.intersectObjects(composerGraphicOverlayResizeMeshes, true);
-  if (event.button === 0 && graphicResizeHits.length) {
-    const resizeHit = resolveComposerGraphicResizeHandleHit(graphicResizeHits[0].object);
-    const overlay = resizeHit?.overlayId ? getComposerGraphicOverlayDraftById(resizeHit.overlayId) : null;
-    if (resizeHit?.draggable && overlay) {
-      composerDragState.mode = "graphic_resize";
-      composerDragState.overlayId = overlay.id;
-      composerDragState.startX = event.clientX;
-      composerDragState.startY = event.clientY;
-      composerDragState.startGraphicSize = Number(overlay.size ?? 0.42) || 0.42;
-      const anchorPosition =
-        resolveComposerGraphicTargetPosition(overlay.target, composerAssemblyWorldCenters, composerCurrentDocument) ??
-        new THREE.Vector3();
-      composerDragState.startGraphicAnchor.copy(anchorPosition);
-      composerDragState.startGraphicOffset.copy(vectorFromTriplet(overlay.offset));
-      composerDragState.startGraphicCenter.copy(anchorPosition.clone().add(vectorFromTriplet(overlay.offset)));
-      const planeNormal = composerCamera.getWorldDirection(new THREE.Vector3()).normalize();
-      const worldCenter = composerFrameGroup.localToWorld(composerDragState.startGraphicCenter.clone());
-      composerDragState.plane.setFromNormalAndCoplanarPoint(planeNormal, worldCenter);
       return;
     }
   }
@@ -8076,17 +8012,6 @@ function onComposerContextMenu(event) {
   }
   const { x, y } = getComposerPointerNdc(event);
   composerRaycaster.setFromCamera({ x, y }, composerCamera);
-  const graphicResizeHits = composerRaycaster.intersectObjects(composerGraphicOverlayResizeMeshes, true);
-  if (graphicResizeHits.length) {
-    const resizeHit = resolveComposerGraphicResizeHandleHit(graphicResizeHits[0].object);
-    if (resizeHit?.overlayId) {
-      event.preventDefault();
-      openComposerTimelineMenuAt(event.clientX, event.clientY, {
-        graphicId: resizeHit.overlayId,
-      });
-      return;
-    }
-  }
   const graphicHits = composerRaycaster.intersectObjects(composerGraphicOverlayHandleMeshes, true);
   if (graphicHits.length) {
     const graphicHit = resolveComposerGraphicOverlayHit(graphicHits[0].object);
@@ -8301,27 +8226,6 @@ function onComposerPointerMove(event) {
         Number(nextOffset.y.toFixed(3)),
         Number(nextOffset.z.toFixed(3)),
       ];
-      renderComposerJsonPreview();
-    }
-    return;
-  }
-
-  if (composerDragState.mode === "graphic_resize") {
-    const overlay = getComposerGraphicOverlayDraftById(composerDragState.overlayId);
-    if (!overlay) {
-      return;
-    }
-    const { x, y } = getComposerPointerNdc(event);
-    composerRaycaster.setFromCamera({ x, y }, composerCamera);
-    const intersection = new THREE.Vector3();
-    if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
-      const localPoint = composerFrameGroup.worldToLocal(intersection.clone());
-      const radius = clamp(
-        localPoint.distanceTo(composerDragState.startGraphicCenter),
-        0.18,
-        2.4
-      );
-      overlay.size = Number(radius.toFixed(3));
       renderComposerJsonPreview();
     }
     return;
@@ -8704,7 +8608,6 @@ const composerDragState = {
   startGraphicAnchor: new THREE.Vector3(),
   startGraphicOffset: new THREE.Vector3(),
   startGraphicCenter: new THREE.Vector3(),
-  startGraphicSize: 0,
   startAssemblyPathPoints: [],
   startFrameRot: new THREE.Euler(0, 0, 0, "YXZ"),
   startOrbitTheta: 0,
@@ -8748,7 +8651,6 @@ let composerMemberAnchors = new Map();
 let composerMemberLabelSprites = [];
 let composerGraphicOverlayGroups = [];
 let composerGraphicOverlayHandleMeshes = [];
-let composerGraphicOverlayResizeMeshes = [];
 let composerDocumentCameraPathLine = null;
 let composerDocumentCameraWaypointMeshes = [];
 let composerDocumentCameraShotMesh = null;
