@@ -198,6 +198,16 @@ Scoring system:
     - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
     - make parent or child nesting legible as actual local structure rather than grouped ids;
     - add the next useful layer of subassembly transforms, presets, and instance overrides for richer theory-facing scenes;
+    - add theory-facing structure and motion overlays such as tracers, trails, and calculated shaded `E-B` wave patterns rather than treating those displays as ad hoc effects;
+    - make scale changes legible in-scene, including clear indication when a structure, inset, or derived view is being shown at a different scale;
+    - support richer geometric depictions that matter across multiple cases, especially oblate spheroids and spiral structures ranging from a bare binary to the maximum-curvature binary;
+    - animate deeper structural behaviors directly from the point-charge picture:
+      - photon counter-rotation, self-propulsion, polarization, and Malus-law behavior,
+      - precession as implied by personality-charge orientations,
+      - equivalence-principle explanations from a point-charge-structure perspective,
+      - and ephemeral `W` and `Z` boson configurations as transitionary reaction structures;
+    - make momentum constraints legible in the structure model, especially how angular and linear momentum of point charges maintain relative plane angles;
+    - add notation and display conventions that distinguish apparent energy from total energy;
     - keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps;
   - keep active but below the top three:
     - PDG solver after the scene system is usable:

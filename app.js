@@ -1239,6 +1239,27 @@ function formatComposerReactionTransferRefs(transferIds = []) {
     .join(", ");
 }
 
+function formatComposerReactionTransferRef(transferId) {
+  return formatComposerReactionTransferRefs([transferId]);
+}
+
+function formatComposerTransferEndpointLabel(endpoint) {
+  const assemblyId = String(endpoint?.assemblyId ?? "").trim();
+  const memberId = String(endpoint?.memberId ?? "").trim();
+  if (!assemblyId || !memberId) {
+    return "unknown";
+  }
+  return `${assemblyId}.${memberId}`;
+}
+
+function describeComposerTransferProvenance(transfer, refLabel = "") {
+  if (!transfer) {
+    return null;
+  }
+  const prefix = refLabel ? `${refLabel}: ` : "";
+  return `${prefix}${formatComposerTransferEndpointLabel(transfer.source)} -> ${formatComposerTransferEndpointLabel(transfer.target)}`;
+}
+
 function formatComposerReactionList(reactions = []) {
   return reactions
     .map((reaction) => {
@@ -1264,6 +1285,38 @@ function formatComposerReactionList(reactions = []) {
       return `${label} @ ${start}-${end}: ${transferRefs}${actionRefs ? ` | ${actionRefs}` : ""}`;
     })
     .join("\n");
+}
+
+function buildComposerReactionActionString(stageDrafts = []) {
+  return stageDrafts
+    .map((stageDraft) => {
+      const action = normalizeComposerReactionAction(stageDraft?.action);
+      if (!action) {
+        return null;
+      }
+      const refs = String(stageDraft?.transferRefs ?? "")
+        .split(",")
+        .map((entry) => entry.trim())
+        .filter(Boolean)
+        .join(", ");
+      return refs ? `${action}(${refs})` : action;
+    })
+    .filter(Boolean)
+    .join(", ");
+}
+
+function getComposerReactionStageDrafts(reaction = null) {
+  if (reaction && Array.isArray(reaction.stages) && reaction.stages.length) {
+    return reaction.stages.map((stage) => ({
+      action: stage?.action ?? "handoff",
+      transferRefs: formatComposerReactionTransferRefs(stage?.transferIds),
+    }));
+  }
+  return [
+    { action: "detach", transferRefs: "1" },
+    { action: "handoff", transferRefs: "1" },
+    { action: "reassemble", transferRefs: "1" },
+  ];
 }
 
 const composerTimelineMinDurationSeconds = 2;
@@ -6688,6 +6741,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       reaction?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
       duration
     );
+    const reactionStageDrafts = getComposerReactionStageDrafts(reaction);
     const reactionBlock = appendComposerMenuBlock(composerAssemblyMenu, "Reaction", {
       text: reaction ? "Save" : "Add",
       onClick: () => {
@@ -6695,7 +6749,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
         const start = Number(reactionStartInput?.value);
         const end = Number(reactionEndInput?.value);
         const transferRefs = String(reactionTransfersInput?.value ?? "").trim();
-        const actions = String(reactionActionsInput?.value ?? "").trim();
+        const actions = buildComposerReactionActionString(reactionStageDrafts);
         if (!label || !Number.isFinite(start) || !Number.isFinite(end) || !transferRefs) {
           return;
         }
@@ -6754,30 +6808,104 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const defaultTransfers = reaction
       ? formatComposerReactionTransferRefs(reaction.transferIds)
       : "1";
-    const defaultActions = reaction && Array.isArray(reaction.stages) && reaction.stages.length
-      ? reaction.stages
-          .map((stage) => {
-            const stageRefs = formatComposerReactionTransferRefs(stage.transferIds);
-            const reactionRefs = formatComposerReactionTransferRefs(reaction.transferIds);
-            return stageRefs && stageRefs !== reactionRefs
-              ? `${stage.action}(${stageRefs})`
-              : stage.action;
-          })
-          .filter(Boolean)
-          .join(", ")
-      : "detach(1), handoff(1), reassemble(1)";
     const reactionTransfersInput = appendComposerMenuField(reactionForm, {
       label: "Transfers",
       value: defaultTransfers,
       placeholder: "1, 2",
     });
-    const reactionActionsInput = appendComposerMenuField(reactionForm, {
-      label: "Actions",
-      value: defaultActions,
-      placeholder: "detach(1), handoff(1,2)",
-    });
-    reactionActionsInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
     reactionBlock?.block?.appendChild(reactionForm);
+    appendComposerMenuNote(
+      reactionBlock?.block,
+      "Stage timing is divided evenly across the reaction span for now."
+    );
+    const provenanceNote = appendComposerMenuNote(reactionBlock?.block, "");
+    provenanceNote.classList.add("composer-reaction-provenance-note");
+    const stageList = document.createElement("div");
+    stageList.className = "composer-reaction-stage-list";
+    const reactionActionOptions = Array.from(composerReactionActionKinds).map((action) => ({
+      value: action,
+      label: action.replace(/_/g, " "),
+    }));
+
+    const updateReactionProvenanceSummary = () => {
+      const transferRefs = String(reactionTransfersInput?.value ?? "")
+        .split(",")
+        .map((entry) => entry.trim())
+        .filter(Boolean);
+      const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
+      const transferById = new Map(transfers.map((transfer) => [transfer?.id, transfer]));
+      const provenanceEntries = transferRefs
+        .map((ref) => normalizeComposerReactionTransferRef(ref, transferById))
+        .filter(Boolean)
+        .map((transferId) => describeComposerTransferProvenance(transferById.get(transferId), formatComposerReactionTransferRef(transferId)))
+        .filter(Boolean);
+      provenanceNote.textContent = provenanceEntries.length
+        ? `Provenance: ${provenanceEntries.join(" | ")}`
+        : "Provenance appears here once the referenced transfers resolve.";
+    };
+
+    const renderReactionStageRows = () => {
+      stageList.innerHTML = "";
+      reactionStageDrafts.forEach((stageDraft, index) => {
+        const stageRow = document.createElement("div");
+        stageRow.className = "composer-reaction-stage-row";
+        const stageHeader = document.createElement("div");
+        stageHeader.className = "composer-reaction-stage-header";
+        stageHeader.textContent = `Stage ${index + 1}`;
+        stageRow.appendChild(stageHeader);
+        const stageForm = document.createElement("div");
+        stageForm.className = "composer-form composer-assembly-menu-grid-2";
+        const actionInput = appendComposerMenuSelectField(stageForm, {
+          label: "Action",
+          value: stageDraft.action,
+          entries: reactionActionOptions,
+        });
+        const transferInput = appendComposerMenuField(stageForm, {
+          label: "Transfers",
+          value: stageDraft.transferRefs,
+          placeholder: reactionTransfersInput?.value || "1",
+        });
+        stageRow.appendChild(stageForm);
+        appendComposerMenuButtonRow(stageRow, [
+          {
+            text: "Remove",
+            className: "composer-assembly-menu-danger",
+            disabled: reactionStageDrafts.length <= 1,
+            onClick: () => {
+              if (reactionStageDrafts.length <= 1) {
+                return;
+              }
+              reactionStageDrafts.splice(index, 1);
+              renderReactionStageRows();
+            },
+          },
+          null,
+        ]);
+        actionInput?.addEventListener("change", () => {
+          stageDraft.action = actionInput.value;
+        });
+        transferInput?.addEventListener("input", () => {
+          stageDraft.transferRefs = transferInput.value;
+        });
+        stageList.appendChild(stageRow);
+      });
+    };
+
+    const stageActionsBlock = appendComposerMenuBlock(reactionBlock?.block, "Stages", {
+      text: "Add Stage",
+      onClick: () => {
+        reactionStageDrafts.push({
+          action: "handoff",
+          transferRefs: String(reactionTransfersInput?.value ?? "").trim() || "1",
+        });
+        renderReactionStageRows();
+      },
+    });
+    stageActionsBlock?.block?.appendChild(stageList);
+    reactionTransfersInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
+    reactionTransfersInput?.addEventListener("input", updateReactionProvenanceSummary);
+    renderReactionStageRows();
+    updateReactionProvenanceSummary();
 
     if (reaction?.id) {
       appendComposerMenuButtonRow(reactionBlock?.block, [
@@ -7140,6 +7268,24 @@ function renderComposerTimeline(documentData) {
       )} to ${formatComposerTimeLabel(reaction.end)}${actions.length ? ` | ${actions.join(" -> ")}` : ""}`,
       reaction.label ?? reaction.id ?? "Reaction"
     );
+    if (Array.isArray(reaction?.stages) && reaction.stages.length) {
+      reaction.stages.forEach((stage) => {
+        const stageStart = getComposerTimelineFraction(documentData, stage.start);
+        const stageEnd = getComposerTimelineFraction(documentData, stage.end);
+        const stageBand = document.createElement("span");
+        stageBand.className = "composer-timeline-reaction-stage";
+        stageBand.style.left = `${Math.max(0, ((stageStart - start) / Math.max(end - start, 0.0001)) * 100)}%`;
+        stageBand.style.width = `${Math.max(0, ((stageEnd - stageStart) / Math.max(end - start, 0.0001)) * 100)}%`;
+        stageBand.title = `${stage.action ?? "stage"}: ${formatComposerTimeLabel(stage.start)} to ${formatComposerTimeLabel(stage.end)}`;
+        if (stage?.action) {
+          const stageLabel = document.createElement("span");
+          stageLabel.className = "composer-timeline-reaction-stage-label";
+          stageLabel.textContent = String(stage.action).replace(/_/g, " ");
+          stageBand.appendChild(stageLabel);
+        }
+        band.appendChild(stageBand);
+      });
+    }
     band.dataset.reactionId = reaction.id ?? "";
     composerTimelineReactions?.appendChild(band);
   });

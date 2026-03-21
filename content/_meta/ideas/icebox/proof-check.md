@@ -1,7 +1,5 @@
 2026-03-16 Ai views this as low probability of success, even without factoring in non-pro driver.
 
-
-
 Proof assistants such as **Lean, Coq, and Isabelle** are formal verification systems designed to check mathematical proofs with machine precision. They implement a **formal logic foundation** and require every inference step to be justified according to that logic. If the proof compiles, it is logically valid under the system’s axioms. There is no ambiguity or reviewer interpretation.
 
 All three are **free and publicly available**.

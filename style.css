@@ -1802,6 +1802,7 @@ body {
   bottom: 5px;
   min-width: 2px;
   border-radius: 999px;
+  overflow: hidden;
 }
 
 .composer-timeline-band.is-warp {
@@ -1853,6 +1854,60 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
   pointer-events: none;
+}
+
+.composer-timeline-reaction-stage {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  min-width: 4px;
+  border-left: 1px solid rgba(255, 230, 238, 0.2);
+  background: rgba(255, 210, 224, 0.08);
+  pointer-events: none;
+}
+
+.composer-timeline-reaction-stage:first-of-type {
+  border-left: 0;
+}
+
+.composer-timeline-reaction-stage-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: calc(100% - 8px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: rgba(255, 236, 242, 0.82);
+}
+
+.composer-reaction-stage-list {
+  display: grid;
+  gap: 8px;
+}
+
+.composer-reaction-stage-row {
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.composer-reaction-stage-header {
+  margin-bottom: 6px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 235, 242, 0.72);
+}
+
+.composer-reaction-provenance-note {
+  line-height: 1.45;
 }
 
 .composer-timeline-marker {
