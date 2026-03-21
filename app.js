@@ -1305,6 +1305,22 @@ function buildComposerReactionActionString(stageDrafts = []) {
     .join(", ");
 }
 
+function resolveComposerReactionTransferRefs(rawTransferRefs, transfers = []) {
+  const transferById = new Map((Array.isArray(transfers) ? transfers : []).map((transfer) => [transfer?.id, transfer]));
+  const requestedRefs = String(rawTransferRefs ?? "")
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+  const resolvedIds = requestedRefs
+    .map((ref) => normalizeComposerReactionTransferRef(ref, transferById))
+    .filter(Boolean);
+  return {
+    requestedRefs,
+    resolvedIds: [...new Set(resolvedIds)],
+    transferById,
+  };
+}
+
 function getComposerReactionStageDrafts(reaction = null) {
   if (reaction && Array.isArray(reaction.stages) && reaction.stages.length) {
     return reaction.stages.map((stage) => ({
@@ -6741,7 +6757,16 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       reaction?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
       duration
     );
+    const availableTransfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
+    const defaultTransferRef = availableTransfers.length
+      ? formatComposerReactionTransferRef(availableTransfers[0]?.id)
+      : "";
     const reactionStageDrafts = getComposerReactionStageDrafts(reaction);
+    if (!reaction) {
+      reactionStageDrafts.forEach((stageDraft) => {
+        stageDraft.transferRefs = defaultTransferRef;
+      });
+    }
     const reactionBlock = appendComposerMenuBlock(composerAssemblyMenu, "Reaction", {
       text: reaction ? "Save" : "Add",
       onClick: () => {
@@ -6751,6 +6776,19 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
         const transferRefs = String(reactionTransfersInput?.value ?? "").trim();
         const actions = buildComposerReactionActionString(reactionStageDrafts);
         if (!label || !Number.isFinite(start) || !Number.isFinite(end) || !transferRefs) {
+          showTimelineMenuError("Reaction needs a label, a span, and at least one authored transfer.");
+          return;
+        }
+        const transferResolution = resolveComposerReactionTransferRefs(
+          transferRefs,
+          Array.isArray(documentData?.transfers) ? documentData.transfers : []
+        );
+        if (!transferResolution.resolvedIds.length) {
+          showTimelineMenuError("Reaction transfers must reference authored transfer lines that already exist.");
+          return;
+        }
+        if (!actions) {
+          showTimelineMenuError("Add at least one valid reaction stage before saving.");
           return;
         }
         const span = clampComposerTimelineSpan(start, end, duration);
@@ -6807,16 +6845,18 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     });
     const defaultTransfers = reaction
       ? formatComposerReactionTransferRefs(reaction.transferIds)
-      : "1";
+      : defaultTransferRef;
     const reactionTransfersInput = appendComposerMenuField(reactionForm, {
       label: "Transfers",
       value: defaultTransfers,
-      placeholder: "1, 2",
+      placeholder: defaultTransferRef || "Author transfers first",
     });
     reactionBlock?.block?.appendChild(reactionForm);
     appendComposerMenuNote(
       reactionBlock?.block,
-      "Stage timing is divided evenly across the reaction span for now."
+      availableTransfers.length
+        ? "Stage timing is divided evenly across the reaction span for now."
+        : "Author one or more transfers first, then use those transfer ids in this reaction."
     );
     const provenanceNote = appendComposerMenuNote(reactionBlock?.block, "");
     provenanceNote.classList.add("composer-reaction-provenance-note");
@@ -6828,19 +6868,21 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     }));
 
     const updateReactionProvenanceSummary = () => {
-      const transferRefs = String(reactionTransfersInput?.value ?? "")
-        .split(",")
-        .map((entry) => entry.trim())
+      const transferResolution = resolveComposerReactionTransferRefs(
+        reactionTransfersInput?.value,
+        Array.isArray(documentData?.transfers) ? documentData.transfers : []
+      );
+      const provenanceEntries = transferResolution.resolvedIds
+        .map((transferId) =>
+          describeComposerTransferProvenance(
+            transferResolution.transferById.get(transferId),
+            formatComposerReactionTransferRef(transferId)
+          )
+        )
         .filter(Boolean);
-      const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
-      const transferById = new Map(transfers.map((transfer) => [transfer?.id, transfer]));
-      const provenanceEntries = transferRefs
-        .map((ref) => normalizeComposerReactionTransferRef(ref, transferById))
-        .filter(Boolean)
-        .map((transferId) => describeComposerTransferProvenance(transferById.get(transferId), formatComposerReactionTransferRef(transferId)))
-        .filter(Boolean);
+      const unresolvedCount = transferResolution.requestedRefs.length - provenanceEntries.length;
       provenanceNote.textContent = provenanceEntries.length
-        ? `Provenance: ${provenanceEntries.join(" | ")}`
+        ? `Provenance: ${provenanceEntries.join(" | ")}${unresolvedCount > 0 ? ` | ${unresolvedCount} unresolved` : ""}`
         : "Provenance appears here once the referenced transfers resolve.";
     };
 
@@ -8974,6 +9016,18 @@ function startComposerAssemblyDrag(assemblyId, assemblyIndex, worldPoint, event)
   );
   const planeNormal = composerCamera.getWorldDirection(new THREE.Vector3()).normalize();
   composerDragState.plane.setFromNormalAndCoplanarPoint(planeNormal, assemblyWorldCenter);
+  composerDragState.startAssemblyGrabOffset.set(0, 0, 0);
+  if (composerRaycaster && composerCamera && composerCanvas) {
+    const { x, y } = getComposerPointerNdc(event);
+    composerRaycaster.setFromCamera({ x, y }, composerCamera);
+    const intersection = new THREE.Vector3();
+    if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
+      const localIntersection = composerFrameGroup.worldToLocal(intersection.clone());
+      composerDragState.startAssemblyGrabOffset.copy(
+        localIntersection.sub(composerDragState.startAssemblyCenter)
+      );
+    }
+  }
   return true;
 }
 
@@ -9366,7 +9420,9 @@ function onComposerPointerMove(event) {
     const intersection = new THREE.Vector3();
     if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
       const liveAssembly = composerAssemblyDrafts[assemblyIndex];
-      const localIntersection = composerFrameGroup.worldToLocal(intersection.clone());
+      const localIntersection = composerFrameGroup
+        .worldToLocal(intersection.clone())
+        .sub(composerDragState.startAssemblyGrabOffset);
       if (Array.isArray(composerDragState.startAssemblyPathPoints) && composerDragState.startAssemblyPathPoints.length) {
         const delta = localIntersection.sub(composerDragState.startAssemblyCenter);
         liveAssembly.pathPoints = composerDragState.startAssemblyPathPoints.map((point) => ([
@@ -9812,6 +9868,7 @@ const composerDragState = {
   startAssemblyPosition: new THREE.Vector3(),
   startAssemblyParentCenter: new THREE.Vector3(),
   startAssemblyCenter: new THREE.Vector3(),
+  startAssemblyGrabOffset: new THREE.Vector3(),
   startMemberAssemblyCenter: new THREE.Vector3(),
   startMemberSubassemblyPosition: new THREE.Vector3(),
   startSubassemblyAssemblyCenter: new THREE.Vector3(),

@@ -155,6 +155,274 @@ So when this design area becomes more visible in the UI:
 - use `reaction stages` for the timed substeps,
 - and avoid centering `decay` as the primary composer term unless a specific scientific scene needs that narrower wording in displayed content.
 
+### Reaction UI: blank-canvas reactant/product composition
+
+The reaction UI should be redesigned around a blank canvas rather than around typed transfer references.
+
+The authoring flow should begin from nothing visible except the reaction surface itself. On an empty reaction canvas, the first right-click should offer:
+
+- `Add Reactant`
+- `Add Product`
+
+That starting point matters because a reaction should read first as an authored relation between incoming and outgoing assemblies, not as a form that asks for low-level bookkeeping before the geometry is visible.
+
+The preferred layout is:
+
+- reactants and products can be placed anywhere on the reaction canvas;
+- placement should be author-controlled rather than forced into left/right stacks;
+- the user should be able to arrange assemblies to emulate a Feynman diagram when that is the clearest explanation;
+- the canvas should remain sparse enough that most reactions with six or fewer total reactants/products are still legible without a second layout mode.
+
+This should feel closer to a Feynman-diagram composition surface than to a spreadsheet of transfer ids.
+
+#### Core interaction model
+
+The author should first place the incoming and outgoing assemblies:
+
+- reactants are tagged as incoming assemblies;
+- products are tagged as outgoing assemblies;
+- their screen position is independent of that role;
+- the author can click whole assemblies, subassemblies, members, or charges as either sources or destinations;
+- the author then clicks a source on a reactant object and clicks the destination on a product object.
+
+That click pair should create a visible authored spline across the canvas.
+
+The first-pass mapping rule should be strict:
+
+- one mapping connects one source to one destination.
+
+If a higher-level object such as a binary needs to split, that split should be authored first. Only after the split exists should the author map each resulting architrino to its next destination.
+
+The destination rule should also be strict:
+
+- if the dragged spline endpoint does not attach to a valid product-side destination when the click is completed, the mapping does not take;
+- the user may drag the endpoint while choosing a target,
+- but an unattached endpoint should disappear on release rather than creating a dangling authored object.
+
+Each spline should mean:
+
+- this constituent remains the same authored identity,
+- it moves along this corridor during the reaction interval,
+- and it arrives at this destination by the end of the reaction.
+
+So the current low-level notion of a transfer should remain in the document model, but the user-facing authoring act should be a visual constituent mapping, not typed transfer references.
+
+#### Why splines are the right primitive
+
+The handoff path should be authored as a spline rather than as a straight abstract connector because the spline can carry several jobs at once:
+
+- identity continuity;
+- geometric readability when multiple mappings cross;
+- later timing control through waypoints or bend handles;
+- and observer-facing choreography during playback.
+
+During playback, the mapped constituent should follow that spline and land in the destination structure by the end of the relevant reaction stage.
+
+This means the canvas drawing is not just a diagram. It is the authored motion path for the reaction.
+
+The spline therefore does direct motion work, not merely explanatory annotation.
+
+#### Reaction stages in this model
+
+Reaction stages should still exist, but they should refine the corridor behavior rather than replace it with text fields.
+
+The intended model is:
+
+- stage 1 can separate or expose constituents from the reactant side;
+- stage 2 can move them across the corridor;
+- stage 3 can reassemble or settle them into product-side structures.
+
+The stage UI should therefore primarily answer:
+
+- when does this mapped constituent leave the reactant structure,
+- when is it in flight,
+- and when does it lock into the product structure.
+
+That is a clearer reaction grammar than asking the user to type action names and transfer ids first.
+
+#### Provenance in the visual model
+
+The reaction canvas should make provenance obvious by construction.
+
+Each authored spline already says:
+
+- where the constituent came from,
+- where it went,
+- and which identity persisted across the reaction.
+
+So provenance should appear as:
+
+- stable source and destination labels on hover or selection,
+- visual highlighting of all splines attached to a selected constituent,
+- and optional textual summaries in the side menu only after the geometry has already made the mapping legible.
+
+The important design rule is that provenance should be seen first and read second.
+
+#### Blank-canvas menu grammar
+
+The reaction surface should have a constrained context-menu grammar.
+
+On blank space:
+
+- `Add Reactant`
+- `Add Product`
+- later, possibly `Add Reaction Note` or `Add Guide`
+
+On a reactant or product assembly:
+
+- retag as reactant or product,
+- reveal constituents,
+- collapse constituents,
+- duplicate as template,
+- remove from reaction
+
+On a constituent handle:
+
+- `Start Mapping`
+- `Remove Mapping`
+- `Show Connected Paths`
+
+On a spline:
+
+- retarget destination,
+- drag control points,
+- add bend handle,
+- change stage timing,
+- delete mapping
+
+This keeps the authoring language visual and local to the object being edited.
+
+#### Relation to the main composer canvas
+
+This reaction canvas should not replace the normal scene canvas. It should be a specialized reaction-authoring mode inside the composer.
+
+The normal composer canvas still handles:
+
+- assembly placement in scene space,
+- paths,
+- observer tooling,
+- overlays,
+- and the broader timeline.
+
+The reaction canvas should handle:
+
+- reactant/product arrangement,
+- constituent correspondence,
+- spline authoring across free placement,
+- and staged reassembly logic.
+
+The authored result should then feed back into the shared scene and timeline model.
+
+Assemblies should enter this reaction canvas in two ways:
+
+- by manual addition onto the blank reaction canvas;
+- or by loading an existing library animation or scene that already contains the relevant assemblies.
+
+#### Design constraint to preserve
+
+The reaction UI should stay legible even when the underlying theory gets dense.
+
+So the design should prefer:
+
+- a small number of clearly named reactant and product assemblies,
+- selective constituent reveal instead of showing every charge immediately,
+- splines as the main continuity primitive,
+- and one obvious blank-canvas starting gesture.
+
+The user should be able to understand the reaction authoring grammar in one glance:
+
+- place the incoming and outgoing assemblies where the explanation is clearest,
+- connect what persists,
+- then play the reaction.
+
+#### First-pass implementation spec
+
+The first implementation should stay narrow and explicit.
+
+The reaction authoring surface should have these objects:
+
+- `ReactionCanvasObject`
+  - one per reaction item;
+  - stores the local reaction layout and visual mappings;
+- `ReactionAssemblyNode`
+  - references one authored assembly;
+  - has a role of `reactant` or `product`;
+  - has a 2D canvas position;
+  - can expose handles for assembly, subassembly, member, and charge selection;
+- `ReactionMappingSpline`
+  - references exactly one source handle and one destination handle;
+  - stores spline control points in reaction-canvas coordinates;
+  - stores the stable identity mapping used by playback;
+- `ReactionStageTiming`
+  - for first pass, stages are reaction-wide rather than per-spline;
+  - the first default stage set is `detach`, `flight`, `reassemble`.
+
+The first-pass interaction sequence should be:
+
+1. create or open a `Reaction` item on the timeline;
+2. open the reaction canvas for that item;
+3. right-click blank space and choose `Add Reactant` or `Add Product`;
+4. choose the source of that assembly node:
+   - the normal canvas add menu,
+   - the library of assemblies,
+   - or restoring a scene from the animation scene library;
+5. place the assembly node on the canvas;
+6. repeat until the reaction layout is in place;
+7. reveal constituents as needed;
+8. click a reactant-side source handle, then click a product-side destination handle;
+9. if the destination is valid, commit the spline;
+10. if the destination is invalid or absent, discard the spline on release;
+11. scrub or play the reaction and confirm the mapped constituent follows the authored spline.
+
+The first-pass validity rules should be:
+
+- a source must belong to a node tagged `reactant`;
+- a destination must belong to a node tagged `product`;
+- one mapping is one-to-one;
+- a mapping cannot terminate on blank space;
+- a split must be authored before mapping its resulting parts;
+- a reaction may have zero or more mappings, but only committed mappings affect playback.
+
+The first-pass playback rules should be:
+
+- the source identity remains stable through the reaction;
+- during `detach`, the source separates from its reactant structure if needed;
+- during `flight`, it follows the authored spline;
+- during `reassemble`, it locks into the destination structure;
+- if no committed mapping exists, no transfer-like motion occurs for that constituent.
+
+The first-pass menu rules should be:
+
+- blank canvas:
+  - `Add Reactant`
+  - `Add Product`
+- add-source chooser after either action:
+  - `From Canvas Add Menu`
+  - `From Assembly Library`
+  - `Restore From Animation Scene Library`
+- assembly node:
+  - `Set As Reactant`
+  - `Set As Product`
+  - `Reveal Constituents`
+  - `Collapse Constituents`
+  - `Remove`
+- source/destination handle:
+  - `Start Mapping`
+  - `Show Connected Paths`
+  - `Remove Mapping`
+- spline:
+  - `Retarget Destination`
+  - `Add Bend Handle`
+  - `Delete Mapping`
+
+The first-pass non-goals should be:
+
+- no many-to-one or one-to-many mappings;
+- no dangling splines;
+- no automatic product creation by dropping onto empty space;
+- no required text entry for transfer ids;
+- no forced left/right layout.
+
 ## Observer metaphor and user-facing language
 
 The composer should stop presenting itself as a camera tool. What matters in the authored scene is what the observer sees.
