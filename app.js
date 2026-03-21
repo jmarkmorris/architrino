@@ -369,8 +369,9 @@ function sanitizeComposerEntityId(raw, fallback = "item_1") {
 
 function createDefaultComposerAssemblyDraft(index = 0) {
   const ordinal = index + 1;
+  const assemblyId = `assembly_${ordinal}`;
   return {
-    id: `assembly_${ordinal}`,
+    id: assemblyId,
     name: ordinal === 1 ? "Primary Assembly" : `Assembly ${ordinal}`,
     parentId: "",
     position: [0, 0, 0],
@@ -399,6 +400,7 @@ function createDefaultComposerAssemblyDraft(index = 0) {
     pathClosed: false,
     historyTraceEnabled: false,
     envelopeEnabled: false,
+    core: ordinal === 1 ? createComposerDefaultCoreSpec(assemblyId) : undefined,
   };
 }
 
@@ -1266,6 +1268,196 @@ function getComposerGraphicEnd(marker, sceneDuration = null) {
   return clamp(end, start, Number(sceneDuration));
 }
 
+function sanitizeComposerGraphicTarget(rawTarget, fallbackAssemblyId = "") {
+  if (!rawTarget || typeof rawTarget !== "object") {
+    return fallbackAssemblyId ? { type: "assembly", assemblyId: fallbackAssemblyId } : null;
+  }
+  const type = String(rawTarget.type ?? "").trim().toLowerCase();
+  if (type === "assembly") {
+    const assemblyId = sanitizeComposerEntityId(rawTarget.assemblyId, "");
+    return assemblyId ? { type: "assembly", assemblyId } : null;
+  }
+  if (type === "path_point") {
+    const assemblyId = sanitizeComposerEntityId(rawTarget.assemblyId, "");
+    const pointIndex = Math.max(0, Math.round(Number(rawTarget.pointIndex ?? 0) || 0));
+    return assemblyId ? { type: "path_point", assemblyId, pointIndex } : null;
+  }
+  return fallbackAssemblyId ? { type: "assembly", assemblyId: fallbackAssemblyId } : null;
+}
+
+function getComposerGraphicDefaultTarget() {
+  const selectedAssemblyId = sanitizeComposerEntityId(composerSelectedAssemblyId, "");
+  const fallbackAssemblyId = sanitizeComposerEntityId(composerAssemblyDrafts[0]?.id, "");
+  const assemblyId = selectedAssemblyId || fallbackAssemblyId;
+  if (!assemblyId) {
+    return null;
+  }
+  if (Number.isInteger(composerSelectedPointIndex) && composerSelectedPointIndex >= 0) {
+    return {
+      type: "path_point",
+      assemblyId,
+      pointIndex: composerSelectedPointIndex,
+    };
+  }
+  return {
+    type: "assembly",
+    assemblyId,
+  };
+}
+
+function encodeComposerGraphicTargetValue(target) {
+  if (!target?.type) {
+    return "";
+  }
+  if (target.type === "assembly") {
+    return `assembly:${target.assemblyId}`;
+  }
+  if (target.type === "path_point") {
+    return `path_point:${target.assemblyId}:${Math.max(0, Number(target.pointIndex ?? 0) || 0)}`;
+  }
+  return "";
+}
+
+function decodeComposerGraphicTargetValue(rawValue) {
+  const value = String(rawValue ?? "").trim();
+  if (!value) {
+    return null;
+  }
+  const [type, assemblyId, pointIndex] = value.split(":");
+  if (type === "assembly") {
+    return sanitizeComposerGraphicTarget({ type, assemblyId });
+  }
+  if (type === "path_point") {
+    return sanitizeComposerGraphicTarget({ type, assemblyId, pointIndex });
+  }
+  return null;
+}
+
+function getComposerGraphicTargetEntries() {
+  const entries = [];
+  composerAssemblyDrafts.forEach((assembly, index) => {
+    if (!assembly?.id) {
+      return;
+    }
+    const assemblyLetter = getComposerAssemblyLetter(index);
+    entries.push({
+      value: encodeComposerGraphicTargetValue({
+        type: "assembly",
+        assemblyId: assembly.id,
+      }),
+      label: `Assembly ${assemblyLetter}`,
+    });
+    const pathPoints = normalizeComposerAssemblyPathPoints(assembly?.pathPoints);
+    pathPoints.forEach((_point, pointIndex) => {
+      entries.push({
+        value: encodeComposerGraphicTargetValue({
+          type: "path_point",
+          assemblyId: assembly.id,
+          pointIndex,
+        }),
+        label: `Path ${assemblyLetter} Point ${pointIndex + 1}`,
+      });
+    });
+  });
+  return entries;
+}
+
+function getComposerGraphicDefaultOffset(size = 0.42) {
+  const radius = Math.max(0.18, Number(size) || 0.42);
+  return [
+    Number((radius * 1.45).toFixed(3)),
+    Number((radius * 1.08).toFixed(3)),
+    0,
+  ];
+}
+
+function getComposerGraphicOverlayLabel(overlay) {
+  const text = String(overlay?.label ?? overlay?.text ?? "Graphic").trim() || "Graphic";
+  return text.length > 24 ? `${text.slice(0, 24).trimEnd()}...` : text;
+}
+
+function normalizeComposerGraphicOverlayDraft(overlay = {}, index = 0, duration = 12) {
+  const fallbackTarget = getComposerGraphicDefaultTarget();
+  const span = clampComposerTimelineSpan(
+    overlay?.start ?? 0,
+    overlay?.end ?? composerTimelineMinDurationSeconds,
+    duration
+  );
+  const size = clamp(Number(overlay?.size ?? overlay?.radius ?? 0.42) || 0.42, 0.18, 2.4);
+  const target = sanitizeComposerGraphicTarget(overlay?.target, fallbackTarget?.assemblyId ?? "");
+  const offsetSource = Array.isArray(overlay?.offset) && overlay.offset.length >= 3
+    ? overlay.offset
+    : getComposerGraphicDefaultOffset(size);
+  const label = String(overlay?.label ?? overlay?.text ?? `Graphic ${index + 1}`).trim() || `Graphic ${index + 1}`;
+  return {
+    id: sanitizeComposerEntityId(overlay?.id, `overlay_${index + 1}`),
+    kind: "graphic",
+    type: "text_sphere_callout",
+    label,
+    text: String(overlay?.text ?? label).trim() || label,
+    start: span.start,
+    end: span.end,
+    size: Number(size.toFixed(3)),
+    offset: [
+      Number((Number(offsetSource[0] ?? 0) || 0).toFixed(3)),
+      Number((Number(offsetSource[1] ?? 0) || 0).toFixed(3)),
+      Number((Number(offsetSource[2] ?? 0) || 0).toFixed(3)),
+    ],
+    target,
+    style: typeof overlay?.style === "object" && overlay.style ? { ...overlay.style } : {},
+  };
+}
+
+function normalizeComposerGraphicOverlayList(overlays = [], duration = 12) {
+  return (Array.isArray(overlays) ? overlays : []).map((overlay, index) =>
+    normalizeComposerGraphicOverlayDraft(overlay, index, duration)
+  );
+}
+
+function getComposerGraphicOverlayDraftIndexById(overlayId) {
+  return composerGraphicOverlayDrafts.findIndex((overlay) => overlay?.id === overlayId);
+}
+
+function getComposerGraphicOverlayDraftById(overlayId) {
+  const index = getComposerGraphicOverlayDraftIndexById(overlayId);
+  return index >= 0 ? composerGraphicOverlayDrafts[index] : null;
+}
+
+function getNextComposerGraphicOverlayId() {
+  let suffix = 1;
+  let candidate = "overlay_1";
+  const existingIds = new Set((composerGraphicOverlayDrafts || []).map((overlay) => overlay?.id).filter(Boolean));
+  while (existingIds.has(candidate)) {
+    suffix += 1;
+    candidate = `overlay_${suffix}`;
+  }
+  return candidate;
+}
+
+function getComposerGraphicTimelineOverlays(documentData = composerCurrentDocument) {
+  return (Array.isArray(documentData?.overlays) ? documentData.overlays : []).filter(
+    (overlay) => overlay?.kind === "graphic"
+  );
+}
+
+function resolveComposerGraphicTargetPosition(target, assemblyCenters = new Map(), documentData = composerCurrentDocument) {
+  if (!target) {
+    return null;
+  }
+  if (target.type === "assembly") {
+    return assemblyCenters.get(target.assemblyId)?.clone?.() ?? null;
+  }
+  if (target.type === "path_point") {
+    const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
+    const path = paths.find((entry) => entry?.metadata?.ownerAssemblyId === target.assemblyId);
+    const point = Array.isArray(path?.payload?.points)
+      ? path.payload.points[Math.max(0, Number(target.pointIndex ?? 0) || 0)]
+      : null;
+    return point ? vectorFromTriplet(point) : null;
+  }
+  return null;
+}
+
 function getComposerAssemblyLetter(index = 0) {
   let value = Math.max(0, Number(index) || 0);
   let label = "";
@@ -1779,6 +1971,69 @@ function createComposerMemberLabelTexture(text, color = "#ffd894") {
   return texture;
 }
 
+function wrapComposerOverlayText(context, text, maxWidth) {
+  const words = String(text ?? "").trim().split(/\s+/).filter(Boolean);
+  if (!words.length) {
+    return [""];
+  }
+  const lines = [];
+  let currentLine = words[0];
+  for (let index = 1; index < words.length; index += 1) {
+    const candidate = `${currentLine} ${words[index]}`;
+    if (context.measureText(candidate).width <= maxWidth) {
+      currentLine = candidate;
+    } else {
+      lines.push(currentLine);
+      currentLine = words[index];
+    }
+  }
+  lines.push(currentLine);
+  return lines.slice(0, 4);
+}
+
+function createComposerGraphicOverlayTextTexture(text, radius = 0.42) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 320;
+  canvas.height = 256;
+  const context = canvas.getContext("2d");
+  if (context) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "rgba(244, 248, 255, 0.96)";
+    context.font = "600 28px sans-serif";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    const padding = 42;
+    const lines = wrapComposerOverlayText(context, text, canvas.width - padding * 2);
+    const lineHeight = 34;
+    const startY = canvas.height / 2 - ((lines.length - 1) * lineHeight) / 2;
+    lines.forEach((line, index) => {
+      context.fillText(line, canvas.width / 2, startY + index * lineHeight);
+    });
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  texture.minFilter = THREE.LinearFilter;
+  const normalizedRadius = Math.max(0.18, Number(radius) || 0.42);
+  return {
+    texture,
+    scale: [normalizedRadius * 2.55, normalizedRadius * 2.1, 1],
+  };
+}
+
+function createComposerGraphicOverlayTextSprite(text, radius = 0.42) {
+  const { texture, scale } = createComposerGraphicOverlayTextTexture(text, radius);
+  const material = new THREE.SpriteMaterial({
+    map: texture,
+    transparent: true,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(scale[0], scale[1], scale[2]);
+  sprite.renderOrder = 19;
+  return sprite;
+}
+
 function updateComposerPointLabelSprite(sprite, text, isActive = false) {
   if (!sprite) {
     return;
@@ -2050,7 +2305,7 @@ function setComposerCameraDefaults() {
 
 function updateComposerWaypointCount() {
   if (composerCameraWaypointCount) {
-    composerCameraWaypointCount.textContent = `Waypoints: ${composerCameraFlightState.waypoints.length}`;
+    composerCameraWaypointCount.textContent = `Observer points: ${composerCameraFlightState.waypoints.length}`;
   }
   if (composerCameraFlightToggle) {
     composerCameraFlightToggle.disabled =
@@ -2090,9 +2345,9 @@ function updateComposerCameraPoiStatus() {
     return;
   }
   if (selectedPoint) {
-    composerCameraPoiStatus.textContent = `POI target: local origin. Selected point ${composerSelectedPointIndex + 1} is available if you switch modes.`;
+    composerCameraPoiStatus.textContent = `Observer target: local origin. Selected point ${composerSelectedPointIndex + 1} is available if you switch modes.`;
   } else {
-    composerCameraPoiStatus.textContent = "POI target: local origin.";
+    composerCameraPoiStatus.textContent = "Observer target: local origin.";
   }
   composerCameraPoiStatus.classList.remove("is-warning");
 }
@@ -3071,11 +3326,11 @@ function openComposerAssemblyTemplateMenuAt(event) {
     null,
   ]);
 
-  appendComposerMenuSectionHeader(composerAssemblyMenu, "Camera");
+  appendComposerMenuSectionHeader(composerAssemblyMenu, "Observer");
 
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
-      text: "Add Waypoint",
+      text: "Add Observer Point",
       onClick: () => {
         const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
         addComposerCameraWaypoint(position);
@@ -3085,8 +3340,8 @@ function openComposerAssemblyTemplateMenuAt(event) {
     {
       text:
         composerCameraFlightState.poiMode === "selected"
-          ? "POI: Selected Point"
-          : "POI: Local Origin",
+          ? "Target: Selected Point"
+          : "Target: Local Origin",
       onClick: () => {
         composerCameraFlightState.poiMode =
           composerCameraFlightState.poiMode === "selected" ? "origin" : "selected";
@@ -3099,7 +3354,7 @@ function openComposerAssemblyTemplateMenuAt(event) {
   if ((composerCameraFlightState?.waypoints?.length ?? 0) > 0) {
     appendComposerMenuButtonRow(composerAssemblyMenu, [
       {
-        text: "Clear Waypoints",
+        text: "Clear Observer Path",
         onClick: () => {
           clearComposerCameraWaypoints();
           closeComposerAssemblyMenu();
@@ -3234,7 +3489,7 @@ function openComposerAssemblyTemplateMenuAt(event) {
 
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
-      text: `${composerViewportDisplayState.showLabels !== false ? "Hide" : "Show"} Camera Labels`,
+      text: `${composerViewportDisplayState.showLabels !== false ? "Hide" : "Show"} Observer Labels`,
       onClick: () => {
         composerViewportDisplayState.showLabels = !(composerViewportDisplayState.showLabels !== false);
         applyComposerViewportDisplayState();
@@ -3281,7 +3536,7 @@ function openComposerAssemblyTemplateMenuAt(event) {
   cameraButton.type = "button";
   cameraButton.textContent = `${
     composerViewportDisplayState.showCameraGuides !== false ? "Hide" : "Show"
-  } Camera Guides`;
+  } Observer Guides`;
   cameraButton.disabled = !hasCameraGuides;
   if (hasCameraGuides) {
     cameraButton.addEventListener("click", () => {
@@ -3829,7 +4084,7 @@ function formatComposerInlineTimingStatus(kind, diagnostics = {}, parsedCount = 
 }
 
 function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
-  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  const graphics = getComposerGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
@@ -3920,36 +4175,11 @@ function readComposerTimingState() {
   if (composerSceneDurationInput) {
     composerSceneDurationInput.value = String(duration);
   }
-
-  const markerListRaw = composerMarkerListInput?.value ?? "";
-  const markerHasInput = markerListRaw.trim().length > 0;
-  const markerParse = parseComposerTimingLines(markerListRaw, (line, lineNumber, entryIndex) => {
-    const separatorIndex = line.indexOf(":");
-    if (separatorIndex === -1) {
-      return null;
-    }
-    const timingToken = line.slice(0, separatorIndex).trim();
-    const timingMatch = timingToken.match(/^(-?\d*\.?\d+)(?:\s*-\s*(-?\d*\.?\d+))?$/);
-    if (!timingMatch) {
-      return null;
-    }
-    const rawStart = Number(timingMatch[1]);
-    const label = line.slice(separatorIndex + 1).trim() || `Graphic ${entryIndex + 1}`;
-    const rawEnd = Number(timingMatch[2]);
-    if (!Number.isFinite(rawStart) || !Number.isFinite(rawEnd)) {
-      return null;
-    }
-    const span = clampComposerTimelineSpan(rawStart, rawEnd, duration);
-    return {
-      id: `marker_authored_${lineNumber}`,
-      t: span.start,
-      end: span.end,
-      kind: "graphic",
-      label,
-    };
-  });
-  const authoredMarkers = [...markerParse.entries].sort((left, right) => left.t - right.t);
-  const markers = !authoredMarkers.length ? [] : authoredMarkers;
+  const markers = [];
+  const markerHasInput = false;
+  const markerParse = {
+    errors: [],
+  };
   const pauseListRaw = composerPauseListInput?.value ?? "";
   const pauseHasInput = pauseListRaw.trim().length > 0;
   const pauseParse = parseComposerTimingLines(pauseListRaw, (line, lineNumber) => {
@@ -4053,6 +4283,7 @@ function readComposerDraftState() {
     ...timing,
     transfers: state.transfers,
     reactions: reactionParse.entries,
+    overlays: normalizeComposerGraphicOverlayList(composerGraphicOverlayDrafts, Number(timing?.time?.end ?? 12) || 12),
     markerListRaw: composerMarkerListInput?.value ?? "",
     pauseListRaw: composerPauseListInput?.value ?? "",
     warpListRaw: composerWarpListInput?.value ?? "",
@@ -4088,16 +4319,8 @@ function readComposerDraftState() {
 }
 
 function formatComposerMarkerList(markers = []) {
-  return markers
-    .map((marker) => {
-      const start = Number(marker?.t ?? 0);
-      const end = Number(marker?.end ?? start);
-      const normalizedEnd =
-        end > start + 0.001 ? end : Number((start + composerTimelineMinDurationSeconds).toFixed(3));
-      const timing = `${start}-${normalizedEnd}`;
-      return `${timing}: ${marker.label ?? marker.id ?? "Graphic"}`;
-    })
-    .join("\n");
+  void markers;
+  return "";
 }
 
 function formatComposerPauseList(pauses = []) {
@@ -4208,10 +4431,7 @@ function applyComposerDraftState(draftState = {}) {
     composerSceneLoopInput.checked = !!draftState?.time?.loop;
   }
   if (composerMarkerListInput) {
-    composerMarkerListInput.value =
-      typeof draftState.markerListRaw === "string"
-        ? draftState.markerListRaw
-        : formatComposerMarkerList(draftState.markers);
+    composerMarkerListInput.value = "";
   }
   if (composerPauseListInput) {
     composerPauseListInput.value =
@@ -4245,6 +4465,10 @@ function applyComposerDraftState(draftState = {}) {
     typeof draftState.reactionListRaw === "string"
       ? draftState.reactionListRaw
       : formatComposerReactionList(draftState.reactions);
+  composerGraphicOverlayDrafts = normalizeComposerGraphicOverlayList(
+    draftState.overlays,
+    duration
+  );
 
   setComposerSelectedAssembly(composerSelectedAssemblyId, {
     persistCurrentPath: false,
@@ -4380,7 +4604,18 @@ function renderComposerJsonPreview() {
   persistComposerPathStateToSelectedAssembly();
   const draftState = readComposerDraftState();
   const documentData = buildComposerDocumentData(draftState);
-  updateComposerViewportFromDocument(documentData);
+  try {
+    updateComposerViewportFromDocument(documentData);
+  } catch (error) {
+    composerCurrentDocument = documentData;
+    console.error("Composer preview render failed.", error);
+    try {
+      renderComposerTimeline(documentData);
+      updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
+    } catch (timelineError) {
+      console.error("Composer timeline fallback failed.", timelineError);
+    }
+  }
   updateComposerTimingDiagnostics(documentData, draftState.diagnostics);
   refreshComposerLibraryUi();
   setComposerStatus(formatComposerTimingStatus(documentData, draftState.diagnostics));
@@ -4515,20 +4750,6 @@ function initComposerCanvas() {
   }
   renderComposerAssemblyEditor();
 
-  if (!composerPathState.points.length) {
-    resetComposerPathPoints();
-  } else {
-    rebuildComposerControlPoints();
-  }
-  refreshComposerLibraryUi(composerSceneIdInput?.value ?? null);
-  renderComposerJsonPreview();
-  updateComposerCameraFlightDisplay();
-  updateComposerWaypointCount();
-
-  updateComposerFrame();
-  updateComposerCamera();
-  resizeComposerCanvas();
-
   wireComposerCanvasUiListeners({
     composerCanvas,
     onComposerPointerDown,
@@ -4588,6 +4809,20 @@ function initComposerCanvas() {
       closeComposerAssemblyMenu();
     }, { passive: true });
   }
+
+  if (!composerPathState.points.length) {
+    resetComposerPathPoints();
+  } else {
+    rebuildComposerControlPoints();
+  }
+  refreshComposerLibraryUi(composerSceneIdInput?.value ?? null);
+  renderComposerJsonPreview();
+  updateComposerCameraFlightDisplay();
+  updateComposerWaypointCount();
+
+  updateComposerFrame();
+  updateComposerCamera();
+  resizeComposerCanvas();
 }
 
 function resizeComposerCanvas() {
@@ -4800,6 +5035,20 @@ function clearComposerViewportVisuals() {
     sprite.material?.dispose?.();
   });
   composerMemberLabelSprites = [];
+  composerGraphicOverlayGroups.forEach((group) => {
+    composerViewportGroup?.remove(group);
+    group.traverse?.((child) => {
+      if (child === group) {
+        return;
+      }
+      child.geometry?.dispose?.();
+      child.material?.map?.dispose?.();
+      child.material?.dispose?.();
+    });
+  });
+  composerGraphicOverlayGroups = [];
+  composerGraphicOverlayHandleMeshes = [];
+  composerGraphicOverlayResizeMeshes = [];
   composerMemberAnchors = new Map();
   if (composerDocumentCameraPathLine) {
     composerViewportGroup?.remove(composerDocumentCameraPathLine);
@@ -5349,23 +5598,21 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     return;
   }
   const documentData = composerCurrentDocument;
-  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  const graphics = getComposerGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const reactionId = options.reactionId ?? null;
-  const markerId = options.markerId ?? null;
+  const graphicId = options.graphicId ?? options.markerId ?? null;
   const pauseId = options.pauseId ?? null;
   const warpId = options.warpId ?? null;
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
-  const marker = markerId ? markers.find((entry) => entry?.id === markerId) ?? null : null;
-  const authoredMarker = marker?.id ? marker : null;
+  const graphic = graphicId ? graphics.find((entry) => entry?.id === graphicId) ?? null : null;
   const pause = pauseId ? pauses.find((entry) => entry?.id === pauseId) ?? null : null;
   const warp = warpId ? timeWarps.find((entry) => entry?.id === warpId) ?? null : null;
   const reaction = reactionId ? reactions.find((entry) => entry?.id === reactionId) ?? null : null;
   const timeSeconds =
     options.timeSeconds ??
-    authoredMarker?.t ??
-    marker?.t ??
+    graphic?.start ??
     pause?.start ??
     warp?.start ??
     reaction?.start ??
@@ -5377,7 +5624,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       ? "warp"
       : pause
         ? "pause"
-        : authoredMarker
+        : graphic
           ? "graphic"
           : "add";
   const requestedAddType = String(options.addType ?? "graphic").trim().toLowerCase();
@@ -5417,36 +5664,62 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
         ? `Warp ${Number(warp.rate ?? 1).toFixed(2)}x @ ${formatComposerTimeLabel(warp.start)}-${formatComposerTimeLabel(warp.end)}`
       : editKind === "pause"
           ? `Pause ${formatComposerTimeLabel(pause.duration)} @ ${formatComposerTimeLabel(pause.start)}`
-          : editKind === "graphic"
-            ? `${authoredMarker.label ?? "Graphic"} @ ${formatComposerTimeLabel(authoredMarker.t)}-${formatComposerTimeLabel(
-                getComposerGraphicEnd(authoredMarker, duration)
-              )}`
+          : editKind === "graphic" && graphic
+            ? `${getComposerGraphicOverlayLabel(graphic)} @ ${formatComposerTimeLabel(graphic.start)}-${formatComposerTimeLabel(graphic.end)}`
             : `At ${formatComposerTimeLabel(timeSeconds)}`;
   composerAssemblyMenu.appendChild(subtitle);
 
   const timelineMenuWidth = 256;
   const appendGraphicBlock = () => {
     const initialGraphicSpan = clampComposerTimelineSpan(
-      authoredMarker?.t ?? timeSeconds,
-      authoredMarker?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
+      graphic?.start ?? timeSeconds,
+      graphic?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
+      duration
+    );
+    const initialGraphicDraft = normalizeComposerGraphicOverlayDraft(
+      graphic ?? {
+        id: getNextComposerGraphicOverlayId(),
+        start: initialGraphicSpan.start,
+        end: initialGraphicSpan.end,
+        text: "Text",
+        size: 0.42,
+        target: getComposerGraphicDefaultTarget(),
+      },
+      Math.max(0, getComposerGraphicOverlayDraftIndexById(graphic?.id)),
       duration
     );
     const graphicBlock = appendComposerMenuBlock(composerAssemblyMenu, "Graphic", {
-      text: authoredMarker ? "Save" : "Add",
+      text: graphic ? "Save" : "Add",
       onClick: () => {
         const graphicStart = Number(graphicStartInput?.value);
         const graphicEnd = Number(graphicEndInput?.value);
-        const label = String(graphicLabelInput?.value ?? "").trim();
-        if (!Number.isFinite(graphicStart) || !Number.isFinite(graphicEnd) || !label) {
+        const text = String(graphicTextInput?.value ?? "").trim();
+        const size = Number(graphicSizeInput?.value);
+        const target = decodeComposerGraphicTargetValue(graphicTargetInput?.value);
+        if (!Number.isFinite(graphicStart) || !Number.isFinite(graphicEnd) || !text || !target || !Number.isFinite(size)) {
           return;
         }
         const span = clampComposerTimelineSpan(graphicStart, graphicEnd, duration);
-        const nextLine = `${span.start}-${span.end}: ${label}`;
-        const current = composerMarkerListInput?.value ?? "";
-        if (composerMarkerListInput) {
-          composerMarkerListInput.value = authoredMarker?.id
-            ? replaceComposerAuthoringLineById(current, authoredMarker.id, nextLine)
-            : appendComposerAuthoringLine(current, nextLine);
+        const nextOverlay = normalizeComposerGraphicOverlayDraft(
+          {
+            ...(graphic ?? initialGraphicDraft),
+            id: graphic?.id ?? initialGraphicDraft.id,
+            start: span.start,
+            end: span.end,
+            text,
+            label: text,
+            size,
+            target,
+            offset: graphic?.offset ?? initialGraphicDraft.offset,
+          },
+          Math.max(0, getComposerGraphicOverlayDraftIndexById(graphic?.id)),
+          duration
+        );
+        const existingIndex = getComposerGraphicOverlayDraftIndexById(nextOverlay.id);
+        if (existingIndex >= 0) {
+          composerGraphicOverlayDrafts[existingIndex] = nextOverlay;
+        } else {
+          composerGraphicOverlayDrafts.push(nextOverlay);
         }
         closeComposerAssemblyMenu();
         renderComposerJsonPreview();
@@ -5468,25 +5741,41 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       step: 0.1,
       min: 0,
     });
-    const graphicLabelInput = appendComposerMenuField(graphicForm, {
-      label: "Label",
-      value: authoredMarker?.label ?? "graphic",
+    const graphicTargetInput = appendComposerMenuSelectField(graphicForm, {
+      label: "Target",
+      value: encodeComposerGraphicTargetValue(initialGraphicDraft.target),
+      entries: getComposerGraphicTargetEntries(),
+      placeholder: "Select target",
     });
-    graphicLabelInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
+    graphicTargetInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
+    const graphicTextInput = appendComposerMenuField(graphicForm, {
+      label: "Text",
+      value: initialGraphicDraft.text,
+      placeholder: "Text sphere",
+    });
+    graphicTextInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
+    const graphicSizeInput = appendComposerMenuField(graphicForm, {
+      label: "Size",
+      type: "number",
+      value: initialGraphicDraft.size,
+      step: 0.05,
+      min: 0.18,
+    });
     graphicBlock?.block?.appendChild(graphicForm);
+    appendComposerMenuNote(
+      graphicBlock?.block,
+      "Drag the text sphere to place it. Drag the small outer orb to resize it."
+    );
 
-    if (authoredMarker?.id) {
+    if (graphic?.id) {
       appendComposerMenuButtonRow(graphicBlock?.block, [
         {
           text: "Remove Graphic",
           className: "composer-assembly-menu-danger",
           onClick: () => {
-            if (composerMarkerListInput) {
-              composerMarkerListInput.value = replaceComposerAuthoringLineById(
-                composerMarkerListInput.value,
-                authoredMarker.id,
-                null
-              );
+            const overlayIndex = getComposerGraphicOverlayDraftIndexById(graphic.id);
+            if (overlayIndex >= 0) {
+              composerGraphicOverlayDrafts.splice(overlayIndex, 1);
             }
             closeComposerAssemblyMenu();
             renderComposerJsonPreview();
@@ -5745,7 +6034,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       { id: "video", label: "Video" },
       { id: "audio", label: "Audio" },
       { id: "graphic", label: "Graphic" },
-      { id: "camera", label: "Camera" },
+      { id: "camera", label: "Observer" },
       { id: "reaction", label: "Reaction" },
     ].forEach((item) => {
       const orb = document.createElement("button");
@@ -5787,8 +6076,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
         "Planned for narration, accent sounds, and level automation on the shared scene timeline.",
       ]);
     } else if (addType === "camera") {
-      appendPlaceholderBlock("Camera", [
-        "Camera clips need to coordinate the design viewport, shot framing, and the authored camera path.",
+      appendPlaceholderBlock("Observer", [
+        "Observer intervals need to coordinate the design viewport, observer framing, and the authored observer path.",
         "The first pass for that shared viewport design is being captured in viewports.md.",
       ]);
     }
@@ -5808,6 +6097,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     timelineMenuWidth,
     editKind === "reaction" || (editKind === "add" && addType === "reaction")
       ? 432
+      : editKind === "graphic" || (editKind === "add" && addType === "graphic")
+        ? 392
       : editKind === "add"
         ? 332
         : 268
@@ -5848,7 +6139,7 @@ function openComposerPathPointMenuAt(clientX, clientY, pointIndex) {
 
   const poiButton = document.createElement("button");
   poiButton.type = "button";
-  poiButton.textContent = "Use This Point As POI";
+  poiButton.textContent = "Use This Point As Observer Target";
   poiButton.addEventListener("click", () => {
     composerSelectedPointIndex = pointIndex;
     composerCameraFlightState.poiMode = "selected";
@@ -5874,7 +6165,7 @@ function openComposerPathPointMenuAt(clientX, clientY, pointIndex) {
 }
 
 function describeComposerTimelineState(timeSeconds, documentData) {
-  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  const graphics = getComposerGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
@@ -5885,9 +6176,9 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   const activeReactionStage = Array.isArray(activeReaction?.stages)
     ? activeReaction.stages.find((stage) => timeSeconds >= stage.start && timeSeconds <= stage.end)
     : null;
-  const activeGraphic = [...markers]
-    .sort((left, right) => left.t - right.t)
-    .filter((marker) => timeSeconds + 0.001 >= marker.t && timeSeconds <= getComposerGraphicEnd(marker) + 0.001)
+  const activeGraphic = [...graphics]
+    .sort((left, right) => left.start - right.start)
+    .filter((graphic) => timeSeconds + 0.001 >= graphic.start && timeSeconds <= graphic.end + 0.001)
     .pop();
   const parts = [];
   if (activeGraphic?.label) {
@@ -6069,32 +6360,19 @@ function renderComposerTimeline(documentData) {
     composerTimelineReactions?.appendChild(band);
   });
 
-  markers.forEach((marker) => {
-    const graphicEnd = getComposerGraphicEnd(marker, documentData?.scene?.time?.end);
-    if (graphicEnd > marker.t + 0.001) {
-      const start = getComposerTimelineFraction(documentData, marker.t);
-      const end = getComposerTimelineFraction(documentData, graphicEnd);
-      const band = createComposerTimelineBand(
-        start,
-        end,
-        "is-graphic",
-        `${marker.label ?? marker.id ?? "Graphic"}: ${formatComposerTimeLabel(marker.t)} to ${formatComposerTimeLabel(
-          graphicEnd
-        )}`,
-        marker.label ?? marker.id ?? "Graphic"
-      );
-      band.dataset.markerId = marker.id ?? "";
-      composerTimelineMarkers?.appendChild(band);
-      return;
-    }
-    const fraction = getComposerTimelineFraction(documentData, marker.t);
-    const markerNode = createComposerTimelineMarker(
-      fraction,
-      marker.label ?? marker.id ?? "Marker",
-      `${marker.label ?? marker.id ?? "Marker"} at ${formatComposerTimeLabel(marker.t)}`
+  graphics.forEach((graphic) => {
+    const start = getComposerTimelineFraction(documentData, graphic.start);
+    const end = getComposerTimelineFraction(documentData, graphic.end);
+    const label = getComposerGraphicOverlayLabel(graphic);
+    const band = createComposerTimelineBand(
+      start,
+      end,
+      "is-graphic",
+      `${label}: ${formatComposerTimeLabel(graphic.start)} to ${formatComposerTimeLabel(graphic.end)}`,
+      label
     );
-    markerNode.dataset.markerId = marker.id ?? "";
-    composerTimelineMarkers?.appendChild(markerNode);
+    band.dataset.overlayId = graphic.id ?? "";
+    composerTimelineMarkers?.appendChild(band);
   });
 }
 
@@ -6519,6 +6797,11 @@ function updateComposerAnimatedViewport(timeSeconds) {
         : 0.32;
   });
 
+  try {
+    updateComposerGraphicOverlayVisuals(timeSeconds, composerCurrentDocument, assemblyCenters);
+  } catch (error) {
+    console.error("Composer graphic overlay update failed.", error);
+  }
   updateComposerDocumentCameraPreview(timeSeconds, composerCurrentDocument);
 }
 
@@ -6705,6 +6988,155 @@ function addComposerTransferLine(transfer) {
   line.userData.transfer = transfer;
   composerViewportGroup.add(line);
   composerTransferLines.push(line);
+}
+
+function addComposerGraphicOverlayVisual(overlay) {
+  if (!composerViewportGroup || !overlay?.id) {
+    return;
+  }
+  const group = new THREE.Group();
+  group.userData.overlayId = overlay.id;
+  group.userData.isComposerGraphicOverlay = true;
+
+  const haloRadius = Math.max(0.18, Number(overlay.size ?? 0.42) || 0.42);
+  const haloMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(haloRadius * 1.06, 24, 18),
+    new THREE.MeshBasicMaterial({
+      color: 0x8cd2ff,
+      transparent: true,
+      opacity: 0.08,
+      depthWrite: false,
+      depthTest: false,
+      side: THREE.DoubleSide,
+    })
+  );
+  haloMesh.renderOrder = 16;
+  group.add(haloMesh);
+
+  const sphereMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(haloRadius, 28, 20),
+    new THREE.MeshBasicMaterial({
+      color: 0x7ebeff,
+      transparent: true,
+      opacity: 0.12,
+      depthWrite: false,
+      depthTest: false,
+      side: THREE.DoubleSide,
+    })
+  );
+  sphereMesh.renderOrder = 17;
+  sphereMesh.userData.overlayId = overlay.id;
+  sphereMesh.userData.isComposerGraphicHandle = true;
+  sphereMesh.userData.draggable = true;
+  const sphereHitProxy = createComposerMarkerHitProxy(Math.max(0.18, haloRadius * 0.92));
+  sphereMesh.userData.hitProxy = sphereHitProxy;
+  sphereMesh.add(sphereHitProxy);
+  group.add(sphereMesh);
+  composerGraphicOverlayHandleMeshes.push(sphereMesh);
+
+  const calloutLine = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]),
+    new THREE.LineBasicMaterial({
+      color: 0xc2ebff,
+      transparent: true,
+      opacity: 0.78,
+      depthTest: false,
+      depthWrite: false,
+    })
+  );
+  calloutLine.renderOrder = 15;
+  calloutLine.userData.overlayId = overlay.id;
+  group.add(calloutLine);
+
+  const anchorPin = new THREE.Mesh(
+    new THREE.SphereGeometry(0.024, 12, 10),
+    new THREE.MeshBasicMaterial({
+      color: 0xffd690,
+      transparent: true,
+      opacity: 0.92,
+      depthTest: false,
+      depthWrite: false,
+    })
+  );
+  anchorPin.renderOrder = 18;
+  anchorPin.userData.overlayId = overlay.id;
+  group.add(anchorPin);
+
+  const textSprite = createComposerGraphicOverlayTextSprite(overlay.text, haloRadius);
+  textSprite.userData.overlayId = overlay.id;
+  group.add(textSprite);
+
+  const resizeHandle = new THREE.Mesh(
+    new THREE.SphereGeometry(0.045, 12, 10),
+    new THREE.MeshBasicMaterial({
+      color: 0xffd690,
+      transparent: true,
+      opacity: 0.96,
+      depthTest: false,
+      depthWrite: false,
+    })
+  );
+  resizeHandle.renderOrder = 18;
+  resizeHandle.userData.overlayId = overlay.id;
+  resizeHandle.userData.isComposerGraphicResizeHandle = true;
+  resizeHandle.userData.draggable = true;
+  const resizeHitProxy = createComposerMarkerHitProxy(0.16);
+  resizeHandle.userData.hitProxy = resizeHitProxy;
+  resizeHandle.add(resizeHitProxy);
+  group.add(resizeHandle);
+  composerGraphicOverlayResizeMeshes.push(resizeHandle);
+
+  group.userData.calloutLine = calloutLine;
+  group.userData.anchorPin = anchorPin;
+  group.userData.textSprite = textSprite;
+  group.userData.resizeHandle = resizeHandle;
+  group.userData.radius = haloRadius;
+
+  composerViewportGroup.add(group);
+  composerGraphicOverlayGroups.push(group);
+}
+
+function updateComposerGraphicOverlayVisuals(timeSeconds, documentData, assemblyCenters = new Map()) {
+  const overlayById = new Map(getComposerGraphicTimelineOverlays(documentData).map((overlay) => [overlay.id, overlay]));
+  composerGraphicOverlayGroups.forEach((group) => {
+    const overlayId = group?.userData?.overlayId;
+    const overlay = overlayId ? overlayById.get(overlayId) : null;
+    if (!overlay) {
+      group.visible = false;
+      return;
+    }
+    const isActive = timeSeconds + 0.001 >= overlay.start && timeSeconds <= overlay.end + 0.001;
+    group.visible = isActive;
+    if (!isActive) {
+      return;
+    }
+    const anchorPosition =
+      resolveComposerGraphicTargetPosition(overlay.target, assemblyCenters, documentData) ??
+      new THREE.Vector3();
+    const offset = vectorFromTriplet(overlay.offset ?? [0, 0, 0]);
+    const sphereCenter = anchorPosition.clone().add(offset);
+    group.position.copy(sphereCenter);
+    group.userData.anchorPosition = anchorPosition.clone();
+    group.userData.radius = Math.max(0.18, Number(overlay.size ?? 0.42) || 0.42);
+
+    const calloutLine = group.userData.calloutLine ?? null;
+    const anchorPin = group.userData.anchorPin ?? null;
+    const resizeHandle = group.userData.resizeHandle ?? null;
+    const radius = group.userData.radius;
+    if (calloutLine) {
+      const direction = anchorPosition.clone().sub(sphereCenter);
+      const endPoint = direction.lengthSq() > 0.0001
+        ? direction.normalize().multiplyScalar(radius * 0.86)
+        : new THREE.Vector3(-radius * 0.86, 0, 0);
+      calloutLine.geometry.setFromPoints([offset.clone().negate(), endPoint]);
+    }
+    if (anchorPin) {
+      anchorPin.position.copy(offset.clone().negate());
+    }
+    if (resizeHandle) {
+      resizeHandle.position.set(radius * 0.82, radius * 0.82, 0);
+    }
+  });
 }
 
 function addComposerAssemblyProxy(center, assembly, index) {
@@ -7059,6 +7491,14 @@ function updateComposerViewportFromDocument(documentData) {
   transfers.forEach((transfer) => {
     addComposerTransferLine(transfer);
   });
+  const graphicOverlays = getComposerGraphicTimelineOverlays(documentData);
+  graphicOverlays.forEach((overlay) => {
+    try {
+      addComposerGraphicOverlayVisual(overlay);
+    } catch (error) {
+      console.error("Composer graphic overlay setup failed.", overlay?.id, error);
+    }
+  });
   addComposerDocumentCameraVisuals(documentData);
   applyComposerViewportDisplayState();
 
@@ -7165,7 +7605,7 @@ function startComposerCameraFlightPreview() {
     composerCameraFlightState.savedPosition.copy(composerCamera.position);
   }
   if (composerCameraFlightToggle) {
-    composerCameraFlightToggle.textContent = "Stop Flight";
+    composerCameraFlightToggle.textContent = "Stop Observer Path";
     composerCameraFlightToggle.classList.add("is-active");
   }
 }
@@ -7182,7 +7622,7 @@ function stopComposerCameraFlightPreview() {
     updateComposerCamera();
   }
   if (composerCameraFlightToggle) {
-    composerCameraFlightToggle.textContent = "Play Flight";
+    composerCameraFlightToggle.textContent = "Preview Observer Path";
     composerCameraFlightToggle.classList.remove("is-active");
   }
 }
@@ -7305,6 +7745,38 @@ function resolveComposerSubassemblyHandleHit(object) {
   return null;
 }
 
+function resolveComposerGraphicOverlayHit(object) {
+  let current = object;
+  while (current) {
+    const overlayId = current.userData?.overlayId;
+    if (overlayId && current.userData?.isComposerGraphicHandle) {
+      return {
+        overlayId,
+        draggable: current.userData?.draggable !== false,
+        object: current,
+      };
+    }
+    current = current.parent ?? null;
+  }
+  return null;
+}
+
+function resolveComposerGraphicResizeHandleHit(object) {
+  let current = object;
+  while (current) {
+    const overlayId = current.userData?.overlayId;
+    if (overlayId && current.userData?.isComposerGraphicResizeHandle) {
+      return {
+        overlayId,
+        draggable: current.userData?.draggable !== false,
+        object: current,
+      };
+    }
+    current = current.parent ?? null;
+  }
+  return null;
+}
+
 function findComposerCenterMarkerIntersection(hits = []) {
   for (const hit of Array.isArray(hits) ? hits : []) {
     const assemblyHit = resolveComposerAssemblyHit(hit?.object);
@@ -7399,6 +7871,49 @@ function onComposerPointerDown(event) {
       );
       composerDragState.plane.setFromNormalAndCoplanarPoint(normal, worldPoint);
       updateComposerCameraWaypointMaterials(waypointIndex);
+      return;
+    }
+  }
+  const graphicResizeHits = composerRaycaster.intersectObjects(composerGraphicOverlayResizeMeshes, true);
+  if (event.button === 0 && graphicResizeHits.length) {
+    const resizeHit = resolveComposerGraphicResizeHandleHit(graphicResizeHits[0].object);
+    const overlay = resizeHit?.overlayId ? getComposerGraphicOverlayDraftById(resizeHit.overlayId) : null;
+    if (resizeHit?.draggable && overlay) {
+      composerDragState.mode = "graphic_resize";
+      composerDragState.overlayId = overlay.id;
+      composerDragState.startX = event.clientX;
+      composerDragState.startY = event.clientY;
+      composerDragState.startGraphicSize = Number(overlay.size ?? 0.42) || 0.42;
+      const anchorPosition =
+        resolveComposerGraphicTargetPosition(overlay.target, composerAssemblyWorldCenters, composerCurrentDocument) ??
+        new THREE.Vector3();
+      composerDragState.startGraphicAnchor.copy(anchorPosition);
+      composerDragState.startGraphicOffset.copy(vectorFromTriplet(overlay.offset));
+      composerDragState.startGraphicCenter.copy(anchorPosition.clone().add(vectorFromTriplet(overlay.offset)));
+      const planeNormal = composerCamera.getWorldDirection(new THREE.Vector3()).normalize();
+      const worldCenter = composerFrameGroup.localToWorld(composerDragState.startGraphicCenter.clone());
+      composerDragState.plane.setFromNormalAndCoplanarPoint(planeNormal, worldCenter);
+      return;
+    }
+  }
+  const graphicHits = composerRaycaster.intersectObjects(composerGraphicOverlayHandleMeshes, true);
+  if (event.button === 0 && graphicHits.length) {
+    const graphicHit = resolveComposerGraphicOverlayHit(graphicHits[0].object);
+    const overlay = graphicHit?.overlayId ? getComposerGraphicOverlayDraftById(graphicHit.overlayId) : null;
+    if (graphicHit?.draggable && overlay) {
+      composerDragState.mode = "graphic";
+      composerDragState.overlayId = overlay.id;
+      composerDragState.startX = event.clientX;
+      composerDragState.startY = event.clientY;
+      const anchorPosition =
+        resolveComposerGraphicTargetPosition(overlay.target, composerAssemblyWorldCenters, composerCurrentDocument) ??
+        new THREE.Vector3();
+      composerDragState.startGraphicAnchor.copy(anchorPosition);
+      composerDragState.startGraphicOffset.copy(vectorFromTriplet(overlay.offset));
+      composerDragState.startGraphicCenter.copy(anchorPosition.clone().add(vectorFromTriplet(overlay.offset)));
+      const planeNormal = composerCamera.getWorldDirection(new THREE.Vector3()).normalize();
+      const worldCenter = composerFrameGroup.localToWorld(composerDragState.startGraphicCenter.clone());
+      composerDragState.plane.setFromNormalAndCoplanarPoint(planeNormal, worldCenter);
       return;
     }
   }
@@ -7561,6 +8076,28 @@ function onComposerContextMenu(event) {
   }
   const { x, y } = getComposerPointerNdc(event);
   composerRaycaster.setFromCamera({ x, y }, composerCamera);
+  const graphicResizeHits = composerRaycaster.intersectObjects(composerGraphicOverlayResizeMeshes, true);
+  if (graphicResizeHits.length) {
+    const resizeHit = resolveComposerGraphicResizeHandleHit(graphicResizeHits[0].object);
+    if (resizeHit?.overlayId) {
+      event.preventDefault();
+      openComposerTimelineMenuAt(event.clientX, event.clientY, {
+        graphicId: resizeHit.overlayId,
+      });
+      return;
+    }
+  }
+  const graphicHits = composerRaycaster.intersectObjects(composerGraphicOverlayHandleMeshes, true);
+  if (graphicHits.length) {
+    const graphicHit = resolveComposerGraphicOverlayHit(graphicHits[0].object);
+    if (graphicHit?.overlayId) {
+      event.preventDefault();
+      openComposerTimelineMenuAt(event.clientX, event.clientY, {
+        graphicId: graphicHit.overlayId,
+      });
+      return;
+    }
+  }
   const assemblyHits = composerRaycaster.intersectObjects(composerAssemblyMeshes, true);
   const pointHits = composerRaycaster.intersectObjects(composerPointMeshes, true);
   const preferredCenterHit = shouldPreferComposerCenterMarker(pointHits, assemblyHits);
@@ -7630,13 +8167,13 @@ function onComposerTimelineContextMenu(event) {
   }
   event.preventDefault();
   closeComposerAssemblyMenu();
-  const markerNode = event.target.closest?.(".composer-timeline-marker, .composer-timeline-band.is-graphic");
+  const graphicBand = event.target.closest?.(".composer-timeline-band.is-graphic");
   const pauseBand = event.target.closest?.(".composer-timeline-band.is-pause");
   const warpBand = event.target.closest?.(".composer-timeline-band.is-warp");
   const reactionBand = event.target.closest?.(".composer-timeline-band.is-reaction");
   openComposerTimelineMenuAt(event.clientX, event.clientY, {
     timeSeconds: getComposerTimelineTimeAtClientX(event.clientX, composerCurrentDocument),
-    markerId: markerNode?.dataset?.markerId ?? null,
+    graphicId: graphicBand?.dataset?.overlayId ?? null,
     pauseId: pauseBand?.dataset?.pauseId ?? null,
     warpId: warpBand?.dataset?.warpId ?? null,
     reactionId: reactionBand?.dataset?.reactionId ?? null,
@@ -7748,6 +8285,48 @@ function onComposerPointerMove(event) {
     return;
   }
 
+  if (composerDragState.mode === "graphic") {
+    const overlay = getComposerGraphicOverlayDraftById(composerDragState.overlayId);
+    if (!overlay) {
+      return;
+    }
+    const { x, y } = getComposerPointerNdc(event);
+    composerRaycaster.setFromCamera({ x, y }, composerCamera);
+    const intersection = new THREE.Vector3();
+    if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
+      const localPoint = composerFrameGroup.worldToLocal(intersection.clone());
+      const nextOffset = localPoint.sub(composerDragState.startGraphicAnchor);
+      overlay.offset = [
+        Number(nextOffset.x.toFixed(3)),
+        Number(nextOffset.y.toFixed(3)),
+        Number(nextOffset.z.toFixed(3)),
+      ];
+      renderComposerJsonPreview();
+    }
+    return;
+  }
+
+  if (composerDragState.mode === "graphic_resize") {
+    const overlay = getComposerGraphicOverlayDraftById(composerDragState.overlayId);
+    if (!overlay) {
+      return;
+    }
+    const { x, y } = getComposerPointerNdc(event);
+    composerRaycaster.setFromCamera({ x, y }, composerCamera);
+    const intersection = new THREE.Vector3();
+    if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
+      const localPoint = composerFrameGroup.worldToLocal(intersection.clone());
+      const radius = clamp(
+        localPoint.distanceTo(composerDragState.startGraphicCenter),
+        0.18,
+        2.4
+      );
+      overlay.size = Number(radius.toFixed(3));
+      renderComposerJsonPreview();
+    }
+    return;
+  }
+
   if (composerDragState.mode === "subassembly") {
     const liveAssembly = getComposerAssemblyDraftById(composerDragState.assemblyId);
     if (!liveAssembly || !composerDragState.subassemblyId) {
@@ -7823,6 +8402,7 @@ function onComposerPointerUp(event) {
   composerDragState.assemblyIndex = null;
   composerDragState.assemblyId = null;
   composerDragState.memberId = null;
+  composerDragState.overlayId = null;
   composerDragState.subassemblyId = null;
   if (composerCanvas && composerCanvas.hasPointerCapture(event.pointerId)) {
     composerCanvas.releasePointerCapture(event.pointerId);
@@ -8092,6 +8672,7 @@ const composerCameraFlightState = {
   savedTarget: new THREE.Vector3(),
 };
 let composerAssemblyDrafts = [createDefaultComposerAssemblyDraft(0)];
+let composerGraphicOverlayDrafts = [];
 let composerSelectedPointIndex = null;
 let composerSelectedCameraWaypointIndex = null;
 let composerSelectedAssemblyId = null;
@@ -8108,6 +8689,7 @@ const composerDragState = {
   assemblyId: null,
   memberId: null,
   subassemblyId: null,
+  overlayId: null,
   startX: 0,
   startY: 0,
   startPoint: new THREE.Vector3(),
@@ -8119,6 +8701,10 @@ const composerDragState = {
   startMemberSubassemblyPosition: new THREE.Vector3(),
   startSubassemblyAssemblyCenter: new THREE.Vector3(),
   startSubassemblyPosition: new THREE.Vector3(),
+  startGraphicAnchor: new THREE.Vector3(),
+  startGraphicOffset: new THREE.Vector3(),
+  startGraphicCenter: new THREE.Vector3(),
+  startGraphicSize: 0,
   startAssemblyPathPoints: [],
   startFrameRot: new THREE.Euler(0, 0, 0, "YXZ"),
   startOrbitTheta: 0,
@@ -8160,6 +8746,9 @@ let composerAxisGuideLines = [];
 let composerOrbitParticleMeshes = [];
 let composerMemberAnchors = new Map();
 let composerMemberLabelSprites = [];
+let composerGraphicOverlayGroups = [];
+let composerGraphicOverlayHandleMeshes = [];
+let composerGraphicOverlayResizeMeshes = [];
 let composerDocumentCameraPathLine = null;
 let composerDocumentCameraWaypointMeshes = [];
 let composerDocumentCameraShotMesh = null;

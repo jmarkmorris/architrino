@@ -407,6 +407,65 @@ function normalizeMarkers(rawMarkers, start, end) {
 
 const composerMinimumTimelineItemDurationSeconds = 2;
 
+function normalizeOverlayTarget(rawTarget) {
+  if (!rawTarget || typeof rawTarget !== "object") {
+    return null;
+  }
+  const type = normalizeString(rawTarget.type, "");
+  if (type === "assembly") {
+    const assemblyId = sanitizeAssemblyId(rawTarget.assemblyId, "");
+    return assemblyId ? { type, assemblyId } : null;
+  }
+  if (type === "path_point") {
+    const assemblyId = sanitizeAssemblyId(rawTarget.assemblyId, "");
+    const pointIndex = Math.max(0, Math.round(Number(rawTarget.pointIndex ?? 0) || 0));
+    return assemblyId ? { type, assemblyId, pointIndex } : null;
+  }
+  return null;
+}
+
+function normalizeOverlayOffset(rawOffset) {
+  return clonePoint(rawOffset ?? [0.6, 0.44, 0]);
+}
+
+function normalizeOverlays(rawOverlays, start, end) {
+  if (!Array.isArray(rawOverlays) || !rawOverlays.length) {
+    return [];
+  }
+  return rawOverlays
+    .map((overlay, index) => {
+      const minimumSpan = Math.min(composerMinimumTimelineItemDurationSeconds, Math.max(0, end - start));
+      let overlayStart = clampNumber(roundNumber(overlay?.start ?? start), start, end);
+      if (end - start >= minimumSpan) {
+        overlayStart = clampNumber(overlayStart, start, end - minimumSpan);
+      }
+      let overlayEnd = clampNumber(
+        roundNumber(overlay?.end ?? (overlayStart + minimumSpan)),
+        overlayStart,
+        end
+      );
+      if (end - overlayStart >= minimumSpan && overlayEnd - overlayStart < minimumSpan) {
+        overlayEnd = clampNumber(overlayStart + minimumSpan, overlayStart, end);
+      }
+      const size = clampNumber(roundNumber(overlay?.size ?? overlay?.radius ?? 0.42), 0.18, 2.4);
+      return {
+        id: normalizeString(overlay?.id, `overlay_${index + 1}`),
+        kind: normalizeString(overlay?.kind, "graphic"),
+        type: normalizeString(overlay?.type, "text_sphere_callout"),
+        label: normalizeString(overlay?.label ?? overlay?.text, `Graphic ${index + 1}`),
+        text: normalizeString(overlay?.text ?? overlay?.label, `Graphic ${index + 1}`),
+        start: overlayStart,
+        end: overlayEnd,
+        size,
+        offset: normalizeOverlayOffset(overlay?.offset),
+        target: normalizeOverlayTarget(overlay?.target),
+        style: typeof overlay?.style === "object" && overlay.style ? overlay.style : {},
+      };
+    })
+    .filter((overlay) => overlay.end > overlay.start)
+    .sort((left, right) => left.start - right.start);
+}
+
 function normalizePauses(rawPauses, start, end) {
   if (!Array.isArray(rawPauses) || !rawPauses.length) {
     return [];
@@ -704,7 +763,7 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
       : [],
     tracks: Array.isArray(rawDocument.tracks) ? rawDocument.tracks : [],
     channels: Array.isArray(rawDocument.channels) ? rawDocument.channels : [],
-    overlays: Array.isArray(rawDocument.overlays) ? rawDocument.overlays : [],
+    overlays: normalizeOverlays(rawDocument.overlays, sceneStart, normalizedSceneEnd),
     teachingPatterns: Array.isArray(rawDocument.teachingPatterns)
       ? rawDocument.teachingPatterns
       : [],
@@ -841,6 +900,7 @@ export function createComposerSceneDocument(input = {}, options = {}) {
     cameraPath: {
       waypoints: input.cameraWaypoints,
     },
+    overlays: input.overlays,
     reactions: input.reactions,
     transfers: input.transfers,
     provenance: authoredProvenance,
