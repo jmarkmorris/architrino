@@ -1269,6 +1269,79 @@ function clampComposerTimelineSpan(rawStart, rawEnd, duration, minimumDuration =
   };
 }
 
+function getComposerTimelineAuthoringItems(documentData = composerCurrentDocument) {
+  const overlays = Array.isArray(documentData?.overlays) ? documentData.overlays : [];
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const warps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
+  return [
+    ...overlays.map((overlay) => ({
+      id: overlay?.id ?? "",
+      kind: overlay?.kind ?? "graphic",
+      label:
+        overlay?.kind === "graphic"
+          ? getComposerGraphicOverlayLabel(overlay)
+          : getComposerMediaOverlayLabel(overlay),
+      start: Number(overlay?.start ?? 0),
+      end: Number(overlay?.end ?? overlay?.start ?? 0),
+    })),
+    ...pauses.map((pause) => ({
+      id: pause?.id ?? "",
+      kind: "pause",
+      label: "Pause",
+      start: Number(pause?.start ?? 0),
+      end: Number(pause?.start ?? 0) + Number(pause?.duration ?? 0),
+    })),
+    ...warps.map((warp) => ({
+      id: warp?.id ?? "",
+      kind: "warp",
+      label: "Warp",
+      start: Number(warp?.start ?? 0),
+      end: Number(warp?.end ?? warp?.start ?? 0),
+    })),
+    ...reactions.map((reaction) => ({
+      id: reaction?.id ?? "",
+      kind: "reaction",
+      label: reaction?.label ?? "Reaction",
+      start: Number(reaction?.start ?? 0),
+      end: Number(reaction?.end ?? reaction?.start ?? 0),
+    })),
+  ];
+}
+
+function findComposerTimelineOverlap(candidate, options = {}) {
+  const candidateStart = Number(candidate?.start);
+  const candidateEnd = Number(candidate?.end);
+  if (!Number.isFinite(candidateStart) || !Number.isFinite(candidateEnd)) {
+    return null;
+  }
+  const excludeId = String(options.excludeId ?? candidate?.id ?? "");
+  const epsilon = 0.0005;
+  return getComposerTimelineAuthoringItems(options.documentData).find((entry) => {
+    if (!entry) {
+      return false;
+    }
+    if (excludeId && entry.id === excludeId) {
+      return false;
+    }
+    const start = Number(entry.start);
+    const end = Number(entry.end);
+    if (!Number.isFinite(start) || !Number.isFinite(end)) {
+      return false;
+    }
+    return candidateStart < end - epsilon && candidateEnd > start + epsilon;
+  }) ?? null;
+}
+
+function reportComposerTimelineOverlap(conflict) {
+  if (!conflict) {
+    return;
+  }
+  setComposerStatus(
+    `Timeline items cannot overlap. ${conflict.label} already uses ${formatComposerTimeLabel(conflict.start)}-${formatComposerTimeLabel(conflict.end)}.`
+  );
+}
+
 function getComposerGraphicEnd(marker, sceneDuration = null) {
   const start = Number(marker?.t ?? 0);
   const explicitEnd = Number(marker?.end);
@@ -5900,6 +5973,22 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           return;
         }
         const span = clampComposerTimelineSpan(graphicStart, graphicEnd, duration);
+        const overlap = findComposerTimelineOverlap(
+          {
+            id: graphic?.id ?? initialGraphicDraft.id,
+            kind: "graphic",
+            start: span.start,
+            end: span.end,
+          },
+          {
+            excludeId: graphic?.id ?? initialGraphicDraft.id,
+            documentData,
+          }
+        );
+        if (overlap) {
+          reportComposerTimelineOverlap(overlap);
+          return;
+        }
         const nextOverlay = normalizeComposerGraphicOverlayDraft(
           {
             ...(graphic ?? initialGraphicDraft),
@@ -6019,6 +6108,22 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
             return;
           }
           const span = clampComposerTimelineSpan(start, end, duration);
+          const overlap = findComposerTimelineOverlap(
+            {
+              id: currentOverlay?.id ?? initialDraft.id,
+              kind,
+              start: span.start,
+              end: span.end,
+            },
+            {
+              excludeId: currentOverlay?.id ?? initialDraft.id,
+              documentData,
+            }
+          );
+          if (overlap) {
+            reportComposerTimelineOverlap(overlap);
+            return;
+          }
           const nextOverlay = normalizeComposerGraphicOverlayDraft(
             {
               ...(currentOverlay ?? initialDraft),
@@ -6106,6 +6211,23 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           return;
         }
         const span = clampComposerTimelineSpan(start, start + pauseDuration, duration);
+        const pauseIdForSave = pause?.id ?? "";
+        const overlap = findComposerTimelineOverlap(
+          {
+            id: pauseIdForSave,
+            kind: "pause",
+            start: span.start,
+            end: span.end,
+          },
+          {
+            excludeId: pauseIdForSave,
+            documentData,
+          }
+        );
+        if (overlap) {
+          reportComposerTimelineOverlap(overlap);
+          return;
+        }
         const nextLine = `${span.start}, ${span.span}`;
         const current = composerPauseListInput?.value ?? "";
         if (composerPauseListInput) {
@@ -6174,6 +6296,23 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           return;
         }
         const span = clampComposerTimelineSpan(start, end, duration);
+        const warpIdForSave = warp?.id ?? "";
+        const overlap = findComposerTimelineOverlap(
+          {
+            id: warpIdForSave,
+            kind: "warp",
+            start: span.start,
+            end: span.end,
+          },
+          {
+            excludeId: warpIdForSave,
+            documentData,
+          }
+        );
+        if (overlap) {
+          reportComposerTimelineOverlap(overlap);
+          return;
+        }
         const nextLine = `${span.start}, ${span.end}, ${Number(rate.toFixed(3))}`;
         const current = composerWarpListInput?.value ?? "";
         if (composerWarpListInput) {
@@ -6252,6 +6391,23 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           return;
         }
         const span = clampComposerTimelineSpan(start, end, duration);
+        const reactionIdForSave = reaction?.id ?? "";
+        const overlap = findComposerTimelineOverlap(
+          {
+            id: reactionIdForSave,
+            kind: "reaction",
+            start: span.start,
+            end: span.end,
+          },
+          {
+            excludeId: reactionIdForSave,
+            documentData,
+          }
+        );
+        if (overlap) {
+          reportComposerTimelineOverlap(overlap);
+          return;
+        }
         const nextLine = `${label} @ ${span.start}-${span.end}: ${transferRefs}${
           actions ? ` | ${actions}` : ""
         }`;

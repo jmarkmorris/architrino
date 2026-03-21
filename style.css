@@ -1480,6 +1480,7 @@ body {
   width: auto !important;
   min-width: 58px;
   justify-content: center !important;
+  text-align: center !important;
   padding: 4px 10px !important;
   border-radius: 999px !important;
   font-size: 10px !important;
