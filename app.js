@@ -1468,6 +1468,61 @@ function resolveComposerGraphicTargetPosition(target, assemblyCenters = new Map(
   return null;
 }
 
+function getComposerAssemblyGraphicTargetRadius(assembly) {
+  if (!assembly) {
+    return 0;
+  }
+  const shellRadii = Array.isArray(assembly?.core?.shells)
+    ? assembly.core.shells
+        .map((shell) => Number(shell?.radius ?? 0) || 0)
+        .filter((radius) => radius > 0)
+    : [];
+  if (shellRadii.length) {
+    return Math.max(...shellRadii);
+  }
+
+  if (isComposerBareArchitrinoAssembly(assembly)) {
+    return 0.052;
+  }
+
+  const members = normalizeComposerMemberList(assembly?.members);
+  const baseRadius = 0.17 + Math.min(members.length, 8) * 0.018;
+  const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies);
+  const childRadius = subassemblies.reduce((maxRadius, child) => {
+    const childPosition = vectorFromTriplet(child?.position ?? child?.transform?.position ?? [0, 0, 0]);
+    const childMembers = Array.isArray(child?.members) ? child.members : [];
+    const radius = 0.11 + Math.min(childMembers.length, 6) * 0.016;
+    return Math.max(maxRadius, childPosition.length() + radius);
+  }, 0);
+  return Math.max(baseRadius, childRadius);
+}
+
+function resolveComposerGraphicTargetContactPosition(
+  target,
+  overlayCenter,
+  assemblyCenters = new Map(),
+  documentData = composerCurrentDocument
+) {
+  const targetPosition = resolveComposerGraphicTargetPosition(target, assemblyCenters, documentData);
+  if (!targetPosition) {
+    return null;
+  }
+  if (target?.type !== "assembly") {
+    return targetPosition;
+  }
+  const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
+  const assembly = assemblies.find((entry) => entry?.id === target.assemblyId);
+  const radius = getComposerAssemblyGraphicTargetRadius(assembly);
+  if (!(radius > 0)) {
+    return targetPosition;
+  }
+  const direction = overlayCenter.clone().sub(targetPosition);
+  if (direction.lengthSq() <= 0.000001) {
+    return targetPosition.clone().add(new THREE.Vector3(radius, 0, 0));
+  }
+  return targetPosition.clone().add(direction.normalize().multiplyScalar(radius));
+}
+
 function getComposerAssemblyLetter(index = 0) {
   let value = Math.max(0, Number(index) || 0);
   let label = "";
@@ -7034,20 +7089,6 @@ function addComposerGraphicOverlayVisual(overlay) {
   calloutLine.userData.overlayId = overlay.id;
   group.add(calloutLine);
 
-  const anchorPin = new THREE.Mesh(
-    new THREE.SphereGeometry(0.024, 12, 10),
-    new THREE.MeshBasicMaterial({
-      color: 0xffd690,
-      transparent: true,
-      opacity: 0.92,
-      depthTest: false,
-      depthWrite: false,
-    })
-  );
-  anchorPin.renderOrder = 18;
-  anchorPin.userData.overlayId = overlay.id;
-  group.add(anchorPin);
-
   const textSprite = createComposerGraphicOverlayTextSprite(overlay.text, haloRadius);
   textSprite.userData.overlayId = overlay.id;
   textSprite.userData.isComposerGraphicHandle = true;
@@ -7059,7 +7100,6 @@ function addComposerGraphicOverlayVisual(overlay) {
   composerGraphicOverlayHandleMeshes.push(textSprite);
 
   group.userData.calloutLine = calloutLine;
-  group.userData.anchorPin = anchorPin;
   group.userData.textSprite = textSprite;
   group.userData.radius = haloRadius;
   group.userData.textSignature = "";
@@ -7082,17 +7122,19 @@ function updateComposerGraphicOverlayVisuals(timeSeconds, documentData, assembly
     if (!isActive) {
       return;
     }
-    const anchorPosition =
+    const targetPosition =
       resolveComposerGraphicTargetPosition(overlay.target, assemblyCenters, documentData) ??
       new THREE.Vector3();
     const offset = vectorFromTriplet(overlay.offset ?? [0, 0, 0]);
-    const sphereCenter = anchorPosition.clone().add(offset);
+    const sphereCenter = targetPosition.clone().add(offset);
+    const anchorPosition =
+      resolveComposerGraphicTargetContactPosition(overlay.target, sphereCenter, assemblyCenters, documentData) ??
+      targetPosition;
     group.position.copy(sphereCenter);
     group.userData.anchorPosition = anchorPosition.clone();
     group.userData.radius = Math.max(0.18, Number(overlay.size ?? 0.42) || 0.42);
 
     const calloutLine = group.userData.calloutLine ?? null;
-    const anchorPin = group.userData.anchorPin ?? null;
     const radius = group.userData.radius;
     const textSprite = group.userData.textSprite ?? null;
     const nextSignature = `${overlay.text}|${radius.toFixed(3)}`;
@@ -7105,10 +7147,7 @@ function updateComposerGraphicOverlayVisuals(timeSeconds, documentData, assembly
       const endPoint = direction.lengthSq() > 0.0001
         ? direction.normalize().multiplyScalar(radius * 0.64)
         : new THREE.Vector3(-radius * 0.64, 0, 0);
-      calloutLine.geometry.setFromPoints([offset.clone().negate(), endPoint]);
-    }
-    if (anchorPin) {
-      anchorPin.position.copy(offset.clone().negate());
+      calloutLine.geometry.setFromPoints([anchorPosition.clone().sub(sphereCenter), endPoint]);
     }
   });
 }
