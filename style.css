@@ -1620,6 +1620,56 @@ body {
   touch-action: none;
 }
 
+.composer-viewport-overlays {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.composer-media-overlay {
+  position: absolute;
+  display: none;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(190, 212, 255, 0.32);
+  background: rgba(10, 12, 24, 0.58);
+  box-shadow:
+    0 0 0 1px rgba(190, 212, 255, 0.08),
+    0 10px 30px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(4px);
+  pointer-events: auto;
+}
+
+.composer-media-overlay.is-visible {
+  display: block;
+}
+
+.composer-media-overlay-media {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: rgba(6, 8, 16, 0.7);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.composer-media-overlay-handle {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 237, 255, 0.7);
+  background: rgba(130, 196, 255, 0.9);
+  box-shadow: 0 0 14px rgba(130, 196, 255, 0.36);
+  cursor: nwse-resize;
+  pointer-events: auto;
+}
+
 .composer-canvas-hud {
   position: absolute;
   left: 10px;
@@ -1754,6 +1804,18 @@ body {
   background: rgba(118, 183, 255, 0.22);
   border: 1px solid rgba(168, 214, 255, 0.62);
   box-shadow: inset 0 0 0 1px rgba(214, 237, 255, 0.06);
+}
+
+.composer-timeline-band.is-image {
+  background: rgba(255, 131, 176, 0.22);
+  border: 1px solid rgba(255, 179, 205, 0.62);
+  box-shadow: inset 0 0 0 1px rgba(255, 227, 236, 0.06);
+}
+
+.composer-timeline-band.is-video {
+  background: rgba(255, 112, 112, 0.22);
+  border: 1px solid rgba(255, 168, 168, 0.62);
+  box-shadow: inset 0 0 0 1px rgba(255, 225, 225, 0.06);
 }
 
 .composer-timeline-band.is-reaction {

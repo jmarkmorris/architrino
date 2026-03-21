@@ -121,6 +121,7 @@ const composerStatus = document.getElementById("composer-status");
 const composerJsonPreview = document.getElementById("composer-json-preview");
 const composerCanvas = document.getElementById("composer-canvas");
 const composerCanvasWrap = composerCanvas?.parentElement ?? null;
+const composerViewportOverlays = document.getElementById("composer-viewport-overlays");
 const composerAssemblyMenu = document.getElementById("composer-assembly-menu");
 const composerPathModeSelect = document.getElementById("composer-path-mode");
 const composerPathResetButton = document.getElementById("composer-path-reset");
@@ -160,6 +161,16 @@ const composerTimelineReactions = document.getElementById("composer-timeline-rea
 const composerTimelineMarkers = document.getElementById("composer-timeline-markers");
 const composerTimelinePlayhead = document.getElementById("composer-timeline-playhead");
 const composerLibraryStorageKey = "architrino.composer.library.v1";
+const composerMediaAssetDirectories = {
+  image: "content/assets/composer/images/",
+  video: "content/assets/composer/video/",
+  audio: "content/assets/composer/audio/",
+};
+const composerSupportedMediaExtensions = {
+  image: ["jpg", "jpeg", "png", "svg"],
+  video: ["mp4", "mov"],
+  audio: ["mp3"],
+};
 const defaultRootLayoutMarginPx = { x: 160, y: 140 };
 let zoomToastTimeoutId = null;
 let zoomToastDismissedForSession = false;
@@ -1371,18 +1382,94 @@ function getComposerGraphicDefaultOffset(size = 0.42) {
   ];
 }
 
+function getComposerOverlayKind(overlay) {
+  const kind = String(overlay?.kind ?? "graphic").trim().toLowerCase();
+  return kind === "image" || kind === "video" || kind === "audio" ? kind : "graphic";
+}
+
+function getComposerMediaDefaultRect(kind = "image") {
+  return kind === "video"
+    ? { x: 0.62, y: 0.14, width: 0.26, height: 0.146 }
+    : { x: 0.6, y: 0.16, width: 0.24, height: 0.24 };
+}
+
+function normalizeComposerMediaRect(rawRect, kind = "image") {
+  const fallback = getComposerMediaDefaultRect(kind);
+  const x = clamp(Number(rawRect?.x ?? fallback.x) || fallback.x, 0, 0.92);
+  const y = clamp(Number(rawRect?.y ?? fallback.y) || fallback.y, 0, 0.92);
+  const width = clamp(Number(rawRect?.width ?? fallback.width) || fallback.width, 0.08, 0.86);
+  const height = clamp(Number(rawRect?.height ?? fallback.height) || fallback.height, 0.08, 0.86);
+  return {
+    x: Number(Math.min(x, 1 - width).toFixed(4)),
+    y: Number(Math.min(y, 1 - height).toFixed(4)),
+    width: Number(width.toFixed(4)),
+    height: Number(height.toFixed(4)),
+  };
+}
+
+function sanitizeComposerMediaSource(rawSource, kind = "image") {
+  const source = String(rawSource ?? "").trim();
+  if (!source) {
+    return "";
+  }
+  const normalized = source.replace(/\\/g, "/");
+  const extension = normalized.includes(".")
+    ? normalized.slice(normalized.lastIndexOf(".") + 1).toLowerCase()
+    : "";
+  const supported = composerSupportedMediaExtensions[kind] ?? [];
+  return supported.includes(extension) ? normalized : "";
+}
+
+function getComposerMediaOverlayLabel(overlay) {
+  const source = String(overlay?.source ?? "").trim();
+  const label = String(overlay?.label ?? "").trim();
+  const base = label || (source ? source.split("/").pop() ?? "" : "") || (getComposerOverlayKind(overlay) === "video" ? "Video" : "Image");
+  return base.length > 24 ? `${base.slice(0, 24).trimEnd()}...` : base;
+}
+
 function getComposerGraphicOverlayLabel(overlay) {
   const text = String(overlay?.label ?? overlay?.text ?? "Graphic").trim() || "Graphic";
   return text.length > 24 ? `${text.slice(0, 24).trimEnd()}...` : text;
 }
 
 function normalizeComposerGraphicOverlayDraft(overlay = {}, index = 0, duration = 12) {
+  const kind = getComposerOverlayKind(overlay);
   const fallbackTarget = getComposerGraphicDefaultTarget();
   const span = clampComposerTimelineSpan(
     overlay?.start ?? 0,
     overlay?.end ?? composerTimelineMinDurationSeconds,
     duration
   );
+  if (kind === "image" || kind === "video" || kind === "audio") {
+    const source = sanitizeComposerMediaSource(
+      overlay?.source,
+      kind
+    );
+    const fallbackDirectory = composerMediaAssetDirectories[kind] ?? "";
+    const rect = normalizeComposerMediaRect(overlay?.rect, kind);
+    const label = getComposerMediaOverlayLabel({
+      ...overlay,
+      kind,
+      source: source || fallbackDirectory,
+    });
+    return {
+      id: sanitizeComposerEntityId(overlay?.id, `overlay_${index + 1}`),
+      kind,
+      type: `viewport_${kind}`,
+      label,
+      text: "",
+      start: span.start,
+      end: span.end,
+      size: Number((overlay?.size ?? 1).toFixed?.(3) ?? 1),
+      rect,
+      source,
+      fit: "contain",
+      muted: true,
+      offset: [0, 0, 0],
+      target: null,
+      style: typeof overlay?.style === "object" && overlay.style ? { ...overlay.style } : {},
+    };
+  }
   const size = clamp(Number(overlay?.size ?? overlay?.radius ?? 0.42) || 0.42, 0.18, 2.4);
   const target = sanitizeComposerGraphicTarget(overlay?.target, fallbackTarget?.assemblyId ?? "");
   const offsetSource = Array.isArray(overlay?.offset) && overlay.offset.length >= 3
@@ -1437,6 +1524,12 @@ function getNextComposerGraphicOverlayId() {
 function getComposerGraphicTimelineOverlays(documentData = composerCurrentDocument) {
   return (Array.isArray(documentData?.overlays) ? documentData.overlays : []).filter(
     (overlay) => overlay?.kind === "graphic"
+  );
+}
+
+function getComposerViewportMediaTimelineOverlays(documentData = composerCurrentDocument) {
+  return (Array.isArray(documentData?.overlays) ? documentData.overlays : []).filter(
+    (overlay) => overlay?.kind === "image" || overlay?.kind === "video"
   );
 }
 
@@ -5125,6 +5218,7 @@ function clearComposerViewportVisuals() {
   });
   composerGraphicOverlayGroups = [];
   composerGraphicOverlayHandleMeshes = [];
+  clearComposerViewportMediaOverlays();
   composerMemberAnchors = new Map();
   if (composerDocumentCameraPathLine) {
     composerViewportGroup?.remove(composerDocumentCameraPathLine);
@@ -5674,21 +5768,25 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     return;
   }
   const documentData = composerCurrentDocument;
+  const overlays = Array.isArray(documentData?.overlays) ? documentData.overlays : [];
   const graphics = getComposerGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const reactionId = options.reactionId ?? null;
-  const graphicId = options.graphicId ?? options.markerId ?? null;
+  const overlayId = options.overlayId ?? options.graphicId ?? options.markerId ?? null;
   const pauseId = options.pauseId ?? null;
   const warpId = options.warpId ?? null;
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
-  const graphic = graphicId ? graphics.find((entry) => entry?.id === graphicId) ?? null : null;
+  const overlay = overlayId ? overlays.find((entry) => entry?.id === overlayId) ?? null : null;
+  const graphic = overlay?.kind === "graphic" ? overlay : null;
+  const imageOverlay = overlay?.kind === "image" ? overlay : null;
+  const videoOverlay = overlay?.kind === "video" ? overlay : null;
   const pause = pauseId ? pauses.find((entry) => entry?.id === pauseId) ?? null : null;
   const warp = warpId ? timeWarps.find((entry) => entry?.id === warpId) ?? null : null;
   const reaction = reactionId ? reactions.find((entry) => entry?.id === reactionId) ?? null : null;
   const timeSeconds =
     options.timeSeconds ??
-    graphic?.start ??
+    overlay?.start ??
     pause?.start ??
     warp?.start ??
     reaction?.start ??
@@ -5700,8 +5798,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       ? "warp"
       : pause
         ? "pause"
-        : graphic
-          ? "graphic"
+        : overlay
+          ? overlay.kind
           : "add";
   const requestedAddType = String(options.addType ?? "graphic").trim().toLowerCase();
   const validAddTypes = new Set([
@@ -5724,6 +5822,10 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       ? "Add"
       : editKind === "graphic"
         ? "Graphic"
+        : editKind === "image"
+          ? "Image"
+          : editKind === "video"
+            ? "Video"
         : editKind === "pause"
           ? "Pause"
           : editKind === "warp"
@@ -5742,6 +5844,10 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           ? `Pause ${formatComposerTimeLabel(pause.duration)} @ ${formatComposerTimeLabel(pause.start)}`
           : editKind === "graphic" && graphic
             ? `${getComposerGraphicOverlayLabel(graphic)} @ ${formatComposerTimeLabel(graphic.start)}-${formatComposerTimeLabel(graphic.end)}`
+            : editKind === "image" && imageOverlay
+              ? `${getComposerMediaOverlayLabel(imageOverlay)} @ ${formatComposerTimeLabel(imageOverlay.start)}-${formatComposerTimeLabel(imageOverlay.end)}`
+              : editKind === "video" && videoOverlay
+                ? `${getComposerMediaOverlayLabel(videoOverlay)} @ ${formatComposerTimeLabel(videoOverlay.start)}-${formatComposerTimeLabel(videoOverlay.end)}`
             : `At ${formatComposerTimeLabel(timeSeconds)}`;
   composerAssemblyMenu.appendChild(subtitle);
 
@@ -5850,6 +5956,108 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           className: "composer-assembly-menu-danger",
           onClick: () => {
             const overlayIndex = getComposerGraphicOverlayDraftIndexById(graphic.id);
+            if (overlayIndex >= 0) {
+              composerGraphicOverlayDrafts.splice(overlayIndex, 1);
+            }
+            closeComposerAssemblyMenu();
+            renderComposerJsonPreview();
+          },
+        },
+      ]);
+    }
+  };
+
+  const appendMediaBlock = (kind) => {
+    const currentOverlay = kind === "image" ? imageOverlay : videoOverlay;
+    const initialSpan = clampComposerTimelineSpan(
+      currentOverlay?.start ?? timeSeconds,
+      currentOverlay?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
+      duration
+    );
+    const initialDraft = normalizeComposerGraphicOverlayDraft(
+      currentOverlay ?? {
+        id: getNextComposerGraphicOverlayId(),
+        kind,
+        start: initialSpan.start,
+        end: initialSpan.end,
+        source: "",
+        rect: getComposerMediaDefaultRect(kind),
+      },
+      Math.max(0, getComposerGraphicOverlayDraftIndexById(currentOverlay?.id)),
+      duration
+    );
+    const mediaBlock = appendComposerMenuBlock(
+      composerAssemblyMenu,
+      kind === "image" ? "Image" : "Video",
+      {
+        text: currentOverlay ? "Save" : "Add",
+        onClick: () => {
+          const start = Number(mediaStartInput?.value);
+          const end = Number(mediaEndInput?.value);
+          const source = sanitizeComposerMediaSource(mediaSourceInput?.value, kind);
+          if (!Number.isFinite(start) || !Number.isFinite(end) || !source) {
+            return;
+          }
+          const span = clampComposerTimelineSpan(start, end, duration);
+          const nextOverlay = normalizeComposerGraphicOverlayDraft(
+            {
+              ...(currentOverlay ?? initialDraft),
+              id: currentOverlay?.id ?? initialDraft.id,
+              kind,
+              start: span.start,
+              end: span.end,
+              source,
+              label: source.split("/").pop() ?? (kind === "image" ? "Image" : "Video"),
+              rect: currentOverlay?.rect ?? initialDraft.rect,
+            },
+            Math.max(0, getComposerGraphicOverlayDraftIndexById(currentOverlay?.id)),
+            duration
+          );
+          const existingIndex = getComposerGraphicOverlayDraftIndexById(nextOverlay.id);
+          if (existingIndex >= 0) {
+            composerGraphicOverlayDrafts[existingIndex] = nextOverlay;
+          } else {
+            composerGraphicOverlayDrafts.push(nextOverlay);
+          }
+          closeComposerAssemblyMenu();
+          renderComposerJsonPreview();
+        },
+      }
+    );
+    const mediaForm = document.createElement("div");
+    mediaForm.className = "composer-form composer-assembly-menu-grid-2";
+    const mediaStartInput = appendComposerMenuField(mediaForm, {
+      label: "Start (s)",
+      type: "number",
+      value: initialSpan.start,
+      step: 0.1,
+      min: 0,
+    });
+    const mediaEndInput = appendComposerMenuField(mediaForm, {
+      label: "End (s)",
+      type: "number",
+      value: initialSpan.end,
+      step: 0.1,
+      min: 0,
+    });
+    const mediaSourceInput = appendComposerMenuField(mediaForm, {
+      label: "Asset Path",
+      value: initialDraft.source,
+      placeholder: composerMediaAssetDirectories[kind],
+    });
+    mediaSourceInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
+    mediaBlock?.block?.appendChild(mediaForm);
+    appendComposerMenuNote(
+      mediaBlock?.block,
+      `Use ${composerMediaAssetDirectories[kind]}. Drag the rectangle to place it, and drag the corner to resize it.`
+    );
+    if (currentOverlay?.id) {
+      appendComposerMenuButtonRow(mediaBlock?.block, [
+        {
+          text: `Remove ${kind === "image" ? "Image" : "Video"}`,
+          className: "composer-assembly-menu-danger",
+          onClick: () => {
+            const overlayIndex = getComposerGraphicOverlayDraftIndexById(currentOverlay.id);
             if (overlayIndex >= 0) {
               composerGraphicOverlayDrafts.splice(overlayIndex, 1);
             }
@@ -6133,20 +6341,16 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
 
     if (addType === "graphic") {
       appendGraphicBlock();
+    } else if (addType === "image") {
+      appendMediaBlock("image");
+    } else if (addType === "video") {
+      appendMediaBlock("video");
     } else if (addType === "pause") {
       appendPauseBlock();
     } else if (addType === "warp") {
       appendWarpBlock();
     } else if (addType === "reaction") {
       appendReactionBlock();
-    } else if (addType === "image") {
-      appendPlaceholderBlock("Image", [
-        "Planned for image overlays with fade, target attachment, and timing controls.",
-      ]);
-    } else if (addType === "video") {
-      appendPlaceholderBlock("Video", [
-        "Planned for embedded clips, synchronized playback windows, and timeline fades.",
-      ]);
     } else if (addType === "audio") {
       appendPlaceholderBlock("Audio", [
         "Planned for narration, accent sounds, and level automation on the shared scene timeline.",
@@ -6159,6 +6363,10 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     }
   } else if (editKind === "graphic") {
     appendGraphicBlock();
+  } else if (editKind === "image") {
+    appendMediaBlock("image");
+  } else if (editKind === "video") {
+    appendMediaBlock("video");
   } else if (editKind === "pause") {
     appendPauseBlock();
   } else if (editKind === "warp") {
@@ -6173,7 +6381,12 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     timelineMenuWidth,
     editKind === "reaction" || (editKind === "add" && addType === "reaction")
       ? 432
-      : editKind === "graphic" || (editKind === "add" && addType === "graphic")
+      : (
+          editKind === "graphic" ||
+          editKind === "image" ||
+          editKind === "video" ||
+          (editKind === "add" && (addType === "graphic" || addType === "image" || addType === "video"))
+        )
         ? 392
       : editKind === "add"
         ? 332
@@ -6376,6 +6589,8 @@ function renderComposerTimeline(documentData) {
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
+  const graphics = getComposerGraphicTimelineOverlays(documentData);
+  const mediaOverlays = getComposerViewportMediaTimelineOverlays(documentData);
 
   timeWarps.forEach((warp) => {
     const start = getComposerTimelineFraction(documentData, warp.start);
@@ -6448,6 +6663,22 @@ function renderComposerTimeline(documentData) {
       label
     );
     band.dataset.overlayId = graphic.id ?? "";
+    composerTimelineMarkers?.appendChild(band);
+  });
+
+  mediaOverlays.forEach((overlay) => {
+    const start = getComposerTimelineFraction(documentData, overlay.start);
+    const end = getComposerTimelineFraction(documentData, overlay.end);
+    const label = getComposerMediaOverlayLabel(overlay);
+    const band = createComposerTimelineBand(
+      start,
+      end,
+      overlay.kind === "video" ? "is-video" : "is-image",
+      `${label}: ${formatComposerTimeLabel(overlay.start)} to ${formatComposerTimeLabel(overlay.end)}`,
+      label
+    );
+    band.dataset.overlayId = overlay.id ?? "";
+    band.dataset.overlayKind = overlay.kind ?? "";
     composerTimelineMarkers?.appendChild(band);
   });
 }
@@ -6878,6 +7109,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
   } catch (error) {
     console.error("Composer graphic overlay update failed.", error);
   }
+  updateComposerViewportMediaOverlays(timeSeconds, composerCurrentDocument);
   updateComposerDocumentCameraPreview(timeSeconds, composerCurrentDocument);
 }
 
@@ -7148,6 +7380,203 @@ function updateComposerGraphicOverlayVisuals(timeSeconds, documentData, assembly
         ? direction.normalize().multiplyScalar(radius * 0.64)
         : new THREE.Vector3(-radius * 0.64, 0, 0);
       calloutLine.geometry.setFromPoints([anchorPosition.clone().sub(sphereCenter), endPoint]);
+    }
+  });
+}
+
+function setComposerViewportMediaOverlayFrame(element, rect) {
+  if (!element || !rect) {
+    return;
+  }
+  element.style.left = `${rect.x * 100}%`;
+  element.style.top = `${rect.y * 100}%`;
+  element.style.width = `${rect.width * 100}%`;
+  element.style.height = `${rect.height * 100}%`;
+}
+
+function clearComposerViewportMediaOverlays() {
+  composerViewportMediaOverlayElements.forEach((element) => {
+    element?.remove?.();
+  });
+  composerViewportMediaOverlayElements.clear();
+}
+
+function createComposerViewportMediaOverlayElement(overlay) {
+  if (!composerViewportOverlays || !overlay?.id || !(overlay.kind === "image" || overlay.kind === "video")) {
+    return null;
+  }
+  const wrapper = document.createElement("div");
+  wrapper.className = "composer-media-overlay";
+  wrapper.dataset.overlayId = overlay.id;
+  wrapper.dataset.overlayKind = overlay.kind;
+
+  const mediaElement = document.createElement(overlay.kind === "video" ? "video" : "img");
+  mediaElement.className = "composer-media-overlay-media";
+  if (overlay.kind === "video") {
+    mediaElement.muted = overlay.muted !== false;
+    mediaElement.loop = false;
+    mediaElement.playsInline = true;
+    mediaElement.preload = "metadata";
+    mediaElement.controls = false;
+  } else {
+    mediaElement.alt = overlay.label ?? "Image overlay";
+    mediaElement.decoding = "async";
+    mediaElement.draggable = false;
+  }
+  if (overlay.source) {
+    if (overlay.kind === "video") {
+      mediaElement.src = overlay.source;
+    } else {
+      mediaElement.src = overlay.source;
+    }
+  }
+  wrapper.appendChild(mediaElement);
+
+  const handle = document.createElement("div");
+  handle.className = "composer-media-overlay-handle";
+  wrapper.appendChild(handle);
+
+  const endInteraction = (event) => {
+    const state = wrapper.__composerDragState;
+    if (!state || (event && state.pointerId !== event.pointerId)) {
+      return;
+    }
+    wrapper.__composerDragState = null;
+    if (wrapper.hasPointerCapture?.(state.pointerId)) {
+      wrapper.releasePointerCapture(state.pointerId);
+    }
+    renderComposerJsonPreview();
+  };
+
+  const startInteraction = (mode, event) => {
+    if (event.button !== 0) {
+      return;
+    }
+    const draftOverlay = getComposerGraphicOverlayDraftById(overlay.id);
+    if (!draftOverlay) {
+      return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    closeComposerAssemblyMenu();
+    wrapper.__composerDragState = {
+      mode,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startRect: { ...(draftOverlay.rect ?? getComposerMediaDefaultRect(draftOverlay.kind)) },
+      aspect:
+        Number(draftOverlay?.rect?.width ?? 0) > 0 && Number(draftOverlay?.rect?.height ?? 0) > 0
+          ? Number(draftOverlay.rect.width) / Number(draftOverlay.rect.height)
+          : overlay.kind === "video"
+            ? 16 / 9
+            : 1,
+    };
+    wrapper.setPointerCapture?.(event.pointerId);
+  };
+
+  wrapper.addEventListener("pointerdown", (event) => {
+    if (event.target === handle) {
+      return;
+    }
+    startInteraction("move", event);
+  });
+  handle.addEventListener("pointerdown", (event) => {
+    startInteraction("resize", event);
+  });
+  wrapper.addEventListener("pointermove", (event) => {
+    const state = wrapper.__composerDragState;
+    if (!state || state.pointerId !== event.pointerId || !composerCanvasWrap) {
+      return;
+    }
+    const draftOverlay = getComposerGraphicOverlayDraftById(overlay.id);
+    if (!draftOverlay) {
+      return;
+    }
+    event.preventDefault();
+    const wrapRect = composerCanvasWrap.getBoundingClientRect();
+    const dx = wrapRect.width ? (event.clientX - state.startX) / wrapRect.width : 0;
+    const dy = wrapRect.height ? (event.clientY - state.startY) / wrapRect.height : 0;
+    if (state.mode === "move") {
+      draftOverlay.rect = normalizeComposerMediaRect({
+        x: state.startRect.x + dx,
+        y: state.startRect.y + dy,
+        width: state.startRect.width,
+        height: state.startRect.height,
+      }, draftOverlay.kind);
+    } else {
+      const nextWidth = clamp(state.startRect.width + dx, 0.08, 0.86);
+      const aspect = Math.max(0.2, state.aspect || 1);
+      let nextHeight = nextWidth / aspect;
+      if (state.startRect.y + nextHeight > 0.96) {
+        nextHeight = 0.96 - state.startRect.y;
+      }
+      draftOverlay.rect = normalizeComposerMediaRect({
+        x: state.startRect.x,
+        y: state.startRect.y,
+        width: nextWidth,
+        height: nextHeight,
+      }, draftOverlay.kind);
+    }
+    setComposerViewportMediaOverlayFrame(wrapper, draftOverlay.rect);
+  });
+  wrapper.addEventListener("pointerup", endInteraction);
+  wrapper.addEventListener("pointercancel", endInteraction);
+  wrapper.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    openComposerTimelineMenuAt(event.clientX, event.clientY, {
+      overlayId: overlay.id,
+    });
+  });
+
+  composerViewportOverlays.appendChild(wrapper);
+  composerViewportMediaOverlayElements.set(overlay.id, wrapper);
+  setComposerViewportMediaOverlayFrame(wrapper, overlay.rect ?? getComposerMediaDefaultRect(overlay.kind));
+  return wrapper;
+}
+
+function syncComposerViewportMediaOverlays(documentData) {
+  clearComposerViewportMediaOverlays();
+  const overlays = getComposerViewportMediaTimelineOverlays(documentData);
+  overlays.forEach((overlay) => {
+    createComposerViewportMediaOverlayElement(overlay);
+  });
+}
+
+function updateComposerViewportMediaOverlays(timeSeconds, documentData) {
+  const overlays = getComposerViewportMediaTimelineOverlays(documentData);
+  const overlayById = new Map(overlays.map((overlay) => [overlay.id, overlay]));
+  composerViewportMediaOverlayElements.forEach((element, overlayId) => {
+    const overlay = overlayById.get(overlayId);
+    const mediaElement = element?.querySelector?.(".composer-media-overlay-media");
+    if (!overlay || !mediaElement) {
+      element?.classList.remove("is-visible");
+      return;
+    }
+    setComposerViewportMediaOverlayFrame(element, overlay.rect ?? getComposerMediaDefaultRect(overlay.kind));
+    const isActive = isComposerTimeWithinSpan(timeSeconds, overlay.start, overlay.end);
+    element.classList.toggle("is-visible", isActive);
+    if (!isActive) {
+      if (overlay.kind === "video") {
+        mediaElement.pause?.();
+      }
+      return;
+    }
+    if (overlay.kind === "video") {
+      const localTime = Math.max(0, timeSeconds - overlay.start);
+      if (!composerPlaybackState.playing || Math.abs((mediaElement.currentTime ?? 0) - localTime) > 0.25) {
+        try {
+          mediaElement.currentTime = localTime;
+        } catch (_error) {
+          // Ignore sync failures while metadata is still loading.
+        }
+      }
+      if (composerPlaybackState.playing) {
+        mediaElement.play?.().catch?.(() => {});
+      } else {
+        mediaElement.pause?.();
+      }
     }
   });
 }
@@ -7512,6 +7941,7 @@ function updateComposerViewportFromDocument(documentData) {
       console.error("Composer graphic overlay setup failed.", overlay?.id, error);
     }
   });
+  syncComposerViewportMediaOverlays(documentData);
   addComposerDocumentCameraVisuals(documentData);
   applyComposerViewportDisplayState();
 
@@ -8131,13 +8561,13 @@ function onComposerTimelineContextMenu(event) {
   }
   event.preventDefault();
   closeComposerAssemblyMenu();
-  const graphicBand = event.target.closest?.(".composer-timeline-band.is-graphic");
+  const overlayBand = event.target.closest?.(".composer-timeline-band.is-graphic, .composer-timeline-band.is-image, .composer-timeline-band.is-video");
   const pauseBand = event.target.closest?.(".composer-timeline-band.is-pause");
   const warpBand = event.target.closest?.(".composer-timeline-band.is-warp");
   const reactionBand = event.target.closest?.(".composer-timeline-band.is-reaction");
   openComposerTimelineMenuAt(event.clientX, event.clientY, {
     timeSeconds: getComposerTimelineTimeAtClientX(event.clientX, composerCurrentDocument),
-    graphicId: graphicBand?.dataset?.overlayId ?? null,
+    overlayId: overlayBand?.dataset?.overlayId ?? null,
     pauseId: pauseBand?.dataset?.pauseId ?? null,
     warpId: warpBand?.dataset?.warpId ?? null,
     reactionId: reactionBand?.dataset?.reactionId ?? null,
@@ -8690,6 +9120,7 @@ let composerMemberAnchors = new Map();
 let composerMemberLabelSprites = [];
 let composerGraphicOverlayGroups = [];
 let composerGraphicOverlayHandleMeshes = [];
+let composerViewportMediaOverlayElements = new Map();
 let composerDocumentCameraPathLine = null;
 let composerDocumentCameraWaypointMeshes = [];
 let composerDocumentCameraShotMesh = null;

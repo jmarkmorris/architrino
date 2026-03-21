@@ -77,6 +77,35 @@ The current requirements/design posture is now more specific than when this note
 - Large persistent text forms should not be reintroduced unless there is no workable canvas-first alternative.
 - Context menus are not a side convenience. They are now part of the intended authoring grammar for assembly, path, timeline, and scene actions.
 
+### Immediate media support boundary
+
+The composer should keep imported reference media on a deliberately narrow support boundary.
+
+For the current webapp phase, support should be:
+
+- images: `jpg`, `jpeg`, `png`, `svg`;
+- video: `mp4`, `mov`;
+- audio: `mp3`.
+
+The current design should explicitly not broaden into `webp`, `webm`, `aac`, or `m4a` during this pass. The point is not maximal browser-format breadth. The point is a small, legible authoring contract that covers the most common academic and studio source material without turning the composer into a generic ingest tool.
+
+Imported media should live in organized repo directories rather than in one flat dump:
+
+- `content/assets/composer/images/`
+- `content/assets/composer/video/`
+- `content/assets/composer/audio/`
+
+That organization is preferable because the composer is already handling multiple overlay classes with different lifecycle and review concerns. Separate directories will make references, cleanup, and future package/export behavior much easier to reason about than one mixed asset bucket.
+
+For the first implementation, image and video should be true viewport overlays:
+
+- fixed to screen space rather than embedded in scene space,
+- visible only during their authored timeline span,
+- directly draggable and resizable in the observer view,
+- and not themselves part of the assembly animation grammar.
+
+This keeps the first media pass editorially useful without confusing overlays with world geometry. A later phase can add scene-attached media if there is a strong reason to do so.
+
 ## Observer metaphor and user-facing language
 
 The composer should stop presenting itself as a camera tool. What matters in the authored scene is what the observer sees.

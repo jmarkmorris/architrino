@@ -428,6 +428,18 @@ function normalizeOverlayOffset(rawOffset) {
   return clonePoint(rawOffset ?? [0.6, 0.44, 0]);
 }
 
+function normalizeOverlayRect(rawRect, kind = "image") {
+  const fallback =
+    kind === "video"
+      ? { x: 0.62, y: 0.14, width: 0.26, height: 0.146 }
+      : { x: 0.6, y: 0.16, width: 0.24, height: 0.24 };
+  const width = clampNumber(roundNumber(rawRect?.width ?? fallback.width), 0.08, 0.86);
+  const height = clampNumber(roundNumber(rawRect?.height ?? fallback.height), 0.08, 0.86);
+  const x = clampNumber(roundNumber(rawRect?.x ?? fallback.x), 0, Math.max(0, 1 - width));
+  const y = clampNumber(roundNumber(rawRect?.y ?? fallback.y), 0, Math.max(0, 1 - height));
+  return { x, y, width, height };
+}
+
 function normalizeOverlays(rawOverlays, start, end) {
   if (!Array.isArray(rawOverlays) || !rawOverlays.length) {
     return [];
@@ -447,18 +459,31 @@ function normalizeOverlays(rawOverlays, start, end) {
       if (end - overlayStart >= minimumSpan && overlayEnd - overlayStart < minimumSpan) {
         overlayEnd = clampNumber(overlayStart + minimumSpan, overlayStart, end);
       }
+      const kind = normalizeString(overlay?.kind, "graphic");
       const size = clampNumber(roundNumber(overlay?.size ?? overlay?.radius ?? 0.42), 0.18, 2.4);
       return {
         id: normalizeString(overlay?.id, `overlay_${index + 1}`),
-        kind: normalizeString(overlay?.kind, "graphic"),
-        type: normalizeString(overlay?.type, "text_sphere_callout"),
-        label: normalizeString(overlay?.label ?? overlay?.text, `Graphic ${index + 1}`),
-        text: normalizeString(overlay?.text ?? overlay?.label, `Graphic ${index + 1}`),
+        kind,
+        type: normalizeString(
+          overlay?.type,
+          kind === "graphic" ? "text_sphere_callout" : `viewport_${kind}`
+        ),
+        label: normalizeString(
+          overlay?.label ?? overlay?.text ?? overlay?.source,
+          kind === "video" ? `Video ${index + 1}` : kind === "image" ? `Image ${index + 1}` : `Graphic ${index + 1}`
+        ),
+        text: kind === "graphic"
+          ? normalizeString(overlay?.text ?? overlay?.label, `Graphic ${index + 1}`)
+          : "",
         start: overlayStart,
         end: overlayEnd,
         size,
+        source: normalizeString(overlay?.source, ""),
+        rect: normalizeOverlayRect(overlay?.rect, kind),
+        fit: normalizeString(overlay?.fit, "contain"),
+        muted: overlay?.muted !== false,
         offset: normalizeOverlayOffset(overlay?.offset),
-        target: normalizeOverlayTarget(overlay?.target),
+        target: kind === "graphic" ? normalizeOverlayTarget(overlay?.target) : null,
         style: typeof overlay?.style === "object" && overlay.style ? overlay.style : {},
       };
     })
