@@ -138,33 +138,57 @@ Scoring system:
 
 ### 3. Scene system, composer-II, and next-session composer handoff
 - Value `10`, Cost `3`, ROI `3.33`.
-- The canonical reference lives in [composer.md](composer.md), and the remaining implementation staging lives in [composer-plan.md](composer-plan.md). The immediate task is now a focused canvas-first implementation pass on the current composer.
-- Current composer baseline:
-  - canonical scene-document generation, canonical JSON export, and the shared runtime path for assemblies, per-assembly paths, history traces, envelopes, transfers, reactions, and derived provenance are already in place;
-  - assembly centers use lettered center handles, path points use the owning assembly letter, and camera waypoints use a drawn camera glyph;
-  - assembly editing is now intended to be canvas-first through the assembly center handle and context menus rather than through a persistent left-panel detail editor;
-  - transfer authoring moved to assembly-handle context menus, and reaction authoring moved to timeline context menus;
-  - timing is in the left sidebar, the save/library card is simplified, and the canvas has reclaimed more screen space;
-  - the canvas right-click menu is more compact, with two-column rows where appropriate, and transport was merged into the top scrub/timeline bar.
+- The canonical reference lives in [composer.md](composer.md), and the remaining implementation staging lives in [composer-plan.md](composer-plan.md). Treat this item as the next-session prompt for the current composer webapp.
+- Current composer webapp state, briefly:
+  - canonical scene-document generation, canonical JSON export, and the shared runtime path for assemblies, per-assembly paths, history traces, envelopes, transfers, reactions, and provenance are already in place;
+  - the composer is now strongly canvas-first:
+    - assembly editing is centered on the assembly handle and context menus,
+    - path points remain directly draggable,
+    - transfer authoring happens from assembly-handle menus,
+    - reaction and related timeline authoring happens from timeline context menus,
+    - and the timeline now has an `Add` palette with item-type selection;
+  - the timeline/item work has advanced materially:
+    - `Graphic`, `Pause`, `Warp`, and `Reaction` now behave like real spans,
+    - the current minimum duration floor is `2s`,
+    - and the timeline surface is moving away from point-only editorial events toward visible authored objects;
+  - the left panel has already been reduced substantially, and the app is very close to eliminating it as a major authoring surface.
 - Next-session prompt / active handoff:
-  - continue the composer cleanup as a canvas-first UI;
-  - keep removing or shrinking controls that live in the left panel but really belong on canvas objects or the timeline;
-  - continue moving assembly-specific actions into the assembly center-handle context menu, with special attention to the remaining gaps:
-    - subassembly authoring,
-    - member placement or per-member offsets,
-    - and any assembly-only controls that still require text-heavy UI;
-  - continue moving path-specific actions into path-point or empty-canvas context menus while keeping path markers directly draggable;
-  - preserve and improve marker usability:
-    - keep large hit targets,
-    - keep labels visible,
-    - and check overlapping cases such as the assembly center versus the first path point;
-  - keep the left panel moving toward scene-level controls only and avoid reintroducing large persistent forms unless there is no workable canvas-first alternative;
-  - keep `polyline` support in code but do not restore any UI choice for it unless that is explicitly requested later.
+  - make left-panel elimination the top priority:
+    - the composer is very close to not needing the left panel as a meaningful authoring surface,
+    - so the next pass should aggressively remove, relocate, or shrink anything left there that belongs on the canvas or timeline,
+    - while keeping the canvas dominant and not reintroducing large persistent forms;
+  - refine every `Add` item sub-menu:
+    - the new `Add` palette direction is strong,
+    - but every item-specific submenu still needs refinement to become a real authoring tool rather than a provisional card;
+  - work out actual overlay authoring inside the relevant item menus:
+    - figure out how a user pastes an overlay asset into the composer,
+    - places it,
+    - resizes it,
+    - and deletes it,
+    - all within the specific item add/edit menu rather than through an unrelated side flow;
+  - decide the near-term overlay/object model for timeline items:
+    - especially `Graphic`, `Image`, `Video`, `Audio`, and later annotation-like objects such as arrows, bubbles, and text notes attached to scene objects;
+  - decide how much brand design language to retain in the app for a consistent look and feel:
+    - the composer UI has become genuinely innovative,
+    - but it now needs a more explicit decision about what visual identity should persist across menus, controls, overlays, and viewport tooling;
+    - schedule a future design review pass rather than letting the visual language drift;
+  - decide how timeline zoom should work:
+    - long animations will make `2s` spans very small in the full-width timeline,
+    - which means some items may become barely visible or effectively unclickable,
+    - so the composer needs a way to zoom into a portion of the timeline and work locally at a finer scale;
+  - keep the timeline authoring philosophy span-based:
+    - visible authored items should continue to behave as real time intervals rather than near-instant point events,
+    - with enough duration that viewers can actually notice them;
+  - keep path and assembly editing canvas-first:
+    - continue moving any remaining assembly-only actions into the assembly center-handle context menu,
+    - continue moving path-specific actions into path-point or empty-canvas menus,
+    - and preserve large hit targets plus overlap handling for nearby interactive elements.
 - Guardrails for the next pass:
-  - the user wants the composer to be visual, canvas-first, and light on persistent text authoring;
-  - anything about a given assembly should be managed through that assembly's center control point;
+  - the user wants the composer to stay visual, canvas-first, and light on persistent text authoring;
+  - anything about a given assembly should be managed through that assembly's center control point where practical;
   - path markers should remain directly draggable;
-  - the canvas should keep gaining screen real estate as panels shrink;
+  - timeline items should become more authorable, not more abstract;
+  - preserve consistent look and feel as the UI gets richer;
   - do not make unrelated changes.
 - End-of-session checks after code changes:
   - `node --check app.js`

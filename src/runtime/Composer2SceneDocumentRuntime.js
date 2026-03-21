@@ -293,16 +293,19 @@ function normalizeReactions(rawReactions, transfers, start, end) {
   );
   return rawReactions
     .map((reaction, index) => {
-      const reactionStart = clampNumber(
+      const minimumSpan = Math.min(composerMinimumTimelineItemDurationSeconds, Math.max(0, end - start));
+      let reactionStart = clampNumber(
         roundNumber(reaction?.start ?? reaction?.timing?.start ?? start),
         start,
         end
       );
-      const reactionEnd = clampNumber(
-        roundNumber(reaction?.end ?? reaction?.timing?.end ?? end),
-        reactionStart,
-        end
-      );
+      if (end - start >= minimumSpan) {
+        reactionStart = clampNumber(reactionStart, start, end - minimumSpan);
+      }
+      let reactionEnd = clampNumber(roundNumber(reaction?.end ?? reaction?.timing?.end ?? end), reactionStart, end);
+      if (end - reactionStart >= minimumSpan && reactionEnd - reactionStart < minimumSpan) {
+        reactionEnd = clampNumber(reactionStart + minimumSpan, reactionStart, end);
+      }
       if (reactionEnd <= reactionStart) {
         return null;
       }
@@ -385,15 +388,21 @@ function normalizeMarkers(rawMarkers, start, end) {
   return rawMarkers
     .map((marker, index) => {
       const t = clampNumber(roundNumber(marker?.t ?? start), start, end);
+      const kind = normalizeString(marker?.kind, "cue");
+      const minimumSpan = kind === "graphic" ? Math.min(2, Math.max(0, end - t)) : 0;
+      const markerEnd = clampNumber(roundNumber(marker?.end ?? (t + minimumSpan)), t, end);
       return {
         id: normalizeString(marker?.id, `marker_${index + 1}`),
         t,
-        kind: normalizeString(marker?.kind, "cue"),
+        end: markerEnd,
+        kind,
         label: normalizeString(marker?.label, `Marker ${index + 1}`),
       };
     })
     .sort((left, right) => left.t - right.t);
 }
+
+const composerMinimumTimelineItemDurationSeconds = 2;
 
 function normalizePauses(rawPauses, start, end) {
   if (!Array.isArray(rawPauses) || !rawPauses.length) {
@@ -403,7 +412,11 @@ function normalizePauses(rawPauses, start, end) {
     .map((pause, index) => {
       const pauseStart = clampNumber(roundNumber(pause?.start ?? start), start, end);
       const maxDuration = Math.max(0, end - pauseStart);
-      const duration = clampNumber(roundNumber(pause?.duration ?? 0), 0, maxDuration);
+      const minimumDuration = Math.min(composerMinimumTimelineItemDurationSeconds, maxDuration);
+      let duration = clampNumber(roundNumber(pause?.duration ?? minimumDuration), 0, maxDuration);
+      if (maxDuration >= minimumDuration && duration < minimumDuration) {
+        duration = minimumDuration;
+      }
       return {
         id: normalizeString(pause?.id, `pause_${index + 1}`),
         start: pauseStart,
@@ -420,8 +433,15 @@ function normalizeTimeWarps(rawTimeWarps, start, end) {
   }
   return rawTimeWarps
     .map((warp, index) => {
-      const warpStart = clampNumber(roundNumber(warp?.start ?? start), start, end);
-      const warpEnd = clampNumber(roundNumber(warp?.end ?? end), warpStart, end);
+      const minimumSpan = Math.min(composerMinimumTimelineItemDurationSeconds, Math.max(0, end - start));
+      let warpStart = clampNumber(roundNumber(warp?.start ?? start), start, end);
+      if (end - start >= minimumSpan) {
+        warpStart = clampNumber(warpStart, start, end - minimumSpan);
+      }
+      let warpEnd = clampNumber(roundNumber(warp?.end ?? (warpStart + minimumSpan)), warpStart, end);
+      if (end - warpStart >= minimumSpan && warpEnd - warpStart < minimumSpan) {
+        warpEnd = clampNumber(warpStart + minimumSpan, warpStart, end);
+      }
       return {
         id: normalizeString(warp?.id, `warp_${index + 1}`),
         start: warpStart,

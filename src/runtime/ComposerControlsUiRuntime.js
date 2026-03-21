@@ -183,6 +183,9 @@ export function createComposerControlsUiRuntime(deps) {
       };
 
       composerTimelineTrack.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) {
+          return;
+        }
         timelinePointerActive = true;
         composerTimelineTrack.setPointerCapture?.(event.pointerId);
         scrubTimelineFromClientX(event.clientX);
