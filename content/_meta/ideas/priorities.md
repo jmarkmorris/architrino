@@ -196,6 +196,12 @@ Scoring system:
       - use the API that now exists,
       - look into MadGraph for reactions,
       - and use the scene builder in API mode;
+    - composer architecture follow-on:
+      - finish making the composer store the authority for editor-state reads and writes, not only selected write paths;
+      - move more assembly, path, and overlay mutations behind explicit store helpers instead of in-place draft mutation;
+      - separate editor preview state from playback/runtime state, especially where timing edits currently need pose-preservation behavior;
+      - retire the raw timing and reaction text bridges once structured authoring is stable enough to replace them cleanly;
+      - split the remaining non-composer app wiring away from composer integration in `app.js` when that no longer blocks feature work;
     - history traces and exclusion envelopes:
       - improve UI authoring for `historyTraces`,
       - refine rendering and controls for path-history traces with window and fade semantics,
