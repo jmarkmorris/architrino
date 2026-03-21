@@ -136,7 +136,26 @@ function normalizeMembers(rawMembers) {
         if (member && typeof member === "object" && !Array.isArray(member)) {
           const id = sanitizeAssemblyId(member.id ?? member.name, `member_${index + 1}`);
           const position = normalizeMemberPosition(member.position);
-          return position ? { id, position } : { id };
+          const nextMember = { id };
+          if (position) {
+            nextMember.position = position;
+          }
+          if (member.state != null) {
+            const state = normalizeString(member.state, "");
+            if (state === "unset" || state === "electrino" || state === "positrino") {
+              nextMember.state = state;
+            }
+          }
+          if (member.slotKind != null) {
+            const slotKind = normalizeString(member.slotKind, "");
+            if (slotKind) {
+              nextMember.slotKind = slotKind;
+            }
+          }
+          if (member.slotIndex != null && Number.isFinite(Number(member.slotIndex))) {
+            nextMember.slotIndex = Math.max(0, Math.round(Number(member.slotIndex)));
+          }
+          return nextMember;
         }
         return { id: sanitizeAssemblyId(member, `member_${index + 1}`) };
       })
@@ -388,9 +407,12 @@ function normalizeMarkers(rawMarkers, start, end) {
   return rawMarkers
     .map((marker, index) => {
       const t = clampNumber(roundNumber(marker?.t ?? start), start, end);
-      const kind = normalizeString(marker?.kind, "cue");
-      const minimumSpan = kind === "graphic" ? Math.min(2, Math.max(0, end - t)) : 0;
-      const markerEnd = clampNumber(roundNumber(marker?.end ?? (t + minimumSpan)), t, end);
+      const kind = normalizeString(marker?.kind, "graphic");
+      const minimumSpan = Math.min(2, Math.max(0, end - t));
+      let markerEnd = clampNumber(roundNumber(marker?.end ?? (t + minimumSpan)), t, end);
+      if (minimumSpan > 0 && markerEnd < t + minimumSpan) {
+        markerEnd = clampNumber(roundNumber(t + minimumSpan), t, end);
+      }
       return {
         id: normalizeString(marker?.id, `marker_${index + 1}`),
         t,
@@ -403,6 +425,90 @@ function normalizeMarkers(rawMarkers, start, end) {
 }
 
 const composerMinimumTimelineItemDurationSeconds = 2;
+
+function normalizeOverlayTarget(rawTarget) {
+  if (!rawTarget || typeof rawTarget !== "object") {
+    return null;
+  }
+  const type = normalizeString(rawTarget.type, "");
+  if (type === "assembly") {
+    const assemblyId = sanitizeAssemblyId(rawTarget.assemblyId, "");
+    return assemblyId ? { type, assemblyId } : null;
+  }
+  if (type === "path_point") {
+    const assemblyId = sanitizeAssemblyId(rawTarget.assemblyId, "");
+    const pointIndex = Math.max(0, Math.round(Number(rawTarget.pointIndex ?? 0) || 0));
+    return assemblyId ? { type, assemblyId, pointIndex } : null;
+  }
+  return null;
+}
+
+function normalizeOverlayOffset(rawOffset) {
+  return clonePoint(rawOffset ?? [0.6, 0.44, 0]);
+}
+
+function normalizeOverlayRect(rawRect, kind = "image") {
+  const fallback =
+    kind === "video"
+      ? { x: 0.62, y: 0.14, width: 0.26, height: 0.146 }
+      : { x: 0.6, y: 0.16, width: 0.24, height: 0.24 };
+  const width = clampNumber(roundNumber(rawRect?.width ?? fallback.width), 0.08, 0.86);
+  const height = clampNumber(roundNumber(rawRect?.height ?? fallback.height), 0.08, 0.86);
+  const x = clampNumber(roundNumber(rawRect?.x ?? fallback.x), 0, Math.max(0, 1 - width));
+  const y = clampNumber(roundNumber(rawRect?.y ?? fallback.y), 0, Math.max(0, 1 - height));
+  return { x, y, width, height };
+}
+
+function normalizeOverlays(rawOverlays, start, end) {
+  if (!Array.isArray(rawOverlays) || !rawOverlays.length) {
+    return [];
+  }
+  return rawOverlays
+    .map((overlay, index) => {
+      const minimumSpan = Math.min(composerMinimumTimelineItemDurationSeconds, Math.max(0, end - start));
+      let overlayStart = clampNumber(roundNumber(overlay?.start ?? start), start, end);
+      if (end - start >= minimumSpan) {
+        overlayStart = clampNumber(overlayStart, start, end - minimumSpan);
+      }
+      let overlayEnd = clampNumber(
+        roundNumber(overlay?.end ?? (overlayStart + minimumSpan)),
+        overlayStart,
+        end
+      );
+      if (end - overlayStart >= minimumSpan && overlayEnd - overlayStart < minimumSpan) {
+        overlayEnd = clampNumber(overlayStart + minimumSpan, overlayStart, end);
+      }
+      const kind = normalizeString(overlay?.kind, "graphic");
+      const size = clampNumber(roundNumber(overlay?.size ?? overlay?.radius ?? 0.42), 0.18, 2.4);
+      return {
+        id: normalizeString(overlay?.id, `overlay_${index + 1}`),
+        kind,
+        type: normalizeString(
+          overlay?.type,
+          kind === "graphic" ? "text_sphere_callout" : `viewport_${kind}`
+        ),
+        label: normalizeString(
+          overlay?.label ?? overlay?.text ?? overlay?.source,
+          kind === "video" ? `Video ${index + 1}` : kind === "image" ? `Image ${index + 1}` : `Graphic ${index + 1}`
+        ),
+        text: kind === "graphic"
+          ? normalizeString(overlay?.text ?? overlay?.label, `Graphic ${index + 1}`)
+          : "",
+        start: overlayStart,
+        end: overlayEnd,
+        size,
+        source: normalizeString(overlay?.source, ""),
+        rect: normalizeOverlayRect(overlay?.rect, kind),
+        fit: normalizeString(overlay?.fit, "contain"),
+        muted: overlay?.muted !== false,
+        offset: normalizeOverlayOffset(overlay?.offset),
+        target: kind === "graphic" ? normalizeOverlayTarget(overlay?.target) : null,
+        style: typeof overlay?.style === "object" && overlay.style ? overlay.style : {},
+      };
+    })
+    .filter((overlay) => overlay.end > overlay.start)
+    .sort((left, right) => left.start - right.start);
+}
 
 function normalizePauses(rawPauses, start, end) {
   if (!Array.isArray(rawPauses) || !rawPauses.length) {
@@ -534,11 +640,7 @@ function createDefaultMarkers(rawMarkers, start, end) {
   if (Array.isArray(rawMarkers) && rawMarkers.length) {
     return rawMarkers;
   }
-  const midpoint = roundNumber(start + (end - start) * 0.5);
-  return [
-    { id: "marker_start", t: start, kind: "chapter", label: "Start" },
-    { id: "marker_focus", t: midpoint, kind: "cue", label: "Focus" },
-  ];
+  return [];
 }
 
 function createDefaultCameraShots(rawCameraShots, cameraPathId, start, end) {
@@ -705,7 +807,7 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
       : [],
     tracks: Array.isArray(rawDocument.tracks) ? rawDocument.tracks : [],
     channels: Array.isArray(rawDocument.channels) ? rawDocument.channels : [],
-    overlays: Array.isArray(rawDocument.overlays) ? rawDocument.overlays : [],
+    overlays: normalizeOverlays(rawDocument.overlays, sceneStart, normalizedSceneEnd),
     teachingPatterns: Array.isArray(rawDocument.teachingPatterns)
       ? rawDocument.teachingPatterns
       : [],
@@ -842,6 +944,7 @@ export function createComposerSceneDocument(input = {}, options = {}) {
     cameraPath: {
       waypoints: input.cameraWaypoints,
     },
+    overlays: input.overlays,
     reactions: input.reactions,
     transfers: input.transfers,
     provenance: authoredProvenance,

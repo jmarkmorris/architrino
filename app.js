@@ -121,6 +121,7 @@ const composerStatus = document.getElementById("composer-status");
 const composerJsonPreview = document.getElementById("composer-json-preview");
 const composerCanvas = document.getElementById("composer-canvas");
 const composerCanvasWrap = composerCanvas?.parentElement ?? null;
+const composerViewportOverlays = document.getElementById("composer-viewport-overlays");
 const composerAssemblyMenu = document.getElementById("composer-assembly-menu");
 const composerPathModeSelect = document.getElementById("composer-path-mode");
 const composerPathResetButton = document.getElementById("composer-path-reset");
@@ -160,6 +161,16 @@ const composerTimelineReactions = document.getElementById("composer-timeline-rea
 const composerTimelineMarkers = document.getElementById("composer-timeline-markers");
 const composerTimelinePlayhead = document.getElementById("composer-timeline-playhead");
 const composerLibraryStorageKey = "architrino.composer.library.v1";
+const composerMediaAssetDirectories = {
+  image: "content/assets/composer/images/",
+  video: "content/assets/composer/video/",
+  audio: "content/assets/composer/audio/",
+};
+const composerSupportedMediaExtensions = {
+  image: ["jpg", "jpeg", "png", "svg"],
+  video: ["mp4", "mov"],
+  audio: ["mp3"],
+};
 const defaultRootLayoutMarginPx = { x: 160, y: 140 };
 let zoomToastTimeoutId = null;
 let zoomToastDismissedForSession = false;
@@ -369,8 +380,9 @@ function sanitizeComposerEntityId(raw, fallback = "item_1") {
 
 function createDefaultComposerAssemblyDraft(index = 0) {
   const ordinal = index + 1;
+  const assemblyId = `assembly_${ordinal}`;
   return {
-    id: `assembly_${ordinal}`,
+    id: assemblyId,
     name: ordinal === 1 ? "Primary Assembly" : `Assembly ${ordinal}`,
     parentId: "",
     position: [0, 0, 0],
@@ -399,11 +411,18 @@ function createDefaultComposerAssemblyDraft(index = 0) {
     pathClosed: false,
     historyTraceEnabled: false,
     envelopeEnabled: false,
+    core: ordinal === 1 ? createComposerDefaultCoreSpec(assemblyId) : undefined,
   };
 }
 
-function createComposerDefaultCoreSpec(assemblyId) {
+function createComposerDefaultCoreSpec(assemblyId, options = {}) {
+  const binaryCount = clamp(Math.round(Number(options?.binaryCount ?? 3) || 3), 1, 3);
   const shellUnit = 0.45;
+  const planeNormals = [
+    [0, 1, 0],
+    [1, 0, 0],
+    [0, 0, 1],
+  ];
   return {
     coreType: "noether",
     shells: [
@@ -413,26 +432,22 @@ function createComposerDefaultCoreSpec(assemblyId) {
       { id: `${assemblyId}_shell_4`, radius: shellUnit * 4, role: "decorator", color: "#365f9f", opacity: 0.05 },
     ],
     binaries: [
-      {
-        id: `${assemblyId}_binary_1`,
-        motion: { type: "orbit.circular", center: assemblyId, radius: shellUnit, frequencyHz: 0.42, planeNormal: [0, 1, 0] },
+      { radius: shellUnit, frequencyHz: 0.42, planeNormal: planeNormals[0] },
+      { radius: shellUnit * 2, frequencyHz: 0.26, planeNormal: planeNormals[1] },
+      { radius: shellUnit * 3, frequencyHz: 0.16, planeNormal: planeNormals[2] },
+    ].slice(0, binaryCount).map((binary, index) => ({
+      id: `${assemblyId}_binary_${index + 1}`,
+      motion: {
+        type: "orbit.circular",
+        center: assemblyId,
+        radius: binary.radius,
+        frequencyHz: binary.frequencyHz,
+        planeNormal: binary.planeNormal,
       },
-      {
-        id: `${assemblyId}_binary_2`,
-        motion: { type: "orbit.circular", center: assemblyId, radius: shellUnit * 2, frequencyHz: 0.26, planeNormal: [1, 0, 0] },
-      },
-      {
-        id: `${assemblyId}_binary_3`,
-        motion: { type: "orbit.circular", center: assemblyId, radius: shellUnit * 3, frequencyHz: 0.16, planeNormal: [0, 0, 1] },
-      },
-    ],
+    })),
     alignment: {
       regime: "3d",
-      planeNormals: [
-        [0, 1, 0],
-        [1, 0, 0],
-        [0, 0, 1],
-      ],
+      planeNormals: planeNormals.slice(0, binaryCount),
     },
   };
 }
@@ -495,7 +510,22 @@ function parseComposerMemberEntry(rawMember, index = 0) {
   if (rawMember && typeof rawMember === "object" && !Array.isArray(rawMember)) {
     const id = sanitizeComposerEntityId(rawMember.id || rawMember.name, `member_${index + 1}`);
     const position = normalizeComposerMemberPosition(rawMember.position);
-    return position ? { id, position } : { id };
+    const nextMember = {
+      id,
+    };
+    if (position) {
+      nextMember.position = position;
+    }
+    if (rawMember.state != null) {
+      nextMember.state = String(rawMember.state).trim().toLowerCase();
+    }
+    if (rawMember.slotKind != null) {
+      nextMember.slotKind = String(rawMember.slotKind).trim().toLowerCase();
+    }
+    if (rawMember.slotIndex != null && Number.isFinite(Number(rawMember.slotIndex))) {
+      nextMember.slotIndex = Math.max(0, Math.round(Number(rawMember.slotIndex)));
+    }
+    return nextMember;
   }
   const source = String(rawMember ?? "").trim();
   if (!source) {
@@ -546,6 +576,25 @@ function getComposerMemberPosition(member) {
     return normalizeComposerMemberPosition(member.position);
   }
   return null;
+}
+
+function getComposerMemberState(member) {
+  if (member && typeof member === "object" && !Array.isArray(member)) {
+    const state = String(member.state ?? "").trim().toLowerCase();
+    if (state === "electrino" || state === "positrino" || state === "unset") {
+      return state;
+    }
+  }
+  return "";
+}
+
+function isComposerPersonalityMember(member) {
+  return (
+    !!member &&
+    typeof member === "object" &&
+    !Array.isArray(member) &&
+    String(member.slotKind ?? "").trim().toLowerCase() === "personality"
+  );
 }
 
 function formatComposerMemberList(members = []) {
@@ -1256,6 +1305,79 @@ function clampComposerTimelineSpan(rawStart, rawEnd, duration, minimumDuration =
   };
 }
 
+function getComposerTimelineAuthoringItems(documentData = composerCurrentDocument) {
+  const overlays = Array.isArray(documentData?.overlays) ? documentData.overlays : [];
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const warps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
+  return [
+    ...overlays.map((overlay) => ({
+      id: overlay?.id ?? "",
+      kind: overlay?.kind ?? "graphic",
+      label:
+        overlay?.kind === "graphic"
+          ? getComposerGraphicOverlayLabel(overlay)
+          : getComposerMediaOverlayLabel(overlay),
+      start: Number(overlay?.start ?? 0),
+      end: Number(overlay?.end ?? overlay?.start ?? 0),
+    })),
+    ...pauses.map((pause) => ({
+      id: pause?.id ?? "",
+      kind: "pause",
+      label: "Pause",
+      start: Number(pause?.start ?? 0),
+      end: Number(pause?.start ?? 0) + Number(pause?.duration ?? 0),
+    })),
+    ...warps.map((warp) => ({
+      id: warp?.id ?? "",
+      kind: "warp",
+      label: "Warp",
+      start: Number(warp?.start ?? 0),
+      end: Number(warp?.end ?? warp?.start ?? 0),
+    })),
+    ...reactions.map((reaction) => ({
+      id: reaction?.id ?? "",
+      kind: "reaction",
+      label: reaction?.label ?? "Reaction",
+      start: Number(reaction?.start ?? 0),
+      end: Number(reaction?.end ?? reaction?.start ?? 0),
+    })),
+  ];
+}
+
+function findComposerTimelineOverlap(candidate, options = {}) {
+  const candidateStart = Number(candidate?.start);
+  const candidateEnd = Number(candidate?.end);
+  if (!Number.isFinite(candidateStart) || !Number.isFinite(candidateEnd)) {
+    return null;
+  }
+  const excludeId = String(options.excludeId ?? candidate?.id ?? "");
+  const epsilon = 0.0005;
+  return getComposerTimelineAuthoringItems(options.documentData).find((entry) => {
+    if (!entry) {
+      return false;
+    }
+    if (excludeId && entry.id === excludeId) {
+      return false;
+    }
+    const start = Number(entry.start);
+    const end = Number(entry.end);
+    if (!Number.isFinite(start) || !Number.isFinite(end)) {
+      return false;
+    }
+    return candidateStart < end - epsilon && candidateEnd > start + epsilon;
+  }) ?? null;
+}
+
+function reportComposerTimelineOverlap(conflict) {
+  if (!conflict) {
+    return;
+  }
+  setComposerStatus(
+    `Timeline items may not overlap. ${conflict.label} already occupies ${formatComposerTimeLabel(conflict.start)}-${formatComposerTimeLabel(conflict.end)}.`
+  );
+}
+
 function getComposerGraphicEnd(marker, sceneDuration = null) {
   const start = Number(marker?.t ?? 0);
   const explicitEnd = Number(marker?.end);
@@ -1264,6 +1386,386 @@ function getComposerGraphicEnd(marker, sceneDuration = null) {
     return end;
   }
   return clamp(end, start, Number(sceneDuration));
+}
+
+function sanitizeComposerGraphicTarget(rawTarget, fallbackAssemblyId = "") {
+  if (!rawTarget || typeof rawTarget !== "object") {
+    return fallbackAssemblyId ? { type: "assembly", assemblyId: fallbackAssemblyId } : null;
+  }
+  const type = String(rawTarget.type ?? "").trim().toLowerCase();
+  if (type === "assembly") {
+    const assemblyId = sanitizeComposerEntityId(rawTarget.assemblyId, "");
+    return assemblyId ? { type: "assembly", assemblyId } : null;
+  }
+  if (type === "path_point") {
+    const assemblyId = sanitizeComposerEntityId(rawTarget.assemblyId, "");
+    const pointIndex = Math.max(0, Math.round(Number(rawTarget.pointIndex ?? 0) || 0));
+    return assemblyId ? { type: "path_point", assemblyId, pointIndex } : null;
+  }
+  return fallbackAssemblyId ? { type: "assembly", assemblyId: fallbackAssemblyId } : null;
+}
+
+function getComposerGraphicDefaultTarget() {
+  const selectedAssemblyId = sanitizeComposerEntityId(composerSelectedAssemblyId, "");
+  const fallbackAssemblyId = sanitizeComposerEntityId(composerAssemblyDrafts[0]?.id, "");
+  const assemblyId = selectedAssemblyId || fallbackAssemblyId;
+  if (!assemblyId) {
+    return null;
+  }
+  if (Number.isInteger(composerSelectedPointIndex) && composerSelectedPointIndex >= 0) {
+    return {
+      type: "path_point",
+      assemblyId,
+      pointIndex: composerSelectedPointIndex,
+    };
+  }
+  return {
+    type: "assembly",
+    assemblyId,
+  };
+}
+
+function encodeComposerGraphicTargetValue(target) {
+  if (!target?.type) {
+    return "";
+  }
+  if (target.type === "assembly") {
+    return `assembly:${target.assemblyId}`;
+  }
+  if (target.type === "path_point") {
+    return `path_point:${target.assemblyId}:${Math.max(0, Number(target.pointIndex ?? 0) || 0)}`;
+  }
+  return "";
+}
+
+function decodeComposerGraphicTargetValue(rawValue) {
+  const value = String(rawValue ?? "").trim();
+  if (!value) {
+    return null;
+  }
+  const [type, assemblyId, pointIndex] = value.split(":");
+  if (type === "assembly") {
+    return sanitizeComposerGraphicTarget({ type, assemblyId });
+  }
+  if (type === "path_point") {
+    return sanitizeComposerGraphicTarget({ type, assemblyId, pointIndex });
+  }
+  return null;
+}
+
+function getComposerGraphicTargetEntries() {
+  const entries = [];
+  composerAssemblyDrafts.forEach((assembly, index) => {
+    if (!assembly?.id) {
+      return;
+    }
+    const assemblyLetter = getComposerAssemblyLetter(index);
+    entries.push({
+      value: encodeComposerGraphicTargetValue({
+        type: "assembly",
+        assemblyId: assembly.id,
+      }),
+      label: `Assembly ${assemblyLetter}`,
+    });
+    const pathPoints = normalizeComposerAssemblyPathPoints(assembly?.pathPoints);
+    pathPoints.forEach((_point, pointIndex) => {
+      entries.push({
+        value: encodeComposerGraphicTargetValue({
+          type: "path_point",
+          assemblyId: assembly.id,
+          pointIndex,
+        }),
+        label: `Path ${assemblyLetter} Point ${pointIndex + 1}`,
+      });
+    });
+  });
+  return entries;
+}
+
+function getComposerGraphicDefaultOffset(size = 0.42) {
+  const radius = Math.max(0.18, Number(size) || 0.42);
+  return [
+    Number((radius * 1.45).toFixed(3)),
+    Number((radius * 1.08).toFixed(3)),
+    0,
+  ];
+}
+
+function createComposerPersonalityMembers(states = []) {
+  return Array.from({ length: 6 }, (_, index) => ({
+    id: `personality_${index + 1}`,
+    slotKind: "personality",
+    slotIndex: index,
+    state: (() => {
+      const state = String(states[index] ?? "unset").trim().toLowerCase();
+      return state === "electrino" || state === "positrino" ? state : "unset";
+    })(),
+  }));
+}
+
+function createComposerGenIFermionPersonalityMembers() {
+  return createComposerPersonalityMembers();
+}
+
+function getComposerBuiltInPersonalityStates(templateId) {
+  if (templateId === "electron") {
+    return Array.from({ length: 6 }, () => "electrino");
+  }
+  if (templateId === "up_quark") {
+    return [
+      "positrino",
+      "electrino",
+      "positrino",
+      "positrino",
+      "positrino",
+      "positrino",
+    ];
+  }
+  if (templateId === "down_quark") {
+    return [
+      "positrino",
+      "positrino",
+      "electrino",
+      "electrino",
+      "electrino",
+      "electrino",
+    ];
+  }
+  return [];
+}
+
+function getComposerOverlayKind(overlay) {
+  const kind = String(overlay?.kind ?? "graphic").trim().toLowerCase();
+  return kind === "image" || kind === "video" || kind === "audio" ? kind : "graphic";
+}
+
+function getComposerMediaDefaultRect(kind = "image") {
+  return kind === "video"
+    ? { x: 0.62, y: 0.14, width: 0.26, height: 0.146 }
+    : { x: 0.6, y: 0.16, width: 0.24, height: 0.24 };
+}
+
+function normalizeComposerMediaRect(rawRect, kind = "image") {
+  const fallback = getComposerMediaDefaultRect(kind);
+  const x = clamp(Number(rawRect?.x ?? fallback.x) || fallback.x, 0, 0.92);
+  const y = clamp(Number(rawRect?.y ?? fallback.y) || fallback.y, 0, 0.92);
+  const width = clamp(Number(rawRect?.width ?? fallback.width) || fallback.width, 0.08, 0.86);
+  const height = clamp(Number(rawRect?.height ?? fallback.height) || fallback.height, 0.08, 0.86);
+  return {
+    x: Number(Math.min(x, 1 - width).toFixed(4)),
+    y: Number(Math.min(y, 1 - height).toFixed(4)),
+    width: Number(width.toFixed(4)),
+    height: Number(height.toFixed(4)),
+  };
+}
+
+function sanitizeComposerMediaSource(rawSource, kind = "image") {
+  const source = String(rawSource ?? "").trim();
+  if (!source) {
+    return "";
+  }
+  const normalized = source.replace(/\\/g, "/");
+  const extension = normalized.includes(".")
+    ? normalized.slice(normalized.lastIndexOf(".") + 1).toLowerCase()
+    : "";
+  const supported = composerSupportedMediaExtensions[kind] ?? [];
+  return supported.includes(extension) ? normalized : "";
+}
+
+function getComposerMediaOverlayLabel(overlay) {
+  const source = String(overlay?.source ?? "").trim();
+  const label = String(overlay?.label ?? "").trim();
+  const base = label || (source ? source.split("/").pop() ?? "" : "") || (getComposerOverlayKind(overlay) === "video" ? "Video" : "Image");
+  return base.length > 24 ? `${base.slice(0, 24).trimEnd()}...` : base;
+}
+
+function getComposerGraphicOverlayLabel(overlay) {
+  const text = String(overlay?.label ?? overlay?.text ?? "Graphic").trim() || "Graphic";
+  return text.length > 24 ? `${text.slice(0, 24).trimEnd()}...` : text;
+}
+
+function normalizeComposerGraphicOverlayDraft(overlay = {}, index = 0, duration = 12) {
+  const kind = getComposerOverlayKind(overlay);
+  const fallbackTarget = getComposerGraphicDefaultTarget();
+  const span = clampComposerTimelineSpan(
+    overlay?.start ?? 0,
+    overlay?.end ?? composerTimelineMinDurationSeconds,
+    duration
+  );
+  if (kind === "image" || kind === "video" || kind === "audio") {
+    const source = sanitizeComposerMediaSource(
+      overlay?.source,
+      kind
+    );
+    const fallbackDirectory = composerMediaAssetDirectories[kind] ?? "";
+    const rect = normalizeComposerMediaRect(overlay?.rect, kind);
+    const label = getComposerMediaOverlayLabel({
+      ...overlay,
+      kind,
+      source: source || fallbackDirectory,
+    });
+    return {
+      id: sanitizeComposerEntityId(overlay?.id, `overlay_${index + 1}`),
+      kind,
+      type: `viewport_${kind}`,
+      label,
+      text: "",
+      start: span.start,
+      end: span.end,
+      size: Number((overlay?.size ?? 1).toFixed?.(3) ?? 1),
+      rect,
+      source,
+      fit: "contain",
+      muted: true,
+      offset: [0, 0, 0],
+      target: null,
+      style: typeof overlay?.style === "object" && overlay.style ? { ...overlay.style } : {},
+    };
+  }
+  const size = clamp(Number(overlay?.size ?? overlay?.radius ?? 0.42) || 0.42, 0.18, 2.4);
+  const target = sanitizeComposerGraphicTarget(overlay?.target, fallbackTarget?.assemblyId ?? "");
+  const offsetSource = Array.isArray(overlay?.offset) && overlay.offset.length >= 3
+    ? overlay.offset
+    : getComposerGraphicDefaultOffset(size);
+  const label = String(overlay?.label ?? overlay?.text ?? `Graphic ${index + 1}`).trim() || `Graphic ${index + 1}`;
+  return {
+    id: sanitizeComposerEntityId(overlay?.id, `overlay_${index + 1}`),
+    kind: "graphic",
+    type: "text_sphere_callout",
+    label,
+    text: String(overlay?.text ?? label).trim() || label,
+    start: span.start,
+    end: span.end,
+    size: Number(size.toFixed(3)),
+    offset: [
+      Number((Number(offsetSource[0] ?? 0) || 0).toFixed(3)),
+      Number((Number(offsetSource[1] ?? 0) || 0).toFixed(3)),
+      Number((Number(offsetSource[2] ?? 0) || 0).toFixed(3)),
+    ],
+    target,
+    style: typeof overlay?.style === "object" && overlay.style ? { ...overlay.style } : {},
+  };
+}
+
+function normalizeComposerGraphicOverlayList(overlays = [], duration = 12) {
+  return (Array.isArray(overlays) ? overlays : []).map((overlay, index) =>
+    normalizeComposerGraphicOverlayDraft(overlay, index, duration)
+  );
+}
+
+function getComposerGraphicOverlayDraftIndexById(overlayId) {
+  return composerGraphicOverlayDrafts.findIndex((overlay) => overlay?.id === overlayId);
+}
+
+function getComposerGraphicOverlayDraftById(overlayId) {
+  const index = getComposerGraphicOverlayDraftIndexById(overlayId);
+  return index >= 0 ? composerGraphicOverlayDrafts[index] : null;
+}
+
+function getNextComposerGraphicOverlayId() {
+  let suffix = 1;
+  let candidate = "overlay_1";
+  const existingIds = new Set((composerGraphicOverlayDrafts || []).map((overlay) => overlay?.id).filter(Boolean));
+  while (existingIds.has(candidate)) {
+    suffix += 1;
+    candidate = `overlay_${suffix}`;
+  }
+  return candidate;
+}
+
+function getComposerGraphicTimelineOverlays(documentData = composerCurrentDocument) {
+  return (Array.isArray(documentData?.overlays) ? documentData.overlays : []).filter(
+    (overlay) => overlay?.kind === "graphic"
+  );
+}
+
+function getComposerViewportMediaTimelineOverlays(documentData = composerCurrentDocument) {
+  return (Array.isArray(documentData?.overlays) ? documentData.overlays : []).filter(
+    (overlay) => overlay?.kind === "image" || overlay?.kind === "video"
+  );
+}
+
+function isComposerTimeWithinSpan(timeSeconds, startSeconds, endSeconds, epsilon = 0.001) {
+  const time = Number(timeSeconds);
+  const start = Number(startSeconds);
+  const end = Number(endSeconds);
+  if (!Number.isFinite(time) || !Number.isFinite(start) || !Number.isFinite(end)) {
+    return false;
+  }
+  return time >= start - epsilon && time <= end + epsilon;
+}
+
+function resolveComposerGraphicTargetPosition(target, assemblyCenters = new Map(), documentData = composerCurrentDocument) {
+  if (!target) {
+    return null;
+  }
+  if (target.type === "assembly") {
+    return assemblyCenters.get(target.assemblyId)?.clone?.() ?? null;
+  }
+  if (target.type === "path_point") {
+    const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
+    const path = paths.find((entry) => entry?.metadata?.ownerAssemblyId === target.assemblyId);
+    const point = Array.isArray(path?.payload?.points)
+      ? path.payload.points[Math.max(0, Number(target.pointIndex ?? 0) || 0)]
+      : null;
+    return point ? vectorFromTriplet(point) : null;
+  }
+  return null;
+}
+
+function getComposerAssemblyGraphicTargetRadius(assembly) {
+  if (!assembly) {
+    return 0;
+  }
+  const shellRadii = Array.isArray(assembly?.core?.shells)
+    ? assembly.core.shells
+        .map((shell) => Number(shell?.radius ?? 0) || 0)
+        .filter((radius) => radius > 0)
+    : [];
+  if (shellRadii.length) {
+    return Math.max(...shellRadii);
+  }
+
+  if (isComposerBareArchitrinoAssembly(assembly)) {
+    return 0.052;
+  }
+
+  const members = normalizeComposerMemberList(assembly?.members);
+  const baseRadius = 0.17 + Math.min(members.length, 8) * 0.018;
+  const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies);
+  const childRadius = subassemblies.reduce((maxRadius, child) => {
+    const childPosition = vectorFromTriplet(child?.position ?? child?.transform?.position ?? [0, 0, 0]);
+    const childMembers = Array.isArray(child?.members) ? child.members : [];
+    const radius = 0.11 + Math.min(childMembers.length, 6) * 0.016;
+    return Math.max(maxRadius, childPosition.length() + radius);
+  }, 0);
+  return Math.max(baseRadius, childRadius);
+}
+
+function resolveComposerGraphicTargetContactPosition(
+  target,
+  overlayCenter,
+  assemblyCenters = new Map(),
+  documentData = composerCurrentDocument
+) {
+  const targetPosition = resolveComposerGraphicTargetPosition(target, assemblyCenters, documentData);
+  if (!targetPosition) {
+    return null;
+  }
+  if (target?.type !== "assembly") {
+    return targetPosition;
+  }
+  const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
+  const assembly = assemblies.find((entry) => entry?.id === target.assemblyId);
+  const radius = getComposerAssemblyGraphicTargetRadius(assembly);
+  if (!(radius > 0)) {
+    return targetPosition;
+  }
+  const direction = overlayCenter.clone().sub(targetPosition);
+  if (direction.lengthSq() <= 0.000001) {
+    return targetPosition.clone().add(new THREE.Vector3(radius, 0, 0));
+  }
+  return targetPosition.clone().add(direction.normalize().multiplyScalar(radius));
 }
 
 function getComposerAssemblyLetter(index = 0) {
@@ -1533,7 +2035,19 @@ function completeComposerTransferToAssembly(assembly) {
 }
 
 function getComposerMemberColor(memberId, index = 0) {
-  const normalized = String(memberId ?? "").trim().toLowerCase();
+  const normalized = typeof memberId === "object" && memberId !== null && !Array.isArray(memberId)
+    ? getComposerMemberId(memberId, index).trim().toLowerCase()
+    : String(memberId ?? "").trim().toLowerCase();
+  const explicitState = getComposerMemberState(memberId);
+  if (explicitState === "unset") {
+    return "#f4f7ff";
+  }
+  if (explicitState === "electrino") {
+    return binaryStyle.electrinoColor;
+  }
+  if (explicitState === "positrino") {
+    return binaryStyle.positrinoColor;
+  }
   if (normalized.startsWith("electrino")) {
     return binaryStyle.electrinoColor;
   }
@@ -1652,6 +2166,49 @@ function findComposerCoreMemberId(members, chargeType, binaryIndex) {
     .map((member, memberIndex) => getComposerMemberId(member, memberIndex))
     .filter((memberId) => memberId.trim().toLowerCase().startsWith(targetPrefix));
   return prefixMatches[binaryIndex] ?? null;
+}
+
+function getComposerPersonalityMembers(assembly) {
+  return normalizeComposerMemberList(assembly?.members).filter((member) => isComposerPersonalityMember(member));
+}
+
+function getComposerPersonalityRingRadius(assembly) {
+  const shellRadii = Array.isArray(assembly?.core?.shells)
+    ? assembly.core.shells
+        .map((shell) => Number(shell?.radius ?? 0) || 0)
+        .filter((radius) => radius > 0)
+    : [];
+  return shellRadii.length ? Math.max(...shellRadii) * 1.02 : 1;
+}
+
+function getComposerObserverPlaneBasisInFrame() {
+  const frameQuaternion = composerFrameGroup?.quaternion?.clone?.() ?? new THREE.Quaternion();
+  const inverseFrameQuaternion = frameQuaternion.invert();
+  const right = new THREE.Vector3(1, 0, 0)
+    .applyQuaternion(composerCamera?.quaternion ?? new THREE.Quaternion())
+    .applyQuaternion(inverseFrameQuaternion)
+    .normalize();
+  const up = new THREE.Vector3(0, 1, 0)
+    .applyQuaternion(composerCamera?.quaternion ?? new THREE.Quaternion())
+    .applyQuaternion(inverseFrameQuaternion)
+    .normalize();
+  if (right.lengthSq() <= 0.00001) {
+    right.set(1, 0, 0);
+  }
+  if (up.lengthSq() <= 0.00001) {
+    up.set(0, 1, 0);
+  }
+  return { right, up };
+}
+
+function getComposerPersonalitySlotLocalOffset(assembly, slotIndex) {
+  const radius = getComposerPersonalityRingRadius(assembly);
+  const angle = Math.max(0, Number(slotIndex) || 0) * (Math.PI / 3);
+  const { right, up } = getComposerObserverPlaneBasisInFrame();
+  return right
+    .clone()
+    .multiplyScalar(Math.cos(angle) * radius)
+    .add(up.clone().multiplyScalar(Math.sin(angle) * radius));
 }
 
 function readNumberInput(input, fallback = 0) {
@@ -1777,6 +2334,81 @@ function createComposerMemberLabelTexture(text, color = "#ffd894") {
   const texture = new THREE.CanvasTexture(canvas);
   texture.needsUpdate = true;
   return texture;
+}
+
+function wrapComposerOverlayText(context, text, maxWidth) {
+  const words = String(text ?? "").trim().split(/\s+/).filter(Boolean);
+  if (!words.length) {
+    return [""];
+  }
+  const lines = [];
+  let currentLine = words[0];
+  for (let index = 1; index < words.length; index += 1) {
+    const candidate = `${currentLine} ${words[index]}`;
+    if (context.measureText(candidate).width <= maxWidth) {
+      currentLine = candidate;
+    } else {
+      lines.push(currentLine);
+      currentLine = words[index];
+    }
+  }
+  lines.push(currentLine);
+  return lines.slice(0, 4);
+}
+
+function createComposerGraphicOverlayTextTexture(text, radius = 0.42) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 320;
+  canvas.height = 256;
+  const context = canvas.getContext("2d");
+  if (context) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "rgba(244, 248, 255, 0.96)";
+    context.font = "600 28px sans-serif";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    const padding = 42;
+    const lines = wrapComposerOverlayText(context, text, canvas.width - padding * 2);
+    const lineHeight = 34;
+    const startY = canvas.height / 2 - ((lines.length - 1) * lineHeight) / 2;
+    lines.forEach((line, index) => {
+      context.fillText(line, canvas.width / 2, startY + index * lineHeight);
+    });
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  texture.minFilter = THREE.LinearFilter;
+  const normalizedRadius = Math.max(0.18, Number(radius) || 0.42);
+  return {
+    texture,
+    scale: [normalizedRadius * 2.55, normalizedRadius * 2.1, 1],
+  };
+}
+
+function createComposerGraphicOverlayTextSprite(text, radius = 0.42) {
+  const { texture, scale } = createComposerGraphicOverlayTextTexture(text, radius);
+  const material = new THREE.SpriteMaterial({
+    map: texture,
+    transparent: true,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(scale[0], scale[1], scale[2]);
+  sprite.renderOrder = 19;
+  return sprite;
+}
+
+function updateComposerGraphicOverlayTextSprite(sprite, text, radius = 0.42) {
+  if (!sprite?.material) {
+    return;
+  }
+  const previousMap = sprite.material.map ?? null;
+  const { texture, scale } = createComposerGraphicOverlayTextTexture(text, radius);
+  sprite.material.map = texture;
+  sprite.material.needsUpdate = true;
+  sprite.scale.set(scale[0], scale[1], scale[2]);
+  previousMap?.dispose?.();
 }
 
 function updateComposerPointLabelSprite(sprite, text, isActive = false) {
@@ -2028,6 +2660,11 @@ function formatComposerTimeLabel(value) {
   return `${normalized.toFixed(1)}s`;
 }
 
+function formatComposerTimeInputValue(value) {
+  const normalized = Number(value);
+  return Number.isFinite(normalized) ? normalized.toFixed(1) : "0.0";
+}
+
 function setComposerFrameDefaults() {
   if (composerFrameScaleInput) composerFrameScaleInput.value = "0";
   composerFrameState.rotation.set(0, 0, 0);
@@ -2050,7 +2687,7 @@ function setComposerCameraDefaults() {
 
 function updateComposerWaypointCount() {
   if (composerCameraWaypointCount) {
-    composerCameraWaypointCount.textContent = `Waypoints: ${composerCameraFlightState.waypoints.length}`;
+    composerCameraWaypointCount.textContent = `Observer points: ${composerCameraFlightState.waypoints.length}`;
   }
   if (composerCameraFlightToggle) {
     composerCameraFlightToggle.disabled =
@@ -2090,9 +2727,9 @@ function updateComposerCameraPoiStatus() {
     return;
   }
   if (selectedPoint) {
-    composerCameraPoiStatus.textContent = `POI target: local origin. Selected point ${composerSelectedPointIndex + 1} is available if you switch modes.`;
+    composerCameraPoiStatus.textContent = `Observer target: local origin. Selected point ${composerSelectedPointIndex + 1} is available if you switch modes.`;
   } else {
-    composerCameraPoiStatus.textContent = "POI target: local origin.";
+    composerCameraPoiStatus.textContent = "Observer target: local origin.";
   }
   composerCameraPoiStatus.classList.remove("is-warning");
 }
@@ -2728,6 +3365,7 @@ function appendComposerMenuField(parent, options = {}) {
     step = null,
     min = null,
     placeholder = "",
+    selectOnFocus = false,
   } = options;
   const field = document.createElement("label");
   field.className = "composer-field";
@@ -2748,6 +3386,17 @@ function appendComposerMenuField(parent, options = {}) {
     input.checked = !!value;
   } else {
     input.value = String(value ?? "");
+  }
+  if (selectOnFocus) {
+    input.addEventListener("focus", () => {
+      input.select?.();
+    });
+    input.addEventListener("mouseup", (event) => {
+      if (document.activeElement !== input) {
+        return;
+      }
+      event.preventDefault();
+    });
   }
   field.append(labelNode, input);
   parent.appendChild(field);
@@ -2940,6 +3589,72 @@ function openComposerMemberMenuAt(clientX, clientY, assemblyId, memberId) {
   positionComposerAssemblyMenu(clientX, clientY, 320, 420);
 }
 
+function openComposerPersonalitySlotMenuAt(clientX, clientY, assemblyId, memberId) {
+  if (!composerAssemblyMenu) {
+    return;
+  }
+  const assembly = getComposerAssemblyDraftById(assemblyId);
+  const members = normalizeComposerMemberList(assembly?.members);
+  const member = members.find((entry, index) => getComposerMemberId(entry, index) === sanitizeComposerEntityId(memberId, ""));
+  if (!assembly || !isComposerPersonalityMember(member)) {
+    return;
+  }
+  const currentState = getComposerMemberState(member) || "unset";
+  resetComposerAssemblyMenu();
+
+  const title = document.createElement("div");
+  title.className = "composer-assembly-menu-title";
+  title.textContent = "Personality Slot";
+  composerAssemblyMenu.appendChild(title);
+
+  const subtitle = document.createElement("div");
+  subtitle.className = "composer-assembly-menu-subtitle";
+  subtitle.textContent = `${assembly.name} · ${getComposerMemberId(member)}`;
+  composerAssemblyMenu.appendChild(subtitle);
+
+  appendComposerMenuNote(
+    composerAssemblyMenu,
+    currentState === "unset"
+      ? "Unset slot. Choose electrino or positrino."
+      : currentState === "electrino"
+        ? "Electrino set. You can flip this slot to positrino."
+        : "Positrino set. You can flip this slot to electrino."
+  );
+
+  const setPersonalityState = (nextState) => {
+    const liveAssembly = getComposerAssemblyDraftById(assemblyId);
+    const liveMember = ensureComposerAssemblyMemberRecord(liveAssembly, getComposerMemberId(member));
+    if (!liveMember) {
+      return;
+    }
+    liveMember.state = nextState;
+    closeComposerAssemblyMenu();
+    renderComposerJsonPreview();
+  };
+
+  if (currentState === "unset") {
+    appendComposerMenuButtonRow(composerAssemblyMenu, [
+      {
+        text: "Set Electrino",
+        onClick: () => setPersonalityState("electrino"),
+      },
+      {
+        text: "Set Positrino",
+        onClick: () => setPersonalityState("positrino"),
+      },
+    ]);
+  } else {
+    appendComposerMenuButtonRow(composerAssemblyMenu, [
+      {
+        text: currentState === "electrino" ? "Flip To Positrino" : "Flip To Electrino",
+        onClick: () => setPersonalityState(currentState === "electrino" ? "positrino" : "electrino"),
+      },
+    ]);
+  }
+
+  positionComposerAssemblyMenu(clientX, clientY, 236, 166);
+}
+
 function openComposerSubassemblyMenuAt(clientX, clientY, assemblyId, subassemblyId) {
   if (!composerAssemblyMenu) {
     return;
@@ -3033,11 +3748,6 @@ function openComposerAssemblyTemplateMenuAt(event) {
   title.textContent = "Canvas";
   composerAssemblyMenu.appendChild(title);
 
-  const addLabel = document.createElement("div");
-  addLabel.className = "composer-assembly-menu-subtitle";
-  addLabel.textContent = "Add Assembly";
-  composerAssemblyMenu.appendChild(addLabel);
-
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
       text: "Scene",
@@ -3053,29 +3763,37 @@ function openComposerAssemblyTemplateMenuAt(event) {
     },
   ]);
 
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: "Electrino",
-      dataset: { template: "electrino" },
-    },
-    {
-      text: "Positrino",
-      dataset: { template: "positrino" },
-    },
-  ]);
+  const addLabel = document.createElement("div");
+  addLabel.className = "composer-assembly-menu-subtitle";
+  addLabel.textContent = "Add Assembly";
+  composerAssemblyMenu.appendChild(addLabel);
+
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
       text: "Noether Core",
       dataset: { template: "noether_core" },
     },
-    null,
+    {
+      text: "Electron",
+      dataset: { template: "electron" },
+    },
+  ]);
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Down Quark",
+      dataset: { template: "down_quark" },
+    },
+    {
+      text: "Up Quark",
+      dataset: { template: "up_quark" },
+    },
   ]);
 
-  appendComposerMenuSectionHeader(composerAssemblyMenu, "Camera");
+  appendComposerMenuSectionHeader(composerAssemblyMenu, "Observer");
 
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
-      text: "Add Waypoint",
+      text: "Add Observer Point",
       onClick: () => {
         const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
         addComposerCameraWaypoint(position);
@@ -3085,8 +3803,8 @@ function openComposerAssemblyTemplateMenuAt(event) {
     {
       text:
         composerCameraFlightState.poiMode === "selected"
-          ? "POI: Selected Point"
-          : "POI: Local Origin",
+          ? "Target: Selected Point"
+          : "Target: Local Origin",
       onClick: () => {
         composerCameraFlightState.poiMode =
           composerCameraFlightState.poiMode === "selected" ? "origin" : "selected";
@@ -3099,7 +3817,7 @@ function openComposerAssemblyTemplateMenuAt(event) {
   if ((composerCameraFlightState?.waypoints?.length ?? 0) > 0) {
     appendComposerMenuButtonRow(composerAssemblyMenu, [
       {
-        text: "Clear Waypoints",
+        text: "Clear Observer Path",
         onClick: () => {
           clearComposerCameraWaypoints();
           closeComposerAssemblyMenu();
@@ -3234,7 +3952,7 @@ function openComposerAssemblyTemplateMenuAt(event) {
 
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
-      text: `${composerViewportDisplayState.showLabels !== false ? "Hide" : "Show"} Camera Labels`,
+      text: `${composerViewportDisplayState.showLabels !== false ? "Hide" : "Show"} Observer Labels`,
       onClick: () => {
         composerViewportDisplayState.showLabels = !(composerViewportDisplayState.showLabels !== false);
         applyComposerViewportDisplayState();
@@ -3281,7 +3999,7 @@ function openComposerAssemblyTemplateMenuAt(event) {
   cameraButton.type = "button";
   cameraButton.textContent = `${
     composerViewportDisplayState.showCameraGuides !== false ? "Hide" : "Show"
-  } Camera Guides`;
+  } Observer Guides`;
   cameraButton.disabled = !hasCameraGuides;
   if (hasCameraGuides) {
     cameraButton.addEventListener("click", () => {
@@ -3698,6 +4416,86 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       pathPoints: createComposerDefaultPathPoints(normalizedPosition),
     }, composerAssemblyDrafts.length);
   }
+  if (templateId === "electron") {
+    const id = getNextComposerAssemblyId("electron");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Electron",
+      role: "electron",
+      position: normalizedPosition,
+      members: [
+        "positrino_1",
+        "electrino_1",
+        "positrino_2",
+        "electrino_2",
+        "positrino_3",
+        "electrino_3",
+        ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("electron")),
+      ],
+      subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      core: createComposerDefaultCoreSpec(id),
+    }, composerAssemblyDrafts.length);
+  }
+  if (templateId === "fermion_gen1") {
+    const id = getNextComposerAssemblyId("fermion");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Gen I Fermion",
+      role: "fermion_gen1",
+      position: normalizedPosition,
+      members: [
+        "positrino_1",
+        "electrino_1",
+        "positrino_2",
+        "electrino_2",
+        "positrino_3",
+        "electrino_3",
+        ...createComposerGenIFermionPersonalityMembers(),
+      ],
+      subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      core: createComposerDefaultCoreSpec(id),
+    }, composerAssemblyDrafts.length);
+  }
+  if (templateId === "down_quark") {
+    const id = getNextComposerAssemblyId("down_quark");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Down Quark",
+      role: "down_quark",
+      position: normalizedPosition,
+      members: [
+        "positrino_1",
+        "electrino_1",
+        "positrino_2",
+        "electrino_2",
+        "positrino_3",
+        "electrino_3",
+        ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("down_quark")),
+      ],
+      subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      core: createComposerDefaultCoreSpec(id),
+    }, composerAssemblyDrafts.length);
+  }
+  if (templateId === "up_quark") {
+    const id = getNextComposerAssemblyId("up_quark");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Up Quark",
+      role: "up_quark",
+      position: normalizedPosition,
+      members: [
+        "positrino_1",
+        "electrino_1",
+        ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("up_quark")),
+      ],
+      subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      core: createComposerDefaultCoreSpec(id, { binaryCount: 1 }),
+    }, composerAssemblyDrafts.length);
+  }
   const id = getNextComposerAssemblyId("noether_core");
   return normalizeComposerAssemblyDraft({
     id,
@@ -3829,15 +4627,13 @@ function formatComposerInlineTimingStatus(kind, diagnostics = {}, parsedCount = 
 }
 
 function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
-  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  const graphics = getComposerGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
 
-  const markerCount = diagnostics?.markerHasInput
-    ? markers.filter((marker) => marker.id !== "marker_start").length
-    : 0;
+  const markerCount = diagnostics?.markerHasInput ? markers.length : 0;
   const pauseCount = diagnostics?.pauseHasInput ? pauses.length : 0;
   const warpCount = diagnostics?.warpHasInput ? timeWarps.length : 0;
   const reactionCount = diagnostics?.reactionHasInput ? reactions.length : 0;
@@ -3922,43 +4718,11 @@ function readComposerTimingState() {
   if (composerSceneDurationInput) {
     composerSceneDurationInput.value = String(duration);
   }
-
-  const markerListRaw = composerMarkerListInput?.value ?? "";
-  const markerHasInput = markerListRaw.trim().length > 0;
-  const markerParse = parseComposerTimingLines(markerListRaw, (line, lineNumber, entryIndex) => {
-    const separatorIndex = line.indexOf(":");
-    if (separatorIndex === -1) {
-      return null;
-    }
-    const timingToken = line.slice(0, separatorIndex).trim();
-    const timingMatch = timingToken.match(/^(-?\d*\.?\d+)(?:\s*-\s*(-?\d*\.?\d+))?$/);
-    if (!timingMatch) {
-      return null;
-    }
-    const rawStart = Number(timingMatch[1]);
-    const rawEnd =
-      timingMatch[2] == null ? rawStart + composerTimelineMinDurationSeconds : Number(timingMatch[2]);
-    if (!Number.isFinite(rawStart) || !Number.isFinite(rawEnd)) {
-      return null;
-    }
-    const span = clampComposerTimelineSpan(rawStart, rawEnd, duration);
-    const label = line.slice(separatorIndex + 1).trim() || `Graphic ${entryIndex + 1}`;
-    return {
-      id: `marker_authored_${lineNumber}`,
-      t: span.start,
-      end: span.end,
-      kind: "graphic",
-      label,
-    };
-  });
-  const authoredMarkers = [...markerParse.entries].sort((left, right) => left.t - right.t);
-  const hasStartMarker = authoredMarkers.some((marker) => Math.abs(marker.t) < 0.001);
-  const markers = !authoredMarkers.length
-    ? []
-    : [
-        ...(hasStartMarker ? [] : [{ id: "marker_start", t: 0, kind: "chapter", label: "Start" }]),
-        ...authoredMarkers,
-      ];
+  const markers = [];
+  const markerHasInput = false;
+  const markerParse = {
+    errors: [],
+  };
   const pauseListRaw = composerPauseListInput?.value ?? "";
   const pauseHasInput = pauseListRaw.trim().length > 0;
   const pauseParse = parseComposerTimingLines(pauseListRaw, (line, lineNumber) => {
@@ -4062,6 +4826,7 @@ function readComposerDraftState() {
     ...timing,
     transfers: state.transfers,
     reactions: reactionParse.entries,
+    overlays: normalizeComposerGraphicOverlayList(composerGraphicOverlayDrafts, Number(timing?.time?.end ?? 12) || 12),
     markerListRaw: composerMarkerListInput?.value ?? "",
     pauseListRaw: composerPauseListInput?.value ?? "",
     warpListRaw: composerWarpListInput?.value ?? "",
@@ -4097,15 +4862,8 @@ function readComposerDraftState() {
 }
 
 function formatComposerMarkerList(markers = []) {
-  return markers
-    .filter((marker) => marker?.id !== "marker_start")
-    .map((marker) => {
-      const start = Number(marker?.t ?? 0);
-      const end = Number(marker?.end ?? start);
-      const timing = end > start + 0.001 ? `${start}-${end}` : `${start}`;
-      return `${timing}: ${marker.label ?? marker.id ?? "Graphic"}`;
-    })
-    .join("\n");
+  void markers;
+  return "";
 }
 
 function formatComposerPauseList(pauses = []) {
@@ -4216,10 +4974,7 @@ function applyComposerDraftState(draftState = {}) {
     composerSceneLoopInput.checked = !!draftState?.time?.loop;
   }
   if (composerMarkerListInput) {
-    composerMarkerListInput.value =
-      typeof draftState.markerListRaw === "string"
-        ? draftState.markerListRaw
-        : formatComposerMarkerList(draftState.markers);
+    composerMarkerListInput.value = "";
   }
   if (composerPauseListInput) {
     composerPauseListInput.value =
@@ -4253,6 +5008,10 @@ function applyComposerDraftState(draftState = {}) {
     typeof draftState.reactionListRaw === "string"
       ? draftState.reactionListRaw
       : formatComposerReactionList(draftState.reactions);
+  composerGraphicOverlayDrafts = normalizeComposerGraphicOverlayList(
+    draftState.overlays,
+    duration
+  );
 
   setComposerSelectedAssembly(composerSelectedAssemblyId, {
     persistCurrentPath: false,
@@ -4388,7 +5147,18 @@ function renderComposerJsonPreview() {
   persistComposerPathStateToSelectedAssembly();
   const draftState = readComposerDraftState();
   const documentData = buildComposerDocumentData(draftState);
-  updateComposerViewportFromDocument(documentData);
+  try {
+    updateComposerViewportFromDocument(documentData);
+  } catch (error) {
+    composerCurrentDocument = documentData;
+    console.error("Composer preview render failed.", error);
+    try {
+      renderComposerTimeline(documentData);
+      updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
+    } catch (timelineError) {
+      console.error("Composer timeline fallback failed.", timelineError);
+    }
+  }
   updateComposerTimingDiagnostics(documentData, draftState.diagnostics);
   refreshComposerLibraryUi();
   setComposerStatus(formatComposerTimingStatus(documentData, draftState.diagnostics));
@@ -4523,20 +5293,6 @@ function initComposerCanvas() {
   }
   renderComposerAssemblyEditor();
 
-  if (!composerPathState.points.length) {
-    resetComposerPathPoints();
-  } else {
-    rebuildComposerControlPoints();
-  }
-  refreshComposerLibraryUi(composerSceneIdInput?.value ?? null);
-  renderComposerJsonPreview();
-  updateComposerCameraFlightDisplay();
-  updateComposerWaypointCount();
-
-  updateComposerFrame();
-  updateComposerCamera();
-  resizeComposerCanvas();
-
   wireComposerCanvasUiListeners({
     composerCanvas,
     onComposerPointerDown,
@@ -4554,6 +5310,18 @@ function initComposerCanvas() {
   if (composerTimelineSummary && !composerTimelineSummary.dataset.contextWired) {
     composerTimelineSummary.dataset.contextWired = "true";
     composerTimelineSummary.addEventListener("contextmenu", onComposerTimelineSummaryContextMenu);
+  }
+  if (composerTimelineSummary && !composerTimelineSummary.dataset.clickWired) {
+    composerTimelineSummary.dataset.clickWired = "true";
+    composerTimelineSummary.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeComposerAssemblyMenu();
+      const anchor =
+        event.clientX || event.clientY
+          ? { x: event.clientX, y: event.clientY }
+          : getComposerMenuAnchorClientPosition(composerTimelineSummary);
+      openComposerTimelineSummaryMenuAt(anchor.x, anchor.y);
+    });
   }
 
   if (composerAssemblyMenu && !composerAssemblyMenu.dataset.wired) {
@@ -4584,6 +5352,20 @@ function initComposerCanvas() {
       closeComposerAssemblyMenu();
     }, { passive: true });
   }
+
+  if (!composerPathState.points.length) {
+    resetComposerPathPoints();
+  } else {
+    rebuildComposerControlPoints();
+  }
+  refreshComposerLibraryUi(composerSceneIdInput?.value ?? null);
+  renderComposerJsonPreview();
+  updateComposerCameraFlightDisplay();
+  updateComposerWaypointCount();
+
+  updateComposerFrame();
+  updateComposerCamera();
+  resizeComposerCanvas();
 }
 
 function resizeComposerCanvas() {
@@ -4796,6 +5578,21 @@ function clearComposerViewportVisuals() {
     sprite.material?.dispose?.();
   });
   composerMemberLabelSprites = [];
+  composerGraphicOverlayGroups.forEach((group) => {
+    composerViewportGroup?.remove(group);
+    group.traverse?.((child) => {
+      if (child === group) {
+        return;
+      }
+      child.geometry?.dispose?.();
+      child.material?.map?.dispose?.();
+      child.material?.dispose?.();
+    });
+  });
+  composerGraphicOverlayGroups = [];
+  composerGraphicOverlayHandleMeshes = [];
+  composerPersonalityHandleMeshes = [];
+  clearComposerViewportMediaOverlays();
   composerMemberAnchors = new Map();
   if (composerDocumentCameraPathLine) {
     composerViewportGroup?.remove(composerDocumentCameraPathLine);
@@ -5045,49 +5842,66 @@ function openComposerTimelineSummaryMenuAt(clientX, clientY) {
   title.className = "composer-assembly-menu-title";
   title.textContent = "Scene Timing";
   composerAssemblyMenu.appendChild(title);
-
-  const subtitle = document.createElement("div");
-  subtitle.className = "composer-assembly-menu-subtitle";
-  subtitle.textContent = `${formatComposerTimeLabel(currentDuration)} total${isLooping ? " | loop on" : " | loop off"}`;
-  composerAssemblyMenu.appendChild(subtitle);
+  const commitTimingDraft = () => {
+    const duration = Number(durationInput?.value);
+    if (!Number.isFinite(duration) || duration <= 0) {
+      durationInput.value = formatComposerTimeInputValue(currentDuration);
+      return;
+    }
+    setComposerSceneDurationValue(duration);
+    setComposerSceneLoopValue(!!loopInput?.checked);
+    renderComposerJsonPreview();
+  };
+  const timingBlock = appendComposerMenuBlock(composerAssemblyMenu, "Timing");
   const form = document.createElement("div");
-  form.className = "composer-form composer-assembly-menu-grid-2";
+  form.className = "composer-form";
   const durationInput = appendComposerMenuField(form, {
     label: "Total Duration (s)",
     type: "number",
-    value: currentDuration,
-    step: 0.5,
+    value: formatComposerTimeInputValue(currentDuration),
+    step: 0.1,
     min: 1,
+    selectOnFocus: true,
   });
   const loopInput = appendComposerMenuField(form, {
     label: "Loop",
     type: "checkbox",
     value: isLooping,
   });
-  loopInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
-  composerAssemblyMenu.appendChild(form);
+  loopInput?.closest?.(".composer-field")?.classList?.add("is-toggle-field");
+  durationInput?.addEventListener("change", commitTimingDraft);
+  durationInput?.addEventListener("blur", commitTimingDraft);
+  durationInput?.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") {
+      return;
+    }
+    event.preventDefault();
+    commitTimingDraft();
+  });
+  loopInput?.addEventListener("change", commitTimingDraft);
+  timingBlock?.block?.appendChild(form);
 
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: "Apply Timing",
-      onClick: () => {
-        const duration = Number(durationInput?.value);
-        if (!Number.isFinite(duration) || duration <= 0) {
-          return;
-        }
-        setComposerSceneDurationValue(duration);
-        setComposerSceneLoopValue(!!loopInput?.checked);
-        closeComposerAssemblyMenu();
-        renderComposerJsonPreview();
-      },
-    },
-  ]);
+  positionComposerAssemblyMenu(clientX, clientY, 224, 176);
+}
 
-  appendComposerMenuNote(
-    composerAssemblyMenu,
-    "Right-click the timeline to add or edit graphics, pauses, warps, and reactions."
-  );
-  positionComposerAssemblyMenu(clientX, clientY, 280, 250);
+function applyComposerSceneIdentityDraft(sceneIdValue, sceneNameValue, options = {}) {
+  const nextId = sanitizeComposerId(sceneIdValue ?? composerSceneIdInput?.value ?? "composer_scene")
+    || "composer_scene";
+  const nextName = String(sceneNameValue ?? composerSceneNameInput?.value ?? "").trim()
+    || "Composer Scene";
+  if (composerSceneIdInput) {
+    composerSceneIdInput.value = nextId;
+  }
+  if (composerSceneNameInput) {
+    composerSceneNameInput.value = nextName;
+  }
+  if (options.renderPreview !== false) {
+    renderComposerJsonPreview();
+  }
+  return {
+    id: nextId,
+    name: nextName,
+  };
 }
 
 function openComposerSceneMenuAt(clientX, clientY) {
@@ -5112,16 +5926,8 @@ function openComposerSceneMenuAt(clientX, clientY) {
   const sceneBlock = appendComposerMenuBlock(composerAssemblyMenu, "Identity", {
     text: "Apply",
     onClick: () => {
-      const nextId = sanitizeComposerId(sceneIdInput?.value ?? currentId) || "composer_scene";
-      const nextName = String(sceneNameInput?.value ?? "").trim() || "Composer Scene";
-      if (composerSceneIdInput) {
-        composerSceneIdInput.value = nextId;
-      }
-      if (composerSceneNameInput) {
-        composerSceneNameInput.value = nextName;
-      }
+      applyComposerSceneIdentityDraft(sceneIdInput?.value, sceneNameInput?.value);
       closeComposerAssemblyMenu();
-      renderComposerJsonPreview();
     },
   });
   const sceneForm = document.createElement("div");
@@ -5144,6 +5950,7 @@ function openComposerSceneMenuAt(clientX, clientY) {
     {
       text: "Save",
       onClick: () => {
+        applyComposerSceneIdentityDraft(sceneIdInput?.value, sceneNameInput?.value);
         openComposerLibraryMenuAt(clientX, clientY);
       },
     },
@@ -5159,6 +5966,53 @@ function openComposerSceneMenuAt(clientX, clientY) {
   positionComposerAssemblyMenu(clientX, clientY, 312, 252);
   sceneNameInput?.focus?.();
   sceneNameInput?.select?.();
+}
+
+function openComposerJsonPreviewMenuAt(clientX, clientY) {
+  if (!composerAssemblyMenu) {
+    return;
+  }
+  persistComposerPathStateToSelectedAssembly();
+  const draftState = readComposerDraftState();
+  const sceneDocument = buildComposerDocumentData(draftState);
+  const json = JSON.stringify(sceneDocument, null, 2);
+  if (composerJsonPreview) {
+    composerJsonPreview.textContent = json;
+  }
+  resetComposerAssemblyMenu();
+
+  const title = document.createElement("div");
+  title.className = "composer-assembly-menu-title";
+  title.textContent = "JSON Preview";
+  composerAssemblyMenu.appendChild(title);
+
+  const subtitle = document.createElement("div");
+  subtitle.className = "composer-assembly-menu-subtitle";
+  subtitle.textContent = `${draftState.name || "Composer Scene"} • ${draftState.id || "composer_scene"}`;
+  composerAssemblyMenu.appendChild(subtitle);
+
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Back",
+      onClick: () => {
+        openComposerLibraryMenuAt(clientX, clientY);
+      },
+    },
+    {
+      text: "Export JSON",
+      onClick: () => {
+        closeComposerAssemblyMenu();
+        composerExportButton?.click();
+      },
+    },
+  ]);
+
+  const preview = document.createElement("pre");
+  preview.className = "composer-json-preview composer-assembly-menu-json-preview";
+  preview.textContent = json;
+  composerAssemblyMenu.appendChild(preview);
+
+  positionComposerAssemblyMenu(clientX, clientY, 520, 520);
 }
 
 function openComposerLibraryMenuAt(clientX, clientY) {
@@ -5206,7 +6060,12 @@ function openComposerLibraryMenuAt(clientX, clientY) {
         composerExportButton?.click();
       },
     },
-    null,
+    {
+      text: "JSON Preview",
+      onClick: () => {
+        openComposerJsonPreviewMenuAt(clientX, clientY);
+      },
+    },
   ]);
 
   const libraryBlock = appendComposerMenuBlock(composerAssemblyMenu, "Browser Library");
@@ -5284,23 +6143,25 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     return;
   }
   const documentData = composerCurrentDocument;
-  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  const overlays = Array.isArray(documentData?.overlays) ? documentData.overlays : [];
+  const graphics = getComposerGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const reactionId = options.reactionId ?? null;
-  const markerId = options.markerId ?? null;
+  const overlayId = options.overlayId ?? options.graphicId ?? options.markerId ?? null;
   const pauseId = options.pauseId ?? null;
   const warpId = options.warpId ?? null;
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
-  const marker = markerId ? markers.find((entry) => entry?.id === markerId) ?? null : null;
-  const authoredMarker = marker?.id && marker.id !== "marker_start" ? marker : null;
+  const overlay = overlayId ? overlays.find((entry) => entry?.id === overlayId) ?? null : null;
+  const graphic = overlay?.kind === "graphic" ? overlay : null;
+  const imageOverlay = overlay?.kind === "image" ? overlay : null;
+  const videoOverlay = overlay?.kind === "video" ? overlay : null;
   const pause = pauseId ? pauses.find((entry) => entry?.id === pauseId) ?? null : null;
   const warp = warpId ? timeWarps.find((entry) => entry?.id === warpId) ?? null : null;
   const reaction = reactionId ? reactions.find((entry) => entry?.id === reactionId) ?? null : null;
   const timeSeconds =
     options.timeSeconds ??
-    authoredMarker?.t ??
-    marker?.t ??
+    overlay?.start ??
     pause?.start ??
     warp?.start ??
     reaction?.start ??
@@ -5312,8 +6173,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       ? "warp"
       : pause
         ? "pause"
-        : authoredMarker
-          ? "graphic"
+        : overlay
+          ? overlay.kind
           : "add";
   const requestedAddType = String(options.addType ?? "graphic").trim().toLowerCase();
   const validAddTypes = new Set([
@@ -5336,6 +6197,10 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       ? "Add"
       : editKind === "graphic"
         ? "Graphic"
+        : editKind === "image"
+          ? "Image"
+          : editKind === "video"
+            ? "Video"
         : editKind === "pause"
           ? "Pause"
           : editKind === "warp"
@@ -5352,36 +6217,107 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
         ? `Warp ${Number(warp.rate ?? 1).toFixed(2)}x @ ${formatComposerTimeLabel(warp.start)}-${formatComposerTimeLabel(warp.end)}`
       : editKind === "pause"
           ? `Pause ${formatComposerTimeLabel(pause.duration)} @ ${formatComposerTimeLabel(pause.start)}`
-          : editKind === "graphic"
-            ? `${authoredMarker.label ?? "Graphic"} @ ${formatComposerTimeLabel(authoredMarker.t)}-${formatComposerTimeLabel(
-                getComposerGraphicEnd(authoredMarker, duration)
-              )}`
+          : editKind === "graphic" && graphic
+            ? `${getComposerGraphicOverlayLabel(graphic)} @ ${formatComposerTimeLabel(graphic.start)}-${formatComposerTimeLabel(graphic.end)}`
+            : editKind === "image" && imageOverlay
+              ? `${getComposerMediaOverlayLabel(imageOverlay)} @ ${formatComposerTimeLabel(imageOverlay.start)}-${formatComposerTimeLabel(imageOverlay.end)}`
+              : editKind === "video" && videoOverlay
+                ? `${getComposerMediaOverlayLabel(videoOverlay)} @ ${formatComposerTimeLabel(videoOverlay.start)}-${formatComposerTimeLabel(videoOverlay.end)}`
             : `At ${formatComposerTimeLabel(timeSeconds)}`;
   composerAssemblyMenu.appendChild(subtitle);
+
+  const validationNote = document.createElement("div");
+  validationNote.className = "composer-field-note is-error";
+  validationNote.hidden = true;
+  composerAssemblyMenu.appendChild(validationNote);
+
+  const showTimelineMenuError = (message) => {
+    if (!message) {
+      validationNote.hidden = true;
+      validationNote.textContent = "";
+      return;
+    }
+    validationNote.hidden = false;
+    validationNote.textContent = message;
+    setComposerStatus(message);
+  };
+
+  const showTimelineOverlapError = (conflict) => {
+    if (!conflict) {
+      return;
+    }
+    showTimelineMenuError(
+      `Timeline items may not overlap. ${conflict.label} already occupies ${formatComposerTimeLabel(conflict.start)}-${formatComposerTimeLabel(conflict.end)}.`
+    );
+  };
 
   const timelineMenuWidth = 256;
   const appendGraphicBlock = () => {
     const initialGraphicSpan = clampComposerTimelineSpan(
-      authoredMarker?.t ?? timeSeconds,
-      authoredMarker?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
+      graphic?.start ?? timeSeconds,
+      graphic?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
+      duration
+    );
+    const initialGraphicDraft = normalizeComposerGraphicOverlayDraft(
+      graphic ?? {
+        id: getNextComposerGraphicOverlayId(),
+        start: initialGraphicSpan.start,
+        end: initialGraphicSpan.end,
+        text: "Text",
+        size: 0.42,
+        target: getComposerGraphicDefaultTarget(),
+      },
+      Math.max(0, getComposerGraphicOverlayDraftIndexById(graphic?.id)),
       duration
     );
     const graphicBlock = appendComposerMenuBlock(composerAssemblyMenu, "Graphic", {
-      text: authoredMarker ? "Save" : "Add",
+      text: graphic ? "Save" : "Add",
       onClick: () => {
         const graphicStart = Number(graphicStartInput?.value);
         const graphicEnd = Number(graphicEndInput?.value);
-        const label = String(graphicLabelInput?.value ?? "").trim();
-        if (!Number.isFinite(graphicStart) || !Number.isFinite(graphicEnd) || !label) {
+        const text = String(graphicTextInput?.value ?? "").trim();
+        const size = Number(graphicSizeInput?.value);
+        const target = decodeComposerGraphicTargetValue(graphicTargetInput?.value);
+        if (!Number.isFinite(graphicStart) || !Number.isFinite(graphicEnd) || !text || !target || !Number.isFinite(size)) {
           return;
         }
         const span = clampComposerTimelineSpan(graphicStart, graphicEnd, duration);
-        const nextLine = `${span.start}-${span.end}: ${label}`;
-        const current = composerMarkerListInput?.value ?? "";
-        if (composerMarkerListInput) {
-          composerMarkerListInput.value = authoredMarker?.id
-            ? replaceComposerAuthoringLineById(current, authoredMarker.id, nextLine)
-            : appendComposerAuthoringLine(current, nextLine);
+        const overlap = findComposerTimelineOverlap(
+          {
+            id: graphic?.id ?? initialGraphicDraft.id,
+            kind: "graphic",
+            start: span.start,
+            end: span.end,
+          },
+          {
+            excludeId: graphic?.id ?? initialGraphicDraft.id,
+            documentData,
+          }
+        );
+        if (overlap) {
+          showTimelineOverlapError(overlap);
+          return;
+        }
+        const nextOverlay = normalizeComposerGraphicOverlayDraft(
+          {
+            ...(graphic ?? initialGraphicDraft),
+            id: graphic?.id ?? initialGraphicDraft.id,
+            start: span.start,
+            end: span.end,
+            text,
+            label: text,
+            size,
+            target,
+            offset: graphic?.offset ?? initialGraphicDraft.offset,
+          },
+          Math.max(0, getComposerGraphicOverlayDraftIndexById(graphic?.id)),
+          duration
+        );
+        const existingIndex = getComposerGraphicOverlayDraftIndexById(nextOverlay.id);
+        if (existingIndex >= 0) {
+          composerGraphicOverlayDrafts[existingIndex] = nextOverlay;
+        } else {
+          composerGraphicOverlayDrafts.push(nextOverlay);
         }
         closeComposerAssemblyMenu();
         renderComposerJsonPreview();
@@ -5392,36 +6328,174 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const graphicStartInput = appendComposerMenuField(graphicForm, {
       label: "Start (s)",
       type: "number",
-      value: initialGraphicSpan.start,
+      value: formatComposerTimeInputValue(initialGraphicSpan.start),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const graphicEndInput = appendComposerMenuField(graphicForm, {
       label: "End (s)",
       type: "number",
-      value: initialGraphicSpan.end,
+      value: formatComposerTimeInputValue(initialGraphicSpan.end),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
-    const graphicLabelInput = appendComposerMenuField(graphicForm, {
-      label: "Label",
-      value: authoredMarker?.label ?? "graphic",
+    const graphicTargetInput = appendComposerMenuSelectField(graphicForm, {
+      label: "Target",
+      value: encodeComposerGraphicTargetValue(initialGraphicDraft.target),
+      entries: getComposerGraphicTargetEntries(),
+      placeholder: "Select target",
     });
-    graphicLabelInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
+    graphicTargetInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
+    const graphicTextInput = appendComposerMenuField(graphicForm, {
+      label: "Text",
+      value: initialGraphicDraft.text,
+      placeholder: "Graphic text",
+    });
+    graphicTextInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
+    const graphicSizeInput = appendComposerMenuField(graphicForm, {
+      label: "Size",
+      type: "number",
+      value: initialGraphicDraft.size,
+      step: 0.05,
+      min: 0.18,
+    });
     graphicBlock?.block?.appendChild(graphicForm);
+    appendComposerMenuNote(
+      graphicBlock?.block,
+      "Drag the text to place it. Edit size here when needed."
+    );
 
-    if (authoredMarker?.id) {
+    if (graphic?.id) {
       appendComposerMenuButtonRow(graphicBlock?.block, [
         {
           text: "Remove Graphic",
           className: "composer-assembly-menu-danger",
           onClick: () => {
-            if (composerMarkerListInput) {
-              composerMarkerListInput.value = replaceComposerAuthoringLineById(
-                composerMarkerListInput.value,
-                authoredMarker.id,
-                null
-              );
+            const overlayIndex = getComposerGraphicOverlayDraftIndexById(graphic.id);
+            if (overlayIndex >= 0) {
+              composerGraphicOverlayDrafts.splice(overlayIndex, 1);
+            }
+            closeComposerAssemblyMenu();
+            renderComposerJsonPreview();
+          },
+        },
+      ]);
+    }
+  };
+
+  const appendMediaBlock = (kind) => {
+    const currentOverlay = kind === "image" ? imageOverlay : videoOverlay;
+    const initialSpan = clampComposerTimelineSpan(
+      currentOverlay?.start ?? timeSeconds,
+      currentOverlay?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
+      duration
+    );
+    const initialDraft = normalizeComposerGraphicOverlayDraft(
+      currentOverlay ?? {
+        id: getNextComposerGraphicOverlayId(),
+        kind,
+        start: initialSpan.start,
+        end: initialSpan.end,
+        source: "",
+        rect: getComposerMediaDefaultRect(kind),
+      },
+      Math.max(0, getComposerGraphicOverlayDraftIndexById(currentOverlay?.id)),
+      duration
+    );
+    const mediaBlock = appendComposerMenuBlock(
+      composerAssemblyMenu,
+      kind === "image" ? "Image" : "Video",
+      {
+        text: currentOverlay ? "Save" : "Add",
+        onClick: () => {
+          const start = Number(mediaStartInput?.value);
+          const end = Number(mediaEndInput?.value);
+          const source = sanitizeComposerMediaSource(mediaSourceInput?.value, kind);
+          if (!Number.isFinite(start) || !Number.isFinite(end) || !source) {
+            return;
+          }
+          const span = clampComposerTimelineSpan(start, end, duration);
+          const overlap = findComposerTimelineOverlap(
+            {
+              id: currentOverlay?.id ?? initialDraft.id,
+              kind,
+              start: span.start,
+              end: span.end,
+            },
+            {
+              excludeId: currentOverlay?.id ?? initialDraft.id,
+              documentData,
+            }
+          );
+          if (overlap) {
+            showTimelineOverlapError(overlap);
+            return;
+          }
+          const nextOverlay = normalizeComposerGraphicOverlayDraft(
+            {
+              ...(currentOverlay ?? initialDraft),
+              id: currentOverlay?.id ?? initialDraft.id,
+              kind,
+              start: span.start,
+              end: span.end,
+              source,
+              label: source.split("/").pop() ?? (kind === "image" ? "Image" : "Video"),
+              rect: currentOverlay?.rect ?? initialDraft.rect,
+            },
+            Math.max(0, getComposerGraphicOverlayDraftIndexById(currentOverlay?.id)),
+            duration
+          );
+          const existingIndex = getComposerGraphicOverlayDraftIndexById(nextOverlay.id);
+          if (existingIndex >= 0) {
+            composerGraphicOverlayDrafts[existingIndex] = nextOverlay;
+          } else {
+            composerGraphicOverlayDrafts.push(nextOverlay);
+          }
+          closeComposerAssemblyMenu();
+          renderComposerJsonPreview();
+        },
+      }
+    );
+    const mediaForm = document.createElement("div");
+    mediaForm.className = "composer-form composer-assembly-menu-grid-2";
+    const mediaStartInput = appendComposerMenuField(mediaForm, {
+      label: "Start (s)",
+      type: "number",
+      value: formatComposerTimeInputValue(initialSpan.start),
+      step: 0.1,
+      min: 0,
+      selectOnFocus: true,
+    });
+    const mediaEndInput = appendComposerMenuField(mediaForm, {
+      label: "End (s)",
+      type: "number",
+      value: formatComposerTimeInputValue(initialSpan.end),
+      step: 0.1,
+      min: 0,
+      selectOnFocus: true,
+    });
+    const mediaSourceInput = appendComposerMenuField(mediaForm, {
+      label: "Asset Path",
+      value: initialDraft.source,
+      placeholder: composerMediaAssetDirectories[kind],
+    });
+    mediaSourceInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
+    mediaBlock?.block?.appendChild(mediaForm);
+    appendComposerMenuNote(
+      mediaBlock?.block,
+      `Use ${composerMediaAssetDirectories[kind]}. Drag the rectangle to place it, and drag the corner to resize it.`
+    );
+    if (currentOverlay?.id) {
+      appendComposerMenuButtonRow(mediaBlock?.block, [
+        {
+          text: `Remove ${kind === "image" ? "Image" : "Video"}`,
+          className: "composer-assembly-menu-danger",
+          onClick: () => {
+            const overlayIndex = getComposerGraphicOverlayDraftIndexById(currentOverlay.id);
+            if (overlayIndex >= 0) {
+              composerGraphicOverlayDrafts.splice(overlayIndex, 1);
             }
             closeComposerAssemblyMenu();
             renderComposerJsonPreview();
@@ -5446,6 +6520,23 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           return;
         }
         const span = clampComposerTimelineSpan(start, start + pauseDuration, duration);
+        const pauseIdForSave = pause?.id ?? "";
+        const overlap = findComposerTimelineOverlap(
+          {
+            id: pauseIdForSave,
+            kind: "pause",
+            start: span.start,
+            end: span.end,
+          },
+          {
+            excludeId: pauseIdForSave,
+            documentData,
+          }
+        );
+        if (overlap) {
+          showTimelineOverlapError(overlap);
+          return;
+        }
         const nextLine = `${span.start}, ${span.span}`;
         const current = composerPauseListInput?.value ?? "";
         if (composerPauseListInput) {
@@ -5462,16 +6553,18 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const pauseStartInput = appendComposerMenuField(pauseForm, {
       label: "Start (s)",
       type: "number",
-      value: initialPauseSpan.start,
+      value: formatComposerTimeInputValue(initialPauseSpan.start),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const pauseDurationInput = appendComposerMenuField(pauseForm, {
       label: "Duration (s)",
       type: "number",
-      value: initialPauseSpan.span,
+      value: formatComposerTimeInputValue(initialPauseSpan.span),
       step: 0.1,
       min: composerTimelineMinDurationSeconds,
+      selectOnFocus: true,
     });
     pauseBlock?.block?.appendChild(pauseForm);
 
@@ -5512,6 +6605,23 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           return;
         }
         const span = clampComposerTimelineSpan(start, end, duration);
+        const warpIdForSave = warp?.id ?? "";
+        const overlap = findComposerTimelineOverlap(
+          {
+            id: warpIdForSave,
+            kind: "warp",
+            start: span.start,
+            end: span.end,
+          },
+          {
+            excludeId: warpIdForSave,
+            documentData,
+          }
+        );
+        if (overlap) {
+          showTimelineOverlapError(overlap);
+          return;
+        }
         const nextLine = `${span.start}, ${span.end}, ${Number(rate.toFixed(3))}`;
         const current = composerWarpListInput?.value ?? "";
         if (composerWarpListInput) {
@@ -5528,16 +6638,18 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const warpStartInput = appendComposerMenuField(warpForm, {
       label: "Start (s)",
       type: "number",
-      value: initialWarpSpan.start,
+      value: formatComposerTimeInputValue(initialWarpSpan.start),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const warpEndInput = appendComposerMenuField(warpForm, {
       label: "End (s)",
       type: "number",
-      value: initialWarpSpan.end,
+      value: formatComposerTimeInputValue(initialWarpSpan.end),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const warpRateInput = appendComposerMenuField(warpForm, {
       label: "Rate",
@@ -5588,6 +6700,23 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           return;
         }
         const span = clampComposerTimelineSpan(start, end, duration);
+        const reactionIdForSave = reaction?.id ?? "";
+        const overlap = findComposerTimelineOverlap(
+          {
+            id: reactionIdForSave,
+            kind: "reaction",
+            start: span.start,
+            end: span.end,
+          },
+          {
+            excludeId: reactionIdForSave,
+            documentData,
+          }
+        );
+        if (overlap) {
+          showTimelineOverlapError(overlap);
+          return;
+        }
         const nextLine = `${label} @ ${span.start}-${span.end}: ${transferRefs}${
           actions ? ` | ${actions}` : ""
         }`;
@@ -5609,16 +6738,18 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const reactionStartInput = appendComposerMenuField(reactionForm, {
       label: "Start (s)",
       type: "number",
-      value: initialReactionSpan.start,
+      value: formatComposerTimeInputValue(initialReactionSpan.start),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const reactionEndInput = appendComposerMenuField(reactionForm, {
       label: "End (s)",
       type: "number",
-      value: initialReactionSpan.end,
+      value: formatComposerTimeInputValue(initialReactionSpan.end),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const defaultTransfers = reaction
       ? formatComposerReactionTransferRefs(reaction.transferIds)
@@ -5680,7 +6811,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       { id: "video", label: "Video" },
       { id: "audio", label: "Audio" },
       { id: "graphic", label: "Graphic" },
-      { id: "camera", label: "Camera" },
+      { id: "camera", label: "Observer" },
       { id: "reaction", label: "Reaction" },
     ].forEach((item) => {
       const orb = document.createElement("button");
@@ -5703,32 +6834,32 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
 
     if (addType === "graphic") {
       appendGraphicBlock();
+    } else if (addType === "image") {
+      appendMediaBlock("image");
+    } else if (addType === "video") {
+      appendMediaBlock("video");
     } else if (addType === "pause") {
       appendPauseBlock();
     } else if (addType === "warp") {
       appendWarpBlock();
     } else if (addType === "reaction") {
       appendReactionBlock();
-    } else if (addType === "image") {
-      appendPlaceholderBlock("Image", [
-        "Planned for image overlays with fade, target attachment, and timing controls.",
-      ]);
-    } else if (addType === "video") {
-      appendPlaceholderBlock("Video", [
-        "Planned for embedded clips, synchronized playback windows, and timeline fades.",
-      ]);
     } else if (addType === "audio") {
       appendPlaceholderBlock("Audio", [
         "Planned for narration, accent sounds, and level automation on the shared scene timeline.",
       ]);
     } else if (addType === "camera") {
-      appendPlaceholderBlock("Camera", [
-        "Camera clips need to coordinate the design viewport, shot framing, and the authored camera path.",
+      appendPlaceholderBlock("Observer", [
+        "Observer intervals need to coordinate the design viewport, observer framing, and the authored observer path.",
         "The first pass for that shared viewport design is being captured in viewports.md.",
       ]);
     }
   } else if (editKind === "graphic") {
     appendGraphicBlock();
+  } else if (editKind === "image") {
+    appendMediaBlock("image");
+  } else if (editKind === "video") {
+    appendMediaBlock("video");
   } else if (editKind === "pause") {
     appendPauseBlock();
   } else if (editKind === "warp") {
@@ -5743,6 +6874,13 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     timelineMenuWidth,
     editKind === "reaction" || (editKind === "add" && addType === "reaction")
       ? 432
+      : (
+          editKind === "graphic" ||
+          editKind === "image" ||
+          editKind === "video" ||
+          (editKind === "add" && (addType === "graphic" || addType === "image" || addType === "video"))
+        )
+        ? 392
       : editKind === "add"
         ? 332
         : 268
@@ -5783,7 +6921,7 @@ function openComposerPathPointMenuAt(clientX, clientY, pointIndex) {
 
   const poiButton = document.createElement("button");
   poiButton.type = "button";
-  poiButton.textContent = "Use This Point As POI";
+  poiButton.textContent = "Use This Point As Observer Target";
   poiButton.addEventListener("click", () => {
     composerSelectedPointIndex = pointIndex;
     composerCameraFlightState.poiMode = "selected";
@@ -5809,7 +6947,7 @@ function openComposerPathPointMenuAt(clientX, clientY, pointIndex) {
 }
 
 function describeComposerTimelineState(timeSeconds, documentData) {
-  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
+  const graphics = getComposerGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
@@ -5820,12 +6958,12 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   const activeReactionStage = Array.isArray(activeReaction?.stages)
     ? activeReaction.stages.find((stage) => timeSeconds >= stage.start && timeSeconds <= stage.end)
     : null;
-  const activeGraphic = [...markers]
-    .sort((left, right) => left.t - right.t)
-    .filter((marker) => timeSeconds + 0.001 >= marker.t && timeSeconds <= getComposerGraphicEnd(marker) + 0.001)
+  const activeGraphic = [...graphics]
+    .sort((left, right) => left.start - right.start)
+    .filter((graphic) => isComposerTimeWithinSpan(timeSeconds, graphic.start, graphic.end))
     .pop();
   const parts = [];
-  if (activeGraphic?.label && activeGraphic.id !== "marker_start") {
+  if (activeGraphic?.label) {
     parts.push(activeGraphic.label);
   }
   if (composerPlaybackState.pauseRemaining > 0) {
@@ -5944,6 +7082,8 @@ function renderComposerTimeline(documentData) {
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
+  const graphics = getComposerGraphicTimelineOverlays(documentData);
+  const mediaOverlays = getComposerViewportMediaTimelineOverlays(documentData);
 
   timeWarps.forEach((warp) => {
     const start = getComposerTimelineFraction(documentData, warp.start);
@@ -6004,32 +7144,35 @@ function renderComposerTimeline(documentData) {
     composerTimelineReactions?.appendChild(band);
   });
 
-  markers.forEach((marker) => {
-    const graphicEnd = getComposerGraphicEnd(marker, documentData?.scene?.time?.end);
-    if (graphicEnd > marker.t + 0.001 && marker.id !== "marker_start") {
-      const start = getComposerTimelineFraction(documentData, marker.t);
-      const end = getComposerTimelineFraction(documentData, graphicEnd);
-      const band = createComposerTimelineBand(
-        start,
-        end,
-        "is-graphic",
-        `${marker.label ?? marker.id ?? "Graphic"}: ${formatComposerTimeLabel(marker.t)} to ${formatComposerTimeLabel(
-          graphicEnd
-        )}`,
-        marker.label ?? marker.id ?? "Graphic"
-      );
-      band.dataset.markerId = marker.id ?? "";
-      composerTimelineMarkers?.appendChild(band);
-      return;
-    }
-    const fraction = getComposerTimelineFraction(documentData, marker.t);
-    const markerNode = createComposerTimelineMarker(
-      fraction,
-      marker.label ?? marker.id ?? "Marker",
-      `${marker.label ?? marker.id ?? "Marker"} at ${formatComposerTimeLabel(marker.t)}`
+  graphics.forEach((graphic) => {
+    const start = getComposerTimelineFraction(documentData, graphic.start);
+    const end = getComposerTimelineFraction(documentData, graphic.end);
+    const label = getComposerGraphicOverlayLabel(graphic);
+    const band = createComposerTimelineBand(
+      start,
+      end,
+      "is-graphic",
+      `${label}: ${formatComposerTimeLabel(graphic.start)} to ${formatComposerTimeLabel(graphic.end)}`,
+      label
     );
-    markerNode.dataset.markerId = marker.id ?? "";
-    composerTimelineMarkers?.appendChild(markerNode);
+    band.dataset.overlayId = graphic.id ?? "";
+    composerTimelineMarkers?.appendChild(band);
+  });
+
+  mediaOverlays.forEach((overlay) => {
+    const start = getComposerTimelineFraction(documentData, overlay.start);
+    const end = getComposerTimelineFraction(documentData, overlay.end);
+    const label = getComposerMediaOverlayLabel(overlay);
+    const band = createComposerTimelineBand(
+      start,
+      end,
+      overlay.kind === "video" ? "is-video" : "is-image",
+      `${label}: ${formatComposerTimeLabel(overlay.start)} to ${formatComposerTimeLabel(overlay.end)}`,
+      label
+    );
+    band.dataset.overlayId = overlay.id ?? "";
+    band.dataset.overlayKind = overlay.kind ?? "";
+    composerTimelineMarkers?.appendChild(band);
   });
 }
 
@@ -6050,10 +7193,6 @@ function updateComposerTimelinePlayhead(timeSeconds, documentData) {
       timeWindow.end
     )}`;
   }
-  if (composerTimelineActive) {
-    composerTimelineActive.textContent = describeComposerTimelineState(timeSeconds, documentData);
-  }
-  syncComposerMarkerNavigation(documentData, timeSeconds);
   if (composerPlayToggleButton) {
     setComposerTransportButtonIcon(
       composerPlayToggleButton,
@@ -6458,6 +7597,36 @@ function updateComposerAnimatedViewport(timeSeconds) {
         : 0.32;
   });
 
+  composerPersonalityHandleMeshes.forEach((mesh) => {
+    const assemblyId = mesh?.userData?.assemblyId ?? null;
+    const memberId = mesh?.userData?.memberId ?? null;
+    const assembly = assemblyId ? assemblyById.get(assemblyId) : null;
+    const member = Array.isArray(assembly?.members)
+      ? assembly.members.find((entry, index) => getComposerMemberId(entry, index) === memberId)
+      : null;
+    if (!assembly || !member) {
+      mesh.visible = false;
+      return;
+    }
+    const slotIndex = Math.max(0, Number(member?.slotIndex ?? 0) || 0);
+    const localOffset = getComposerPersonalitySlotLocalOffset(assembly, slotIndex);
+    mesh.position.copy(localOffset);
+    if (mesh.material?.color) {
+      mesh.material.color.set(getComposerMemberColor(member, slotIndex));
+    }
+    setComposerMemberAnchor(assemblyId, memberId, {
+      type: "proxy",
+      offset: [localOffset.x, localOffset.y, localOffset.z],
+    });
+    mesh.visible = true;
+  });
+
+  try {
+    updateComposerGraphicOverlayVisuals(timeSeconds, composerCurrentDocument, assemblyCenters);
+  } catch (error) {
+    console.error("Composer graphic overlay update failed.", error);
+  }
+  updateComposerViewportMediaOverlays(timeSeconds, composerCurrentDocument);
   updateComposerDocumentCameraPreview(timeSeconds, composerCurrentDocument);
 }
 
@@ -6646,6 +7815,291 @@ function addComposerTransferLine(transfer) {
   composerTransferLines.push(line);
 }
 
+function addComposerGraphicOverlayVisual(overlay) {
+  if (!composerViewportGroup || !overlay?.id) {
+    return;
+  }
+  const group = new THREE.Group();
+  group.userData.overlayId = overlay.id;
+  group.userData.isComposerGraphicOverlay = true;
+
+  const haloRadius = Math.max(0.18, Number(overlay.size ?? 0.42) || 0.42);
+  const calloutLine = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]),
+    new THREE.LineBasicMaterial({
+      color: 0xc2ebff,
+      transparent: true,
+      opacity: 0.78,
+      depthTest: false,
+      depthWrite: false,
+    })
+  );
+  calloutLine.renderOrder = 15;
+  calloutLine.userData.overlayId = overlay.id;
+  group.add(calloutLine);
+
+  const textSprite = createComposerGraphicOverlayTextSprite(overlay.text, haloRadius);
+  textSprite.userData.overlayId = overlay.id;
+  textSprite.userData.isComposerGraphicHandle = true;
+  textSprite.userData.draggable = true;
+  const textHitProxy = createComposerMarkerHitProxy(Math.max(0.24, haloRadius * 0.84));
+  textSprite.userData.hitProxy = textHitProxy;
+  textSprite.add(textHitProxy);
+  group.add(textSprite);
+  composerGraphicOverlayHandleMeshes.push(textSprite);
+
+  group.userData.calloutLine = calloutLine;
+  group.userData.textSprite = textSprite;
+  group.userData.radius = haloRadius;
+  group.userData.textSignature = "";
+
+  composerViewportGroup.add(group);
+  composerGraphicOverlayGroups.push(group);
+}
+
+function updateComposerGraphicOverlayVisuals(timeSeconds, documentData, assemblyCenters = new Map()) {
+  const overlayById = new Map(getComposerGraphicTimelineOverlays(documentData).map((overlay) => [overlay.id, overlay]));
+  composerGraphicOverlayGroups.forEach((group) => {
+    const overlayId = group?.userData?.overlayId;
+    const overlay = overlayId ? overlayById.get(overlayId) : null;
+    if (!overlay) {
+      group.visible = false;
+      return;
+    }
+    const isActive = isComposerTimeWithinSpan(timeSeconds, overlay.start, overlay.end);
+    group.visible = isActive;
+    if (!isActive) {
+      return;
+    }
+    const targetPosition =
+      resolveComposerGraphicTargetPosition(overlay.target, assemblyCenters, documentData) ??
+      new THREE.Vector3();
+    const offset = vectorFromTriplet(overlay.offset ?? [0, 0, 0]);
+    const sphereCenter = targetPosition.clone().add(offset);
+    const anchorPosition =
+      resolveComposerGraphicTargetContactPosition(overlay.target, sphereCenter, assemblyCenters, documentData) ??
+      targetPosition;
+    group.position.copy(sphereCenter);
+    group.userData.anchorPosition = anchorPosition.clone();
+    group.userData.radius = Math.max(0.18, Number(overlay.size ?? 0.42) || 0.42);
+
+    const calloutLine = group.userData.calloutLine ?? null;
+    const radius = group.userData.radius;
+    const textSprite = group.userData.textSprite ?? null;
+    const nextSignature = `${overlay.text}|${radius.toFixed(3)}`;
+    if (textSprite && group.userData.textSignature !== nextSignature) {
+      updateComposerGraphicOverlayTextSprite(textSprite, overlay.text, radius);
+      group.userData.textSignature = nextSignature;
+    }
+    if (calloutLine) {
+      const direction = anchorPosition.clone().sub(sphereCenter);
+      const endPoint = direction.lengthSq() > 0.0001
+        ? direction.normalize().multiplyScalar(radius * 0.64)
+        : new THREE.Vector3(-radius * 0.64, 0, 0);
+      calloutLine.geometry.setFromPoints([anchorPosition.clone().sub(sphereCenter), endPoint]);
+    }
+  });
+}
+
+function setComposerViewportMediaOverlayFrame(element, rect) {
+  if (!element || !rect) {
+    return;
+  }
+  element.style.left = `${rect.x * 100}%`;
+  element.style.top = `${rect.y * 100}%`;
+  element.style.width = `${rect.width * 100}%`;
+  element.style.height = `${rect.height * 100}%`;
+}
+
+function clearComposerViewportMediaOverlays() {
+  composerViewportMediaOverlayElements.forEach((element) => {
+    element?.remove?.();
+  });
+  composerViewportMediaOverlayElements.clear();
+}
+
+function createComposerViewportMediaOverlayElement(overlay) {
+  if (!composerViewportOverlays || !overlay?.id || !(overlay.kind === "image" || overlay.kind === "video")) {
+    return null;
+  }
+  const wrapper = document.createElement("div");
+  wrapper.className = "composer-media-overlay";
+  wrapper.dataset.overlayId = overlay.id;
+  wrapper.dataset.overlayKind = overlay.kind;
+
+  const mediaElement = document.createElement(overlay.kind === "video" ? "video" : "img");
+  mediaElement.className = "composer-media-overlay-media";
+  if (overlay.kind === "video") {
+    mediaElement.muted = overlay.muted !== false;
+    mediaElement.loop = false;
+    mediaElement.playsInline = true;
+    mediaElement.preload = "metadata";
+    mediaElement.controls = false;
+  } else {
+    mediaElement.alt = overlay.label ?? "Image overlay";
+    mediaElement.decoding = "async";
+    mediaElement.draggable = false;
+  }
+  if (overlay.source) {
+    if (overlay.kind === "video") {
+      mediaElement.src = overlay.source;
+    } else {
+      mediaElement.src = overlay.source;
+    }
+  }
+  wrapper.appendChild(mediaElement);
+
+  const handle = document.createElement("div");
+  handle.className = "composer-media-overlay-handle";
+  wrapper.appendChild(handle);
+
+  const endInteraction = (event) => {
+    const state = wrapper.__composerDragState;
+    if (!state || (event && state.pointerId !== event.pointerId)) {
+      return;
+    }
+    wrapper.__composerDragState = null;
+    wrapper.classList.remove("is-active");
+    if (wrapper.hasPointerCapture?.(state.pointerId)) {
+      wrapper.releasePointerCapture(state.pointerId);
+    }
+    renderComposerJsonPreview();
+  };
+
+  const startInteraction = (mode, event) => {
+    if (event.button !== 0) {
+      return;
+    }
+    const draftOverlay = getComposerGraphicOverlayDraftById(overlay.id);
+    if (!draftOverlay) {
+      return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    closeComposerAssemblyMenu();
+    wrapper.classList.add("is-active");
+    wrapper.__composerDragState = {
+      mode,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startRect: { ...(draftOverlay.rect ?? getComposerMediaDefaultRect(draftOverlay.kind)) },
+      aspect:
+        Number(draftOverlay?.rect?.width ?? 0) > 0 && Number(draftOverlay?.rect?.height ?? 0) > 0
+          ? Number(draftOverlay.rect.width) / Number(draftOverlay.rect.height)
+          : overlay.kind === "video"
+            ? 16 / 9
+            : 1,
+    };
+    wrapper.setPointerCapture?.(event.pointerId);
+  };
+
+  wrapper.addEventListener("pointerdown", (event) => {
+    if (event.target === handle) {
+      return;
+    }
+    startInteraction("move", event);
+  });
+  handle.addEventListener("pointerdown", (event) => {
+    startInteraction("resize", event);
+  });
+  wrapper.addEventListener("pointermove", (event) => {
+    const state = wrapper.__composerDragState;
+    if (!state || state.pointerId !== event.pointerId || !composerCanvasWrap) {
+      return;
+    }
+    const draftOverlay = getComposerGraphicOverlayDraftById(overlay.id);
+    if (!draftOverlay) {
+      return;
+    }
+    event.preventDefault();
+    const wrapRect = composerCanvasWrap.getBoundingClientRect();
+    const dx = wrapRect.width ? (event.clientX - state.startX) / wrapRect.width : 0;
+    const dy = wrapRect.height ? (event.clientY - state.startY) / wrapRect.height : 0;
+    if (state.mode === "move") {
+      draftOverlay.rect = normalizeComposerMediaRect({
+        x: state.startRect.x + dx,
+        y: state.startRect.y + dy,
+        width: state.startRect.width,
+        height: state.startRect.height,
+      }, draftOverlay.kind);
+    } else {
+      const nextWidth = clamp(state.startRect.width + dx, 0.08, 0.86);
+      const aspect = Math.max(0.2, state.aspect || 1);
+      let nextHeight = nextWidth / aspect;
+      if (state.startRect.y + nextHeight > 0.96) {
+        nextHeight = 0.96 - state.startRect.y;
+      }
+      draftOverlay.rect = normalizeComposerMediaRect({
+        x: state.startRect.x,
+        y: state.startRect.y,
+        width: nextWidth,
+        height: nextHeight,
+      }, draftOverlay.kind);
+    }
+    setComposerViewportMediaOverlayFrame(wrapper, draftOverlay.rect);
+  });
+  wrapper.addEventListener("pointerup", endInteraction);
+  wrapper.addEventListener("pointercancel", endInteraction);
+  wrapper.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    openComposerTimelineMenuAt(event.clientX, event.clientY, {
+      overlayId: overlay.id,
+    });
+  });
+
+  composerViewportOverlays.appendChild(wrapper);
+  composerViewportMediaOverlayElements.set(overlay.id, wrapper);
+  setComposerViewportMediaOverlayFrame(wrapper, overlay.rect ?? getComposerMediaDefaultRect(overlay.kind));
+  return wrapper;
+}
+
+function syncComposerViewportMediaOverlays(documentData) {
+  clearComposerViewportMediaOverlays();
+  const overlays = getComposerViewportMediaTimelineOverlays(documentData);
+  overlays.forEach((overlay) => {
+    createComposerViewportMediaOverlayElement(overlay);
+  });
+}
+
+function updateComposerViewportMediaOverlays(timeSeconds, documentData) {
+  const overlays = getComposerViewportMediaTimelineOverlays(documentData);
+  const overlayById = new Map(overlays.map((overlay) => [overlay.id, overlay]));
+  composerViewportMediaOverlayElements.forEach((element, overlayId) => {
+    const overlay = overlayById.get(overlayId);
+    const mediaElement = element?.querySelector?.(".composer-media-overlay-media");
+    if (!overlay || !mediaElement) {
+      element?.classList.remove("is-visible");
+      return;
+    }
+    setComposerViewportMediaOverlayFrame(element, overlay.rect ?? getComposerMediaDefaultRect(overlay.kind));
+    const isActive = isComposerTimeWithinSpan(timeSeconds, overlay.start, overlay.end);
+    element.classList.toggle("is-visible", isActive);
+    if (!isActive) {
+      if (overlay.kind === "video") {
+        mediaElement.pause?.();
+      }
+      return;
+    }
+    if (overlay.kind === "video") {
+      const localTime = Math.max(0, timeSeconds - overlay.start);
+      if (!composerPlaybackState.playing || Math.abs((mediaElement.currentTime ?? 0) - localTime) > 0.25) {
+        try {
+          mediaElement.currentTime = localTime;
+        } catch (_error) {
+          // Ignore sync failures while metadata is still loading.
+        }
+      }
+      if (composerPlaybackState.playing) {
+        mediaElement.play?.().catch?.(() => {});
+      } else {
+        mediaElement.pause?.();
+      }
+    }
+  });
+}
+
 function addComposerAssemblyProxy(center, assembly, index) {
   const group = new THREE.Group();
   group.position.copy(center);
@@ -6823,6 +8277,38 @@ function addComposerAssemblyProxy(center, assembly, index) {
     const markerRadius = outerRadius + 0.06;
     const diagonal = markerRadius * Math.SQRT1_2;
     proxyBadgeOffset = new THREE.Vector3(diagonal, diagonal, 0);
+
+    const personalityMembers = getComposerPersonalityMembers(assembly);
+    personalityMembers.forEach((member, memberIndex) => {
+      const memberId = getComposerMemberId(member, memberIndex);
+      const slotIndex = Math.max(0, Number(member?.slotIndex ?? memberIndex) || 0);
+      const localOffset = getComposerPersonalitySlotLocalOffset(assembly, slotIndex);
+      setComposerMemberAnchor(assembly?.id, memberId, {
+        type: "proxy",
+        offset: [localOffset.x, localOffset.y, localOffset.z],
+      });
+      const memberDot = new THREE.Mesh(
+        new THREE.SphereGeometry(0.05, 14, 12),
+        new THREE.MeshBasicMaterial({
+          color: getComposerMemberColor(member, memberIndex),
+          transparent: true,
+          opacity: 0.98,
+          depthTest: false,
+          depthWrite: false,
+        })
+      );
+      memberDot.position.copy(localOffset);
+      memberDot.renderOrder = 16;
+      memberDot.userData.assemblyId = assembly?.id ?? null;
+      memberDot.userData.memberId = memberId;
+      memberDot.userData.draggable = false;
+      memberDot.userData.isComposerPersonalityHandle = true;
+      const memberHitProxy = createComposerMarkerHitProxy(0.16);
+      memberDot.userData.hitProxy = memberHitProxy;
+      memberDot.add(memberHitProxy);
+      group.add(memberDot);
+      composerPersonalityHandleMeshes.push(memberDot);
+    });
   }
 
   composerViewportGroup?.add(group);
@@ -6998,6 +8484,15 @@ function updateComposerViewportFromDocument(documentData) {
   transfers.forEach((transfer) => {
     addComposerTransferLine(transfer);
   });
+  const graphicOverlays = getComposerGraphicTimelineOverlays(documentData);
+  graphicOverlays.forEach((overlay) => {
+    try {
+      addComposerGraphicOverlayVisual(overlay);
+    } catch (error) {
+      console.error("Composer graphic overlay setup failed.", overlay?.id, error);
+    }
+  });
+  syncComposerViewportMediaOverlays(documentData);
   addComposerDocumentCameraVisuals(documentData);
   applyComposerViewportDisplayState();
 
@@ -7104,7 +8599,7 @@ function startComposerCameraFlightPreview() {
     composerCameraFlightState.savedPosition.copy(composerCamera.position);
   }
   if (composerCameraFlightToggle) {
-    composerCameraFlightToggle.textContent = "Stop Flight";
+    composerCameraFlightToggle.textContent = "Stop Observer Path";
     composerCameraFlightToggle.classList.add("is-active");
   }
 }
@@ -7121,7 +8616,7 @@ function stopComposerCameraFlightPreview() {
     updateComposerCamera();
   }
   if (composerCameraFlightToggle) {
-    composerCameraFlightToggle.textContent = "Play Flight";
+    composerCameraFlightToggle.textContent = "Preview Observer Path";
     composerCameraFlightToggle.classList.remove("is-active");
   }
 }
@@ -7244,6 +8739,40 @@ function resolveComposerSubassemblyHandleHit(object) {
   return null;
 }
 
+function resolveComposerGraphicOverlayHit(object) {
+  let current = object;
+  while (current) {
+    const overlayId = current.userData?.overlayId;
+    if (overlayId && current.userData?.isComposerGraphicHandle) {
+      return {
+        overlayId,
+        draggable: current.userData?.draggable !== false,
+        object: current,
+      };
+    }
+    current = current.parent ?? null;
+  }
+  return null;
+}
+
+function resolveComposerPersonalityHandleHit(object) {
+  let current = object;
+  while (current) {
+    const assemblyId = current.userData?.assemblyId;
+    const memberId = current.userData?.memberId;
+    if (assemblyId && memberId && current.userData?.isComposerPersonalityHandle) {
+      return {
+        assemblyId,
+        memberId,
+        draggable: false,
+        object: current,
+      };
+    }
+    current = current.parent ?? null;
+  }
+  return null;
+}
+
 function findComposerCenterMarkerIntersection(hits = []) {
   for (const hit of Array.isArray(hits) ? hits : []) {
     const assemblyHit = resolveComposerAssemblyHit(hit?.object);
@@ -7338,6 +8867,37 @@ function onComposerPointerDown(event) {
       );
       composerDragState.plane.setFromNormalAndCoplanarPoint(normal, worldPoint);
       updateComposerCameraWaypointMaterials(waypointIndex);
+      return;
+    }
+  }
+  const personalityHits = composerRaycaster.intersectObjects(composerPersonalityHandleMeshes, true);
+  if (event.button === 0 && personalityHits.length) {
+    const personalityHit = resolveComposerPersonalityHandleHit(personalityHits[0].object);
+    if (personalityHit?.assemblyId) {
+      setComposerSelectedAssembly(personalityHit.assemblyId);
+      renderComposerAssemblyEditor();
+      renderComposerJsonPreview();
+      return;
+    }
+  }
+  const graphicHits = composerRaycaster.intersectObjects(composerGraphicOverlayHandleMeshes, true);
+  if (event.button === 0 && graphicHits.length) {
+    const graphicHit = resolveComposerGraphicOverlayHit(graphicHits[0].object);
+    const overlay = graphicHit?.overlayId ? getComposerGraphicOverlayDraftById(graphicHit.overlayId) : null;
+    if (graphicHit?.draggable && overlay) {
+      composerDragState.mode = "graphic";
+      composerDragState.overlayId = overlay.id;
+      composerDragState.startX = event.clientX;
+      composerDragState.startY = event.clientY;
+      const anchorPosition =
+        resolveComposerGraphicTargetPosition(overlay.target, composerAssemblyWorldCenters, composerCurrentDocument) ??
+        new THREE.Vector3();
+      composerDragState.startGraphicAnchor.copy(anchorPosition);
+      composerDragState.startGraphicOffset.copy(vectorFromTriplet(overlay.offset));
+      composerDragState.startGraphicCenter.copy(anchorPosition.clone().add(vectorFromTriplet(overlay.offset)));
+      const planeNormal = composerCamera.getWorldDirection(new THREE.Vector3()).normalize();
+      const worldCenter = composerFrameGroup.localToWorld(composerDragState.startGraphicCenter.clone());
+      composerDragState.plane.setFromNormalAndCoplanarPoint(planeNormal, worldCenter);
       return;
     }
   }
@@ -7500,6 +9060,34 @@ function onComposerContextMenu(event) {
   }
   const { x, y } = getComposerPointerNdc(event);
   composerRaycaster.setFromCamera({ x, y }, composerCamera);
+  const personalityHits = composerRaycaster.intersectObjects(composerPersonalityHandleMeshes, true);
+  if (personalityHits.length) {
+    const personalityHit = resolveComposerPersonalityHandleHit(personalityHits[0].object);
+    if (personalityHit?.assemblyId && personalityHit?.memberId) {
+      event.preventDefault();
+      setComposerSelectedAssembly(personalityHit.assemblyId);
+      renderComposerAssemblyEditor();
+      renderComposerJsonPreview();
+      openComposerPersonalitySlotMenuAt(
+        event.clientX,
+        event.clientY,
+        personalityHit.assemblyId,
+        personalityHit.memberId
+      );
+      return;
+    }
+  }
+  const graphicHits = composerRaycaster.intersectObjects(composerGraphicOverlayHandleMeshes, true);
+  if (graphicHits.length) {
+    const graphicHit = resolveComposerGraphicOverlayHit(graphicHits[0].object);
+    if (graphicHit?.overlayId) {
+      event.preventDefault();
+      openComposerTimelineMenuAt(event.clientX, event.clientY, {
+        graphicId: graphicHit.overlayId,
+      });
+      return;
+    }
+  }
   const assemblyHits = composerRaycaster.intersectObjects(composerAssemblyMeshes, true);
   const pointHits = composerRaycaster.intersectObjects(composerPointMeshes, true);
   const preferredCenterHit = shouldPreferComposerCenterMarker(pointHits, assemblyHits);
@@ -7569,13 +9157,13 @@ function onComposerTimelineContextMenu(event) {
   }
   event.preventDefault();
   closeComposerAssemblyMenu();
-  const markerNode = event.target.closest?.(".composer-timeline-marker, .composer-timeline-band.is-graphic");
+  const overlayBand = event.target.closest?.(".composer-timeline-band.is-graphic, .composer-timeline-band.is-image, .composer-timeline-band.is-video");
   const pauseBand = event.target.closest?.(".composer-timeline-band.is-pause");
   const warpBand = event.target.closest?.(".composer-timeline-band.is-warp");
   const reactionBand = event.target.closest?.(".composer-timeline-band.is-reaction");
   openComposerTimelineMenuAt(event.clientX, event.clientY, {
     timeSeconds: getComposerTimelineTimeAtClientX(event.clientX, composerCurrentDocument),
-    markerId: markerNode?.dataset?.markerId ?? null,
+    overlayId: overlayBand?.dataset?.overlayId ?? null,
     pauseId: pauseBand?.dataset?.pauseId ?? null,
     warpId: warpBand?.dataset?.warpId ?? null,
     reactionId: reactionBand?.dataset?.reactionId ?? null,
@@ -7687,6 +9275,27 @@ function onComposerPointerMove(event) {
     return;
   }
 
+  if (composerDragState.mode === "graphic") {
+    const overlay = getComposerGraphicOverlayDraftById(composerDragState.overlayId);
+    if (!overlay) {
+      return;
+    }
+    const { x, y } = getComposerPointerNdc(event);
+    composerRaycaster.setFromCamera({ x, y }, composerCamera);
+    const intersection = new THREE.Vector3();
+    if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
+      const localPoint = composerFrameGroup.worldToLocal(intersection.clone());
+      const nextOffset = localPoint.sub(composerDragState.startGraphicAnchor);
+      overlay.offset = [
+        Number(nextOffset.x.toFixed(3)),
+        Number(nextOffset.y.toFixed(3)),
+        Number(nextOffset.z.toFixed(3)),
+      ];
+      renderComposerJsonPreview();
+    }
+    return;
+  }
+
   if (composerDragState.mode === "subassembly") {
     const liveAssembly = getComposerAssemblyDraftById(composerDragState.assemblyId);
     if (!liveAssembly || !composerDragState.subassemblyId) {
@@ -7762,6 +9371,7 @@ function onComposerPointerUp(event) {
   composerDragState.assemblyIndex = null;
   composerDragState.assemblyId = null;
   composerDragState.memberId = null;
+  composerDragState.overlayId = null;
   composerDragState.subassemblyId = null;
   if (composerCanvas && composerCanvas.hasPointerCapture(event.pointerId)) {
     composerCanvas.releasePointerCapture(event.pointerId);
@@ -8031,6 +9641,7 @@ const composerCameraFlightState = {
   savedTarget: new THREE.Vector3(),
 };
 let composerAssemblyDrafts = [createDefaultComposerAssemblyDraft(0)];
+let composerGraphicOverlayDrafts = [];
 let composerSelectedPointIndex = null;
 let composerSelectedCameraWaypointIndex = null;
 let composerSelectedAssemblyId = null;
@@ -8047,6 +9658,7 @@ const composerDragState = {
   assemblyId: null,
   memberId: null,
   subassemblyId: null,
+  overlayId: null,
   startX: 0,
   startY: 0,
   startPoint: new THREE.Vector3(),
@@ -8058,6 +9670,9 @@ const composerDragState = {
   startMemberSubassemblyPosition: new THREE.Vector3(),
   startSubassemblyAssemblyCenter: new THREE.Vector3(),
   startSubassemblyPosition: new THREE.Vector3(),
+  startGraphicAnchor: new THREE.Vector3(),
+  startGraphicOffset: new THREE.Vector3(),
+  startGraphicCenter: new THREE.Vector3(),
   startAssemblyPathPoints: [],
   startFrameRot: new THREE.Euler(0, 0, 0, "YXZ"),
   startOrbitTheta: 0,
@@ -8088,6 +9703,7 @@ let composerCameraWaypointGeometry = null;
 let composerCameraWaypointMaterial = null;
 let composerAssemblyMeshes = [];
 let composerMemberHandleMeshes = [];
+let composerPersonalityHandleMeshes = [];
 let composerSubassemblyHandleMeshes = [];
 let composerAssemblyWorldCenters = new Map();
 let composerShellMeshes = [];
@@ -8099,6 +9715,9 @@ let composerAxisGuideLines = [];
 let composerOrbitParticleMeshes = [];
 let composerMemberAnchors = new Map();
 let composerMemberLabelSprites = [];
+let composerGraphicOverlayGroups = [];
+let composerGraphicOverlayHandleMeshes = [];
+let composerViewportMediaOverlayElements = new Map();
 let composerDocumentCameraPathLine = null;
 let composerDocumentCameraWaypointMeshes = [];
 let composerDocumentCameraShotMesh = null;

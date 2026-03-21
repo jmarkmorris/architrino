@@ -77,6 +77,84 @@ The current requirements/design posture is now more specific than when this note
 - Large persistent text forms should not be reintroduced unless there is no workable canvas-first alternative.
 - Context menus are not a side convenience. They are now part of the intended authoring grammar for assembly, path, timeline, and scene actions.
 
+### Immediate media support boundary
+
+The composer should keep imported reference media on a deliberately narrow support boundary.
+
+For the current webapp phase, support should be:
+
+- images: `jpg`, `jpeg`, `png`, `svg`;
+- video: `mp4`, `mov`;
+- audio: `mp3`.
+
+The current design should explicitly not broaden into `webp`, `webm`, `aac`, or `m4a` during this pass. The point is not maximal browser-format breadth. The point is a small, legible authoring contract that covers the most common academic and studio source material without turning the composer into a generic ingest tool.
+
+Imported media should live in organized repo directories rather than in one flat dump:
+
+- `content/assets/composer/images/`
+- `content/assets/composer/video/`
+- `content/assets/composer/audio/`
+
+That organization is preferable because the composer is already handling multiple overlay classes with different lifecycle and review concerns. Separate directories will make references, cleanup, and future package/export behavior much easier to reason about than one mixed asset bucket.
+
+For the first implementation, image and video should be true viewport overlays:
+
+- fixed to screen space rather than embedded in scene space,
+- visible only during their authored timeline span,
+- directly draggable and resizable in the observer view,
+- and not themselves part of the assembly animation grammar.
+
+This keeps the first media pass editorially useful without confusing overlays with world geometry. A later phase can add scene-attached media if there is a strong reason to do so.
+
+### Current explanatory overlay baseline
+
+The composer now has one real explanatory overlay path rather than only abstract overlay intentions.
+
+The current implemented overlay baseline is:
+
+- a text callout overlay with a short label;
+- a straight leader line from the text toward the target;
+- attachment to an assembly or a path point;
+- timeline-span authoring with the shared minimum duration;
+- direct placement by dragging the text in the viewport;
+- and shell-contact behavior for assembly targets so the leader terminates on the visible outer boundary rather than at the assembly center.
+
+This matters because the first overlay path is no longer hypothetical. The composer now has a concrete instructional graphic grammar: concise text, restrained linework, and attachment to visible structure. Future overlay types should extend that language rather than replacing it with unrelated graphic conventions.
+
+### Assembly-authoring boundary for free architrinos
+
+The composer should not treat free electrinos or positrinos as primary add-menu templates.
+
+The preferred authoring story is structural:
+
+- authors add built assemblies;
+- free architrinos appear when the author explicitly detaches a personality charge from an assembly;
+- or when the author explicitly breaks a binary into its constituent architrinos as part of a larger structural or reaction edit.
+
+This matters because a free architrino in the composer should usually mean that some prior structure has been opened, split, or transferred. That is a stronger and more informative authoring grammar than treating bare charges as generic top-level scene stamps.
+
+So future UI work should prioritize:
+
+- detaching a personality charge into a free architrino,
+- breaking a binary into two free architrinos,
+- and carrying those outputs forward through path authoring, transfer, and reaction staging.
+
+### Terminology note: reaction, not decay
+
+The composer should prefer `reaction` over `decay` in its authored animation language.
+
+That is partly a clarity choice and partly a scope choice:
+
+- physicists use `decay` across several different disassembly and reassembly stories;
+- the composer needs one term that can cover disassembly, transfer, handoff, and reassembly on a shared authored timeline;
+- and `reaction` is broad enough to hold that whole staged process without prejudging whether the event is a simple one-way breakup or a richer channel transformation.
+
+So when this design area becomes more visible in the UI:
+
+- use `reaction` for the authored event object,
+- use `reaction stages` for the timed substeps,
+- and avoid centering `decay` as the primary composer term unless a specific scientific scene needs that narrower wording in displayed content.
+
 ## Observer metaphor and user-facing language
 
 The composer should stop presenting itself as a camera tool. What matters in the authored scene is what the observer sees.
@@ -943,22 +1021,24 @@ Observed composer capabilities in the runtime:
 - frame edit and frame reset controls, now largely living in canvas context menus,
 - camera POI selection and camera waypoint add/clear flows,
 - viewport camera speed and radius controls,
-- cue, pause, warp, and transfer text-based authoring,
+- pause, warp, and transfer authoring on the shared timeline/runtime path,
 - timeline reaction authoring from right-click menus,
+- timeline graphic authoring as real text callout overlays attached to assemblies or path points,
+- timeline image and video authoring as fixed viewport overlays with direct drag and resize,
 - transfer authoring from assembly-handle context menus,
 - history traces, envelopes, and derived provenance in the canonical document/runtime path,
 - browser-local save/load library for draft scenes,
 - compact canvas and assembly context menus,
 - docs panel,
 - canonical JSON export,
-- and live viewport playback with top-bar scrub, play, pause, restart, cue jump, and timeline overlays.
+- and live viewport playback with a compact top scrub row, play, pause, restart, and timeline overlays.
 
 The current composer surface already suggests an intended authoring loop:
 
 1. define a scene draft,
 2. add one or more assemblies,
 3. author assembly placement and path behavior directly in the viewport,
-4. define timing, reaction, transfer, and camera behavior from the timeline and context menus,
+4. define timing, reaction, transfer, observer behavior, and overlays from the timeline and context menus,
 5. preview the scene live,
 6. save a browser-local draft or export canonical JSON.
 
