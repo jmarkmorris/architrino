@@ -10,6 +10,17 @@ import {
   buildComposerPreviewSceneData,
   createComposerSceneDocument,
 } from "./src/runtime/Composer2SceneDocumentRuntime.js";
+import {
+  buildComposerReactionActionString,
+  formatComposerReactionBandLabel,
+  formatComposerReactionList,
+  formatComposerReactionTransferRefs,
+  getComposerReactionActionOptions,
+  getComposerReactionStageDrafts,
+  normalizeComposerReactionAction,
+  parseComposerReactions,
+  shortenComposerTimelineBandLabel,
+} from "./src/runtime/ComposerReactionRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
@@ -1150,112 +1161,6 @@ function normalizeComposerTransferEndpoint(rawEndpoint) {
   return assemblyId && memberId ? { assemblyId, memberId } : null;
 }
 
-const composerReactionActionKinds = new Set([
-  "spawn",
-  "despawn",
-  "transform",
-  "detach",
-  "attach",
-  "mapping",
-  "reassemble",
-]);
-
-function normalizeComposerReactionAction(rawAction) {
-  const normalized = String(rawAction ?? "")
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, "_");
-  if (normalized === "handoff") {
-    return "mapping";
-  }
-  return composerReactionActionKinds.has(normalized) ? normalized : null;
-}
-
-function splitComposerDelimitedTopLevel(rawText, delimiter = ",") {
-  const source = String(rawText ?? "");
-  const parts = [];
-  let depth = 0;
-  let current = "";
-  for (let index = 0; index < source.length; index += 1) {
-    const character = source[index];
-    if (character === "(") {
-      depth += 1;
-      current += character;
-      continue;
-    }
-    if (character === ")") {
-      depth = Math.max(0, depth - 1);
-      current += character;
-      continue;
-    }
-    if (character === delimiter && depth === 0) {
-      parts.push(current.trim());
-      current = "";
-      continue;
-    }
-    current += character;
-  }
-  if (current.trim()) {
-    parts.push(current.trim());
-  }
-  return parts.filter(Boolean);
-}
-
-function parseComposerReactionStageSpecs(rawActions, transferById, allowedTransferIds) {
-  const allowed = new Set(Array.isArray(allowedTransferIds) ? allowedTransferIds : []);
-  const tokens = splitComposerDelimitedTopLevel(rawActions || "mapping");
-  return tokens
-    .map((token) => {
-      const match = token.match(/^([a-zA-Z_\s-]+?)(?:\(([^)]*)\))?$/);
-      if (!match) {
-        return null;
-      }
-      const action = normalizeComposerReactionAction(match[1]);
-      if (!action) {
-        return null;
-      }
-      const stageTransferIds = match[2]
-        ? splitComposerDelimitedTopLevel(match[2])
-            .map((part) => normalizeComposerReactionTransferRef(part, transferById))
-            .filter((transferId) => transferId && allowed.has(transferId))
-        : [];
-      if (match[2] && !stageTransferIds.length) {
-        return null;
-      }
-      return {
-        action,
-        transferIds: stageTransferIds,
-      };
-    })
-    .filter(Boolean);
-}
-
-function buildComposerReactionStages(stageSpecs = [], start = 0, end = 0, fallbackTransferIds = []) {
-  const normalizedStages = Array.isArray(stageSpecs) ? stageSpecs.filter(Boolean) : [];
-  if (!normalizedStages.length || end <= start) {
-    return [];
-  }
-  const duration = end - start;
-  const fallbackIds = Array.isArray(fallbackTransferIds) ? [...new Set(fallbackTransferIds)] : [];
-  return normalizedStages.map((stageSpec, index) => {
-    const stageStart = Number((start + (duration * index) / normalizedStages.length).toFixed(3));
-    const stageEnd =
-      index === normalizedStages.length - 1
-        ? Number(end.toFixed(3))
-        : Number((start + (duration * (index + 1)) / normalizedStages.length).toFixed(3));
-    return {
-      id: `stage_${index + 1}`,
-      action: stageSpec.action,
-      start: stageStart,
-      end: stageEnd,
-      transferIds:
-        Array.isArray(stageSpec.transferIds) && stageSpec.transferIds.length
-          ? [...new Set(stageSpec.transferIds)]
-          : fallbackIds,
-    };
-  });
-}
-
 function parseComposerTransfers(rawText) {
   return parseComposerTimingLines(rawText, (line, lineNumber) => {
     const [mappingPart, rawTimePart] = line.split("@").map((part) => part.trim());
@@ -1312,59 +1217,6 @@ function normalizeComposerReactionTransferRef(rawRef, transferById) {
   return null;
 }
 
-function parseComposerReactions(rawText, transfers = [], duration = 24) {
-  const transferById = new Map(
-    (Array.isArray(transfers) ? transfers : []).map((transfer) => [transfer?.id, transfer])
-  );
-  return parseComposerTimingLines(rawText, (line, lineNumber) => {
-    const match = line.match(
-      /^(.+?)\s*@\s*(-?\d*\.?\d+)\s*-\s*(-?\d*\.?\d+)(?:\s*:\s*([^|]+?))?(?:\s*\|\s*(.+))?$/
-    );
-    if (!match) {
-      return null;
-    }
-    const [, rawLabel, rawStart, rawEnd, rawTransfers, rawActions] = match;
-    const span = clampComposerTimelineSpan(Number(rawStart), Number(rawEnd), duration);
-    const transferIds = rawTransfers
-      ? rawTransfers
-          .split(",")
-          .map((part) => normalizeComposerReactionTransferRef(part, transferById))
-          .filter(Boolean)
-      : [];
-    const dedupedTransferIds = [...new Set(transferIds)];
-    const stageSpecs = parseComposerReactionStageSpecs(rawActions, transferById, dedupedTransferIds);
-  const normalizedStageSpecs = stageSpecs.length
-      ? stageSpecs
-      : [
-          {
-            action: "mapping",
-            transferIds: dedupedTransferIds,
-          },
-        ];
-    return {
-      id: `reaction_authored_${lineNumber}`,
-      label: rawLabel.trim() || `Reaction ${lineNumber}`,
-      start: span.start,
-      end: span.end,
-      transferIds: dedupedTransferIds,
-      stages: buildComposerReactionStages(normalizedStageSpecs, span.start, span.end, dedupedTransferIds),
-    };
-  });
-}
-
-function formatComposerReactionTransferRefs(transferIds = []) {
-  return transferIds
-    .map((transferId) => {
-      const match = String(transferId ?? "").match(/^transfer_authored_(\d+)$/);
-      return match ? match[1] : transferId;
-    })
-    .join(", ");
-}
-
-function formatComposerReactionTransferRef(transferId) {
-  return formatComposerReactionTransferRefs([transferId]);
-}
-
 function formatComposerTransferEndpointLabel(endpoint) {
   const assemblyId = String(endpoint?.assemblyId ?? "").trim();
   const memberId = String(endpoint?.memberId ?? "").trim();
@@ -1380,82 +1232,6 @@ function describeComposerTransferProvenance(transfer, refLabel = "") {
   }
   const prefix = refLabel ? `${refLabel}: ` : "";
   return `${prefix}${formatComposerTransferEndpointLabel(transfer.source)} -> ${formatComposerTransferEndpointLabel(transfer.target)}`;
-}
-
-function formatComposerReactionList(reactions = []) {
-  return reactions
-    .map((reaction) => {
-      const label = reaction?.label ?? reaction?.id ?? "reaction";
-      const start = Number(reaction?.start ?? reaction?.timing?.start ?? 0);
-      const end = Number(reaction?.end ?? reaction?.timing?.end ?? 0);
-      const transferRefs = formatComposerReactionTransferRefs(reaction?.transferIds);
-      const fallbackRefs = transferRefs;
-      const actionRefs = Array.isArray(reaction?.stages)
-        ? reaction.stages
-            .map((stage) => {
-              if (!stage?.action) {
-                return null;
-              }
-              const stageRefs = formatComposerReactionTransferRefs(stage?.transferIds);
-              return stageRefs && stageRefs !== fallbackRefs
-                ? `${stage.action}(${stageRefs})`
-                : stage.action;
-            })
-            .filter(Boolean)
-            .join(", ")
-        : "";
-      const transferPart = transferRefs ? `: ${transferRefs}` : "";
-      return `${label} @ ${start}-${end}${transferPart}${actionRefs ? ` | ${actionRefs}` : ""}`;
-    })
-    .join("\n");
-}
-
-function buildComposerReactionActionString(stageDrafts = []) {
-  return stageDrafts
-    .map((stageDraft) => {
-      const action = normalizeComposerReactionAction(stageDraft?.action);
-      if (!action) {
-        return null;
-      }
-      const refs = String(stageDraft?.transferRefs ?? "")
-        .split(",")
-        .map((entry) => entry.trim())
-        .filter(Boolean)
-        .join(", ");
-      return refs ? `${action}(${refs})` : action;
-    })
-    .filter(Boolean)
-    .join(", ");
-}
-
-function resolveComposerReactionTransferRefs(rawTransferRefs, transfers = []) {
-  const transferById = new Map((Array.isArray(transfers) ? transfers : []).map((transfer) => [transfer?.id, transfer]));
-  const requestedRefs = String(rawTransferRefs ?? "")
-    .split(",")
-    .map((entry) => entry.trim())
-    .filter(Boolean);
-  const resolvedIds = requestedRefs
-    .map((ref) => normalizeComposerReactionTransferRef(ref, transferById))
-    .filter(Boolean);
-  return {
-    requestedRefs,
-    resolvedIds: [...new Set(resolvedIds)],
-    transferById,
-  };
-}
-
-function getComposerReactionStageDrafts(reaction = null) {
-  if (reaction && Array.isArray(reaction.stages) && reaction.stages.length) {
-    return reaction.stages.map((stage) => ({
-      action: normalizeComposerReactionAction(stage?.action) ?? "mapping",
-      transferRefs: formatComposerReactionTransferRefs(stage?.transferIds),
-    }));
-  }
-  return [
-    { action: "detach", transferRefs: "" },
-    { action: "mapping", transferRefs: "" },
-    { action: "reassemble", transferRefs: "" },
-  ];
 }
 
 const composerTimelineMinDurationSeconds = 2;
@@ -2075,13 +1851,6 @@ function getComposerAssemblySceneRoleColor(rawRole = "assembly") {
 
 function getComposerAssemblyViewportLabel(assembly, index = 0) {
   return `${getComposerAssemblySceneRoleGlyph(assembly?.sceneRole)}${index + 1}`;
-}
-
-function getComposerReactionActionOptions() {
-  return Array.from(composerReactionActionKinds).map((action) => ({
-    value: action,
-    label: action.replace(/_/g, " "),
-  }));
 }
 
 function normalizeComposerTimelineAddType(rawType = "graphic") {
@@ -5115,8 +4884,13 @@ function readComposerDraftState() {
   const reactionHasInput = reactionListRaw.trim().length > 0;
   const reactionParse = parseComposerReactions(
     reactionListRaw,
-    state.transfers,
-    Number(timing?.time?.end ?? 24) || 24
+    {
+      transfers: state.transfers,
+      duration: Number(timing?.time?.end ?? 24) || 24,
+      parseTimingLines: parseComposerTimingLines,
+      clampTimelineSpan: clampComposerTimelineSpan,
+      normalizeTransferRef: normalizeComposerReactionTransferRef,
+    }
   );
   const primaryAssembly = Array.isArray(state.assembliesDraft) ? state.assembliesDraft[0] ?? null : null;
   const pathPoints = normalizeComposerAssemblyPathPoints(primaryAssembly?.pathPoints);
@@ -6165,32 +5939,6 @@ function createComposerTimelineBand(fractionStart, fractionEnd, className, title
     band.appendChild(bandLabel);
   }
   return band;
-}
-
-function formatComposerReactionBandLabel(reaction, participantSummary = "", widthFraction = 0) {
-  const baseLabel = String(reaction?.label ?? reaction?.id ?? "Reaction").trim() || "Reaction";
-  if (widthFraction <= 0.035) {
-    return participantSummary || "";
-  }
-  if (widthFraction <= 0.065) {
-    return participantSummary || shortenComposerTimelineBandLabel(baseLabel, 6);
-  }
-  if (widthFraction <= 0.1) {
-    return participantSummary
-      ? `${shortenComposerTimelineBandLabel(baseLabel, 8)} ${participantSummary}`
-      : shortenComposerTimelineBandLabel(baseLabel, 10);
-  }
-  return participantSummary
-    ? `${shortenComposerTimelineBandLabel(baseLabel, 14)} ${participantSummary}`
-    : shortenComposerTimelineBandLabel(baseLabel, 18);
-}
-
-function shortenComposerTimelineBandLabel(label, maxLength = 12) {
-  const text = String(label ?? "").trim();
-  if (!text) {
-    return "";
-  }
-  return text.length > maxLength ? `${text.slice(0, Math.max(1, maxLength - 1))}\u2026` : text;
 }
 
 function createComposerTimelineMarker(fraction, label, title) {
@@ -9649,16 +9397,20 @@ function onComposerTimelineContextMenu(event) {
   }
   event.preventDefault();
   closeComposerAssemblyMenu();
-  const overlayBand = event.target.closest?.(".composer-timeline-band.is-graphic, .composer-timeline-band.is-image, .composer-timeline-band.is-video");
-  const pauseBand = event.target.closest?.(".composer-timeline-band.is-pause");
-  const warpBand = event.target.closest?.(".composer-timeline-band.is-warp");
-  const reactionBand = event.target.closest?.(".composer-timeline-band.is-reaction");
+  const timelineBand = event.target.closest?.(".composer-timeline-band") ?? null;
+  const isReactionBand = !!timelineBand?.classList?.contains("is-reaction");
+  const isWarpBand = !!timelineBand?.classList?.contains("is-warp");
+  const isPauseBand = !!timelineBand?.classList?.contains("is-pause");
+  const isOverlayBand =
+    !!timelineBand?.classList?.contains("is-graphic") ||
+    !!timelineBand?.classList?.contains("is-image") ||
+    !!timelineBand?.classList?.contains("is-video");
   openComposerTimelineMenuAt(event.clientX, event.clientY, {
     timeSeconds: getComposerTimelineTimeAtClientX(event.clientX, composerCurrentDocument),
-    overlayId: overlayBand?.dataset?.overlayId ?? null,
-    pauseId: pauseBand?.dataset?.pauseId ?? null,
-    warpId: warpBand?.dataset?.warpId ?? null,
-    reactionId: reactionBand?.dataset?.reactionId ?? null,
+    overlayId: isOverlayBand ? timelineBand?.dataset?.overlayId ?? null : null,
+    pauseId: isPauseBand ? timelineBand?.dataset?.pauseId ?? null : null,
+    warpId: isWarpBand ? timelineBand?.dataset?.warpId ?? null : null,
+    reactionId: isReactionBand ? timelineBand?.dataset?.reactionId ?? null : null,
   });
 }
 
