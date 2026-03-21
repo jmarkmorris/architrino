@@ -681,6 +681,7 @@ function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPat
     const assembly = {
       id,
       role: rawAssembly?.role ?? "assembly",
+      sceneRole: rawAssembly?.sceneRole ?? rawAssembly?.metadata?.sceneRole ?? "assembly",
       parentId: rawAssembly?.parentId ? sanitizeAssemblyId(rawAssembly.parentId, "") : undefined,
       transform: {
         ...(rawAssembly?.transform ?? {}),
@@ -689,6 +690,7 @@ function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPat
       metadata: {
         label,
         order: index,
+        sceneRole: rawAssembly?.sceneRole ?? rawAssembly?.metadata?.sceneRole ?? "assembly",
         ...(rawAssembly?.metadata ?? {}),
       },
       members: normalizeMembers(rawAssembly?.members ?? rawAssembly?.metadata?.members),

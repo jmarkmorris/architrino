@@ -124,6 +124,11 @@ const composerCanvas = document.getElementById("composer-canvas");
 const composerCanvasWrap = composerCanvas?.parentElement ?? null;
 const composerViewportOverlays = document.getElementById("composer-viewport-overlays");
 const composerAssemblyMenu = document.getElementById("composer-assembly-menu");
+const composerHudLabelsToggle = document.getElementById("composer-hud-labels-toggle");
+const composerHudPathsToggle = document.getElementById("composer-hud-paths-toggle");
+const composerHudHistoryToggle = document.getElementById("composer-hud-history-toggle");
+const composerHudEnvelopesToggle = document.getElementById("composer-hud-envelopes-toggle");
+const composerHudObserverToggle = document.getElementById("composer-hud-observer-toggle");
 const composerPathModeSelect = document.getElementById("composer-path-mode");
 const composerPathResetButton = document.getElementById("composer-path-reset");
 const composerFrameResetButton = document.getElementById("composer-frame-reset");
@@ -384,6 +389,7 @@ function createDefaultComposerAssemblyDraft(index = 0) {
   return {
     id: assemblyId,
     name: ordinal === 1 ? "Primary Assembly" : `Assembly ${ordinal}`,
+    sceneRole: "assembly",
     parentId: "",
     position: [0, 0, 0],
     subassemblies: [],
@@ -992,6 +998,7 @@ function normalizeComposerAssemblyDraft(draft = {}, index = 0) {
     id,
     name,
     role: draft.role || fallback.role || "assembly",
+    sceneRole: normalizeComposerAssemblySceneRole(draft.sceneRole ?? fallback.sceneRole),
     parentId: draft.parentId ? sanitizeComposerEntityId(draft.parentId, "") : "",
     position,
     members: normalizeComposerMemberList(draft.members),
@@ -1811,6 +1818,24 @@ function getComposerAssemblyGraphicTargetRadius(assembly) {
   return Math.max(baseRadius, childRadius);
 }
 
+function updateComposerHudViewportToggleState() {
+  const bindings = [
+    [composerHudLabelsToggle, composerViewportDisplayState.showLabels !== false, "Observer Labels"],
+    [composerHudPathsToggle, composerViewportDisplayState.showTransportPath !== false, "Transport Paths"],
+    [composerHudHistoryToggle, composerViewportDisplayState.showHistoryTraces !== false, "History Traces"],
+    [composerHudEnvelopesToggle, composerViewportDisplayState.showEnvelopes !== false, "Envelopes"],
+    [composerHudObserverToggle, composerViewportDisplayState.showCameraGuides !== false, "Observer Guides"],
+  ];
+  bindings.forEach(([button, isOn, label]) => {
+    if (!button) {
+      return;
+    }
+    button.setAttribute("aria-pressed", isOn ? "true" : "false");
+    button.classList.toggle("is-active", isOn);
+    button.textContent = label;
+  });
+}
+
 function resolveComposerGraphicTargetContactPosition(
   target,
   overlayCenter,
@@ -1884,6 +1909,64 @@ function isComposerBareArchitrinoAssembly(assembly) {
     normalizedMemberId.startsWith("electrino") ||
     normalizedMemberId.startsWith("positrino");
   return !hasCore && !children.length && !subassemblies.length && members.length === 1 && isNamedBareCharge;
+}
+
+function normalizeComposerAssemblySceneRole(rawRole = "assembly") {
+  const normalized = String(rawRole ?? "").trim().toLowerCase();
+  return normalized === "reactant" || normalized === "product" ? normalized : "assembly";
+}
+
+function getComposerAssemblySceneRoleLabel(rawRole = "assembly") {
+  const normalized = normalizeComposerAssemblySceneRole(rawRole);
+  if (normalized === "reactant") {
+    return "Reactant";
+  }
+  if (normalized === "product") {
+    return "Product";
+  }
+  return "Assembly";
+}
+
+function getComposerAssemblySceneRoleGlyph(rawRole = "assembly") {
+  const normalized = normalizeComposerAssemblySceneRole(rawRole);
+  if (normalized === "reactant") {
+    return "R";
+  }
+  if (normalized === "product") {
+    return "P";
+  }
+  return "A";
+}
+
+function getComposerAssemblySceneRoleColor(rawRole = "assembly") {
+  const normalized = normalizeComposerAssemblySceneRole(rawRole);
+  if (normalized === "reactant") {
+    return linkColors.reactant;
+  }
+  if (normalized === "product") {
+    return linkColors.product;
+  }
+  return "#ffc26a";
+}
+
+function getComposerAssemblyViewportLabel(assembly, index = 0) {
+  return `${getComposerAssemblySceneRoleGlyph(assembly?.sceneRole)}${index + 1}`;
+}
+
+function ensureComposerAssemblyDraftsForReactionUi() {
+  ensureComposerAssemblyDrafts();
+  const reactants = [];
+  const products = [];
+  composerAssemblyDrafts.forEach((assembly, index) => {
+    const label = assembly?.name?.trim() || getComposerAssemblyViewportLabel(assembly, index);
+    const sceneRole = normalizeComposerAssemblySceneRole(assembly?.sceneRole);
+    if (sceneRole === "reactant") {
+      reactants.push(label);
+    } else if (sceneRole === "product") {
+      products.push(label);
+    }
+  });
+  return { reactants, products };
 }
 
 function getComposerSelectedAssemblyLetter() {
@@ -2927,7 +3010,7 @@ function resetComposerPathPoints() {
   updateComposerPathGeometry();
 }
 
-function addComposerPathPoint(position = null) {
+function addComposerPathPoint(position = null, options = {}) {
   const selectedAssembly = getComposerSelectedAssembly();
   if (!selectedAssembly) {
     return;
@@ -2940,9 +3023,18 @@ function addComposerPathPoint(position = null) {
   if (!composerPathState.points.length) {
     composerPathState.points = [nextPoint];
   } else {
-    composerPathState.points.push(nextPoint);
+    const insertAfterIndex = Number.isInteger(options.insertAfterIndex) ? options.insertAfterIndex : null;
+    if (insertAfterIndex == null || insertAfterIndex < 0 || insertAfterIndex >= composerPathState.points.length) {
+      composerPathState.points.push(nextPoint);
+    } else {
+      composerPathState.points.splice(insertAfterIndex + 1, 0, nextPoint);
+    }
   }
-  composerSelectedPointIndex = composerPathState.points.length - 1;
+  const insertAfterIndex = Number.isInteger(options.insertAfterIndex) ? options.insertAfterIndex : null;
+  composerSelectedPointIndex =
+    insertAfterIndex == null || insertAfterIndex < 0 || insertAfterIndex >= composerPathState.points.length - 1
+      ? composerPathState.points.length - 1
+      : insertAfterIndex + 1;
   persistComposerPathStateToSelectedAssembly();
   rebuildComposerControlPoints();
   updateComposerPathGeometry();
@@ -2991,10 +3083,12 @@ function renderComposerAssemblyEditor() {
     chip.appendChild(number);
     chip.appendChild(name);
 
-    if (index === 0) {
+    const sceneRole = normalizeComposerAssemblySceneRole(assembly.sceneRole);
+    if (sceneRole !== "assembly" || index === 0) {
       const role = document.createElement("span");
       role.className = "composer-assembly-chip-role";
-      role.textContent = "Primary";
+      role.dataset.sceneRole = sceneRole;
+      role.textContent = sceneRole === "assembly" ? "Primary" : getComposerAssemblySceneRoleLabel(sceneRole);
       chip.appendChild(role);
     }
 
@@ -3024,7 +3118,7 @@ function renderComposerAssemblyEditor() {
     body.appendChild(title);
     const hint = document.createElement("div");
     hint.className = "composer-field-note";
-    hint.textContent = "Use right-click on the canvas to add assemblies.";
+    hint.textContent = "Use right-click on the canvas to add reactants, products, or assemblies.";
     body.appendChild(hint);
     const panelHint = document.createElement("div");
     panelHint.className = "composer-field-note";
@@ -3065,7 +3159,7 @@ function renderComposerAssemblyEditor() {
   const subassemblyCount = Array.isArray(selectedAssembly.subassemblies)
     ? selectedAssembly.subassemblies.length
     : 0;
-  structureSummary.textContent = `${selectedAssembly.members.length} member${
+  structureSummary.textContent = `${getComposerAssemblySceneRoleLabel(selectedAssembly.sceneRole)} • ${selectedAssembly.members.length} member${
     selectedAssembly.members.length === 1 ? "" : "s"
   } • ${subassemblyCount} subassembl${subassemblyCount === 1 ? "y" : "ies"}`;
   body.appendChild(structureSummary);
@@ -3073,7 +3167,7 @@ function renderComposerAssemblyEditor() {
   const hint = document.createElement("div");
   hint.className = "composer-field-note";
   hint.textContent =
-    "Use right-click on the canvas to add assemblies. Once an assembly exists, drag the center to move it, drag member dots to place members, drag subassembly halos to place groups, and right-click handles for actions.";
+    "Use right-click on the canvas to add reactants, products, or assemblies. Once one exists, drag the center to move it, drag member dots to place members, drag subassembly halos to place groups, and right-click handles for actions.";
   body.appendChild(hint);
 
   const panelHint = document.createElement("div");
@@ -3332,6 +3426,7 @@ function applyComposerViewportDisplayState() {
   composerMemberLabelSprites.forEach((sprite) => {
     sprite.visible = showLabels;
   });
+  updateComposerHudViewportToggleState();
 }
 
 function composerHasCameraGuidesAvailable() {
@@ -3880,7 +3975,7 @@ function openComposerAssemblyTemplateMenuAt(event) {
       },
     },
     {
-      text: "Save",
+      text: "Library",
       onClick: () => {
         openComposerLibraryMenuAt(event.clientX, event.clientY);
       },
@@ -3891,6 +3986,10 @@ function openComposerAssemblyTemplateMenuAt(event) {
   addLabel.className = "composer-assembly-menu-subtitle";
   addLabel.textContent = "Add Assembly";
   composerAssemblyMenu.appendChild(addLabel);
+  appendComposerMenuNote(
+    composerAssemblyMenu,
+    "Add an assembly template here, then change its Scene Role from the assembly menu when you need reactants or products."
+  );
 
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
@@ -3956,26 +4055,6 @@ function openComposerAssemblyTemplateMenuAt(event) {
     composerAssemblyMenu,
     `Path ${selectedAssemblyLetter}`.trim()
   );
-
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: "Add Point",
-      onClick: () => {
-        const position = JSON.parse(composerAssemblyMenu.dataset.position || "[0,0,0]");
-        addComposerPathPoint(position);
-        renderComposerJsonPreview();
-        closeComposerAssemblyMenu();
-      },
-    },
-    {
-      text: "Reset",
-      onClick: () => {
-        resetComposerPathPoints();
-        renderComposerJsonPreview();
-        closeComposerAssemblyMenu();
-      },
-    },
-  ]);
 
   appendComposerMenuSectionHeader(composerAssemblyMenu, "Frame");
 
@@ -4072,85 +4151,6 @@ function openComposerAssemblyTemplateMenuAt(event) {
     },
   });
 
-  appendComposerMenuSectionHeader(composerAssemblyMenu, "View");
-
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: `${composerViewportDisplayState.showLabels !== false ? "Hide" : "Show"} Observer Labels`,
-      onClick: () => {
-        composerViewportDisplayState.showLabels = !(composerViewportDisplayState.showLabels !== false);
-        applyComposerViewportDisplayState();
-        closeComposerAssemblyMenu();
-      },
-    },
-    {
-      text: `${composerViewportDisplayState.showTransportPath !== false ? "Hide" : "Show"} Transport Paths`,
-      onClick: () => {
-        composerViewportDisplayState.showTransportPath = !(
-          composerViewportDisplayState.showTransportPath !== false
-        );
-        applyComposerViewportDisplayState();
-        closeComposerAssemblyMenu();
-      },
-    },
-  ]);
-
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: `${composerViewportDisplayState.showHistoryTraces !== false ? "Hide" : "Show"} History Traces`,
-      onClick: () => {
-        composerViewportDisplayState.showHistoryTraces = !(
-          composerViewportDisplayState.showHistoryTraces !== false
-        );
-        applyComposerViewportDisplayState();
-        closeComposerAssemblyMenu();
-      },
-    },
-    {
-      text: `${composerViewportDisplayState.showEnvelopes !== false ? "Hide" : "Show"} Envelopes`,
-      onClick: () => {
-        composerViewportDisplayState.showEnvelopes = !(
-          composerViewportDisplayState.showEnvelopes !== false
-        );
-        applyComposerViewportDisplayState();
-        closeComposerAssemblyMenu();
-      },
-    },
-  ]);
-
-  const hasCameraGuides = composerHasCameraGuidesAvailable();
-  const cameraButton = document.createElement("button");
-  cameraButton.type = "button";
-  cameraButton.textContent = `${
-    composerViewportDisplayState.showCameraGuides !== false ? "Hide" : "Show"
-  } Observer Guides`;
-  cameraButton.disabled = !hasCameraGuides;
-  if (hasCameraGuides) {
-    cameraButton.addEventListener("click", () => {
-      composerViewportDisplayState.showCameraGuides = !(
-        composerViewportDisplayState.showCameraGuides !== false
-      );
-      applyComposerViewportDisplayState();
-      closeComposerAssemblyMenu();
-    });
-  }
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: cameraButton.textContent,
-      disabled: cameraButton.disabled,
-      onClick: hasCameraGuides
-        ? () => {
-            composerViewportDisplayState.showCameraGuides = !(
-              composerViewportDisplayState.showCameraGuides !== false
-            );
-            applyComposerViewportDisplayState();
-            closeComposerAssemblyMenu();
-          }
-        : null,
-    },
-    null,
-  ]);
-
   positionComposerAssemblyMenu(event.clientX, event.clientY, 336, 640);
 }
 
@@ -4206,6 +4206,35 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
   });
   nameField.append(nameLabel, nameInput);
   form.appendChild(nameField);
+
+  const sceneRoleField = document.createElement("label");
+  sceneRoleField.className = "composer-field";
+  const sceneRoleLabel = document.createElement("span");
+  sceneRoleLabel.textContent = "Scene Role";
+  const sceneRoleSelect = document.createElement("select");
+  [
+    { value: "assembly", label: "Assembly" },
+    { value: "reactant", label: "Reactant" },
+    { value: "product", label: "Product" },
+  ].forEach((entry) => {
+    const option = document.createElement("option");
+    option.value = entry.value;
+    option.textContent = entry.label;
+    sceneRoleSelect.appendChild(option);
+  });
+  sceneRoleSelect.value = normalizeComposerAssemblySceneRole(assembly.sceneRole);
+  sceneRoleSelect.addEventListener("change", () => {
+    const liveAssembly = getComposerAssemblyDraftById(assembly.id);
+    if (!liveAssembly) {
+      return;
+    }
+    liveAssembly.sceneRole = normalizeComposerAssemblySceneRole(sceneRoleSelect.value);
+    renderComposerAssemblyEditor();
+    composerAssemblyPositionInputs.set(liveAssembly.id, positionInputs);
+    renderComposerJsonPreview();
+  });
+  sceneRoleField.append(sceneRoleLabel, sceneRoleSelect);
+  form.appendChild(sceneRoleField);
 
   const parentField = document.createElement("label");
   parentField.className = "composer-field";
@@ -4508,7 +4537,7 @@ function getNextComposerAssemblyId(baseId) {
   return candidate;
 }
 
-function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
+function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0], options = {}) {
   const normalizedPosition = Array.isArray(position)
     ? [
         Number(position[0] ?? 0) || 0,
@@ -4516,12 +4545,14 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
         Number(position[2] ?? 0) || 0,
       ]
     : [0, 0, 0];
+  const sceneRole = normalizeComposerAssemblySceneRole(options.sceneRole);
   if (templateId === "positrino") {
     const id = getNextComposerAssemblyId("positrino");
     return normalizeComposerAssemblyDraft({
       id,
       name: "Positrino",
       role: "positrino",
+      sceneRole,
       position: normalizedPosition,
       members: ["positrino_1"],
       subassemblies: [],
@@ -4534,6 +4565,7 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       id,
       name: "Electrino",
       role: "electrino",
+      sceneRole,
       position: normalizedPosition,
       members: ["electrino_1"],
       subassemblies: [],
@@ -4546,6 +4578,7 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       id,
       name: "Electron",
       role: "electron",
+      sceneRole,
       position: normalizedPosition,
       members: [
         "positrino_1",
@@ -4567,6 +4600,7 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       id,
       name: "Gen I Fermion",
       role: "fermion_gen1",
+      sceneRole,
       position: normalizedPosition,
       members: [
         "positrino_1",
@@ -4588,6 +4622,7 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       id,
       name: "Down Quark",
       role: "down_quark",
+      sceneRole,
       position: normalizedPosition,
       members: [
         "positrino_1",
@@ -4609,6 +4644,7 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       id,
       name: "Up Quark",
       role: "up_quark",
+      sceneRole,
       position: normalizedPosition,
       members: [
         "positrino_1",
@@ -4625,6 +4661,7 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
     id,
     name: "Noether Core",
     role: "assembly",
+    sceneRole,
     position: normalizedPosition,
     members: [
       "positrino_1",
@@ -4640,8 +4677,8 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
   }, composerAssemblyDrafts.length);
 }
 
-function addBuiltInComposerAssembly(templateId, position) {
-  const nextAssembly = createBuiltInComposerAssemblyDraft(templateId, position);
+function addBuiltInComposerAssembly(templateId, position, options = {}) {
+  const nextAssembly = createBuiltInComposerAssemblyDraft(templateId, position, options);
   composerAssemblyDrafts.push(nextAssembly);
   setComposerSelectedAssembly(nextAssembly.id);
   renderComposerAssemblyEditor();
@@ -5453,6 +5490,27 @@ function initComposerCanvas() {
     });
     composerAssemblyAddButton.dataset.bound = "true";
   }
+  const hudToggleBindings = [
+    [composerHudLabelsToggle, "showLabels"],
+    [composerHudPathsToggle, "showTransportPath"],
+    [composerHudHistoryToggle, "showHistoryTraces"],
+    [composerHudEnvelopesToggle, "showEnvelopes"],
+    [composerHudObserverToggle, "showCameraGuides"],
+  ];
+  hudToggleBindings.forEach(([button, key]) => {
+    if (!button || button.dataset.bound) {
+      return;
+    }
+    button.addEventListener("click", () => {
+      if (button.disabled) {
+        return;
+      }
+      composerViewportDisplayState[key] = !(composerViewportDisplayState[key] !== false);
+      applyComposerViewportDisplayState();
+      renderComposerJsonPreview();
+    });
+    button.dataset.bound = "true";
+  });
   renderComposerAssemblyEditor();
 
   wireComposerCanvasUiListeners({
@@ -6106,7 +6164,7 @@ function openComposerSceneMenuAt(clientX, clientY) {
 
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
-      text: "Save",
+      text: "Library",
       onClick: () => {
         applyComposerSceneIdentityDraft(sceneIdInput?.value, sceneNameInput?.value);
         openComposerLibraryMenuAt(clientX, clientY);
@@ -6183,7 +6241,7 @@ function openComposerLibraryMenuAt(clientX, clientY) {
 
   const title = document.createElement("div");
   title.className = "composer-assembly-menu-title";
-  title.textContent = "Save / Library";
+  title.textContent = "Library";
   composerAssemblyMenu.appendChild(title);
 
   const subtitle = document.createElement("div");
@@ -6846,6 +6904,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       reaction?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
       duration
     );
+    const reactionAssemblies = ensureComposerAssemblyDraftsForReactionUi();
     const availableTransfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
     const defaultTransferRef = availableTransfers.length
       ? formatComposerReactionTransferRef(availableTransfers[0]?.id)
@@ -6941,6 +7000,19 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       placeholder: defaultTransferRef || "Author transfers first",
     });
     reactionBlock?.block?.appendChild(reactionForm);
+    if (reactionAssemblies.reactants.length || reactionAssemblies.products.length) {
+      appendComposerMenuNote(
+        reactionBlock?.block,
+        `Canvas participants: ${reactionAssemblies.reactants.length ? `Reactants ${reactionAssemblies.reactants.join(", ")}` : "No reactants"} · ${
+          reactionAssemblies.products.length ? `Products ${reactionAssemblies.products.join(", ")}` : "No products"
+        }`
+      );
+    } else {
+      appendComposerMenuNote(
+        reactionBlock?.block,
+        "No canvas participants are tagged yet. Add reactants and products on the canvas to prepare for visual reaction mapping."
+      );
+    }
     appendComposerMenuNote(
       reactionBlock?.block,
       availableTransfers.length
@@ -7190,6 +7262,33 @@ function openComposerPathPointMenuAt(clientX, clientY, pointIndex) {
   });
   composerAssemblyMenu.appendChild(poiButton);
 
+  const addPointButton = document.createElement("button");
+  addPointButton.type = "button";
+  addPointButton.textContent = `Add ${assemblyLetter} Point After`;
+  addPointButton.addEventListener("click", () => {
+    const currentPoint = composerPathState.points[pointIndex] ?? null;
+    const nextPoint =
+      currentPoint instanceof THREE.Vector3
+        ? currentPoint.clone().add(new THREE.Vector3(0.45, 0, 0))
+        : Array.isArray(currentPoint)
+          ? vectorFromTriplet(currentPoint).add(new THREE.Vector3(0.45, 0, 0))
+          : new THREE.Vector3(0.45, 0, 0);
+    addComposerPathPoint(nextPoint, { insertAfterIndex: pointIndex });
+    renderComposerJsonPreview();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(addPointButton);
+
+  const resetButton = document.createElement("button");
+  resetButton.type = "button";
+  resetButton.textContent = `Reset ${assemblyLetter} Path`;
+  resetButton.addEventListener("click", () => {
+    resetComposerPathPoints();
+    renderComposerJsonPreview();
+    closeComposerAssemblyMenu();
+  });
+  composerAssemblyMenu.appendChild(resetButton);
+
   const removeButton = document.createElement("button");
   removeButton.type = "button";
   removeButton.textContent = `Remove ${assemblyLetter} Point`;
@@ -7269,6 +7368,31 @@ function getComposerActiveReactionTransferIds(documentData, timeSeconds) {
   }
   const activeReaction = getComposerActiveReaction(documentData, timeSeconds);
   return new Set(Array.isArray(activeReaction?.transferIds) ? activeReaction.transferIds : []);
+}
+
+function getComposerReactionParticipantSummary(reaction) {
+  const participants = Array.isArray(reaction?.participants) ? reaction.participants : [];
+  if (!participants.length) {
+    return "";
+  }
+  let reactants = 0;
+  let products = 0;
+  participants.forEach((participant) => {
+    const role = normalizeComposerAssemblySceneRole(participant?.role);
+    if (role === "reactant") {
+      reactants += 1;
+    } else if (role === "product") {
+      products += 1;
+    }
+  });
+  const parts = [];
+  if (reactants) {
+    parts.push(`R${reactants}`);
+  }
+  if (products) {
+    parts.push(`P${products}`);
+  }
+  return parts.join("/");
 }
 
 function getComposerSortedMarkers(documentData) {
@@ -7376,6 +7500,7 @@ function renderComposerTimeline(documentData) {
   reactions.forEach((reaction) => {
     const start = getComposerTimelineFraction(documentData, reaction.start);
     const end = getComposerTimelineFraction(documentData, reaction.end);
+    const participantSummary = getComposerReactionParticipantSummary(reaction);
     const actions = Array.isArray(reaction?.stages)
       ? reaction.stages
           .map((stage) => {
@@ -7396,8 +7521,12 @@ function renderComposerTimeline(documentData) {
       "is-reaction",
       `${reaction.label ?? reaction.id ?? "Reaction"}: ${formatComposerTimeLabel(
         reaction.start
-      )} to ${formatComposerTimeLabel(reaction.end)}${actions.length ? ` | ${actions.join(" -> ")}` : ""}`,
-      reaction.label ?? reaction.id ?? "Reaction"
+      )} to ${formatComposerTimeLabel(reaction.end)}${participantSummary ? ` | ${participantSummary}` : ""}${
+        actions.length ? ` | ${actions.join(" -> ")}` : ""
+      }`,
+      participantSummary
+        ? `${reaction.label ?? reaction.id ?? "Reaction"} ${participantSummary}`
+        : reaction.label ?? reaction.id ?? "Reaction"
     );
     if (Array.isArray(reaction?.stages) && reaction.stages.length) {
       reaction.stages.forEach((stage) => {
@@ -8386,10 +8515,11 @@ function addComposerAssemblyProxy(center, assembly, index) {
   const isBareArchitrino = isComposerBareArchitrinoAssembly(assembly);
 
   if (!isBareArchitrino) {
+    const sceneRole = normalizeComposerAssemblySceneRole(assembly?.sceneRole);
     const centerMarker = new THREE.Mesh(
       new THREE.SphereGeometry(0.085, 20, 20),
       new THREE.MeshBasicMaterial({
-        color: 0xffc26a,
+        color: getComposerAssemblySceneRoleColor(sceneRole),
         transparent: true,
         opacity: 0.98,
         depthTest: false,
@@ -8399,9 +8529,10 @@ function addComposerAssemblyProxy(center, assembly, index) {
     centerMarker.renderOrder = 12;
     centerMarker.userData.assemblyId = assembly?.id ?? null;
     centerMarker.userData.assemblyIndex = index;
+    centerMarker.userData.sceneRole = sceneRole;
     centerMarker.userData.draggable = true;
     centerMarker.userData.isAssemblyCenterMarker = true;
-    const centerLabel = createComposerPointLabelSprite(getComposerAssemblyLetter(index));
+    const centerLabel = createComposerPointLabelSprite(getComposerAssemblyViewportLabel(assembly, index));
     centerLabel.position.set(0, 0, 0);
     centerMarker.userData.pointLabelSprite = centerLabel;
     const centerHitProxy = createComposerMarkerHitProxy(0.22);
