@@ -6,6 +6,8 @@ export function createComposerEditorStore(initialState = {}) {
       Number.isInteger(initialState.selectedPointIndex) ? initialState.selectedPointIndex : null,
     selectedAssemblyId: initialState.selectedAssemblyId ?? null,
     pendingTransferSource: initialState.pendingTransferSource ?? null,
+    transferListRawState: String(initialState.transferListRawState ?? ""),
+    reactionListRawState: String(initialState.reactionListRawState ?? ""),
     pathState:
       initialState.pathState && typeof initialState.pathState === "object"
         ? initialState.pathState
@@ -46,6 +48,16 @@ export function createComposerEditorStore(initialState = {}) {
     clearPendingTransferSource: () => {
       state.pendingTransferSource = null;
       return state.pendingTransferSource;
+    },
+    getTransferListRawState: () => state.transferListRawState,
+    setTransferListRawState: (nextValue) => {
+      state.transferListRawState = String(nextValue ?? "");
+      return state.transferListRawState;
+    },
+    getReactionListRawState: () => state.reactionListRawState,
+    setReactionListRawState: (nextValue) => {
+      state.reactionListRawState = String(nextValue ?? "");
+      return state.reactionListRawState;
     },
     getPathState: () => state.pathState,
   };

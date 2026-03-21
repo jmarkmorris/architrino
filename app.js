@@ -1608,6 +1608,16 @@ function clearComposerPendingTransferSourceState() {
   return composerPendingTransferSource;
 }
 
+function setComposerTransferListRawStateValue(nextValue) {
+  composerTransferListRawState = composerEditorStore.setTransferListRawState(nextValue);
+  return composerTransferListRawState;
+}
+
+function setComposerReactionListRawStateValue(nextValue) {
+  composerReactionListRawState = composerEditorStore.setReactionListRawState(nextValue);
+  return composerReactionListRawState;
+}
+
 function isComposerBareArchitrinoAssembly(assembly) {
   const members = normalizeComposerMemberList(assembly?.members);
   const children = Array.isArray(assembly?.children) ? assembly.children : [];
@@ -1716,22 +1726,22 @@ function getComposerSelectedAssemblyLetter() {
 }
 
 function getComposerTransferListRaw() {
-  return composerTransferListInput?.value ?? composerTransferListRawState ?? "";
+  return composerTransferListInput?.value ?? composerEditorStore.getTransferListRawState() ?? "";
 }
 
 function setComposerTransferListRaw(value = "") {
-  composerTransferListRawState = String(value ?? "");
+  setComposerTransferListRawStateValue(value);
   if (composerTransferListInput) {
     composerTransferListInput.value = composerTransferListRawState;
   }
 }
 
 function getComposerReactionListRaw() {
-  return composerReactionListInput?.value ?? composerReactionListRawState ?? "";
+  return composerReactionListInput?.value ?? composerEditorStore.getReactionListRawState() ?? "";
 }
 
 function setComposerReactionListRaw(value = "") {
-  composerReactionListRawState = String(value ?? "");
+  setComposerReactionListRawStateValue(value);
   if (composerReactionListInput) {
     composerReactionListInput.value = composerReactionListRawState;
   }
@@ -4253,20 +4263,22 @@ function applyComposerDraftState(draftState = {}) {
         ? draftState.transferListRaw
         : formatComposerTransferList(draftState.transfers);
   }
-  composerTransferListRawState =
+  setComposerTransferListRawStateValue(
     typeof draftState.transferListRaw === "string"
       ? draftState.transferListRaw
-      : formatComposerTransferList(draftState.transfers);
+      : formatComposerTransferList(draftState.transfers)
+  );
   if (composerReactionListInput) {
     composerReactionListInput.value =
       typeof draftState.reactionListRaw === "string"
         ? draftState.reactionListRaw
         : formatComposerReactionList(draftState.reactions);
   }
-  composerReactionListRawState =
+  setComposerReactionListRawStateValue(
     typeof draftState.reactionListRaw === "string"
       ? draftState.reactionListRaw
-      : formatComposerReactionList(draftState.reactions);
+      : formatComposerReactionList(draftState.reactions)
+  );
   setComposerGraphicOverlayDraftsState(
     normalizeComposerGraphicOverlayList(
       draftState.overlays,
@@ -8295,8 +8307,8 @@ let composerGraphicOverlayDrafts = composerEditorStore.getGraphicOverlayDrafts()
 let composerSelectedPointIndex = composerEditorStore.getSelectedPointIndex();
 let composerSelectedCameraWaypointIndex = null;
 let composerSelectedAssemblyId = composerEditorStore.getSelectedAssemblyId();
-let composerTransferListRawState = "";
-let composerReactionListRawState = "";
+let composerTransferListRawState = composerEditorStore.getTransferListRawState();
+let composerReactionListRawState = composerEditorStore.getReactionListRawState();
 let composerPendingTransferSource = composerEditorStore.getPendingTransferSource();
 const composerAssemblyPositionInputs = new Map();
 const composerDragState = {
