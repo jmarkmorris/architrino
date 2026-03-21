@@ -88,6 +88,8 @@ const elementNavDownButton = document.getElementById("element-nav-down");
 const elementNavLeftButton = document.getElementById("element-nav-left");
 const elementNavRightButton = document.getElementById("element-nav-right");
 const composerOverlay = document.getElementById("composer-overlay");
+const composerSceneButton = document.getElementById("composer-scene-button");
+const composerSaveButton = document.getElementById("composer-save-button");
 const composerDocsButton = document.getElementById("composer-docs-button");
 const composerExitButton = document.getElementById("composer-exit-button");
 const composerTabs = composerOverlay
@@ -2605,6 +2607,17 @@ function positionComposerAssemblyMenu(clientX, clientY, width = 220, height = 16
   composerAssemblyMenu.style.top = `${top}px`;
 }
 
+function getComposerMenuAnchorClientPosition(element) {
+  const rect = element?.getBoundingClientRect?.();
+  if (!rect) {
+    return { x: 24, y: 24 };
+  }
+  return {
+    x: rect.left + rect.width * 0.5,
+    y: rect.bottom + 10,
+  };
+}
+
 function appendComposerMenuRangeControl(parent, options = {}) {
   if (!parent) {
     return null;
@@ -2739,6 +2752,43 @@ function appendComposerMenuField(parent, options = {}) {
   field.append(labelNode, input);
   parent.appendChild(field);
   return input;
+}
+
+function appendComposerMenuSelectField(parent, options = {}) {
+  if (!parent) {
+    return null;
+  }
+  const {
+    label = "",
+    value = "",
+    entries = [],
+    placeholder = "None",
+  } = options;
+  const field = document.createElement("label");
+  field.className = "composer-field";
+  const labelNode = document.createElement("span");
+  labelNode.textContent = label;
+  const select = document.createElement("select");
+  if (!entries.length) {
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = placeholder;
+    select.appendChild(option);
+    select.disabled = true;
+  } else {
+    entries.forEach((entry) => {
+      const option = document.createElement("option");
+      option.value = String(entry?.value ?? "");
+      option.textContent = String(entry?.label ?? entry?.value ?? "");
+      select.appendChild(option);
+    });
+    if (value) {
+      select.value = String(value);
+    }
+  }
+  field.append(labelNode, select);
+  parent.appendChild(field);
+  return select;
 }
 
 function appendComposerMenuBlock(parent, title, actionConfig = null) {
@@ -2987,6 +3037,21 @@ function openComposerAssemblyTemplateMenuAt(event) {
   addLabel.className = "composer-assembly-menu-subtitle";
   addLabel.textContent = "Add Assembly";
   composerAssemblyMenu.appendChild(addLabel);
+
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Scene",
+      onClick: () => {
+        openComposerSceneMenuAt(event.clientX, event.clientY);
+      },
+    },
+    {
+      text: "Save",
+      onClick: () => {
+        openComposerLibraryMenuAt(event.clientX, event.clientY);
+      },
+    },
+  ]);
 
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
@@ -4074,12 +4139,16 @@ function writeComposerLibraryEntries(entries) {
   }
 }
 
-function refreshComposerLibraryUi(selectedId = null) {
-  const entries = getComposerLibraryEntries().sort((left, right) => {
+function getComposerSortedLibraryEntries() {
+  return getComposerLibraryEntries().sort((left, right) => {
     const leftTime = Date.parse(left?.updatedAt ?? "") || 0;
     const rightTime = Date.parse(right?.updatedAt ?? "") || 0;
     return rightTime - leftTime;
   });
+}
+
+function refreshComposerLibraryUi(selectedId = null) {
+  const entries = getComposerSortedLibraryEntries();
 
   if (composerLibrarySelect) {
     composerLibrarySelect.innerHTML = "";
@@ -4420,6 +4489,22 @@ function initComposerCanvas() {
   setComposerCameraDefaults();
   setComposerTransportButtonIcon(composerPlayToggleButton, "play");
   setComposerTransportButtonIcon(composerPlayResetButton, "restart");
+  if (composerSceneButton && !composerSceneButton.dataset.bound) {
+    composerSceneButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      const anchor = getComposerMenuAnchorClientPosition(composerSceneButton);
+      openComposerSceneMenuAt(anchor.x, anchor.y);
+    });
+    composerSceneButton.dataset.bound = "true";
+  }
+  if (composerSaveButton && !composerSaveButton.dataset.bound) {
+    composerSaveButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      const anchor = getComposerMenuAnchorClientPosition(composerSaveButton);
+      openComposerLibraryMenuAt(anchor.x, anchor.y);
+    });
+    composerSaveButton.dataset.bound = "true";
+  }
   if (composerCameraPoiSelect) {
     composerCameraPoiSelect.value = composerCameraFlightState.poiMode;
   }
@@ -5003,6 +5088,185 @@ function openComposerTimelineSummaryMenuAt(clientX, clientY) {
     "Right-click the timeline to add or edit graphics, pauses, warps, and reactions."
   );
   positionComposerAssemblyMenu(clientX, clientY, 280, 250);
+}
+
+function openComposerSceneMenuAt(clientX, clientY) {
+  if (!composerAssemblyMenu) {
+    return;
+  }
+  resetComposerAssemblyMenu();
+
+  const currentId = sanitizeComposerId(composerSceneIdInput?.value ?? "composer_scene");
+  const currentName = String(composerSceneNameInput?.value ?? "").trim() || "Composer Scene";
+
+  const title = document.createElement("div");
+  title.className = "composer-assembly-menu-title";
+  title.textContent = "Scene";
+  composerAssemblyMenu.appendChild(title);
+
+  const subtitle = document.createElement("div");
+  subtitle.className = "composer-assembly-menu-subtitle";
+  subtitle.textContent = currentName;
+  composerAssemblyMenu.appendChild(subtitle);
+
+  const sceneBlock = appendComposerMenuBlock(composerAssemblyMenu, "Identity", {
+    text: "Apply",
+    onClick: () => {
+      const nextId = sanitizeComposerId(sceneIdInput?.value ?? currentId) || "composer_scene";
+      const nextName = String(sceneNameInput?.value ?? "").trim() || "Composer Scene";
+      if (composerSceneIdInput) {
+        composerSceneIdInput.value = nextId;
+      }
+      if (composerSceneNameInput) {
+        composerSceneNameInput.value = nextName;
+      }
+      closeComposerAssemblyMenu();
+      renderComposerJsonPreview();
+    },
+  });
+  const sceneForm = document.createElement("div");
+  sceneForm.className = "composer-form";
+  const sceneIdInput = appendComposerMenuField(sceneForm, {
+    label: "Scene ID",
+    value: currentId,
+  });
+  const sceneNameInput = appendComposerMenuField(sceneForm, {
+    label: "Scene Name",
+    value: currentName,
+  });
+  sceneBlock?.block?.appendChild(sceneForm);
+  appendComposerMenuNote(
+    sceneBlock?.block,
+    "Assembly editing stays on the canvas. Timeline duration and loop live in the top-right time readout."
+  );
+
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Save",
+      onClick: () => {
+        openComposerLibraryMenuAt(clientX, clientY);
+      },
+    },
+    {
+      text: "Composer Docs",
+      onClick: () => {
+        closeComposerAssemblyMenu();
+        composerDocsButton?.click();
+      },
+    },
+  ]);
+
+  positionComposerAssemblyMenu(clientX, clientY, 312, 252);
+  sceneNameInput?.focus?.();
+  sceneNameInput?.select?.();
+}
+
+function openComposerLibraryMenuAt(clientX, clientY) {
+  if (!composerAssemblyMenu) {
+    return;
+  }
+  resetComposerAssemblyMenu();
+  refreshComposerLibraryUi();
+  const entries = getComposerSortedLibraryEntries();
+
+  const title = document.createElement("div");
+  title.className = "composer-assembly-menu-title";
+  title.textContent = "Save / Library";
+  composerAssemblyMenu.appendChild(title);
+
+  const subtitle = document.createElement("div");
+  subtitle.className = "composer-assembly-menu-subtitle";
+  subtitle.textContent = entries.length
+    ? `${entries.length} browser draft${entries.length === 1 ? "" : "s"}`
+    : "No browser drafts yet";
+  composerAssemblyMenu.appendChild(subtitle);
+
+  const saveBlock = appendComposerMenuBlock(composerAssemblyMenu, "Save");
+  appendComposerMenuButtonRow(saveBlock?.block, [
+    {
+      text: "Save Repo",
+      onClick: () => {
+        closeComposerAssemblyMenu();
+        composerRepoSaveButton?.click();
+      },
+    },
+    {
+      text: "Save Library",
+      onClick: () => {
+        closeComposerAssemblyMenu();
+        composerLibrarySaveButton?.click();
+      },
+    },
+  ]);
+  appendComposerMenuButtonRow(saveBlock?.block, [
+    {
+      text: "Export JSON",
+      onClick: () => {
+        closeComposerAssemblyMenu();
+        composerExportButton?.click();
+      },
+    },
+    null,
+  ]);
+
+  const libraryBlock = appendComposerMenuBlock(composerAssemblyMenu, "Browser Library");
+  if (entries.length) {
+    const libraryForm = document.createElement("div");
+    libraryForm.className = "composer-form";
+    const selectedEntryId = composerLibrarySelect?.value || entries[0]?.id || "";
+    const librarySelectInput = appendComposerMenuSelectField(libraryForm, {
+      label: "Saved Scenes",
+      value: selectedEntryId,
+      entries: entries.map((entry) => ({
+        value: entry.id,
+        label: entry.name || entry.id,
+      })),
+    });
+    libraryBlock?.block?.appendChild(libraryForm);
+    appendComposerMenuButtonRow(libraryBlock?.block, [
+      {
+        text: "Load",
+        onClick: () => {
+          const selectedId = librarySelectInput?.value ?? "";
+          if (!selectedId) {
+            return;
+          }
+          if (composerLibrarySelect) {
+            composerLibrarySelect.value = selectedId;
+          }
+          closeComposerAssemblyMenu();
+          composerLibraryLoadButton?.click();
+        },
+      },
+      {
+        text: "Delete",
+        className: "composer-assembly-menu-danger",
+        onClick: () => {
+          const selectedId = librarySelectInput?.value ?? "";
+          if (!selectedId) {
+            return;
+          }
+          if (composerLibrarySelect) {
+            composerLibrarySelect.value = selectedId;
+          }
+          closeComposerAssemblyMenu();
+          composerLibraryDeleteButton?.click();
+        },
+      },
+    ]);
+  } else {
+    appendComposerMenuNote(
+      libraryBlock?.block,
+      "Save Library keeps a draft in this browser. Save Repo or Export JSON creates a file you can place in the repo."
+    );
+  }
+  appendComposerMenuNote(
+    libraryBlock?.block,
+    composerLibraryStatus?.textContent ||
+      "Library storage is browser-local for now. Save keeps drafts in this browser only."
+  );
+
+  positionComposerAssemblyMenu(clientX, clientY, 320, entries.length ? 332 : 244);
 }
 
 function getComposerTimelineTimeAtClientX(clientX, documentData = composerCurrentDocument) {

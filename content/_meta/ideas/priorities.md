@@ -146,21 +146,30 @@ Scoring system:
     - path points remain directly draggable,
     - transfer authoring happens from assembly-handle menus,
     - reaction and related timeline authoring happens from timeline context menus,
-    - and the timeline now has an `Add` palette with item-type selection;
+    - the timeline now has an `Add` palette with item-type selection,
+    - and the composer header plus empty-canvas menu now carry the remaining scene/save controls;
   - the timeline/item work has advanced materially:
     - `Graphic`, `Pause`, `Warp`, and `Reaction` now behave like real spans,
     - the current minimum duration floor is `2s`,
     - and the timeline surface is moving away from point-only editorial events toward visible authored objects;
-  - the left panel has already been reduced substantially, and the app is very close to eliminating it as a major authoring surface.
+  - the old persistent left-panel authoring surface has now been removed from the visible composer UI:
+    - scene naming and save/library actions were relocated into compact menus,
+    - the canvas and timeline now dominate the workspace,
+    - and the remaining hidden backing fields exist only to preserve the current runtime/export path until that internal wiring is cleaned up further;
+  - the design language has started to shift:
+    - the composer is now explicitly labeled `Pre-Alpha`,
+    - [composer.md](composer.md) now frames the UI around an `observer` metaphor rather than a `camera` metaphor,
+    - and [viewports.md](viewports.md) now treats the problem as `design view` plus `observer view`.
 - Next-session prompt / active handoff:
-  - make left-panel elimination the top priority:
-    - the composer is very close to not needing the left panel as a meaningful authoring surface,
-    - so the next pass should aggressively remove, relocate, or shrink anything left there that belongs on the canvas or timeline,
-    - while keeping the canvas dominant and not reintroducing large persistent forms;
+  - make observer-language cleanup the top visible priority:
+    - the design direction is now observer-first in the notes,
+    - so the next pass should remove or rename remaining user-facing `camera` language where practical,
+    - especially in footer hints, menus, timeline item naming, and any viewport-related UI copy,
+    - while allowing internal runtime implementation names to remain transitional where needed;
   - refine every `Add` item sub-menu:
     - the new `Add` palette direction is strong,
     - but every item-specific submenu still needs refinement to become a real authoring tool rather than a provisional card;
-  - work out actual overlay authoring inside the relevant item menus:
+  - make overlay authoring the top functional priority inside the item menus:
     - figure out how a user pastes an overlay asset into the composer,
     - places it,
     - resizes it,
@@ -168,11 +177,24 @@ Scoring system:
     - all within the specific item add/edit menu rather than through an unrelated side flow;
   - decide the near-term overlay/object model for timeline items:
     - especially `Graphic`, `Image`, `Video`, `Audio`, and later annotation-like objects such as arrows, bubbles, and text notes attached to scene objects;
+  - decide the first concrete observer-object model:
+    - how an observer interval is authored on the timeline,
+    - how observer paths/guides should appear in the design view,
+    - and how any future observer inset should stay synchronized with the dominant design view;
+  - clean up the internal leftovers from left-panel removal:
+    - keep the left panel gone as a visible surface,
+    - but decide which hidden backing controls should be retired or replaced with direct state wiring,
+    - without reintroducing heavy inspector-style editing;
   - decide how much brand design language to retain in the app for a consistent look and feel:
     - the composer UI has become genuinely innovative,
     - but it now needs a more explicit decision about what visual identity should persist across menus, controls, overlays, and viewport tooling;
     - schedule a future design review pass rather than letting the visual language drift;
-  - decide how timeline zoom should work:
+  - carry the new viewport decisions from [viewports.md](viewports.md) into the next implementation passes:
+    - user-facing composer language should prefer `observer` over `camera`,
+    - the design should be framed as `design view` plus `observer view`, not as a generic camera-preview tool,
+    - visible observer guides should eventually replace hidden camera-style controls,
+    - and any future inset/secondary view should be treated as an observer reading of the same authored scene rather than as a detached film-editor subsystem;
+  - make timeline zoom and local timeline navigation a near-term implementation priority:
     - long animations will make `2s` spans very small in the full-width timeline,
     - which means some items may become barely visible or effectively unclickable,
     - so the composer needs a way to zoom into a portion of the timeline and work locally at a finer scale;
@@ -188,6 +210,8 @@ Scoring system:
   - anything about a given assembly should be managed through that assembly's center control point where practical;
   - path markers should remain directly draggable;
   - timeline items should become more authorable, not more abstract;
+  - observer language should replace camera language in the user-facing design wherever possible;
+  - keep the left panel gone as a visible authoring surface;
   - preserve consistent look and feel as the UI gets richer;
   - do not make unrelated changes.
 - End-of-session checks after code changes:

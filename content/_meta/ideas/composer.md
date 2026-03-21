@@ -2,7 +2,7 @@
 
 ## Why this note exists
 
-The webapp already contains a substantial composer surface. It is no longer just an early mockup. There is now a working UI path for canonical scene-document generation, JSON export, assembly authoring, per-assembly paths, timeline markers and pauses, transfers, reactions, camera waypoint authoring, and live preview. That existing work is enough to justify one clear architecture note that reflects the current shell and the current direction.
+The webapp already contains a substantial composer surface. It is no longer just an early mockup. There is now a working UI path for canonical scene-document generation, JSON export, assembly authoring, per-assembly paths, timeline markers and pauses, transfers, reactions, observer-path authoring (currently implemented with camera waypoints in the runtime), and live preview. That existing work is enough to justify one clear architecture note that reflects the current shell and the current direction.
 
 This note is the single reference for:
 
@@ -12,7 +12,7 @@ This note is the single reference for:
 - what requirements the composed-animation scene type must satisfy,
 - and what near-term implementation path makes sense.
 
-The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is the future authoring layer for explicit assembly geometry: nested binaries, Noether-core-like structures, bound personality charges, internal orbital motion, reaction choreography, transport paths, and authored camera motion on one shared timeline. That matters because the theory does not stop at isolated pointlike objects. It claims that larger assemblies and their observable behavior arise from explicit internal organization and delayed dynamics, and the composer is the place where those structures become authorable, inspectable, exportable, and eventually reusable across scenes. It should be strong enough to depict either an imaginative construction or an observation-grounded reconstruction with the same rigorous timeline and graphics language.
+The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is the future authoring layer for explicit assembly geometry: nested binaries, Noether-core-like structures, bound personality charges, internal orbital motion, reaction choreography, transport paths, and authored observer motion on one shared timeline. That matters because the theory does not stop at isolated pointlike objects. It claims that larger assemblies and their observable behavior arise from explicit internal organization and delayed dynamics, and the composer is the place where those structures become authorable, inspectable, exportable, and eventually reusable across scenes. It should be strong enough to depict either an imaginative construction or an observation-grounded reconstruction with the same rigorous timeline and graphics language.
 
 ---
 
@@ -76,6 +76,27 @@ The current requirements/design posture is now more specific than when this note
 - The canvas should keep gaining screen real estate as panel content is removed or compacted.
 - Large persistent text forms should not be reintroduced unless there is no workable canvas-first alternative.
 - Context menus are not a side convenience. They are now part of the intended authoring grammar for assembly, path, timeline, and scene actions.
+
+## Observer metaphor and user-facing language
+
+The composer should stop presenting itself as a camera tool. What matters in the authored scene is what the observer sees.
+
+That means the user-facing design should prefer `observer` language over `camera` language wherever practical:
+
+- the central viewport is the live observer view;
+- a shot is an observer interval with a teaching purpose;
+- a motion guide for that interval is an observer path, not a camera path, in the author-facing UI;
+- focus, follow, framing, and reveal should all be described as observer behavior;
+- and future menus, timeline items, footer hints, and documentation should reinforce the observer metaphor consistently.
+
+The implementation may still use camera objects internally. That is a runtime concern, not the author's mental model. The author should be able to think in plain terms such as:
+
+- what the observer is following,
+- what frame the observer is anchored to,
+- what the observer should notice during this interval,
+- and how the observer transitions from one explanatory focus to the next.
+
+This shift matters because the composer is not a film editor with Architrino content dropped into it. It is an explanatory observation instrument. The observer is part of the authored argument: lab-frame observation, assembly-follow observation, reaction-center observation, detector-like observation, or other explicit points of view. The UI should therefore teach and preserve observer intent, not generic camera jargon.
 
 ---
 
@@ -312,12 +333,12 @@ Typical objects and controls:
 - cue markers,
 - pauses,
 - global overlays,
-- camera strategy,
+- observer strategy,
 - and overall playback structure.
 
 This level should make the scene legible as one explanatory sequence rather than as a pile of independent objects.
 
-At this scale, the geometry is not abandoned. It is summarized. Paths, pauses, overlays, and camera attention become the large-scale reading of the same underlying scene.
+At this scale, the geometry is not abandoned. It is summarized. Paths, pauses, overlays, and observer attention become the large-scale reading of the same underlying scene.
 
 The sequence view should therefore summarize geometry rather than replace it. If the scene is about one sphere moving on one path with one orbital reveal, the sequence layer should make that legible immediately.
 
@@ -335,7 +356,7 @@ Typical objects and controls:
 - beat-level markers,
 - local overlays,
 - emphasis windows,
-- camera clips,
+- observer intervals,
 - hold segments,
 - transitions,
 - and short explanatory timing decisions.
@@ -3153,7 +3174,7 @@ Recommended core terms:
 - beat
   - a smaller instructional moment inside or alongside a shot;
 - track
-  - an ordered timeline lane for overlays, camera, annotation, or editorial objects;
+  - an ordered timeline lane for overlays, observer motion, annotation, or editorial objects;
 - clip
   - one timed authored object on a track or the timeline;
 - marker
@@ -3170,10 +3191,10 @@ Recommended core terms:
   - a reusable positional or directional reference;
 - path
   - an authored spatial trajectory;
-- camera path
-  - the camera’s geometric motion;
-- camera shot
-  - the camera’s editorial intent for one interval;
+- observer path
+  - the observer's geometric motion;
+- observer interval
+  - the observer's editorial intent for one interval;
 - transition
   - the move from one shot to another, such as a cut, dissolve, or continuous move;
 - teaching pattern
@@ -3200,7 +3221,7 @@ This glossary is intentionally narrow. The tool should feel elegant because the 
 
 These are authored animation targets that the canonical JSON model and runtime should be able to express deterministically on a shared scene timeline in seconds.
 
-In any of these scenes, camera path and camera orientation may also change as the timeline progresses.
+In any of these scenes, observer path and observer orientation may also change as the timeline progresses.
 
 ### 1. Translating electron-like assembly
 
