@@ -137,49 +137,29 @@ Scoring system:
 ### 3. Scene system, composer-II, PDG solver, and next-session composer handoff
 - Value `9`, Cost `4`, ROI `2.25`.
 - The canonical reference lives in [composer.md](composer.md). Treat this item as the self-contained next-session prompt for the current composer webapp.
-- Current composer webapp state, briefly:
-  - canonical scene-document generation, canonical JSON export, and the shared runtime path for assemblies, per-assembly paths, history traces, envelopes, transfers, reactions, and provenance are already in place;
-  - the composer is now strongly canvas-first:
-    - assembly editing is centered on the assembly handle and context menus,
-    - path points remain directly draggable,
-    - transfer authoring happens from assembly-handle menus,
-    - reaction and related timeline authoring happens from timeline context menus,
-    - the timeline now has an `Add` palette with item-type selection,
-    - and the composer header plus empty-canvas menu now carry the remaining scene/save controls;
-  - the timeline/item work has advanced materially:
-    - `Graphic`, `Pause`, `Warp`, and `Reaction` now behave like real spans,
-    - the current minimum duration floor is `2s`,
-    - and the timeline surface is moving away from point-only editorial events toward visible authored objects;
-  - the old persistent left-panel authoring surface has now been removed from the visible composer UI:
-    - scene naming and save/library actions were relocated into compact menus,
-    - the canvas and timeline now dominate the workspace,
-    - and the remaining hidden backing fields exist only to preserve the current runtime/export path until that internal wiring is cleaned up further;
-  - the design language has started to shift:
-    - the composer is now explicitly labeled `Pre-Alpha`,
-    - [composer.md](composer.md) now frames the UI around an `observer` metaphor rather than a `camera` metaphor,
-    - and [viewports.md](viewports.md) now treats the problem as `design view` plus `observer view`.
 - Next-session prompt / active handoff:
-  - implementation audit against the current webapp:
-    - the composer already has substantial canvas-first editing in place:
-      - the left panel is explicitly scene-level and lightweight,
-      - assembly and path actions already route through canvas handles and context menus,
-      - member dots are directly draggable,
-      - subassembly halos are directly draggable,
-      - image and video overlays can already be added, edited, dragged, resized, and removed,
-      - and the timeline already supports authored span bands for `Graphic`, `Pause`, `Warp`, `Reaction`, `Image`, and `Video`;
-    - so the remaining top priorities should focus on the parts that are still shallow, placeholder, or not yet surfaced in the UI;
+  - current composer state, only what matters for the remainder:
+    - blank-scene startup is working;
+    - the UI is now strongly canvas-first, with assembly and path editing centered on handles and context menus;
+    - scene/library controls live in compact header or canvas menus;
+    - timeline items for `Graphic`, `Pause`, `Warp`, `Reaction`, `Image`, and `Video` already behave like real spans;
+    - reactions now have basic stage rows, provenance summaries, participant summaries, and visible stage subdivision on the timeline;
+    - assemblies can already be tagged as `Assembly`, `Reactant`, or `Product`, and that role is now visible in the canvas, list, and runtime document;
   - top priorities, in order:
     1. deepen reaction and provenance authoring;
     2. replace the observer/editorial placeholders with a real authored timeline model;
     3. finish the deeper structural-editing layer beyond the now-working canvas placement baseline;
   - priority 1: deepen reaction and provenance authoring:
-    - the current reaction editor already parses timeline reactions and stage actions, but it is still largely text-field driven;
-    - make reaction stages visible and editable as explicit timeline structure rather than primarily as transfer references plus action strings;
-    - make reactants, products, and stage boundaries clearer in both the editor and the preview;
-    - expose provenance in the editor and preview so authors can see where each transferred member came from and where it ends up;
-    - distinguish persistent member identity from temporary proxy visuals during disassembly, handoff, regrouping, and reassembly;
-    - keep reaction timing and editing native to the timeline UI, not pushed back into large panel text forms;
-    - the target is a staged authored reaction that reads as a rigorous process rather than as loose transfer lines with labels;
+    - stop depending on typed transfer refs as the primary authoring path;
+    - build the first true visual reaction workflow from [composer.md](composer.md):
+      - start from a blank reaction canvas,
+      - place assemblies freely on that canvas,
+      - tag them as reactants or products,
+      - and author one-to-one mappings by clicking a source then a destination;
+    - make splines the authored mapping primitive and the actual motion guide during playback;
+    - treat unattached mapping endpoints as discarded drafts rather than saved partial state;
+    - keep stage timing reaction-native, but make the visual mapping model the dominant UI rather than text fields;
+    - make provenance and persistent member identity readable from the visual mapping itself, not only from text summaries;
   - priority 2: replace the observer/editorial placeholders with a real authored timeline model:
     - the `Add` menu already exposes `Observer`, but that path is still a placeholder rather than a real authoring object;
     - turn observer intervals into true timeline items with authored spans, framing intent, and synchronized observer-path behavior;
@@ -193,7 +173,6 @@ Scoring system:
     - refine the current item menus so they behave like durable authoring tools rather than provisional cards;
     - continue observer-language cleanup where visible user-facing `camera` wording still remains, while allowing runtime internals to stay transitional;
   - priority 3: finish the deeper structural-editing layer beyond the now-working canvas placement baseline:
-    - basic member placement and subassembly placement now exist on canvas, so the remaining structure work is no longer about proving that model out;
     - add structural edits such as detaching a personality charge into a free architrino and breaking a binary into free architrinos;
     - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
     - make parent or child nesting legible as actual local structure rather than grouped ids;
@@ -239,7 +218,10 @@ Scoring system:
     - do not make unrelated changes.
 - Suggested first implementation slice for the next session:
   - start with priority 1, not with cosmetic terminology cleanup;
-  - make one concrete pass that upgrades the reaction UI from text-heavy editing toward explicit staged timeline authoring and visible provenance;
+  - make the first real visual reaction-mapping pass:
+    - open a reaction-specific blank canvas state,
+    - place reactants and products on it,
+    - and author one-to-one source/destination mappings with visible spline drafts and commit or discard behavior;
   - if time remains after that pass, begin priority 2 by replacing the observer placeholder with the first true observer interval object.
 - End-of-session checks after code changes:
   - `node --check app.js`
