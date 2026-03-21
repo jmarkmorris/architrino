@@ -669,7 +669,7 @@ function createDefaultCameraShots(rawCameraShots, cameraPathId, start, end) {
 function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPathId = null) {
   const source = Array.isArray(rawAssemblies) && rawAssemblies.length
     ? rawAssemblies
-    : [{ id: "assembly_1", name: "Primary Assembly", members: [] }];
+    : [];
 
   return source.map((rawAssembly, index) => {
     const fallbackId = `assembly_${index + 1}`;
@@ -681,6 +681,7 @@ function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPat
     const assembly = {
       id,
       role: rawAssembly?.role ?? "assembly",
+      sceneRole: rawAssembly?.sceneRole ?? rawAssembly?.metadata?.sceneRole ?? "assembly",
       parentId: rawAssembly?.parentId ? sanitizeAssemblyId(rawAssembly.parentId, "") : undefined,
       transform: {
         ...(rawAssembly?.transform ?? {}),
@@ -689,6 +690,7 @@ function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPat
       metadata: {
         label,
         order: index,
+        sceneRole: rawAssembly?.sceneRole ?? rawAssembly?.metadata?.sceneRole ?? "assembly",
         ...(rawAssembly?.metadata ?? {}),
       },
       members: normalizeMembers(rawAssembly?.members ?? rawAssembly?.metadata?.members),
@@ -738,8 +740,8 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
   const primaryCameraPathId = cameraWaypoints.length ? "camera_main" : null;
   const rawTime = rawScene.time ?? {};
   const sceneStart = Number(rawTime.start ?? 0);
-  const sceneEnd = Number(rawTime.end ?? 12);
-  const normalizedSceneEnd = sceneEnd > sceneStart ? sceneEnd : sceneStart + 12;
+  const sceneEnd = Number(rawTime.end ?? 24);
+  const normalizedSceneEnd = sceneEnd > sceneStart ? sceneEnd : sceneStart + 24;
   const assemblies = normalizeAssemblies(rawDocument.assemblies, ownerPathIds, primaryPathId);
   const transfers = normalizeTransfers(rawDocument.transfers);
 

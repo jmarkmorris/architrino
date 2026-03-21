@@ -197,8 +197,11 @@
             <button id="composer-scene-button" type="button" aria-label="Open scene controls">
               Scene
             </button>
-            <button id="composer-save-button" type="button" aria-label="Open save and library controls">
-              Save
+            <button id="composer-clear-button" type="button" aria-label="Clear the current scene">
+              Clear
+            </button>
+            <button id="composer-save-button" type="button" aria-label="Open library and save controls">
+              Library
             </button>
             <button
               id="composer-docs-button"
@@ -238,24 +241,38 @@
                       type="button"
                       title="Click to edit duration and loop"
                       aria-label="Edit scene duration and loop"
-                    >0.0s / 12.0s</button>
+                    >0.0s / 24.0s</button>
                   </div>
                 </div>
               </div>
               <div class="composer-canvas-hud">
-                <span>Drag: orbit (globe)</span>
-                <span>Two-finger scroll: orbit</span>
-                <span>Wheel: zoom</span>
-                <span>Edit Frame: drag to rotate frame</span>
-                <span>Right-click canvas: scene, frame, and observer controls</span>
-                <span>Alt-drag point: move along normal</span>
+                <span>Canvas UI</span>
+                <span>Click/Drag: 3D Rotate</span>
+                <span>Right-Click: Scene, Frame, Observer</span>
+                <div class="composer-canvas-hud-toggles" role="group" aria-label="Canvas view controls">
+                  <button id="composer-hud-labels-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                    Observer Labels
+                  </button>
+                  <button id="composer-hud-paths-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                    Transport Paths
+                  </button>
+                  <button id="composer-hud-history-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                    History Traces
+                  </button>
+                  <button id="composer-hud-envelopes-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                    Envelopes
+                  </button>
+                  <button id="composer-hud-observer-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                    Observer Guides
+                  </button>
+                </div>
               </div>
             </div>
           </main>
           <div class="composer-store" hidden aria-hidden="true">
             <input id="composer-scene-id" type="text" value="composer_scene" />
             <input id="composer-scene-name" type="text" value="Composer Scene" />
-            <input id="composer-scene-duration" type="number" min="1" step="0.5" value="12" />
+            <input id="composer-scene-duration" type="number" min="1" step="0.5" value="24" />
             <input id="composer-scene-loop" type="checkbox" />
             <textarea
               id="composer-marker-list"
@@ -272,7 +289,7 @@
             <textarea
               id="composer-warp-list"
               rows="2"
-              placeholder="7.0, 10.0, 0.5&#10;11.0, 12.0, 1.8"
+              placeholder="7.0, 10.0, 0.5&#10;18.0, 24.0, 1.8"
             ></textarea>
             <div id="composer-warp-status">No warps authored.</div>
             <button id="composer-repo-save-button" type="button">Save Repo</button>

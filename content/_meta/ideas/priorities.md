@@ -17,26 +17,22 @@ Scoring system:
 | ---: | --- | ---: | ---: | ---: |
 | 1 | Execute the frozen breather proof program | 10 | 4 | 2.50 |
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | Scene system, composer-II, applications, and later enhancements | 10 | 3 | 3.33 |
-| 4 | Tractable master-equation stack for Lorentz, quantum, and core closure | 10 | 5 | 2.00 |
+| 3 | Scene system, composer-II, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
+| 4 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
 | 7 | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
-| 8 | Lorentz kinematics and metric / clock / ruler bridge to GR | 9 | 6 | 1.50 |
-| 9 | PDG solver | 6 | 4 | 1.50 |
-| 10 | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
-| 11 | Fastest scorecard lift | 2 | 3 | 0.67 |
-| 12 | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
-| 13 | Unified chapter authoring queue | 3 | 5 | 0.60 |
-| 14 | Recover useful old material | 2 | 4 | 0.50 |
-| 15 | Born-rule / quantum closure with hard tests | 4 | 9 | 0.44 |
-| 16 | Cosmology transfer-function closure | 2 | 9 | 0.22 |
-| 17 | Deferred product / outlook work | 1 | 6 | 0.17 |
+| 8 | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
+| 9 | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
+| 10 | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
+| 11 | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
+| 12 | Cosmology transfer-function closure | 2 | 9 | 0.22 |
+| 13 | Deferred product / outlook work | 1 | 6 | 0.17 |
 
 ## Overall Task List
 
 ### 1. Execute the frozen breather proof program
-- Value `10`, Cost `2`, ROI `5.00`.
+- Value `10`, Cost `4`, ROI `2.50`.
 - Treat [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold, not as the live place for new theorem discovery.
 - Treat [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) as a frozen proof-program blueprint rather than a live architecture notebook. The current task is now proof execution inside that already-built theorem DAG, not further scaffold expansion unless a real defect is found.
 - Current state:
@@ -124,6 +120,8 @@ Scoring system:
 
 ### 2. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
 - Value `10`, Cost `4`, ROI `2.50`.
+- For scorecard purposes, this is now the main Parameter Closure + Mass Formulas bucket.
+- If the goal is fastest total-score increase, pair this item with item `10` for Parameter Closure + Coverage first.
 - Treat [parameter-ledger.md](../../markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The real priority is to turn the open mass-side symbols it names into one reusable derived map.
 - First concrete deliverable: one derived tri-binary attractor family with radii, frequencies, binding scales, and a reproducible shielding-extraction protocol.
 - Second concrete deliverable: derive `\zeta(A)` from the delayed kernel strongly enough to predict a baseline electron mass and at least one next-step hierarchy check such as `m_\mu / m_e`.
@@ -136,97 +134,114 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
-### 3. Scene system, composer-II, and next-session composer handoff
-- Value `10`, Cost `3`, ROI `3.33`.
-- The canonical reference lives in [composer.md](composer.md), and the remaining implementation staging lives in [composer-plan.md](composer-plan.md). Treat this item as the next-session prompt for the current composer webapp.
-- Current composer webapp state, briefly:
-  - canonical scene-document generation, canonical JSON export, and the shared runtime path for assemblies, per-assembly paths, history traces, envelopes, transfers, reactions, and provenance are already in place;
-  - the composer is now strongly canvas-first:
-    - assembly editing is centered on the assembly handle and context menus,
-    - path points remain directly draggable,
-    - transfer authoring happens from assembly-handle menus,
-    - reaction and related timeline authoring happens from timeline context menus,
-    - the timeline now has an `Add` palette with item-type selection,
-    - and the composer header plus empty-canvas menu now carry the remaining scene/save controls;
-  - the timeline/item work has advanced materially:
-    - `Graphic`, `Pause`, `Warp`, and `Reaction` now behave like real spans,
-    - the current minimum duration floor is `2s`,
-    - and the timeline surface is moving away from point-only editorial events toward visible authored objects;
-  - the old persistent left-panel authoring surface has now been removed from the visible composer UI:
-    - scene naming and save/library actions were relocated into compact menus,
-    - the canvas and timeline now dominate the workspace,
-    - and the remaining hidden backing fields exist only to preserve the current runtime/export path until that internal wiring is cleaned up further;
-  - the design language has started to shift:
-    - the composer is now explicitly labeled `Pre-Alpha`,
-    - [composer.md](composer.md) now frames the UI around an `observer` metaphor rather than a `camera` metaphor,
-    - and [viewports.md](viewports.md) now treats the problem as `design view` plus `observer view`.
+### 3. Scene system, composer-II, PDG solver, and next-session composer handoff
+- Value `9`, Cost `4`, ROI `2.25`.
+- The canonical reference lives in [composer.md](composer.md). Treat this item as the self-contained next-session prompt for the current composer webapp.
 - Next-session prompt / active handoff:
-  - make observer-language cleanup the top visible priority:
-    - the design direction is now observer-first in the notes,
-    - so the next pass should remove or rename remaining user-facing `camera` language where practical,
-    - especially in footer hints, menus, timeline item naming, and any viewport-related UI copy,
-    - while allowing internal runtime implementation names to remain transitional where needed;
-  - refine every `Add` item sub-menu:
-    - the new `Add` palette direction is strong,
-    - but every item-specific submenu still needs refinement to become a real authoring tool rather than a provisional card;
-  - make overlay authoring the top functional priority inside the item menus:
-    - figure out how a user pastes an overlay asset into the composer,
-    - places it,
-    - resizes it,
-    - and deletes it,
-    - all within the specific item add/edit menu rather than through an unrelated side flow;
-  - decide the near-term overlay/object model for timeline items:
-    - especially `Graphic`, `Image`, `Video`, `Audio`, and later annotation-like objects such as arrows, bubbles, and text notes attached to scene objects;
-  - decide the first concrete observer-object model:
-    - how an observer interval is authored on the timeline,
-    - how observer paths/guides should appear in the design view,
-    - and how any future observer inset should stay synchronized with the dominant design view;
-  - clean up the internal leftovers from left-panel removal:
-    - keep the left panel gone as a visible surface,
-    - but decide which hidden backing controls should be retired or replaced with direct state wiring,
-    - without reintroducing heavy inspector-style editing;
-  - decide how much brand design language to retain in the app for a consistent look and feel:
-    - the composer UI has become genuinely innovative,
-    - but it now needs a more explicit decision about what visual identity should persist across menus, controls, overlays, and viewport tooling;
-    - schedule a future design review pass rather than letting the visual language drift;
-  - carry the new viewport decisions from [viewports.md](viewports.md) into the next implementation passes:
-    - user-facing composer language should prefer `observer` over `camera`,
-    - the design should be framed as `design view` plus `observer view`, not as a generic camera-preview tool,
-    - visible observer guides should eventually replace hidden camera-style controls,
-    - and any future inset/secondary view should be treated as an observer reading of the same authored scene rather than as a detached film-editor subsystem;
-  - make timeline zoom and local timeline navigation a near-term implementation priority:
-    - long animations will make `2s` spans very small in the full-width timeline,
-    - which means some items may become barely visible or effectively unclickable,
-    - so the composer needs a way to zoom into a portion of the timeline and work locally at a finer scale;
-  - keep the timeline authoring philosophy span-based:
-    - visible authored items should continue to behave as real time intervals rather than near-instant point events,
-    - with enough duration that viewers can actually notice them;
-  - keep path and assembly editing canvas-first:
-    - continue moving any remaining assembly-only actions into the assembly center-handle context menu,
-    - continue moving path-specific actions into path-point or empty-canvas menus,
-    - and preserve large hit targets plus overlap handling for nearby interactive elements.
-- Guardrails for the next pass:
-  - the user wants the composer to stay visual, canvas-first, and light on persistent text authoring;
-  - anything about a given assembly should be managed through that assembly's center control point where practical;
-  - path markers should remain directly draggable;
-  - timeline items should become more authorable, not more abstract;
-  - observer language should replace camera language in the user-facing design wherever possible;
-  - keep the left panel gone as a visible authoring surface;
-  - preserve consistent look and feel as the UI gets richer;
-  - do not make unrelated changes.
+  - current composer state, only what matters for the remainder:
+    - blank-scene startup is working;
+    - the UI is now strongly canvas-first, with assembly and path editing centered on handles and context menus;
+    - scene/library controls live in compact header or canvas menus;
+    - timeline items for `Graphic`, `Pause`, `Warp`, `Reaction`, `Image`, and `Video` already behave like real spans;
+    - reactions now have basic stage rows, provenance summaries, participant summaries, and visible stage subdivision on the timeline;
+    - assemblies can already be tagged as `Assembly`, `Reactant`, or `Product`, and that role is now visible in the canvas, list, and runtime document;
+  - top priorities, in order:
+    1. deepen reaction and provenance authoring;
+    2. replace the observer/editorial placeholders with a real authored timeline model;
+    3. finish the deeper structural-editing layer beyond the now-working canvas placement baseline;
+  - priority 1: deepen reaction and provenance authoring:
+    - stop depending on typed transfer refs as the primary authoring path;
+    - build the first true visual reaction workflow from [composer.md](composer.md):
+      - start from a blank reaction canvas,
+      - place assemblies freely on that canvas,
+      - tag them as reactants or products,
+      - and author one-to-one mappings by clicking a source then a destination;
+    - make splines the authored mapping primitive and the actual motion guide during playback;
+    - treat unattached mapping endpoints as discarded drafts rather than saved partial state;
+    - keep stage timing reaction-native, but make the visual mapping model the dominant UI rather than text fields;
+    - make provenance and persistent member identity readable from the visual mapping itself, not only from text summaries;
+  - priority 2: replace the observer/editorial placeholders with a real authored timeline model:
+    - the `Add` menu already exposes `Observer`, but that path is still a placeholder rather than a real authoring object;
+    - turn observer intervals into true timeline items with authored spans, framing intent, and synchronized observer-path behavior;
+    - define the first concrete observer-object model:
+      - how an observer interval is authored on the timeline,
+      - how observer paths and guides appear in the design view,
+      - and how any future observer inset stays synchronized with the dominant design view;
+    - add timeline zoom and local navigation so short spans remain visible and editable in long scenes;
+    - improve media-asset entry from typed-path only toward repo browsing or picking inside the item menus;
+    - finish the missing editorial items that are still placeholder or partial, especially `Audio`, observer transitions, and framing behavior;
+    - refine the current item menus so they behave like durable authoring tools rather than provisional cards;
+    - continue observer-language cleanup where visible user-facing `camera` wording still remains, while allowing runtime internals to stay transitional;
+  - priority 3: finish the deeper structural-editing layer beyond the now-working canvas placement baseline:
+    - add structural edits such as detaching a personality charge into a free architrino and breaking a binary into free architrinos;
+    - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
+    - make parent or child nesting legible as actual local structure rather than grouped ids;
+    - add the next useful layer of subassembly transforms, presets, and instance overrides for richer theory-facing scenes;
+    - add theory-facing structure and motion overlays such as tracers, trails, and calculated shaded `E-B` wave patterns rather than treating those displays as ad hoc effects;
+    - make scale changes legible in-scene, including clear indication when a structure, inset, or derived view is being shown at a different scale;
+    - support richer geometric depictions that matter across multiple cases, especially oblate spheroids and spiral structures ranging from a bare binary to the maximum-curvature binary;
+    - animate deeper structural behaviors directly from the point-charge picture:
+      - photon counter-rotation, self-propulsion, polarization, and Malus-law behavior,
+      - precession as implied by personality-charge orientations,
+      - equivalence-principle explanations from a point-charge-structure perspective,
+      - and ephemeral `W` and `Z` boson configurations as transitionary reaction structures;
+    - make momentum constraints legible in the structure model, especially how angular and linear momentum of point charges maintain relative plane angles;
+    - add notation and display conventions that distinguish apparent energy from total energy;
+    - keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps;
+  - keep active but below the top three:
+    - PDG solver after the scene system is usable:
+      - provenance,
+      - diagrams,
+      - core disposition,
+      - use the API that now exists,
+      - look into MadGraph for reactions,
+      - and use the scene builder in API mode;
+    - history traces and exclusion envelopes:
+      - improve UI authoring for `historyTraces`,
+      - refine rendering and controls for path-history traces with window and fade semantics,
+      - improve UI authoring and editing for `envelopes`,
+      - and connect those displays more explicitly to the delayed/path-history model rather than treating them as generic effects;
+    - workspace and persistence cleanup:
+      - keep the central viewport dominant,
+      - do not reintroduce large persistent assembly-detail panels,
+      - keep turning repeated text-entry flows into structured or direct-manipulation authoring where that improves clarity,
+      - and leave repo-facing persistence, validation, reusable libraries, and lint as later follow-on work unless they become blockers for the above priorities;
+  - Guardrails for the next pass:
+    - the user wants the composer to stay visual, canvas-first, and light on persistent text authoring;
+    - anything about a given assembly should be managed through that assembly's center control point where practical;
+    - path markers should remain directly draggable;
+    - timeline items should become more authorable, not more abstract;
+    - observer language should replace camera language in the user-facing design wherever possible;
+    - keep the left panel gone as a visible authoring surface;
+    - preserve consistent look and feel as the UI gets richer;
+    - avoid reintroducing large persistent inspector-style editing;
+    - do not make unrelated changes.
+- Suggested first implementation slice for the next session:
+  - start with priority 1, not with cosmetic terminology cleanup;
+  - make the first real visual reaction-mapping pass:
+    - open a reaction-specific blank canvas state,
+    - place reactants and products on it,
+    - and author one-to-one source/destination mappings with visible spline drafts and commit or discard behavior;
+  - if time remains after that pass, begin priority 2 by replacing the observer placeholder with the first true observer interval object.
 - End-of-session checks after code changes:
   - `node --check app.js`
   - `node --check src/runtime/ComposerUiRuntime.js`
   - `node --check src/runtime/ComposerControlsUiRuntime.js`
   - `node --check src/runtime/Composer2SceneDocumentRuntime.js`
 
-### 4. Finish the tractable master-equation stack for Lorentz, quantum, and core closure
+### 4. Finish the tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure
 - Value `10`, Cost `5`, ROI `2.00`.
 - Keep dynamics, math, geometry, and mapping centered on [master-equation.md](../../markdown/aaa/dynamics/master-equation.md) as the top theory priority.
+- This is now also the home of the Lorentz / metric / clock / ruler bridge to GR. Item `8` is no longer separate because it is a downstream closure branch of this same master-equation stack.
 - This stack has to carry the whole closure program from the `\eta`-regularized delayed action to the continuum bridges:
   1. full 3D translating tri-binary NFDE / DDE analysis for emergent `\gamma`-scaling,
   2. transfer-operator and invariant-measure control for Born-rule emergence from metastable separatrix crossing,
   3. exact 6-body core stability and shielding extraction for the first-principles mass program.
+- For scorecard purposes, this item now carries the deepest foundational lift in:
+  - Internal-Core Dynamics,
+  - Charge-Carrier Dynamics,
+  - Cross-Regime Bridge,
+  - and UV/IR Completion.
 - The reduced delay-loop result is not enough anymore; the live target is full translating-tri-binary control in a form that can feed GR, QM, and Standard Model closure directly.
 - Use the current tractable footholds as fixed starting points:
   1. every new circular self-hit branch is born at an interior tangency of `g_\beta(\xi)=\sin\xi-\xi/\beta`, equivalently at a root of `\tan\xi=\xi`;
@@ -254,6 +269,22 @@ Scoring system:
   1. the circular ansatz hard-codes constant radius, constant speed, constant curvature, rigid branch geometry, and sign-definite tangential contributions;
   2. a true spiral introduces radial velocity, varying curvature, intersections between later tighter turns and earlier wider-turn wakes, changing Jacobian amplification, and the possibility of a turning point before singular continuation.
 - Keep the maximum-curvature-wall question tied to both tracks: the Jacobian-null boundary amplifies the full self branch, so the tangential contribution also blows up. That is an obstruction, not yet a resolution.
+- Lorentz / GR bridge inside this same stack:
+  - treat the bridge as a two-stage theorem program:
+    1. prove that moving tri-binaries in the Noether Sea realize `R_\parallel = R_\perp / \gamma` and `T(v) = T_0 \gamma` as a stable delayed-dynamics attractor rather than by tuning,
+    2. coarse-grain the same causal medium into a constitutive response that yields `g_{\mu\nu}^{\mathrm{eff}}`, weak-field PPN closure, and suppressed preferred-frame leakage;
+  - make the empirical stakes explicit:
+    - the absolute-time / Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below `10^{-17}`,
+    - if the contraction and clock-slowing law require ad hoc tuning of `\kappa`, `\eta`, or decoration-specific structure, the bridge fails;
+  - close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional;
+  - derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md);
+  - derive the constitutive closure from the coarse-grained medium itself:
+    - take the continuum limit of the `\eta`-regularized delayed action and the effective medium Lagrangian seriously enough that the constitutive law is derived rather than postulated,
+    - compute the relevant continuum stress-strain or equivalent constitutive variables of the causal medium,
+    - derive PPN numbers `\gamma`, `\beta`, and `\alpha_i` to Cassini / LLR precision,
+    - recover the target weak-field values `\gamma_{\mathrm{eff}} = 1`, `\beta_{\mathrm{eff}} = 1`, and vanishing preferred-frame coefficients `\alpha_1`, `\alpha_2`, `\alpha_3`,
+    - show Shapiro delay and light-bending equivalence to GR at the advertised `10^{-5}` level;
+  - keep this as the direct bridge from substrate dynamics to GR tests: match GR in the weak field, then let strong-field differences emerge as predictions rather than assertions.
 - Longer-tail dynamics program:
   1. exact Noether derivation of momentum and angular momentum from the delayed action;
   2. `\eta \to 0` existence / uniqueness theory for the exact shell model;
@@ -309,36 +340,7 @@ Scoring system:
 - Tie Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
 - If a quick intuition tool is useful, make a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
 
-### 8. Close Lorentz kinematics and the metric / clock / ruler bridge to GR
-- Value `9`, Cost `6`, ROI `1.50`.
-- Treat the bridge as a two-stage theorem program:
-  1. prove that moving tri-binaries in the Noether Sea realize `R_\parallel = R_\perp / \gamma` and `T(v) = T_0 \gamma` as a stable delayed-dynamics attractor rather than by tuning,
-  2. coarse-grain the same causal medium into a constitutive response that yields `g_{\mu\nu}^{\mathrm{eff}}`, weak-field PPN closure, and suppressed preferred-frame leakage.
-- Make the empirical stakes explicit:
-  - the absolute-time / Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below `10^{-17}`,
-  - if the contraction and clock-slowing law require ad hoc tuning of `\kappa`, `\eta`, or decoration-specific structure, the bridge fails.
-- Close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional.
-- Derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
-- Derive the constitutive closure from the coarse-grained medium itself:
-  - take the continuum limit of the `\eta`-regularized delayed action and the effective medium Lagrangian seriously enough that the constitutive law is derived rather than postulated,
-  - compute the relevant continuum stress-strain or equivalent constitutive variables of the causal medium,
-  - derive PPN numbers `\gamma`, `\beta`, and `\alpha_i` to Cassini / LLR precision,
-  - recover the target weak-field values `\gamma_{\mathrm{eff}} = 1`, `\beta_{\mathrm{eff}} = 1`, and vanishing preferred-frame coefficients `\alpha_1`, `\alpha_2`, `\alpha_3`,
-  - show Shapiro delay and light-bending equivalence to GR at the advertised `10^{-5}` level.
-- Keep this as the direct bridge from substrate dynamics to GR tests: match GR in the weak field, then let strong-field differences emerge as predictions rather than assertions.
-- Related mechanical task: derive emergent Lorentz invariance for fast-moving tri-binaries so lifetimes, scattering kinematics, and decay rates recover the standard `\gamma` factor.
-
-### 9. Build the PDG solver after the scene system is usable
-- Value `6`, Cost `4`, ROI `1.50`.
-- PDG solver tasks:
-  - provenance,
-  - diagrams,
-  - core disposition,
-  - use the API that now exists,
-  - look into MadGraph for reactions,
-  - use the scene builder in API mode.
-
-### 10. Finish the remaining black-hole / strong-field quantitative closure
+### 8. Finish the remaining black-hole / strong-field quantitative closure
 - Value `4`, Cost `5`, ROI `0.80`.
 - The core chapter architecture is now in place:
   - [black-holes.md](../../markdown/aaa/spacetime/black-holes.md),
@@ -350,26 +352,7 @@ Scoring system:
   - decide the release-channel selection between jets, diffuse outflow, and dark-sector escape,
   - and extract at least one discriminating observable that separates this story from GR-like strong-field behavior.
 
-### 11. Take the fastest scorecard lift first
-- Value `2`, Cost `3`, ROI `0.67`.
-- Based on the current `$\mathbb{A}\mathbb{A}\mathbb{A}$` scorecard, the fastest lift is still:
-  1. Coverage.
-  2. Parameter Closure.
-  3. Mass Formulas.
-  4. Internal-Core Dynamics.
-  5. Charge-Carrier Dynamics.
-  6. Cross-Regime Bridge.
-  7. UV/IR Completion.
-- If the goal is fastest total-score increase, do Coverage + Parameter Closure first.
-- If the goal is strongest foundational credibility increase, do Mass + Internal-Core / Charge-Carrier + Cross-Regime Bridge + UV/IR.
-- Fast practical lift: fill empty or thin chapters with formal minimums:
-  - definitions,
-  - governing equations,
-  - closure target,
-  - falsification gate.
-- Rule of thumb to retain: each `+10` points in one category adds about `+0.56` to the total 18-category mean.
-
-### 12. Preserve the strong-field / tri-binary hypotheses
+### 9. Preserve the strong-field / tri-binary hypotheses
 - Value `2`, Cost `3`, ROI `0.67`.
 - Keep the following strong-field / tri-binary ideas alive while the quantitative closures tighten:
   - the tri-binary may open up inside the black hole, with quadrupole resonance appearing when a given core pops early or late;
@@ -387,12 +370,24 @@ Scoring system:
   - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
   - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing `c_f`, though that seems doubtful.
 
-### 13. Run the chapter authoring queue
+### 10. Run the chapter authoring queue and recover useful old material
 - Value `3`, Cost `5`, ROI `0.60`.
 - This item is the ranked queue for chapter-writing work.
+- This is also now the home of the old material-recovery task. Item `14` is no longer separate.
+- For scorecard purposes, this is the main Coverage bucket.
+- If the goal is fastest total-score increase, pair this item with item `2` for Coverage + Parameter Closure first.
+- Fast practical lift inside this queue: fill empty or thin chapters with formal minimums:
+  - definitions,
+  - governing equations,
+  - closure target,
+  - falsification gate.
+- Rule of thumb to retain: each `+10` points in one category adds about `+0.56` to the total 18-category mean.
 - Use it for both:
   1. improving chapters that already have drafts,
   2. writing missing or thin chapters in the highest-payoff order.
+- Feed this queue with legacy-source recovery where it saves time:
+  - mine material from WordPress where it can save time,
+  - clean up PowerPoints, or better, migrate the worthwhile ones into the web site.
 - Current drafted chapters to deepen:
   1. `historical-context-and-missed-opportunities.md`
   2. `information-computation.md`
@@ -419,13 +414,8 @@ Scoring system:
   12. `Reconstructing Physics and Cosmology`
   13. `Vision for the Future / Toward New Technologies`
 
-### 14. Recover useful old material before rewriting it from scratch
-- Value `2`, Cost `4`, ROI `0.50`.
-- Mine material from WordPress where it can save time.
-- Clean up PowerPoints, or better, migrate the worthwhile ones into the web site.
-
-### 15. Close the Born-rule / quantum gap only after making it testable
-- Value `4`, Cost `9`, ROI `0.44`.
+### 11. Close the Born-rule / quantum gap only after making it testable
+- Value `4`, Cost `8`, ROI `0.50`.
 - Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
 - Make the Born-rule target fully measure-theoretic rather than only interpretive:
   - construct the relevant Perron-Frobenius or equivalent transfer operator for metastable assemblies under causal background driving,
@@ -436,7 +426,7 @@ Scoring system:
 - Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
 - Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
 
-### 16. Convert cosmology from narrative strength to equation-level closure
+### 12. Convert cosmology from narrative strength to equation-level closure
 - Value `2`, Cost `9`, ROI `0.22`.
 - Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
 - Build per-component observable interfaces for `\Lambda\mathrm{CDM}` comparison:
@@ -448,7 +438,7 @@ Scoring system:
 - Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where `$\mathbb{A}\mathbb{A}\mathbb{A}$` matches, replaces, or diverges from each component.
 - This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
 
-### 17. Defer product / outlook work until the theory spine is stable
+### 13. Defer product / outlook work until the theory spine is stable
 - Value `1`, Cost `6`, ROI `0.17`.
 - Keep productization, big-picture outlook writing, and future-technology packaging behind the core theory and derivation work.
 - This includes:
