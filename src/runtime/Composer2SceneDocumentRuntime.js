@@ -291,9 +291,10 @@ function normalizeReactionStages(rawStages, start, end, reactionTransferIds = []
             .map((transferId) => normalizeString(transferId, ""))
             .filter((transferId) => allowedTransferIds.has(transferId))
         : [];
+      const normalizedAction = normalizeString(stage?.action, "mapping");
       return {
         id: normalizeString(stage?.id, `stage_${index + 1}`),
-        action: normalizeString(stage?.action, "handoff"),
+        action: normalizedAction === "handoff" ? "mapping" : normalizedAction,
         start: stageStart,
         end: stageEnd,
         transferIds: stageTransferIds.length ? [...new Set(stageTransferIds)] : [...allowedTransferIds],
@@ -333,9 +334,6 @@ function normalizeReactions(rawReactions, transfers, start, end) {
             .map((transferId) => normalizeString(transferId, ""))
             .filter((transferId) => transferById.has(transferId))
         : [];
-      if (!transferIds.length) {
-        return null;
-      }
       const normalizedStages = normalizeReactionStages(
         reaction?.stages,
         reactionStart,
@@ -348,7 +346,7 @@ function normalizeReactions(rawReactions, transfers, start, end) {
         : [
             {
               id: "stage_1",
-              action: "handoff",
+              action: "mapping",
               start: reactionStart,
               end: reactionEnd,
               transferIds,
