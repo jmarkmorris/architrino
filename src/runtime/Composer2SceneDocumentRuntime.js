@@ -388,9 +388,12 @@ function normalizeMarkers(rawMarkers, start, end) {
   return rawMarkers
     .map((marker, index) => {
       const t = clampNumber(roundNumber(marker?.t ?? start), start, end);
-      const kind = normalizeString(marker?.kind, "cue");
-      const minimumSpan = kind === "graphic" ? Math.min(2, Math.max(0, end - t)) : 0;
-      const markerEnd = clampNumber(roundNumber(marker?.end ?? (t + minimumSpan)), t, end);
+      const kind = normalizeString(marker?.kind, "graphic");
+      const minimumSpan = Math.min(2, Math.max(0, end - t));
+      let markerEnd = clampNumber(roundNumber(marker?.end ?? (t + minimumSpan)), t, end);
+      if (minimumSpan > 0 && markerEnd < t + minimumSpan) {
+        markerEnd = clampNumber(roundNumber(t + minimumSpan), t, end);
+      }
       return {
         id: normalizeString(marker?.id, `marker_${index + 1}`),
         t,
@@ -534,11 +537,7 @@ function createDefaultMarkers(rawMarkers, start, end) {
   if (Array.isArray(rawMarkers) && rawMarkers.length) {
     return rawMarkers;
   }
-  const midpoint = roundNumber(start + (end - start) * 0.5);
-  return [
-    { id: "marker_start", t: start, kind: "chapter", label: "Start" },
-    { id: "marker_focus", t: midpoint, kind: "cue", label: "Focus" },
-  ];
+  return [];
 }
 
 function createDefaultCameraShots(rawCameraShots, cameraPathId, start, end) {

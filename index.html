@@ -191,8 +191,7 @@
       <div id="composer-overlay" aria-hidden="true">
         <div class="composer-header">
           <div class="composer-header-main">
-            <div class="composer-title">Composer v19 • Pre-Alpha</div>
-            <div id="composer-status" class="composer-header-status" aria-live="polite"></div>
+            <div class="composer-title">Composer v22 • Pre-Alpha</div>
           </div>
           <div class="composer-actions">
             <button id="composer-scene-button" type="button" aria-label="Open scene controls">
@@ -224,18 +223,14 @@
                   <div class="composer-timeline-transport">
                     <button id="composer-play-toggle" type="button" class="composer-transport-icon" aria-label="Play"></button>
                     <button id="composer-play-reset" type="button" class="composer-transport-icon" aria-label="Restart"></button>
-                    <button id="composer-marker-prev" type="button" class="composer-transport-text" aria-label="Previous timeline point" hidden>&lt;&lt;</button>
-                    <button id="composer-marker-next" type="button" class="composer-transport-text" aria-label="Next timeline point" hidden>&gt;&gt;</button>
-                    <label class="composer-transport-marker" for="composer-marker-jump" hidden>
-                      <span>Jump</span>
-                      <select id="composer-marker-jump">
-                        <option value="">Timeline</option>
-                      </select>
-                    </label>
                   </div>
                   <div class="composer-timeline-summary">
-                    <span id="composer-timeline-summary" title="Right-click to edit duration and loop">0.0s / 12.0s</span>
-                    <span id="composer-timeline-active" class="composer-timeline-active">Steady</span>
+                    <button
+                      id="composer-timeline-summary"
+                      type="button"
+                      title="Click to edit duration and loop"
+                      aria-label="Edit scene duration and loop"
+                    >0.0s / 12.0s</button>
                   </div>
                 </div>
                 <div id="composer-timeline-track" class="composer-timeline-track">

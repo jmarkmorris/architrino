@@ -3835,9 +3835,7 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
   const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
 
-  const markerCount = diagnostics?.markerHasInput
-    ? markers.filter((marker) => marker.id !== "marker_start").length
-    : 0;
+  const markerCount = diagnostics?.markerHasInput ? markers.length : 0;
   const pauseCount = diagnostics?.pauseHasInput ? pauses.length : 0;
   const warpCount = diagnostics?.warpHasInput ? timeWarps.length : 0;
   const reactionCount = diagnostics?.reactionHasInput ? reactions.length : 0;
@@ -3936,13 +3934,12 @@ function readComposerTimingState() {
       return null;
     }
     const rawStart = Number(timingMatch[1]);
-    const rawEnd =
-      timingMatch[2] == null ? rawStart + composerTimelineMinDurationSeconds : Number(timingMatch[2]);
+    const label = line.slice(separatorIndex + 1).trim() || `Graphic ${entryIndex + 1}`;
+    const rawEnd = Number(timingMatch[2]);
     if (!Number.isFinite(rawStart) || !Number.isFinite(rawEnd)) {
       return null;
     }
     const span = clampComposerTimelineSpan(rawStart, rawEnd, duration);
-    const label = line.slice(separatorIndex + 1).trim() || `Graphic ${entryIndex + 1}`;
     return {
       id: `marker_authored_${lineNumber}`,
       t: span.start,
@@ -3952,13 +3949,7 @@ function readComposerTimingState() {
     };
   });
   const authoredMarkers = [...markerParse.entries].sort((left, right) => left.t - right.t);
-  const hasStartMarker = authoredMarkers.some((marker) => Math.abs(marker.t) < 0.001);
-  const markers = !authoredMarkers.length
-    ? []
-    : [
-        ...(hasStartMarker ? [] : [{ id: "marker_start", t: 0, kind: "chapter", label: "Start" }]),
-        ...authoredMarkers,
-      ];
+  const markers = !authoredMarkers.length ? [] : authoredMarkers;
   const pauseListRaw = composerPauseListInput?.value ?? "";
   const pauseHasInput = pauseListRaw.trim().length > 0;
   const pauseParse = parseComposerTimingLines(pauseListRaw, (line, lineNumber) => {
@@ -4098,11 +4089,12 @@ function readComposerDraftState() {
 
 function formatComposerMarkerList(markers = []) {
   return markers
-    .filter((marker) => marker?.id !== "marker_start")
     .map((marker) => {
       const start = Number(marker?.t ?? 0);
       const end = Number(marker?.end ?? start);
-      const timing = end > start + 0.001 ? `${start}-${end}` : `${start}`;
+      const normalizedEnd =
+        end > start + 0.001 ? end : Number((start + composerTimelineMinDurationSeconds).toFixed(3));
+      const timing = `${start}-${normalizedEnd}`;
       return `${timing}: ${marker.label ?? marker.id ?? "Graphic"}`;
     })
     .join("\n");
@@ -4554,6 +4546,18 @@ function initComposerCanvas() {
   if (composerTimelineSummary && !composerTimelineSummary.dataset.contextWired) {
     composerTimelineSummary.dataset.contextWired = "true";
     composerTimelineSummary.addEventListener("contextmenu", onComposerTimelineSummaryContextMenu);
+  }
+  if (composerTimelineSummary && !composerTimelineSummary.dataset.clickWired) {
+    composerTimelineSummary.dataset.clickWired = "true";
+    composerTimelineSummary.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeComposerAssemblyMenu();
+      const anchor =
+        event.clientX || event.clientY
+          ? { x: event.clientX, y: event.clientY }
+          : getComposerMenuAnchorClientPosition(composerTimelineSummary);
+      openComposerTimelineSummaryMenuAt(anchor.x, anchor.y);
+    });
   }
 
   if (composerAssemblyMenu && !composerAssemblyMenu.dataset.wired) {
@@ -5045,13 +5049,19 @@ function openComposerTimelineSummaryMenuAt(clientX, clientY) {
   title.className = "composer-assembly-menu-title";
   title.textContent = "Scene Timing";
   composerAssemblyMenu.appendChild(title);
-
-  const subtitle = document.createElement("div");
-  subtitle.className = "composer-assembly-menu-subtitle";
-  subtitle.textContent = `${formatComposerTimeLabel(currentDuration)} total${isLooping ? " | loop on" : " | loop off"}`;
-  composerAssemblyMenu.appendChild(subtitle);
+  const commitTimingDraft = () => {
+    const duration = Number(durationInput?.value);
+    if (!Number.isFinite(duration) || duration <= 0) {
+      durationInput.value = String(currentDuration);
+      return;
+    }
+    setComposerSceneDurationValue(duration);
+    setComposerSceneLoopValue(!!loopInput?.checked);
+    renderComposerJsonPreview();
+  };
+  const timingBlock = appendComposerMenuBlock(composerAssemblyMenu, "Timing");
   const form = document.createElement("div");
-  form.className = "composer-form composer-assembly-menu-grid-2";
+  form.className = "composer-form";
   const durationInput = appendComposerMenuField(form, {
     label: "Total Duration (s)",
     type: "number",
@@ -5064,30 +5074,40 @@ function openComposerTimelineSummaryMenuAt(clientX, clientY) {
     type: "checkbox",
     value: isLooping,
   });
-  loopInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
-  composerAssemblyMenu.appendChild(form);
+  loopInput?.closest?.(".composer-field")?.classList?.add("is-toggle-field");
+  durationInput?.addEventListener("change", commitTimingDraft);
+  durationInput?.addEventListener("blur", commitTimingDraft);
+  durationInput?.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") {
+      return;
+    }
+    event.preventDefault();
+    commitTimingDraft();
+  });
+  loopInput?.addEventListener("change", commitTimingDraft);
+  timingBlock?.block?.appendChild(form);
 
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: "Apply Timing",
-      onClick: () => {
-        const duration = Number(durationInput?.value);
-        if (!Number.isFinite(duration) || duration <= 0) {
-          return;
-        }
-        setComposerSceneDurationValue(duration);
-        setComposerSceneLoopValue(!!loopInput?.checked);
-        closeComposerAssemblyMenu();
-        renderComposerJsonPreview();
-      },
-    },
-  ]);
+  positionComposerAssemblyMenu(clientX, clientY, 224, 176);
+}
 
-  appendComposerMenuNote(
-    composerAssemblyMenu,
-    "Right-click the timeline to add or edit graphics, pauses, warps, and reactions."
-  );
-  positionComposerAssemblyMenu(clientX, clientY, 280, 250);
+function applyComposerSceneIdentityDraft(sceneIdValue, sceneNameValue, options = {}) {
+  const nextId = sanitizeComposerId(sceneIdValue ?? composerSceneIdInput?.value ?? "composer_scene")
+    || "composer_scene";
+  const nextName = String(sceneNameValue ?? composerSceneNameInput?.value ?? "").trim()
+    || "Composer Scene";
+  if (composerSceneIdInput) {
+    composerSceneIdInput.value = nextId;
+  }
+  if (composerSceneNameInput) {
+    composerSceneNameInput.value = nextName;
+  }
+  if (options.renderPreview !== false) {
+    renderComposerJsonPreview();
+  }
+  return {
+    id: nextId,
+    name: nextName,
+  };
 }
 
 function openComposerSceneMenuAt(clientX, clientY) {
@@ -5112,16 +5132,8 @@ function openComposerSceneMenuAt(clientX, clientY) {
   const sceneBlock = appendComposerMenuBlock(composerAssemblyMenu, "Identity", {
     text: "Apply",
     onClick: () => {
-      const nextId = sanitizeComposerId(sceneIdInput?.value ?? currentId) || "composer_scene";
-      const nextName = String(sceneNameInput?.value ?? "").trim() || "Composer Scene";
-      if (composerSceneIdInput) {
-        composerSceneIdInput.value = nextId;
-      }
-      if (composerSceneNameInput) {
-        composerSceneNameInput.value = nextName;
-      }
+      applyComposerSceneIdentityDraft(sceneIdInput?.value, sceneNameInput?.value);
       closeComposerAssemblyMenu();
-      renderComposerJsonPreview();
     },
   });
   const sceneForm = document.createElement("div");
@@ -5144,6 +5156,7 @@ function openComposerSceneMenuAt(clientX, clientY) {
     {
       text: "Save",
       onClick: () => {
+        applyComposerSceneIdentityDraft(sceneIdInput?.value, sceneNameInput?.value);
         openComposerLibraryMenuAt(clientX, clientY);
       },
     },
@@ -5159,6 +5172,53 @@ function openComposerSceneMenuAt(clientX, clientY) {
   positionComposerAssemblyMenu(clientX, clientY, 312, 252);
   sceneNameInput?.focus?.();
   sceneNameInput?.select?.();
+}
+
+function openComposerJsonPreviewMenuAt(clientX, clientY) {
+  if (!composerAssemblyMenu) {
+    return;
+  }
+  persistComposerPathStateToSelectedAssembly();
+  const draftState = readComposerDraftState();
+  const sceneDocument = buildComposerDocumentData(draftState);
+  const json = JSON.stringify(sceneDocument, null, 2);
+  if (composerJsonPreview) {
+    composerJsonPreview.textContent = json;
+  }
+  resetComposerAssemblyMenu();
+
+  const title = document.createElement("div");
+  title.className = "composer-assembly-menu-title";
+  title.textContent = "JSON Preview";
+  composerAssemblyMenu.appendChild(title);
+
+  const subtitle = document.createElement("div");
+  subtitle.className = "composer-assembly-menu-subtitle";
+  subtitle.textContent = `${draftState.name || "Composer Scene"} • ${draftState.id || "composer_scene"}`;
+  composerAssemblyMenu.appendChild(subtitle);
+
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Back",
+      onClick: () => {
+        openComposerLibraryMenuAt(clientX, clientY);
+      },
+    },
+    {
+      text: "Export JSON",
+      onClick: () => {
+        closeComposerAssemblyMenu();
+        composerExportButton?.click();
+      },
+    },
+  ]);
+
+  const preview = document.createElement("pre");
+  preview.className = "composer-json-preview composer-assembly-menu-json-preview";
+  preview.textContent = json;
+  composerAssemblyMenu.appendChild(preview);
+
+  positionComposerAssemblyMenu(clientX, clientY, 520, 520);
 }
 
 function openComposerLibraryMenuAt(clientX, clientY) {
@@ -5206,7 +5266,12 @@ function openComposerLibraryMenuAt(clientX, clientY) {
         composerExportButton?.click();
       },
     },
-    null,
+    {
+      text: "JSON Preview",
+      onClick: () => {
+        openComposerJsonPreviewMenuAt(clientX, clientY);
+      },
+    },
   ]);
 
   const libraryBlock = appendComposerMenuBlock(composerAssemblyMenu, "Browser Library");
@@ -5293,7 +5358,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
   const warpId = options.warpId ?? null;
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
   const marker = markerId ? markers.find((entry) => entry?.id === markerId) ?? null : null;
-  const authoredMarker = marker?.id && marker.id !== "marker_start" ? marker : null;
+  const authoredMarker = marker?.id ? marker : null;
   const pause = pauseId ? pauses.find((entry) => entry?.id === pauseId) ?? null : null;
   const warp = warpId ? timeWarps.find((entry) => entry?.id === warpId) ?? null : null;
   const reaction = reactionId ? reactions.find((entry) => entry?.id === reactionId) ?? null : null;
@@ -5825,7 +5890,7 @@ function describeComposerTimelineState(timeSeconds, documentData) {
     .filter((marker) => timeSeconds + 0.001 >= marker.t && timeSeconds <= getComposerGraphicEnd(marker) + 0.001)
     .pop();
   const parts = [];
-  if (activeGraphic?.label && activeGraphic.id !== "marker_start") {
+  if (activeGraphic?.label) {
     parts.push(activeGraphic.label);
   }
   if (composerPlaybackState.pauseRemaining > 0) {
@@ -6006,7 +6071,7 @@ function renderComposerTimeline(documentData) {
 
   markers.forEach((marker) => {
     const graphicEnd = getComposerGraphicEnd(marker, documentData?.scene?.time?.end);
-    if (graphicEnd > marker.t + 0.001 && marker.id !== "marker_start") {
+    if (graphicEnd > marker.t + 0.001) {
       const start = getComposerTimelineFraction(documentData, marker.t);
       const end = getComposerTimelineFraction(documentData, graphicEnd);
       const band = createComposerTimelineBand(
@@ -6050,10 +6115,6 @@ function updateComposerTimelinePlayhead(timeSeconds, documentData) {
       timeWindow.end
     )}`;
   }
-  if (composerTimelineActive) {
-    composerTimelineActive.textContent = describeComposerTimelineState(timeSeconds, documentData);
-  }
-  syncComposerMarkerNavigation(documentData, timeSeconds);
   if (composerPlayToggleButton) {
     setComposerTransportButtonIcon(
       composerPlayToggleButton,
