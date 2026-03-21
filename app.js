@@ -129,6 +129,33 @@ const composerHudPathsToggle = document.getElementById("composer-hud-paths-toggl
 const composerHudHistoryToggle = document.getElementById("composer-hud-history-toggle");
 const composerHudEnvelopesToggle = document.getElementById("composer-hud-envelopes-toggle");
 const composerHudObserverToggle = document.getElementById("composer-hud-observer-toggle");
+const composerHudViewportToggleBindings = [
+  {
+    button: composerHudLabelsToggle,
+    key: "showLabels",
+    label: "Observer Labels",
+  },
+  {
+    button: composerHudPathsToggle,
+    key: "showTransportPath",
+    label: "Transport Paths",
+  },
+  {
+    button: composerHudHistoryToggle,
+    key: "showHistoryTraces",
+    label: "History Traces",
+  },
+  {
+    button: composerHudEnvelopesToggle,
+    key: "showEnvelopes",
+    label: "Envelopes",
+  },
+  {
+    button: composerHudObserverToggle,
+    key: "showCameraGuides",
+    label: "Observer Guides",
+  },
+];
 const composerPathModeSelect = document.getElementById("composer-path-mode");
 const composerPathResetButton = document.getElementById("composer-path-reset");
 const composerFrameResetButton = document.getElementById("composer-frame-reset");
@@ -1819,17 +1846,11 @@ function getComposerAssemblyGraphicTargetRadius(assembly) {
 }
 
 function updateComposerHudViewportToggleState() {
-  const bindings = [
-    [composerHudLabelsToggle, composerViewportDisplayState.showLabels !== false, "Observer Labels"],
-    [composerHudPathsToggle, composerViewportDisplayState.showTransportPath !== false, "Transport Paths"],
-    [composerHudHistoryToggle, composerViewportDisplayState.showHistoryTraces !== false, "History Traces"],
-    [composerHudEnvelopesToggle, composerViewportDisplayState.showEnvelopes !== false, "Envelopes"],
-    [composerHudObserverToggle, composerViewportDisplayState.showCameraGuides !== false, "Observer Guides"],
-  ];
-  bindings.forEach(([button, isOn, label]) => {
+  composerHudViewportToggleBindings.forEach(({ button, key, label }) => {
     if (!button) {
       return;
     }
+    const isOn = composerViewportDisplayState[key] !== false;
     button.setAttribute("aria-pressed", isOn ? "true" : "false");
     button.classList.toggle("is-active", isOn);
     button.textContent = label;
@@ -5490,14 +5511,7 @@ function initComposerCanvas() {
     });
     composerAssemblyAddButton.dataset.bound = "true";
   }
-  const hudToggleBindings = [
-    [composerHudLabelsToggle, "showLabels"],
-    [composerHudPathsToggle, "showTransportPath"],
-    [composerHudHistoryToggle, "showHistoryTraces"],
-    [composerHudEnvelopesToggle, "showEnvelopes"],
-    [composerHudObserverToggle, "showCameraGuides"],
-  ];
-  hudToggleBindings.forEach(([button, key]) => {
+  composerHudViewportToggleBindings.forEach(({ button, key }) => {
     if (!button || button.dataset.bound) {
       return;
     }
