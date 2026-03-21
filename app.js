@@ -21,6 +21,18 @@ import {
   parseComposerReactions,
   shortenComposerTimelineBandLabel,
 } from "./src/runtime/ComposerReactionRuntime.js";
+import {
+  clampComposerTimelineSpan,
+  COMPOSER_TIMELINE_MIN_DURATION_SECONDS as composerTimelineMinDurationSeconds,
+  findComposerTimelineOverlap as findComposerTimelineOverlapRuntime,
+  formatComposerPauseList,
+  formatComposerWarpList,
+  getComposerSceneTimeWindow,
+  getComposerTimelineAuthoringItems as getComposerTimelineAuthoringItemsRuntime,
+  getComposerTimelineFraction,
+  getComposerTimelineTimeAtClientX as getComposerTimelineTimeAtClientXRuntime,
+  parseComposerTimingLines,
+} from "./src/runtime/ComposerTimelineRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
@@ -1234,107 +1246,19 @@ function describeComposerTransferProvenance(transfer, refLabel = "") {
   return `${prefix}${formatComposerTransferEndpointLabel(transfer.source)} -> ${formatComposerTransferEndpointLabel(transfer.target)}`;
 }
 
-const composerTimelineMinDurationSeconds = 2;
-
-function getComposerTimelineMinimumSpan(duration = Infinity) {
-  const normalizedDuration = Number(duration);
-  if (!Number.isFinite(normalizedDuration)) {
-    return composerTimelineMinDurationSeconds;
-  }
-  return Math.max(0, Math.min(composerTimelineMinDurationSeconds, Math.max(0, normalizedDuration)));
-}
-
-function clampComposerTimelineSpan(rawStart, rawEnd, duration, minimumDuration = composerTimelineMinDurationSeconds) {
-  const sceneDuration = Math.max(0, Number(duration) || 0);
-  if (sceneDuration <= 0) {
-    return { start: 0, end: 0, span: 0 };
-  }
-  const minSpan = getComposerTimelineMinimumSpan(Math.min(sceneDuration, minimumDuration));
-  let start = clamp(Number(rawStart) || 0, 0, sceneDuration);
-  let end = Number.isFinite(Number(rawEnd)) ? Number(rawEnd) : start + minSpan;
-
-  if (minSpan > 0 && sceneDuration >= minSpan) {
-    start = clamp(start, 0, sceneDuration - minSpan);
-  }
-  end = clamp(end, start, sceneDuration);
-  if (minSpan > 0 && sceneDuration >= minSpan && end - start < minSpan) {
-    end = clamp(start + minSpan, start, sceneDuration);
-    if (end - start < minSpan) {
-      start = clamp(end - minSpan, 0, sceneDuration);
-    }
-  }
-
-  const roundedStart = Number(start.toFixed(3));
-  const roundedEnd = Number(end.toFixed(3));
-  return {
-    start: roundedStart,
-    end: roundedEnd,
-    span: Number((roundedEnd - roundedStart).toFixed(3)),
-  };
-}
-
 function getComposerTimelineAuthoringItems(documentData = composerCurrentDocument) {
-  const overlays = Array.isArray(documentData?.overlays) ? documentData.overlays : [];
-  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
-  const warps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
-  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
-  return [
-    ...overlays.map((overlay) => ({
-      id: overlay?.id ?? "",
-      kind: overlay?.kind ?? "graphic",
-      label:
-        overlay?.kind === "graphic"
-          ? getComposerGraphicOverlayLabel(overlay)
-          : getComposerMediaOverlayLabel(overlay),
-      start: Number(overlay?.start ?? 0),
-      end: Number(overlay?.end ?? overlay?.start ?? 0),
-    })),
-    ...pauses.map((pause) => ({
-      id: pause?.id ?? "",
-      kind: "pause",
-      label: "Pause",
-      start: Number(pause?.start ?? 0),
-      end: Number(pause?.start ?? 0) + Number(pause?.duration ?? 0),
-    })),
-    ...warps.map((warp) => ({
-      id: warp?.id ?? "",
-      kind: "warp",
-      label: "Warp",
-      start: Number(warp?.start ?? 0),
-      end: Number(warp?.end ?? warp?.start ?? 0),
-    })),
-    ...reactions.map((reaction) => ({
-      id: reaction?.id ?? "",
-      kind: "reaction",
-      label: reaction?.label ?? "Reaction",
-      start: Number(reaction?.start ?? 0),
-      end: Number(reaction?.end ?? reaction?.start ?? 0),
-    })),
-  ];
+  return getComposerTimelineAuthoringItemsRuntime(documentData, {
+    getGraphicLabel: getComposerGraphicOverlayLabel,
+    getMediaLabel: getComposerMediaOverlayLabel,
+  });
 }
 
 function findComposerTimelineOverlap(candidate, options = {}) {
-  const candidateStart = Number(candidate?.start);
-  const candidateEnd = Number(candidate?.end);
-  if (!Number.isFinite(candidateStart) || !Number.isFinite(candidateEnd)) {
-    return null;
-  }
-  const excludeId = String(options.excludeId ?? candidate?.id ?? "");
-  const epsilon = 0.0005;
-  return getComposerTimelineAuthoringItems(options.documentData).find((entry) => {
-    if (!entry) {
-      return false;
-    }
-    if (excludeId && entry.id === excludeId) {
-      return false;
-    }
-    const start = Number(entry.start);
-    const end = Number(entry.end);
-    if (!Number.isFinite(start) || !Number.isFinite(end)) {
-      return false;
-    }
-    return candidateStart < end - epsilon && candidateEnd > start + epsilon;
-  }) ?? null;
+  return findComposerTimelineOverlapRuntime(candidate, {
+    ...options,
+    getGraphicLabel: getComposerGraphicOverlayLabel,
+    getMediaLabel: getComposerMediaOverlayLabel,
+  });
 }
 
 function reportComposerTimelineOverlap(conflict) {
@@ -2763,6 +2687,29 @@ function formatComposerTimeInputValue(value) {
   return Number.isFinite(normalized) ? normalized.toFixed(1) : "0.0";
 }
 
+function getComposerNumericInputPrecision(step = null) {
+  if (step == null) {
+    return null;
+  }
+  const stepText = String(step);
+  if (!stepText.includes(".")) {
+    return 0;
+  }
+  return Math.max(0, stepText.length - stepText.indexOf(".") - 1);
+}
+
+function formatComposerNumericInputValue(value, step = null) {
+  const normalized = Number(value);
+  if (!Number.isFinite(normalized)) {
+    return "";
+  }
+  const precision = getComposerNumericInputPrecision(step);
+  if (precision == null) {
+    return String(normalized);
+  }
+  return normalized.toFixed(precision);
+}
+
 function setComposerFrameDefaults() {
   if (composerFrameScaleInput) composerFrameScaleInput.value = "0";
   composerFrameState.rotation.set(0, 0, 0);
@@ -3521,7 +3468,10 @@ function appendComposerMenuField(parent, options = {}) {
   if (type === "checkbox") {
     input.checked = !!value;
   } else {
-    input.value = String(value ?? "");
+    input.value =
+      type === "number"
+        ? formatComposerNumericInputValue(value, step)
+        : String(value ?? "");
   }
   if (selectOnFocus) {
     input.addEventListener("focus", () => {
@@ -4631,25 +4581,6 @@ function readComposerFormState() {
   };
 }
 
-function parseComposerTimingLines(rawText, parseLine) {
-  const entries = [];
-  const errors = [];
-  const lines = typeof rawText === "string" ? rawText.split(/\n/) : [];
-  lines.forEach((rawLine, index) => {
-    const line = rawLine.trim();
-    if (!line) {
-      return;
-    }
-    const parsed = parseLine(line, index + 1, entries.length);
-    if (parsed) {
-      entries.push(parsed);
-      return;
-    }
-    errors.push(index + 1);
-  });
-  return { entries, errors };
-}
-
 function formatComposerTimingStatus(documentData, diagnostics = {}) {
   const pauseCount = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses.length : 0;
   const warpCount = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps.length : 0;
@@ -4949,18 +4880,6 @@ function readComposerDraftState() {
 function formatComposerMarkerList(markers = []) {
   void markers;
   return "";
-}
-
-function formatComposerPauseList(pauses = []) {
-  return pauses
-    .map((pause) => `${Number(pause.start ?? 0)}, ${Number(pause.duration ?? 0)}`)
-    .join("\n");
-}
-
-function formatComposerWarpList(timeWarps = []) {
-  return timeWarps
-    .map((warp) => `${Number(warp.start ?? 0)}, ${Number(warp.end ?? 0)}, ${Number(warp.rate ?? 1)}`)
-    .join("\n");
 }
 
 function getComposerLibraryEntries() {
@@ -5790,18 +5709,6 @@ function computeComposerAssemblyBasePosition(assembly, index, count, pathById) {
   return new THREE.Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
 }
 
-function getComposerSceneTimeWindow(documentData) {
-  const sceneTime = documentData?.scene?.time ?? {};
-  const start = Number(sceneTime.start ?? 0);
-  const end = Number(sceneTime.end ?? Math.max(24, start + 1));
-  return {
-    start,
-    end: end > start ? end : start + 1,
-    loop: !!sceneTime.loop,
-    playbackRate: Number(sceneTime.playbackRate ?? 1) || 1,
-  };
-}
-
 function sampleComposerPointAt(points, normalizedT, options = {}) {
   if (!Array.isArray(points) || !points.length) {
     return new THREE.Vector3();
@@ -5906,12 +5813,6 @@ function getComposerPlaybackRateAtTime(documentData, timeSeconds) {
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const activeWarp = timeWarps.find((warp) => timeSeconds >= warp.start && timeSeconds < warp.end);
   return Number(activeWarp?.rate ?? 1) || 1;
-}
-
-function getComposerTimelineFraction(documentData, timeSeconds) {
-  const timeWindow = getComposerSceneTimeWindow(documentData);
-  const duration = Math.max(0.001, timeWindow.end - timeWindow.start);
-  return clamp((timeSeconds - timeWindow.start) / duration, 0, 1);
 }
 
 function clearComposerTimelineLayer(layer) {
@@ -6265,10 +6166,11 @@ function getComposerTimelineTimeAtClientX(clientX, documentData = composerCurren
   if (!composerTimelineTrack || !documentData) {
     return 0;
   }
-  const rect = composerTimelineTrack.getBoundingClientRect();
-  const fraction = rect.width ? clamp((clientX - rect.left) / rect.width, 0, 1) : 0;
-  const timeWindow = getComposerSceneTimeWindow(documentData);
-  return Number((timeWindow.start + fraction * (timeWindow.end - timeWindow.start)).toFixed(3));
+  return getComposerTimelineTimeAtClientXRuntime(clientX, documentData, {
+    trackRect: composerTimelineTrack.getBoundingClientRect(),
+    clampFn: clamp,
+    getTimeWindow: getComposerSceneTimeWindow,
+  });
 }
 
 function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
@@ -7139,15 +7041,17 @@ function describeComposerTimelineState(timeSeconds, documentData) {
     .sort((left, right) => left.start - right.start)
     .filter((graphic) => isComposerTimeWithinSpan(timeSeconds, graphic.start, graphic.end))
     .pop();
+  const activePause = pauses.find(
+    (pause) =>
+      timeSeconds >= Number(pause?.start ?? 0) &&
+      timeSeconds < Number(pause?.start ?? 0) + Number(pause?.duration ?? 0)
+  );
   const parts = [];
   if (activeGraphic?.label) {
     parts.push(activeGraphic.label);
   }
-  if (composerPlaybackState.pauseRemaining > 0) {
-    const activePause = pauses.find((pause) => Math.abs(pause.start - timeSeconds) < 0.001);
-    if (activePause) {
-      parts.push(`Pause ${formatComposerTimeLabel(activePause.duration)}`);
-    }
+  if (activePause) {
+    parts.push(`Pause ${formatComposerTimeLabel(activePause.duration)}`);
   }
   if (activeWarp) {
     parts.push(`Warp ${Number(activeWarp.rate ?? 1).toFixed(2)}x`);
@@ -7159,6 +7063,19 @@ function describeComposerTimelineState(timeSeconds, documentData) {
     parts.push(`Stage: ${activeReactionStage.action}`);
   }
   return parts.join(" | ") || "Steady";
+}
+
+function getComposerPausedMotionTime(documentData, playbackTimeSeconds) {
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  const playbackTime = clamp(Number(playbackTimeSeconds) || 0, timeWindow.start, timeWindow.end);
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const activePause =
+    pauses.find((pause) => {
+      const pauseStart = Number(pause?.start ?? 0);
+      const pauseDuration = Math.max(0, Number(pause?.duration ?? 0) || 0);
+      return playbackTime >= pauseStart && playbackTime < pauseStart + pauseDuration;
+    }) ?? null;
+  return activePause ? clamp(Number(activePause.start ?? playbackTime), timeWindow.start, timeWindow.end) : playbackTime;
 }
 
 function getComposerActiveReaction(documentData, timeSeconds) {
@@ -7294,7 +7211,8 @@ function renderComposerTimeline(documentData) {
       start,
       end,
       "is-warp",
-      `Warp ${Number(warp.rate ?? 1).toFixed(2)}x: ${formatComposerTimeLabel(warp.start)} to ${formatComposerTimeLabel(warp.end)}`
+      `Warp ${Number(warp.rate ?? 1).toFixed(2)}x: ${formatComposerTimeLabel(warp.start)} to ${formatComposerTimeLabel(warp.end)}`,
+      "WARP"
     );
     band.dataset.warpId = warp.id ?? "";
     composerTimelineWarps?.appendChild(band);
@@ -7310,7 +7228,8 @@ function renderComposerTimeline(documentData) {
       start,
       end,
       "is-pause",
-      `Pause ${formatComposerTimeLabel(pause.duration)} at ${formatComposerTimeLabel(pause.start)}`
+      `Pause ${formatComposerTimeLabel(pause.duration)} at ${formatComposerTimeLabel(pause.start)}`,
+      "PAUSE"
     );
     band.dataset.pauseId = pause.id ?? "";
     composerTimelinePauses?.appendChild(band);
@@ -7557,34 +7476,12 @@ function updateComposerPlaybackState(now) {
     composerPlaybackState.playheadSeconds = timeWindow.start;
   }
 
-  if (composerPlaybackState.pauseRemaining > 0) {
-    composerPlaybackState.pauseRemaining = Math.max(
-      0,
-      composerPlaybackState.pauseRemaining - deltaSeconds
-    );
-    return composerPlaybackState.playheadSeconds;
-  }
-
   const sceneRate = timeWindow.playbackRate;
   const warpRate = getComposerPlaybackRateAtTime(
     composerCurrentDocument,
     composerPlaybackState.playheadSeconds
   );
   const step = deltaSeconds * sceneRate * warpRate;
-  const pauses = Array.isArray(composerCurrentDocument?.scene?.pauses)
-    ? composerCurrentDocument.scene.pauses
-    : [];
-  const nextPause = pauses.find(
-    (pause) =>
-      composerPlaybackState.playheadSeconds < pause.start &&
-      composerPlaybackState.playheadSeconds + step >= pause.start
-  );
-  if (nextPause) {
-    composerPlaybackState.playheadSeconds = nextPause.start;
-    composerPlaybackState.pauseRemaining = Number(nextPause.duration ?? 0);
-    return composerPlaybackState.playheadSeconds;
-  }
-
   composerPlaybackState.playheadSeconds += step;
   if (composerPlaybackState.playheadSeconds > timeWindow.end) {
     if (timeWindow.loop) {
@@ -7602,6 +7499,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
   if (!composerCurrentDocument) {
     return;
   }
+  const pausedMotionTime = getComposerPausedMotionTime(composerCurrentDocument, timeSeconds);
   const paths = Array.isArray(composerCurrentDocument.paths) ? composerCurrentDocument.paths : [];
   const pathById = new Map(paths.map((path) => [path.id, path]));
   const assemblies = Array.isArray(composerCurrentDocument.assemblies)
@@ -7610,7 +7508,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
   const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
   const normalizedSceneT =
     timeWindow.end > timeWindow.start
-      ? clamp((timeSeconds - timeWindow.start) / (timeWindow.end - timeWindow.start), 0, 1)
+      ? clamp((pausedMotionTime - timeWindow.start) / (timeWindow.end - timeWindow.start), 0, 1)
       : 0;
   const assemblyCenters = new Map();
   const assemblyById = new Map(assemblies.map((assembly) => [assembly.id, assembly]));
@@ -7751,7 +7649,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
     if (!center || motion?.type !== "orbit.circular") {
       return;
     }
-    const offset = getComposerOrbitOffsetAtTime(motion, mesh.userData.chargeType, timeSeconds);
+    const offset = getComposerOrbitOffsetAtTime(motion, mesh.userData.chargeType, pausedMotionTime);
     mesh.position.copy(center).add(offset);
   });
 
@@ -7761,7 +7659,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
     const anchorPosition = resolveComposerTransferEndpointPosition(
       { assemblyId, memberId },
       assemblyCenters,
-      timeSeconds
+      pausedMotionTime
     );
     if (!anchorPosition) {
       sprite.visible = false;
@@ -7774,21 +7672,21 @@ function updateComposerAnimatedViewport(timeSeconds) {
 
   const activeReactionTransferIds = getComposerActiveReactionTransferIds(
     composerCurrentDocument,
-    timeSeconds
+    pausedMotionTime
   );
-  const activeReactionStage = getComposerActiveReactionStage(composerCurrentDocument, timeSeconds);
+  const activeReactionStage = getComposerActiveReactionStage(composerCurrentDocument, pausedMotionTime);
   const hasReactionFocus = activeReactionTransferIds.size > 0;
   composerTransferLines.forEach((line) => {
     const transfer = line.userData.transfer;
     const sourcePoint = resolveComposerTransferEndpointPosition(
       transfer?.source,
       assemblyCenters,
-      timeSeconds
+      pausedMotionTime
     );
     const targetPoint = resolveComposerTransferEndpointPosition(
       transfer?.target,
       assemblyCenters,
-      timeSeconds
+      pausedMotionTime
     );
     if (!sourcePoint || !targetPoint) {
       line.visible = false;
@@ -7798,7 +7696,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
     line.geometry.setFromPoints([sourcePoint, targetPoint]);
     line.computeLineDistances();
     const isActiveReactionTransfer = transfer?.id && activeReactionTransferIds.has(transfer.id);
-    const isActiveByTime = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
+    const isActiveByTime = transfer?.t == null || Math.abs(pausedMotionTime - Number(transfer.t)) <= 0.6;
     if (activeReactionStage?.action === "reassemble") {
       line.material.color.set(0x8ef0c2);
     } else if (activeReactionStage?.action === "detach") {
@@ -7848,12 +7746,12 @@ function updateComposerAnimatedViewport(timeSeconds) {
   });
 
   try {
-    updateComposerGraphicOverlayVisuals(timeSeconds, composerCurrentDocument, assemblyCenters);
+    updateComposerGraphicOverlayVisuals(pausedMotionTime, composerCurrentDocument, assemblyCenters);
   } catch (error) {
     console.error("Composer graphic overlay update failed.", error);
   }
-  updateComposerViewportMediaOverlays(timeSeconds, composerCurrentDocument);
-  updateComposerDocumentCameraPreview(timeSeconds, composerCurrentDocument);
+  updateComposerViewportMediaOverlays(pausedMotionTime, composerCurrentDocument);
+  updateComposerDocumentCameraPreview(pausedMotionTime, composerCurrentDocument);
 }
 
 function addComposerOrbitTrace(center, motion, color) {
