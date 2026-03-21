@@ -121,6 +121,40 @@ The current implemented overlay baseline is:
 
 This matters because the first overlay path is no longer hypothetical. The composer now has a concrete instructional graphic grammar: concise text, restrained linework, and attachment to visible structure. Future overlay types should extend that language rather than replacing it with unrelated graphic conventions.
 
+### Assembly-authoring boundary for free architrinos
+
+The composer should not treat free electrinos or positrinos as primary add-menu templates.
+
+The preferred authoring story is structural:
+
+- authors add built assemblies;
+- free architrinos appear when the author explicitly detaches a personality charge from an assembly;
+- or when the author explicitly breaks a binary into its constituent architrinos as part of a larger structural or reaction edit.
+
+This matters because a free architrino in the composer should usually mean that some prior structure has been opened, split, or transferred. That is a stronger and more informative authoring grammar than treating bare charges as generic top-level scene stamps.
+
+So future UI work should prioritize:
+
+- detaching a personality charge into a free architrino,
+- breaking a binary into two free architrinos,
+- and carrying those outputs forward through path authoring, transfer, and reaction staging.
+
+### Terminology note: reaction, not decay
+
+The composer should prefer `reaction` over `decay` in its authored animation language.
+
+That is partly a clarity choice and partly a scope choice:
+
+- physicists use `decay` across several different disassembly and reassembly stories;
+- the composer needs one term that can cover disassembly, transfer, handoff, and reassembly on a shared authored timeline;
+- and `reaction` is broad enough to hold that whole staged process without prejudging whether the event is a simple one-way breakup or a richer channel transformation.
+
+So when this design area becomes more visible in the UI:
+
+- use `reaction` for the authored event object,
+- use `reaction stages` for the timed substeps,
+- and avoid centering `decay` as the primary composer term unless a specific scientific scene needs that narrower wording in displayed content.
+
 ## Observer metaphor and user-facing language
 
 The composer should stop presenting itself as a camera tool. What matters in the authored scene is what the observer sees.

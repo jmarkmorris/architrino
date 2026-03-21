@@ -415,8 +415,14 @@ function createDefaultComposerAssemblyDraft(index = 0) {
   };
 }
 
-function createComposerDefaultCoreSpec(assemblyId) {
+function createComposerDefaultCoreSpec(assemblyId, options = {}) {
+  const binaryCount = clamp(Math.round(Number(options?.binaryCount ?? 3) || 3), 1, 3);
   const shellUnit = 0.45;
+  const planeNormals = [
+    [0, 1, 0],
+    [1, 0, 0],
+    [0, 0, 1],
+  ];
   return {
     coreType: "noether",
     shells: [
@@ -426,26 +432,22 @@ function createComposerDefaultCoreSpec(assemblyId) {
       { id: `${assemblyId}_shell_4`, radius: shellUnit * 4, role: "decorator", color: "#365f9f", opacity: 0.05 },
     ],
     binaries: [
-      {
-        id: `${assemblyId}_binary_1`,
-        motion: { type: "orbit.circular", center: assemblyId, radius: shellUnit, frequencyHz: 0.42, planeNormal: [0, 1, 0] },
+      { radius: shellUnit, frequencyHz: 0.42, planeNormal: planeNormals[0] },
+      { radius: shellUnit * 2, frequencyHz: 0.26, planeNormal: planeNormals[1] },
+      { radius: shellUnit * 3, frequencyHz: 0.16, planeNormal: planeNormals[2] },
+    ].slice(0, binaryCount).map((binary, index) => ({
+      id: `${assemblyId}_binary_${index + 1}`,
+      motion: {
+        type: "orbit.circular",
+        center: assemblyId,
+        radius: binary.radius,
+        frequencyHz: binary.frequencyHz,
+        planeNormal: binary.planeNormal,
       },
-      {
-        id: `${assemblyId}_binary_2`,
-        motion: { type: "orbit.circular", center: assemblyId, radius: shellUnit * 2, frequencyHz: 0.26, planeNormal: [1, 0, 0] },
-      },
-      {
-        id: `${assemblyId}_binary_3`,
-        motion: { type: "orbit.circular", center: assemblyId, radius: shellUnit * 3, frequencyHz: 0.16, planeNormal: [0, 0, 1] },
-      },
-    ],
+    })),
     alignment: {
       regime: "3d",
-      planeNormals: [
-        [0, 1, 0],
-        [1, 0, 0],
-        [0, 0, 1],
-      ],
+      planeNormals: planeNormals.slice(0, binaryCount),
     },
   };
 }
@@ -508,7 +510,22 @@ function parseComposerMemberEntry(rawMember, index = 0) {
   if (rawMember && typeof rawMember === "object" && !Array.isArray(rawMember)) {
     const id = sanitizeComposerEntityId(rawMember.id || rawMember.name, `member_${index + 1}`);
     const position = normalizeComposerMemberPosition(rawMember.position);
-    return position ? { id, position } : { id };
+    const nextMember = {
+      id,
+    };
+    if (position) {
+      nextMember.position = position;
+    }
+    if (rawMember.state != null) {
+      nextMember.state = String(rawMember.state).trim().toLowerCase();
+    }
+    if (rawMember.slotKind != null) {
+      nextMember.slotKind = String(rawMember.slotKind).trim().toLowerCase();
+    }
+    if (rawMember.slotIndex != null && Number.isFinite(Number(rawMember.slotIndex))) {
+      nextMember.slotIndex = Math.max(0, Math.round(Number(rawMember.slotIndex)));
+    }
+    return nextMember;
   }
   const source = String(rawMember ?? "").trim();
   if (!source) {
@@ -559,6 +576,25 @@ function getComposerMemberPosition(member) {
     return normalizeComposerMemberPosition(member.position);
   }
   return null;
+}
+
+function getComposerMemberState(member) {
+  if (member && typeof member === "object" && !Array.isArray(member)) {
+    const state = String(member.state ?? "").trim().toLowerCase();
+    if (state === "electrino" || state === "positrino" || state === "unset") {
+      return state;
+    }
+  }
+  return "";
+}
+
+function isComposerPersonalityMember(member) {
+  return (
+    !!member &&
+    typeof member === "object" &&
+    !Array.isArray(member) &&
+    String(member.slotKind ?? "").trim().toLowerCase() === "personality"
+  );
 }
 
 function formatComposerMemberList(members = []) {
@@ -1455,6 +1491,49 @@ function getComposerGraphicDefaultOffset(size = 0.42) {
   ];
 }
 
+function createComposerPersonalityMembers(states = []) {
+  return Array.from({ length: 6 }, (_, index) => ({
+    id: `personality_${index + 1}`,
+    slotKind: "personality",
+    slotIndex: index,
+    state: (() => {
+      const state = String(states[index] ?? "unset").trim().toLowerCase();
+      return state === "electrino" || state === "positrino" ? state : "unset";
+    })(),
+  }));
+}
+
+function createComposerGenIFermionPersonalityMembers() {
+  return createComposerPersonalityMembers();
+}
+
+function getComposerBuiltInPersonalityStates(templateId) {
+  if (templateId === "electron") {
+    return Array.from({ length: 6 }, () => "electrino");
+  }
+  if (templateId === "up_quark") {
+    return [
+      "positrino",
+      "electrino",
+      "positrino",
+      "positrino",
+      "positrino",
+      "positrino",
+    ];
+  }
+  if (templateId === "down_quark") {
+    return [
+      "positrino",
+      "positrino",
+      "electrino",
+      "electrino",
+      "electrino",
+      "electrino",
+    ];
+  }
+  return [];
+}
+
 function getComposerOverlayKind(overlay) {
   const kind = String(overlay?.kind ?? "graphic").trim().toLowerCase();
   return kind === "image" || kind === "video" || kind === "audio" ? kind : "graphic";
@@ -1956,7 +2035,19 @@ function completeComposerTransferToAssembly(assembly) {
 }
 
 function getComposerMemberColor(memberId, index = 0) {
-  const normalized = String(memberId ?? "").trim().toLowerCase();
+  const normalized = typeof memberId === "object" && memberId !== null && !Array.isArray(memberId)
+    ? getComposerMemberId(memberId, index).trim().toLowerCase()
+    : String(memberId ?? "").trim().toLowerCase();
+  const explicitState = getComposerMemberState(memberId);
+  if (explicitState === "unset") {
+    return "#f4f7ff";
+  }
+  if (explicitState === "electrino") {
+    return binaryStyle.electrinoColor;
+  }
+  if (explicitState === "positrino") {
+    return binaryStyle.positrinoColor;
+  }
   if (normalized.startsWith("electrino")) {
     return binaryStyle.electrinoColor;
   }
@@ -2075,6 +2166,49 @@ function findComposerCoreMemberId(members, chargeType, binaryIndex) {
     .map((member, memberIndex) => getComposerMemberId(member, memberIndex))
     .filter((memberId) => memberId.trim().toLowerCase().startsWith(targetPrefix));
   return prefixMatches[binaryIndex] ?? null;
+}
+
+function getComposerPersonalityMembers(assembly) {
+  return normalizeComposerMemberList(assembly?.members).filter((member) => isComposerPersonalityMember(member));
+}
+
+function getComposerPersonalityRingRadius(assembly) {
+  const shellRadii = Array.isArray(assembly?.core?.shells)
+    ? assembly.core.shells
+        .map((shell) => Number(shell?.radius ?? 0) || 0)
+        .filter((radius) => radius > 0)
+    : [];
+  return shellRadii.length ? Math.max(...shellRadii) * 1.02 : 1;
+}
+
+function getComposerObserverPlaneBasisInFrame() {
+  const frameQuaternion = composerFrameGroup?.quaternion?.clone?.() ?? new THREE.Quaternion();
+  const inverseFrameQuaternion = frameQuaternion.invert();
+  const right = new THREE.Vector3(1, 0, 0)
+    .applyQuaternion(composerCamera?.quaternion ?? new THREE.Quaternion())
+    .applyQuaternion(inverseFrameQuaternion)
+    .normalize();
+  const up = new THREE.Vector3(0, 1, 0)
+    .applyQuaternion(composerCamera?.quaternion ?? new THREE.Quaternion())
+    .applyQuaternion(inverseFrameQuaternion)
+    .normalize();
+  if (right.lengthSq() <= 0.00001) {
+    right.set(1, 0, 0);
+  }
+  if (up.lengthSq() <= 0.00001) {
+    up.set(0, 1, 0);
+  }
+  return { right, up };
+}
+
+function getComposerPersonalitySlotLocalOffset(assembly, slotIndex) {
+  const radius = getComposerPersonalityRingRadius(assembly);
+  const angle = Math.max(0, Number(slotIndex) || 0) * (Math.PI / 3);
+  const { right, up } = getComposerObserverPlaneBasisInFrame();
+  return right
+    .clone()
+    .multiplyScalar(Math.cos(angle) * radius)
+    .add(up.clone().multiplyScalar(Math.sin(angle) * radius));
 }
 
 function readNumberInput(input, fallback = 0) {
@@ -3455,6 +3589,72 @@ function openComposerMemberMenuAt(clientX, clientY, assemblyId, memberId) {
   positionComposerAssemblyMenu(clientX, clientY, 320, 420);
 }
 
+function openComposerPersonalitySlotMenuAt(clientX, clientY, assemblyId, memberId) {
+  if (!composerAssemblyMenu) {
+    return;
+  }
+  const assembly = getComposerAssemblyDraftById(assemblyId);
+  const members = normalizeComposerMemberList(assembly?.members);
+  const member = members.find((entry, index) => getComposerMemberId(entry, index) === sanitizeComposerEntityId(memberId, ""));
+  if (!assembly || !isComposerPersonalityMember(member)) {
+    return;
+  }
+  const currentState = getComposerMemberState(member) || "unset";
+  resetComposerAssemblyMenu();
+
+  const title = document.createElement("div");
+  title.className = "composer-assembly-menu-title";
+  title.textContent = "Personality Slot";
+  composerAssemblyMenu.appendChild(title);
+
+  const subtitle = document.createElement("div");
+  subtitle.className = "composer-assembly-menu-subtitle";
+  subtitle.textContent = `${assembly.name} · ${getComposerMemberId(member)}`;
+  composerAssemblyMenu.appendChild(subtitle);
+
+  appendComposerMenuNote(
+    composerAssemblyMenu,
+    currentState === "unset"
+      ? "Unset slot. Choose electrino or positrino."
+      : currentState === "electrino"
+        ? "Electrino set. You can flip this slot to positrino."
+        : "Positrino set. You can flip this slot to electrino."
+  );
+
+  const setPersonalityState = (nextState) => {
+    const liveAssembly = getComposerAssemblyDraftById(assemblyId);
+    const liveMember = ensureComposerAssemblyMemberRecord(liveAssembly, getComposerMemberId(member));
+    if (!liveMember) {
+      return;
+    }
+    liveMember.state = nextState;
+    closeComposerAssemblyMenu();
+    renderComposerJsonPreview();
+  };
+
+  if (currentState === "unset") {
+    appendComposerMenuButtonRow(composerAssemblyMenu, [
+      {
+        text: "Set Electrino",
+        onClick: () => setPersonalityState("electrino"),
+      },
+      {
+        text: "Set Positrino",
+        onClick: () => setPersonalityState("positrino"),
+      },
+    ]);
+  } else {
+    appendComposerMenuButtonRow(composerAssemblyMenu, [
+      {
+        text: currentState === "electrino" ? "Flip To Positrino" : "Flip To Electrino",
+        onClick: () => setPersonalityState(currentState === "electrino" ? "positrino" : "electrino"),
+      },
+    ]);
+  }
+
+  positionComposerAssemblyMenu(clientX, clientY, 236, 166);
+}
+
 function openComposerSubassemblyMenuAt(clientX, clientY, assemblyId, subassemblyId) {
   if (!composerAssemblyMenu) {
     return;
@@ -3548,11 +3748,6 @@ function openComposerAssemblyTemplateMenuAt(event) {
   title.textContent = "Canvas";
   composerAssemblyMenu.appendChild(title);
 
-  const addLabel = document.createElement("div");
-  addLabel.className = "composer-assembly-menu-subtitle";
-  addLabel.textContent = "Add Assembly";
-  composerAssemblyMenu.appendChild(addLabel);
-
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
       text: "Scene",
@@ -3568,22 +3763,30 @@ function openComposerAssemblyTemplateMenuAt(event) {
     },
   ]);
 
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: "Electrino",
-      dataset: { template: "electrino" },
-    },
-    {
-      text: "Positrino",
-      dataset: { template: "positrino" },
-    },
-  ]);
+  const addLabel = document.createElement("div");
+  addLabel.className = "composer-assembly-menu-subtitle";
+  addLabel.textContent = "Add Assembly";
+  composerAssemblyMenu.appendChild(addLabel);
+
   appendComposerMenuButtonRow(composerAssemblyMenu, [
     {
       text: "Noether Core",
       dataset: { template: "noether_core" },
     },
-    null,
+    {
+      text: "Electron",
+      dataset: { template: "electron" },
+    },
+  ]);
+  appendComposerMenuButtonRow(composerAssemblyMenu, [
+    {
+      text: "Down Quark",
+      dataset: { template: "down_quark" },
+    },
+    {
+      text: "Up Quark",
+      dataset: { template: "up_quark" },
+    },
   ]);
 
   appendComposerMenuSectionHeader(composerAssemblyMenu, "Observer");
@@ -4211,6 +4414,86 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0]) {
       members: ["electrino_1"],
       subassemblies: [],
       pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+    }, composerAssemblyDrafts.length);
+  }
+  if (templateId === "electron") {
+    const id = getNextComposerAssemblyId("electron");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Electron",
+      role: "electron",
+      position: normalizedPosition,
+      members: [
+        "positrino_1",
+        "electrino_1",
+        "positrino_2",
+        "electrino_2",
+        "positrino_3",
+        "electrino_3",
+        ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("electron")),
+      ],
+      subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      core: createComposerDefaultCoreSpec(id),
+    }, composerAssemblyDrafts.length);
+  }
+  if (templateId === "fermion_gen1") {
+    const id = getNextComposerAssemblyId("fermion");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Gen I Fermion",
+      role: "fermion_gen1",
+      position: normalizedPosition,
+      members: [
+        "positrino_1",
+        "electrino_1",
+        "positrino_2",
+        "electrino_2",
+        "positrino_3",
+        "electrino_3",
+        ...createComposerGenIFermionPersonalityMembers(),
+      ],
+      subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      core: createComposerDefaultCoreSpec(id),
+    }, composerAssemblyDrafts.length);
+  }
+  if (templateId === "down_quark") {
+    const id = getNextComposerAssemblyId("down_quark");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Down Quark",
+      role: "down_quark",
+      position: normalizedPosition,
+      members: [
+        "positrino_1",
+        "electrino_1",
+        "positrino_2",
+        "electrino_2",
+        "positrino_3",
+        "electrino_3",
+        ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("down_quark")),
+      ],
+      subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      core: createComposerDefaultCoreSpec(id),
+    }, composerAssemblyDrafts.length);
+  }
+  if (templateId === "up_quark") {
+    const id = getNextComposerAssemblyId("up_quark");
+    return normalizeComposerAssemblyDraft({
+      id,
+      name: "Up Quark",
+      role: "up_quark",
+      position: normalizedPosition,
+      members: [
+        "positrino_1",
+        "electrino_1",
+        ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("up_quark")),
+      ],
+      subassemblies: [],
+      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      core: createComposerDefaultCoreSpec(id, { binaryCount: 1 }),
     }, composerAssemblyDrafts.length);
   }
   const id = getNextComposerAssemblyId("noether_core");
@@ -5308,6 +5591,7 @@ function clearComposerViewportVisuals() {
   });
   composerGraphicOverlayGroups = [];
   composerGraphicOverlayHandleMeshes = [];
+  composerPersonalityHandleMeshes = [];
   clearComposerViewportMediaOverlays();
   composerMemberAnchors = new Map();
   if (composerDocumentCameraPathLine) {
@@ -7313,6 +7597,30 @@ function updateComposerAnimatedViewport(timeSeconds) {
         : 0.32;
   });
 
+  composerPersonalityHandleMeshes.forEach((mesh) => {
+    const assemblyId = mesh?.userData?.assemblyId ?? null;
+    const memberId = mesh?.userData?.memberId ?? null;
+    const assembly = assemblyId ? assemblyById.get(assemblyId) : null;
+    const member = Array.isArray(assembly?.members)
+      ? assembly.members.find((entry, index) => getComposerMemberId(entry, index) === memberId)
+      : null;
+    if (!assembly || !member) {
+      mesh.visible = false;
+      return;
+    }
+    const slotIndex = Math.max(0, Number(member?.slotIndex ?? 0) || 0);
+    const localOffset = getComposerPersonalitySlotLocalOffset(assembly, slotIndex);
+    mesh.position.copy(localOffset);
+    if (mesh.material?.color) {
+      mesh.material.color.set(getComposerMemberColor(member, slotIndex));
+    }
+    setComposerMemberAnchor(assemblyId, memberId, {
+      type: "proxy",
+      offset: [localOffset.x, localOffset.y, localOffset.z],
+    });
+    mesh.visible = true;
+  });
+
   try {
     updateComposerGraphicOverlayVisuals(timeSeconds, composerCurrentDocument, assemblyCenters);
   } catch (error) {
@@ -7969,6 +8277,38 @@ function addComposerAssemblyProxy(center, assembly, index) {
     const markerRadius = outerRadius + 0.06;
     const diagonal = markerRadius * Math.SQRT1_2;
     proxyBadgeOffset = new THREE.Vector3(diagonal, diagonal, 0);
+
+    const personalityMembers = getComposerPersonalityMembers(assembly);
+    personalityMembers.forEach((member, memberIndex) => {
+      const memberId = getComposerMemberId(member, memberIndex);
+      const slotIndex = Math.max(0, Number(member?.slotIndex ?? memberIndex) || 0);
+      const localOffset = getComposerPersonalitySlotLocalOffset(assembly, slotIndex);
+      setComposerMemberAnchor(assembly?.id, memberId, {
+        type: "proxy",
+        offset: [localOffset.x, localOffset.y, localOffset.z],
+      });
+      const memberDot = new THREE.Mesh(
+        new THREE.SphereGeometry(0.05, 14, 12),
+        new THREE.MeshBasicMaterial({
+          color: getComposerMemberColor(member, memberIndex),
+          transparent: true,
+          opacity: 0.98,
+          depthTest: false,
+          depthWrite: false,
+        })
+      );
+      memberDot.position.copy(localOffset);
+      memberDot.renderOrder = 16;
+      memberDot.userData.assemblyId = assembly?.id ?? null;
+      memberDot.userData.memberId = memberId;
+      memberDot.userData.draggable = false;
+      memberDot.userData.isComposerPersonalityHandle = true;
+      const memberHitProxy = createComposerMarkerHitProxy(0.16);
+      memberDot.userData.hitProxy = memberHitProxy;
+      memberDot.add(memberHitProxy);
+      group.add(memberDot);
+      composerPersonalityHandleMeshes.push(memberDot);
+    });
   }
 
   composerViewportGroup?.add(group);
@@ -8415,6 +8755,24 @@ function resolveComposerGraphicOverlayHit(object) {
   return null;
 }
 
+function resolveComposerPersonalityHandleHit(object) {
+  let current = object;
+  while (current) {
+    const assemblyId = current.userData?.assemblyId;
+    const memberId = current.userData?.memberId;
+    if (assemblyId && memberId && current.userData?.isComposerPersonalityHandle) {
+      return {
+        assemblyId,
+        memberId,
+        draggable: false,
+        object: current,
+      };
+    }
+    current = current.parent ?? null;
+  }
+  return null;
+}
+
 function findComposerCenterMarkerIntersection(hits = []) {
   for (const hit of Array.isArray(hits) ? hits : []) {
     const assemblyHit = resolveComposerAssemblyHit(hit?.object);
@@ -8509,6 +8867,16 @@ function onComposerPointerDown(event) {
       );
       composerDragState.plane.setFromNormalAndCoplanarPoint(normal, worldPoint);
       updateComposerCameraWaypointMaterials(waypointIndex);
+      return;
+    }
+  }
+  const personalityHits = composerRaycaster.intersectObjects(composerPersonalityHandleMeshes, true);
+  if (event.button === 0 && personalityHits.length) {
+    const personalityHit = resolveComposerPersonalityHandleHit(personalityHits[0].object);
+    if (personalityHit?.assemblyId) {
+      setComposerSelectedAssembly(personalityHit.assemblyId);
+      renderComposerAssemblyEditor();
+      renderComposerJsonPreview();
       return;
     }
   }
@@ -8692,6 +9060,23 @@ function onComposerContextMenu(event) {
   }
   const { x, y } = getComposerPointerNdc(event);
   composerRaycaster.setFromCamera({ x, y }, composerCamera);
+  const personalityHits = composerRaycaster.intersectObjects(composerPersonalityHandleMeshes, true);
+  if (personalityHits.length) {
+    const personalityHit = resolveComposerPersonalityHandleHit(personalityHits[0].object);
+    if (personalityHit?.assemblyId && personalityHit?.memberId) {
+      event.preventDefault();
+      setComposerSelectedAssembly(personalityHit.assemblyId);
+      renderComposerAssemblyEditor();
+      renderComposerJsonPreview();
+      openComposerPersonalitySlotMenuAt(
+        event.clientX,
+        event.clientY,
+        personalityHit.assemblyId,
+        personalityHit.memberId
+      );
+      return;
+    }
+  }
   const graphicHits = composerRaycaster.intersectObjects(composerGraphicOverlayHandleMeshes, true);
   if (graphicHits.length) {
     const graphicHit = resolveComposerGraphicOverlayHit(graphicHits[0].object);
@@ -9318,6 +9703,7 @@ let composerCameraWaypointGeometry = null;
 let composerCameraWaypointMaterial = null;
 let composerAssemblyMeshes = [];
 let composerMemberHandleMeshes = [];
+let composerPersonalityHandleMeshes = [];
 let composerSubassemblyHandleMeshes = [];
 let composerAssemblyWorldCenters = new Map();
 let composerShellMeshes = [];

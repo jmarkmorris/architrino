@@ -71,6 +71,10 @@ What remains:
   - subassembly authoring,
   - subassembly layout,
   - per-member offsets or constituent placement;
+- support detaching a personality charge into a free architrino;
+- support breaking a binary into two free architrinos; this will also change the fermion type.
+- determine how to depict an anti-Noether core.
+- treat those free architrinos as outputs of structure-changing assembly edits rather than as primary add-menu templates;
 - parent/child nesting that can show subassemblies as actual local structures rather than only grouped ids;
 - assembly-level transforms beyond simple local offset where theory-facing scenes need them;
 - reusable assembly presets and instance overrides.

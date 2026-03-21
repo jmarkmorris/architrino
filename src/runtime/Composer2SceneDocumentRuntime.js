@@ -136,7 +136,26 @@ function normalizeMembers(rawMembers) {
         if (member && typeof member === "object" && !Array.isArray(member)) {
           const id = sanitizeAssemblyId(member.id ?? member.name, `member_${index + 1}`);
           const position = normalizeMemberPosition(member.position);
-          return position ? { id, position } : { id };
+          const nextMember = { id };
+          if (position) {
+            nextMember.position = position;
+          }
+          if (member.state != null) {
+            const state = normalizeString(member.state, "");
+            if (state === "unset" || state === "electrino" || state === "positrino") {
+              nextMember.state = state;
+            }
+          }
+          if (member.slotKind != null) {
+            const slotKind = normalizeString(member.slotKind, "");
+            if (slotKind) {
+              nextMember.slotKind = slotKind;
+            }
+          }
+          if (member.slotIndex != null && Number.isFinite(Number(member.slotIndex))) {
+            nextMember.slotIndex = Math.max(0, Math.round(Number(member.slotIndex)));
+          }
+          return nextMember;
         }
         return { id: sanitizeAssemblyId(member, `member_${index + 1}`) };
       })
