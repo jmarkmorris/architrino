@@ -1885,14 +1885,18 @@ body {
   pointer-events: auto;
   cursor: pointer;
   user-select: none;
+  display: inline-block;
+  width: 12ch;
   padding: 0;
   border: 0;
   background: transparent;
   color: inherit;
   font: inherit;
   letter-spacing: inherit;
+  font-variant-numeric: tabular-nums;
   text-transform: inherit;
   text-align: right;
+  white-space: nowrap;
 }
 
 #composer-timeline-summary:hover {

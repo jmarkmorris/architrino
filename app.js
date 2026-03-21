@@ -581,10 +581,10 @@ function normalizeComposerAssemblyPathPoints(rawPoints) {
 function createComposerDefaultPathPoints(anchor = [0, 0, 0]) {
   const [baseX = 0, baseY = 0, baseZ = 0] = Array.isArray(anchor) ? anchor : [0, 0, 0];
   return [
-    [baseX - 1.6, baseY, baseZ],
-    [baseX - 0.5, baseY + 0.8, baseZ + 0.35],
-    [baseX + 0.9, baseY + 0.25, baseZ - 0.5],
-    [baseX + 2.0, baseY + 1.05, baseZ + 0.15],
+    [baseX, baseY, baseZ],
+    [baseX + 1.1, baseY + 0.8, baseZ + 0.35],
+    [baseX + 2.5, baseY + 0.25, baseZ - 0.5],
+    [baseX + 3.6, baseY + 1.05, baseZ + 0.15],
   ];
 }
 
@@ -5866,6 +5866,37 @@ function getComposerTotalMotionDuration(documentData) {
   return Math.max(0.0001, getComposerIntegratedMotionTime(documentData, timeWindow.end));
 }
 
+function getComposerMotionProgress(documentData, timeSeconds) {
+  const totalMotionDuration = getComposerTotalMotionDuration(documentData);
+  if (!(totalMotionDuration > 0)) {
+    return 0;
+  }
+  return clamp(getComposerIntegratedMotionTime(documentData, timeSeconds) / totalMotionDuration, 0, 1);
+}
+
+function getComposerPlaybackTimeForMotionProgress(documentData, targetProgress) {
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  const normalizedTarget = clamp(Number(targetProgress) || 0, 0, 1);
+  if (normalizedTarget <= 0) {
+    return timeWindow.start;
+  }
+  if (normalizedTarget >= 1) {
+    return timeWindow.end;
+  }
+  let low = timeWindow.start;
+  let high = timeWindow.end;
+  for (let iteration = 0; iteration < 36; iteration += 1) {
+    const mid = (low + high) * 0.5;
+    const progress = getComposerMotionProgress(documentData, mid);
+    if (progress < normalizedTarget) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+  return Number(high.toFixed(3));
+}
+
 function clearComposerTimelineLayer(layer) {
   if (!layer) {
     return;
@@ -8561,8 +8592,16 @@ function updateComposerDocumentCameraPreview(timeSeconds, documentData) {
 }
 
 function updateComposerViewportFromDocument(documentData) {
+  const previousDocument = composerCurrentDocument;
   const previousSceneId = composerCurrentDocument?.scene?.id ?? null;
   const previousPlaybackPlaying = composerPlaybackState.playing;
+  const shouldPreserveMotionProgress =
+    previousDocument &&
+    previousSceneId &&
+    previousSceneId === (documentData?.scene?.id ?? null);
+  const previousMotionProgress = shouldPreserveMotionProgress
+    ? getComposerMotionProgress(previousDocument, composerPlaybackState.playheadSeconds)
+    : null;
   composerCurrentDocument = documentData;
   if (!composerViewportGroup || !composerPathGeometry) {
     return;
@@ -8658,6 +8697,11 @@ function updateComposerViewportFromDocument(documentData) {
   const timeWindow = getComposerSceneTimeWindow(documentData);
   if (composerPlaybackState.playheadSeconds < timeWindow.start || previousSceneId !== documentData?.scene?.id) {
     composerPlaybackState.playheadSeconds = timeWindow.start;
+  } else if (shouldPreserveMotionProgress && previousMotionProgress != null) {
+    composerPlaybackState.playheadSeconds = getComposerPlaybackTimeForMotionProgress(
+      documentData,
+      previousMotionProgress
+    );
   } else {
     composerPlaybackState.playheadSeconds = clamp(
       composerPlaybackState.playheadSeconds,
