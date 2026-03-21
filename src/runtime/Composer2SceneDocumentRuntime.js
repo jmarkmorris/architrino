@@ -333,9 +333,6 @@ function normalizeReactions(rawReactions, transfers, start, end) {
             .map((transferId) => normalizeString(transferId, ""))
             .filter((transferId) => transferById.has(transferId))
         : [];
-      if (!transferIds.length) {
-        return null;
-      }
       const normalizedStages = normalizeReactionStages(
         reaction?.stages,
         reactionStart,

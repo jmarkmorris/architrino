@@ -156,6 +156,32 @@ const composerHudViewportToggleBindings = [
     label: "Observer Guides",
   },
 ];
+const composerSceneRoleOptions = [
+  { value: "assembly", label: "Assembly" },
+  { value: "reactant", label: "Reactant" },
+  { value: "product", label: "Product" },
+];
+const composerAssemblyTemplateMenuRows = [
+  [
+    { template: "noether_core", label: "Noether Core" },
+    { template: "electron", label: "Electron" },
+  ],
+  [
+    { template: "down_quark", label: "Down Quark" },
+    { template: "up_quark", label: "Up Quark" },
+  ],
+];
+const composerTimelineAddTypeEntries = [
+  { id: "pause", label: "Pause" },
+  { id: "warp", label: "Warp" },
+  { id: "image", label: "Image" },
+  { id: "video", label: "Video" },
+  { id: "audio", label: "Audio" },
+  { id: "graphic", label: "Graphic" },
+  { id: "camera", label: "Observer" },
+  { id: "reaction", label: "Reaction" },
+];
+const composerTimelineAddTypeIds = new Set(composerTimelineAddTypeEntries.map((entry) => entry.id));
 const composerPathModeSelect = document.getElementById("composer-path-mode");
 const composerPathResetButton = document.getElementById("composer-path-reset");
 const composerFrameResetButton = document.getElementById("composer-frame-reset");
@@ -1234,7 +1260,7 @@ function parseComposerReactions(rawText, transfers = [], duration = 24) {
   );
   return parseComposerTimingLines(rawText, (line, lineNumber) => {
     const match = line.match(
-      /^(.+?)\s*@\s*(-?\d*\.?\d+)\s*-\s*(-?\d*\.?\d+)\s*:\s*([^|]+?)(?:\s*\|\s*(.+))?$/
+      /^(.+?)\s*@\s*(-?\d*\.?\d+)\s*-\s*(-?\d*\.?\d+)(?:\s*:\s*([^|]+?))?(?:\s*\|\s*(.+))?$/
     );
     if (!match) {
       return null;
@@ -1242,24 +1268,28 @@ function parseComposerReactions(rawText, transfers = [], duration = 24) {
     const [, rawLabel, rawStart, rawEnd, rawTransfers, rawActions] = match;
     const span = clampComposerTimelineSpan(Number(rawStart), Number(rawEnd), duration);
     const transferIds = rawTransfers
-      .split(",")
-      .map((part) => normalizeComposerReactionTransferRef(part, transferById))
-      .filter(Boolean);
-    if (!transferIds.length) {
-      return null;
-    }
+      ? rawTransfers
+          .split(",")
+          .map((part) => normalizeComposerReactionTransferRef(part, transferById))
+          .filter(Boolean)
+      : [];
     const dedupedTransferIds = [...new Set(transferIds)];
     const stageSpecs = parseComposerReactionStageSpecs(rawActions, transferById, dedupedTransferIds);
-    if (!stageSpecs.length) {
-      return null;
-    }
+    const normalizedStageSpecs = stageSpecs.length
+      ? stageSpecs
+      : [
+          {
+            action: "handoff",
+            transferIds: dedupedTransferIds,
+          },
+        ];
     return {
       id: `reaction_authored_${lineNumber}`,
       label: rawLabel.trim() || `Reaction ${lineNumber}`,
       start: span.start,
       end: span.end,
       transferIds: dedupedTransferIds,
-      stages: buildComposerReactionStages(stageSpecs, span.start, span.end, dedupedTransferIds),
+      stages: buildComposerReactionStages(normalizedStageSpecs, span.start, span.end, dedupedTransferIds),
     };
   });
 }
@@ -1316,7 +1346,8 @@ function formatComposerReactionList(reactions = []) {
             .filter(Boolean)
             .join(", ")
         : "";
-      return `${label} @ ${start}-${end}: ${transferRefs}${actionRefs ? ` | ${actionRefs}` : ""}`;
+      const transferPart = transferRefs ? `: ${transferRefs}` : "";
+      return `${label} @ ${start}-${end}${transferPart}${actionRefs ? ` | ${actionRefs}` : ""}`;
     })
     .join("\n");
 }
@@ -1363,9 +1394,9 @@ function getComposerReactionStageDrafts(reaction = null) {
     }));
   }
   return [
-    { action: "detach", transferRefs: "1" },
-    { action: "handoff", transferRefs: "1" },
-    { action: "reassemble", transferRefs: "1" },
+    { action: "detach", transferRefs: "" },
+    { action: "handoff", transferRefs: "" },
+    { action: "reassemble", transferRefs: "" },
   ];
 }
 
@@ -1986,6 +2017,40 @@ function getComposerAssemblySceneRoleColor(rawRole = "assembly") {
 
 function getComposerAssemblyViewportLabel(assembly, index = 0) {
   return `${getComposerAssemblySceneRoleGlyph(assembly?.sceneRole)}${index + 1}`;
+}
+
+function getComposerReactionActionOptions() {
+  return Array.from(composerReactionActionKinds).map((action) => ({
+    value: action,
+    label: action.replace(/_/g, " "),
+  }));
+}
+
+function normalizeComposerTimelineAddType(rawType = "graphic") {
+  const requestedAddType = String(rawType ?? "graphic").trim().toLowerCase();
+  return composerTimelineAddTypeIds.has(requestedAddType) ? requestedAddType : "graphic";
+}
+
+function getComposerTimelineEditKindTitle(editKind = "add") {
+  if (editKind === "add") {
+    return "Add";
+  }
+  if (editKind === "graphic") {
+    return "Graphic";
+  }
+  if (editKind === "image") {
+    return "Image";
+  }
+  if (editKind === "video") {
+    return "Video";
+  }
+  if (editKind === "pause") {
+    return "Pause";
+  }
+  if (editKind === "warp") {
+    return "Warp";
+  }
+  return "Reaction";
 }
 
 function ensureComposerAssemblyDraftsForReactionUi() {
@@ -3464,16 +3529,6 @@ function applyComposerViewportDisplayState() {
   updateComposerHudViewportToggleState();
 }
 
-function composerHasCameraGuidesAvailable() {
-  if ((composerCameraFlightState?.waypoints?.length ?? 0) >= 2) {
-    return true;
-  }
-  const cameraPaths = Array.isArray(composerCurrentDocument?.cameraPaths)
-    ? composerCurrentDocument.cameraPaths
-    : [];
-  return cameraPaths.some((path) => Array.isArray(path?.waypoints) && path.waypoints.length >= 2);
-}
-
 function positionComposerAssemblyMenu(clientX, clientY, width = 220, height = 160) {
   if (!composerAssemblyMenu || !composerCanvasWrap) {
     return;
@@ -4026,26 +4081,15 @@ function openComposerAssemblyTemplateMenuAt(event) {
     "Add an assembly template here, then change its Scene Role from the assembly menu when you need reactants or products."
   );
 
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: "Noether Core",
-      dataset: { template: "noether_core" },
-    },
-    {
-      text: "Electron",
-      dataset: { template: "electron" },
-    },
-  ]);
-  appendComposerMenuButtonRow(composerAssemblyMenu, [
-    {
-      text: "Down Quark",
-      dataset: { template: "down_quark" },
-    },
-    {
-      text: "Up Quark",
-      dataset: { template: "up_quark" },
-    },
-  ]);
+  composerAssemblyTemplateMenuRows.forEach((row) => {
+    appendComposerMenuButtonRow(
+      composerAssemblyMenu,
+      row.map((entry) => ({
+        text: entry.label,
+        dataset: { template: entry.template },
+      }))
+    );
+  });
 
   appendComposerMenuSectionHeader(composerAssemblyMenu, "Observer");
 
@@ -4247,11 +4291,7 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
   const sceneRoleLabel = document.createElement("span");
   sceneRoleLabel.textContent = "Scene Role";
   const sceneRoleSelect = document.createElement("select");
-  [
-    { value: "assembly", label: "Assembly" },
-    { value: "reactant", label: "Reactant" },
-    { value: "product", label: "Product" },
-  ].forEach((entry) => {
+  composerSceneRoleOptions.forEach((entry) => {
     const option = document.createElement("option");
     option.value = entry.value;
     option.textContent = entry.label;
@@ -4581,135 +4621,141 @@ function createBuiltInComposerAssemblyDraft(templateId, position = [0, 0, 0], op
       ]
     : [0, 0, 0];
   const sceneRole = normalizeComposerAssemblySceneRole(options.sceneRole);
-  if (templateId === "positrino") {
-    const id = getNextComposerAssemblyId("positrino");
-    return normalizeComposerAssemblyDraft({
-      id,
-      name: "Positrino",
-      role: "positrino",
-      sceneRole,
-      position: normalizedPosition,
-      members: ["positrino_1"],
-      subassemblies: [],
-      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-    }, composerAssemblyDrafts.length);
-  }
-  if (templateId === "electrino") {
-    const id = getNextComposerAssemblyId("electrino");
-    return normalizeComposerAssemblyDraft({
-      id,
-      name: "Electrino",
-      role: "electrino",
-      sceneRole,
-      position: normalizedPosition,
-      members: ["electrino_1"],
-      subassemblies: [],
-      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-    }, composerAssemblyDrafts.length);
-  }
-  if (templateId === "electron") {
-    const id = getNextComposerAssemblyId("electron");
-    return normalizeComposerAssemblyDraft({
-      id,
-      name: "Electron",
-      role: "electron",
-      sceneRole,
-      position: normalizedPosition,
-      members: [
-        "positrino_1",
-        "electrino_1",
-        "positrino_2",
-        "electrino_2",
-        "positrino_3",
-        "electrino_3",
-        ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("electron")),
-      ],
-      subassemblies: [],
-      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-      core: createComposerDefaultCoreSpec(id),
-    }, composerAssemblyDrafts.length);
-  }
-  if (templateId === "fermion_gen1") {
-    const id = getNextComposerAssemblyId("fermion");
-    return normalizeComposerAssemblyDraft({
-      id,
-      name: "Gen I Fermion",
-      role: "fermion_gen1",
-      sceneRole,
-      position: normalizedPosition,
-      members: [
-        "positrino_1",
-        "electrino_1",
-        "positrino_2",
-        "electrino_2",
-        "positrino_3",
-        "electrino_3",
-        ...createComposerGenIFermionPersonalityMembers(),
-      ],
-      subassemblies: [],
-      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-      core: createComposerDefaultCoreSpec(id),
-    }, composerAssemblyDrafts.length);
-  }
-  if (templateId === "down_quark") {
-    const id = getNextComposerAssemblyId("down_quark");
-    return normalizeComposerAssemblyDraft({
-      id,
-      name: "Down Quark",
-      role: "down_quark",
-      sceneRole,
-      position: normalizedPosition,
-      members: [
-        "positrino_1",
-        "electrino_1",
-        "positrino_2",
-        "electrino_2",
-        "positrino_3",
-        "electrino_3",
-        ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("down_quark")),
-      ],
-      subassemblies: [],
-      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-      core: createComposerDefaultCoreSpec(id),
-    }, composerAssemblyDrafts.length);
-  }
-  if (templateId === "up_quark") {
-    const id = getNextComposerAssemblyId("up_quark");
-    return normalizeComposerAssemblyDraft({
-      id,
-      name: "Up Quark",
-      role: "up_quark",
-      sceneRole,
-      position: normalizedPosition,
-      members: [
-        "positrino_1",
-        "electrino_1",
-        ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("up_quark")),
-      ],
-      subassemblies: [],
-      pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-      core: createComposerDefaultCoreSpec(id, { binaryCount: 1 }),
-    }, composerAssemblyDrafts.length);
-  }
-  const id = getNextComposerAssemblyId("noether_core");
-  return normalizeComposerAssemblyDraft({
-    id,
-    name: "Noether Core",
-    role: "assembly",
-    sceneRole,
-    position: normalizedPosition,
-    members: [
-      "positrino_1",
-      "electrino_1",
-      "positrino_2",
-      "electrino_2",
-      "positrino_3",
-      "electrino_3",
-    ],
-    subassemblies: [],
-    pathPoints: createComposerDefaultPathPoints(normalizedPosition),
-    core: createComposerDefaultCoreSpec(id),
-  }, composerAssemblyDrafts.length);
+  const buildDraft = (draft) => normalizeComposerAssemblyDraft(draft, composerAssemblyDrafts.length);
+  const assemblyFactories = {
+    positrino: () => {
+      const id = getNextComposerAssemblyId("positrino");
+      return buildDraft({
+        id,
+        name: "Positrino",
+        role: "positrino",
+        sceneRole,
+        position: normalizedPosition,
+        members: ["positrino_1"],
+        subassemblies: [],
+        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      });
+    },
+    electrino: () => {
+      const id = getNextComposerAssemblyId("electrino");
+      return buildDraft({
+        id,
+        name: "Electrino",
+        role: "electrino",
+        sceneRole,
+        position: normalizedPosition,
+        members: ["electrino_1"],
+        subassemblies: [],
+        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+      });
+    },
+    electron: () => {
+      const id = getNextComposerAssemblyId("electron");
+      return buildDraft({
+        id,
+        name: "Electron",
+        role: "electron",
+        sceneRole,
+        position: normalizedPosition,
+        members: [
+          "positrino_1",
+          "electrino_1",
+          "positrino_2",
+          "electrino_2",
+          "positrino_3",
+          "electrino_3",
+          ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("electron")),
+        ],
+        subassemblies: [],
+        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+        core: createComposerDefaultCoreSpec(id),
+      });
+    },
+    fermion_gen1: () => {
+      const id = getNextComposerAssemblyId("fermion");
+      return buildDraft({
+        id,
+        name: "Gen I Fermion",
+        role: "fermion_gen1",
+        sceneRole,
+        position: normalizedPosition,
+        members: [
+          "positrino_1",
+          "electrino_1",
+          "positrino_2",
+          "electrino_2",
+          "positrino_3",
+          "electrino_3",
+          ...createComposerGenIFermionPersonalityMembers(),
+        ],
+        subassemblies: [],
+        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+        core: createComposerDefaultCoreSpec(id),
+      });
+    },
+    down_quark: () => {
+      const id = getNextComposerAssemblyId("down_quark");
+      return buildDraft({
+        id,
+        name: "Down Quark",
+        role: "down_quark",
+        sceneRole,
+        position: normalizedPosition,
+        members: [
+          "positrino_1",
+          "electrino_1",
+          "positrino_2",
+          "electrino_2",
+          "positrino_3",
+          "electrino_3",
+          ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("down_quark")),
+        ],
+        subassemblies: [],
+        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+        core: createComposerDefaultCoreSpec(id),
+      });
+    },
+    up_quark: () => {
+      const id = getNextComposerAssemblyId("up_quark");
+      return buildDraft({
+        id,
+        name: "Up Quark",
+        role: "up_quark",
+        sceneRole,
+        position: normalizedPosition,
+        members: [
+          "positrino_1",
+          "electrino_1",
+          ...createComposerPersonalityMembers(getComposerBuiltInPersonalityStates("up_quark")),
+        ],
+        subassemblies: [],
+        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+        core: createComposerDefaultCoreSpec(id, { binaryCount: 1 }),
+      });
+    },
+    noether_core: () => {
+      const id = getNextComposerAssemblyId("noether_core");
+      return buildDraft({
+        id,
+        name: "Noether Core",
+        role: "assembly",
+        sceneRole,
+        position: normalizedPosition,
+        members: [
+          "positrino_1",
+          "electrino_1",
+          "positrino_2",
+          "electrino_2",
+          "positrino_3",
+          "electrino_3",
+        ],
+        subassemblies: [],
+        pathPoints: createComposerDefaultPathPoints(normalizedPosition),
+        core: createComposerDefaultCoreSpec(id),
+      });
+    },
+  };
+  return (assemblyFactories[templateId] ?? assemblyFactories.noether_core)();
 }
 
 function addBuiltInComposerAssembly(templateId, position, options = {}) {
@@ -6420,36 +6466,12 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
         : overlay
           ? overlay.kind
           : "add";
-  const requestedAddType = String(options.addType ?? "graphic").trim().toLowerCase();
-  const validAddTypes = new Set([
-    "pause",
-    "warp",
-    "image",
-    "video",
-    "audio",
-    "graphic",
-    "camera",
-    "reaction",
-  ]);
-  const addType = validAddTypes.has(requestedAddType) ? requestedAddType : "graphic";
+  const addType = normalizeComposerTimelineAddType(options.addType);
   resetComposerAssemblyMenu("timeline");
 
   const title = document.createElement("div");
   title.className = "composer-assembly-menu-title";
-  title.textContent =
-    editKind === "add"
-      ? "Add"
-      : editKind === "graphic"
-        ? "Graphic"
-        : editKind === "image"
-          ? "Image"
-          : editKind === "video"
-            ? "Video"
-        : editKind === "pause"
-          ? "Pause"
-          : editKind === "warp"
-            ? "Warp"
-            : "Reaction";
+  title.textContent = getComposerTimelineEditKindTitle(editKind);
   composerAssemblyMenu.appendChild(title);
 
   const subtitle = document.createElement("div");
@@ -6933,34 +6955,16 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       duration
     );
     const reactionAssemblies = ensureComposerAssemblyDraftsForReactionUi();
-    const availableTransfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
-    const defaultTransferRef = availableTransfers.length
-      ? formatComposerReactionTransferRef(availableTransfers[0]?.id)
-      : "";
     const reactionStageDrafts = getComposerReactionStageDrafts(reaction);
-    if (!reaction) {
-      reactionStageDrafts.forEach((stageDraft) => {
-        stageDraft.transferRefs = defaultTransferRef;
-      });
-    }
     const reactionBlock = appendComposerMenuBlock(composerAssemblyMenu, "Reaction", {
       text: reaction ? "Save" : "Add",
       onClick: () => {
         const label = String(reactionLabelInput?.value ?? "").trim();
         const start = Number(reactionStartInput?.value);
         const end = Number(reactionEndInput?.value);
-        const transferRefs = String(reactionTransfersInput?.value ?? "").trim();
         const actions = buildComposerReactionActionString(reactionStageDrafts);
-        if (!label || !Number.isFinite(start) || !Number.isFinite(end) || !transferRefs) {
-          showTimelineMenuError("Reaction needs a label, a span, and at least one authored transfer.");
-          return;
-        }
-        const transferResolution = resolveComposerReactionTransferRefs(
-          transferRefs,
-          Array.isArray(documentData?.transfers) ? documentData.transfers : []
-        );
-        if (!transferResolution.resolvedIds.length) {
-          showTimelineMenuError("Reaction transfers must reference authored transfer lines that already exist.");
+        if (!label || !Number.isFinite(start) || !Number.isFinite(end)) {
+          showTimelineMenuError("Reaction needs a label and a valid span.");
           return;
         }
         if (!actions) {
@@ -6985,9 +6989,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           showTimelineOverlapError(overlap);
           return;
         }
-        const nextLine = `${label} @ ${span.start}-${span.end}: ${transferRefs}${
-          actions ? ` | ${actions}` : ""
-        }`;
+        const nextLine = `${label} @ ${span.start}-${span.end}${actions ? ` | ${actions}` : ""}`;
         setComposerReactionListRaw(
           reaction?.id
             ? replaceComposerAuthoringLineById(getComposerReactionListRaw(), reaction.id, nextLine)
@@ -7019,14 +7021,6 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       min: 0,
       selectOnFocus: true,
     });
-    const defaultTransfers = reaction
-      ? formatComposerReactionTransferRefs(reaction.transferIds)
-      : defaultTransferRef;
-    const reactionTransfersInput = appendComposerMenuField(reactionForm, {
-      label: "Transfers",
-      value: defaultTransfers,
-      placeholder: defaultTransferRef || "Author transfers first",
-    });
     reactionBlock?.block?.appendChild(reactionForm);
     if (reactionAssemblies.reactants.length || reactionAssemblies.products.length) {
       appendComposerMenuNote(
@@ -7043,37 +7037,11 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     }
     appendComposerMenuNote(
       reactionBlock?.block,
-      availableTransfers.length
-        ? "Stage timing is divided evenly across the reaction span for now."
-        : "Author one or more transfers first, then use those transfer ids in this reaction."
+      "Stage timing is divided evenly across the reaction span for now. Visual source-to-destination mapping still needs to replace typed transfer authoring."
     );
-    const provenanceNote = appendComposerMenuNote(reactionBlock?.block, "");
-    provenanceNote.classList.add("composer-reaction-provenance-note");
     const stageList = document.createElement("div");
     stageList.className = "composer-reaction-stage-list";
-    const reactionActionOptions = Array.from(composerReactionActionKinds).map((action) => ({
-      value: action,
-      label: action.replace(/_/g, " "),
-    }));
-
-    const updateReactionProvenanceSummary = () => {
-      const transferResolution = resolveComposerReactionTransferRefs(
-        reactionTransfersInput?.value,
-        Array.isArray(documentData?.transfers) ? documentData.transfers : []
-      );
-      const provenanceEntries = transferResolution.resolvedIds
-        .map((transferId) =>
-          describeComposerTransferProvenance(
-            transferResolution.transferById.get(transferId),
-            formatComposerReactionTransferRef(transferId)
-          )
-        )
-        .filter(Boolean);
-      const unresolvedCount = transferResolution.requestedRefs.length - provenanceEntries.length;
-      provenanceNote.textContent = provenanceEntries.length
-        ? `Provenance: ${provenanceEntries.join(" | ")}${unresolvedCount > 0 ? ` | ${unresolvedCount} unresolved` : ""}`
-        : "Provenance appears here once the referenced transfers resolve.";
-    };
+    const reactionActionOptions = getComposerReactionActionOptions();
 
     const renderReactionStageRows = () => {
       stageList.innerHTML = "";
@@ -7090,11 +7058,6 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           label: "Action",
           value: stageDraft.action,
           entries: reactionActionOptions,
-        });
-        const transferInput = appendComposerMenuField(stageForm, {
-          label: "Transfers",
-          value: stageDraft.transferRefs,
-          placeholder: reactionTransfersInput?.value || "1",
         });
         stageRow.appendChild(stageForm);
         appendComposerMenuButtonRow(stageRow, [
@@ -7115,9 +7078,6 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
         actionInput?.addEventListener("change", () => {
           stageDraft.action = actionInput.value;
         });
-        transferInput?.addEventListener("input", () => {
-          stageDraft.transferRefs = transferInput.value;
-        });
         stageList.appendChild(stageRow);
       });
     };
@@ -7127,16 +7087,13 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       onClick: () => {
         reactionStageDrafts.push({
           action: "handoff",
-          transferRefs: String(reactionTransfersInput?.value ?? "").trim() || "1",
+          transferRefs: "",
         });
         renderReactionStageRows();
       },
     });
     stageActionsBlock?.block?.appendChild(stageList);
-    reactionTransfersInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
-    reactionTransfersInput?.addEventListener("input", updateReactionProvenanceSummary);
     renderReactionStageRows();
-    updateReactionProvenanceSummary();
 
     if (reaction?.id) {
       appendComposerMenuButtonRow(reactionBlock?.block, [
@@ -7163,16 +7120,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
   if (editKind === "add") {
     const orbGrid = document.createElement("div");
     orbGrid.className = "composer-assembly-menu-orb-grid";
-    [
-      { id: "pause", label: "Pause" },
-      { id: "warp", label: "Warp" },
-      { id: "image", label: "Image" },
-      { id: "video", label: "Video" },
-      { id: "audio", label: "Audio" },
-      { id: "graphic", label: "Graphic" },
-      { id: "camera", label: "Observer" },
-      { id: "reaction", label: "Reaction" },
-    ].forEach((item) => {
+    composerTimelineAddTypeEntries.forEach((item) => {
       const orb = document.createElement("button");
       orb.type = "button";
       orb.className = "composer-assembly-menu-orb";
