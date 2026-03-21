@@ -1194,7 +1194,7 @@ function normalizeComposerReactionTransferRef(rawRef, transferById) {
   return null;
 }
 
-function parseComposerReactions(rawText, transfers = [], duration = 12) {
+function parseComposerReactions(rawText, transfers = [], duration = 24) {
   const transferById = new Map(
     (Array.isArray(transfers) ? transfers : []).map((transfer) => [transfer?.id, transfer])
   );
@@ -1653,7 +1653,7 @@ function getComposerGraphicOverlayLabel(overlay) {
   return text.length > 24 ? `${text.slice(0, 24).trimEnd()}...` : text;
 }
 
-function normalizeComposerGraphicOverlayDraft(overlay = {}, index = 0, duration = 12) {
+function normalizeComposerGraphicOverlayDraft(overlay = {}, index = 0, duration = 24) {
   const kind = getComposerOverlayKind(overlay);
   const fallbackTarget = getComposerGraphicDefaultTarget();
   const span = clampComposerTimelineSpan(
@@ -1716,7 +1716,7 @@ function normalizeComposerGraphicOverlayDraft(overlay = {}, index = 0, duration 
   };
 }
 
-function normalizeComposerGraphicOverlayList(overlays = [], duration = 12) {
+function normalizeComposerGraphicOverlayList(overlays = [], duration = 24) {
   return (Array.isArray(overlays) ? overlays : []).map((overlay, index) =>
     normalizeComposerGraphicOverlayDraft(overlay, index, duration)
   );
@@ -2038,8 +2038,8 @@ function replaceComposerAuthoringLineById(rawValue, authoredId, nextLine = null)
   return lines.filter((line) => String(line).trim()).join("\n");
 }
 
-function setComposerSceneDurationValue(value = 12) {
-  const duration = Math.max(1, Number(Number(value ?? 12).toFixed(3)) || 12);
+function setComposerSceneDurationValue(value = 24) {
+  const duration = Math.max(1, Number(Number(value ?? 24).toFixed(3)) || 24);
   if (composerSceneDurationInput) {
     composerSceneDurationInput.value = String(duration);
   }
@@ -4837,7 +4837,7 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
 }
 
 function readComposerTimingState() {
-  const durationRaw = readNumberInput(composerSceneDurationInput, 12);
+  const durationRaw = readNumberInput(composerSceneDurationInput, 24);
   const duration = Math.max(1, Number(durationRaw.toFixed(3)));
   if (composerSceneDurationInput) {
     composerSceneDurationInput.value = String(duration);
@@ -4929,7 +4929,7 @@ function readComposerDraftState() {
   const reactionParse = parseComposerReactions(
     reactionListRaw,
     state.transfers,
-    Number(timing?.time?.end ?? 12) || 12
+    Number(timing?.time?.end ?? 24) || 24
   );
   const primaryAssembly = Array.isArray(state.assembliesDraft) ? state.assembliesDraft[0] ?? null : null;
   const pathPoints = normalizeComposerAssemblyPathPoints(primaryAssembly?.pathPoints);
@@ -4950,7 +4950,7 @@ function readComposerDraftState() {
     ...timing,
     transfers: state.transfers,
     reactions: reactionParse.entries,
-    overlays: normalizeComposerGraphicOverlayList(composerGraphicOverlayDrafts, Number(timing?.time?.end ?? 12) || 12),
+    overlays: normalizeComposerGraphicOverlayList(composerGraphicOverlayDrafts, Number(timing?.time?.end ?? 24) || 24),
     markerListRaw: composerMarkerListInput?.value ?? "",
     pauseListRaw: composerPauseListInput?.value ?? "",
     warpListRaw: composerWarpListInput?.value ?? "",
@@ -5090,7 +5090,7 @@ function applyComposerDraftState(draftState = {}) {
   validateComposerSelectedAssemblyId();
   renderComposerAssemblyEditor();
 
-  const duration = Math.max(1, Number(draftState?.time?.end ?? draftState?.time?.duration ?? 12) || 12);
+  const duration = Math.max(1, Number(draftState?.time?.end ?? draftState?.time?.duration ?? 24) || 24);
   if (composerSceneDurationInput) {
     composerSceneDurationInput.value = String(duration);
   }
@@ -5251,7 +5251,7 @@ function clearComposerScene() {
     time: {
       timeBase: "seconds",
       start: 0,
-      end: 12,
+      end: 24,
       playbackRate: 1,
       loop: false,
     },
@@ -5818,7 +5818,7 @@ function computeComposerAssemblyBasePosition(assembly, index, count, pathById) {
 function getComposerSceneTimeWindow(documentData) {
   const sceneTime = documentData?.scene?.time ?? {};
   const start = Number(sceneTime.start ?? 0);
-  const end = Number(sceneTime.end ?? Math.max(12, start + 1));
+  const end = Number(sceneTime.end ?? Math.max(24, start + 1));
   return {
     start,
     end: end > start ? end : start + 1,
@@ -5992,7 +5992,7 @@ function openComposerTimelineSummaryMenuAt(clientX, clientY) {
   if (!composerAssemblyMenu) {
     return;
   }
-  const currentDuration = Math.max(1, readNumberInput(composerSceneDurationInput, 12));
+  const currentDuration = Math.max(1, readNumberInput(composerSceneDurationInput, 24));
   const isLooping = !!composerSceneLoopInput?.checked;
   resetComposerAssemblyMenu("timeline");
 
@@ -6324,7 +6324,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     warp?.start ??
     reaction?.start ??
     getComposerTimelineTimeAtClientX(clientX, documentData);
-  const duration = Math.max(1, readNumberInput(composerSceneDurationInput, 12));
+  const duration = Math.max(1, readNumberInput(composerSceneDurationInput, 24));
   const editKind = reaction
     ? "reaction"
     : warp

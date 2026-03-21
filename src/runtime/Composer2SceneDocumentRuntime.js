@@ -738,8 +738,8 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
   const primaryCameraPathId = cameraWaypoints.length ? "camera_main" : null;
   const rawTime = rawScene.time ?? {};
   const sceneStart = Number(rawTime.start ?? 0);
-  const sceneEnd = Number(rawTime.end ?? 12);
-  const normalizedSceneEnd = sceneEnd > sceneStart ? sceneEnd : sceneStart + 12;
+  const sceneEnd = Number(rawTime.end ?? 24);
+  const normalizedSceneEnd = sceneEnd > sceneStart ? sceneEnd : sceneStart + 24;
   const assemblies = normalizeAssemblies(rawDocument.assemblies, ownerPathIds, primaryPathId);
   const transfers = normalizeTransfers(rawDocument.transfers);
 
