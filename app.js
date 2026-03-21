@@ -680,13 +680,68 @@ function getNextComposerAssemblyMemberId(assembly, kind = "member") {
   return candidate;
 }
 
+function getNextComposerPersonalitySlotIndex(assembly) {
+  const members = normalizeComposerMemberList(assembly?.members);
+  const usedSlots = new Set(
+    members
+      .filter((member) => isComposerPersonalityMember(member))
+      .map((member, index) => Math.max(0, Number(member?.slotIndex ?? index) || 0))
+  );
+  let slotIndex = 0;
+  while (usedSlots.has(slotIndex)) {
+    slotIndex += 1;
+  }
+  return slotIndex;
+}
+
+function getComposerPersonalitySlotCapacity(assembly) {
+  const binaryCount = Array.isArray(assembly?.core?.binaries)
+    ? assembly.core.binaries.filter(Boolean).length
+    : 0;
+  if (binaryCount <= 1) {
+    return 2;
+  }
+  if (binaryCount === 2) {
+    return 4;
+  }
+  return 6;
+}
+
+function getComposerAvailablePersonalitySlotCount(assembly) {
+  const capacity = getComposerPersonalitySlotCapacity(assembly);
+  const usedCount = getComposerPersonalityMembers(assembly).length;
+  return Math.max(0, capacity - usedCount);
+}
+
 function addComposerAssemblyMemberByKind(assembly, kind = "member") {
   if (!assembly) {
-    return;
+    return false;
   }
   const nextMembers = normalizeComposerMemberList(assembly.members);
-  nextMembers.push({ id: getNextComposerAssemblyMemberId(assembly, kind) });
+  const normalizedKind = sanitizeComposerEntityId(kind, "member");
+  const isChargeKind = normalizedKind === "electrino" || normalizedKind === "positrino";
+  const hasCore = Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
+  if (isChargeKind && hasCore) {
+    if (getComposerAvailablePersonalitySlotCount(assembly) <= 0) {
+      setComposerStatus(
+        `Personality layer is full for this core. Capacity is ${getComposerPersonalitySlotCapacity(assembly)} charge slot${
+          getComposerPersonalitySlotCapacity(assembly) === 1 ? "" : "s"
+        }.`
+      );
+      return false;
+    }
+    const slotIndex = getNextComposerPersonalitySlotIndex(assembly);
+    nextMembers.push({
+      id: `personality_${slotIndex + 1}`,
+      slotKind: "personality",
+      slotIndex,
+      state: normalizedKind,
+    });
+  } else {
+    nextMembers.push({ id: getNextComposerAssemblyMemberId(assembly, normalizedKind) });
+  }
   assembly.members = nextMembers;
+  return true;
 }
 
 function parseComposerSubassemblyEntry(rawEntry, index = 0) {
@@ -1101,7 +1156,7 @@ const composerReactionActionKinds = new Set([
   "transform",
   "detach",
   "attach",
-  "handoff",
+  "mapping",
   "reassemble",
 ]);
 
@@ -1110,6 +1165,9 @@ function normalizeComposerReactionAction(rawAction) {
     .trim()
     .toLowerCase()
     .replace(/\s+/g, "_");
+  if (normalized === "handoff") {
+    return "mapping";
+  }
   return composerReactionActionKinds.has(normalized) ? normalized : null;
 }
 
@@ -1145,7 +1203,7 @@ function splitComposerDelimitedTopLevel(rawText, delimiter = ",") {
 
 function parseComposerReactionStageSpecs(rawActions, transferById, allowedTransferIds) {
   const allowed = new Set(Array.isArray(allowedTransferIds) ? allowedTransferIds : []);
-  const tokens = splitComposerDelimitedTopLevel(rawActions || "handoff");
+  const tokens = splitComposerDelimitedTopLevel(rawActions || "mapping");
   return tokens
     .map((token) => {
       const match = token.match(/^([a-zA-Z_\s-]+?)(?:\(([^)]*)\))?$/);
@@ -1275,11 +1333,11 @@ function parseComposerReactions(rawText, transfers = [], duration = 24) {
       : [];
     const dedupedTransferIds = [...new Set(transferIds)];
     const stageSpecs = parseComposerReactionStageSpecs(rawActions, transferById, dedupedTransferIds);
-    const normalizedStageSpecs = stageSpecs.length
+  const normalizedStageSpecs = stageSpecs.length
       ? stageSpecs
       : [
           {
-            action: "handoff",
+            action: "mapping",
             transferIds: dedupedTransferIds,
           },
         ];
@@ -1389,13 +1447,13 @@ function resolveComposerReactionTransferRefs(rawTransferRefs, transfers = []) {
 function getComposerReactionStageDrafts(reaction = null) {
   if (reaction && Array.isArray(reaction.stages) && reaction.stages.length) {
     return reaction.stages.map((stage) => ({
-      action: stage?.action ?? "handoff",
+      action: normalizeComposerReactionAction(stage?.action) ?? "mapping",
       transferRefs: formatComposerReactionTransferRefs(stage?.transferIds),
     }));
   }
   return [
     { action: "detach", transferRefs: "" },
-    { action: "handoff", transferRefs: "" },
+    { action: "mapping", transferRefs: "" },
     { action: "reassemble", transferRefs: "" },
   ];
 }
@@ -4399,10 +4457,9 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
   addPositrinoButton.textContent = "Add Positrino";
   addPositrinoButton.addEventListener("click", () => {
     const liveAssembly = getComposerAssemblyDraftById(assembly.id);
-    if (!liveAssembly) {
+    if (!liveAssembly || !addComposerAssemblyMemberByKind(liveAssembly, "positrino")) {
       return;
     }
-    addComposerAssemblyMemberByKind(liveAssembly, "positrino");
     closeComposerAssemblyMenu();
     renderComposerAssemblyEditor();
     renderComposerJsonPreview();
@@ -4415,10 +4472,9 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
   addElectrinoButton.textContent = "Add Electrino";
   addElectrinoButton.addEventListener("click", () => {
     const liveAssembly = getComposerAssemblyDraftById(assembly.id);
-    if (!liveAssembly) {
+    if (!liveAssembly || !addComposerAssemblyMemberByKind(liveAssembly, "electrino")) {
       return;
     }
-    addComposerAssemblyMemberByKind(liveAssembly, "electrino");
     closeComposerAssemblyMenu();
     renderComposerAssemblyEditor();
     renderComposerJsonPreview();
@@ -4434,8 +4490,21 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
     if (!liveAssembly) {
       return;
     }
-    addComposerAssemblyMemberByKind(liveAssembly, "positrino");
-    addComposerAssemblyMemberByKind(liveAssembly, "electrino");
+    const hasCore = Array.isArray(liveAssembly?.core?.shells) && liveAssembly.core.shells.length > 0;
+    if (hasCore && getComposerAvailablePersonalitySlotCount(liveAssembly) < 2) {
+      setComposerStatus(
+        `Not enough personality slots remain for a pair. ${getComposerAvailablePersonalitySlotCount(liveAssembly)} of ${getComposerPersonalitySlotCapacity(liveAssembly)} slot${
+          getComposerPersonalitySlotCapacity(liveAssembly) === 1 ? "" : "s"
+        } available.`
+      );
+      return;
+    }
+    if (!addComposerAssemblyMemberByKind(liveAssembly, "positrino")) {
+      return;
+    }
+    if (!addComposerAssemblyMemberByKind(liveAssembly, "electrino")) {
+      return;
+    }
     closeComposerAssemblyMenu();
     renderComposerAssemblyEditor();
     renderComposerJsonPreview();
@@ -6098,6 +6167,32 @@ function createComposerTimelineBand(fractionStart, fractionEnd, className, title
   return band;
 }
 
+function formatComposerReactionBandLabel(reaction, participantSummary = "", widthFraction = 0) {
+  const baseLabel = String(reaction?.label ?? reaction?.id ?? "Reaction").trim() || "Reaction";
+  if (widthFraction <= 0.035) {
+    return participantSummary || "";
+  }
+  if (widthFraction <= 0.065) {
+    return participantSummary || shortenComposerTimelineBandLabel(baseLabel, 6);
+  }
+  if (widthFraction <= 0.1) {
+    return participantSummary
+      ? `${shortenComposerTimelineBandLabel(baseLabel, 8)} ${participantSummary}`
+      : shortenComposerTimelineBandLabel(baseLabel, 10);
+  }
+  return participantSummary
+    ? `${shortenComposerTimelineBandLabel(baseLabel, 14)} ${participantSummary}`
+    : shortenComposerTimelineBandLabel(baseLabel, 18);
+}
+
+function shortenComposerTimelineBandLabel(label, maxLength = 12) {
+  const text = String(label ?? "").trim();
+  if (!text) {
+    return "";
+  }
+  return text.length > maxLength ? `${text.slice(0, Math.max(1, maxLength - 1))}\u2026` : text;
+}
+
 function createComposerTimelineMarker(fraction, label, title) {
   const marker = document.createElement("div");
   marker.className = "composer-timeline-marker";
@@ -7086,7 +7181,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
       text: "Add Stage",
       onClick: () => {
         reactionStageDrafts.push({
-          action: "handoff",
+          action: "mapping",
           transferRefs: "",
         });
         renderReactionStageRows();
@@ -7476,7 +7571,9 @@ function renderComposerTimeline(documentData) {
   reactions.forEach((reaction) => {
     const start = getComposerTimelineFraction(documentData, reaction.start);
     const end = getComposerTimelineFraction(documentData, reaction.end);
+    const widthFraction = Math.max(0.002, end - start);
     const participantSummary = getComposerReactionParticipantSummary(reaction);
+    const showStageLabels = Array.isArray(reaction?.stages) && reaction.stages.length && widthFraction >= 0.12;
     const actions = Array.isArray(reaction?.stages)
       ? reaction.stages
           .map((stage) => {
@@ -7500,23 +7597,22 @@ function renderComposerTimeline(documentData) {
       )} to ${formatComposerTimeLabel(reaction.end)}${participantSummary ? ` | ${participantSummary}` : ""}${
         actions.length ? ` | ${actions.join(" -> ")}` : ""
       }`,
-      participantSummary
-        ? `${reaction.label ?? reaction.id ?? "Reaction"} ${participantSummary}`
-        : reaction.label ?? reaction.id ?? "Reaction"
+      showStageLabels ? "" : formatComposerReactionBandLabel(reaction, participantSummary, widthFraction)
     );
     if (Array.isArray(reaction?.stages) && reaction.stages.length) {
       reaction.stages.forEach((stage) => {
         const stageStart = getComposerTimelineFraction(documentData, stage.start);
         const stageEnd = getComposerTimelineFraction(documentData, stage.end);
+        const stageWidthFraction = Math.max(0, stageEnd - stageStart);
         const stageBand = document.createElement("span");
         stageBand.className = "composer-timeline-reaction-stage";
         stageBand.style.left = `${Math.max(0, ((stageStart - start) / Math.max(end - start, 0.0001)) * 100)}%`;
         stageBand.style.width = `${Math.max(0, ((stageEnd - stageStart) / Math.max(end - start, 0.0001)) * 100)}%`;
         stageBand.title = `${stage.action ?? "stage"}: ${formatComposerTimeLabel(stage.start)} to ${formatComposerTimeLabel(stage.end)}`;
-        if (stage?.action) {
+        if (stage?.action && showStageLabels && stageWidthFraction >= 0.04) {
           const stageLabel = document.createElement("span");
           stageLabel.className = "composer-timeline-reaction-stage-label";
-          stageLabel.textContent = String(stage.action).replace(/_/g, " ");
+          stageLabel.textContent = shortenComposerTimelineBandLabel(String(stage.action).replace(/_/g, " "), 10);
           stageBand.appendChild(stageLabel);
         }
         band.appendChild(stageBand);
