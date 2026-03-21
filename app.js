@@ -34,6 +34,31 @@ import {
   parseComposerTimingLines,
 } from "./src/runtime/ComposerTimelineRuntime.js";
 import {
+  composerAssemblyTemplateMenuRows,
+  composerSceneRoleOptions,
+  composerTimelineAddTypeEntries,
+  composerTimelineAddTypeIds,
+  generationTransitions,
+} from "./src/runtime/ComposerCatalogRuntime.js";
+import {
+  decodeComposerGraphicTargetValue as decodeComposerGraphicTargetValueRuntime,
+  encodeComposerGraphicTargetValue,
+  getComposerGraphicDefaultTarget as getComposerGraphicDefaultTargetRuntime,
+  getComposerGraphicOverlayLabel,
+  getComposerGraphicOverlayDraftIndexById as getComposerGraphicOverlayDraftIndexByIdRuntime,
+  getComposerGraphicTargetEntries as getComposerGraphicTargetEntriesRuntime,
+  getComposerGraphicTimelineOverlays as getComposerGraphicTimelineOverlaysRuntime,
+  getComposerMediaDefaultRect,
+  getComposerMediaOverlayLabel,
+  getComposerOverlayKind,
+  getComposerViewportMediaTimelineOverlays as getComposerViewportMediaTimelineOverlaysRuntime,
+  getNextComposerGraphicOverlayId as getNextComposerGraphicOverlayIdRuntime,
+  normalizeComposerGraphicOverlayDraft as normalizeComposerGraphicOverlayDraftRuntime,
+  normalizeComposerGraphicOverlayList as normalizeComposerGraphicOverlayListRuntime,
+  normalizeComposerMediaRect as normalizeComposerMediaRectRuntime,
+  sanitizeComposerMediaSource as sanitizeComposerMediaSourceRuntime,
+} from "./src/runtime/ComposerOverlayRuntime.js";
+import {
   buildComposerJsonPreviewMenu,
   buildComposerLibraryMenu,
   buildComposerSceneMenu,
@@ -186,32 +211,6 @@ const composerHudViewportToggleBindings = [
     label: "Observer Guides",
   },
 ];
-const composerSceneRoleOptions = [
-  { value: "assembly", label: "Assembly" },
-  { value: "reactant", label: "Reactant" },
-  { value: "product", label: "Product" },
-];
-const composerAssemblyTemplateMenuRows = [
-  [
-    { template: "noether_core", label: "Noether Core" },
-    { template: "electron", label: "Electron" },
-  ],
-  [
-    { template: "down_quark", label: "Down Quark" },
-    { template: "up_quark", label: "Up Quark" },
-  ],
-];
-const composerTimelineAddTypeEntries = [
-  { id: "pause", label: "Pause" },
-  { id: "warp", label: "Warp" },
-  { id: "image", label: "Image" },
-  { id: "video", label: "Video" },
-  { id: "audio", label: "Audio" },
-  { id: "graphic", label: "Graphic" },
-  { id: "camera", label: "Observer" },
-  { id: "reaction", label: "Reaction" },
-];
-const composerTimelineAddTypeIds = new Set(composerTimelineAddTypeEntries.map((entry) => entry.id));
 const composerPathModeSelect = document.getElementById("composer-path-mode");
 const composerPathResetButton = document.getElementById("composer-path-reset");
 const composerFrameResetButton = document.getElementById("composer-frame-reset");
@@ -403,22 +402,6 @@ const binaryStyle = {
   positrinoColor: "#ff0000",
   electrinoColor: "#0000ff",
   baseOrbitSpeed: 0.18,
-};
-const generationTransitions = {
-  electron: { nextScene: "content/scenes/standard-model-particles/muon.json", nextLabel: "Muon" },
-  muon: { nextScene: "content/scenes/standard-model-particles/tau.json", nextLabel: "Tau" },
-  neutrino: {
-    nextScene: "content/scenes/standard-model-particles/muon_neutrino.json",
-    nextLabel: "Muon Neutrino",
-  },
-  muon_neutrino: {
-    nextScene: "content/scenes/standard-model-particles/tau_neutrino.json",
-    nextLabel: "Tau Neutrino",
-  },
-  up_quark: { nextScene: "content/scenes/standard-model-particles/charm.json", nextLabel: "Charm" },
-  charm: { nextScene: "content/scenes/standard-model-particles/top.json", nextLabel: "Top" },
-  down_quark: { nextScene: "content/scenes/standard-model-particles/strange.json", nextLabel: "Strange" },
-  strange: { nextScene: "content/scenes/standard-model-particles/bottom.json", nextLabel: "Bottom" },
 };
 
 function normalizeVelocity(value) {
@@ -1305,80 +1288,25 @@ function sanitizeComposerGraphicTarget(rawTarget, fallbackAssemblyId = "") {
 }
 
 function getComposerGraphicDefaultTarget() {
-  const selectedAssemblyId = sanitizeComposerEntityId(composerSelectedAssemblyId, "");
-  const fallbackAssemblyId = sanitizeComposerEntityId(composerAssemblyDrafts[0]?.id, "");
-  const assemblyId = selectedAssemblyId || fallbackAssemblyId;
-  if (!assemblyId) {
-    return null;
-  }
-  if (Number.isInteger(composerSelectedPointIndex) && composerSelectedPointIndex >= 0) {
-    return {
-      type: "path_point",
-      assemblyId,
-      pointIndex: composerSelectedPointIndex,
-    };
-  }
-  return {
-    type: "assembly",
-    assemblyId,
-  };
-}
-
-function encodeComposerGraphicTargetValue(target) {
-  if (!target?.type) {
-    return "";
-  }
-  if (target.type === "assembly") {
-    return `assembly:${target.assemblyId}`;
-  }
-  if (target.type === "path_point") {
-    return `path_point:${target.assemblyId}:${Math.max(0, Number(target.pointIndex ?? 0) || 0)}`;
-  }
-  return "";
+  return getComposerGraphicDefaultTargetRuntime({
+    selectedAssemblyId: sanitizeComposerEntityId(composerSelectedAssemblyId, ""),
+    fallbackAssemblyId: sanitizeComposerEntityId(composerAssemblyDrafts[0]?.id, ""),
+    selectedPointIndex: composerSelectedPointIndex,
+  });
 }
 
 function decodeComposerGraphicTargetValue(rawValue) {
-  const value = String(rawValue ?? "").trim();
-  if (!value) {
-    return null;
-  }
-  const [type, assemblyId, pointIndex] = value.split(":");
-  if (type === "assembly") {
-    return sanitizeComposerGraphicTarget({ type, assemblyId });
-  }
-  if (type === "path_point") {
-    return sanitizeComposerGraphicTarget({ type, assemblyId, pointIndex });
-  }
-  return null;
+  return decodeComposerGraphicTargetValueRuntime(rawValue, {
+    sanitizeTarget: (target) => sanitizeComposerGraphicTarget(target),
+  });
 }
 
 function getComposerGraphicTargetEntries() {
-  const entries = [];
-  composerAssemblyDrafts.forEach((assembly, index) => {
-    if (!assembly?.id) {
-      return;
-    }
-    const assemblyLetter = getComposerAssemblyLetter(index);
-    entries.push({
-      value: encodeComposerGraphicTargetValue({
-        type: "assembly",
-        assemblyId: assembly.id,
-      }),
-      label: `Assembly ${assemblyLetter}`,
-    });
-    const pathPoints = normalizeComposerAssemblyPathPoints(assembly?.pathPoints);
-    pathPoints.forEach((_point, pointIndex) => {
-      entries.push({
-        value: encodeComposerGraphicTargetValue({
-          type: "path_point",
-          assemblyId: assembly.id,
-          pointIndex,
-        }),
-        label: `Path ${assemblyLetter} Point ${pointIndex + 1}`,
-      });
-    });
+  return getComposerGraphicTargetEntriesRuntime({
+    assemblyDrafts: composerAssemblyDrafts,
+    getAssemblyLetter: getComposerAssemblyLetter,
+    normalizeAssemblyPathPoints: normalizeComposerAssemblyPathPoints,
   });
-  return entries;
 }
 
 function getComposerGraphicDefaultOffset(size = 0.42) {
@@ -1433,127 +1361,53 @@ function getComposerBuiltInPersonalityStates(templateId) {
   return [];
 }
 
-function getComposerOverlayKind(overlay) {
-  const kind = String(overlay?.kind ?? "graphic").trim().toLowerCase();
-  return kind === "image" || kind === "video" || kind === "audio" ? kind : "graphic";
-}
-
-function getComposerMediaDefaultRect(kind = "image") {
-  return kind === "video"
-    ? { x: 0.62, y: 0.14, width: 0.26, height: 0.146 }
-    : { x: 0.6, y: 0.16, width: 0.24, height: 0.24 };
-}
-
 function normalizeComposerMediaRect(rawRect, kind = "image") {
-  const fallback = getComposerMediaDefaultRect(kind);
-  const x = clamp(Number(rawRect?.x ?? fallback.x) || fallback.x, 0, 0.92);
-  const y = clamp(Number(rawRect?.y ?? fallback.y) || fallback.y, 0, 0.92);
-  const width = clamp(Number(rawRect?.width ?? fallback.width) || fallback.width, 0.08, 0.86);
-  const height = clamp(Number(rawRect?.height ?? fallback.height) || fallback.height, 0.08, 0.86);
-  return {
-    x: Number(Math.min(x, 1 - width).toFixed(4)),
-    y: Number(Math.min(y, 1 - height).toFixed(4)),
-    width: Number(width.toFixed(4)),
-    height: Number(height.toFixed(4)),
-  };
+  return normalizeComposerMediaRectRuntime(rawRect, kind, {
+    clampFn: clamp,
+  });
 }
 
 function sanitizeComposerMediaSource(rawSource, kind = "image") {
-  const source = String(rawSource ?? "").trim();
-  if (!source) {
-    return "";
-  }
-  const normalized = source.replace(/\\/g, "/");
-  const extension = normalized.includes(".")
-    ? normalized.slice(normalized.lastIndexOf(".") + 1).toLowerCase()
-    : "";
-  const supported = composerSupportedMediaExtensions[kind] ?? [];
-  return supported.includes(extension) ? normalized : "";
-}
-
-function getComposerMediaOverlayLabel(overlay) {
-  const source = String(overlay?.source ?? "").trim();
-  const label = String(overlay?.label ?? "").trim();
-  const base = label || (source ? source.split("/").pop() ?? "" : "") || (getComposerOverlayKind(overlay) === "video" ? "Video" : "Image");
-  return base.length > 24 ? `${base.slice(0, 24).trimEnd()}...` : base;
-}
-
-function getComposerGraphicOverlayLabel(overlay) {
-  const text = String(overlay?.label ?? overlay?.text ?? "Graphic").trim() || "Graphic";
-  return text.length > 24 ? `${text.slice(0, 24).trimEnd()}...` : text;
+  return sanitizeComposerMediaSourceRuntime(rawSource, kind, {
+    supportedExtensions: composerSupportedMediaExtensions,
+  });
 }
 
 function normalizeComposerGraphicOverlayDraft(overlay = {}, index = 0, duration = 24) {
-  const kind = getComposerOverlayKind(overlay);
-  const fallbackTarget = getComposerGraphicDefaultTarget();
-  const span = clampComposerTimelineSpan(
-    overlay?.start ?? 0,
-    overlay?.end ?? composerTimelineMinDurationSeconds,
-    duration
-  );
-  if (kind === "image" || kind === "video" || kind === "audio") {
-    const source = sanitizeComposerMediaSource(
-      overlay?.source,
-      kind
-    );
-    const fallbackDirectory = composerMediaAssetDirectories[kind] ?? "";
-    const rect = normalizeComposerMediaRect(overlay?.rect, kind);
-    const label = getComposerMediaOverlayLabel({
-      ...overlay,
-      kind,
-      source: source || fallbackDirectory,
-    });
-    return {
-      id: sanitizeComposerEntityId(overlay?.id, `overlay_${index + 1}`),
-      kind,
-      type: `viewport_${kind}`,
-      label,
-      text: "",
-      start: span.start,
-      end: span.end,
-      size: Number((overlay?.size ?? 1).toFixed?.(3) ?? 1),
-      rect,
-      source,
-      fit: "contain",
-      muted: true,
-      offset: [0, 0, 0],
-      target: null,
-      style: typeof overlay?.style === "object" && overlay.style ? { ...overlay.style } : {},
-    };
-  }
-  const size = clamp(Number(overlay?.size ?? overlay?.radius ?? 0.42) || 0.42, 0.18, 2.4);
-  const target = sanitizeComposerGraphicTarget(overlay?.target, fallbackTarget?.assemblyId ?? "");
-  const offsetSource = Array.isArray(overlay?.offset) && overlay.offset.length >= 3
-    ? overlay.offset
-    : getComposerGraphicDefaultOffset(size);
-  const label = String(overlay?.label ?? overlay?.text ?? `Graphic ${index + 1}`).trim() || `Graphic ${index + 1}`;
+  const normalized = normalizeComposerGraphicOverlayDraftRuntime(overlay, index, duration, {
+    clampFn: clamp,
+    clampTimelineSpan: clampComposerTimelineSpan,
+    minDurationSeconds: composerTimelineMinDurationSeconds,
+    getDefaultTarget: () => getComposerGraphicDefaultTarget(),
+    sanitizeTarget: (target, fallbackAssemblyId = "") =>
+      sanitizeComposerGraphicTarget(target, fallbackAssemblyId),
+    mediaAssetDirectories: composerMediaAssetDirectories,
+    supportedMediaExtensions: composerSupportedMediaExtensions,
+  });
   return {
-    id: sanitizeComposerEntityId(overlay?.id, `overlay_${index + 1}`),
-    kind: "graphic",
-    type: "text_sphere_callout",
-    label,
-    text: String(overlay?.text ?? label).trim() || label,
-    start: span.start,
-    end: span.end,
-    size: Number(size.toFixed(3)),
-    offset: [
-      Number((Number(offsetSource[0] ?? 0) || 0).toFixed(3)),
-      Number((Number(offsetSource[1] ?? 0) || 0).toFixed(3)),
-      Number((Number(offsetSource[2] ?? 0) || 0).toFixed(3)),
-    ],
-    target,
-    style: typeof overlay?.style === "object" && overlay.style ? { ...overlay.style } : {},
+    ...normalized,
+    id: sanitizeComposerEntityId(normalized?.id, `overlay_${index + 1}`),
   };
 }
 
 function normalizeComposerGraphicOverlayList(overlays = [], duration = 24) {
-  return (Array.isArray(overlays) ? overlays : []).map((overlay, index) =>
-    normalizeComposerGraphicOverlayDraft(overlay, index, duration)
-  );
+  return normalizeComposerGraphicOverlayListRuntime(overlays, duration, {
+    clampFn: clamp,
+    clampTimelineSpan: clampComposerTimelineSpan,
+    minDurationSeconds: composerTimelineMinDurationSeconds,
+    getDefaultTarget: () => getComposerGraphicDefaultTarget(),
+    sanitizeTarget: (target, fallbackAssemblyId = "") =>
+      sanitizeComposerGraphicTarget(target, fallbackAssemblyId),
+    mediaAssetDirectories: composerMediaAssetDirectories,
+    supportedMediaExtensions: composerSupportedMediaExtensions,
+  }).map((overlay, index) => ({
+    ...overlay,
+    id: sanitizeComposerEntityId(overlay?.id, `overlay_${index + 1}`),
+  }));
 }
 
 function getComposerGraphicOverlayDraftIndexById(overlayId) {
-  return composerGraphicOverlayDrafts.findIndex((overlay) => overlay?.id === overlayId);
+  return getComposerGraphicOverlayDraftIndexByIdRuntime(composerGraphicOverlayDrafts, overlayId);
 }
 
 function getComposerGraphicOverlayDraftById(overlayId) {
@@ -1562,26 +1416,15 @@ function getComposerGraphicOverlayDraftById(overlayId) {
 }
 
 function getNextComposerGraphicOverlayId() {
-  let suffix = 1;
-  let candidate = "overlay_1";
-  const existingIds = new Set((composerGraphicOverlayDrafts || []).map((overlay) => overlay?.id).filter(Boolean));
-  while (existingIds.has(candidate)) {
-    suffix += 1;
-    candidate = `overlay_${suffix}`;
-  }
-  return candidate;
+  return getNextComposerGraphicOverlayIdRuntime(composerGraphicOverlayDrafts);
 }
 
 function getComposerGraphicTimelineOverlays(documentData = composerCurrentDocument) {
-  return (Array.isArray(documentData?.overlays) ? documentData.overlays : []).filter(
-    (overlay) => overlay?.kind === "graphic"
-  );
+  return getComposerGraphicTimelineOverlaysRuntime(documentData);
 }
 
 function getComposerViewportMediaTimelineOverlays(documentData = composerCurrentDocument) {
-  return (Array.isArray(documentData?.overlays) ? documentData.overlays : []).filter(
-    (overlay) => overlay?.kind === "image" || overlay?.kind === "video"
-  );
+  return getComposerViewportMediaTimelineOverlaysRuntime(documentData);
 }
 
 function isComposerTimeWithinSpan(timeSeconds, startSeconds, endSeconds, epsilon = 0.001) {
