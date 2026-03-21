@@ -1113,6 +1113,10 @@ body {
   color: rgba(245, 247, 255, 0.55);
 }
 
+.composer-field-note.is-error {
+  color: rgba(255, 188, 188, 0.94);
+}
+
 .composer-section-title {
   font-size: 11px;
   text-transform: uppercase;

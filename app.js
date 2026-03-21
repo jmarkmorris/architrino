@@ -1338,7 +1338,7 @@ function reportComposerTimelineOverlap(conflict) {
     return;
   }
   setComposerStatus(
-    `Timeline items cannot overlap. ${conflict.label} already uses ${formatComposerTimeLabel(conflict.start)}-${formatComposerTimeLabel(conflict.end)}.`
+    `Timeline items may not overlap. ${conflict.label} already occupies ${formatComposerTimeLabel(conflict.start)}-${formatComposerTimeLabel(conflict.end)}.`
   );
 }
 
@@ -5942,6 +5942,31 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
             : `At ${formatComposerTimeLabel(timeSeconds)}`;
   composerAssemblyMenu.appendChild(subtitle);
 
+  const validationNote = document.createElement("div");
+  validationNote.className = "composer-field-note is-error";
+  validationNote.hidden = true;
+  composerAssemblyMenu.appendChild(validationNote);
+
+  const showTimelineMenuError = (message) => {
+    if (!message) {
+      validationNote.hidden = true;
+      validationNote.textContent = "";
+      return;
+    }
+    validationNote.hidden = false;
+    validationNote.textContent = message;
+    setComposerStatus(message);
+  };
+
+  const showTimelineOverlapError = (conflict) => {
+    if (!conflict) {
+      return;
+    }
+    showTimelineMenuError(
+      `Timeline items may not overlap. ${conflict.label} already occupies ${formatComposerTimeLabel(conflict.start)}-${formatComposerTimeLabel(conflict.end)}.`
+    );
+  };
+
   const timelineMenuWidth = 256;
   const appendGraphicBlock = () => {
     const initialGraphicSpan = clampComposerTimelineSpan(
@@ -5986,7 +6011,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           }
         );
         if (overlap) {
-          reportComposerTimelineOverlap(overlap);
+          showTimelineOverlapError(overlap);
           return;
         }
         const nextOverlay = normalizeComposerGraphicOverlayDraft(
@@ -6121,7 +6146,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
             }
           );
           if (overlap) {
-            reportComposerTimelineOverlap(overlap);
+            showTimelineOverlapError(overlap);
             return;
           }
           const nextOverlay = normalizeComposerGraphicOverlayDraft(
@@ -6225,7 +6250,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           }
         );
         if (overlap) {
-          reportComposerTimelineOverlap(overlap);
+          showTimelineOverlapError(overlap);
           return;
         }
         const nextLine = `${span.start}, ${span.span}`;
@@ -6310,7 +6335,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           }
         );
         if (overlap) {
-          reportComposerTimelineOverlap(overlap);
+          showTimelineOverlapError(overlap);
           return;
         }
         const nextLine = `${span.start}, ${span.end}, ${Number(rate.toFixed(3))}`;
@@ -6405,7 +6430,7 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
           }
         );
         if (overlap) {
-          reportComposerTimelineOverlap(overlap);
+          showTimelineOverlapError(overlap);
           return;
         }
         const nextLine = `${label} @ ${span.start}-${span.end}: ${transferRefs}${
