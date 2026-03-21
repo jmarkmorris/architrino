@@ -5815,6 +5815,57 @@ function getComposerPlaybackRateAtTime(documentData, timeSeconds) {
   return Number(activeWarp?.rate ?? 1) || 1;
 }
 
+function getComposerMotionRateAtTime(documentData, timeSeconds) {
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const activePause = pauses.find((pause) => {
+    const start = Number(pause?.start ?? 0);
+    const duration = Math.max(0, Number(pause?.duration ?? 0) || 0);
+    return timeSeconds >= start && timeSeconds < start + duration;
+  });
+  if (activePause) {
+    return 0;
+  }
+  return getComposerPlaybackRateAtTime(documentData, timeSeconds);
+}
+
+function getComposerIntegratedMotionTime(documentData, timeSeconds) {
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  const targetTime = clamp(Number(timeSeconds) || 0, timeWindow.start, timeWindow.end);
+  if (targetTime <= timeWindow.start) {
+    return 0;
+  }
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const warps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const boundaries = new Set([timeWindow.start, targetTime]);
+  pauses.forEach((pause) => {
+    const start = clamp(Number(pause?.start ?? 0), timeWindow.start, targetTime);
+    const end = clamp(start + Math.max(0, Number(pause?.duration ?? 0) || 0), timeWindow.start, targetTime);
+    boundaries.add(start);
+    boundaries.add(end);
+  });
+  warps.forEach((warp) => {
+    boundaries.add(clamp(Number(warp?.start ?? 0), timeWindow.start, targetTime));
+    boundaries.add(clamp(Number(warp?.end ?? 0), timeWindow.start, targetTime));
+  });
+  const sortedBoundaries = [...boundaries].sort((left, right) => left - right);
+  let total = 0;
+  for (let index = 0; index < sortedBoundaries.length - 1; index += 1) {
+    const start = sortedBoundaries[index];
+    const end = sortedBoundaries[index + 1];
+    if (!(end > start)) {
+      continue;
+    }
+    const sampleTime = start + (end - start) * 0.5;
+    total += (end - start) * getComposerMotionRateAtTime(documentData, sampleTime);
+  }
+  return total;
+}
+
+function getComposerTotalMotionDuration(documentData) {
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  return Math.max(0.0001, getComposerIntegratedMotionTime(documentData, timeWindow.end));
+}
+
 function clearComposerTimelineLayer(layer) {
   if (!layer) {
     return;
@@ -7065,19 +7116,6 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   return parts.join(" | ") || "Steady";
 }
 
-function getComposerPausedMotionTime(documentData, playbackTimeSeconds) {
-  const timeWindow = getComposerSceneTimeWindow(documentData);
-  const playbackTime = clamp(Number(playbackTimeSeconds) || 0, timeWindow.start, timeWindow.end);
-  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
-  const activePause =
-    pauses.find((pause) => {
-      const pauseStart = Number(pause?.start ?? 0);
-      const pauseDuration = Math.max(0, Number(pause?.duration ?? 0) || 0);
-      return playbackTime >= pauseStart && playbackTime < pauseStart + pauseDuration;
-    }) ?? null;
-  return activePause ? clamp(Number(activePause.start ?? playbackTime), timeWindow.start, timeWindow.end) : playbackTime;
-}
-
 function getComposerActiveReaction(documentData, timeSeconds) {
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
   return (
@@ -7477,11 +7515,7 @@ function updateComposerPlaybackState(now) {
   }
 
   const sceneRate = timeWindow.playbackRate;
-  const warpRate = getComposerPlaybackRateAtTime(
-    composerCurrentDocument,
-    composerPlaybackState.playheadSeconds
-  );
-  const step = deltaSeconds * sceneRate * warpRate;
+  const step = deltaSeconds * sceneRate;
   composerPlaybackState.playheadSeconds += step;
   if (composerPlaybackState.playheadSeconds > timeWindow.end) {
     if (timeWindow.loop) {
@@ -7499,17 +7533,16 @@ function updateComposerAnimatedViewport(timeSeconds) {
   if (!composerCurrentDocument) {
     return;
   }
-  const pausedMotionTime = getComposerPausedMotionTime(composerCurrentDocument, timeSeconds);
+  const motionTime = getComposerIntegratedMotionTime(composerCurrentDocument, timeSeconds);
   const paths = Array.isArray(composerCurrentDocument.paths) ? composerCurrentDocument.paths : [];
   const pathById = new Map(paths.map((path) => [path.id, path]));
   const assemblies = Array.isArray(composerCurrentDocument.assemblies)
     ? composerCurrentDocument.assemblies
     : [];
-  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
-  const normalizedSceneT =
-    timeWindow.end > timeWindow.start
-      ? clamp((pausedMotionTime - timeWindow.start) / (timeWindow.end - timeWindow.start), 0, 1)
-      : 0;
+  const totalMotionDuration = getComposerTotalMotionDuration(composerCurrentDocument);
+  const normalizedSceneT = totalMotionDuration > 0
+    ? clamp(motionTime / totalMotionDuration, 0, 1)
+    : 0;
   const assemblyCenters = new Map();
   const assemblyById = new Map(assemblies.map((assembly) => [assembly.id, assembly]));
 
@@ -7649,7 +7682,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
     if (!center || motion?.type !== "orbit.circular") {
       return;
     }
-    const offset = getComposerOrbitOffsetAtTime(motion, mesh.userData.chargeType, pausedMotionTime);
+    const offset = getComposerOrbitOffsetAtTime(motion, mesh.userData.chargeType, motionTime);
     mesh.position.copy(center).add(offset);
   });
 
@@ -7659,7 +7692,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
     const anchorPosition = resolveComposerTransferEndpointPosition(
       { assemblyId, memberId },
       assemblyCenters,
-      pausedMotionTime
+      motionTime
     );
     if (!anchorPosition) {
       sprite.visible = false;
@@ -7672,21 +7705,21 @@ function updateComposerAnimatedViewport(timeSeconds) {
 
   const activeReactionTransferIds = getComposerActiveReactionTransferIds(
     composerCurrentDocument,
-    pausedMotionTime
+    timeSeconds
   );
-  const activeReactionStage = getComposerActiveReactionStage(composerCurrentDocument, pausedMotionTime);
+  const activeReactionStage = getComposerActiveReactionStage(composerCurrentDocument, timeSeconds);
   const hasReactionFocus = activeReactionTransferIds.size > 0;
   composerTransferLines.forEach((line) => {
     const transfer = line.userData.transfer;
     const sourcePoint = resolveComposerTransferEndpointPosition(
       transfer?.source,
       assemblyCenters,
-      pausedMotionTime
+      motionTime
     );
     const targetPoint = resolveComposerTransferEndpointPosition(
       transfer?.target,
       assemblyCenters,
-      pausedMotionTime
+      motionTime
     );
     if (!sourcePoint || !targetPoint) {
       line.visible = false;
@@ -7696,7 +7729,7 @@ function updateComposerAnimatedViewport(timeSeconds) {
     line.geometry.setFromPoints([sourcePoint, targetPoint]);
     line.computeLineDistances();
     const isActiveReactionTransfer = transfer?.id && activeReactionTransferIds.has(transfer.id);
-    const isActiveByTime = transfer?.t == null || Math.abs(pausedMotionTime - Number(transfer.t)) <= 0.6;
+    const isActiveByTime = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
     if (activeReactionStage?.action === "reassemble") {
       line.material.color.set(0x8ef0c2);
     } else if (activeReactionStage?.action === "detach") {
@@ -7746,12 +7779,12 @@ function updateComposerAnimatedViewport(timeSeconds) {
   });
 
   try {
-    updateComposerGraphicOverlayVisuals(pausedMotionTime, composerCurrentDocument, assemblyCenters);
+    updateComposerGraphicOverlayVisuals(timeSeconds, composerCurrentDocument, assemblyCenters);
   } catch (error) {
     console.error("Composer graphic overlay update failed.", error);
   }
-  updateComposerViewportMediaOverlays(pausedMotionTime, composerCurrentDocument);
-  updateComposerDocumentCameraPreview(pausedMotionTime, composerCurrentDocument);
+  updateComposerViewportMediaOverlays(timeSeconds, composerCurrentDocument);
+  updateComposerDocumentCameraPreview(timeSeconds, composerCurrentDocument);
 }
 
 function addComposerOrbitTrace(center, motion, color) {
