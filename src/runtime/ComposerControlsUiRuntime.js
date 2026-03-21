@@ -1,6 +1,7 @@
 export function createComposerControlsUiRuntime(deps) {
   const {
     composerTabs,
+    composerClearButton,
     composerDocsButton,
     composerExitButton,
     composerPreviewButton,
@@ -21,7 +22,6 @@ export function createComposerControlsUiRuntime(deps) {
     composerSceneNameInput,
     composerPathModeSelect,
     composerPathResetButton,
-    composerFrameEditToggle,
     composerFrameResetButton,
     composerFrameScaleInput,
     composerCameraPoiSelect,
@@ -42,8 +42,6 @@ export function createComposerControlsUiRuntime(deps) {
     navUpButton,
     composerPathState,
     composerCameraFlightState,
-    getComposerFrameEditMode,
-    setComposerFrameEditMode,
     updateComposerPathGeometry,
     resetComposerPathPoints,
     setComposerFrameDefaults,
@@ -65,6 +63,7 @@ export function createComposerControlsUiRuntime(deps) {
     jumpComposerMarkerByOffset,
     scrubComposerPlayback,
     renderComposerJsonPreview,
+    clearComposerScene,
     saveComposerSceneToLibrary,
     loadComposerSceneFromLibrary,
     deleteComposerSceneFromLibrary,
@@ -83,6 +82,12 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerDocsButton) {
       composerDocsButton.addEventListener("click", () => {
         composerUiRuntime.openComposerDocs(isTransitionActive());
+      });
+    }
+
+    if (composerClearButton) {
+      composerClearButton.addEventListener("click", () => {
+        clearComposerScene();
       });
     }
 
@@ -251,15 +256,6 @@ export function createComposerControlsUiRuntime(deps) {
       composerPathResetButton.addEventListener("click", () => {
         resetComposerPathPoints();
         renderComposerJsonPreview();
-      });
-    }
-
-    if (composerFrameEditToggle) {
-      composerFrameEditToggle.addEventListener("click", () => {
-        const nextMode = !getComposerFrameEditMode();
-        setComposerFrameEditMode(nextMode);
-        composerFrameEditToggle.classList.toggle("is-active", nextMode);
-        composerFrameEditToggle.textContent = nextMode ? "Editing Frame" : "Edit Frame";
       });
     }
 

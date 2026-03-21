@@ -669,7 +669,7 @@ function createDefaultCameraShots(rawCameraShots, cameraPathId, start, end) {
 function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPathId = null) {
   const source = Array.isArray(rawAssemblies) && rawAssemblies.length
     ? rawAssemblies
-    : [{ id: "assembly_1", name: "Primary Assembly", members: [] }];
+    : [];
 
   return source.map((rawAssembly, index) => {
     const fallbackId = `assembly_${index + 1}`;

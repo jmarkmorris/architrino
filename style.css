@@ -891,6 +891,7 @@ body {
 }
 
 #composer-scene-button,
+#composer-clear-button,
 #composer-save-button,
 #composer-docs-button {
   display: inline-flex;
@@ -913,6 +914,7 @@ body {
 }
 
 #composer-scene-button,
+#composer-clear-button,
 #composer-save-button {
   padding: 0 12px;
 }
@@ -931,6 +933,8 @@ body {
 
 #composer-scene-button:hover,
 #composer-scene-button:focus-visible,
+#composer-clear-button:hover,
+#composer-clear-button:focus-visible,
 #composer-save-button:hover,
 #composer-save-button:focus-visible,
 #composer-docs-button:hover,
