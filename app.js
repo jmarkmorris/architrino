@@ -7442,6 +7442,7 @@ function createComposerViewportMediaOverlayElement(overlay) {
       return;
     }
     wrapper.__composerDragState = null;
+    wrapper.classList.remove("is-active");
     if (wrapper.hasPointerCapture?.(state.pointerId)) {
       wrapper.releasePointerCapture(state.pointerId);
     }
@@ -7459,6 +7460,7 @@ function createComposerViewportMediaOverlayElement(overlay) {
     event.preventDefault();
     event.stopPropagation();
     closeComposerAssemblyMenu();
+    wrapper.classList.add("is-active");
     wrapper.__composerDragState = {
       mode,
       pointerId: event.pointerId,

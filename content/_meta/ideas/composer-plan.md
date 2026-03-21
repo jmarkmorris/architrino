@@ -125,6 +125,11 @@ What remains:
 - track ordering and clip-level editorial control;
 - section-level time-warp authoring that reads as a first-class timeline feature rather than textarea-only configuration;
 - finish stabilizing top-bar playback behavior so play, pause, restart, cue navigation, and scrubbing all behave consistently.
+- tighten the current image/video overlay rectangle so the interaction boundary really hugs the visible item rather than extending wider as a transparent box;
+- improve image/video asset entry so authors can browse or pick from a repo file tree in addition to direct typing or paste;
+- simplify numeric timing entry:
+  - make it easier to replace an entire existing value without awkward manual cursor work,
+  - and present timings at tenths of a second in the UI rather than carrying more precision than authors usually need.
 
 This is what will turn the current preview player into an authored sequence editor.
 

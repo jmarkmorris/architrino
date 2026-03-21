@@ -1631,13 +1631,10 @@ body {
   position: absolute;
   display: none;
   overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid rgba(190, 212, 255, 0.32);
-  background: rgba(10, 12, 24, 0.58);
-  box-shadow:
-    0 0 0 1px rgba(190, 212, 255, 0.08),
-    0 10px 30px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(4px);
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
   pointer-events: auto;
 }
 
@@ -1645,12 +1642,20 @@ body {
   display: block;
 }
 
+.composer-media-overlay:hover,
+.composer-media-overlay.is-active {
+  border-color: rgba(190, 212, 255, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(190, 212, 255, 0.14),
+    0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
 .composer-media-overlay-media {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: contain;
-  background: rgba(6, 8, 16, 0.7);
+  background: transparent;
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
@@ -1662,12 +1667,18 @@ body {
   bottom: 6px;
   width: 14px;
   height: 14px;
+  display: none;
   border-radius: 999px;
   border: 1px solid rgba(212, 237, 255, 0.7);
   background: rgba(130, 196, 255, 0.9);
   box-shadow: 0 0 14px rgba(130, 196, 255, 0.36);
   cursor: nwse-resize;
   pointer-events: auto;
+}
+
+.composer-media-overlay:hover .composer-media-overlay-handle,
+.composer-media-overlay.is-active .composer-media-overlay-handle {
+  display: block;
 }
 
 .composer-canvas-hud {
@@ -1689,9 +1700,8 @@ body {
   top: 10px;
   left: 10px;
   right: 10px;
-  display: grid;
-  gap: 8px;
-  padding: 10px 12px;
+  display: block;
+  padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid rgba(160, 170, 220, 0.18);
   background: rgba(10, 12, 24, 0.72);
@@ -1700,10 +1710,10 @@ body {
 }
 
 .composer-timeline-toolbar {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
   pointer-events: auto;
 }
 
@@ -1717,10 +1727,8 @@ body {
 
 .composer-timeline-summary {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  gap: 0;
   font-size: 11px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -1760,6 +1768,7 @@ body {
 
 .composer-timeline-track {
   position: relative;
+  min-width: 0;
   height: 28px;
   border-radius: 999px;
   overflow: visible;
@@ -2138,16 +2147,12 @@ body {
   }
 
   .composer-timeline-toolbar {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   .composer-timeline-summary {
-    align-items: flex-start;
-  }
-
-  .composer-timeline-active {
-    text-align: left;
+    justify-content: flex-start;
   }
 }
 
