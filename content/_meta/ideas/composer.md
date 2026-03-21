@@ -106,6 +106,21 @@ For the first implementation, image and video should be true viewport overlays:
 
 This keeps the first media pass editorially useful without confusing overlays with world geometry. A later phase can add scene-attached media if there is a strong reason to do so.
 
+### Current explanatory overlay baseline
+
+The composer now has one real explanatory overlay path rather than only abstract overlay intentions.
+
+The current implemented overlay baseline is:
+
+- a text callout overlay with a short label;
+- a straight leader line from the text toward the target;
+- attachment to an assembly or a path point;
+- timeline-span authoring with the shared minimum duration;
+- direct placement by dragging the text in the viewport;
+- and shell-contact behavior for assembly targets so the leader terminates on the visible outer boundary rather than at the assembly center.
+
+This matters because the first overlay path is no longer hypothetical. The composer now has a concrete instructional graphic grammar: concise text, restrained linework, and attachment to visible structure. Future overlay types should extend that language rather than replacing it with unrelated graphic conventions.
+
 ## Observer metaphor and user-facing language
 
 The composer should stop presenting itself as a camera tool. What matters in the authored scene is what the observer sees.
@@ -972,22 +987,24 @@ Observed composer capabilities in the runtime:
 - frame edit and frame reset controls, now largely living in canvas context menus,
 - camera POI selection and camera waypoint add/clear flows,
 - viewport camera speed and radius controls,
-- cue, pause, warp, and transfer text-based authoring,
+- pause, warp, and transfer authoring on the shared timeline/runtime path,
 - timeline reaction authoring from right-click menus,
+- timeline graphic authoring as real text callout overlays attached to assemblies or path points,
+- timeline image and video authoring as fixed viewport overlays with direct drag and resize,
 - transfer authoring from assembly-handle context menus,
 - history traces, envelopes, and derived provenance in the canonical document/runtime path,
 - browser-local save/load library for draft scenes,
 - compact canvas and assembly context menus,
 - docs panel,
 - canonical JSON export,
-- and live viewport playback with top-bar scrub, play, pause, restart, cue jump, and timeline overlays.
+- and live viewport playback with a compact top scrub row, play, pause, restart, and timeline overlays.
 
 The current composer surface already suggests an intended authoring loop:
 
 1. define a scene draft,
 2. add one or more assemblies,
 3. author assembly placement and path behavior directly in the viewport,
-4. define timing, reaction, transfer, and camera behavior from the timeline and context menus,
+4. define timing, reaction, transfer, observer behavior, and overlays from the timeline and context menus,
 5. preview the scene live,
 6. save a browser-local draft or export canonical JSON.
 

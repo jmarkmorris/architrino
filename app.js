@@ -2453,6 +2453,11 @@ function formatComposerTimeLabel(value) {
   return `${normalized.toFixed(1)}s`;
 }
 
+function formatComposerTimeInputValue(value) {
+  const normalized = Number(value);
+  return Number.isFinite(normalized) ? normalized.toFixed(1) : "0.0";
+}
+
 function setComposerFrameDefaults() {
   if (composerFrameScaleInput) composerFrameScaleInput.value = "0";
   composerFrameState.rotation.set(0, 0, 0);
@@ -3153,6 +3158,7 @@ function appendComposerMenuField(parent, options = {}) {
     step = null,
     min = null,
     placeholder = "",
+    selectOnFocus = false,
   } = options;
   const field = document.createElement("label");
   field.className = "composer-field";
@@ -3173,6 +3179,17 @@ function appendComposerMenuField(parent, options = {}) {
     input.checked = !!value;
   } else {
     input.value = String(value ?? "");
+  }
+  if (selectOnFocus) {
+    input.addEventListener("focus", () => {
+      input.select?.();
+    });
+    input.addEventListener("mouseup", (event) => {
+      if (document.activeElement !== input) {
+        return;
+      }
+      event.preventDefault();
+    });
   }
   field.append(labelNode, input);
   parent.appendChild(field);
@@ -5471,7 +5488,7 @@ function openComposerTimelineSummaryMenuAt(clientX, clientY) {
   const commitTimingDraft = () => {
     const duration = Number(durationInput?.value);
     if (!Number.isFinite(duration) || duration <= 0) {
-      durationInput.value = String(currentDuration);
+      durationInput.value = formatComposerTimeInputValue(currentDuration);
       return;
     }
     setComposerSceneDurationValue(duration);
@@ -5484,9 +5501,10 @@ function openComposerTimelineSummaryMenuAt(clientX, clientY) {
   const durationInput = appendComposerMenuField(form, {
     label: "Total Duration (s)",
     type: "number",
-    value: currentDuration,
-    step: 0.5,
+    value: formatComposerTimeInputValue(currentDuration),
+    step: 0.1,
     min: 1,
+    selectOnFocus: true,
   });
   const loopInput = appendComposerMenuField(form, {
     label: "Loop",
@@ -5912,16 +5930,18 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const graphicStartInput = appendComposerMenuField(graphicForm, {
       label: "Start (s)",
       type: "number",
-      value: initialGraphicSpan.start,
+      value: formatComposerTimeInputValue(initialGraphicSpan.start),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const graphicEndInput = appendComposerMenuField(graphicForm, {
       label: "End (s)",
       type: "number",
-      value: initialGraphicSpan.end,
+      value: formatComposerTimeInputValue(initialGraphicSpan.end),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const graphicTargetInput = appendComposerMenuSelectField(graphicForm, {
       label: "Target",
@@ -6029,16 +6049,18 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const mediaStartInput = appendComposerMenuField(mediaForm, {
       label: "Start (s)",
       type: "number",
-      value: initialSpan.start,
+      value: formatComposerTimeInputValue(initialSpan.start),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const mediaEndInput = appendComposerMenuField(mediaForm, {
       label: "End (s)",
       type: "number",
-      value: initialSpan.end,
+      value: formatComposerTimeInputValue(initialSpan.end),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const mediaSourceInput = appendComposerMenuField(mediaForm, {
       label: "Asset Path",
@@ -6100,16 +6122,18 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const pauseStartInput = appendComposerMenuField(pauseForm, {
       label: "Start (s)",
       type: "number",
-      value: initialPauseSpan.start,
+      value: formatComposerTimeInputValue(initialPauseSpan.start),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const pauseDurationInput = appendComposerMenuField(pauseForm, {
       label: "Duration (s)",
       type: "number",
-      value: initialPauseSpan.span,
+      value: formatComposerTimeInputValue(initialPauseSpan.span),
       step: 0.1,
       min: composerTimelineMinDurationSeconds,
+      selectOnFocus: true,
     });
     pauseBlock?.block?.appendChild(pauseForm);
 
@@ -6166,16 +6190,18 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const warpStartInput = appendComposerMenuField(warpForm, {
       label: "Start (s)",
       type: "number",
-      value: initialWarpSpan.start,
+      value: formatComposerTimeInputValue(initialWarpSpan.start),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const warpEndInput = appendComposerMenuField(warpForm, {
       label: "End (s)",
       type: "number",
-      value: initialWarpSpan.end,
+      value: formatComposerTimeInputValue(initialWarpSpan.end),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const warpRateInput = appendComposerMenuField(warpForm, {
       label: "Rate",
@@ -6247,16 +6273,18 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     const reactionStartInput = appendComposerMenuField(reactionForm, {
       label: "Start (s)",
       type: "number",
-      value: initialReactionSpan.start,
+      value: formatComposerTimeInputValue(initialReactionSpan.start),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const reactionEndInput = appendComposerMenuField(reactionForm, {
       label: "End (s)",
       type: "number",
-      value: initialReactionSpan.end,
+      value: formatComposerTimeInputValue(initialReactionSpan.end),
       step: 0.1,
       min: 0,
+      selectOnFocus: true,
     });
     const defaultTransfers = reaction
       ? formatComposerReactionTransferRefs(reaction.transferIds)

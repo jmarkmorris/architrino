@@ -27,9 +27,13 @@ Already implemented:
 - parent reassignment with local-frame rebasing so nesting does not cause immediate jumps;
 - first transfer-map authoring and preview lines;
 - reaction authoring from timeline context menus;
+- first graphic callout overlays with draggable text and shell-contact leader lines;
+- first image and video timeline overlays as fixed viewport rectangles with drag and resize;
 - transfer authoring from assembly-handle context menus;
 - history traces and envelopes represented in the canonical document/runtime;
 - compact canvas context menus and a reduced left panel;
+- observer-first visible language replacing more of the old camera-facing wording;
+- a compact single-row top scrub/transport bar;
 - bridge preview through the current temporary `Scene-Diagram` host.
 
 That baseline is good enough to stop planning Phase A or early Phase B work. The remaining plan starts after that point.
@@ -113,23 +117,23 @@ What remains:
 
 These are theory-critical and should not remain placeholders for too long.
 
-### 6. Camera and editorial depth
+### 6. Observer, overlay, and editorial depth
 
-The timeline exists and transport has been consolidated into the top scrub bar, but the editorial layer is still light.
+The timeline exists and transport has been consolidated into the top scrub bar, but the observer/editorial layer is still light.
 
 What remains:
 
-- real camera shot objects, not only waypoint paths and guide previews;
-- shot transitions and follow/framing behavior in the canonical runtime;
-- overlays and callouts on tracks;
+- real observer interval objects, not only waypoint paths and guide previews;
+- observer transitions and follow/framing behavior in the canonical runtime;
+- deeper overlay and callout editing on tracks;
 - track ordering and clip-level editorial control;
 - section-level time-warp authoring that reads as a first-class timeline feature rather than textarea-only configuration;
-- finish stabilizing top-bar playback behavior so play, pause, restart, cue navigation, and scrubbing all behave consistently.
-- tighten the current image/video overlay rectangle so the interaction boundary really hugs the visible item rather than extending wider as a transparent box;
+- finish stabilizing top-bar playback behavior so play, pause, restart, and scrubbing all behave consistently;
 - improve image/video asset entry so authors can browse or pick from a repo file tree in addition to direct typing or paste;
 - simplify numeric timing entry:
   - make it easier to replace an entire existing value without awkward manual cursor work,
   - and present timings at tenths of a second in the UI rather than carrying more precision than authors usually need.
+- refine image/video overlays so their interaction boundary fully matches the visible media item under all aspect-ratio cases rather than remaining slightly wider in some states.
 
 This is what will turn the current preview player into an authored sequence editor.
 
@@ -167,8 +171,8 @@ Draft persistence is solved. Authoritative content persistence is not.
 ### Next
 
 1. Finish the canvas-first authoring migration.
-2. Member-level placement and subassembly structure.
-3. Reaction objects with staged transfer choreography.
+2. Timing-entry cleanup and media asset browsing for the current overlay menus.
+3. Member-level placement and subassembly structure.
 
 ### After that
 
