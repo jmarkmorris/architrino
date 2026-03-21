@@ -138,7 +138,7 @@ Scoring system:
 
 ### 3. Scene system, composer-II, and next-session composer handoff
 - Value `10`, Cost `3`, ROI `3.33`.
-- The canonical reference lives in [composer.md](composer.md), and the remaining implementation staging lives in [composer-plan.md](composer-plan.md). Treat this item as the next-session prompt for the current composer webapp.
+- The canonical reference lives in [composer.md](composer.md). Treat this item as the self-contained next-session prompt for the current composer webapp.
 - Current composer webapp state, briefly:
   - canonical scene-document generation, canonical JSON export, and the shared runtime path for assemblies, per-assembly paths, history traces, envelopes, transfers, reactions, and provenance are already in place;
   - the composer is now strongly canvas-first:
@@ -161,59 +161,71 @@ Scoring system:
     - [composer.md](composer.md) now frames the UI around an `observer` metaphor rather than a `camera` metaphor,
     - and [viewports.md](viewports.md) now treats the problem as `design view` plus `observer view`.
 - Next-session prompt / active handoff:
-  - make observer-language cleanup the top visible priority:
-    - the design direction is now observer-first in the notes,
-    - so the next pass should remove or rename remaining user-facing `camera` language where practical,
-    - especially in footer hints, menus, timeline item naming, and any viewport-related UI copy,
-    - while allowing internal runtime implementation names to remain transitional where needed;
-  - refine every `Add` item sub-menu:
-    - the new `Add` palette direction is strong,
-    - but every item-specific submenu still needs refinement to become a real authoring tool rather than a provisional card;
-  - make overlay authoring the top functional priority inside the item menus:
-    - figure out how a user pastes an overlay asset into the composer,
-    - places it,
-    - resizes it,
-    - and deletes it,
-    - all within the specific item add/edit menu rather than through an unrelated side flow;
-  - decide the near-term overlay/object model for timeline items:
-    - especially `Graphic`, `Image`, `Video`, `Audio`, and later annotation-like objects such as arrows, bubbles, and text notes attached to scene objects;
-  - decide the first concrete observer-object model:
-    - how an observer interval is authored on the timeline,
-    - how observer paths/guides should appear in the design view,
-    - and how any future observer inset should stay synchronized with the dominant design view;
-  - clean up the internal leftovers from left-panel removal:
-    - keep the left panel gone as a visible surface,
-    - but decide which hidden backing controls should be retired or replaced with direct state wiring,
-    - without reintroducing heavy inspector-style editing;
-  - decide how much brand design language to retain in the app for a consistent look and feel:
-    - the composer UI has become genuinely innovative,
-    - but it now needs a more explicit decision about what visual identity should persist across menus, controls, overlays, and viewport tooling;
-    - schedule a future design review pass rather than letting the visual language drift;
-  - carry the new viewport decisions from [viewports.md](viewports.md) into the next implementation passes:
-    - user-facing composer language should prefer `observer` over `camera`,
-    - the design should be framed as `design view` plus `observer view`, not as a generic camera-preview tool,
-    - visible observer guides should eventually replace hidden camera-style controls,
-    - and any future inset/secondary view should be treated as an observer reading of the same authored scene rather than as a detached film-editor subsystem;
-  - make timeline zoom and local timeline navigation a near-term implementation priority:
-    - long animations will make `2s` spans very small in the full-width timeline,
-    - which means some items may become barely visible or effectively unclickable,
-    - so the composer needs a way to zoom into a portion of the timeline and work locally at a finer scale;
-  - keep the timeline authoring philosophy span-based:
-    - visible authored items should continue to behave as real time intervals rather than near-instant point events,
-    - with enough duration that viewers can actually notice them;
-  - keep path and assembly editing canvas-first:
-    - continue moving any remaining assembly-only actions into the assembly center-handle context menu,
-    - continue moving path-specific actions into path-point or empty-canvas menus,
-    - and preserve large hit targets plus overlap handling for nearby interactive elements.
-- Guardrails for the next pass:
-  - the user wants the composer to stay visual, canvas-first, and light on persistent text authoring;
-  - anything about a given assembly should be managed through that assembly's center control point where practical;
-  - path markers should remain directly draggable;
-  - timeline items should become more authorable, not more abstract;
-  - observer language should replace camera language in the user-facing design wherever possible;
-  - keep the left panel gone as a visible authoring surface;
-  - preserve consistent look and feel as the UI gets richer;
-  - do not make unrelated changes.
+  - implementation audit against the current webapp:
+    - the composer already has substantial canvas-first editing in place:
+      - the left panel is explicitly scene-level and lightweight,
+      - assembly and path actions already route through canvas handles and context menus,
+      - member dots are directly draggable,
+      - subassembly halos are directly draggable,
+      - image and video overlays can already be added, edited, dragged, resized, and removed,
+      - and the timeline already supports authored span bands for `Graphic`, `Pause`, `Warp`, `Reaction`, `Image`, and `Video`;
+    - so the remaining top priorities should focus on the parts that are still shallow, placeholder, or not yet surfaced in the UI;
+  - top priorities, in order:
+    1. deepen reaction and provenance authoring;
+    2. replace the observer/editorial placeholders with a real authored timeline model;
+    3. finish the deeper structural-editing layer beyond the now-working canvas placement baseline;
+  - priority 1: deepen reaction and provenance authoring:
+    - the current reaction editor already parses timeline reactions and stage actions, but it is still largely text-field driven;
+    - make reaction stages visible and editable as explicit timeline structure rather than primarily as transfer references plus action strings;
+    - make reactants, products, and stage boundaries clearer in both the editor and the preview;
+    - expose provenance in the editor and preview so authors can see where each transferred member came from and where it ends up;
+    - distinguish persistent member identity from temporary proxy visuals during disassembly, handoff, regrouping, and reassembly;
+    - keep reaction timing and editing native to the timeline UI, not pushed back into large panel text forms;
+    - the target is a staged authored reaction that reads as a rigorous process rather than as loose transfer lines with labels;
+  - priority 2: replace the observer/editorial placeholders with a real authored timeline model:
+    - the `Add` menu already exposes `Observer`, but that path is still a placeholder rather than a real authoring object;
+    - turn observer intervals into true timeline items with authored spans, framing intent, and synchronized observer-path behavior;
+    - define the first concrete observer-object model:
+      - how an observer interval is authored on the timeline,
+      - how observer paths and guides appear in the design view,
+      - and how any future observer inset stays synchronized with the dominant design view;
+    - add timeline zoom and local navigation so short spans remain visible and editable in long scenes;
+    - improve media-asset entry from typed-path only toward repo browsing or picking inside the item menus;
+    - finish the missing editorial items that are still placeholder or partial, especially `Audio`, observer transitions, and framing behavior;
+    - refine the current item menus so they behave like durable authoring tools rather than provisional cards;
+    - continue observer-language cleanup where visible user-facing `camera` wording still remains, while allowing runtime internals to stay transitional;
+  - priority 3: finish the deeper structural-editing layer beyond the now-working canvas placement baseline:
+    - basic member placement and subassembly placement now exist on canvas, so the remaining structure work is no longer about proving that model out;
+    - add structural edits such as detaching a personality charge into a free architrino and breaking a binary into free architrinos;
+    - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
+    - make parent or child nesting legible as actual local structure rather than grouped ids;
+    - add the next useful layer of subassembly transforms, presets, and instance overrides for richer theory-facing scenes;
+    - keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps;
+  - keep active but below the top three:
+    - history traces and exclusion envelopes:
+      - improve UI authoring for `historyTraces`,
+      - refine rendering and controls for path-history traces with window and fade semantics,
+      - improve UI authoring and editing for `envelopes`,
+      - and connect those displays more explicitly to the delayed/path-history model rather than treating them as generic effects;
+    - workspace and persistence cleanup:
+      - keep the central viewport dominant,
+      - do not reintroduce large persistent assembly-detail panels,
+      - keep turning repeated text-entry flows into structured or direct-manipulation authoring where that improves clarity,
+      - and leave repo-facing persistence, validation, reusable libraries, and lint as later follow-on work unless they become blockers for the above priorities;
+  - Guardrails for the next pass:
+    - the user wants the composer to stay visual, canvas-first, and light on persistent text authoring;
+    - anything about a given assembly should be managed through that assembly's center control point where practical;
+    - path markers should remain directly draggable;
+    - timeline items should become more authorable, not more abstract;
+    - observer language should replace camera language in the user-facing design wherever possible;
+    - keep the left panel gone as a visible authoring surface;
+    - preserve consistent look and feel as the UI gets richer;
+    - avoid reintroducing large persistent inspector-style editing;
+    - do not make unrelated changes.
+- Suggested first implementation slice for the next session:
+  - start with priority 1, not with cosmetic terminology cleanup;
+  - make one concrete pass that upgrades the reaction UI from text-heavy editing toward explicit staged timeline authoring and visible provenance;
+  - if time remains after that pass, begin priority 2 by replacing the observer placeholder with the first true observer interval object.
 - End-of-session checks after code changes:
   - `node --check app.js`
   - `node --check src/runtime/ComposerUiRuntime.js`
