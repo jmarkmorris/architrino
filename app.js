@@ -1850,11 +1850,25 @@ function updateComposerHudViewportToggleState() {
     if (!button) {
       return;
     }
-    const isOn = composerViewportDisplayState[key] !== false;
+    const isOn = isComposerViewportDisplayFlagEnabled(key);
     button.setAttribute("aria-pressed", isOn ? "true" : "false");
     button.classList.toggle("is-active", isOn);
     button.textContent = label;
   });
+}
+
+function isComposerViewportDisplayFlagEnabled(key) {
+  return composerViewportDisplayState[key] !== false;
+}
+
+function setComposerViewportDisplayFlag(key, value) {
+  composerViewportDisplayState[key] = !!value;
+}
+
+function toggleComposerViewportDisplayFlag(key) {
+  const nextValue = !isComposerViewportDisplayFlagEnabled(key);
+  setComposerViewportDisplayFlag(key, nextValue);
+  return nextValue;
 }
 
 function resolveComposerGraphicTargetContactPosition(
@@ -3389,11 +3403,11 @@ function rebuildComposerPathDisplayFromDocument(documentData) {
 }
 
 function applyComposerViewportDisplayState() {
-  const showTransportPath = composerViewportDisplayState.showTransportPath !== false;
-  const showCameraGuides = composerViewportDisplayState.showCameraGuides !== false;
-  const showLabels = composerViewportDisplayState.showLabels !== false;
-  const showHistoryTraces = composerViewportDisplayState.showHistoryTraces !== false;
-  const showEnvelopes = composerViewportDisplayState.showEnvelopes !== false;
+  const showTransportPath = isComposerViewportDisplayFlagEnabled("showTransportPath");
+  const showCameraGuides = isComposerViewportDisplayFlagEnabled("showCameraGuides");
+  const showLabels = isComposerViewportDisplayFlagEnabled("showLabels");
+  const showHistoryTraces = isComposerViewportDisplayFlagEnabled("showHistoryTraces");
+  const showEnvelopes = isComposerViewportDisplayFlagEnabled("showEnvelopes");
   if (composerPathLine) {
     composerPathLine.visible = showTransportPath;
   }
@@ -5519,7 +5533,7 @@ function initComposerCanvas() {
       if (button.disabled) {
         return;
       }
-      composerViewportDisplayState[key] = !(composerViewportDisplayState[key] !== false);
+      toggleComposerViewportDisplayFlag(key);
       applyComposerViewportDisplayState();
       renderComposerJsonPreview();
     });
