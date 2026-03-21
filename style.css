@@ -1326,6 +1326,14 @@ body {
   gap: 6px;
 }
 
+.composer-assembly-menu.is-timeline-menu {
+  padding: 6px;
+}
+
+.composer-assembly-menu.is-timeline-menu.is-open {
+  gap: 4px;
+}
+
 .composer-assembly-menu-title {
   margin: 0 0 2px;
   font-size: 11px;
@@ -1433,12 +1441,127 @@ body {
 
 .composer-assembly-menu-inline-action {
   width: auto !important;
-  min-width: 76px;
+  min-width: 58px;
   justify-content: center !important;
-  padding: 6px 12px !important;
-  font-size: 11px !important;
-  letter-spacing: 0.04em;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.composer-assembly-menu-orb-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 2px 0 4px;
+}
+
+.composer-assembly-menu-orb {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center !important;
+  min-height: 58px;
+  aspect-ratio: 1 / 1;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  text-align: center !important;
+  font-size: 9px !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: rgba(248, 250, 255, 0.96) !important;
+  border: 1px solid rgba(163, 181, 255, 0.32) !important;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 32%),
+    radial-gradient(circle at 50% 50%, var(--composer-orb-core, rgba(107, 132, 242, 0.62)), rgba(10, 14, 28, 0.96) 72%) !important;
+  box-shadow:
+    0 0 0 1px rgba(175, 190, 255, 0.1),
+    0 0 18px var(--composer-orb-glow, rgba(107, 132, 242, 0.24));
+}
+
+.composer-assembly-menu-orb.is-active {
+  transform: scale(1.03);
+  border-color: rgba(194, 226, 255, 0.72) !important;
+  box-shadow:
+    0 0 0 1px rgba(194, 226, 255, 0.26),
+    0 0 22px var(--composer-orb-glow, rgba(107, 132, 242, 0.34));
+}
+
+.composer-assembly-menu-orb[data-timeline-type="pause"] {
+  --composer-orb-core: rgba(103, 217, 181, 0.66);
+  --composer-orb-glow: rgba(103, 217, 181, 0.24);
+}
+
+.composer-assembly-menu-orb[data-timeline-type="warp"] {
+  --composer-orb-core: rgba(255, 183, 92, 0.72);
+  --composer-orb-glow: rgba(255, 183, 92, 0.26);
+}
+
+.composer-assembly-menu-orb[data-timeline-type="image"] {
+  --composer-orb-core: rgba(255, 131, 176, 0.68);
+  --composer-orb-glow: rgba(255, 131, 176, 0.24);
+}
+
+.composer-assembly-menu-orb[data-timeline-type="video"] {
+  --composer-orb-core: rgba(255, 112, 112, 0.68);
+  --composer-orb-glow: rgba(255, 112, 112, 0.24);
+}
+
+.composer-assembly-menu-orb[data-timeline-type="audio"] {
+  --composer-orb-core: rgba(184, 129, 255, 0.7);
+  --composer-orb-glow: rgba(184, 129, 255, 0.24);
+}
+
+.composer-assembly-menu-orb[data-timeline-type="graphic"] {
+  --composer-orb-core: rgba(118, 183, 255, 0.7);
+  --composer-orb-glow: rgba(118, 183, 255, 0.24);
+}
+
+.composer-assembly-menu-orb[data-timeline-type="camera"] {
+  --composer-orb-core: rgba(152, 214, 255, 0.72);
+  --composer-orb-glow: rgba(152, 214, 255, 0.24);
+}
+
+.composer-assembly-menu-orb[data-timeline-type="reaction"] {
+  --composer-orb-core: rgba(255, 149, 90, 0.72);
+  --composer-orb-glow: rgba(255, 149, 90, 0.24);
+}
+
+.composer-assembly-menu.is-timeline-menu .composer-assembly-menu-title {
+  margin-bottom: 0;
+}
+
+.composer-assembly-menu.is-timeline-menu .composer-assembly-menu-subtitle {
+  margin: -1px 0 2px;
+  font-size: 11px;
+}
+
+.composer-assembly-menu.is-timeline-menu .composer-assembly-menu-block {
+  gap: 8px;
+  padding: 8px;
+  border-radius: 9px;
+}
+
+.composer-assembly-menu.is-timeline-menu .composer-assembly-menu-block-header {
+  gap: 8px;
+}
+
+.composer-assembly-menu.is-timeline-menu .composer-form,
+.composer-assembly-menu.is-timeline-menu .composer-assembly-menu-grid-2 {
+  gap: 6px;
+}
+
+.composer-assembly-menu.is-timeline-menu .composer-field span {
+  font-size: 9px;
+}
+
+.composer-assembly-menu.is-timeline-menu .composer-field input,
+.composer-assembly-menu.is-timeline-menu .composer-field select {
+  min-height: 30px;
 }
 
 .composer-assembly-menu-danger {
@@ -1573,6 +1696,12 @@ body {
 .composer-timeline-band.is-pause {
   background: rgba(255, 180, 84, 0.28);
   border: 1px solid rgba(255, 205, 120, 0.65);
+}
+
+.composer-timeline-band.is-graphic {
+  background: rgba(118, 183, 255, 0.22);
+  border: 1px solid rgba(168, 214, 255, 0.62);
+  box-shadow: inset 0 0 0 1px rgba(214, 237, 255, 0.06);
 }
 
 .composer-timeline-band.is-reaction {
