@@ -172,6 +172,11 @@ Scoring system:
     - the composer UI has become genuinely innovative,
     - but it now needs a more explicit decision about what visual identity should persist across menus, controls, overlays, and viewport tooling;
     - schedule a future design review pass rather than letting the visual language drift;
+  - carry the new viewport decisions from [viewports.md](viewports.md) into the next implementation passes:
+    - user-facing composer language should prefer `observer` over `camera`,
+    - the design should be framed as `design view` plus `observer view`, not as a generic camera-preview tool,
+    - visible observer guides should eventually replace hidden camera-style controls,
+    - and any future inset/secondary view should be treated as an observer reading of the same authored scene rather than as a detached film-editor subsystem;
   - decide how timeline zoom should work:
     - long animations will make `2s` spans very small in the full-width timeline,
     - which means some items may become barely visible or effectively unclickable,
