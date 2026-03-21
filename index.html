@@ -190,10 +190,17 @@
       </div>
       <div id="composer-overlay" aria-hidden="true">
         <div class="composer-header">
-          <div>
-            <div class="composer-title">Composer v18</div>
+          <div class="composer-header-main">
+            <div class="composer-title">Composer v19 • Pre-Alpha</div>
+            <div id="composer-status" class="composer-header-status" aria-live="polite"></div>
           </div>
           <div class="composer-actions">
+            <button id="composer-scene-button" type="button" aria-label="Open scene controls">
+              Scene
+            </button>
+            <button id="composer-save-button" type="button" aria-label="Open save and library controls">
+              Save
+            </button>
             <button
               id="composer-docs-button"
               type="button"
@@ -208,136 +215,6 @@
           </div>
         </div>
         <div class="composer-workspace">
-          <aside class="composer-sidebar">
-            <section class="composer-card">
-              <div class="composer-card-header">
-                <h3>Scene Tree</h3>
-                <div class="composer-help">
-                  <button
-                    type="button"
-                    class="composer-help-trigger"
-                    aria-label="Show quick start guidance"
-                  >
-                    i
-                  </button>
-                  <div class="composer-help-popover" role="tooltip">
-                    <div class="composer-section-title">Quick Start</div>
-                    <ol class="composer-steps">
-                      <li>Set a scene id + name.</li>
-                      <li>Place and shape the path.</li>
-                      <li>Shape the path, shells, and timing.</li>
-                      <li>Save to Library or Export JSON.</li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
-              <div class="composer-form">
-                <label class="composer-field">
-                  <span>Scene ID</span>
-                  <input id="composer-scene-id" type="text" value="composer_scene" />
-                </label>
-                <label class="composer-field">
-                  <span>Scene Name</span>
-                  <input id="composer-scene-name" type="text" value="Composer Scene" />
-                </label>
-              </div>
-              <div class="composer-card-meta">
-                <span>Assembly Editing</span>
-                <div class="composer-help">
-                  <button
-                    type="button"
-                    class="composer-help-trigger"
-                    aria-label="Show assembly guidance"
-                  >
-                    i
-                  </button>
-                  <div class="composer-help-popover" role="tooltip">
-                    <div class="composer-section-title">Assembly Editing</div>
-                    <ul class="composer-help-list">
-                      <li>Click or drag the assembly center handle labeled A, B, C, and so on.</li>
-                      <li>Right-click an assembly center handle to edit that assembly.</li>
-                      <li>Right-click empty canvas space to add built-in assemblies or path points.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section class="composer-card" hidden>
-              <div class="composer-section-title">Timing</div>
-              <div class="composer-form composer-form-grid">
-                <label class="composer-field">
-                  <span>Duration (s)</span>
-                  <input id="composer-scene-duration" type="number" min="1" step="0.5" value="12" />
-                </label>
-                <label class="composer-field">
-                  <span>Loop</span>
-                  <input id="composer-scene-loop" type="checkbox" />
-                </label>
-              </div>
-              <div class="composer-form" hidden>
-                <label class="composer-field">
-                  <span>Timeline Notes</span>
-                  <textarea
-                    id="composer-marker-list"
-                    rows="3"
-                    placeholder="0: Start&#10;3.5: Shell Lock&#10;7.0: Slow Branch"
-                  ></textarea>
-                </label>
-                <div id="composer-marker-status" class="composer-inline-status">No timeline notes authored.</div>
-              </div>
-              <div class="composer-form">
-                <label class="composer-field">
-                  <span>Pause List</span>
-                  <textarea
-                    id="composer-pause-list"
-                    rows="2"
-                    placeholder="3.0, 1.0&#10;8.5, 0.6"
-                  ></textarea>
-                </label>
-                <div id="composer-pause-status" class="composer-inline-status">No pauses authored.</div>
-              </div>
-              <div class="composer-form">
-                <label class="composer-field">
-                  <span>Warp List</span>
-                  <textarea
-                    id="composer-warp-list"
-                    rows="2"
-                    placeholder="7.0, 10.0, 0.5&#10;11.0, 12.0, 1.8"
-                  ></textarea>
-                </label>
-                <div id="composer-warp-status" class="composer-inline-status">No warps authored.</div>
-              </div>
-              <p class="composer-hint">Pause list: `start, duration`. Warp list: `start, end, rate`.</p>
-            </section>
-            <section class="composer-card">
-              <h3>Save / Library</h3>
-              <div class="composer-button-row">
-                <button id="composer-repo-save-button" type="button">Save Repo</button>
-                <button id="composer-library-save" type="button">Save Library</button>
-                <button id="composer-export-button" type="button">Export JSON</button>
-              </div>
-              <details class="composer-json-details">
-                <summary>Library</summary>
-                <label class="composer-field">
-                  <span>Saved Scenes</span>
-                  <select id="composer-library-select">
-                    <option value="">No saved scenes</option>
-                  </select>
-                </label>
-                <div class="composer-button-row">
-                  <button id="composer-library-load" type="button">Load Selected</button>
-                  <button id="composer-library-delete" type="button">Delete</button>
-                </div>
-                <div id="composer-library-status" class="composer-inline-status">
-                  Library storage is browser-local for now.
-                </div>
-              </details>
-              <details class="composer-json-details">
-                <summary>JSON Preview</summary>
-                <pre id="composer-json-preview" class="composer-json-preview"></pre>
-              </details>
-            </section>
-          </aside>
           <main class="composer-main">
             <div class="composer-canvas-wrap">
               <canvas id="composer-canvas"></canvas>
@@ -379,6 +256,40 @@
               </div>
             </div>
           </main>
+          <div class="composer-store" hidden aria-hidden="true">
+            <input id="composer-scene-id" type="text" value="composer_scene" />
+            <input id="composer-scene-name" type="text" value="Composer Scene" />
+            <input id="composer-scene-duration" type="number" min="1" step="0.5" value="12" />
+            <input id="composer-scene-loop" type="checkbox" />
+            <textarea
+              id="composer-marker-list"
+              rows="3"
+              placeholder="0: Start&#10;3.5: Shell Lock&#10;7.0: Slow Branch"
+            ></textarea>
+            <div id="composer-marker-status">No timeline notes authored.</div>
+            <textarea
+              id="composer-pause-list"
+              rows="2"
+              placeholder="3.0, 1.0&#10;8.5, 0.6"
+            ></textarea>
+            <div id="composer-pause-status">No pauses authored.</div>
+            <textarea
+              id="composer-warp-list"
+              rows="2"
+              placeholder="7.0, 10.0, 0.5&#10;11.0, 12.0, 1.8"
+            ></textarea>
+            <div id="composer-warp-status">No warps authored.</div>
+            <button id="composer-repo-save-button" type="button">Save Repo</button>
+            <button id="composer-library-save" type="button">Save Library</button>
+            <button id="composer-export-button" type="button">Export JSON</button>
+            <select id="composer-library-select">
+              <option value="">No saved scenes</option>
+            </select>
+            <button id="composer-library-load" type="button">Load Selected</button>
+            <button id="composer-library-delete" type="button">Delete</button>
+            <div id="composer-library-status">Library storage is browser-local for now.</div>
+            <pre id="composer-json-preview" class="composer-json-preview"></pre>
+          </div>
         </div>
       </div>
       <div id="element-legend" aria-hidden="true">

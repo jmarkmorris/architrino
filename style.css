@@ -860,6 +860,12 @@ body {
   background: rgba(8, 10, 18, 0.98);
 }
 
+.composer-header-main {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
 .composer-title {
   font-size: 13px;
   font-weight: 700;
@@ -867,12 +873,25 @@ body {
   text-transform: uppercase;
 }
 
+.composer-header-status {
+  min-height: 16px;
+  font-size: 11px;
+  letter-spacing: 0.01em;
+  color: rgba(245, 247, 255, 0.64);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .composer-actions {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
+#composer-scene-button,
+#composer-save-button,
 #composer-docs-button {
   display: inline-flex;
   align-items: center;
@@ -893,6 +912,11 @@ body {
   line-height: 1;
 }
 
+#composer-scene-button,
+#composer-save-button {
+  padding: 0 12px;
+}
+
 #composer-exit-button {
   height: 28px;
   padding: 0 12px;
@@ -905,6 +929,10 @@ body {
   cursor: pointer;
 }
 
+#composer-scene-button:hover,
+#composer-scene-button:focus-visible,
+#composer-save-button:hover,
+#composer-save-button:focus-visible,
 #composer-docs-button:hover,
 #composer-docs-button:focus-visible {
   border-color: rgba(160, 170, 220, 0.55);
@@ -923,18 +951,6 @@ body {
   min-height: 0;
 }
 
-.composer-sidebar {
-  width: 272px;
-  max-width: 25vw;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow: auto;
-  border-right: 1px solid rgba(160, 170, 220, 0.12);
-  background: rgba(8, 10, 18, 0.88);
-}
-
 .composer-main {
   flex: 1;
   min-width: 0;
@@ -944,6 +960,10 @@ body {
   flex-direction: column;
   gap: 0;
   overflow-y: auto;
+}
+
+.composer-store {
+  display: none !important;
 }
 
 .composer-card {
@@ -2006,23 +2026,13 @@ body {
   background: rgba(25, 30, 48, 0.9);
 }
 
-@media (max-width: 1500px) {
-  .composer-sidebar {
-    width: 248px;
-    max-width: 23vw;
-  }
-}
-
 @media (max-width: 960px) {
-  .composer-workspace {
-    flex-direction: column;
+  .composer-header {
+    align-items: flex-start;
   }
 
-  .composer-sidebar {
-    width: auto;
-    max-width: none;
-    border-right: 0;
-    border-bottom: 1px solid rgba(160, 170, 220, 0.12);
+  .composer-header-status {
+    white-space: normal;
   }
 
   .composer-timeline-toolbar {
