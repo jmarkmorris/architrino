@@ -407,11 +407,11 @@ So the reduced three-state set becomes:
 
 This should be a deliberate rule rather than an incidental renderer choice, so the same neutral representative appears consistently across menus, docs, and solver views.
 
-### Whole-quark color at the quark level
+### Whole-quark color from the three binaries
 
-Quark color should be specified at the whole-quark level rather than by changing the internal red/blue personality dots.
+Quark color should not be treated as a merely decorative frame wrapped around one binary glyph. It should be read from the three-binary quark itself: **inner**, **middle**, and **outer**.
 
-The first picker set should therefore be:
+The first picker set should still be:
 
 - `Up Red`
 - `Up Purple`
@@ -422,29 +422,35 @@ The first picker set should therefore be:
 
 For this vocabulary, **purple** should replace **green** as the neutral middle case.
 
-The internal glyph still uses:
+The structural idea is:
+
+- an **up-type quark** is shown by three binaries containing **two positive binaries** and **one neutral binary**;
+- a **down-type quark** is shown by three binaries containing **two neutral binaries** and **one negative binary**;
+- and `Red`, `Purple`, `Blue` indicate whether that flavor-defining binary sits at the **inner**, **middle**, or **outer** slot.
+
+So the color label is derived from the tri-binary arrangement rather than painted on afterward.
+
+The internal glyphs still use:
 
 - red for positrino;
 - blue for electrino;
 - and purple for orbit and axis structure.
 
-The quark color should then be applied through a **separate outer treatment**, such as:
-
-- an accent frame;
-- a border halo;
-- or a compact color badge integrated into the chip.
-
-That keeps the internal architrino symbolism stable while still making the quark color immediately visible.
+The quark-color gallery should therefore show three binary glyphs inside each quark tile, labeled `Inner`, `Middle`, and `Outer`, so the reader can see why a given arrangement is called `Red`, `Purple`, or `Blue`.
 
 ### Compact chip behavior
 
 In the reaction solver menu, these should appear as compact clickable chips.
 
-The chip should show:
+The binary-personality chips should show:
 
 - the binary glyph at center;
+- and the binary state label.
+
+The quark-color chips should show:
+
 - the quark label such as `Up` or `Down`;
-- and the quark color through the chip frame or accent.
+- and the three binary slots `Inner`, `Middle`, `Outer` with their respective binary glyphs.
 
 Selection should be made obvious by changing the chip background and emphasis state.
 
@@ -453,7 +459,7 @@ Important rule:
 - the **background fill** means **UI selection**;
 - it should **not** carry the quark's semantic color meaning.
 
-Semantic color should remain in the glyph accent system, not in the selected-state background.
+Semantic color should be read first from the tri-binary arrangement itself, not from the selected-state background.
 
 ### First-pass semantic fields
 
