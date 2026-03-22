@@ -85,6 +85,7 @@ import { createScenePanelUiRuntime } from "./src/runtime/ScenePanelUiRuntime.js"
 import { createAppShellUiRuntime } from "./src/runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "./src/runtime/AppSceneChromeRuntime.js";
 import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRuntime.js";
+import { createComposerReactionSolverUiRuntime } from "./src/runtime/ComposerReactionSolverUiRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
 import { SceneRepository } from "./src/services/SceneRepository.js";
@@ -160,6 +161,7 @@ const composerOverlay = document.getElementById("composer-overlay");
 const composerSceneButton = document.getElementById("composer-scene-button");
 const composerClearButton = document.getElementById("composer-clear-button");
 const composerSaveButton = document.getElementById("composer-save-button");
+const composerReactionButton = document.getElementById("composer-reaction-button");
 const composerDocsButton = document.getElementById("composer-docs-button");
 const composerExitButton = document.getElementById("composer-exit-button");
 const composerTabs = composerOverlay
@@ -193,6 +195,14 @@ const composerCanvas = document.getElementById("composer-canvas");
 const composerCanvasWrap = composerCanvas?.parentElement ?? null;
 const composerViewportOverlays = document.getElementById("composer-viewport-overlays");
 const composerAssemblyMenu = document.getElementById("composer-assembly-menu");
+const composerReactionSolver = document.getElementById("composer-reaction-solver");
+const composerReactionSolverSurface = document.getElementById("composer-reaction-solver-surface");
+const composerReactionSolverReactants = document.getElementById("composer-reaction-solver-reactants");
+const composerReactionSolverProducts = document.getElementById("composer-reaction-solver-products");
+const composerReactionSolverHint = document.getElementById("composer-reaction-solver-hint");
+const composerReactionSolverEmpty = document.getElementById("composer-reaction-solver-empty");
+const composerReactionSolverSvg = document.getElementById("composer-reaction-solver-svg");
+const composerReactionSolverMenu = document.getElementById("composer-reaction-solver-menu");
 const composerHudLabelsToggle = document.getElementById("composer-hud-labels-toggle");
 const composerHudPathsToggle = document.getElementById("composer-hud-paths-toggle");
 const composerHudHistoryToggle = document.getElementById("composer-hud-history-toggle");
@@ -262,6 +272,7 @@ const composerTimelineReactions = document.getElementById("composer-timeline-rea
 const composerTimelineMarkers = document.getElementById("composer-timeline-markers");
 const composerTimelinePlayhead = document.getElementById("composer-timeline-playhead");
 const composerLibraryStorageKey = "architrino.composer.library.v1";
+const composerReactionSolverStorageKey = "architrino.composer.reactionSolver.active";
 const composerMediaAssetDirectories = {
   image: "content/assets/composer/images/",
   video: "content/assets/composer/video/",
@@ -10636,6 +10647,28 @@ const composerUiRuntime = createComposerUiRuntime({
   setComposerStatus,
   setComposerNeedsResize: (value) => {
     composerNeedsResize = value;
+  },
+});
+
+const composerReactionSolverUiRuntime = createComposerReactionSolverUiRuntime({
+  toggleButton: composerReactionButton,
+  root: composerReactionSolver,
+  surface: composerReactionSolverSurface,
+  reactantsColumn: composerReactionSolverReactants,
+  productsColumn: composerReactionSolverProducts,
+  mapHint: composerReactionSolverHint,
+  emptyState: composerReactionSolverEmpty,
+  mapSvg: composerReactionSolverSvg,
+  menu: composerReactionSolverMenu,
+  templateMenuRows: composerAssemblyTemplateMenuRows,
+  setStatus: setComposerStatus,
+  closeExternalMenus: () => {
+    closeComposerAssemblyMenu();
+  },
+  storage: globalThis.window?.sessionStorage ?? null,
+  storageKey: composerReactionSolverStorageKey,
+  onActiveChange: (active) => {
+    composerCanvasWrap?.classList.toggle("is-reaction-solver-mode", !!active);
   },
 });
 

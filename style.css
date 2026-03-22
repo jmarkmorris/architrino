@@ -908,6 +908,23 @@ body {
   cursor: pointer;
 }
 
+#composer-reaction-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(122, 189, 255, 0.34);
+  background: linear-gradient(135deg, rgba(16, 24, 44, 0.96), rgba(30, 50, 86, 0.84));
+  color: #f5f7ff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
 .composer-docs-icon {
   font-size: 0.95em;
   line-height: 1;
@@ -937,10 +954,25 @@ body {
 #composer-clear-button:focus-visible,
 #composer-save-button:hover,
 #composer-save-button:focus-visible,
+#composer-reaction-button:hover,
+#composer-reaction-button:focus-visible,
 #composer-docs-button:hover,
 #composer-docs-button:focus-visible {
   border-color: rgba(160, 170, 220, 0.55);
   background: rgba(25, 30, 48, 0.9);
+}
+
+#composer-reaction-button:hover,
+#composer-reaction-button:focus-visible {
+  border-color: rgba(124, 194, 255, 0.6);
+  background: linear-gradient(135deg, rgba(24, 36, 64, 0.98), rgba(44, 72, 122, 0.92));
+}
+
+#composer-reaction-button.is-active {
+  border-color: rgba(143, 217, 255, 0.72);
+  background: linear-gradient(135deg, rgba(45, 84, 136, 0.98), rgba(78, 137, 188, 0.92));
+  color: #fffdf6;
+  box-shadow: 0 0 0 1px rgba(152, 220, 255, 0.16), 0 10px 24px rgba(22, 70, 128, 0.26);
 }
 
 #composer-exit-button:hover,
@@ -1399,6 +1431,353 @@ body {
   border: 1px solid rgba(160, 170, 220, 0.25);
   background: radial-gradient(circle at 20% 20%, rgba(40, 60, 110, 0.25), rgba(8, 10, 18, 0.95));
   overflow: hidden;
+}
+
+.composer-reaction-solver {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background:
+    radial-gradient(circle at 20% 16%, rgba(96, 132, 208, 0.18), transparent 34%),
+    radial-gradient(circle at 80% 18%, rgba(243, 198, 108, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(7, 11, 22, 0.96), rgba(10, 14, 28, 0.985));
+}
+
+.composer-reaction-solver.is-open {
+  display: flex;
+}
+
+.composer-reaction-solver[hidden],
+.composer-reaction-solver-center[hidden],
+.composer-reaction-solver-empty[hidden],
+.composer-reaction-solver-menu[hidden] {
+  display: none !important;
+}
+
+.composer-reaction-solver-menu:empty {
+  display: none !important;
+}
+
+.composer-canvas-wrap.is-reaction-solver-mode #composer-canvas,
+.composer-canvas-wrap.is-reaction-solver-mode .composer-viewport-overlays,
+.composer-canvas-wrap.is-reaction-solver-mode .composer-timeline-overlay,
+.composer-canvas-wrap.is-reaction-solver-mode .composer-canvas-hud {
+  display: none;
+}
+
+.composer-reaction-solver.is-open ~ .composer-timeline-overlay,
+.composer-reaction-solver.is-open ~ .composer-canvas-hud {
+  display: none !important;
+}
+
+.composer-reaction-solver-topbar {
+  display: grid;
+  gap: 4px;
+}
+
+.composer-reaction-solver-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(244, 247, 255, 0.72);
+}
+
+.composer-reaction-solver-subtitle {
+  font-size: 13px;
+  color: rgba(244, 247, 255, 0.9);
+}
+
+.composer-reaction-solver-surface {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(200px, 0.72fr) minmax(280px, 1fr);
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(160, 170, 220, 0.16);
+  background:
+    linear-gradient(180deg, rgba(12, 18, 34, 0.92), rgba(9, 13, 24, 0.96)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.015) 0,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 72px
+    );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.composer-reaction-solver-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.composer-reaction-solver-path {
+  fill: none;
+  stroke: rgba(153, 211, 255, 0.86);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 10px rgba(82, 152, 255, 0.2));
+}
+
+.composer-reaction-solver-empty {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(160, 170, 220, 0.16);
+  background: rgba(10, 14, 24, 0.72);
+  color: rgba(244, 247, 255, 0.64);
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  pointer-events: none;
+}
+
+.composer-reaction-solver-column,
+.composer-reaction-solver-center {
+  position: relative;
+  z-index: 2;
+  min-height: 0;
+}
+
+.composer-reaction-solver-column {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.composer-reaction-solver-center {
+  display: grid;
+  place-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.composer-reaction-solver-center-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(244, 247, 255, 0.58);
+}
+
+.composer-reaction-solver-hint {
+  max-width: 240px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(160, 170, 220, 0.14);
+  background: rgba(12, 17, 31, 0.72);
+  color: rgba(244, 247, 255, 0.84);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.composer-reaction-solver-participant {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.composer-reaction-solver-participant.is-product {
+  justify-content: flex-end;
+}
+
+.composer-reaction-solver-particle {
+  width: 112px;
+  min-width: 112px;
+  padding: 12px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background:
+    radial-gradient(circle at 30% 22%, color-mix(in srgb, var(--solver-accent) 32%, transparent), transparent 38%),
+    linear-gradient(180deg, rgba(18, 26, 48, 0.94), rgba(13, 18, 32, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  text-align: center;
+}
+
+.composer-reaction-solver-particle-badge {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--solver-accent) 55%, rgba(255, 255, 255, 0.12));
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.14), transparent 46%),
+    color-mix(in srgb, var(--solver-accent) 20%, rgba(22, 26, 42, 0.94));
+  color: #f8fbff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.composer-reaction-solver-particle-label {
+  font-size: 11px;
+  line-height: 1.35;
+  color: rgba(244, 247, 255, 0.88);
+}
+
+.composer-reaction-solver-tree {
+  display: grid;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+  padding: 8px 0;
+}
+
+.composer-reaction-solver-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 24px;
+  padding-inline-start: calc(var(--solver-depth, 0) * 14px);
+}
+
+.composer-reaction-solver-tree-row.is-product {
+  justify-content: flex-end;
+}
+
+.composer-reaction-solver-tree-row.is-disabled {
+  opacity: 0.42;
+}
+
+.composer-reaction-solver-tree-label {
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(244, 247, 255, 0.9);
+  min-width: 0;
+}
+
+.composer-reaction-solver-anchor {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 18px;
+  width: 18px;
+  max-width: 18px;
+  height: 18px;
+  min-height: 18px;
+  min-width: 18px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid rgba(162, 214, 255, 0.62);
+  background: rgba(18, 26, 44, 0.92);
+  box-shadow: inset 0 0 0 2px rgba(93, 140, 214, 0.12);
+  cursor: pointer;
+  font-size: 0;
+  line-height: 0;
+}
+
+.composer-reaction-solver-anchor:hover,
+.composer-reaction-solver-anchor:focus-visible {
+  border-color: rgba(197, 235, 255, 0.96);
+  background: rgba(36, 58, 92, 0.96);
+}
+
+.composer-reaction-solver-anchor.is-pending {
+  border-color: rgba(255, 216, 126, 0.94);
+  background: rgba(116, 82, 24, 0.92);
+}
+
+.composer-reaction-solver-anchor.is-mapped {
+  border-color: rgba(149, 255, 205, 0.96);
+  background: rgba(24, 92, 64, 0.92);
+}
+
+.composer-reaction-solver-anchor:disabled {
+  cursor: default;
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(28, 34, 48, 0.8);
+}
+
+.composer-reaction-solver-menu {
+  position: fixed;
+  z-index: 7;
+  min-width: 220px;
+  max-width: min(280px, calc(100vw - 32px));
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(160, 170, 220, 0.3);
+  background: rgba(10, 14, 26, 0.96);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(12px);
+}
+
+.composer-reaction-solver-menu-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(244, 247, 255, 0.72);
+}
+
+.composer-reaction-solver-menu-button {
+  position: relative;
+  width: 100%;
+  min-height: 36px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 170, 220, 0.18);
+  background: rgba(18, 24, 42, 0.94);
+  color: #f5f7ff;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.composer-reaction-solver-menu-button[data-short-label] {
+  padding-left: 44px;
+}
+
+.composer-reaction-solver-menu-button[data-short-label]::before {
+  content: attr(data-short-label);
+  position: absolute;
+  inset: 50% auto auto 10px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--solver-entry-accent) 24%, rgba(20, 26, 42, 0.96));
+  border: 1px solid color-mix(in srgb, var(--solver-entry-accent) 52%, rgba(255, 255, 255, 0.16));
+  color: #f8fbff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.composer-reaction-solver-menu-button:hover,
+.composer-reaction-solver-menu-button:focus-visible {
+  border-color: rgba(176, 194, 255, 0.38);
+  background: rgba(30, 38, 64, 0.96);
+}
+
+.composer-reaction-solver-menu-button:disabled {
+  opacity: 0.48;
+  cursor: default;
 }
 
 .composer-assembly-menu {
@@ -2358,6 +2737,22 @@ body {
 @media (max-width: 960px) {
   .composer-header {
     align-items: flex-start;
+  }
+
+  .composer-reaction-solver-surface {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    align-content: start;
+  }
+
+  .composer-reaction-solver-center {
+    order: -1;
+    place-content: start center;
+  }
+
+  .composer-reaction-solver-participant,
+  .composer-reaction-solver-participant.is-product {
+    justify-content: flex-start;
   }
 
   .composer-header-status {

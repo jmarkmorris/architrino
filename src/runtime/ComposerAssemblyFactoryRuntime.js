@@ -75,6 +75,27 @@ export function createBuiltInComposerAssemblyDraftRuntime(templateId, position =
         core: createDefaultCoreSpec(id),
       });
     },
+    higgs_cluster: () => {
+      const id = getNextAssemblyId("higgs_cluster");
+      return buildDraft({
+        id,
+        name: "Higgs Cluster",
+        role: "higgs_cluster",
+        sceneRole,
+        position: normalizedPosition,
+        members: [
+          "positrino_1",
+          "electrino_1",
+          "positrino_2",
+          "electrino_2",
+          "positrino_3",
+          "electrino_3",
+        ],
+        subassemblies: [],
+        pathPoints: createDefaultPathPoints(normalizedPosition),
+        core: createDefaultCoreSpec(id),
+      });
+    },
     fermion_gen1: () => {
       const id = getNextAssemblyId("fermion");
       return buildDraft({

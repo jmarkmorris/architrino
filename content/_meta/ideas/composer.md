@@ -438,6 +438,195 @@ The first-pass non-goals should be:
 - no required text entry for transfer ids;
 - no forced left/right layout.
 
+## Reaction solver screen for PDG-style channels
+
+The blank reaction canvas above is still the right target for final authored reaction choreography inside the normal composer. But PDG-style channels may deserve a separate reaction-solver screen that shares components with the composer while serving a different job.
+
+That distinction matters because the solver is not primarily an animation surface. Its first task is to help the author close provenance: what persists, what is recruited, what is shed, and what returns to spacetime. Only after that bookkeeping is legible should the result be handed off into the normal animation composer for final path shaping, staging, observer work, and explanatory overlays.
+
+So the likely architecture is:
+
+- the solver is a separate screen or mode specialized for reaction solving rather than scene staging;
+- it reuses common assembly rendering, constituent reveal, hierarchy inspection, selection, highlighting, and mapping-path components;
+- it accepts a set of authored reactants and products, or a named reaction channel template;
+- it produces one or more candidate provenance mappings;
+- and the accepted result is fed back into the normal composer as reaction participants, transfer-like mappings, and a starting visual layout that the author can then refine.
+
+This is a cleaner division of labor than forcing one screen to be equally good at:
+
+- inventory accounting,
+- channel solving,
+- provenance explanation,
+- and final observer-facing animation choreography.
+
+### Hierarchy-first solver interaction
+
+The solver should likely begin in a text-forward hierarchy view rather than in a fully spatial free-placement view.
+
+The first prototype can also be explicitly 2D rather than pretending to be a mini version of the 3D scene composer.
+
+That first prototype should open from a top-right `Reaction` pill in the composer header. Clicking that pill should switch the author into the dedicated solver canvas rather than into the normal scene-staging canvas.
+
+On that 2D solver canvas, right-clicking blank space should offer:
+
+- `Add Reactant`
+- `Add Product`
+- `Auto Solve`
+  - not yet implemented in the first manual prototype, but visible as the future direction.
+
+The first useful version could be:
+
+- a nested reactant hierarchy on the left;
+- a nested product hierarchy on the right;
+- and a central mapping field showing the proposed paths or correspondences between them.
+
+When a reactant is added:
+
+- the author chooses from the particle list already available in the app;
+- the particle image appears in the leftmost lane;
+- and its text hierarchy with attach points appears immediately to the right of that image.
+
+When a product is added:
+
+- the author chooses from the same particle list;
+- the particle image appears in the rightmost lane;
+- and its text hierarchy with attach points appears immediately to the left of that image.
+
+That hierarchy should allow the author to work at several levels:
+
+- whole assembly;
+- subassembly;
+- member;
+- binary;
+- and bare architrino or personality charge when the reaction genuinely needs that depth.
+
+This matters because most PDG-style reactions should not require the author to move every constituent by hand. In many channels, most structure is spectator carry-through and only a smaller active frontier needs detailed solving. The solver should therefore prefer the coarsest mapping that closes the ledger honestly, and only expand a node when the author or the solver needs more detail there.
+
+The intended authoring loop is:
+
+1. choose the reactants and products to solve;
+2. inspect the reactant and product hierarchies;
+3. let the solver produce one or more candidate mappings;
+4. review those mappings in the center field;
+5. accept one candidate or edit it locally;
+6. then hand the accepted structure off to the normal composer for final animation work.
+
+The center mapping field should not be a dead report. It should be directly editable:
+
+- detach a proposed mapping from the product side and retarget it;
+- pin a mapping that is known to be correct;
+- forbid a mapping that the solver should not use;
+- split a coarse node into finer subnodes when more detail is needed;
+- rerun the solver on only the unresolved remainder;
+- and keep the visible paths as the starting point for later spline authoring in the animation composer.
+
+### Attachment grammar for the hierarchy view
+
+The hierarchy view should probably use explicit per-line attach points rather than forcing the author to drag whole rows vaguely.
+
+On the reactant side, each row can read:
+
+- description first;
+- attach point second.
+
+On the product side, the order can reverse:
+
+- attach point first;
+- description second.
+
+That asymmetry is useful because it makes the mapping field in the middle feel natural. The author can click one reactant-side attach point, then one product-side attach point, and the solver draws the proposed mapping arrow between them.
+
+The important hierarchy rule should be exclusivity by ancestry:
+
+- if a mapping is attached at a higher node in the hierarchy, all descendant rows should gray out;
+- their attach points should deactivate while the parent-level mapping remains in force;
+- removing that higher mapping should reactivate the descendants;
+- and expanding a parent into children should only be needed when the reaction truly requires finer provenance than the parent-level bundle.
+
+That gives the solver a clean coarse-to-fine grammar. A spectator-preserved structure can remain mapped at a high level, while only the active part of the reaction needs to be opened deeper.
+
+This is also a strong implementation metaphor because the hierarchy view can be useful before any real auto-solver exists. Authors can work through the mapping manually, confirm that the reaction grammar feels right, and only then layer automated proposal generation on top of a workflow that is already understandable and productive.
+
+That sequencing is attractive because it reduces risk:
+
+- manual hierarchy mapping can ship first;
+- the same UI can later host ranked solver proposals;
+- and the auto-solver can be judged against an already-usable authoring baseline rather than against a speculative interface.
+
+For a fermion-like assembly, a first-pass hierarchy could look like:
+
+```text
+- pro/anti Noether core [anchor point]
+    - inner binary with personality [anchor point]
+        - inner binary [anchor point]
+        - personality architrino [anchor point]
+        - personality architrino [anchor point]
+    - middle binary with personality [anchor point]
+        - middle binary [anchor point]
+        - personality architrino [anchor point]
+        - personality architrino [anchor point]
+    - outer binary with personality [anchor point]
+        - outer binary [anchor point]
+        - personality architrino [anchor point]
+        - personality architrino [anchor point]
+```
+
+The product side would use the same nesting but with the attach point rendered before the description so the middle mapping field stays visually clean.
+
+This seems especially well suited to PDG-style reactions because it allows:
+
+- high-level carry-through when a whole bundle persists;
+- selective opening of only the active branch of the hierarchy;
+- and direct visible arrows between reactant and product attachment sites without immediately committing to full free-canvas choreography.
+
+### Wildcard spacetime participants
+
+The solver needs explicit wildcard participants for spacetime recruitment and return.
+
+For the first pass, the composer should add a `Higgs cluster` assembly type that can act as an `ST-in` or `ST-out` wildcard in the solver.
+
+That means:
+
+- a reaction may recruit one or more `Higgs cluster` participants from spacetime;
+- a reaction may return unused or broken material back into spacetime;
+- and a proposed solution does not need to consume or produce every part of a wildcard participant symmetrically.
+
+This should remain an intentionally open modeling boundary rather than a hard ontology claim. It may be that local spacetime inventory is well represented by `Higgs cluster` inputs and outputs in the first implementation. It may also be that spacetime should later be modeled as containing additional detritus, partial remnants, or other reusable substrate packets beyond one named cluster type.
+
+So the design rule should be:
+
+- start with `Higgs cluster` as the first explicit wildcard assembly;
+- but keep the schema and UI language broad enough that later solver passes can admit richer spacetime substrate families without redesigning the whole interaction model.
+
+### Relation to the normal composer
+
+The solver should feed the normal composer rather than replace it.
+
+An accepted solver result should become:
+
+- reaction participants in the authored reaction item;
+- transfer-like continuity mappings that preserve provenance;
+- a first-pass stage breakdown such as `detach`, `flight`, and `reassemble`;
+- and an initial visual corridor or spline layout that the normal reaction canvas can refine.
+
+This keeps one important separation clear:
+
+- the solver screen answers what maps to what and what spacetime contributed;
+- the normal composer answers how that mapping is staged, viewed, timed, and explained.
+
+That separation is especially attractive for PDG-style reactions because the same solved provenance can later be animated in more than one explanatory way without rerunning the bookkeeping every time.
+
+It also simplifies the architecture of the normal composer itself. If the solver owns reactant/product bookkeeping and provenance mapping, the composer no longer needs to carry reaction-specific solving concepts throughout its main screen. It can stay focused on:
+
+- scene layout;
+- timeline staging;
+- path and spline refinement;
+- observer work;
+- overlays;
+- and playback.
+
+In that model, the normal composer simply imports a solved reaction scene or solved reaction payload produced by the manual or automatic solver. That should remove a substantial amount of special-case composer code and keep the main canvas cleaner, because the composer does not need to know how to solve the reaction. It only needs to know how to stage and explain the solved result.
+
 ## Observer metaphor and user-facing language
 
 Current state:

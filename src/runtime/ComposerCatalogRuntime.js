@@ -7,6 +7,9 @@ export const composerSceneRoleOptions = [
 export const composerAssemblyTemplateMenuRows = [
   [
     { template: "noether_core", label: "Noether Core" },
+    { template: "higgs_cluster", label: "Higgs Cluster" },
+  ],
+  [
     { template: "electron", label: "Electron" },
   ],
   [
