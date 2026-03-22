@@ -8374,11 +8374,17 @@ function closeDetailPanel() {
   }
 }
 
-function showHoverTooltip(text, x, y) {
+function showHoverTooltip(content, x, y, options = {}) {
   if (!hoverTooltip) {
     return;
   }
-  hoverTooltip.textContent = text;
+  hoverTooltip.classList.toggle("is-element-preview", options.variant === "element-preview");
+  hoverTooltip.replaceChildren();
+  if (content instanceof Node) {
+    hoverTooltip.appendChild(content);
+  } else {
+    hoverTooltip.textContent = String(content ?? "");
+  }
   hoverTooltip.classList.add("is-visible");
   hoverTooltip.setAttribute("aria-hidden", "false");
 
@@ -8392,6 +8398,12 @@ function showHoverTooltip(text, x, y) {
   if (top + rect.height > window.innerHeight - padding) {
     top = y - rect.height - padding;
   }
+  const maxTop = window.innerHeight - rect.height - padding;
+  const minTop = Number.isFinite(options.minTop)
+    ? Math.min(options.minTop, maxTop)
+    : padding;
+  left = Math.max(padding, Math.min(left, window.innerWidth - rect.width - padding));
+  top = Math.max(minTop, Math.min(top, maxTop));
   hoverTooltip.style.left = `${left}px`;
   hoverTooltip.style.top = `${top}px`;
   hoverTooltipVisible = true;
@@ -8402,7 +8414,9 @@ function hideHoverTooltip() {
     return;
   }
   hoverTooltip.classList.remove("is-visible");
+  hoverTooltip.classList.remove("is-element-preview");
   hoverTooltip.setAttribute("aria-hidden", "true");
+  hoverTooltip.replaceChildren();
   hoverTooltipVisible = false;
 }
 
@@ -8431,8 +8445,21 @@ function dismissZoomToastPermanently() {
   hideZoomToast();
 }
 
+function isHydePeriodicLevel(level = currentLevel) {
+  const sceneId = level?.sceneId;
+  const scenePath = typeof level?.id === "string" ? level.id : "";
+  return (
+    sceneId === "hyde_periodic_table" ||
+    scenePath.endsWith("/hyde_periodic_table_scene.json")
+  );
+}
+
 function showZoomToastIfNeeded() {
   if (!zoomToast || hasDismissedZoomToast()) {
+    return;
+  }
+  if (isHydePeriodicLevel()) {
+    hideZoomToast();
     return;
   }
   zoomToast.classList.add("is-visible");

@@ -1,12 +1,12 @@
 # Foundational Ontology
 
-This chapter is the bedrock ontology note for the framework. Its purpose is to state, in one place, what fundamentally exists, what is emergent, and what terminology has to remain fixed if the rest of the corpus is to stay coherent.
+This chapter is the bedrock ontology note for $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to state, in one place, what fundamentally exists, what is emergent, and what terminology has to remain fixed if the rest of the corpus is to stay coherent.
 
 ---
 
 ## Purpose and Scope
 
-This document establishes the **ontological bedrock** of the Architrino Theory: what fundamentally exists, what is emergent, and what is operational. It defines:
+This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\mathbb{A}$: what fundamentally exists, what is emergent, and what is operational. It defines:
 
 1. **The Substrate** (absolute time, Euclidean space, and their product structure)
 2. **The Fundamental Entity** (architrino: point transmitter/receiver of potential)
@@ -15,7 +15,7 @@ This document establishes the **ontological bedrock** of the Architrino Theory: 
 5. **Terminology Discipline** (locked definitions to prevent semantic drift)
 6. **Parameter Ledger** (fundamental postulates vs derived quantities)
 
-All subsequent dynamical laws, assembly mappings, and emergent phenomena are **built upon** these foundations. Any contradiction or ambiguity here propagates through the entire framework; therefore, this document is maintained with maximal rigor and clarity.
+All subsequent dynamical laws, assembly mappings, and emergent phenomena are **built upon** these foundations. Any contradiction or ambiguity here propagates through the entire $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus; therefore, this document is maintained with maximal rigor and clarity.
 
 ## The Substrate (What Exists Fundamentally)
 
@@ -91,7 +91,7 @@ The time coordinate $t$ is **absolute and universal**:
 
 Any observed "slowing of clocks" for moving or bound assemblies is not a change in the background time flow, but a change in how those assemblies' internal dynamics map onto the absolute time parameter (see Section 4.2 on Physical Observers and emergent proper time).
 
-> **Implication:** In contrast to special relativity, simultaneity is an **objective, frame-independent property** in this model.
+> **Implication:** In contrast to special relativity, simultaneity is an **objective, frame-independent property** in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 **No Absolute Origin; Completeness:**
 
@@ -163,13 +163,13 @@ $$
 
 Only if $\hat{t} \geq \hat{t}_{\text{emit}}$ can the source influence the receiver.
 
-**In particular, the interaction law is built entirely from path history contributions at times $t' < t$; the model contains no advanced or instantaneous interaction terms.** This ensures causality at the fundamental level.
+**In particular, the interaction law is built entirely from path history contributions at times $t' < t$; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms.** This ensures causality at the fundamental level.
 
 There are **no instantaneous actions-at-a-distance** and **no advanced potentials** (no influences from the future).
 
 **Path History and Non-Markovian Memory:**
 
-A critical feature of the architrino model is that **all interactions are mediated by path history**: the cumulative effect of an architrino's exposure to all past sources.
+A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**: the cumulative effect of an architrino's exposure to all past sources.
 
 At time $t$, an architrino at position $\mathbf{x}(t)$ experiences forces from all other architrinos based on the **intersection of its worldline with causal wake surfaces** emitted at all past times $t' < t$. This is naturally encoded in the path history interaction law and gives rise to **non-Markovian memory effects** (e.g., the self-hit regime, where an architrino interacts with its own past emissions).
 
@@ -177,11 +177,11 @@ Because $t$ is universal and absolute, we can unambiguously define "the past" (a
 
 **Provenance and Identity Through Time:**
 
-Each Architrino carries a unique **provenance** label tied to its worldline history. That provenance is strictly monotone in $t$: exchanging labels is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level. This point is developed further in the Architrino ontology section below.
+Each architrino carries a unique **provenance** label tied to its worldline history. That provenance is strictly monotone in $t$: exchanging labels is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level. This point is developed further in the ontology section below.
 
 **Geodesics and the Absence of Temporal Dynamics:**
 
-In this model, time itself has no internal structure or dynamics. It does not encode forces, curvature, or acceleration of any kind.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dynamics. It does not encode forces, curvature, or acceleration of any kind.
 
 -- **Geodesics of time** are trivial: they are simply the flow $t \mapsto t$ at constant rate.
 -- All **forces and accelerations** arise from:
@@ -194,7 +194,7 @@ In this model, time itself has no internal structure or dynamics. It does not en
 
 **Distinction from Relativistic Time:**
 
-| **Feature** | **Absolute Time (This Model)** | **Relativistic Time** |
+| **Feature** | **Absolute Time ($\mathbb{A}\mathbb{A}\mathbb{A}$)** | **Relativistic Time** |
 |:---|:---|:---|
 | **Manifold** | $\mathbb{R}$ (1D, separate from space) | Part of 4D spacetime with Lorentzian metric |
 | **Universality** | Global, frame-independent clock | Relative; different observers measure different intervals |
@@ -488,7 +488,7 @@ The combination of homogeneity and isotropy implies that **the laws of physics a
 
 **Distinction from Curved Space (General Relativity):**
 
-| **Feature** | **Absolute Space (This Model)** | **Curved Space (GR)** |
+| **Feature** | **Absolute Space ($\mathbb{A}\mathbb{A}\mathbb{A}$)** | **Curved Space (GR)** |
 |:---|:---|:---|
 | **Geometry** | Flat Euclidean ($R = 0$ everywhere) | Curved Riemannian (variable $R$) |
 | **Metric** | Fixed: $h_{ij} = \delta_{ij}$ (in Cartesian coords) | Dynamical: $g_{\mu\nu}$ determined by stress-energy tensor |
@@ -498,11 +498,11 @@ The combination of homogeneity and isotropy implies that **the laws of physics a
 | **Symmetry Group** | $E(3)$ (Euclidean) | Diffeomorphisms (coordinate freedom) |
 | **Gravitation** | Emergent from tri-binary medium interactions | Fundamental: curvature of spacetime |
 
-**Role in the Architrino Model:**
+**Role in $\mathbb{A}\mathbb{A}\mathbb{A}$:**
 
 Absolute space serves as the **fixed container** for all physical interactions:
 
-- **Architrino positions** $\mathbf{x}(t)$ are points in this 3D Euclidean space.
+- **architrino positions** $\mathbf{x}(t)$ are points in this 3D Euclidean space.
 - **Potential fields** propagate through this space at the finite field speed $c_f$.
 - **Distances** and **spatial separations** are measured using the Euclidean metric.
 - **Interactions** depend on spatial position and separation, but the underlying space itself does not curve or respond.
@@ -521,7 +521,7 @@ Any observed "curvature," such as the bending of light or the precession of orbi
 
 Absolute timespace is the combined, non-dynamical background arena for all physical phenomena. It is the direct product of absolute time and absolute space, forming a **foliated structure** where each "leaf" is a complete, instantaneous 3D snapshot of Euclidean space, indexed by the universal time parameter. We deliberately use the term "timespace" (time first) to distinguish this fixed arena from the dynamic, unified "spacetime" of General Relativity.
 
-In this model:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 - Time and space are **logically and mathematically separate** at the kinematic level.
 - There is **absolute simultaneity**: all observers agree on which events occur at the same time.
 - There is **no mixing** of temporal and spatial dimensions into a single 4D metric.
@@ -626,7 +626,7 @@ $$
 s = \int \sqrt{g_{\mu\nu} \, dx^\mu dx^\nu} = \int \sqrt{-c^2 dt^2 + dx^2 + dy^2 + dz^2}.
 $$
 
-We do **not** use this in the neoclassical model. Time and space are measured separately, and there is no "4D interval" mixing them. This is the key distinction from special relativity.
+We do **not** use this in $\mathbb{A}\mathbb{A}\mathbb{A}$. Time and space are measured separately, and there is no "4D interval" mixing them. This is the key distinction from special relativity.
 
 ---
 
@@ -708,7 +708,7 @@ combining time translations, spatial translations/rotations, and boosts in the s
 
 **Important note:** While the **background kinematics** are invariant under all Galilean transformations, the **interaction law** (defining forces and accelerations) selects a **preferred frame**: the **absolute rest frame** in which the maximum signal speed $c_f$ (field speed) is isotropic. This breaks the boost symmetry at the dynamical level, recovering a preferred frame for non-relativistic dynamics.
 
-This symmetry breaking is precisely what allows for a preferred "aether" frame for the dynamics—a concept forbidden in relativity but essential for our model's propagation of potentials and the self-hit mechanisms. The field speed $c_f$, measured in this preferred rest frame, is isotropic and fundamental to the theory. In this sense, the absolute rest frame is not a kinematic postulate but a **dynamical necessity**.
+This symmetry breaking is precisely what allows for a preferred "aether" frame for the dynamics, a concept forbidden in relativity but essential for $\mathbb{A}\mathbb{A}\mathbb{A}$'s propagation of potentials and the self-hit mechanisms. The field speed $c_f$, measured in this preferred rest frame, is isotropic and fundamental to $\mathbb{A}\mathbb{A}\mathbb{A}$. In this sense, the absolute rest frame is not a kinematic postulate but a **dynamical necessity**.
 
 ---
 
@@ -741,7 +741,7 @@ $$
 
 This is an **expanding causal surface** in space, not a cone in spacetime. The boundary is the set of points at radius $c_f(t - t_0)$ at time $t$.
 
-**Critical difference from relativity:** Our "expanding causal surface" causal structure, unlike a rigid metric light cone, does **not forbid superluminal** ($v > c_f$) **particle velocities**. This is not a violation of causality (which is defined by the absolute time ordering), but a feature that enables the **self-hit regime**, where an architrino overtakes its own emitted potential. This self-hit mechanism is foundational to our theory of mass quantization and inflation/deflation dynamics.
+**Critical difference from relativity:** The "expanding causal surface" causal structure in $\mathbb{A}\mathbb{A}\mathbb{A}$, unlike a rigid metric light cone, does **not forbid superluminal** ($v > c_f$) **particle velocities**. This is not a violation of causality (which is defined by the absolute time ordering), but a feature that enables the **self-hit regime**, where an architrino overtakes its own emitted potential. This self-hit mechanism is foundational to $\mathbb{A}\mathbb{A}\mathbb{A}$'s account of mass quantization and inflation/deflation dynamics.
 
 Additionally, the "effective light cones" seen by assemblies at $v \leq c_f$ can approximate Minkowski light cones, setting up the **emergent Lorentz structure** experienced by low-energy observers and systems.
 
@@ -844,11 +844,11 @@ For comparison and clarity:
 
 ---
 
-#### Role of Timespace in the Architrino Model
+#### Role of Timespace in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 Absolute timespace is the fundamental arena in which all architrino dynamics unfold:
 
-- **Architrino worldlines** are curves $(t, \mathbf{x}(t))$ in $\mathcal{M}$, parametrized by universal time $t$.
+- **architrino worldlines** are curves $(t, \mathbf{x}(t))$ in $\mathcal{M}$, parametrized by universal time $t$.
 
 - **Potential fields** $\Phi(t, \mathbf{x})$ are functions defined on timespace, evolving according to the interaction law.
 
@@ -865,7 +865,7 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 #### Summary of Postulate (Absolute Timespace)
 
 > **Postulate 3 (Absolute Timespace):** 
-> The background arena for all physics is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$, equipped with absolute time $\tau = dt$ and absolute space metric $h_{ij} = \delta_{ij}$. This defines a foliation into global, simultaneous 3D Euclidean slices indexed by universal time. The background is non-dynamical and non-curved ($R = 0$ everywhere). Causality is defined by absolute temporal ordering and finite propagation speed $c_f$. The background preserves Galilean kinematic symmetries, but the interaction law selects a preferred rest frame, breaking boost invariance dynamically. This preferred frame is essential for the propagation of potentials and the self-hit mechanisms that underpin the theory. All relativistic phenomena—including effective Lorentz invariance at certain scales—are emergent from the dynamics of assemblies. All gravitational phenomena, including lensing and cosmological expansion, are derived as emergent properties of a **dynamic medium of tri-binary assemblies** that populates this fixed timespace, not from the geometry of the background itself.
+> The background arena for all physics is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$, equipped with absolute time $\tau = dt$ and absolute space metric $h_{ij} = \delta_{ij}$. This defines a foliation into global, simultaneous 3D Euclidean slices indexed by universal time. The background is non-dynamical and non-curved ($R = 0$ everywhere). Causality is defined by absolute temporal ordering and finite propagation speed $c_f$. The background preserves Galilean kinematic symmetries, but the interaction law selects a preferred rest frame, breaking boost invariance dynamically. This preferred frame is essential for the propagation of potentials and the self-hit mechanisms that underpin $\mathbb{A}\mathbb{A}\mathbb{A}$. All relativistic phenomena—including effective Lorentz invariance at certain scales—are emergent from the dynamics of assemblies. All gravitational phenomena, including lensing and cosmological expansion, are derived as emergent properties of a **dynamic medium of tri-binary assemblies** that populates this fixed timespace, not from the geometry of the background itself.
 
 ---
 
@@ -885,18 +885,18 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 
 ### Definition and Ontological Status
 
-An **Architrino** is the sole fundamental entity in this theory. It is:
+An **architrino** is the sole fundamental entity in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is:
 
 - A **point-like transmitter/receiver** located at a position $\mathbf{s}_a(t)$ in the flat Euclidean 3D space.
 - **Always active**: it continuously emits a flux of causal wake surfaces and continuously receives potential from all other architrinos.
 - **Deterministic**: its motion is governed by a universal reception rule that converts incoming potential into acceleration; given initial conditions, its future path is determined, with **deterministic multistability** at threshold regimes.
-- **Charged**: each Architrino carries a fundamental charge magnitude $|e/6|$ (see Section 2.3).
+- **Charged**: each architrino carries a fundamental charge magnitude $|e/6|$ (see Section 2.3).
 
-The Architrino has **no internal structure**, no spin in the classical sense, and no other intrinsic properties beyond position, velocity, and charge polarity. All structure—particles, fields, spacetime itself—emerges from coordinated configurations and interactions of many architrinos.
+The architrino has **no internal structure**, no spin in the classical sense, and no other intrinsic properties beyond position, velocity, and charge polarity. All structure—particles, fields, spacetime itself—emerges from coordinated configurations and interactions of many architrinos.
 
 **Ontological Clarity on Potential:**
 
-The potential emitted by an Architrino is not a substance but a **formal channel of interaction**. It is a measure-valued distribution in spacetime that encodes how one Architrino influences others. Potentials from distinct sources superpose linearly; the total potential at any location is the sum of all individual contributions. Potential is neither a "thing" nor a "field" in the classical electromagnetic sense, but rather a **lawful coupling** between the states of separated architrinos.
+The potential emitted by an architrino is not a substance but a **formal channel of interaction**. It is a measure-valued distribution in spacetime that encodes how one architrino influences others. Potentials from distinct sources superpose linearly; the total potential at any location is the sum of all individual contributions. Potential is neither a "thing" nor a "field" in the classical electromagnetic sense, but rather a **lawful coupling** between the states of separated architrinos.
 
 **Ontological Status:**
 
@@ -904,32 +904,36 @@ We take architrinos to be **primitive substances**: they exist fundamentally and
 
 - **Discrete**: there is a definite (though potentially infinite) number of them.
 - **Identifiable**: each has a unique worldline through $(t, \mathbf{x})$-space.
-- **Non-created and non-destroyed**: within the ontology, Architrinos are not fundamentally created or destroyed. Any apparent birth, annihilation, decay, or transmutation at the assembly level must be understood as reorganization of a persistent Architrino set rather than as ontic creation or ontic destruction.
+- **Non-created and non-destroyed**: within the ontology, architrinos are not fundamentally created or destroyed. Any apparent birth, annihilation, decay, or transmutation at the assembly level must be understood as reorganization of a persistent architrino set rather than as ontic creation or ontic destruction.
 
-All observable entities (particles, atoms, fields, spacetime curvature) are **emergent** from Architrino configurations and dynamics (see Section 3 and TOC Ch. 10).
+All observable entities (particles, atoms, fields, spacetime curvature) are **emergent** from architrino configurations and dynamics (see Section 3 and TOC Ch. 10).
 
 ---
 
 ### Provenance, Persistence, and the Ontological Basis of Conservation
 
-The stronger ontological claim is not merely that Architrinos move through time, but that they persist as **the same entities** through time. If Architrinos are fundamental, discrete, identifiable, and subject to **Architrino non-creation and non-destruction**, then the theory inherits a built-in provenance ledger: every later state of the universe is a rearrangement of the same underlying Architrinos rather than a replacement by numerically different ones.
+The stronger ontological claim is not merely that architrinos move through time, but that they persist as **the same entities** through time. If architrinos are fundamental, discrete, identifiable, and subject to **Architrino non-creation and non-destruction**, then $\mathbb{A}\mathbb{A}\mathbb{A}$ inherits a built-in provenance ledger: every later state of the universe is a rearrangement of the same underlying architrinos rather than a replacement by numerically different ones.
 
-This is the deepest sense in which provenance enters the theory. Provenance is not an optional bookkeeping layer added after the dynamics. It is the statement that each Architrino has its own continuous worldline and that this worldline carries physical identity, not just kinematic position. At the substrate level, one is not permitted to say merely that "some equivalent unit" appears later. One must ask which Architrino later appears, where it came from, and through which path-history it arrived.
+This is the deepest sense in which provenance enters $\mathbb{A}\mathbb{A}\mathbb{A}$. Provenance is not an optional bookkeeping layer added after the dynamics. It is the statement that each architrino has its own continuous worldline and that this worldline carries physical identity, not just kinematic position. At the substrate level, one is not permitted to say merely that "some equivalent unit" appears later. One must ask which architrino later appears, where it came from, and through which path-history it arrived.
 
-Let $\mathcal{A}$ denote the ontic set of Architrino identities. Then the ontological claim is that $\mathcal{A}$ is fixed: Architrinos may move, bind, unbind, exchange partners, and enter or leave a chosen subsystem, but they are not fundamentally created or destroyed by the dynamics. Assemblies therefore change by **repartitioning** and **reorganization** of a fixed identity set, not by ontic birth or ontic annihilation.
+Let $\mathcal{A}$ denote the ontic set of architrino identities. Then the ontological claim is that $\mathcal{A}$ is fixed: architrinos may move, bind, unbind, exchange partners, and enter or leave a chosen subsystem, but they are not fundamentally created or destroyed by the dynamics. Assemblies therefore change by **repartitioning** and **reorganization** of a fixed identity set, not by ontic birth or ontic annihilation.
 
-This is a stronger claim than saying merely that no beginning or ending has yet been observed. Within the ontology, Architrino non-creation and non-destruction is treated as a foundational fact about what exists.
+This is a stronger claim than saying merely that no beginning or ending has yet been observed. Within the ontology, architrino non-creation and non-destruction is treated as a foundational fact about what exists.
 
-This gives a natural microscopic basis for conservation statements. At the most primitive level, conservation means that the underlying Architrino ledger is preserved. Exact provenance is therefore a stronger statement than coarse conservation:
+At the same time, this is one reason to avoid the looser word **eternal** when more exact wording is available. `Non-creation and non-destruction` states the internal ontological claim of $\mathbb{A}\mathbb{A}\mathbb{A}$. By contrast, `eternal` can be heard as a broader metaphysical claim that the modeled world has no external initialization, no outer boundary condition, and no implementation substrate. The ontology does not need that broader claim. If the discussion becomes meta-theoretic rather than internal to $\mathbb{A}\mathbb{A}\mathbb{A}$, it is more careful to say that architrinos have **no known beginning or ending within the modeled dynamics**.
+
+This also leaves conceptual room for external-realization hypotheses, including a simulation hypothesis, without weakening the internal ontology. A sufficiently exact execution environment could in principle realize a world whose internal law still exhibits architrino non-creation and non-destruction, provided the implementation preserves the required path-history dynamics, identity ledger, and behavior near the symmetry-breaking regime across the relevant phase-space and boundary conditions. That possibility, if entertained, would be a claim about the realization of $\mathbb{A}\mathbb{A}\mathbb{A}$ from outside, not a change in what $\mathbb{A}\mathbb{A}\mathbb{A}$ says exists from within.
+
+This gives a natural microscopic basis for conservation statements. At the most primitive level, conservation means that the underlying architrino ledger is preserved. Exact provenance is therefore a stronger statement than coarse conservation:
 
 - conservation says that some inventory is preserved;
 - provenance says which exact entities realize that preserved inventory.
 
-From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, many effective conservation rules are summaries of this deeper identity continuity. Charge conservation, for example, can be read as the preservation of the signed Architrino inventory under rearrangement. More elaborate reaction bookkeepings likewise become statements about how the same Architrinos are redistributed across changing assemblies, with any coarse-grained loss of identity being an epistemic simplification rather than an ontological erasure.
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, many effective conservation rules are summaries of this deeper identity continuity. Charge conservation, for example, can be read as the preservation of the signed architrino inventory under rearrangement. More elaborate reaction bookkeepings likewise become statements about how the same architrinos are redistributed across changing assemblies, with any coarse-grained loss of identity being an epistemic simplification rather than an ontological erasure.
 
 The limitation, however, should remain explicit. Provenance by itself does **not** derive every familiar conservation law. Energy conservation still depends on time-translation invariance and on the form of the interaction law. Momentum and angular momentum still depend on spatial translation and rotation symmetry. Provenance is therefore not a replacement for Noether reasoning. It is the deeper ontological basis that makes microscopic conservation statements sharp, and it explains why effective conserved quantities can often be interpreted as coarse summaries of a persistent identity ledger.
 
-This distinction is important for the whole framework. When the theory says that an assembly "changed," "decayed," "reacted," or "reassembled," the fundamental claim is never that ontology blinked out and reappeared. The stronger claim is that the same underlying Architrinos persisted through the event and were redistributed into a new assembly pattern. In that sense, provenance is not peripheral to the ontology. It is one of the central reasons the ontology can support a rigorous conservation story at all.
+This distinction is important for all of $\mathbb{A}\mathbb{A}\mathbb{A}$. When $\mathbb{A}\mathbb{A}\mathbb{A}$ says that an assembly "changed," "decayed," "reacted," or "reassembled," the fundamental claim is never that ontology blinked out and reappeared. The stronger claim is that the same underlying architrinos persisted through the event and were redistributed into a new assembly pattern. In that sense, provenance is not peripheral to the ontology. It is one of the central reasons the ontology can support a rigorous conservation story at all.
 
 ---
 
@@ -937,8 +941,8 @@ This distinction is important for the whole framework. When the theory says that
 
 An architrino is a transceiver: it continuously emits potential flux and simultaneously receives the combined flux of all other architrinos. The emission rule has the following key features:
 
-- **Continuous flux:** At every instant the Architrino streams potential into the void. The **causal wake surface** (the isochron of causality) connects all spatial points currently receiving the contribution emitted at a specific past time. Because the emission never turns off, that surface is merely a computational tool that isolates a portion of the path history; the underlying reality is a smooth, steady flux rather than a series of discrete pulses.
-- **Local origin:** The flux originates at the Architrino’s instantaneous position. We encode the start of each emission as a spatial Dirac delta carrying total charge $q$ to fix the boundary condition, but nothing in the physics requires the emission to switch on and off—it is constantly present and extends infinitely into the future.
+- **Continuous flux:** At every instant the architrino streams potential into the void. The **causal wake surface** (the isochron of causality) connects all spatial points currently receiving the contribution emitted at a specific past time. Because the emission never turns off, that surface is merely a computational tool that isolates a portion of the path history; the underlying reality is a smooth, steady flux rather than a series of discrete pulses.
+- **Local origin:** The flux originates at the architrino’s instantaneous position. We encode the start of each emission as a spatial Dirac delta carrying total charge $q$ to fix the boundary condition, but nothing in the physics requires the emission to switch on and off—it is constantly present and extends infinitely into the future.
 - **Radial propagation:** Each causal surface expands outward at the field speed $v_f$ (we set $v_f=1$ in natural units). The geometric locus of points receiving the contribution emitted at time $t_0$ satisfies $\|\mathbf{s}-\mathbf{s}_0\| = v_f(t - t_0)$ and defines a causal wake surface (isochron) in the spatial slice at time $t$.
 - **Conserved intensity:** The surface density on each isochron falls as $1/r^2$ so that the total flux through the causal wake surface remains $q$ as the surface expands.
 
@@ -987,7 +991,7 @@ whose delayed solution is $\rho(t,\mathbf{s})=\frac{q}{4\pi r^2}\delta(r-v_f\tau
 
 **Postulate:**
 
-Each Architrino carries a fundamental charge of magnitude:
+Each architrino carries a fundamental charge of magnitude:
 
 $$
 |q| = \epsilon = \frac{e}{6},
@@ -996,8 +1000,8 @@ $$
 where $e$ is the elementary charge (the magnitude of the electron's charge, $e \approx 1.602 \times 10^{-19}$ C). Architrinos are either **positive** (charge $+\epsilon$) or **negative** (charge $-\epsilon$). 
 
 **Terminology:**
-- **Electrino**: Architrino with charge $-\epsilon$ (negative)
-- **Positrino**: Architrino with charge $+\epsilon$ (positive)
+- **Electrino**: architrino with charge $-\epsilon$ (negative)
+- **Positrino**: architrino with charge $+\epsilon$ (positive)
 
 The sign of the charge determines the direction of force interactions: positive charges repel each other and attract negative charges, and vice versa.
 
@@ -1018,17 +1022,17 @@ See TOC Ch. 18 ("Fermions: Leptons and Quarks") and Ch. 22 ("Charge Stability Ma
 
 ### Architrino Paths
 
-The Architrino path ontology describes how each fundamental point particle threads through absolute timespace, carrying energy, fields, and history.
+The architrino path ontology describes how each fundamental point particle threads through absolute timespace, carrying energy, fields, and history.
 
 #### Definition and Persistence
 
-Each Architrino traces a continuous worldline $\mathbf{s}_a(t)$ in $\mathcal{M}$, defined for all $t\in(-\infty,+\infty)$. **Architrino non-creation and non-destruction** is a foundational postulate: every Architrino has a complete past and future history, and no Architrino enters or leaves ontology by a fundamental creation or destruction event.
+Each architrino traces a continuous worldline $\mathbf{s}_a(t)$ in $\mathcal{M}$, defined for all $t\in(-\infty,+\infty)$. **Architrino non-creation and non-destruction** is a foundational postulate: every architrino has a complete past and future history, and no architrino enters or leaves ontology by a fundamental creation or destruction event.
 
 The worldline is **unique** (no two distinct architrinos share the same path) and at least absolutely continuous so that $\mathbf{v}_a(t)=d\mathbf{s}_a/dt$ exists almost everywhere and is piecewise continuous.
 
 #### Energy Carriers
 
-Architrinos are the **sole carriers of kinetic and potential energy**. There is no vacuum energy independent of Architrino motion; all conserved energy resides in their positions, velocities, and interactions.
+Architrinos are the **sole carriers of kinetic and potential energy**. There is no vacuum energy independent of architrino motion; all conserved energy resides in their positions, velocities, and interactions.
 
 #### Coincidence and Regularization
 
@@ -1036,7 +1040,7 @@ Architrinos have no volume, so multiple particles may coincide in space at the s
 
 #### Causal Wake Stream: The Field Landscape
 
-An Architrino always has a **causal wake stream**—the union of every expanding causal wake surface (isochron) it has emitted prior to the observation time $t_{obs}$:
+An architrino always has a **causal wake stream**—the union of every expanding causal wake surface (isochron) it has emitted prior to the observation time $t_{obs}$:
 
 $$
 \mathcal{SS}_a(t_{obs}) = \bigcup_{t_0 \le t_{obs}} \left\{ \mathbf{s} \in \mathbb{R}^3 \;\middle|\; \|\mathbf{s} - \mathbf{s}_a(t_0)\| = v_f (t_{obs} - t_0) \right\}.
@@ -1072,11 +1076,11 @@ The causal set is typically a singleton when $|\mathbf{v}_j| < v_f$ but may cont
 
 #### Superposition of Sphere Streams
 
-Sphere streams from distinct architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a line-of-action push with inverse-square geometric decay and Jacobian flux weighting, so nearby wake hits dominate while distant contributions decay. The total field felt by any Architrino is the sum of these individual hits.
+Sphere streams from distinct architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a line-of-action push with inverse-square geometric decay and Jacobian flux weighting, so nearby wake hits dominate while distant contributions decay. The total field felt by any architrino is the sum of these individual hits.
 
 #### Future Path and Deterministic Evolution
 
-The Architrino's future path is determined by its current state and the superposed hits from all sources. The acceleration at time $t$ is:
+The architrino's future path is determined by its current state and the superposed hits from all sources. The acceleration at time $t$ is:
 
 $$
 \mathbf{a}_a(t) = \sum_j \sum_{t_0 \in \mathcal{C}_{aj}(t)} \mathbf{a}_{a,j}(t; t_0),
@@ -1088,23 +1092,23 @@ where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted b
 
 ### Velocity Regimes and Wake Dynamics
 
-There is no kinematic cap on $|\mathbf{v}_a|$ for individual architrinos; however, emergent assemblies impose operational limits. Each Architrino continuously pours potential into the void, and its past emissions expand spherically from their emission points—never corkscrewing—collectively forming a persistent **wake** (the union of all causal surfaces it has emitted). Every Architrino is always immersed in the superposed wakes of all other sources, but it only re-enters the high-intensity portion of its own wake after having once exceeded $v_f$. When $|\mathbf{v}_a| \le v_f$, it simply rides the smooth gradient of its most recent emissions and does not intersect the strong-field region behind it; when $|\mathbf{v}_a| > v_f$, it traverses the **shockwave** or **Cherenkov cone** formed by its earlier emission history. The relative motion through that region determines whether it brushes the gradient of other wakes, glances past the high-intensity locus, or plunges back through the dense wake it created earlier.
+There is no kinematic cap on $|\mathbf{v}_a|$ for individual architrinos; however, emergent assemblies impose operational limits. Each architrino continuously pours potential into the void, and its past emissions expand spherically from their emission points—never corkscrewing—collectively forming a persistent **wake** (the union of all causal surfaces it has emitted). Every architrino is always immersed in the superposed wakes of all other sources, but it only re-enters the high-intensity portion of its own wake after having once exceeded $v_f$. When $|\mathbf{v}_a| \le v_f$, it simply rides the smooth gradient of its most recent emissions and does not intersect the strong-field region behind it; when $|\mathbf{v}_a| > v_f$, it traverses the **shockwave** or **Cherenkov cone** formed by its earlier emission history. The relative motion through that region determines whether it brushes the gradient of other wakes, glances past the high-intensity locus, or plunges back through the dense wake it created earlier.
 
 #### Wake Coherence and Relative Motion
 
 The local gradient of the wake defines three regimes:
 
-- **Sub-field-speed regime** ($|\mathbf{v}_a| < v_f$): The Architrino remains well inside the diffuse, low-intensity part of its own wake. Its immediate neighborhood is dominated by very recent emissions, so the potential landscape is smooth and the gradient is gentle. There is no opportunity to interact with any far-ahead structure, because the field front advances faster than the particle.
-- **Symmetry point** ($|\mathbf{v}_a| = v_f$): The Architrino coasts along the crest of its own wake. The region of highest intensity—the “shock” cone formed by the wake—lies tangent to the particle’s path. Small deviations now determine whether it stays behind the crest or pushes into the stronger field ahead.
-- **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The Architrino outruns the most recent parts of its wake and begins to traverse the **high-intensity trail** laid down at earlier times. In this regime, the particle enters the **Cherenkov-like shock cone** of strong potential that it generated in the past. This region becomes the locus of self-interaction, with the gradient sharply increasing as the particle plunges through the dense wake.
+- **Sub-field-speed regime** ($|\mathbf{v}_a| < v_f$): The architrino remains well inside the diffuse, low-intensity part of its own wake. Its immediate neighborhood is dominated by very recent emissions, so the potential landscape is smooth and the gradient is gentle. There is no opportunity to interact with any far-ahead structure, because the field front advances faster than the particle.
+- **Symmetry point** ($|\mathbf{v}_a| = v_f$): The architrino coasts along the crest of its own wake. The region of highest intensity—the “shock” cone formed by the wake—lies tangent to the particle’s path. Small deviations now determine whether it stays behind the crest or pushes into the stronger field ahead.
+- **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The architrino outruns the most recent parts of its wake and begins to traverse the **high-intensity trail** laid down at earlier times. In this regime, the particle enters the **Cherenkov-like shock cone** of strong potential that it generated in the past. This region becomes the locus of self-interaction, with the gradient sharply increasing as the particle plunges through the dense wake.
 
-The key point is that the Architrino is not “catching up to a discrete causal surface”; it is moving through a **continuous field gradient** whose intensity depends on how recently the particle passed nearby points in space. When $|\mathbf{v}_a|>v_f$, the gradient peaks ahead of the particle, and that peak is the high-intensity remnant of earlier emissions.
+The key point is that the architrino is not “catching up to a discrete causal surface”; it is moving through a **continuous field gradient** whose intensity depends on how recently the particle passed nearby points in space. When $|\mathbf{v}_a|>v_f$, the gradient peaks ahead of the particle, and that peak is the high-intensity remnant of earlier emissions.
 
 #### Traversing One's Own Wake (Self-Interaction)
 
-When the Architrino enters that cone defined by its past emissions, it is effectively **traversing its own wake**. The locus of interaction is the region in space where its earlier emissions remain dense and intense enough to exert a measurable push.
+When the architrino enters that cone defined by its past emissions, it is effectively **traversing its own wake**. The locus of interaction is the region in space where its earlier emissions remain dense and intense enough to exert a measurable push.
 
-When $|\mathbf{v}_a| \le v_f$, the Architrino never penetrates the Cherenkov cone defined by its earlier emissions, so it only feels the smoother gradient of its most recent wake and does not self-interact strongly. Only after having exceeded $v_f$ and then curving back can it re-enter the dense region set by those emissions, triggering the non-Markovian self-hit regime.
+When $|\mathbf{v}_a| \le v_f$, the architrino never penetrates the Cherenkov cone defined by its earlier emissions, so it only feels the smoother gradient of its most recent wake and does not self-interact strongly. Only after having exceeded $v_f$ and then curving back can it re-enter the dense region set by those emissions, triggering the non-Markovian self-hit regime.
 
 This occurs whenever the particle has exceeded $v_f$ in its history and subsequently curvatures or slows such that it re-enters the high-intensity region. Traversing the wake is therefore a **non-Markovian** event: the acceleration depends on where the wake is situated relative to the current position, which in turn depends on **the full past trajectory**.
 
@@ -1136,13 +1140,13 @@ The **inner binary** (maximal curvature, self-hit regime) is a stabilization out
 
 As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary remains at $v=c_f$** as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
-**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
+**Rule of thumb:** "Planck-scale" references in $\mathbb{A}\mathbb{A}\mathbb{A}$ map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
 
 ### Reception Rule and Acceleration
 
-Each Architrino possesses a **reception rule**: a law that converts incoming potential into acceleration. The rule is **universal** (all architrinos follow the same law) but may admit **meta-stable branching** when multiple self-hit roots are available.
+Each architrino possesses a **reception rule**: a law that converts incoming potential into acceleration. The rule is **universal** (all architrinos follow the same law) but may admit **meta-stable branching** when multiple self-hit roots are available.
 
-When potential from another Architrino (or from one's own past emissions, in the self-hit regime) reaches the location of an Architrino, it imparts an **instantaneous acceleration** along the radial direction connecting the current position to the emission location.
+When potential from another architrino (or from one's own past emissions, in the self-hit regime) reaches the location of an architrino, it imparts an **instantaneous acceleration** along the radial direction connecting the current position to the emission location.
 
 **Key features:**
 
@@ -1180,7 +1184,7 @@ The total acceleration is summed over all sources and all causal emission times.
 
 ### Determinism and Causal Structure
 
-The architrino model is **deterministic in its laws**: given initial conditions (all Architrino positions and velocities at $t=t_0$), the future evolution is determined by the reception rule, with **meta-stable branching** where microstate-sensitive thresholds select among coexisting attractors.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is **deterministic in its laws**: given initial conditions (all architrino positions and velocities at $t=t_0$), the future evolution is determined by the reception rule, with **meta-stable branching** where microstate-sensitive thresholds select among coexisting attractors.
 
 **Clarification (Determinism vs "pre-ordained future"):**  
 Deterministic laws do **not** imply a frozen or trivial future. They mean outcomes are **caused** by the full microstate. In practice, multistability and chaos make the future **computationally open** to any observer lacking complete information. A "decision" by a complex assembly is modeled as **attractor selection**: the system settles into one of several stable outcomes based on its internal state and inputs, without invoking randomness.
@@ -1189,37 +1193,37 @@ However, determinism does not imply practical predictability: the non-linear, no
 
 **Causality and local causality:**
 
-Accelerations are propagated at the field speed $v_f$. An Architrino at $\mathbf{s}_a$ at time $t$ cannot be affected by events outside its **causal past light cone**, defined by $|\Delta \mathbf{s}| \leq v_f \, \Delta t$ from $\mathbf{s}_a$'s perspective. This preserves a notion of local causality compatible with absolute time and finite field speed.
+Accelerations are propagated at the field speed $v_f$. An architrino at $\mathbf{s}_a$ at time $t$ cannot be affected by events outside its **causal past light cone**, defined by $|\Delta \mathbf{s}| \leq v_f \, \Delta t$ from $\mathbf{s}_a$'s perspective. This preserves a notion of local causality compatible with absolute time and finite field speed.
 
 **Superluminal aspects without causality violation:**
 
 When $|\mathbf{v}_a| > v_f$, individual architrinos can outrun their own fields. This does *not* permit causality violation because:
 
-1. The Architrino cannot choose to exceed $v_f$ without lawful changes to field structure; there is no volitional control.
+1. The architrino cannot choose to exceed $v_f$ without lawful changes to field structure; there is no volitional control.
 2. Self-hit events, while non-local in configuration space, are still ordered in absolute time and cannot be used for backward signaling.
-3. The theory remains compatible with causality at the level of information and influence: no signal can propagate faster than $v_f$ between **distinct** architrinos.
+3. $\mathbb{A}\mathbb{A}\mathbb{A}$ remains compatible with causality at the level of information and influence: no signal can propagate faster than $v_f$ between **distinct** architrinos.
 
 ### Absolute Rest and Stationary Frame
 
-A special and fundamental case arises when an Architrino is stationary with respect to absolute space, i.e., its velocity $\mathbf{v}_a = \mathbf{0}$.
+A special and fundamental case arises when an architrino is stationary with respect to absolute space, i.e., its velocity $\mathbf{v}_a = \mathbf{0}$.
 
 **Static wake stream geometry:**
 
-For a stationary Architrino at a fixed position $\mathbf{s}_{\text{fixed}}$, its wake stream consists of a continuous family of perfectly concentric causal wake surfaces. While each individual wake surface expands, the overall geometric form of the stream is static and time-invariant.
+For a stationary architrino at a fixed position $\mathbf{s}_{\text{fixed}}$, its wake stream consists of a continuous family of perfectly concentric causal wake surfaces. While each individual wake surface expands, the overall geometric form of the stream is static and time-invariant.
 
 **Bridge to absolute space:**
 
-This state is **physically distinguishable** from any state of non-zero velocity. An Architrino in motion ($\mathbf{v}_a \neq \mathbf{0}$) generates a non-concentric wake stream whose pattern is dynamic. The perfect symmetry of the stationary stream provides a unique, observable reference frame.
+This state is **physically distinguishable** from any state of non-zero velocity. An architrino in motion ($\mathbf{v}_a \neq \mathbf{0}$) generates a non-concentric wake stream whose pattern is dynamic. The perfect symmetry of the stationary stream provides a unique, observable reference frame.
 
 **Important caveat:**
 
-In realistic many-Architrino systems, distinguishing absolute rest from motion requires the ability to reconstruct the global pattern of wake streams, which is nontrivial. However, the ontology supports an **objective notion of rest**—a departure from Einstein's relativity, but compatible with absolute time.
+In realistic many-architrino systems, distinguishing absolute rest from motion requires the ability to reconstruct the global pattern of wake streams, which is nontrivial. However, the ontology supports an **objective notion of rest**—a departure from Einstein's relativity, but compatible with absolute time.
 
 **Lorentz suppression requirement:**
 
-While absolute rest is ontologically well-defined, the theory must ensure that **Physical Observers** (assemblies) **cannot operationally detect** the absolute frame to precision better than $<10^{-17}$ (see Tier-1 constraint ledger). 
+While absolute rest is ontologically well-defined, $\mathbb{A}\mathbb{A}\mathbb{A}$ must ensure that **Physical Observers** (assemblies) **cannot operationally detect** the absolute frame to precision better than \(10^{-17}\) (see Tier-1 constraint ledger). 
 
-**Mechanism Warning:** This requires that assembly dynamics (rulers, clocks) naturally Lorentz-contract and time-dilate when moving through the Noether Sea. This "Lorentzian Conspiracy" must be an **inevitable mechanical consequence** of the Master Equation, not a tuning of parameters $\eta$ and $\kappa$. **If this contraction is not automatic and exact, the theory is immediately falsified by Michelson-Morley and modern Lorentz-violation tests.**
+**Mechanism Warning:** This requires that assembly dynamics (rulers, clocks) naturally Lorentz-contract and time-dilate when moving through the Noether Sea. This "Lorentzian Conspiracy" must be an **inevitable mechanical consequence** of the Master Equation, not a tuning of parameters $\eta$ and $\kappa$. **If this contraction is not automatic and exact, $\mathbb{A}\mathbb{A}\mathbb{A}$ is immediately falsified by Michelson-Morley and modern Lorentz-violation tests.**
 
 **Current mathematical advancement (reduced delay-loop result):**
 For a phase-locked two-leg causal loop moving at $v$ through the Noether Sea, with $\beta=v/c_f$, rest bond length $L_0$, and $C(v)=L_\parallel(v)/L_0$,
@@ -1239,7 +1243,7 @@ Hence the Lorentz contraction/dilation scaling is derived in a controlled reduce
 
 **Critical Terminological Discipline:**
 
-The Architrino framework distinguishes sharply between:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes sharply between:
 
 1. **The Euclidean Void** (substrate, ontological ground)
 2. **The Noether Sea / Spacetime Aether** (physical medium, emergent structure)
@@ -1293,7 +1297,7 @@ Each Noether core is itself a **tri-binary assembly**: three nested, counter-rot
 **Edge-condition energy transfer (deterministic multistability):**  
 Even below the self-hit regime, energy transfer to/from a Noether core can pass through **threshold conditions** where multiple outcomes are dynamically accessible (transfer proceeds or stalls). Which outcome occurs is **deterministic but microstate-sensitive**: the local wake phase configuration from other architrinos can tip the system into one attractor or another. This is **meta-stable branching** without Many-Worlds or fundamental randomness.
 
-**Vacuum catastrophe resolution:** Because energy density resides in **discrete assemblies** (Noether cores) rather than in the continuum, the model introduces a natural assembly-scale cutoff that removes the standard continuum divergence.
+**Vacuum catastrophe resolution:** Because energy density resides in **discrete assemblies** (Noether cores) rather than in the continuum, $\mathbb{A}\mathbb{A}\mathbb{A}$ introduces a natural assembly-scale cutoff that removes the standard continuum divergence.
 
 **Gravity as Refraction:**
 
@@ -1347,7 +1351,7 @@ Assembly stability requires that bound-state equilibria avoid secular orbital de
 
 In standard $\Lambda\mathrm{CDM}$, cosmological expansion is described as the **expansion of space itself** (scaling of the metric $a(t)$).
 
-In the Architrino framework:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
 - **The void does not expand** (Euclidean space is fixed).
 - **The Noether Sea assemblies scale**: Tri-binary radii $R_{\text{core}}(t)$ evolve over cosmological time.
@@ -1363,7 +1367,7 @@ In the Architrino framework:
 
 In standard cosmology, dark energy ($\Lambda$ or $w \approx -1$ fluid) drives accelerated expansion.
 
-In the Architrino framework:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
 - The Noether Sea has a **baseline energy density** $\rho_{\Lambda} \sim \rho_{vac} E_{\text{core}}$.
 - This is **not** a vacuum catastrophe (no QFT loop divergences; see Section 3.2).
@@ -1476,7 +1480,7 @@ The key requirement is that **PO rulers and clocks automatically Lorentz-contrac
 
 ### Ontic vs Epistemic: The Two-Level Framework
 
-The Architrino theory operates on **two distinct levels**:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ operates on **two distinct levels**:
 
 **Ontic Level ($\mathbb{U}_{\text{now}}$ universe-state perspective):**
 
@@ -1511,7 +1515,7 @@ The gas molecules don't care about temperature; temperature is a coarse-graining
 
 **Absolute Simultaneity (Ontic):**
 
-In the Architrino framework, two events $(t_1, \mathbf{x}_1)$ and $(t_2, \mathbf{x}_2)$ are **objectively simultaneous** if and only if:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, two events $(t_1, \mathbf{x}_1)$ and $(t_2, \mathbf{x}_2)$ are **objectively simultaneous** if and only if:
 
 $$
 t_1 = t_2.
@@ -1535,7 +1539,7 @@ Both POs are correct **operationally** (given their synchronization conventions 
 
 **Implication:**
 
-The Architrino framework is **not** in conflict with the empirical success of special relativity. SR's operational procedures (Einstein synchronization, Lorentz transformations) are **correct for Physical Observers**. The theory simply adds a deeper layer: the absolute simultaneity accessible to the $\mathbb{U}_{\text{now}}$ (but not to POs).
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is **not** in conflict with the empirical success of special relativity. SR's operational procedures (Einstein synchronization, Lorentz transformations) are **correct for Physical Observers**. $\mathbb{A}\mathbb{A}\mathbb{A}$ simply adds a deeper layer: the absolute simultaneity accessible to the $\mathbb{U}_{\text{now}}$ (but not to POs).
 
 **Observational Constraint:**
 
@@ -1543,7 +1547,7 @@ The absolute frame must be **undetectable** to POs at precision $<10^{-17}$ (see
 
 ## Terminology Discipline (Locked Definitions)
 
-To prevent semantic drift and maintain conceptual clarity, the following terminology is **mandatory** throughout all Architrino theory documents:
+To prevent semantic drift and maintain conceptual clarity, the following terminology is **mandatory** throughout all $\mathbb{A}\mathbb{A}\mathbb{A}$ documents:
 
 ### Mandatory Terms (USE THESE)
 
@@ -1599,7 +1603,7 @@ Always clarify which level you're working at.
 
 **"Charge":**
 
-- **Fundamental**: Architrino charge magnitude $|e/6|$.
+- **Fundamental**: architrino charge magnitude $|e/6|$.
 - **Effective**: Particle charges $0, \pm e/3, \pm 2e/3, \pm e$ (see TOC Ch. 18).
 
 ## Parameter Ledger (Foundation Level)
@@ -1611,7 +1615,7 @@ The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted
 | **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:-------------------|:----------------|:------------|
 | Elementary charge | $e$ | $1.602176634 \times 10^{-19}$ C | Charge | Electron charge magnitude (CODATA 2018) |
-| Architrino charge unit | $\epsilon$ | $e/6$ | Charge | Fundamental charge (postulated) |
+| architrino charge unit | $\epsilon$ | $e/6$ | Charge | Fundamental charge (postulated) |
 | Field speed | $c_f$ | 1 (natural units) | Length/Time | Set by unit choice; physical value TBD |
 | Absolute time parameter | $t$ | $\mathbb{R}$ | Time | Non-dynamical, universal |
 | Euclidean metric | $\delta_{ij}$ | Identity | Dimensionless | Flat spatial geometry |
@@ -1719,7 +1723,7 @@ The following questions remain open and are active areas of investigation:
 ### Symmetries and Conservation
 
 6. **Does CPT hold?**
- - Standard proof requires local relativistic QFT; does the architrino framework preserve or violate CPT?
+ - Standard proof requires local relativistic QFT; does $\mathbb{A}\mathbb{A}\mathbb{A}$ preserve or violate CPT?
  - Implications for matter-antimatter asymmetry (see TOC Ch. 52).
 
 7. **Is baryon number conserved?**
@@ -1729,7 +1733,7 @@ The following questions remain open and are active areas of investigation:
 
 8. **Did the universe "begin," or is it eternal?**
  - Is there a $t = -\infty$ past, or a finite-age "Big Bang" event?
- - Architrino framework allows for eternal steady-state with local recycling (see TOC Ch. 37).
+ - $\mathbb{A}\mathbb{A}\mathbb{A}$ allows for eternal steady-state with local recycling (see TOC Ch. 37).
 
 9. **What set the initial conditions?**
  - If the universe had a beginning, what determined the initial architrino distribution?
@@ -1739,7 +1743,7 @@ The following questions remain open and are active areas of investigation:
 
 10. **Can all forces be unified geometrically?**
  - EM, weak, strong, gravity—all from tri-binary geometry and Noether Sea dynamics?
- - Current status: Qualitative framework in place (see TOC Ch. 20); quantitative derivations in progress.
+ - Current status: Qualitative $\mathbb{A}\mathbb{A}\mathbb{A}$ structure in place (see TOC Ch. 20); quantitative derivations in progress.
 
 ---
 
@@ -1750,7 +1754,7 @@ The following questions remain open and are active areas of investigation:
 This Foundational Ontology defines:
 
 1. **The Substrate**: Absolute time ($t \in \mathbb{R}$) + Euclidean space ($\mathbb{R}^3$, $\delta_{ij}$) = fixed, non-dynamical background.
-2. **The Fundamental Entity**: Architrino (point transmitter/receiver, charge $|e/6|$, universal reception rule with possible meta-stable branching at self-hit thresholds).
+2. **The Fundamental Entity**: architrino (point transmitter/receiver, charge $|e/6|$, universal reception rule with possible meta-stable branching at self-hit thresholds).
 3. **The Physical Medium**: Noether Sea (assembly lattice; mediates gravity, inertia, effective spacetime).
 4. **The Observer Framework**: $\mathbb{U}_{\text{now}}$ universe-state perspective (ontic, complete knowledge) vs Physical Observer (epistemic, limited access).
 5. **Terminology Discipline**: Locked definitions to prevent semantic drift.
