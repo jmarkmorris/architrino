@@ -79,7 +79,7 @@
     <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.4">
       &#x03B5;<tspan baseline-shift="super" font-size="10">-</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="10">-</tspan>
     </text>
-    <g transform="translate(125 104)">
+    <g transform="translate(125 92)">
       <use href="#personality-ee"/>
     </g>
   </g>
@@ -89,7 +89,7 @@
     <text x="24" y="28" fill="#f4f0ff" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.4">
       &#x03B5;<tspan baseline-shift="super" font-size="10">+</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="10">-</tspan>
     </text>
-    <g transform="translate(125 104)">
+    <g transform="translate(125 92)">
       <use href="#personality-pe"/>
     </g>
   </g>
@@ -99,7 +99,7 @@
     <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.4">
       &#x03B5;<tspan baseline-shift="super" font-size="10">+</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="10">+</tspan>
     </text>
-    <g transform="translate(125 104)">
+    <g transform="translate(125 92)">
       <use href="#personality-pp"/>
     </g>
   </g>
@@ -151,7 +151,7 @@
   <g transform="translate(90 668)">
     <rect x="0" y="0" width="190" height="176" rx="10" fill="url(#chipFill)" stroke="#ff5561" stroke-width="3" filter="url(#shadow)"/>
     <text x="20" y="28" fill="#ffb1b7" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.8">UP RED</text>
-    <g transform="translate(95 100)">
+    <g transform="translate(95 104)">
       <use href="#personality-pe"/>
     </g>
   </g>
@@ -159,7 +159,7 @@
   <g transform="translate(310 668)">
     <rect x="0" y="0" width="190" height="176" rx="10" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="3" filter="url(#chipSelectedGlow)"/>
     <text x="20" y="28" fill="#e0ccff" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.8">UP PURPLE</text>
-    <g transform="translate(95 100)">
+    <g transform="translate(95 104)">
       <use href="#personality-pe"/>
     </g>
   </g>
@@ -167,7 +167,7 @@
   <g transform="translate(530 668)">
     <rect x="0" y="0" width="190" height="176" rx="10" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="3" filter="url(#shadow)"/>
     <text x="20" y="28" fill="#b8d7ff" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.8">UP BLUE</text>
-    <g transform="translate(95 100)">
+    <g transform="translate(95 104)">
       <use href="#personality-pe"/>
     </g>
   </g>
@@ -175,7 +175,7 @@
   <g transform="translate(800 668)">
     <rect x="0" y="0" width="190" height="176" rx="10" fill="url(#chipFill)" stroke="#ff5561" stroke-width="3" filter="url(#shadow)"/>
     <text x="20" y="28" fill="#ffb1b7" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.8">DOWN RED</text>
-    <g transform="translate(95 100)">
+    <g transform="translate(95 104)">
       <use href="#personality-pe"/>
     </g>
   </g>
@@ -183,7 +183,7 @@
   <g transform="translate(1020 668)">
     <rect x="0" y="0" width="190" height="176" rx="10" fill="url(#chipFill)" stroke="#b889ff" stroke-width="3" filter="url(#shadow)"/>
     <text x="20" y="28" fill="#e0ccff" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.8">DOWN PURPLE</text>
-    <g transform="translate(95 100)">
+    <g transform="translate(95 104)">
       <use href="#personality-pe"/>
     </g>
   </g>
@@ -191,7 +191,7 @@
   <g transform="translate(1240 668)">
     <rect x="0" y="0" width="190" height="176" rx="10" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="3" filter="url(#shadow)"/>
     <text x="20" y="28" fill="#b8d7ff" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.8">DOWN BLUE</text>
-    <g transform="translate(95 100)">
+    <g transform="translate(95 104)">
       <use href="#personality-pe"/>
     </g>
   </g>
