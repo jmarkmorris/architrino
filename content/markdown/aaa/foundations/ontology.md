@@ -414,7 +414,7 @@ Forbidden transformations:
 - **Mixing spatial coordinates with time**; Galilean and Lorentz boosts are not fundamental symmetries of the substrate but may emerge effectively.
 - **Introducing preferred directions** or anisotropies at the substrate level—any such structure must arise from assembly dynamics, not the background.
 
-These restrictions keep the ontology faithful to the Euclidean substrate while allowing assemblies to realize effective symmetries in their own kinematics.
+These restrictions keep $\mathbb{A}\mathbb{A}\mathbb{A}$ faithful to the Euclidean substrate while allowing assemblies to realize effective symmetries in their own kinematics.
 
 ---
 
@@ -904,7 +904,7 @@ We take architrinos to be **primitive substances**: they exist fundamentally and
 
 - **Discrete**: there is a definite (though potentially infinite) number of them.
 - **Identifiable**: each has a unique worldline through $(t, \mathbf{x})$-space.
-- **Non-created and non-destroyed**: within the ontology, architrinos are not fundamentally created or destroyed. Any apparent birth, annihilation, decay, or transmutation at the assembly level must be understood as reorganization of a persistent architrino set rather than as ontic creation or ontic destruction.
+- **Non-created and non-destroyed**: within $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos are not fundamentally created or destroyed. Any apparent birth, annihilation, decay, or transmutation at the assembly level must be understood as reorganization of a persistent architrino set rather than as ontic creation or ontic destruction.
 
 All observable entities (particles, atoms, fields, spacetime curvature) are **emergent** from architrino configurations and dynamics (see Section 3 and TOC Ch. 10).
 
@@ -918,11 +918,11 @@ This is the deepest sense in which provenance enters $\mathbb{A}\mathbb{A}\mathb
 
 Let $\mathcal{A}$ denote the ontic set of architrino identities. Then the ontological claim is that $\mathcal{A}$ is fixed: architrinos may move, bind, unbind, exchange partners, and enter or leave a chosen subsystem, but they are not fundamentally created or destroyed by the dynamics. Assemblies therefore change by **repartitioning** and **reorganization** of a fixed identity set, not by ontic birth or ontic annihilation.
 
-This is a stronger claim than saying merely that no beginning or ending has yet been observed. Within the ontology, architrino non-creation and non-destruction is treated as a foundational fact about what exists.
+This is a stronger claim than saying merely that no beginning or ending has yet been observed. Within $\mathbb{A}\mathbb{A}\mathbb{A}$, architrino non-creation and non-destruction is treated as a foundational fact about what exists.
 
-At the same time, this is one reason to avoid the looser word **eternal** when more exact wording is available. `Non-creation and non-destruction` states the internal ontological claim of $\mathbb{A}\mathbb{A}\mathbb{A}$. By contrast, `eternal` can be heard as a broader metaphysical claim that the modeled world has no external initialization, no outer boundary condition, and no implementation substrate. The ontology does not need that broader claim. If the discussion becomes meta-theoretic rather than internal to $\mathbb{A}\mathbb{A}\mathbb{A}$, it is more careful to say that architrinos have **no known beginning or ending within the modeled dynamics**.
+At the same time, this is one reason to avoid the looser word **eternal** when more exact wording is available. `Non-creation and non-destruction` states the internal ontological claim of $\mathbb{A}\mathbb{A}\mathbb{A}$. By contrast, `eternal` can be heard as a broader metaphysical claim that the world described by $\mathbb{A}\mathbb{A}\mathbb{A}$ has no external initialization, no outer boundary condition, and no implementation substrate. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not need that broader claim. If the discussion becomes meta-theoretic rather than internal to $\mathbb{A}\mathbb{A}\mathbb{A}$, it is more careful to say that architrinos have **no known beginning or ending within the modeled dynamics**.
 
-This also leaves conceptual room for external-realization hypotheses, including a simulation hypothesis, without weakening the internal ontology. A sufficiently exact execution environment could in principle realize a world whose internal law still exhibits architrino non-creation and non-destruction, provided the implementation preserves the required path-history dynamics, identity ledger, and behavior near the symmetry-breaking regime across the relevant phase-space and boundary conditions. That possibility, if entertained, would be a claim about the realization of $\mathbb{A}\mathbb{A}\mathbb{A}$ from outside, not a change in what $\mathbb{A}\mathbb{A}\mathbb{A}$ says exists from within.
+This also leaves conceptual room for external-realization hypotheses, including a simulation hypothesis, without weakening the internal claims of $\mathbb{A}\mathbb{A}\mathbb{A}$. A sufficiently exact execution environment could in principle realize a world whose internal law still exhibits architrino non-creation and non-destruction, provided the implementation preserves the required path-history dynamics, identity ledger, and behavior near the symmetry-breaking regime across the relevant phase-space and boundary conditions. That possibility, if entertained, would be a claim about the realization of $\mathbb{A}\mathbb{A}\mathbb{A}$ from outside, not a change in what $\mathbb{A}\mathbb{A}\mathbb{A}$ says exists from within.
 
 This gives a natural microscopic basis for conservation statements. At the most primitive level, conservation means that the underlying architrino ledger is preserved. Exact provenance is therefore a stronger statement than coarse conservation:
 
@@ -933,7 +933,7 @@ From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, many effective conserva
 
 The limitation, however, should remain explicit. Provenance by itself does **not** derive every familiar conservation law. Energy conservation still depends on time-translation invariance and on the form of the interaction law. Momentum and angular momentum still depend on spatial translation and rotation symmetry. Provenance is therefore not a replacement for Noether reasoning. It is the deeper ontological basis that makes microscopic conservation statements sharp, and it explains why effective conserved quantities can often be interpreted as coarse summaries of a persistent identity ledger.
 
-This distinction is important for all of $\mathbb{A}\mathbb{A}\mathbb{A}$. When $\mathbb{A}\mathbb{A}\mathbb{A}$ says that an assembly "changed," "decayed," "reacted," or "reassembled," the fundamental claim is never that ontology blinked out and reappeared. The stronger claim is that the same underlying architrinos persisted through the event and were redistributed into a new assembly pattern. In that sense, provenance is not peripheral to the ontology. It is one of the central reasons the ontology can support a rigorous conservation story at all.
+This distinction is important for all of $\mathbb{A}\mathbb{A}\mathbb{A}$. When $\mathbb{A}\mathbb{A}\mathbb{A}$ says that an assembly "changed," "decayed," "reacted," or "reassembled," the fundamental claim is never that anything ontic in $\mathbb{A}\mathbb{A}\mathbb{A}$ blinked out and reappeared. The stronger claim is that the same underlying architrinos persisted through the event and were redistributed into a new assembly pattern. In that sense, provenance is not peripheral to $\mathbb{A}\mathbb{A}\mathbb{A}$. It is one of the central reasons $\mathbb{A}\mathbb{A}\mathbb{A}$ can support a rigorous conservation story at all.
 
 ---
 
@@ -1022,11 +1022,11 @@ See TOC Ch. 18 ("Fermions: Leptons and Quarks") and Ch. 22 ("Charge Stability Ma
 
 ### Architrino Paths
 
-The architrino path ontology describes how each fundamental point particle threads through absolute timespace, carrying energy, fields, and history.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the architrino-path account describes how each fundamental point particle threads through absolute timespace, carrying energy, fields, and history.
 
 #### Definition and Persistence
 
-Each architrino traces a continuous worldline $\mathbf{s}_a(t)$ in $\mathcal{M}$, defined for all $t\in(-\infty,+\infty)$. **Architrino non-creation and non-destruction** is a foundational postulate: every architrino has a complete past and future history, and no architrino enters or leaves ontology by a fundamental creation or destruction event.
+Each architrino traces a continuous worldline $\mathbf{s}_a(t)$ in $\mathcal{M}$, defined for all $t\in(-\infty,+\infty)$. **Architrino non-creation and non-destruction** is a foundational postulate: every architrino has a complete past and future history, and no architrino enters or leaves the ontic inventory of $\mathbb{A}\mathbb{A}\mathbb{A}$ by a fundamental creation or destruction event.
 
 The worldline is **unique** (no two distinct architrinos share the same path) and at least absolutely continuous so that $\mathbf{v}_a(t)=d\mathbf{s}_a/dt$ exists almost everywhere and is piecewise continuous.
 
@@ -1217,7 +1217,7 @@ This state is **physically distinguishable** from any state of non-zero velocity
 
 **Important caveat:**
 
-In realistic many-architrino systems, distinguishing absolute rest from motion requires the ability to reconstruct the global pattern of wake streams, which is nontrivial. However, the ontology supports an **objective notion of rest**—a departure from Einstein's relativity, but compatible with absolute time.
+In realistic many-architrino systems, distinguishing absolute rest from motion requires the ability to reconstruct the global pattern of wake streams, which is nontrivial. However, $\mathbb{A}\mathbb{A}\mathbb{A}$ supports an **objective notion of rest**—a departure from Einstein's relativity, but compatible with absolute time.
 
 **Lorentz suppression requirement:**
 
@@ -1292,7 +1292,7 @@ Each Noether core is itself a **tri-binary assembly**: three nested, counter-rot
 - **Effective permittivity/permeability**: Emergent electromagnetic constants $\epsilon_0$, $\mu_0$ arise from Noether Sea response to charge/current distributions
 - **Refractive index**: Variations in $\rho_{vac}$ cause variations in effective light speed $c_{\text{eff}} = c_f / n(\rho_{vac})$
 
-**Status of the magnetic field ($\mathbb{A}\mathbb{A}\mathbb{A}$ viewpoint):** The fundamental interaction kernel is **delayed and radial in direction**; it contains no intrinsic velocity-cross-product term. Its magnitude, however, is strongly velocity dependent through the causal Jacobian that bunches or dilates received flux along each active branch. “Magnetic field” is therefore **not a primitive substance** but a **pseudovector summary** that appears only after coarse-graining the geometry of overlapping delayed hits into an instantaneous, low-velocity approximation. The familiar $ \mathbf{v} \times \mathbf{B}$ term is the first-order side-effect of three geometric facts: (i) **aberration**—delayed line-of-action tilts by $O(v/c)$, producing a transverse component; (ii) **time-shear**—different parts of a moving or looped source are sampled at slightly different delayed times, so their radial pushes sum to a net circulation; (iii) **causal-flux bunching**—the Jacobian denominator enhances or suppresses specific branches according to source motion. Package those transverse pieces and flux weights and you recover the Lorentz “magnetic” force. Binary coupling makes the effect coherent: two charges chasing each other keep a persistent delayed tilt and branch-weight asymmetry, so the transverse components add up and look like magnetic binding, but nothing new is added to the fundamental law. All magnetic-like observables (moments, flux tubes, v×B forces) thus arise from the circulation and phase structure of delayed, Jacobian-weighted line-of-action pushes in the Noether Sea. Keep the delayed line-of-action law as the ontology; B is a bookkeeping device, not an independent field.
+**Status of the magnetic field ($\mathbb{A}\mathbb{A}\mathbb{A}$ viewpoint):** The fundamental interaction kernel is **delayed and radial in direction**; it contains no intrinsic velocity-cross-product term. Its magnitude, however, is strongly velocity dependent through the causal Jacobian that bunches or dilates received flux along each active branch. “Magnetic field” is therefore **not a primitive substance** but a **pseudovector summary** that appears only after coarse-graining the geometry of overlapping delayed hits into an instantaneous, low-velocity approximation. The familiar $ \mathbf{v} \times \mathbf{B}$ term is the first-order side-effect of three geometric facts: (i) **aberration**—delayed line-of-action tilts by $O(v/c)$, producing a transverse component; (ii) **time-shear**—different parts of a moving or looped source are sampled at slightly different delayed times, so their radial pushes sum to a net circulation; (iii) **causal-flux bunching**—the Jacobian denominator enhances or suppresses specific branches according to source motion. Package those transverse pieces and flux weights and you recover the Lorentz “magnetic” force. Binary coupling makes the effect coherent: two charges chasing each other keep a persistent delayed tilt and branch-weight asymmetry, so the transverse components add up and look like magnetic binding, but nothing new is added to the fundamental law. All magnetic-like observables (moments, flux tubes, v×B forces) thus arise from the circulation and phase structure of delayed, Jacobian-weighted line-of-action pushes in the Noether Sea. Keep the delayed line-of-action law as foundational in $\mathbb{A}\mathbb{A}\mathbb{A}$; B is a bookkeeping device, not an independent field.
 
 **Edge-condition energy transfer (deterministic multistability):**  
 Even below the self-hit regime, energy transfer to/from a Noether core can pass through **threshold conditions** where multiple outcomes are dynamically accessible (transfer proceeds or stalls). Which outcome occurs is **deterministic but microstate-sensitive**: the local wake phase configuration from other architrinos can tip the system into one attractor or another. This is **meta-stable branching** without Many-Worlds or fundamental randomness.
@@ -1678,7 +1678,7 @@ where:
 
 ### Simulation Parameters (Computational Necessities)
 
-These parameters arise from discretization and regularization used when approximating the continuous path-history potential integral. They are **implementation choices**, not fundamental postulates of the ontology.
+These parameters arise from discretization and regularization used when approximating the continuous path-history potential integral. They are **implementation choices**, not fundamental postulates of $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 | **Parameter** | **Symbol** | **Purpose** | **Comment** |
 |:--------------|:-----------|:-----------|:------------|
@@ -1686,7 +1686,7 @@ These parameters arise from discretization and regularization used when approxim
 
 $\eta$ exists because computers sample the past worldline at discrete times; as the resolution increases ($\eta\to 0$) the simulation converges to the continuous causal flux described in Section 1.3. Its presence does not imply that physics is fundamentally pulsed.
 
-The **path-history integral** described in Section 2.4.5 can be approximated by sampling discrete time steps. Each time step produces an effective causal wake surface of width $\eta$ whose inverse-square contribution is evaluated together with the branch Jacobian weight; as $\eta\to 0$ the sum approaches the continuous integral over causal emissions. Thus, “summing wake surfaces” is the numerical recipe for approximating the causal path-history potential law, not a claim that the underlying ontology emits pulses.
+The **path-history integral** described in Section 2.4.5 can be approximated by sampling discrete time steps. Each time step produces an effective causal wake surface of width $\eta$ whose inverse-square contribution is evaluated together with the branch Jacobian weight; as $\eta\to 0$ the sum approaches the continuous integral over causal emissions. Thus, “summing wake surfaces” is the numerical recipe for approximating the causal path-history potential law, not a claim that the underlying law of $\mathbb{A}\mathbb{A}\mathbb{A}$ emits pulses.
 
 ---
 

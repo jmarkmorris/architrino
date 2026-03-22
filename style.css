@@ -550,7 +550,7 @@ body {
   overflow: auto;
   padding: 14px 14px 16px;
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(10, 15, 30, 0.98), rgba(18, 26, 46, 0.94));
+  background: linear-gradient(180deg, rgba(117, 34, 220, 0.94), rgba(102, 28, 204, 0.94));
   box-shadow:
     0 18px 38px rgba(2, 6, 18, 0.32),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -573,7 +573,7 @@ body {
   padding: 10px 14px;
   border-radius: 14px;
   border: 1px solid rgba(160, 170, 220, 0.34);
-  background: rgba(10, 15, 30, 0.72);
+  background: linear-gradient(180deg, rgba(117, 34, 220, 0.72), rgba(102, 28, 204, 0.72));
   color: #f5f7ff;
   font-size: 15px;
   font-weight: 800;
@@ -587,7 +587,7 @@ body {
   padding: 12px 14px 10px;
   border-radius: 18px;
   border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(8, 10, 18, 0.72);
+  background: linear-gradient(180deg, rgba(117, 34, 220, 0.66), rgba(102, 28, 204, 0.66));
 }
 
 #hover-tooltip.is-element-preview .detail-row {
@@ -3125,7 +3125,7 @@ body {
   --hyde-map-top: 0%;
   --hyde-map-width: 100%;
   --hyde-map-height: 100%;
-  --hyde-art-scale: 0.7;
+  --hyde-art-scale: 0.79;
   position: relative;
   width: max(1220px, 100%);
   aspect-ratio: 1.3455657492;
@@ -3136,6 +3136,18 @@ body {
   background: #fff;
   transform: scale(var(--hyde-art-scale));
   transform-origin: top center;
+}
+
+@media (max-width: 1100px) {
+  #hyde-periodic-canvas {
+    --hyde-art-scale: 0.76;
+  }
+}
+
+@media (max-width: 820px) {
+  #hyde-periodic-canvas {
+    --hyde-art-scale: 0.73;
+  }
 }
 
 #hyde-periodic-callouts {
@@ -3155,7 +3167,7 @@ body {
   padding: 14px 18px;
   border-radius: 18px;
   border: 1px solid rgba(160, 170, 220, 0.34);
-  background: linear-gradient(180deg, rgba(10, 15, 30, 0.94), rgba(18, 26, 46, 0.9));
+  background: linear-gradient(180deg, rgba(117, 34, 220, 0.9), rgba(102, 28, 204, 0.9));
   box-shadow:
     0 18px 38px rgba(2, 6, 18, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -3353,23 +3365,39 @@ body {
 
 #hyde-periodic-grid .hyde-hotspot {
   cursor: pointer;
-  fill: rgba(148, 191, 255, 0.06);
-  stroke: rgba(196, 220, 255, 0.28);
-  stroke-width: 1.5;
+  fill: rgba(167, 205, 255, 0.12);
+  stroke: rgba(247, 250, 255, 0.9);
+  stroke-width: 2.8;
+  vector-effect: non-scaling-stroke;
+  paint-order: stroke fill;
+  filter:
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.5))
+    drop-shadow(0 0 10px rgba(120, 177, 255, 0.22));
   pointer-events: auto;
-  transition: fill 0.1s ease, stroke 0.1s ease;
+  transition:
+    fill 0.12s ease,
+    stroke 0.12s ease,
+    stroke-width 0.12s ease,
+    filter 0.12s ease;
 }
 
 #hyde-periodic-grid .hyde-hotspot:hover,
 #hyde-periodic-grid .hyde-hotspot:focus-visible {
-  fill: rgba(148, 191, 255, 0.16);
-  stroke: rgba(196, 220, 255, 0.42);
+  fill: rgba(167, 205, 255, 0.2);
+  stroke: rgba(255, 255, 255, 0.98);
+  stroke-width: 3.3;
+  filter:
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.64))
+    drop-shadow(0 0 14px rgba(120, 177, 255, 0.3));
 }
 
 #hyde-periodic-grid .hyde-hotspot.is-focused {
-  fill: rgba(148, 191, 255, 0.3);
+  fill: rgba(148, 191, 255, 0.34);
   stroke: rgba(245, 249, 255, 0.98);
-  stroke-width: 3.2;
+  stroke-width: 4.6;
+  filter:
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.72))
+    drop-shadow(0 0 18px rgba(120, 177, 255, 0.34));
 }
 
 #hyde-periodic-grid .hyde-hotspot:focus-visible {

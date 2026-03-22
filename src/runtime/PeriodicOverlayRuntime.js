@@ -173,6 +173,8 @@ export function createPeriodicOverlayRuntime(deps) {
   };
   const hydeViewBoxWidth = 2592;
   const hydeViewBoxHeight = 1944;
+  const hydeHotspotRadiusScale = 1.2;
+  const hydeHotspotActiveStrokeWidth = 4.6;
   const svgNamespace = "http://www.w3.org/2000/svg";
   const hydeAtomicCycleOrder = [
     1,
@@ -503,7 +505,7 @@ export function createPeriodicOverlayRuntime(deps) {
     }
     node.style.setProperty("fill", "rgba(148, 191, 255, 0.3)");
     node.style.setProperty("stroke", "rgba(245, 249, 255, 0.98)");
-    node.style.setProperty("stroke-width", "3.2");
+    node.style.setProperty("stroke-width", `${hydeHotspotActiveStrokeWidth}`);
   }
 
   function setActiveHydeHotspot(node, options = {}) {
@@ -1577,10 +1579,11 @@ export function createPeriodicOverlayRuntime(deps) {
       const circle = document.createElementNS(svgNamespace, "circle");
       circle.setAttribute("cx", `${hotspot.cx}`);
       circle.setAttribute("cy", `${hotspot.cy}`);
-      circle.setAttribute("r", `${hotspot.r}`);
+      circle.setAttribute("r", `${hotspot.r * hydeHotspotRadiusScale}`);
       if (hotspot.transform) {
         circle.setAttribute("transform", hotspot.transform);
       }
+      circle.setAttribute("vector-effect", "non-scaling-stroke");
       circle.classList.add("hyde-hotspot");
       if (!element) {
         circle.classList.add("is-unassigned");
