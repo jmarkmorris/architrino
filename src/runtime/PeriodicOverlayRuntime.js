@@ -37,7 +37,6 @@ export function createPeriodicOverlayRuntime(deps) {
   let hydeActiveHotspotTarget = null;
   let hydeHotspotNodesInSpiralOrder = [];
   let hydeHotspotAtomicNumbersInOrder = [];
-  let hydeHotspotNodeByDisplayNumber = new Map();
   let hydeHotspotNodeByAtomicNumber = new Map();
   let hydePeriodicWasOpen = false;
   let elementInfoPinned = false;
@@ -171,6 +170,12 @@ export function createPeriodicOverlayRuntime(deps) {
   const hydeViewBoxWidth = 2592;
   const hydeViewBoxHeight = 1944;
   const svgNamespace = "http://www.w3.org/2000/svg";
+  const hydeHotspotNumberToAtomicNumber = new Map(
+    Object.entries(hydeAtomicNumberToHotspotNumber).map(([atomicNumber, hotspotNumber]) => [
+      Number(hotspotNumber),
+      Number(atomicNumber),
+    ])
+  );
 
   async function ensurePeriodicTable() {
     return periodicTableService.ensure(
@@ -1355,39 +1360,19 @@ export function createPeriodicOverlayRuntime(deps) {
     const elementsByAtomicNumber = new Map(
       elements.map((element) => [Number(element.number), element])
     );
-    const assignedElements = new Array(orderedHotspots.length).fill(null);
-    const hotspotOrderByDisplayNumber = new Map(
-      orderedHotspots.map((hotspot, hotspotOrderIndex) => [hotspot.index + 1, hotspotOrderIndex])
-    );
-    const usedHotspotOrders = new Set();
-    Object.entries(hydeAtomicNumberToHotspotNumber).forEach(([atomicNumberKey, displayNumberValue]) => {
-      const atomicNumber = Number.parseInt(atomicNumberKey, 10);
-      const displayNumber = Number.parseInt(displayNumberValue, 10);
-      if (!Number.isFinite(atomicNumber) || !Number.isFinite(displayNumber)) {
-        return;
+    const assignedElements = orderedHotspots.map((hotspot) => {
+      const hotspotNumber = hotspot.index + 1;
+      const atomicNumber = hydeHotspotNumberToAtomicNumber.get(hotspotNumber);
+      if (!Number.isFinite(atomicNumber)) {
+        return null;
       }
       const element = elementsByAtomicNumber.get(atomicNumber);
       if (!element) {
         console.warn(
           `[PeriodicOverlayRuntime] Ignoring Hyde assignment for unknown atomic number ${atomicNumber}`
         );
-        return;
       }
-      const hotspotOrderIndex = hotspotOrderByDisplayNumber.get(displayNumber);
-      if (hotspotOrderIndex === undefined) {
-        console.warn(
-          `[PeriodicOverlayRuntime] Ignoring Hyde assignment for unknown hotspot ${displayNumber}`
-        );
-        return;
-      }
-      if (usedHotspotOrders.has(hotspotOrderIndex)) {
-        console.warn(
-          `[PeriodicOverlayRuntime] Duplicate Hyde assignment for hotspot ${displayNumber}; keeping first`
-        );
-        return;
-      }
-      assignedElements[hotspotOrderIndex] = element;
-      usedHotspotOrders.add(hotspotOrderIndex);
+      return element ?? null;
     });
 
     const mappedCount = assignedElements.filter(Boolean).length;
@@ -1402,10 +1387,8 @@ export function createPeriodicOverlayRuntime(deps) {
     }
     grid.innerHTML = "";
     const legendSet = new Map();
-    const hotspotNodes = [];
     hydeHotspotNodesInSpiralOrder = [];
     hydeHotspotAtomicNumbersInOrder = [];
-    hydeHotspotNodeByDisplayNumber = new Map();
     hydeHotspotNodeByAtomicNumber = new Map();
     hydeActiveHotspotTarget = null;
     hydeInitialFocusTarget = null;
@@ -1433,10 +1416,9 @@ export function createPeriodicOverlayRuntime(deps) {
       circle.setAttribute("tabindex", "0");
       circle.dataset.symbol = element?.symbol || "";
       circle.dataset.number = element ? `${element.number}` : "";
-      circle.dataset.sequenceIndex = `${index}`;
+      circle.dataset.sequenceIndex = element ? `${element.number}` : `${index}`;
       circle.dataset.hotspotIndex = `${hotspot.index}`;
       circle.dataset.hotspotNumber = `${atomicDisplayNumber}`;
-      circle.dataset.sourceHotspotNumber = `${hotspotDisplayNumber}`;
       circle.dataset.centerX = `${hotspot.center.x}`;
       circle.dataset.centerY = `${hotspot.center.y}`;
       circle.dataset.radialDistance = `${hotspot.radialDistance ?? 0}`;
@@ -1517,8 +1499,6 @@ export function createPeriodicOverlayRuntime(deps) {
         }
       });
       grid.appendChild(circle);
-      hotspotNodes.push(circle);
-      hydeHotspotNodeByDisplayNumber.set(hotspotDisplayNumber, circle);
       hydeHotspotNodesInSpiralOrder.push(circle);
       if (element && Number(element.number) === 1) {
         hydeInitialFocusTarget = circle;
@@ -1537,14 +1517,18 @@ export function createPeriodicOverlayRuntime(deps) {
     }
     const element119 = elementsByAtomicNumber.get(119);
     if (element119 && supplementalLayer) {
-      const hotspotOrder87 = hotspotOrderByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[87]);
-      const hotspotOrder88 = hotspotOrderByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[88]);
-      const hotspotOrder118 = hotspotOrderByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[118]);
-      const hotspotOrder117 = hotspotOrderByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[117]);
-      const hotspot87 = Number.isInteger(hotspotOrder87) ? orderedHotspots[hotspotOrder87] : null;
-      const hotspot88 = Number.isInteger(hotspotOrder88) ? orderedHotspots[hotspotOrder88] : null;
-      const hotspot118 = Number.isInteger(hotspotOrder118) ? orderedHotspots[hotspotOrder118] : null;
-      const hotspot117 = Number.isInteger(hotspotOrder117) ? orderedHotspots[hotspotOrder117] : null;
+      const hotspot87 = orderedHotspots.find(
+        (hotspot) => hydeHotspotNumberToAtomicNumber.get(hotspot.index + 1) === 87
+      ) ?? null;
+      const hotspot88 = orderedHotspots.find(
+        (hotspot) => hydeHotspotNumberToAtomicNumber.get(hotspot.index + 1) === 88
+      ) ?? null;
+      const hotspot118 = orderedHotspots.find(
+        (hotspot) => hydeHotspotNumberToAtomicNumber.get(hotspot.index + 1) === 118
+      ) ?? null;
+      const hotspot117 = orderedHotspots.find(
+        (hotspot) => hydeHotspotNumberToAtomicNumber.get(hotspot.index + 1) === 117
+      ) ?? null;
       const tilePlacement = buildHydeSupplementalTilePlacement({
         hotspotAnchor: hotspot87 ?? hotspot118,
         hotspotReference: hotspot88 ?? hotspot117,
@@ -1557,14 +1541,14 @@ export function createPeriodicOverlayRuntime(deps) {
         element: element119,
         placement: tilePlacement,
         overlay,
-        leftFocusTarget: hydeHotspotNodeByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[118]) ?? null,
+        leftFocusTarget: hydeHotspotNodeByAtomicNumber.get(118) ?? null,
         navigationCenter,
       });
       if (tileNode) {
         hydeHotspotNodeByAtomicNumber.set(119, tileNode);
         hydeHotspotAtomicNumbersInOrder.push(119);
       }
-      const hotspot118Node = hydeHotspotNodeByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[118]);
+      const hotspot118Node = hydeHotspotNodeByAtomicNumber.get(118);
       if (tileNode && hotspot118Node) {
         hotspot118Node.addEventListener("keydown", (event) => {
           if (event.key === "ArrowRight") {
