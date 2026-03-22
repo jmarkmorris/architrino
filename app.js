@@ -3534,7 +3534,7 @@ function openComposerMemberMenuAt(clientX, clientY, assemblyId, memberId) {
     createSubassemblyFromMembers: createComposerSubassemblyFromMembers,
     openSubassemblyMenuAt: openComposerSubassemblyMenuAt,
     removeAssemblyMember: removeComposerAssemblyMember,
-    openAssemblyPropertiesMenuAt,
+    openAssemblyPropertiesMenuAt: openComposerAssemblyPropertiesMenuAt,
     moveMemberToSubassembly: moveComposerMemberToSubassembly,
     positionMenu: positionComposerAssemblyMenu,
   });
@@ -3582,7 +3582,7 @@ function openComposerSubassemblyMenuAt(clientX, clientY, assemblyId, subassembly
     closeMenu: closeComposerAssemblyMenu,
     renderAssemblyEditor: renderComposerAssemblyEditor,
     renderJsonPreview: renderComposerJsonPreview,
-    openAssemblyPropertiesMenuAt,
+    openAssemblyPropertiesMenuAt: openComposerAssemblyPropertiesMenuAt,
     openMemberMenuAt: openComposerMemberMenuAt,
     positionMenu: positionComposerAssemblyMenu,
   });
@@ -3666,7 +3666,7 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
     startTransferFromAssembly: startComposerTransferFromAssembly,
     completeTransferToAssembly: completeComposerTransferToAssembly,
     clearPendingTransfer: clearComposerPendingTransfer,
-    openAssemblyPropertiesMenuAt,
+    openAssemblyPropertiesMenuAt: openComposerAssemblyPropertiesMenuAt,
     ensureAssemblyDrafts: ensureComposerAssemblyDrafts,
     positionMenu: positionComposerAssemblyMenu,
   });
@@ -7303,6 +7303,27 @@ function resolveComposerPersonalityHandleHit(object) {
   return null;
 }
 
+function resolveComposerAssemblyIdHit(object) {
+  let current = object;
+  while (current) {
+    const assemblyId = current.userData?.assemblyId;
+    if (assemblyId) {
+      return {
+        assemblyId,
+        object: current,
+      };
+    }
+    current = current.parent ?? null;
+  }
+  return null;
+}
+
+function findComposerShellSurfaceHit(hits = []) {
+  return (Array.isArray(hits) ? hits : []).find(
+    (hit) => hit?.object && !hit.object.userData?.isComposerShellGuide
+  ) ?? null;
+}
+
 function findComposerCenterMarkerIntersection(hits = []) {
   for (const hit of Array.isArray(hits) ? hits : []) {
     const assemblyHit = resolveComposerAssemblyHit(hit?.object);
@@ -7600,13 +7621,41 @@ function onComposerContextMenu(event) {
   if (!composerCanvas || !composerCamera || !composerRaycaster) {
     return;
   }
+  event.preventDefault();
   const { x, y } = getComposerPointerNdc(event);
   composerRaycaster.setFromCamera({ x, y }, composerCamera);
+  const shellHits = composerRaycaster.intersectObjects(composerShellMeshes, true);
+  const orbitHits = composerRaycaster.intersectObjects(composerOrbitParticleMeshes, true);
   const personalityHits = composerRaycaster.intersectObjects(composerPersonalityHandleMeshes, true);
+  const graphicHits = composerRaycaster.intersectObjects(composerGraphicOverlayHandleMeshes, true);
+  const assemblyHits = composerRaycaster.intersectObjects(composerAssemblyMeshes, true);
+  const pointHits = composerRaycaster.intersectObjects(composerPointMeshes, true);
+  const memberHits = composerRaycaster.intersectObjects(composerMemberHandleMeshes, true);
+  const subassemblyHits = composerRaycaster.intersectObjects(composerSubassemblyHandleMeshes, true);
+  const shellSurfaceHit = findComposerShellSurfaceHit(shellHits);
+  if (shellSurfaceHit) {
+    const assemblyId = resolveComposerAssemblyIdHit(shellSurfaceHit.object)?.assemblyId ?? null;
+    if (assemblyId) {
+      setComposerSelectedAssembly(assemblyId);
+      renderComposerAssemblyEditor();
+      renderComposerJsonPreview();
+      openComposerAssemblyPropertiesMenuAt(event.clientX, event.clientY, assemblyId);
+      return;
+    }
+  }
+  if (orbitHits.length) {
+    const assemblyId = resolveComposerAssemblyIdHit(orbitHits[0].object)?.assemblyId ?? null;
+    if (assemblyId) {
+      setComposerSelectedAssembly(assemblyId);
+      renderComposerAssemblyEditor();
+      renderComposerJsonPreview();
+      openComposerAssemblyPropertiesMenuAt(event.clientX, event.clientY, assemblyId);
+      return;
+    }
+  }
   if (personalityHits.length) {
     const personalityHit = resolveComposerPersonalityHandleHit(personalityHits[0].object);
     if (personalityHit?.assemblyId && personalityHit?.memberId) {
-      event.preventDefault();
       setComposerSelectedAssembly(personalityHit.assemblyId);
       renderComposerAssemblyEditor();
       renderComposerJsonPreview();
@@ -7619,7 +7668,6 @@ function onComposerContextMenu(event) {
       return;
     }
   }
-  const graphicHits = composerRaycaster.intersectObjects(composerGraphicOverlayHandleMeshes, true);
   if (graphicHits.length) {
     const graphicHit = resolveComposerGraphicOverlayHit(graphicHits[0].object);
     if (graphicHit?.overlayId) {
@@ -7630,8 +7678,6 @@ function onComposerContextMenu(event) {
       return;
     }
   }
-  const assemblyHits = composerRaycaster.intersectObjects(composerAssemblyMeshes, true);
-  const pointHits = composerRaycaster.intersectObjects(composerPointMeshes, true);
   const preferredCenterHit = shouldPreferComposerCenterMarker(pointHits, assemblyHits);
   if (preferredCenterHit?.assemblyId) {
     setComposerSelectedAssembly(preferredCenterHit.assemblyId);
@@ -7643,12 +7689,23 @@ function onComposerContextMenu(event) {
   if (pointHits.length) {
     const pointIndex = resolveComposerIndexedHit(pointHits[0].object, "pointIndex")?.index;
     if (Number.isInteger(pointIndex)) {
-      event.preventDefault();
+      if (pointIndex === 0) {
+        const targetAssemblyId = composerPathState.ownerAssemblyId || composerSelectedAssemblyId;
+        const targetAssembly = targetAssemblyId
+          ? getComposerAssemblyDraftById(targetAssemblyId)
+          : null;
+        if (targetAssemblyId && !isComposerBareArchitrinoAssembly(targetAssembly)) {
+          setComposerSelectedAssembly(targetAssemblyId);
+          renderComposerAssemblyEditor();
+          renderComposerJsonPreview();
+          openComposerAssemblyPropertiesMenuAt(event.clientX, event.clientY, targetAssemblyId);
+          return;
+        }
+      }
       openComposerPathPointMenuAt(event.clientX, event.clientY, pointIndex);
       return;
     }
   }
-  const memberHits = composerRaycaster.intersectObjects(composerMemberHandleMeshes, true);
   if (memberHits.length) {
     const memberHit = resolveComposerMemberHandleHit(memberHits[0].object);
     if (memberHit?.assemblyId && memberHit?.memberId) {
@@ -7664,7 +7721,6 @@ function onComposerContextMenu(event) {
       return;
     }
   }
-  const subassemblyHits = composerRaycaster.intersectObjects(composerSubassemblyHandleMeshes, true);
   if (subassemblyHits.length) {
     const subassemblyHit = resolveComposerSubassemblyHandleHit(subassemblyHits[0].object);
     if (subassemblyHit?.assemblyId && subassemblyHit?.subassemblyId) {
