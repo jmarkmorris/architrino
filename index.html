@@ -191,7 +191,7 @@
       <div id="composer-overlay" aria-hidden="true">
         <div class="composer-header">
           <div class="composer-header-main">
-            <div class="composer-title">Composer v8 • Pre-Alpha</div>
+            <div class="composer-title">Composer v11 • Pre-Alpha</div>
           </div>
           <div class="composer-actions">
             <button id="composer-scene-button" type="button" aria-label="Open scene controls">
@@ -386,32 +386,6 @@
       </div>
       <div id="hyde-periodic-overlay" aria-hidden="true">
         <div id="hyde-periodic-stage">
-          <div
-            id="hyde-periodic-hint"
-            role="note"
-            aria-label="Hover circles to preview. Click circles to open elements. Arrow keys navigate the Hyde periodic table: left and right move around the spiral, and up and down move through the group."
-          >
-            <span class="hyde-periodic-hint-copy">
-              Hover circles to preview. Click circles to open elements.
-            </span>
-            <span class="hyde-periodic-hint-divider" aria-hidden="true"></span>
-            <span class="hyde-periodic-hint-guide" aria-hidden="true">
-              <span class="hyde-periodic-hint-row">
-                <span class="hyde-periodic-keypair">
-                  <span class="hyde-periodic-key">←</span>
-                  <span class="hyde-periodic-key">→</span>
-                </span>
-                <span class="hyde-periodic-hint-label">spiral</span>
-              </span>
-              <span class="hyde-periodic-hint-row">
-                <span class="hyde-periodic-keypair">
-                  <span class="hyde-periodic-key">↑</span>
-                  <span class="hyde-periodic-key">↓</span>
-                </span>
-                <span class="hyde-periodic-hint-label">group</span>
-              </span>
-            </span>
-          </div>
           <div id="hyde-periodic-canvas">
             <img
               id="hyde-periodic-artwork"
@@ -421,6 +395,72 @@
               decoding="async"
               draggable="false"
             />
+            <div id="hyde-periodic-callouts" aria-label="Hyde periodic table guidance">
+              <section
+                class="hyde-periodic-callout hyde-periodic-callout-info"
+                role="note"
+                aria-label="Hover small circles to preview. Click small circles to open elements."
+              >
+                <div class="hyde-periodic-callout-kicker">Map</div>
+                <p class="hyde-periodic-callout-copy">
+                  Hover small circles to preview. Click small circles to open elements.
+                </p>
+              </section>
+              <section
+                class="hyde-periodic-callout hyde-periodic-callout-keyboard"
+                role="group"
+                aria-label="Keyboard navigation"
+              >
+                <div class="hyde-periodic-callout-kicker">Keyboard</div>
+                <p class="hyde-periodic-callout-copy hyde-periodic-callout-copy-compact">
+                  Press arrow keys or click below.
+                </p>
+                <div class="hyde-periodic-hint-guide">
+                  <div class="hyde-periodic-hint-row">
+                    <span class="hyde-periodic-keypair">
+                      <button
+                        class="hyde-periodic-key hyde-periodic-nav-key"
+                        type="button"
+                        data-hyde-nav="left"
+                        aria-label="Move left around the spiral"
+                      >
+                        ←
+                      </button>
+                      <button
+                        class="hyde-periodic-key hyde-periodic-nav-key"
+                        type="button"
+                        data-hyde-nav="right"
+                        aria-label="Move right around the spiral"
+                      >
+                        →
+                      </button>
+                    </span>
+                    <span class="hyde-periodic-hint-label">spiral</span>
+                  </div>
+                  <div class="hyde-periodic-hint-row">
+                    <span class="hyde-periodic-keypair">
+                      <button
+                        class="hyde-periodic-key hyde-periodic-nav-key"
+                        type="button"
+                        data-hyde-nav="up"
+                        aria-label="Move up through the group"
+                      >
+                        ↑
+                      </button>
+                      <button
+                        class="hyde-periodic-key hyde-periodic-nav-key"
+                        type="button"
+                        data-hyde-nav="down"
+                        aria-label="Move down through the group"
+                      >
+                        ↓
+                      </button>
+                    </span>
+                    <span class="hyde-periodic-hint-label">group</span>
+                  </div>
+                </div>
+              </section>
+            </div>
             <svg id="hyde-periodic-grid" viewBox="0 0 2592 1944" aria-label="Hyde periodic element map"></svg>
           </div>
         </div>

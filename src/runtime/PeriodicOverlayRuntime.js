@@ -41,6 +41,9 @@ export function createPeriodicOverlayRuntime(deps) {
   let hydeHotspotNodeByAtomicNumber = new Map();
   let hydePeriodicWasOpen = false;
   let elementInfoPinned = false;
+  const hydeHintNavButtons = hydePeriodicOverlay
+    ? Array.from(hydePeriodicOverlay.querySelectorAll(".hyde-periodic-nav-key"))
+    : [];
   const activePeriodicSceneId =
     typeof periodicSceneId === "string" && periodicSceneId ? periodicSceneId : "periodic_table";
   const activeHydePeriodicSceneId =
@@ -324,6 +327,15 @@ export function createPeriodicOverlayRuntime(deps) {
     return target.isContentEditable === true;
   }
 
+  function isHydePeriodicSceneActive(level = getCurrentLevel()) {
+    const sceneId = level?.sceneId;
+    const scenePath = typeof level?.id === "string" ? level.id : "";
+    return (
+      sceneId === activeHydePeriodicSceneId ||
+      scenePath.endsWith("/hyde_periodic_table_scene.json")
+    );
+  }
+
   function showHydeHotspotTooltip(node) {
     if (!(node instanceof Element)) {
       return;
@@ -437,6 +449,36 @@ export function createPeriodicOverlayRuntime(deps) {
     const nextAtomicNumber = hydeHotspotCycleAtomicNumbersInOrder[nextIndex];
     return setActiveHydeHotspot(hydeHotspotNodeByAtomicNumber.get(nextAtomicNumber), {
       focus: true,
+    });
+  }
+
+  function triggerHydeNavigationAction(action) {
+    if (!isHydePeriodicSceneActive() || isTransitionActive()) {
+      return null;
+    }
+    if (action === "left") {
+      return moveActiveHydeHotspotByOffset(-1);
+    }
+    if (action === "right") {
+      return moveActiveHydeHotspotByOffset(1);
+    }
+    if (action === "up") {
+      return moveActiveHydeHotspotByCycle("in");
+    }
+    if (action === "down") {
+      return moveActiveHydeHotspotByCycle("out");
+    }
+    return null;
+  }
+
+  function wireHydeHintNavigationButtons() {
+    if (!hydeHintNavButtons.length) {
+      return;
+    }
+    hydeHintNavButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        triggerHydeNavigationAction(button.dataset.hydeNav);
+      });
     });
   }
 
@@ -1711,12 +1753,7 @@ export function createPeriodicOverlayRuntime(deps) {
   }
 
   window.addEventListener("keydown", (event) => {
-    const currentLevel = getCurrentLevel();
-    const sceneId = currentLevel?.sceneId;
-    const scenePath = typeof currentLevel?.id === "string" ? currentLevel.id : "";
-    const isHydePeriodic =
-      sceneId === activeHydePeriodicSceneId ||
-      scenePath.endsWith("/hyde_periodic_table_scene.json");
+    const isHydePeriodic = isHydePeriodicSceneActive();
     if (!isHydePeriodic || isTransitionActive() || isEditableTarget(event.target)) {
       return;
     }
@@ -1725,24 +1762,26 @@ export function createPeriodicOverlayRuntime(deps) {
     }
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      moveActiveHydeHotspotByOffset(-1);
+      triggerHydeNavigationAction("left");
       return;
     }
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      moveActiveHydeHotspotByOffset(1);
+      triggerHydeNavigationAction("right");
       return;
     }
     if (event.key === "ArrowUp") {
       event.preventDefault();
-      moveActiveHydeHotspotByCycle("in");
+      triggerHydeNavigationAction("up");
       return;
     }
     if (event.key === "ArrowDown") {
       event.preventDefault();
-      moveActiveHydeHotspotByCycle("out");
+      triggerHydeNavigationAction("down");
     }
   });
+
+  wireHydeHintNavigationButtons();
 
   function updateElementLegend() {
     if (!elementLegend) {

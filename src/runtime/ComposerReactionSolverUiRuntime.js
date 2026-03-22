@@ -1,3 +1,5 @@
+import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionRulesRuntime.js";
+
 const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#94b6ff" },
   higgs_cluster: { shortLabel: "HC", accent: "#e8c17b" },
@@ -34,11 +36,35 @@ function createBinaryBranch(id, label, { withPersonality = true } = {}) {
     label,
     children: withPersonality
       ? [
-          { id: `${id}/binary`, label: "inner binary", children: [] },
-          { id: `${id}/personality_1`, label: "personality architrino", children: [] },
-          { id: `${id}/personality_2`, label: "personality architrino", children: [] },
+          {
+            id: `${id}/binary`,
+            label: "inner binary",
+            children: [],
+            inventory: { electrino: 1, positrino: 1 },
+          },
+          {
+            id: `${id}/personality_1`,
+            label: "electrino personality architrino",
+            children: [],
+            inventory: { electrino: 1 },
+            provenanceMode: "guessed",
+          },
+          {
+            id: `${id}/personality_2`,
+            label: "positrino personality architrino",
+            children: [],
+            inventory: { positrino: 1 },
+            provenanceMode: "guessed",
+          },
         ]
-      : [{ id: `${id}/binary`, label: "binary", children: [] }],
+      : [
+          {
+            id: `${id}/binary`,
+            label: "binary",
+            children: [],
+            inventory: { electrino: 1, positrino: 1 },
+          },
+        ],
   };
 }
 
@@ -47,8 +73,18 @@ function createProAntiCoreBranch(id) {
     id,
     label: "Pro/anti core",
     children: [
-      { id: `${id}/pro_core`, label: "Pro core", children: [] },
-      { id: `${id}/anti_core`, label: "Anti core", children: [] },
+      {
+        id: `${id}/pro_core`,
+        label: "Pro core",
+        children: [],
+        inventory: { proCore: 1 },
+      },
+      {
+        id: `${id}/anti_core`,
+        label: "Anti core",
+        children: [],
+        inventory: { antiCore: 1 },
+      },
     ],
   };
 }
@@ -155,6 +191,19 @@ function countDescendants(node) {
   return children.reduce((total, child) => total + 1 + countDescendants(child), 0);
 }
 
+function findHierarchyNodeById(nodes = [], nodeId = "") {
+  for (const node of Array.isArray(nodes) ? nodes : []) {
+    if (node?.id === nodeId) {
+      return node;
+    }
+    const childMatch = findHierarchyNodeById(node?.children, nodeId);
+    if (childMatch) {
+      return childMatch;
+    }
+  }
+  return null;
+}
+
 function createSvgElement(name) {
   return document.createElementNS("http://www.w3.org/2000/svg", name);
 }
@@ -251,6 +300,53 @@ export function createComposerReactionSolverUiRuntime(deps) {
     });
   }
 
+  function findParticipantById(participantId) {
+    return state.participants.find((participant) => participant?.id === participantId) ?? null;
+  }
+
+  function getNodeContext(nodeKey) {
+    const { participantId, nodeId } = parseNodeKey(nodeKey);
+    const participant = findParticipantById(participantId);
+    const node = participant ? findHierarchyNodeById(participant.hierarchy, nodeId) : null;
+    if (!participant || !node) {
+      return null;
+    }
+    return { participant, node };
+  }
+
+  function getAnchorAvailability(side, nodeKey) {
+    if (findMappingByNodeKey(nodeKey)) {
+      return { disabled: false, reason: "" };
+    }
+    const hasConflict = getConflictingMappings(nodeKey, side).some((mapping) => {
+      const mappedKey = getMappedKeyForSide(mapping, side);
+      return mappedKey && mappedKey !== nodeKey;
+    });
+    if (hasConflict) {
+      return {
+        disabled: true,
+        reason: "Blocked by an existing ancestor or descendant mapping.",
+      };
+    }
+    if (side === "product" && state.pendingSourceKey) {
+      const sourceContext = getNodeContext(state.pendingSourceKey);
+      const targetContext = getNodeContext(nodeKey);
+      const evaluation = evaluateComposerReactionMappingCandidate({
+        sourceParticipant: sourceContext?.participant,
+        sourceNode: sourceContext?.node,
+        targetParticipant: targetContext?.participant,
+        targetNode: targetContext?.node,
+      });
+      if (!evaluation.allowed) {
+        return {
+          disabled: true,
+          reason: evaluation.reason,
+        };
+      }
+    }
+    return { disabled: false, reason: "" };
+  }
+
   function removeMappingById(mappingId) {
     const beforeCount = state.mappings.length;
     state.mappings = state.mappings.filter((mapping) => mapping.id !== mappingId);
@@ -280,10 +376,29 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function getAnchorDisabled(side, nodeKey) {
-    return getConflictingMappings(nodeKey, side).some((mapping) => {
-      const mappedKey = getMappedKeyForSide(mapping, side);
-      return mappedKey && mappedKey !== nodeKey;
-    });
+    return getAnchorAvailability(side, nodeKey).disabled;
+  }
+
+  function countEligibleProductTargets() {
+    if (!state.pendingSourceKey) {
+      return 0;
+    }
+    let count = 0;
+    state.participants
+      .filter((participant) => participant.side === "product")
+      .forEach((participant) => {
+        const visit = (nodes = []) => {
+          nodes.forEach((node) => {
+            const nodeKey = buildNodeKey(participant.id, node.id);
+            if (!getAnchorAvailability("product", nodeKey).disabled) {
+              count += 1;
+            }
+            visit(node.children);
+          });
+        };
+        visit(participant.hierarchy);
+      });
+    return count;
   }
 
   function closeMenu() {
@@ -470,7 +585,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
       state.pendingSourceKey = state.pendingSourceKey === nodeKey ? "" : nodeKey;
       render();
       if (state.pendingSourceKey) {
-        setStatus("Reactant attach point selected. Choose a product attach point.");
+        const eligibleProductCount = countEligibleProductTargets();
+        setStatus(
+          eligibleProductCount
+            ? "Reactant attach point selected. Conservative product targets remain active; incompatible targets are grayed out."
+            : "Reactant attach point selected, but no conservative product targets are currently available."
+        );
       } else {
         setStatus("Reactant attach point cleared.");
       }
@@ -496,11 +616,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const mapping = findMappingByNodeKey(nodeKey);
       const isCollapsed = !!mapping && hasChildren;
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
+      const anchorAvailability = getAnchorAvailability(participant.side, nodeKey);
       const row = document.createElement("div");
       row.className = "composer-reaction-solver-tree-row";
       row.style.setProperty("--solver-depth", String(depth));
-      if (getAnchorDisabled(participant.side, nodeKey)) {
+      if (anchorAvailability.disabled) {
         row.classList.add("is-disabled");
+        if (state.pendingSourceKey && participant.side === "product") {
+          row.classList.add("is-ineligible");
+        }
+        if (anchorAvailability.reason) {
+          row.title = anchorAvailability.reason;
+        }
       }
       if (isCollapsed) {
         row.classList.add("is-collapsed");
@@ -517,7 +644,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         "aria-label",
         `${participant.side === "product" ? "Product" : "Reactant"} attach point for ${node.label}`
       );
-      anchor.disabled = getAnchorDisabled(participant.side, nodeKey);
+      anchor.disabled = anchorAvailability.disabled;
       if (state.pendingSourceKey === nodeKey) {
         anchor.classList.add("is-pending");
       }
@@ -595,7 +722,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     if (state.pendingSourceKey) {
-      mapHint.textContent = "Reactant anchor selected. Click a product anchor to complete the mapping.";
+      mapHint.textContent =
+        "Reactant anchor selected. Conservative product targets remain active; incompatible targets are grayed out.";
       return;
     }
     if (!state.mappings.length) {
