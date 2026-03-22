@@ -37,6 +37,7 @@ export function createPeriodicOverlayRuntime(deps) {
   let hydeActiveHotspotTarget = null;
   let hydeHotspotNodesInSpiralOrder = [];
   let hydeHotspotAtomicNumbersInOrder = [];
+  let hydeHotspotCycleAtomicNumbersInOrder = [];
   let hydeHotspotNodeByAtomicNumber = new Map();
   let hydePeriodicWasOpen = false;
   let elementInfoPinned = false;
@@ -170,6 +171,29 @@ export function createPeriodicOverlayRuntime(deps) {
   const hydeViewBoxWidth = 2592;
   const hydeViewBoxHeight = 1944;
   const svgNamespace = "http://www.w3.org/2000/svg";
+  const hydeAtomicCycleOrder = [
+    1,
+    3, 11, 19, 37, 55, 87, 119,
+    4, 12, 20, 38, 56, 88,
+    5, 13, 21, 39, 57, 89,
+    58, 90, 59, 91, 60, 92, 61, 93, 62, 94, 63, 95, 64, 96, 65, 97, 66, 98,
+    67, 99, 68, 100, 69, 101, 70, 102, 71, 103,
+    22, 40, 72, 104,
+    6, 14, 32, 50, 82, 114,
+    7, 15, 33, 51, 83, 115,
+    8, 16, 34, 52, 84, 116,
+    9, 17, 35, 53, 85, 117,
+    2, 10, 18, 36, 54, 86, 118,
+    29, 47, 79, 111,
+    30, 48, 80, 112,
+    31, 49, 81, 113,
+    23, 41, 73, 105,
+    24, 42, 74, 106,
+    25, 43, 75, 107,
+    26, 44, 76, 108,
+    27, 45, 77, 109,
+    28, 46, 78, 110,
+  ];
   const hydeHotspotNumberToAtomicNumber = new Map(
     Object.entries(hydeAtomicNumberToHotspotNumber).map(([atomicNumber, hotspotNumber]) => [
       Number(hotspotNumber),
@@ -387,57 +411,33 @@ export function createPeriodicOverlayRuntime(deps) {
   }
 
   function moveActiveHydeHotspotByCycle(direction) {
-    if (!(hydeActiveHotspotTarget instanceof Element) || !hydeHotspotNodesInSpiralOrder.length) {
+    if (!hydeHotspotCycleAtomicNumbersInOrder.length) {
       return null;
     }
-    const currentX = Number.parseFloat(hydeActiveHotspotTarget.dataset.centerX || "");
-    const currentY = Number.parseFloat(hydeActiveHotspotTarget.dataset.centerY || "");
-    const currentRadius = Number.parseFloat(hydeActiveHotspotTarget.dataset.radialDistance || "");
-    const currentAngle = Number.parseFloat(hydeActiveHotspotTarget.dataset.spiralAngle || "");
-    if (
-      !Number.isFinite(currentX) ||
-      !Number.isFinite(currentY) ||
-      !Number.isFinite(currentRadius) ||
-      !Number.isFinite(currentAngle)
-    ) {
-      return null;
-    }
-    let bestNode = null;
-    let bestScore = Number.POSITIVE_INFINITY;
-    hydeHotspotNodesInSpiralOrder.forEach((candidate) => {
-      if (!(candidate instanceof Element) || candidate === hydeActiveHotspotTarget) {
-        return;
-      }
-      const candidateRadius = Number.parseFloat(candidate.dataset.radialDistance || "");
-      const candidateAngle = Number.parseFloat(candidate.dataset.spiralAngle || "");
-      const candidateX = Number.parseFloat(candidate.dataset.centerX || "");
-      const candidateY = Number.parseFloat(candidate.dataset.centerY || "");
-      if (
-        !Number.isFinite(candidateRadius) ||
-        !Number.isFinite(candidateAngle) ||
-        !Number.isFinite(candidateX) ||
-        !Number.isFinite(candidateY)
-      ) {
-        return;
-      }
-      const radialDelta = candidateRadius - currentRadius;
-      if ((direction === "out" && radialDelta <= 10) || (direction === "in" && radialDelta >= -10)) {
-        return;
-      }
-      const rawAngleDelta = Math.abs(candidateAngle - currentAngle);
-      const angleDelta = Math.min(rawAngleDelta, Math.abs(rawAngleDelta - Math.PI * 2));
-      const radialDistanceDelta = Math.abs(radialDelta);
-      const jumpDistance = Math.hypot(candidateX - currentX, candidateY - currentY);
-      const score = angleDelta * 900 + radialDistanceDelta * 0.55 + jumpDistance * 0.08;
-      if (score < bestScore) {
-        bestScore = score;
-        bestNode = candidate;
-      }
+    const activeAtomicNumber = Number.parseInt(
+      hydeActiveHotspotTarget?.dataset.number || "",
+      10
+    );
+    const initialAtomicNumber = Number.parseInt(
+      hydeInitialFocusTarget?.dataset.number || "",
+      10
+    );
+    const seedAtomicNumber = Number.isFinite(activeAtomicNumber)
+      ? activeAtomicNumber
+      : initialAtomicNumber;
+    const currentIndex = Number.isFinite(seedAtomicNumber)
+      ? hydeHotspotCycleAtomicNumbersInOrder.indexOf(seedAtomicNumber)
+      : -1;
+    const offset = direction === "out" ? -1 : 1;
+    const nextIndex =
+      currentIndex < 0
+        ? 0
+        : (currentIndex + offset + hydeHotspotCycleAtomicNumbersInOrder.length) %
+          hydeHotspotCycleAtomicNumbersInOrder.length;
+    const nextAtomicNumber = hydeHotspotCycleAtomicNumbersInOrder[nextIndex];
+    return setActiveHydeHotspot(hydeHotspotNodeByAtomicNumber.get(nextAtomicNumber), {
+      focus: true,
     });
-    if (!bestNode) {
-      return null;
-    }
-    return setActiveHydeHotspot(bestNode, { focus: true });
   }
 
   function ensureHydeSupplementalLayer(grid) {
@@ -1389,6 +1389,7 @@ export function createPeriodicOverlayRuntime(deps) {
     const legendSet = new Map();
     hydeHotspotNodesInSpiralOrder = [];
     hydeHotspotAtomicNumbersInOrder = [];
+    hydeHotspotCycleAtomicNumbersInOrder = [];
     hydeHotspotNodeByAtomicNumber = new Map();
     hydeActiveHotspotTarget = null;
     hydeInitialFocusTarget = null;
@@ -1563,6 +1564,9 @@ export function createPeriodicOverlayRuntime(deps) {
       }
     }
     hydeHotspotAtomicNumbersInOrder.sort((left, right) => left - right);
+    hydeHotspotCycleAtomicNumbersInOrder = hydeAtomicCycleOrder.filter((atomicNumber) =>
+      hydeHotspotNodeByAtomicNumber.has(atomicNumber)
+    );
     if (hydeInitialFocusTarget instanceof Element) {
       setActiveHydeHotspot(hydeInitialFocusTarget, { focus: false });
     }
