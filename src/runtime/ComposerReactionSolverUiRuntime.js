@@ -661,16 +661,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
           : null;
       if (participant.side === "product") {
         row.classList.add("is-product");
-        row.append(anchor, label);
-        if (collapsedNote) {
-          row.appendChild(collapsedNote);
-        }
-      } else {
-        row.append(label);
-        if (collapsedNote) {
-          row.appendChild(collapsedNote);
-        }
-        row.append(anchor);
+      }
+      row.append(anchor, label);
+      if (collapsedNote) {
+        row.appendChild(collapsedNote);
       }
       parent.appendChild(row);
       if (hasChildren && !isCollapsed) {

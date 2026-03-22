@@ -1758,11 +1758,8 @@ body {
   align-items: center;
   gap: 10px;
   min-height: 24px;
-  padding-inline-start: calc(var(--solver-depth, 0) * 14px);
-}
-
-.composer-reaction-solver-tree-row.is-product {
-  justify-content: flex-end;
+  justify-content: flex-start;
+  padding-inline-start: calc(var(--solver-depth, 0) * 4ch);
 }
 
 .composer-reaction-solver-tree-row.is-disabled {
@@ -3391,13 +3388,23 @@ body {
     drop-shadow(0 0 14px rgba(120, 177, 255, 0.3));
 }
 
+#hyde-periodic-grid .hyde-hotspot-focus-ring {
+  fill: transparent;
+  stroke: rgba(110, 31, 212, 0.98);
+  stroke-width: 11;
+  vector-effect: non-scaling-stroke;
+  paint-order: stroke;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(117, 34, 220, 0.32));
+}
+
 #hyde-periodic-grid .hyde-hotspot.is-focused {
-  fill: rgba(148, 191, 255, 0.34);
+  fill: rgba(148, 191, 255, 0.4);
   stroke: rgba(245, 249, 255, 0.98);
-  stroke-width: 4.6;
+  stroke-width: 5.8;
   filter:
-    drop-shadow(0 0 8px rgba(255, 255, 255, 0.72))
-    drop-shadow(0 0 18px rgba(120, 177, 255, 0.34));
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.82))
+    drop-shadow(0 0 20px rgba(117, 34, 220, 0.4));
 }
 
 #hyde-periodic-grid .hyde-hotspot:focus-visible {

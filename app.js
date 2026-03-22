@@ -8390,13 +8390,15 @@ function showHoverTooltip(content, x, y, options = {}) {
 
   const padding = 12;
   const rect = hoverTooltip.getBoundingClientRect();
-  let left = x + padding;
-  let top = y + padding;
+  const offsetX = Number.isFinite(options.offsetX) ? options.offsetX : 0;
+  const offsetY = Number.isFinite(options.offsetY) ? options.offsetY : 0;
+  let left = x + padding + offsetX;
+  let top = y + padding + offsetY;
   if (left + rect.width > window.innerWidth - padding) {
-    left = x - rect.width - padding;
+    left = x - rect.width - padding - offsetX;
   }
   if (top + rect.height > window.innerHeight - padding) {
-    top = y - rect.height - padding;
+    top = y - rect.height - padding - offsetY;
   }
   const maxTop = window.innerHeight - rect.height - padding;
   const minTop = Number.isFinite(options.minTop)

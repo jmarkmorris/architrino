@@ -35,6 +35,7 @@ export function createPeriodicOverlayRuntime(deps) {
   let hydeHotspotTemplates = null;
   let hydeInitialFocusTarget = null;
   let hydeActiveHotspotTarget = null;
+  let hydeActiveHotspotRing = null;
   let hydeHotspotNodesInSpiralOrder = [];
   let hydeHotspotAtomicNumbersInOrder = [];
   let hydeHotspotCycleAtomicNumbersInOrder = [];
@@ -174,7 +175,7 @@ export function createPeriodicOverlayRuntime(deps) {
   const hydeViewBoxWidth = 2592;
   const hydeViewBoxHeight = 1944;
   const hydeHotspotRadiusScale = 1.2;
-  const hydeHotspotActiveStrokeWidth = 4.6;
+  const hydeHotspotActiveStrokeWidth = 5.8;
   const svgNamespace = "http://www.w3.org/2000/svg";
   const hydeAtomicCycleOrder = [
     1,
@@ -378,6 +379,7 @@ export function createPeriodicOverlayRuntime(deps) {
     showPeriodicTooltip(previewContent, anchorX, anchorY, {
       variant: "element-preview",
       minTop,
+      offsetX: 56,
     });
   }
 
@@ -487,12 +489,38 @@ export function createPeriodicOverlayRuntime(deps) {
       return;
     }
     node.classList.remove("is-focused");
+    if (hydeActiveHotspotRing instanceof Element) {
+      hydeActiveHotspotRing.remove();
+      hydeActiveHotspotRing = null;
+    }
     if (node.classList.contains("hyde-periodic-extra-tile")) {
       return;
     }
     node.style.removeProperty("fill");
     node.style.removeProperty("stroke");
     node.style.removeProperty("stroke-width");
+  }
+
+  function syncActiveHydeHotspotRing(node) {
+    if (
+      !(node instanceof Element) ||
+      !(hydePeriodicGrid instanceof SVGElement) ||
+      node.tagName.toLowerCase() !== "circle"
+    ) {
+      return;
+    }
+    const ring = document.createElementNS(svgNamespace, "circle");
+    ring.classList.add("hyde-hotspot-focus-ring");
+    ring.setAttribute("cx", node.getAttribute("cx") || "0");
+    ring.setAttribute("cy", node.getAttribute("cy") || "0");
+    ring.setAttribute("r", node.getAttribute("r") || "0");
+    const transform = node.getAttribute("transform");
+    if (transform) {
+      ring.setAttribute("transform", transform);
+    }
+    hydePeriodicGrid.appendChild(ring);
+    hydePeriodicGrid.appendChild(node);
+    hydeActiveHotspotRing = ring;
   }
 
   function applyActiveHydeHotspotVisual(node) {
@@ -503,7 +531,8 @@ export function createPeriodicOverlayRuntime(deps) {
     if (node.classList.contains("hyde-periodic-extra-tile")) {
       return;
     }
-    node.style.setProperty("fill", "rgba(148, 191, 255, 0.3)");
+    syncActiveHydeHotspotRing(node);
+    node.style.setProperty("fill", "rgba(148, 191, 255, 0.38)");
     node.style.setProperty("stroke", "rgba(245, 249, 255, 0.98)");
     node.style.setProperty("stroke-width", `${hydeHotspotActiveStrokeWidth}`);
   }
@@ -1568,6 +1597,7 @@ export function createPeriodicOverlayRuntime(deps) {
     hydeHotspotCycleAtomicNumbersInOrder = [];
     hydeHotspotNodeByAtomicNumber = new Map();
     hydeActiveHotspotTarget = null;
+    hydeActiveHotspotRing = null;
     hydeInitialFocusTarget = null;
     const hotspots = orderedHotspots;
     for (let index = 0; index < hotspots.length; index += 1) {
