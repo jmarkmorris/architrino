@@ -332,11 +332,180 @@ That language could eventually support:
 - semantic comparison between assemblies;
 - and a shared symbolic layer between theory notes, scenes, and authored interactive tools.
 
+## First reaction-solver glyph vocabulary
+
+The general 3D-to-SVG glyph language above still needs a first concrete vocabulary for the reaction solver.
+
+That first vocabulary should be deliberately compact and editor-friendly. Here compact means a reduced, authoring-facing presentation variant rather than a new term from the underlying geometry or dynamics. It is not trying to show every detail of a full assembly glyph at once. It is trying to give the solver a small, legible symbolic language for choosing quark flavor, quark color, and binary personality state without crowding the menu.
+
+### Design split
+
+The first-pass reaction glyph grammar should separate three concerns:
+
+- **binary structure**;
+- **binary personality state**;
+- and **whole-quark color**.
+
+Those should not all be encoded by the same visual channel.
+
+The recommended split is:
+
+- the **purple orbit** and **purple axis** encode binary structure;
+- the **red and blue spheres** encode architrino polarity at specific semantic sites;
+- and the **quark color** is applied at the whole-quark level, not by changing the internal red/blue binary dots.
+
+This keeps the symbol readable and prevents the quark-color system from colliding with the existing red/blue architrino language.
+
+### Canonical binary orientation
+
+For the first reaction-solver binary glyph, use a canonical 2D orientation:
+
+- the binary orbit is a **horizontal purple ellipse**;
+- the binary axis is a **vertical purple line** through the center;
+- the left binary pole is the **blue electrino**;
+- the right binary pole is the **red positrino**;
+- the top axis site is the **top personality charge**;
+- and the bottom axis site is the **bottom personality charge**.
+
+That gives a stable authored reading order:
+
+- horizontal pair = the binary;
+- vertical pair = the binary's personality charges.
+
+### Full binary personality state set
+
+When the reaction solver needs the full authored state of a binary, it should distinguish all four top/bottom personality assignments:
+
+- `e/e`
+- `e/p`
+- `p/e`
+- `p/p`
+
+Here the notation is **top/bottom**.
+
+So:
+
+- `p/e` means **positrino above** and **electrino below**;
+- `e/p` means **electrino above** and **positrino below**.
+
+For compact chip labels, prefer the charge-unit notation already used in the mathematical style guide: $-\epsilon$ for an electrino and $+\epsilon$ for a positrino. In other words, the same four states may also be shown as $-\epsilon / -\epsilon$, $-\epsilon / +\epsilon$, $+\epsilon / -\epsilon$, and $+\epsilon / +\epsilon$ when the chip wants charge-first labeling rather than particle-letter labeling.
+
+### Collapsed neutral-binary rule
+
+Sometimes the UI will want a reduced vocabulary instead of showing both neutral binaries.
+
+In those cases, only one neutral binary should be shown, and the canonical representative should be:
+
+- **positrino above, electrino below**
+- that is, **`p/e`** in top/bottom notation.
+
+So the reduced three-state set becomes:
+
+- `e/e`
+- `p/e`
+- `p/p`
+
+This should be a deliberate rule rather than an incidental renderer choice, so the same neutral representative appears consistently across menus, docs, and solver views.
+
+### Whole-quark color at the quark level
+
+Quark color should be specified at the whole-quark level rather than by changing the internal red/blue personality dots.
+
+The first picker set should therefore be:
+
+- `Up Red`
+- `Up Purple`
+- `Up Blue`
+- `Down Red`
+- `Down Purple`
+- `Down Blue`
+
+For this vocabulary, **purple** should replace **green** as the neutral middle case.
+
+The internal glyph still uses:
+
+- red for positrino;
+- blue for electrino;
+- and purple for orbit and axis structure.
+
+The quark color should then be applied through a **separate outer treatment**, such as:
+
+- an accent frame;
+- a border halo;
+- or a compact color badge integrated into the chip.
+
+That keeps the internal architrino symbolism stable while still making the quark color immediately visible.
+
+### Compact chip behavior
+
+In the reaction solver menu, these should appear as compact clickable chips.
+
+The chip should show:
+
+- the binary glyph at center;
+- the quark label such as `Up` or `Down`;
+- and the quark color through the chip frame or accent.
+
+Selection should be made obvious by changing the chip background and emphasis state.
+
+Important rule:
+
+- the **background fill** means **UI selection**;
+- it should **not** carry the quark's semantic color meaning.
+
+Semantic color should remain in the glyph accent system, not in the selected-state background.
+
+### First-pass semantic fields
+
+The reduced reaction-solver glyph vocabulary should introduce explicit semantic fields like:
+
+```json
+{
+  "type": "quark_glyph",
+  "flavor": "up",
+  "quarkColor": "purple",
+  "binaryPersonality": {
+    "top": "positrino",
+    "bottom": "electrino"
+  },
+  "presentation": {
+    "variant": "compact",
+    "collapsedNeutralRepresentative": "p/e"
+  }
+}
+```
+
+This should be read as:
+
+- `flavor` controls `up` vs `down`;
+- `quarkColor` controls `red`, `purple`, or `blue`;
+- `binaryPersonality` controls the full top/bottom binary state;
+- and `collapsedNeutralRepresentative` records the canonical neutral choice when a reduced menu is used.
+
+### Relationship to the broader glyph system
+
+These reaction-solver glyphs should be treated as a **reduced editor vocabulary** derived from the broader glyph system, not as a competing icon set.
+
+In other words:
+
+- the general glyph system still owns the full 3D semantic assembly model;
+- the solver glyph chips are compact projections of that semantic model for authoring tasks;
+- and both should share the same underlying semantic fields wherever possible.
+
+### Immediate next build target
+
+The next practical implementation target should be:
+
+- a compact SVG prototype for the binary personality glyphs;
+- a matching six-chip quark picker using `Up/Down × Red/Purple/Blue`;
+- and a renderer rule that can switch between the full four-state binary set and the reduced `e/e`, `p/e`, `p/p` set.
+
 ## Immediate next steps
 
 Natural follow-on work from this note would be:
 
 - a reference JSON schema;
+- a compact SVG prototype for the first reaction-solver binary/quark glyph vocabulary;
 - a pure SVG renderer;
 - a composer-side glyph editor surface;
 - and a canonical library of reference assemblies for the first glyph vocabulary.

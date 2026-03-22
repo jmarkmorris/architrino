@@ -35,7 +35,8 @@ export function createPeriodicOverlayRuntime(deps) {
   let hydeHotspotTemplates = null;
   let hydeInitialFocusTarget = null;
   let hydeActiveHotspotTarget = null;
-  let hydeActiveHotspotRing = null;
+  let hydeHoverHotspotTarget = null;
+  let hydeHoverHotspotRing = null;
   let hydeHotspotNodesInSpiralOrder = [];
   let hydeHotspotAtomicNumbersInOrder = [];
   let hydeHotspotCycleAtomicNumbersInOrder = [];
@@ -489,10 +490,6 @@ export function createPeriodicOverlayRuntime(deps) {
       return;
     }
     node.classList.remove("is-focused");
-    if (hydeActiveHotspotRing instanceof Element) {
-      hydeActiveHotspotRing.remove();
-      hydeActiveHotspotRing = null;
-    }
     if (node.classList.contains("hyde-periodic-extra-tile")) {
       return;
     }
@@ -501,7 +498,20 @@ export function createPeriodicOverlayRuntime(deps) {
     node.style.removeProperty("stroke-width");
   }
 
-  function syncActiveHydeHotspotRing(node) {
+  function clearHoveredHydeHotspotVisual(node = hydeHoverHotspotTarget) {
+    if (hydeHoverHotspotRing instanceof Element) {
+      hydeHoverHotspotRing.remove();
+      hydeHoverHotspotRing = null;
+    }
+    if (node instanceof Element) {
+      node.classList.remove("is-hovered");
+    }
+    if (!node || hydeHoverHotspotTarget === node) {
+      hydeHoverHotspotTarget = null;
+    }
+  }
+
+  function syncHoveredHydeHotspotRing(node) {
     if (
       !(node instanceof Element) ||
       !(hydePeriodicGrid instanceof SVGElement) ||
@@ -510,7 +520,7 @@ export function createPeriodicOverlayRuntime(deps) {
       return;
     }
     const ring = document.createElementNS(svgNamespace, "circle");
-    ring.classList.add("hyde-hotspot-focus-ring");
+    ring.classList.add("hyde-hotspot-hover-ring");
     ring.setAttribute("cx", node.getAttribute("cx") || "0");
     ring.setAttribute("cy", node.getAttribute("cy") || "0");
     ring.setAttribute("r", node.getAttribute("r") || "0");
@@ -520,7 +530,23 @@ export function createPeriodicOverlayRuntime(deps) {
     }
     hydePeriodicGrid.appendChild(ring);
     hydePeriodicGrid.appendChild(node);
-    hydeActiveHotspotRing = ring;
+    hydeHoverHotspotRing = ring;
+  }
+
+  function setHoveredHydeHotspot(node) {
+    if (!(node instanceof Element) || node.tagName.toLowerCase() !== "circle") {
+      clearHoveredHydeHotspotVisual();
+      return null;
+    }
+    if (hydeHoverHotspotTarget === node && hydeHoverHotspotRing instanceof Element) {
+      node.classList.add("is-hovered");
+      return node;
+    }
+    clearHoveredHydeHotspotVisual();
+    hydeHoverHotspotTarget = node;
+    hydeHoverHotspotTarget.classList.add("is-hovered");
+    syncHoveredHydeHotspotRing(hydeHoverHotspotTarget);
+    return hydeHoverHotspotTarget;
   }
 
   function applyActiveHydeHotspotVisual(node) {
@@ -531,7 +557,6 @@ export function createPeriodicOverlayRuntime(deps) {
     if (node.classList.contains("hyde-periodic-extra-tile")) {
       return;
     }
-    syncActiveHydeHotspotRing(node);
     node.style.setProperty("fill", "rgba(148, 191, 255, 0.38)");
     node.style.setProperty("stroke", "rgba(245, 249, 255, 0.98)");
     node.style.setProperty("stroke-width", `${hydeHotspotActiveStrokeWidth}`);
@@ -551,6 +576,14 @@ export function createPeriodicOverlayRuntime(deps) {
       hydeActiveHotspotTarget.focus({ preventScroll: true });
     }
     return hydeActiveHotspotTarget;
+  }
+
+  function showDefaultHydeSelection() {
+    if (!(hydeInitialFocusTarget instanceof Element)) {
+      return null;
+    }
+    clearHoveredHydeHotspotVisual();
+    return setActiveHydeHotspot(hydeInitialFocusTarget, { focus: false });
   }
 
   function moveActiveHydeHotspotByOffset(offset) {
@@ -1597,7 +1630,8 @@ export function createPeriodicOverlayRuntime(deps) {
     hydeHotspotCycleAtomicNumbersInOrder = [];
     hydeHotspotNodeByAtomicNumber = new Map();
     hydeActiveHotspotTarget = null;
-    hydeActiveHotspotRing = null;
+    hydeHoverHotspotTarget = null;
+    hydeHoverHotspotRing = null;
     hydeInitialFocusTarget = null;
     const hotspots = orderedHotspots;
     for (let index = 0; index < hotspots.length; index += 1) {
@@ -1658,6 +1692,7 @@ export function createPeriodicOverlayRuntime(deps) {
         });
       }
       circle.addEventListener("mouseenter", (event) => {
+        setHoveredHydeHotspot(circle);
         if (element) {
           showHydeElementPreview(element, event.clientX, event.clientY);
           return;
@@ -1665,6 +1700,7 @@ export function createPeriodicOverlayRuntime(deps) {
         showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
       });
       circle.addEventListener("mousemove", (event) => {
+        setHoveredHydeHotspot(circle);
         if (element) {
           showHydeElementPreview(element, event.clientX, event.clientY);
           return;
@@ -1672,6 +1708,7 @@ export function createPeriodicOverlayRuntime(deps) {
         showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
       });
       circle.addEventListener("mouseleave", () => {
+        clearHoveredHydeHotspotVisual(circle);
         if (hydeActiveHotspotTarget !== circle) {
           hidePeriodicTooltip();
         }
@@ -1782,9 +1819,7 @@ export function createPeriodicOverlayRuntime(deps) {
     hydeHotspotCycleAtomicNumbersInOrder = hydeAtomicCycleOrder.filter((atomicNumber) =>
       hydeHotspotNodeByAtomicNumber.has(atomicNumber)
     );
-    if (hydeInitialFocusTarget instanceof Element) {
-      setActiveHydeHotspot(hydeInitialFocusTarget, { focus: false });
-    }
+    showDefaultHydeSelection();
     renderPeriodicLegend(legend, legendSet);
     if (options.onBuilt) {
       options.onBuilt();
@@ -1912,10 +1947,10 @@ export function createPeriodicOverlayRuntime(deps) {
         },
       });
     }
-    if (enteringHydePeriodic && hydeInitialFocusTarget instanceof Element) {
+    if (enteringHydePeriodic) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          setActiveHydeHotspot(hydeInitialFocusTarget, { focus: false });
+          showDefaultHydeSelection();
         });
       });
     }

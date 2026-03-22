@@ -191,7 +191,7 @@
       <div id="composer-overlay" aria-hidden="true">
         <div class="composer-header">
           <div class="composer-header-main">
-            <div class="composer-title">Composer v30 • Pre-Alpha</div>
+            <div class="composer-title">Composer v39 • Pre-Alpha</div>
           </div>
           <div class="composer-actions">
             <button id="composer-scene-button" type="button" aria-label="Open scene controls">
@@ -402,7 +402,8 @@
                 aria-label="Hover small circles to preview. Click small circles to open elements."
               >
                 <p class="hyde-periodic-callout-copy">
-                  Hover small circles to preview. Click small circles to open elements.
+                  Hover small circles to preview.<br />
+                  Click small circles to open elements.
                 </p>
               </section>
               <section
@@ -422,7 +423,14 @@
                         data-hyde-nav="left"
                         aria-label="Move left around the spiral"
                       >
-                        ←
+                        <svg
+                          class="hyde-periodic-key-glyph"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="M17.5 4.75 7 12l10.5 7.25V4.75Z"></path>
+                        </svg>
                       </button>
                       <button
                         class="hyde-periodic-key hyde-periodic-nav-key"
@@ -430,7 +438,14 @@
                         data-hyde-nav="right"
                         aria-label="Move right around the spiral"
                       >
-                        →
+                        <svg
+                          class="hyde-periodic-key-glyph"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="M6.5 4.75 17 12 6.5 19.25V4.75Z"></path>
+                        </svg>
                       </button>
                     </span>
                     <span class="hyde-periodic-hint-label">spiral</span>
@@ -443,7 +458,14 @@
                         data-hyde-nav="up"
                         aria-label="Move up through the group"
                       >
-                        ↑
+                        <svg
+                          class="hyde-periodic-key-glyph"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="M4.75 17.5 12 7l7.25 10.5H4.75Z"></path>
+                        </svg>
                       </button>
                       <button
                         class="hyde-periodic-key hyde-periodic-nav-key"
@@ -451,7 +473,14 @@
                         data-hyde-nav="down"
                         aria-label="Move down through the group"
                       >
-                        ↓
+                        <svg
+                          class="hyde-periodic-key-glyph"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="M4.75 6.5 12 17l7.25-10.5H4.75Z"></path>
+                        </svg>
                       </button>
                     </span>
                     <span class="hyde-periodic-hint-label">group</span>
