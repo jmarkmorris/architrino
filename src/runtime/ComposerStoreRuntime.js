@@ -33,6 +33,21 @@ export function createComposerEditorStore(initialState = {}) {
       state.assemblyDrafts = state.assemblyDrafts.filter((entry) => entry?.id !== assemblyId);
       return state.assemblyDrafts;
     },
+    updateAssemblyDraftById: (assemblyId, updater) => {
+      const draftIndex = state.assemblyDrafts.findIndex((entry) => entry?.id === assemblyId);
+      if (draftIndex < 0 || typeof updater !== "function") {
+        return null;
+      }
+      const currentDraft = state.assemblyDrafts[draftIndex];
+      const nextDraft = updater(currentDraft);
+      if (!nextDraft || nextDraft === currentDraft) {
+        return nextDraft ?? currentDraft ?? null;
+      }
+      const nextDrafts = [...state.assemblyDrafts];
+      nextDrafts[draftIndex] = nextDraft;
+      state.assemblyDrafts = nextDrafts;
+      return nextDraft;
+    },
     getGraphicOverlayDrafts: () => state.graphicOverlayDrafts,
     setGraphicOverlayDrafts: (nextValue) => {
       state.graphicOverlayDrafts = Array.isArray(nextValue) ? nextValue : [];
@@ -52,6 +67,21 @@ export function createComposerEditorStore(initialState = {}) {
     removeGraphicOverlayDraftById: (overlayId) => {
       state.graphicOverlayDrafts = state.graphicOverlayDrafts.filter((entry) => entry?.id !== overlayId);
       return state.graphicOverlayDrafts;
+    },
+    updateGraphicOverlayDraftById: (overlayId, updater) => {
+      const draftIndex = state.graphicOverlayDrafts.findIndex((entry) => entry?.id === overlayId);
+      if (draftIndex < 0 || typeof updater !== "function") {
+        return null;
+      }
+      const currentDraft = state.graphicOverlayDrafts[draftIndex];
+      const nextDraft = updater(currentDraft);
+      if (!nextDraft || nextDraft === currentDraft) {
+        return nextDraft ?? currentDraft ?? null;
+      }
+      const nextDrafts = [...state.graphicOverlayDrafts];
+      nextDrafts[draftIndex] = nextDraft;
+      state.graphicOverlayDrafts = nextDrafts;
+      return nextDraft;
     },
     getSelectedPointIndex: () => state.selectedPointIndex,
     setSelectedPointIndex: (nextValue) => {
@@ -83,5 +113,11 @@ export function createComposerEditorStore(initialState = {}) {
       return state.reactionListRawState;
     },
     getPathState: () => state.pathState,
+    mutatePathState: (mutator) => {
+      if (typeof mutator === "function") {
+        mutator(state.pathState);
+      }
+      return state.pathState;
+    },
   };
 }

@@ -730,7 +730,7 @@ function getComposerAvailablePersonalitySlotCount(assembly) {
 }
 
 function addComposerAssemblyMemberByKind(assembly, kind = "member") {
-  if (!assembly) {
+  if (!assembly?.id) {
     return false;
   }
   const nextMembers = normalizeComposerMemberList(assembly.members);
@@ -756,7 +756,10 @@ function addComposerAssemblyMemberByKind(assembly, kind = "member") {
   } else {
     nextMembers.push({ id: getNextComposerAssemblyMemberId(assembly, normalizedKind) });
   }
-  assembly.members = nextMembers;
+  updateComposerAssemblyDraftByIdState(assembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    members: nextMembers,
+  }));
   return true;
 }
 
@@ -868,7 +871,7 @@ function getComposerMemberSubassemblyId(assembly, memberId) {
 }
 
 function ensureComposerAssemblyMemberRecord(assembly, memberId) {
-  if (!assembly) {
+  if (!assembly?.id) {
     return null;
   }
   const normalizedMemberId = sanitizeComposerEntityId(memberId, "");
@@ -887,8 +890,11 @@ function ensureComposerAssemblyMemberRecord(assembly, memberId) {
     member && typeof member === "object" && !Array.isArray(member)
       ? { ...member, id: normalizedMemberId }
       : { id: normalizedMemberId };
-  assembly.members = members;
-  return assembly.members[memberIndex];
+  const updatedAssembly = updateComposerAssemblyDraftByIdState(assembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    members,
+  }));
+  return normalizeComposerMemberList(updatedAssembly?.members)[memberIndex] ?? null;
 }
 
 function resolveComposerAssemblyMemberLocalOffset(assembly, memberId) {
@@ -944,32 +950,49 @@ function resolveComposerAssemblyMemberLocalOffset(assembly, memberId) {
 }
 
 function setComposerAssemblyMemberPosition(assembly, memberId, position, subassemblyId = "") {
+  const liveAssembly = assembly?.id ? getComposerAssemblyDraftById(assembly.id) ?? assembly : assembly;
   const normalizedMemberId = sanitizeComposerEntityId(memberId, "");
   if (!normalizedMemberId) {
     return false;
   }
-  const memberRecord = ensureComposerAssemblyMemberRecord(assembly, normalizedMemberId);
-  if (!memberRecord) {
+  if (!ensureComposerAssemblyMemberRecord(liveAssembly, normalizedMemberId)) {
     return false;
   }
   const nextPosition = roundComposerTriplet(position);
-  memberRecord.position = nextPosition;
+  updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    members: normalizeComposerMemberList(currentAssembly?.members).map((entry, index) => {
+      const entryId = getComposerMemberId(entry, index);
+      if (entryId !== normalizedMemberId) {
+        return entry;
+      }
+      const nextEntry =
+        entry && typeof entry === "object" && !Array.isArray(entry)
+          ? { ...entry, id: normalizedMemberId }
+          : { id: normalizedMemberId };
+      nextEntry.position = nextPosition;
+      return nextEntry;
+    }),
+  }));
   if (subassemblyId) {
-    const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies);
+    const subassemblies = normalizeComposerSubassemblyList(liveAssembly?.subassemblies);
     const subassemblyIndex = subassemblies.findIndex(
       (entry, index) => getComposerSubassemblyId(entry, index) === subassemblyId
     );
     if (subassemblyIndex === -1) {
       return false;
     }
-    assembly.subassemblies = subassemblies;
+    updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
+      ...currentAssembly,
+      subassemblies,
+    }));
   }
   return true;
 }
 
 function setComposerSubassemblyPosition(assembly, subassemblyId, position) {
   const normalizedSubassemblyId = sanitizeComposerEntityId(subassemblyId, "");
-  if (!assembly || !normalizedSubassemblyId) {
+  if (!assembly?.id || !normalizedSubassemblyId) {
     return false;
   }
   const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies);
@@ -980,32 +1003,40 @@ function setComposerSubassemblyPosition(assembly, subassemblyId, position) {
     return false;
   }
   subassemblies[subassemblyIndex].position = roundComposerTriplet(position);
-  assembly.subassemblies = subassemblies;
+  updateComposerAssemblyDraftByIdState(assembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    subassemblies,
+  }));
   return true;
 }
 
 function moveComposerMemberToRoot(assembly, memberId) {
+  const liveAssembly = assembly?.id ? getComposerAssemblyDraftById(assembly.id) ?? assembly : assembly;
   const normalizedMemberId = sanitizeComposerEntityId(memberId, "");
-  if (!normalizedMemberId) {
+  if (!liveAssembly?.id || !normalizedMemberId) {
     return false;
   }
-  const localOffset = resolveComposerAssemblyMemberLocalOffset(assembly, normalizedMemberId);
-  const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies).map((entry) => ({
+  const localOffset = resolveComposerAssemblyMemberLocalOffset(liveAssembly, normalizedMemberId);
+  const subassemblies = normalizeComposerSubassemblyList(liveAssembly?.subassemblies).map((entry) => ({
     ...entry,
     members: (entry.members ?? []).filter((entryMemberId) => entryMemberId !== normalizedMemberId),
   }));
-  assembly.subassemblies = pruneComposerSubassemblyList(subassemblies);
-  return setComposerAssemblyMemberPosition(assembly, normalizedMemberId, localOffset);
+  updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    subassemblies: pruneComposerSubassemblyList(subassemblies),
+  }));
+  return setComposerAssemblyMemberPosition(liveAssembly, normalizedMemberId, localOffset);
 }
 
 function moveComposerMemberToSubassembly(assembly, memberId, targetSubassemblyId) {
+  const liveAssembly = assembly?.id ? getComposerAssemblyDraftById(assembly.id) ?? assembly : assembly;
   const normalizedMemberId = sanitizeComposerEntityId(memberId, "");
   const normalizedTargetId = sanitizeComposerEntityId(targetSubassemblyId, "");
-  if (!normalizedMemberId || !normalizedTargetId) {
+  if (!liveAssembly?.id || !normalizedMemberId || !normalizedTargetId) {
     return false;
   }
-  const localOffset = resolveComposerAssemblyMemberLocalOffset(assembly, normalizedMemberId);
-  const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies).map((entry, index) => ({
+  const localOffset = resolveComposerAssemblyMemberLocalOffset(liveAssembly, normalizedMemberId);
+  const subassemblies = normalizeComposerSubassemblyList(liveAssembly?.subassemblies).map((entry, index) => ({
     ...entry,
     id: getComposerSubassemblyId(entry, index),
     members: (entry.members ?? []).filter((entryMemberId) => entryMemberId !== normalizedMemberId),
@@ -1016,8 +1047,11 @@ function moveComposerMemberToSubassembly(assembly, memberId, targetSubassemblyId
   }
   const childPosition = normalizeComposerMemberPosition(subassemblies[subassemblyIndex].position) ?? [0, 0, 0];
   subassemblies[subassemblyIndex].members = [...new Set([...(subassemblies[subassemblyIndex].members ?? []), normalizedMemberId])];
-  assembly.subassemblies = pruneComposerSubassemblyList(subassemblies);
-  return setComposerAssemblyMemberPosition(assembly, normalizedMemberId, [
+  updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    subassemblies: pruneComposerSubassemblyList(subassemblies),
+  }));
+  return setComposerAssemblyMemberPosition(liveAssembly, normalizedMemberId, [
     Number(localOffset[0] ?? 0) - Number(childPosition[0] ?? 0),
     Number(localOffset[1] ?? 0) - Number(childPosition[1] ?? 0),
     Number(localOffset[2] ?? 0) - Number(childPosition[2] ?? 0),
@@ -1025,16 +1059,17 @@ function moveComposerMemberToSubassembly(assembly, memberId, targetSubassemblyId
 }
 
 function createComposerSubassemblyFromMembers(assembly, memberIds = []) {
+  const liveAssembly = assembly?.id ? getComposerAssemblyDraftById(assembly.id) ?? assembly : assembly;
   const normalizedMemberIds = [...new Set(
     (Array.isArray(memberIds) ? memberIds : [])
       .map((memberId) => sanitizeComposerEntityId(memberId, ""))
       .filter(Boolean)
   )];
-  if (!assembly || !normalizedMemberIds.length) {
+  if (!liveAssembly?.id || !normalizedMemberIds.length) {
     return null;
   }
   const memberOffsets = normalizedMemberIds.map((memberId) =>
-    resolveComposerAssemblyMemberLocalOffset(assembly, memberId)
+    resolveComposerAssemblyMemberLocalOffset(liveAssembly, memberId)
   );
   const centroid = memberOffsets.reduce(
     (accumulator, offset) => [
@@ -1044,8 +1079,8 @@ function createComposerSubassemblyFromMembers(assembly, memberIds = []) {
     ],
     [0, 0, 0]
   ).map((value) => value / normalizedMemberIds.length);
-  const nextId = getNextComposerSubassemblyId(assembly);
-  const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies).map((entry) => ({
+  const nextId = getNextComposerSubassemblyId(liveAssembly);
+  const subassemblies = normalizeComposerSubassemblyList(liveAssembly?.subassemblies).map((entry) => ({
     ...entry,
     members: (entry.members ?? []).filter((memberId) => !normalizedMemberIds.includes(memberId)),
   }));
@@ -1054,10 +1089,13 @@ function createComposerSubassemblyFromMembers(assembly, memberIds = []) {
     position: roundComposerTriplet(centroid),
     members: normalizedMemberIds,
   });
-  assembly.subassemblies = pruneComposerSubassemblyList(subassemblies);
+  updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    subassemblies: pruneComposerSubassemblyList(subassemblies),
+  }));
   normalizedMemberIds.forEach((memberId, index) => {
     const offset = memberOffsets[index] ?? [0, 0, 0];
-    setComposerAssemblyMemberPosition(assembly, memberId, [
+    setComposerAssemblyMemberPosition(liveAssembly, memberId, [
       Number(offset[0] ?? 0) - Number(centroid[0] ?? 0),
       Number(offset[1] ?? 0) - Number(centroid[1] ?? 0),
       Number(offset[2] ?? 0) - Number(centroid[2] ?? 0),
@@ -1067,11 +1105,12 @@ function createComposerSubassemblyFromMembers(assembly, memberIds = []) {
 }
 
 function dissolveComposerSubassembly(assembly, subassemblyId) {
+  const liveAssembly = assembly?.id ? getComposerAssemblyDraftById(assembly.id) ?? assembly : assembly;
   const normalizedSubassemblyId = sanitizeComposerEntityId(subassemblyId, "");
-  if (!assembly || !normalizedSubassemblyId) {
+  if (!liveAssembly?.id || !normalizedSubassemblyId) {
     return false;
   }
-  const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies);
+  const subassemblies = normalizeComposerSubassemblyList(liveAssembly?.subassemblies);
   const subassembly = subassemblies.find(
     (entry, index) => getComposerSubassemblyId(entry, index) === normalizedSubassemblyId
   );
@@ -1080,30 +1119,37 @@ function dissolveComposerSubassembly(assembly, subassemblyId) {
   }
   const memberIds = Array.isArray(subassembly.members) ? [...subassembly.members] : [];
   memberIds.forEach((memberId) => {
-    moveComposerMemberToRoot(assembly, memberId);
+    moveComposerMemberToRoot(liveAssembly, memberId);
   });
-  assembly.subassemblies = pruneComposerSubassemblyList(
-    normalizeComposerSubassemblyList(assembly?.subassemblies).filter(
-      (entry, index) => getComposerSubassemblyId(entry, index) !== normalizedSubassemblyId
-    )
-  );
+  updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    subassemblies: pruneComposerSubassemblyList(
+      normalizeComposerSubassemblyList(currentAssembly?.subassemblies).filter(
+        (entry, index) => getComposerSubassemblyId(entry, index) !== normalizedSubassemblyId
+      )
+    ),
+  }));
   return true;
 }
 
 function removeComposerAssemblyMember(assembly, memberId) {
+  const liveAssembly = assembly?.id ? getComposerAssemblyDraftById(assembly.id) ?? assembly : assembly;
   const normalizedMemberId = sanitizeComposerEntityId(memberId, "");
-  if (!assembly || !normalizedMemberId) {
+  if (!liveAssembly?.id || !normalizedMemberId) {
     return false;
   }
-  assembly.members = normalizeComposerMemberList(assembly?.members).filter(
-    (entry, index) => getComposerMemberId(entry, index) !== normalizedMemberId
-  );
-  assembly.subassemblies = pruneComposerSubassemblyList(
-    normalizeComposerSubassemblyList(assembly?.subassemblies).map((entry) => ({
-      ...entry,
-      members: (entry.members ?? []).filter((entryMemberId) => entryMemberId !== normalizedMemberId),
-    }))
-  );
+  updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    members: normalizeComposerMemberList(currentAssembly?.members).filter(
+      (entry, index) => getComposerMemberId(entry, index) !== normalizedMemberId
+    ),
+    subassemblies: pruneComposerSubassemblyList(
+      normalizeComposerSubassemblyList(currentAssembly?.subassemblies).map((entry) => ({
+        ...entry,
+        members: (entry.members ?? []).filter((entryMemberId) => entryMemberId !== normalizedMemberId),
+      }))
+    ),
+  }));
   return true;
 }
 
@@ -1619,6 +1665,10 @@ function removeComposerAssemblyDraftByIdState(assemblyId) {
   return composerEditorStore.removeAssemblyDraftById(assemblyId);
 }
 
+function updateComposerAssemblyDraftByIdState(assemblyId, updater) {
+  return composerEditorStore.updateAssemblyDraftById(assemblyId, updater);
+}
+
 function setComposerGraphicOverlayDraftsState(nextValue) {
   return composerEditorStore.setGraphicOverlayDrafts(nextValue);
 }
@@ -1629,6 +1679,10 @@ function upsertComposerGraphicOverlayDraftState(overlayDraft) {
 
 function removeComposerGraphicOverlayDraftByIdState(overlayId) {
   return composerEditorStore.removeGraphicOverlayDraftById(overlayId);
+}
+
+function updateComposerGraphicOverlayDraftByIdState(overlayId, updater) {
+  return composerEditorStore.updateGraphicOverlayDraftById(overlayId, updater);
 }
 
 function setComposerSelectedPointIndexState(nextValue) {
@@ -1653,6 +1707,10 @@ function setComposerTransferListRawStateValue(nextValue) {
 
 function setComposerReactionListRawStateValue(nextValue) {
   return composerEditorStore.setReactionListRawState(nextValue);
+}
+
+function mutateComposerPathStateState(mutator) {
+  return composerEditorStore.mutatePathState(mutator);
 }
 
 function isComposerBareArchitrinoAssembly(assembly) {
@@ -1787,13 +1845,15 @@ function setComposerReactionListRaw(value = "") {
 }
 
 function persistComposerPathStateToAssembly(assemblyId) {
-  const assembly = getComposerAssemblyDraftById(assemblyId);
-  if (!assembly) {
+  if (!getComposerAssemblyDraftById(assemblyId)) {
     return;
   }
-  assembly.pathPoints = composerPathState.points.map((point) => normalizeComposerPathPoint(point));
-  assembly.pathInterpolate = composerPathState.interpolate;
-  assembly.pathClosed = composerPathState.closed;
+  updateComposerAssemblyDraftByIdState(assemblyId, (assembly) => ({
+    ...assembly,
+    pathPoints: composerPathState.points.map((point) => normalizeComposerPathPoint(point)),
+    pathInterpolate: composerPathState.interpolate,
+    pathClosed: composerPathState.closed,
+  }));
 }
 
 function validateComposerSelectedAssemblyId(preferredAssemblyId = getComposerSelectedAssemblyIdState()) {
@@ -1814,9 +1874,11 @@ function setComposerSelectedAssembly(assemblyId, options = {}) {
   const nextAssemblyId = validateComposerSelectedAssemblyId(assemblyId);
   if (!nextAssemblyId) {
     setComposerSelectedAssemblyIdState(null);
-    composerPathState.ownerAssemblyId = null;
-    composerPathState.points = [];
-    composerPathState.closed = false;
+    mutateComposerPathStateState((pathState) => {
+      pathState.ownerAssemblyId = null;
+      pathState.points = [];
+      pathState.closed = false;
+    });
     setComposerSelectedPointIndexState(null);
     rebuildComposerControlPoints();
     updateComposerPathGeometry();
@@ -1834,12 +1896,14 @@ function setComposerSelectedAssembly(assemblyId, options = {}) {
 }
 
 function loadComposerPathStateFromSelectedAssembly() {
-  const selectedAssembly = getComposerSelectedAssembly();
+  let selectedAssembly = getComposerSelectedAssembly();
   if (!selectedAssembly) {
-    composerPathState.interpolate = composerPathModeSelect?.value || "spline";
-    composerPathState.closed = false;
-    composerPathState.ownerAssemblyId = null;
-    composerPathState.points = [];
+    mutateComposerPathStateState((pathState) => {
+      pathState.interpolate = composerPathModeSelect?.value || "spline";
+      pathState.closed = false;
+      pathState.ownerAssemblyId = null;
+      pathState.points = [];
+    });
     setComposerSelectedPointIndexState(null);
     if (composerPathModeSelect) {
       composerPathModeSelect.value = composerPathState.interpolate;
@@ -1853,16 +1917,22 @@ function loadComposerPathStateFromSelectedAssembly() {
     (!Array.isArray(selectedAssembly.pathPoints) || !selectedAssembly.pathPoints.length)
   ) {
     const anchor = Array.isArray(selectedAssembly.position) ? selectedAssembly.position : [0, 0, 0];
-    selectedAssembly.pathPoints = createComposerDefaultPathPoints(anchor);
-    selectedAssembly.pathInterpolate = selectedAssembly.pathInterpolate === "polyline" ? "polyline" : "spline";
-    selectedAssembly.pathClosed = !!selectedAssembly.pathClosed;
+    updateComposerAssemblyDraftByIdState(selectedAssembly.id, (assembly) => ({
+      ...assembly,
+      pathPoints: createComposerDefaultPathPoints(anchor),
+      pathInterpolate: assembly.pathInterpolate === "polyline" ? "polyline" : "spline",
+      pathClosed: !!assembly.pathClosed,
+    }));
+    selectedAssembly = getComposerAssemblyDraftById(selectedAssembly.id) ?? selectedAssembly;
   }
-  composerPathState.interpolate = selectedAssembly?.pathInterpolate === "polyline" ? "polyline" : "spline";
-  composerPathState.closed = !!selectedAssembly?.pathClosed;
-  composerPathState.ownerAssemblyId = selectedAssembly?.id ?? null;
-  composerPathState.points = normalizeComposerAssemblyPathPoints(selectedAssembly?.pathPoints).map((point) =>
-    vectorFromTriplet(point)
-  );
+  mutateComposerPathStateState((pathState) => {
+    pathState.interpolate = selectedAssembly?.pathInterpolate === "polyline" ? "polyline" : "spline";
+    pathState.closed = !!selectedAssembly?.pathClosed;
+    pathState.ownerAssemblyId = selectedAssembly?.id ?? null;
+    pathState.points = normalizeComposerAssemblyPathPoints(selectedAssembly?.pathPoints).map((point) =>
+      vectorFromTriplet(point)
+    );
+  });
   if (composerPathModeSelect) {
     composerPathModeSelect.value = composerPathState.interpolate;
   }
@@ -2904,17 +2974,21 @@ function clearComposerCameraWaypoints() {
 function resetComposerPathPoints() {
   const selectedAssembly = getComposerSelectedAssembly();
   if (!selectedAssembly) {
-    composerPathState.points = [];
-    composerPathState.ownerAssemblyId = null;
+    mutateComposerPathStateState((pathState) => {
+      pathState.points = [];
+      pathState.ownerAssemblyId = null;
+    });
     setComposerSelectedPointIndexState(null);
     rebuildComposerControlPoints();
     updateComposerPathGeometry();
     return;
   }
   const anchor = Array.isArray(selectedAssembly?.position) ? selectedAssembly.position : [0, 0, 0];
-  composerPathState.points = createComposerDefaultPathPoints(anchor).map((point) => vectorFromTriplet(point));
-  composerPathState.interpolate = composerPathModeSelect?.value || "spline";
-  composerPathState.closed = false;
+  mutateComposerPathStateState((pathState) => {
+    pathState.points = createComposerDefaultPathPoints(anchor).map((point) => vectorFromTriplet(point));
+    pathState.interpolate = composerPathModeSelect?.value || "spline";
+    pathState.closed = false;
+  });
   setComposerSelectedPointIndexState(null);
   updateComposerCameraPoiStatus();
   persistComposerPathStateToSelectedAssembly();
@@ -2932,17 +3006,18 @@ function addComposerPathPoint(position = null, options = {}) {
     : position instanceof THREE.Vector3
       ? position.clone()
       : new THREE.Vector3();
-  if (!composerPathState.points.length) {
-    composerPathState.points = [nextPoint];
-  } else {
-    const insertAfterIndex = Number.isInteger(options.insertAfterIndex) ? options.insertAfterIndex : null;
-    if (insertAfterIndex == null || insertAfterIndex < 0 || insertAfterIndex >= composerPathState.points.length) {
-      composerPathState.points.push(nextPoint);
-    } else {
-      composerPathState.points.splice(insertAfterIndex + 1, 0, nextPoint);
-    }
-  }
   const insertAfterIndex = Number.isInteger(options.insertAfterIndex) ? options.insertAfterIndex : null;
+  mutateComposerPathStateState((pathState) => {
+    if (!pathState.points.length) {
+      pathState.points = [nextPoint];
+      return;
+    }
+    if (insertAfterIndex == null || insertAfterIndex < 0 || insertAfterIndex >= pathState.points.length) {
+      pathState.points.push(nextPoint);
+    } else {
+      pathState.points.splice(insertAfterIndex + 1, 0, nextPoint);
+    }
+  });
   setComposerSelectedPointIndexState(
     insertAfterIndex == null || insertAfterIndex < 0 || insertAfterIndex >= composerPathState.points.length - 1
       ? composerPathState.points.length - 1
@@ -3066,8 +3141,10 @@ function renderComposerAssemblyEditor() {
     body.appendChild(panelHint);
     detailCard.appendChild(body);
     composerAssemblyDetail.appendChild(detailCard);
-    composerPathState.ownerAssemblyId = null;
-    composerPathState.points = [];
+    mutateComposerPathStateState((pathState) => {
+      pathState.ownerAssemblyId = null;
+      pathState.points = [];
+    });
     setComposerSelectedPointIndexState(null);
     rebuildComposerControlPoints();
     updateComposerPathGeometry();
@@ -3144,18 +3221,21 @@ function shiftComposerPointTriplets(points, delta) {
 }
 
 function rebaseComposerAssemblyParentFrame(assembly, nextParentId = "") {
-  if (!assembly) {
+  if (!assembly?.id) {
     return;
   }
   const previousParentCenter = getComposerAssemblyWorldCenterById(assembly.parentId);
   const nextParentCenter = getComposerAssemblyWorldCenterById(nextParentId);
   const delta = previousParentCenter.sub(nextParentCenter);
-  assembly.position = [
-    Number(((assembly.position?.[0] ?? 0) + delta.x).toFixed(3)),
-    Number(((assembly.position?.[1] ?? 0) + delta.y).toFixed(3)),
-    Number(((assembly.position?.[2] ?? 0) + delta.z).toFixed(3)),
-  ];
-  assembly.pathPoints = shiftComposerPointTriplets(assembly.pathPoints, delta);
+  updateComposerAssemblyDraftByIdState(assembly.id, (currentAssembly) => ({
+    ...currentAssembly,
+    position: [
+      Number(((currentAssembly.position?.[0] ?? 0) + delta.x).toFixed(3)),
+      Number(((currentAssembly.position?.[1] ?? 0) + delta.y).toFixed(3)),
+      Number(((currentAssembly.position?.[2] ?? 0) + delta.z).toFixed(3)),
+    ],
+    pathPoints: shiftComposerPointTriplets(currentAssembly.pathPoints, delta),
+  }));
 }
 
 function syncComposerAssemblyPositionInputs(assemblyId, position = [0, 0, 0]) {
@@ -4241,9 +4321,12 @@ function applyComposerDraftState(draftState = {}) {
     draftState.pathPoints.length &&
     !assemblyDrafts.some((assembly) => Array.isArray(assembly?.pathPoints) && assembly.pathPoints.length)
   ) {
-    assemblyDrafts[0].pathPoints = normalizeComposerAssemblyPathPoints(draftState.pathPoints);
-    assemblyDrafts[0].pathInterpolate = draftState.pathInterpolate === "polyline" ? "polyline" : "spline";
-    assemblyDrafts[0].pathClosed = !!draftState.pathClosed;
+    updateComposerAssemblyDraftByIdState(assemblyDrafts[0]?.id, (assembly) => ({
+      ...assembly,
+      pathPoints: normalizeComposerAssemblyPathPoints(draftState.pathPoints),
+      pathInterpolate: draftState.pathInterpolate === "polyline" ? "polyline" : "spline",
+      pathClosed: !!draftState.pathClosed,
+    }));
   }
   validateComposerSelectedAssemblyId();
   renderComposerAssemblyEditor();
@@ -5540,7 +5623,9 @@ function removeComposerPathPoint(pointIndex) {
   if (!Number.isInteger(pointIndex) || pointIndex < 0 || pointIndex >= composerPathState.points.length) {
     return;
   }
-  composerPathState.points.splice(pointIndex, 1);
+  mutateComposerPathStateState((pathState) => {
+    pathState.points.splice(pointIndex, 1);
+  });
   setComposerSelectedPointIndexState(
     composerPathState.points.length > 0
       ? Math.min(pointIndex, composerPathState.points.length - 1)
@@ -8190,25 +8275,35 @@ function onComposerPointerMove(event) {
         .sub(composerDragState.startAssemblyGrabOffset);
       if (Array.isArray(composerDragState.startAssemblyPathPoints) && composerDragState.startAssemblyPathPoints.length) {
         const delta = localIntersection.sub(composerDragState.startAssemblyCenter);
-        liveAssembly.pathPoints = composerDragState.startAssemblyPathPoints.map((point) => ([
+        const nextPathPoints = composerDragState.startAssemblyPathPoints.map((point) => ([
           Number((point[0] + delta.x).toFixed(3)),
           Number((point[1] + delta.y).toFixed(3)),
           Number((point[2] + delta.z).toFixed(3)),
         ]));
+        updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
+          ...currentAssembly,
+          pathPoints: nextPathPoints,
+        }));
         if (liveAssembly.id === getComposerSelectedAssemblyIdState()) {
-          composerPathState.points = liveAssembly.pathPoints.map((point) => vectorFromTriplet(point));
+          mutateComposerPathStateState((pathState) => {
+            pathState.points = nextPathPoints.map((point) => vectorFromTriplet(point));
+          });
           rebuildComposerControlPoints();
           updateComposerPathGeometry();
         }
       } else {
         const localPosition = localIntersection.sub(composerDragState.startAssemblyParentCenter);
-        liveAssembly.position = [
-          Number(localPosition.x.toFixed(3)),
-          Number(localPosition.y.toFixed(3)),
-          Number(localPosition.z.toFixed(3)),
-        ];
+        updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
+          ...currentAssembly,
+          position: [
+            Number(localPosition.x.toFixed(3)),
+            Number(localPosition.y.toFixed(3)),
+            Number(localPosition.z.toFixed(3)),
+          ],
+        }));
       }
-      syncComposerAssemblyPositionInputs(liveAssembly.id, liveAssembly.position);
+      const updatedAssembly = getComposerAssemblyDraftById(liveAssembly.id);
+      syncComposerAssemblyPositionInputs(liveAssembly.id, updatedAssembly?.position);
       renderComposerJsonPreview();
     }
     return;
@@ -8253,11 +8348,14 @@ function onComposerPointerMove(event) {
     if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
       const localPoint = composerFrameGroup.worldToLocal(intersection.clone());
       const nextOffset = localPoint.sub(composerDragState.startGraphicAnchor);
-      overlay.offset = [
-        Number(nextOffset.x.toFixed(3)),
-        Number(nextOffset.y.toFixed(3)),
-        Number(nextOffset.z.toFixed(3)),
-      ];
+      updateComposerGraphicOverlayDraftByIdState(overlay.id, (currentOverlay) => ({
+        ...currentOverlay,
+        offset: [
+          Number(nextOffset.x.toFixed(3)),
+          Number(nextOffset.y.toFixed(3)),
+          Number(nextOffset.z.toFixed(3)),
+        ],
+      }));
       renderComposerJsonPreview();
     }
     return;
