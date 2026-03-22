@@ -17,7 +17,7 @@ Scoring system:
 | ---: | --- | ---: | ---: | ---: |
 | 1 | Execute the frozen breather proof program | 10 | 4 | 2.50 |
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | Scene system, composer-II, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
+| 3 | Scene system, composer, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
 | 4 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
@@ -134,113 +134,77 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
-### 3. Scene system, composer-II, PDG solver, and next-session composer handoff
+### 3. Scene system, composer, PDG solver, and remaining composer objectives
 - Value `9`, Cost `4`, ROI `2.25`.
-- The canonical reference lives in [composer.md](composer.md). Treat this item as the self-contained next-session prompt for the current composer webapp.
-- Next-session prompt / active handoff:
-  - current composer state, only what matters for the remainder:
-    - blank-scene startup is working;
-    - the UI is now strongly canvas-first, with assembly and path editing centered on handles and context menus;
-    - scene/library controls live in compact header or canvas menus;
-    - timeline items for `Graphic`, `Pause`, `Warp`, `Reaction`, `Image`, and `Video` already behave like real spans;
-    - reactions now have basic stage rows, participant summaries, visible stage subdivision on the timeline, and a first partial canvas-mapping bridge;
-    - assemblies can already be tagged as `Assembly`, `Reactant`, or `Product`, and that role is now visible in the canvas, list, and runtime document;
-  - top priorities, in order:
-    1. deepen reaction and provenance authoring;
-    2. replace the observer/editorial placeholders with a real authored timeline model;
-    3. finish the deeper structural-editing layer beyond the now-working canvas placement baseline;
-  - priority 1: deepen reaction and provenance authoring:
-    - stop depending on typed transfer refs as the primary authoring path;
-    - revisit the mapping model before deepening the current bridge:
-      - the present source-then-destination click flow is too abstract and fiddly for a job that should feel visual and direct,
-      - so move toward a more CAD-like reaction authoring model where mappings are drawn, adjusted, and read on the canvas itself;
-    - build the first true visual reaction workflow from [composer.md](composer.md):
-      - start from a blank reaction canvas,
-      - place assemblies freely on that canvas,
-      - tag them as reactants or products,
-      - and author one-to-one mappings with direct visible spline creation, adjustment, commit, and discard behavior;
-    - make splines the authored mapping primitive and the actual motion guide during playback;
-    - treat unattached mapping endpoints as discarded drafts rather than saved partial state;
-    - keep stage timing reaction-native, but make the visual mapping model the dominant UI rather than text fields;
-    - make provenance and persistent member identity readable from the visual mapping itself, not only from text summaries;
-    - preserve the current partial bridge only as a temporary scaffold:
-      - timeline reaction selection,
-      - active reaction highlighting,
-      - and the first canvas mapping state should remain only if they help the transition to the better visual model;
-  - priority 2: replace the observer/editorial placeholders with a real authored timeline model:
-    - the `Add` menu already exposes `Observer`, but that path is still a placeholder rather than a real authoring object;
-    - turn observer intervals into true timeline items with authored spans, framing intent, and synchronized observer-path behavior;
-    - define the first concrete observer-object model:
-      - how an observer interval is authored on the timeline,
-      - how observer paths and guides appear in the design view,
-      - and how any future observer inset stays synchronized with the dominant design view;
-    - add timeline zoom and local navigation so short spans remain visible and editable in long scenes;
-    - improve media-asset entry from typed-path only toward repo browsing or picking inside the item menus;
-    - finish the missing editorial items that are still placeholder or partial, especially `Audio`, observer transitions, and framing behavior;
-    - refine the current item menus so they behave like durable authoring tools rather than provisional cards;
-    - continue observer-language cleanup where visible user-facing `camera` wording still remains, while allowing runtime internals to stay transitional;
-  - priority 3: finish the deeper structural-editing layer beyond the now-working canvas placement baseline:
-    - add structural edits such as detaching a personality charge into a free architrino and breaking a binary into free architrinos;
-    - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
-    - make parent or child nesting legible as actual local structure rather than grouped ids;
-    - add the next useful layer of subassembly transforms, presets, and instance overrides for richer theory-facing scenes;
-    - add theory-facing structure and motion overlays such as tracers, trails, and calculated shaded `E-B` wave patterns rather than treating those displays as ad hoc effects;
-    - make scale changes legible in-scene, including clear indication when a structure, inset, or derived view is being shown at a different scale;
-    - support richer geometric depictions that matter across multiple cases, especially oblate spheroids and spiral structures ranging from a bare binary to the maximum-curvature binary;
-    - animate deeper structural behaviors directly from the point-charge picture:
-      - photon counter-rotation, self-propulsion, polarization, and Malus-law behavior,
-      - precession as implied by personality-charge orientations,
-      - equivalence-principle explanations from a point-charge-structure perspective,
-      - and ephemeral `W` and `Z` boson configurations as transitionary reaction structures;
-    - make momentum constraints legible in the structure model, especially how angular and linear momentum of point charges maintain relative plane angles;
-    - add notation and display conventions that distinguish apparent energy from total energy;
-    - keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps;
-  - keep active but below the top three:
-    - PDG solver after the scene system is usable:
-      - provenance,
-      - diagrams,
-      - core disposition,
-      - use the API that now exists,
-      - look into MadGraph for reactions,
-      - and use the scene builder in API mode;
-    - composer architecture follow-on:
-      - finish making the composer store the authority for editor-state reads and writes, not only selected write paths;
-      - move more assembly, path, and overlay mutations behind explicit store helpers instead of in-place draft mutation;
-      - separate editor preview state from playback/runtime state, especially where timing edits currently need pose-preservation behavior;
-      - retire the raw timing and reaction text bridges once structured authoring is stable enough to replace them cleanly;
-      - split the remaining non-composer app wiring away from composer integration in `app.js` when that no longer blocks feature work;
-    - history traces and exclusion envelopes:
-      - improve UI authoring for `historyTraces`,
-      - refine rendering and controls for path-history traces with window and fade semantics,
-      - improve UI authoring and editing for `envelopes`,
-      - and connect those displays more explicitly to the delayed/path-history model rather than treating them as generic effects;
-    - workspace and persistence cleanup:
-      - keep the central viewport dominant,
-      - do not reintroduce large persistent assembly-detail panels,
-      - keep turning repeated text-entry flows into structured or direct-manipulation authoring where that improves clarity,
-      - and leave repo-facing persistence, validation, reusable libraries, and lint as later follow-on work unless they become blockers for the above priorities;
-  - Guardrails for the next pass:
-    - the user wants the composer to stay visual, canvas-first, and light on persistent text authoring;
-    - anything about a given assembly should be managed through that assembly's center control point where practical;
-    - path markers should remain directly draggable;
-    - timeline items should become more authorable, not more abstract;
-    - observer language should replace camera language in the user-facing design wherever possible;
-    - keep the left panel gone as a visible authoring surface;
-    - preserve consistent look and feel as the UI gets richer;
-    - avoid reintroducing large persistent inspector-style editing;
-    - do not make unrelated changes.
-- Suggested first implementation slice for the next session:
-  - start with priority 1, not with cosmetic terminology cleanup;
-  - replace the current provisional reaction-mapping bridge with a clearer visual model:
-    - open a reaction-specific blank canvas state,
-    - place reactants and products on it,
-    - and make mappings feel drawn and edited on-canvas rather than typed or hidden behind indirect clicks;
-  - if time remains after that pass, begin priority 2 by replacing the observer placeholder with the first true observer interval object.
-- End-of-session checks after code changes:
-  - `node --check app.js`
-  - `node --check src/runtime/ComposerUiRuntime.js`
-  - `node --check src/runtime/ComposerControlsUiRuntime.js`
-  - `node --check src/runtime/Composer2SceneDocumentRuntime.js`
+- The canonical reference lives in [composer.md](composer.md). Treat that note as the implementation-aware architecture reference for the current composer webapp.
+- Current composer baseline, only what matters for the remainder:
+  - blank-scene startup, canvas-first assembly placement, and canonical export are working;
+  - timeline items for `Pause`, `Warp`, `Reaction`, `Graphic`, `Image`, and `Video` already behave like real spans;
+  - assemblies already support scene roles, members, personality slots, subassemblies, parent rebasing, path editing, transfer drafting, and history/envelope display toggles;
+  - reactions already have a partial visual bridge through `Map On Canvas`, but that bridge is still transitional;
+  - observer-path controls exist in the runtime, but a true authored observer interval does not yet exist;
+  - `Audio` is still placeholder-only.
+- Remaining composer objectives, in order:
+  1. finish reaction authoring and provenance as a truly visual workflow;
+  2. replace observer/editorial placeholders with a real authored timeline model;
+  3. deepen structural editing beyond the current member/subassembly baseline.
+- Priority 1: finish reaction authoring and provenance:
+  - stop treating typed transfer refs as the lasting primary authoring path;
+  - replace the current straight source-to-destination draft line with a more direct visual mapping model;
+  - move toward the blank reaction canvas described in [composer.md](composer.md), with free reactant/product placement and one-to-one authored mappings;
+  - make the authored mapping geometry the actual playback guide, not just a temporary authoring hint;
+  - make provenance and persistent identity readable directly from the mapping layer through selection, highlighting, and labeling;
+  - keep the current timeline reaction spans, active-reaction highlighting, and canvas-mapping bridge only as transitional scaffolding while the stronger visual model is built.
+- Priority 2: replace observer/editorial placeholders with a real authored timeline model:
+  - turn `Observer` into a true timeline item with authored spans, framing intent, and synchronized observer-path behavior;
+  - define the first concrete observer-object model for the design view, the observer path, and any future synchronized inset;
+  - finish the placeholder editorial items, especially `Audio`, observer transitions, and framing behavior;
+  - improve timeline zoom and local navigation so short spans remain editable in long scenes;
+  - improve media-asset entry beyond typed paths where practical;
+  - continue visible observer-language cleanup while allowing runtime internals to remain transitional until the object model is stable.
+- Priority 3: deepen structural editing beyond the current baseline:
+  - add structure-changing edits such as detaching a personality charge into a free architrino and breaking a binary into free architrinos;
+  - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
+  - make parent/child nesting read as local structure rather than grouped ids alone;
+  - add richer subassembly transforms, presets, and instance overrides;
+  - add theory-facing overlays and rendering modes such as tracers, trails, and calculated shaded `E-B` wave patterns;
+  - make scale changes legible in-scene, including clear indication when a structure, inset, or derived view is shown at a different scale;
+  - support richer geometric depictions that matter across cases, especially oblate spheroids and spiral structures;
+  - animate deeper structural behaviors directly from the point-charge picture, including photon counter-rotation, self-propulsion, polarization, Malus-law behavior, personality-charge-driven precession, equivalence-principle explanations, and ephemeral `W` and `Z` configurations;
+  - make momentum constraints legible in the structure model, especially the angular/linear momentum relations that maintain relative plane angles;
+  - add notation and display conventions that distinguish apparent energy from total energy;
+  - keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps.
+- Keep active but below the top three:
+  - PDG solver after the scene system is genuinely usable:
+    - provenance,
+    - diagrams,
+    - core disposition,
+    - use the API that now exists,
+    - look into MadGraph for reactions,
+    - and use the scene builder in API mode;
+  - composer architecture follow-on:
+    - retire the remaining raw timing / reaction text bridges once structured authoring can replace them cleanly;
+    - close the gap between the current preview bridge and the dedicated `Scene-Composed-Animation` runtime path;
+  - history traces and exclusion envelopes:
+    - improve UI authoring for `historyTraces`,
+    - refine rendering and controls for path-history traces with window and fade semantics,
+    - improve UI authoring and editing for `envelopes`,
+    - and connect those displays more explicitly to the delayed/path-history model rather than treating them as generic effects;
+  - workspace and persistence cleanup:
+    - keep the central viewport dominant,
+    - do not reintroduce large persistent assembly-detail panels,
+    - keep turning repeated text-entry flows into structured or direct-manipulation authoring where that improves clarity,
+    - and leave repo-facing persistence, validation, reusable libraries, and lint as later follow-on work unless they become blockers for the above priorities.
+- Guardrails for the next pass:
+  - the composer should stay visual, canvas-first, and light on persistent text authoring;
+  - anything about a given assembly should be managed through that assembly's center control point where practical;
+  - path markers should remain directly draggable;
+  - timeline items should become more authorable, not more abstract;
+  - observer language should replace camera language in the user-facing design wherever possible;
+  - keep the left panel gone as a visible authoring surface;
+  - preserve consistent look and feel as the UI gets richer;
+  - avoid reintroducing large persistent inspector-style editing;
+  - do not make unrelated changes.
 
 ### 4. Finish the tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure
 - Value `10`, Cost `5`, ROI `2.00`.

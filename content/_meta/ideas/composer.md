@@ -2,7 +2,7 @@
 
 ## Why this note exists
 
-The webapp already contains a substantial composer surface. It is no longer just an early mockup. There is now a working UI path for canonical scene-document generation, JSON export, assembly authoring, per-assembly paths, timeline markers and pauses, transfers, reactions, observer-path authoring (currently implemented with camera waypoints in the runtime), and live preview. That existing work is enough to justify one clear architecture note that reflects the current shell and the current direction.
+The webapp already contains a substantial composer surface. It is no longer just an early mockup. There is now a working UI path for canonical scene-document generation, JSON export, repo save and browser-local draft save, assembly authoring, built-in assembly templates, per-assembly paths, nested members and subassemblies, timeline spans for pause, warp, reaction, graphic, image, and video items, canvas-mapped reaction transfers, explanatory callouts, viewport media overlays, history traces and envelopes, observer-path runtime controls (still implemented with camera objects internally), and live preview. Audio and true observer intervals remain placeholder paths, but the rest of the shell is real enough that this note should describe the current implementation honestly rather than as a purely future plan.
 
 This note is the single reference for:
 
@@ -87,6 +87,8 @@ For the current webapp phase, support should be:
 - video: `mp4`, `mov`;
 - audio: `mp3`.
 
+At the moment, image and video are the implemented media-overlay paths. `Audio` is already present in the add menu and in the schema boundary, but it is still a placeholder rather than a finished authored runtime object.
+
 The current design should explicitly not broaden into `webp`, `webm`, `aac`, or `m4a` during this pass. The point is not maximal browser-format breadth. The point is a small, legible authoring contract that covers the most common academic and studio source material without turning the composer into a generic ingest tool.
 
 Imported media should live in organized repo directories rather than in one flat dump:
@@ -155,9 +157,22 @@ So when this design area becomes more visible in the UI:
 - use `reaction stages` for the timed substeps,
 - and avoid centering `decay` as the primary composer term unless a specific scientific scene needs that narrower wording in displayed content.
 
-### Reaction UI: blank-canvas reactant/product composition
+### Reaction UI: current implementation and next target
 
-The reaction UI should be redesigned around a blank canvas rather than around typed transfer references.
+The composer no longer treats reactions as purely typed bookkeeping.
+
+Current implemented reaction behavior:
+
+- assemblies can already be tagged as `Assembly`, `Reactant`, or `Product`;
+- reactions are true timeline spans with labels and stage rows;
+- stage actions are authored in the timeline menu rather than only implied from raw text;
+- an active reaction can enter `Map On Canvas` mode;
+- in that mode, the author can click a reactant-side member or personality handle, then a product-side member or personality handle, to create a mapped transfer inside the active reaction;
+- and the canvas already shows a live draft corridor while the target is being chosen.
+
+That is enough to make reaction authoring real, but it is not yet the final visual model. The current bridge still writes low-level transfer lines and uses a straight drafted corridor between endpoints. It does not yet provide the dedicated blank reaction canvas, authored spline geometry, constituent-reveal tools, or richer provenance highlighting described below.
+
+The next step should still be to redesign reaction authoring around a blank canvas rather than around transfer refs as the lasting underlying authoring grammar.
 
 The authoring flow should begin from nothing visible except the reaction surface itself. On an empty reaction canvas, the first right-click should offer:
 
@@ -424,6 +439,14 @@ The first-pass non-goals should be:
 - no forced left/right layout.
 
 ## Observer metaphor and user-facing language
+
+Current state:
+
+- the runtime already supports waypoint-based observer motion, POI selection, radius/speed controls, and timeline-adjacent playback in the main viewport;
+- the add menu already says `Observer` rather than `Camera`;
+- but the authored observer interval is still a placeholder path in the timeline menu, and the underlying document/runtime model still uses `camera` fields internally.
+
+So this section remains the target language and model for the next pass, not a description of a finished observer authoring system.
 
 The composer should stop presenting itself as a camera tool. What matters in the authored scene is what the observer sees.
 
@@ -1279,27 +1302,28 @@ The current webapp runtime already exposes a composer overlay with canonical exp
 
 Observed composer capabilities in the runtime:
 
-- scene id and scene name inputs,
-- explicit assemblies with stable ids, parent assignment, local positioning, and canonical per-assembly path data,
-- assembly center handles rendered as circular markers with centered letters `A`, `B`, `C`, ...,
-- path points rendered as circular markers with the owning assembly letter centered inside,
-- camera waypoints rendered as circular markers with a centered camera glyph,
-- larger marker hit targets to improve selection,
-- per-assembly path editing with direct point dragging,
-- frame edit and frame reset controls, now largely living in canvas context menus,
-- camera POI selection and camera waypoint add/clear flows,
-- viewport camera speed and radius controls,
-- pause, warp, and transfer authoring on the shared timeline/runtime path,
-- timeline reaction authoring from right-click menus,
-- timeline graphic authoring as real text callout overlays attached to assemblies or path points,
-- timeline image and video authoring as fixed viewport overlays with direct drag and resize,
-- transfer authoring from assembly-handle context menus,
-- history traces, envelopes, and derived provenance in the canonical document/runtime path,
-- browser-local save/load library for draft scenes,
-- compact canvas and assembly context menus,
-- docs panel,
-- canonical JSON export,
-- and live viewport playback with a compact top scrub row, play, pause, restart, and timeline overlays.
+- scene-level controls for scene id, scene name, duration, loop, clear, docs, save, export, and repo-save flows;
+- browser-local draft library save/load/delete alongside canonical JSON preview and export;
+- explicit assemblies with stable ids, names, scene roles, parent assignment, local positioning, and canonical per-assembly path data;
+- built-in assembly templates for Noether core, electron, down quark, and up quark;
+- assembly center handles, per-assembly path points, member handles, personality-slot handles, subassembly halos, and observer-path waypoints as live canvas objects;
+- per-assembly path editing with direct point dragging, spline or polyline interpolation, and closed/open path state;
+- canvas-first assembly editing through center-handle menus, including member creation, personality assignment, parent rebasing, subassembly creation/dissolve, transfer start/complete, and per-assembly display toggles;
+- scene-role tagging as `Assembly`, `Reactant`, or `Product`, visible in the canvas, assembly list, and authored document;
+- timeline spans for `Pause`, `Warp`, `Reaction`, `Graphic`, `Image`, and `Video`, with overlap checks and direct edit/remove menus;
+- reaction spans with authored stage rows and a real `Map On Canvas` flow for reactant-to-product member/personality mapping;
+- text callout overlays attached to assemblies or path points, with drag placement and shell-contact leader behavior;
+- fixed viewport image and video overlays with drag and resize behavior plus constrained media-path validation;
+- history traces, envelopes, transfer lines, and reaction-stage highlighting in the runtime document/path;
+- viewport/frame controls, observer-path waypoint controls, HUD visibility toggles, and compact timeline-adjacent playback controls;
+- and live viewport playback that already reads the canonical document closely enough to function as the practical preview path.
+
+Implemented-but-still-transitional areas:
+
+- reaction mapping still rides on authored transfer lines and straight draft corridors rather than a dedicated spline-native reaction canvas;
+- observer authoring still uses runtime `camera` machinery internally and does not yet expose a true observer interval object;
+- `Audio` is cataloged in the add menu, but there is no finished audio timeline object yet;
+- and the dedicated `Scene-Composed-Animation` runtime path is still not the final runtime boundary.
 
 The current composer surface already suggests an intended authoring loop:
 
@@ -3027,17 +3051,17 @@ Possible fields include:
 
 ## Near-term implementation stance
 
-The near-term composer should be treated as an assembly-centered canonical editor that already has a working shell, export path, draft library, and first viewport runtime. The remaining work should therefore focus on the unfinished semantics rather than on re-proving the early scaffold.
+The near-term composer should be treated as an assembly-centered canonical editor that already has a working shell, export path, draft library, structure-edit baseline, overlay baseline, and first viewport runtime. The remaining work should therefore focus on the unfinished semantics and unfinished authoring models rather than on re-proving the early scaffold.
 
 The right near-term stance now is:
 
 1. keep the current overlay-based authoring shell while it remains productive,
 2. preserve the canonical composer document as the single authored source of truth,
-3. continue the canvas-first migration by removing controls that still belong on canvas objects or the timeline,
-4. deepen explicit assembly structure from named members to spatially resolved constituents and subassemblies,
-5. promote transfers and reactions into clearer staged choreography on the shared timeline,
-6. improve provenance, history traces, and exclusion envelopes as real authored and rendered objects,
-7. stabilize top-bar transport, camera behavior, and timeline-native editorial control,
+3. continue the canvas-first migration by removing the last controls that still belong on canvas objects or the timeline,
+4. replace the provisional reaction-transfer bridge with a stronger visual reaction authoring model,
+5. turn observer motion from waypoint tooling into a true authored observer timeline object,
+6. deepen explicit assembly structure from named members to richer structural edits, local transforms, and theory-facing depictions,
+7. improve provenance, history traces, and exclusion envelopes as more directly authored and editable scene objects,
 8. replace the remaining preview bridge with a dedicated `Scene-Composed-Animation` runtime path,
 9. and only then revisit larger workspace rearrangements or package/export concerns.
 
@@ -3047,32 +3071,31 @@ That path respects the current implementation while focusing effort on the missi
 
 The remaining work should proceed in deliberately bounded phases.
 
-#### Phase 1: canvas-first shell completion
+#### Phase 1: reaction authoring completion
 
 Target:
 
-- finish the canvas-first migration of the current shell,
-- make transport, playback, and timeline interaction reliable and compact,
-- keep assembly/path/timeline actions attached to the objects they govern,
-- and keep canonical playback, preview, and export aligned on one timeline.
+- keep the current timeline reaction spans and map-on-canvas bridge,
+- replace straight draft corridors with authored visual mapping geometry,
+- make provenance legible directly from the visual mapping layer,
+- and retire typed transfer refs as the primary authoring path once the visual model can carry the same semantics.
 
-#### Phase 2: constituent and subassembly depth
-
-Target:
-
-- spatially resolve members inside authored assemblies,
-- support explicit subassemblies as local structures rather than only named containers,
-- improve local transform editing for nested assemblies,
-- and carry explicit constituent identity through drill-down and collapse.
-
-#### Phase 3: staged reactions, transfers, and provenance
+#### Phase 2: observer and editorial completion
 
 Target:
 
-- add first-class `ReactionSpec` authoring,
-- group transfers into named reaction stages,
-- render disassembly, handoff, and reassembly as authored choreography,
-- and preserve provenance across those stages.
+- turn observer intervals into true authored timeline objects,
+- coordinate observer paths, framing behavior, and any future inset view from one model,
+- finish the placeholder editorial items such as `Audio`,
+- and keep the timeline compact and directly authorable in long scenes.
+
+#### Phase 3: deeper structure and runtime closure
+
+Target:
+
+- add the next layer of structure-changing edits, richer subassembly transforms, and theory-facing geometry,
+- improve authored control of history traces, envelopes, and scale cues,
+- and close the gap between the current preview bridge and the dedicated composed-animation runtime.
 
 #### Phase 4: delayed-history and envelope depth
 
