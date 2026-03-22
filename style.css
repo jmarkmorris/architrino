@@ -1921,7 +1921,7 @@ body {
   height: 28px;
   border-radius: 999px;
   overflow: visible;
-  cursor: ew-resize;
+  cursor: default;
   border: 1px solid rgba(160, 170, 220, 0.18);
   background:
     linear-gradient(180deg, rgba(18, 24, 42, 0.95), rgba(12, 16, 28, 0.95)),
@@ -1949,6 +1949,7 @@ body {
   border-radius: 999px;
   overflow: hidden;
   pointer-events: auto;
+  cursor: pointer;
 }
 
 .composer-timeline-band.is-warp {
@@ -2102,6 +2103,7 @@ body {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(154, 240, 201, 0.92));
   box-shadow: 0 0 12px rgba(154, 240, 201, 0.65);
   transform: translateX(-1px);
+  pointer-events: none;
 }
 
 .composer-control-grid {
