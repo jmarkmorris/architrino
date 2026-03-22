@@ -1711,6 +1711,10 @@ function setComposerReactionListRawStateValue(nextValue) {
   return composerEditorStore.setReactionListRawState(nextValue);
 }
 
+function updateComposerPathPointAtState(index, updater) {
+  return composerEditorStore.updatePathPointAt(index, updater);
+}
+
 function mutateComposerPathStateState(mutator) {
   return composerEditorStore.mutatePathState(mutator);
 }
@@ -7823,7 +7827,6 @@ function onComposerPointerDown(event) {
       composerFrameGroup.quaternion
     );
     composerDragState.plane.setFromNormalAndCoplanarPoint(normal, worldPoint);
-    composerDragState.altMode = event.altKey;
     updateComposerPointMaterials(composerDragState.pointIndex);
     return;
   }
@@ -8215,20 +8218,14 @@ function onComposerPointerMove(event) {
     if (index == null) {
       return;
     }
-    if (composerDragState.altMode || event.altKey) {
-      const lift = -dy * 0.01 * getComposerEffectiveFrameScale();
-      const localNormal = new THREE.Vector3(0, 0, 1);
-      composerPathState.points[index]
-        .copy(composerDragState.startPoint)
-        .addScaledVector(localNormal, lift);
-    } else {
-      const { x, y } = getComposerPointerNdc(event);
-      composerRaycaster.setFromCamera({ x, y }, composerCamera);
-      const intersection = new THREE.Vector3();
-      if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
-        const localPoint = composerFrameGroup.worldToLocal(intersection.clone());
-        composerPathState.points[index].copy(localPoint);
-      }
+    const { x, y } = getComposerPointerNdc(event);
+    composerRaycaster.setFromCamera({ x, y }, composerCamera);
+    const intersection = new THREE.Vector3();
+    if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
+      const localPoint = composerFrameGroup.worldToLocal(intersection.clone());
+      updateComposerPathPointAtState(index, (point) => {
+        point.copy(localPoint);
+      });
     }
     if (composerPointMeshes[index]) {
       composerPointMeshes[index].position.copy(composerPathState.points[index]);
@@ -8430,7 +8427,6 @@ function onComposerPointerUp(event) {
     composerReactionAuthoringState.pointerLocal = null;
     composerReactionAuthoringState.hoverEndpoint = null;
   }
-  composerDragState.altMode = false;
   composerDragState.button = 0;
 }
 
@@ -8729,7 +8725,6 @@ const composerDragState = {
   startOrbitTheta: 0,
   startOrbitPhi: 0,
   plane: new THREE.Plane(),
-  altMode: false,
 };
 let composerRenderer = null;
 let composerScene = null;

@@ -113,6 +113,14 @@ export function createComposerEditorStore(initialState = {}) {
       return state.reactionListRawState;
     },
     getPathState: () => state.pathState,
+    updatePathPointAt: (index, updater) => {
+      if (!Number.isInteger(index) || index < 0 || index >= state.pathState.points.length || typeof updater !== "function") {
+        return null;
+      }
+      const point = state.pathState.points[index];
+      updater(point, state.pathState);
+      return point ?? null;
+    },
     mutatePathState: (mutator) => {
       if (typeof mutator === "function") {
         mutator(state.pathState);
