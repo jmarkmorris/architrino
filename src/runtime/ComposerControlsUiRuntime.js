@@ -39,7 +39,6 @@ export function createComposerControlsUiRuntime(deps) {
     composerCameraRadiusInput,
     composerCameraResetButton,
     composerUiRuntime,
-    navUpButton,
     composerPathState,
     composerCameraFlightState,
     updateComposerPathGeometry,
@@ -68,6 +67,7 @@ export function createComposerControlsUiRuntime(deps) {
     loadComposerSceneFromLibrary,
     deleteComposerSceneFromLibrary,
     isTransitionActive,
+    exitComposer,
   } = deps;
 
   function wireListeners() {
@@ -93,7 +93,7 @@ export function createComposerControlsUiRuntime(deps) {
 
     if (composerExitButton) {
       composerExitButton.addEventListener("click", () => {
-        navUpButton?.click();
+        exitComposer?.();
       });
     }
 

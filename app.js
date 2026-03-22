@@ -81,6 +81,7 @@ import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
 import { createSceneSearchUiRuntime } from "./src/runtime/SceneSearchUiRuntime.js";
 import { createScenePanelUiRuntime } from "./src/runtime/ScenePanelUiRuntime.js";
 import { createAppShellUiRuntime } from "./src/runtime/AppShellUiRuntime.js";
+import { createAppSceneChromeRuntime } from "./src/runtime/AppSceneChromeRuntime.js";
 import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
@@ -128,6 +129,7 @@ const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
 const homeButton = document.getElementById("home-button");
 const docButton = document.getElementById("doc-button");
+const archieButton = document.getElementById("archie-button");
 const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
   ? Array.from(elementLegend.querySelectorAll(".legend-pill"))
@@ -4232,11 +4234,6 @@ function readComposerDraftState() {
   };
 }
 
-function formatComposerMarkerList(markers = []) {
-  void markers;
-  return "";
-}
-
 function getComposerLibraryEntries() {
   try {
     const raw = window.localStorage.getItem(composerLibraryStorageKey);
@@ -6422,7 +6419,6 @@ function updateComposerAnimatedViewport(timeSeconds) {
     console.error("Composer graphic overlay update failed.", error);
   }
   updateComposerViewportMediaOverlays(timeSeconds, composerCurrentDocument);
-  updateComposerDocumentCameraPreview(timeSeconds, composerCurrentDocument);
 }
 
 function addComposerOrbitTrace(center, motion, color) {
@@ -7214,11 +7210,6 @@ function addComposerDocumentCameraVisuals(documentData) {
     composerViewportGroup.add(marker);
     composerDocumentCameraWaypointMeshes.push(marker);
   });
-}
-
-function updateComposerDocumentCameraPreview(timeSeconds, documentData) {
-  void timeSeconds;
-  void documentData;
 }
 
 function updateComposerViewportFromDocument(documentData) {
@@ -10561,7 +10552,10 @@ function updateNavButton() {
     if (detailInfoButton) {
       detailInfoButton.disabled = true;
     }
-    updateDocButton();
+    appSceneChromeRuntime.updateDocButton(currentLevel, {
+      textbookTocScenePath,
+      transitionActive: transitionState.active,
+    });
     return;
   }
   if (navUpButton) {
@@ -10586,7 +10580,10 @@ function updateNavButton() {
   if (detailInfoButton) {
     detailInfoButton.disabled = !isElementSceneLevel();
   }
-  updateDocButton();
+  appSceneChromeRuntime.updateDocButton(currentLevel, {
+    textbookTocScenePath,
+    transitionActive: transitionState.active,
+  });
 }
 
 const periodicOverlayRuntime = createPeriodicOverlayRuntime({
@@ -11084,31 +11081,6 @@ function wireElementNavigationControls() {
 }
 
 
-function updateDocButton() {
-  if (!docButton) {
-    return;
-  }
-  const isTextbookToc = currentLevel?.id === textbookTocScenePath;
-  docButton.classList.remove("is-hidden");
-  docButton.classList.toggle("is-active", isTextbookToc);
-  docButton.setAttribute(
-    "aria-label",
-    isTextbookToc ? "Return from textbook TOC" : "Open textbook TOC"
-  );
-  docButton.setAttribute("aria-pressed", String(isTextbookToc));
-  docButton.disabled = transitionState.active || !currentLevel;
-}
-
-function updateArchieButton() {
-  const button = document.getElementById("archie-button");
-  if (!button) {
-    return;
-  }
-  const isArchie = currentLevel?.id === archieScenePath;
-  button.classList.toggle("is-active", isArchie);
-  button.setAttribute("aria-pressed", String(isArchie));
-}
-
 const composerUiRuntime = createComposerUiRuntime({
   app,
   composerOverlay,
@@ -11134,38 +11106,26 @@ const composerUiRuntime = createComposerUiRuntime({
   },
 });
 
-function updateMarkdownDocButton() {
-  if (!markdownDocButton) {
-    return;
-  }
-  const hasDoc = !!currentLevel?.markdownPath;
-  const hasSection = typeof currentLevel?.markdownSection === "string"
-    ? currentLevel.markdownSection.trim().length > 0
-    : !!currentLevel?.markdownSection;
-  const showDocButton = hasDoc && hasSection;
-  markdownDocButton.classList.toggle("is-hidden", !showDocButton);
-  markdownDocButton.disabled = !showDocButton;
-}
-
-function updateMarkdownLayoutToggleButton() {
-  if (!markdownLayoutToggle) {
-    return;
-  }
-  const hasDoc = !!currentLevel?.markdownPath;
-  markdownLayoutToggle.classList.toggle("is-hidden", !hasDoc);
-  markdownLayoutToggle.disabled = !hasDoc;
-}
+const appSceneChromeRuntime = createAppSceneChromeRuntime({
+  sceneLabel,
+  docButton,
+  archieButton,
+  markdownDocButton,
+  markdownLayoutToggle,
+});
 
 function updateSceneLabel() {
   sceneStateHashService.syncSceneHash(currentLevel?.id ?? null);
-  if (!sceneLabel) {
-    return;
-  }
-  sceneLabel.textContent = currentLevel?.name ?? "";
-  updateDocButton();
-  updateArchieButton();
-  updateMarkdownLayoutToggleButton();
-  updateMarkdownDocButton();
+  appSceneChromeRuntime.updateSceneLabel(currentLevel);
+  appSceneChromeRuntime.updateDocButton(currentLevel, {
+    textbookTocScenePath,
+    transitionActive: transitionState.active,
+  });
+  appSceneChromeRuntime.updateArchieButton(currentLevel, {
+    archieScenePath,
+  });
+  appSceneChromeRuntime.updateMarkdownLayoutToggleButton(currentLevel);
+  appSceneChromeRuntime.updateMarkdownDocButton(currentLevel);
   composerUiRuntime.updateComposerOverlay(currentLevel);
   periodicOverlayRuntime.updatePeriodicOverlay();
   periodicOverlayRuntime.updateElementLegend();
@@ -11301,7 +11261,6 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerCameraRadiusInput,
   composerCameraResetButton,
   composerUiRuntime,
-  navUpButton,
   composerPathState,
   composerCameraFlightState,
   updateComposerPathGeometry,
@@ -11330,6 +11289,13 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   loadComposerSceneFromLibrary,
   deleteComposerSceneFromLibrary,
   isTransitionActive: () => transitionState.active,
+  exitComposer: () => {
+    if (browserBackStack.length > 0) {
+      navUpButton?.click();
+      return;
+    }
+    resetToRootScene();
+  },
 });
 
 function focusOnPointer(clientX, clientY) {
