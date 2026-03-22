@@ -315,6 +315,9 @@ export function createPeriodicOverlayRuntime(deps) {
       return;
     }
     node.classList.remove("is-focused");
+    if (node.classList.contains("hyde-periodic-extra-tile")) {
+      return;
+    }
     node.style.removeProperty("fill");
     node.style.removeProperty("stroke");
     node.style.removeProperty("stroke-width");
@@ -325,6 +328,9 @@ export function createPeriodicOverlayRuntime(deps) {
       return;
     }
     node.classList.add("is-focused");
+    if (node.classList.contains("hyde-periodic-extra-tile")) {
+      return;
+    }
     node.style.setProperty("fill", "rgba(148, 191, 255, 0.3)");
     node.style.setProperty("stroke", "rgba(245, 249, 255, 0.98)");
     node.style.setProperty("stroke-width", "3.2");
@@ -501,6 +507,7 @@ export function createPeriodicOverlayRuntime(deps) {
     placement,
     overlay,
     leftFocusTarget,
+    navigationCenter,
   }) {
     if (!layer || !element || !placement) {
       return null;
@@ -514,6 +521,16 @@ export function createPeriodicOverlayRuntime(deps) {
     button.style.height = `${(placement.height / hydeViewBoxHeight) * 100}%`;
     button.dataset.symbol = element.symbol;
     button.dataset.number = `${element.number}`;
+    button.dataset.centerX = `${placement.center.x}`;
+    button.dataset.centerY = `${placement.center.y}`;
+    button.dataset.radialDistance = `${Math.hypot(
+      placement.center.x - (navigationCenter?.x ?? 0),
+      placement.center.y - (navigationCenter?.y ?? 0)
+    )}`;
+    button.dataset.spiralAngle = `${Math.atan2(
+      placement.center.y - (navigationCenter?.y ?? 0),
+      placement.center.x - (navigationCenter?.x ?? 0)
+    )}`;
     button.setAttribute("aria-label", `${element.name} (${element.symbol})`);
     button.setAttribute("aria-keyshortcuts", "ArrowLeft Enter Space");
     const tooltipText = `${element.number} ${element.symbol} - ${element.name}`;
@@ -538,11 +555,13 @@ export function createPeriodicOverlayRuntime(deps) {
       hidePeriodicTooltip();
     });
     button.addEventListener("focus", () => {
-      const rect = button.getBoundingClientRect();
-      showPeriodicTooltip(tooltipText, rect.left + rect.width / 2, rect.top + rect.height / 2);
+      setActiveHydeHotspot(button);
     });
     button.addEventListener("blur", () => {
-      hidePeriodicTooltip();
+      if (hydeActiveHotspotTarget !== button) {
+        clearActiveHydeHotspotVisual(button);
+        hidePeriodicTooltip();
+      }
     });
     button.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
@@ -552,7 +571,7 @@ export function createPeriodicOverlayRuntime(deps) {
       }
       if (event.key === "ArrowLeft" && leftFocusTarget) {
         event.preventDefault();
-        leftFocusTarget.focus();
+        setActiveHydeHotspot(leftFocusTarget, { focus: true });
       }
     });
     layer.appendChild(button);
@@ -1531,7 +1550,12 @@ export function createPeriodicOverlayRuntime(deps) {
         placement: tilePlacement,
         overlay,
         leftFocusTarget: hydeHotspotNodeByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[118]) ?? null,
+        navigationCenter,
       });
+      if (tileNode) {
+        hydeHotspotNodeByAtomicNumber.set(119, tileNode);
+        hydeHotspotAtomicNumbersInOrder.push(119);
+      }
       const hotspot118Node = hydeHotspotNodeByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[118]);
       if (tileNode && hotspot118Node) {
         hotspot118Node.addEventListener("keydown", (event) => {
