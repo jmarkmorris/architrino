@@ -78,6 +78,7 @@ import { createComposerEditorStore } from "./src/runtime/ComposerStoreRuntime.js
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
+import { createElementNavigationChromeRuntime } from "./src/runtime/ElementNavigationChromeRuntime.js";
 import { createSceneSearchUiRuntime } from "./src/runtime/SceneSearchUiRuntime.js";
 import { createScenePanelUiRuntime } from "./src/runtime/ScenePanelUiRuntime.js";
 import { createAppShellUiRuntime } from "./src/runtime/AppShellUiRuntime.js";
@@ -10720,64 +10721,15 @@ async function ensureElementNavigationData() {
 }
 
 function buildElementNavigationMiniHud() {
-  if (
-    !elementNavMini ||
-    !elementNavigationState.ready ||
-    elementNavigationState.miniHudBuilt
-  ) {
-    return;
-  }
-  elementNavMini.innerHTML = "";
-  elementNavigationState.miniCellBySymbol.clear();
-  const fragment = document.createDocumentFragment();
-  const orderedElements = [...elementNavigationState.elementBySymbol.values()].sort((a, b) => {
-    if (a.y !== b.y) {
-      return a.y - b.y;
-    }
-    if (a.x !== b.x) {
-      return a.x - b.x;
-    }
-    return a.symbol.localeCompare(b.symbol);
-  });
-  orderedElements.forEach((element) => {
-    const cell = document.createElement("div");
-    cell.className = "element-nav-mini-cell";
-    cell.style.gridColumn = String(element.x);
-    cell.style.gridRow = String(element.y);
-    cell.dataset.symbol = element.symbol;
-    cell.setAttribute("aria-hidden", "true");
-    fragment.appendChild(cell);
-    elementNavigationState.miniCellBySymbol.set(element.symbol, cell);
-  });
-  elementNavMini.appendChild(fragment);
-  elementNavigationState.miniHudBuilt = true;
+  elementNavigationChromeRuntime.buildMiniHud(elementNavigationState);
 }
 
 function clearElementNavigationMiniHighlights() {
-  elementNavigationState.miniCellBySymbol.forEach((cell) => {
-    cell.classList.remove("is-current");
-    cell.classList.remove("is-neighbor");
-    cell.classList.remove("is-neighbor-up");
-    cell.classList.remove("is-neighbor-down");
-    cell.classList.remove("is-neighbor-left");
-    cell.classList.remove("is-neighbor-right");
-    cell.replaceChildren();
-  });
+  elementNavigationChromeRuntime.clearMiniHighlights(elementNavigationState);
 }
 
 function addElementNavigationMiniDirectionIndicator(cell, direction) {
-  if (!(cell instanceof HTMLElement) || !direction) {
-    return;
-  }
-  const directionClass = `is-neighbor-${direction}`;
-  cell.classList.add("is-neighbor", directionClass);
-  if (cell.querySelector(`.element-nav-mini-indicator.dir-${direction}`)) {
-    return;
-  }
-  const indicator = document.createElement("span");
-  indicator.className = `element-nav-mini-indicator dir-${direction}`;
-  indicator.setAttribute("aria-hidden", "true");
-  cell.appendChild(indicator);
+  elementNavigationChromeRuntime.addMiniDirectionIndicator(cell, direction);
 }
 
 function getWrappedNeighbor(values, currentValue, direction) {
@@ -10832,16 +10784,10 @@ function resolveElementDirectionalTargets(symbol) {
 }
 
 function setElementNavButtonTarget(direction, targetSymbol) {
-  const button = elementNavButtons[direction];
-  if (!button) {
-    return;
-  }
-  const canNavigate =
-    !!targetSymbol &&
-    !transitionState.active &&
-    elementNavigationState.navigationInFlight !== true;
-  button.disabled = !canNavigate;
-  button.dataset.targetSymbol = targetSymbol ?? "";
+  elementNavigationChromeRuntime.setNavButtonTarget(direction, targetSymbol, {
+    transitionActive: transitionState.active,
+    navigationInFlight: elementNavigationState.navigationInFlight,
+  });
 }
 
 async function updateElementNavigationUi() {
@@ -10850,9 +10796,7 @@ async function updateElementNavigationUi() {
   }
   const updateToken = ++elementNavigationState.updateToken;
   const isElementScene = isElementSceneLevel();
-  elementNavOverlay.classList.toggle("is-open", isElementScene);
-  elementNavOverlay.setAttribute("aria-hidden", isElementScene ? "false" : "true");
-  elementNavOverlay.inert = !isElementScene;
+  elementNavigationChromeRuntime.updateOverlayVisibility(isElementScene);
   if (!isElementScene) {
     clearElementNavigationMiniHighlights();
     Object.keys(elementNavButtons).forEach((direction) => {
@@ -10886,46 +10830,22 @@ async function updateElementNavigationUi() {
 
   const currentCell = elementNavigationState.miniCellBySymbol.get(currentSymbol);
   if (currentCell) {
-    currentCell.classList.add("is-current");
+    elementNavigationChromeRuntime.markCurrentSymbol(elementNavigationState, currentSymbol);
   }
 
   const directionalTargets = resolveElementDirectionalTargets(currentSymbol);
   Object.entries(directionalTargets).forEach(([direction, targetSymbol]) => {
     setElementNavButtonTarget(direction, targetSymbol);
-    const targetCell = targetSymbol
-      ? elementNavigationState.miniCellBySymbol.get(targetSymbol)
-      : null;
-    if (targetCell) {
-      addElementNavigationMiniDirectionIndicator(targetCell, direction);
-    }
   });
+  elementNavigationChromeRuntime.markDirectionalTargets(elementNavigationState, directionalTargets);
 }
 
 function resolveNearestMiniCellSymbolFromPoint(clientX, clientY) {
-  if (!Number.isFinite(clientX) || !Number.isFinite(clientY)) {
-    return null;
-  }
-  let nearestSymbol = null;
-  let nearestDistanceSq = Number.POSITIVE_INFINITY;
-  elementNavigationState.miniCellBySymbol.forEach((cell, symbol) => {
-    if (!(cell instanceof HTMLElement)) {
-      return;
-    }
-    const rect = cell.getBoundingClientRect();
-    if (rect.width <= 0 || rect.height <= 0) {
-      return;
-    }
-    const centerX = rect.left + rect.width * 0.5;
-    const centerY = rect.top + rect.height * 0.5;
-    const dx = centerX - clientX;
-    const dy = centerY - clientY;
-    const distanceSq = dx * dx + dy * dy;
-    if (distanceSq < nearestDistanceSq) {
-      nearestDistanceSq = distanceSq;
-      nearestSymbol = symbol;
-    }
-  });
-  return nearestSymbol;
+  return elementNavigationChromeRuntime.resolveNearestMiniCellSymbolFromPoint(
+    clientX,
+    clientY,
+    elementNavigationState
+  );
 }
 
 async function navigateToElementSymbol(targetSymbol) {
@@ -11097,6 +11017,11 @@ const appSceneChromeRuntime = createAppSceneChromeRuntime({
   markdownDocButton,
   markdownLayoutToggle,
   detailInfoButton,
+});
+const elementNavigationChromeRuntime = createElementNavigationChromeRuntime({
+  elementNavOverlay,
+  elementNavMini,
+  elementNavButtons,
 });
 
 function updateSceneLabel() {
