@@ -5974,6 +5974,13 @@ function updateComposerTimelinePlayhead(timeSeconds, documentData) {
   }
 }
 
+function clearComposerEditorPreviewState() {
+  composerEditorPreviewState.renderMotionTimeOverride = null;
+  composerEditorPreviewState.renderMotionTimePlayhead = null;
+  composerEditorPreviewState.renderMotionProgressOverride = null;
+  composerEditorPreviewState.renderMotionProgressPlayhead = null;
+}
+
 function setComposerPlaybackPlayhead(timeSeconds, options = {}) {
   const documentData = options.documentData ?? composerCurrentDocument;
   if (!documentData) {
@@ -5981,11 +5988,7 @@ function setComposerPlaybackPlayhead(timeSeconds, options = {}) {
   }
   const timeWindow = getComposerSceneTimeWindow(documentData);
   composerPlaybackState.playheadSeconds = clamp(timeSeconds, timeWindow.start, timeWindow.end);
-  composerPlaybackState.renderMotionTimeOverride = null;
-  composerPlaybackState.renderMotionTimePlayhead = null;
-  composerPlaybackState.renderMotionProgressOverride = null;
-  composerPlaybackState.renderMotionProgressPlayhead = null;
-  composerPlaybackState.pauseRemaining = 0;
+  clearComposerEditorPreviewState();
   composerPlaybackState.lastTickMs = performance.now();
   if (options.playing !== undefined) {
     composerPlaybackState.playing = !!options.playing;
@@ -6005,11 +6008,7 @@ function startComposerPlayback(timeSeconds, options = {}) {
     clampedTime >= timeWindow.end - 0.001
       ? timeWindow.start
       : Math.min(clampedTime, timeWindow.end - 0.0001);
-  composerPlaybackState.renderMotionTimeOverride = null;
-  composerPlaybackState.renderMotionTimePlayhead = null;
-  composerPlaybackState.renderMotionProgressOverride = null;
-  composerPlaybackState.renderMotionProgressPlayhead = null;
-  composerPlaybackState.pauseRemaining = 0;
+  clearComposerEditorPreviewState();
   composerPlaybackState.playing = true;
   composerPlaybackState.lastTickMs = 0;
   updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
@@ -6099,10 +6098,7 @@ function updateComposerPlaybackState(now) {
     composerPlaybackState.lastTickMs = now;
     return composerPlaybackState.playheadSeconds;
   }
-  composerPlaybackState.renderMotionTimeOverride = null;
-  composerPlaybackState.renderMotionTimePlayhead = null;
-  composerPlaybackState.renderMotionProgressOverride = null;
-  composerPlaybackState.renderMotionProgressPlayhead = null;
+  clearComposerEditorPreviewState();
   if (!composerPlaybackState.lastTickMs) {
     composerPlaybackState.lastTickMs = now;
     return composerPlaybackState.playheadSeconds;
@@ -6121,7 +6117,6 @@ function updateComposerPlaybackState(now) {
   if (composerPlaybackState.playheadSeconds > timeWindow.end) {
     if (timeWindow.loop) {
       composerPlaybackState.playheadSeconds = timeWindow.start;
-      composerPlaybackState.pauseRemaining = 0;
     } else {
       composerPlaybackState.playheadSeconds = timeWindow.end;
       composerPlaybackState.playing = false;
@@ -6135,9 +6130,9 @@ function updateComposerAnimatedViewport(timeSeconds) {
     return;
   }
   const motionTime =
-    composerPlaybackState.renderMotionTimeOverride != null &&
-    Math.abs(timeSeconds - Number(composerPlaybackState.renderMotionTimePlayhead ?? NaN)) <= 0.0005
-      ? Number(composerPlaybackState.renderMotionTimeOverride)
+    composerEditorPreviewState.renderMotionTimeOverride != null &&
+    Math.abs(timeSeconds - Number(composerEditorPreviewState.renderMotionTimePlayhead ?? NaN)) <= 0.0005
+      ? Number(composerEditorPreviewState.renderMotionTimeOverride)
       : getComposerIntegratedMotionTime(composerCurrentDocument, timeSeconds);
   const paths = Array.isArray(composerCurrentDocument.paths) ? composerCurrentDocument.paths : [];
   const pathById = new Map(paths.map((path) => [path.id, path]));
@@ -6146,9 +6141,9 @@ function updateComposerAnimatedViewport(timeSeconds) {
     : [];
   const totalMotionDuration = getComposerTotalMotionDuration(composerCurrentDocument);
   const normalizedSceneT =
-    composerPlaybackState.renderMotionProgressOverride != null &&
-    Math.abs(timeSeconds - Number(composerPlaybackState.renderMotionProgressPlayhead ?? NaN)) <= 0.0005
-      ? clamp(Number(composerPlaybackState.renderMotionProgressOverride), 0, 1)
+    composerEditorPreviewState.renderMotionProgressOverride != null &&
+    Math.abs(timeSeconds - Number(composerEditorPreviewState.renderMotionProgressPlayhead ?? NaN)) <= 0.0005
+      ? clamp(Number(composerEditorPreviewState.renderMotionProgressOverride), 0, 1)
       : totalMotionDuration > 0
         ? clamp(motionTime / totalMotionDuration, 0, 1)
         : 0;
@@ -7327,32 +7322,25 @@ function updateComposerViewportFromDocument(documentData) {
   const timeWindow = getComposerSceneTimeWindow(documentData);
   if (composerPlaybackState.playheadSeconds < timeWindow.start || previousSceneId !== documentData?.scene?.id) {
     composerPlaybackState.playheadSeconds = timeWindow.start;
-    composerPlaybackState.renderMotionTimeOverride = null;
-    composerPlaybackState.renderMotionTimePlayhead = null;
-    composerPlaybackState.renderMotionProgressOverride = null;
-    composerPlaybackState.renderMotionProgressPlayhead = null;
+    clearComposerEditorPreviewState();
   } else if (shouldPreserveRenderedMotionTime && previousMotionTime != null) {
     composerPlaybackState.playheadSeconds = clamp(
       composerPlaybackState.playheadSeconds,
       timeWindow.start,
       timeWindow.end
     );
-    composerPlaybackState.renderMotionTimeOverride = previousMotionTime;
-    composerPlaybackState.renderMotionTimePlayhead = composerPlaybackState.playheadSeconds;
-    composerPlaybackState.renderMotionProgressOverride = previousMotionProgress;
-    composerPlaybackState.renderMotionProgressPlayhead = composerPlaybackState.playheadSeconds;
+    composerEditorPreviewState.renderMotionTimeOverride = previousMotionTime;
+    composerEditorPreviewState.renderMotionTimePlayhead = composerPlaybackState.playheadSeconds;
+    composerEditorPreviewState.renderMotionProgressOverride = previousMotionProgress;
+    composerEditorPreviewState.renderMotionProgressPlayhead = composerPlaybackState.playheadSeconds;
   } else {
     composerPlaybackState.playheadSeconds = clamp(
       composerPlaybackState.playheadSeconds,
       timeWindow.start,
       timeWindow.end
     );
-    composerPlaybackState.renderMotionTimeOverride = null;
-    composerPlaybackState.renderMotionTimePlayhead = null;
-    composerPlaybackState.renderMotionProgressOverride = null;
-    composerPlaybackState.renderMotionProgressPlayhead = null;
+    clearComposerEditorPreviewState();
   }
-  composerPlaybackState.pauseRemaining = 0;
   composerPlaybackState.playing = previousPlaybackPlaying;
   composerPlaybackState.lastTickMs = 0;
   renderComposerTimeline(documentData);
@@ -8802,15 +8790,16 @@ const composerViewportDisplayState = {
   showHistoryTraces: true,
   showEnvelopes: true,
 };
-const composerPlaybackState = {
-  playing: false,
-  playheadSeconds: 0,
-  pauseRemaining: 0,
-  lastTickMs: 0,
+const composerEditorPreviewState = {
   renderMotionTimeOverride: null,
   renderMotionTimePlayhead: null,
   renderMotionProgressOverride: null,
   renderMotionProgressPlayhead: null,
+};
+const composerPlaybackState = {
+  playing: false,
+  playheadSeconds: 0,
+  lastTickMs: 0,
 };
 
 const levels = new Map();
