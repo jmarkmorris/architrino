@@ -4,6 +4,7 @@ export function createAppSceneChromeRuntime({
   archieButton,
   markdownDocButton,
   markdownLayoutToggle,
+  detailInfoButton,
 }) {
   function updateDocButton(currentLevel, options = {}) {
     if (!docButton) {
@@ -52,6 +53,29 @@ export function createAppSceneChromeRuntime({
     markdownLayoutToggle.disabled = !hasDoc;
   }
 
+  function updateSceneInfoTrigger(canReopenInfo) {
+    if (!sceneLabel) {
+      return;
+    }
+    sceneLabel.classList.toggle("is-info-trigger", !!canReopenInfo);
+    if (canReopenInfo) {
+      sceneLabel.setAttribute("role", "button");
+      sceneLabel.setAttribute("tabindex", "0");
+      sceneLabel.setAttribute("aria-label", "Reopen element info panel");
+      return;
+    }
+    sceneLabel.removeAttribute("role");
+    sceneLabel.removeAttribute("tabindex");
+    sceneLabel.removeAttribute("aria-label");
+  }
+
+  function updateDetailInfoButton(canOpenInfo, options = {}) {
+    if (!detailInfoButton) {
+      return;
+    }
+    detailInfoButton.disabled = !!options.transitionActive || !canOpenInfo;
+  }
+
   function updateSceneLabel(currentLevel) {
     if (!sceneLabel) {
       return;
@@ -64,6 +88,8 @@ export function createAppSceneChromeRuntime({
     updateArchieButton,
     updateMarkdownDocButton,
     updateMarkdownLayoutToggleButton,
+    updateSceneInfoTrigger,
+    updateDetailInfoButton,
     updateSceneLabel,
   };
 }
