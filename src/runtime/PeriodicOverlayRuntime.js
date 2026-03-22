@@ -36,8 +36,9 @@ export function createPeriodicOverlayRuntime(deps) {
   let hydeInitialFocusTarget = null;
   let hydeActiveHotspotTarget = null;
   let hydeHotspotNodesInSpiralOrder = [];
-  let hydeHotspotDisplayNumbersInOrder = [];
+  let hydeHotspotAtomicNumbersInOrder = [];
   let hydeHotspotNodeByDisplayNumber = new Map();
+  let hydeHotspotNodeByAtomicNumber = new Map();
   let hydePeriodicWasOpen = false;
   let elementInfoPinned = false;
   const activePeriodicSceneId =
@@ -346,30 +347,30 @@ export function createPeriodicOverlayRuntime(deps) {
   }
 
   function moveActiveHydeHotspotByOffset(offset) {
-    if (!hydeHotspotDisplayNumbersInOrder.length) {
+    if (!hydeHotspotAtomicNumbersInOrder.length) {
       return null;
     }
-    const activeDisplayNumber = Number.parseInt(
-      hydeActiveHotspotTarget?.dataset.sourceHotspotNumber || "",
+    const activeAtomicNumber = Number.parseInt(
+      hydeActiveHotspotTarget?.dataset.number || "",
       10
     );
-    const initialDisplayNumber = Number.parseInt(
-      hydeInitialFocusTarget?.dataset.sourceHotspotNumber || "",
+    const initialAtomicNumber = Number.parseInt(
+      hydeInitialFocusTarget?.dataset.number || "",
       10
     );
-    const seedDisplayNumber = Number.isFinite(activeDisplayNumber)
-      ? activeDisplayNumber
-      : initialDisplayNumber;
-    const currentIndex = Number.isFinite(seedDisplayNumber)
-      ? hydeHotspotDisplayNumbersInOrder.indexOf(seedDisplayNumber)
+    const seedAtomicNumber = Number.isFinite(activeAtomicNumber)
+      ? activeAtomicNumber
+      : initialAtomicNumber;
+    const currentIndex = Number.isFinite(seedAtomicNumber)
+      ? hydeHotspotAtomicNumbersInOrder.indexOf(seedAtomicNumber)
       : -1;
     const nextIndex =
       currentIndex < 0
         ? 0
-        : (currentIndex + offset + hydeHotspotDisplayNumbersInOrder.length) %
-          hydeHotspotDisplayNumbersInOrder.length;
-    const nextDisplayNumber = hydeHotspotDisplayNumbersInOrder[nextIndex];
-    return setActiveHydeHotspot(hydeHotspotNodeByDisplayNumber.get(nextDisplayNumber), {
+        : (currentIndex + offset + hydeHotspotAtomicNumbersInOrder.length) %
+          hydeHotspotAtomicNumbersInOrder.length;
+    const nextAtomicNumber = hydeHotspotAtomicNumbersInOrder[nextIndex];
+    return setActiveHydeHotspot(hydeHotspotNodeByAtomicNumber.get(nextAtomicNumber), {
       focus: true,
     });
   }
@@ -1382,8 +1383,9 @@ export function createPeriodicOverlayRuntime(deps) {
     const legendSet = new Map();
     const hotspotNodes = [];
     hydeHotspotNodesInSpiralOrder = [];
-    hydeHotspotDisplayNumbersInOrder = [];
+    hydeHotspotAtomicNumbersInOrder = [];
     hydeHotspotNodeByDisplayNumber = new Map();
+    hydeHotspotNodeByAtomicNumber = new Map();
     hydeActiveHotspotTarget = null;
     hydeInitialFocusTarget = null;
     const hotspots = orderedHotspots;
@@ -1496,12 +1498,16 @@ export function createPeriodicOverlayRuntime(deps) {
       grid.appendChild(circle);
       hotspotNodes.push(circle);
       hydeHotspotNodeByDisplayNumber.set(hotspotDisplayNumber, circle);
-      hydeHotspotDisplayNumbersInOrder.push(hotspotDisplayNumber);
       hydeHotspotNodesInSpiralOrder.push(circle);
       if (element && Number(element.number) === 1) {
         hydeInitialFocusTarget = circle;
       }
       if (element) {
+        const atomicNumber = Number(element.number);
+        if (Number.isFinite(atomicNumber)) {
+          hydeHotspotNodeByAtomicNumber.set(atomicNumber, circle);
+          hydeHotspotAtomicNumbersInOrder.push(atomicNumber);
+        }
         const legendKey = element.category || "Unknown";
         if (!legendSet.has(legendKey)) {
           legendSet.set(legendKey, color);
@@ -1540,7 +1546,7 @@ export function createPeriodicOverlayRuntime(deps) {
         legendSet.set(legendKey, tileColor);
       }
     }
-    hydeHotspotDisplayNumbersInOrder.sort((left, right) => left - right);
+    hydeHotspotAtomicNumbersInOrder.sort((left, right) => left - right);
     if (hydeInitialFocusTarget instanceof Element) {
       setActiveHydeHotspot(hydeInitialFocusTarget, { focus: false });
     }
