@@ -454,16 +454,18 @@ export function createPeriodicOverlayRuntime(deps) {
   }
 
   function buildHydeSupplementalTilePlacement({
-    hotspot118,
-    hotspot117,
+    hotspotAnchor,
+    hotspotReference,
     tileWidth = 118.4,
     tileHeight = 118.4,
+    offsetX = 0,
+    offsetY = 0,
   }) {
-    if (!hotspot118?.center) {
+    if (!hotspotAnchor?.center) {
       return null;
     }
-    const sourceCenter = hotspot118.center;
-    const referenceCenter = hotspot117?.center ?? {
+    const sourceCenter = hotspotAnchor.center;
+    const referenceCenter = hotspotReference?.center ?? {
       x: sourceCenter.x - 1,
       y: sourceCenter.y,
     };
@@ -472,7 +474,7 @@ export function createPeriodicOverlayRuntime(deps) {
     const rawLength = Math.hypot(rawDirectionX, rawDirectionY);
     const directionX = rawLength > 0 ? rawDirectionX / rawLength : 1;
     const directionY = rawLength > 0 ? rawDirectionY / rawLength : 0;
-    const outwardDistance = Math.max(112, (hotspot118.r || 0) * 6.2);
+    const outwardDistance = Math.max(112, (hotspotAnchor.r || 0) * 6.2);
     const baseCenterX = sourceCenter.x + directionX * outwardDistance;
     const baseCenterY = sourceCenter.y + directionY * outwardDistance;
     const leftShift = Math.max(42, tileWidth * 0.28);
@@ -485,8 +487,8 @@ export function createPeriodicOverlayRuntime(deps) {
     const maxCenterX = hydeViewBoxWidth - tileWidth / 2 - 12;
     const minCenterY = tileHeight / 2 + 12;
     const maxCenterY = hydeViewBoxHeight - tileHeight / 2 - 12;
-    const centerX = clampNumber(unclampedCenterX, minCenterX, maxCenterX);
-    const centerY = clampNumber(unclampedCenterY, minCenterY, maxCenterY);
+    const centerX = clampNumber(unclampedCenterX + offsetX, minCenterX, maxCenterX);
+    const centerY = clampNumber(unclampedCenterY + offsetY, minCenterY, maxCenterY);
     const left = centerX - tileWidth / 2;
     const top = centerY - tileHeight / 2;
     return {
@@ -1535,13 +1537,19 @@ export function createPeriodicOverlayRuntime(deps) {
     }
     const element119 = elementsByAtomicNumber.get(119);
     if (element119 && supplementalLayer) {
+      const hotspotOrder87 = hotspotOrderByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[87]);
+      const hotspotOrder88 = hotspotOrderByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[88]);
       const hotspotOrder118 = hotspotOrderByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[118]);
       const hotspotOrder117 = hotspotOrderByDisplayNumber.get(hydeAtomicNumberToHotspotNumber[117]);
+      const hotspot87 = Number.isInteger(hotspotOrder87) ? orderedHotspots[hotspotOrder87] : null;
+      const hotspot88 = Number.isInteger(hotspotOrder88) ? orderedHotspots[hotspotOrder88] : null;
       const hotspot118 = Number.isInteger(hotspotOrder118) ? orderedHotspots[hotspotOrder118] : null;
       const hotspot117 = Number.isInteger(hotspotOrder117) ? orderedHotspots[hotspotOrder117] : null;
       const tilePlacement = buildHydeSupplementalTilePlacement({
-        hotspot118,
-        hotspot117,
+        hotspotAnchor: hotspot87 ?? hotspot118,
+        hotspotReference: hotspot88 ?? hotspot117,
+        offsetX: hotspot87 ? -64 : 0,
+        offsetY: hotspot87 ? -132 : 0,
       });
       const tileColor = getPeriodicColor(element119.category);
       const tileNode = createHydeSupplementalElementTile({
