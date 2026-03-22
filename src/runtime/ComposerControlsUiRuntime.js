@@ -34,7 +34,6 @@ export function createComposerControlsUiRuntime(deps) {
     composerPauseListInput,
     composerWarpListInput,
     composerTransferListInput,
-    composerReactionListInput,
     composerCameraSpeedInput,
     composerCameraRadiusInput,
     composerCameraResetButton,
@@ -224,7 +223,6 @@ export function createComposerControlsUiRuntime(deps) {
       composerPauseListInput,
       composerWarpListInput,
       composerTransferListInput,
-      composerReactionListInput,
     ].filter(Boolean);
     if (composerInputs.length) {
       composerInputs.forEach((input) => {

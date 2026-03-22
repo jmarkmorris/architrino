@@ -42,6 +42,17 @@ function createBinaryBranch(id, label, { withPersonality = true } = {}) {
   };
 }
 
+function createProAntiCoreBranch(id) {
+  return {
+    id,
+    label: "Pro/anti core",
+    children: [
+      { id: `${id}/pro_core`, label: "Pro core", children: [] },
+      { id: `${id}/anti_core`, label: "Anti core", children: [] },
+    ],
+  };
+}
+
 function buildHierarchyForTemplate(templateId, label) {
   const normalizedTemplate = String(templateId ?? "").trim().toLowerCase();
   if (normalizedTemplate === "higgs_cluster") {
@@ -50,9 +61,14 @@ function buildHierarchyForTemplate(templateId, label) {
         id: "root",
         label,
         children: [
-          { id: "root/coherent_packet", label: "coherent packet", children: [] },
-          { id: "root/substrate_packet", label: "substrate packet", children: [] },
-          { id: "root/residual_detritus", label: "residual detritus", children: [] },
+          {
+            id: "root/higgs_cluster",
+            label: "Higgs cluster",
+            children: [
+              createProAntiCoreBranch("root/higgs_cluster/proanti_core_1"),
+              createProAntiCoreBranch("root/higgs_cluster/proanti_core_2"),
+            ],
+          },
         ],
       },
     ];
@@ -132,6 +148,11 @@ function nodeKeysConflict(leftKey, rightKey) {
     isSameOrAncestorPath(left.nodeId, right.nodeId) ||
     isSameOrAncestorPath(right.nodeId, left.nodeId)
   );
+}
+
+function countDescendants(node) {
+  const children = Array.isArray(node?.children) ? node.children : [];
+  return children.reduce((total, child) => total + 1 + countDescendants(child), 0);
 }
 
 function createSvgElement(name) {
@@ -233,9 +254,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function removeMappingById(mappingId) {
     const beforeCount = state.mappings.length;
     state.mappings = state.mappings.filter((mapping) => mapping.id !== mappingId);
-    if (beforeCount !== state.mappings.length) {
-      render();
-    }
+    return beforeCount !== state.mappings.length;
   }
 
   function addOrReplaceMapping(sourceKey, targetKey) {
@@ -328,12 +347,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!templateEntry) {
       return;
     }
+    const participantLabel = templateEntry.template === "higgs_cluster" ? "SpaceTime" : templateEntry.label;
     const participant = {
       id: `solver_participant_${state.nextParticipantId++}`,
       side,
       templateId: templateEntry.template,
-      label: templateEntry.label,
-      hierarchy: buildHierarchyForTemplate(templateEntry.template, templateEntry.label),
+      label: participantLabel,
+      hierarchy: buildHierarchyForTemplate(templateEntry.template, participantLabel),
     };
     state.participants.push(participant);
     state.pendingSourceKey = "";
@@ -436,9 +456,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function handleAnchorClick(side, nodeKey) {
     const existingMapping = findMappingByNodeKey(nodeKey);
     if (existingMapping) {
-      removeMappingById(existingMapping.id);
       state.pendingSourceKey = "";
-      setStatus("Removed reaction mapping.");
+      if (removeMappingById(existingMapping.id)) {
+        render();
+        setStatus("Removed reaction mapping.");
+      }
       return;
     }
     if (getAnchorDisabled(side, nodeKey)) {
@@ -470,11 +492,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     nodes.forEach((node) => {
       const nodeKey = buildNodeKey(participant.id, node.id);
+      const hasChildren = Array.isArray(node.children) && node.children.length > 0;
+      const mapping = findMappingByNodeKey(nodeKey);
+      const isCollapsed = !!mapping && hasChildren;
+      const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
       const row = document.createElement("div");
       row.className = "composer-reaction-solver-tree-row";
       row.style.setProperty("--solver-depth", String(depth));
       if (getAnchorDisabled(participant.side, nodeKey)) {
         row.classList.add("is-disabled");
+      }
+      if (isCollapsed) {
+        row.classList.add("is-collapsed");
       }
       const label = document.createElement("span");
       label.className = "composer-reaction-solver-tree-label";
@@ -492,18 +521,32 @@ export function createComposerReactionSolverUiRuntime(deps) {
       if (state.pendingSourceKey === nodeKey) {
         anchor.classList.add("is-pending");
       }
-      if (findMappingByNodeKey(nodeKey)) {
+      if (mapping) {
         anchor.classList.add("is-mapped");
       }
       anchor.addEventListener("click", () => handleAnchorClick(participant.side, nodeKey));
+      const collapsedNote =
+        hiddenDescendantCount > 0
+          ? Object.assign(document.createElement("span"), {
+              className: "composer-reaction-solver-tree-note",
+              textContent: `${hiddenDescendantCount} hidden`,
+            })
+          : null;
       if (participant.side === "product") {
         row.classList.add("is-product");
         row.append(anchor, label);
+        if (collapsedNote) {
+          row.appendChild(collapsedNote);
+        }
       } else {
-        row.append(label, anchor);
+        row.append(label);
+        if (collapsedNote) {
+          row.appendChild(collapsedNote);
+        }
+        row.append(anchor);
       }
       parent.appendChild(row);
-      if (Array.isArray(node.children) && node.children.length) {
+      if (hasChildren && !isCollapsed) {
         renderParticipantTreeRows(parent, participant, node.children, depth + 1);
       }
     });

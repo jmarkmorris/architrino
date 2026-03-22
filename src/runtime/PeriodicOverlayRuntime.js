@@ -539,7 +539,10 @@ export function createPeriodicOverlayRuntime(deps) {
       placement.center.x - (navigationCenter?.x ?? 0)
     )}`;
     button.setAttribute("aria-label", `${element.name} (${element.symbol})`);
-    button.setAttribute("aria-keyshortcuts", "ArrowLeft Enter Space");
+    button.setAttribute(
+      "aria-keyshortcuts",
+      "ArrowLeft ArrowRight ArrowUp ArrowDown Enter Space"
+    );
     const tooltipText = `${element.number} ${element.symbol} - ${element.name}`;
     if (typeof showHoverTooltip !== "function") {
       button.title = `${element.number} ${element.name} (${element.symbol})`;

@@ -11,17 +11,6 @@ import {
   createComposerSceneDocument,
 } from "./src/runtime/Composer2SceneDocumentRuntime.js";
 import {
-  buildComposerReactionActionString,
-  formatComposerReactionBandLabel,
-  formatComposerReactionList,
-  formatComposerReactionTransferRefs,
-  getComposerReactionActionOptions,
-  getComposerReactionStageDrafts,
-  normalizeComposerReactionAction,
-  parseComposerReactions,
-  shortenComposerTimelineBandLabel,
-} from "./src/runtime/ComposerReactionRuntime.js";
-import {
   clampComposerTimelineSpan,
   COMPOSER_TIMELINE_MIN_DURATION_SECONDS as composerTimelineMinDurationSeconds,
   findComposerTimelineOverlap as findComposerTimelineOverlapRuntime,
@@ -35,7 +24,6 @@ import {
 } from "./src/runtime/ComposerTimelineRuntime.js";
 import {
   composerAssemblyTemplateMenuRows,
-  composerSceneRoleOptions,
   composerTimelineAddTypeEntries,
   composerTimelineAddTypeIds,
   generationTransitions,
@@ -257,18 +245,15 @@ const composerMarkerListInput = document.getElementById("composer-marker-list");
 const composerPauseListInput = document.getElementById("composer-pause-list");
 const composerWarpListInput = document.getElementById("composer-warp-list");
 const composerTransferListInput = document.getElementById("composer-transfer-list");
-const composerReactionListInput = document.getElementById("composer-reaction-list");
 const composerMarkerStatus = document.getElementById("composer-marker-status");
 const composerPauseStatus = document.getElementById("composer-pause-status");
 const composerWarpStatus = document.getElementById("composer-warp-status");
 const composerTransferStatus = document.getElementById("composer-transfer-status");
-const composerReactionStatus = document.getElementById("composer-reaction-status");
 const composerTimelineSummary = document.getElementById("composer-timeline-summary");
 const composerTimelineActive = document.getElementById("composer-timeline-active");
 const composerTimelineTrack = document.getElementById("composer-timeline-track");
 const composerTimelineWarps = document.getElementById("composer-timeline-warps");
 const composerTimelinePauses = document.getElementById("composer-timeline-pauses");
-const composerTimelineReactions = document.getElementById("composer-timeline-reactions");
 const composerTimelineMarkers = document.getElementById("composer-timeline-markers");
 const composerTimelinePlayhead = document.getElementById("composer-timeline-playhead");
 const composerLibraryStorageKey = "architrino.composer.library.v1";
@@ -1249,22 +1234,6 @@ function formatComposerTransferList(transfers = []) {
     .join("\n");
 }
 
-function normalizeComposerReactionTransferRef(rawRef, transferById) {
-  const token = String(rawRef ?? "").trim();
-  if (!token) {
-    return null;
-  }
-  const explicitId = sanitizeComposerEntityId(token, "");
-  if (explicitId && transferById.has(explicitId)) {
-    return explicitId;
-  }
-  if (/^\d+$/.test(token)) {
-    const lineId = `transfer_authored_${Number(token)}`;
-    return transferById.has(lineId) ? lineId : null;
-  }
-  return null;
-}
-
 function formatComposerTransferEndpointLabel(endpoint) {
   const assemblyId = String(endpoint?.assemblyId ?? "").trim();
   const memberId = String(endpoint?.memberId ?? "").trim();
@@ -1645,10 +1614,6 @@ function getComposerTransferListRawStateValue() {
   return composerEditorStore.getTransferListRawState();
 }
 
-function getComposerReactionListRawStateValue() {
-  return composerEditorStore.getReactionListRawState();
-}
-
 function setComposerAssemblyDraftsState(nextValue) {
   return composerEditorStore.setAssemblyDrafts(nextValue);
 }
@@ -1701,10 +1666,6 @@ function setComposerTransferListRawStateValue(nextValue) {
   return composerEditorStore.setTransferListRawState(nextValue);
 }
 
-function setComposerReactionListRawStateValue(nextValue) {
-  return composerEditorStore.setReactionListRawState(nextValue);
-}
-
 function updateComposerPathPointAtState(index, updater) {
   return composerEditorStore.updatePathPointAt(index, updater);
 }
@@ -1730,40 +1691,18 @@ function isComposerBareArchitrinoAssembly(assembly) {
 }
 
 function normalizeComposerAssemblySceneRole(rawRole = "assembly") {
-  const normalized = String(rawRole ?? "").trim().toLowerCase();
-  return normalized === "reactant" || normalized === "product" ? normalized : "assembly";
+  return "assembly";
 }
 
 function getComposerAssemblySceneRoleLabel(rawRole = "assembly") {
-  const normalized = normalizeComposerAssemblySceneRole(rawRole);
-  if (normalized === "reactant") {
-    return "Reactant";
-  }
-  if (normalized === "product") {
-    return "Product";
-  }
   return "Assembly";
 }
 
 function getComposerAssemblySceneRoleGlyph(rawRole = "assembly") {
-  const normalized = normalizeComposerAssemblySceneRole(rawRole);
-  if (normalized === "reactant") {
-    return "R";
-  }
-  if (normalized === "product") {
-    return "P";
-  }
   return "A";
 }
 
 function getComposerAssemblySceneRoleColor(rawRole = "assembly") {
-  const normalized = normalizeComposerAssemblySceneRole(rawRole);
-  if (normalized === "reactant") {
-    return linkColors.reactant;
-  }
-  if (normalized === "product") {
-    return linkColors.product;
-  }
   return "#ffc26a";
 }
 
@@ -1795,23 +1734,7 @@ function getComposerTimelineEditKindTitle(editKind = "add") {
   if (editKind === "warp") {
     return "Warp";
   }
-  return "Reaction";
-}
-
-function ensureComposerAssemblyDraftsForReactionUi() {
-  ensureComposerAssemblyDrafts();
-  const reactants = [];
-  const products = [];
-  getComposerAssemblyDraftsState().forEach((assembly, index) => {
-    const label = assembly?.name?.trim() || getComposerAssemblyViewportLabel(assembly, index);
-    const sceneRole = normalizeComposerAssemblySceneRole(assembly?.sceneRole);
-    if (sceneRole === "reactant") {
-      reactants.push(label);
-    } else if (sceneRole === "product") {
-      products.push(label);
-    }
-  });
-  return { reactants, products };
+  return "Timeline";
 }
 
 function getComposerSelectedAssemblyLetter() {
@@ -1830,17 +1753,6 @@ function setComposerTransferListRaw(value = "") {
   setComposerTransferListRawStateValue(value);
   if (composerTransferListInput) {
     composerTransferListInput.value = getComposerTransferListRawStateValue();
-  }
-}
-
-function getComposerReactionListRaw() {
-  return composerReactionListInput?.value ?? composerEditorStore.getReactionListRawState() ?? "";
-}
-
-function setComposerReactionListRaw(value = "") {
-  setComposerReactionListRawStateValue(value);
-  if (composerReactionListInput) {
-    composerReactionListInput.value = getComposerReactionListRawStateValue();
   }
 }
 
@@ -2004,101 +1916,8 @@ function appendComposerTransferLine(line) {
   setComposerTransferListRaw(appendComposerAuthoringLine(getComposerTransferListRaw(), line));
 }
 
-function appendComposerReactionLine(line) {
-  setComposerReactionListRaw(appendComposerAuthoringLine(getComposerReactionListRaw(), line));
-}
-
 function getComposerParsedTransferEntries(rawText = getComposerTransferListRaw()) {
   return parseComposerTransfers(rawText).entries;
-}
-
-function getComposerReactionById(reactionId, documentData = composerCurrentDocument) {
-  if (!reactionId) {
-    return null;
-  }
-  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
-  return reactions.find((reaction) => reaction?.id === reactionId) ?? null;
-}
-
-function clearComposerPendingReactionMapping() {
-  composerReactionAuthoringState.pendingSource = null;
-  composerReactionAuthoringState.pointerLocal = null;
-  composerReactionAuthoringState.hoverEndpoint = null;
-}
-
-function setComposerActiveReactionAuthoring(reactionId = null) {
-  const nextReactionId = reactionId ? String(reactionId) : null;
-  composerReactionAuthoringState.reactionId = nextReactionId;
-  clearComposerPendingReactionMapping();
-  if (composerCurrentDocument) {
-    renderComposerTimeline(composerCurrentDocument);
-  }
-  const activeReaction = nextReactionId ? getComposerReactionById(nextReactionId) : null;
-  if (activeReaction) {
-    setComposerStatus(
-      `Reaction mapping active for ${activeReaction.label}. Click a reactant member or charge, then click a product member or charge.`
-    );
-  }
-}
-
-function getComposerAssemblySceneRoleById(assemblyId) {
-  const assembly = getComposerAssemblyDraftById(assemblyId);
-  return normalizeComposerAssemblySceneRole(assembly?.sceneRole);
-}
-
-function buildComposerReactionTransferLineLabel(sourceEndpoint, targetEndpoint, t = null) {
-  const source = `${sourceEndpoint?.assemblyId ?? ""}.${sourceEndpoint?.memberId ?? ""}`;
-  const target = `${targetEndpoint?.assemblyId ?? ""}.${targetEndpoint?.memberId ?? ""}`;
-  const suffix = Number.isFinite(Number(t)) ? ` @ ${Number(t).toFixed(3)}` : "";
-  return `${source} -> ${target}${suffix}`;
-}
-
-function appendComposerMappingToReaction(reactionId, sourceEndpoint, targetEndpoint) {
-  const reaction = getComposerReactionById(reactionId);
-  if (!reaction?.id || !sourceEndpoint?.assemblyId || !sourceEndpoint?.memberId || !targetEndpoint?.assemblyId || !targetEndpoint?.memberId) {
-    return false;
-  }
-  const roleSource = getComposerAssemblySceneRoleById(sourceEndpoint.assemblyId);
-  const roleTarget = getComposerAssemblySceneRoleById(targetEndpoint.assemblyId);
-  if (roleSource !== "reactant" || roleTarget !== "product") {
-    return false;
-  }
-  const transferTime = clamp(
-    composerPlaybackState.playheadSeconds,
-    Number(reaction.start ?? 0) || 0,
-    Number(reaction.end ?? composerPlaybackState.playheadSeconds) || composerPlaybackState.playheadSeconds
-  );
-  const nextTransferLine = buildComposerReactionTransferLineLabel(sourceEndpoint, targetEndpoint, transferTime);
-  const nextTransferRaw = appendComposerAuthoringLine(getComposerTransferListRaw(), nextTransferLine);
-  const parsedTransfers = getComposerParsedTransferEntries(nextTransferRaw);
-  const newTransfer = parsedTransfers[parsedTransfers.length - 1] ?? null;
-  if (!newTransfer?.id) {
-    return false;
-  }
-  const nextTransferIds = [...new Set([...(Array.isArray(reaction.transferIds) ? reaction.transferIds : []), newTransfer.id])];
-  const nextReaction = {
-    ...reaction,
-    transferIds: nextTransferIds,
-    stages: Array.isArray(reaction.stages)
-      ? reaction.stages.map((stage) => ({
-          ...stage,
-          transferIds: nextTransferIds,
-        }))
-      : [],
-  };
-  setComposerTransferListRaw(nextTransferRaw);
-  setComposerReactionListRaw(
-    replaceComposerAuthoringLineById(
-      getComposerReactionListRaw(),
-      reaction.id,
-      formatComposerReactionList([nextReaction])
-    )
-  );
-  renderComposerJsonPreview();
-  setComposerStatus(
-    `Mapped ${formatComposerTransferEndpointLabel(sourceEndpoint)} -> ${formatComposerTransferEndpointLabel(targetEndpoint)} in ${reaction.label}.`
-  );
-  return true;
 }
 
 function getComposerAssemblyMemberIds(assembly) {
@@ -3097,15 +2916,6 @@ function renderComposerAssemblyEditor() {
     chip.appendChild(number);
     chip.appendChild(name);
 
-    const sceneRole = normalizeComposerAssemblySceneRole(assembly.sceneRole);
-    if (sceneRole !== "assembly" || index === 0) {
-      const role = document.createElement("span");
-      role.className = "composer-assembly-chip-role";
-      role.dataset.sceneRole = sceneRole;
-      role.textContent = sceneRole === "assembly" ? "Primary" : getComposerAssemblySceneRoleLabel(sceneRole);
-      chip.appendChild(role);
-    }
-
     chip.addEventListener("click", () => {
       setComposerSelectedAssembly(assembly.id);
       renderComposerAssemblyEditor();
@@ -3132,12 +2942,12 @@ function renderComposerAssemblyEditor() {
     body.appendChild(title);
     const hint = document.createElement("div");
     hint.className = "composer-field-note";
-    hint.textContent = "Use right-click on the canvas to add reactants, products, or assemblies.";
+    hint.textContent = "Use right-click on the canvas to add assemblies.";
     body.appendChild(hint);
     const panelHint = document.createElement("div");
     panelHint.className = "composer-field-note";
     panelHint.textContent =
-      "The scene starts empty. Add reactants, products, or regular assemblies from the canvas instead of relying on a starter object.";
+      "The scene starts empty. Add assemblies from the canvas instead of relying on a starter object.";
     body.appendChild(panelHint);
     detailCard.appendChild(body);
     composerAssemblyDetail.appendChild(detailCard);
@@ -3173,7 +2983,7 @@ function renderComposerAssemblyEditor() {
   const subassemblyCount = Array.isArray(selectedAssembly.subassemblies)
     ? selectedAssembly.subassemblies.length
     : 0;
-  structureSummary.textContent = `${getComposerAssemblySceneRoleLabel(selectedAssembly.sceneRole)} • ${selectedAssembly.members.length} member${
+  structureSummary.textContent = `${selectedAssembly.members.length} member${
     selectedAssembly.members.length === 1 ? "" : "s"
   } • ${subassemblyCount} subassembl${subassemblyCount === 1 ? "y" : "ies"}`;
   body.appendChild(structureSummary);
@@ -3181,7 +2991,7 @@ function renderComposerAssemblyEditor() {
   const hint = document.createElement("div");
   hint.className = "composer-field-note";
   hint.textContent =
-    "Use right-click on the canvas to add reactants, products, or assemblies. Once one exists, drag the center to move it, drag member dots to place members, drag subassembly halos to place groups, and right-click handles for actions.";
+    "Use right-click on the canvas to add assemblies. Once one exists, drag the center to move it, drag member dots to place members, drag subassembly halos to place groups, and right-click handles for actions.";
   body.appendChild(hint);
 
   const panelHint = document.createElement("div");
@@ -3839,8 +3649,6 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
     appendMenuNote: appendComposerMenuNote,
     appendMenuSectionHeader: appendComposerMenuSectionHeader,
     appendMenuButtonRow: appendComposerMenuButtonRow,
-    sceneRoleOptions: composerSceneRoleOptions,
-    normalizeAssemblySceneRole: normalizeComposerAssemblySceneRole,
     getAssemblyDraftById: getComposerAssemblyDraftById,
     renderAssemblyEditor: renderComposerAssemblyEditor,
     assemblyPositionInputs: composerAssemblyPositionInputs,
@@ -3994,12 +3802,10 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
-  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
 
   const markerCount = diagnostics?.markerHasInput ? markers.length : 0;
   const pauseCount = diagnostics?.pauseHasInput ? pauses.length : 0;
   const warpCount = diagnostics?.warpHasInput ? timeWarps.length : 0;
-  const reactionCount = diagnostics?.reactionHasInput ? reactions.length : 0;
 
   const markerStatus = formatComposerInlineTimingStatus("marker", diagnostics, markerCount);
   const pauseStatus = formatComposerInlineTimingStatus("pause", diagnostics, pauseCount);
@@ -4019,23 +3825,6 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
           text: `Parsed ${transfers.length} transfer${transfers.length === 1 ? "" : "s"}.`,
           invalid: false,
         };
-  const reactionErrors = Array.isArray(diagnostics?.reactionErrorLines)
-    ? diagnostics.reactionErrorLines
-    : [];
-  const reactionHasInput = !!diagnostics?.reactionHasInput;
-  const reactionStatus = !reactionHasInput
-    ? { text: "No reactions staged.", invalid: false }
-    : reactionErrors.length
-      ? {
-          text: `Parsed ${reactionCount} reaction stage${reactionCount === 1 ? "" : "s"}. Ignored invalid line${
-            reactionErrors.length === 1 ? "" : "s"
-          } ${reactionErrors.join(", ")}.`,
-          invalid: true,
-        }
-      : {
-          text: `Parsed ${reactionCount} reaction stage${reactionCount === 1 ? "" : "s"}.`,
-          invalid: false,
-        };
 
   if (composerMarkerStatus) {
     composerMarkerStatus.textContent = markerStatus.text;
@@ -4053,10 +3842,6 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
     composerTransferStatus.textContent = transferStatus.text;
     composerTransferStatus.classList.toggle("is-invalid", transferStatus.invalid);
   }
-  if (composerReactionStatus) {
-    composerReactionStatus.textContent = reactionStatus.text;
-    composerReactionStatus.classList.toggle("is-invalid", reactionStatus.invalid);
-  }
 
   if (composerMarkerListInput) {
     composerMarkerListInput.classList.toggle("is-invalid", markerStatus.invalid);
@@ -4069,9 +3854,6 @@ function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
   }
   if (composerTransferListInput) {
     composerTransferListInput.classList.toggle("is-invalid", transferStatus.invalid);
-  }
-  if (composerReactionListInput) {
-    composerReactionListInput.classList.toggle("is-invalid", reactionStatus.invalid);
   }
 }
 
@@ -4163,18 +3945,6 @@ function readComposerDraftState() {
   persistComposerPathStateToSelectedAssembly();
   const state = readComposerFormState();
   const timing = readComposerTimingState();
-  const reactionListRaw = getComposerReactionListRaw();
-  const reactionHasInput = reactionListRaw.trim().length > 0;
-  const reactionParse = parseComposerReactions(
-    reactionListRaw,
-    {
-      transfers: state.transfers,
-      duration: Number(timing?.time?.end ?? 24) || 24,
-      parseTimingLines: parseComposerTimingLines,
-      clampTimelineSpan: clampComposerTimelineSpan,
-      normalizeTransferRef: normalizeComposerReactionTransferRef,
-    }
-  );
   const primaryAssembly = Array.isArray(state.assembliesDraft) ? state.assembliesDraft[0] ?? null : null;
   const pathPoints = normalizeComposerAssemblyPathPoints(primaryAssembly?.pathPoints);
   const cameraWaypoints = composerCameraFlightState.waypoints.map((waypoint) => ({
@@ -4193,7 +3963,7 @@ function readComposerDraftState() {
     ...state,
     ...timing,
     transfers: state.transfers,
-    reactions: reactionParse.entries,
+    reactions: [],
     overlays: normalizeComposerGraphicOverlayList(
       getComposerGraphicOverlayDraftsState(),
       Number(timing?.time?.end ?? 24) || 24
@@ -4202,12 +3972,9 @@ function readComposerDraftState() {
     pauseListRaw: composerPauseListInput?.value ?? "",
     warpListRaw: composerWarpListInput?.value ?? "",
     transferListRaw: getComposerTransferListRaw(),
-    reactionListRaw,
     diagnostics: {
       ...(timing.diagnostics ?? {}),
       ...(state.diagnostics ?? {}),
-      reactionHasInput,
-      reactionErrorLines: reactionParse.errors,
     },
     pathPoints,
     pathInterpolate: primaryAssembly?.pathInterpolate ?? composerPathState.interpolate,
@@ -4359,17 +4126,6 @@ function applyComposerDraftState(draftState = {}) {
       ? draftState.transferListRaw
       : formatComposerTransferList(draftState.transfers)
   );
-  if (composerReactionListInput) {
-    composerReactionListInput.value =
-      typeof draftState.reactionListRaw === "string"
-        ? draftState.reactionListRaw
-        : formatComposerReactionList(draftState.reactions);
-  }
-  setComposerReactionListRawStateValue(
-    typeof draftState.reactionListRaw === "string"
-      ? draftState.reactionListRaw
-      : formatComposerReactionList(draftState.reactions)
-  );
   setComposerGraphicOverlayDraftsState(
     normalizeComposerGraphicOverlayList(
       draftState.overlays,
@@ -4503,7 +4259,6 @@ function clearComposerScene() {
     overlays: [],
     cameraWaypoints: [],
     transferListRaw: "",
-    reactionListRaw: "",
     pauseListRaw: "",
     warpListRaw: "",
     markerListRaw: "",
@@ -4977,12 +4732,6 @@ function clearComposerViewportVisuals() {
     line.material?.dispose?.();
   });
   composerTransferLines = [];
-  if (composerReactionDraftLine) {
-    composerViewportGroup?.remove(composerReactionDraftLine);
-    composerReactionDraftLine.geometry?.dispose?.();
-    composerReactionDraftLine.material?.dispose?.();
-    composerReactionDraftLine = null;
-  }
   composerAxisGuideLines.forEach((line) => {
     composerViewportGroup?.remove(line);
     line.geometry?.dispose?.();
@@ -5319,49 +5068,6 @@ function createComposerTimelineBand(fractionStart, fractionEnd, className, title
   return band;
 }
 
-function getComposerReactionEndpointFromHit(hit) {
-  if (!hit?.assemblyId || !hit?.memberId) {
-    return null;
-  }
-  return {
-    assemblyId: hit.assemblyId,
-    memberId: hit.memberId,
-  };
-}
-
-function processComposerReactionMappingClick(endpoint) {
-  const activeReactionId = composerReactionAuthoringState.reactionId;
-  if (!activeReactionId || !endpoint?.assemblyId || !endpoint?.memberId) {
-    return false;
-  }
-  const assemblyRole = getComposerAssemblySceneRoleById(endpoint.assemblyId);
-  if (!composerReactionAuthoringState.pendingSource) {
-    if (assemblyRole !== "reactant") {
-      setComposerStatus("Pick a reactant member or charge as the mapping source first.");
-      return true;
-    }
-    composerReactionAuthoringState.pendingSource = endpoint;
-    setComposerStatus(
-      `Mapping source set to ${formatComposerTransferEndpointLabel(endpoint)}. Now click a product member or charge.`
-    );
-    return true;
-  }
-  if (assemblyRole === "reactant") {
-    composerReactionAuthoringState.pendingSource = endpoint;
-    setComposerStatus(
-      `Mapping source moved to ${formatComposerTransferEndpointLabel(endpoint)}. Now click a product member or charge.`
-    );
-    return true;
-  }
-  if (assemblyRole !== "product") {
-    setComposerStatus("Mapping destinations must be on assemblies tagged as products.");
-    return true;
-  }
-  const sourceEndpoint = composerReactionAuthoringState.pendingSource;
-  clearComposerPendingReactionMapping();
-  return appendComposerMappingToReaction(activeReactionId, sourceEndpoint, endpoint);
-}
-
 function createComposerTimelineMarker(fraction, label, title) {
   const marker = document.createElement("div");
   marker.className = "composer-timeline-marker";
@@ -5521,35 +5227,23 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
   const graphics = getComposerGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
-  const reactionId = options.reactionId ?? null;
   const overlayId = options.overlayId ?? options.graphicId ?? options.markerId ?? null;
   const pauseId = options.pauseId ?? null;
   const warpId = options.warpId ?? null;
-  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
   const overlay = overlayId ? overlays.find((entry) => entry?.id === overlayId) ?? null : null;
   const graphic = overlay?.kind === "graphic" ? overlay : null;
   const imageOverlay = overlay?.kind === "image" ? overlay : null;
   const videoOverlay = overlay?.kind === "video" ? overlay : null;
   const pause = pauseId ? pauses.find((entry) => entry?.id === pauseId) ?? null : null;
   const warp = warpId ? timeWarps.find((entry) => entry?.id === warpId) ?? null : null;
-  const reaction = reactionId ? reactions.find((entry) => entry?.id === reactionId) ?? null : null;
   const timeSeconds =
     options.timeSeconds ??
     overlay?.start ??
     pause?.start ??
     warp?.start ??
-    reaction?.start ??
     getComposerTimelineTimeAtClientX(clientX, documentData);
   const duration = Math.max(1, readNumberInput(composerSceneDurationInput, 24));
-  const editKind = reaction
-    ? "reaction"
-    : warp
-      ? "warp"
-      : pause
-        ? "pause"
-        : overlay
-          ? overlay.kind
-          : "add";
+  const editKind = warp ? "warp" : pause ? "pause" : overlay ? overlay.kind : "add";
   const addType = normalizeComposerTimelineAddType(options.addType);
   buildComposerTimelineMenu({
     menu: composerAssemblyMenu,
@@ -5561,7 +5255,6 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     videoOverlay,
     pause,
     warp,
-    reaction,
     timeSeconds,
     duration,
     editKind,
@@ -5601,16 +5294,6 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     composerMediaAssetDirectories,
     sanitizeComposerMediaSource,
     getComposerMediaDefaultRect,
-    replaceComposerAuthoringLineById,
-    appendComposerAuthoringLine,
-    getComposerReactionListRaw,
-    setComposerReactionListRaw,
-    buildComposerReactionActionString,
-    ensureComposerAssemblyDraftsForReactionUi,
-    getComposerReactionStageDrafts,
-    getComposerReactionActionOptions,
-    activeReactionAuthoringId: composerReactionAuthoringState.reactionId,
-    setActiveReactionAuthoring: setComposerActiveReactionAuthoring,
   });
 }
 
@@ -5661,14 +5344,7 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   const graphics = getComposerGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
-  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
   const activeWarp = timeWarps.find((warp) => timeSeconds >= warp.start && timeSeconds < warp.end);
-  const activeReaction = reactions.find(
-    (reaction) => timeSeconds >= reaction.start && timeSeconds <= reaction.end
-  );
-  const activeReactionStage = Array.isArray(activeReaction?.stages)
-    ? activeReaction.stages.find((stage) => timeSeconds >= stage.start && timeSeconds <= stage.end)
-    : null;
   const activeGraphic = [...graphics]
     .sort((left, right) => left.start - right.start)
     .filter((graphic) => isComposerTimeWithinSpan(timeSeconds, graphic.start, graphic.end))
@@ -5688,66 +5364,7 @@ function describeComposerTimelineState(timeSeconds, documentData) {
   if (activeWarp) {
     parts.push(`Warp ${Number(activeWarp.rate ?? 1).toFixed(2)}x`);
   }
-  if (activeReaction?.label) {
-    parts.push(`Reaction: ${activeReaction.label}`);
-  }
-  if (activeReactionStage?.action) {
-    parts.push(`Stage: ${activeReactionStage.action}`);
-  }
   return parts.join(" | ") || "Steady";
-}
-
-function getComposerActiveReaction(documentData, timeSeconds) {
-  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
-  return (
-    reactions.find((reaction) => timeSeconds >= reaction.start && timeSeconds <= reaction.end) ?? null
-  );
-}
-
-function getComposerActiveReactionStage(documentData, timeSeconds) {
-  const activeReaction = getComposerActiveReaction(documentData, timeSeconds);
-  if (!Array.isArray(activeReaction?.stages)) {
-    return null;
-  }
-  return (
-    activeReaction.stages.find((stage) => timeSeconds >= stage.start && timeSeconds <= stage.end) ??
-    activeReaction.stages[0] ??
-    null
-  );
-}
-
-function getComposerActiveReactionTransferIds(documentData, timeSeconds) {
-  const activeReactionStage = getComposerActiveReactionStage(documentData, timeSeconds);
-  if (Array.isArray(activeReactionStage?.transferIds) && activeReactionStage.transferIds.length) {
-    return new Set(activeReactionStage.transferIds);
-  }
-  const activeReaction = getComposerActiveReaction(documentData, timeSeconds);
-  return new Set(Array.isArray(activeReaction?.transferIds) ? activeReaction.transferIds : []);
-}
-
-function getComposerReactionParticipantSummary(reaction) {
-  const participants = Array.isArray(reaction?.participants) ? reaction.participants : [];
-  if (!participants.length) {
-    return "";
-  }
-  let reactants = 0;
-  let products = 0;
-  participants.forEach((participant) => {
-    const role = normalizeComposerAssemblySceneRole(participant?.role);
-    if (role === "reactant") {
-      reactants += 1;
-    } else if (role === "product") {
-      products += 1;
-    }
-  });
-  const parts = [];
-  if (reactants) {
-    parts.push(`R${reactants}`);
-  }
-  if (products) {
-    parts.push(`P${products}`);
-  }
-  return parts.join("/");
 }
 
 function getComposerSortedMarkers(documentData) {
@@ -5810,7 +5427,6 @@ function syncComposerMarkerNavigation(documentData, timeSeconds) {
 function renderComposerTimeline(documentData) {
   clearComposerTimelineLayer(composerTimelineWarps);
   clearComposerTimelineLayer(composerTimelinePauses);
-  clearComposerTimelineLayer(composerTimelineReactions);
   clearComposerTimelineLayer(composerTimelineMarkers);
   if (!documentData || !composerTimelineTrack) {
     return;
@@ -5819,7 +5435,6 @@ function renderComposerTimeline(documentData) {
   const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
-  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
   const graphics = getComposerGraphicTimelineOverlays(documentData);
   const mediaOverlays = getComposerViewportMediaTimelineOverlays(documentData);
 
@@ -5852,66 +5467,6 @@ function renderComposerTimeline(documentData) {
     );
     band.dataset.pauseId = pause.id ?? "";
     composerTimelinePauses?.appendChild(band);
-  });
-
-  reactions.forEach((reaction) => {
-    const start = getComposerTimelineFraction(documentData, reaction.start);
-    const end = getComposerTimelineFraction(documentData, reaction.end);
-    const widthFraction = Math.max(0.002, end - start);
-    const participantSummary = getComposerReactionParticipantSummary(reaction);
-    const showStageLabels = Array.isArray(reaction?.stages) && reaction.stages.length && widthFraction >= 0.12;
-    const actions = Array.isArray(reaction?.stages)
-      ? reaction.stages
-          .map((stage) => {
-            if (!stage?.action) {
-              return null;
-            }
-            const stageRefs = formatComposerReactionTransferRefs(stage?.transferIds);
-            const reactionRefs = formatComposerReactionTransferRefs(reaction?.transferIds);
-            return stageRefs && stageRefs !== reactionRefs
-              ? `${stage.action}(${stageRefs})`
-              : stage.action;
-          })
-          .filter(Boolean)
-      : [];
-    const band = createComposerTimelineBand(
-      start,
-      end,
-      "is-reaction",
-      `${reaction.label ?? reaction.id ?? "Reaction"}: ${formatComposerTimeLabel(
-        reaction.start
-      )} to ${formatComposerTimeLabel(reaction.end)}${participantSummary ? ` | ${participantSummary}` : ""}${
-        actions.length ? ` | ${actions.join(" -> ")}` : ""
-      }`,
-      showStageLabels ? "" : formatComposerReactionBandLabel(reaction, participantSummary, widthFraction)
-    );
-    band.classList.toggle("is-active-reaction", reaction?.id === composerReactionAuthoringState.reactionId);
-    band.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      setComposerActiveReactionAuthoring(reaction?.id ?? null);
-    });
-    if (Array.isArray(reaction?.stages) && reaction.stages.length) {
-      reaction.stages.forEach((stage) => {
-        const stageStart = getComposerTimelineFraction(documentData, stage.start);
-        const stageEnd = getComposerTimelineFraction(documentData, stage.end);
-        const stageWidthFraction = Math.max(0, stageEnd - stageStart);
-        const stageBand = document.createElement("span");
-        stageBand.className = "composer-timeline-reaction-stage";
-        stageBand.style.left = `${Math.max(0, ((stageStart - start) / Math.max(end - start, 0.0001)) * 100)}%`;
-        stageBand.style.width = `${Math.max(0, ((stageEnd - stageStart) / Math.max(end - start, 0.0001)) * 100)}%`;
-        stageBand.title = `${stage.action ?? "stage"}: ${formatComposerTimeLabel(stage.start)} to ${formatComposerTimeLabel(stage.end)}`;
-        if (stage?.action && showStageLabels && stageWidthFraction >= 0.04) {
-          const stageLabel = document.createElement("span");
-          stageLabel.className = "composer-timeline-reaction-stage-label";
-          stageLabel.textContent = shortenComposerTimelineBandLabel(String(stage.action).replace(/_/g, " "), 10);
-          stageBand.appendChild(stageLabel);
-        }
-        band.appendChild(stageBand);
-      });
-    }
-    band.dataset.reactionId = reaction.id ?? "";
-    composerTimelineReactions?.appendChild(band);
   });
 
   graphics.forEach((graphic) => {
@@ -6305,12 +5860,6 @@ function updateComposerAnimatedViewport(timeSeconds) {
     sprite.position.copy(anchorPosition).add(offset);
   });
 
-  const activeReactionTransferIds = getComposerActiveReactionTransferIds(
-    composerCurrentDocument,
-    timeSeconds
-  );
-  const activeReactionStage = getComposerActiveReactionStage(composerCurrentDocument, timeSeconds);
-  const hasReactionFocus = activeReactionTransferIds.size > 0;
   composerTransferLines.forEach((line) => {
     const transfer = line.userData.transfer;
     const sourcePoint = resolveComposerTransferEndpointPosition(
@@ -6330,57 +5879,10 @@ function updateComposerAnimatedViewport(timeSeconds) {
     line.visible = true;
     line.geometry.setFromPoints([sourcePoint, targetPoint]);
     line.computeLineDistances();
-    const isActiveReactionTransfer = transfer?.id && activeReactionTransferIds.has(transfer.id);
     const isActiveByTime = transfer?.t == null || Math.abs(timeSeconds - Number(transfer.t)) <= 0.6;
-    if (activeReactionStage?.action === "reassemble") {
-      line.material.color.set(0x8ef0c2);
-    } else if (activeReactionStage?.action === "detach") {
-      line.material.color.set(0xffc978);
-    } else if (activeReactionStage?.action === "attach") {
-      line.material.color.set(0x85d9ff);
-    } else if (activeReactionStage?.action === "transform") {
-      line.material.color.set(0xd0a7ff);
-    } else if (activeReactionStage?.action === "spawn") {
-      line.material.color.set(0x9ceef7);
-    } else if (activeReactionStage?.action === "despawn") {
-      line.material.color.set(0xc2c8d8);
-    } else {
-      line.material.color.set(0xffd17a);
-    }
-    line.material.opacity = hasReactionFocus
-      ? isActiveReactionTransfer
-        ? 0.88
-        : 0.16
-      : isActiveByTime
-        ? 0.82
-        : 0.32;
+    line.material.color.set(0xffd17a);
+    line.material.opacity = isActiveByTime ? 0.82 : 0.32;
   });
-
-  const reactionDraftLine = ensureComposerReactionDraftLine();
-  if (reactionDraftLine) {
-    const pendingSource = composerReactionAuthoringState.pendingSource;
-    const sourcePoint = pendingSource
-      ? resolveComposerTransferEndpointPosition(pendingSource, assemblyCenters, motionTime)
-      : null;
-    const hoverPoint = composerReactionAuthoringState.hoverEndpoint
-      ? resolveComposerTransferEndpointPosition(
-          composerReactionAuthoringState.hoverEndpoint,
-          assemblyCenters,
-          motionTime
-        )
-      : null;
-    const pointerPoint = composerReactionAuthoringState.pointerLocal
-      ? composerReactionAuthoringState.pointerLocal.clone()
-      : null;
-    const targetPoint = hoverPoint ?? pointerPoint;
-    if (sourcePoint && targetPoint && composerReactionAuthoringState.reactionId) {
-      reactionDraftLine.visible = true;
-      reactionDraftLine.geometry.setFromPoints([sourcePoint, targetPoint]);
-      reactionDraftLine.computeLineDistances();
-    } else {
-      reactionDraftLine.visible = false;
-    }
-  }
 
   composerPersonalityHandleMeshes.forEach((mesh) => {
     const assemblyId = mesh?.userData?.assemblyId ?? null;
@@ -6597,29 +6099,6 @@ function addComposerTransferLine(transfer) {
   line.userData.transfer = transfer;
   composerViewportGroup.add(line);
   composerTransferLines.push(line);
-}
-
-function ensureComposerReactionDraftLine() {
-  if (composerReactionDraftLine || !composerViewportGroup) {
-    return composerReactionDraftLine;
-  }
-  const geometry = new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(),
-    new THREE.Vector3(),
-  ]);
-  const material = new THREE.LineDashedMaterial({
-    color: 0xc7f4ff,
-    transparent: true,
-    opacity: 0.92,
-    dashSize: 0.14,
-    gapSize: 0.08,
-    depthTest: false,
-    depthWrite: false,
-  });
-  composerReactionDraftLine = new THREE.Line(geometry, material);
-  composerReactionDraftLine.renderOrder = 18;
-  composerViewportGroup.add(composerReactionDraftLine);
-  return composerReactionDraftLine;
 }
 
 function addComposerGraphicOverlayVisual(overlay) {
@@ -7220,12 +6699,6 @@ function updateComposerViewportFromDocument(documentData) {
     ? getComposerMotionProgress(previousDocument, composerPlaybackState.playheadSeconds)
     : null;
   composerCurrentDocument = documentData;
-  if (
-    composerReactionAuthoringState.reactionId &&
-    !getComposerReactionById(composerReactionAuthoringState.reactionId, documentData)
-  ) {
-    setComposerActiveReactionAuthoring(null);
-  }
   if (!composerViewportGroup || !composerPathGeometry) {
     return;
   }
@@ -7701,7 +7174,6 @@ function onComposerPointerDown(event) {
   if (!composerCanvas || !composerCamera || !composerRaycaster) {
     return;
   }
-  composerReactionAuthoringState.clickCandidate = null;
   if (event.button === 2) {
     return;
   }
@@ -7739,27 +7211,6 @@ function onComposerPointerDown(event) {
   }
   const personalityHits = composerRaycaster.intersectObjects(composerPersonalityHandleMeshes, true);
   const memberHits = composerRaycaster.intersectObjects(composerMemberHandleMeshes, true);
-  if (event.button === 0 && composerReactionAuthoringState.reactionId) {
-    const personalityHit = personalityHits.length
-      ? resolveComposerPersonalityHandleHit(personalityHits[0].object)
-      : null;
-    const memberHit = memberHits.length
-      ? resolveComposerMemberHandleHit(memberHits[0].object)
-      : null;
-    const mappingHit = personalityHit ?? memberHit;
-    if (mappingHit?.assemblyId && mappingHit?.memberId) {
-      composerReactionAuthoringState.clickCandidate = {
-        endpoint: getComposerReactionEndpointFromHit(mappingHit),
-        memberHit,
-        draggable: !!memberHit?.draggable,
-        startX: event.clientX,
-        startY: event.clientY,
-      };
-      composerReactionAuthoringState.hoverEndpoint = getComposerReactionEndpointFromHit(mappingHit);
-      composerReactionAuthoringState.pointerLocal = null;
-      return;
-    }
-  }
   if (event.button === 0 && personalityHits.length) {
     const personalityHit = resolveComposerPersonalityHandleHit(personalityHits[0].object);
     if (personalityHit?.assemblyId) {
@@ -8081,7 +7532,6 @@ function onComposerTimelineContextMenu(event) {
   event.preventDefault();
   closeComposerAssemblyMenu();
   const timelineBand = event.target.closest?.(".composer-timeline-band") ?? null;
-  const isReactionBand = !!timelineBand?.classList?.contains("is-reaction");
   const isWarpBand = !!timelineBand?.classList?.contains("is-warp");
   const isPauseBand = !!timelineBand?.classList?.contains("is-pause");
   const isOverlayBand =
@@ -8093,7 +7543,6 @@ function onComposerTimelineContextMenu(event) {
     overlayId: isOverlayBand ? timelineBand?.dataset?.overlayId ?? null : null,
     pauseId: isPauseBand ? timelineBand?.dataset?.pauseId ?? null : null,
     warpId: isWarpBand ? timelineBand?.dataset?.warpId ?? null : null,
-    reactionId: isReactionBand ? timelineBand?.dataset?.reactionId ?? null : null,
   });
 }
 
@@ -8108,100 +7557,9 @@ function onComposerTimelineClick(event) {
   if (!timelineBand) {
     return;
   }
-  if (timelineBand.classList.contains("is-reaction")) {
-    const reactionId = timelineBand.dataset?.reactionId ?? null;
-    setComposerActiveReactionAuthoring(reactionId);
-    return;
-  }
-  if (composerReactionAuthoringState.reactionId) {
-    setComposerActiveReactionAuthoring(null);
-    setComposerStatus("Reaction mapping mode cleared.");
-  }
 }
 
 function onComposerPointerMove(event) {
-  if (composerReactionAuthoringState.clickCandidate && !composerDragState.mode) {
-    const candidate = composerReactionAuthoringState.clickCandidate;
-    const distance = Math.hypot(event.clientX - candidate.startX, event.clientY - candidate.startY);
-    if (distance > 5 && candidate.draggable && candidate.memberHit) {
-      composerReactionAuthoringState.clickCandidate = null;
-      composerReactionAuthoringState.hoverEndpoint = null;
-      const liveAssembly = getComposerAssemblyDraftById(candidate.memberHit.assemblyId);
-      if (!liveAssembly) {
-        return;
-      }
-      if (isComposerBareArchitrinoAssembly(liveAssembly)) {
-        const assemblyIndex = getComposerAssemblyDraftIndexById(candidate.memberHit.assemblyId);
-        if (
-          assemblyIndex >= 0 &&
-          startComposerAssemblyDrag(
-            candidate.memberHit.assemblyId,
-            assemblyIndex,
-            candidate.memberHit.object.getWorldPosition(new THREE.Vector3()),
-            event
-          )
-        ) {
-          return;
-        }
-      }
-      setComposerSelectedAssembly(candidate.memberHit.assemblyId);
-      renderComposerAssemblyEditor();
-      composerDragState.mode = "member";
-      composerDragState.assemblyId = candidate.memberHit.assemblyId;
-      composerDragState.memberId = candidate.memberHit.memberId;
-      composerDragState.subassemblyId = candidate.memberHit.subassemblyId ?? "";
-      composerDragState.startX = event.clientX;
-      composerDragState.startY = event.clientY;
-      const assemblyWorldCenter = getComposerAssemblyWorldCenterById(candidate.memberHit.assemblyId);
-      composerDragState.startMemberAssemblyCenter.copy(
-        composerFrameGroup.worldToLocal(assemblyWorldCenter.clone())
-      );
-      const subassemblyIndex = getComposerAssemblySubassemblyIndex(liveAssembly, composerDragState.subassemblyId);
-      const subassemblyPosition =
-        subassemblyIndex >= 0
-          ? normalizeComposerMemberPosition(liveAssembly.subassemblies?.[subassemblyIndex]?.position) ?? [0, 0, 0]
-          : [0, 0, 0];
-      composerDragState.startMemberSubassemblyPosition.set(
-        Number(subassemblyPosition[0] ?? 0),
-        Number(subassemblyPosition[1] ?? 0),
-        Number(subassemblyPosition[2] ?? 0)
-      );
-      const worldPoint = candidate.memberHit.object.getWorldPosition(new THREE.Vector3());
-      const planeNormal = composerCamera.getWorldDirection(new THREE.Vector3()).normalize();
-      composerDragState.plane.setFromNormalAndCoplanarPoint(planeNormal, worldPoint);
-    }
-  }
-  if (composerReactionAuthoringState.reactionId && composerReactionAuthoringState.pendingSource) {
-    const { x, y } = getComposerPointerNdc(event);
-    composerRaycaster.setFromCamera({ x, y }, composerCamera);
-    const personalityHits = composerRaycaster.intersectObjects(composerPersonalityHandleMeshes, true);
-    const memberHits = composerRaycaster.intersectObjects(composerMemberHandleMeshes, true);
-    const personalityHit = personalityHits.length
-      ? resolveComposerPersonalityHandleHit(personalityHits[0].object)
-      : null;
-    const memberHit = memberHits.length
-      ? resolveComposerMemberHandleHit(memberHits[0].object)
-      : null;
-    const hoverEndpoint = getComposerReactionEndpointFromHit(personalityHit ?? memberHit);
-    composerReactionAuthoringState.hoverEndpoint =
-      hoverEndpoint && hoverEndpoint.assemblyId !== composerReactionAuthoringState.pendingSource.assemblyId
-        ? hoverEndpoint
-        : null;
-    const assemblyCenters = composerAssemblyWorldCenters;
-    const sourceLocal =
-      resolveComposerTransferEndpointPosition(
-        composerReactionAuthoringState.pendingSource,
-        assemblyCenters,
-        getComposerRenderMotionTime(composerCurrentDocument, composerPlaybackState.playheadSeconds)
-      ) ?? new THREE.Vector3();
-    const worldSource = composerFrameGroup.localToWorld(sourceLocal.clone());
-    const planeNormal = composerCamera.getWorldDirection(new THREE.Vector3()).normalize();
-    const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(planeNormal, worldSource);
-    const intersection = new THREE.Vector3();
-    if (composerRaycaster.ray.intersectPlane(plane, intersection)) {
-      composerReactionAuthoringState.pointerLocal = composerFrameGroup.worldToLocal(intersection.clone());
-    }
-  }
   if (!composerDragState.mode) {
     return;
   }
@@ -8394,12 +7752,6 @@ function onComposerPointerMove(event) {
 }
 
 function onComposerPointerUp(event) {
-  if (composerReactionAuthoringState.clickCandidate && !composerDragState.mode) {
-    const candidate = composerReactionAuthoringState.clickCandidate;
-    composerReactionAuthoringState.clickCandidate = null;
-    composerReactionAuthoringState.hoverEndpoint = null;
-    processComposerReactionMappingClick(candidate.endpoint);
-  }
   if (composerDragState.mode === "point" && composerDragState.pointIndex != null) {
     updateComposerPointMaterials();
   }
@@ -8416,10 +7768,6 @@ function onComposerPointerUp(event) {
   composerDragState.subassemblyId = null;
   if (composerCanvas && composerCanvas.hasPointerCapture(event.pointerId)) {
     composerCanvas.releasePointerCapture(event.pointerId);
-  }
-  if (!composerReactionAuthoringState.pendingSource) {
-    composerReactionAuthoringState.pointerLocal = null;
-    composerReactionAuthoringState.hoverEndpoint = null;
   }
   composerDragState.button = 0;
 }
@@ -8764,14 +8112,6 @@ let composerDocumentCameraShotMesh = null;
 let composerDocumentCameraTargetMesh = null;
 let composerDocumentCameraLookLine = null;
 let composerCurrentDocument = null;
-let composerReactionDraftLine = null;
-const composerReactionAuthoringState = {
-  reactionId: null,
-  pendingSource: null,
-  pointerLocal: null,
-  hoverEndpoint: null,
-  clickCandidate: null,
-};
 const composerViewportDisplayState = {
   showTransportPath: true,
   showCameraGuides: true,
@@ -10845,7 +10185,6 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerPauseListInput,
   composerWarpListInput,
   composerTransferListInput,
-  composerReactionListInput,
   composerCameraSpeedInput,
   composerCameraRadiusInput,
   composerCameraResetButton,

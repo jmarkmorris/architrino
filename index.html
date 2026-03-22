@@ -191,7 +191,7 @@
       <div id="composer-overlay" aria-hidden="true">
         <div class="composer-header">
           <div class="composer-header-main">
-            <div class="composer-title">Composer v3 • Pre-Alpha</div>
+            <div class="composer-title">Composer v8 • Pre-Alpha</div>
           </div>
           <div class="composer-actions">
             <button id="composer-scene-button" type="button" aria-label="Open scene controls">
@@ -292,7 +292,6 @@
                   <div id="composer-timeline-track" class="composer-timeline-track">
                     <div id="composer-timeline-warps" class="composer-timeline-layer"></div>
                     <div id="composer-timeline-pauses" class="composer-timeline-layer"></div>
-                    <div id="composer-timeline-reactions" class="composer-timeline-layer"></div>
                     <div id="composer-timeline-markers" class="composer-timeline-layer"></div>
                     <div id="composer-timeline-playhead" class="composer-timeline-playhead"></div>
                   </div>
@@ -387,7 +386,32 @@
       </div>
       <div id="hyde-periodic-overlay" aria-hidden="true">
         <div id="hyde-periodic-stage">
-          <div id="hyde-periodic-hint">Hover circles to preview. Click circles to open elements.</div>
+          <div
+            id="hyde-periodic-hint"
+            role="note"
+            aria-label="Hover circles to preview. Click circles to open elements. Arrow keys navigate the Hyde periodic table: left and right move around the spiral, and up and down move through the group."
+          >
+            <span class="hyde-periodic-hint-copy">
+              Hover circles to preview. Click circles to open elements.
+            </span>
+            <span class="hyde-periodic-hint-divider" aria-hidden="true"></span>
+            <span class="hyde-periodic-hint-guide" aria-hidden="true">
+              <span class="hyde-periodic-hint-row">
+                <span class="hyde-periodic-keypair">
+                  <span class="hyde-periodic-key">←</span>
+                  <span class="hyde-periodic-key">→</span>
+                </span>
+                <span class="hyde-periodic-hint-label">spiral</span>
+              </span>
+              <span class="hyde-periodic-hint-row">
+                <span class="hyde-periodic-keypair">
+                  <span class="hyde-periodic-key">↑</span>
+                  <span class="hyde-periodic-key">↓</span>
+                </span>
+                <span class="hyde-periodic-hint-label">group</span>
+              </span>
+            </span>
+          </div>
           <div id="hyde-periodic-canvas">
             <img
               id="hyde-periodic-artwork"

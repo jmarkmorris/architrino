@@ -374,7 +374,7 @@ export function openComposerAssemblyTemplateMenu(config) {
   menu.appendChild(addLabel);
   appendMenuNote(
     menu,
-    "Add an assembly template here, then change its Scene Role from the assembly menu when you need reactants or products."
+    "Add an assembly template here, then arrange its structure, motion path, and observer framing from the canvas."
   );
 
   templateMenuRows.forEach((row) => {
@@ -529,8 +529,6 @@ export function openComposerAssemblyPropertiesMenu(config) {
     appendMenuNote,
     appendMenuSectionHeader,
     appendMenuButtonRow,
-    sceneRoleOptions,
-    normalizeAssemblySceneRole,
     getAssemblyDraftById,
     renderAssemblyEditor,
     assemblyPositionInputs,
@@ -611,31 +609,6 @@ export function openComposerAssemblyPropertiesMenu(config) {
   });
   nameField.append(nameLabel, nameInput);
   form.appendChild(nameField);
-
-  const sceneRoleField = document.createElement("label");
-  sceneRoleField.className = "composer-field";
-  const sceneRoleLabel = document.createElement("span");
-  sceneRoleLabel.textContent = "Scene Role";
-  const sceneRoleSelect = document.createElement("select");
-  sceneRoleOptions.forEach((entry) => {
-    const option = document.createElement("option");
-    option.value = entry.value;
-    option.textContent = entry.label;
-    sceneRoleSelect.appendChild(option);
-  });
-  sceneRoleSelect.value = normalizeAssemblySceneRole(assembly.sceneRole);
-  sceneRoleSelect.addEventListener("change", () => {
-    const liveAssembly = getAssemblyDraftById(assembly.id);
-    if (!liveAssembly) {
-      return;
-    }
-    liveAssembly.sceneRole = normalizeAssemblySceneRole(sceneRoleSelect.value);
-    renderAssemblyEditor();
-    assemblyPositionInputs.set(liveAssembly.id, positionInputs);
-    renderJsonPreview();
-  });
-  sceneRoleField.append(sceneRoleLabel, sceneRoleSelect);
-  form.appendChild(sceneRoleField);
 
   const parentField = document.createElement("label");
   parentField.className = "composer-field";
