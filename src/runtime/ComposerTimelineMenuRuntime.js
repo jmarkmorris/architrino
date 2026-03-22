@@ -57,6 +57,8 @@ export function buildComposerTimelineMenu(config) {
     ensureComposerAssemblyDraftsForReactionUi,
     getComposerReactionStageDrafts,
     getComposerReactionActionOptions,
+    activeReactionAuthoringId,
+    setActiveReactionAuthoring,
   } = config;
 
   resetComposerAssemblyMenu("timeline");
@@ -601,7 +603,9 @@ export function buildComposerTimelineMenu(config) {
     }
     appendComposerMenuNote(
       reactionBlock?.block,
-      "Stage timing is divided evenly across the reaction span for now. Visual source-to-destination mapping still needs to replace typed transfer authoring."
+      activeReactionAuthoringId === reaction?.id
+        ? "Canvas mapping is active. Click a reactant member or charge, then click a product member or charge."
+        : "Stage timing is divided evenly across the reaction span for now. Use Map On Canvas to author source-to-destination mappings."
     );
     const stageList = document.createElement("div");
     stageList.className = "composer-reaction-stage-list";
@@ -659,12 +663,25 @@ export function buildComposerTimelineMenu(config) {
     if (reaction?.id) {
       appendComposerMenuButtonRow(reactionBlock?.block, [
         {
+          text: activeReactionAuthoringId === reaction?.id ? "Stop Canvas Mapping" : "Map On Canvas",
+          onClick: () => {
+            setActiveReactionAuthoring?.(activeReactionAuthoringId === reaction?.id ? null : reaction?.id ?? null);
+            closeComposerAssemblyMenu();
+          },
+        },
+        null,
+      ]);
+      appendComposerMenuButtonRow(reactionBlock?.block, [
+        {
           text: "Remove Reaction",
           className: "composer-assembly-menu-danger",
           onClick: () => {
             setComposerReactionListRaw(
               replaceComposerAuthoringLineById(getComposerReactionListRaw(), reaction.id, null)
             );
+            if (activeReactionAuthoringId === reaction.id) {
+              setActiveReactionAuthoring?.(null);
+            }
             closeComposerAssemblyMenu();
             renderComposerJsonPreview();
           },

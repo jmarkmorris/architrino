@@ -143,7 +143,7 @@ Scoring system:
     - the UI is now strongly canvas-first, with assembly and path editing centered on handles and context menus;
     - scene/library controls live in compact header or canvas menus;
     - timeline items for `Graphic`, `Pause`, `Warp`, `Reaction`, `Image`, and `Video` already behave like real spans;
-    - reactions now have basic stage rows, provenance summaries, participant summaries, and visible stage subdivision on the timeline;
+    - reactions now have basic stage rows, participant summaries, visible stage subdivision on the timeline, and a first partial canvas-mapping bridge;
     - assemblies can already be tagged as `Assembly`, `Reactant`, or `Product`, and that role is now visible in the canvas, list, and runtime document;
   - top priorities, in order:
     1. deepen reaction and provenance authoring;
@@ -151,15 +151,22 @@ Scoring system:
     3. finish the deeper structural-editing layer beyond the now-working canvas placement baseline;
   - priority 1: deepen reaction and provenance authoring:
     - stop depending on typed transfer refs as the primary authoring path;
+    - revisit the mapping model before deepening the current bridge:
+      - the present source-then-destination click flow is too abstract and fiddly for a job that should feel visual and direct,
+      - so move toward a more CAD-like reaction authoring model where mappings are drawn, adjusted, and read on the canvas itself;
     - build the first true visual reaction workflow from [composer.md](composer.md):
       - start from a blank reaction canvas,
       - place assemblies freely on that canvas,
       - tag them as reactants or products,
-      - and author one-to-one mappings by clicking a source then a destination;
+      - and author one-to-one mappings with direct visible spline creation, adjustment, commit, and discard behavior;
     - make splines the authored mapping primitive and the actual motion guide during playback;
     - treat unattached mapping endpoints as discarded drafts rather than saved partial state;
     - keep stage timing reaction-native, but make the visual mapping model the dominant UI rather than text fields;
     - make provenance and persistent member identity readable from the visual mapping itself, not only from text summaries;
+    - preserve the current partial bridge only as a temporary scaffold:
+      - timeline reaction selection,
+      - active reaction highlighting,
+      - and the first canvas mapping state should remain only if they help the transition to the better visual model;
   - priority 2: replace the observer/editorial placeholders with a real authored timeline model:
     - the `Add` menu already exposes `Observer`, but that path is still a placeholder rather than a real authoring object;
     - turn observer intervals into true timeline items with authored spans, framing intent, and synchronized observer-path behavior;
@@ -224,10 +231,10 @@ Scoring system:
     - do not make unrelated changes.
 - Suggested first implementation slice for the next session:
   - start with priority 1, not with cosmetic terminology cleanup;
-  - make the first real visual reaction-mapping pass:
+  - replace the current provisional reaction-mapping bridge with a clearer visual model:
     - open a reaction-specific blank canvas state,
     - place reactants and products on it,
-    - and author one-to-one source/destination mappings with visible spline drafts and commit or discard behavior;
+    - and make mappings feel drawn and edited on-canvas rather than typed or hidden behind indirect clicks;
   - if time remains after that pass, begin priority 2 by replacing the observer placeholder with the first true observer interval object.
 - End-of-session checks after code changes:
   - `node --check app.js`

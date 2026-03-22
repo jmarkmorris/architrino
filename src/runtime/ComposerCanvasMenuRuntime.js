@@ -28,7 +28,7 @@ export function openComposerMemberMenu(config) {
     positionMenu,
   } = config;
   if (!menu) {
-    return;
+    return false;
   }
   const assembly = getAssemblyDraftById(assemblyId);
   const normalizedMemberId = sanitizeEntityId(memberId, "");
@@ -166,7 +166,7 @@ export function openComposerPersonalitySlotMenu(config) {
   const members = normalizeMemberList(assembly?.members);
   const member = members.find((entry, index) => getMemberId(entry, index) === sanitizeEntityId(memberId, ""));
   if (!assembly || !isPersonalityMember(member)) {
-    return;
+    return false;
   }
   const currentState = getMemberState(member) || "unset";
   resetMenu();
@@ -216,6 +216,7 @@ export function openComposerPersonalitySlotMenu(config) {
   }
 
   positionMenu(clientX, clientY, 236, 166);
+  return true;
 }
 
 export function openComposerSubassemblyMenu(config) {
