@@ -9508,7 +9508,10 @@ async function jumpToScene(scenePath, options = {}) {
   if (!config) {
     return;
   }
-  if (options.mode === "instant") {
+  const forceInstantComposerEntry =
+    config?.sceneId === composerSceneId || config?.sceneId === composerPreviewSceneId;
+  const shouldHideLevelForComposer = config?.sceneId === composerSceneId;
+  if (options.mode === "instant" || forceInstantComposerEntry) {
     purgeWorldState();
     worldGroup.position.copy(jumpWorldTarget);
     const level = buildLevel(scenePath);
@@ -9519,9 +9522,9 @@ async function jumpToScene(scenePath, options = {}) {
       level.group.position.set(0, 0, 0);
     }
     level.group.scale.setScalar(1);
-    setLevelOpacity(level, 1);
+    setLevelOpacity(level, shouldHideLevelForComposer ? 0 : 1);
     setLevelLabelOpacity(level, 0);
-    setLevelLinkOpacity(level, 1);
+    setLevelLinkOpacity(level, shouldHideLevelForComposer ? 0 : 1);
     currentLevel = level;
     navigationStack.length = 0;
     if (!options.preserveGenerationBackStack) {
@@ -10368,6 +10371,14 @@ async function startLevelTransitionFromNode(targetNode) {
 
   const config = await sceneBootstrapService.ensureSceneReady(childLevelId);
   if (!config) {
+    return;
+  }
+
+  if (config.sceneId === composerSceneId || config.sceneId === composerPreviewSceneId) {
+    closeDetailPanel();
+    hideHoverTooltip();
+    markdownRuntime.hideMarkdownPanel();
+    await jumpToScene(childLevelId, { mode: "instant" });
     return;
   }
 

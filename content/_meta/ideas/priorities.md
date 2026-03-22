@@ -17,7 +17,7 @@ Scoring system:
 | ---: | --- | ---: | ---: | ---: |
 | 1 | Execute the frozen breather proof program | 10 | 4 | 2.50 |
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | Scene system, composer-II, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
+| 3 | Scene system, composer, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
 | 4 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
@@ -134,17 +134,15 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
-### 3. Scene system, composer-II, PDG solver, and next-session composer handoff
+### 3. Scene system, composer, PDG solver, and next-session composer handoff
 - Value `9`, Cost `4`, ROI `2.25`.
 - The canonical reference lives in [composer.md](composer.md). Treat this item as the self-contained next-session prompt for the current composer webapp.
 - Next-session prompt / active handoff:
   - current composer state, only what matters for the remainder:
-    - blank-scene startup is working;
-    - the UI is now strongly canvas-first, with assembly and path editing centered on handles and context menus;
-    - scene/library controls live in compact header or canvas menus;
+    - blank-scene startup and the canvas-first baseline are working;
     - timeline items for `Graphic`, `Pause`, `Warp`, `Reaction`, `Image`, and `Video` already behave like real spans;
-    - reactions now have basic stage rows, participant summaries, visible stage subdivision on the timeline, and a first partial canvas-mapping bridge;
-    - assemblies can already be tagged as `Assembly`, `Reactant`, or `Product`, and that role is now visible in the canvas, list, and runtime document;
+    - reactions have a first partial canvas-mapping bridge, but that bridge is still provisional and should not be treated as the finished model;
+    - assemblies can already be tagged as `Assembly`, `Reactant`, or `Product`, and that role is visible in the canvas, list, and runtime document;
   - top priorities, in order:
     1. deepen reaction and provenance authoring;
     2. replace the observer/editorial placeholders with a real authored timeline model;
