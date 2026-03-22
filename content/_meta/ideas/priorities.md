@@ -203,7 +203,6 @@ Scoring system:
       - and use the scene builder in API mode;
     - composer architecture follow-on:
       - retire the raw timing and reaction text bridges once structured authoring is stable enough to replace them cleanly;
-      - split the remaining non-composer app wiring away from composer integration in `app.js` when that no longer blocks feature work;
     - history traces and exclusion envelopes:
       - improve UI authoring for `historyTraces`,
       - refine rendering and controls for path-history traces with window and fade semantics,
