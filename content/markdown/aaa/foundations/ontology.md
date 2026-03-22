@@ -177,7 +177,7 @@ Because $t$ is universal and absolute, we can unambiguously define "the past" (a
 
 **Provenance and Identity Through Time:**
 
-Each Architrino carries a unique **provenance** label tied to its worldline history. That provenance is strictly monotone in $t$: exchanging labels is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level.
+Each Architrino carries a unique **provenance** label tied to its worldline history. That provenance is strictly monotone in $t$: exchanging labels is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level. This point is developed further in the Architrino ontology section below.
 
 **Geodesics and the Absence of Temporal Dynamics:**
 
@@ -904,9 +904,32 @@ We take architrinos to be **primitive substances**: they exist fundamentally and
 
 - **Discrete**: there is a definite (though potentially infinite) number of them.
 - **Identifiable**: each has a unique worldline through $(t, \mathbf{x})$-space.
-- **Eternal**: they are neither created nor destroyed (barring possible high-energy processes to be explored; see TOC Ch. 52).
+- **Non-created and non-destroyed**: within the ontology, Architrinos are not fundamentally created or destroyed. Any apparent birth, annihilation, decay, or transmutation at the assembly level must be understood as reorganization of a persistent Architrino set rather than as ontic creation or ontic destruction.
 
 All observable entities (particles, atoms, fields, spacetime curvature) are **emergent** from Architrino configurations and dynamics (see Section 3 and TOC Ch. 10).
+
+---
+
+### Provenance, Persistence, and the Ontological Basis of Conservation
+
+The stronger ontological claim is not merely that Architrinos move through time, but that they persist as **the same entities** through time. If Architrinos are fundamental, discrete, identifiable, and subject to **Architrino non-creation and non-destruction**, then the theory inherits a built-in provenance ledger: every later state of the universe is a rearrangement of the same underlying Architrinos rather than a replacement by numerically different ones.
+
+This is the deepest sense in which provenance enters the theory. Provenance is not an optional bookkeeping layer added after the dynamics. It is the statement that each Architrino has its own continuous worldline and that this worldline carries physical identity, not just kinematic position. At the substrate level, one is not permitted to say merely that "some equivalent unit" appears later. One must ask which Architrino later appears, where it came from, and through which path-history it arrived.
+
+Let $\mathcal{A}$ denote the ontic set of Architrino identities. Then the ontological claim is that $\mathcal{A}$ is fixed: Architrinos may move, bind, unbind, exchange partners, and enter or leave a chosen subsystem, but they are not fundamentally created or destroyed by the dynamics. Assemblies therefore change by **repartitioning** and **reorganization** of a fixed identity set, not by ontic birth or ontic annihilation.
+
+This is a stronger claim than saying merely that no beginning or ending has yet been observed. Within the ontology, Architrino non-creation and non-destruction is treated as a foundational fact about what exists.
+
+This gives a natural microscopic basis for conservation statements. At the most primitive level, conservation means that the underlying Architrino ledger is preserved. Exact provenance is therefore a stronger statement than coarse conservation:
+
+- conservation says that some inventory is preserved;
+- provenance says which exact entities realize that preserved inventory.
+
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, many effective conservation rules are summaries of this deeper identity continuity. Charge conservation, for example, can be read as the preservation of the signed Architrino inventory under rearrangement. More elaborate reaction bookkeepings likewise become statements about how the same Architrinos are redistributed across changing assemblies, with any coarse-grained loss of identity being an epistemic simplification rather than an ontological erasure.
+
+The limitation, however, should remain explicit. Provenance by itself does **not** derive every familiar conservation law. Energy conservation still depends on time-translation invariance and on the form of the interaction law. Momentum and angular momentum still depend on spatial translation and rotation symmetry. Provenance is therefore not a replacement for Noether reasoning. It is the deeper ontological basis that makes microscopic conservation statements sharp, and it explains why effective conserved quantities can often be interpreted as coarse summaries of a persistent identity ledger.
+
+This distinction is important for the whole framework. When the theory says that an assembly "changed," "decayed," "reacted," or "reassembled," the fundamental claim is never that ontology blinked out and reappeared. The stronger claim is that the same underlying Architrinos persisted through the event and were redistributed into a new assembly pattern. In that sense, provenance is not peripheral to the ontology. It is one of the central reasons the ontology can support a rigorous conservation story at all.
 
 ---
 
@@ -999,7 +1022,7 @@ The Architrino path ontology describes how each fundamental point particle threa
 
 #### Definition and Persistence
 
-Each Architrino traces a continuous worldline $\mathbf{s}_a(t)$ in $\mathcal{M}$, defined for all $t\in(-\infty,+\infty)$. **Eternality** is a foundational postulate: Architrinos are neither created nor destroyed, so every Architrino has a complete past and future history.
+Each Architrino traces a continuous worldline $\mathbf{s}_a(t)$ in $\mathcal{M}$, defined for all $t\in(-\infty,+\infty)$. **Architrino non-creation and non-destruction** is a foundational postulate: every Architrino has a complete past and future history, and no Architrino enters or leaves ontology by a fundamental creation or destruction event.
 
 The worldline is **unique** (no two distinct architrinos share the same path) and at least absolutely continuous so that $\mathbf{v}_a(t)=d\mathbf{s}_a/dt$ exists almost everywhere and is piecewise continuous.
 
