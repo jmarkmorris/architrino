@@ -90,10 +90,16 @@ export function buildComposerSceneMenu(config) {
   } = config;
   resetComposerAssemblyMenu();
   appendMenuTitle(menu, "Scene", currentName);
+  const commitSceneIdentityDraft = () => {
+    applyComposerSceneIdentityDraft(
+      String(sceneIdInput?.value ?? "").trim() || currentId,
+      String(sceneNameInput?.value ?? "").trim() || currentName
+    );
+  };
   const sceneBlock = appendComposerMenuBlock(menu, "Identity", {
     text: "Apply",
     onClick: () => {
-      applyComposerSceneIdentityDraft(sceneIdInput?.value, sceneNameInput?.value);
+      commitSceneIdentityDraft();
       closeComposerAssemblyMenu();
     },
   });
@@ -101,11 +107,13 @@ export function buildComposerSceneMenu(config) {
   sceneForm.className = "composer-form";
   const sceneIdInput = appendComposerMenuField(sceneForm, {
     label: "Scene ID",
-    value: currentId,
+    value: "",
+    placeholder: currentId,
   });
   const sceneNameInput = appendComposerMenuField(sceneForm, {
     label: "Scene Name",
-    value: currentName,
+    value: "",
+    placeholder: currentName,
   });
   sceneBlock?.block?.appendChild(sceneForm);
   appendComposerMenuNote(
@@ -116,7 +124,7 @@ export function buildComposerSceneMenu(config) {
     {
       text: "Library",
       onClick: () => {
-        applyComposerSceneIdentityDraft(sceneIdInput?.value, sceneNameInput?.value);
+        commitSceneIdentityDraft();
         openComposerLibraryMenuAt(clientX, clientY);
       },
     },
@@ -129,8 +137,6 @@ export function buildComposerSceneMenu(config) {
     },
   ]);
   positionComposerAssemblyMenu(clientX, clientY, 312, 252);
-  sceneNameInput?.focus?.();
-  sceneNameInput?.select?.();
 }
 
 export function buildComposerJsonPreviewMenu(config) {

@@ -596,13 +596,14 @@ export function openComposerAssemblyPropertiesMenu(config) {
   nameLabel.textContent = "Name";
   const nameInput = document.createElement("input");
   nameInput.type = "text";
-  nameInput.value = assembly.name;
+  nameInput.value = "";
+  nameInput.placeholder = assembly.name;
   nameInput.addEventListener("input", () => {
     const liveAssembly = getAssemblyDraftById(assembly.id);
     if (!liveAssembly) {
       return;
     }
-    liveAssembly.name = nameInput.value;
+    liveAssembly.name = String(nameInput.value ?? "").trim() || assembly.name;
     subtitle.textContent = liveAssembly.name.trim() || liveAssembly.id;
     renderAssemblyEditor();
     assemblyPositionInputs.set(liveAssembly.id, positionInputs);

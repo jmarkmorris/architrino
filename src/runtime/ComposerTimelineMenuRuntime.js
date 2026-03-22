@@ -133,7 +133,9 @@ export function buildComposerTimelineMenu(config) {
       onClick: () => {
         const graphicStart = Number(graphicStartInput?.value);
         const graphicEnd = Number(graphicEndInput?.value);
-        const text = String(graphicTextInput?.value ?? "").trim();
+        const text =
+          String(graphicTextInput?.value ?? "").trim() ||
+          String(initialGraphicDraft.text ?? "").trim();
         const size = Number(graphicSizeInput?.value);
         const target = decodeComposerGraphicTargetValue(graphicTargetInput?.value);
         if (!Number.isFinite(graphicStart) || !Number.isFinite(graphicEnd) || !text || !target || !Number.isFinite(size)) {
@@ -203,8 +205,8 @@ export function buildComposerTimelineMenu(config) {
     graphicTargetInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
     const graphicTextInput = appendComposerMenuField(graphicForm, {
       label: "Text",
-      value: initialGraphicDraft.text,
-      placeholder: "Graphic text",
+      value: "",
+      placeholder: initialGraphicDraft.text || "Graphic text",
     });
     graphicTextInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
     const graphicSizeInput = appendComposerMenuField(graphicForm, {
@@ -255,7 +257,10 @@ export function buildComposerTimelineMenu(config) {
       onClick: () => {
         const start = Number(mediaStartInput?.value);
         const end = Number(mediaEndInput?.value);
-        const source = sanitizeComposerMediaSource(mediaSourceInput?.value, kind);
+        const source = sanitizeComposerMediaSource(
+          String(mediaSourceInput?.value ?? "").trim() || initialDraft.source,
+          kind
+        );
         if (!Number.isFinite(start) || !Number.isFinite(end) || !source) {
           return;
         }
@@ -315,8 +320,8 @@ export function buildComposerTimelineMenu(config) {
     });
     const mediaSourceInput = appendComposerMenuField(mediaForm, {
       label: "Asset Path",
-      value: initialDraft.source,
-      placeholder: composerMediaAssetDirectories[kind],
+      value: "",
+      placeholder: initialDraft.source || composerMediaAssetDirectories[kind],
     });
     mediaSourceInput?.closest?.(".composer-field")?.classList?.add("composer-assembly-menu-grid-span-2");
     mediaBlock?.block?.appendChild(mediaForm);
@@ -525,7 +530,9 @@ export function buildComposerTimelineMenu(config) {
     const reactionBlock = appendComposerMenuBlock(menu, "Reaction", {
       text: reaction ? "Save" : "Add",
       onClick: () => {
-        const label = String(reactionLabelInput?.value ?? "").trim();
+        const label =
+          String(reactionLabelInput?.value ?? "").trim() ||
+          String(reaction?.label ?? "reaction").trim();
         const start = Number(reactionStartInput?.value);
         const end = Number(reactionEndInput?.value);
         const actions = buildComposerReactionActionString(reactionStageDrafts);
@@ -569,7 +576,8 @@ export function buildComposerTimelineMenu(config) {
     reactionForm.className = "composer-form composer-assembly-menu-grid-2";
     const reactionLabelInput = appendComposerMenuField(reactionForm, {
       label: "Label",
-      value: reaction?.label ?? "reaction",
+      value: "",
+      placeholder: reaction?.label ?? "reaction",
     });
     const reactionStartInput = appendComposerMenuField(reactionForm, {
       label: "Start (s)",
