@@ -1863,7 +1863,7 @@ body {
 
 .composer-reaction-solver-tree-row.is-noether-core-grid {
   align-items: flex-start;
-  min-height: 132px;
+  min-height: 0;
 }
 
 .composer-reaction-solver-tree-row.is-higgs-cluster-grid {
