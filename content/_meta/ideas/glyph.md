@@ -1,4 +1,4 @@
-# Glyph System for AAA
+# Glyph System for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 ## Why this note exists
 
@@ -336,7 +336,9 @@ That language could eventually support:
 
 The general 3D-to-SVG glyph language above still needs a first concrete vocabulary for the reaction solver.
 
-That first vocabulary should be deliberately compact and editor-friendly. Here compact means a reduced, authoring-facing presentation variant rather than a new term from the underlying geometry or dynamics. It is not trying to show every detail of a full assembly glyph at once. It is trying to give the solver a small, legible symbolic language for choosing quark flavor, quark color, and binary personality state without crowding the menu.
+That first vocabulary should be deliberately compact and editor-friendly. Here compact means a reduced, authoring-facing presentation variant rather than a new term from the underlying geometry or dynamics. It is not trying to show every detail of a full assembly glyph at once. It is trying to give the solver a small, legible symbolic language for choosing binary state quickly and consistently.
+
+The current implementation target is therefore narrower than some earlier drafts: the binary glyph layer is now stable enough to implement, while the whole-quark color layer should remain provisional until the slot/axis relation is closed more cleanly.
 
 ### Design split
 
@@ -346,15 +348,15 @@ The first-pass reaction glyph grammar should separate three concerns:
 - **binary personality state**;
 - and **whole-quark color**.
 
-Those should not all be encoded by the same visual channel.
+Those should not all be encoded by the same visual channel. At the moment, only the first two are promoted into the current prototype and generator.
 
 The recommended split is:
 
 - the **purple orbit** and **purple axis** encode binary structure;
 - the **red and blue spheres** encode architrino polarity at specific semantic sites;
-- and the **quark color** is applied at the whole-quark level, not by changing the internal red/blue binary dots.
+- and the **quark color** should eventually be applied at the whole-quark level, not by changing the internal red/blue binary dots.
 
-This keeps the symbol readable and prevents the quark-color system from colliding with the existing red/blue architrino language.
+This keeps the symbol readable and prevents any future quark-color system from colliding with the existing red/blue architrino language.
 
 ### Canonical binary orientation
 
@@ -388,7 +390,15 @@ So:
 - `p/e` means **positrino above** and **electrino below**;
 - `e/p` means **electrino above** and **positrino below**.
 
-For compact chip labels, prefer the charge-unit notation already used in the mathematical style guide: $-\epsilon$ for an electrino and $+\epsilon$ for a positrino. In other words, the same four states may also be shown as $-\epsilon / -\epsilon$, $-\epsilon / +\epsilon$, $+\epsilon / -\epsilon$, and $+\epsilon / +\epsilon$ when the chip wants charge-first labeling rather than particle-letter labeling.
+For compact chip labels, prefer the charge-unit notation already used in the mathematical style guide: $-\epsilon$ for an electrino and $+\epsilon$ for a positrino.
+
+In the current prototype, the compact label is not drawn as a single slash string. Instead:
+
+- the **top** personality charge is written in the **upper-left** corner;
+- the **bottom** personality charge is written in the **lower-right** corner;
+- and the two corner terms use the same red/blue polarity colors as the personality dots themselves.
+
+This makes the tile easier to read at a glance because the glyph remains dominant while the charge labels stay secondary.
 
 ### Collapsed neutral-binary rule
 
@@ -407,36 +417,22 @@ So the reduced three-state set becomes:
 
 This should be a deliberate rule rather than an incidental renderer choice, so the same neutral representative appears consistently across menus, docs, and solver views.
 
-### Whole-quark color from the three binaries
+### Whole-quark color is deferred
 
-Quark color should not be treated as a merely decorative frame wrapped around one binary glyph. It should be read from the three-binary quark itself: **inner**, **middle**, and **outer**.
+Earlier drafts of this note tried to make quark color part of the first-pass glyph vocabulary. That is no longer the right implementation target.
 
-The first picker set should still be:
+At present:
 
-- `Up Red`
-- `Up Purple`
-- `Up Blue`
-- `Down Red`
-- `Down Purple`
-- `Down Blue`
+- the binary glyph is stable enough to implement as a first-class object;
+- the whole-quark color story is still under active theoretical revision;
+- and the current SVG prototype should therefore stop short of claiming a settled quark-color encoding.
 
-For this vocabulary, **purple** should replace **green** as the neutral middle case.
+The reason is structural. The open 3x3x3 bookkeeping problem in [3x3.md](./3x3.md) has not yet been reconciled cleanly with the canonical axis-based quark-color picture in [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md). Until that bridge is explicit, a quark-color picker would look more final than the theory currently warrants.
 
-The structural idea is:
+So this note should treat:
 
-- an **up-type quark** is shown by three binaries containing **two positive binaries** and **one neutral binary**;
-- a **down-type quark** is shown by three binaries containing **two neutral binaries** and **one negative binary**;
-- and `Red`, `Purple`, `Blue` indicate whether that flavor-defining binary sits at the **inner**, **middle**, or **outer** slot.
-
-So the color label is derived from the tri-binary arrangement rather than painted on afterward.
-
-The internal glyphs still use:
-
-- red for positrino;
-- blue for electrino;
-- and purple for orbit and axis structure.
-
-The quark-color gallery should therefore show three binary glyphs inside each quark tile, labeled `Inner`, `Middle`, and `Outer`, so the reader can see why a given arrangement is called `Red`, `Purple`, or `Blue`.
+- binary structure and personality state as **implemented scope**;
+- and whole-quark color as **deferred scope**.
 
 ### Compact chip behavior
 
@@ -445,21 +441,15 @@ In the reaction solver menu, these should appear as compact clickable chips.
 The binary-personality chips should show:
 
 - the binary glyph at center;
-- and the binary state label.
-
-The quark-color chips should show:
-
-- the quark label such as `Up` or `Down`;
-- and the three binary slots `Inner`, `Middle`, `Outer` with their respective binary glyphs.
+- the two corner charge terms when personality is shown;
+- or no personality labels at all for the bare neutral-binary view.
 
 Selection should be made obvious by changing the chip background and emphasis state.
 
 Important rule:
 
 - the **background fill** means **UI selection**;
-- it should **not** carry the quark's semantic color meaning.
-
-Semantic color should be read first from the tri-binary arrangement itself, not from the selected-state background.
+- it should **not** redefine the meaning of the internal red/blue/purple glyph channels.
 
 ### First-pass semantic fields
 
@@ -467,15 +457,20 @@ The reduced reaction-solver glyph vocabulary should introduce explicit semantic 
 
 ```json
 {
-  "type": "quark_glyph",
-  "flavor": "up",
-  "quarkColor": "purple",
+  "type": "binary_glyph",
+  "binaryPoles": {
+    "left": "electrino",
+    "right": "positrino"
+  },
   "binaryPersonality": {
     "top": "positrino",
     "bottom": "electrino"
   },
   "presentation": {
     "variant": "compact",
+    "labelMode": "corner_epsilon",
+    "showLabels": true,
+    "showPersonality": true,
     "collapsedNeutralRepresentative": "p/e"
   }
 }
@@ -483,10 +478,13 @@ The reduced reaction-solver glyph vocabulary should introduce explicit semantic 
 
 This should be read as:
 
-- `flavor` controls `up` vs `down`;
-- `quarkColor` controls `red`, `purple`, or `blue`;
+- `binaryPoles` keeps the left/right binary poles canonical;
 - `binaryPersonality` controls the full top/bottom binary state;
+- `labelMode` records the corner-label convention;
+- `showPersonality` distinguishes bare from personality-decorated variants;
 - and `collapsedNeutralRepresentative` records the canonical neutral choice when a reduced menu is used.
+
+For a bare neutral-binary tile, the same object can suppress personality charges and labels at the presentation layer rather than switching to a separate symbol family.
 
 ### Relationship to the broader glyph system
 
@@ -498,20 +496,35 @@ In other words:
 - the solver glyph chips are compact projections of that semantic model for authoring tasks;
 - and both should share the same underlying semantic fields wherever possible.
 
+### Current implementation status
+
+The current concrete implementation artifacts are:
+
+- the generator at [scripts/glyphs/glyph.py](../../../scripts/glyphs/glyph.py);
+- standalone outputs at [glyph-binary-bare.svg](../../../scripts/glyphs/glyph-binary-bare.svg), [glyph-binary-negative.svg](../../../scripts/glyphs/glyph-binary-negative.svg), [glyph-binary-neutral.svg](../../../scripts/glyphs/glyph-binary-neutral.svg), and [glyph-binary-positive.svg](../../../scripts/glyphs/glyph-binary-positive.svg);
+- and the canonical page artifact at [quark-glyph-prototype.svg](../../../scripts/glyphs/quark-glyph-prototype.svg).
+
+Those artifacts now cover:
+
+- one bare neutral-binary tile;
+- the full four-state personality set;
+- and the reduced-menu convention in which `p/e` is the canonical neutral representative.
+
 ### Immediate next build target
 
 The next practical implementation target should be:
 
-- a compact SVG prototype for the binary personality glyphs;
-- a matching six-chip quark picker using `Up/Down × Red/Purple/Blue`;
-- and a renderer rule that can switch between the full four-state binary set and the reduced `e/e`, `p/e`, `p/p` set.
+- a reference schema for the binary glyph object;
+- a renderer rule that can switch between the full four-state binary set and the reduced `e/e`, `p/e`, `p/p` set;
+- and a composer-side binary picker that consumes the same semantic fields as the generator.
 
 ## Immediate next steps
 
 Natural follow-on work from this note would be:
 
-- a reference JSON schema;
-- a compact SVG prototype for the first reaction-solver binary/quark glyph vocabulary;
+- a reference JSON schema for `binary_glyph`;
+- a runtime SVG renderer that consumes the same binary-glyph semantic object;
 - a pure SVG renderer;
 - a composer-side glyph editor surface;
-- and a canonical library of reference assemblies for the first glyph vocabulary.
+- a canonical library of reference assemblies for the first binary vocabulary;
+- and a separate follow-on note that reopens whole-quark color only after the 3x3x3 and axis-basis relation is closed.

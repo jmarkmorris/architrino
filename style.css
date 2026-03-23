@@ -1719,11 +1719,13 @@ body {
   min-width: 112px;
   padding: 12px 10px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid color-mix(in srgb, var(--solver-accent) 22%, rgba(255, 255, 255, 0.06));
   background:
-    radial-gradient(circle at 30% 22%, color-mix(in srgb, var(--solver-accent) 32%, transparent), transparent 38%),
+    radial-gradient(circle at 30% 22%, color-mix(in srgb, var(--solver-accent) 44%, transparent), transparent 40%),
     linear-gradient(180deg, rgba(18, 26, 48, 0.94), rgba(13, 18, 32, 0.96));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px color-mix(in srgb, var(--solver-accent) 10%, transparent);
   text-align: center;
 }
 
@@ -1734,10 +1736,13 @@ body {
   height: 48px;
   margin: 0 auto 10px;
   border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--solver-accent) 55%, rgba(255, 255, 255, 0.12));
+  border: 1px solid color-mix(in srgb, var(--solver-accent) 74%, rgba(255, 255, 255, 0.12));
   background:
     radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.14), transparent 46%),
-    color-mix(in srgb, var(--solver-accent) 20%, rgba(22, 26, 42, 0.94));
+    color-mix(in srgb, var(--solver-accent) 28%, rgba(22, 26, 42, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 18px color-mix(in srgb, var(--solver-accent) 16%, transparent);
   color: #f8fbff;
   font-size: 16px;
   font-weight: 700;

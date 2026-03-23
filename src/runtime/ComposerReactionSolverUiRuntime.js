@@ -1,11 +1,11 @@
 import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionRulesRuntime.js";
 
 const solverTemplateMeta = Object.freeze({
-  noether_core: { shortLabel: "NC", accent: "#94b6ff" },
-  higgs_cluster: { shortLabel: "HC", accent: "#e8c17b" },
-  electron: { shortLabel: "e-", accent: "#7fe1ff" },
-  down_quark: { shortLabel: "d", accent: "#8fb7ff" },
-  up_quark: { shortLabel: "u", accent: "#f0b7ff" },
+  noether_core: { shortLabel: "NC", accent: "#a259ff" },
+  higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
+  electron: { shortLabel: "e-", accent: "#2d8cff" },
+  down_quark: { shortLabel: "d", accent: "#4a78ff" },
+  up_quark: { shortLabel: "u", accent: "#ff5a4a" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
