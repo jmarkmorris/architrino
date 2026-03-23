@@ -1754,12 +1754,15 @@ body {
 }
 
 .composer-reaction-solver-tree-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18px;
   align-items: center;
   gap: 10px;
   min-height: 24px;
-  justify-content: flex-start;
-  padding-inline-start: calc(var(--solver-depth, 0) * 4ch);
+}
+
+.composer-reaction-solver-tree-row.is-product {
+  grid-template-columns: 18px minmax(0, 1fr);
 }
 
 .composer-reaction-solver-tree-row.is-disabled {
@@ -1773,6 +1776,14 @@ body {
 
 .composer-reaction-solver-tree-row.is-collapsed {
   margin-block-end: 4px;
+}
+
+.composer-reaction-solver-tree-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding-inline-start: calc(var(--solver-depth, 0) * 4ch);
 }
 
 .composer-reaction-solver-tree-label {

@@ -620,6 +620,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const row = document.createElement("div");
       row.className = "composer-reaction-solver-tree-row";
       row.style.setProperty("--solver-depth", String(depth));
+      row.classList.add(`is-${participant.side}`);
       if (anchorAvailability.disabled) {
         row.classList.add("is-disabled");
         if (state.pendingSourceKey && participant.side === "product") {
@@ -635,6 +636,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const label = document.createElement("span");
       label.className = "composer-reaction-solver-tree-label";
       label.textContent = node.label;
+      const content = document.createElement("div");
+      content.className = "composer-reaction-solver-tree-content";
+      content.style.setProperty("--solver-depth", String(depth));
       const anchor = document.createElement("button");
       anchor.type = "button";
       anchor.className = "composer-reaction-solver-anchor";
@@ -659,12 +663,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
               textContent: `${hiddenDescendantCount} hidden`,
             })
           : null;
-      if (participant.side === "product") {
-        row.classList.add("is-product");
-      }
-      row.append(anchor, label);
+      content.appendChild(label);
       if (collapsedNote) {
-        row.appendChild(collapsedNote);
+        content.appendChild(collapsedNote);
+      }
+      if (participant.side === "product") {
+        row.append(anchor, content);
+      } else {
+        row.append(content, anchor);
       }
       parent.appendChild(row);
       if (hasChildren && !isCollapsed) {
