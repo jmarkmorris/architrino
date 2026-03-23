@@ -615,12 +615,14 @@ export function createPeriodicOverlayRuntime(deps) {
     return hydeActiveHotspotTarget;
   }
 
-  function showDefaultHydeSelection() {
+  function showDefaultHydeSelection(options = {}) {
     if (!(hydeInitialFocusTarget instanceof Element)) {
       return null;
     }
     clearHoveredHydeHotspotVisual();
-    return setActiveHydeHotspot(hydeInitialFocusTarget, { focus: false });
+    return setActiveHydeHotspot(hydeInitialFocusTarget, {
+      focus: options.focus !== false,
+    });
   }
 
   function moveActiveHydeHotspotByOffset(offset) {
@@ -1988,7 +1990,7 @@ export function createPeriodicOverlayRuntime(deps) {
     if (enteringHydePeriodic) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          showDefaultHydeSelection();
+          showDefaultHydeSelection({ focus: true });
         });
       });
     }

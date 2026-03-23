@@ -57,29 +57,38 @@
       <circle cx="0" cy="60" r="8.2" fill="#ff3d3d" filter="url(#glowRed)"/>
     </g>
     <g id="mini-tile-ee">
-      <rect x="0" y="0" width="104" height="126" rx="8" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="2"/>
-      <text x="12" y="20" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="0.2">
-        &#x03B5;<tspan baseline-shift="super" font-size="7">-</tspan>/&#x03B5;<tspan baseline-shift="super" font-size="7">-</tspan>
+      <rect x="0" y="0" width="104" height="104" rx="8" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="2"/>
+      <text x="10" y="18" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
+        &#x03B5;<tspan baseline-shift="super" font-size="8">-</tspan>
       </text>
-      <g transform="translate(52 72) scale(0.42)">
+      <text x="94" y="96" text-anchor="end" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
+        &#x03B5;<tspan baseline-shift="super" font-size="8">-</tspan>
+      </text>
+      <g transform="translate(52 52) scale(0.42)">
         <use href="#personality-ee"/>
       </g>
     </g>
     <g id="mini-tile-pe">
-      <rect x="0" y="0" width="104" height="126" rx="8" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2"/>
-      <text x="12" y="20" fill="#f4f0ff" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="0.2">
-        &#x03B5;<tspan baseline-shift="super" font-size="7">+</tspan>/&#x03B5;<tspan baseline-shift="super" font-size="7">-</tspan>
+      <rect x="0" y="0" width="104" height="104" rx="8" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2"/>
+      <text x="10" y="18" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
+        &#x03B5;<tspan baseline-shift="super" font-size="8">+</tspan>
       </text>
-      <g transform="translate(52 72) scale(0.42)">
+      <text x="94" y="96" text-anchor="end" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
+        &#x03B5;<tspan baseline-shift="super" font-size="8">-</tspan>
+      </text>
+      <g transform="translate(52 52) scale(0.42)">
         <use href="#personality-pe"/>
       </g>
     </g>
     <g id="mini-tile-pp">
-      <rect x="0" y="0" width="104" height="126" rx="8" fill="url(#chipFill)" stroke="#ff5561" stroke-width="2"/>
-      <text x="12" y="20" fill="#ffd1d5" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="0.2">
-        &#x03B5;<tspan baseline-shift="super" font-size="7">+</tspan>/&#x03B5;<tspan baseline-shift="super" font-size="7">+</tspan>
+      <rect x="0" y="0" width="104" height="104" rx="8" fill="url(#chipFill)" stroke="#ff5561" stroke-width="2"/>
+      <text x="10" y="18" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
+        &#x03B5;<tspan baseline-shift="super" font-size="8">+</tspan>
       </text>
-      <g transform="translate(52 72) scale(0.42)">
+      <text x="94" y="96" text-anchor="end" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
+        &#x03B5;<tspan baseline-shift="super" font-size="8">+</tspan>
+      </text>
+      <g transform="translate(52 52) scale(0.42)">
         <use href="#personality-pp"/>
       </g>
     </g>
@@ -99,41 +108,53 @@
   </text>
 
   <g transform="translate(90 270)">
-    <rect x="0" y="0" width="250" height="176" rx="10" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="3" filter="url(#shadow)"/>
-    <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
+    <rect x="0" y="0" width="198" height="198" rx="10" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="3" filter="url(#shadow)"/>
+    <text x="18" y="30" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
     </text>
-    <g transform="translate(125 88)">
+    <text x="180" y="186" text-anchor="end" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
+    </text>
+    <g transform="translate(99 99)">
       <use href="#personality-ee"/>
     </g>
   </g>
 
   <g transform="translate(375 270)">
-    <rect x="0" y="0" width="250" height="176" rx="10" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="3" filter="url(#chipSelectedGlow)"/>
-    <text x="24" y="28" fill="#f4f0ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
+    <rect x="0" y="0" width="198" height="198" rx="10" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="3" filter="url(#chipSelectedGlow)"/>
+    <text x="18" y="30" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
     </text>
-    <g transform="translate(125 88)">
+    <text x="180" y="186" text-anchor="end" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
+    </text>
+    <g transform="translate(99 99)">
       <use href="#personality-pe"/>
     </g>
   </g>
 
   <g transform="translate(660 270)">
-    <rect x="0" y="0" width="250" height="176" rx="10" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="3" filter="url(#chipSelectedGlow)"/>
-    <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
+    <rect x="0" y="0" width="198" height="198" rx="10" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="3" filter="url(#chipSelectedGlow)"/>
+    <text x="18" y="30" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
     </text>
-    <g transform="translate(125 88)">
+    <text x="180" y="186" text-anchor="end" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
+    </text>
+    <g transform="translate(99 99)">
       <use href="#personality-ep"/>
     </g>
   </g>
 
   <g transform="translate(945 270)">
-    <rect x="0" y="0" width="250" height="176" rx="10" fill="url(#chipFill)" stroke="#ff5561" stroke-width="3" filter="url(#shadow)"/>
-    <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
+    <rect x="0" y="0" width="198" height="198" rx="10" fill="url(#chipFill)" stroke="#ff5561" stroke-width="3" filter="url(#shadow)"/>
+    <text x="18" y="30" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
     </text>
-    <g transform="translate(125 88)">
+    <text x="180" y="186" text-anchor="end" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
+    </text>
+    <g transform="translate(99 99)">
       <use href="#personality-pp"/>
     </g>
   </g>
