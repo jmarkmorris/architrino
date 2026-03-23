@@ -176,12 +176,17 @@ function createCoreLeaf(id, label, inventory) {
   };
 }
 
-function createNoetherCoreBranch(id, label, { anti = false, inventory = null } = {}) {
+function createNoetherCoreBranch(
+  id,
+  label,
+  { anti = false, inventory = null, showSlotHeader = true } = {}
+) {
   return {
     id,
     label,
     renderMode: "noether-core-grid",
     inventory: inventory ?? (anti ? { antiCore: 1 } : { proCore: 1 }),
+    showSlotHeader,
     children: [
       createBinaryBranch(`${id}/inner`, "inner binary", {
         withPersonality: false,
@@ -209,7 +214,7 @@ function buildHierarchyForTemplate(templateId, label) {
       {
         id: "root",
         label: "Higgs cluster",
-        collapseRow: true,
+        renderMode: "higgs-cluster-grid",
         children: [
           createNoetherCoreBranch("root/pro_core_1", "Pro core"),
           createNoetherCoreBranch("root/anti_core_1", "Anti core", {
@@ -228,6 +233,7 @@ function buildHierarchyForTemplate(templateId, label) {
       {
         id: "root",
         label: "pro Noether core",
+        renderMode: "binary-selector-grid",
         children: [
           createBinaryBranch("root/inner", "inner binary with personality", { slotCode: "I" }),
           createBinaryBranch("root/middle", "middle binary with personality", { slotCode: "M" }),
@@ -267,6 +273,7 @@ function buildHierarchyForTemplate(templateId, label) {
       {
         id: "root",
         label: "pro Noether core",
+        renderMode: "binary-selector-grid",
         children: [
           createBinaryBranch("root/inner", "inner binary with personality", { slotCode: "I" }),
           createBinaryBranch("root/middle", "middle binary with personality", { slotCode: "M" }),
@@ -279,6 +286,7 @@ function buildHierarchyForTemplate(templateId, label) {
     {
       id: "root",
       label: "pro/anti Noether core",
+      renderMode: "binary-selector-grid",
       children: [
         createBinaryBranch("root/inner", "inner binary with personality", { slotCode: "I" }),
         createBinaryBranch("root/middle", "middle binary with personality", { slotCode: "M" }),
@@ -345,7 +353,12 @@ function countDescendants(node) {
 }
 
 function shouldRenderChildNodes(node) {
-  return node?.renderMode !== "binary-selector" && node?.renderMode !== "binary-bare";
+  return (
+    node?.renderMode !== "binary-selector" &&
+    node?.renderMode !== "binary-selector-grid" &&
+    node?.renderMode !== "higgs-cluster-grid" &&
+    node?.renderMode !== "binary-bare"
+  );
 }
 
 function getBinaryPersonalityChoice(choiceId) {
@@ -1100,21 +1113,24 @@ export function createComposerReactionSolverUiRuntime(deps) {
       });
   }
 
-  function createNoetherCoreGridContent(participant, node) {
-    const wrapper = document.createElement("div");
-    wrapper.className = `composer-reaction-solver-noether-core-grid is-${participant.side}`;
+  function createInlineAnchorLane(participant, node, nodeKey) {
+    const lane = document.createElement("div");
+    lane.className = `composer-reaction-solver-inline-anchor-lane is-${participant.side}`;
+    lane.appendChild(createAnchorButton(participant, node, nodeKey));
+    return lane;
+  }
 
-    const grid = document.createElement("div");
-    grid.className = "composer-reaction-solver-noether-core-grid-track";
-
+  function createNoetherCoreGridSections(participant, node) {
+    const slots = document.createElement("div");
+    slots.className = "composer-reaction-solver-noether-core-grid-slots";
+    const tiles = document.createElement("div");
+    tiles.className = "composer-reaction-solver-noether-core-grid-track";
     getCoreBinaryNodes(node).forEach((childNode) => {
       const nodeKey = buildNodeKey(participant.id, childNode.id);
-      const cell = document.createElement("div");
-      cell.className = "composer-reaction-solver-noether-core-grid-cell";
-
       const slot = document.createElement("span");
       slot.className = "composer-reaction-solver-noether-core-grid-slot";
       slot.textContent = childNode.slotCode || "?";
+      slots.appendChild(slot);
 
       const choice =
         childNode.renderMode === "binary-bare"
@@ -1137,12 +1153,111 @@ export function createComposerReactionSolverUiRuntime(deps) {
           showPersonality: childNode.renderMode !== "binary-bare",
         })
       );
-
-      cell.append(slot, tile);
-      grid.appendChild(cell);
+      tiles.appendChild(tile);
     });
+    return { slots, tiles };
+  }
 
-    wrapper.appendChild(grid);
+  function createNoetherCoreGridContent(participant, node) {
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-noether-core-grid is-${participant.side}`;
+    const { slots, tiles } = createNoetherCoreGridSections(participant, node);
+    const body = document.createElement("div");
+    body.className = `composer-reaction-solver-noether-core-grid-body is-${participant.side}`;
+    if (participant.side === "product") {
+      body.append(createInlineAnchorLane(participant, node, nodeKey), tiles);
+    } else {
+      body.append(tiles, createInlineAnchorLane(participant, node, nodeKey));
+    }
+    wrapper.append(slots, body);
+    return wrapper;
+  }
+
+  function createBinarySelectorGridContent(participant, node) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const slots = document.createElement("div");
+    slots.className = "composer-reaction-solver-binary-selector-grid-slots";
+    const track = document.createElement("div");
+    track.className = "composer-reaction-solver-binary-selector-grid-track";
+    getCoreBinaryNodes(node).forEach((childNode) => {
+      const column = document.createElement("div");
+      column.className = "composer-reaction-solver-binary-selector-column";
+
+      const slot = document.createElement("span");
+      slot.className = "composer-reaction-solver-binary-selector-grid-slot";
+      slot.textContent = childNode.slotCode || "?";
+      slots.appendChild(slot);
+      const choices = document.createElement("div");
+      choices.className = "composer-reaction-solver-binary-selector-grid-options";
+      const selectedChoice = getBinaryPersonalitySelection(participant, childNode);
+      const allowedChoiceIds = getAllowedBinaryChoiceIds(participant, childNode);
+
+      allowedChoiceIds.forEach((choiceId) => {
+        const choice = getBinaryPersonalityChoice(choiceId);
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "composer-reaction-solver-binary-choice";
+        button.dataset.choiceId = choice.id;
+        button.style.setProperty("--binary-choice-accent", choice.accent);
+        button.setAttribute("aria-label", `${childNode.label}: ${choice.label}`);
+        button.title = choice.label;
+        if (selectedChoice.id === choice.id) {
+          button.classList.add("is-selected");
+        } else {
+          button.classList.add("is-dimmed");
+        }
+        button.appendChild(createBinaryGlyph(choice));
+        button.addEventListener("click", () =>
+          setBinaryPersonalitySelection(participant.id, childNode.id, choice.id)
+        );
+        choices.appendChild(button);
+      });
+
+      column.appendChild(choices);
+      track.appendChild(column);
+    });
+    const body = document.createElement("div");
+    body.className = `composer-reaction-solver-binary-selector-grid-body is-${participant.side}`;
+    if (participant.side === "product") {
+      body.append(createInlineAnchorLane(participant, node, nodeKey), track);
+    } else {
+      body.append(track, createInlineAnchorLane(participant, node, nodeKey));
+    }
+    wrapper.append(slots, body);
+    return wrapper;
+  }
+
+  function createHiggsClusterGridContent(participant, node) {
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-higgs-cluster-grid is-${participant.side}`;
+    const coreNodes = Array.isArray(node?.children) ? node.children : [];
+    const firstCore = coreNodes[0] ?? null;
+    if (firstCore) {
+      const { slots } = createNoetherCoreGridSections(participant, firstCore);
+      wrapper.appendChild(slots);
+    }
+    const rows = document.createElement("div");
+    rows.className = "composer-reaction-solver-higgs-cluster-grid-rows";
+    coreNodes.forEach((coreNode, index) => {
+      const row = document.createElement("div");
+      row.className = `composer-reaction-solver-higgs-cluster-grid-row is-${participant.side}`;
+      const { tiles } = createNoetherCoreGridSections(participant, coreNode);
+      if (index === 0) {
+        if (participant.side === "product") {
+          row.append(createInlineAnchorLane(participant, node, nodeKey), tiles);
+        } else {
+          row.append(tiles, createInlineAnchorLane(participant, node, nodeKey));
+        }
+      } else {
+        row.appendChild(tiles);
+      }
+      rows.appendChild(row);
+    });
+    wrapper.appendChild(rows);
     return wrapper;
   }
 
@@ -1202,10 +1317,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const hasChildren = Array.isArray(node.children) && node.children.length > 0;
       const canRenderChildren = hasChildren && shouldRenderChildNodes(node);
       const rendersChildrenInline = node.renderMode === "noether-core-grid";
-      if (node.collapseRow && canRenderChildren) {
-        renderParticipantTreeRows(parent, participant, node.children, depth);
-        return;
-      }
       const mapping = findMappingByNodeKey(nodeKey);
       const isCollapsed = !!mapping && canRenderChildren && !rendersChildrenInline;
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
@@ -1232,7 +1343,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const content = document.createElement("div");
       content.className = "composer-reaction-solver-tree-content";
       content.style.setProperty("--solver-depth", String(depth));
-      const anchor = createAnchorButton(participant, node, nodeKey);
+      const usesInlineAnchor =
+        node.renderMode === "noether-core-grid" ||
+        node.renderMode === "binary-selector-grid" ||
+        node.renderMode === "higgs-cluster-grid";
+      if (usesInlineAnchor) {
+        row.classList.add("is-inline-anchor");
+      }
+      const anchor = usesInlineAnchor ? null : createAnchorButton(participant, node, nodeKey);
       const collapsedNote =
         hiddenDescendantCount > 0
           ? Object.assign(document.createElement("span"), {
@@ -1244,6 +1362,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
         row.classList.add("is-noether-core-grid");
         content.classList.add("is-noether-core-grid");
         content.appendChild(createNoetherCoreGridContent(participant, node));
+      } else if (node.renderMode === "higgs-cluster-grid") {
+        row.classList.add("is-higgs-cluster-grid");
+        content.classList.add("is-higgs-cluster-grid");
+        content.appendChild(createHiggsClusterGridContent(participant, node));
+      } else if (node.renderMode === "binary-selector-grid") {
+        row.classList.add("is-binary-selector-grid");
+        content.classList.add("is-binary-selector-grid");
+        content.appendChild(createBinarySelectorGridContent(participant, node));
       } else if (node.renderMode === "binary-selector") {
         row.classList.add("is-binary-selector");
         content.appendChild(createBinarySelectorContent(participant, node));
@@ -1256,7 +1382,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
           content.appendChild(collapsedNote);
         }
       }
-      if (participant.side === "product") {
+      if (usesInlineAnchor) {
+        row.appendChild(content);
+      } else if (participant.side === "product") {
         row.append(anchor, content);
       } else {
         row.append(content, anchor);
@@ -1271,8 +1399,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function renderParticipantCard(participant) {
     const card = document.createElement("article");
     card.className = `composer-reaction-solver-participant is-${participant.side}`;
+    const topLevelRenderMode = participant?.hierarchy?.[0]?.renderMode ?? "";
     if (topLevelHierarchyHasRenderMode(participant.hierarchy, "noether-core-grid")) {
       card.classList.add("has-noether-core-grid");
+    }
+    if (
+      topLevelRenderMode === "noether-core-grid" ||
+      topLevelRenderMode === "binary-selector-grid" ||
+      topLevelRenderMode === "higgs-cluster-grid"
+    ) {
+      card.classList.add("has-inline-field-header");
     }
     const visual = document.createElement("div");
     visual.className = "composer-reaction-solver-particle";

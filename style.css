@@ -1711,7 +1711,11 @@ body {
 }
 
 .composer-reaction-solver-participant.has-noether-core-grid {
-  align-items: center;
+  align-items: flex-start;
+}
+
+.composer-reaction-solver-participant.has-inline-field-header .composer-reaction-solver-particle {
+  margin-top: 14px;
 }
 
 .composer-reaction-solver-participant.is-product {
@@ -1767,6 +1771,10 @@ body {
   padding: 8px 0;
 }
 
+.composer-reaction-solver-tree.is-product {
+  justify-items: end;
+}
+
 .composer-reaction-solver-tree-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 18px;
@@ -1779,7 +1787,16 @@ body {
   grid-template-columns: 18px minmax(0, 1fr);
 }
 
-.composer-reaction-solver-tree-row.is-product .composer-reaction-solver-anchor {
+.composer-reaction-solver-tree-row.is-inline-anchor,
+.composer-reaction-solver-tree-row.is-inline-anchor.is-product {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.composer-reaction-solver-tree-row.is-product {
+  justify-self: end;
+}
+
+.composer-reaction-solver-tree-row.is-product > .composer-reaction-solver-anchor {
   transform: translateX(-24px);
 }
 
@@ -1808,8 +1825,21 @@ body {
   align-items: flex-start;
 }
 
+.composer-reaction-solver-tree-content.is-binary-selector-grid {
+  align-items: flex-start;
+}
+
+.composer-reaction-solver-tree-content.is-higgs-cluster-grid {
+  align-items: flex-start;
+}
+
 .composer-reaction-solver-tree-row.is-binary-selector {
   min-height: 86px;
+}
+
+.composer-reaction-solver-tree-row.is-binary-selector-grid {
+  align-items: flex-start;
+  min-height: 0;
 }
 
 .composer-reaction-solver-tree-row.is-noether-core-grid {
@@ -1817,11 +1847,19 @@ body {
   min-height: 132px;
 }
 
+.composer-reaction-solver-tree-row.is-higgs-cluster-grid {
+  align-items: flex-start;
+  min-height: 0;
+}
+
 .composer-reaction-solver-noether-core-grid {
   display: grid;
   min-width: 0;
+  gap: 8px;
+  width: fit-content;
 }
 
+.composer-reaction-solver-noether-core-grid-slots,
 .composer-reaction-solver-noether-core-grid-track {
   --binary-choice-size: 72px;
   display: grid;
@@ -1830,10 +1868,14 @@ body {
   align-items: start;
 }
 
-.composer-reaction-solver-noether-core-grid-cell {
-  display: grid;
+.composer-reaction-solver-noether-core-grid-slots {
   justify-items: center;
-  gap: 8px;
+}
+
+.composer-reaction-solver-noether-core-grid-body {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .composer-reaction-solver-noether-core-grid-slot {
@@ -1846,6 +1888,14 @@ body {
   text-align: center;
 }
 
+.composer-reaction-solver-inline-anchor-lane {
+  display: grid;
+  align-self: start;
+  width: 18px;
+  height: var(--binary-choice-size, 72px);
+  place-items: center;
+}
+
 .composer-reaction-solver-binary-selector {
   display: grid;
   grid-template-columns: auto max-content;
@@ -1853,6 +1903,74 @@ body {
   gap: 12px;
   min-width: 0;
   width: fit-content;
+}
+
+.composer-reaction-solver-binary-selector-grid {
+  display: grid;
+  --binary-choice-size: 72px;
+  gap: 10px;
+  min-width: 0;
+  width: fit-content;
+}
+
+.composer-reaction-solver-binary-selector-grid-slots,
+.composer-reaction-solver-binary-selector-grid-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size)));
+  align-items: start;
+  gap: 14px;
+}
+
+.composer-reaction-solver-binary-selector-grid-slots {
+  justify-items: center;
+}
+
+.composer-reaction-solver-binary-selector-grid-body {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.composer-reaction-solver-binary-selector-column {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 10px;
+}
+
+.composer-reaction-solver-binary-selector-grid-slot {
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(226, 233, 255, 0.86);
+  text-align: center;
+}
+
+.composer-reaction-solver-binary-selector-grid-options {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 10px;
+}
+
+.composer-reaction-solver-higgs-cluster-grid {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  width: fit-content;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-rows {
+  display: grid;
+  gap: 14px;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .composer-reaction-solver-binary-selector.is-product {
@@ -3119,8 +3237,12 @@ body {
     padding-left: 0;
   }
 
-  .composer-reaction-solver-tree-row.is-product .composer-reaction-solver-anchor {
+  .composer-reaction-solver-tree-row.is-product > .composer-reaction-solver-anchor {
     transform: none;
+  }
+
+  .composer-reaction-solver-binary-selector-grid {
+    grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size, 72px)));
   }
 
   .composer-header-status {
