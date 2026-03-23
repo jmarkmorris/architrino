@@ -100,8 +100,8 @@
 
   <g transform="translate(90 270)">
     <rect x="0" y="0" width="250" height="176" rx="10" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="3" filter="url(#shadow)"/>
-    <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="10">-</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="10">-</tspan>
+    <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
     </text>
     <g transform="translate(125 88)">
       <use href="#personality-ee"/>
@@ -110,8 +110,8 @@
 
   <g transform="translate(375 270)">
     <rect x="0" y="0" width="250" height="176" rx="10" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="3" filter="url(#chipSelectedGlow)"/>
-    <text x="24" y="28" fill="#f4f0ff" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="10">+</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="10">-</tspan>
+    <text x="24" y="28" fill="#f4f0ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
     </text>
     <g transform="translate(125 88)">
       <use href="#personality-pe"/>
@@ -120,8 +120,8 @@
 
   <g transform="translate(660 270)">
     <rect x="0" y="0" width="250" height="176" rx="10" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="3" filter="url(#chipSelectedGlow)"/>
-    <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="10">-</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="10">+</tspan>
+    <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
     </text>
     <g transform="translate(125 88)">
       <use href="#personality-ep"/>
@@ -130,8 +130,8 @@
 
   <g transform="translate(945 270)">
     <rect x="0" y="0" width="250" height="176" rx="10" fill="url(#chipFill)" stroke="#ff5561" stroke-width="3" filter="url(#shadow)"/>
-    <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="10">+</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="10">+</tspan>
+    <text x="24" y="28" fill="#d8e0f7" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
+      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan> / &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
     </text>
     <g transform="translate(125 88)">
       <use href="#personality-pp"/>

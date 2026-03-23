@@ -3399,7 +3399,8 @@ body {
     drop-shadow(0 0 14px rgba(120, 177, 255, 0.3));
 }
 
-#hyde-periodic-grid .hyde-hotspot-hover-ring {
+#hyde-periodic-grid .hyde-hotspot-hover-ring,
+#hyde-periodic-grid .hyde-hotspot-active-ring {
   fill: transparent;
   stroke: rgba(110, 31, 212, 0.98);
   stroke-width: 11;
