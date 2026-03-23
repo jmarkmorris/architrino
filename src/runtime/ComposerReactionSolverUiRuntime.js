@@ -176,24 +176,49 @@ function createCoreLeaf(id, label, inventory) {
   };
 }
 
+function createNoetherCoreBranch(id, label, { anti = false, inventory = null } = {}) {
+  return {
+    id,
+    label,
+    renderMode: "noether-core-grid",
+    anti: !!anti,
+    inventory: inventory ?? (anti ? { antiCore: 1 } : { proCore: 1 }),
+    children: [
+      createBinaryBranch(`${id}/inner`, "inner binary", {
+        withPersonality: false,
+        slotCode: "I",
+        renderMode: "binary-bare",
+      }),
+      createBinaryBranch(`${id}/middle`, "middle binary", {
+        withPersonality: false,
+        slotCode: "M",
+        renderMode: "binary-bare",
+      }),
+      createBinaryBranch(`${id}/outer`, "outer binary", {
+        withPersonality: false,
+        slotCode: "O",
+        renderMode: "binary-bare",
+      }),
+    ],
+  };
+}
+
 function buildHierarchyForTemplate(templateId, label) {
   const normalizedTemplate = String(templateId ?? "").trim().toLowerCase();
   if (normalizedTemplate === "higgs_cluster") {
     return [
       {
         id: "root",
-        label,
+        label: "Higgs cluster",
         children: [
-          {
-            id: "root/higgs_cluster",
-            label: "Higgs cluster",
-            children: [
-              createCoreLeaf("root/higgs_cluster/pro_core_1", "Pro core", { proCore: 1 }),
-              createCoreLeaf("root/higgs_cluster/anti_core_1", "Anti core", { antiCore: 1 }),
-              createCoreLeaf("root/higgs_cluster/pro_core_2", "Pro core", { proCore: 1 }),
-              createCoreLeaf("root/higgs_cluster/anti_core_2", "Anti core", { antiCore: 1 }),
-            ],
-          },
+          createNoetherCoreBranch("root/pro_core_1", "Pro core"),
+          createNoetherCoreBranch("root/anti_core_1", "Anti core", {
+            anti: true,
+          }),
+          createNoetherCoreBranch("root/pro_core_2", "Pro core"),
+          createNoetherCoreBranch("root/anti_core_2", "Anti core", {
+            anti: true,
+          }),
         ],
       },
     ];
@@ -511,6 +536,10 @@ function findHierarchyNodeById(nodes = [], nodeId = "") {
   return null;
 }
 
+function topLevelHierarchyHasRenderMode(nodes = [], renderMode = "") {
+  return (Array.isArray(nodes) ? nodes : []).some((node) => node?.renderMode === renderMode);
+}
+
 function createSvgElement(name) {
   return document.createElementNS("http://www.w3.org/2000/svg", name);
 }
@@ -797,7 +826,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     const participantLabel =
       templateEntry.template === "higgs_cluster"
-        ? "SpaceTime"
+        ? "Higgs cluster"
         : templateEntry.template === "noether_core"
           ? "pro Noether core"
           : templateEntry.label;
@@ -1075,11 +1104,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-solver-noether-core-grid is-${participant.side}`;
 
-    const label = document.createElement("span");
-    label.className = "composer-reaction-solver-tree-label";
-    label.textContent = node.label;
-    wrapper.appendChild(label);
-
     const grid = document.createElement("div");
     grid.className = "composer-reaction-solver-noether-core-grid-track";
 
@@ -1088,40 +1112,34 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const cell = document.createElement("div");
       cell.className = "composer-reaction-solver-noether-core-grid-cell";
 
-      const head = document.createElement("div");
-      head.className = "composer-reaction-solver-noether-core-grid-head";
-
       const slot = document.createElement("span");
       slot.className = "composer-reaction-solver-noether-core-grid-slot";
       slot.textContent = childNode.slotCode || "?";
-
-      const anchor = createAnchorButton(participant, childNode, nodeKey, {
-        extraClassNames: ["composer-reaction-solver-noether-core-grid-anchor"],
-      });
-
-      if (participant.side === "product") {
-        head.append(anchor, slot);
-      } else {
-        head.append(slot, anchor);
-      }
 
       const choice =
         childNode.renderMode === "binary-bare"
           ? null
           : getBinaryPersonalitySelection(participant, childNode);
-      const chip = document.createElement("div");
-      chip.className = "composer-reaction-solver-binary-choice is-static";
-      chip.style.setProperty(
+      const tile = createAnchorButton(participant, childNode, nodeKey, {
+        extraClassNames: [
+          "composer-reaction-solver-binary-choice",
+          "composer-reaction-solver-binary-choice-is-anchor",
+          "composer-reaction-solver-noether-core-grid-tile",
+          node?.anti ? "is-anti" : "",
+          "is-static",
+        ],
+      });
+      tile.style.setProperty(
         "--binary-choice-accent",
         choice?.accent ?? "#b889ff"
       );
-      chip.appendChild(
+      tile.appendChild(
         createBinaryGlyph(choice, {
           showPersonality: childNode.renderMode !== "binary-bare",
         })
       );
 
-      cell.append(head, chip);
+      cell.append(slot, tile);
       grid.appendChild(cell);
     });
 
@@ -1250,6 +1268,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function renderParticipantCard(participant) {
     const card = document.createElement("article");
     card.className = `composer-reaction-solver-participant is-${participant.side}`;
+    if (topLevelHierarchyHasRenderMode(participant.hierarchy, "noether-core-grid")) {
+      card.classList.add("has-noether-core-grid");
+    }
     const visual = document.createElement("div");
     visual.className = "composer-reaction-solver-particle";
     const meta = getTemplateMeta(participant.templateId, participant.label);

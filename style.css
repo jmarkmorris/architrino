@@ -1710,6 +1710,10 @@ body {
   gap: 14px;
 }
 
+.composer-reaction-solver-participant.has-noether-core-grid {
+  align-items: center;
+}
+
 .composer-reaction-solver-participant.is-product {
   justify-content: flex-end;
 }
@@ -1815,7 +1819,6 @@ body {
 
 .composer-reaction-solver-noether-core-grid {
   display: grid;
-  gap: 12px;
   min-width: 0;
 }
 
@@ -1833,22 +1836,14 @@ body {
   gap: 8px;
 }
 
-.composer-reaction-solver-noether-core-grid-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 18px;
-}
-
 .composer-reaction-solver-noether-core-grid-slot {
+  display: block;
+  width: 100%;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.16em;
   color: rgba(226, 233, 255, 0.82);
-}
-
-.composer-reaction-solver-noether-core-grid-anchor {
-  position: static;
+  text-align: center;
 }
 
 .composer-reaction-solver-binary-selector {
@@ -2028,6 +2023,60 @@ body {
   cursor: default;
   border-color: rgba(255, 255, 255, 0.12);
   background: rgba(28, 34, 48, 0.8);
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile {
+  position: relative;
+  display: block;
+  width: var(--binary-choice-size, 72px);
+  max-width: none;
+  height: var(--binary-choice-size, 72px);
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+  overflow: visible;
+  border-radius: 16px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 62%, rgba(255, 255, 255, 0.14));
+  background: rgba(12, 16, 30, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile.is-anti::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 12px;
+  border: 1.8px solid color-mix(in srgb, var(--binary-choice-accent) 58%, rgba(255, 255, 255, 0.12));
+  pointer-events: none;
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:hover,
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:focus-visible {
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 86%, rgba(255, 255, 255, 0.22));
+  background: rgba(12, 16, 30, 0.96);
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile.is-pending {
+  border-color: rgba(255, 216, 126, 0.94);
+  background: color-mix(in srgb, rgba(116, 82, 24, 0.92) 32%, rgba(12, 16, 30, 0.94));
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile.is-mapped {
+  border-color: rgba(149, 255, 205, 0.96);
+  background: color-mix(in srgb, rgba(24, 92, 64, 0.92) 28%, rgba(12, 16, 30, 0.94));
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:disabled {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(28, 34, 48, 0.8);
+}
+
+.composer-reaction-solver-participant.has-noether-core-grid .composer-reaction-solver-tree {
+  padding-block: 0;
 }
 
 .composer-reaction-solver-menu {

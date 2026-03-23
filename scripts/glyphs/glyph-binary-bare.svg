@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
   <title id="title">Bare binary glyph</title>
-  <desc id="desc">Canonical neutral binary orbit and axis without personality charges or epsilon labels.</desc>
+  <desc id="desc">Canonical neutral binary orbit and axis without personality charges or epsilon labels. Rendered at 1x app scale.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#10172a"/>
@@ -59,7 +59,7 @@
   </defs>
   <g transform="translate(21 21)">
     <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
-    <g transform="translate(99 99) scale(1.07)">
+    <g transform="translate(99 99) scale(1.070)">
       <use href="#baseBinaryGlyph"/>
     </g>
   </g>

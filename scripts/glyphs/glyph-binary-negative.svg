@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
   <title id="title">Negative binary glyph</title>
-  <desc id="desc">Canonical binary glyph with negative personality charges on top and bottom.</desc>
+  <desc id="desc">Canonical binary glyph with negative personality charges on top and bottom. Rendered at 1x app scale.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#10172a"/>
@@ -65,7 +65,7 @@
     <text x="173" y="176" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
       &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
     </text>
-    <g transform="translate(99 99) scale(1.07)">
+    <g transform="translate(99 99) scale(1.070)">
       <use href="#personality-ee"/>
     </g>
   </g>

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 860" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 2500" role="img" aria-labelledby="title desc">
   <title id="title">AAA Glyphs</title>
-  <desc id="desc">Prototype board for canonical neutral and personality binary glyphs using purple orbit structure and red-blue architrino dots.</desc>
+  <desc id="desc">Prototype board for pro and anti binary glyphs. Anti variants use a double frame while keeping the inner glyph unchanged.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#10172a"/>
@@ -57,10 +57,13 @@
       <circle cx="0" cy="60" r="8.2" fill="#ff3d3d" filter="url(#glowRed)"/>
     </g>
   </defs>
-  <rect width="1480" height="860" fill="url(#bg)"/>
+  <rect width="1480" height="2500" fill="url(#bg)"/>
 
   <text x="80" y="82" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">
     AAA Glyphs
+  </text>
+  <text x="80" y="118" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">
+    Anti cores are shown with a double frame while the internal binary glyph remains unchanged.
   </text>
 
   <text x="80" y="170" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">
@@ -72,7 +75,7 @@
 
   <g transform="translate(90 236)">
     <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
-    <g transform="translate(99 99) scale(1.07)">
+    <g transform="translate(99 99) scale(1.070)">
       <use href="#baseBinaryGlyph"/>
     </g>
   </g>
@@ -92,7 +95,7 @@
     <text x="173" y="176" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
       &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
     </text>
-    <g transform="translate(99 99) scale(1.07)">
+    <g transform="translate(99 99) scale(1.070)">
       <use href="#personality-ee"/>
     </g>
   </g>
@@ -105,7 +108,7 @@
     <text x="173" y="176" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
       &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
     </text>
-    <g transform="translate(99 99) scale(1.07)">
+    <g transform="translate(99 99) scale(1.070)">
       <use href="#personality-pe"/>
     </g>
   </g>
@@ -118,7 +121,7 @@
     <text x="173" y="176" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
       &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
     </text>
-    <g transform="translate(99 99) scale(1.07)">
+    <g transform="translate(99 99) scale(1.070)">
       <use href="#personality-ep"/>
     </g>
   </g>
@@ -131,8 +134,153 @@
     <text x="173" y="176" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
       &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
     </text>
-    <g transform="translate(99 99) scale(1.07)">
+    <g transform="translate(99 99) scale(1.070)">
       <use href="#personality-pp"/>
+    </g>
+  </g>
+
+  <text x="80" y="920" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">
+    Canonical Neutral Binary for Anti Assemblies
+  </text>
+  <text x="80" y="950" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">
+    Same binary scaffold, with anti state indicated only by the double frame.
+  </text>
+
+  <g transform="translate(90 986)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
+    <rect x="6" y="6" width="186" height="186" rx="5" fill="none" stroke="#b889ff" stroke-width="1.9" opacity="0.92"/>
+    <g transform="translate(99 99) scale(1.070)">
+      <use href="#baseBinaryGlyph"/>
+    </g>
+  </g>
+
+  <text x="80" y="1260" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">
+    Binary Personality Set for Anti Assemblies
+  </text>
+  <text x="80" y="1290" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">
+    The anti set duplicates the same four internal glyph states and marks anti at the tile frame only.
+  </text>
+
+  <g transform="translate(90 1340)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="2.4" filter="url(#shadow)"/>
+    <rect x="6" y="6" width="186" height="186" rx="5" fill="none" stroke="#3c8dff" stroke-width="1.9" opacity="0.92"/>
+    <text x="23" y="31" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
+    </text>
+    <text x="173" y="176" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
+    </text>
+    <g transform="translate(99 99) scale(1.070)">
+      <use href="#personality-ee"/>
+    </g>
+  </g>
+
+  <g transform="translate(375 1340)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="2.4" filter="url(#chipSelectedGlow)"/>
+    <rect x="6" y="6" width="186" height="186" rx="5" fill="none" stroke="#b889ff" stroke-width="1.9" opacity="0.92"/>
+    <text x="23" y="31" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
+    </text>
+    <text x="173" y="176" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
+    </text>
+    <g transform="translate(99 99) scale(1.070)">
+      <use href="#personality-pe"/>
+    </g>
+  </g>
+
+  <g transform="translate(660 1340)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="2.4" filter="url(#chipSelectedGlow)"/>
+    <rect x="6" y="6" width="186" height="186" rx="5" fill="none" stroke="#b889ff" stroke-width="1.9" opacity="0.92"/>
+    <text x="23" y="31" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
+    </text>
+    <text x="173" y="176" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
+    </text>
+    <g transform="translate(99 99) scale(1.070)">
+      <use href="#personality-ep"/>
+    </g>
+  </g>
+
+  <g transform="translate(945 1340)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#ff5561" stroke-width="2.4" filter="url(#shadow)"/>
+    <rect x="6" y="6" width="186" height="186" rx="5" fill="none" stroke="#ff5561" stroke-width="1.9" opacity="0.92"/>
+    <text x="23" y="31" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
+    </text>
+    <text x="173" y="176" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
+    </text>
+    <g transform="translate(99 99) scale(1.070)">
+      <use href="#personality-pp"/>
+    </g>
+  </g>
+
+  <text x="80" y="1615" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">
+    Scaling Study
+  </text>
+  <text x="80" y="1645" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">
+    Default scaling 1.0 matches the app baseline. The rows below compare pro and anti bare binaries at 0.8, 1.0, and 1.2.
+  </text>
+  <text x="425" y="1690" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle">
+    Pro
+  </text>
+  <text x="710" y="1690" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle">
+    Anti
+  </text>
+
+  <text x="80" y="1837" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">
+    Scale 0.8
+  </text>
+  <g transform="translate(325 1725)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
+    <g transform="translate(99 99) scale(0.856)">
+      <use href="#baseBinaryGlyph"/>
+    </g>
+  </g>
+
+  <g transform="translate(610 1725)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
+    <rect x="6" y="6" width="186" height="186" rx="5" fill="none" stroke="#b889ff" stroke-width="1.9" opacity="0.92"/>
+    <g transform="translate(99 99) scale(0.856)">
+      <use href="#baseBinaryGlyph"/>
+    </g>
+  </g>
+
+  <text x="80" y="2087" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">
+    Scale 1
+  </text>
+  <g transform="translate(325 1975)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
+    <g transform="translate(99 99) scale(1.070)">
+      <use href="#baseBinaryGlyph"/>
+    </g>
+  </g>
+
+  <g transform="translate(610 1975)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
+    <rect x="6" y="6" width="186" height="186" rx="5" fill="none" stroke="#b889ff" stroke-width="1.9" opacity="0.92"/>
+    <g transform="translate(99 99) scale(1.070)">
+      <use href="#baseBinaryGlyph"/>
+    </g>
+  </g>
+
+  <text x="80" y="2337" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">
+    Scale 1.2
+  </text>
+  <g transform="translate(325 2225)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
+    <g transform="translate(99 99) scale(1.284)">
+      <use href="#baseBinaryGlyph"/>
+    </g>
+  </g>
+
+  <g transform="translate(610 2225)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
+    <rect x="6" y="6" width="186" height="186" rx="5" fill="none" stroke="#b889ff" stroke-width="1.9" opacity="0.92"/>
+    <g transform="translate(99 99) scale(1.284)">
+      <use href="#baseBinaryGlyph"/>
     </g>
   </g>
 
