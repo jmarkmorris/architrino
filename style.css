@@ -1980,6 +1980,18 @@ body {
   gap: 10px;
 }
 
+.composer-reaction-solver-composite-row-body {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: flex-start;
+  gap: var(--solver-tile-gap);
+}
+
+.composer-reaction-solver-composite-row-card {
+  margin-top: 0;
+}
+
 .composer-reaction-solver-higgs-cluster-grid-row.has-selector {
   position: relative;
   width: fit-content;
