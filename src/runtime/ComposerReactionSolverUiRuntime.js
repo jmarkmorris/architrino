@@ -79,6 +79,14 @@ const binarySelectorTemplateRules = Object.freeze({
   }),
 });
 
+const participantPolarityTemplateIds = new Set([
+  "noether_core",
+  "electron",
+  "down_quark",
+  "up_quark",
+  "fermion_gen1",
+]);
+
 function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const entries = [];
   const seen = new Set();
@@ -207,6 +215,26 @@ function createNoetherCoreBranch(
   };
 }
 
+function supportsParticipantPolarity(templateId) {
+  return participantPolarityTemplateIds.has(String(templateId ?? "").trim().toLowerCase());
+}
+
+function normalizeParticipantPolarity(polarity) {
+  return String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
+}
+
+function stripLeadingParticipantPolarity(label = "") {
+  return String(label ?? "").trim().replace(/^(pro|anti)\s+/i, "") || String(label ?? "").trim();
+}
+
+function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") {
+  const cleanedBaseLabel = stripLeadingParticipantPolarity(baseLabel) || "?";
+  if (!supportsParticipantPolarity(templateId)) {
+    return cleanedBaseLabel;
+  }
+  return `${normalizeParticipantPolarity(polarity)} ${cleanedBaseLabel}`;
+}
+
 function buildHierarchyForTemplate(templateId, label) {
   const normalizedTemplate = String(templateId ?? "").trim().toLowerCase();
   if (normalizedTemplate === "higgs_cluster") {
@@ -296,6 +324,14 @@ function buildHierarchyForTemplate(templateId, label) {
   ];
 }
 
+function buildSplitCoreHierarchy(label, options = {}) {
+  return [
+    createNoetherCoreBranch("root", label, {
+      anti: !!options.anti,
+    }),
+  ];
+}
+
 function getTemplateMeta(templateId, label = "") {
   const normalized = String(templateId ?? "").trim().toLowerCase();
   const entry = solverTemplateMeta[normalized] ?? null;
@@ -316,11 +352,22 @@ function getTemplateMeta(templateId, label = "") {
   };
 }
 
-function getParticipantCardLabelLines(label = "") {
+function getParticipantCardLabelLines(label = "", participant = null) {
   const words = String(label || "")
     .trim()
     .split(/\s+/)
     .filter(Boolean);
+  if (
+    String(participant?.templateId ?? "").trim().toLowerCase() === "noether_core" &&
+    words.length >= 3
+  ) {
+    const [polarityWord = "", secondWord = "", thirdWord = ""] = words;
+    return [
+      polarityWord ? polarityWord[0].toUpperCase() + polarityWord.slice(1).toLowerCase() : "?",
+      secondWord ? secondWord[0].toUpperCase() + secondWord.slice(1).toLowerCase() : "",
+      thirdWord ? thirdWord.toLowerCase() : "",
+    ].filter(Boolean);
+  }
   if (words.length <= 1) {
     return [String(label || "").trim() || "?"];
   }
@@ -632,6 +679,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     active: false,
     nextParticipantId: 1,
     nextMappingId: 1,
+    nextSplitGroupId: 1,
     participants: [],
     mappings: [],
     pendingSourceKey: "",
@@ -666,6 +714,34 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function findParticipantById(participantId) {
     return state.participants.find((participant) => participant?.id === participantId) ?? null;
+  }
+
+  function createParticipantRecord({
+    side,
+    templateId,
+    label,
+    hierarchy,
+    extraFields = {},
+  }) {
+    const resolvedBaseLabel = stripLeadingParticipantPolarity(label);
+    const resolvedPolarity = supportsParticipantPolarity(templateId)
+      ? normalizeParticipantPolarity(extraFields.polarity)
+      : "";
+    const participant = {
+      id: `solver_participant_${state.nextParticipantId++}`,
+      side,
+      templateId,
+      baseLabel: resolvedBaseLabel,
+      polarity: resolvedPolarity,
+      label: formatParticipantLabel(resolvedBaseLabel, templateId, resolvedPolarity),
+      hierarchy,
+      binarySelections: {},
+      ...extraFields,
+    };
+    participant.binarySelections =
+      findBestBinarySelectionAssignment(participant) ??
+      getFallbackBinarySelections(participant);
+    return participant;
   }
 
   function getNodeContext(nodeKey) {
@@ -737,6 +813,112 @@ export function createComposerReactionSolverUiRuntime(deps) {
     render();
     setStatus(
       `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} removed from the reaction solver.`
+    );
+    return true;
+  }
+
+  function setParticipantPolarity(participantId, nextPolarity) {
+    const participant = findParticipantById(participantId);
+    if (!participant || !supportsParticipantPolarity(participant.templateId)) {
+      return false;
+    }
+    const resolvedPolarity = normalizeParticipantPolarity(nextPolarity);
+    if (participant.polarity === resolvedPolarity) {
+      return false;
+    }
+    participant.polarity = resolvedPolarity;
+    participant.label = formatParticipantLabel(
+      participant.baseLabel ?? participant.label,
+      participant.templateId,
+      resolvedPolarity
+    );
+    closeMenu();
+    render();
+    setStatus(
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} updated.`
+    );
+    return true;
+  }
+
+  function splitHiggsParticipantById(participantId) {
+    const participantIndex = state.participants.findIndex(
+      (entry) => String(entry?.id ?? "") === participantId
+    );
+    const participant =
+      participantIndex >= 0 ? state.participants[participantIndex] ?? null : null;
+    if (!participant || participant.templateId !== "higgs_cluster") {
+      return false;
+    }
+
+    const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
+    const replacementParticipants = [
+      createParticipantRecord({
+        side: participant.side,
+        templateId: "noether_core",
+        label: "Noether core",
+        hierarchy: buildSplitCoreHierarchy("Pro core"),
+        extraFields: {
+          polarity: "pro",
+          splitGroupId,
+          splitOriginTemplateId: "higgs_cluster",
+          splitOriginRole: "pro",
+          splitOriginIndex: 0,
+        },
+      }),
+      createParticipantRecord({
+        side: participant.side,
+        templateId: "noether_core",
+        label: "Noether core",
+        hierarchy: buildSplitCoreHierarchy("Anti core", { anti: true }),
+        extraFields: {
+          polarity: "anti",
+          splitGroupId,
+          splitOriginTemplateId: "higgs_cluster",
+          splitOriginRole: "anti",
+          splitOriginIndex: 1,
+        },
+      }),
+      createParticipantRecord({
+        side: participant.side,
+        templateId: "noether_core",
+        label: "Noether core",
+        hierarchy: buildSplitCoreHierarchy("Pro core"),
+        extraFields: {
+          polarity: "pro",
+          splitGroupId,
+          splitOriginTemplateId: "higgs_cluster",
+          splitOriginRole: "pro",
+          splitOriginIndex: 2,
+        },
+      }),
+      createParticipantRecord({
+        side: participant.side,
+        templateId: "noether_core",
+        label: "Noether core",
+        hierarchy: buildSplitCoreHierarchy("Anti core", { anti: true }),
+        extraFields: {
+          polarity: "anti",
+          splitGroupId,
+          splitOriginTemplateId: "higgs_cluster",
+          splitOriginRole: "anti",
+          splitOriginIndex: 3,
+        },
+      }),
+    ];
+
+    state.participants.splice(participantIndex, 1, ...replacementParticipants);
+    state.mappings = state.mappings.filter((mapping) => {
+      const sourceParticipantId = parseNodeKey(mapping.sourceKey).participantId;
+      const targetParticipantId = parseNodeKey(mapping.targetKey).participantId;
+      return sourceParticipantId !== participantId && targetParticipantId !== participantId;
+    });
+    if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
+      state.pendingSourceKey = "";
+    }
+    closeMenu();
+    render();
+    setStatus(
+      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster split into four core assemblies.`
     );
     return true;
   }
@@ -896,17 +1078,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
         : templateEntry.template === "noether_core"
           ? "Noether core"
           : templateEntry.label;
-    const participant = {
-      id: `solver_participant_${state.nextParticipantId++}`,
+    const participant = createParticipantRecord({
       side,
       templateId: templateEntry.template,
       label: participantLabel,
       hierarchy: buildHierarchyForTemplate(templateEntry.template, participantLabel),
-      binarySelections: {},
-    };
-    participant.binarySelections =
-      findBestBinarySelectionAssignment(participant) ??
-      getFallbackBinarySelections(participant);
+    });
     state.participants.push(participant);
     state.pendingSourceKey = "";
     closeMenu();
@@ -952,6 +1129,23 @@ export function createComposerReactionSolverUiRuntime(deps) {
         return;
       }
       renderMenuTitle(participant.label);
+      if (participant.templateId === "higgs_cluster") {
+        renderMenuButton("Split assembly", {
+          onClick: () => splitHiggsParticipantById(participant.id),
+        });
+      }
+      if (supportsParticipantPolarity(participant.templateId)) {
+        renderMenuButton(
+          participant.polarity === "anti" ? "Make pro" : "Make anti",
+          {
+            onClick: () =>
+              setParticipantPolarity(
+                participant.id,
+                participant.polarity === "anti" ? "pro" : "anti"
+              ),
+          }
+        );
+      }
       renderMenuButton(
         `Remove ${participant.side === "reactant" ? "reactant" : "product"}`,
         {
@@ -1488,7 +1682,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     visual.style.setProperty("--solver-accent", meta.accent);
     const visualLabel = document.createElement("div");
     visualLabel.className = "composer-reaction-solver-particle-label";
-    getParticipantCardLabelLines(participant.label).forEach((line) => {
+    getParticipantCardLabelLines(participant.label, participant).forEach((line) => {
       const lineElement = document.createElement("span");
       lineElement.className = "composer-reaction-solver-particle-label-line";
       lineElement.textContent = line;
