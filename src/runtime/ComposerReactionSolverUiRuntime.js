@@ -1530,7 +1530,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     if (state.pendingSourceKey) {
       mapHint.textContent =
-        "Reactant anchor selected. Conservative product targets remain active; incompatible targets are grayed out.";
+        "Reactant anchor selected. Conservative product targets active. Incompatible targets dimmed.";
       return;
     }
     if (!state.mappings.length) {

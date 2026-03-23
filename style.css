@@ -1666,6 +1666,7 @@ body {
 }
 
 .composer-reaction-solver-column {
+  --solver-tile-gap: 14px;
   display: grid;
   gap: 14px;
   align-content: start;
@@ -1682,18 +1683,18 @@ body {
   --binary-choice-size: 72px;
   display: grid;
   grid-template-columns: repeat(3, var(--binary-choice-size));
-  gap: 12px;
+  gap: var(--solver-tile-gap);
   width: fit-content;
   justify-items: center;
 }
 
 .composer-reaction-solver-side-slot-header.is-reactant {
-  margin-left: calc(var(--binary-choice-size) + 14px);
+  margin-left: calc(var(--binary-choice-size) + var(--solver-tile-gap));
 }
 
 .composer-reaction-solver-side-slot-header.is-product {
   margin-left: auto;
-  margin-right: calc(var(--binary-choice-size) + 14px);
+  margin-right: calc(var(--binary-choice-size) + var(--solver-tile-gap));
 }
 
 .composer-reaction-solver-side-slot-header-slot {
@@ -1733,9 +1734,12 @@ body {
 }
 
 .composer-reaction-solver-participant {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
   align-items: flex-start;
-  gap: 14px;
+  gap: var(--solver-tile-gap);
+  width: fit-content;
 }
 
 .composer-reaction-solver-participant.has-noether-core-grid {
@@ -1747,7 +1751,7 @@ body {
 }
 
 .composer-reaction-solver-participant.is-product {
-  justify-content: flex-end;
+  justify-self: end;
 }
 
 .composer-reaction-solver-particle {
@@ -1785,7 +1789,7 @@ body {
 .composer-reaction-solver-tree {
   display: grid;
   gap: 4px;
-  flex: 1;
+  width: fit-content;
   min-width: 0;
   padding: 8px 0;
 }
@@ -1882,7 +1886,7 @@ body {
   --binary-choice-size: 72px;
   display: grid;
   grid-template-columns: repeat(3, var(--binary-choice-size));
-  gap: 12px;
+  gap: var(--solver-tile-gap);
   align-items: start;
 }
 
@@ -1921,7 +1925,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size)));
   align-items: start;
-  gap: 14px;
+  gap: var(--solver-tile-gap);
 }
 
 .composer-reaction-solver-binary-selector-grid-body {
@@ -3238,7 +3242,7 @@ body {
 
   .composer-reaction-solver-participant,
   .composer-reaction-solver-participant.is-product {
-    justify-content: flex-start;
+    justify-self: start;
   }
 
   .composer-reaction-solver-column.is-products {
