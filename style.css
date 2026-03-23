@@ -1796,7 +1796,7 @@ body {
 }
 
 .composer-reaction-solver-tree-row.is-binary-selector {
-  min-height: 68px;
+  min-height: 86px;
 }
 
 .composer-reaction-solver-binary-selector {
@@ -1823,8 +1823,9 @@ body {
 }
 
 .composer-reaction-solver-binary-choices {
+  --binary-choice-size: 72px;
   display: grid;
-  grid-template-columns: repeat(var(--binary-choice-columns, 3), 72px);
+  grid-template-columns: repeat(var(--binary-choice-columns, 3), var(--binary-choice-size));
   align-items: center;
   gap: 10px;
   min-width: 0;
@@ -1834,8 +1835,8 @@ body {
   -webkit-appearance: none;
   appearance: none;
   position: relative;
-  width: 72px;
-  height: 54px;
+  width: var(--binary-choice-size);
+  height: var(--binary-choice-size);
   padding: 0;
   border-radius: 16px;
   border: 2px solid color-mix(in srgb, var(--binary-choice-accent) 74%, rgba(255, 255, 255, 0.14));
@@ -1850,6 +1851,11 @@ body {
     border-color 120ms ease,
     background 120ms ease,
     box-shadow 120ms ease;
+}
+
+.composer-reaction-solver-binary-choice.is-static {
+  cursor: default;
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 62%, rgba(255, 255, 255, 0.14));
 }
 
 .composer-reaction-solver-binary-choice.is-selected {

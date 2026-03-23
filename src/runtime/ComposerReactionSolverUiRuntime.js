@@ -100,11 +100,17 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   return entries;
 }
 
-function createBinaryBranch(id, label, { withPersonality = true, slotCode = "" } = {}) {
+function createBinaryBranch(
+  id,
+  label,
+  { withPersonality = true, slotCode = "", renderMode = "" } = {}
+) {
+  const resolvedRenderMode =
+    renderMode || (withPersonality ? "binary-selector" : "");
   return {
     id,
     label,
-    renderMode: withPersonality ? "binary-selector" : "",
+    renderMode: resolvedRenderMode,
     slotCode: String(slotCode || "").trim().toUpperCase(),
     children: withPersonality
       ? [
@@ -209,11 +215,23 @@ function buildHierarchyForTemplate(templateId, label) {
     return [
       {
         id: "root",
-        label,
+        label: "pro Noether core",
         children: [
-          createBinaryBranch("root/inner", "inner binary", { withPersonality: false, slotCode: "I" }),
-          createBinaryBranch("root/middle", "middle binary", { withPersonality: false, slotCode: "M" }),
-          createBinaryBranch("root/outer", "outer binary", { withPersonality: false, slotCode: "O" }),
+          createBinaryBranch("root/inner", "inner binary", {
+            withPersonality: false,
+            slotCode: "I",
+            renderMode: "binary-bare",
+          }),
+          createBinaryBranch("root/middle", "middle binary", {
+            withPersonality: false,
+            slotCode: "M",
+            renderMode: "binary-bare",
+          }),
+          createBinaryBranch("root/outer", "outer binary", {
+            withPersonality: false,
+            slotCode: "O",
+            renderMode: "binary-bare",
+          }),
         ],
       },
     ];
@@ -301,7 +319,7 @@ function countDescendants(node) {
 }
 
 function shouldRenderChildNodes(node) {
-  return node?.renderMode !== "binary-selector";
+  return node?.renderMode !== "binary-selector" && node?.renderMode !== "binary-bare";
 }
 
 function getBinaryPersonalityChoice(choiceId) {
@@ -776,7 +794,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!templateEntry) {
       return;
     }
-    const participantLabel = templateEntry.template === "higgs_cluster" ? "SpaceTime" : templateEntry.label;
+    const participantLabel =
+      templateEntry.template === "higgs_cluster"
+        ? "SpaceTime"
+        : templateEntry.template === "noether_core"
+          ? "pro Noether core"
+          : templateEntry.label;
     const participant = {
       id: `solver_participant_${state.nextParticipantId++}`,
       side,
@@ -924,7 +947,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setStatus("Reaction mapping added.");
   }
 
-  function createBinaryGlyph(choice) {
+  function createBinaryGlyph(choice = null, options = {}) {
+    const { showPersonality = true } = options;
     const glyph = createSvgElement("svg");
     glyph.classList.add("composer-reaction-solver-binary-glyph");
     glyph.setAttribute("viewBox", "0 0 120 120");
@@ -960,21 +984,47 @@ export function createComposerReactionSolverUiRuntime(deps) {
     rightPole.setAttribute("r", "8.5");
     glyph.appendChild(rightPole);
 
-    const topDot = createSvgElement("circle");
-    topDot.classList.add("composer-reaction-solver-binary-dot", "is-top", `is-${choice.top}`);
-    topDot.setAttribute("cx", "60");
-    topDot.setAttribute("cy", "18");
-    topDot.setAttribute("r", "7.8");
-    glyph.appendChild(topDot);
+    if (showPersonality && choice) {
+      const topDot = createSvgElement("circle");
+      topDot.classList.add("composer-reaction-solver-binary-dot", "is-top", `is-${choice.top}`);
+      topDot.setAttribute("cx", "60");
+      topDot.setAttribute("cy", "18");
+      topDot.setAttribute("r", "7.8");
+      glyph.appendChild(topDot);
 
-    const bottomDot = createSvgElement("circle");
-    bottomDot.classList.add("composer-reaction-solver-binary-dot", "is-bottom", `is-${choice.bottom}`);
-    bottomDot.setAttribute("cx", "60");
-    bottomDot.setAttribute("cy", "102");
-    bottomDot.setAttribute("r", "7.8");
-    glyph.appendChild(bottomDot);
+      const bottomDot = createSvgElement("circle");
+      bottomDot.classList.add("composer-reaction-solver-binary-dot", "is-bottom", `is-${choice.bottom}`);
+      bottomDot.setAttribute("cx", "60");
+      bottomDot.setAttribute("cy", "102");
+      bottomDot.setAttribute("r", "7.8");
+      glyph.appendChild(bottomDot);
+    }
 
     return glyph;
+  }
+
+  function createBareBinaryContent(participant, node) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-binary-selector is-${participant.side}`;
+    const slot = document.createElement("span");
+    slot.className = "composer-reaction-solver-binary-slot";
+    slot.textContent = node.slotCode || "?";
+    const choices = document.createElement("div");
+    choices.className = "composer-reaction-solver-binary-choices is-single";
+    choices.style.setProperty("--binary-choice-columns", "1");
+
+    const chip = document.createElement("div");
+    chip.className = "composer-reaction-solver-binary-choice is-static";
+    chip.style.setProperty("--binary-choice-accent", "#b889ff");
+    chip.appendChild(createBinaryGlyph(null, { showPersonality: false }));
+    choices.appendChild(chip);
+
+    if (participant.side === "product") {
+      wrapper.append(choices, slot);
+    } else {
+      wrapper.append(slot, choices);
+    }
+    return wrapper;
   }
 
   function createBinarySelectorContent(participant, node) {
@@ -1085,6 +1135,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       if (node.renderMode === "binary-selector") {
         row.classList.add("is-binary-selector");
         content.appendChild(createBinarySelectorContent(participant, node));
+      } else if (node.renderMode === "binary-bare") {
+        row.classList.add("is-binary-selector");
+        content.appendChild(createBareBinaryContent(participant, node));
       } else {
         content.appendChild(label);
         if (collapsedNote) {
