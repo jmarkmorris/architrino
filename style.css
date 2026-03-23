@@ -1800,8 +1800,55 @@ body {
   padding-inline-start: calc(var(--solver-depth, 0) * 4ch);
 }
 
+.composer-reaction-solver-tree-content.is-noether-core-grid {
+  align-items: flex-start;
+}
+
 .composer-reaction-solver-tree-row.is-binary-selector {
   min-height: 86px;
+}
+
+.composer-reaction-solver-tree-row.is-noether-core-grid {
+  align-items: flex-start;
+  min-height: 132px;
+}
+
+.composer-reaction-solver-noether-core-grid {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.composer-reaction-solver-noether-core-grid-track {
+  --binary-choice-size: 72px;
+  display: grid;
+  grid-template-columns: repeat(3, var(--binary-choice-size));
+  gap: 12px;
+  align-items: start;
+}
+
+.composer-reaction-solver-noether-core-grid-cell {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.composer-reaction-solver-noether-core-grid-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 18px;
+}
+
+.composer-reaction-solver-noether-core-grid-slot {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(226, 233, 255, 0.82);
+}
+
+.composer-reaction-solver-noether-core-grid-anchor {
+  position: static;
 }
 
 .composer-reaction-solver-binary-selector {

@@ -216,6 +216,7 @@ function buildHierarchyForTemplate(templateId, label) {
       {
         id: "root",
         label: "pro Noether core",
+        renderMode: "noether-core-grid",
         children: [
           createBinaryBranch("root/inner", "inner binary", {
             withPersonality: false,
@@ -1027,6 +1028,107 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return wrapper;
   }
 
+  function createAnchorButton(participant, node, nodeKey, options = {}) {
+    const { extraClassNames = [] } = options;
+    const anchorAvailability = getAnchorAvailability(participant.side, nodeKey);
+    const mapping = findMappingByNodeKey(nodeKey);
+    const anchor = document.createElement("button");
+    anchor.type = "button";
+    anchor.className = "composer-reaction-solver-anchor";
+    extraClassNames
+      .filter(Boolean)
+      .forEach((className) => anchor.classList.add(className));
+    anchor.dataset.anchorKey = nodeKey;
+    anchor.dataset.anchorSide = participant.side;
+    anchor.setAttribute(
+      "aria-label",
+      `${participant.side === "product" ? "Product" : "Reactant"} attach point for ${node.label}`
+    );
+    anchor.disabled = anchorAvailability.disabled;
+    if (anchorAvailability.reason) {
+      anchor.title = anchorAvailability.reason;
+    }
+    if (state.pendingSourceKey === nodeKey) {
+      anchor.classList.add("is-pending");
+    }
+    if (mapping) {
+      anchor.classList.add("is-mapped");
+    }
+    anchor.addEventListener("click", () => handleAnchorClick(participant.side, nodeKey));
+    return anchor;
+  }
+
+  function getCoreBinaryNodes(node) {
+    return (Array.isArray(node?.children) ? node.children : [])
+      .filter((child) => child?.slotCode)
+      .sort((left, right) => {
+        const leftRank = binarySlotRankByCode[left?.slotCode] ?? Number.MAX_SAFE_INTEGER;
+        const rightRank = binarySlotRankByCode[right?.slotCode] ?? Number.MAX_SAFE_INTEGER;
+        if (leftRank !== rightRank) {
+          return leftRank - rightRank;
+        }
+        return String(left?.id ?? "").localeCompare(String(right?.id ?? ""));
+      });
+  }
+
+  function createNoetherCoreGridContent(participant, node) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-noether-core-grid is-${participant.side}`;
+
+    const label = document.createElement("span");
+    label.className = "composer-reaction-solver-tree-label";
+    label.textContent = node.label;
+    wrapper.appendChild(label);
+
+    const grid = document.createElement("div");
+    grid.className = "composer-reaction-solver-noether-core-grid-track";
+
+    getCoreBinaryNodes(node).forEach((childNode) => {
+      const nodeKey = buildNodeKey(participant.id, childNode.id);
+      const cell = document.createElement("div");
+      cell.className = "composer-reaction-solver-noether-core-grid-cell";
+
+      const head = document.createElement("div");
+      head.className = "composer-reaction-solver-noether-core-grid-head";
+
+      const slot = document.createElement("span");
+      slot.className = "composer-reaction-solver-noether-core-grid-slot";
+      slot.textContent = childNode.slotCode || "?";
+
+      const anchor = createAnchorButton(participant, childNode, nodeKey, {
+        extraClassNames: ["composer-reaction-solver-noether-core-grid-anchor"],
+      });
+
+      if (participant.side === "product") {
+        head.append(anchor, slot);
+      } else {
+        head.append(slot, anchor);
+      }
+
+      const choice =
+        childNode.renderMode === "binary-bare"
+          ? null
+          : getBinaryPersonalitySelection(participant, childNode);
+      const chip = document.createElement("div");
+      chip.className = "composer-reaction-solver-binary-choice is-static";
+      chip.style.setProperty(
+        "--binary-choice-accent",
+        choice?.accent ?? "#b889ff"
+      );
+      chip.appendChild(
+        createBinaryGlyph(choice, {
+          showPersonality: childNode.renderMode !== "binary-bare",
+        })
+      );
+
+      cell.append(head, chip);
+      grid.appendChild(cell);
+    });
+
+    wrapper.appendChild(grid);
+    return wrapper;
+  }
+
   function createBinarySelectorContent(participant, node) {
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-solver-binary-selector is-${participant.side}`;
@@ -1082,8 +1184,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const nodeKey = buildNodeKey(participant.id, node.id);
       const hasChildren = Array.isArray(node.children) && node.children.length > 0;
       const canRenderChildren = hasChildren && shouldRenderChildNodes(node);
+      const rendersChildrenInline = node.renderMode === "noether-core-grid";
       const mapping = findMappingByNodeKey(nodeKey);
-      const isCollapsed = !!mapping && canRenderChildren;
+      const isCollapsed = !!mapping && canRenderChildren && !rendersChildrenInline;
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
       const anchorAvailability = getAnchorAvailability(participant.side, nodeKey);
       const row = document.createElement("div");
@@ -1108,23 +1211,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const content = document.createElement("div");
       content.className = "composer-reaction-solver-tree-content";
       content.style.setProperty("--solver-depth", String(depth));
-      const anchor = document.createElement("button");
-      anchor.type = "button";
-      anchor.className = "composer-reaction-solver-anchor";
-      anchor.dataset.anchorKey = nodeKey;
-      anchor.dataset.anchorSide = participant.side;
-      anchor.setAttribute(
-        "aria-label",
-        `${participant.side === "product" ? "Product" : "Reactant"} attach point for ${node.label}`
-      );
-      anchor.disabled = anchorAvailability.disabled;
-      if (state.pendingSourceKey === nodeKey) {
-        anchor.classList.add("is-pending");
-      }
-      if (mapping) {
-        anchor.classList.add("is-mapped");
-      }
-      anchor.addEventListener("click", () => handleAnchorClick(participant.side, nodeKey));
+      const anchor = createAnchorButton(participant, node, nodeKey);
       const collapsedNote =
         hiddenDescendantCount > 0
           ? Object.assign(document.createElement("span"), {
@@ -1132,7 +1219,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
               textContent: `${hiddenDescendantCount} hidden`,
             })
           : null;
-      if (node.renderMode === "binary-selector") {
+      if (node.renderMode === "noether-core-grid") {
+        row.classList.add("is-noether-core-grid");
+        content.classList.add("is-noether-core-grid");
+        content.appendChild(createNoetherCoreGridContent(participant, node));
+      } else if (node.renderMode === "binary-selector") {
         row.classList.add("is-binary-selector");
         content.appendChild(createBinarySelectorContent(participant, node));
       } else if (node.renderMode === "binary-bare") {
@@ -1150,7 +1241,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         row.append(content, anchor);
       }
       parent.appendChild(row);
-      if (canRenderChildren && !isCollapsed) {
+      if (canRenderChildren && !isCollapsed && !rendersChildrenInline) {
         renderParticipantTreeRows(parent, participant, node.children, depth + 1);
       }
     });
