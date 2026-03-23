@@ -625,6 +625,51 @@ export function createPeriodicOverlayRuntime(deps) {
     });
   }
 
+  function getHydeKeyboardTarget() {
+    if (hydeActiveHotspotTarget instanceof Element) {
+      return hydeActiveHotspotTarget;
+    }
+    if (hydeInitialFocusTarget instanceof Element) {
+      return hydeInitialFocusTarget;
+    }
+    return null;
+  }
+
+  function restoreHydeKeyboardFocus(options = {}) {
+    if (!isHydePeriodicSceneActive()) {
+      return null;
+    }
+    const target = getHydeKeyboardTarget();
+    if (!(target instanceof Element)) {
+      return null;
+    }
+    if (hydeActiveHotspotTarget !== target) {
+      return setActiveHydeHotspot(target, {
+        focus: options.focus !== false,
+      });
+    }
+    if (options.focus !== false) {
+      target.focus({ preventScroll: true });
+    }
+    showHydeHotspotTooltip(target);
+    return target;
+  }
+
+  function queueHydeKeyboardFocusRestore() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        restoreHydeKeyboardFocus({ focus: true });
+      });
+    });
+  }
+
+  function isHydeInteractiveKeyboardTarget(target) {
+    if (!(target instanceof Element)) {
+      return false;
+    }
+    return Boolean(target.closest(".hyde-hotspot, .hyde-periodic-extra-tile"));
+  }
+
   function moveActiveHydeHotspotByOffset(offset) {
     if (!hydeHotspotAtomicNumbersInOrder.length) {
       return null;
@@ -848,6 +893,9 @@ export function createPeriodicOverlayRuntime(deps) {
       }
     });
     button.addEventListener("keydown", (event) => {
+      if (event.defaultPrevented) {
+        return;
+      }
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
         openPeriodicElementScene(element, overlay);
@@ -856,6 +904,21 @@ export function createPeriodicOverlayRuntime(deps) {
       if (event.key === "ArrowLeft" && leftFocusTarget) {
         event.preventDefault();
         setActiveHydeHotspot(leftFocusTarget, { focus: true });
+        return;
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        moveActiveHydeHotspotByOffset(1);
+        return;
+      }
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        moveActiveHydeHotspotByCycle("in");
+        return;
+      }
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        moveActiveHydeHotspotByCycle("out");
       }
     });
     layer.appendChild(button);
@@ -1763,6 +1826,9 @@ export function createPeriodicOverlayRuntime(deps) {
         }
       });
       circle.addEventListener("keydown", (event) => {
+        if (event.defaultPrevented) {
+          return;
+        }
         if (event.key === "Enter" || event.key === " ") {
           if (!element) {
             return;
@@ -1859,7 +1925,7 @@ export function createPeriodicOverlayRuntime(deps) {
     hydeHotspotCycleAtomicNumbersInOrder = hydeAtomicCycleOrder.filter((atomicNumber) =>
       hydeHotspotNodeByAtomicNumber.has(atomicNumber)
     );
-    showDefaultHydeSelection();
+    showDefaultHydeSelection({ focus: false });
     renderPeriodicLegend(legend, legendSet);
     if (options.onBuilt) {
       options.onBuilt();
@@ -1988,11 +2054,7 @@ export function createPeriodicOverlayRuntime(deps) {
       });
     }
     if (enteringHydePeriodic) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          showDefaultHydeSelection({ focus: true });
-        });
-      });
+      queueHydeKeyboardFocusRestore();
     }
     hydePeriodicWasOpen = isHydePeriodic;
   }
@@ -2002,7 +2064,10 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!isHydePeriodic || isTransitionActive() || isEditableTarget(event.target)) {
       return;
     }
-    if (event.defaultPrevented || event.metaKey || event.ctrlKey) {
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) {
+      return;
+    }
+    if (isHydeInteractiveKeyboardTarget(event.target)) {
       return;
     }
     if (event.key === "ArrowLeft") {
@@ -2024,6 +2089,14 @@ export function createPeriodicOverlayRuntime(deps) {
       event.preventDefault();
       triggerHydeNavigationAction("down");
     }
+  }, { capture: true });
+
+  window.addEventListener("focus", () => {
+    queueHydeKeyboardFocusRestore();
+  });
+
+  window.addEventListener("pageshow", () => {
+    queueHydeKeyboardFocusRestore();
   });
 
   wireHydeHintNavigationButtons();

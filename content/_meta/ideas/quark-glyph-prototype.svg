@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 1260" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 560" role="img" aria-labelledby="title desc">
   <title id="title">AAA Glyphs</title>
-  <desc id="desc">Prototype board for binary personality glyphs and tri-binary quark color derivations using purple orbit structure and red/blue architrino dots.</desc>
+  <desc id="desc">Prototype board for canonical binary personality glyphs using purple orbit structure and red-blue architrino dots.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#10172a"/>
@@ -18,13 +18,13 @@
       <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.34"/>
     </filter>
     <filter id="glowPurple" x="-60%" y="-60%" width="220%" height="220%">
-      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#9b5cff" flood-opacity="0.32"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="5.5" flood-color="#9b5cff" flood-opacity="0.22"/>
     </filter>
     <filter id="glowBlue" x="-60%" y="-60%" width="220%" height="220%">
-      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#1b84ff" flood-opacity="0.38"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="4.2" flood-color="#1b84ff" flood-opacity="0.28"/>
     </filter>
     <filter id="glowRed" x="-60%" y="-60%" width="220%" height="220%">
-      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ff3d4a" flood-opacity="0.34"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="4.2" flood-color="#ff3d4a" flood-opacity="0.26"/>
     </filter>
     <filter id="chipSelectedGlow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#000000" flood-opacity="0.26"/>
@@ -32,7 +32,7 @@
     </filter>
     <g id="baseBinaryGlyph">
       <ellipse cx="0" cy="0" rx="60" ry="16" fill="none" stroke="#a259ff" stroke-width="3" filter="url(#glowPurple)"/>
-      <line x1="0" y1="-60" x2="0" y2="60" stroke="#a259ff" stroke-width="2.05" stroke-linecap="round" opacity="0.78"/>
+      <line x1="0" y1="-60" x2="0" y2="60" stroke="#a259ff" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="8 8" opacity="0.72"/>
       <circle cx="-60" cy="0" r="9" fill="#1879ff" filter="url(#glowBlue)"/>
       <circle cx="60" cy="0" r="9" fill="#ff3d3d" filter="url(#glowRed)"/>
     </g>
@@ -56,45 +56,9 @@
       <circle cx="0" cy="-60" r="8.2" fill="#1879ff" filter="url(#glowBlue)"/>
       <circle cx="0" cy="60" r="8.2" fill="#ff3d3d" filter="url(#glowRed)"/>
     </g>
-    <g id="mini-tile-ee">
-      <rect x="0" y="0" width="104" height="104" rx="8" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="2"/>
-      <text x="10" y="18" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
-        &#x03B5;<tspan baseline-shift="super" font-size="8">-</tspan>
-      </text>
-      <text x="94" y="96" text-anchor="end" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
-        &#x03B5;<tspan baseline-shift="super" font-size="8">-</tspan>
-      </text>
-      <g transform="translate(52 52) scale(0.42)">
-        <use href="#personality-ee"/>
-      </g>
-    </g>
-    <g id="mini-tile-pe">
-      <rect x="0" y="0" width="104" height="104" rx="8" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2"/>
-      <text x="10" y="18" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
-        &#x03B5;<tspan baseline-shift="super" font-size="8">+</tspan>
-      </text>
-      <text x="94" y="96" text-anchor="end" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
-        &#x03B5;<tspan baseline-shift="super" font-size="8">-</tspan>
-      </text>
-      <g transform="translate(52 52) scale(0.42)">
-        <use href="#personality-pe"/>
-      </g>
-    </g>
-    <g id="mini-tile-pp">
-      <rect x="0" y="0" width="104" height="104" rx="8" fill="url(#chipFill)" stroke="#ff5561" stroke-width="2"/>
-      <text x="10" y="18" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
-        &#x03B5;<tspan baseline-shift="super" font-size="8">+</tspan>
-      </text>
-      <text x="94" y="96" text-anchor="end" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.2">
-        &#x03B5;<tspan baseline-shift="super" font-size="8">+</tspan>
-      </text>
-      <g transform="translate(52 52) scale(0.42)">
-        <use href="#personality-pp"/>
-      </g>
-    </g>
   </defs>
 
-  <rect width="1480" height="1260" fill="url(#bg)"/>
+  <rect width="1480" height="560" fill="url(#bg)"/>
 
   <text x="80" y="82" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">
     AAA Glyphs
@@ -108,185 +72,55 @@
   </text>
 
   <g transform="translate(90 270)">
-    <rect x="0" y="0" width="198" height="198" rx="10" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="3" filter="url(#shadow)"/>
-    <text x="18" y="30" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="2.4" filter="url(#shadow)"/>
+    <text x="23" y="31" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
     </text>
-    <text x="180" y="186" text-anchor="end" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
+    <text x="173" y="176" text-anchor="end" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
     </text>
-    <g transform="translate(99 99)">
+    <g transform="translate(99 99) scale(1.07)">
       <use href="#personality-ee"/>
     </g>
   </g>
 
   <g transform="translate(375 270)">
-    <rect x="0" y="0" width="198" height="198" rx="10" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="3" filter="url(#chipSelectedGlow)"/>
-    <text x="18" y="30" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="2.4" filter="url(#chipSelectedGlow)"/>
+    <text x="23" y="31" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
     </text>
-    <text x="180" y="186" text-anchor="end" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
+    <text x="173" y="176" text-anchor="end" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
     </text>
-    <g transform="translate(99 99)">
+    <g transform="translate(99 99) scale(1.07)">
       <use href="#personality-pe"/>
     </g>
   </g>
 
   <g transform="translate(660 270)">
-    <rect x="0" y="0" width="198" height="198" rx="10" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="3" filter="url(#chipSelectedGlow)"/>
-    <text x="18" y="30" fill="#1879ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">-</tspan>
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="2.4" filter="url(#chipSelectedGlow)"/>
+    <text x="23" y="31" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
     </text>
-    <text x="180" y="186" text-anchor="end" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
+    <text x="173" y="176" text-anchor="end" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
     </text>
-    <g transform="translate(99 99)">
+    <g transform="translate(99 99) scale(1.07)">
       <use href="#personality-ep"/>
     </g>
   </g>
 
   <g transform="translate(945 270)">
-    <rect x="0" y="0" width="198" height="198" rx="10" fill="url(#chipFill)" stroke="#ff5561" stroke-width="3" filter="url(#shadow)"/>
-    <text x="18" y="30" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#ff5561" stroke-width="2.4" filter="url(#shadow)"/>
+    <text x="23" y="31" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
     </text>
-    <text x="180" y="186" text-anchor="end" fill="#ff3d3d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.4">
-      &#x03B5;<tspan baseline-shift="super" font-size="20">+</tspan>
+    <text x="173" y="176" text-anchor="end" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
     </text>
-    <g transform="translate(99 99)">
+    <g transform="translate(99 99) scale(1.07)">
       <use href="#personality-pp"/>
     </g>
   </g>
 
-  <text x="80" y="560" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">
-    Quark Color from the Three Binaries
-  </text>
-  <text x="80" y="590" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">
-    Up quarks use two positive binaries plus one neutral binary. Down quarks use two neutral binaries plus one negative binary. Red, Purple, Blue record whether that defining binary is Inner, Middle, or Outer.
-  </text>
-
-  <g transform="translate(90 630)">
-    <rect x="0" y="0" width="390" height="252" rx="12" fill="url(#chipFill)" stroke="#ff5561" stroke-width="3" filter="url(#shadow)"/>
-    <text x="22" y="28" fill="#ffb1b7" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1.8">UP RED</text>
-    <text x="72" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">INNER</text>
-    <text x="195" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">MIDDLE</text>
-    <text x="318" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">OUTER</text>
-    <g transform="translate(20 64)">
-      <use href="#mini-tile-pe"/>
-    </g>
-    <g transform="translate(143 64)">
-      <use href="#mini-tile-pp"/>
-    </g>
-    <g transform="translate(266 64)">
-      <use href="#mini-tile-pp"/>
-    </g>
-    <text x="195" y="230" text-anchor="middle" fill="#ffb1b7" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">
-      neutral binary at inner
-    </text>
-  </g>
-
-  <g transform="translate(545 630)">
-    <rect x="0" y="0" width="390" height="252" rx="12" fill="url(#chipFill)" stroke="#b889ff" stroke-width="3" filter="url(#shadow)"/>
-    <text x="22" y="28" fill="#e0ccff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1.8">UP PURPLE</text>
-    <text x="72" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">INNER</text>
-    <text x="195" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">MIDDLE</text>
-    <text x="318" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">OUTER</text>
-    <g transform="translate(20 64)">
-      <use href="#mini-tile-pp"/>
-    </g>
-    <g transform="translate(143 64)">
-      <use href="#mini-tile-pe"/>
-    </g>
-    <g transform="translate(266 64)">
-      <use href="#mini-tile-pp"/>
-    </g>
-    <text x="195" y="230" text-anchor="middle" fill="#e0ccff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">
-      neutral binary at middle
-    </text>
-  </g>
-
-  <g transform="translate(1000 630)">
-    <rect x="0" y="0" width="390" height="252" rx="12" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="3" filter="url(#shadow)"/>
-    <text x="22" y="28" fill="#b8d7ff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1.8">UP BLUE</text>
-    <text x="72" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">INNER</text>
-    <text x="195" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">MIDDLE</text>
-    <text x="318" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">OUTER</text>
-    <g transform="translate(20 64)">
-      <use href="#mini-tile-pp"/>
-    </g>
-    <g transform="translate(143 64)">
-      <use href="#mini-tile-pp"/>
-    </g>
-    <g transform="translate(266 64)">
-      <use href="#mini-tile-pe"/>
-    </g>
-    <text x="195" y="230" text-anchor="middle" fill="#b8d7ff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">
-      neutral binary at outer
-    </text>
-  </g>
-
-  <g transform="translate(90 920)">
-    <rect x="0" y="0" width="390" height="252" rx="12" fill="url(#chipFill)" stroke="#ff5561" stroke-width="3" filter="url(#shadow)"/>
-    <text x="22" y="28" fill="#ffb1b7" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1.8">DOWN RED</text>
-    <text x="72" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">INNER</text>
-    <text x="195" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">MIDDLE</text>
-    <text x="318" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">OUTER</text>
-    <g transform="translate(20 64)">
-      <use href="#mini-tile-ee"/>
-    </g>
-    <g transform="translate(143 64)">
-      <use href="#mini-tile-pe"/>
-    </g>
-    <g transform="translate(266 64)">
-      <use href="#mini-tile-pe"/>
-    </g>
-    <text x="195" y="230" text-anchor="middle" fill="#ffb1b7" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">
-      negative binary at inner
-    </text>
-  </g>
-
-  <g transform="translate(545 920)">
-    <rect x="0" y="0" width="390" height="252" rx="12" fill="url(#chipFill)" stroke="#b889ff" stroke-width="3" filter="url(#shadow)"/>
-    <text x="22" y="28" fill="#e0ccff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1.8">DOWN PURPLE</text>
-    <text x="72" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">INNER</text>
-    <text x="195" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">MIDDLE</text>
-    <text x="318" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">OUTER</text>
-    <g transform="translate(20 64)">
-      <use href="#mini-tile-pe"/>
-    </g>
-    <g transform="translate(143 64)">
-      <use href="#mini-tile-ee"/>
-    </g>
-    <g transform="translate(266 64)">
-      <use href="#mini-tile-pe"/>
-    </g>
-    <text x="195" y="230" text-anchor="middle" fill="#e0ccff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">
-      negative binary at middle
-    </text>
-  </g>
-
-  <g transform="translate(1000 920)">
-    <rect x="0" y="0" width="390" height="252" rx="12" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="3" filter="url(#shadow)"/>
-    <text x="22" y="28" fill="#b8d7ff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1.8">DOWN BLUE</text>
-    <text x="72" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">INNER</text>
-    <text x="195" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">MIDDLE</text>
-    <text x="318" y="52" text-anchor="middle" fill="#9da9c8" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">OUTER</text>
-    <g transform="translate(20 64)">
-      <use href="#mini-tile-pe"/>
-    </g>
-    <g transform="translate(143 64)">
-      <use href="#mini-tile-pe"/>
-    </g>
-    <g transform="translate(266 64)">
-      <use href="#mini-tile-ee"/>
-    </g>
-    <text x="195" y="230" text-anchor="middle" fill="#b8d7ff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">
-      negative binary at outer
-    </text>
-  </g>
-
-  <text x="1400" y="1230" text-anchor="end" fill="#7485a8" font-family="Inter, Arial, sans-serif" font-size="13">
-    Prototype study only. Quark color is shown here as a tri-binary derivation rather than as a separate decorative accent.
-  </text>
 </svg>
