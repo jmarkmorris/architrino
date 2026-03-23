@@ -4,7 +4,7 @@ const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
   higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
-  neutrino: { shortLabel: "ν", accent: "#a259ff" },
+  neutrino: { shortLabel: "𝜈", accent: "#a259ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
   up_quark: { shortLabel: "u", accent: "#ff5a4a" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
@@ -23,6 +23,12 @@ const binaryChoiceKindById = Object.freeze({
   ep: "neutral",
   pe: "neutral",
   pp: "positive",
+});
+const invertedBinaryChoiceIdById = Object.freeze({
+  ee: "pp",
+  ep: "pe",
+  pe: "ep",
+  pp: "ee",
 });
 const binarySlotRankByCode = Object.freeze({
   I: 0,
@@ -249,6 +255,19 @@ function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") 
     return cleanedBaseLabel;
   }
   return `${normalizeParticipantPolarity(polarity)} ${cleanedBaseLabel}`;
+}
+
+function syncParticipantHierarchyForPolarity(participant) {
+  if (!participant || !supportsParticipantPolarity(participant.templateId)) {
+    return;
+  }
+  const polarity = normalizeParticipantPolarity(participant.polarity);
+  const topNode = Array.isArray(participant.hierarchy) ? participant.hierarchy[0] ?? null : null;
+  if (!topNode) {
+    return;
+  }
+  topNode.label = `${polarity} Noether core`;
+  topNode.inventory = polarity === "anti" ? { antiCore: 1 } : { proCore: 1 };
 }
 
 function buildHierarchyForTemplate(templateId, label) {
@@ -480,6 +499,44 @@ function getBinarySelectorTemplateRule(templateId) {
   );
 }
 
+function invertBinaryChoiceId(choiceId) {
+  return invertedBinaryChoiceIdById[choiceId] ?? getBinaryPersonalityChoice(choiceId).id;
+}
+
+function invertBinaryChoiceKind(kind) {
+  if (kind === "negative") {
+    return "positive";
+  }
+  if (kind === "positive") {
+    return "negative";
+  }
+  return "neutral";
+}
+
+function getBinarySelectorRuleForParticipant(participant) {
+  const baseRule = getBinarySelectorTemplateRule(participant?.templateId);
+  if (normalizeParticipantPolarity(participant?.polarity) !== "anti") {
+    return baseRule;
+  }
+  return {
+    ...baseRule,
+    visibleChoiceIds: baseRule.visibleChoiceIds.map((choiceId) => invertBinaryChoiceId(choiceId)),
+    allowedCountPatterns: Array.isArray(baseRule.allowedCountPatterns)
+      ? baseRule.allowedCountPatterns.map((pattern) =>
+          Object.fromEntries(
+            Object.entries(pattern).map(([kind, count]) => [invertBinaryChoiceKind(kind), count])
+          )
+        )
+      : baseRule.allowedCountPatterns,
+    defaultBySlot: Object.fromEntries(
+      Object.entries(baseRule.defaultBySlot ?? {}).map(([slotCode, choiceId]) => [
+        slotCode,
+        invertBinaryChoiceId(choiceId),
+      ])
+    ),
+  };
+}
+
 function isQuarkTemplateId(templateId) {
   const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
   return normalizedTemplateId === "up_quark" || normalizedTemplateId === "down_quark";
@@ -507,7 +564,7 @@ function getBinarySelectorNodes(participant) {
 }
 
 function getDefaultBinaryChoiceIdForNode(participant, node) {
-  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+  const rule = getBinarySelectorRuleForParticipant(participant);
   const slotCode = String(node?.slotCode ?? "").trim().toUpperCase();
   const defaultChoiceId = rule.defaultBySlot?.[slotCode];
   if (defaultChoiceId && rule.visibleChoiceIds.includes(defaultChoiceId)) {
@@ -580,7 +637,7 @@ function findBestBinarySelectionAssignment(
   if (!nodes.length) {
     return {};
   }
-  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+  const rule = getBinarySelectorRuleForParticipant(participant);
   const defaultSelections = getFallbackBinarySelections(participant);
   const currentSelections = {};
   nodes.forEach((node) => {
@@ -642,7 +699,7 @@ function enumerateValidBinarySelectionAssignments(participant) {
   if (!nodes.length) {
     return [];
   }
-  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+  const rule = getBinarySelectorRuleForParticipant(participant);
   const assignments = [];
   const draft = {};
 
@@ -700,7 +757,7 @@ function pickBestBinaryAssignmentCandidate({
 }
 
 function getAllowedBinaryChoiceIds(participant, node) {
-  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+  const rule = getBinarySelectorRuleForParticipant(participant);
   return rule.visibleChoiceIds.filter((choiceId) =>
     !!findBestBinarySelectionAssignment(participant, {
       pinnedNodeId: node?.id,
@@ -850,6 +907,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       binarySelections: {},
       ...extraFields,
     };
+    syncParticipantHierarchyForPolarity(participant);
     participant.binarySelections =
       findBestBinarySelectionAssignment(participant) ??
       getFallbackBinarySelections(participant);
@@ -938,7 +996,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (participant.polarity === resolvedPolarity) {
       return false;
     }
+    const currentSelections = getResolvedBinarySelectionMap(participant);
     participant.polarity = resolvedPolarity;
+    syncParticipantHierarchyForPolarity(participant);
+    participant.binarySelections = Object.fromEntries(
+      Object.entries(currentSelections).map(([nodeId, choiceId]) => [
+        nodeId,
+        invertBinaryChoiceId(choiceId),
+      ])
+    );
     participant.label = formatParticipantLabel(
       participant.baseLabel ?? participant.label,
       participant.templateId,
@@ -1125,7 +1191,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
 
-    const choiceCycle = getBinarySelectorTemplateRule(participant.templateId).visibleChoiceIds
+    const choiceCycle = getBinarySelectorRuleForParticipant(participant).visibleChoiceIds
       .filter((choiceId) =>
         validAssignments.some((assignment) => assignment[clickedNode.id] === choiceId)
       );
