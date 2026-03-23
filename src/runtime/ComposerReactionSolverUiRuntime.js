@@ -4,7 +4,7 @@ const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
   higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
-  neutrino: { shortLabel: "nu", accent: "#a259ff" },
+  neutrino: { shortLabel: "ν", accent: "#a259ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
   up_quark: { shortLabel: "u", accent: "#ff5a4a" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
@@ -103,7 +103,6 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const allEntries = [
     ...templateMenuRows.flatMap((row) => (Array.isArray(row) ? row : [])),
     { template: "neutrino", label: "Neutrino", initialPolarity: "pro" },
-    { template: "neutrino", label: "Anti neutrino", initialPolarity: "anti" },
     ...extraEntries,
   ];
   allEntries.forEach((entry) => {
@@ -481,6 +480,11 @@ function getBinarySelectorTemplateRule(templateId) {
   );
 }
 
+function isQuarkTemplateId(templateId) {
+  const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
+  return normalizedTemplateId === "up_quark" || normalizedTemplateId === "down_quark";
+}
+
 function collectBinarySelectorNodes(nodes = [], bucket = []) {
   (Array.isArray(nodes) ? nodes : []).forEach((node) => {
     if (node?.renderMode === "binary-selector") {
@@ -624,6 +628,75 @@ function findBestBinarySelectionAssignment(
 
   visit(0);
   return bestAssignment;
+}
+
+function getResolvedBinarySelectionMap(participant) {
+  return (
+    findBestBinarySelectionAssignment(participant) ??
+    getFallbackBinarySelections(participant)
+  );
+}
+
+function enumerateValidBinarySelectionAssignments(participant) {
+  const nodes = getBinarySelectorNodes(participant);
+  if (!nodes.length) {
+    return [];
+  }
+  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+  const assignments = [];
+  const draft = {};
+
+  function visit(index) {
+    if (index >= nodes.length) {
+      if (matchesAllowedBinarySelectionPatterns(draft, nodes, rule.allowedCountPatterns)) {
+        assignments.push({ ...draft });
+      }
+      return;
+    }
+    const node = nodes[index];
+    rule.visibleChoiceIds.forEach((choiceId) => {
+      draft[node.id] = choiceId;
+      visit(index + 1);
+    });
+    delete draft[node.id];
+  }
+
+  visit(0);
+  return assignments;
+}
+
+function binaryAssignmentsMatch(leftAssignment = {}, rightAssignment = {}, nodes = []) {
+  return nodes.every((node) => leftAssignment[node.id] === rightAssignment[node.id]);
+}
+
+function pickBestBinaryAssignmentCandidate({
+  participant,
+  assignments = [],
+  currentSelections = {},
+  pinnedNodeId = "",
+}) {
+  if (!assignments.length) {
+    return null;
+  }
+  const defaultSelections = getFallbackBinarySelections(participant);
+  return assignments.reduce((bestAssignment, assignment) => {
+    if (!bestAssignment) {
+      return assignment;
+    }
+    const bestScore = scoreBinarySelectionAssignment({
+      assignment: bestAssignment,
+      currentSelections,
+      defaultSelections,
+      pinnedNodeId,
+    });
+    const candidateScore = scoreBinarySelectionAssignment({
+      assignment,
+      currentSelections,
+      defaultSelections,
+      pinnedNodeId,
+    });
+    return candidateScore > bestScore ? assignment : bestAssignment;
+  }, null);
 }
 
 function getAllowedBinaryChoiceIds(participant, node) {
@@ -1029,6 +1102,50 @@ export function createComposerReactionSolverUiRuntime(deps) {
         pinnedNodeId: nodeId,
         pinnedChoiceId: getBinaryPersonalityChoice(choiceId).id,
       }) ?? null;
+    if (!nextSelections) {
+      return;
+    }
+    participant.binarySelections = nextSelections;
+    render();
+  }
+
+  function cycleQuarkBinaryPreset(participantId, nodeId) {
+    const participant = findParticipantById(participantId);
+    if (!participant || !nodeId || !isQuarkTemplateId(participant.templateId)) {
+      return;
+    }
+    const nodes = getBinarySelectorNodes(participant);
+    const clickedNode = nodes.find((node) => node.id === nodeId);
+    if (!clickedNode) {
+      return;
+    }
+    const currentSelections = getResolvedBinarySelectionMap(participant);
+    const validAssignments = enumerateValidBinarySelectionAssignments(participant);
+    if (!validAssignments.length) {
+      return;
+    }
+
+    const choiceCycle = getBinarySelectorTemplateRule(participant.templateId).visibleChoiceIds
+      .filter((choiceId) =>
+        validAssignments.some((assignment) => assignment[clickedNode.id] === choiceId)
+      );
+    if (!choiceCycle.length) {
+      return;
+    }
+    const currentChoiceId = currentSelections[clickedNode.id];
+    const currentChoiceIndex = Math.max(0, choiceCycle.indexOf(currentChoiceId));
+    const nextChoiceId = choiceCycle[(currentChoiceIndex + 1) % choiceCycle.length];
+    const candidateAssignments = validAssignments.filter(
+      (assignment) =>
+        assignment[clickedNode.id] === nextChoiceId &&
+        !binaryAssignmentsMatch(assignment, currentSelections, nodes)
+    );
+    const nextSelections = pickBestBinaryAssignmentCandidate({
+      participant,
+      assignments: candidateAssignments,
+      currentSelections,
+      pinnedNodeId: clickedNode.id,
+    });
     if (!nextSelections) {
       return;
     }
@@ -1499,6 +1616,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function createBinarySelectorGridContent(participant, node) {
+    if (isQuarkTemplateId(participant.templateId)) {
+      return createQuarkPresetRowContent(participant, node);
+    }
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
     const nodeKey = buildNodeKey(participant.id, node.id);
@@ -1535,6 +1655,38 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
       column.appendChild(choices);
       track.appendChild(column);
+    });
+    const body = document.createElement("div");
+    body.className = `composer-reaction-solver-binary-selector-grid-body is-${participant.side}`;
+    if (participant.side === "product") {
+      body.append(createInlineAnchorLane(participant, node, nodeKey), track);
+    } else {
+      body.append(track, createInlineAnchorLane(participant, node, nodeKey));
+    }
+    wrapper.appendChild(body);
+    return wrapper;
+  }
+
+  function createQuarkPresetRowContent(participant, node) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const track = document.createElement("div");
+    track.className = "composer-reaction-solver-binary-selector-grid-track";
+    getCoreBinaryNodes(node).forEach((childNode) => {
+      const selectedChoice = getBinaryPersonalitySelection(participant, childNode);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "composer-reaction-solver-binary-choice is-selected";
+      button.dataset.choiceId = selectedChoice.id;
+      button.style.setProperty("--binary-choice-accent", selectedChoice.accent);
+      button.setAttribute("aria-label", `${childNode.label}: ${selectedChoice.label}`);
+      button.title = `${childNode.label}: ${selectedChoice.label}`;
+      button.appendChild(createBinaryGlyph(selectedChoice));
+      button.addEventListener("click", () =>
+        cycleQuarkBinaryPreset(participant.id, childNode.id)
+      );
+      track.appendChild(button);
     });
     const body = document.createElement("div");
     body.className = `composer-reaction-solver-binary-selector-grid-body is-${participant.side}`;
