@@ -1678,6 +1678,34 @@ body {
   padding-right: 0;
 }
 
+.composer-reaction-solver-side-slot-header {
+  --binary-choice-size: 72px;
+  display: grid;
+  grid-template-columns: repeat(3, var(--binary-choice-size));
+  gap: 12px;
+  width: fit-content;
+  justify-items: center;
+}
+
+.composer-reaction-solver-side-slot-header.is-reactant {
+  margin-left: calc(var(--binary-choice-size) + 14px);
+}
+
+.composer-reaction-solver-side-slot-header.is-product {
+  margin-left: auto;
+  margin-right: calc(var(--binary-choice-size) + 14px);
+}
+
+.composer-reaction-solver-side-slot-header-slot {
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(226, 233, 255, 0.86);
+  text-align: center;
+}
+
 .composer-reaction-solver-center {
   display: grid;
   place-content: center;
@@ -1715,7 +1743,7 @@ body {
 }
 
 .composer-reaction-solver-participant.has-inline-field-header .composer-reaction-solver-particle {
-  margin-top: 24px;
+  margin-top: 0;
 }
 
 .composer-reaction-solver-participant.is-product {
@@ -1723,6 +1751,7 @@ body {
 }
 
 .composer-reaction-solver-particle {
+  box-sizing: border-box;
   width: var(--binary-choice-size, 72px);
   min-width: var(--binary-choice-size, 72px);
   height: var(--binary-choice-size, 72px);
@@ -1849,7 +1878,6 @@ body {
   width: fit-content;
 }
 
-.composer-reaction-solver-noether-core-grid-slots,
 .composer-reaction-solver-noether-core-grid-track {
   --binary-choice-size: 72px;
   display: grid;
@@ -1858,24 +1886,10 @@ body {
   align-items: start;
 }
 
-.composer-reaction-solver-noether-core-grid-slots {
-  justify-items: center;
-}
-
 .composer-reaction-solver-noether-core-grid-body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-}
-
-.composer-reaction-solver-noether-core-grid-slot {
-  display: block;
-  width: 100%;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: rgba(226, 233, 255, 0.82);
-  text-align: center;
 }
 
 .composer-reaction-solver-inline-anchor-lane {
@@ -1903,16 +1917,11 @@ body {
   width: fit-content;
 }
 
-.composer-reaction-solver-binary-selector-grid-slots,
 .composer-reaction-solver-binary-selector-grid-track {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size)));
   align-items: start;
   gap: 14px;
-}
-
-.composer-reaction-solver-binary-selector-grid-slots {
-  justify-items: center;
 }
 
 .composer-reaction-solver-binary-selector-grid-body {
@@ -1926,16 +1935,6 @@ body {
   justify-items: center;
   align-content: start;
   gap: 10px;
-}
-
-.composer-reaction-solver-binary-selector-grid-slot {
-  display: block;
-  width: 100%;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: rgba(226, 233, 255, 0.86);
-  text-align: center;
 }
 
 .composer-reaction-solver-binary-selector-grid-options {
@@ -2193,7 +2192,7 @@ body {
   background: rgba(28, 34, 48, 0.8);
 }
 
-.composer-reaction-solver-participant.has-noether-core-grid .composer-reaction-solver-tree {
+.composer-reaction-solver-participant.has-inline-field-header .composer-reaction-solver-tree {
   padding-block: 0;
 }
 
