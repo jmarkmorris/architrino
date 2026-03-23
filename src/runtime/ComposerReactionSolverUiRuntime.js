@@ -181,7 +181,6 @@ function createNoetherCoreBranch(id, label, { anti = false, inventory = null } =
     id,
     label,
     renderMode: "noether-core-grid",
-    anti: !!anti,
     inventory: inventory ?? (anti ? { antiCore: 1 } : { proCore: 1 }),
     children: [
       createBinaryBranch(`${id}/inner`, "inner binary", {
@@ -210,6 +209,7 @@ function buildHierarchyForTemplate(templateId, label) {
       {
         id: "root",
         label: "Higgs cluster",
+        collapseRow: true,
         children: [
           createNoetherCoreBranch("root/pro_core_1", "Pro core"),
           createNoetherCoreBranch("root/anti_core_1", "Anti core", {
@@ -1125,7 +1125,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
           "composer-reaction-solver-binary-choice",
           "composer-reaction-solver-binary-choice-is-anchor",
           "composer-reaction-solver-noether-core-grid-tile",
-          node?.anti ? "is-anti" : "",
           "is-static",
         ],
       });
@@ -1203,6 +1202,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const hasChildren = Array.isArray(node.children) && node.children.length > 0;
       const canRenderChildren = hasChildren && shouldRenderChildNodes(node);
       const rendersChildrenInline = node.renderMode === "noether-core-grid";
+      if (node.collapseRow && canRenderChildren) {
+        renderParticipantTreeRows(parent, participant, node.children, depth);
+        return;
+      }
       const mapping = findMappingByNodeKey(nodeKey);
       const isCollapsed = !!mapping && canRenderChildren && !rendersChildrenInline;
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;

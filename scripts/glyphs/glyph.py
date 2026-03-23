@@ -17,8 +17,6 @@ POLARITY_BLUE = "#1879ff"
 POLARITY_RED = "#ff3d3d"
 STRUCTURE_PURPLE = "#a259ff"
 APP_GLYPH_SCALE = 1.07
-ANTI_FRAME_INSET = 6
-ANTI_FRAME_RADIUS = 5
 SCALING_STUDY_VALUES = (0.8, 1.0, 1.2)
 
 
@@ -28,7 +26,6 @@ class TileSpec:
     output_name: str | None
     glyph_id: str
     stroke: str
-    anti: bool = False
     top_sign: str | None = None
     bottom_sign: str | None = None
     top_color: str | None = None
@@ -69,47 +66,6 @@ STANDALONE_SPECS = {
         output_name="glyph-binary-positive.svg",
         glyph_id="personality-pp",
         stroke=ACCENT_RED,
-        top_sign="+",
-        bottom_sign="+",
-        top_color=POLARITY_RED,
-        bottom_color=POLARITY_RED,
-    ),
-    "anti-bare": TileSpec(
-        key="anti-bare",
-        output_name="glyph-binary-anti-bare.svg",
-        glyph_id="baseBinaryGlyph",
-        stroke=ACCENT_PURPLE,
-        anti=True,
-    ),
-    "anti-negative": TileSpec(
-        key="anti-negative",
-        output_name="glyph-binary-anti-negative.svg",
-        glyph_id="personality-ee",
-        stroke=ACCENT_BLUE,
-        anti=True,
-        top_sign="-",
-        bottom_sign="-",
-        top_color=POLARITY_BLUE,
-        bottom_color=POLARITY_BLUE,
-    ),
-    "anti-neutral": TileSpec(
-        key="anti-neutral",
-        output_name="glyph-binary-anti-neutral.svg",
-        glyph_id="personality-pe",
-        stroke=ACCENT_PURPLE,
-        anti=True,
-        top_sign="+",
-        bottom_sign="-",
-        top_color=POLARITY_RED,
-        bottom_color=POLARITY_BLUE,
-        selected=True,
-    ),
-    "anti-positive": TileSpec(
-        key="anti-positive",
-        output_name="glyph-binary-anti-positive.svg",
-        glyph_id="personality-pp",
-        stroke=ACCENT_RED,
-        anti=True,
         top_sign="+",
         bottom_sign="+",
         top_color=POLARITY_RED,
@@ -222,13 +178,21 @@ def svg_defs() -> str:
   </defs>"""
 
 
-def render_corner_label(x: int, y: int, sign: str, color: str, anchor: str | None = None) -> str:
+def render_corner_label(
+    x: int,
+    y: int,
+    sign: str,
+    color: str,
+    anchor: str | None = None,
+    *,
+    indent: str = "    ",
+) -> str:
     anchor_attr = f' text-anchor="{anchor}"' if anchor else ""
     return (
-        f'    <text x="{x}" y="{y}" fill="{color}" font-family="STIX Two Text, Cambria Math, Georgia, serif" '
+        f'{indent}<text x="{x}" y="{y}" fill="{color}" font-family="STIX Two Text, Cambria Math, Georgia, serif" '
         f'font-size="23" font-weight="600"{anchor_attr}>\n'
-        f'      {EPSILON_ENTITY}<tspan baseline-shift="super" font-size="16">{sign}</tspan>\n'
-        f"    </text>"
+        f"{indent}  {EPSILON_ENTITY}<tspan baseline-shift=\"super\" font-size=\"16\">{sign}</tspan>\n"
+        f"{indent}</text>"
     )
 
 
@@ -242,53 +206,63 @@ def render_tile(
 ) -> str:
     fill_id = "chipSelected" if spec.selected else "chipFill"
     filter_id = "chipSelectedGlow" if spec.selected else "shadow"
-    resolved_scale = APP_GLYPH_SCALE * scaling
-    lines = [
-        f'  <g transform="translate({offset_x} {offset_y})">',
-        f'    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#{fill_id})" stroke="{spec.stroke}" stroke-width="2.4" filter="url(#{filter_id})"/>',
-    ]
-    if spec.anti:
+    lines = [f'  <g transform="translate({offset_x} {offset_y})">']
+    tile_indent = "    "
+    if scaling != 1.0:
         lines.append(
-            f'    <rect x="{ANTI_FRAME_INSET}" y="{ANTI_FRAME_INSET}" width="{198 - 2 * ANTI_FRAME_INSET}" height="{198 - 2 * ANTI_FRAME_INSET}" rx="{ANTI_FRAME_RADIUS}" fill="none" stroke="{spec.stroke}" stroke-width="1.9" opacity="0.92"/>'
+            f'    <g transform="translate(99 99) scale({scaling:.3f}) translate(-99 -99)">'
         )
+        tile_indent = "      "
+    lines.append(
+        f'{tile_indent}<rect x="0" y="0" width="198" height="198" rx="7" fill="url(#{fill_id})" stroke="{spec.stroke}" stroke-width="2.4" filter="url(#{filter_id})"/>'
+    )
     if include_labels and spec.top_sign and spec.top_color:
-        lines.append(render_corner_label(23, 31, spec.top_sign, spec.top_color))
+        lines.append(
+            render_corner_label(23, 31, spec.top_sign, spec.top_color, indent=tile_indent)
+        )
     if include_labels and spec.bottom_sign and spec.bottom_color:
-        lines.append(render_corner_label(173, 176, spec.bottom_sign, spec.bottom_color, "end"))
+        lines.append(
+            render_corner_label(
+                173,
+                176,
+                spec.bottom_sign,
+                spec.bottom_color,
+                "end",
+                indent=tile_indent,
+            )
+        )
     lines.extend(
         [
-            f'    <g transform="translate(99 99) scale({resolved_scale:.3f})">',
-            f'      <use href="#{spec.glyph_id}"/>',
-            "    </g>",
-            "  </g>",
+            f'{tile_indent}<g transform="translate(99 99) scale({APP_GLYPH_SCALE:.3f})">',
+            f'{tile_indent}  <use href="#{spec.glyph_id}"/>',
+            f"{tile_indent}</g>",
         ]
     )
+    if scaling != 1.0:
+        lines.append("    </g>")
+    lines.append("  </g>")
     return "\n".join(lines)
 
 
 def render_standalone_svg(spec: TileSpec, scaling: float = 1.0) -> str:
     card = render_tile(spec, 21, 21, include_labels=spec.top_sign is not None, scaling=scaling)
-    title_prefix = "Anti " if spec.anti else ""
-    key = spec.key.removeprefix("anti-")
     title = {
         "bare": "Bare binary glyph",
         "negative": "Negative binary glyph",
         "neutral": "Canonical neutral binary glyph",
         "positive": "Positive binary glyph",
-    }[key]
+    }[spec.key]
     desc = {
         "bare": "Canonical neutral binary orbit and axis without personality charges or epsilon labels.",
         "negative": "Canonical binary glyph with negative personality charges on top and bottom.",
         "neutral": "Canonical binary glyph with positrino above and electrino below.",
         "positive": "Canonical binary glyph with positive personality charges on top and bottom.",
-    }[key]
-    if spec.anti:
-        desc = f"{desc} Anti cores are denoted by a double frame."
-    desc = f"{desc} Rendered at {scaling:g}x app scale."
+    }[spec.key]
+    desc = f"{desc} Rendered at {scaling:g}x tile scale relative to the app baseline."
     return "\n".join(
         [
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">',
-            f"  <title id=\"title\">{title_prefix}{title}</title>",
+            f"  <title id=\"title\">{title}</title>",
             f"  <desc id=\"desc\">{desc}</desc>",
             svg_defs(),
             card,
@@ -299,21 +273,6 @@ def render_standalone_svg(spec: TileSpec, scaling: float = 1.0) -> str:
 
 def render_prototype_svg(scaling: float = 1.0) -> str:
     pro_bare = TileSpec("bare", None, "baseBinaryGlyph", ACCENT_PURPLE)
-    anti_bare = TileSpec("anti-bare", None, "baseBinaryGlyph", ACCENT_PURPLE, anti=True)
-
-    def clone_spec(spec: TileSpec, *, anti: bool = False) -> TileSpec:
-        return TileSpec(
-            key=f'{"anti-" if anti else ""}{spec.key}',
-            output_name=None,
-            glyph_id=spec.glyph_id,
-            stroke=spec.stroke,
-            anti=anti,
-            top_sign=spec.top_sign,
-            bottom_sign=spec.bottom_sign,
-            top_color=spec.top_color,
-            bottom_color=spec.bottom_color,
-            selected=spec.selected,
-        )
 
     section_y = {
         "title": 82,
@@ -323,30 +282,24 @@ def render_prototype_svg(scaling: float = 1.0) -> str:
         "pro_set_heading": 510,
         "pro_set_copy": 540,
         "pro_set_tiles": 590,
-        "anti_bare_heading": 920,
-        "anti_bare_copy": 950,
-        "anti_bare_tile": 986,
-        "anti_set_heading": 1260,
-        "anti_set_copy": 1290,
-        "anti_set_tiles": 1340,
-        "scale_heading": 1615,
-        "scale_copy": 1645,
-        "scale_headers": 1690,
-        "scale_row_1": 1725,
+        "scale_heading": 920,
+        "scale_copy": 950,
+        "scale_headers": 1010,
+        "scale_tiles": 1050,
     }
     tile_x = [90, 375, 660, 945]
     lines = [
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 2500" role="img" aria-labelledby="title desc">',
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 1340" role="img" aria-labelledby="title desc">',
         "  <title id=\"title\">AAA Glyphs</title>",
-        "  <desc id=\"desc\">Prototype board for pro and anti binary glyphs. Anti variants use a double frame while keeping the inner glyph unchanged.</desc>",
+        "  <desc id=\"desc\">Prototype board for canonical binary glyphs and whole-tile scaling comparisons.</desc>",
         svg_defs(),
-        '  <rect width="1480" height="2500" fill="url(#bg)"/>',
+        '  <rect width="1480" height="1340" fill="url(#bg)"/>',
         "",
         '  <text x="80" y="82" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">',
         "    AAA Glyphs",
         "  </text>",
         '  <text x="80" y="118" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">',
-        "    Anti cores are shown with a double frame while the internal binary glyph remains unchanged.",
+        "    Binary tiles encode only internal flavor; pro versus anti belongs to the enclosing fermion, not the binary tile.",
         "  </text>",
         "",
         f'  <text x="80" y="{section_y["pro_bare_heading"]}" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">',
@@ -372,54 +325,28 @@ def render_prototype_svg(scaling: float = 1.0) -> str:
 
     lines.extend(
         [
-            f'  <text x="80" y="{section_y["anti_bare_heading"]}" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">',
-            "    Canonical Neutral Binary for Anti Assemblies",
-            "  </text>",
-            f'  <text x="80" y="{section_y["anti_bare_copy"]}" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">',
-            "    Same binary scaffold, with anti state indicated only by the double frame.",
-            "  </text>",
-            "",
-            render_tile(anti_bare, tile_x[0], section_y["anti_bare_tile"], include_labels=False, scaling=scaling),
-            "",
-            f'  <text x="80" y="{section_y["anti_set_heading"]}" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">',
-            "    Binary Personality Set for Anti Assemblies",
-            "  </text>",
-            f'  <text x="80" y="{section_y["anti_set_copy"]}" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">',
-            "    The anti set duplicates the same four internal glyph states and marks anti at the tile frame only.",
-            "  </text>",
-            "",
-        ]
-    )
-    for x, spec in zip(tile_x, PROTOTYPE_SPECS, strict=True):
-        lines.append(render_tile(clone_spec(spec, anti=True), x, section_y["anti_set_tiles"], scaling=scaling))
-        lines.append("")
-    lines.extend(
-        [
             f'  <text x="80" y="{section_y["scale_heading"]}" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">',
             "    Scaling Study",
             "  </text>",
             f'  <text x="80" y="{section_y["scale_copy"]}" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">',
-            "    Default scaling 1.0 matches the app baseline. The rows below compare pro and anti bare binaries at 0.8, 1.0, and 1.2.",
-            "  </text>",
-            f'  <text x="425" y="{section_y["scale_headers"]}" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle">',
-            "    Pro",
-            "  </text>",
-            f'  <text x="710" y="{section_y["scale_headers"]}" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle">',
-            "    Anti",
+            "    These tiles scale the entire tile at 0.8, 1.0, and 1.2 relative to the app baseline while keeping the interior glyph proportion fixed.",
             "  </text>",
             "",
         ]
     )
-    for index, scale_value in enumerate(SCALING_STUDY_VALUES):
-        row_y = section_y["scale_row_1"] + (index * 250)
+    for x, scale_value in zip(tile_x[: len(SCALING_STUDY_VALUES)], SCALING_STUDY_VALUES, strict=True):
         lines.extend(
             [
-                f'  <text x="80" y="{row_y + 112}" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">',
-                f"    Scale {scale_value:g}",
+                f'  <text x="{x + 99}" y="{section_y["scale_headers"]}" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle">',
+                f"    {scale_value:g}x",
                 "  </text>",
-                render_tile(pro_bare, 325, row_y, include_labels=False, scaling=scale_value),
-                "",
-                render_tile(anti_bare, 610, row_y, include_labels=False, scaling=scale_value),
+                render_tile(
+                    pro_bare,
+                    x,
+                    section_y["scale_tiles"],
+                    include_labels=False,
+                    scaling=scale_value,
+                ),
                 "",
             ]
         )
@@ -456,7 +383,7 @@ def parse_args() -> argparse.Namespace:
         "--scaling",
         type=float,
         default=1.0,
-        help="Glyph scale multiplier relative to the app baseline. Default 1.0 matches the app size.",
+        help="Tile scale multiplier relative to the app baseline. Default 1.0 matches the app size.",
     )
     return parser.parse_args()
 

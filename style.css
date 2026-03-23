@@ -2045,15 +2045,6 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
-.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile.is-anti::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 12px;
-  border: 1.8px solid color-mix(in srgb, var(--binary-choice-accent) 58%, rgba(255, 255, 255, 0.12));
-  pointer-events: none;
-}
-
 .composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:hover,
 .composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:focus-visible {
   border-color: color-mix(in srgb, var(--binary-choice-accent) 86%, rgba(255, 255, 255, 0.22));
