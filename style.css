@@ -1773,13 +1773,26 @@ body {
   text-align: center;
 }
 
+.composer-reaction-solver-particle.is-anti-polarity {
+  background: color-mix(in srgb, var(--solver-accent) 22%, rgba(12, 16, 30, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 1px color-mix(in srgb, var(--solver-accent) 24%, transparent),
+    0 0 18px color-mix(in srgb, var(--solver-accent) 18%, transparent);
+}
+
 .composer-reaction-solver-particle-label {
   display: grid;
   justify-items: center;
   gap: 1px;
   font-size: 10px;
+  font-weight: 700;
   line-height: 1.15;
   color: rgba(244, 247, 255, 0.88);
+}
+
+.composer-reaction-solver-particle.is-anti-polarity .composer-reaction-solver-particle-label {
+  color: #ffffff;
 }
 
 .composer-reaction-solver-particle-label-line {

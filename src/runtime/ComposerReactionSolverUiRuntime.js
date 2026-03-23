@@ -4,6 +4,7 @@ const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
   higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
+  neutrino: { shortLabel: "nu", accent: "#a259ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
   up_quark: { shortLabel: "u", accent: "#ff5a4a" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
@@ -45,6 +46,14 @@ const binarySelectorTemplateRules = Object.freeze({
       O: "ee",
     }),
   }),
+  neutrino: Object.freeze({
+    visibleChoiceIds: Object.freeze(["pe"]),
+    defaultBySlot: Object.freeze({
+      I: "pe",
+      M: "pe",
+      O: "pe",
+    }),
+  }),
   up_quark: Object.freeze({
     visibleChoiceIds: Object.freeze(["pe", "pp"]),
     allowedCountPatterns: Object.freeze([
@@ -82,6 +91,7 @@ const binarySelectorTemplateRules = Object.freeze({
 const participantPolarityTemplateIds = new Set([
   "noether_core",
   "electron",
+  "neutrino",
   "down_quark",
   "up_quark",
   "fermion_gen1",
@@ -92,17 +102,24 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const seen = new Set();
   const allEntries = [
     ...templateMenuRows.flatMap((row) => (Array.isArray(row) ? row : [])),
+    { template: "neutrino", label: "Neutrino", initialPolarity: "pro" },
+    { template: "neutrino", label: "Anti neutrino", initialPolarity: "anti" },
     ...extraEntries,
   ];
   allEntries.forEach((entry) => {
     const template = String(entry?.template ?? "").trim();
-    if (!template || seen.has(template)) {
+    const initialPolarity = supportsParticipantPolarity(template)
+      ? normalizeParticipantPolarity(entry?.initialPolarity)
+      : "";
+    const entryKey = `${template}::${initialPolarity}`;
+    if (!template || seen.has(entryKey)) {
       return;
     }
-    seen.add(template);
+    seen.add(entryKey);
     entries.push({
       template,
       label: String(entry?.label ?? template).trim() || template,
+      initialPolarity,
     });
   });
   return entries;
@@ -270,6 +287,20 @@ function buildHierarchyForTemplate(templateId, label) {
       },
     ];
   }
+  if (normalizedTemplate === "neutrino") {
+    return [
+      {
+        id: "root",
+        label: "pro Noether core",
+        renderMode: "binary-selector-grid",
+        children: [
+          createBinaryBranch("root/inner", "inner neutral binary", { slotCode: "I" }),
+          createBinaryBranch("root/middle", "middle neutral binary", { slotCode: "M" }),
+          createBinaryBranch("root/outer", "outer neutral binary", { slotCode: "O" }),
+        ],
+      },
+    ];
+  }
   if (normalizedTemplate === "noether_core") {
     return [
       {
@@ -357,8 +388,9 @@ function getParticipantCardLabelLines(label = "", participant = null) {
     .trim()
     .split(/\s+/)
     .filter(Boolean);
+  const normalizedTemplateId = String(participant?.templateId ?? "").trim().toLowerCase();
   if (
-    String(participant?.templateId ?? "").trim().toLowerCase() === "noether_core" &&
+    normalizedTemplateId === "noether_core" &&
     words.length >= 3
   ) {
     const [polarityWord = "", secondWord = "", thirdWord = ""] = words;
@@ -366,6 +398,13 @@ function getParticipantCardLabelLines(label = "", participant = null) {
       polarityWord ? polarityWord[0].toUpperCase() + polarityWord.slice(1).toLowerCase() : "?",
       secondWord ? secondWord[0].toUpperCase() + secondWord.slice(1).toLowerCase() : "",
       thirdWord ? thirdWord.toLowerCase() : "",
+    ].filter(Boolean);
+  }
+  if (supportsParticipantPolarity(normalizedTemplateId) && words.length >= 2) {
+    const [polarityWord = "", ...restWords] = words;
+    return [
+      polarityWord ? polarityWord[0].toUpperCase() + polarityWord.slice(1).toLowerCase() : "?",
+      ...restWords.map((word) => word[0]?.toUpperCase?.() + word.slice(1).toLowerCase()),
     ].filter(Boolean);
   }
   if (words.length <= 1) {
@@ -1064,7 +1103,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     renderMenu();
   }
 
-  function addParticipant(side, templateId) {
+  function addParticipant(side, templateId, options = {}) {
     const templateEntry =
       templateEntries.find((entry) => entry.template === templateId) ??
       templateEntries[0] ??
@@ -1077,12 +1116,17 @@ export function createComposerReactionSolverUiRuntime(deps) {
         ? "Higgs cluster"
         : templateEntry.template === "noether_core"
           ? "Noether core"
+          : templateEntry.template === "neutrino"
+            ? "Neutrino"
           : templateEntry.label;
     const participant = createParticipantRecord({
       side,
       templateId: templateEntry.template,
       label: participantLabel,
       hierarchy: buildHierarchyForTemplate(templateEntry.template, participantLabel),
+      extraFields: {
+        polarity: options.initialPolarity ?? templateEntry.initialPolarity ?? "",
+      },
     });
     state.participants.push(participant);
     state.pendingSourceKey = "";
@@ -1106,7 +1150,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
       );
       templateEntries.forEach((entry) => {
         const itemButton = renderMenuButton(entry.label, {
-          onClick: () => addParticipant(state.menuSide, entry.template),
+          onClick: () =>
+            addParticipant(state.menuSide, entry.template, {
+              initialPolarity: entry.initialPolarity,
+            }),
         });
         const meta = getTemplateMeta(entry.template, entry.label);
         itemButton.style.setProperty("--solver-entry-accent", meta.accent);
@@ -1678,6 +1725,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     const visual = document.createElement("div");
     visual.className = "composer-reaction-solver-particle";
+    if (participant.polarity === "anti") {
+      visual.classList.add("is-anti-polarity");
+    }
     const meta = getTemplateMeta(participant.templateId, participant.label);
     visual.style.setProperty("--solver-accent", meta.accent);
     const visualLabel = document.createElement("div");
