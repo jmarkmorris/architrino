@@ -926,6 +926,22 @@ function topLevelHierarchyHasRenderMode(nodes = [], renderMode = "") {
   return (Array.isArray(nodes) ? nodes : []).some((node) => node?.renderMode === renderMode);
 }
 
+function isCompositeGridRenderMode(renderMode = "") {
+  return renderMode === "higgs-cluster-grid" || renderMode === "assembly-cluster-grid";
+}
+
+function getParticipantRootNode(participant) {
+  return Array.isArray(participant?.hierarchy) ? participant.hierarchy[0] ?? null : null;
+}
+
+function isCompositeParticipant(participant) {
+  return isCompositeGridRenderMode(getParticipantRootNode(participant)?.renderMode ?? "");
+}
+
+function isReactantCompositeParticipant(participant) {
+  return participant?.side === "reactant" && isCompositeParticipant(participant);
+}
+
 function createSvgElement(name) {
   return document.createElementNS("http://www.w3.org/2000/svg", name);
 }
@@ -2021,26 +2037,36 @@ export function createComposerReactionSolverUiRuntime(deps) {
     body.className = `composer-reaction-solver-composite-row-body is-${participant.side}`;
     const card = createCompositeAssemblyRowCard(participant, rowNode);
     const track = createCompositeAssemblyRowTrack(participant, rowNode);
+    const rowNodeKey = buildNodeKey(participant.id, rowNode.id);
+    const selectorLane = document.createElement("div");
+    selectorLane.className = `composer-reaction-solver-composite-row-selector-lane is-${participant.side}`;
+    const selector = createAnchorButton(participant, rowNode, rowNodeKey, {
+      extraClassNames: ["composer-reaction-solver-composite-row-anchor"],
+    });
+    selector.dataset.compositeParticipantId = participant.id;
+    selector.dataset.compositeSourceKey = rowNodeKey;
+    selectorLane.appendChild(selector);
     if (participant.side === "product") {
       body.append(track, card);
     } else {
-      body.append(card, track);
+      body.append(card, track, selectorLane);
     }
     return body;
   }
 
   function createCompositeAssemblyGridContent(participant, node) {
-    const nodeKey = buildNodeKey(participant.id, node.id);
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-solver-higgs-cluster-grid is-${participant.side}`;
     const coreNodes = Array.isArray(node?.children) ? node.children : [];
     const rows = document.createElement("div");
     rows.className = "composer-reaction-solver-higgs-cluster-grid-rows";
+    const showCompositeRootSelector = !isReactantCompositeParticipant(participant);
+    const nodeKey = buildNodeKey(participant.id, node.id);
     coreNodes.forEach((coreNode, index) => {
       const row = document.createElement("div");
       row.className = `composer-reaction-solver-higgs-cluster-grid-row is-${participant.side}`;
       const rowBody = createCompositeAssemblyRowBody(participant, coreNode);
-      if (index === 0) {
+      if (showCompositeRootSelector && index === 0) {
         row.classList.add("has-selector");
         if (participant.side === "product") {
           row.append(createInlineAnchorLane(participant, node, nodeKey), rowBody);
@@ -2054,6 +2080,53 @@ export function createComposerReactionSolverUiRuntime(deps) {
     });
     wrapper.appendChild(rows);
     return wrapper;
+  }
+
+  function createParticipantVisual(participant) {
+    const visual = document.createElement("div");
+    visual.className = "composer-reaction-solver-particle";
+    if (participant.polarity === "anti") {
+      visual.classList.add("is-anti-polarity");
+    }
+    const meta = getParticipantCardMeta(participant);
+    visual.style.setProperty("--solver-accent", meta.accent);
+    const visualLabel = document.createElement("div");
+    visualLabel.className = "composer-reaction-solver-particle-label";
+    getParticipantCardLabelLines(participant.label, participant).forEach((line) => {
+      const lineElement = document.createElement("span");
+      lineElement.className = "composer-reaction-solver-particle-label-line";
+      lineElement.textContent = line;
+      visualLabel.appendChild(lineElement);
+    });
+    visual.appendChild(visualLabel);
+    visual.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openParticipantMenuAt(participant.id, event.clientX, event.clientY);
+    });
+    return visual;
+  }
+
+  function createReactantCompositeVisualRail(participant) {
+    const rootNode = getParticipantRootNode(participant);
+    const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
+    const rail = document.createElement("div");
+    rail.className = "composer-reaction-solver-composite-visual-rail";
+
+    const collector = document.createElement("span");
+    collector.className = "composer-reaction-solver-anchor composer-reaction-solver-composite-collector";
+    collector.dataset.compositeCollectorId = participant.id;
+    collector.setAttribute("aria-hidden", "true");
+
+    rail.appendChild(collector);
+    rail.appendChild(createParticipantVisual(participant));
+    if (rootNode && rootNodeKey) {
+      const rootAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
+        extraClassNames: ["composer-reaction-solver-composite-root-anchor"],
+      });
+      rail.appendChild(rootAnchor);
+    }
+    return rail;
   }
 
   function createBinarySelectorContent(participant, node) {
@@ -2199,6 +2272,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const card = document.createElement("article");
     card.className = `composer-reaction-solver-participant is-${participant.side}`;
     const topLevelRenderMode = participant?.hierarchy?.[0]?.renderMode ?? "";
+    const isReactantComposite = isReactantCompositeParticipant(participant);
     if (topLevelHierarchyHasRenderMode(participant.hierarchy, "noether-core-grid")) {
       card.classList.add("has-noether-core-grid");
     }
@@ -2210,33 +2284,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
     ) {
       card.classList.add("has-inline-field-header");
     }
-    const visual = document.createElement("div");
-    visual.className = "composer-reaction-solver-particle";
-    if (participant.polarity === "anti") {
-      visual.classList.add("is-anti-polarity");
+    if (isReactantComposite) {
+      card.classList.add("is-reactant-composite");
     }
-    const meta = getParticipantCardMeta(participant);
-    visual.style.setProperty("--solver-accent", meta.accent);
-    const visualLabel = document.createElement("div");
-    visualLabel.className = "composer-reaction-solver-particle-label";
-    getParticipantCardLabelLines(participant.label, participant).forEach((line) => {
-      const lineElement = document.createElement("span");
-      lineElement.className = "composer-reaction-solver-particle-label-line";
-      lineElement.textContent = line;
-      visualLabel.appendChild(lineElement);
-    });
-    visual.appendChild(visualLabel);
-    visual.addEventListener("contextmenu", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      openParticipantMenuAt(participant.id, event.clientX, event.clientY);
-    });
+    const visual = isReactantComposite
+      ? createReactantCompositeVisualRail(participant)
+      : createParticipantVisual(participant);
 
     const hierarchy = document.createElement("div");
     hierarchy.className = `composer-reaction-solver-tree is-${participant.side}`;
     renderParticipantTreeRows(hierarchy, participant, participant.hierarchy, 0);
 
-    if (participant.side === "product") {
+    if (participant.side === "product" || isReactantComposite) {
       card.append(hierarchy, visual);
     } else {
       card.append(visual, hierarchy);
@@ -2271,6 +2330,44 @@ export function createComposerReactionSolverUiRuntime(deps) {
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click a mapped anchor to remove it.`;
   }
 
+  function getElementCenterWithinSurface(element, bounds) {
+    const rect = element.getBoundingClientRect();
+    return {
+      x: rect.left + rect.width / 2 - bounds.left,
+      y: rect.top + rect.height / 2 - bounds.top,
+    };
+  }
+
+  function drawCompositeLinks(bounds) {
+    state.participants
+      .filter((participant) => isReactantCompositeParticipant(participant))
+      .forEach((participant) => {
+        const collector = surface.querySelector(
+          `.composer-reaction-solver-composite-collector[data-composite-collector-id="${CSS.escape(participant.id)}"]`
+        );
+        if (!collector) {
+          return;
+        }
+        const targetPoint = getElementCenterWithinSurface(collector, bounds);
+        const sourceAnchors = Array.from(
+          surface.querySelectorAll(
+            `.composer-reaction-solver-anchor[data-composite-participant-id="${CSS.escape(participant.id)}"][data-composite-source-key]`
+          )
+        );
+        sourceAnchors.forEach((sourceAnchor) => {
+          const sourcePoint = getElementCenterWithinSurface(sourceAnchor, bounds);
+          const deltaX = Math.max(28, Math.abs(targetPoint.x - sourcePoint.x) * 0.55);
+          const path = createSvgElement("path");
+          path.setAttribute(
+            "d",
+            `M ${sourcePoint.x} ${sourcePoint.y} C ${sourcePoint.x + deltaX} ${sourcePoint.y}, ${targetPoint.x - deltaX * 0.6} ${targetPoint.y}, ${targetPoint.x} ${targetPoint.y}`
+          );
+          path.setAttribute("class", "composer-reaction-solver-composite-link");
+          mapSvg.appendChild(path);
+        });
+      });
+  }
+
   function drawMappings() {
     drawFrameId = 0;
     if (!state.active || !surface || !mapSvg) {
@@ -2281,6 +2378,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const height = Math.max(1, Math.round(bounds.height));
     mapSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
     mapSvg.innerHTML = "";
+    drawCompositeLinks(bounds);
     state.mappings.forEach((mapping) => {
       const sourceAnchor = surface.querySelector(
         `.composer-reaction-solver-anchor[data-anchor-key="${CSS.escape(mapping.sourceKey)}"]`

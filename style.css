@@ -1642,6 +1642,14 @@ body {
   filter: drop-shadow(0 0 10px rgba(82, 152, 255, 0.2));
 }
 
+.composer-reaction-solver-composite-link {
+  fill: none;
+  stroke: rgba(213, 87, 255, 0.9);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(196, 86, 255, 0.24));
+}
+
 .composer-reaction-solver-empty {
   position: absolute;
   inset: 50% auto auto 50%;
@@ -1752,6 +1760,10 @@ body {
 
 .composer-reaction-solver-participant.is-product {
   justify-self: end;
+}
+
+.composer-reaction-solver-participant.is-reactant-composite {
+  align-items: center;
 }
 
 .composer-reaction-solver-particle {
@@ -1918,6 +1930,12 @@ body {
   place-items: center;
 }
 
+.composer-reaction-solver-composite-visual-rail {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .composer-reaction-solver-binary-selector {
   display: grid;
   grid-template-columns: auto max-content;
@@ -1986,10 +2004,19 @@ body {
   grid-auto-columns: max-content;
   align-items: flex-start;
   gap: var(--solver-tile-gap);
+  overflow: visible;
 }
 
 .composer-reaction-solver-composite-row-card {
   margin-top: 0;
+}
+
+.composer-reaction-solver-composite-row-selector-lane {
+  display: grid;
+  align-self: start;
+  width: 18px;
+  height: var(--binary-choice-size, 72px);
+  place-items: center;
 }
 
 .composer-reaction-solver-higgs-cluster-grid-row.has-selector {
@@ -2173,6 +2200,15 @@ body {
 .composer-reaction-solver-anchor.is-mapped {
   border-color: rgba(149, 255, 205, 0.96);
   background: rgba(24, 92, 64, 0.92);
+}
+
+.composer-reaction-solver-composite-collector {
+  pointer-events: none;
+  border-color: rgba(198, 150, 255, 0.86);
+  background: rgba(43, 28, 66, 0.92);
+  box-shadow:
+    inset 0 0 0 2px rgba(176, 111, 255, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .composer-reaction-solver-anchor:disabled {
