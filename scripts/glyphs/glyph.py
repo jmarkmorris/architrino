@@ -255,7 +255,7 @@ def render_prototype_svg() -> str:
             "  </text>",
             "",
             '  <text x="80" y="170" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">',
-            "    Canonical Neutral Binary (From Below)",
+            "    Canonical Neutral Binary",
             "  </text>",
             '  <text x="80" y="200" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">',
             "    Shows the electrino-positrino binary orbit and orbital axis only, without personality charges or epsilon labels.",

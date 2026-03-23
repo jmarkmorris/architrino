@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Canonical neutral binary glyph</title>
+  <desc id="desc">Canonical binary glyph with positrino above and electrino below.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10172a"/>
+      <stop offset="100%" stop-color="#090d18"/>
+    </linearGradient>
+    <linearGradient id="chipFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="chipSelected" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+    <filter id="glowPurple" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="0" dy="0" stdDeviation="5.5" flood-color="#9b5cff" flood-opacity="0.22"/>
+    </filter>
+    <filter id="glowBlue" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4.2" flood-color="#1b84ff" flood-opacity="0.28"/>
+    </filter>
+    <filter id="glowRed" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4.2" flood-color="#ff3d4a" flood-opacity="0.26"/>
+    </filter>
+    <filter id="chipSelectedGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#000000" flood-opacity="0.26"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+    <g id="baseBinaryGlyph">
+      <ellipse cx="0" cy="0" rx="60" ry="16" fill="none" stroke="#a259ff" stroke-width="3" filter="url(#glowPurple)"/>
+      <line x1="0" y1="-60" x2="0" y2="60" stroke="#a259ff" stroke-width="1.55" stroke-linecap="round" opacity="0.86"/>
+      <circle cx="-60" cy="0" r="9" fill="#1879ff" filter="url(#glowBlue)"/>
+      <circle cx="60" cy="0" r="9" fill="#ff3d3d" filter="url(#glowRed)"/>
+    </g>
+    <g id="personality-ee">
+      <use href="#baseBinaryGlyph"/>
+      <circle cx="0" cy="-60" r="8.2" fill="#1879ff" filter="url(#glowBlue)"/>
+      <circle cx="0" cy="60" r="8.2" fill="#1879ff" filter="url(#glowBlue)"/>
+    </g>
+    <g id="personality-pe">
+      <use href="#baseBinaryGlyph"/>
+      <circle cx="0" cy="-60" r="8.2" fill="#ff3d3d" filter="url(#glowRed)"/>
+      <circle cx="0" cy="60" r="8.2" fill="#1879ff" filter="url(#glowBlue)"/>
+    </g>
+    <g id="personality-pp">
+      <use href="#baseBinaryGlyph"/>
+      <circle cx="0" cy="-60" r="8.2" fill="#ff3d3d" filter="url(#glowRed)"/>
+      <circle cx="0" cy="60" r="8.2" fill="#ff3d3d" filter="url(#glowRed)"/>
+    </g>
+    <g id="personality-ep">
+      <use href="#baseBinaryGlyph"/>
+      <circle cx="0" cy="-60" r="8.2" fill="#1879ff" filter="url(#glowBlue)"/>
+      <circle cx="0" cy="60" r="8.2" fill="#ff3d3d" filter="url(#glowRed)"/>
+    </g>
+  </defs>
+  <g transform="translate(21 21)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="2.4" filter="url(#chipSelectedGlow)"/>
+    <text x="23" y="31" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
+    </text>
+    <text x="173" y="176" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600" text-anchor="end">
+      &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
+    </text>
+    <g transform="translate(99 99) scale(1.07)">
+      <use href="#personality-pe"/>
+    </g>
+  </g>
+</svg>
