@@ -1673,6 +1673,11 @@ body {
   padding-right: 4px;
 }
 
+.composer-reaction-solver-column.is-products {
+  padding-left: 48px;
+  padding-right: 0;
+}
+
 .composer-reaction-solver-center {
   display: grid;
   place-content: center;
@@ -1763,6 +1768,10 @@ body {
 
 .composer-reaction-solver-tree-row.is-product {
   grid-template-columns: 18px minmax(0, 1fr);
+}
+
+.composer-reaction-solver-tree-row.is-product .composer-reaction-solver-anchor {
+  transform: translateX(-24px);
 }
 
 .composer-reaction-solver-tree-row.is-disabled {
@@ -2890,6 +2899,14 @@ body {
   .composer-reaction-solver-participant,
   .composer-reaction-solver-participant.is-product {
     justify-content: flex-start;
+  }
+
+  .composer-reaction-solver-column.is-products {
+    padding-left: 0;
+  }
+
+  .composer-reaction-solver-tree-row.is-product .composer-reaction-solver-anchor {
+    transform: none;
   }
 
   .composer-header-status {

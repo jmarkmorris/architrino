@@ -89,6 +89,15 @@ function createProAntiCoreBranch(id) {
   };
 }
 
+function createCoreLeaf(id, label, inventory) {
+  return {
+    id,
+    label,
+    children: [],
+    inventory,
+  };
+}
+
 function buildHierarchyForTemplate(templateId, label) {
   const normalizedTemplate = String(templateId ?? "").trim().toLowerCase();
   if (normalizedTemplate === "higgs_cluster") {
@@ -101,10 +110,25 @@ function buildHierarchyForTemplate(templateId, label) {
             id: "root/higgs_cluster",
             label: "Higgs cluster",
             children: [
-              createProAntiCoreBranch("root/higgs_cluster/proanti_core_1"),
-              createProAntiCoreBranch("root/higgs_cluster/proanti_core_2"),
+              createCoreLeaf("root/higgs_cluster/pro_core_1", "Pro core", { proCore: 1 }),
+              createCoreLeaf("root/higgs_cluster/anti_core_1", "Anti core", { antiCore: 1 }),
+              createCoreLeaf("root/higgs_cluster/pro_core_2", "Pro core", { proCore: 1 }),
+              createCoreLeaf("root/higgs_cluster/anti_core_2", "Anti core", { antiCore: 1 }),
             ],
           },
+        ],
+      },
+    ];
+  }
+  if (normalizedTemplate === "electron") {
+    return [
+      {
+        id: "root",
+        label: "pro Noether core",
+        children: [
+          createBinaryBranch("root/inner", "inner binary with personality"),
+          createBinaryBranch("root/middle", "middle binary with personality"),
+          createBinaryBranch("root/outer", "outer binary with personality"),
         ],
       },
     ];
@@ -118,6 +142,19 @@ function buildHierarchyForTemplate(templateId, label) {
           createBinaryBranch("root/inner", "inner binary", { withPersonality: false }),
           createBinaryBranch("root/middle", "middle binary", { withPersonality: false }),
           createBinaryBranch("root/outer", "outer binary", { withPersonality: false }),
+        ],
+      },
+    ];
+  }
+  if (normalizedTemplate === "up_quark" || normalizedTemplate === "down_quark") {
+    return [
+      {
+        id: "root",
+        label: "pro Noether core",
+        children: [
+          createBinaryBranch("root/inner", "inner binary with personality"),
+          createBinaryBranch("root/middle", "middle binary with personality"),
+          createBinaryBranch("root/outer", "outer binary with personality"),
         ],
       },
     ];
