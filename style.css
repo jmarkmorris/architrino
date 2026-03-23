@@ -1715,7 +1715,7 @@ body {
 }
 
 .composer-reaction-solver-participant.has-inline-field-header .composer-reaction-solver-particle {
-  margin-top: 14px;
+  margin-top: 24px;
 }
 
 .composer-reaction-solver-participant.is-product {
@@ -1723,44 +1723,34 @@ body {
 }
 
 .composer-reaction-solver-particle {
-  width: 112px;
-  min-width: 112px;
-  padding: 12px 10px;
+  width: var(--binary-choice-size, 72px);
+  min-width: var(--binary-choice-size, 72px);
+  height: var(--binary-choice-size, 72px);
+  padding: 8px 6px;
   border-radius: 16px;
-  border: 1px solid color-mix(in srgb, var(--solver-accent) 22%, rgba(255, 255, 255, 0.06));
-  background:
-    radial-gradient(circle at 30% 22%, color-mix(in srgb, var(--solver-accent) 44%, transparent), transparent 40%),
-    linear-gradient(180deg, rgba(18, 26, 48, 0.94), rgba(13, 18, 32, 0.96));
+  border: 2px solid color-mix(in srgb, var(--solver-accent) 62%, rgba(255, 255, 255, 0.14));
+  background: rgba(12, 16, 30, 0.9);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 0 1px color-mix(in srgb, var(--solver-accent) 10%, transparent);
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0;
   text-align: center;
 }
 
-.composer-reaction-solver-particle-badge {
+.composer-reaction-solver-particle-label {
   display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 10px;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--solver-accent) 74%, rgba(255, 255, 255, 0.12));
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.14), transparent 46%),
-    color-mix(in srgb, var(--solver-accent) 28%, rgba(22, 26, 42, 0.94));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 0 18px color-mix(in srgb, var(--solver-accent) 16%, transparent);
-  color: #f8fbff;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  justify-items: center;
+  gap: 1px;
+  font-size: 10px;
+  line-height: 1.15;
+  color: rgba(244, 247, 255, 0.88);
 }
 
-.composer-reaction-solver-particle-label {
-  font-size: 11px;
-  line-height: 1.35;
-  color: rgba(244, 247, 255, 0.88);
+.composer-reaction-solver-particle-label-line {
+  display: block;
 }
 
 .composer-reaction-solver-tree {
@@ -1971,6 +1961,25 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row.has-selector {
+  position: relative;
+  width: fit-content;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row.has-selector > .composer-reaction-solver-inline-anchor-lane {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row.has-selector.is-product > .composer-reaction-solver-inline-anchor-lane {
+  left: -28px;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row.has-selector:not(.is-product) > .composer-reaction-solver-inline-anchor-lane {
+  right: -28px;
 }
 
 .composer-reaction-solver-binary-selector.is-product {

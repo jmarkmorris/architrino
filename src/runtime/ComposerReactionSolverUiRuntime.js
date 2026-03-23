@@ -316,6 +316,20 @@ function getTemplateMeta(templateId, label = "") {
   };
 }
 
+function getParticipantCardLabelLines(label = "") {
+  const words = String(label || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (words.length <= 1) {
+    return [String(label || "").trim() || "?"];
+  }
+  if (words.length === 2) {
+    return words;
+  }
+  return [words.slice(0, -1).join(" "), words.at(-1) ?? ""];
+}
+
 function buildNodeKey(participantId, nodeId) {
   return `${participantId}::${nodeId}`;
 }
@@ -841,7 +855,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       templateEntry.template === "higgs_cluster"
         ? "Higgs cluster"
         : templateEntry.template === "noether_core"
-          ? "pro Noether core"
+          ? "Noether core"
           : templateEntry.label;
     const participant = {
       id: `solver_participant_${state.nextParticipantId++}`,
@@ -1247,6 +1261,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       row.className = `composer-reaction-solver-higgs-cluster-grid-row is-${participant.side}`;
       const { tiles } = createNoetherCoreGridSections(participant, coreNode);
       if (index === 0) {
+        row.classList.add("has-selector");
         if (participant.side === "product") {
           row.append(createInlineAnchorLane(participant, node, nodeKey), tiles);
         } else {
@@ -1414,13 +1429,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     visual.className = "composer-reaction-solver-particle";
     const meta = getTemplateMeta(participant.templateId, participant.label);
     visual.style.setProperty("--solver-accent", meta.accent);
-    const visualBadge = document.createElement("div");
-    visualBadge.className = "composer-reaction-solver-particle-badge";
-    visualBadge.textContent = meta.shortLabel;
     const visualLabel = document.createElement("div");
     visualLabel.className = "composer-reaction-solver-particle-label";
-    visualLabel.textContent = participant.label;
-    visual.append(visualBadge, visualLabel);
+    getParticipantCardLabelLines(participant.label).forEach((line) => {
+      const lineElement = document.createElement("span");
+      lineElement.className = "composer-reaction-solver-particle-label-line";
+      lineElement.textContent = line;
+      visualLabel.appendChild(lineElement);
+    });
+    visual.appendChild(visualLabel);
 
     const hierarchy = document.createElement("div");
     hierarchy.className = `composer-reaction-solver-tree is-${participant.side}`;
