@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 560" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 860" role="img" aria-labelledby="title desc">
   <title id="title">AAA Glyphs</title>
-  <desc id="desc">Prototype board for canonical binary personality glyphs using purple orbit structure and red-blue architrino dots.</desc>
+  <desc id="desc">Prototype board for canonical neutral and personality binary glyphs using purple orbit structure and red-blue architrino dots.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#10172a"/>
@@ -32,7 +32,7 @@
     </filter>
     <g id="baseBinaryGlyph">
       <ellipse cx="0" cy="0" rx="60" ry="16" fill="none" stroke="#a259ff" stroke-width="3" filter="url(#glowPurple)"/>
-      <line x1="0" y1="-60" x2="0" y2="60" stroke="#a259ff" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="8 8" opacity="0.72"/>
+      <line x1="0" y1="-60" x2="0" y2="60" stroke="#a259ff" stroke-width="1.55" stroke-linecap="round" opacity="0.86"/>
       <circle cx="-60" cy="0" r="9" fill="#1879ff" filter="url(#glowBlue)"/>
       <circle cx="60" cy="0" r="9" fill="#ff3d3d" filter="url(#glowRed)"/>
     </g>
@@ -58,20 +58,34 @@
     </g>
   </defs>
 
-  <rect width="1480" height="560" fill="url(#bg)"/>
+  <rect width="1480" height="860" fill="url(#bg)"/>
 
   <text x="80" y="82" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">
     AAA Glyphs
   </text>
 
-  <text x="80" y="190" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">
+  <text x="80" y="170" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">
+    Canonical Neutral Binary (From Below)
+  </text>
+  <text x="80" y="200" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">
+    Shows the electrino-positrino binary orbit and orbital axis only, without personality charges or epsilon labels.
+  </text>
+
+  <g transform="translate(90 236)">
+    <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#b889ff" stroke-width="2.4" filter="url(#shadow)"/>
+    <g transform="translate(99 99) scale(1.07)">
+      <use href="#baseBinaryGlyph"/>
+    </g>
+  </g>
+
+  <text x="80" y="510" fill="#f4f7ff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">
     Canonical Binary Personality Set
   </text>
-  <text x="80" y="220" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">
+  <text x="80" y="540" fill="#98a8cb" font-family="Inter, Arial, sans-serif" font-size="15">
     Full four-state vocabulary is shown here. Reduced menus use e/e, p/e, p/p, with p/e as the canonical neutral representative.
   </text>
 
-  <g transform="translate(90 270)">
+  <g transform="translate(90 590)">
     <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#3c8dff" stroke-width="2.4" filter="url(#shadow)"/>
     <text x="23" y="31" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
       &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
@@ -84,7 +98,7 @@
     </g>
   </g>
 
-  <g transform="translate(375 270)">
+  <g transform="translate(375 590)">
     <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="2.4" filter="url(#chipSelectedGlow)"/>
     <text x="23" y="31" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
       &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>
@@ -97,7 +111,7 @@
     </g>
   </g>
 
-  <g transform="translate(660 270)">
+  <g transform="translate(660 590)">
     <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipSelected)" stroke="#b889ff" stroke-width="2.4" filter="url(#chipSelectedGlow)"/>
     <text x="23" y="31" fill="#1879ff" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
       &#x03F5;<tspan baseline-shift="super" font-size="16">-</tspan>
@@ -110,7 +124,7 @@
     </g>
   </g>
 
-  <g transform="translate(945 270)">
+  <g transform="translate(945 590)">
     <rect x="0" y="0" width="198" height="198" rx="7" fill="url(#chipFill)" stroke="#ff5561" stroke-width="2.4" filter="url(#shadow)"/>
     <text x="23" y="31" fill="#ff3d3d" font-family="STIX Two Text, Cambria Math, Georgia, serif" font-size="23" font-weight="600">
       &#x03F5;<tspan baseline-shift="super" font-size="16">+</tspan>

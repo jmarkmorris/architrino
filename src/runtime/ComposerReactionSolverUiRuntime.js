@@ -9,6 +9,76 @@ const solverTemplateMeta = Object.freeze({
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
+const binaryPersonalityChoices = Object.freeze([
+  { id: "ee", label: "e/e", top: "electrino", bottom: "electrino", accent: "#2f6fff" },
+  { id: "ep", label: "e/p", top: "electrino", bottom: "positrino", accent: "#9a47d1" },
+  { id: "pe", label: "p/e", top: "positrino", bottom: "electrino", accent: "#9a47d1" },
+  { id: "pp", label: "p/p", top: "positrino", bottom: "positrino", accent: "#ff4a1f" },
+]);
+const defaultBinaryPersonalityChoiceId = "pe";
+const reducedBinaryPersonalityChoiceIds = Object.freeze(["ee", "pe", "pp"]);
+const binaryChoiceKindById = Object.freeze({
+  ee: "negative",
+  ep: "neutral",
+  pe: "neutral",
+  pp: "positive",
+});
+const binarySlotRankByCode = Object.freeze({
+  I: 0,
+  M: 1,
+  O: 2,
+});
+const binarySelectorTemplateRules = Object.freeze({
+  default: Object.freeze({
+    visibleChoiceIds: reducedBinaryPersonalityChoiceIds,
+    defaultBySlot: Object.freeze({
+      I: "pe",
+      M: "pe",
+      O: "pe",
+    }),
+  }),
+  electron: Object.freeze({
+    visibleChoiceIds: Object.freeze(["ee"]),
+    defaultBySlot: Object.freeze({
+      I: "ee",
+      M: "ee",
+      O: "ee",
+    }),
+  }),
+  up_quark: Object.freeze({
+    visibleChoiceIds: Object.freeze(["pe", "pp"]),
+    allowedCountPatterns: Object.freeze([
+      Object.freeze({
+        neutral: 1,
+        positive: 2,
+      }),
+    ]),
+    defaultBySlot: Object.freeze({
+      I: "pp",
+      M: "pe",
+      O: "pp",
+    }),
+  }),
+  down_quark: Object.freeze({
+    visibleChoiceIds: Object.freeze(["ee", "pe", "pp"]),
+    allowedCountPatterns: Object.freeze([
+      Object.freeze({
+        negative: 1,
+        neutral: 2,
+      }),
+      Object.freeze({
+        negative: 2,
+        positive: 1,
+      }),
+    ]),
+    defaultBySlot: Object.freeze({
+      I: "pe",
+      M: "ee",
+      O: "pe",
+    }),
+  }),
+});
+
 function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const entries = [];
   const seen = new Set();
@@ -30,10 +100,12 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   return entries;
 }
 
-function createBinaryBranch(id, label, { withPersonality = true } = {}) {
+function createBinaryBranch(id, label, { withPersonality = true, slotCode = "" } = {}) {
   return {
     id,
     label,
+    renderMode: withPersonality ? "binary-selector" : "",
+    slotCode: String(slotCode || "").trim().toUpperCase(),
     children: withPersonality
       ? [
           {
@@ -126,9 +198,9 @@ function buildHierarchyForTemplate(templateId, label) {
         id: "root",
         label: "pro Noether core",
         children: [
-          createBinaryBranch("root/inner", "inner binary with personality"),
-          createBinaryBranch("root/middle", "middle binary with personality"),
-          createBinaryBranch("root/outer", "outer binary with personality"),
+          createBinaryBranch("root/inner", "inner binary with personality", { slotCode: "I" }),
+          createBinaryBranch("root/middle", "middle binary with personality", { slotCode: "M" }),
+          createBinaryBranch("root/outer", "outer binary with personality", { slotCode: "O" }),
         ],
       },
     ];
@@ -139,9 +211,9 @@ function buildHierarchyForTemplate(templateId, label) {
         id: "root",
         label,
         children: [
-          createBinaryBranch("root/inner", "inner binary", { withPersonality: false }),
-          createBinaryBranch("root/middle", "middle binary", { withPersonality: false }),
-          createBinaryBranch("root/outer", "outer binary", { withPersonality: false }),
+          createBinaryBranch("root/inner", "inner binary", { withPersonality: false, slotCode: "I" }),
+          createBinaryBranch("root/middle", "middle binary", { withPersonality: false, slotCode: "M" }),
+          createBinaryBranch("root/outer", "outer binary", { withPersonality: false, slotCode: "O" }),
         ],
       },
     ];
@@ -152,9 +224,9 @@ function buildHierarchyForTemplate(templateId, label) {
         id: "root",
         label: "pro Noether core",
         children: [
-          createBinaryBranch("root/inner", "inner binary with personality"),
-          createBinaryBranch("root/middle", "middle binary with personality"),
-          createBinaryBranch("root/outer", "outer binary with personality"),
+          createBinaryBranch("root/inner", "inner binary with personality", { slotCode: "I" }),
+          createBinaryBranch("root/middle", "middle binary with personality", { slotCode: "M" }),
+          createBinaryBranch("root/outer", "outer binary with personality", { slotCode: "O" }),
         ],
       },
     ];
@@ -164,9 +236,9 @@ function buildHierarchyForTemplate(templateId, label) {
       id: "root",
       label: "pro/anti Noether core",
       children: [
-        createBinaryBranch("root/inner", "inner binary with personality"),
-        createBinaryBranch("root/middle", "middle binary with personality"),
-        createBinaryBranch("root/outer", "outer binary with personality"),
+        createBinaryBranch("root/inner", "inner binary with personality", { slotCode: "I" }),
+        createBinaryBranch("root/middle", "middle binary with personality", { slotCode: "M" }),
+        createBinaryBranch("root/outer", "outer binary with personality", { slotCode: "O" }),
       ],
     },
   ];
@@ -226,6 +298,185 @@ function nodeKeysConflict(leftKey, rightKey) {
 function countDescendants(node) {
   const children = Array.isArray(node?.children) ? node.children : [];
   return children.reduce((total, child) => total + 1 + countDescendants(child), 0);
+}
+
+function shouldRenderChildNodes(node) {
+  return node?.renderMode !== "binary-selector";
+}
+
+function getBinaryPersonalityChoice(choiceId) {
+  return (
+    binaryPersonalityChoices.find((choice) => choice.id === choiceId) ??
+    binaryPersonalityChoices.find((choice) => choice.id === defaultBinaryPersonalityChoiceId) ??
+    binaryPersonalityChoices[0]
+  );
+}
+
+function getBinaryChoiceKind(choiceId) {
+  return binaryChoiceKindById[choiceId] ?? "neutral";
+}
+
+function getBinarySelectorTemplateRule(templateId) {
+  const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
+  return (
+    binarySelectorTemplateRules[normalizedTemplateId] ??
+    binarySelectorTemplateRules.default
+  );
+}
+
+function collectBinarySelectorNodes(nodes = [], bucket = []) {
+  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
+    if (node?.renderMode === "binary-selector") {
+      bucket.push(node);
+    }
+    collectBinarySelectorNodes(node?.children, bucket);
+  });
+  return bucket;
+}
+
+function getBinarySelectorNodes(participant) {
+  return collectBinarySelectorNodes(participant?.hierarchy, []).sort((left, right) => {
+    const leftRank = binarySlotRankByCode[left?.slotCode] ?? Number.MAX_SAFE_INTEGER;
+    const rightRank = binarySlotRankByCode[right?.slotCode] ?? Number.MAX_SAFE_INTEGER;
+    if (leftRank !== rightRank) {
+      return leftRank - rightRank;
+    }
+    return String(left?.id ?? "").localeCompare(String(right?.id ?? ""));
+  });
+}
+
+function getDefaultBinaryChoiceIdForNode(participant, node) {
+  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+  const slotCode = String(node?.slotCode ?? "").trim().toUpperCase();
+  const defaultChoiceId = rule.defaultBySlot?.[slotCode];
+  if (defaultChoiceId && rule.visibleChoiceIds.includes(defaultChoiceId)) {
+    return defaultChoiceId;
+  }
+  return (
+    rule.visibleChoiceIds[0] ??
+    reducedBinaryPersonalityChoiceIds[0] ??
+    defaultBinaryPersonalityChoiceId
+  );
+}
+
+function getFallbackBinarySelections(participant) {
+  const selectionMap = {};
+  getBinarySelectorNodes(participant).forEach((node) => {
+    selectionMap[node.id] = getDefaultBinaryChoiceIdForNode(participant, node);
+  });
+  return selectionMap;
+}
+
+function countBinarySelectionKinds(selectionMap = {}, nodes = []) {
+  const counts = {
+    negative: 0,
+    neutral: 0,
+    positive: 0,
+  };
+  nodes.forEach((node) => {
+    const choiceId = selectionMap[node.id];
+    counts[getBinaryChoiceKind(choiceId)] += 1;
+  });
+  return counts;
+}
+
+function matchesAllowedBinarySelectionPatterns(selectionMap = {}, nodes = [], patterns = null) {
+  if (!Array.isArray(patterns) || !patterns.length) {
+    return true;
+  }
+  const actualCounts = countBinarySelectionKinds(selectionMap, nodes);
+  return patterns.some((pattern) =>
+    Object.entries(pattern).every(([kind, requiredCount]) => actualCounts[kind] === requiredCount)
+  );
+}
+
+function scoreBinarySelectionAssignment({
+  assignment,
+  currentSelections,
+  defaultSelections,
+  pinnedNodeId = "",
+}) {
+  return Object.keys(assignment).reduce((score, nodeId) => {
+    let nextScore = score;
+    if (nodeId === pinnedNodeId) {
+      nextScore += 1000;
+    }
+    if (assignment[nodeId] === currentSelections[nodeId]) {
+      nextScore += 100;
+    }
+    if (assignment[nodeId] === defaultSelections[nodeId]) {
+      nextScore += 10;
+    }
+    return nextScore;
+  }, 0);
+}
+
+function findBestBinarySelectionAssignment(
+  participant,
+  { pinnedNodeId = "", pinnedChoiceId = "" } = {}
+) {
+  const nodes = getBinarySelectorNodes(participant);
+  if (!nodes.length) {
+    return {};
+  }
+  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+  const defaultSelections = getFallbackBinarySelections(participant);
+  const currentSelections = {};
+  nodes.forEach((node) => {
+    const currentChoiceId = participant?.binarySelections?.[node.id];
+    currentSelections[node.id] = rule.visibleChoiceIds.includes(currentChoiceId)
+      ? currentChoiceId
+      : defaultSelections[node.id];
+  });
+
+  if (pinnedNodeId && !rule.visibleChoiceIds.includes(pinnedChoiceId)) {
+    return null;
+  }
+
+  let bestAssignment = null;
+  let bestScore = Number.NEGATIVE_INFINITY;
+  const draft = {};
+
+  function visit(index) {
+    if (index >= nodes.length) {
+      if (!matchesAllowedBinarySelectionPatterns(draft, nodes, rule.allowedCountPatterns)) {
+        return;
+      }
+      const score = scoreBinarySelectionAssignment({
+        assignment: draft,
+        currentSelections,
+        defaultSelections,
+        pinnedNodeId,
+      });
+      if (score > bestScore) {
+        bestScore = score;
+        bestAssignment = { ...draft };
+      }
+      return;
+    }
+
+    const node = nodes[index];
+    const choiceIds =
+      node.id === pinnedNodeId ? [pinnedChoiceId] : rule.visibleChoiceIds;
+    choiceIds.forEach((choiceId) => {
+      draft[node.id] = choiceId;
+      visit(index + 1);
+    });
+    delete draft[node.id];
+  }
+
+  visit(0);
+  return bestAssignment;
+}
+
+function getAllowedBinaryChoiceIds(participant, node) {
+  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+  return rule.visibleChoiceIds.filter((choiceId) =>
+    !!findBestBinarySelectionAssignment(participant, {
+      pinnedNodeId: node?.id,
+      pinnedChoiceId: choiceId,
+    })
+  );
 }
 
 function findHierarchyNodeById(nodes = [], nodeId = "") {
@@ -430,12 +681,38 @@ export function createComposerReactionSolverUiRuntime(deps) {
             if (!getAnchorAvailability("product", nodeKey).disabled) {
               count += 1;
             }
-            visit(node.children);
+            if (shouldRenderChildNodes(node)) {
+              visit(node.children);
+            }
           });
         };
         visit(participant.hierarchy);
       });
     return count;
+  }
+
+  function getBinaryPersonalitySelection(participant, node) {
+    const selectionMap =
+      findBestBinarySelectionAssignment(participant) ??
+      getFallbackBinarySelections(participant);
+    return getBinaryPersonalityChoice(selectionMap[node?.id]);
+  }
+
+  function setBinaryPersonalitySelection(participantId, nodeId, choiceId) {
+    const participant = findParticipantById(participantId);
+    if (!participant || !nodeId) {
+      return;
+    }
+    const nextSelections =
+      findBestBinarySelectionAssignment(participant, {
+        pinnedNodeId: nodeId,
+        pinnedChoiceId: getBinaryPersonalityChoice(choiceId).id,
+      }) ?? null;
+    if (!nextSelections) {
+      return;
+    }
+    participant.binarySelections = nextSelections;
+    render();
   }
 
   function closeMenu() {
@@ -506,7 +783,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
       templateId: templateEntry.template,
       label: participantLabel,
       hierarchy: buildHierarchyForTemplate(templateEntry.template, participantLabel),
+      binarySelections: {},
     };
+    participant.binarySelections =
+      findBestBinarySelectionAssignment(participant) ??
+      getFallbackBinarySelections(participant);
     state.participants.push(participant);
     state.pendingSourceKey = "";
     closeMenu();
@@ -643,6 +924,106 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setStatus("Reaction mapping added.");
   }
 
+  function createBinaryGlyph(choice) {
+    const glyph = createSvgElement("svg");
+    glyph.classList.add("composer-reaction-solver-binary-glyph");
+    glyph.setAttribute("viewBox", "0 0 120 120");
+    glyph.setAttribute("aria-hidden", "true");
+
+    const orbit = createSvgElement("ellipse");
+    orbit.classList.add("composer-reaction-solver-binary-glyph-orbit");
+    orbit.setAttribute("cx", "60");
+    orbit.setAttribute("cy", "60");
+    orbit.setAttribute("rx", "38");
+    orbit.setAttribute("ry", "13");
+    glyph.appendChild(orbit);
+
+    const axis = createSvgElement("line");
+    axis.classList.add("composer-reaction-solver-binary-glyph-axis");
+    axis.setAttribute("x1", "60");
+    axis.setAttribute("y1", "18");
+    axis.setAttribute("x2", "60");
+    axis.setAttribute("y2", "102");
+    glyph.appendChild(axis);
+
+    const leftPole = createSvgElement("circle");
+    leftPole.classList.add("composer-reaction-solver-binary-dot", "is-left", "is-electrino");
+    leftPole.setAttribute("cx", "22");
+    leftPole.setAttribute("cy", "60");
+    leftPole.setAttribute("r", "8.5");
+    glyph.appendChild(leftPole);
+
+    const rightPole = createSvgElement("circle");
+    rightPole.classList.add("composer-reaction-solver-binary-dot", "is-right", "is-positrino");
+    rightPole.setAttribute("cx", "98");
+    rightPole.setAttribute("cy", "60");
+    rightPole.setAttribute("r", "8.5");
+    glyph.appendChild(rightPole);
+
+    const topDot = createSvgElement("circle");
+    topDot.classList.add("composer-reaction-solver-binary-dot", "is-top", `is-${choice.top}`);
+    topDot.setAttribute("cx", "60");
+    topDot.setAttribute("cy", "18");
+    topDot.setAttribute("r", "7.8");
+    glyph.appendChild(topDot);
+
+    const bottomDot = createSvgElement("circle");
+    bottomDot.classList.add("composer-reaction-solver-binary-dot", "is-bottom", `is-${choice.bottom}`);
+    bottomDot.setAttribute("cx", "60");
+    bottomDot.setAttribute("cy", "102");
+    bottomDot.setAttribute("r", "7.8");
+    glyph.appendChild(bottomDot);
+
+    return glyph;
+  }
+
+  function createBinarySelectorContent(participant, node) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-binary-selector is-${participant.side}`;
+    const slot = document.createElement("span");
+    slot.className = "composer-reaction-solver-binary-slot";
+    slot.textContent = node.slotCode || "?";
+    const choices = document.createElement("div");
+    choices.className = "composer-reaction-solver-binary-choices";
+    choices.style.setProperty(
+      "--binary-choice-columns",
+      String(reducedBinaryPersonalityChoiceIds.length)
+    );
+    const selectedChoice = getBinaryPersonalitySelection(participant, node);
+    const allowedChoiceIds = getAllowedBinaryChoiceIds(participant, node);
+
+    allowedChoiceIds.forEach((choiceId) => {
+      const choice = getBinaryPersonalityChoice(choiceId);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "composer-reaction-solver-binary-choice";
+      button.dataset.choiceId = choice.id;
+      button.style.setProperty("--binary-choice-accent", choice.accent);
+      button.setAttribute(
+        "aria-label",
+        `${node.label}: ${choice.label}`
+      );
+      button.title = choice.label;
+      if (selectedChoice.id === choice.id) {
+        button.classList.add("is-selected");
+      } else {
+        button.classList.add("is-dimmed");
+      }
+      button.appendChild(createBinaryGlyph(choice));
+      button.addEventListener("click", () =>
+        setBinaryPersonalitySelection(participant.id, node.id, choice.id)
+      );
+      choices.appendChild(button);
+    });
+
+    if (participant.side === "product") {
+      wrapper.append(choices, slot);
+    } else {
+      wrapper.append(slot, choices);
+    }
+    return wrapper;
+  }
+
   function renderParticipantTreeRows(parent, participant, nodes, depth = 0) {
     if (!parent || !Array.isArray(nodes) || !nodes.length) {
       return;
@@ -650,8 +1031,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     nodes.forEach((node) => {
       const nodeKey = buildNodeKey(participant.id, node.id);
       const hasChildren = Array.isArray(node.children) && node.children.length > 0;
+      const canRenderChildren = hasChildren && shouldRenderChildNodes(node);
       const mapping = findMappingByNodeKey(nodeKey);
-      const isCollapsed = !!mapping && hasChildren;
+      const isCollapsed = !!mapping && canRenderChildren;
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
       const anchorAvailability = getAnchorAvailability(participant.side, nodeKey);
       const row = document.createElement("div");
@@ -700,9 +1082,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
               textContent: `${hiddenDescendantCount} hidden`,
             })
           : null;
-      content.appendChild(label);
-      if (collapsedNote) {
-        content.appendChild(collapsedNote);
+      if (node.renderMode === "binary-selector") {
+        row.classList.add("is-binary-selector");
+        content.appendChild(createBinarySelectorContent(participant, node));
+      } else {
+        content.appendChild(label);
+        if (collapsedNote) {
+          content.appendChild(collapsedNote);
+        }
       }
       if (participant.side === "product") {
         row.append(anchor, content);
@@ -710,7 +1097,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         row.append(content, anchor);
       }
       parent.appendChild(row);
-      if (hasChildren && !isCollapsed) {
+      if (canRenderChildren && !isCollapsed) {
         renderParticipantTreeRows(parent, participant, node.children, depth + 1);
       }
     });

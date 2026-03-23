@@ -1795,6 +1795,122 @@ body {
   padding-inline-start: calc(var(--solver-depth, 0) * 4ch);
 }
 
+.composer-reaction-solver-tree-row.is-binary-selector {
+  min-height: 68px;
+}
+
+.composer-reaction-solver-binary-selector {
+  display: grid;
+  grid-template-columns: auto max-content;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  width: fit-content;
+}
+
+.composer-reaction-solver-binary-selector.is-product {
+  grid-template-columns: max-content auto;
+}
+
+.composer-reaction-solver-binary-slot {
+  flex: 0 0 auto;
+  width: 18px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(226, 233, 255, 0.82);
+  text-align: center;
+}
+
+.composer-reaction-solver-binary-choices {
+  display: grid;
+  grid-template-columns: repeat(var(--binary-choice-columns, 3), 72px);
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.composer-reaction-solver-binary-choice {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  width: 72px;
+  height: 54px;
+  padding: 0;
+  border-radius: 16px;
+  border: 2px solid color-mix(in srgb, var(--binary-choice-accent) 74%, rgba(255, 255, 255, 0.14));
+  background: rgba(12, 16, 30, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease,
+    border-color 120ms ease,
+    background 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.composer-reaction-solver-binary-choice.is-selected {
+  background: color-mix(in srgb, var(--binary-choice-accent) 12%, rgba(12, 16, 30, 0.92));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 1px color-mix(in srgb, var(--binary-choice-accent) 36%, transparent),
+    0 0 22px color-mix(in srgb, var(--binary-choice-accent) 18%, transparent);
+}
+
+.composer-reaction-solver-binary-choice.is-dimmed {
+  opacity: 0.34;
+}
+
+.composer-reaction-solver-binary-choice:hover,
+.composer-reaction-solver-binary-choice:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 86%, rgba(255, 255, 255, 0.22));
+  outline: none;
+}
+
+.composer-reaction-solver-binary-glyph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.composer-reaction-solver-binary-glyph-orbit {
+  fill: none;
+  stroke: rgba(162, 89, 255, 0.96);
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 4px rgba(162, 89, 255, 0.22));
+}
+
+.composer-reaction-solver-binary-glyph-axis {
+  fill: none;
+  stroke: rgba(162, 89, 255, 0.82);
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.84;
+}
+
+.composer-reaction-solver-binary-dot {
+  vector-effect: non-scaling-stroke;
+}
+
+.composer-reaction-solver-binary-dot.is-electrino {
+  fill: #1879ff;
+  filter: drop-shadow(0 0 4px rgba(24, 121, 255, 0.34));
+}
+
+.composer-reaction-solver-binary-dot.is-positrino {
+  fill: #ff3d3d;
+  filter: drop-shadow(0 0 4px rgba(255, 61, 61, 0.32));
+}
+
 .composer-reaction-solver-tree-label {
   font-size: 12px;
   line-height: 1.35;
