@@ -12,10 +12,29 @@
 - In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
 - For textbook-facing prose and notation in `content/markdown/aaa`, follow the Archie guides in `content/markdown/aaa/archie/academic-style-guide.md`, `content/markdown/aaa/archie/mathematics-style-guide.md`, and `content/markdown/aaa/archie/mathematics-terminology.md` as applicable.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
+- Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.
+- In theory-facing prose, distinguish carefully between:
+  - ontological claims,
+  - dynamical or symmetry-based derivations,
+  - effective/coarse-grained summaries,
+  - and speculative extensions.
+- When an insight feels foundational, prefer wording such as "deeper basis," "ontological basis," "microscopic ledger," or "stronger claim than" before escalating to universal statements like "root of all" or "explains everything."
+- Do not flatten a real insight into timid prose; keep the force of the insight, but name its scope, what it directly establishes, and what still requires separate argument.
 - Use causal-delay terminology in prose (`causal`, `delayed`, `path-history`) and avoid `retard`/`retarded` wording outside literal quotations or code identifiers.
 - Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
 - When giving the user step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one ELI5 step at a time.
 - When asking the user questions needed to proceed, ask them one at a time and phrase each question in ELI5 terms.
+- The user-visible composer header version in `index.html` should increment by `1` on each code-changing turn. The baseline has been reset to `v1`; the next code-changing turn should become `v2`.
+
+## SWE Architecture and Modularity
+
+- Prefer small, single-purpose modules over extending large coordinator files.
+- Treat `app.js` and similarly large entrypoint/runtime files as composition roots and wiring layers, not as the long-term home for new feature logic.
+- When adding a discrete feature, UI mode, workflow, data transform, or interaction model, first look for a new or existing focused runtime/service/helper file where that logic can live; keep the top-level file changes as thin wiring only.
+- Reuse existing helpers, factories, normalization paths, and UI primitives before adding parallel one-off implementations.
+- If a file is already large or hard to reason about, do not keep piling onto it unless the change is genuinely tiny; extract related logic while the feature is being added so the codebase moves toward clearer boundaries rather than away from them.
+- Prefer boundaries based on responsibility: rendering, state, parsing/normalization, menu construction, domain logic, and persistence should be separable when practical.
+- If a refactor is too large to finish in one pass, still isolate the new work behind a clean seam so later extraction is straightforward instead of leaving another layer of spaghetti.
 
 ## Commit Audits (Run Every Turn Before Commit)
 

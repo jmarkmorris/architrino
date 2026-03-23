@@ -83,7 +83,6 @@ export function getComposerTimelineAuthoringItems(
   const overlays = Array.isArray(documentData?.overlays) ? documentData.overlays : [];
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const warps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
-  const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
   return [
     ...overlays.map((overlay) => ({
       id: overlay?.id ?? "",
@@ -110,13 +109,6 @@ export function getComposerTimelineAuthoringItems(
       label: "Warp",
       start: Number(warp?.start ?? 0),
       end: Number(warp?.end ?? warp?.start ?? 0),
-    })),
-    ...reactions.map((reaction) => ({
-      id: reaction?.id ?? "",
-      kind: "reaction",
-      label: reaction?.label ?? "Reaction",
-      start: Number(reaction?.start ?? 0),
-      end: Number(reaction?.end ?? reaction?.start ?? 0),
     })),
   ];
 }

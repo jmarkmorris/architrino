@@ -35,12 +35,18 @@ export function createPeriodicOverlayRuntime(deps) {
   let hydeHotspotTemplates = null;
   let hydeInitialFocusTarget = null;
   let hydeActiveHotspotTarget = null;
+  let hydeActiveHotspotRing = null;
+  let hydeHoverHotspotTarget = null;
+  let hydeHoverHotspotRing = null;
   let hydeHotspotNodesInSpiralOrder = [];
   let hydeHotspotAtomicNumbersInOrder = [];
   let hydeHotspotCycleAtomicNumbersInOrder = [];
   let hydeHotspotNodeByAtomicNumber = new Map();
   let hydePeriodicWasOpen = false;
   let elementInfoPinned = false;
+  const hydeHintNavButtons = hydePeriodicOverlay
+    ? Array.from(hydePeriodicOverlay.querySelectorAll(".hyde-periodic-nav-key"))
+    : [];
   const activePeriodicSceneId =
     typeof periodicSceneId === "string" && periodicSceneId ? periodicSceneId : "periodic_table";
   const activeHydePeriodicSceneId =
@@ -170,6 +176,8 @@ export function createPeriodicOverlayRuntime(deps) {
   };
   const hydeViewBoxWidth = 2592;
   const hydeViewBoxHeight = 1944;
+  const hydeHotspotRadiusScale = 1.2;
+  const hydeHotspotActiveStrokeWidth = 5.8;
   const svgNamespace = "http://www.w3.org/2000/svg";
   const hydeAtomicCycleOrder = [
     1,
@@ -253,6 +261,130 @@ export function createPeriodicOverlayRuntime(deps) {
     return /\bk\b/iu.test(text) ? text : `${text} K`;
   }
 
+  function getElementInfoData(element) {
+    if (!element) {
+      return null;
+    }
+    const protons = element.number ?? 0;
+    const neutrons = Math.max(0, Math.round(element.atomic_mass ?? 0) - protons);
+    const electrons = protons;
+    const orbitals =
+      typeof element.electron_configuration_semantic === "string"
+        ? element.electron_configuration_semantic.split(/\s+/).filter(Boolean)
+        : [];
+    const titleName = String(element.name || element.symbol || "").toUpperCase();
+    const titleSymbol = String(element.symbol || "").toUpperCase();
+    return {
+      title: titleSymbol ? `${titleName} (${titleSymbol})` : titleName,
+      fields: [
+        ["Atomic #", element.number],
+        ["Category", element.category],
+        ["Phase", element.phase],
+        ["Atomic mass", element.atomic_mass ? `${element.atomic_mass}` : null],
+        ["Electron config", element.electron_configuration_semantic],
+        ["Melting point", formatTemperatureKelvin(element.melt)],
+        ["Boiling point", formatTemperatureKelvin(element.boil)],
+        ["Density", element.density],
+        ["Shells", Array.isArray(element.shells) ? element.shells.join(", ") : element.shells],
+        ["Protons", protons],
+        ["Neutrons", neutrons],
+        ["Electrons", electrons],
+      ],
+      orbitals,
+    };
+  }
+
+  function appendElementInfoFields(container, info) {
+    if (!(container instanceof HTMLElement) || !info) {
+      return;
+    }
+    info.fields.forEach(([label, value]) => {
+      if (value === undefined || value === null || value === "") {
+        return;
+      }
+      const row = document.createElement("div");
+      row.className = "detail-row";
+      const key = document.createElement("div");
+      key.className = "detail-key";
+      key.textContent = label;
+      const val = document.createElement("div");
+      val.className = "detail-value";
+      val.textContent = String(value);
+      row.appendChild(key);
+      row.appendChild(val);
+      container.appendChild(row);
+    });
+  }
+
+  function appendElementInfoOrbitals(container, orbitals) {
+    if (!(container instanceof HTMLElement) || !Array.isArray(orbitals) || !orbitals.length) {
+      return;
+    }
+    const row = document.createElement("div");
+    row.className = "detail-row detail-row-full";
+    const key = document.createElement("div");
+    key.className = "detail-key";
+    key.textContent = "Orbitals";
+    const val = document.createElement("div");
+    val.className = "detail-value";
+    const list = document.createElement("div");
+    list.className = "element-orbital-chip-list";
+    orbitals.forEach((orbital) => {
+      const chip = document.createElement("span");
+      chip.className = "element-orbital-chip";
+      chip.textContent = orbital;
+      list.appendChild(chip);
+    });
+    val.appendChild(list);
+    row.appendChild(key);
+    row.appendChild(val);
+    container.appendChild(row);
+  }
+
+  function createHydeElementPreviewContent(element) {
+    const info = getElementInfoData(element);
+    if (!info) {
+      return null;
+    }
+    const wrapper = document.createElement("div");
+    wrapper.className = "hover-tooltip-preview";
+    const title = document.createElement("div");
+    title.className = "hover-tooltip-preview-title";
+    title.textContent = info.title;
+    wrapper.appendChild(title);
+    const body = document.createElement("div");
+    body.className = "hover-tooltip-preview-body";
+    appendElementInfoFields(body, info);
+    appendElementInfoOrbitals(body, info.orbitals);
+    wrapper.appendChild(body);
+    return wrapper;
+  }
+
+  function showHydeElementPreview(element, anchorX, anchorY) {
+    if (!element) {
+      return;
+    }
+    const previewContent = createHydeElementPreviewContent(element);
+    if (!previewContent) {
+      return;
+    }
+    const calloutNodes = hydePeriodicOverlay
+      ? Array.from(hydePeriodicOverlay.querySelectorAll(".hyde-periodic-callout"))
+      : [];
+    const minTop = calloutNodes.reduce((currentMax, node) => {
+      if (!(node instanceof HTMLElement)) {
+        return currentMax;
+      }
+      const rect = node.getBoundingClientRect();
+      return Math.max(currentMax, rect.bottom + 12);
+    }, 0);
+    showPeriodicTooltip(previewContent, anchorX, anchorY, {
+      variant: "element-preview",
+      minTop,
+      offsetX: 56,
+    });
+  }
+
   function rememberCurrentLevelForReturn() {
     const currentLevel = getCurrentLevel();
     if (!currentLevel) {
@@ -297,11 +429,11 @@ export function createPeriodicOverlayRuntime(deps) {
     legend.appendChild(legendFrag);
   }
 
-  function showPeriodicTooltip(text, anchorX, anchorY) {
+  function showPeriodicTooltip(content, anchorX, anchorY, options = {}) {
     if (typeof showHoverTooltip !== "function") {
       return;
     }
-    showHoverTooltip(text, anchorX, anchorY);
+    showHoverTooltip(content, anchorX, anchorY, options);
   }
 
   function hidePeriodicTooltip() {
@@ -324,8 +456,23 @@ export function createPeriodicOverlayRuntime(deps) {
     return target.isContentEditable === true;
   }
 
+  function isHydePeriodicSceneActive(level = getCurrentLevel()) {
+    const sceneId = level?.sceneId;
+    const scenePath = typeof level?.id === "string" ? level.id : "";
+    return (
+      sceneId === activeHydePeriodicSceneId ||
+      scenePath.endsWith("/hyde_periodic_table_scene.json")
+    );
+  }
+
   function showHydeHotspotTooltip(node) {
     if (!(node instanceof Element)) {
+      return;
+    }
+    const element = getElementBySymbol(node.dataset.symbol || "");
+    if (element) {
+      const rect = node.getBoundingClientRect();
+      showHydeElementPreview(element, rect.left + rect.width / 2, rect.top + rect.height / 2);
       return;
     }
     const tooltipText =
@@ -343,6 +490,10 @@ export function createPeriodicOverlayRuntime(deps) {
     if (!(node instanceof Element)) {
       return;
     }
+    if (hydeActiveHotspotRing instanceof Element) {
+      hydeActiveHotspotRing.remove();
+      hydeActiveHotspotRing = null;
+    }
     node.classList.remove("is-focused");
     if (node.classList.contains("hyde-periodic-extra-tile")) {
       return;
@@ -350,6 +501,88 @@ export function createPeriodicOverlayRuntime(deps) {
     node.style.removeProperty("fill");
     node.style.removeProperty("stroke");
     node.style.removeProperty("stroke-width");
+  }
+
+  function clearHoveredHydeHotspotVisual(node = hydeHoverHotspotTarget) {
+    if (hydeHoverHotspotRing instanceof Element) {
+      hydeHoverHotspotRing.remove();
+      hydeHoverHotspotRing = null;
+    }
+    if (node instanceof Element) {
+      node.classList.remove("is-hovered");
+    }
+    if (!node || hydeHoverHotspotTarget === node) {
+      hydeHoverHotspotTarget = null;
+    }
+  }
+
+  function syncHoveredHydeHotspotRing(node) {
+    if (
+      !(node instanceof Element) ||
+      !(hydePeriodicGrid instanceof SVGElement) ||
+      node.tagName.toLowerCase() !== "circle"
+    ) {
+      return;
+    }
+    const ring = document.createElementNS(svgNamespace, "circle");
+    ring.classList.add("hyde-hotspot-hover-ring");
+    ring.setAttribute("cx", node.getAttribute("cx") || "0");
+    ring.setAttribute("cy", node.getAttribute("cy") || "0");
+    ring.setAttribute("r", node.getAttribute("r") || "0");
+    const transform = node.getAttribute("transform");
+    if (transform) {
+      ring.setAttribute("transform", transform);
+    }
+    hydePeriodicGrid.appendChild(ring);
+    hydePeriodicGrid.appendChild(node);
+    hydeHoverHotspotRing = ring;
+  }
+
+  function setHoveredHydeHotspot(node) {
+    if (!(node instanceof Element) || node.tagName.toLowerCase() !== "circle") {
+      clearHoveredHydeHotspotVisual();
+      return null;
+    }
+    if (node === hydeActiveHotspotTarget) {
+      clearHoveredHydeHotspotVisual();
+      node.classList.add("is-hovered");
+      return node;
+    }
+    if (hydeHoverHotspotTarget === node && hydeHoverHotspotRing instanceof Element) {
+      node.classList.add("is-hovered");
+      return node;
+    }
+    clearHoveredHydeHotspotVisual();
+    hydeHoverHotspotTarget = node;
+    hydeHoverHotspotTarget.classList.add("is-hovered");
+    syncHoveredHydeHotspotRing(hydeHoverHotspotTarget);
+    return hydeHoverHotspotTarget;
+  }
+
+  function syncActiveHydeHotspotRing(node) {
+    if (
+      !(node instanceof Element) ||
+      !(hydePeriodicGrid instanceof SVGElement) ||
+      node.tagName.toLowerCase() !== "circle"
+    ) {
+      return;
+    }
+    if (hydeActiveHotspotRing instanceof Element) {
+      hydeActiveHotspotRing.remove();
+      hydeActiveHotspotRing = null;
+    }
+    const ring = document.createElementNS(svgNamespace, "circle");
+    ring.classList.add("hyde-hotspot-active-ring");
+    ring.setAttribute("cx", node.getAttribute("cx") || "0");
+    ring.setAttribute("cy", node.getAttribute("cy") || "0");
+    ring.setAttribute("r", node.getAttribute("r") || "0");
+    const transform = node.getAttribute("transform");
+    if (transform) {
+      ring.setAttribute("transform", transform);
+    }
+    hydePeriodicGrid.appendChild(ring);
+    hydePeriodicGrid.appendChild(node);
+    hydeActiveHotspotRing = ring;
   }
 
   function applyActiveHydeHotspotVisual(node) {
@@ -360,9 +593,10 @@ export function createPeriodicOverlayRuntime(deps) {
     if (node.classList.contains("hyde-periodic-extra-tile")) {
       return;
     }
-    node.style.setProperty("fill", "rgba(148, 191, 255, 0.3)");
+    syncActiveHydeHotspotRing(node);
+    node.style.setProperty("fill", "rgba(148, 191, 255, 0.38)");
     node.style.setProperty("stroke", "rgba(245, 249, 255, 0.98)");
-    node.style.setProperty("stroke-width", "3.2");
+    node.style.setProperty("stroke-width", `${hydeHotspotActiveStrokeWidth}`);
   }
 
   function setActiveHydeHotspot(node, options = {}) {
@@ -379,6 +613,61 @@ export function createPeriodicOverlayRuntime(deps) {
       hydeActiveHotspotTarget.focus({ preventScroll: true });
     }
     return hydeActiveHotspotTarget;
+  }
+
+  function showDefaultHydeSelection(options = {}) {
+    if (!(hydeInitialFocusTarget instanceof Element)) {
+      return null;
+    }
+    clearHoveredHydeHotspotVisual();
+    return setActiveHydeHotspot(hydeInitialFocusTarget, {
+      focus: options.focus !== false,
+    });
+  }
+
+  function getHydeKeyboardTarget() {
+    if (hydeActiveHotspotTarget instanceof Element) {
+      return hydeActiveHotspotTarget;
+    }
+    if (hydeInitialFocusTarget instanceof Element) {
+      return hydeInitialFocusTarget;
+    }
+    return null;
+  }
+
+  function restoreHydeKeyboardFocus(options = {}) {
+    if (!isHydePeriodicSceneActive()) {
+      return null;
+    }
+    const target = getHydeKeyboardTarget();
+    if (!(target instanceof Element)) {
+      return null;
+    }
+    if (hydeActiveHotspotTarget !== target) {
+      return setActiveHydeHotspot(target, {
+        focus: options.focus !== false,
+      });
+    }
+    if (options.focus !== false) {
+      target.focus({ preventScroll: true });
+    }
+    showHydeHotspotTooltip(target);
+    return target;
+  }
+
+  function queueHydeKeyboardFocusRestore() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        restoreHydeKeyboardFocus({ focus: true });
+      });
+    });
+  }
+
+  function isHydeInteractiveKeyboardTarget(target) {
+    if (!(target instanceof Element)) {
+      return false;
+    }
+    return Boolean(target.closest(".hyde-hotspot, .hyde-periodic-extra-tile"));
   }
 
   function moveActiveHydeHotspotByOffset(offset) {
@@ -437,6 +726,36 @@ export function createPeriodicOverlayRuntime(deps) {
     const nextAtomicNumber = hydeHotspotCycleAtomicNumbersInOrder[nextIndex];
     return setActiveHydeHotspot(hydeHotspotNodeByAtomicNumber.get(nextAtomicNumber), {
       focus: true,
+    });
+  }
+
+  function triggerHydeNavigationAction(action) {
+    if (!isHydePeriodicSceneActive() || isTransitionActive()) {
+      return null;
+    }
+    if (action === "left") {
+      return moveActiveHydeHotspotByOffset(-1);
+    }
+    if (action === "right") {
+      return moveActiveHydeHotspotByOffset(1);
+    }
+    if (action === "up") {
+      return moveActiveHydeHotspotByCycle("in");
+    }
+    if (action === "down") {
+      return moveActiveHydeHotspotByCycle("out");
+    }
+    return null;
+  }
+
+  function wireHydeHintNavigationButtons() {
+    if (!hydeHintNavButtons.length) {
+      return;
+    }
+    hydeHintNavButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        triggerHydeNavigationAction(button.dataset.hydeNav);
+      });
     });
   }
 
@@ -539,7 +858,10 @@ export function createPeriodicOverlayRuntime(deps) {
       placement.center.x - (navigationCenter?.x ?? 0)
     )}`;
     button.setAttribute("aria-label", `${element.name} (${element.symbol})`);
-    button.setAttribute("aria-keyshortcuts", "ArrowLeft Enter Space");
+    button.setAttribute(
+      "aria-keyshortcuts",
+      "ArrowLeft ArrowRight ArrowUp ArrowDown Enter Space"
+    );
     const tooltipText = `${element.number} ${element.symbol} - ${element.name}`;
     if (typeof showHoverTooltip !== "function") {
       button.title = `${element.number} ${element.name} (${element.symbol})`;
@@ -553,10 +875,10 @@ export function createPeriodicOverlayRuntime(deps) {
       openPeriodicElementScene(element, overlay);
     });
     button.addEventListener("mouseenter", (event) => {
-      showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
+      showHydeElementPreview(element, event.clientX, event.clientY);
     });
     button.addEventListener("mousemove", (event) => {
-      showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
+      showHydeElementPreview(element, event.clientX, event.clientY);
     });
     button.addEventListener("mouseleave", () => {
       hidePeriodicTooltip();
@@ -571,6 +893,9 @@ export function createPeriodicOverlayRuntime(deps) {
       }
     });
     button.addEventListener("keydown", (event) => {
+      if (event.defaultPrevented) {
+        return;
+      }
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
         openPeriodicElementScene(element, overlay);
@@ -579,6 +904,21 @@ export function createPeriodicOverlayRuntime(deps) {
       if (event.key === "ArrowLeft" && leftFocusTarget) {
         event.preventDefault();
         setActiveHydeHotspot(leftFocusTarget, { focus: true });
+        return;
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        moveActiveHydeHotspotByOffset(1);
+        return;
+      }
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        moveActiveHydeHotspotByCycle("in");
+        return;
+      }
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        moveActiveHydeHotspotByCycle("out");
       }
     });
     layer.appendChild(button);
@@ -1392,6 +1732,9 @@ export function createPeriodicOverlayRuntime(deps) {
     hydeHotspotCycleAtomicNumbersInOrder = [];
     hydeHotspotNodeByAtomicNumber = new Map();
     hydeActiveHotspotTarget = null;
+    hydeActiveHotspotRing = null;
+    hydeHoverHotspotTarget = null;
+    hydeHoverHotspotRing = null;
     hydeInitialFocusTarget = null;
     const hotspots = orderedHotspots;
     for (let index = 0; index < hotspots.length; index += 1) {
@@ -1403,10 +1746,11 @@ export function createPeriodicOverlayRuntime(deps) {
       const circle = document.createElementNS(svgNamespace, "circle");
       circle.setAttribute("cx", `${hotspot.cx}`);
       circle.setAttribute("cy", `${hotspot.cy}`);
-      circle.setAttribute("r", `${hotspot.r}`);
+      circle.setAttribute("r", `${hotspot.r * hydeHotspotRadiusScale}`);
       if (hotspot.transform) {
         circle.setAttribute("transform", hotspot.transform);
       }
+      circle.setAttribute("vector-effect", "non-scaling-stroke");
       circle.classList.add("hyde-hotspot");
       if (!element) {
         circle.classList.add("is-unassigned");
@@ -1451,12 +1795,23 @@ export function createPeriodicOverlayRuntime(deps) {
         });
       }
       circle.addEventListener("mouseenter", (event) => {
+        setHoveredHydeHotspot(circle);
+        if (element) {
+          showHydeElementPreview(element, event.clientX, event.clientY);
+          return;
+        }
         showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
       });
       circle.addEventListener("mousemove", (event) => {
+        setHoveredHydeHotspot(circle);
+        if (element) {
+          showHydeElementPreview(element, event.clientX, event.clientY);
+          return;
+        }
         showPeriodicTooltip(tooltipText, event.clientX, event.clientY);
       });
       circle.addEventListener("mouseleave", () => {
+        clearHoveredHydeHotspotVisual(circle);
         if (hydeActiveHotspotTarget !== circle) {
           hidePeriodicTooltip();
         }
@@ -1471,6 +1826,9 @@ export function createPeriodicOverlayRuntime(deps) {
         }
       });
       circle.addEventListener("keydown", (event) => {
+        if (event.defaultPrevented) {
+          return;
+        }
         if (event.key === "Enter" || event.key === " ") {
           if (!element) {
             return;
@@ -1567,9 +1925,7 @@ export function createPeriodicOverlayRuntime(deps) {
     hydeHotspotCycleAtomicNumbersInOrder = hydeAtomicCycleOrder.filter((atomicNumber) =>
       hydeHotspotNodeByAtomicNumber.has(atomicNumber)
     );
-    if (hydeInitialFocusTarget instanceof Element) {
-      setActiveHydeHotspot(hydeInitialFocusTarget, { focus: false });
-    }
+    showDefaultHydeSelection({ focus: false });
     renderPeriodicLegend(legend, legendSet);
     if (options.onBuilt) {
       options.onBuilt();
@@ -1697,49 +2053,53 @@ export function createPeriodicOverlayRuntime(deps) {
         },
       });
     }
-    if (enteringHydePeriodic && hydeInitialFocusTarget instanceof Element) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setActiveHydeHotspot(hydeInitialFocusTarget, { focus: false });
-        });
-      });
+    if (enteringHydePeriodic) {
+      queueHydeKeyboardFocusRestore();
     }
     hydePeriodicWasOpen = isHydePeriodic;
   }
 
   window.addEventListener("keydown", (event) => {
-    const currentLevel = getCurrentLevel();
-    const sceneId = currentLevel?.sceneId;
-    const scenePath = typeof currentLevel?.id === "string" ? currentLevel.id : "";
-    const isHydePeriodic =
-      sceneId === activeHydePeriodicSceneId ||
-      scenePath.endsWith("/hyde_periodic_table_scene.json");
+    const isHydePeriodic = isHydePeriodicSceneActive();
     if (!isHydePeriodic || isTransitionActive() || isEditableTarget(event.target)) {
       return;
     }
-    if (event.defaultPrevented || event.metaKey || event.ctrlKey) {
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) {
+      return;
+    }
+    if (isHydeInteractiveKeyboardTarget(event.target)) {
       return;
     }
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      moveActiveHydeHotspotByOffset(-1);
+      triggerHydeNavigationAction("left");
       return;
     }
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      moveActiveHydeHotspotByOffset(1);
+      triggerHydeNavigationAction("right");
       return;
     }
     if (event.key === "ArrowUp") {
       event.preventDefault();
-      moveActiveHydeHotspotByCycle("in");
+      triggerHydeNavigationAction("up");
       return;
     }
     if (event.key === "ArrowDown") {
       event.preventDefault();
-      moveActiveHydeHotspotByCycle("out");
+      triggerHydeNavigationAction("down");
     }
+  }, { capture: true });
+
+  window.addEventListener("focus", () => {
+    queueHydeKeyboardFocusRestore();
   });
+
+  window.addEventListener("pageshow", () => {
+    queueHydeKeyboardFocusRestore();
+  });
+
+  wireHydeHintNavigationButtons();
 
   function updateElementLegend() {
     if (!elementLegend) {
@@ -1796,76 +2156,14 @@ export function createPeriodicOverlayRuntime(deps) {
     elementInfoPinned = true;
 
     detailTitle.textContent = "";
-    const protons = el.number ?? 0;
-    const neutrons = Math.max(0, Math.round(el.atomic_mass ?? 0) - protons);
-    const electrons = protons;
-    const orbitals =
-      typeof el.electron_configuration_semantic === "string"
-        ? el.electron_configuration_semantic.split(/\s+/).filter(Boolean)
-        : [];
-
-    const fields = [
-      ["Atomic #", el.number],
-      ["Category", el.category],
-      ["Phase", el.phase],
-      ["Atomic mass", el.atomic_mass ? `${el.atomic_mass}` : null],
-      ["Electron config", el.electron_configuration_semantic],
-      ["Melting point", formatTemperatureKelvin(el.melt)],
-      ["Boiling point", formatTemperatureKelvin(el.boil)],
-      ["Density", el.density],
-      ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
-      ["Protons", protons],
-      ["Neutrons", neutrons],
-      ["Electrons", electrons],
-    ];
+    const info = getElementInfoData(el);
+    if (!info) {
+      return;
+    }
 
     detailBody.innerHTML = "";
-    fields.forEach(([label, value]) => {
-      if (value === undefined || value === null || value === "") {
-        return;
-      }
-      const row = document.createElement("div");
-      row.className = "detail-row";
-      const key = document.createElement("div");
-      key.className = "detail-key";
-      key.textContent = label;
-      const val = document.createElement("div");
-      val.className = "detail-value";
-      val.textContent = String(value);
-      row.appendChild(key);
-      row.appendChild(val);
-      detailBody.appendChild(row);
-    });
-
-    if (orbitals.length) {
-      const row = document.createElement("div");
-      row.className = "detail-row detail-row-full";
-      const key = document.createElement("div");
-      key.className = "detail-key";
-      key.textContent = "Orbitals (inner \u2192 outer)";
-      const val = document.createElement("div");
-      val.className = "detail-value";
-      val.style.width = "100%";
-      const list = document.createElement("div");
-      list.style.display = "flex";
-      list.style.flexWrap = "wrap";
-      list.style.gap = "6px";
-      list.style.marginTop = "8px";
-      list.style.justifyContent = "flex-start";
-      orbitals.forEach((orb) => {
-        const chip = document.createElement("span");
-        chip.textContent = orb;
-        chip.style.padding = "2px 6px";
-        chip.style.borderRadius = "8px";
-        chip.style.background = "rgba(255,255,255,0.08)";
-        chip.style.border = "1px solid rgba(160, 170, 220, 0.25)";
-        list.appendChild(chip);
-      });
-      val.appendChild(list);
-      row.appendChild(key);
-      row.appendChild(val);
-      detailBody.appendChild(row);
-    }
+    appendElementInfoFields(detailBody, info);
+    appendElementInfoOrbitals(detailBody, info.orbitals);
   }
 
   function wireElementLegend() {

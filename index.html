@@ -191,7 +191,7 @@
       <div id="composer-overlay" aria-hidden="true">
         <div class="composer-header">
           <div class="composer-header-main">
-            <div class="composer-title">Composer v37 • Pre-Alpha</div>
+            <div class="composer-title">Composer v68 • Pre-Alpha</div>
           </div>
           <div class="composer-actions">
             <button id="composer-scene-button" type="button" aria-label="Open scene controls">
@@ -202,6 +202,14 @@
             </button>
             <button id="composer-save-button" type="button" aria-label="Open library and save controls">
               Library
+            </button>
+            <button
+              id="composer-reaction-button"
+              type="button"
+              aria-label="Open reaction solver"
+              aria-pressed="false"
+            >
+              Reaction
             </button>
             <button
               id="composer-docs-button"
@@ -222,6 +230,59 @@
               <canvas id="composer-canvas"></canvas>
               <div id="composer-viewport-overlays" class="composer-viewport-overlays" aria-hidden="true"></div>
               <div id="composer-assembly-menu" class="composer-assembly-menu" aria-hidden="true"></div>
+              <section
+                id="composer-reaction-solver"
+                class="composer-reaction-solver"
+                aria-hidden="true"
+                tabindex="0"
+              >
+                <div class="composer-reaction-solver-topbar">
+                  <div class="composer-reaction-solver-kicker">Reaction Solver Prototype</div>
+                  <div class="composer-reaction-solver-subtitle">
+                    Manual hierarchy-first reaction mapping.
+                  </div>
+                </div>
+                <div
+                  id="composer-reaction-solver-surface"
+                  class="composer-reaction-solver-surface"
+                >
+                  <svg
+                    id="composer-reaction-solver-svg"
+                    class="composer-reaction-solver-svg"
+                    aria-hidden="true"
+                  ></svg>
+                  <div
+                    id="composer-reaction-solver-empty"
+                    class="composer-reaction-solver-empty"
+                    aria-hidden="false"
+                  >
+                    Right-click to start a manual reaction solve.
+                  </div>
+                  <div
+                    id="composer-reaction-solver-reactants"
+                    class="composer-reaction-solver-column is-reactants"
+                  ></div>
+                  <div class="composer-reaction-solver-center">
+                    <div class="composer-reaction-solver-center-title">Mappings</div>
+                    <div
+                      id="composer-reaction-solver-hint"
+                      class="composer-reaction-solver-hint"
+                    >
+                      Right-click the reaction canvas to add reactants or products.
+                    </div>
+                  </div>
+                  <div
+                    id="composer-reaction-solver-products"
+                    class="composer-reaction-solver-column is-products"
+                  ></div>
+                </div>
+                <div
+                  id="composer-reaction-solver-menu"
+                  class="composer-reaction-solver-menu"
+                  hidden
+                  aria-hidden="true"
+                ></div>
+              </section>
               <div class="composer-timeline-overlay">
                 <div class="composer-timeline-toolbar">
                   <div class="composer-timeline-transport">
@@ -231,7 +292,6 @@
                   <div id="composer-timeline-track" class="composer-timeline-track">
                     <div id="composer-timeline-warps" class="composer-timeline-layer"></div>
                     <div id="composer-timeline-pauses" class="composer-timeline-layer"></div>
-                    <div id="composer-timeline-reactions" class="composer-timeline-layer"></div>
                     <div id="composer-timeline-markers" class="composer-timeline-layer"></div>
                     <div id="composer-timeline-playhead" class="composer-timeline-playhead"></div>
                   </div>
@@ -326,7 +386,6 @@
       </div>
       <div id="hyde-periodic-overlay" aria-hidden="true">
         <div id="hyde-periodic-stage">
-          <div id="hyde-periodic-hint">Hover circles to preview. Click circles to open elements.</div>
           <div id="hyde-periodic-canvas">
             <img
               id="hyde-periodic-artwork"
@@ -336,6 +395,99 @@
               decoding="async"
               draggable="false"
             />
+            <div id="hyde-periodic-callouts" aria-label="Hyde periodic table guidance">
+              <section
+                class="hyde-periodic-callout hyde-periodic-callout-info"
+                role="note"
+                aria-label="Hover small circles to preview. Click small circles to open elements."
+              >
+                <p class="hyde-periodic-callout-copy">
+                  Hover small circles to preview.<br />
+                  Click small circles to open elements.
+                </p>
+              </section>
+              <section
+                class="hyde-periodic-callout hyde-periodic-callout-keyboard"
+                role="group"
+                aria-label="Keyboard navigation"
+              >
+                <p class="hyde-periodic-callout-copy hyde-periodic-callout-copy-compact">
+                  Press arrow keys or click below.
+                </p>
+                <div class="hyde-periodic-hint-guide">
+                  <div class="hyde-periodic-hint-row">
+                    <span class="hyde-periodic-keypair">
+                      <button
+                        class="hyde-periodic-key hyde-periodic-nav-key"
+                        type="button"
+                        data-hyde-nav="left"
+                        aria-label="Move left around the spiral"
+                      >
+                        <svg
+                          class="hyde-periodic-key-glyph"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="M17.5 4.75 7 12l10.5 7.25V4.75Z"></path>
+                        </svg>
+                      </button>
+                      <button
+                        class="hyde-periodic-key hyde-periodic-nav-key"
+                        type="button"
+                        data-hyde-nav="right"
+                        aria-label="Move right around the spiral"
+                      >
+                        <svg
+                          class="hyde-periodic-key-glyph"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="M6.5 4.75 17 12 6.5 19.25V4.75Z"></path>
+                        </svg>
+                      </button>
+                    </span>
+                    <span class="hyde-periodic-hint-label">spiral</span>
+                  </div>
+                  <div class="hyde-periodic-hint-row">
+                    <span class="hyde-periodic-keypair">
+                      <button
+                        class="hyde-periodic-key hyde-periodic-nav-key"
+                        type="button"
+                        data-hyde-nav="up"
+                        aria-label="Move up through the group"
+                      >
+                        <svg
+                          class="hyde-periodic-key-glyph"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="M4.75 17.5 12 7l7.25 10.5H4.75Z"></path>
+                        </svg>
+                      </button>
+                      <button
+                        class="hyde-periodic-key hyde-periodic-nav-key"
+                        type="button"
+                        data-hyde-nav="down"
+                        aria-label="Move down through the group"
+                      >
+                        <svg
+                          class="hyde-periodic-key-glyph"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="M4.75 6.5 12 17l7.25-10.5H4.75Z"></path>
+                        </svg>
+                      </button>
+                    </span>
+                    <span class="hyde-periodic-hint-label">group</span>
+                  </div>
+                </div>
+              </section>
+            </div>
             <svg id="hyde-periodic-grid" viewBox="0 0 2592 1944" aria-label="Hyde periodic element map"></svg>
           </div>
         </div>

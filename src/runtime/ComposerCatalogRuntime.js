@@ -1,12 +1,13 @@
 export const composerSceneRoleOptions = [
   { value: "assembly", label: "Assembly" },
-  { value: "reactant", label: "Reactant" },
-  { value: "product", label: "Product" },
 ];
 
 export const composerAssemblyTemplateMenuRows = [
   [
     { template: "noether_core", label: "Noether Core" },
+    { template: "higgs_cluster", label: "Higgs Cluster" },
+  ],
+  [
     { template: "electron", label: "Electron" },
   ],
   [
@@ -23,7 +24,6 @@ export const composerTimelineAddTypeEntries = [
   { id: "audio", label: "Audio" },
   { id: "graphic", label: "Graphic" },
   { id: "camera", label: "Observer" },
-  { id: "reaction", label: "Reaction" },
 ];
 
 export const composerTimelineAddTypeIds = new Set(

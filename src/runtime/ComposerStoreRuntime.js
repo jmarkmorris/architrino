@@ -7,7 +7,6 @@ export function createComposerEditorStore(initialState = {}) {
     selectedAssemblyId: initialState.selectedAssemblyId ?? null,
     pendingTransferSource: initialState.pendingTransferSource ?? null,
     transferListRawState: String(initialState.transferListRawState ?? ""),
-    reactionListRawState: String(initialState.reactionListRawState ?? ""),
     pathState:
       initialState.pathState && typeof initialState.pathState === "object"
         ? initialState.pathState
@@ -106,11 +105,6 @@ export function createComposerEditorStore(initialState = {}) {
     setTransferListRawState: (nextValue) => {
       state.transferListRawState = String(nextValue ?? "");
       return state.transferListRawState;
-    },
-    getReactionListRawState: () => state.reactionListRawState,
-    setReactionListRawState: (nextValue) => {
-      state.reactionListRawState = String(nextValue ?? "");
-      return state.reactionListRawState;
     },
     getPathState: () => state.pathState,
     updatePathPointAt: (index, updater) => {

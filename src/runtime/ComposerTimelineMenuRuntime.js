@@ -9,7 +9,6 @@ export function buildComposerTimelineMenu(config) {
     videoOverlay,
     pause,
     warp,
-    reaction,
     timeSeconds,
     duration,
     editKind,
@@ -49,16 +48,6 @@ export function buildComposerTimelineMenu(config) {
     composerMediaAssetDirectories,
     sanitizeComposerMediaSource,
     getComposerMediaDefaultRect,
-    replaceComposerAuthoringLineById,
-    appendComposerAuthoringLine,
-    getComposerReactionListRaw,
-    setComposerReactionListRaw,
-    buildComposerReactionActionString,
-    ensureComposerAssemblyDraftsForReactionUi,
-    getComposerReactionStageDrafts,
-    getComposerReactionActionOptions,
-    activeReactionAuthoringId,
-    setActiveReactionAuthoring,
   } = config;
 
   resetComposerAssemblyMenu("timeline");
@@ -70,19 +59,17 @@ export function buildComposerTimelineMenu(config) {
   const subtitle = document.createElement("div");
   subtitle.className = "composer-assembly-menu-subtitle";
   subtitle.textContent =
-    editKind === "reaction"
-      ? `${reaction.label ?? reaction.id ?? "Reaction"} @ ${formatComposerTimeLabel(reaction.start)}-${formatComposerTimeLabel(reaction.end)}`
-      : editKind === "warp"
-        ? `Warp ${Number(warp.rate ?? 1).toFixed(2)}x @ ${formatComposerTimeLabel(warp.start)}-${formatComposerTimeLabel(warp.end)}`
-        : editKind === "pause"
-          ? `Pause ${formatComposerTimeLabel(pause.duration)} @ ${formatComposerTimeLabel(pause.start)}`
-          : editKind === "graphic" && graphic
-            ? `${getComposerGraphicOverlayLabel(graphic)} @ ${formatComposerTimeLabel(graphic.start)}-${formatComposerTimeLabel(graphic.end)}`
-            : editKind === "image" && imageOverlay
-              ? `${getComposerMediaOverlayLabel(imageOverlay)} @ ${formatComposerTimeLabel(imageOverlay.start)}-${formatComposerTimeLabel(imageOverlay.end)}`
-              : editKind === "video" && videoOverlay
-                ? `${getComposerMediaOverlayLabel(videoOverlay)} @ ${formatComposerTimeLabel(videoOverlay.start)}-${formatComposerTimeLabel(videoOverlay.end)}`
-                : `At ${formatComposerTimeLabel(timeSeconds)}`;
+    editKind === "warp"
+      ? `Warp ${Number(warp.rate ?? 1).toFixed(2)}x @ ${formatComposerTimeLabel(warp.start)}-${formatComposerTimeLabel(warp.end)}`
+      : editKind === "pause"
+        ? `Pause ${formatComposerTimeLabel(pause.duration)} @ ${formatComposerTimeLabel(pause.start)}`
+        : editKind === "graphic" && graphic
+          ? `${getComposerGraphicOverlayLabel(graphic)} @ ${formatComposerTimeLabel(graphic.start)}-${formatComposerTimeLabel(graphic.end)}`
+          : editKind === "image" && imageOverlay
+            ? `${getComposerMediaOverlayLabel(imageOverlay)} @ ${formatComposerTimeLabel(imageOverlay.start)}-${formatComposerTimeLabel(imageOverlay.end)}`
+            : editKind === "video" && videoOverlay
+              ? `${getComposerMediaOverlayLabel(videoOverlay)} @ ${formatComposerTimeLabel(videoOverlay.start)}-${formatComposerTimeLabel(videoOverlay.end)}`
+              : `At ${formatComposerTimeLabel(timeSeconds)}`;
   menu.appendChild(subtitle);
 
   const validationNote = document.createElement("div");
@@ -519,185 +506,6 @@ export function buildComposerTimelineMenu(config) {
     }
   };
 
-  const appendReactionBlock = () => {
-    const initialReactionSpan = clampComposerTimelineSpan(
-      reaction?.start ?? timeSeconds,
-      reaction?.end ?? Number(timeSeconds) + composerTimelineMinDurationSeconds,
-      duration
-    );
-    const reactionAssemblies = ensureComposerAssemblyDraftsForReactionUi();
-    const reactionStageDrafts = getComposerReactionStageDrafts(reaction);
-    const reactionBlock = appendComposerMenuBlock(menu, "Reaction", {
-      text: reaction ? "Save" : "Add",
-      onClick: () => {
-        const label =
-          String(reactionLabelInput?.value ?? "").trim() ||
-          String(reaction?.label ?? "reaction").trim();
-        const start = Number(reactionStartInput?.value);
-        const end = Number(reactionEndInput?.value);
-        const actions = buildComposerReactionActionString(reactionStageDrafts);
-        if (!label || !Number.isFinite(start) || !Number.isFinite(end)) {
-          showTimelineMenuError("Reaction needs a label and a valid span.");
-          return;
-        }
-        if (!actions) {
-          showTimelineMenuError("Add at least one valid reaction stage before saving.");
-          return;
-        }
-        const span = clampComposerTimelineSpan(start, end, duration);
-        const reactionIdForSave = reaction?.id ?? "";
-        const overlap = findComposerTimelineOverlap(
-          {
-            id: reactionIdForSave,
-            kind: "reaction",
-            start: span.start,
-            end: span.end,
-          },
-          {
-            excludeId: reactionIdForSave,
-            documentData,
-          }
-        );
-        if (overlap) {
-          showTimelineOverlapError(overlap);
-          return;
-        }
-        const nextLine = `${label} @ ${span.start}-${span.end}${actions ? ` | ${actions}` : ""}`;
-        setComposerReactionListRaw(
-          reaction?.id
-            ? replaceComposerAuthoringLineById(getComposerReactionListRaw(), reaction.id, nextLine)
-            : appendComposerAuthoringLine(getComposerReactionListRaw(), nextLine)
-        );
-        closeComposerAssemblyMenu();
-        renderComposerJsonPreview();
-      },
-    });
-    const reactionForm = document.createElement("div");
-    reactionForm.className = "composer-form composer-assembly-menu-grid-2";
-    const reactionLabelInput = appendComposerMenuField(reactionForm, {
-      label: "Label",
-      value: "",
-      placeholder: reaction?.label ?? "reaction",
-    });
-    const reactionStartInput = appendComposerMenuField(reactionForm, {
-      label: "Start (s)",
-      type: "number",
-      value: formatComposerTimeInputValue(initialReactionSpan.start),
-      step: 0.1,
-      min: 0,
-      selectOnFocus: true,
-    });
-    const reactionEndInput = appendComposerMenuField(reactionForm, {
-      label: "End (s)",
-      type: "number",
-      value: formatComposerTimeInputValue(initialReactionSpan.end),
-      step: 0.1,
-      min: 0,
-      selectOnFocus: true,
-    });
-    reactionBlock?.block?.appendChild(reactionForm);
-    if (reactionAssemblies.reactants.length || reactionAssemblies.products.length) {
-      appendComposerMenuNote(
-        reactionBlock?.block,
-        `Canvas participants: ${reactionAssemblies.reactants.length ? `Reactants ${reactionAssemblies.reactants.join(", ")}` : "No reactants"} · ${
-          reactionAssemblies.products.length ? `Products ${reactionAssemblies.products.join(", ")}` : "No products"
-        }`
-      );
-    } else {
-      appendComposerMenuNote(
-        reactionBlock?.block,
-        "No canvas participants are tagged yet. Add reactants and products on the canvas to prepare for visual reaction mapping."
-      );
-    }
-    appendComposerMenuNote(
-      reactionBlock?.block,
-      activeReactionAuthoringId === reaction?.id
-        ? "Canvas mapping is active. Click a reactant member or charge, then click a product member or charge."
-        : "Stage timing is divided evenly across the reaction span for now. Use Map On Canvas to author source-to-destination mappings."
-    );
-    const stageList = document.createElement("div");
-    stageList.className = "composer-reaction-stage-list";
-    const reactionActionOptions = getComposerReactionActionOptions();
-    const renderReactionStageRows = () => {
-      stageList.innerHTML = "";
-      reactionStageDrafts.forEach((stageDraft, index) => {
-        const stageRow = document.createElement("div");
-        stageRow.className = "composer-reaction-stage-row";
-        const stageHeader = document.createElement("div");
-        stageHeader.className = "composer-reaction-stage-header";
-        stageHeader.textContent = `Stage ${index + 1}`;
-        stageRow.appendChild(stageHeader);
-        const stageForm = document.createElement("div");
-        stageForm.className = "composer-form composer-assembly-menu-grid-2";
-        const actionInput = appendComposerMenuSelectField(stageForm, {
-          label: "Action",
-          value: stageDraft.action,
-          entries: reactionActionOptions,
-        });
-        stageRow.appendChild(stageForm);
-        appendComposerMenuButtonRow(stageRow, [
-          {
-            text: "Remove",
-            className: "composer-assembly-menu-danger",
-            disabled: reactionStageDrafts.length <= 1,
-            onClick: () => {
-              if (reactionStageDrafts.length <= 1) {
-                return;
-              }
-              reactionStageDrafts.splice(index, 1);
-              renderReactionStageRows();
-            },
-          },
-          null,
-        ]);
-        actionInput?.addEventListener("change", () => {
-          stageDraft.action = actionInput.value;
-        });
-        stageList.appendChild(stageRow);
-      });
-    };
-    const stageActionsBlock = appendComposerMenuBlock(reactionBlock?.block, "Stages", {
-      text: "Add Stage",
-      onClick: () => {
-        reactionStageDrafts.push({
-          action: "mapping",
-          transferRefs: "",
-        });
-        renderReactionStageRows();
-      },
-    });
-    stageActionsBlock?.block?.appendChild(stageList);
-    renderReactionStageRows();
-    if (reaction?.id) {
-      appendComposerMenuButtonRow(reactionBlock?.block, [
-        {
-          text: activeReactionAuthoringId === reaction?.id ? "Stop Canvas Mapping" : "Map On Canvas",
-          onClick: () => {
-            setActiveReactionAuthoring?.(activeReactionAuthoringId === reaction?.id ? null : reaction?.id ?? null);
-            closeComposerAssemblyMenu();
-          },
-        },
-        null,
-      ]);
-      appendComposerMenuButtonRow(reactionBlock?.block, [
-        {
-          text: "Remove Reaction",
-          className: "composer-assembly-menu-danger",
-          onClick: () => {
-            setComposerReactionListRaw(
-              replaceComposerAuthoringLineById(getComposerReactionListRaw(), reaction.id, null)
-            );
-            if (activeReactionAuthoringId === reaction.id) {
-              setActiveReactionAuthoring?.(null);
-            }
-            closeComposerAssemblyMenu();
-            renderComposerJsonPreview();
-          },
-        },
-      ]);
-    }
-  };
-
   const appendPlaceholderBlock = (blockTitle, notes = []) => {
     const block = appendComposerMenuBlock(menu, blockTitle, null);
     notes.forEach((entry) => appendComposerMenuNote(block?.block, entry));
@@ -734,8 +542,6 @@ export function buildComposerTimelineMenu(config) {
       appendPauseBlock();
     } else if (addType === "warp") {
       appendWarpBlock();
-    } else if (addType === "reaction") {
-      appendReactionBlock();
     } else if (addType === "audio") {
       appendPlaceholderBlock("Audio", [
         "Planned for narration, accent sounds, and level automation on the shared scene timeline.",
@@ -756,25 +562,21 @@ export function buildComposerTimelineMenu(config) {
     appendPauseBlock();
   } else if (editKind === "warp") {
     appendWarpBlock();
-  } else {
-    appendReactionBlock();
   }
 
   positionComposerAssemblyMenu(
     clientX,
     clientY,
     timelineMenuWidth,
-    editKind === "reaction" || (editKind === "add" && addType === "reaction")
-      ? 432
-      : (
-          editKind === "graphic" ||
-          editKind === "image" ||
-          editKind === "video" ||
-          (editKind === "add" && (addType === "graphic" || addType === "image" || addType === "video"))
-        )
-        ? 392
-        : editKind === "add"
-          ? 332
-          : 268
+    (
+      editKind === "graphic" ||
+      editKind === "image" ||
+      editKind === "video" ||
+      (editKind === "add" && (addType === "graphic" || addType === "image" || addType === "video"))
+    )
+      ? 392
+      : editKind === "add"
+        ? 332
+        : 268
   );
 }
