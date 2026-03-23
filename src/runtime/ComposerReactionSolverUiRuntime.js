@@ -401,6 +401,25 @@ function getTemplateMeta(templateId, label = "") {
   };
 }
 
+function getParticipantCardMeta(participant = null) {
+  const baseMeta = getTemplateMeta(participant?.templateId, participant?.label);
+  const polarity = normalizeParticipantPolarity(participant?.polarity);
+  const templateId = String(participant?.templateId ?? "").trim().toLowerCase();
+  if (templateId === "electron" || templateId === "down_quark") {
+    return {
+      ...baseMeta,
+      accent: polarity === "anti" ? "#ff5a4a" : "#2d8cff",
+    };
+  }
+  if (templateId === "up_quark") {
+    return {
+      ...baseMeta,
+      accent: polarity === "anti" ? "#2d8cff" : "#ff5a4a",
+    };
+  }
+  return baseMeta;
+}
+
 function getParticipantCardLabelLines(label = "", participant = null) {
   const words = String(label || "")
     .trim()
@@ -1946,7 +1965,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (participant.polarity === "anti") {
       visual.classList.add("is-anti-polarity");
     }
-    const meta = getTemplateMeta(participant.templateId, participant.label);
+    const meta = getParticipantCardMeta(participant);
     visual.style.setProperty("--solver-accent", meta.accent);
     const visualLabel = document.createElement("div");
     visualLabel.className = "composer-reaction-solver-particle-label";
