@@ -1666,6 +1666,7 @@ body {
 }
 
 .composer-reaction-solver-column {
+  --solver-tile-gap: 14px;
   display: grid;
   gap: 14px;
   align-content: start;
@@ -1676,6 +1677,34 @@ body {
 .composer-reaction-solver-column.is-products {
   padding-left: 48px;
   padding-right: 0;
+}
+
+.composer-reaction-solver-side-slot-header {
+  --binary-choice-size: 72px;
+  display: grid;
+  grid-template-columns: repeat(3, var(--binary-choice-size));
+  gap: var(--solver-tile-gap);
+  width: fit-content;
+  justify-items: center;
+}
+
+.composer-reaction-solver-side-slot-header.is-reactant {
+  margin-left: calc(var(--binary-choice-size) + var(--solver-tile-gap));
+}
+
+.composer-reaction-solver-side-slot-header.is-product {
+  margin-left: auto;
+  margin-right: calc(var(--binary-choice-size) + var(--solver-tile-gap));
+}
+
+.composer-reaction-solver-side-slot-header-slot {
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(226, 233, 255, 0.86);
+  text-align: center;
 }
 
 .composer-reaction-solver-center {
@@ -1705,57 +1734,82 @@ body {
 }
 
 .composer-reaction-solver-participant {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
   align-items: flex-start;
-  gap: 14px;
+  gap: var(--solver-tile-gap);
+  width: fit-content;
+}
+
+.composer-reaction-solver-participant.has-noether-core-grid {
+  align-items: flex-start;
+}
+
+.composer-reaction-solver-participant.has-inline-field-header .composer-reaction-solver-particle {
+  margin-top: 0;
 }
 
 .composer-reaction-solver-participant.is-product {
-  justify-content: flex-end;
+  justify-self: end;
 }
 
 .composer-reaction-solver-particle {
-  width: 112px;
-  min-width: 112px;
-  padding: 12px 10px;
+  --solver-anti-fill-accent: #a259ff;
+  box-sizing: border-box;
+  width: var(--binary-choice-size, 72px);
+  min-width: var(--binary-choice-size, 72px);
+  height: var(--binary-choice-size, 72px);
+  padding: 8px 6px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background:
-    radial-gradient(circle at 30% 22%, color-mix(in srgb, var(--solver-accent) 32%, transparent), transparent 38%),
-    linear-gradient(180deg, rgba(18, 26, 48, 0.94), rgba(13, 18, 32, 0.96));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  border: 2px solid color-mix(in srgb, var(--solver-accent) 62%, rgba(255, 255, 255, 0.14));
+  background: rgba(12, 16, 30, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0;
   text-align: center;
 }
 
-.composer-reaction-solver-particle-badge {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 10px;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--solver-accent) 55%, rgba(255, 255, 255, 0.12));
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.14), transparent 46%),
-    color-mix(in srgb, var(--solver-accent) 20%, rgba(22, 26, 42, 0.94));
-  color: #f8fbff;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+.composer-reaction-solver-particle.is-anti-polarity {
+  background: color-mix(in srgb, var(--solver-anti-fill-accent) 22%, rgba(12, 16, 30, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 1px color-mix(in srgb, var(--solver-anti-fill-accent) 24%, transparent),
+    0 0 18px color-mix(in srgb, var(--solver-anti-fill-accent) 18%, transparent);
 }
 
 .composer-reaction-solver-particle-label {
-  font-size: 11px;
-  line-height: 1.35;
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.15;
   color: rgba(244, 247, 255, 0.88);
+}
+
+.composer-reaction-solver-particle.is-anti-polarity .composer-reaction-solver-particle-label {
+  color: #ffffff;
+}
+
+.composer-reaction-solver-particle-label-line {
+  display: block;
 }
 
 .composer-reaction-solver-tree {
   display: grid;
   gap: 4px;
-  flex: 1;
+  width: fit-content;
   min-width: 0;
   padding: 8px 0;
+}
+
+.composer-reaction-solver-tree.is-product {
+  justify-items: end;
 }
 
 .composer-reaction-solver-tree-row {
@@ -1770,7 +1824,16 @@ body {
   grid-template-columns: 18px minmax(0, 1fr);
 }
 
-.composer-reaction-solver-tree-row.is-product .composer-reaction-solver-anchor {
+.composer-reaction-solver-tree-row.is-inline-anchor,
+.composer-reaction-solver-tree-row.is-inline-anchor.is-product {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.composer-reaction-solver-tree-row.is-product {
+  justify-self: end;
+}
+
+.composer-reaction-solver-tree-row.is-product > .composer-reaction-solver-anchor {
   transform: translateX(-24px);
 }
 
@@ -1795,8 +1858,64 @@ body {
   padding-inline-start: calc(var(--solver-depth, 0) * 4ch);
 }
 
+.composer-reaction-solver-tree-content.is-noether-core-grid {
+  align-items: flex-start;
+}
+
+.composer-reaction-solver-tree-content.is-binary-selector-grid {
+  align-items: flex-start;
+}
+
+.composer-reaction-solver-tree-content.is-higgs-cluster-grid {
+  align-items: flex-start;
+}
+
 .composer-reaction-solver-tree-row.is-binary-selector {
   min-height: 86px;
+}
+
+.composer-reaction-solver-tree-row.is-binary-selector-grid {
+  align-items: flex-start;
+  min-height: 0;
+}
+
+.composer-reaction-solver-tree-row.is-noether-core-grid {
+  align-items: flex-start;
+  min-height: 0;
+}
+
+.composer-reaction-solver-tree-row.is-higgs-cluster-grid {
+  align-items: flex-start;
+  min-height: 0;
+}
+
+.composer-reaction-solver-noether-core-grid {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+  width: fit-content;
+}
+
+.composer-reaction-solver-noether-core-grid-track {
+  --binary-choice-size: 72px;
+  display: grid;
+  grid-template-columns: repeat(3, var(--binary-choice-size));
+  gap: var(--solver-tile-gap);
+  align-items: start;
+}
+
+.composer-reaction-solver-noether-core-grid-body {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.composer-reaction-solver-inline-anchor-lane {
+  display: grid;
+  align-self: start;
+  width: 18px;
+  height: var(--binary-choice-size, 72px);
+  place-items: center;
 }
 
 .composer-reaction-solver-binary-selector {
@@ -1806,6 +1925,90 @@ body {
   gap: 12px;
   min-width: 0;
   width: fit-content;
+}
+
+.composer-reaction-solver-binary-selector-grid {
+  display: grid;
+  --binary-choice-size: 72px;
+  gap: 10px;
+  min-width: 0;
+  width: fit-content;
+}
+
+.composer-reaction-solver-binary-selector-grid-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size)));
+  align-items: start;
+  gap: var(--solver-tile-gap);
+}
+
+.composer-reaction-solver-binary-selector-grid-body {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.composer-reaction-solver-binary-selector-column {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 10px;
+}
+
+.composer-reaction-solver-binary-selector-grid-options {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 10px;
+}
+
+.composer-reaction-solver-higgs-cluster-grid {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  width: fit-content;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-rows {
+  display: grid;
+  gap: 14px;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.composer-reaction-solver-composite-row-body {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: flex-start;
+  gap: var(--solver-tile-gap);
+}
+
+.composer-reaction-solver-composite-row-card {
+  margin-top: 0;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row.has-selector {
+  position: relative;
+  width: fit-content;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row.has-selector > .composer-reaction-solver-inline-anchor-lane {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row.has-selector.is-product > .composer-reaction-solver-inline-anchor-lane {
+  left: -28px;
+}
+
+.composer-reaction-solver-higgs-cluster-grid-row.has-selector:not(.is-product) > .composer-reaction-solver-inline-anchor-lane {
+  right: -28px;
 }
 
 .composer-reaction-solver-binary-selector.is-product {
@@ -1976,6 +2179,51 @@ body {
   cursor: default;
   border-color: rgba(255, 255, 255, 0.12);
   background: rgba(28, 34, 48, 0.8);
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile {
+  position: relative;
+  display: block;
+  width: var(--binary-choice-size, 72px);
+  max-width: none;
+  height: var(--binary-choice-size, 72px);
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+  overflow: visible;
+  border-radius: 16px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 62%, rgba(255, 255, 255, 0.14));
+  background: rgba(12, 16, 30, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:hover,
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:focus-visible {
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 86%, rgba(255, 255, 255, 0.22));
+  background: rgba(12, 16, 30, 0.96);
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile.is-pending {
+  border-color: rgba(255, 216, 126, 0.94);
+  background: color-mix(in srgb, rgba(116, 82, 24, 0.92) 32%, rgba(12, 16, 30, 0.94));
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile.is-mapped {
+  border-color: rgba(149, 255, 205, 0.96);
+  background: color-mix(in srgb, rgba(24, 92, 64, 0.92) 28%, rgba(12, 16, 30, 0.94));
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:disabled {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(28, 34, 48, 0.8);
+}
+
+.composer-reaction-solver-participant.has-inline-field-header .composer-reaction-solver-tree {
+  padding-block: 0;
 }
 
 .composer-reaction-solver-menu {
@@ -3020,15 +3268,19 @@ body {
 
   .composer-reaction-solver-participant,
   .composer-reaction-solver-participant.is-product {
-    justify-content: flex-start;
+    justify-self: start;
   }
 
   .composer-reaction-solver-column.is-products {
     padding-left: 0;
   }
 
-  .composer-reaction-solver-tree-row.is-product .composer-reaction-solver-anchor {
+  .composer-reaction-solver-tree-row.is-product > .composer-reaction-solver-anchor {
     transform: none;
+  }
+
+  .composer-reaction-solver-binary-selector-grid {
+    grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size, 72px)));
   }
 
   .composer-header-status {

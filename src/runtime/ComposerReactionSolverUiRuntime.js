@@ -1,11 +1,14 @@
 import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionRulesRuntime.js";
 
 const solverTemplateMeta = Object.freeze({
-  noether_core: { shortLabel: "NC", accent: "#94b6ff" },
-  higgs_cluster: { shortLabel: "HC", accent: "#e8c17b" },
-  electron: { shortLabel: "e-", accent: "#7fe1ff" },
-  down_quark: { shortLabel: "d", accent: "#8fb7ff" },
-  up_quark: { shortLabel: "u", accent: "#f0b7ff" },
+  noether_core: { shortLabel: "NC", accent: "#a259ff" },
+  higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
+  neutron: { shortLabel: "n", accent: "#4a78ff" },
+  proton: { shortLabel: "p", accent: "#ff5a4a" },
+  electron: { shortLabel: "e-", accent: "#2d8cff" },
+  neutrino: { shortLabel: "𝜈", accent: "#a259ff" },
+  down_quark: { shortLabel: "d", accent: "#4a78ff" },
+  up_quark: { shortLabel: "u", accent: "#ff5a4a" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
@@ -22,6 +25,12 @@ const binaryChoiceKindById = Object.freeze({
   ep: "neutral",
   pe: "neutral",
   pp: "positive",
+});
+const invertedBinaryChoiceIdById = Object.freeze({
+  ee: "pp",
+  ep: "pe",
+  pe: "ep",
+  pp: "ee",
 });
 const binarySlotRankByCode = Object.freeze({
   I: 0,
@@ -43,6 +52,14 @@ const binarySelectorTemplateRules = Object.freeze({
       I: "ee",
       M: "ee",
       O: "ee",
+    }),
+  }),
+  neutrino: Object.freeze({
+    visibleChoiceIds: Object.freeze(["pe"]),
+    defaultBySlot: Object.freeze({
+      I: "pe",
+      M: "pe",
+      O: "pe",
     }),
   }),
   up_quark: Object.freeze({
@@ -79,22 +96,39 @@ const binarySelectorTemplateRules = Object.freeze({
   }),
 });
 
+const participantPolarityTemplateIds = new Set([
+  "noether_core",
+  "electron",
+  "neutrino",
+  "down_quark",
+  "up_quark",
+  "fermion_gen1",
+]);
+
 function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const entries = [];
   const seen = new Set();
   const allEntries = [
     ...templateMenuRows.flatMap((row) => (Array.isArray(row) ? row : [])),
+    { template: "neutron", label: "Neutron" },
+    { template: "proton", label: "Proton" },
+    { template: "neutrino", label: "Neutrino", initialPolarity: "pro" },
     ...extraEntries,
   ];
   allEntries.forEach((entry) => {
     const template = String(entry?.template ?? "").trim();
-    if (!template || seen.has(template)) {
+    const initialPolarity = supportsParticipantPolarity(template)
+      ? normalizeParticipantPolarity(entry?.initialPolarity)
+      : "";
+    const entryKey = `${template}::${initialPolarity}`;
+    if (!template || seen.has(entryKey)) {
       return;
     }
-    seen.add(template);
+    seen.add(entryKey);
     entries.push({
       template,
       label: String(entry?.label ?? template).trim() || template,
+      initialPolarity,
     });
   });
   return entries;
@@ -176,39 +210,154 @@ function createCoreLeaf(id, label, inventory) {
   };
 }
 
+function createNoetherCoreBranch(
+  id,
+  label,
+  { anti = false, inventory = null, showSlotHeader = true } = {}
+) {
+  return {
+    id,
+    label,
+    renderMode: "noether-core-grid",
+    inventory: inventory ?? (anti ? { antiCore: 1 } : { proCore: 1 }),
+    showSlotHeader,
+    children: [
+      createBinaryBranch(`${id}/inner`, "inner binary", {
+        withPersonality: false,
+        slotCode: "I",
+        renderMode: "binary-bare",
+      }),
+      createBinaryBranch(`${id}/middle`, "middle binary", {
+        withPersonality: false,
+        slotCode: "M",
+        renderMode: "binary-bare",
+      }),
+      createBinaryBranch(`${id}/outer`, "outer binary", {
+        withPersonality: false,
+        slotCode: "O",
+        renderMode: "binary-bare",
+      }),
+    ],
+  };
+}
+
+function createBinarySelectorGroupBranch(id, label, templateId, options = {}) {
+  const { binaryLabelPrefix = "" } = options;
+  return {
+    id,
+    label,
+    templateId,
+    renderMode: "binary-selector-grid",
+    children: [
+      createBinaryBranch(
+        `${id}/inner`,
+        `${binaryLabelPrefix}inner binary with personality`.trim(),
+        { slotCode: "I" }
+      ),
+      createBinaryBranch(
+        `${id}/middle`,
+        `${binaryLabelPrefix}middle binary with personality`.trim(),
+        { slotCode: "M" }
+      ),
+      createBinaryBranch(
+        `${id}/outer`,
+        `${binaryLabelPrefix}outer binary with personality`.trim(),
+        { slotCode: "O" }
+      ),
+    ],
+  };
+}
+
+function supportsParticipantPolarity(templateId) {
+  return participantPolarityTemplateIds.has(String(templateId ?? "").trim().toLowerCase());
+}
+
+function normalizeParticipantPolarity(polarity) {
+  return String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
+}
+
+function stripLeadingParticipantPolarity(label = "") {
+  return String(label ?? "").trim().replace(/^(pro|anti)\s+/i, "") || String(label ?? "").trim();
+}
+
+function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") {
+  const cleanedBaseLabel = stripLeadingParticipantPolarity(baseLabel) || "?";
+  if (!supportsParticipantPolarity(templateId)) {
+    return cleanedBaseLabel;
+  }
+  return `${normalizeParticipantPolarity(polarity)} ${cleanedBaseLabel}`;
+}
+
+function syncParticipantHierarchyForPolarity(participant) {
+  if (!participant || !supportsParticipantPolarity(participant.templateId)) {
+    return;
+  }
+  const polarity = normalizeParticipantPolarity(participant.polarity);
+  const topNode = Array.isArray(participant.hierarchy) ? participant.hierarchy[0] ?? null : null;
+  if (!topNode) {
+    return;
+  }
+  topNode.label = `${polarity} Noether core`;
+  topNode.inventory = polarity === "anti" ? { antiCore: 1 } : { proCore: 1 };
+}
+
 function buildHierarchyForTemplate(templateId, label) {
   const normalizedTemplate = String(templateId ?? "").trim().toLowerCase();
   if (normalizedTemplate === "higgs_cluster") {
     return [
       {
         id: "root",
-        label,
+        label: "Higgs cluster",
+        renderMode: "assembly-cluster-grid",
         children: [
-          {
-            id: "root/higgs_cluster",
-            label: "Higgs cluster",
-            children: [
-              createCoreLeaf("root/higgs_cluster/pro_core_1", "Pro core", { proCore: 1 }),
-              createCoreLeaf("root/higgs_cluster/anti_core_1", "Anti core", { antiCore: 1 }),
-              createCoreLeaf("root/higgs_cluster/pro_core_2", "Pro core", { proCore: 1 }),
-              createCoreLeaf("root/higgs_cluster/anti_core_2", "Anti core", { antiCore: 1 }),
-            ],
-          },
+          createNoetherCoreBranch("root/pro_core_1", "Pro core"),
+          createNoetherCoreBranch("root/anti_core_1", "Anti core", {
+            anti: true,
+          }),
+          createNoetherCoreBranch("root/pro_core_2", "Pro core"),
+          createNoetherCoreBranch("root/anti_core_2", "Anti core", {
+            anti: true,
+          }),
+        ],
+      },
+    ];
+  }
+  if (normalizedTemplate === "neutron") {
+    return [
+      {
+        id: "root",
+        label: "Neutron",
+        renderMode: "assembly-cluster-grid",
+        children: [
+          createBinarySelectorGroupBranch("root/down_1", "Down quark", "down_quark"),
+          createBinarySelectorGroupBranch("root/up_1", "Up quark", "up_quark"),
+          createBinarySelectorGroupBranch("root/down_2", "Down quark", "down_quark"),
+        ],
+      },
+    ];
+  }
+  if (normalizedTemplate === "proton") {
+    return [
+      {
+        id: "root",
+        label: "Proton",
+        renderMode: "assembly-cluster-grid",
+        children: [
+          createBinarySelectorGroupBranch("root/up_1", "Up quark", "up_quark"),
+          createBinarySelectorGroupBranch("root/down_1", "Down quark", "down_quark"),
+          createBinarySelectorGroupBranch("root/up_2", "Up quark", "up_quark"),
         ],
       },
     ];
   }
   if (normalizedTemplate === "electron") {
+    return [createBinarySelectorGroupBranch("root", "pro Noether core", "electron")];
+  }
+  if (normalizedTemplate === "neutrino") {
     return [
-      {
-        id: "root",
-        label: "pro Noether core",
-        children: [
-          createBinaryBranch("root/inner", "inner binary with personality", { slotCode: "I" }),
-          createBinaryBranch("root/middle", "middle binary with personality", { slotCode: "M" }),
-          createBinaryBranch("root/outer", "outer binary with personality", { slotCode: "O" }),
-        ],
-      },
+      createBinarySelectorGroupBranch("root", "pro Noether core", "neutrino", {
+        binaryLabelPrefix: "neutral ",
+      }),
     ];
   }
   if (normalizedTemplate === "noether_core") {
@@ -216,6 +365,7 @@ function buildHierarchyForTemplate(templateId, label) {
       {
         id: "root",
         label: "pro Noether core",
+        renderMode: "noether-core-grid",
         children: [
           createBinaryBranch("root/inner", "inner binary", {
             withPersonality: false,
@@ -237,28 +387,18 @@ function buildHierarchyForTemplate(templateId, label) {
     ];
   }
   if (normalizedTemplate === "up_quark" || normalizedTemplate === "down_quark") {
-    return [
-      {
-        id: "root",
-        label: "pro Noether core",
-        children: [
-          createBinaryBranch("root/inner", "inner binary with personality", { slotCode: "I" }),
-          createBinaryBranch("root/middle", "middle binary with personality", { slotCode: "M" }),
-          createBinaryBranch("root/outer", "outer binary with personality", { slotCode: "O" }),
-        ],
-      },
-    ];
+    return [createBinarySelectorGroupBranch("root", "pro Noether core", normalizedTemplate)];
   }
   return [
-    {
-      id: "root",
-      label: "pro/anti Noether core",
-      children: [
-        createBinaryBranch("root/inner", "inner binary with personality", { slotCode: "I" }),
-        createBinaryBranch("root/middle", "middle binary with personality", { slotCode: "M" }),
-        createBinaryBranch("root/outer", "outer binary with personality", { slotCode: "O" }),
-      ],
-    },
+    createBinarySelectorGroupBranch("root", "pro/anti Noether core", normalizedTemplate),
+  ];
+}
+
+function buildSplitCoreHierarchy(label, options = {}) {
+  return [
+    createNoetherCoreBranch("root", label, {
+      anti: !!options.anti,
+    }),
   ];
 }
 
@@ -280,6 +420,87 @@ function getTemplateMeta(templateId, label = "") {
     shortLabel: shortLabel || "?",
     accent: "#9fb0e1",
   };
+}
+
+function getParticipantCardMeta(participant = null) {
+  const baseMeta = getTemplateMeta(participant?.templateId, participant?.label);
+  const polarity = normalizeParticipantPolarity(participant?.polarity);
+  const templateId = String(participant?.templateId ?? "").trim().toLowerCase();
+  if (templateId === "electron" || templateId === "down_quark") {
+    return {
+      ...baseMeta,
+      accent: polarity === "anti" ? "#ff5a4a" : "#2d8cff",
+    };
+  }
+  if (templateId === "up_quark") {
+    return {
+      ...baseMeta,
+      accent: polarity === "anti" ? "#2d8cff" : "#ff5a4a",
+    };
+  }
+  return baseMeta;
+}
+
+function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
+  const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
+  if (normalizedTemplateId === "noether_core") {
+    return "Noether core";
+  }
+  if (normalizedTemplateId === "up_quark") {
+    return "Up Quark";
+  }
+  if (normalizedTemplateId === "down_quark") {
+    return "Down Quark";
+  }
+  if (normalizedTemplateId === "electron") {
+    return "Electron";
+  }
+  if (normalizedTemplateId === "neutrino") {
+    return "Neutrino";
+  }
+  if (normalizedTemplateId === "proton") {
+    return "Proton";
+  }
+  if (normalizedTemplateId === "neutron") {
+    return "Neutron";
+  }
+  if (normalizedTemplateId === "higgs_cluster") {
+    return "Higgs cluster";
+  }
+  return String(fallbackLabel || normalizedTemplateId || "?").trim() || "?";
+}
+
+function getParticipantCardLabelLines(label = "", participant = null) {
+  const words = String(label || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  const normalizedTemplateId = String(participant?.templateId ?? "").trim().toLowerCase();
+  if (
+    normalizedTemplateId === "noether_core" &&
+    words.length >= 3
+  ) {
+    const [polarityWord = "", secondWord = "", thirdWord = ""] = words;
+    return [
+      polarityWord ? polarityWord[0].toUpperCase() + polarityWord.slice(1).toLowerCase() : "?",
+      secondWord ? secondWord[0].toUpperCase() + secondWord.slice(1).toLowerCase() : "",
+      thirdWord ? thirdWord.toLowerCase() : "",
+    ].filter(Boolean);
+  }
+  if (supportsParticipantPolarity(normalizedTemplateId) && words.length >= 2) {
+    const [polarityWord = "", ...restWords] = words;
+    return [
+      polarityWord ? polarityWord[0].toUpperCase() + polarityWord.slice(1).toLowerCase() : "?",
+      ...restWords.map((word) => word[0]?.toUpperCase?.() + word.slice(1).toLowerCase()),
+    ].filter(Boolean);
+  }
+  if (words.length <= 1) {
+    return [String(label || "").trim() || "?"];
+  }
+  if (words.length === 2) {
+    return words;
+  }
+  return [words.slice(0, -1).join(" "), words.at(-1) ?? ""];
 }
 
 function buildNodeKey(participantId, nodeId) {
@@ -319,7 +540,13 @@ function countDescendants(node) {
 }
 
 function shouldRenderChildNodes(node) {
-  return node?.renderMode !== "binary-selector" && node?.renderMode !== "binary-bare";
+  return (
+    node?.renderMode !== "binary-selector" &&
+    node?.renderMode !== "binary-selector-grid" &&
+    node?.renderMode !== "higgs-cluster-grid" &&
+    node?.renderMode !== "assembly-cluster-grid" &&
+    node?.renderMode !== "binary-bare"
+  );
 }
 
 function getBinaryPersonalityChoice(choiceId) {
@@ -342,6 +569,53 @@ function getBinarySelectorTemplateRule(templateId) {
   );
 }
 
+function invertBinaryChoiceId(choiceId) {
+  return invertedBinaryChoiceIdById[choiceId] ?? getBinaryPersonalityChoice(choiceId).id;
+}
+
+function invertBinaryChoiceKind(kind) {
+  if (kind === "negative") {
+    return "positive";
+  }
+  if (kind === "positive") {
+    return "negative";
+  }
+  return "neutral";
+}
+
+function getBinarySelectorRuleForParticipant(participant) {
+  const baseRule = getBinarySelectorTemplateRule(participant?.templateId);
+  if (normalizeParticipantPolarity(participant?.polarity) !== "anti") {
+    return baseRule;
+  }
+  return {
+    ...baseRule,
+    visibleChoiceIds: baseRule.visibleChoiceIds.map((choiceId) => invertBinaryChoiceId(choiceId)),
+    allowedCountPatterns: Array.isArray(baseRule.allowedCountPatterns)
+      ? baseRule.allowedCountPatterns.map((pattern) =>
+          Object.fromEntries(
+            Object.entries(pattern).map(([kind, count]) => [invertBinaryChoiceKind(kind), count])
+          )
+        )
+      : baseRule.allowedCountPatterns,
+    defaultBySlot: Object.fromEntries(
+      Object.entries(baseRule.defaultBySlot ?? {}).map(([slotCode, choiceId]) => [
+        slotCode,
+        invertBinaryChoiceId(choiceId),
+      ])
+    ),
+  };
+}
+
+function isQuarkTemplateId(templateId) {
+  const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
+  return normalizedTemplateId === "up_quark" || normalizedTemplateId === "down_quark";
+}
+
+function getBinarySelectorTemplateIdForNode(participant, groupNode = null) {
+  return String(groupNode?.templateId ?? participant?.templateId ?? "").trim().toLowerCase();
+}
+
 function collectBinarySelectorNodes(nodes = [], bucket = []) {
   (Array.isArray(nodes) ? nodes : []).forEach((node) => {
     if (node?.renderMode === "binary-selector") {
@@ -352,8 +626,9 @@ function collectBinarySelectorNodes(nodes = [], bucket = []) {
   return bucket;
 }
 
-function getBinarySelectorNodes(participant) {
-  return collectBinarySelectorNodes(participant?.hierarchy, []).sort((left, right) => {
+function getBinarySelectorNodes(participant, groupNode = null) {
+  const rootNodes = groupNode ? [groupNode] : participant?.hierarchy;
+  return collectBinarySelectorNodes(rootNodes, []).sort((left, right) => {
     const leftRank = binarySlotRankByCode[left?.slotCode] ?? Number.MAX_SAFE_INTEGER;
     const rightRank = binarySlotRankByCode[right?.slotCode] ?? Number.MAX_SAFE_INTEGER;
     if (leftRank !== rightRank) {
@@ -363,8 +638,11 @@ function getBinarySelectorNodes(participant) {
   });
 }
 
-function getDefaultBinaryChoiceIdForNode(participant, node) {
-  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+function getDefaultBinaryChoiceIdForNode(participant, node, groupNode = null) {
+  const rule = getBinarySelectorRuleForParticipant({
+    ...participant,
+    templateId: getBinarySelectorTemplateIdForNode(participant, groupNode),
+  });
   const slotCode = String(node?.slotCode ?? "").trim().toUpperCase();
   const defaultChoiceId = rule.defaultBySlot?.[slotCode];
   if (defaultChoiceId && rule.visibleChoiceIds.includes(defaultChoiceId)) {
@@ -431,14 +709,20 @@ function scoreBinarySelectionAssignment({
 
 function findBestBinarySelectionAssignment(
   participant,
+  groupNode = null,
   { pinnedNodeId = "", pinnedChoiceId = "" } = {}
 ) {
-  const nodes = getBinarySelectorNodes(participant);
+  const nodes = getBinarySelectorNodes(participant, groupNode);
   if (!nodes.length) {
     return {};
   }
-  const rule = getBinarySelectorTemplateRule(participant?.templateId);
-  const defaultSelections = getFallbackBinarySelections(participant);
+  const rule = getBinarySelectorRuleForParticipant({
+    ...participant,
+    templateId: getBinarySelectorTemplateIdForNode(participant, groupNode),
+  });
+  const defaultSelections = Object.fromEntries(
+    nodes.map((node) => [node.id, getDefaultBinaryChoiceIdForNode(participant, node, groupNode)])
+  );
   const currentSelections = {};
   nodes.forEach((node) => {
     const currentChoiceId = participant?.binarySelections?.[node.id];
@@ -487,13 +771,141 @@ function findBestBinarySelectionAssignment(
   return bestAssignment;
 }
 
-function getAllowedBinaryChoiceIds(participant, node) {
-  const rule = getBinarySelectorTemplateRule(participant?.templateId);
+function getResolvedBinarySelectionMap(participant, groupNode = null) {
+  return (
+    findBestBinarySelectionAssignment(participant, groupNode) ??
+    Object.fromEntries(
+      getBinarySelectorNodes(participant, groupNode).map((node) => [
+        node.id,
+        getDefaultBinaryChoiceIdForNode(participant, node, groupNode),
+      ])
+    )
+  );
+}
+
+function enumerateValidBinarySelectionAssignments(participant, groupNode = null) {
+  const nodes = getBinarySelectorNodes(participant, groupNode);
+  if (!nodes.length) {
+    return [];
+  }
+  const rule = getBinarySelectorRuleForParticipant({
+    ...participant,
+    templateId: getBinarySelectorTemplateIdForNode(participant, groupNode),
+  });
+  const assignments = [];
+  const draft = {};
+
+  function visit(index) {
+    if (index >= nodes.length) {
+      if (matchesAllowedBinarySelectionPatterns(draft, nodes, rule.allowedCountPatterns)) {
+        assignments.push({ ...draft });
+      }
+      return;
+    }
+    const node = nodes[index];
+    rule.visibleChoiceIds.forEach((choiceId) => {
+      draft[node.id] = choiceId;
+      visit(index + 1);
+    });
+    delete draft[node.id];
+  }
+
+  visit(0);
+  return assignments;
+}
+
+function binaryAssignmentsMatch(leftAssignment = {}, rightAssignment = {}, nodes = []) {
+  return nodes.every((node) => leftAssignment[node.id] === rightAssignment[node.id]);
+}
+
+function pickBestBinaryAssignmentCandidate({
+  participant,
+  groupNode = null,
+  assignments = [],
+  currentSelections = {},
+  pinnedNodeId = "",
+}) {
+  if (!assignments.length) {
+    return null;
+  }
+  const defaultSelections = Object.fromEntries(
+    getBinarySelectorNodes(participant, groupNode).map((node) => [
+      node.id,
+      getDefaultBinaryChoiceIdForNode(participant, node, groupNode),
+    ])
+  );
+  return assignments.reduce((bestAssignment, assignment) => {
+    if (!bestAssignment) {
+      return assignment;
+    }
+    const bestScore = scoreBinarySelectionAssignment({
+      assignment: bestAssignment,
+      currentSelections,
+      defaultSelections,
+      pinnedNodeId,
+    });
+    const candidateScore = scoreBinarySelectionAssignment({
+      assignment,
+      currentSelections,
+      defaultSelections,
+      pinnedNodeId,
+    });
+    return candidateScore > bestScore ? assignment : bestAssignment;
+  }, null);
+}
+
+function getAllowedBinaryChoiceIds(participant, node, groupNode = null) {
+  const rule = getBinarySelectorRuleForParticipant({
+    ...participant,
+    templateId: getBinarySelectorTemplateIdForNode(participant, groupNode),
+  });
   return rule.visibleChoiceIds.filter((choiceId) =>
-    !!findBestBinarySelectionAssignment(participant, {
+    !!findBestBinarySelectionAssignment(participant, groupNode, {
       pinnedNodeId: node?.id,
       pinnedChoiceId: choiceId,
     })
+  );
+}
+
+function findBinarySelectorGroupNode(nodes = [], targetNodeId = "", currentGroup = null) {
+  for (const node of Array.isArray(nodes) ? nodes : []) {
+    const nextGroup = node?.renderMode === "binary-selector-grid" ? node : currentGroup;
+    if (node?.id === targetNodeId) {
+      return nextGroup;
+    }
+    const childMatch = findBinarySelectorGroupNode(node?.children, targetNodeId, nextGroup);
+    if (childMatch) {
+      return childMatch;
+    }
+  }
+  return null;
+}
+
+function collectBinarySelectorGroupNodes(nodes = [], bucket = []) {
+  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
+    if (node?.renderMode === "binary-selector-grid") {
+      bucket.push(node);
+    }
+    collectBinarySelectorGroupNodes(node?.children, bucket);
+  });
+  return bucket;
+}
+
+function getInitialParticipantBinarySelections(participant) {
+  const groupNodes = collectBinarySelectorGroupNodes(participant?.hierarchy, []);
+  if (!groupNodes.length) {
+    return {};
+  }
+  return Object.assign(
+    {},
+    ...groupNodes.map((groupNode) =>
+      Object.fromEntries(
+        getBinarySelectorNodes(participant, groupNode).map((node) => [
+          node.id,
+          getDefaultBinaryChoiceIdForNode(participant, node, groupNode),
+        ])
+      )
+    )
   );
 }
 
@@ -508,6 +920,10 @@ function findHierarchyNodeById(nodes = [], nodeId = "") {
     }
   }
   return null;
+}
+
+function topLevelHierarchyHasRenderMode(nodes = [], renderMode = "") {
+  return (Array.isArray(nodes) ? nodes : []).some((node) => node?.renderMode === renderMode);
 }
 
 function createSvgElement(name) {
@@ -575,11 +991,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     active: false,
     nextParticipantId: 1,
     nextMappingId: 1,
+    nextSplitGroupId: 1,
     participants: [],
     mappings: [],
     pendingSourceKey: "",
     menuMode: "root",
     menuSide: "reactant",
+    menuParticipantId: "",
     menuOpen: false,
     menuClientX: 0,
     menuClientY: 0,
@@ -608,6 +1026,33 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function findParticipantById(participantId) {
     return state.participants.find((participant) => participant?.id === participantId) ?? null;
+  }
+
+  function createParticipantRecord({
+    side,
+    templateId,
+    label,
+    hierarchy,
+    extraFields = {},
+  }) {
+    const resolvedBaseLabel = stripLeadingParticipantPolarity(label);
+    const resolvedPolarity = supportsParticipantPolarity(templateId)
+      ? normalizeParticipantPolarity(extraFields.polarity)
+      : "";
+    const participant = {
+      id: `solver_participant_${state.nextParticipantId++}`,
+      side,
+      templateId,
+      baseLabel: resolvedBaseLabel,
+      polarity: resolvedPolarity,
+      label: formatParticipantLabel(resolvedBaseLabel, templateId, resolvedPolarity),
+      hierarchy,
+      binarySelections: {},
+      ...extraFields,
+    };
+    syncParticipantHierarchyForPolarity(participant);
+    participant.binarySelections = getInitialParticipantBinarySelections(participant);
+    return participant;
   }
 
   function getNodeContext(nodeKey) {
@@ -657,6 +1102,199 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const beforeCount = state.mappings.length;
     state.mappings = state.mappings.filter((mapping) => mapping.id !== mappingId);
     return beforeCount !== state.mappings.length;
+  }
+
+  function removeParticipantById(participantId) {
+    const participant = findParticipantById(participantId);
+    if (!participant) {
+      return false;
+    }
+    state.participants = state.participants.filter(
+      (entry) => String(entry?.id ?? "") !== participantId
+    );
+    state.mappings = state.mappings.filter((mapping) => {
+      const sourceParticipantId = parseNodeKey(mapping.sourceKey).participantId;
+      const targetParticipantId = parseNodeKey(mapping.targetKey).participantId;
+      return sourceParticipantId !== participantId && targetParticipantId !== participantId;
+    });
+    if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
+      state.pendingSourceKey = "";
+    }
+    closeMenu();
+    render();
+    setStatus(
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} removed from the reaction solver.`
+    );
+    return true;
+  }
+
+  function setParticipantPolarity(participantId, nextPolarity) {
+    const participant = findParticipantById(participantId);
+    if (!participant || !supportsParticipantPolarity(participant.templateId)) {
+      return false;
+    }
+    const resolvedPolarity = normalizeParticipantPolarity(nextPolarity);
+    if (participant.polarity === resolvedPolarity) {
+      return false;
+    }
+    const currentSelections = getResolvedBinarySelectionMap(participant);
+    participant.polarity = resolvedPolarity;
+    syncParticipantHierarchyForPolarity(participant);
+    participant.binarySelections = Object.fromEntries(
+      Object.entries(currentSelections).map(([nodeId, choiceId]) => [
+        nodeId,
+        invertBinaryChoiceId(choiceId),
+      ])
+    );
+    participant.label = formatParticipantLabel(
+      participant.baseLabel ?? participant.label,
+      participant.templateId,
+      resolvedPolarity
+    );
+    closeMenu();
+    render();
+    setStatus(
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} updated.`
+    );
+    return true;
+  }
+
+  function splitHiggsParticipantById(participantId) {
+    const participantIndex = state.participants.findIndex(
+      (entry) => String(entry?.id ?? "") === participantId
+    );
+    const participant =
+      participantIndex >= 0 ? state.participants[participantIndex] ?? null : null;
+    if (!participant || participant.templateId !== "higgs_cluster") {
+      return false;
+    }
+
+    const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
+    const replacementParticipants = [
+      createParticipantRecord({
+        side: participant.side,
+        templateId: "noether_core",
+        label: "Noether core",
+        hierarchy: buildSplitCoreHierarchy("Pro core"),
+        extraFields: {
+          polarity: "pro",
+          splitGroupId,
+          splitOriginTemplateId: "higgs_cluster",
+          splitOriginRole: "pro",
+          splitOriginIndex: 0,
+        },
+      }),
+      createParticipantRecord({
+        side: participant.side,
+        templateId: "noether_core",
+        label: "Noether core",
+        hierarchy: buildSplitCoreHierarchy("Anti core", { anti: true }),
+        extraFields: {
+          polarity: "anti",
+          splitGroupId,
+          splitOriginTemplateId: "higgs_cluster",
+          splitOriginRole: "anti",
+          splitOriginIndex: 1,
+        },
+      }),
+      createParticipantRecord({
+        side: participant.side,
+        templateId: "noether_core",
+        label: "Noether core",
+        hierarchy: buildSplitCoreHierarchy("Pro core"),
+        extraFields: {
+          polarity: "pro",
+          splitGroupId,
+          splitOriginTemplateId: "higgs_cluster",
+          splitOriginRole: "pro",
+          splitOriginIndex: 2,
+        },
+      }),
+      createParticipantRecord({
+        side: participant.side,
+        templateId: "noether_core",
+        label: "Noether core",
+        hierarchy: buildSplitCoreHierarchy("Anti core", { anti: true }),
+        extraFields: {
+          polarity: "anti",
+          splitGroupId,
+          splitOriginTemplateId: "higgs_cluster",
+          splitOriginRole: "anti",
+          splitOriginIndex: 3,
+        },
+      }),
+    ];
+
+    state.participants.splice(participantIndex, 1, ...replacementParticipants);
+    state.mappings = state.mappings.filter((mapping) => {
+      const sourceParticipantId = parseNodeKey(mapping.sourceKey).participantId;
+      const targetParticipantId = parseNodeKey(mapping.targetKey).participantId;
+      return sourceParticipantId !== participantId && targetParticipantId !== participantId;
+    });
+    if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
+      state.pendingSourceKey = "";
+    }
+    closeMenu();
+    render();
+    setStatus(
+      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster split into four core assemblies.`
+    );
+    return true;
+  }
+
+  function splitCompositeParticipantById(participantId) {
+    const participant = findParticipantById(participantId);
+    if (!participant) {
+      return false;
+    }
+    if (participant.templateId === "higgs_cluster") {
+      return splitHiggsParticipantById(participantId);
+    }
+    if (participant.templateId !== "neutron" && participant.templateId !== "proton") {
+      return false;
+    }
+
+    const participantIndex = state.participants.findIndex(
+      (entry) => String(entry?.id ?? "") === participantId
+    );
+    const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
+    const quarkTemplates =
+      participant.templateId === "proton"
+        ? ["up_quark", "down_quark", "up_quark"]
+        : ["down_quark", "up_quark", "down_quark"];
+    const replacementParticipants = quarkTemplates.map((templateId, index) =>
+      createParticipantRecord({
+        side: participant.side,
+        templateId,
+        label: templateId === "up_quark" ? "Up Quark" : "Down Quark",
+        hierarchy: buildHierarchyForTemplate(
+          templateId,
+          templateId === "up_quark" ? "Up Quark" : "Down Quark"
+        ),
+        extraFields: {
+          polarity: "pro",
+          splitGroupId,
+          splitOriginTemplateId: participant.templateId,
+          splitOriginIndex: index,
+        },
+      })
+    );
+
+    state.participants.splice(participantIndex, 1, ...replacementParticipants);
+    state.mappings = state.mappings.filter((mapping) => {
+      const sourceParticipantId = parseNodeKey(mapping.sourceKey).participantId;
+      const targetParticipantId = parseNodeKey(mapping.targetKey).participantId;
+      return sourceParticipantId !== participantId && targetParticipantId !== participantId;
+    });
+    if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
+      state.pendingSourceKey = "";
+    }
+    closeMenu();
+    render();
+    setStatus(
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} split into constituent quarks.`
+    );
+    return true;
   }
 
   function addOrReplaceMapping(sourceKey, targetKey) {
@@ -709,10 +1347,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return count;
   }
 
-  function getBinaryPersonalitySelection(participant, node) {
-    const selectionMap =
-      findBestBinarySelectionAssignment(participant) ??
-      getFallbackBinarySelections(participant);
+  function getBinaryPersonalitySelection(participant, node, groupNode = null) {
+    const selectionMap = getResolvedBinarySelectionMap(participant, groupNode);
     return getBinaryPersonalityChoice(selectionMap[node?.id]);
   }
 
@@ -721,11 +1357,64 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant || !nodeId) {
       return;
     }
+    const groupNode = findBinarySelectorGroupNode(participant.hierarchy, nodeId);
     const nextSelections =
-      findBestBinarySelectionAssignment(participant, {
+      findBestBinarySelectionAssignment(participant, groupNode, {
         pinnedNodeId: nodeId,
         pinnedChoiceId: getBinaryPersonalityChoice(choiceId).id,
       }) ?? null;
+    if (!nextSelections) {
+      return;
+    }
+    participant.binarySelections = nextSelections;
+    render();
+  }
+
+  function cycleQuarkBinaryPreset(participantId, nodeId) {
+    const participant = findParticipantById(participantId);
+    if (!participant || !nodeId) {
+      return;
+    }
+    const groupNode = findBinarySelectorGroupNode(participant.hierarchy, nodeId);
+    if (!groupNode || !isQuarkTemplateId(groupNode.templateId)) {
+      return;
+    }
+    const nodes = getBinarySelectorNodes(participant, groupNode);
+    const clickedNode = nodes.find((node) => node.id === nodeId);
+    if (!clickedNode) {
+      return;
+    }
+    const currentSelections = getResolvedBinarySelectionMap(participant, groupNode);
+    const validAssignments = enumerateValidBinarySelectionAssignments(participant, groupNode);
+    if (!validAssignments.length) {
+      return;
+    }
+
+    const choiceCycle = getBinarySelectorRuleForParticipant({
+      ...participant,
+      templateId: groupNode.templateId,
+    }).visibleChoiceIds
+      .filter((choiceId) =>
+        validAssignments.some((assignment) => assignment[clickedNode.id] === choiceId)
+      );
+    if (!choiceCycle.length) {
+      return;
+    }
+    const currentChoiceId = currentSelections[clickedNode.id];
+    const currentChoiceIndex = Math.max(0, choiceCycle.indexOf(currentChoiceId));
+    const nextChoiceId = choiceCycle[(currentChoiceIndex + 1) % choiceCycle.length];
+    const candidateAssignments = validAssignments.filter(
+      (assignment) =>
+        assignment[clickedNode.id] === nextChoiceId &&
+        !binaryAssignmentsMatch(assignment, currentSelections, nodes)
+    );
+    const nextSelections = pickBestBinaryAssignmentCandidate({
+      participant,
+      groupNode,
+      assignments: candidateAssignments,
+      currentSelections,
+      pinnedNodeId: clickedNode.id,
+    });
     if (!nextSelections) {
       return;
     }
@@ -783,10 +1472,24 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function openTemplatePicker(side) {
     state.menuMode = "template-picker";
     state.menuSide = side === "product" ? "product" : "reactant";
+    state.menuParticipantId = "";
     renderMenu();
   }
 
-  function addParticipant(side, templateId) {
+  function openParticipantMenuAt(participantId, clientX, clientY) {
+    if (!state.active || !menu || !findParticipantById(participantId)) {
+      return;
+    }
+    closeExternalMenus();
+    state.menuClientX = clientX;
+    state.menuClientY = clientY;
+    state.menuMode = "participant-actions";
+    state.menuParticipantId = participantId;
+    state.menuOpen = true;
+    renderMenu();
+  }
+
+  function addParticipant(side, templateId, options = {}) {
     const templateEntry =
       templateEntries.find((entry) => entry.template === templateId) ??
       templateEntries[0] ??
@@ -795,22 +1498,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     const participantLabel =
-      templateEntry.template === "higgs_cluster"
-        ? "SpaceTime"
-        : templateEntry.template === "noether_core"
-          ? "pro Noether core"
-          : templateEntry.label;
-    const participant = {
-      id: `solver_participant_${state.nextParticipantId++}`,
+      getDefaultParticipantBaseLabel(templateEntry.template, templateEntry.label);
+    const participant = createParticipantRecord({
       side,
       templateId: templateEntry.template,
       label: participantLabel,
       hierarchy: buildHierarchyForTemplate(templateEntry.template, participantLabel),
-      binarySelections: {},
-    };
-    participant.binarySelections =
-      findBestBinarySelectionAssignment(participant) ??
-      getFallbackBinarySelections(participant);
+      extraFields: {
+        polarity: options.initialPolarity ?? templateEntry.initialPolarity ?? "",
+      },
+    });
     state.participants.push(participant);
     state.pendingSourceKey = "";
     closeMenu();
@@ -833,7 +1530,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
       );
       templateEntries.forEach((entry) => {
         const itemButton = renderMenuButton(entry.label, {
-          onClick: () => addParticipant(state.menuSide, entry.template),
+          onClick: () =>
+            addParticipant(state.menuSide, entry.template, {
+              initialPolarity: entry.initialPolarity,
+            }),
         });
         const meta = getTemplateMeta(entry.template, entry.label);
         itemButton.style.setProperty("--solver-entry-accent", meta.accent);
@@ -843,6 +1543,51 @@ export function createComposerReactionSolverUiRuntime(deps) {
         kind: "secondary",
         onClick: () => {
           state.menuMode = "root";
+          state.menuParticipantId = "";
+          renderMenu();
+        },
+      });
+    } else if (state.menuMode === "participant-actions") {
+      const participant = findParticipantById(state.menuParticipantId);
+      if (!participant) {
+        state.menuMode = "root";
+        state.menuParticipantId = "";
+        renderMenu();
+        return;
+      }
+      renderMenuTitle(participant.label);
+      if (
+        participant.templateId === "higgs_cluster" ||
+        participant.templateId === "neutron" ||
+        participant.templateId === "proton"
+      ) {
+        renderMenuButton("Split assembly", {
+          onClick: () => splitCompositeParticipantById(participant.id),
+        });
+      }
+      if (supportsParticipantPolarity(participant.templateId)) {
+        renderMenuButton(
+          participant.polarity === "anti" ? "Make pro" : "Make anti",
+          {
+            onClick: () =>
+              setParticipantPolarity(
+                participant.id,
+                participant.polarity === "anti" ? "pro" : "anti"
+              ),
+          }
+        );
+      }
+      renderMenuButton(
+        `Remove ${participant.side === "reactant" ? "reactant" : "product"}`,
+        {
+          onClick: () => removeParticipantById(participant.id),
+        }
+      );
+      renderMenuButton("Back", {
+        kind: "secondary",
+        onClick: () => {
+          state.menuMode = "root";
+          state.menuParticipantId = "";
           renderMenu();
         },
       });
@@ -869,6 +1614,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.menuClientX = clientX;
     state.menuClientY = clientY;
     state.menuMode = "root";
+    state.menuParticipantId = "";
     state.menuOpen = true;
     renderMenu();
   }
@@ -1027,6 +1773,289 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return wrapper;
   }
 
+  function createAnchorButton(participant, node, nodeKey, options = {}) {
+    const { extraClassNames = [] } = options;
+    const anchorAvailability = getAnchorAvailability(participant.side, nodeKey);
+    const mapping = findMappingByNodeKey(nodeKey);
+    const anchor = document.createElement("button");
+    anchor.type = "button";
+    anchor.className = "composer-reaction-solver-anchor";
+    extraClassNames
+      .filter(Boolean)
+      .forEach((className) => anchor.classList.add(className));
+    anchor.dataset.anchorKey = nodeKey;
+    anchor.dataset.anchorSide = participant.side;
+    anchor.setAttribute(
+      "aria-label",
+      `${participant.side === "product" ? "Product" : "Reactant"} attach point for ${node.label}`
+    );
+    anchor.disabled = anchorAvailability.disabled;
+    if (anchorAvailability.reason) {
+      anchor.title = anchorAvailability.reason;
+    }
+    if (state.pendingSourceKey === nodeKey) {
+      anchor.classList.add("is-pending");
+    }
+    if (mapping) {
+      anchor.classList.add("is-mapped");
+    }
+    anchor.addEventListener("click", () => handleAnchorClick(participant.side, nodeKey));
+    return anchor;
+  }
+
+  function getCoreBinaryNodes(node) {
+    return (Array.isArray(node?.children) ? node.children : [])
+      .filter((child) => child?.slotCode)
+      .sort((left, right) => {
+        const leftRank = binarySlotRankByCode[left?.slotCode] ?? Number.MAX_SAFE_INTEGER;
+        const rightRank = binarySlotRankByCode[right?.slotCode] ?? Number.MAX_SAFE_INTEGER;
+        if (leftRank !== rightRank) {
+          return leftRank - rightRank;
+        }
+        return String(left?.id ?? "").localeCompare(String(right?.id ?? ""));
+      });
+  }
+
+  function createInlineAnchorLane(participant, node, nodeKey) {
+    const lane = document.createElement("div");
+    lane.className = `composer-reaction-solver-inline-anchor-lane is-${participant.side}`;
+    lane.appendChild(createAnchorButton(participant, node, nodeKey));
+    return lane;
+  }
+
+  function createSideSlotHeader(side) {
+    const header = document.createElement("div");
+    header.className = `composer-reaction-solver-side-slot-header is-${side}`;
+    ["I", "M", "O"].forEach((slotCode) => {
+      const slot = document.createElement("span");
+      slot.className = "composer-reaction-solver-side-slot-header-slot";
+      slot.textContent = slotCode;
+      header.appendChild(slot);
+    });
+    return header;
+  }
+
+  function createNoetherCoreGridSections(participant, node) {
+    const tiles = document.createElement("div");
+    tiles.className = "composer-reaction-solver-noether-core-grid-track";
+    getCoreBinaryNodes(node).forEach((childNode) => {
+      const nodeKey = buildNodeKey(participant.id, childNode.id);
+      const choice =
+        childNode.renderMode === "binary-bare"
+          ? null
+          : getBinaryPersonalitySelection(participant, childNode);
+      const tile = createAnchorButton(participant, childNode, nodeKey, {
+        extraClassNames: [
+          "composer-reaction-solver-binary-choice",
+          "composer-reaction-solver-binary-choice-is-anchor",
+          "composer-reaction-solver-noether-core-grid-tile",
+          "is-static",
+        ],
+      });
+      tile.style.setProperty(
+        "--binary-choice-accent",
+        choice?.accent ?? "#b889ff"
+      );
+      tile.appendChild(
+        createBinaryGlyph(choice, {
+          showPersonality: childNode.renderMode !== "binary-bare",
+        })
+      );
+      tiles.appendChild(tile);
+    });
+    return { tiles };
+  }
+
+  function createNoetherCoreGridContent(participant, node) {
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-noether-core-grid is-${participant.side}`;
+    const { tiles } = createNoetherCoreGridSections(participant, node);
+    const body = document.createElement("div");
+    body.className = `composer-reaction-solver-noether-core-grid-body is-${participant.side}`;
+    if (participant.side === "product") {
+      body.append(createInlineAnchorLane(participant, node, nodeKey), tiles);
+    } else {
+      body.append(tiles, createInlineAnchorLane(participant, node, nodeKey));
+    }
+    wrapper.appendChild(body);
+    return wrapper;
+  }
+
+  function createBinarySelectorGridTrack(participant, node) {
+    const track = document.createElement("div");
+    track.className = "composer-reaction-solver-binary-selector-grid-track";
+    track.style.setProperty("--binary-choice-size", "72px");
+    getCoreBinaryNodes(node).forEach((childNode) => {
+      const column = document.createElement("div");
+      column.className = "composer-reaction-solver-binary-selector-column";
+      const choices = document.createElement("div");
+      choices.className = "composer-reaction-solver-binary-selector-grid-options";
+      const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
+      const allowedChoiceIds = getAllowedBinaryChoiceIds(participant, childNode, node);
+
+      allowedChoiceIds.forEach((choiceId) => {
+        const choice = getBinaryPersonalityChoice(choiceId);
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "composer-reaction-solver-binary-choice";
+        button.dataset.choiceId = choice.id;
+        button.style.setProperty("--binary-choice-accent", choice.accent);
+        button.setAttribute("aria-label", `${childNode.label}: ${choice.label}`);
+        button.title = choice.label;
+        if (selectedChoice.id === choice.id) {
+          button.classList.add("is-selected");
+        } else {
+          button.classList.add("is-dimmed");
+        }
+        button.appendChild(createBinaryGlyph(choice));
+        button.addEventListener("click", () =>
+          setBinaryPersonalitySelection(participant.id, childNode.id, choice.id)
+        );
+        choices.appendChild(button);
+      });
+
+      column.appendChild(choices);
+      track.appendChild(column);
+    });
+    return track;
+  }
+
+  function createQuarkPresetRowTrack(participant, node) {
+    const track = document.createElement("div");
+    track.className = "composer-reaction-solver-binary-selector-grid-track";
+    track.style.setProperty("--binary-choice-size", "72px");
+    getCoreBinaryNodes(node).forEach((childNode) => {
+      const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "composer-reaction-solver-binary-choice is-selected";
+      button.dataset.choiceId = selectedChoice.id;
+      button.style.setProperty("--binary-choice-accent", selectedChoice.accent);
+      button.setAttribute("aria-label", `${childNode.label}: ${selectedChoice.label}`);
+      button.title = `${childNode.label}: ${selectedChoice.label}`;
+      button.appendChild(createBinaryGlyph(selectedChoice));
+      button.addEventListener("click", () =>
+        cycleQuarkBinaryPreset(participant.id, childNode.id)
+      );
+      track.appendChild(button);
+    });
+    return track;
+  }
+
+  function createBinarySelectorGridContent(participant, node) {
+    if (isQuarkTemplateId(node.templateId ?? participant.templateId)) {
+      return createQuarkPresetRowContent(participant, node);
+    }
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const track = createBinarySelectorGridTrack(participant, node);
+    const body = document.createElement("div");
+    body.className = `composer-reaction-solver-binary-selector-grid-body is-${participant.side}`;
+    if (participant.side === "product") {
+      body.append(createInlineAnchorLane(participant, node, nodeKey), track);
+    } else {
+      body.append(track, createInlineAnchorLane(participant, node, nodeKey));
+    }
+    wrapper.appendChild(body);
+    return wrapper;
+  }
+
+  function createQuarkPresetRowContent(participant, node) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const track = createQuarkPresetRowTrack(participant, node);
+    const body = document.createElement("div");
+    body.className = `composer-reaction-solver-binary-selector-grid-body is-${participant.side}`;
+    if (participant.side === "product") {
+      body.append(createInlineAnchorLane(participant, node, nodeKey), track);
+    } else {
+      body.append(track, createInlineAnchorLane(participant, node, nodeKey));
+    }
+    wrapper.appendChild(body);
+    return wrapper;
+  }
+
+  function createCompositeAssemblyRowTrack(participant, rowNode) {
+    if (rowNode?.renderMode === "noether-core-grid") {
+      return createNoetherCoreGridSections(participant, rowNode).tiles;
+    }
+    if (rowNode?.renderMode === "binary-selector-grid") {
+      return isQuarkTemplateId(rowNode.templateId ?? participant.templateId)
+        ? createQuarkPresetRowTrack(participant, rowNode)
+        : createBinarySelectorGridTrack(participant, rowNode);
+    }
+    return document.createElement("div");
+  }
+
+  function createCompositeAssemblyRowCard(participant, rowNode) {
+    const templateId = String(rowNode?.templateId ?? "").trim().toLowerCase();
+    const baseLabel = getDefaultParticipantBaseLabel(templateId, rowNode?.label);
+    const cardParticipant = {
+      templateId,
+      polarity: supportsParticipantPolarity(templateId) ? "pro" : "",
+      label: supportsParticipantPolarity(templateId)
+        ? formatParticipantLabel(baseLabel, templateId, "pro")
+        : baseLabel,
+    };
+    const card = document.createElement("div");
+    card.className = "composer-reaction-solver-particle composer-reaction-solver-composite-row-card";
+    const meta = getParticipantCardMeta(cardParticipant);
+    card.style.setProperty("--solver-accent", meta.accent);
+    const label = document.createElement("div");
+    label.className = "composer-reaction-solver-particle-label";
+    getParticipantCardLabelLines(cardParticipant.label, cardParticipant).forEach((line) => {
+      const lineElement = document.createElement("span");
+      lineElement.className = "composer-reaction-solver-particle-label-line";
+      lineElement.textContent = line;
+      label.appendChild(lineElement);
+    });
+    card.appendChild(label);
+    return card;
+  }
+
+  function createCompositeAssemblyRowBody(participant, rowNode) {
+    const body = document.createElement("div");
+    body.className = `composer-reaction-solver-composite-row-body is-${participant.side}`;
+    const card = createCompositeAssemblyRowCard(participant, rowNode);
+    const track = createCompositeAssemblyRowTrack(participant, rowNode);
+    if (participant.side === "product") {
+      body.append(track, card);
+    } else {
+      body.append(card, track);
+    }
+    return body;
+  }
+
+  function createCompositeAssemblyGridContent(participant, node) {
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-higgs-cluster-grid is-${participant.side}`;
+    const coreNodes = Array.isArray(node?.children) ? node.children : [];
+    const rows = document.createElement("div");
+    rows.className = "composer-reaction-solver-higgs-cluster-grid-rows";
+    coreNodes.forEach((coreNode, index) => {
+      const row = document.createElement("div");
+      row.className = `composer-reaction-solver-higgs-cluster-grid-row is-${participant.side}`;
+      const rowBody = createCompositeAssemblyRowBody(participant, coreNode);
+      if (index === 0) {
+        row.classList.add("has-selector");
+        if (participant.side === "product") {
+          row.append(createInlineAnchorLane(participant, node, nodeKey), rowBody);
+        } else {
+          row.append(rowBody, createInlineAnchorLane(participant, node, nodeKey));
+        }
+      } else {
+        row.appendChild(rowBody);
+      }
+      rows.appendChild(row);
+    });
+    wrapper.appendChild(rows);
+    return wrapper;
+  }
+
   function createBinarySelectorContent(participant, node) {
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-solver-binary-selector is-${participant.side}`;
@@ -1082,8 +2111,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const nodeKey = buildNodeKey(participant.id, node.id);
       const hasChildren = Array.isArray(node.children) && node.children.length > 0;
       const canRenderChildren = hasChildren && shouldRenderChildNodes(node);
+      const rendersChildrenInline = node.renderMode === "noether-core-grid";
       const mapping = findMappingByNodeKey(nodeKey);
-      const isCollapsed = !!mapping && canRenderChildren;
+      const isCollapsed = !!mapping && canRenderChildren && !rendersChildrenInline;
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
       const anchorAvailability = getAnchorAvailability(participant.side, nodeKey);
       const row = document.createElement("div");
@@ -1108,23 +2138,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const content = document.createElement("div");
       content.className = "composer-reaction-solver-tree-content";
       content.style.setProperty("--solver-depth", String(depth));
-      const anchor = document.createElement("button");
-      anchor.type = "button";
-      anchor.className = "composer-reaction-solver-anchor";
-      anchor.dataset.anchorKey = nodeKey;
-      anchor.dataset.anchorSide = participant.side;
-      anchor.setAttribute(
-        "aria-label",
-        `${participant.side === "product" ? "Product" : "Reactant"} attach point for ${node.label}`
-      );
-      anchor.disabled = anchorAvailability.disabled;
-      if (state.pendingSourceKey === nodeKey) {
-        anchor.classList.add("is-pending");
+      const usesInlineAnchor =
+        node.renderMode === "noether-core-grid" ||
+        node.renderMode === "binary-selector-grid" ||
+        node.renderMode === "higgs-cluster-grid" ||
+        node.renderMode === "assembly-cluster-grid";
+      if (usesInlineAnchor) {
+        row.classList.add("is-inline-anchor");
       }
-      if (mapping) {
-        anchor.classList.add("is-mapped");
-      }
-      anchor.addEventListener("click", () => handleAnchorClick(participant.side, nodeKey));
+      const anchor = usesInlineAnchor ? null : createAnchorButton(participant, node, nodeKey);
       const collapsedNote =
         hiddenDescendantCount > 0
           ? Object.assign(document.createElement("span"), {
@@ -1132,7 +2154,22 @@ export function createComposerReactionSolverUiRuntime(deps) {
               textContent: `${hiddenDescendantCount} hidden`,
             })
           : null;
-      if (node.renderMode === "binary-selector") {
+      if (node.renderMode === "noether-core-grid") {
+        row.classList.add("is-noether-core-grid");
+        content.classList.add("is-noether-core-grid");
+        content.appendChild(createNoetherCoreGridContent(participant, node));
+      } else if (
+        node.renderMode === "higgs-cluster-grid" ||
+        node.renderMode === "assembly-cluster-grid"
+      ) {
+        row.classList.add("is-higgs-cluster-grid");
+        content.classList.add("is-higgs-cluster-grid");
+        content.appendChild(createCompositeAssemblyGridContent(participant, node));
+      } else if (node.renderMode === "binary-selector-grid") {
+        row.classList.add("is-binary-selector-grid");
+        content.classList.add("is-binary-selector-grid");
+        content.appendChild(createBinarySelectorGridContent(participant, node));
+      } else if (node.renderMode === "binary-selector") {
         row.classList.add("is-binary-selector");
         content.appendChild(createBinarySelectorContent(participant, node));
       } else if (node.renderMode === "binary-bare") {
@@ -1144,13 +2181,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
           content.appendChild(collapsedNote);
         }
       }
-      if (participant.side === "product") {
+      if (usesInlineAnchor) {
+        row.appendChild(content);
+      } else if (participant.side === "product") {
         row.append(anchor, content);
       } else {
         row.append(content, anchor);
       }
       parent.appendChild(row);
-      if (canRenderChildren && !isCollapsed) {
+      if (canRenderChildren && !isCollapsed && !rendersChildrenInline) {
         renderParticipantTreeRows(parent, participant, node.children, depth + 1);
       }
     });
@@ -1159,17 +2198,39 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function renderParticipantCard(participant) {
     const card = document.createElement("article");
     card.className = `composer-reaction-solver-participant is-${participant.side}`;
+    const topLevelRenderMode = participant?.hierarchy?.[0]?.renderMode ?? "";
+    if (topLevelHierarchyHasRenderMode(participant.hierarchy, "noether-core-grid")) {
+      card.classList.add("has-noether-core-grid");
+    }
+    if (
+      topLevelRenderMode === "noether-core-grid" ||
+      topLevelRenderMode === "binary-selector-grid" ||
+      topLevelRenderMode === "higgs-cluster-grid" ||
+      topLevelRenderMode === "assembly-cluster-grid"
+    ) {
+      card.classList.add("has-inline-field-header");
+    }
     const visual = document.createElement("div");
     visual.className = "composer-reaction-solver-particle";
-    const meta = getTemplateMeta(participant.templateId, participant.label);
+    if (participant.polarity === "anti") {
+      visual.classList.add("is-anti-polarity");
+    }
+    const meta = getParticipantCardMeta(participant);
     visual.style.setProperty("--solver-accent", meta.accent);
-    const visualBadge = document.createElement("div");
-    visualBadge.className = "composer-reaction-solver-particle-badge";
-    visualBadge.textContent = meta.shortLabel;
     const visualLabel = document.createElement("div");
     visualLabel.className = "composer-reaction-solver-particle-label";
-    visualLabel.textContent = participant.label;
-    visual.append(visualBadge, visualLabel);
+    getParticipantCardLabelLines(participant.label, participant).forEach((line) => {
+      const lineElement = document.createElement("span");
+      lineElement.className = "composer-reaction-solver-particle-label-line";
+      lineElement.textContent = line;
+      visualLabel.appendChild(lineElement);
+    });
+    visual.appendChild(visualLabel);
+    visual.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openParticipantMenuAt(participant.id, event.clientX, event.clientY);
+    });
 
     const hierarchy = document.createElement("div");
     hierarchy.className = `composer-reaction-solver-tree is-${participant.side}`;
@@ -1200,7 +2261,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     if (state.pendingSourceKey) {
       mapHint.textContent =
-        "Reactant anchor selected. Conservative product targets remain active; incompatible targets are grayed out.";
+        "Reactant anchor selected. Conservative product targets active. Incompatible targets dimmed.";
       return;
     }
     if (!state.mappings.length) {
@@ -1268,16 +2329,24 @@ export function createComposerReactionSolverUiRuntime(deps) {
       }
       return;
     }
-    state.participants
-      .filter((participant) => participant.side === "reactant")
-      .forEach((participant) => {
-        reactantsColumn.appendChild(renderParticipantCard(participant));
-      });
-    state.participants
-      .filter((participant) => participant.side === "product")
-      .forEach((participant) => {
-        productsColumn.appendChild(renderParticipantCard(participant));
-      });
+    const reactantParticipants = state.participants.filter(
+      (participant) => participant.side === "reactant"
+    );
+    const productParticipants = state.participants.filter(
+      (participant) => participant.side === "product"
+    );
+    if (reactantParticipants.length) {
+      reactantsColumn.appendChild(createSideSlotHeader("reactant"));
+    }
+    reactantParticipants.forEach((participant) => {
+      reactantsColumn.appendChild(renderParticipantCard(participant));
+    });
+    if (productParticipants.length) {
+      productsColumn.appendChild(createSideSlotHeader("product"));
+    }
+    productParticipants.forEach((participant) => {
+      productsColumn.appendChild(renderParticipantCard(participant));
+    });
     updateHint();
     scheduleMappingDraw();
   }
