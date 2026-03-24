@@ -2030,17 +2030,35 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function createCompositeAssemblyRowCard(participant, rowNode) {
-    const templateId = String(rowNode?.templateId ?? "").trim().toLowerCase();
-    const baseLabel = getDefaultParticipantBaseLabel(templateId, rowNode?.label);
+    const antiCoreCount = Number(rowNode?.inventory?.antiCore ?? 0);
+    const inferredTemplateId =
+      rowNode?.renderMode === "noether-core-grid"
+        ? "noether_core"
+        : String(rowNode?.templateId ?? "").trim().toLowerCase();
+    const inferredPolarity =
+      inferredTemplateId === "noether_core"
+        ? Number.isFinite(antiCoreCount) && antiCoreCount > 0
+          ? "anti"
+          : "pro"
+        : supportsParticipantPolarity(inferredTemplateId)
+          ? "pro"
+          : "";
+    const baseLabel = getDefaultParticipantBaseLabel(inferredTemplateId, rowNode?.label);
     const cardParticipant = {
-      templateId,
-      polarity: supportsParticipantPolarity(templateId) ? "pro" : "",
-      label: supportsParticipantPolarity(templateId)
-        ? formatParticipantLabel(baseLabel, templateId, "pro")
-        : baseLabel,
+      templateId: inferredTemplateId,
+      polarity: inferredPolarity,
+      label:
+        inferredTemplateId === "noether_core"
+          ? String(rowNode?.label ?? baseLabel).trim() || baseLabel
+          : supportsParticipantPolarity(inferredTemplateId)
+            ? formatParticipantLabel(baseLabel, inferredTemplateId, inferredPolarity)
+            : baseLabel,
     };
     const card = document.createElement("div");
     card.className = "composer-reaction-solver-particle composer-reaction-solver-composite-row-card";
+    if (cardParticipant.polarity === "anti") {
+      card.classList.add("is-anti-polarity");
+    }
     const meta = getParticipantCardMeta(cardParticipant);
     card.style.setProperty("--solver-accent", meta.accent);
     const label = document.createElement("div");
