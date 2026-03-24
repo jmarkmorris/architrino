@@ -1550,6 +1550,21 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
+  function clearReactionCanvas() {
+    if (!state.participants.length && !state.mappings.length && !state.pendingSourceKey) {
+      closeMenu();
+      render();
+      setStatus("Reaction canvas is already clear.");
+      return;
+    }
+    state.participants = [];
+    state.mappings = [];
+    state.pendingSourceKey = "";
+    closeMenu();
+    render();
+    setStatus("Reaction canvas cleared.");
+  }
+
   function renderMenu() {
     if (!menu) {
       return;
@@ -1636,6 +1651,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
         lines: ["Add", "Product"],
         extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("product"),
+      });
+      renderMenuButton("Clear reaction canvas", {
+        kind: "secondary",
+        extraClassNames: ["is-wide"],
+        disabled: !state.participants.length && !state.mappings.length && !state.pendingSourceKey,
+        onClick: () => clearReactionCanvas(),
       });
       renderMenuButton("Auto solve (not yet implemented)", {
         disabled: true,
