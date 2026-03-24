@@ -1016,7 +1016,7 @@ This is a **high-priority explanatory target**. Current hypothesis: the tri-bina
 - **Quarks**: $e/3$ (two architrinos), $2e/3$ (four architrinos)
 - **Leptons**: $0$ (six balanced architrinos), $\pm e$ (six of one sign)
 
-**Particle construction:** The $|e/6|$ unit creates a clear combinatorial path: nucleons are built from quarks ($e/3, 2e/3$) via integer counting of architrino charges. Leptons ($e$) similarly arise from specific six-architrino configurations on tri-binary polar decoration sites. This provides a unified explanation for charge quantization across all observed particles.
+**Particle construction:** The $|e/6|$ unit creates a clear combinatorial path: nucleons are built from quarks ($e/3, 2e/3$) via integer counting of architrino charges. Leptons ($e$) similarly arise from specific six-architrino configurations on tri-binary polar sites. This provides a unified explanation for charge quantization across all observed particles.
 
 See TOC Ch. 18 ("Fermions: Leptons and Quarks") and Ch. 22 ("Charge Stability Map") for detailed assembly-to-particle mappings.
 
@@ -1114,7 +1114,7 @@ This occurs whenever the particle has exceeded $v_f$ in its history and subseque
 
 **Wake interactions have several operational consequences:**
 
-- **Repulsion from like charges:** The wake carries the same sign as the source, so entering it produces a repulsive push analogous to the self-hit repulsion in the older language.
+- **Repulsion from like polarities:** The wake carries the same sign as the source, so entering it produces a repulsive push analogous to the self-hit repulsion in the older language.
 - **Memory:** Once the particle has generated a dense wake by briefly exceeding $v_f$, it continues to feel that wake even after it slows back below $v_f$, because the wake persists geometrically.
 - **Shockfront geometry:** The high-intensity locus resembles a sharp cone; traversing that cone is what produces the strong self-interaction effects that stabilize assemblies.
 
@@ -1151,7 +1151,7 @@ When potential from another architrino (or from one's own past emissions, in the
 **Key features:**
 
 - **Radial acceleration**: The acceleration is directed along the line from the emission point to the receiver's current location.
-- **Charge-dependent sign**: Like charges repel ($\sigma_{qq'} = +1$); opposite charges attract ($\sigma_{qq'} = -1$).
+- **Polarity-dependent sign**: Like polarities repel ($\sigma_{qq'} = +1$); opposite polarities attract ($\sigma_{qq'} = -1$).
 - **Inverse-square baseline with Jacobian weighting**: The received strength of each individual hit scales with the inverse square of the emission-to-receiver distance and is further weighted by the causal Jacobian factor $\left|J\right|^{-1}$, which captures geometric bunching or dilation of the emitted flux.
 - **Superposition**: The total acceleration is the vector sum of all individual hits from all sources (including self-hits, if present).
 
@@ -1702,7 +1702,7 @@ The following questions remain open and are active areas of investigation:
 
 2. **What is the origin of $\epsilon = e/6$?**
  - Can this be derived from tri-binary topology, or is it a brute fact?
- - Connection to 6-fold symmetry of tri-binary polar decoration?
+ - Connection to 6-fold symmetry of tri-binary polar-site geometry?
 
 3. **What determines $\kappa$?**
  - Is it related to Planck units? To $e$, $c_f$, $\hbar$?

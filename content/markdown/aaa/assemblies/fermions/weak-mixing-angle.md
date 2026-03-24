@@ -1,15 +1,15 @@
 # Weak Mixing Angle
 
-This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus personality-frame distinction explicit.
+This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit.
 
 ## Purpose
 
-The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Model. It parameterizes how the weak-isospin neutral boson $W^3$ and the hypercharge boson $B$ combine to form the physical photon $\gamma$ and the neutral weak boson $Z$. Equivalently, it sets the relative alignment between the SU(2) and U(1) electroweak sectors, so it appears wherever neutral-current and charged-current electroweak couplings are compared. In the present note, we do not assume that the measured Weinberg angle itself is literally an internal quark tilt. Instead, we use the existing bare six-pole relation in $\mathbb{A}\mathbb{A}\mathbb{A}$ as a possible geometric increment for personality-frame misalignment.
+The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Model. It parameterizes how the weak-isospin neutral boson $W^3$ and the hypercharge boson $B$ combine to form the physical photon $\gamma$ and the neutral weak boson $Z$. Equivalently, it sets the relative alignment between the SU(2) and U(1) electroweak sectors, so it appears wherever neutral-current and charged-current electroweak couplings are compared. In the present note, we do not assume that the measured Weinberg angle itself is literally an internal quark tilt. Instead, we use the existing bare six-pole relation in $\mathbb{A}\mathbb{A}\mathbb{A}$ as a possible geometric increment for axial-frame misalignment.
 
 This note records a constrained geometric hypothesis for fermion assemblies in $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
 - the **Noether core axes remain fixed** as the reference scaffold,
-- the **personality charge distribution** is allowed to rotate relative to that scaffold,
+- the **axial distribution** is allowed to rotate relative to that scaffold,
 - stable quark-like states may occupy a **discrete set of misalignment angles**,
 - the natural bare increment for those angles is identified with the existing six-pole electroweak value
 $$
@@ -20,7 +20,7 @@ $$
 \theta_W^{\text{bare}}=30^\circ.
 $$
 
-This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The tri-binary scaffold remains the kinematic frame. What changes is the orientation of the **personality principal frame** and therefore the orientation of the **Weak-Coupling Triad** relative to the fixed core frame.
+This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The tri-binary scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **Weak-Coupling Triad** relative to the fixed core frame.
 
 ---
 
@@ -42,20 +42,20 @@ $$
 \mathcal{F}_{\text{core}} = \{\hat{\mathbf{e}}_H,\hat{\mathbf{e}}_M,\hat{\mathbf{e}}_L\}.
 $$
 
-### 2. Personality frame
+### 2. Axial Frame
 
-The six decoration charges define a second frame through their coarse-grained charge moments. At lowest order this can be represented by a principal-axis frame extracted from the personality distribution:
+The six axial architrinos define a second frame through their coarse-grained charge moments. At lowest order this can be represented by a principal-axis frame extracted from the axial distribution:
 $$
-\mathcal{F}_{\text{pers}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}.
+\mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}.
 $$
 
-For a perfectly symmetric lepton-like decoration, these two frames coincide. For a quark-like decoration with axis exceptionality, they need not coincide.
+For a perfectly symmetric lepton-like axial layer, these two frames coincide. For a quark-like axial layer with axis exceptionality, they need not coincide.
 
 The geometric object of interest is therefore the relative rotation
 $$
 R_{\text{rel}} \in SO(3),
 \qquad
-\mathcal{F}_{\text{pers}} = R_{\text{rel}}\,\mathcal{F}_{\text{core}}.
+\mathcal{F}_{\text{ax}} = R_{\text{rel}}\,\mathcal{F}_{\text{core}}.
 $$
 
 This note proposes that physically stable fermion assemblies use only a restricted subset of such rotations.
@@ -66,12 +66,12 @@ This note proposes that physically stable fermion assemblies use only a restrict
 
 The electron provides the clean reference case.
 
-In the Generation-I electron, the personality layer is $6E$. At coarse-grained level:
+In the Generation-I electron, the axial layer is $6E$. At coarse-grained level:
 
 - no axis is exceptional,
 - the load on the three axes is equivalent,
 - there is no color asymmetry,
-- the weak-active and shielded sectors can be defined without introducing a shear between core and decoration frames.
+- the weak-active and shielded sectors can be defined without introducing a shear between core and axial frames.
 
 The natural equilibrium statement is
 $$
@@ -82,15 +82,15 @@ $$
 \alpha = 0.
 $$
 
-This should be read as the **isotropic limit** of the decoration geometry, not as a separate dynamical law. In plain terms: when all six personality charges are the same sign, there is no internal reason for the decoration frame to rotate away from the core triad.
+This should be read as the **isotropic limit** of the axial geometry, not as a separate dynamical law. In plain terms: when all six axial architrinos share the same polarity, there is no internal reason for the axial frame to rotate away from the core triad.
 
 ---
 
-## Quark Limit: Rotated Personality Geometry
+## Quark Limit: Rotated Axial Geometry
 
 Quarks are different for two independent reasons already present in the existing geometry:
 
-1. the decoration is **charge-imbalanced**,
+1. the axial layer is **charge-imbalanced**,
 2. one axis is **exceptional** relative to the other two, giving color structure.
 
 For up-type and down-type quarks the imbalance differs:
@@ -98,17 +98,17 @@ For up-type and down-type quarks the imbalance differs:
 - up-type: $5P,1E$,
 - down-type: $2P,4E$.
 
-This means the personality layer does not merely carry a net charge. It also carries a nontrivial anisotropic load. That anisotropic load can be encoded in a charge-moment tensor
+This means the axial layer does not merely carry a net observer-level charge. It also carries a nontrivial anisotropic load. That anisotropic load can be encoded in an axial-moment tensor
 $$
 M_{ij} = \sum_{a=1}^{6} q_a\,n_i^{(a)} n_j^{(a)},
 $$
-where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six personality-site directions measured in the core frame.
+where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six polar-site directions measured in the core frame.
 
-The eigenvectors of $M_{ij}$ define the principal personality axes. For leptons, symmetry tends to force these axes to align with the core frame. For quarks, the asymmetry generically produces
+The eigenvectors of $M_{ij}$ define the principal axial axes. For leptons, symmetry tends to force these axes to align with the core frame. For quarks, the asymmetry generically produces
 $$
 [M,\delta] \neq 0
 $$
-in the core basis, so the personality frame rotates to a nearby but distinct orientation.
+in the core basis, so the axial frame rotates to a nearby but distinct orientation.
 
 The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**.
 
@@ -125,7 +125,7 @@ $$
 \theta_W^{\text{bare}} = 30^\circ.
 $$
 
-The present idea is to reuse this as a **personality-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments.
+The present idea is to reuse this as a **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments.
 
 Define a discrete family of candidate equilibrium misalignment angles
 $$
@@ -133,7 +133,7 @@ $$
 \qquad n\in\mathbb{Z}.
 $$
 
-Because a personality frame is an oriented triad and because many rotations are physically equivalent up to sign flips, pole relabelings, or color-phase shifts, the physically distinct set is expected to be much smaller than all integers. A practical first working set is
+Because an axial frame is an oriented triad and because many rotations are physically equivalent up to sign flips, pole relabelings, or color-phase shifts, the physically distinct set is expected to be much smaller than all integers. A practical first working set is
 $$
 \alpha \in \{0,30^\circ,60^\circ,90^\circ\},
 $$
@@ -149,7 +149,7 @@ To avoid ambiguity, this idea should be stated in operational terms.
 
 The following are allowed to rotate relative to the fixed core frame:
 
-- the principal axes of the six-site personality charge tensor,
+- the principal axes of the six-site axial-distribution tensor,
 - the coarse orientation of the Weak-Coupling Triad,
 - the effective exposed-vs-shielded partition in the forward coupling geometry,
 - the dominant dipole/quadrupole direction associated with quark asymmetry.
@@ -164,7 +164,7 @@ The following are **not** rotating in this note:
 This separation is important because otherwise one mixes together three different jobs:
 
 - core topology,
-- decoration anisotropy,
+- axial anisotropy,
 - electroweak exposure geometry.
 
 Those should be kept distinct unless a later derivation proves they collapse to one object.
@@ -173,33 +173,33 @@ Those should be kept distinct unless a later derivation proves they collapse to 
 
 ## Minimal Geometric Parameterization
 
-A minimal way to encode the hypothesis is by one angle $\alpha$ and one azimuth $\phi_c$.
+A minimal way to encode the hypothesis is by one angle $\alpha$ and one discrete color label $c$.
 
-- $\alpha$: polar misalignment of the personality frame relative to the core frame,
-- $\phi_c$: azimuthal phase selecting which axis is exceptional, i.e. color orientation.
+- $\alpha$: polar misalignment of the axial frame relative to the core frame,
+- $c \in \{H,M,L\}$: the exceptional-axis label selecting the quark color sector.
 
 Then a first-pass rotation may be written as
 $$
-R_{\text{rel}}(\alpha,\phi_c) = R_{\text{axis}}(\phi_c)\,R_{\text{tilt}}(\alpha),
+R_{\text{rel}}(\alpha,c) = R_{\text{axis}}(c)\,R_{\text{tilt}}(\alpha),
 $$
 where:
 
-- $R_{\text{axis}}$ chooses the color-sector azimuth,
-- $R_{\text{tilt}}$ sets the discrete personality misalignment.
+- $R_{\text{axis}}$ chooses the exceptional-axis sector,
+- $R_{\text{tilt}}$ sets the discrete axial misalignment.
 
 In this language:
 
-- color remains a $0^\circ,120^\circ,240^\circ$ azimuthal phase assignment,
-- flavor-dependent quark structure enters through the allowed values of $\alpha$ and through the charge tensor amplitudes,
+- color remains the three-state exceptional-axis assignment,
+- flavor-dependent quark structure enters through the allowed values of $\alpha$ and through the axial-tensor amplitudes,
 - electron-like states remain at $\alpha=0$ and color singlet.
 
-So the proposal does **not** replace the current color picture. It adds a second geometric datum: a discrete polar misalignment carried by the personality frame.
+So the proposal does **not** replace the current color picture. It adds a second geometric datum: a discrete polar misalignment carried by the axial frame.
 
 ---
 
 ## Why Up and Down Need Not Share a Branch
 
-The up and down quarks should not be distinguished only by total charge. Their personality tensors have different structure and therefore can support different equilibrium branches.
+The up and down quarks should not be distinguished only by total charge. Their axial tensors have different structure and therefore can support different equilibrium branches.
 
 ### Up-type expectation
 
@@ -207,7 +207,7 @@ For $5P,1E$:
 
 - two axes are effectively positrino-rich,
 - one axis contains the exceptional mixed or depleted structure,
-- the net personality moment is strongly one-sided.
+- the net axial moment is strongly one-sided.
 
 This suggests a relatively stiff anisotropy with a sharply defined exceptional direction. Such a configuration may favor one discrete nonzero angle, for example a single-step branch $\alpha = 30^\circ$ or a two-step branch $\alpha = 60^\circ$ depending on how the mixed axis loads the surrounding Noether Sea.
 
@@ -244,10 +244,10 @@ $$
 
 Here:
 
-- $E_{\text{charge}}$ measures internal strain from placing an imbalanced six-charge decoration on the fixed scaffold,
+- $E_{\text{charge}}$ measures internal strain from placing an imbalanced six-architrino axial layer on the fixed scaffold,
 - $E_{\text{color}}$ enforces the threefold azimuthal structure,
-- $E_{\text{cross}}$ captures coupling between exceptional-axis choice and personality tilt,
-- $E_{\text{wake}}$ is the Noether-Sea response to the exposed decoration geometry.
+- $E_{\text{cross}}$ captures coupling between exceptional-axis choice and axial tilt,
+- $E_{\text{wake}}$ is the Noether-Sea response to the exposed axial geometry.
 
 The discrete-angle hypothesis is the statement that
 $$
@@ -269,16 +269,16 @@ where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a
 
 ## Weak-Coupling Interpretation
 
-In the current AAA dictionary, the weak sector acts on the **Weak-Coupling Triad**, the three more exposed personality sites. If the personality frame rotates relative to the core frame, then the exposed triad need not sit in the same orientation as it does in the electron.
+In the current AAA dictionary, the weak sector acts on the **Weak-Coupling Triad**, the three more exposed polar sites. If the axial frame rotates relative to the core frame, then the exposed triad need not sit in the same orientation as it does in the electron.
 
 This gives a possible geometric interpretation of quark weak structure:
 
 - the quark still has a fixed core frame,
-- the active three-site weak sector is carried on a rotated personality frame,
+- the active three-site weak sector is carried on a rotated axial frame,
 - weak transitions couple to that rotated frame,
 - observed electroweak mixing then depends on both charge assignment and frame misalignment.
 
-This is a cleaner statement than saying that weak mixing directly rotates the core axes. The weak interaction sees the **decoration geometry that is exposed to the Sea**, not necessarily a reorientation of the neutral scaffold.
+This is a cleaner statement than saying that weak mixing directly rotates the core axes. The weak interaction sees the **axial geometry that is exposed to the Sea**, not necessarily a reorientation of the neutral scaffold.
 
 ---
 
@@ -289,25 +289,25 @@ This idea must coexist with the current color construction rather than replace i
 Current color picture:
 
 - one axis is exceptional,
-- color labels the azimuthal phase of that exceptionality,
-- baryon color neutrality arises from the $0^\circ,120^\circ,240^\circ$ closure.
+- color labels which exceptional-axis sector the quark occupies,
+- baryon color neutrality arises from H/M/L singlet closure.
 
 Extended picture proposed here:
 
-- color still labels the azimuthal phase $\phi_c$ of the exceptional axis,
-- a second datum $\alpha$ labels the polar misalignment of the personality frame,
+- color still labels the exceptional-axis sector $c$,
+- a second datum $\alpha$ labels the polar misalignment of the axial frame,
 - the full quark state is therefore specified by both
 $$
-(\phi_c,\alpha).
+(c,\alpha).
 $$
 
 In this sense, color answers the question
 
-- which azimuthal direction is exceptional?
+- which axis is exceptional?
 
-while the Weinberg-locked personality rotation answers
+while the Weinberg-locked axial rotation answers
 
-- how far is the personality frame tilted away from the core reference frame?
+- how far is the axial frame tilted away from the core reference frame?
 
 That division of labor is geometrically cleaner than overloading color to do both jobs.
 
@@ -321,8 +321,8 @@ Potential redundancies include:
 
 - reversing a principal axis together with a pole relabeling,
 - rotating by $180^\circ$ and exchanging equivalent background axes,
-- shifts in color azimuth that can be absorbed into the existing SU(3)-like phase labeling,
-- matter/antimatter conjugation that flips charge signs without requiring a new core scaffold.
+- relabelings of the color basis that can be absorbed into the existing SU(3)-like axis labeling,
+- matter/antimatter conjugation that flips polarity signs without requiring a new core scaffold.
 
 So the real task is not to enumerate all multiples of $30^\circ$, but to identify the **small quotient set of inequivalent minima** after these symmetries are imposed.
 
@@ -330,13 +330,13 @@ So the real task is not to enumerate all multiples of $30^\circ$, but to identif
 
 ## What Would Count as Success
 
-This idea becomes useful only if it improves closure rather than adding decoration.
+This idea becomes useful only if it improves closure rather than adding extra structure.
 
 ### Minimum closure targets
 
 1. The electron must remain the zero-misalignment limit.
-2. Up- and down-type quarks must emerge as different stable personality-frame branches.
-3. The color construction must remain intact: one exceptional axis, three azimuthal phases, baryon singlet closure.
+2. Up- and down-type quarks must emerge as different stable axial-frame branches.
+3. The color construction must remain intact: one exceptional axis, three color sectors, baryon singlet closure.
 4. Charge quantization must remain exact in units of $e/6$.
 5. The rotated weak-coupling frame must not break the existing $Q=T_3+Y/2$ bookkeeping.
 
@@ -355,9 +355,9 @@ If the idea does not improve one of those closure targets, it should be treated 
 This hypothesis should be discarded or revised if any of the following occurs:
 
 1. The discrete-angle rule forces violations of the existing color-singlet closure for baryons.
-2. The rotated personality frame spoils the weak-triad arithmetic that currently reproduces the quark/lepton doublets.
+2. The rotated axial frame spoils the weak-triad arithmetic that currently reproduces the quark/lepton doublets.
 3. The angle assignment becomes arbitrary, with no energy functional or symmetry argument selecting the allowed branches.
-4. The same observed structure can be explained more simply by charge-moment anisotropy alone, without any quantized $30^\circ$ locking.
+4. The same observed structure can be explained more simply by axial-moment anisotropy alone, without any quantized $30^\circ$ locking.
 
 The fourth point matters. The discrete-angle idea is only worthwhile if it explains a pattern that continuous misalignment would explain less well.
 
@@ -368,13 +368,13 @@ The fourth point matters. The discrete-angle idea is only worthwhile if it expla
 The sharpened hypothesis is:
 
 - the **Noether core stays fixed**,
-- the **personality frame** may rotate relative to that fixed core,
+- the **axial frame** may rotate relative to that fixed core,
 - the electron sits at the symmetric limit $\alpha=0$,
-- quarks occupy nonzero misalignment branches because their personality layers are both charge-imbalanced and axis-exceptional,
+- quarks occupy nonzero misalignment branches because their axial layers are both charge-imbalanced and axis-exceptional,
 - the stable branches may be quantized in increments of the existing bare electroweak angle
 $$
 \theta_W^{\text{bare}}=30^\circ,
 $$
-with color providing an independent azimuthal phase label.
+with color providing an independent exceptional-axis label.
 
-In short: do not rotate the scaffold; rotate the decoration frame. Then ask whether the six-pole electroweak geometry selects discrete quark misalignment angles as part of the same underlying assembly logic.
+In short: do not rotate the scaffold; rotate the axial frame. Then ask whether the six-pole electroweak geometry selects discrete quark misalignment angles as part of the same underlying assembly logic.

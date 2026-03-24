@@ -60,9 +60,9 @@ General Relativity predicts that an accelerating observer sees a thermal bath of
 Why are charges quantized in units of e/3?
 *   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ derives it.
 *   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $|e/6|$ charges are likely unstable. They either collapse (self-hit singularity) or fly apart.
-*   **The Survivors:** Only specific geometric configurations (the 6-pole decoration patterns) establish a stable resonance where attractive and repulsive forces balance via the tri-binary structure. These stable islands correspond exactly to the SM particle spectrum.
+*   **The Survivors:** Only specific geometric configurations (the six-pole axial patterns) establish a stable resonance where attractive and repulsive forces balance via the tri-binary structure. These stable islands correspond exactly to the SM particle spectrum.
 
-**SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six e/6 Personality Charges)**
+**SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six e/6 Axial Architrinos)**
 
 | split | electrinos | positrinos | net fermion charge |
 |:-----:|:----------:|:----------:|:------------------:|
@@ -75,11 +75,11 @@ Why are charges quantized in units of e/3?
 |     1:5     |         1         |         5         |          +2/3          |
 |     0:6     |         0         |         6         |           +1           |
 
-The tri-binary’s six polar regions demand six personality architrinos per fermion assembly; sweeping all electrino:positrino splits across those poles yields exactly the SM charge set with no extras.
+The tri-binary’s six polar regions demand six axial architrinos per fermion assembly; sweeping all electrino:positrino splits across those poles yields exactly the SM charge set with no extras.
 
 ### Combinatorial Proof (Six $\pm e/6$ Slots)
 
-**Proposition.** If a fermion personality layer has exactly six slots, each occupied by either $+e/6$ or $-e/6$, then the total charge can only be
+**Proposition.** If a fermion axial layer has exactly six polar sites, each occupied by either $+e/6$ or $-e/6$, then the total charge can only be
 $$
 \{-e,-2e/3,-e/3,0,+e/3,+2e/3,+e\}.
 $$
@@ -88,7 +88,7 @@ $$
 $$
 N_+ + N_- = 6,\qquad N_+,N_- \in \{0,1,\dots,6\}.
 $$
-The net personality charge is
+The net observer-level charge carried by the axial layer is
 $$
 Q=\frac{e}{6}(N_+ - N_-).
 $$

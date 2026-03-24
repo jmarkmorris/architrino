@@ -1,4 +1,4 @@
-Here is a brainstorming architecture for the **Architrino Provenance Engine (APE)**. Current PDG (Particle Data Group) tables act like chemical equations ($A + B \to C + D$), but they treat particles as irreducible distinct entities. They hide the "stoichiometry of the sub-components." If we build a solver that tracks **Architrino Provenance** (where every single point charge comes from and goes to), we effectively turn high-energy physics into **geometric chemistry**. We stop treating the vacuum as "nothing" and start treating it as a reactant/solvent.
+Here is a brainstorming architecture for the **Architrino Provenance Engine (APE)**. Current PDG (Particle Data Group) tables act like chemical equations ($A + B \to C + D$), but they treat particles as irreducible distinct entities. They hide the "stoichiometry of the sub-components." If we build a solver that tracks **Architrino Provenance** (where every single architrino comes from and goes to), we effectively turn high-energy physics into **geometric chemistry**. We stop treating the vacuum as "nothing" and start treating it as a reactant/solvent.
 
 ---
 
@@ -37,7 +37,7 @@ In the Standard Model, a particle is a set of quantum numbers ($Q, S, L, B, etc.
     *   Inner Binary (IDs: $i_1, i_2$) - High energy/Max curvature.
     *   Middle Binary (IDs: $m_1, m_2$) - Symmetry breaker.
     *   Outer Binary (IDs: $o_1, o_2$) - Energy shell.
-*   **The Personality (Decorations):**
+*   **The Axial Layer (Decorations):**
     *   List of specific architrinos (IDs: $p_1, p_2...$) attached to the poles.
 *   **The State:** Velocity, Orientation, Phase.
 
@@ -54,7 +54,7 @@ We don't just jump from Reactants to Products. We simulate the **Transitional Ch
 **Phase 1: The Disruption (Input)**
 *   Load Reactant A and Reactant B.
 *   Check Interaction Energy.
-    *   *Low Energy:* Only personality architrinos are stripped/exchanged (Chemistry/Electricity).
+    *   *Low Energy:* Only axial architrinos are stripped/exchanged (Chemistry/Electricity).
     *   *Medium Energy:* Outer/Middle binaries disrupted (Standard Decay/Low-energy nuclear).
     *   *High Energy (Collider):* Core disruption. Inner binaries exposed.
 
@@ -69,7 +69,7 @@ We don't just jump from Reactants to Products. We simulate the **Transitional Ch
 *   It attempts to build the Product Cores using the available "LEGO bricks" in the soup.
 *   **Provenance Matching:**
     *   "Inner Binary #452 from the Proton is conserved and becomes Inner Binary #452 in the resulting Neutron."
-    *   "Personality Electrino #12 was stripped and is now becoming the core of a new electron."
+    *   "Axial Electrino #12 was stripped and is now becoming the core of a new electron."
 
 **Phase 4: The Waste Calculation (The "Dark" Sector)**
 *   This is your key insight. Often, the math won't balance perfectly with just Standard Model particles.
@@ -85,16 +85,16 @@ Let's visualize how the APE would solve this.
 
 **1. Reactant:** Neutron ($u d d$)
 *   Core: 3 Tri-binaries, one per quark.
-*   Decorations: Net charge 0 (balanced mix of $+|e/6|$ and $-|e/6|$).
+*   Axial layer: Net charge 0 (balanced mix of $+|e/6|$ and $-|e/6|$).
 
 **2. The Event:**
 *   A "virtual W boson" event occurs. In APE terms, the Neutron core undergoes a geometric instability.
 *   A Spacetime Assembly (ST) is pulled in from the vacuum.
 
 **3. The Provenance Swap:**
-*   **Neutron Core:** Remains mostly intact but shifts configuration (Outer binary adjusts). It sheds a specific negative decoration pattern.
+*   **Neutron Core:** Remains mostly intact but shifts configuration (Outer binary adjusts). It sheds a specific negative axial pattern.
 *   **The Spacetime Assembly:** Breaks apart.
-    *   Part of it bonds with the shed decoration to form the **Electron** ($e^-$).
+    *   Part of it bonds with the shed axial architrinos to form the **Electron** ($e^-$).
     *   The complementary part (balancing momentum/spin) forms the **Anti-Neutrino** ($\bar{\nu}_e$).
     *   A quark is converted from a down to an up.
     *   The Neutron Core re-stabilizes as a **Proton** ($u u d$).

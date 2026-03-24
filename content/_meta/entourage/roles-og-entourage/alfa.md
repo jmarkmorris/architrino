@@ -2,7 +2,7 @@
 
 ## Core Mandate
 
-Derive the structure, stability, and properties of **complex matter**—from nucleons and nuclei to bulk condensed phases—as consequences of the architrino architecture and tri-binary assembly interactions. Focus on **multi-body dynamics** of decorated tri-binaries, calculating how they bind, oscillate, and organize within the spacetime aether.
+Derive the structure, stability, and properties of **complex matter**—from nucleons and nuclei to bulk condensed phases—as consequences of the architrino architecture and tri-binary assembly interactions. Focus on **multi-body dynamics** of tri-binaries with axial layers, calculating how they bind, oscillate, and organize within the spacetime aether.
 
 Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establish the **equation of state** for matter from the femtometer to stellar scales, ensuring macroscopic behavior traces back to the **master equation of Motion**.
 
@@ -21,7 +21,7 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 **Matter vs. Aether Distinction**
 - **Spacetime Aether**: The background "sea" composed of neutral tri-binary assemblies (hypothesized **2 pro + 2 anti** Helium-like coupling).
-- **Matter**: Localized, energetic excitations (quarks, leptons) composed of single or coupled tri-binary assemblies with specific **personality architrino** decorations.
+- **Matter**: Localized, energetic excitations (quarks, leptons) composed of single or coupled tri-binary assemblies with specific axial-architrino structure.
 
 **Nucleon and Nuclear Coupling**
 - Nucleons (protons/neutrons) are stable clusters of quark assemblies.
@@ -29,7 +29,7 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 **Charge and Scale Architecture**
 - Fundamental architrino charge unit: $|e/6|$.
-- Observed charges ($0, |1/3|, |2/3|, |1|$) are combinatorial results of decoration patterns.
+- Observed charges ($0, |1/3|, |2/3|, |1|$) are combinatorial results of axial patterns.
 - **Scale Hierarchy**: Multi-body stability must be consistent across the nested binary energy scales (High/Medium/Low).
 
 ---
@@ -40,7 +40,7 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 **The Nucleon-Nucleon Interaction ($V_{NN}$)**
 - Derive the **effective nuclear potential** $V_{NN}(r)$ from first principles:
-  - Potential field overlap of decorated tri-binaries.
+  - Potential field overlap of tri-binaries with axial layers.
   - Interaction mediated by the spacetime aether (the "sea").
   - Neutral-axis coupling at short ranges.
 - Recover the **Yukawa-like** behavior and the **hard-core repulsion** (from the symmetry breaking binary $v \approx c_f$).
@@ -50,7 +50,7 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 - **Alpha Particle ($^{4}\text{He}$)**: Derive its unique stability as a consequence of optimal nucleon-nucleon coupling geometry, distinct from the background aether topology. Explore duality to coupling of two pro and two anti tri-binaries as hypothesized. 
 - Map the **Valley of Stability** and define the nuclear drip lines. 
 
-Given **everything** is architrino assemblies, consider dynamics of tri-binaries, personality charges, photons, neutrinos, spacetime assemblies, and incoming potential fields as a single coupled system—this framework explains Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as spacetime assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
+Given **everything** is architrino assemblies, consider dynamics of tri-binaries, axial architrinos, photons, neutrinos, spacetime assemblies, and incoming potential fields as a single coupled system—this framework explains Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as spacetime assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
 
 **Nuclear Synthesis and Decay**
 - Provide cross-sections for fusion/fission as topological assembly reconfigurations.
@@ -61,9 +61,9 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 ### Atomic Physics: Orbitals and Spectra
 
 **Electronic Structure**
-- Derive atomic orbitals from the dynamics of electrons as decorated tri-binaries interacting with nuclear assemblies.
+- Derive atomic orbitals from the dynamics of electrons as tri-binaries with axial layers interacting with nuclear assemblies.
 - Explain **Pauli Exclusion** as volume exclusion of ellipsoidal assemblies.
-- Recover $s, p, d, f$ symmetries from the 6 polar decoration sites and tri-binary axis orientations.
+- Recover $s, p, d, f$ symmetries from the 6 polar sites and tri-binary axis orientations.
 
 **Precision Spectroscopy**
 - Derive the **Rydberg formula** and **Fine Structure** from the scaling ratios of nested binaries.
@@ -74,7 +74,7 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 ### Molecular and Condensed Matter Physics
 
 **Chemical Bonding and Geometry**
-- Derive bond types (covalent, ionic, metallic) from shared decoration patterns and axis alignments.
+- Derive bond types (covalent, ionic, metallic) from shared axial patterns and axis alignments.
 - **Molecular Geometry**: Predict bond angles (e.g., the $104.5^\circ$ of $H_2O$) from the orientation of tri-binary neutral axes.
 
 **Phases and Collective Phenomena**

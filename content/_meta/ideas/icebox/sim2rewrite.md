@@ -18,7 +18,7 @@ This document captures the integration strategy for porting the sim2 physics gen
 1. **Encapsulate sim2 logic in a module** inside `architrino/` (e.g., `sim2/physics.js` or `sim2/worker/physicsWorker.js`). The module should expose:
    * scene loader that reads the new scene JSON and configures watcher/emissions data,
    * `step(dt)` that advances velocity/position per architrino via the 1/r² sum,
-   * emission bookkeeping to publish hits to the renderer (positions, velocities, charge sign) and optionally the current causal set for debugging.
+   * emission bookkeeping to publish hits to the renderer (positions, velocities, polarity sign) and optionally the current causal set for debugging.
 2. **Worker integration**:
    * Create a Web Worker that loads the physics module, receives serialized scenario data from the main thread, and runs a fixed-timestep loop (e.g., 1 kHz).
    * The worker should write the latest positions/velocities (and maybe wake strength) into a transferable `ArrayBuffer` (two floats per architrino plus metadata). Provide a simple handshake API for start/pause/reset.

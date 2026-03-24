@@ -217,6 +217,10 @@ Prefer:
 - attractor
 - constitutive
 - effective closure
+- wake
+- causal wake
+
+Reserve `field` for effective, continuum, or explicitly comparative discussion. When the prose is naming emitted substrate-level AAA structure, prefer `wake` so the emission order and ontological level remain explicit.
 
 Avoid outdated terminology built from `retard` or `retarded` outside literal quotation or code identifiers.
 

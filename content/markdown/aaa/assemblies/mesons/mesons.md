@@ -43,12 +43,12 @@ A pion is a **two‑core (quark + antiquark) assembly**: one Generation‑I quar
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether Sea (a dense tri-binary lattice) between them.
 *   **Mechanism:** A proton interacts with the Noether Sea, polarizing a local tri-binary into a transient $u\bar{d}$ complex (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the pion propagates to the neighbor. The lattice relaxes once the loop is reabsorbed.
-*   **Topology:** The pion serves as a **detached flux loop** transporting decoration charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
+*   **Topology:** The pion serves as a **detached flux loop** transporting axial-layer charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/mc$ because heavier assemblies (higher internal curvature) couple more strongly to Noether Sea drag and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
 *   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He) is the energy stored in shared pion flux loops; the coupled, pion-sharing lattice sits at lower energy than isolated nucleons.
-*   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared personality layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
+*   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
 *   **Geometric bound:** A pion flux tube that stretches beyond a critical length $L_c$ pays more tension energy than the medium needs to rupture (decay). Its unusually low curvature keeps $L_c$ large, explaining the long nuclear-range reach.
 *   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are phase-locked so their drag on the Sea nearly cancels—geometrically the assembly follows an almost null-like path through the medium, keeping its effective mass small.
 
@@ -101,7 +101,7 @@ These are excited states of the nucleon. The $\Delta^{++}$ ($uuu$) is particular
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
 A Delta baryon is a standard Tri-Core assembly (like a proton) but with the three cores rotating in a **parallel spin alignment** (Spin-3/2) rather than the Proton's mixed alignment (Spin-1/2).
 
-*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To prevent geometric collapse (Pauli exclusion), their internal binary phases must be maximally separated ($0^\circ,120^\circ,240^\circ$). This is the geometric definition of the RGB color singlet state.
+*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To prevent geometric collapse (Pauli exclusion), they must occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the tri-core. This is the geometric definition of the RGB color singlet state.
 *   **Decay:** The Delta decays rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
 
 **Deltas in Dense Matter (EoS)**
@@ -166,7 +166,7 @@ They are "ephemeral" because they are not topological attractors in the vacuum l
 
 ## Hadron Table — Mapping SM → $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The table packs both the Standard Model quark makeup and the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) personality patterns.
+The table packs both the Standard Model quark makeup and the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) axial patterns.
 
 **Notation**
 

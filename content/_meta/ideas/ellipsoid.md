@@ -51,7 +51,7 @@ inside the black hole
         - what causes different forms of radioactive emission 
         - it is some form of particle decay.  
         - so it is something in the assembly that has it excited.
-        - I would think the binaries are far higher energy than the personality charges
+        - I would think the binaries are far higher energy than the axial architrinos
         - food for thought.
         - this may also relate to temperature and what implements temperature
 

@@ -172,7 +172,7 @@ Plain language: With slightly thick causal wake surfaces, the usual “force is 
 
 - Core dynamics chapters often set field speed to $v=1$ (equivalently $c_f=1$).
 - In spacetime closure chapters, keep $c_f$ explicit and use $v$ for drift speed only through $\beta=v/c_f$.
-- $\epsilon = |e|/6$ is the unit charge magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
+- $\epsilon = |e|/6$ is the potential polarity-unit magnitude in observer-level electric bookkeeping; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - $\kappa>0$ universal coupling.
 - $\eta>0$ mollifier width (regularization parameter).
 - Emission cadence and per-wavefront amplitude are constant. Receiver velocity affects only instantaneous power $\,\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.

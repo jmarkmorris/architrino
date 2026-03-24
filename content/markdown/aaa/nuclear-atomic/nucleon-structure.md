@@ -13,14 +13,14 @@ A nucleon is a confined three-quark color-singlet assembly built from three Gene
 - a **proton** is the ground-state `uud` tri-core,
 - a **neutron** is the ground-state `udd` tri-core.
 
-Each constituent quark is itself a decorated Noether-core assembly of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md).
+Each constituent quark is itself a Noether-core assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md).
 
 ## Constituents and Counting
 
 For Generation-I quarks:
 
 - each quark core contributes 6 scaffold architrinos,
-- each quark personality contributes 6 decorations,
+- each quark axial layer contributes 6 axial architrinos,
 - so each Generation-I quark contributes 12 architrinos total.
 
 Therefore a nucleon contains
@@ -80,10 +80,10 @@ The proton is the lowest stable tri-core with quark content `uud`.
 
 Using the current quark templates:
 
-- two constituents are up-type quarks with personality pattern $5P,1E$,
+- two constituents are up-type quarks with axial pattern $5P,1E$,
 - one constituent is a down-type quark with pattern $2P,4E$.
 
-So the total personality count is
+So the total axial count is
 $$
 (5P,1E)+(5P,1E)+(2P,4E)=(12P,6E),
 $$
@@ -96,7 +96,7 @@ $$
 
 The neutron is the lowest stable tri-core with quark content `udd`.
 
-Its total personality count is
+Its total axial count is
 $$
 (5P,1E)+(2P,4E)+(2P,4E)=(9P,9E),
 $$
@@ -105,7 +105,7 @@ $$
 \frac{9-9}{6}e=0.
 $$
 
-The neutron is therefore not neutral because it lacks internal charge structure, but because its quark-level decoration asymmetries cancel in total.
+The neutron is therefore not neutral because it lacks internal charge structure, but because its quark-level axial asymmetries cancel in total.
 
 ## Effective Internal Geometry
 
@@ -116,7 +116,7 @@ The current nucleon picture has three structural layers.
 Each constituent quark carries:
 
 - one Generation-I pro-core,
-- one six-site personality layer,
+- one six-site axial layer,
 - one color-sector assignment.
 
 ### 2. Shared strong-sector corridor
@@ -175,7 +175,7 @@ m_n-m_p
 $$
 where:
 
-- $\Delta E_{\text{down-up}}$ is the core/personality energy shift from replacing one up-type branch with one down-type branch,
+- $\Delta E_{\text{down-up}}$ is the core/axial-layer energy shift from replacing one up-type branch with one down-type branch,
 - $\Delta E_{\text{Coul}}$ is the electromagnetic self-energy difference,
 - $\Delta E_{\text{flux}}$ is the strong-sector closure difference between the two tri-core assemblies.
 

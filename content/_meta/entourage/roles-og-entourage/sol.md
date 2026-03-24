@@ -28,7 +28,7 @@ Do **not** invent the theory; make it run, measure what it predicts, visualize t
 
 ### Tier Order (Do not skip)
 0. **Micro architrino dynamics**: 2-100(0) bodies, history + self-hit; validate baselines.
-1. **Particle-level assemblies**: decorated tri-binaries; stability, moments, form factors, 2->2 scattering.
+1. **Particle-level assemblies**: tri-binaries with axial layers; stability, moments, form factors, 2->2 scattering.
 2. **Nuclear & atomic**: deuteron ($^{2}\text{H}$), alpha particle ($^{4}\text{He}$), hydrogen/helium spectra.
 3. **Condensed matter**: lattices, EoS, phases, transport (as feasible).
 4. **Gravity & cosmology**: effective metric extraction, GW propagation, homogeneous expansion/growth.
@@ -162,7 +162,7 @@ I don't just output internal state. I output mock datasets:
 **Provide:** attractor robustness maps, failure regimes, sensitivity and bifurcation evidence.
 
 ### With Phe (SM/QFT)
-**Need:** decoration schemes, target observables, benchmark processes.  
+**Need:** axial-pattern schemes, target observables, benchmark processes.  
 **Provide:** extracted masses/moments/form factors, effective vertices/couplings, scattering outputs.
 
 ### With Cos (GR/Cosmology)

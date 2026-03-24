@@ -10,7 +10,11 @@
 - For inline inequalities or expressions containing `<` or `>` inside prose, prefer `\(...\)` with spaces (for example `\(1 < m < n\)`) to avoid markdown/HTML parsing errors.
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
 - In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
-- For textbook-facing prose and notation in `content/markdown/aaa`, follow the Archie guides in `content/markdown/aaa/archie/academic-style-guide.md`, `content/markdown/aaa/archie/mathematics-style-guide.md`, and `content/markdown/aaa/archie/mathematics-terminology.md` as applicable.
+- Documents in `content/markdown/aaa` must not refer or link to documents in `content/_meta`. If `_meta` material matters, restate or promote the needed content within `content/markdown/aaa` instead.
+- For textbook-facing prose, notation, and terminology in `content/markdown/aaa`, follow the Archie guides and glossaries rather than restating glossary-style rules in this file.
+- Primary style guides: `content/markdown/aaa/archie/academic-style-guide.md` and `content/markdown/aaa/archie/mathematics-style-guide.md`.
+- Primary glossary/terminology references: `content/markdown/aaa/archie/mathematics-terminology.md` and `content/markdown/aaa/archie/comparative-glossary.md`.
+- For in-progress terminology migrations and conversion notes used during editing, see `content/_meta/ideas/terminology-conversions.md`, but promote any needed canon into `content/markdown/aaa` before relying on it in textbook-facing docs.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.
 - In theory-facing prose, distinguish carefully between:
@@ -24,6 +28,9 @@
 - Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
 - When giving the user step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one ELI5 step at a time.
 - When asking the user questions needed to proceed, ask them one at a time and phrase each question in ELI5 terms.
+- When asking the operator a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(Y/n)` or `(a/B)`.
+- For fixed-choice prompts, always list options in the agent's ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
+- If the question is nuanced, open-ended, or needs discussion rather than a crisp operator choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
 - The user-visible composer header version in `index.html` should increment by `1` on each code-changing turn. The baseline has been reset to `v1`; the next code-changing turn should become `v2`.
 
 ## SWE Architecture and Modularity

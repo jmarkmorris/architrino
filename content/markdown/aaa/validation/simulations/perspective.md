@@ -65,7 +65,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
   - Polar regions of fast binaries host persistent axial structures (vortex-like loci in the delayed field geometry), which couple between assemblies.
 
 - Why it matters:
-  - Color-like structure arises naturally from three internal binaries: distributing “personality” architrinos across three axes creates three distinguishable, yet symmetric, configurations.
+  - Color-like structure arises naturally from three internal binaries: distributing axial architrinos across three axes creates three distinguishable, yet symmetric, configurations.
   - Flux-tube-like coupling is not a particle exchange but a persistent geometric linkage between polar vortices—consistent with confinement-like phenomenology without invoking a separate gauge field.
 
 ---

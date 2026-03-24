@@ -345,7 +345,7 @@ The current implementation target is therefore narrower than some earlier drafts
 The first-pass reaction glyph grammar should separate three concerns:
 
 - **binary structure**;
-- **binary personality state**;
+- **binary axial state**;
 - and **whole-quark color**.
 
 Those should not all be encoded by the same visual channel. At the moment, only the first two are promoted into the current prototype and generator.
@@ -366,17 +366,17 @@ For the first reaction-solver binary glyph, use a canonical 2D orientation:
 - the binary axis is a **vertical purple line** through the center;
 - the left binary pole is the **blue electrino**;
 - the right binary pole is the **red positrino**;
-- the top axis site is the **top personality charge**;
-- and the bottom axis site is the **bottom personality charge**.
+- the top axis site is the **top axial architrino**;
+- and the bottom axis site is the **bottom axial architrino**.
 
 That gives a stable authored reading order:
 
 - horizontal pair = the binary;
-- vertical pair = the binary's personality charges.
+- vertical pair = the binary's axial architrinos.
 
-### Full binary personality state set
+### Full binary axial-state set
 
-When the reaction solver needs the full authored state of a binary, it should distinguish all four top/bottom personality assignments:
+When the reaction solver needs the full authored state of a binary, it should distinguish all four top/bottom axial assignments:
 
 - `e/e`
 - `e/p`
@@ -394,9 +394,9 @@ For compact chip labels, prefer the charge-unit notation already used in the mat
 
 In the current prototype, the compact label is not drawn as a single slash string. Instead:
 
-- the **top** personality charge is written in the **upper-left** corner;
-- the **bottom** personality charge is written in the **lower-right** corner;
-- and the two corner terms use the same red/blue polarity colors as the personality dots themselves.
+- the **top** axial architrino is written in the **upper-left** corner;
+- the **bottom** axial architrino is written in the **lower-right** corner;
+- and the two corner terms use the same red/blue polarity colors as the axial dots themselves.
 
 This makes the tile easier to read at a glance because the glyph remains dominant while the charge labels stay secondary.
 
@@ -431,18 +431,18 @@ The reason is structural. The open 3x3x3 bookkeeping problem in [3x3.md](./3x3.m
 
 So this note should treat:
 
-- binary structure and personality state as **implemented scope**;
+- binary structure and axial state as **implemented scope**;
 - and whole-quark color as **deferred scope**.
 
 ### Compact chip behavior
 
 In the reaction solver menu, these should appear as compact clickable chips.
 
-The binary-personality chips should show:
+The binary axial-state chips should show:
 
 - the binary glyph at center;
-- the two corner charge terms when personality is shown;
-- or no personality labels at all for the bare neutral-binary view.
+- the two corner charge terms when axial state is shown;
+- or no axial-state labels at all for the bare neutral-binary view.
 
 Selection should be made obvious by changing the chip background and emphasis state.
 
@@ -462,7 +462,7 @@ The reduced reaction-solver glyph vocabulary should introduce explicit semantic 
     "left": "electrino",
     "right": "positrino"
   },
-  "binaryPersonality": {
+  "binaryAxialState": {
     "top": "positrino",
     "bottom": "electrino"
   },
@@ -470,7 +470,7 @@ The reduced reaction-solver glyph vocabulary should introduce explicit semantic 
     "variant": "compact",
     "labelMode": "corner_epsilon",
     "showLabels": true,
-    "showPersonality": true,
+    "showAxialState": true,
     "collapsedNeutralRepresentative": "p/e"
   }
 }
@@ -479,12 +479,12 @@ The reduced reaction-solver glyph vocabulary should introduce explicit semantic 
 This should be read as:
 
 - `binaryPoles` keeps the left/right binary poles canonical;
-- `binaryPersonality` controls the full top/bottom binary state;
+- `binaryAxialState` controls the full top/bottom binary state;
 - `labelMode` records the corner-label convention;
-- `showPersonality` distinguishes bare from personality-decorated variants;
+- `showAxialState` distinguishes bare from axial-state variants;
 - and `collapsedNeutralRepresentative` records the canonical neutral choice when a reduced menu is used.
 
-For a bare neutral-binary tile, the same object can suppress personality charges and labels at the presentation layer rather than switching to a separate symbol family.
+For a bare neutral-binary tile, the same object can suppress axial-architrino labels and markers at the presentation layer rather than switching to a separate symbol family.
 
 ### Relationship to the broader glyph system
 
@@ -507,7 +507,7 @@ The current concrete implementation artifacts are:
 Those artifacts now cover:
 
 - one bare neutral-binary tile;
-- the full four-state personality set;
+- the full four-state axial set;
 - and the reduced-menu convention in which `p/e` is the canonical neutral representative.
 
 ### Immediate next build target

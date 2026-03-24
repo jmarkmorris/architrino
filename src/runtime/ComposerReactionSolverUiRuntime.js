@@ -1,11 +1,41 @@
 import {
   classifyComposerReactionNode,
   evaluateComposerReactionMappingCandidate,
-} from "./ComposerReactionRulesRuntime.js";
+} from "./ComposerReactionStructureMappingRuntime.js";
+import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
+import {
+  findReactionBinarySelectorGroup,
+  getReactionBinarySelectorGroups,
+} from "./ComposerReactionStructureSelectionRuntime.js";
+import {
+  buildReactionStructureDescriptorTree,
+  isReactionStructureCompositeGridRenderMode,
+  isReactionStructureInlineAnchorRenderMode,
+  REACTION_STRUCTURE_RENDER_MODES,
+  shouldRenderReactionStructureDescriptorChildren,
+} from "./ComposerReactionStructureDescriptorRuntime.js";
+import {
+  getNoetherCoreSlotBinaryPresence,
+} from "../domain/structure/StructureClassification.js";
+import {
+  cloneStructureNode,
+  getStructureNodeChildren,
+  getStructureTrait,
+  STRUCTURE_CHARGE_TYPES,
+  STRUCTURE_CLASSIFICATION_FAMILIES,
+  STRUCTURE_KINDS,
+} from "../domain/structure/StructureSchema.js";
+import { findStructureNodeById } from "../domain/structure/StructureTraversal.js";
+import {
+  applyStructurePolarity,
+  clearNoetherCoreSlotOccupant,
+} from "../domain/structure/StructureTransforms.js";
+import { validateStructureTree } from "../domain/structure/StructureValidation.js";
 
 const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
   higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
+  photon: { shortLabel: "Ph", accent: "#ffd34a" },
   neutron: { shortLabel: "N", accent: "#a259ff" },
   proton: { shortLabel: "P", accent: "#ff5a4a" },
   transmute: { shortLabel: "T", accent: "#a259ff" },
@@ -110,14 +140,15 @@ const participantPolarityTemplateIds = new Set([
 ]);
 
 const templatePickerOrder = Object.freeze([
-  "higgs_cluster",
   "proton",
-  "neutron",
   "up_quark",
+  "higgs_cluster",
+  "photon",
+  "neutron",
   "neutrino",
+  "noether_core",
   "down_quark",
   "electron",
-  "noether_core",
 ]);
 
 function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
@@ -127,6 +158,7 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
     ...templateMenuRows.flatMap((row) => (Array.isArray(row) ? row : [])),
     { template: "neutron", label: "Neutron" },
     { template: "proton", label: "Proton" },
+    { template: "photon", label: "Photon" },
     { template: "neutrino", label: "Neutrino", initialPolarity: "pro" },
     ...extraEntries,
   ];
@@ -318,6 +350,103 @@ function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") 
   return `${normalizeParticipantPolarity(polarity)} ${cleanedBaseLabel}`;
 }
 
+function buildParticipantStructure(participantId, templateId, baseLabel, polarity = "") {
+  const structureId = `${participantId}__structure`;
+  return buildReactionParticipantStructure(templateId, {
+    id: structureId,
+    label: formatParticipantLabel(baseLabel, templateId, polarity),
+    polarity,
+  });
+}
+
+function buildParticipantHierarchy(structureRoot, fallbackHierarchy = []) {
+  const derivedHierarchy = buildReactionStructureDescriptorTree(structureRoot);
+  return Array.isArray(derivedHierarchy) && derivedHierarchy.length
+    ? derivedHierarchy
+    : Array.isArray(fallbackHierarchy)
+      ? fallbackHierarchy
+      : [];
+}
+
+function inferTemplateIdFromStructure(structureRoot) {
+  if (!structureRoot) {
+    return "noether_core";
+  }
+  const structureKind = String(structureRoot?.kind ?? "").trim();
+  const structureSpecies = String(structureRoot?.species ?? "").trim().toLowerCase();
+  const family = String(structureRoot?.classification?.family ?? "").trim();
+  if (structureKind === STRUCTURE_KINDS.NOETHER_CORE) {
+    return "noether_core";
+  }
+  if (structureSpecies === "higgs_cluster") {
+    return "higgs_cluster";
+  }
+  if (structureSpecies === "photon") {
+    return "photon";
+  }
+  if (structureSpecies === "proton") {
+    return "proton";
+  }
+  if (structureSpecies === "neutron") {
+    return "neutron";
+  }
+  if (family === STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON) {
+    return "electron";
+  }
+  if (family === STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO) {
+    return "neutrino";
+  }
+  if (family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK) {
+    return "up_quark";
+  }
+  if (family === STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK) {
+    return "down_quark";
+  }
+  return structureSpecies || "noether_core";
+}
+
+function inferParticipantPolarityFromStructure(structureRoot) {
+  const polarity = String(getStructureTrait(structureRoot, "polarity", "")).trim().toLowerCase();
+  return polarity === "anti" ? "anti" : "pro";
+}
+
+function formatStructureSpeciesLabel(species = "") {
+  const normalizedSpecies = String(species ?? "").trim().toLowerCase();
+  if (!normalizedSpecies) {
+    return "";
+  }
+  const explicitLabels = {
+    noether_core: "Noether Core",
+    higgs_cluster: "Higgs Cluster",
+    photon: "Photon",
+    electron_neutrino: "Electron Neutrino",
+    muon_neutrino: "Muon Neutrino",
+    tau_neutrino: "Tau Neutrino",
+    up_quark: "Up Quark",
+    charm_quark: "Charm Quark",
+    top_quark: "Top Quark",
+    down_quark: "Down Quark",
+    strange_quark: "Strange Quark",
+    bottom_quark: "Bottom Quark",
+  };
+  if (explicitLabels[normalizedSpecies]) {
+    return explicitLabels[normalizedSpecies];
+  }
+  return normalizedSpecies
+    .split("_")
+    .filter(Boolean)
+    .map((word) => word[0]?.toUpperCase?.() + word.slice(1))
+    .join(" ");
+}
+
+function inferParticipantBaseLabelFromStructure(structureRoot) {
+  const speciesLabel = formatStructureSpeciesLabel(structureRoot?.species);
+  if (speciesLabel) {
+    return speciesLabel;
+  }
+  return String(structureRoot?.label ?? structureRoot?.species ?? "Structure").trim() || "Structure";
+}
+
 function syncParticipantHierarchyForPolarity(participant) {
   if (!participant || !supportsParticipantPolarity(participant.templateId)) {
     return;
@@ -329,6 +458,29 @@ function syncParticipantHierarchyForPolarity(participant) {
   }
   topNode.label = `${polarity} Noether core`;
   topNode.inventory = polarity === "anti" ? { antiCore: 1 } : { proCore: 1 };
+}
+
+function inferDescriptorPolarity(node = null) {
+  const antiCoreCount = Number(node?.inventory?.antiCore ?? 0);
+  const proCoreCount = Number(node?.inventory?.proCore ?? 0);
+  if (antiCoreCount > proCoreCount) {
+    return "anti";
+  }
+  if (proCoreCount > antiCoreCount) {
+    return "pro";
+  }
+  const normalizedLabel = String(node?.label ?? "").trim().toLowerCase();
+  if (normalizedLabel.startsWith("anti ")) {
+    return "anti";
+  }
+  if (normalizedLabel.startsWith("pro ")) {
+    return "pro";
+  }
+  return "";
+}
+
+function resolveBinaryGlyphPolarity(participant, node = null) {
+  return inferDescriptorPolarity(node) || normalizeParticipantPolarity(participant?.polarity);
 }
 
 function buildHierarchyForTemplate(templateId, label) {
@@ -346,6 +498,21 @@ function buildHierarchyForTemplate(templateId, label) {
           }),
           createNoetherCoreBranch("root/pro_core_2", "Pro core"),
           createNoetherCoreBranch("root/anti_core_2", "Anti core", {
+            anti: true,
+          }),
+        ],
+      },
+    ];
+  }
+  if (normalizedTemplate === "photon") {
+    return [
+      {
+        id: "root",
+        label: "Photon",
+        renderMode: "assembly-cluster-grid",
+        children: [
+          createNoetherCoreBranch("root/pro_core_1", "Pro core"),
+          createNoetherCoreBranch("root/anti_core_1", "Anti core", {
             anti: true,
           }),
         ],
@@ -424,14 +591,6 @@ function buildHierarchyForTemplate(templateId, label) {
   ];
 }
 
-function buildSplitCoreHierarchy(label, options = {}) {
-  return [
-    createNoetherCoreBranch("root", label, {
-      anti: !!options.anti,
-    }),
-  ];
-}
-
 function getTemplateMeta(templateId, label = "") {
   const normalized = String(templateId ?? "").trim().toLowerCase();
   const entry = solverTemplateMeta[normalized] ?? null;
@@ -460,6 +619,12 @@ function getParticipantCardMeta(participant = null) {
     return {
       ...baseMeta,
       accent: "#a259ff",
+    };
+  }
+  if (templateId === "photon") {
+    return {
+      ...baseMeta,
+      accent: "#ffd34a",
     };
   }
   if (templateId === "electron" || templateId === "down_quark") {
@@ -496,6 +661,9 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   }
   if (normalizedTemplateId === "proton") {
     return "Proton";
+  }
+  if (normalizedTemplateId === "photon") {
+    return "Photon";
   }
   if (normalizedTemplateId === "transmute") {
     return "Transmute";
@@ -579,13 +747,7 @@ function countDescendants(node) {
 }
 
 function shouldRenderChildNodes(node) {
-  return (
-    node?.renderMode !== "binary-selector" &&
-    node?.renderMode !== "binary-selector-grid" &&
-    node?.renderMode !== "higgs-cluster-grid" &&
-    node?.renderMode !== "assembly-cluster-grid" &&
-    node?.renderMode !== "binary-bare"
-  );
+  return shouldRenderReactionStructureDescriptorChildren(node);
 }
 
 function getBinaryPersonalityChoice(choiceId) {
@@ -598,6 +760,17 @@ function getBinaryPersonalityChoice(choiceId) {
 
 function getBinaryChoiceKind(choiceId) {
   return binaryChoiceKindById[choiceId] ?? "neutral";
+}
+
+function getBinaryChoiceInventory(choiceId) {
+  const normalizedChoiceId = String(choiceId ?? "").trim().toLowerCase();
+  if (normalizedChoiceId === "ee") {
+    return { electrino: 3, positrino: 1 };
+  }
+  if (normalizedChoiceId === "pp") {
+    return { electrino: 1, positrino: 3 };
+  }
+  return { electrino: 2, positrino: 2 };
 }
 
 function getBinarySelectorTemplateRule(templateId) {
@@ -651,23 +824,43 @@ function isQuarkTemplateId(templateId) {
   return normalizedTemplateId === "up_quark" || normalizedTemplateId === "down_quark";
 }
 
-function getBinarySelectorTemplateIdForNode(participant, groupNode = null) {
-  return String(groupNode?.templateId ?? participant?.templateId ?? "").trim().toLowerCase();
-}
-
-function collectBinarySelectorNodes(nodes = [], bucket = []) {
+function collectLegacyBinarySelectorNodes(nodes = [], bucket = []) {
   (Array.isArray(nodes) ? nodes : []).forEach((node) => {
-    if (node?.renderMode === "binary-selector") {
+    if (node?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR) {
       bucket.push(node);
     }
-    collectBinarySelectorNodes(node?.children, bucket);
+    collectLegacyBinarySelectorNodes(node?.children, bucket);
   });
   return bucket;
 }
 
-function getBinarySelectorNodes(participant, groupNode = null) {
-  const rootNodes = groupNode ? [groupNode] : participant?.hierarchy;
-  return collectBinarySelectorNodes(rootNodes, []).sort((left, right) => {
+function collectLegacyBinarySelectorGroupNodes(nodes = [], bucket = []) {
+  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
+    if (node?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
+      bucket.push(node);
+    }
+    collectLegacyBinarySelectorGroupNodes(node?.children, bucket);
+  });
+  return bucket;
+}
+
+function findLegacyBinarySelectorGroupNode(nodes = [], targetNodeId = "", currentGroup = null) {
+  for (const node of Array.isArray(nodes) ? nodes : []) {
+    const nextGroup =
+      node?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID ? node : currentGroup;
+    if (node?.id === targetNodeId) {
+      return nextGroup;
+    }
+    const childMatch = findLegacyBinarySelectorGroupNode(node?.children, targetNodeId, nextGroup);
+    if (childMatch) {
+      return childMatch;
+    }
+  }
+  return null;
+}
+
+function sortBinarySelectorNodes(nodes = []) {
+  return [...nodes].sort((left, right) => {
     const leftRank = binarySlotRankByCode[left?.slotCode] ?? Number.MAX_SAFE_INTEGER;
     const rightRank = binarySlotRankByCode[right?.slotCode] ?? Number.MAX_SAFE_INTEGER;
     if (leftRank !== rightRank) {
@@ -675,6 +868,53 @@ function getBinarySelectorNodes(participant, groupNode = null) {
     }
     return String(left?.id ?? "").localeCompare(String(right?.id ?? ""));
   });
+}
+
+function getParticipantBinarySelectorGroups(participant) {
+  const structureGroups = getReactionBinarySelectorGroups(participant?.structure);
+  if (structureGroups.length) {
+    return structureGroups;
+  }
+  return collectLegacyBinarySelectorGroupNodes(participant?.hierarchy, []).map((groupNode) => ({
+    id: groupNode.id,
+    templateId: String(groupNode?.templateId ?? participant?.templateId ?? "").trim().toLowerCase(),
+    slotNodes: sortBinarySelectorNodes(collectLegacyBinarySelectorNodes([groupNode], [])),
+  }));
+}
+
+function resolveBinarySelectorGroup(participant, groupNodeOrNodeId = null) {
+  const explicitId =
+    typeof groupNodeOrNodeId === "string"
+      ? groupNodeOrNodeId
+      : String(groupNodeOrNodeId?.id ?? "").trim();
+  if (!explicitId) {
+    return null;
+  }
+  const structureGroup = findReactionBinarySelectorGroup(participant?.structure, explicitId);
+  if (structureGroup) {
+    return structureGroup;
+  }
+  return findLegacyBinarySelectorGroupNode(participant?.hierarchy, explicitId);
+}
+
+function getBinarySelectorTemplateIdForNode(participant, groupNode = null) {
+  const groupRecord = resolveBinarySelectorGroup(participant, groupNode);
+  return String(groupRecord?.templateId ?? participant?.templateId ?? "").trim().toLowerCase();
+}
+
+function getBinarySelectorNodes(participant, groupNode = null) {
+  const groupRecord = groupNode ? resolveBinarySelectorGroup(participant, groupNode) : null;
+  if (groupRecord?.slotNodes) {
+    return sortBinarySelectorNodes(groupRecord.slotNodes);
+  }
+  if (groupRecord && !groupRecord.slotNodes) {
+    return sortBinarySelectorNodes(collectLegacyBinarySelectorNodes([groupRecord], []));
+  }
+  const structureGroups = getParticipantBinarySelectorGroups(participant);
+  if (structureGroups.length) {
+    return sortBinarySelectorNodes(structureGroups.flatMap((group) => group.slotNodes ?? []));
+  }
+  return sortBinarySelectorNodes(collectLegacyBinarySelectorNodes(participant?.hierarchy, []));
 }
 
 function getDefaultBinaryChoiceIdForNode(participant, node, groupNode = null) {
@@ -906,32 +1146,8 @@ function getAllowedBinaryChoiceIds(participant, node, groupNode = null) {
   );
 }
 
-function findBinarySelectorGroupNode(nodes = [], targetNodeId = "", currentGroup = null) {
-  for (const node of Array.isArray(nodes) ? nodes : []) {
-    const nextGroup = node?.renderMode === "binary-selector-grid" ? node : currentGroup;
-    if (node?.id === targetNodeId) {
-      return nextGroup;
-    }
-    const childMatch = findBinarySelectorGroupNode(node?.children, targetNodeId, nextGroup);
-    if (childMatch) {
-      return childMatch;
-    }
-  }
-  return null;
-}
-
-function collectBinarySelectorGroupNodes(nodes = [], bucket = []) {
-  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
-    if (node?.renderMode === "binary-selector-grid") {
-      bucket.push(node);
-    }
-    collectBinarySelectorGroupNodes(node?.children, bucket);
-  });
-  return bucket;
-}
-
 function getInitialParticipantBinarySelections(participant) {
-  const groupNodes = collectBinarySelectorGroupNodes(participant?.hierarchy, []);
+  const groupNodes = getParticipantBinarySelectorGroups(participant);
   if (!groupNodes.length) {
     return {};
   }
@@ -946,6 +1162,13 @@ function getInitialParticipantBinarySelections(participant) {
       )
     )
   );
+}
+
+function visitHierarchyNodes(nodes = [], visitor = () => {}) {
+  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
+    visitor(node);
+    visitHierarchyNodes(node?.children, visitor);
+  });
 }
 
 function findHierarchyNodeById(nodes = [], nodeId = "") {
@@ -966,7 +1189,7 @@ function topLevelHierarchyHasRenderMode(nodes = [], renderMode = "") {
 }
 
 function isCompositeGridRenderMode(renderMode = "") {
-  return renderMode === "higgs-cluster-grid" || renderMode === "assembly-cluster-grid";
+  return isReactionStructureCompositeGridRenderMode(renderMode);
 }
 
 function getParticipantRootNode(participant) {
@@ -1096,6 +1319,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     menuOpen: false,
     menuClientX: 0,
     menuClientY: 0,
+    anchorRegistry: new Map(),
     dragParticipantId: "",
     dragPointerId: null,
     hoveredMappingIds: [],
@@ -1149,36 +1373,135 @@ export function createComposerReactionSolverUiRuntime(deps) {
     templateId,
     label,
     hierarchy,
+    structure = null,
     extraFields = {},
   }) {
-    const resolvedBaseLabel = stripLeadingParticipantPolarity(label);
-    const resolvedPolarity = supportsParticipantPolarity(templateId)
-      ? normalizeParticipantPolarity(extraFields.polarity)
+    const resolvedTemplateId = templateId || inferTemplateIdFromStructure(structure?.root ?? structure);
+    const resolvedBaseLabel = stripLeadingParticipantPolarity(
+      label || inferParticipantBaseLabelFromStructure(structure?.root ?? structure)
+    );
+    const resolvedPolarity = supportsParticipantPolarity(resolvedTemplateId)
+      ? normalizeParticipantPolarity(
+          extraFields.polarity ?? inferParticipantPolarityFromStructure(structure?.root ?? structure)
+        )
       : "";
     const participant = {
       id: `solver_participant_${state.nextParticipantId++}`,
       side,
-      templateId,
+      templateId: resolvedTemplateId,
       baseLabel: resolvedBaseLabel,
       polarity: resolvedPolarity,
-      label: formatParticipantLabel(resolvedBaseLabel, templateId, resolvedPolarity),
-      hierarchy,
+      label: formatParticipantLabel(resolvedBaseLabel, resolvedTemplateId, resolvedPolarity),
+      hierarchy: Array.isArray(hierarchy) ? hierarchy : [],
       binarySelections: {},
       ...extraFields,
     };
+    const participantStructure = structure?.root
+      ? {
+          root: cloneStructureNode(structure.root),
+          validation: structure.validation ?? validateStructureTree(structure.root),
+        }
+      : structure
+        ? {
+            root: cloneStructureNode(structure),
+            validation: validateStructureTree(structure),
+          }
+        : buildParticipantStructure(
+            participant.id,
+            participant.templateId,
+            participant.baseLabel,
+            participant.polarity
+          );
+    participant.structure = participantStructure.root;
+    participant.structureValidation = participantStructure.validation;
+    participant.hierarchy = buildParticipantHierarchy(participantStructure.root, hierarchy);
     syncParticipantHierarchyForPolarity(participant);
     participant.binarySelections = getInitialParticipantBinarySelections(participant);
     return participant;
   }
 
   function getNodeContext(nodeKey) {
-    const { participantId, nodeId } = parseNodeKey(nodeKey);
-    const participant = findParticipantById(participantId);
-    const node = participant ? findHierarchyNodeById(participant.hierarchy, nodeId) : null;
-    if (!participant || !node) {
+    if (!nodeKey) {
       return null;
     }
-    return { participant, node };
+    const existingContext = state.anchorRegistry.get(nodeKey) ?? null;
+    if (existingContext) {
+      return existingContext;
+    }
+    return rebuildAnchorRegistry().get(nodeKey) ?? null;
+  }
+
+  function resolveBinaryChoiceInventory(participant, node, groupNode = null) {
+    const choice = getBinaryPersonalitySelection(participant, node, groupNode);
+    const baseInventory = getBinaryChoiceInventory(choice?.id);
+    const slotName = String(node?.slotName ?? "").trim().toLowerCase() || ({
+      I: "inner",
+      M: "middle",
+      O: "outer",
+    }[String(node?.slotCode ?? "").trim().toUpperCase()] ?? "");
+    const groupRecord = resolveBinarySelectorGroup(participant, groupNode ?? node);
+    const structureNode = participant?.structure && groupRecord?.id
+      ? findStructureNodeById(participant.structure, groupRecord.id)
+      : null;
+    const coreNode =
+      structureNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
+        ? structureNode
+        : getStructureNodeChildren(structureNode).find(
+            (childNode) => childNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
+          ) ?? null;
+    const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
+    if (!slotName || binaryPresence[slotName] !== false) {
+      return baseInventory;
+    }
+    return {
+      electrino: Math.max(0, Number(baseInventory.electrino ?? 0) - 1),
+      positrino: Math.max(0, Number(baseInventory.positrino ?? 0) - 1),
+    };
+  }
+
+  function createAnchorContext(participant, node) {
+    if (!participant || !node?.id) {
+      return null;
+    }
+    return {
+      participant,
+      node,
+      structureNode: participant.structure ? findStructureNodeById(participant.structure, node.id) : null,
+    };
+  }
+
+  function rebuildAnchorRegistry() {
+    const registry = new Map();
+    state.participants.forEach((participant) => {
+      visitHierarchyNodes(participant.hierarchy, (node) => {
+        const nodeKey = buildNodeKey(participant.id, node.id);
+        const context = createAnchorContext(participant, node);
+        if (context) {
+          registry.set(nodeKey, context);
+        }
+      });
+      getParticipantBinarySelectorGroups(participant).forEach((groupNode) => {
+        const groupKey = buildNodeKey(participant.id, groupNode.id);
+        if (!registry.has(groupKey)) {
+          const groupContext = createAnchorContext(participant, groupNode);
+          if (groupContext) {
+            registry.set(groupKey, groupContext);
+          }
+        }
+        (Array.isArray(groupNode?.slotNodes) ? groupNode.slotNodes : []).forEach((slotNode) => {
+          const slotKey = buildNodeKey(participant.id, slotNode.id);
+          if (registry.has(slotKey)) {
+            return;
+          }
+          const slotContext = createAnchorContext(participant, slotNode);
+          if (slotContext) {
+            registry.set(slotKey, slotContext);
+          }
+        });
+      });
+    });
+    state.anchorRegistry = registry;
+    return registry;
   }
 
   function createEmptyLedger() {
@@ -1235,7 +1558,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function getNodeLedger(nodeKey) {
     const context = getNodeContext(nodeKey);
     const spec = context
-      ? classifyComposerReactionNode(context.participant, context.node)
+      ? classifyComposerReactionNode(context.participant, context.node, {
+          resolveBinaryChoiceInventory,
+        })
       : null;
     return spec?.inventory ?? createEmptyLedger();
   }
@@ -1292,6 +1617,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
           sourceNode: sourceContext?.node,
           targetParticipant: targetContext?.participant,
           targetNode: targetContext?.node,
+          resolveBinaryChoiceInventory,
         });
         if (!evaluation.allowed) {
           return {
@@ -1305,7 +1631,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
         const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
         const candidateLedger = addLedgers(
           transmuteSummary.outgoingLedger,
-          classifyComposerReactionNode(targetContext?.participant, targetContext?.node)?.inventory
+          classifyComposerReactionNode(targetContext?.participant, targetContext?.node, {
+            resolveBinaryChoiceInventory,
+          })?.inventory
         );
         if (!hasLedger(transmuteSummary.incomingLedger)) {
           return {
@@ -1394,12 +1722,131 @@ export function createComposerReactionSolverUiRuntime(deps) {
       participant.templateId,
       resolvedPolarity
     );
+    const nextStructure = applyStructurePolarity(participant.structure, resolvedPolarity);
+    refreshParticipantFromStructure(participant, nextStructure, {
+      preserveBinarySelections: true,
+    });
     closeMenu();
     render();
     setStatus(
       `${getParticipantSideLabel(participant.side, { capitalized: true })} ${participant.label} updated.`
     );
     return true;
+  }
+
+  function refreshParticipantFromStructure(participant, nextStructure, options = {}) {
+    if (!participant || !nextStructure) {
+      return false;
+    }
+    const resolvedStructure = cloneStructureNode(nextStructure);
+    const resolvedTemplateId = inferTemplateIdFromStructure(resolvedStructure);
+    const resolvedPolarity = supportsParticipantPolarity(resolvedTemplateId)
+      ? inferParticipantPolarityFromStructure(resolvedStructure)
+      : participant.polarity;
+    const resolvedBaseLabel = inferParticipantBaseLabelFromStructure(resolvedStructure);
+
+    participant.templateId = resolvedTemplateId;
+    participant.polarity = resolvedPolarity;
+    participant.baseLabel = resolvedBaseLabel;
+    participant.label = formatParticipantLabel(
+      resolvedBaseLabel,
+      resolvedTemplateId,
+      resolvedPolarity
+    );
+    participant.structure = resolvedStructure;
+    participant.structureValidation = validateStructureTree(resolvedStructure);
+    participant.hierarchy = buildParticipantHierarchy(
+      resolvedStructure,
+      options.fallbackHierarchy ?? participant.hierarchy
+    );
+    if (options.preserveBinarySelections !== true) {
+      participant.binarySelections = getInitialParticipantBinarySelections(participant);
+    }
+    return true;
+  }
+
+  function getParticipantPrimaryNoetherCore(participant) {
+    if (!participant?.structure) {
+      return null;
+    }
+    if (participant.structure.kind === STRUCTURE_KINDS.NOETHER_CORE) {
+      return participant.structure;
+    }
+    return (
+      getStructureNodeChildren(participant.structure).find(
+        (childNode) => childNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
+      ) ?? null
+    );
+  }
+
+  function getNextParticipantGenerationTrimAction(participant) {
+    const family = String(participant?.structure?.classification?.family ?? "").trim();
+    const supportedFamilies = new Set([
+      STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON,
+      STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO,
+      STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+      STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+    ]);
+    if (!supportedFamilies.has(family)) {
+      return null;
+    }
+    const coreNode = getParticipantPrimaryNoetherCore(participant);
+    const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
+    if (binaryPresence.outer) {
+      return {
+        slotName: "outer",
+        menuLabel: "Remove outer binary",
+      };
+    }
+    if (binaryPresence.middle) {
+      return {
+        slotName: "middle",
+        menuLabel: "Remove middle binary",
+      };
+    }
+    return null;
+  }
+
+  function trimParticipantGenerationSlot(participantId, slotName) {
+    const participant = findParticipantById(participantId);
+    if (!participant?.structure) {
+      return false;
+    }
+    const coreNode = getParticipantPrimaryNoetherCore(participant);
+    if (!coreNode?.id) {
+      return false;
+    }
+    const nextStructure = clearNoetherCoreSlotOccupant(
+      participant.structure,
+      coreNode.id,
+      slotName
+    );
+    removeMappingsForParticipant(participantId);
+    refreshParticipantFromStructure(participant, nextStructure, {
+      preserveBinarySelections: true,
+    });
+    closeMenu();
+    render();
+    setStatus(
+      `${getParticipantSideLabel(participant.side, { capitalized: true })} reclassified as ${participant.label}.`
+    );
+    return true;
+  }
+
+  function buildSplitParticipantsFromChildStructures(participant, childStructures = [], extraFieldsByIndex = () => ({})) {
+    return (Array.isArray(childStructures) ? childStructures : []).map((childStructure, index) =>
+      createParticipantRecord({
+        side: participant.side,
+        templateId: inferTemplateIdFromStructure(childStructure),
+        label: inferParticipantBaseLabelFromStructure(childStructure),
+        structure: childStructure,
+        hierarchy: buildParticipantHierarchy(childStructure, []),
+        extraFields: {
+          polarity: inferParticipantPolarityFromStructure(childStructure),
+          ...extraFieldsByIndex(childStructure, index),
+        },
+      })
+    );
   }
 
   function splitHiggsParticipantById(participantId) {
@@ -1413,60 +1860,20 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
 
     const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
-    const replacementParticipants = [
-      createParticipantRecord({
-        side: participant.side,
-        templateId: "noether_core",
-        label: "Noether core",
-        hierarchy: buildSplitCoreHierarchy("Pro core"),
-        extraFields: {
-          polarity: "pro",
-          splitGroupId,
-          splitOriginTemplateId: "higgs_cluster",
-          splitOriginRole: "pro",
-          splitOriginIndex: 0,
-        },
-      }),
-      createParticipantRecord({
-        side: participant.side,
-        templateId: "noether_core",
-        label: "Noether core",
-        hierarchy: buildSplitCoreHierarchy("Anti core", { anti: true }),
-        extraFields: {
-          polarity: "anti",
-          splitGroupId,
-          splitOriginTemplateId: "higgs_cluster",
-          splitOriginRole: "anti",
-          splitOriginIndex: 1,
-        },
-      }),
-      createParticipantRecord({
-        side: participant.side,
-        templateId: "noether_core",
-        label: "Noether core",
-        hierarchy: buildSplitCoreHierarchy("Pro core"),
-        extraFields: {
-          polarity: "pro",
-          splitGroupId,
-          splitOriginTemplateId: "higgs_cluster",
-          splitOriginRole: "pro",
-          splitOriginIndex: 2,
-        },
-      }),
-      createParticipantRecord({
-        side: participant.side,
-        templateId: "noether_core",
-        label: "Noether core",
-        hierarchy: buildSplitCoreHierarchy("Anti core", { anti: true }),
-        extraFields: {
-          polarity: "anti",
-          splitGroupId,
-          splitOriginTemplateId: "higgs_cluster",
-          splitOriginRole: "anti",
-          splitOriginIndex: 3,
-        },
-      }),
-    ];
+    const childStructures = getStructureNodeChildren(participant.structure);
+    const replacementParticipants = buildSplitParticipantsFromChildStructures(
+      participant,
+      childStructures,
+      (childStructure, index) => ({
+        splitGroupId,
+        splitOriginTemplateId: "higgs_cluster",
+        splitOriginRole: inferParticipantPolarityFromStructure(childStructure),
+        splitOriginIndex: index,
+      })
+    );
+    if (!replacementParticipants.length) {
+      return false;
+    }
 
     state.participants.splice(participantIndex, 1, ...replacementParticipants);
     removeMappingsForParticipant(participantId);
@@ -1486,7 +1893,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (participant.templateId === "higgs_cluster") {
       return splitHiggsParticipantById(participantId);
     }
-    if (participant.templateId !== "neutron" && participant.templateId !== "proton") {
+    if (
+      participant.templateId !== "neutron" &&
+      participant.templateId !== "proton" &&
+      participant.templateId !== "photon"
+    ) {
       return false;
     }
 
@@ -1494,34 +1905,30 @@ export function createComposerReactionSolverUiRuntime(deps) {
       (entry) => String(entry?.id ?? "") === participantId
     );
     const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
-    const quarkTemplates =
-      participant.templateId === "proton"
-        ? ["up_quark", "down_quark", "up_quark"]
-        : ["down_quark", "up_quark", "down_quark"];
-    const replacementParticipants = quarkTemplates.map((templateId, index) =>
-      createParticipantRecord({
-        side: participant.side,
-        templateId,
-        label: templateId === "up_quark" ? "Up Quark" : "Down Quark",
-        hierarchy: buildHierarchyForTemplate(
-          templateId,
-          templateId === "up_quark" ? "Up Quark" : "Down Quark"
-        ),
-        extraFields: {
-          polarity: "pro",
-          splitGroupId,
-          splitOriginTemplateId: participant.templateId,
-          splitOriginIndex: index,
-        },
+    const childStructures = getStructureNodeChildren(participant.structure);
+    const replacementParticipants = buildSplitParticipantsFromChildStructures(
+      participant,
+      childStructures,
+      (_childStructure, index) => ({
+        splitGroupId,
+        splitOriginTemplateId: participant.templateId,
+        splitOriginIndex: index,
       })
     );
+    if (!replacementParticipants.length) {
+      return false;
+    }
 
     state.participants.splice(participantIndex, 1, ...replacementParticipants);
     removeMappingsForParticipant(participantId);
     closeMenu();
     render();
+    const splitSummary =
+      participant.templateId === "photon"
+        ? "split into pro and anti core assemblies."
+        : "split into constituent quarks.";
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} split into constituent quarks.`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} ${splitSummary}`
     );
     return true;
   }
@@ -1602,7 +2009,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant || !nodeId) {
       return;
     }
-    const groupNode = findBinarySelectorGroupNode(participant.hierarchy, nodeId);
+    const groupNode = resolveBinarySelectorGroup(participant, nodeId);
     const nextSelections =
       findBestBinarySelectionAssignment(participant, groupNode, {
         pinnedNodeId: nodeId,
@@ -1620,7 +2027,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant || !nodeId) {
       return;
     }
-    const groupNode = findBinarySelectorGroupNode(participant.hierarchy, nodeId);
+    const groupNode = resolveBinarySelectorGroup(participant, nodeId);
     if (!groupNode || !isQuarkTemplateId(groupNode.templateId)) {
       return;
     }
@@ -1910,11 +2317,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
       renderMenuTitle(participant.label);
       if (
         participant.templateId === "higgs_cluster" ||
+        participant.templateId === "photon" ||
         participant.templateId === "neutron" ||
         participant.templateId === "proton"
       ) {
         renderMenuButton("Split assembly", {
           onClick: () => splitCompositeParticipantById(participant.id),
+        });
+      }
+      const generationTrimAction = getNextParticipantGenerationTrimAction(participant);
+      if (generationTrimAction) {
+        renderMenuButton(generationTrimAction.menuLabel, {
+          onClick: () => trimParticipantGenerationSlot(participant.id, generationTrimAction.slotName),
         });
       }
       if (supportsParticipantPolarity(participant.templateId)) {
@@ -2105,41 +2519,56 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function createBinaryGlyph(choice = null, options = {}) {
-    const { showPersonality = true } = options;
+    const { showPersonality = true, showBinary = true, polarity = "pro" } = options;
+    const resolvedPolarity = normalizeParticipantPolarity(polarity);
+    const leftCharge =
+      resolvedPolarity === "anti"
+        ? STRUCTURE_CHARGE_TYPES.POSITRINO
+        : STRUCTURE_CHARGE_TYPES.ELECTRINO;
+    const rightCharge =
+      resolvedPolarity === "anti"
+        ? STRUCTURE_CHARGE_TYPES.ELECTRINO
+        : STRUCTURE_CHARGE_TYPES.POSITRINO;
     const glyph = createSvgElement("svg");
     glyph.classList.add("composer-reaction-solver-binary-glyph");
     glyph.setAttribute("viewBox", "0 0 120 120");
     glyph.setAttribute("aria-hidden", "true");
 
-    const orbit = createSvgElement("ellipse");
-    orbit.classList.add("composer-reaction-solver-binary-glyph-orbit");
-    orbit.setAttribute("cx", "60");
-    orbit.setAttribute("cy", "60");
-    orbit.setAttribute("rx", "38");
-    orbit.setAttribute("ry", "13");
-    glyph.appendChild(orbit);
+    if (showBinary) {
+      const orbit = createSvgElement("ellipse");
+      orbit.classList.add("composer-reaction-solver-binary-glyph-orbit");
+      orbit.setAttribute("cx", "60");
+      orbit.setAttribute("cy", "60");
+      orbit.setAttribute("rx", "38");
+      orbit.setAttribute("ry", "13");
+      glyph.appendChild(orbit);
 
-    const axis = createSvgElement("line");
-    axis.classList.add("composer-reaction-solver-binary-glyph-axis");
-    axis.setAttribute("x1", "60");
-    axis.setAttribute("y1", "18");
-    axis.setAttribute("x2", "60");
-    axis.setAttribute("y2", "102");
-    glyph.appendChild(axis);
+      const axis = createSvgElement("line");
+      axis.classList.add("composer-reaction-solver-binary-glyph-axis");
+      axis.setAttribute("x1", "60");
+      axis.setAttribute("y1", "18");
+      axis.setAttribute("x2", "60");
+      axis.setAttribute("y2", "102");
+      glyph.appendChild(axis);
 
-    const leftPole = createSvgElement("circle");
-    leftPole.classList.add("composer-reaction-solver-binary-dot", "is-left", "is-electrino");
-    leftPole.setAttribute("cx", "22");
-    leftPole.setAttribute("cy", "60");
-    leftPole.setAttribute("r", "8.5");
-    glyph.appendChild(leftPole);
+      const leftPole = createSvgElement("circle");
+      leftPole.classList.add("composer-reaction-solver-binary-dot", "is-left", `is-${leftCharge}`);
+      leftPole.setAttribute("cx", "22");
+      leftPole.setAttribute("cy", "60");
+      leftPole.setAttribute("r", "8.5");
+      glyph.appendChild(leftPole);
 
-    const rightPole = createSvgElement("circle");
-    rightPole.classList.add("composer-reaction-solver-binary-dot", "is-right", "is-positrino");
-    rightPole.setAttribute("cx", "98");
-    rightPole.setAttribute("cy", "60");
-    rightPole.setAttribute("r", "8.5");
-    glyph.appendChild(rightPole);
+      const rightPole = createSvgElement("circle");
+      rightPole.classList.add(
+        "composer-reaction-solver-binary-dot",
+        "is-right",
+        `is-${rightCharge}`
+      );
+      rightPole.setAttribute("cx", "98");
+      rightPole.setAttribute("cy", "60");
+      rightPole.setAttribute("r", "8.5");
+      glyph.appendChild(rightPole);
+    }
 
     if (showPersonality && choice) {
       const topDot = createSvgElement("circle");
@@ -2173,7 +2602,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const chip = document.createElement("div");
     chip.className = "composer-reaction-solver-binary-choice is-static";
     chip.style.setProperty("--binary-choice-accent", "#b889ff");
-    chip.appendChild(createBinaryGlyph(null, { showPersonality: false }));
+    chip.appendChild(
+      createBinaryGlyph(null, {
+        showPersonality: false,
+        polarity: resolveBinaryGlyphPolarity(participant, node),
+      })
+    );
     choices.appendChild(chip);
 
     if (participant.side === "product") {
@@ -2237,6 +2671,29 @@ export function createComposerReactionSolverUiRuntime(deps) {
       });
   }
 
+  function getRenderedSlotCodesForSide(side) {
+    return side === "product" ? ["O", "M", "I"] : ["I", "M", "O"];
+  }
+
+  function getRenderedCoreBinarySlots(participant, node) {
+    const nodesBySlotCode = new Map(
+      getCoreBinaryNodes(node).map((childNode) => [
+        String(childNode?.slotCode ?? "").trim().toUpperCase(),
+        childNode,
+      ])
+    );
+    return getRenderedSlotCodesForSide(participant?.side).map(
+      (slotCode) => nodesBySlotCode.get(slotCode) ?? null
+    );
+  }
+
+  function createBinaryChoicePlaceholder() {
+    const placeholder = document.createElement("div");
+    placeholder.className = "composer-reaction-solver-binary-choice is-static is-placeholder";
+    placeholder.setAttribute("aria-hidden", "true");
+    return placeholder;
+  }
+
   function createInlineAnchorLane(participant, node, nodeKey) {
     const lane = document.createElement("div");
     lane.className = `composer-reaction-solver-inline-anchor-lane is-${participant.side}`;
@@ -2247,7 +2704,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function createSideSlotHeader(side) {
     const header = document.createElement("div");
     header.className = `composer-reaction-solver-side-slot-header is-${side}`;
-    ["I", "M", "O"].forEach((slotCode) => {
+    getRenderedSlotCodesForSide(side).forEach((slotCode) => {
       const slot = document.createElement("span");
       slot.className = "composer-reaction-solver-side-slot-header-slot";
       slot.textContent = slotCode;
@@ -2259,10 +2716,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function createNoetherCoreGridSections(participant, node) {
     const tiles = document.createElement("div");
     tiles.className = "composer-reaction-solver-noether-core-grid-track";
-    getCoreBinaryNodes(node).forEach((childNode) => {
+    const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
+    getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
+      if (!childNode) {
+        tiles.appendChild(createBinaryChoicePlaceholder());
+        return;
+      }
       const nodeKey = buildNodeKey(participant.id, childNode.id);
       const choice =
-        childNode.renderMode === "binary-bare"
+        childNode.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE
           ? null
           : getBinaryPersonalitySelection(participant, childNode);
       const tile = createAnchorButton(participant, childNode, nodeKey, {
@@ -2279,7 +2741,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       );
       tile.appendChild(
         createBinaryGlyph(choice, {
-          showPersonality: childNode.renderMode !== "binary-bare",
+          showPersonality: childNode.renderMode !== REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE,
+          showBinary: childNode.hasBinary !== false,
+          polarity: glyphPolarity,
         })
       );
       tiles.appendChild(tile);
@@ -2307,9 +2771,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const track = document.createElement("div");
     track.className = "composer-reaction-solver-binary-selector-grid-track";
     track.style.setProperty("--binary-choice-size", "72px");
-    getCoreBinaryNodes(node).forEach((childNode) => {
+    const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
+    getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
       const column = document.createElement("div");
       column.className = "composer-reaction-solver-binary-selector-column";
+      if (!childNode) {
+        column.classList.add("is-placeholder");
+        track.appendChild(column);
+        return;
+      }
       const choices = document.createElement("div");
       choices.className = "composer-reaction-solver-binary-selector-grid-options";
       const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
@@ -2329,7 +2799,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
         } else {
           button.classList.add("is-dimmed");
         }
-        button.appendChild(createBinaryGlyph(choice));
+        button.appendChild(
+          createBinaryGlyph(choice, {
+            showBinary: childNode.hasBinary !== false,
+            polarity: glyphPolarity,
+          })
+        );
         button.addEventListener("click", () =>
           setBinaryPersonalitySelection(participant.id, childNode.id, choice.id)
         );
@@ -2346,7 +2821,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const track = document.createElement("div");
     track.className = "composer-reaction-solver-binary-selector-grid-track";
     track.style.setProperty("--binary-choice-size", "72px");
-    getCoreBinaryNodes(node).forEach((childNode) => {
+    const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
+    getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
+      if (!childNode) {
+        track.appendChild(createBinaryChoicePlaceholder());
+        return;
+      }
       const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
       const button = document.createElement("button");
       button.type = "button";
@@ -2355,7 +2835,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
       button.style.setProperty("--binary-choice-accent", selectedChoice.accent);
       button.setAttribute("aria-label", `${childNode.label}: ${selectedChoice.label}`);
       button.title = `${childNode.label}: ${selectedChoice.label}`;
-      button.appendChild(createBinaryGlyph(selectedChoice));
+      button.appendChild(
+        createBinaryGlyph(selectedChoice, {
+          showBinary: childNode.hasBinary !== false,
+          polarity: glyphPolarity,
+        })
+      );
       button.addEventListener("click", () =>
         cycleQuarkBinaryPreset(participant.id, childNode.id)
       );
@@ -2400,10 +2885,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function createCompositeAssemblyRowTrack(participant, rowNode) {
-    if (rowNode?.renderMode === "noether-core-grid") {
+    if (rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID) {
       return createNoetherCoreGridSections(participant, rowNode).tiles;
     }
-    if (rowNode?.renderMode === "binary-selector-grid") {
+    if (rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
       return isQuarkTemplateId(rowNode.templateId ?? participant.templateId)
         ? createQuarkPresetRowTrack(participant, rowNode)
         : createBinarySelectorGridTrack(participant, rowNode);
@@ -2414,7 +2899,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function createCompositeAssemblyRowCard(participant, rowNode) {
     const antiCoreCount = Number(rowNode?.inventory?.antiCore ?? 0);
     const inferredTemplateId =
-      rowNode?.renderMode === "noether-core-grid"
+      rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID
         ? "noether_core"
         : String(rowNode?.templateId ?? "").trim().toLowerCase();
     const inferredPolarity =
@@ -2865,6 +3350,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
     const selectedChoice = getBinaryPersonalitySelection(participant, node);
     const allowedChoiceIds = getAllowedBinaryChoiceIds(participant, node);
+    const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
 
     allowedChoiceIds.forEach((choiceId) => {
       const choice = getBinaryPersonalityChoice(choiceId);
@@ -2883,7 +3369,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
       } else {
         button.classList.add("is-dimmed");
       }
-      button.appendChild(createBinaryGlyph(choice));
+      button.appendChild(
+        createBinaryGlyph(choice, {
+          showBinary: node.hasBinary !== false,
+          polarity: glyphPolarity,
+        })
+      );
       button.addEventListener("click", () =>
         setBinaryPersonalitySelection(participant.id, node.id, choice.id)
       );
@@ -2906,7 +3397,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const nodeKey = buildNodeKey(participant.id, node.id);
       const hasChildren = Array.isArray(node.children) && node.children.length > 0;
       const canRenderChildren = hasChildren && shouldRenderChildNodes(node);
-      const rendersChildrenInline = node.renderMode === "noether-core-grid";
+      const rendersChildrenInline =
+        node.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID;
       const mapping = findMappingByNodeKey(nodeKey);
       const isCollapsed = !!mapping && canRenderChildren && !rendersChildrenInline;
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
@@ -2933,11 +3425,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const content = document.createElement("div");
       content.className = "composer-reaction-solver-tree-content";
       content.style.setProperty("--solver-depth", String(depth));
-      const usesInlineAnchor =
-        node.renderMode === "noether-core-grid" ||
-        node.renderMode === "binary-selector-grid" ||
-        node.renderMode === "higgs-cluster-grid" ||
-        node.renderMode === "assembly-cluster-grid";
+      const usesInlineAnchor = isReactionStructureInlineAnchorRenderMode(node.renderMode);
       if (usesInlineAnchor) {
         row.classList.add("is-inline-anchor");
       }
@@ -2949,25 +3437,22 @@ export function createComposerReactionSolverUiRuntime(deps) {
               textContent: `${hiddenDescendantCount} hidden`,
             })
           : null;
-      if (node.renderMode === "noether-core-grid") {
+      if (node.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID) {
         row.classList.add("is-noether-core-grid");
         content.classList.add("is-noether-core-grid");
         content.appendChild(createNoetherCoreGridContent(participant, node));
-      } else if (
-        node.renderMode === "higgs-cluster-grid" ||
-        node.renderMode === "assembly-cluster-grid"
-      ) {
+      } else if (isReactionStructureCompositeGridRenderMode(node.renderMode)) {
         row.classList.add("is-higgs-cluster-grid");
         content.classList.add("is-higgs-cluster-grid");
         content.appendChild(createCompositeAssemblyGridContent(participant, node));
-      } else if (node.renderMode === "binary-selector-grid") {
+      } else if (node.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
         row.classList.add("is-binary-selector-grid");
         content.classList.add("is-binary-selector-grid");
         content.appendChild(createBinarySelectorGridContent(participant, node));
-      } else if (node.renderMode === "binary-selector") {
+      } else if (node.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR) {
         row.classList.add("is-binary-selector");
         content.appendChild(createBinarySelectorContent(participant, node));
-      } else if (node.renderMode === "binary-bare") {
+      } else if (node.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE) {
         row.classList.add("is-binary-selector");
         content.appendChild(createBareBinaryContent(participant, node));
       } else {
@@ -3003,15 +3488,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
       participant.side === "product" && rootNodeKey
         ? getAnchorAvailability(participant.side, rootNodeKey)
         : null;
-    if (topLevelHierarchyHasRenderMode(participant.hierarchy, "noether-core-grid")) {
+    if (
+      topLevelHierarchyHasRenderMode(
+        participant.hierarchy,
+        REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID
+      )
+    ) {
       card.classList.add("has-noether-core-grid");
     }
-    if (
-      topLevelRenderMode === "noether-core-grid" ||
-      topLevelRenderMode === "binary-selector-grid" ||
-      topLevelRenderMode === "higgs-cluster-grid" ||
-      topLevelRenderMode === "assembly-cluster-grid"
-    ) {
+    if (isReactionStructureInlineAnchorRenderMode(topLevelRenderMode)) {
       card.classList.add("has-inline-field-header");
     }
     if (isComposite) {
@@ -3050,19 +3535,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Right-click the reaction canvas to add reactants, products, or a Transmute tile.";
+        "Right-click the reaction canvas to add reactants, products, or a transmute tile.";
       return;
     }
     if (state.pendingSourceKey) {
       mapHint.textContent =
         state.pendingSourceRole === "transmute-output"
-          ? "Transmute output selected. Conservative product targets remain active; incompatible targets are dimmed."
-          : "Source anchor selected. Conservative product and Transmute targets remain active; incompatible targets are dimmed.";
+          ? "transmute output selected. Conservative product targets remain active; incompatible targets are dimmed."
+          : "Source anchor selected. Conservative product and transmute targets remain active; incompatible targets are dimmed.";
       return;
     }
     if (!state.mappings.length) {
       mapHint.textContent =
-        "Choose a reactant anchor, then a product or Transmute anchor, to author the first mapping.";
+        "Choose a reactant anchor, then a product or transmute anchor, to author the first mapping.";
       return;
     }
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
@@ -3179,9 +3664,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
       if (mapSvg) {
         mapSvg.innerHTML = "";
       }
+      state.anchorRegistry = new Map();
       state.hoveredMappingIds = [];
       return;
     }
+    rebuildAnchorRegistry();
     const reactantParticipants = state.participants.filter(
       (participant) => participant.side === "reactant"
     );

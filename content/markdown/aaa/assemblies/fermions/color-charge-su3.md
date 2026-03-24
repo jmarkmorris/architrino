@@ -27,28 +27,28 @@ We label the three binaries by their dynamical regime:
   - Velocity $v_L < V_f$  
   - Lowest curvature; outer envelope, expansion/contraction behavior
 
-Each binary defines one **axis** with two polar **personality slots**, each occupied by either:
+Each binary defines one **axis** with two polar **polar sites**, each occupied by either:
 
 - Electrino (−e/6), or  
 - Positrino (+e/6).
 
-So each Noether core has 3 axes (H, M, L) × 2 poles = **6 personality slots**.
+So each Noether core has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
 
 We distinguish:
 
 - **Scaffold architrinos**: the three e/p pairs in the H, M, L binaries (2 per binary → 6 per quark).  
-- **Personality architrinos**: the 6 ±e/6 decorations on the poles.
+- **Axial architrinos**: the 6 ±e/6 decorations on the poles.
 
 For a Gen‑I quark:
 
 - 6 scaffold architrinos (3 binaries × 2)  
-- 6 personality architrinos  
+- 6 axial architrinos  
 - Total per quark: 12.
 
 For a Gen‑I baryon (3 quarks):
 
 - 18 scaffold architrinos  
-- 18 personality architrinos  
+- 18 axial architrinos  
 - **36 architrinos** total.
 
 We will use “tri‑binary” for the structure; “Noether core” when we are emphasizing its role as the seat of conserved charges.
@@ -91,7 +91,7 @@ This **braid chirality** will underpin our distinction between particles and ant
 ## Colorless Fermions: Axis Uniformity
 
 **Core rule:**  
-Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same personality pattern, there is no “which axis is special?” degree of freedom → **no color**.
+Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
 ### Stealth and color neutrality
 
@@ -131,7 +131,7 @@ $(+/+,\ -/+,\ -/-)$
 and permutations. Charge check:
 - (H: +/+, M: −/+, L: −/−): 3e + 3p → net 0 again.
 
-These patterns differ by **axis‑level personality contrast** and thus by internal energy/coupling; they are natural candidates for **neutrino mass eigenstates**. All remain colorless because H, M, and L are either identical or do not participate in the quark‑like axis‑exceptionality mechanism.
+These patterns differ by **axis‑level axial contrast** and thus by internal energy/coupling; they are natural candidates for **neutrino mass eigenstates**. All remain colorless because H, M, and L are either identical or do not participate in the quark‑like axis‑exceptionality mechanism.
 
 Working picture (to be detailed in the neutrino section):
 
@@ -144,7 +144,7 @@ We do **not** claim a PMNS‑level derivation yet; that is a targeted future cal
 
 ## Quarks: Axis Exceptionality and Admissible Patterns
 
-Quarks are color‑charged because **one axis is in a different personality class than the other two**.
+Quarks are color‑charged because **one axis is in a different axial class than the other two**.
 
 ### General “two‑same + one‑different” rule
 
@@ -156,7 +156,7 @@ Let each axis pattern be coarse‑classified as:
 
 The key structural rule for **admissible, stable quark‑like Noether cores** is:
 
-> Exactly **two axes share the same personality class**, and the third is **different in kind** (P− vs P+ vs Pm).  
+> Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).  
 
 We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three‑different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the spacetime assembly medium and quickly relax or disintegrate.
 
@@ -176,7 +176,7 @@ Color degree of freedom is then:
 
 Up‑type (u,c,t) Gen‑I quarks have:
 
-- 5 positrinos, 1 electrino among 6 personality slots.
+- 5 positrinos, 1 electrino among 6 polar sites.
 
 At axis‑class level:
 
@@ -346,7 +346,7 @@ $$
 
 We model internal color reconfiguration by linear maps $U:\mathcal{H}^{\text{color}}_q\to\mathcal{H}^{\text{color}}_q$ satisfying:
 
-- Preserve net electric charge and total personality inventory.
+- Preserve net electric charge and total axial inventory.
 - Preserve the one-axis-exceptionality sector (map superpositions of $|q_H\rangle,|q_M\rangle,|q_L\rangle$ to itself).
 - Preserve Born norm (probability conservation): $U^\dagger U=I$.
 - Preserve oriented color volume (gauge-fixed convention): $\det U=1$.
@@ -414,7 +414,7 @@ A Gen‑I baryon (e.g., proton or neutron) consists of:
 - 3 quarks → 3 Noether cores  
 - Each with H, M, L axes  
 - Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.  
-- 18 scaffold architrinos + 18 personality architrinos → **36 architrinos**.
+- 18 scaffold architrinos + 18 axial architrinos → **36 architrinos**.
 
 ### Color singlet condition as closed braid
 
@@ -481,8 +481,8 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/ca
 
 ## Summary and Next Steps
 
-- A **Noether core / tri‑binary** is a three‑axis (H,M,L), six‑slot personality structure: the minimal unit that carries conserved charges via its internal symmetries.
-- **Colorless** fermions (leptons, neutrinos) have identical personality patterns on all three axes → no axis exceptionality → SU(3)$_c$ singlets.
+- A **Noether core / tri‑binary** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
+- **Colorless** fermions (leptons, neutrinos) have identical axial patterns on all three axes → no axis exceptionality → SU(3)$_c$ singlets.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two P+ axes, one Pm axis.  
   - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.

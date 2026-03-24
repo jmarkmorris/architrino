@@ -8,7 +8,7 @@ Existing text excerpt:
 >
 > Symbols:
 -> -   $v=1$ (field speed by units), $\kappa>0$ (coupling), $\eta>0$ (isochron thickness)
-> -   $\epsilon>0$ (unit charge magnitude); Electrino $q=-\epsilon$, Positrino $q=+\epsilon$
+> -   $\epsilon>0$ (polarity-unit magnitude); Electrino $q=-\epsilon$, Positrino $q=+\epsilon$
 > -   $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$
 > -   $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$, $\;\hat{\mathbf{r}}=(\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0))/r$
 
@@ -43,4 +43,4 @@ Detailed explanation (dynamical geometry):
 - Combined role in assembly scales:
   - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/t_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and sharper wake surfaces (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.
 
-Plain language: We measure speeds in units where the field speed is one, use $\kappa$ to set how hard every hit pushes, use $\eta$ to slightly thicken the razor-thin isochrons so calculus works, and use $\epsilon$ as the basic unit of charge. The push is always straight along the line back to where the isochron was emitted, but its received strength is also shaped by the Jacobian factor $|J|^{-1}$; like charges push out, unlike pull in.
+Plain language: We measure speeds in units where the field speed is one, use $\kappa$ to set how hard every hit pushes, use $\eta$ to slightly thicken the razor-thin isochrons so calculus works, and use $\epsilon$ as the basic unit of polarity. The push is always straight along the line back to where the isochron was emitted, but its received strength is also shaped by the Jacobian factor $|J|^{-1}$; like polarities push out, unlike polarities pull in.

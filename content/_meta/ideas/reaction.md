@@ -409,7 +409,7 @@ That hierarchy should allow the author to work at several levels:
 - subassembly;
 - member;
 - binary;
-- and bare architrino or personality charge when the reaction genuinely needs that depth.
+- and bare architrino or axial architrino when the reaction genuinely needs that depth.
 
 This matters because most PDG-style reactions should not require the author to move every constituent by hand. In many channels, most structure is spectator carry-through and only a smaller active frontier needs detailed solving. The solver should therefore prefer the coarsest mapping that closes the ledger honestly, and only expand a node when the author or the solver needs more detail there.
 
@@ -476,18 +476,18 @@ For a fermion-like assembly, a first-pass hierarchy could look like:
 
 ```text
 - pro/anti Noether core [anchor point]
-    - inner binary with personality [anchor point]
+    - inner binary with axial layer [anchor point]
         - inner binary [anchor point]
-        - personality architrino [anchor point]
-        - personality architrino [anchor point]
-    - middle binary with personality [anchor point]
+        - axial architrino [anchor point]
+        - axial architrino [anchor point]
+    - middle binary with axial layer [anchor point]
         - middle binary [anchor point]
-        - personality architrino [anchor point]
-        - personality architrino [anchor point]
-    - outer binary with personality [anchor point]
+        - axial architrino [anchor point]
+        - axial architrino [anchor point]
+    - outer binary with axial layer [anchor point]
         - outer binary [anchor point]
-        - personality architrino [anchor point]
-        - personality architrino [anchor point]
+        - axial architrino [anchor point]
+        - axial architrino [anchor point]
 ```
 
 The product side would use the same nesting but with the attach point rendered before the description so the middle mapping field stays visually clean.
@@ -506,7 +506,7 @@ The mapping rules themselves should be conservative and provenance-aware:
 - every accepted mapping should carry provenance, even if the solver or author has to guess leaf-level architrino provenance to keep the ledger closed honestly;
 - and when a reactant attach point is selected, product attach points that are not conservative with that source should gray out and deactivate rather than allowing an invalid mapping to be drawn.
 
-This first-pass conservation rule should not assume that a binary keeps the same flavor identity or shell-slot identity through the mapping. We do not yet know that binary flavor is sticky across scenarios, and personality charges may not be sticky either.
+This first-pass conservation rule should not assume that a binary keeps the same flavor identity or shell-slot identity through the mapping. We do not yet know that binary flavor is sticky across scenarios, and axial architrinos may not be sticky either.
 
 So the conservative test should be inventory-based rather than label-based:
 

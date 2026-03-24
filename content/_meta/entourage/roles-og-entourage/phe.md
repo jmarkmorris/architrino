@@ -25,8 +25,8 @@ Work is anchored in the specific architecture already defined in this repo:
 - **Low energy binary**: Below field speed. Largest radius. Lowest frequency.
 
 **Key Properties:**
-- **Architrino unit charge**: $|q| = |e/6|$.
-- **Decoration scheme**: Six polar regions on the tri-binary available for $\pm|e/6|$ charge placement.
+- **Architrino polarity unit**: $|q| = |e/6|$ in charge bookkeeping.
+- **Axial-layer scheme**: Six polar regions on the tri-binary available for positrino/electrino occupancy.
 - **Pro/anti forms**: Matter/antimatter distinguished geometrically.
 - **Scalable and deformable**:
   - Ellipsoidal/spheroidal -> Fermions (Fermi-Dirac statistics).
@@ -41,15 +41,15 @@ Work is anchored in the specific architecture already defined in this repo:
 
 **A.1 Fermions (Quarks and Leptons)**
 
-Map tri-binary decoration patterns to all SM fermions:
+Map tri-binary axial patterns to all SM fermions:
 
 - **Quarks**:
-  - Up-type ($+2e/3$): Polar charges: 5 positrinos, 1 electrino.
-  - Down-type ($-e/3$): Polar charges: 2 positrinos, 4 electrinos.
-  - Color charge: From tri-binary internal structure or phase relationships.
+  - Up-type ($+2e/3$): Axial inventory: 5 positrinos, 1 electrino.
+  - Down-type ($-e/3$): Axial inventory: 2 positrinos, 4 electrinos.
+  - Color label: From tri-binary internal structure or phase relationships.
 - **Leptons**:
-  - Charged leptons ($-e$): are assembled as 6 polar positions with $-|e/6|$ decorations.
-  - Neutrinos (neutral): Specific neutral decoration patterns or different tri-binary configuration.
+  - Charged leptons ($-e$): are assembled as 6 polar sites occupied by $-|e/6|$ axial architrinos.
+  - Neutrinos (neutral): Specific neutral axial patterns or different tri-binary configuration.
 - **Three generations**: Explain as:
   - Gen I = tri-binary : stable through nuclear level 
   - Gen II = bi-binary : reactive due to exposed fields, higher mass, short lifetime.
@@ -67,13 +67,13 @@ Map tri-binary decoration patterns to all SM fermions:
 
 **A.3 Quantum Number Derivation**
 
-- **Electric charge**: From the sum of $\pm|e/6|$ decorations.
+- **Electric charge**: From the sum of $\pm|e/6|$ axial architrinos.
 - **Spin**:
   - Spin-1/2 from ellipsoidal tri-binary internal rotation.
   - Spin-1 from planar configurations.
   - Derive using geometric algebra (Clifford $Cl_{3,0}$).
 - **Color (SU(3))**: From three-fold symmetry or phase structure of nested binaries.
-- **Weak isospin (SU(2))** and **hypercharge (U(1))**: From decoration chirality or geometric phases.
+- **Weak isospin (SU(2))** and **hypercharge (U(1))**: From axial-layer chirality or geometric phases.
 - **Statistics**: Prove Pauli exclusion from spatial volume occupied by ellipsoidal tri-binaries.
 
 ---
@@ -106,11 +106,11 @@ Map tri-binary decoration patterns to all SM fermions:
 
 **C.1 SU(3) x SU(2) x U(1) Emergence**
 
-- **SU(3) color**: Three nested binaries or three-fold decoration symmetry.
-  - Confinement via flux tubes connecting colored decorations.
+- **SU(3) color**: Three nested binaries or three-fold axial-pattern symmetry.
+  - Confinement via flux tubes connecting colored axial patterns.
 - **SU(2) weak**: Left/right chirality from binary spiral handedness.
   - **Critical**: Derive parity violation from geometric handedness.
-- **U(1) electromagnetism**: Net potential flux or total charge decoration.
+- **U(1) electromagnetism**: Net potential flux or total axial polarity bookkeeping.
 
 **C.2 Spontaneous Symmetry Breaking**
 
@@ -133,13 +133,13 @@ Map tri-binary decoration patterns to all SM fermions:
 Show SM Lagrangian emerges in low-energy limit:
 - Kinetic terms from binary orbital motion.
 - Mass terms from spacetime assembly coupling.
-- Yukawa couplings from decoration-vacuum interactions.
+- Yukawa couplings from axial-layer / medium interactions.
 - Gauge terms from potential exchange.
 
 **D.2 Feynman Rules**
 
 - Propagators: Assembly propagation through tri-binary medium.
-- Vertices: Decoration configuration changes during interactions.
+- Vertices: Axial-configuration changes during interactions.
 - Calculate cross-sections: $e^+e^- \to \mu^+\mu^-$, $qq \to gg$, etc.
 
 **D.3 Renormalization**
@@ -153,7 +153,7 @@ Show SM Lagrangian emerges in low-energy limit:
 ### Precision Benchmarks (Tiered)
 
 **Tier 1: Viability (Orders of Magnitude)**
-- Correct charge spectrum from $|e/6|$ decorations.
+- Correct electric-charge spectrum from $|e/6|$ axial inventories.
 - Stable proton (no rapid decay).
 - Approximate masses and ratios.
 - Emergence of gauge group structure.
@@ -176,7 +176,7 @@ Show SM Lagrangian emerges in low-energy limit:
 
 **F.1 Chirality and Parity Violation**
 - **Challenge**: Weak interaction violates parity symmetry.
-- **Mandate**: Derive from tri-binary spiral handedness or decoration asymmetry.
+- **Mandate**: Derive from tri-binary spiral handedness or axial asymmetry.
 - **Failure mode**: If geometry cannot break parity, theory fails.
 
 **F.2 Confinement**
@@ -235,7 +235,7 @@ Show SM Lagrangian emerges in low-energy limit:
 
 **5.1 Tri-Binary State Vector Atlas**
 - Complete table for each SM particle:
-  $\{r_{\text{inner}}, r_{\text{mid}}, r_{\text{outer}}, \omega_{\text{inner}}, \omega_{\text{mid}}, \omega_{\text{outer}}, \text{shape}, \text{decoration pattern}, \text{pro/anti}\}$
+  $\{r_{\text{inner}}, r_{\text{mid}}, r_{\text{outer}}, \omega_{\text{inner}}, \omega_{\text{mid}}, \omega_{\text{outer}}, \text{shape}, \text{axial pattern}, \text{pro/anti}\}$
 
 **5.2 Effective Lagrangian**
 - Explicit $\mathcal{L}_{\text{eff}}$ with propagators, vertices, interaction terms; comparison with SM Lagrangian.
@@ -319,6 +319,6 @@ Maintain living "Challenges & Failures" document:
 - Gauge and mixing notes tied to `dynamics/gauge-structure-emergence.md` and `assemblies/fermions/weak-mixing-ckm.md`, PDG date-stamped.
 - Benchmark observables list for Sig and Sol (masses, $g-2$, form factors, CKM/PMNS entries, rare decays) with target precision.
 # Foundational Reference
-- architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and charge +/-$\epsilon$ set the base for assembly construction.
+- architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and polarity $q=\pm\epsilon$ set the base for assembly construction.
 - Reference the master equation (`dynamics/master-equation.md`) whenever discussing emission/absorption: every interaction is a sum over causal wake surfaces (path history) with radial $1/r^2$ contributions; self-hits appear when worldlines outrun their own wakes.
-- Align all particle-phase claims with the `validation/parameter-ledger.md`: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters dictate which assembly charges or scales are phenomenologically viable.
+- Align all particle-phase claims with the `validation/parameter-ledger.md`: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters dictate which assembly electric assignments or scales are phenomenologically viable.

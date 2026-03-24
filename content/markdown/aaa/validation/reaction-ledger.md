@@ -24,7 +24,7 @@ Standard Feynman diagrams track particle paths. Architrino Provenance diagrams t
 **1. Top Quark ($t$)**
 *   **Core (Gen III):** High energy, depleted shielding.
     *   *Assumption:* Uni-binary or Bi-binary (User Diagram uses Bi-binary structure). Let's use **Uni-binary (1P, 1E)** for Gen III standard.
-*   **Personality ($Q = +2/3$):** 1 Electrino, 5 Positrinos ($1E, 5P$).
+*   **Axial Layer ($Q = +2/3$):** 1 Electrino, 5 Positrinos ($1E, 5P$).
 *   **Total $t$:** $2E, 6P$.
 
 **2. Reactant Aether (Vacuum Inputs)**
@@ -36,26 +36,26 @@ Standard Feynman diagrams track particle paths. Architrino Provenance diagrams t
 
 **1. Bottom Quark ($b$)**
 *   **Core (Gen III):** Uni-binary (1P, 1E).
-*   **Personality ($Q = -1/3$):** 4 Electrinos, 2 Positrinos ($4E, 2P$).
+*   **Axial Layer ($Q = -1/3$):** 4 Electrinos, 2 Positrinos ($4E, 2P$).
 *   **Total $b$:** $5E, 3P$.
 
 **2. Positron ($e^+$)**
 *   **Core:** Anti-Tri-binary ($3E, 3P$).
-*   **Personality ($Q = +1$):** 0 Electrinos, 6 Positrinos ($0E, 6P$).
+*   **Axial Layer ($Q = +1$):** 0 Electrinos, 6 Positrinos ($0E, 6P$).
 *   **Total $e^+$:** $3E, 9P$.
 
 **3. Electron Neutrino ($\nu_e$)**
 *   **Core:** Pro-Tri-binary ($3E, 3P$).
-*   **Personality:** 3 Electrinos, 3 Positrinos ($3E, 3P$).
+*   **Axial Layer:** 3 Electrinos, 3 Positrinos ($3E, 3P$).
 *   **Total $\nu_e$:** $6E, 6P$.
 
 ### The Ledger Balance (The "W" Event)
 
-Let's look at the **Personality Swap** (The Weak Interaction).
+Let's look at the **Axial-Layer Swap** (The Weak Interaction).
 
 **The Transformation:** $t \to b$
-*   Start ($t$ Personality): $1E, 5P$
-*   End ($b$ Personality): $4E, 2P$
+*   Start ($t$ Axial Layer): $1E, 5P$
+*   End ($b$ Axial Layer): $4E, 2P$
 *   **Delta:** $+3E, -3P$.
 *   *Interpretation:* The Top quark ejected 3 Positrinos and absorbed 3 Electrinos (or ejected a "$3P$ packet" and a hole that was filled?).
 *   **This Delta ($3P \to 3E$ swap) IS the $W^+$ boson event.**
@@ -100,7 +100,7 @@ The Proton contains three quarks: $u, u, d$.
 
 **1. Active Down Quark ($d$)**
 *   **Core:** Gen I Pro-Tri-binary ($3E, 3P$).
-*   **Personality ($Q=-1/3$):** 4 Electrinos, 2 Positrinos ($4E, 2P$).
+*   **Axial Layer ($Q=-1/3$):** 4 Electrinos, 2 Positrinos ($4E, 2P$).
 *   **Total $d$:** $7E, 5P$.
 
 **2. Vacuum Reagents (Aether)**
@@ -115,19 +115,19 @@ The Proton contains three quarks: $u, u, d$.
 
 **1. Active Up Quark ($u$)**
 *   **Core:** Gen I Pro-Tri-binary ($3E, 3P$).
-*   **Personality ($Q=+2/3$):** 1 Electrino, 5 Positrinos ($1E, 5P$).
+*   **Axial Layer ($Q=+2/3$):** 1 Electrino, 5 Positrinos ($1E, 5P$).
 *   **Total $u$:** $4E, 8P$.
 
 **2. Electron ($e^-$)**
 *   **Core:** Consumes the Vacuum NC ($3E, 3P$).
-*   **Personality ($Q=-1$):** 6 Electrinos, 0 Positrinos ($6E, 0P$).
+*   **Axial Layer ($Q=-1$):** 6 Electrinos, 0 Positrinos ($6E, 0P$).
 *   **Total $e^-$:** $9E, 3P$.
 
 **3. Electron Antineutrino ($\bar{\nu}_e$)**
 *   **Core:** Consumes the Vacuum !NC ($3E, 3P$).
-*   **Personality ($Q=0$):** 3 Electrinos, 3 Positrinos ($3E, 3P$).
+*   **Axial Layer ($Q=0$):** 3 Electrinos, 3 Positrinos ($3E, 3P$).
 *   **Total $\bar{\nu}_e$:** $6E, 6P$ (Wait? No, let's trace the flow carefully).
-    *   *Correction from Diagram:* The Antineutrino ends up neutral. If it takes the Anti-Core ($3E, 3P$) and a neutral personality ($3E, 3P$), total is $6E, 6P$.
+    *   *Correction from Diagram:* The Antineutrino ends up neutral. If it takes the Anti-Core ($3E, 3P$) and a neutral axial layer ($3E, 3P$), total is $6E, 6P$.
     *   *Let's check the flow arrows below to confirm.*
 
 ### The Transaction Flow (The "W-" Event)
@@ -135,19 +135,19 @@ The Proton contains three quarks: $u, u, d$.
 The diagram specifies the exact routing of architrinos:
 
 **A. The Electrino Flow (Blue Arrows - Total Available: 7 from $d$ + 6 from Vacuum = 13)**
-1.  **Down Quark ($d$)** has 4E in personality. It keeps 1E (to become $u$). It ejects **3E**.
+1.  **Down Quark ($d$)** has 4E in the axial layer. It keeps 1E (to become $u$). It ejects **3E**.
 2.  **Vacuum NC** has 3E.
 3.  **Vacuum !NC** has 3E.
-    *   *Destination Electron:* Needs 6E for personality + 3E for Core. Total 9E.
+    *   *Destination Electron:* Needs 6E for the axial layer + 3E for Core. Total 9E.
         *   Takes 3E ejected from $d$.
         *   Takes 3E from Vacuum NC (its own core).
         *   Takes 3E from... wait.
     *   *Refined Ledger from Diagram Lines:*
-        *   **Electron Personality (6E):**
+        *   **Electron Axial Layer (6E):**
             *   3E come from the Down Quark ($d \to u$ ejection).
-            *   3E come from the Vacuum NC's personality layer.
+            *   3E come from the Vacuum NC's axial layer.
         *   **Electron Core:** Inherits the Vacuum NC structure.
-        *   **Antineutrino Personality (3E):**
+        *   **Antineutrino Axial Layer (3E):**
             *   Takes 3E from Vacuum !NC.
 
 **B. The Positrino Flow (Red Arrows - Total Available: 5 from $d$ + 6 from Vacuum = 11)**
@@ -182,9 +182,9 @@ The diagram specifies the exact routing of architrinos:
 2.  **Electron Formation:**
     *   Receives 3 Blue ($E$) from $d$.
     *   Receives 3 Blue ($E$) from Aether (NC).
-    *   Total Personality: 6 Blue ($E$).
+    *   Total Axial Layer: 6 Blue ($E$).
     *   *Core:* Uses the NC frame.
-    *   *Result:* $e^-$ (6E Personality + Core). **Balanced.**
+    *   *Result:* $e^-$ (6E Axial Layer + Core). **Balanced.**
 3.  **The Cross-over (The "W" Mechanism):**
     *   The Aether NC splits!
     *   Its 3 Blue ($E$) go to the Electron.
@@ -202,16 +202,16 @@ The diagram specifies the exact routing of architrinos:
         *   Blue line: $ae \to e^-$ (3E).
     *   This implies the "ae" (Aether) block in the diagram is supplying 3P to the quark and 3E to the electron.
     *   This leaves the "ae" block with... -3P and -3E?
-    *   **Ah!** The "ae" block represents the **Decoration Layer** of the vacuum particles, not just the cores.
+    *   **Ah!** The "ae" block represents the **Axial Layer** of the vacuum particles, not just the cores.
 
 **Revised Conclusion:**
 Neutron decay is the **harvesting of a Vacuum Neutral Binary (3P, 3E)**.
 1.  The Neutron disrupts the vacuum.
 2.  A neutral $(3P, 3E)$ assembly is ripped from the sea.
 3.  The **3P** are welded onto the Down Quark ($2P \to 5P$) making it Up.
-4.  The **3E** are welded onto the ejected Electrino packet ($3E$) from the Down Quark, creating a cluster of **6E** (Electron Personality).
+4.  The **3E** are welded onto the ejected Electrino packet ($3E$) from the Down Quark, creating a cluster of **6E** (Electron Axial Layer).
 5.  This 6E cluster wraps around a Pro-Noether Core (harvested nearby) to form the Electron.
-6.  To balance angular momentum/energy, an Antineutrino (Anti-Core + neutral personality) is emitted.
+6.  To balance angular momentum/energy, an Antineutrino (Anti-Core + neutral axial layer) is emitted.
 
 ### Significance
 This derivation shows that **charge conservation is locally maintained by vacuum harvesting**. The "creation" of charge in $n \to p + e^-$ is actually the **separation** of a neutral vacuum element into its positive component (added to the quark) and negative component (added to the lepton).

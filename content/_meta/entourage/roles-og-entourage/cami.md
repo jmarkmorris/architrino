@@ -51,7 +51,7 @@ Define and defend the **basic furniture of reality**:
 Clarify the **hierarchy of structure** and the nature of emergence: See `foundations/ontology.md` for the canonical term set.
 
 **Hierarchy:**
-- **Architrinos** (fundamental) -> **Binaries** (stable configurations) -> **Tri-binaries** (Noether cores) -> **Particles** (decorated assemblies) -> **Nuclei** (coupled assemblies) -> **Atoms** -> **Matter**.
+- **Architrinos** (fundamental) -> **Binaries** (stable configurations) -> **Tri-binaries** (Noether cores) -> **Particles** (assemblies with axial layers) -> **Nuclei** (coupled assemblies) -> **Atoms** -> **Matter**.
 
 **Identity and Persistence:**
 - What makes one tri-binary "the same" through time? Is it:

@@ -112,7 +112,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **Definition:**  
 - Point transmitter/receiver of **polarized potential**.  
-- Two types (opposite polarities): **electrino** (negative charge personality) and **positrino** (positive charge personality).  
+- Two types (opposite polarities): **electrino** (negative polarity) and **positrino** (positive polarity).  
 - Charge magnitude: $|e/6|$ (one-sixth of electron charge).  
 - **Eternal**: No creation or annihilation at the fundamental level.  
 - Interact via **spherically expanding potential fields** propagating at finite field speed $c_f$.
@@ -154,7 +154,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - Tri-binaries can deform:  
   - **Ellipsoidal / 3D** → Fermionic behavior (Fermi–Dirac statistics; half-integer spin).  
   - **Planar / 2D** → Bosonic behavior (Bose–Einstein statistics; integer spin).  
-- **Charge quantization**: Six "decoration sites" on tri-binary surface; each can host an additional architrino ($|e/6|$).  
+- **Charge quantization**: Six polar sites on the tri-binary surface; each can host an additional architrino ($|e/6|$).  
   - Result: stable charges are 0, $\pm e/3$, $\pm 2e/3$, $\pm e$ only.
 
 **Noether Core:**  
@@ -377,9 +377,9 @@ Assess five dimensions (Green/Yellow/Red):
 - No fractional charges beyond $|e/6|$ building blocks.
 
 **Mechanism:**  
-- Tri-binary surface has **six decoration sites** (geometric constraint).  
+- Tri-binary surface has **six polar sites** (geometric constraint).  
 - Each site can host one architrino ($|e/6|$).  
-- Stability: Symmetric decoration patterns only.  
+- Stability: Symmetric axial patterns only.  
 - Result:  
   - 0 sites filled → neutral,  
   - 2 sites (opposite) → $\pm e/3$ (quarks),  
@@ -390,7 +390,7 @@ Assess five dimensions (Green/Yellow/Red):
 - Searches for fractional charge (e.g., $e/3$ free quarks, $e/137$ millicharged particles): null results to $< 10^{-22} e$.
 
 **Status:**  
-- **Conceptual**: Decoration pattern hypothesis.  
+- **Conceptual**: Axial-pattern hypothesis.  
 - **To prove**: Geometric derivation of site number and stability conditions.  
 - **Lead**: Phe (particle mapping), Dyna (topology), Red (experimental bounds).
 
@@ -425,7 +425,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 **Mechanism:**  
 - Baryon number conservation:  
-  - If architrinos are eternal and baryons are stable assemblies (specific tri-binary + decoration pattern),  
+  - If architrinos are eternal and baryons are stable assemblies (specific tri-binary + axial pattern),  
   - Decay requires reconfiguration into different assembly (e.g., $p \to e^+ + \pi^0$).  
   - Must violate some selection rule (charge, energy, topology?).
 
@@ -514,8 +514,8 @@ When session resumes, **prioritize these four tasks**:
 **Action 4 (Phe/Alfa): Charge Stability Map**  
 - **Goal**: Prove that $|e/6|$ architrinos naturally cluster into stable $\pm e/3$, $\pm 2e/3$, $\pm e$ configurations.  
 - **Method**:  
-  - Identify tri-binary surface decoration sites (6 total?),  
-  - Calculate binding energies for different decoration patterns,  
+  - Identify tri-binary surface polar sites (6 total?),  
+  - Calculate binding energies for different axial patterns,  
   - Show only symmetric patterns are stable.  
 - **Verify**: Quarks ($e/3$, $2e/3$) confined; free charges are integer multiples of $e$.  
 - **Deliverable**: Full analysis in **Ch. 18 (Standard Model Mapping)**.  
@@ -532,7 +532,7 @@ When session resumes, **prioritize these four tasks**:
 - **Dark energy / cosmological constant**: Zero-point energy of Noether Sea, or expansion mode of tri-binaries?
 
 **Medium Priority:**  
-- **Neutrino masses**: Extremely small tri-binaries? Different decoration pattern?  
+- **Neutrino masses**: Extremely small tri-binaries? Different axial pattern?  
 - **Strong CP problem**: Is $\theta_{\text{QCD}} = 0$ natural, or fine-tuned?  
 - **Hierarchy problem**: Why is electroweak scale $\ll$ Planck scale? Is it shielded by assembly structure?
 
