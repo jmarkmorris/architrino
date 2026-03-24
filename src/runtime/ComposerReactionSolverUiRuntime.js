@@ -1,7 +1,7 @@
 import {
   classifyComposerReactionNode,
   evaluateComposerReactionMappingCandidate,
-} from "./ComposerReactionRulesRuntime.js";
+} from "./ComposerReactionStructureMappingRuntime.js";
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 import { buildReactionSolverHierarchyFromStructure } from "./ComposerReactionStructureHierarchyRuntime.js";
 import { getNoetherCoreSlotOccupancy } from "../domain/structure/StructureClassification.js";
@@ -698,6 +698,17 @@ function getBinaryChoiceKind(choiceId) {
   return binaryChoiceKindById[choiceId] ?? "neutral";
 }
 
+function getBinaryChoiceInventory(choiceId) {
+  const normalizedChoiceId = String(choiceId ?? "").trim().toLowerCase();
+  if (normalizedChoiceId === "ee") {
+    return { electrino: 3, positrino: 1 };
+  }
+  if (normalizedChoiceId === "pp") {
+    return { electrino: 1, positrino: 3 };
+  }
+  return { electrino: 2, positrino: 2 };
+}
+
 function getBinarySelectorTemplateRule(templateId) {
   const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
   return (
@@ -1304,6 +1315,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return { participant, node };
   }
 
+  function resolveBinaryChoiceInventory(participant, node, groupNode = null) {
+    const choice = getBinaryPersonalitySelection(participant, node, groupNode);
+    return getBinaryChoiceInventory(choice?.id);
+  }
+
   function createEmptyLedger() {
     return {
       electrino: 0,
@@ -1358,7 +1374,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function getNodeLedger(nodeKey) {
     const context = getNodeContext(nodeKey);
     const spec = context
-      ? classifyComposerReactionNode(context.participant, context.node)
+      ? classifyComposerReactionNode(context.participant, context.node, {
+          resolveBinaryChoiceInventory,
+        })
       : null;
     return spec?.inventory ?? createEmptyLedger();
   }
@@ -1415,6 +1433,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
           sourceNode: sourceContext?.node,
           targetParticipant: targetContext?.participant,
           targetNode: targetContext?.node,
+          resolveBinaryChoiceInventory,
         });
         if (!evaluation.allowed) {
           return {
@@ -1428,7 +1447,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
         const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
         const candidateLedger = addLedgers(
           transmuteSummary.outgoingLedger,
-          classifyComposerReactionNode(targetContext?.participant, targetContext?.node)?.inventory
+          classifyComposerReactionNode(targetContext?.participant, targetContext?.node, {
+            resolveBinaryChoiceInventory,
+          })?.inventory
         );
         if (!hasLedger(transmuteSummary.incomingLedger)) {
           return {
