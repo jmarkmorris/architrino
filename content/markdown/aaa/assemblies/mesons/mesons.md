@@ -101,7 +101,7 @@ These are excited states of the nucleon. The $\Delta^{++}$ ($uuu$) is particular
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
 A Delta baryon is a standard Tri-Core assembly (like a proton) but with the three cores rotating in a **parallel spin alignment** (Spin-3/2) rather than the Proton's mixed alignment (Spin-1/2).
 
-*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To prevent geometric collapse (Pauli exclusion), their internal binary phases must be maximally separated ($0^\circ,120^\circ,240^\circ$). This is the geometric definition of the RGB color singlet state.
+*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To prevent geometric collapse (Pauli exclusion), they must occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the tri-core. This is the geometric definition of the RGB color singlet state.
 *   **Decay:** The Delta decays rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
 
 **Deltas in Dense Matter (EoS)**

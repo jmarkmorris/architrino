@@ -10,6 +10,7 @@
 - For inline inequalities or expressions containing `<` or `>` inside prose, prefer `\(...\)` with spaces (for example `\(1 < m < n\)`) to avoid markdown/HTML parsing errors.
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
 - In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
+- Documents in `content/markdown/aaa` must not refer or link to documents in `content/_meta`. If `_meta` material matters, restate or promote the needed content within `content/markdown/aaa` instead.
 - For textbook-facing prose and notation in `content/markdown/aaa`, follow the Archie guides in `content/markdown/aaa/archie/academic-style-guide.md`, `content/markdown/aaa/archie/mathematics-style-guide.md`, and `content/markdown/aaa/archie/mathematics-terminology.md` as applicable.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.

@@ -86,7 +86,7 @@ If a first-principles shielding model naturally lands near the Koide surface for
 
 Even if the charged leptons approximately follow a simple shielding geometry, quarks should not be expected to do so.
 
-The reason is that quark inertial mass is not just bare core exposure. Quarks carry axis-exceptional color structure, induce persistent flux-tube tension, and require continual phase-correction exchange through the strong sector. In that regime, the measured effective mass is contaminated by confinement energy and Noether-Sea response to the color disturbance.
+The reason is that quark inertial mass is not just bare core exposure. Quarks carry axis-exceptional color structure, induce persistent flux-tube tension, and require continual axis-reconfiguration exchange through the strong sector. In that regime, the measured effective mass is contaminated by confinement energy and Noether-Sea response to the color disturbance.
 
 So the working distinction is:
 

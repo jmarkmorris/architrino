@@ -173,23 +173,23 @@ Those should be kept distinct unless a later derivation proves they collapse to 
 
 ## Minimal Geometric Parameterization
 
-A minimal way to encode the hypothesis is by one angle $\alpha$ and one azimuth $\phi_c$.
+A minimal way to encode the hypothesis is by one angle $\alpha$ and one discrete color label $c$.
 
 - $\alpha$: polar misalignment of the personality frame relative to the core frame,
-- $\phi_c$: azimuthal phase selecting which axis is exceptional, i.e. color orientation.
+- $c \in \{H,M,L\}$: the exceptional-axis label selecting the quark color sector.
 
 Then a first-pass rotation may be written as
 $$
-R_{\text{rel}}(\alpha,\phi_c) = R_{\text{axis}}(\phi_c)\,R_{\text{tilt}}(\alpha),
+R_{\text{rel}}(\alpha,c) = R_{\text{axis}}(c)\,R_{\text{tilt}}(\alpha),
 $$
 where:
 
-- $R_{\text{axis}}$ chooses the color-sector azimuth,
+- $R_{\text{axis}}$ chooses the exceptional-axis sector,
 - $R_{\text{tilt}}$ sets the discrete personality misalignment.
 
 In this language:
 
-- color remains a $0^\circ,120^\circ,240^\circ$ azimuthal phase assignment,
+- color remains the three-state exceptional-axis assignment,
 - flavor-dependent quark structure enters through the allowed values of $\alpha$ and through the charge tensor amplitudes,
 - electron-like states remain at $\alpha=0$ and color singlet.
 
@@ -289,21 +289,21 @@ This idea must coexist with the current color construction rather than replace i
 Current color picture:
 
 - one axis is exceptional,
-- color labels the azimuthal phase of that exceptionality,
-- baryon color neutrality arises from the $0^\circ,120^\circ,240^\circ$ closure.
+- color labels which exceptional-axis sector the quark occupies,
+- baryon color neutrality arises from H/M/L singlet closure.
 
 Extended picture proposed here:
 
-- color still labels the azimuthal phase $\phi_c$ of the exceptional axis,
+- color still labels the exceptional-axis sector $c$,
 - a second datum $\alpha$ labels the polar misalignment of the personality frame,
 - the full quark state is therefore specified by both
 $$
-(\phi_c,\alpha).
+(c,\alpha).
 $$
 
 In this sense, color answers the question
 
-- which azimuthal direction is exceptional?
+- which axis is exceptional?
 
 while the Weinberg-locked personality rotation answers
 
@@ -321,7 +321,7 @@ Potential redundancies include:
 
 - reversing a principal axis together with a pole relabeling,
 - rotating by $180^\circ$ and exchanging equivalent background axes,
-- shifts in color azimuth that can be absorbed into the existing SU(3)-like phase labeling,
+- relabelings of the color basis that can be absorbed into the existing SU(3)-like axis labeling,
 - matter/antimatter conjugation that flips charge signs without requiring a new core scaffold.
 
 So the real task is not to enumerate all multiples of $30^\circ$, but to identify the **small quotient set of inequivalent minima** after these symmetries are imposed.
@@ -336,7 +336,7 @@ This idea becomes useful only if it improves closure rather than adding decorati
 
 1. The electron must remain the zero-misalignment limit.
 2. Up- and down-type quarks must emerge as different stable personality-frame branches.
-3. The color construction must remain intact: one exceptional axis, three azimuthal phases, baryon singlet closure.
+3. The color construction must remain intact: one exceptional axis, three color sectors, baryon singlet closure.
 4. Charge quantization must remain exact in units of $e/6$.
 5. The rotated weak-coupling frame must not break the existing $Q=T_3+Y/2$ bookkeeping.
 
@@ -375,6 +375,6 @@ The sharpened hypothesis is:
 $$
 \theta_W^{\text{bare}}=30^\circ,
 $$
-with color providing an independent azimuthal phase label.
+with color providing an independent exceptional-axis label.
 
 In short: do not rotate the scaffold; rotate the decoration frame. Then ask whether the six-pole electroweak geometry selects discrete quark misalignment angles as part of the same underlying assembly logic.

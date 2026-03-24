@@ -164,45 +164,53 @@ Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 
 ## Color Charge and Strong Confinement
 
-In the Standard Model, Quarks carry one of three "colors" (Red, Green, Blue). Leptons are "colorless" (White). We map Color to the **azimuthal phase** of the Personality Layer.
+In the Standard Model, quarks carry one of three color labels, while leptons are color singlets. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping, color is the **axis-exceptionality state** of a decorated Noether core: one axis is distinguished relative to the other two, and the three possible choices span the quark color triplet.
 
 ### The Definition of Color
-The Tri-binary nucleus rotates at extreme frequency ($v \approx c$). The 6 decoration sites are distributed around this rotating manifold.
+Use the ordered core axes $(H,M,L)$.
 
-*   **Symmetry Breaking:**
-    *   **Leptons ($e^-$):** Decoration is $6E$. Perfectly symmetric. The charge distribution is isotropic (spherical approximation). **Result:** Colorless (White).
-    *   **Quarks ($u, d$):** Decoration is Asymmetric ($5P, 1E$ or $2P, 4E$). This creates a **dipole or quadrupole moment** perpendicular to the rotation axis.
-*   **Color as Phase:**
-    *   **Red ($R$):** The asymmetry (e.g., the lone Electrino in $u$) is phase-locked at $0^\circ$ relative to the nuclear spin vector.
-    *   **Green ($G$):** The asymmetry is phase-locked at $120^\circ$.
-    *   **Blue ($B$):** The asymmetry is phase-locked at $240^\circ$.
+- **Leptons:** the three axes remain equivalent, so there is no distinguished axis and no color degree of freedom.
+- **Up-type quarks:** the six-site decoration count $5P,1E$ forces one mixed axis $P^{m}$ against two $P^+$ axes, so color is the choice of which axis carries the mixed pattern.
+- **Down-type quarks:** the six-site decoration count $2P,4E$ admits two allowed families, $(P^+,P^-,P^-)$ and $(P^-,P^{m},P^{m})$, but in both cases color is again the choice of exceptional axis.
+
+With the usual naming convention,
+$$
+|q_H\rangle \leftrightarrow \text{Red},\qquad
+|q_M\rangle \leftrightarrow \text{Green},\qquad
+|q_L\rangle \leftrightarrow \text{Blue}.
+$$
+These labels are a basis convention on the quark color triplet, not an additional physical charge layered on top of axis exceptionality.
 
 ### Confinement (The Flux Tube)
-Because quarks have this rotating asymmetry, they churn the surrounding Noether Sea violently, creating a **vortex filament** (Flux Tube).
-*   **Single Quark:** The vortex creates infinite drag/energy (linear potential $V \propto r$). This is why free quarks are forbidden.
-*   **Meson ($q \bar{q}$):** A Red Quark ($0^\circ$) and Anti-Red Quark ($180^\circ$ inverted) cancel the phase disturbance locally. The flux tube connects them, effectively "closing the circuit."
-*   **Baryon ($qqq$):**
-    *   If we combine $R + G + B$ ($0^\circ + 120^\circ + 240^\circ$), the net phase disturbance vector sums to **zero**.
-    *   $\vec{V}_{net} = \vec{v}_R + \vec{v}_G + \vec{v}_B = 0$.
-    *   The vortex lines from the three quarks merge in the center (the "Y-junction" or "Mercedes-Benz" string configuration) and cancel out at a distance. The assembly looks "White" (symmetric) to the outside world.
+Because a colored quark leaves one axis exceptional, it opens a non-singlet strong-sector corridor into the surrounding Noether Sea.
+
+- **Single quark:** the open corridor carries a line-like energy cost that grows with separation, so isolated color sectors are excluded.
+- **Meson ($q \bar{q}$):** a triplet and anti-triplet can close the corridor into a singlet flux tube.
+- **Baryon ($qqq$):** one H-exceptional, one M-exceptional, and one L-exceptional quark can close into the color-singlet braid
+  $$
+  3\otimes 3\otimes 3 \supset 1,
+  $$
+  leaving no far-field color flux.
 
 ### Gluons
-Gluons are the **phase-correction packets** exchanged between quarks to maintain this balance.
-*   If a Red Quark drifts to $10^\circ$, it emits a Gluon (carrying phase momentum) that is absorbed by a Green Quark, shifting it accordingly to maintain the center-of-mass neutrality.
-*   **Geometry:** Gluons are planar architrino structures (2D ribbons) that propagate along the flux tubes, transferring angular momentum (Color) between vertices.
+Gluons are the axis-reconfiguration carriers of this sector.
 
-### Color phase alignment and decoherence suppression
+- They move quarks within the ordered basis $(H,M,L)$ while preserving flavor inventory and electric charge.
+- Geometrically they are ribbon-like or vortex-like corridor excitations on the shared flux structure.
+- At the effective level, their eight independent traceless modes are the adjoint generators of $SU(3)_c$.
 
-- **Restoring force:** The shared flux tube has a tension that is minimum when the three color phases sum to zero. Any phase slip stretches the tube and raises its energy, pulling phases back into alignment.
-- **Gluon exchange:** Phase errors are quantized corrections carried by gluons along the tube; emission/absorption nudges individual quark phases until the net vector closes.
-- **Timescale separation:** Phase-lock time along the tube is much shorter than environmental disturbance times, so small kicks are damped before they decohere the color state.
-- **Isolation:** Color flux remains confined inside the tube; external interactions see only the color singlet, preventing phase information from leaking and causing decoherence.
+### Color-singlet alignment and decoherence suppression
+
+- **Restoring force:** the shared flux network has minimum energy when the composite state closes into a singlet, so departures from singlet closure raise the corridor tension.
+- **Gluon exchange:** axis-reconfiguration events redistribute exceptionality between quarks until the composite closure is restored.
+- **Timescale separation:** color reconfiguration along the shared corridor is faster than typical environmental disturbance, so small kicks relax before the singlet decoheres.
+- **Isolation:** color flux remains trapped inside the corridor or braid, so external probes see only the color-singlet composite.
 
 ### Why is the Proton Stable?
 The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 *   **Coulomb Repulsion:** The two $u$ quarks repel electrically.
-*   **Strong Attraction:** The Phase-Locking (Color) forces them to co-rotate in a unified bundle. The "suction" of the vacuum trying to collapse the flux tubes overwhelms the electric repulsion.
-*   **Pauli Exclusion:** Since each quark has a different Phase (Color), they are distinguishable quantum states, allowing them to occupy the same spatial ground state.
+*   **Strong Attraction:** Color-singlet closure forces the three quarks into a shared strong-sector braid whose tension overwhelms the electric repulsion.
+*   **Pauli Exclusion:** Since the quarks occupy different color sectors, they are distinguishable quantum states, allowing them to share the same spatial ground-state assembly.
 
 ---
 
@@ -210,7 +218,7 @@ The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 
 The full SM gauge group is captured geometrically as:
 
-- **$SU(3)_c$ (color):** azimuthal phase of the personality asymmetry (Red, Green, Blue). Quarks carry a rotating dipole/quadrupole that fixes their $SU(3)_c$ orientation; leptons are azimuthally symmetric singlets. Gluons are planar phase-correction ribbons that live on flux tubes and form the octet.
+- **$SU(3)_c$ (color):** axis-exceptionality of the decorated Noether core. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while leptons remain axis-uniform singlets. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **Weak-Coupling Triad** (three exposed decoration sites). Left-handed fermions are doublets; right-handed fermions are singlets (Weak-Coupling Triad hidden).
 - **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
 - **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving Weak-Coupling Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
@@ -221,7 +229,7 @@ The full SM gauge group is captured geometrically as:
 
 | Field | SU(3) | SU(2) | $Y$ | $Q = T_3 + Y/2$ | Geometric handle |
 | --- | --- | --- | --- | --- | --- |
-| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | Weak-Coupling Triad P- or E-dominant on quark core; azimuthal phase sets color |
+| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | Weak-Coupling Triad P- or E-dominant on quark core; axis exceptionality sets color |
 | $u_R$ | 3 | 1 | +4/3 | +2/3 | Weak-Coupling Triad hidden; asymmetry 5P/1E fixes $Q$ |
 | $d_R$ | 3 | 1 | -2/3 | -1/3 | Weak-Coupling Triad hidden; asymmetry 2P/4E |
 | $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | Weak-Coupling Triad P vs E on lepton core; azimuthal symmetry (colorless) |
@@ -230,7 +238,7 @@ The full SM gauge group is captured geometrically as:
 
 ### Gauge boson summary
 
-- **Gluons (8):** phase-transfer ribbons on flux tubes; adjoint of SU(3), no net decoration charge.
+- **Gluons (8):** axis-reconfiguration ribbons on flux tubes; adjoint of SU(3), no net decoration charge.
 - **$W^\pm$, $Z$:** transient recoupling corridors moving Weak-Coupling Triad charge/phase between assemblies (spin-1, weak SU(2) triplet).
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed planar mode aligned to leave Shielded + Weak-Coupling Triad combination invariant ($Q$-coupling only).
@@ -494,7 +502,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | **Net Decoration Count.** Sum of Positrinos ($+e/6$) and Electrinos ($-e/6$) in the Personality Layer. $Q = \sum P - \sum E$. |
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the Weak-Coupling Triad.** The net charge state of the 3 "exposed" decoration sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 "hidden" decoration sites plus any core offset. |
-| **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Azimuthal phase.** The angular orientation ($0^\circ, 120^\circ, 240^\circ$) of the decoration asymmetry relative to the nuclear spin axis. |
+| **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
 | **Spin** | $J$ | Intrinsic angular momentum ($1/2\hbar$). | **Core Topology.** The ellipsoidal rotation path of the Tri-binary nucleus. Fermions are spin-1/2 because the path requires 720 degrees to return to the initial state (spinor behavior). |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-Coupling Triad Exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the Weak-Coupling Triad to the vacuum (Interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the Weak-Coupling Triad into the particle's "wake" or shield (Interaction blocked). |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |

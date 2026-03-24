@@ -173,7 +173,7 @@ Isotropy in this branch is attributed to long-time averaging over many source po
 - Expansion wording here should remain consistent with [expansion-mechanism.md](./expansion-mechanism.md).
 - Dark-sector loading language here should remain consistent with [dark-matter.md](./dark-matter.md) and [hubble-s8-tensions.md](./hubble-s8-tensions.md).
 - Strong-field release language here should remain consistent with [../spacetime/black-holes.md](../spacetime/black-holes.md).
-- Parameter-bridge wording here should remain consistent with `_meta/ideas/constraints-lcdm-map.md`.
+- Parameter-bridge wording here should remain consistent with the constraint-ledger language used in the cosmology branch.
 
 ## CMB-Module Interface
 
