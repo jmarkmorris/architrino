@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 410,
+      "nodes": 411,
       "edges": 1153,
       "scenes": 284,
       "markdownIndexes": 0,
-      "markdownDocs": 126,
+      "markdownDocs": 127,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1916,6 +1916,12 @@
       "id": "content/markdown/aaa/archie/support-architrino-research.md",
       "name": "Support Architrino Research",
       "path": "content/markdown/aaa/archie/support-architrino-research.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/terminology-usage.md",
+      "name": "Terminology Usage",
+      "path": "content/markdown/aaa/archie/terminology-usage.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5263,6 +5269,15 @@
       "name": "Support Architrino Research",
       "path": "content/markdown/aaa/archie/support-architrino-research.md",
       "searchTarget": "content/markdown/aaa/archie/support-architrino-research.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/terminology-usage.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/terminology-usage.md",
+      "name": "Terminology Usage",
+      "path": "content/markdown/aaa/archie/terminology-usage.md",
+      "searchTarget": "content/markdown/aaa/archie/terminology-usage.md",
       "implicit": false
     },
     {

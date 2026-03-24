@@ -990,7 +990,7 @@ function canTargetMappingRole(role = "") {
 
 const transmuteCardHeightPx = 72;
 const transmuteSlotStepPx = 108;
-const recentRouteFadeMs = 1600;
+const recentRouteFadeMs = 850;
 const transmuteSlotEdgePaddingPx = 18;
 
 function getParticipantSideLabel(side = "", options = {}) {

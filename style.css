@@ -1649,10 +1649,10 @@ body {
   filter: drop-shadow(0 0 10px rgba(82, 152, 255, 0.2));
   pointer-events: stroke;
   transition:
-    stroke 180ms ease,
-    stroke-width 180ms ease,
-    opacity 620ms ease,
-    filter 620ms ease;
+    stroke 900ms linear,
+    stroke-width 900ms linear,
+    opacity 900ms linear,
+    filter 900ms linear;
 }
 
 .composer-reaction-solver-path.is-route-recent {
