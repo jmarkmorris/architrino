@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 123,
-      "sections": 819
+      "entries": 124,
+      "sections": 828
     }
   },
   "tocRoot": {
@@ -1494,6 +1494,88 @@
                 "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
                 "markdownSection": "Constraints, Assumptions, and Failure Modes",
                 "sectionKey": "constraints assumptions and failure modes",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__horizon_chirality",
+            "title": "Horizon Chirality",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/horizon_chirality.json",
+            "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Horizon Condition",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Canonical Horizon Condition",
+                "sectionKey": "canonical horizon condition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Pro/Anti Before Planar Lock",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Pro/Anti Before Planar Lock",
+                "sectionKey": "pro anti before planar lock",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exterior Planar Spin Basis",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Exterior Planar Spin Basis",
+                "sectionKey": "exterior planar spin basis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Boundary Helicity Versus Deeper Chirality",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Boundary Helicity Versus Deeper Chirality",
+                "sectionKey": "boundary helicity versus deeper chirality",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Horizon Branch Hypothesis",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Canonical Horizon Branch Hypothesis",
+                "sectionKey": "canonical horizon branch hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Theories for Pro and Anti at the Horizon",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Candidate Theories for Pro and Anti at the Horizon",
+                "sectionKey": "candidate theories for pro and anti at the horizon",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mixed-Sign Planar States",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Mixed-Sign Planar States",
+                "sectionKey": "mixed sign planar states",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Provisional Conclusion",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Provisional Conclusion",
+                "sectionKey": "provisional conclusion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interfaces to Other Chapters",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Interfaces to Other Chapters",
+                "sectionKey": "interfaces to other chapters",
                 "headingLevel": 2
               }
             ]

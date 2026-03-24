@@ -198,140 +198,6 @@ function sortTemplatePickerEntries(entries = []) {
   });
 }
 
-function createBinaryBranch(
-  id,
-  label,
-  { withPersonality = true, slotCode = "", renderMode = "" } = {}
-) {
-  const resolvedRenderMode =
-    renderMode || (withPersonality ? "binary-selector" : "");
-  return {
-    id,
-    label,
-    renderMode: resolvedRenderMode,
-    slotCode: String(slotCode || "").trim().toUpperCase(),
-    children: withPersonality
-      ? [
-          {
-            id: `${id}/binary`,
-            label: "inner binary",
-            children: [],
-            inventory: { electrino: 1, positrino: 1 },
-          },
-          {
-            id: `${id}/personality_1`,
-            label: "electrino personality architrino",
-            children: [],
-            inventory: { electrino: 1 },
-            provenanceMode: "guessed",
-          },
-          {
-            id: `${id}/personality_2`,
-            label: "positrino personality architrino",
-            children: [],
-            inventory: { positrino: 1 },
-            provenanceMode: "guessed",
-          },
-        ]
-      : [
-          {
-            id: `${id}/binary`,
-            label: "binary",
-            children: [],
-            inventory: { electrino: 1, positrino: 1 },
-          },
-        ],
-  };
-}
-
-function createProAntiCoreBranch(id) {
-  return {
-    id,
-    label: "Pro/anti Noether core",
-    children: [
-      {
-        id: `${id}/pro_core`,
-        label: "Pro Noether core",
-        children: [],
-        inventory: { proCore: 1 },
-      },
-      {
-        id: `${id}/anti_core`,
-        label: "Anti Noether core",
-        children: [],
-        inventory: { antiCore: 1 },
-      },
-    ],
-  };
-}
-
-function createCoreLeaf(id, label, inventory) {
-  return {
-    id,
-    label,
-    children: [],
-    inventory,
-  };
-}
-
-function createNoetherCoreBranch(
-  id,
-  label,
-  { anti = false, inventory = null, showSlotHeader = true } = {}
-) {
-  return {
-    id,
-    label,
-    renderMode: "noether-core-grid",
-    inventory: inventory ?? (anti ? { antiCore: 1 } : { proCore: 1 }),
-    showSlotHeader,
-    children: [
-      createBinaryBranch(`${id}/inner`, "inner binary", {
-        withPersonality: false,
-        slotCode: "I",
-        renderMode: "binary-bare",
-      }),
-      createBinaryBranch(`${id}/middle`, "middle binary", {
-        withPersonality: false,
-        slotCode: "M",
-        renderMode: "binary-bare",
-      }),
-      createBinaryBranch(`${id}/outer`, "outer binary", {
-        withPersonality: false,
-        slotCode: "O",
-        renderMode: "binary-bare",
-      }),
-    ],
-  };
-}
-
-function createBinarySelectorGroupBranch(id, label, templateId, options = {}) {
-  const { binaryLabelPrefix = "" } = options;
-  return {
-    id,
-    label,
-    templateId,
-    renderMode: "binary-selector-grid",
-    children: [
-      createBinaryBranch(
-        `${id}/inner`,
-        `${binaryLabelPrefix}inner binary with personality`.trim(),
-        { slotCode: "I" }
-      ),
-      createBinaryBranch(
-        `${id}/middle`,
-        `${binaryLabelPrefix}middle binary with personality`.trim(),
-        { slotCode: "M" }
-      ),
-      createBinaryBranch(
-        `${id}/outer`,
-        `${binaryLabelPrefix}outer binary with personality`.trim(),
-        { slotCode: "O" }
-      ),
-    ],
-  };
-}
-
 function supportsParticipantPolarity(templateId) {
   return participantPolarityTemplateIds.has(String(templateId ?? "").trim().toLowerCase());
 }
@@ -485,111 +351,23 @@ function resolveBinaryGlyphPolarity(participant, node = null) {
   return inferDescriptorPolarity(node) || normalizeParticipantPolarity(participant?.polarity);
 }
 
-function buildHierarchyForTemplate(templateId, label) {
-  const normalizedTemplate = String(templateId ?? "").trim().toLowerCase();
-  if (normalizedTemplate === "higgs_cluster") {
+function buildFallbackHierarchyForTemplate(templateId, label) {
+  if (String(templateId ?? "").trim().toLowerCase() === "transmute") {
     return [
       {
         id: "root",
-        label: "Higgs cluster",
-        renderMode: "assembly-cluster-grid",
-        children: [
-          createNoetherCoreBranch("root/pro_core_1", "Pro Noether core"),
-          createNoetherCoreBranch("root/anti_core_1", "Anti Noether core", {
-            anti: true,
-          }),
-          createNoetherCoreBranch("root/pro_core_2", "Pro Noether core"),
-          createNoetherCoreBranch("root/anti_core_2", "Anti Noether core", {
-            anti: true,
-          }),
-        ],
+        label: "Transmute",
+        renderMode: REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE,
+        children: [],
       },
     ];
-  }
-  if (normalizedTemplate === "photon") {
-    return [
-      {
-        id: "root",
-        label: "Photon",
-        renderMode: "assembly-cluster-grid",
-        children: [
-          createNoetherCoreBranch("root/pro_core_1", "Pro Noether core"),
-          createNoetherCoreBranch("root/anti_core_1", "Anti Noether core", {
-            anti: true,
-          }),
-        ],
-      },
-    ];
-  }
-  if (normalizedTemplate === "neutron") {
-    return [
-      {
-        id: "root",
-        label: "Neutron",
-        renderMode: "assembly-cluster-grid",
-        children: [
-          createBinarySelectorGroupBranch("root/down_1", "Down quark", "down_quark"),
-          createBinarySelectorGroupBranch("root/up_1", "Up quark", "up_quark"),
-          createBinarySelectorGroupBranch("root/down_2", "Down quark", "down_quark"),
-        ],
-      },
-    ];
-  }
-  if (normalizedTemplate === "proton") {
-    return [
-      {
-        id: "root",
-        label: "Proton",
-        renderMode: "assembly-cluster-grid",
-        children: [
-          createBinarySelectorGroupBranch("root/up_1", "Up quark", "up_quark"),
-          createBinarySelectorGroupBranch("root/down_1", "Down quark", "down_quark"),
-          createBinarySelectorGroupBranch("root/up_2", "Up quark", "up_quark"),
-        ],
-      },
-    ];
-  }
-  if (normalizedTemplate === "electron") {
-    return [createBinarySelectorGroupBranch("root", "pro Noether core", "electron")];
-  }
-  if (normalizedTemplate === "neutrino") {
-    return [
-      createBinarySelectorGroupBranch("root", "pro Noether core", "neutrino", {
-        binaryLabelPrefix: "neutral ",
-      }),
-    ];
-  }
-  if (normalizedTemplate === "noether_core") {
-    return [
-      {
-        id: "root",
-        label: "pro Noether core",
-        renderMode: "noether-core-grid",
-        children: [
-          createBinaryBranch("root/inner", "inner binary", {
-            withPersonality: false,
-            slotCode: "I",
-            renderMode: "binary-bare",
-          }),
-          createBinaryBranch("root/middle", "middle binary", {
-            withPersonality: false,
-            slotCode: "M",
-            renderMode: "binary-bare",
-          }),
-          createBinaryBranch("root/outer", "outer binary", {
-            withPersonality: false,
-            slotCode: "O",
-            renderMode: "binary-bare",
-          }),
-        ],
-      },
-    ];
-  }
-  if (normalizedTemplate === "up_quark" || normalizedTemplate === "down_quark") {
-    return [createBinarySelectorGroupBranch("root", "pro Noether core", normalizedTemplate)];
   }
   return [
-    createBinarySelectorGroupBranch("root", "pro/anti Noether core", normalizedTemplate),
+    {
+      id: "root",
+      label: String(label ?? "").trim() || "Structure",
+      children: [],
+    },
   ];
 }
 
@@ -2138,7 +1916,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       side,
       templateId: templateEntry.template,
       label: participantLabel,
-      hierarchy: buildHierarchyForTemplate(templateEntry.template, participantLabel),
+      hierarchy: buildFallbackHierarchyForTemplate(templateEntry.template, participantLabel),
       extraFields: {
         polarity: options.initialPolarity ?? templateEntry.initialPolarity ?? "",
       },
@@ -2152,23 +1930,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
-  function createTransmuteHierarchy() {
-    return [
-      {
-        id: "root",
-        label: "Transmute",
-        renderMode: "transmute-tile",
-        children: [],
-      },
-    ];
-  }
-
   function addTransmuteParticipant() {
     const participant = createParticipantRecord({
       side: "center",
       templateId: "transmute",
       label: "Transmute",
-      hierarchy: createTransmuteHierarchy(),
+      hierarchy: buildFallbackHierarchyForTemplate("transmute", "Transmute"),
       extraFields: {
         centerSlotIndex: 0,
         centerYRatio: 0.5,

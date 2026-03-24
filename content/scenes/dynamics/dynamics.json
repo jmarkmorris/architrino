@@ -48,6 +48,10 @@
         "scenePath": "content/scenes/dynamics/mapping_planck_scale.json"
       },
       {
+        "nodeId": "horizon_chirality",
+        "scenePath": "content/scenes/dynamics/horizon_chirality.json"
+      },
+      {
         "nodeId": "master_equation_of_motion",
         "scenePath": "content/scenes/dynamics/master_equation_of_motion.json"
       },
@@ -173,6 +177,17 @@
         "type": "fixed"
       },
       "labelTitle": "Mapping Planck Scale",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "horizon_chirality",
+      "title": "Horizon Chirality",
+      "radius": 2.688,
+      "color": "#8b5e34",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Horizon Chirality",
       "labelBadge": "doc"
     },
     {
