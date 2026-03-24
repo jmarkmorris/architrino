@@ -1,6 +1,8 @@
 # Terminology Conversions
 
-This note records the current terminology transition for fermion-decoration language.
+This note records the current terminology transition for older fermion-structure language.
+
+All uses of `decoration`, `decorated`, and `fermion-decoration` should be examined and transformed during terminology cleanup. In many cases those phrases should be rewritten more precisely in terms of the `axial layer`, `axial architrinos`, `polar sites`, `polar dyads`, `axial pattern`, or `axial frame`, depending on what the sentence is actually describing.
 
 ## Canonical Language
 
@@ -61,6 +63,7 @@ This gives the following canonical stack:
 
 | Avoid | Why |
 | --- | --- |
+| `decoration` language by default | too vague; review all uses and replace with the specific axial/polar structure actually meant |
 | `axial doublet` | too much collision with electroweak doublet language |
 | `doublet` generally | same reason |
 | `axial pair` as canonical | too informal/generic |
@@ -88,7 +91,7 @@ This gives the following canonical stack:
 | `personality charge tensor` | `axial-distribution tensor` or `axial moment tensor` |
 | `personality charges` | `axial architrinos` or `axial inventory` depending on context |
 | `personality charge` | `axial architrino` or `axial contribution` depending on context |
-| `binary with personality` | `binary with a polar dyad` or `binary with axial decoration` |
+| `binary with personality` | `binary with a polar dyad` or `binary with an axial layer` |
 | `personality-dressed binary` | `binary with a polar dyad` |
 | `two personality sites on an axis` | `one polar dyad on an axis` |
 | `personality swap` | `axial reassignment` or `polar-site reassignment` |
@@ -120,6 +123,18 @@ Avoid using `charge` or `charges` as the default ontological name for architrino
 | `charge distribution` in fermion-decoration context | `axial distribution` or `axial pattern` |
 | `charge tensor` in fermion-decoration context | `axial-distribution tensor` or `axial moment tensor` |
 
+## Decoration-Language Review
+
+All remaining uses of `decoration`, `decorated`, and `fermion-decoration` should be audited across the corpus and locally rewritten where a more exact AAA term exists.
+
+| Current usage | Preferred direction |
+| --- | --- |
+| `decoration` as a generic system label | `axial structure`, `axial layer`, or `axial organization` depending on context |
+| `decorated` binary / assembly | `binary with a polar dyad`, `assembly with an axial layer`, or other explicit structural wording |
+| `fermion-decoration` | `fermion axial structure`, `fermion axial organization`, or other exact axial/polar phrasing |
+
+Do not blanket-replace these mechanically. Each sentence should be checked to determine whether it is really about site geometry, six-site organization, occupancy, frame orientation, inventory, or circulation.
+
 ## Preferred AAA Ontological Terms
 
 When writing from the AAA ontology outward, prefer:
@@ -139,4 +154,4 @@ When writing from the AAA ontology outward, prefer:
 
 ## Canonical Summary
 
-Use `axial` for the six-unit system-level organization and `polar` for the local site geometry. The canonical terms are `axial architrino`, `polar site`, `polar dyad`, `axial layer`, `axial pattern`, `axial inventory`, and `axial frame`. Use `axial circulation` when discussing microscopic motion. Avoid `doublet`, `orbit`, and default `charge` wording except for historical or continuity contexts.
+Use `axial` for the six-unit system-level organization and `polar` for the local site geometry. The canonical terms are `axial architrino`, `polar site`, `polar dyad`, `axial layer`, `axial pattern`, `axial inventory`, and `axial frame`. Use `axial circulation` when discussing microscopic motion. Avoid vague `decoration` wording, `doublet`, `orbit`, and default `charge` wording except for historical or continuity contexts.

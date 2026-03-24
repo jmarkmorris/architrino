@@ -266,7 +266,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Purpose](../aaa/assemblies/fermions/weak-mixing-angle.md?section=Purpose)
       - [Core Distinction](../aaa/assemblies/fermions/weak-mixing-angle.md?section=Core+Distinction)
       - [Electron Limit: Zero Misalignment](../aaa/assemblies/fermions/weak-mixing-angle.md?section=Electron+Limit%3A+Zero+Misalignment)
-      - [Quark Limit: Rotated Personality Geometry](../aaa/assemblies/fermions/weak-mixing-angle.md?section=Quark+Limit%3A+Rotated+Personality+Geometry)
+      - [Quark Limit: Rotated Axial Geometry](../aaa/assemblies/fermions/weak-mixing-angle.md?section=Quark+Limit%3A+Rotated+Axial+Geometry)
       - [Bare Weinberg Increment as the Discrete Step](../aaa/assemblies/fermions/weak-mixing-angle.md?section=Bare+Weinberg+Increment+as+the+Discrete+Step)
       - [What Actually Rotates](../aaa/assemblies/fermions/weak-mixing-angle.md?section=What+Actually+Rotates)
       - [Minimal Geometric Parameterization](../aaa/assemblies/fermions/weak-mixing-angle.md?section=Minimal+Geometric+Parameterization)

@@ -70,7 +70,7 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
 - **Weak basis = Weak-Coupling Triad:** SU(2) acts on the exposed three decoration sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ.
 - **Mass basis = shielding eigenstates:** Core shielding/drag sets the mass scale; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type).
 
-Weak-Coupling Triad exposure (working hypothesis): in translation, the three **forward** personality sites are more exposed (outside the particle’s own wake), so they form the Weak-Coupling Triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
+Weak-Coupling Triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the Weak-Coupling Triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
 Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether Sea ahead of the translating quark group, where cores are unshadowed and available to couple.
 
 Vacuum sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty vacuum—only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during decay as speculative until energy/number flow is explicitly budgeted.

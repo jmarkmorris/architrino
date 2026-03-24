@@ -10,11 +10,11 @@ In the Standard Model, color is an abstract $SU(3)$ label. In the current $\math
 
 Timespace itself is populated by high-energy, small-scale tri-binaries, often in tightly bound pro/anti groups. These form a background sea of Noether cores in color-singlet configurations.
 
-A quark core also has three ordered axes $(H,M,L)$, each carrying two personality sites.
+A quark core also has three ordered axes $(H,M,L)$, each carrying two polar sites.
 
-- **Personality layer:** 6 decoration sites total, 2 per axis.
+- **Axial layer:** 6 decoration sites total, 2 per axis.
 - **Symmetry breaking:** quarks do not keep the three axes equivalent.
-- **Axis-exceptionality rule:** exactly one axis sits in a personality class different from the other two.
+- **Axis-exceptionality rule:** exactly one axis sits in an axial class different from the other two.
 
 ### Defining Color States
 

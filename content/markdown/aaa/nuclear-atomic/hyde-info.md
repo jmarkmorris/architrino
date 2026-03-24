@@ -155,7 +155,7 @@ The points below are collected as a framework-internal research program, not as 
 
 ### 7.2 Assumptions
 
-- The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries decorated with six personality charges.
+- The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries decorated with six axial architrinos.
 - Electron tri-binaries are assumed to couple to a central nuclear Noether core through local spacetime-aether gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 

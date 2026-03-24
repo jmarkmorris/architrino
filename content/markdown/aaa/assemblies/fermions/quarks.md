@@ -4,18 +4,18 @@
 
 This chapter collects the current quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the tri-binary program, how their decoration patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
 
-At the substrate level, a quark is a decorated Noether-core assembly. The core fixes generation tier and matter chirality. The six-site personality layer fixes electric charge and the weak-active decoration pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
+At the substrate level, a quark is a decorated Noether-core assembly. The core fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active decoration pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
 Illustrative diagrams can be added later. For now the chapter uses axis strings and tables so the catalog is explicit without waiting on artwork.
 
 ## Architecture
 
-### Core and personality split
+### Core and axial split
 
-The quark construction used here follows the same nucleus-plus-personality split already used in the fermion mapping chapters:
+The quark construction used here follows the same nucleus-plus-axial split already used in the fermion mapping chapters:
 
 - The **Noether core** is the neutral binary scaffold.
-- The **personality layer** is the six-site decoration carrying the visible charge pattern.
+- The **axial layer** is the six-site decoration carrying the visible charge pattern.
 
 For matter quarks, the core is a **pro-core**. It is neutral in total charge and differs across generations only by shielding level:
 
@@ -23,7 +23,7 @@ For matter quarks, the core is a **pro-core**. It is neutral in total charge and
 - **Generation II:** bi-binary core, 4 scaffold architrinos.
 - **Generation III:** uni-binary core, 2 scaffold architrinos.
 
-The personality layer stays six sites wide in all three generations. Each site is occupied by either a positrino $(+\epsilon)$ or an electrino $(-\epsilon)$, with $\epsilon = |e|/6$.
+The axial layer stays six sites wide in all three generations. Each site is occupied by either a positrino $(+\epsilon)$ or an electrino $(-\epsilon)$, with $\epsilon = |e|/6$.
 
 ### Counting rule
 
@@ -45,16 +45,16 @@ for Generations I, II, and III respectively. This gives:
 
 To describe color and decoration geometry compactly, use the three core axes $(H,M,L)$ and the following axis classes:
 
-- $P^+ = (+,+)$: an axis whose two personality sites are both positrino.
-- $P^- = (-,-)$: an axis whose two personality sites are both electrino.
+- $P^+ = (+,+)$: an axis whose two polar sites are both positrino.
+- $P^- = (-,-)$: an axis whose two polar sites are both electrino.
 - $P^{m} = (+,-)$ or $(-,+)$: a mixed axis with one positrino and one electrino.
 
 In the implementation picture currently favored in the repo, each axis contains:
 
 - one neutral source binary, with one orbiting positrino and one orbiting electrino,
-- plus two polar personality sites attached to that binary axis.
+- plus one polar dyad attached to that binary axis.
 
-The axis class labels $P^+$, $P^-$, and $P^{m}$ refer only to those two polar personality sites. They do not mean that the underlying source binary stops being neutral.
+The axis class labels $P^+$, $P^-$, and $P^{m}$ refer only to those one polar dyad. They do not mean that the underlying source binary stops being neutral.
 
 Colorless fermions keep the three axes equivalent. Quarks do not. A quark becomes color-charged when exactly one axis is exceptional relative to the other two.
 
@@ -131,13 +131,13 @@ This gives the standard singlet assignments:
 | $u^R,c^R,t^R$ | $5P,1E$ | $+2/3$ | $T_3=0,\ Y=+4/3$ |
 | $d^R,s^R,b^R$ | $2P,4E$ | $-1/3$ | $T_3=0,\ Y=-2/3$ |
 
-The same count logic is what makes the right-handed quark sector look naturally like an SU(2) singlet arc in the six-site personality space: once the Weak-Coupling Triad is no longer exposed, the only remaining electroweak datum is the net decoration charge. In that sense, the right-handed quark state is not defined by a new decoration pattern, but by the same pattern viewed in a geometrically shielded coupling posture.
+The same count logic is what makes the right-handed quark sector look naturally like an SU(2) singlet arc in the six-site axial space: once the Weak-Coupling Triad is no longer exposed, the only remaining electroweak datum is the net decoration charge. In that sense, the right-handed quark state is not defined by a new decoration pattern, but by the same pattern viewed in a geometrically shielded coupling posture.
 
 ### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
 The corresponding left-handed image suggests a useful implementation candidate for pro-core weak couplings:
 
-- the left-handed quark states are the exposed-coupling branches of the same six-site personality counts,
+- the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
 - the up-type and down-type quarks then sit on the same electroweak doublet arc,
 - and the distinction between them is carried by the exposed Weak-Coupling Triad rather than by a different total decoration inventory.
 
@@ -168,13 +168,13 @@ The value of this conjecture is that it places the quark doublet in the same six
 - $2P,4E$ for down-type quarks,
 - $5P,1E$ for up-type quarks.
 
-That makes the quark sector look less like a separate lookup table and more like a continuous family of exposed coupling postures on the same personality-count wheel. At present this should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
+That makes the quark sector look less like a separate lookup table and more like a continuous family of exposed coupling postures on the same axial-inventory wheel. At present this should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
 
 ### Anti-core mirror bookkeeping (conjectural reverse-engineered candidate)
 
 The two anti-core images suggest a clean mirror rule that is worth recording explicitly.
 
-Start by charge-conjugating the quark personality counts:
+Start by charge-conjugating the quark axial inventories:
 
 - anti-up family $(\bar u,\bar c,\bar t)$:
   $$
@@ -229,7 +229,7 @@ This remains a conjectural bookkeeping layer derived by reverse engineering from
 
 ### Electroweak-plane embedding (conjectural map to the standard diagram)
 
-The larger comparative picture suggested by the diagram is that the six-site personality-count wheel may be embedded directly into the familiar electroweak plane with coordinates
+The larger comparative picture suggested by the diagram is that the six-site axial-inventory wheel may be embedded directly into the familiar electroweak plane with coordinates
 $$
 (T_3,Y),
 $$
@@ -251,7 +251,7 @@ For quarks, this gives a compact map:
 | $\bar u^L,\bar c^L,\bar t^L$ | $\left(0,-\frac{4}{3}\right)$ | $0-\frac{2}{3}=-\frac{2}{3}$ |
 | $\bar d^L,\bar s^L,\bar b^L$ | $\left(0,+\frac{2}{3}\right)$ | $0+\frac{1}{3}=+\frac{1}{3}$ |
 
-What makes this useful is not merely that it reproduces the standard charge formula. It also suggests that the personality-count wheel may be functioning as a geometric pre-mixing chart:
+What makes this useful is not merely that it reproduces the standard charge formula. It also suggests that the axial-inventory wheel may be functioning as a geometric pre-mixing chart:
 
 - horizontal separation distinguishes weak-isospin splitting,
 - vertical separation distinguishes hypercharge loading,
@@ -264,7 +264,7 @@ This should still be treated cautiously. The image supports a candidate mapping 
 
 ### Canonical flavor table
 
-| Flavor | Type | Generation | Core architecture | Core architrinos | Personality pattern | Net charge | Total architrinos | Axis template |
+| Flavor | Type | Generation | Core architecture | Core architrinos | Axial pattern | Net charge | Total architrinos | Axis template |
 | --- | --- | --- | --- | ---: | --- | ---: | ---: | --- |
 | $u$ | up-type | I | pro tri-binary | 6 | $5P,1E$ | $+2/3$ | 12 | permutations of $(P^{m},P^+,P^+)$ |
 | $d$ | down-type | I | pro tri-binary | 6 | $2P,4E$ | $-1/3$ | 12 | permutations of $(P^+,P^-,P^-)$ or $(P^-,P^{m},P^{m})$ |
@@ -277,11 +277,11 @@ This should still be treated cautiously. The image supports a candidate mapping 
 
 #### Up quark
 
-The up quark is the ground-state up-type quark. It uses the full pro tri-binary core and the $5P,1E$ personality layer. Its defining axis geometry is one mixed axis against two positrino-rich axes.
+The up quark is the ground-state up-type quark. It uses the full pro tri-binary core and the $5P,1E$ axial layer. Its defining axis geometry is one mixed axis against two positrino-rich axes.
 
 #### Down quark
 
-The down quark is the ground-state down-type quark. It also uses the full pro tri-binary core, but with the $2P,4E$ personality layer. Its color structure comes from a single exceptional axis within either the $(P^+,P^-,P^-)$ or $(P^-,P^{m},P^{m})$ family.
+The down quark is the ground-state down-type quark. It also uses the full pro tri-binary core, but with the $2P,4E$ axial layer. Its color structure comes from a single exceptional axis within either the $(P^+,P^-,P^-)$ or $(P^-,P^{m},P^{m})$ family.
 
 #### Charm quark
 
@@ -293,11 +293,11 @@ The strange quark is the Generation-II down-type partner of charm. It keeps the 
 
 #### Top quark
 
-The top quark is the most exposed up-type branch in the present catalog. It carries the same $5P,1E$ personality count as the lighter up-type quarks but only a uni-binary core. Its total count is therefore only 8 architrinos. This is the most exposed quark branch and, correspondingly, the least stable.
+The top quark is the most exposed up-type branch in the present catalog. It carries the same $5P,1E$ axial inventory as the lighter up-type quarks but only a uni-binary core. Its total count is therefore only 8 architrinos. This is the most exposed quark branch and, correspondingly, the least stable.
 
 #### Bottom quark
 
-The bottom quark is the Generation-III down-type branch. It carries the down-type $2P,4E$ personality pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type decoration geometry remains distinct.
+The bottom quark is the Generation-III down-type branch. It carries the down-type $2P,4E$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type decoration geometry remains distinct.
 
 ## Color assignments
 
@@ -337,7 +337,7 @@ This table applies directly to $u$, and by generation lifting also to $c$ and $t
 The most concrete current implementation candidate is:
 
 - every axis keeps its neutral source binary,
-- two axes carry polar personality decorations $(+,+)$,
+- two axes carry polar-dyad decorations $(+,+)$,
 - one axis carries the mixed decoration $(+,-)$ or $(-,+)$,
 - and the color label is set by which axis carries that mixed decoration.
 
@@ -347,7 +347,7 @@ So for an up quark:
 - **Green** means the M-axis is the mixed axis,
 - **Blue** means the L-axis is the mixed axis.
 
-This matches the intuitive “minority carrier” language already used elsewhere in the repo, but it sharpens it: the minority electrino is most naturally understood as living on one of the two polar personality sites of the exceptional axis, not as replacing one member of the neutral source binary itself.
+This matches the intuitive “minority carrier” language already used elsewhere in the repo, but it sharpens it: the minority electrino is most naturally understood as living on one of the one polar dyad of the exceptional axis, not as replacing one member of the neutral source binary itself.
 
 The two orderings
 $$
@@ -355,7 +355,7 @@ $$
 $$
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
-The corresponding antiquark is obtained by charge conjugation of the personality pattern together with anti-core braid orientation, giving the anti-red, anti-green, and anti-blue states.
+The corresponding antiquark is obtained by charge conjugation of the axial pattern together with anti-core braid orientation, giving the anti-red, anti-green, and anti-blue states.
 
 ### Down-type color tables
 
@@ -400,9 +400,9 @@ A useful geometric refinement is to treat the gluon not as the flux tube alone b
 
 - the coupled flux-tube segment between quark cores,
 - the energetic source binaries whose motion generates the axial wake vortices,
-- and any captive personality potentials that are temporarily locked into that coupled vortex channel.
+- and any captive axial potentials that are temporarily locked into that coupled vortex channel.
 
-On this reading, the flux tube is the visible corridor, but the active object is larger than the corridor by itself. The source binaries continue to matter because their rotating charge separation generates the potential vortices that make the corridor possible in the first place. This also suggests a natural way to think about color transfer: a gluon exchange may include a controlled swap or reassignment of captive personality-point potentials inside the coupled vortices, provided the overall flavor inventory, electric charge, and generation tier are preserved.
+On this reading, the flux tube is the visible corridor, but the active object is larger than the corridor by itself. The source binaries continue to matter because their rotating charge separation generates the potential vortices that make the corridor possible in the first place. This also suggests a natural way to think about color transfer: a gluon exchange may include a controlled swap or reassignment of captive axial potentials inside the coupled vortices, provided the overall flavor inventory, electric charge, and generation tier are preserved.
 
 This remains a structural hypothesis, not yet a closed derivation. It is included here because it sharpens the coupling picture without changing the catalog rules stated below.
 
@@ -412,7 +412,7 @@ At the quark level, a pure gluon coupling is allowed to do the following:
 
 1. Rotate or swap axis exceptionality within the ordered basis $(H,M,L)$.
 2. Transfer color phase between quarks connected by a flux tube.
-3. Preserve the total six-site personality inventory of each flavor class.
+3. Preserve the total six-site axial inventory of each flavor class.
 4. Preserve electric charge.
 5. Preserve generation tier on the strong-interaction timescale.
 
@@ -445,7 +445,7 @@ The catalog uses the following working rules:
 - **Up-type quarks couple to gluons through the exceptional mixed axis** against the two $P^+$ axes.
 - **Down-type quarks couple to gluons through the exceptional axis** against the two background axes of the chosen family.
 - **Local gluon complex:** the exchanged object should be understood as the coupled vortex corridor together with the source-binary vortex generators that sustain it, not as a detached tube with no source-side structure.
-- **Captive-potential transfer:** gluon exchange may swap or relabel captive personality potentials between coupled vortex channels so long as the quark remains in the same flavor class and keeps the same total decoration inventory.
+- **Captive-potential transfer:** gluon exchange may swap or relabel captive axial potentials between coupled vortex channels so long as the quark remains in the same flavor class and keeps the same total decoration inventory.
 - **Flavor-blindness of strong coupling:** the same color operator acts on $u,c,t$ within the up-type template and on $d,s,b$ within the down-type template.
 - **No strong flavor change:** gluons do not turn $u$ into $d$, $c$ into $s$, or $t$ into $b$.
 - **No strong generation change:** gluons do not by themselves add or remove shielding binaries.
@@ -472,7 +472,7 @@ Several important derivations are not yet closed and should remain marked as ope
 - the full quantitative mass map for $u,d,c,s,t,b$,
 - the exact confinement-energy functional and string tension extraction,
 - the full CKM derivation from weak-basis to mass-basis overlap,
-- whether captive personality-potential swapping inside coupled vortices is the correct microscopic picture of gluon exchange,
+- whether captive axial-potential swapping inside coupled vortices is the correct microscopic picture of gluon exchange,
 - explicit diagrammatic rendering of the six quark geometries.
 
 That boundary matters. The current chapter is a canonical catalog, not a claim that the full quark-sector closure is complete.

@@ -90,8 +90,8 @@ These quantities belong to tri-binary architecture, shielding, branch structure,
 | G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md) |
 | G4 | $L_{\text{align}}$ | Geometric closure target | Open, conjectural | action / angular-momentum increment of the aligned terminal mode | [../dynamics/mapping-Planck-scale.md](../dynamics/mapping-Planck-scale.md) |
 | G5 | $\zeta(A)$ | Geometric closure target | Open | shielding or leakage factor of assembly $A$, defined by far-field suppression relative to naive constituent exposure | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
-| G6 | $\alpha$ | Geometric closure target | Open | personality-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
-| G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional personality-axis orientation | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
+| G6 | $\alpha$ | Geometric closure target | Open | axial-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
+| G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional axial-frame orientation | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
 
 ## Layer III: Constitutive Spacetime Parameters
 
@@ -243,7 +243,7 @@ $$
 \qquad
 \theta_W^{\text{bare}}=30^\circ,
 $$
-and the discrete personality-frame branch hypothesis
+and the discrete axial-frame branch hypothesis
 $$
 \alpha_n=n\,\theta_W^{\text{bare}}.
 $$

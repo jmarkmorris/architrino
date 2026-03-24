@@ -48,7 +48,7 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/mc$ because heavier assemblies (higher internal curvature) couple more strongly to Noether Sea drag and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
 *   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He) is the energy stored in shared pion flux loops; the coupled, pion-sharing lattice sits at lower energy than isolated nucleons.
-*   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared personality layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
+*   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
 *   **Geometric bound:** A pion flux tube that stretches beyond a critical length $L_c$ pays more tension energy than the medium needs to rupture (decay). Its unusually low curvature keeps $L_c$ large, explaining the long nuclear-range reach.
 *   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are phase-locked so their drag on the Sea nearly cancels—geometrically the assembly follows an almost null-like path through the medium, keeping its effective mass small.
 
@@ -166,7 +166,7 @@ They are "ephemeral" because they are not topological attractors in the vacuum l
 
 ## Hadron Table — Mapping SM → $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The table packs both the Standard Model quark makeup and the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) personality patterns.
+The table packs both the Standard Model quark makeup and the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) axial patterns.
 
 **Notation**
 

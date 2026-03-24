@@ -53,7 +53,7 @@ A photon manifests as a **Phase-Locked Planar-Mode Train** of delayed actions.
 
 ## The Weak Bosons ($W^\pm, Z^0$): Transient Recoupling Bundles
 
-W and Z bosons are not fundamental particles in the sense of eternal objects; they are **localized, short-lived meta-assemblies**—corridors of coupled, high-intensity axial fields that mediate discrete reconfigurations of personality architrinos.
+W and Z bosons are not fundamental particles in the sense of eternal objects; they are **localized, short-lived meta-assemblies**—corridors of coupled, high-intensity axial fields that mediate discrete reconfigurations of axial architrinos.
 
 ### Concept: The "Thickened" Corridor
 *   **Definition:** A W/Z bundle is a compact, phase-locked vortex corridor connecting two polar regions (within or between assemblies).
