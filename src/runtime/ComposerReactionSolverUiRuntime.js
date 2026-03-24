@@ -3,7 +3,7 @@ import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionRule
 const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
   higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
-  neutron: { shortLabel: "n", accent: "#4a78ff" },
+  neutron: { shortLabel: "n", accent: "#a259ff" },
   proton: { shortLabel: "p", accent: "#ff5a4a" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
   neutrino: { shortLabel: "𝜈", accent: "#a259ff" },
@@ -426,6 +426,12 @@ function getParticipantCardMeta(participant = null) {
   const baseMeta = getTemplateMeta(participant?.templateId, participant?.label);
   const polarity = normalizeParticipantPolarity(participant?.polarity);
   const templateId = String(participant?.templateId ?? "").trim().toLowerCase();
+  if (templateId === "neutron") {
+    return {
+      ...baseMeta,
+      accent: "#a259ff",
+    };
+  }
   if (templateId === "electron" || templateId === "down_quark") {
     return {
       ...baseMeta,
@@ -942,6 +948,10 @@ function isReactantCompositeParticipant(participant) {
   return participant?.side === "reactant" && isCompositeParticipant(participant);
 }
 
+function isProductCompositeParticipant(participant) {
+  return participant?.side === "product" && isCompositeParticipant(participant);
+}
+
 function createSvgElement(name) {
   return document.createElementNS("http://www.w3.org/2000/svg", name);
 }
@@ -1120,14 +1130,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return beforeCount !== state.mappings.length;
   }
 
-  function removeParticipantById(participantId) {
-    const participant = findParticipantById(participantId);
-    if (!participant) {
-      return false;
-    }
-    state.participants = state.participants.filter(
-      (entry) => String(entry?.id ?? "") !== participantId
-    );
+  function removeMappingsForParticipant(participantId) {
+    const beforeCount = state.mappings.length;
     state.mappings = state.mappings.filter((mapping) => {
       const sourceParticipantId = parseNodeKey(mapping.sourceKey).participantId;
       const targetParticipantId = parseNodeKey(mapping.targetKey).participantId;
@@ -1136,6 +1140,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
       state.pendingSourceKey = "";
     }
+    return beforeCount !== state.mappings.length;
+  }
+
+  function removeParticipantById(participantId) {
+    const participant = findParticipantById(participantId);
+    if (!participant) {
+      return false;
+    }
+    state.participants = state.participants.filter(
+      (entry) => String(entry?.id ?? "") !== participantId
+    );
+    removeMappingsForParticipant(participantId);
     closeMenu();
     render();
     setStatus(
@@ -1156,6 +1172,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const currentSelections = getResolvedBinarySelectionMap(participant);
     participant.polarity = resolvedPolarity;
     syncParticipantHierarchyForPolarity(participant);
+    removeMappingsForParticipant(participantId);
     participant.binarySelections = Object.fromEntries(
       Object.entries(currentSelections).map(([nodeId, choiceId]) => [
         nodeId,
@@ -1242,14 +1259,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     ];
 
     state.participants.splice(participantIndex, 1, ...replacementParticipants);
-    state.mappings = state.mappings.filter((mapping) => {
-      const sourceParticipantId = parseNodeKey(mapping.sourceKey).participantId;
-      const targetParticipantId = parseNodeKey(mapping.targetKey).participantId;
-      return sourceParticipantId !== participantId && targetParticipantId !== participantId;
-    });
-    if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
-      state.pendingSourceKey = "";
-    }
+    removeMappingsForParticipant(participantId);
     closeMenu();
     render();
     setStatus(
@@ -1297,14 +1307,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
 
     state.participants.splice(participantIndex, 1, ...replacementParticipants);
-    state.mappings = state.mappings.filter((mapping) => {
-      const sourceParticipantId = parseNodeKey(mapping.sourceKey).participantId;
-      const targetParticipantId = parseNodeKey(mapping.targetKey).participantId;
-      return sourceParticipantId !== participantId && targetParticipantId !== participantId;
-    });
-    if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
-      state.pendingSourceKey = "";
-    }
+    removeMappingsForParticipant(participantId);
     closeMenu();
     render();
     setStatus(
@@ -1473,7 +1476,21 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "composer-reaction-solver-menu-button";
-    button.textContent = text;
+    if (Array.isArray(options.extraClassNames)) {
+      options.extraClassNames.filter(Boolean).forEach((className) => {
+        button.classList.add(className);
+      });
+    }
+    if (Array.isArray(options.lines) && options.lines.length) {
+      options.lines.forEach((line) => {
+        const lineElement = document.createElement("span");
+        lineElement.className = "composer-reaction-solver-menu-button-line";
+        lineElement.textContent = String(line ?? "");
+        button.appendChild(lineElement);
+      });
+    } else {
+      button.textContent = text;
+    }
     button.disabled = !!options.disabled;
     if (options.kind) {
       button.dataset.kind = options.kind;
@@ -1540,6 +1557,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     menu.hidden = false;
     menu.setAttribute("aria-hidden", "false");
     menu.innerHTML = "";
+    menu.dataset.menuMode = state.menuMode;
     if (state.menuMode === "template-picker") {
       renderMenuTitle(
         state.menuSide === "product" ? "Choose product" : "Choose reactant"
@@ -1610,13 +1628,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
     } else {
       renderMenuTitle("Reaction");
       renderMenuButton("Add reactant", {
+        lines: ["Add", "Reactant"],
+        extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("reactant"),
       });
       renderMenuButton("Add product", {
+        lines: ["Add", "Product"],
+        extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("product"),
       });
       renderMenuButton("Auto solve (not yet implemented)", {
         disabled: true,
+        extraClassNames: ["is-wide"],
       });
     }
     updateMenuPosition();
@@ -2047,7 +2070,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     selector.dataset.compositeSourceKey = rowNodeKey;
     selectorLane.appendChild(selector);
     if (participant.side === "product") {
-      body.append(track, card);
+      body.append(selectorLane, track, card);
     } else {
       body.append(card, track, selectorLane);
     }
@@ -2060,22 +2083,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const coreNodes = Array.isArray(node?.children) ? node.children : [];
     const rows = document.createElement("div");
     rows.className = "composer-reaction-solver-higgs-cluster-grid-rows";
-    const showCompositeRootSelector = !isReactantCompositeParticipant(participant);
-    const nodeKey = buildNodeKey(participant.id, node.id);
     coreNodes.forEach((coreNode, index) => {
       const row = document.createElement("div");
       row.className = `composer-reaction-solver-higgs-cluster-grid-row is-${participant.side}`;
       const rowBody = createCompositeAssemblyRowBody(participant, coreNode);
-      if (showCompositeRootSelector && index === 0) {
+      if (index === 0) {
         row.classList.add("has-selector");
-        if (participant.side === "product") {
-          row.append(createInlineAnchorLane(participant, node, nodeKey), rowBody);
-        } else {
-          row.append(rowBody, createInlineAnchorLane(participant, node, nodeKey));
-        }
-      } else {
-        row.appendChild(rowBody);
       }
+      row.appendChild(rowBody);
       rows.appendChild(row);
     });
     wrapper.appendChild(rows);
@@ -2107,7 +2122,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return visual;
   }
 
-  function createReactantCompositeVisualRail(participant) {
+  function createCompositeVisualRail(participant) {
     const rootNode = getParticipantRootNode(participant);
     const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
     const rail = document.createElement("div");
@@ -2118,8 +2133,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     collector.dataset.compositeCollectorId = participant.id;
     collector.setAttribute("aria-hidden", "true");
 
-    rail.appendChild(collector);
-    rail.appendChild(createParticipantVisual(participant));
+    const visual = createParticipantVisual(participant);
+    if (participant.side === "product" && rootNode && rootNodeKey) {
+      const rootAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
+        extraClassNames: ["composer-reaction-solver-composite-root-anchor"],
+      });
+      rail.append(rootAnchor, visual, collector);
+      return rail;
+    }
+    rail.append(collector, visual);
     if (rootNode && rootNodeKey) {
       const rootAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
         extraClassNames: ["composer-reaction-solver-composite-root-anchor"],
@@ -2271,8 +2293,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function renderParticipantCard(participant) {
     const card = document.createElement("article");
     card.className = `composer-reaction-solver-participant is-${participant.side}`;
+    const rootNode = getParticipantRootNode(participant);
+    const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
     const topLevelRenderMode = participant?.hierarchy?.[0]?.renderMode ?? "";
+    const isComposite = isCompositeParticipant(participant);
     const isReactantComposite = isReactantCompositeParticipant(participant);
+    const isProductComposite = isProductCompositeParticipant(participant);
+    const rootAnchorAvailability =
+      participant.side === "product" && rootNodeKey
+        ? getAnchorAvailability(participant.side, rootNodeKey)
+        : null;
     if (topLevelHierarchyHasRenderMode(participant.hierarchy, "noether-core-grid")) {
       card.classList.add("has-noether-core-grid");
     }
@@ -2284,18 +2314,26 @@ export function createComposerReactionSolverUiRuntime(deps) {
     ) {
       card.classList.add("has-inline-field-header");
     }
-    if (isReactantComposite) {
-      card.classList.add("is-reactant-composite");
+    if (isComposite) {
+      card.classList.add("is-composite-participant");
     }
-    const visual = isReactantComposite
-      ? createReactantCompositeVisualRail(participant)
+    if (state.pendingSourceKey && participant.side === "product" && rootAnchorAvailability?.disabled) {
+      card.classList.add("is-ineligible");
+      if (rootAnchorAvailability.reason) {
+        card.title = rootAnchorAvailability.reason;
+      }
+    }
+    const visual = isComposite
+      ? createCompositeVisualRail(participant)
       : createParticipantVisual(participant);
 
     const hierarchy = document.createElement("div");
     hierarchy.className = `composer-reaction-solver-tree is-${participant.side}`;
     renderParticipantTreeRows(hierarchy, participant, participant.hierarchy, 0);
 
-    if (participant.side === "product" || isReactantComposite) {
+    if (isProductComposite) {
+      card.append(visual, hierarchy);
+    } else if (participant.side === "product" || isReactantComposite) {
       card.append(hierarchy, visual);
     } else {
       card.append(visual, hierarchy);
@@ -2307,27 +2345,25 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!mapHint || !emptyState) {
       return;
     }
-    const centerPanel = mapHint.parentElement ?? null;
     const hasParticipants = state.participants.length > 0;
     emptyState.hidden = hasParticipants;
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
-    if (centerPanel) {
-      centerPanel.hidden = !hasParticipants;
-      centerPanel.setAttribute("aria-hidden", hasParticipants ? "false" : "true");
-    }
     if (!hasParticipants) {
+      mapHint.textContent =
+        "Right-click the reaction canvas to add reactants or products.";
       return;
     }
     if (state.pendingSourceKey) {
       mapHint.textContent =
-        "Reactant anchor selected. Conservative product targets active. Incompatible targets dimmed.";
+        "Reactant anchor selected. Conservative product targets active; incompatible targets dimmed.";
       return;
     }
     if (!state.mappings.length) {
-      mapHint.textContent = "Click a reactant anchor, then a product anchor, to draw the first mapping.";
+      mapHint.textContent =
+        "Choose a reactant anchor, then a product anchor, to author the first mapping.";
       return;
     }
-    mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click a mapped anchor to remove it.`;
+    mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
   }
 
   function getElementCenterWithinSurface(element, bounds) {
@@ -2340,8 +2376,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function drawCompositeLinks(bounds) {
     state.participants
-      .filter((participant) => isReactantCompositeParticipant(participant))
+      .filter((participant) => isCompositeParticipant(participant))
       .forEach((participant) => {
+        const rootNode = getParticipantRootNode(participant);
+        const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
+        const isIneligible =
+          !!state.pendingSourceKey &&
+          participant.side === "product" &&
+          !!rootNodeKey &&
+          getAnchorAvailability(participant.side, rootNodeKey).disabled;
         const collector = surface.querySelector(
           `.composer-reaction-solver-composite-collector[data-composite-collector-id="${CSS.escape(participant.id)}"]`
         );
@@ -2357,12 +2400,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
         sourceAnchors.forEach((sourceAnchor) => {
           const sourcePoint = getElementCenterWithinSurface(sourceAnchor, bounds);
           const deltaX = Math.max(28, Math.abs(targetPoint.x - sourcePoint.x) * 0.55);
+          const direction = targetPoint.x >= sourcePoint.x ? 1 : -1;
           const path = createSvgElement("path");
           path.setAttribute(
             "d",
-            `M ${sourcePoint.x} ${sourcePoint.y} C ${sourcePoint.x + deltaX} ${sourcePoint.y}, ${targetPoint.x - deltaX * 0.6} ${targetPoint.y}, ${targetPoint.x} ${targetPoint.y}`
+            `M ${sourcePoint.x} ${sourcePoint.y} C ${sourcePoint.x + deltaX * direction} ${sourcePoint.y}, ${targetPoint.x - deltaX * 0.6 * direction} ${targetPoint.y}, ${targetPoint.x} ${targetPoint.y}`
           );
           path.setAttribute("class", "composer-reaction-solver-composite-link");
+          if (isIneligible) {
+            path.classList.add("is-ineligible");
+          }
           mapSvg.appendChild(path);
         });
       });
