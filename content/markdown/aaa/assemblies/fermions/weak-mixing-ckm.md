@@ -391,11 +391,11 @@ Notes:
 - Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
 
 Charge Conservation Enforcement (speculative, to simulate):
-- Free $\pm\epsilon$ axial architrinos are dynamically suppressed by the strong Noether-Sea dielectric response (no long-lived "spare-charge" propagation in the coarse-grained ledger).
+- Free $\pm\epsilon$ axial architrinos are dynamically suppressed by the strong Noether-Sea dielectric response (no long-lived spare-polarity propagation in the coarse-grained ledger).
 - Any spare axial architrinos must close through one of the following channels:
   - **Product incorporation:** absorbed into a final-state assembly while preserving charge/polarity bookkeeping.
   - **Current carriage:** carried out on charged lepton/neutrino legs as part of the weak-current flow.
-  - **Immediate annihilation:** cancelled by opposite charges drawn from the Sea, releasing short photon-like planar modes.
+  - **Immediate annihilation:** cancelled by opposite-polarity architrinos drawn from the Sea, releasing short photon-like planar modes.
 - Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
 
 Decision cues to log in sims: initial separation, relative phase, local Sea density; pick dominant channel based on these and record energy/charge routing.

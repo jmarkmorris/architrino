@@ -29,7 +29,7 @@ where:
 *   $m_i$ is the inertial parameter (effective mass) of the receiver.
 *   $r_{ij}(t; t_0)$ is the Euclidean separation between reception and emission events.
 *   $\delta_\eta$ is a mollified delta function of width $\eta > 0$, regularizing the causal wake surface to ensure a Lipschitz-continuous vector field.
-*   $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ enforces attraction for opposite charges and repulsion for like charges.
+*   $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ enforces attraction for opposite polarities and repulsion for like polarities.
 
 #### Regularization and Admissibility Assumptions
 

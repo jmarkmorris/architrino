@@ -1114,7 +1114,7 @@ This occurs whenever the particle has exceeded $v_f$ in its history and subseque
 
 **Wake interactions have several operational consequences:**
 
-- **Repulsion from like charges:** The wake carries the same sign as the source, so entering it produces a repulsive push analogous to the self-hit repulsion in the older language.
+- **Repulsion from like polarities:** The wake carries the same sign as the source, so entering it produces a repulsive push analogous to the self-hit repulsion in the older language.
 - **Memory:** Once the particle has generated a dense wake by briefly exceeding $v_f$, it continues to feel that wake even after it slows back below $v_f$, because the wake persists geometrically.
 - **Shockfront geometry:** The high-intensity locus resembles a sharp cone; traversing that cone is what produces the strong self-interaction effects that stabilize assemblies.
 
@@ -1151,7 +1151,7 @@ When potential from another architrino (or from one's own past emissions, in the
 **Key features:**
 
 - **Radial acceleration**: The acceleration is directed along the line from the emission point to the receiver's current location.
-- **Charge-dependent sign**: Like charges repel ($\sigma_{qq'} = +1$); opposite charges attract ($\sigma_{qq'} = -1$).
+- **Polarity-dependent sign**: Like polarities repel ($\sigma_{qq'} = +1$); opposite polarities attract ($\sigma_{qq'} = -1$).
 - **Inverse-square baseline with Jacobian weighting**: The received strength of each individual hit scales with the inverse square of the emission-to-receiver distance and is further weighted by the causal Jacobian factor $\left|J\right|^{-1}$, which captures geometric bunching or dilation of the emitted flux.
 - **Superposition**: The total acceleration is the vector sum of all individual hits from all sources (including self-hits, if present).
 

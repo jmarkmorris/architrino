@@ -25,8 +25,8 @@ Work is anchored in the specific architecture already defined in this repo:
 - **Low energy binary**: Below field speed. Largest radius. Lowest frequency.
 
 **Key Properties:**
-- **Architrino unit charge**: $|q| = |e/6|$.
-- **Decoration scheme**: Six polar regions on the tri-binary available for $\pm|e/6|$ charge placement.
+- **Architrino polarity unit**: $|q| = |e/6|$ in charge bookkeeping.
+- **Axial-layer scheme**: Six polar regions on the tri-binary available for positrino/electrino occupancy.
 - **Pro/anti forms**: Matter/antimatter distinguished geometrically.
 - **Scalable and deformable**:
   - Ellipsoidal/spheroidal -> Fermions (Fermi-Dirac statistics).
@@ -46,7 +46,7 @@ Map tri-binary axial patterns to all SM fermions:
 - **Quarks**:
   - Up-type ($+2e/3$): Axial inventory: 5 positrinos, 1 electrino.
   - Down-type ($-e/3$): Axial inventory: 2 positrinos, 4 electrinos.
-  - Color charge: From tri-binary internal structure or phase relationships.
+  - Color label: From tri-binary internal structure or phase relationships.
 - **Leptons**:
   - Charged leptons ($-e$): are assembled as 6 polar sites occupied by $-|e/6|$ axial architrinos.
   - Neutrinos (neutral): Specific neutral axial patterns or different tri-binary configuration.
@@ -107,10 +107,10 @@ Map tri-binary axial patterns to all SM fermions:
 **C.1 SU(3) x SU(2) x U(1) Emergence**
 
 - **SU(3) color**: Three nested binaries or three-fold axial-pattern symmetry.
-  - Confinement via flux tubes connecting colored decorations.
+  - Confinement via flux tubes connecting colored axial patterns.
 - **SU(2) weak**: Left/right chirality from binary spiral handedness.
   - **Critical**: Derive parity violation from geometric handedness.
-- **U(1) electromagnetism**: Net potential flux or total axial charge.
+- **U(1) electromagnetism**: Net potential flux or total axial polarity bookkeeping.
 
 **C.2 Spontaneous Symmetry Breaking**
 
@@ -139,7 +139,7 @@ Show SM Lagrangian emerges in low-energy limit:
 **D.2 Feynman Rules**
 
 - Propagators: Assembly propagation through tri-binary medium.
-- Vertices: Decoration configuration changes during interactions.
+- Vertices: Axial-configuration changes during interactions.
 - Calculate cross-sections: $e^+e^- \to \mu^+\mu^-$, $qq \to gg$, etc.
 
 **D.3 Renormalization**
@@ -153,7 +153,7 @@ Show SM Lagrangian emerges in low-energy limit:
 ### Precision Benchmarks (Tiered)
 
 **Tier 1: Viability (Orders of Magnitude)**
-- Correct charge spectrum from $|e/6|$ decorations.
+- Correct electric-charge spectrum from $|e/6|$ axial inventories.
 - Stable proton (no rapid decay).
 - Approximate masses and ratios.
 - Emergence of gauge group structure.
@@ -319,6 +319,6 @@ Maintain living "Challenges & Failures" document:
 - Gauge and mixing notes tied to `dynamics/gauge-structure-emergence.md` and `assemblies/fermions/weak-mixing-ckm.md`, PDG date-stamped.
 - Benchmark observables list for Sig and Sol (masses, $g-2$, form factors, CKM/PMNS entries, rare decays) with target precision.
 # Foundational Reference
-- architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and charge +/-$\epsilon$ set the base for assembly construction.
+- architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and polarity $q=\pm\epsilon$ set the base for assembly construction.
 - Reference the master equation (`dynamics/master-equation.md`) whenever discussing emission/absorption: every interaction is a sum over causal wake surfaces (path history) with radial $1/r^2$ contributions; self-hits appear when worldlines outrun their own wakes.
-- Align all particle-phase claims with the `validation/parameter-ledger.md`: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters dictate which assembly charges or scales are phenomenologically viable.
+- Align all particle-phase claims with the `validation/parameter-ledger.md`: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters dictate which assembly electric assignments or scales are phenomenologically viable.

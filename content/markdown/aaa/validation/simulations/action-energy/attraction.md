@@ -15,7 +15,7 @@ Canonical delayed-law considerations:
 
 Equations of motion (canonical delayed law; two-body, v=1):
 - Definitions:
-  - Charges: $q_1=-\epsilon$ (particle 1), $q_2=+\epsilon$ (particle 2); $\epsilon>0$ is the unit charge magnitude.
+  - Polarities: $q_1=-\epsilon$ (particle 1), $q_2=+\epsilon$ (particle 2); $\epsilon>0$ is the polarity-unit magnitude.
   - Coupling: $\kappa>0$ is the universal coupling constant; we work in units with field speed $v=1$.
   - Separation: $r(t)=|x_1(t)-x_2(t)|>0$.
 - Causal (path-history) times:
@@ -38,7 +38,7 @@ Equations of motion (canonical delayed law; two-body, v=1):
   \quad
   r_{21}=\big|x_2(t)-x_1(t_0)\big|.
   $$
-  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike charges attract), $H(0)=0$ excludes $t_0=t$, and $\mathrm{sgn}(\cdot)$ denotes the sign function.
+  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract), $H(0)=0$ excludes $t_0=t$, and $\mathrm{sgn}(\cdot)$ denotes the sign function.
 
 Relative-coordinate DDE:
 - Define $r(t)=x_1(t)-x_2(t)>0$. Then

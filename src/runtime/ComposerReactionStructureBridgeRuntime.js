@@ -184,6 +184,24 @@ function createHiggsClusterNode(id, options = {}) {
   });
 }
 
+function createPhotonNode(id, options = {}) {
+  const { label = "Photon" } = options;
+  return createStructureNode({
+    id,
+    kind: STRUCTURE_KINDS.PARTICLE,
+    species: "photon",
+    label,
+    classification: {
+      family: STRUCTURE_CLASSIFICATION_FAMILIES.BOSON,
+      source: "derived",
+    },
+    children: [
+      createNoetherCoreNode(`${id}/core_pro_1`, { label: "Pro core", polarity: "pro" }),
+      createNoetherCoreNode(`${id}/core_anti_1`, { label: "Anti core", polarity: "anti" }),
+    ],
+  });
+}
+
 function createTransmuteNode(id, options = {}) {
   return createStructureNode({
     id,
@@ -282,6 +300,8 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
     );
   } else if (normalizedTemplateId === "higgs_cluster") {
     root = createHiggsClusterNode(structureId, { label: label || "Higgs cluster" });
+  } else if (normalizedTemplateId === "photon") {
+    root = createPhotonNode(structureId, { label: label || "Photon" });
   } else if (normalizedTemplateId === "noether_core") {
     root = createNoetherCoreNode(structureId, {
       label: label || `${polarity} Noether core`,

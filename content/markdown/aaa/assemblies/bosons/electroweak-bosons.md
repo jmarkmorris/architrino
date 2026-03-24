@@ -120,8 +120,8 @@ The Higgs is not a propagating assembly *through* the vacuum; it is a resonance 
 ## Pair production (note)
 
 - A neutral Noether Sea cluster (e.g., two neutral cores, 3P/3E each) contains the ingredients for a particle–antiparticle pair. With sufficient energy input (e.g., $\gamma\gamma \to e^+ e^-$), a pair-conversion mode can unpack that cluster into $e^-$ and $e^+$ while returning the cores to neutrality.
-- In photon–photon pair production, the photons supply the energy; the Sea contributes neutral cores, and the six-charge excess arranges into the $\pm e$ decorations of the outgoing pair. Charge and architrino counts stay balanced because the cores are returned neutral.
-- Sketch model: energy in → pair-conversion mode forms using neutral cores + six-charge split → particle + antiparticle → neutral cores relax back to the Sea.
+- In photon–photon pair production, the photons supply the energy; the Sea contributes neutral cores, and the six-architrino axial excess arranges into the $\pm e$ axial inventories of the outgoing pair. Electric bookkeeping and architrino counts stay balanced because the cores are returned neutral.
+- Sketch model: energy in → pair-conversion mode forms using neutral cores + six-architrino axial split → particle + antiparticle → neutral cores relax back to the Sea.
 
 ## Closure Interface: Corridor Operators for Mixing
 

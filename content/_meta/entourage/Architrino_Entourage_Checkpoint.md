@@ -390,7 +390,7 @@ Assess five dimensions (Green/Yellow/Red):
 - Searches for fractional charge (e.g., $e/3$ free quarks, $e/137$ millicharged particles): null results to $< 10^{-22} e$.
 
 **Status:**  
-- **Conceptual**: Decoration pattern hypothesis.  
+- **Conceptual**: Axial-pattern hypothesis.  
 - **To prove**: Geometric derivation of site number and stability conditions.  
 - **Lead**: Phe (particle mapping), Dyna (topology), Red (experimental bounds).
 

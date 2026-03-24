@@ -12,7 +12,7 @@ The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 - **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry and GR emergent.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
-- **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and charge of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This perspective knows where and when each causal wake surface was emitted as it passes any point.
+- **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and polarity of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This perspective knows where and when each causal wake surface was emitted as it passes any point.
 - **Spacetime assembly network**: What GR calls the "vacuum" is not empty void but a **spacetime assembly network** of coupled pro/anti Noether cores (tri-binary assemblies forming the spacetime fabric). 
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.
@@ -61,7 +61,7 @@ When helpful, the assessment can also note:
 - and whether a historical position was wrong in content but right in direction.
 
 **The $\mathbb{U}_{\text{now}}$ universe-state perspective: Capabilities and Limits**
-- **What it knows**: The position, velocity, and charge of every architrino at any (x,y,z,t), and the complete causal history up to the present moment.
+- **What it knows**: The position, velocity, and polarity of every architrino at any (x,y,z,t), and the complete causal history up to the present moment.
 - **What it cannot predict (without full microstate resolution)**: Which stable attractor a system will select at a self-hit branch point when multiple futures are physically realizable.
 - **Why this matters**: This separates **microstate-sensitive multistability** (lawful but threshold-sensitive outcomes) from **epistemic limitation** (incomplete measurement by physical observers).
 
@@ -69,7 +69,7 @@ The $\mathbb{U}_{\text{now}}$ universe-state perspective is omniscient with resp
 
 The Architrino Assembly Architecture is **deterministic in its laws** despite its foundation in continuous, causal wake-surface interactions governed by the Master Equation, because **self-hit dynamics in the super-field-speed regime ($v > c_f$) introduce multistable branch points where multiple stable attractor states become accessible from a single prior configuration**. When an architrino intercepts its own outgoing potential, the resulting non-Markovian memory effects can create bifurcations in phase space—critical junctures where infinitesimal perturbations (potentially below any operationally resolvable threshold) determine which of several topologically distinct assembly configurations the system settles into. This is not mere epistemic uncertainty from incomplete information; it reflects **deterministic multistability** at transition points where the evolution equations admit multiple coexisting attractors. Practical predictability breaks down even though the ontology remains lawful, making $\mathbb{A}\mathbb{A}\mathbb{A}$ a deterministic-substrate theory with emergent quantum-like behavior rather than a purely Laplacian predictability claim.
 
-**Central philosophical claim**: This framework, if empirically successful, will **displace teleology, idealism, and transcendentalism**, and **rebuild a mathematically disciplined materialism** that admits **deterministic multistability at self-hit branch points**. Philosophy does not disappear—it becomes **boundary analysis**: clarifying which concepts (causation, identity, emergence) remain coherent once spacetime and its laws are emergent from point-charge assemblies and their wake-surface dynamics.
+**Central philosophical claim**: This framework, if empirically successful, will **displace teleology, idealism, and transcendentalism**, and **rebuild a mathematically disciplined materialism** that admits **deterministic multistability at self-hit branch points**. Philosophy does not disappear—it becomes **boundary analysis**: clarifying which concepts (causation, identity, emergence) remain coherent once spacetime and its laws are emergent from architrino assemblies and their wake-surface dynamics.
 
 **Synthesis**
 

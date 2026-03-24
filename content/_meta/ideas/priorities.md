@@ -196,7 +196,7 @@ Scoring system:
   - add theory-facing overlays and rendering modes such as tracers, trails, and calculated shaded `E-B` wave patterns;
   - make scale changes legible in-scene, including clear indication when a structure, inset, or derived view is shown at a different scale;
   - support richer geometric depictions that matter across cases, especially oblate spheroids and spiral structures;
-  - animate deeper structural behaviors directly from the point-charge picture, including photon counter-rotation, self-propulsion, polarization, Malus-law behavior, axial-charge-driven precession, equivalence-principle explanations, and ephemeral `W` and `Z` configurations;
+  - animate deeper structural behaviors directly from the architrino picture, including photon counter-rotation, self-propulsion, polarization, Malus-law behavior, axial-polarity-driven precession, equivalence-principle explanations, and ephemeral `W` and `Z` configurations;
   - make momentum constraints legible in the structure model, especially the angular/linear momentum relations that maintain relative plane angles;
   - add notation and display conventions that distinguish apparent energy from total energy;
   - keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps.

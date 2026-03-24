@@ -77,7 +77,7 @@ This chapter strips away everything except the minimum ingredients needed to tes
 
 - two architrinos,
 - one spatial dimension,
-- opposite charges,
+- opposite polarities,
 - exact partner hits,
 - exact self-hit roots,
 - and an $\eta>0$ regularization suitable for return-map analysis.

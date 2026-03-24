@@ -126,7 +126,7 @@ For right-handed quarks:
 
 This gives the standard singlet assignments:
 
-| State family | Decoration count | Electric charge $Q$ | Right-handed assignment |
+| State family | Axial inventory | Electric charge $Q$ | Right-handed assignment |
 | --- | --- | ---: | ---: |
 | $u^R,c^R,t^R$ | $5P,1E$ | $+2/3$ | $T_3=0,\ Y=+4/3$ |
 | $d^R,s^R,b^R$ | $2P,4E$ | $-1/3$ | $T_3=0,\ Y=-2/3$ |

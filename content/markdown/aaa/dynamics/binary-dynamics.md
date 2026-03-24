@@ -4,13 +4,13 @@ This chapter develops two-body architrino dynamics from the appearance of self-h
 
 ## The Spiral Orbiting Binary and the Contraction Phase
 
-An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite charge—an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
+An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite polarity: an electrino and a positrino. With polarities $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
 
 Consider the ideal case of a symmetric orbit in a universe with no other architrinos. In general, each architrino is subject to a superposition of external potential waves from all other sources; the analysis below isolates the binary by setting those external contributions to zero.
 
 Let the electrino be particle 1 and the positrino be particle 2.
 -  **Positions:** $\mathbf{s}_1(t)$ and $\mathbf{s}_2(t)$
--  **Charges:** $q_1 = -\epsilon$ and $q_2 = +\epsilon$
+-  **Polarities:** $q_1 = -\epsilon$ and $q_2 = +\epsilon$
 
 The motion of each particle is determined by the field emitted by the other at a delayed time. The acceleration of the electrino (particle 1) at time $t$ is caused by the positrino's (particle 2) field emitted at an emission time $t_0$. This is governed by the interaction condition:
 $$
@@ -118,7 +118,7 @@ The architecture hypothesizes that the **maximum-curvature binary (MCB)** would 
 **Universal cap (explicit):** The MCB is treated as a single, universal limit state (one defining radius/speed). Binaries may sit below this limit, but no binary can exceed the MCB curvature or pass beyond its defining radius/speed.
 
 If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the balance of:
-1. Coulomb-like attraction between opposite charges ($\propto |e/6|^2 / r^2$),
+1. Coulomb-like attraction between opposite polarities ($\propto |e/6|^2 / r^2$),
 2. Self-hit repulsion (non-Markovian feedback when $v > c_f$),
 3. Centripetal requirement for stable circular orbit.
 
@@ -226,12 +226,12 @@ $$
 
 These encode the geometric bunching or dilation of the received causal flux along the active self and partner branches.
 
-**Self-hit** (like charges -> repulsive):
+**Self-hit** (like polarities -> repulsive):
 $$
 \mathbf{a}_s = +\kappa \epsilon^2 \frac{1}{r_s^2\,|J_s|} \hat{u}_s.
 $$
 
-**Partner hit** (opposite charges -> attractive):
+**Partner hit** (opposite polarities -> attractive):
 $$
 \mathbf{a}_p = -\kappa \epsilon^2 \frac{1}{r_p^2\,|J_p|} \hat{u}_p.
 $$

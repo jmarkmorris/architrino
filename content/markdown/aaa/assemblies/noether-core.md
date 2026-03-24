@@ -22,7 +22,7 @@ A particularly important and stable configuration is the **triply nested binary*
 
 -   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency field emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
 
--   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and charge than the sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their fields to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
+-   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their fields to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
 
 ### The Core Hierarchy and Fermion Generations
 

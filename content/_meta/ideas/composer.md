@@ -133,7 +133,7 @@ The preferred authoring story is structural:
 - free architrinos appear when the author explicitly detaches an axial architrino from an assembly;
 - or when the author explicitly breaks a binary into its constituent architrinos as part of a larger structural or reaction edit.
 
-This matters because a free architrino in the composer should usually mean that some prior structure has been opened, split, or transferred. That is a stronger and more informative authoring grammar than treating bare charges as generic top-level scene stamps.
+This matters because a free architrino in the composer should usually mean that some prior structure has been opened, split, or transferred. That is a stronger and more informative authoring grammar than treating bare architrinos as generic top-level scene stamps.
 
 So future UI work should prioritize:
 
@@ -483,7 +483,7 @@ Typical objects and controls:
 
 - internal architrino motion,
 - binary and orbital structure,
-- charge placement,
+- axial architrino placement,
 - local modulation,
 - deformation rules,
 - and constituent-level explanatory overlays.
@@ -628,7 +628,7 @@ Primary panel emphasis:
 - constituent tree,
 - local motion controls,
 - orbit or binary controls,
-- charge placement controls,
+- axial architrino placement controls,
 - and local explanatory overlays.
 
 Primary interactions:
@@ -1186,7 +1186,7 @@ This section merges the remaining useful requirements into one set.
 - The same authored model should support both imaginative construction and observation-grounded reconstruction, so a scene can be used either to express a theory picture or to explain a measured or inferred phenomenon.
 - Declarative authored data should be the default. Imperative or solver-backed behavior should be optional and explicitly marked.
 - Deterministic defaults are required, but every meaningful default should be overrideable.
-- Stable ids are required for all authored entities, assemblies, charges, paths, reactions, annotations, and anchors.
+- Stable ids are required for all authored entities, assemblies, architrinos, paths, reactions, annotations, and anchors.
 - The authoring center of gravity should be explicit assemblies and members, not inferred node-count bootstrapping.
 - The entire tool should exploit one native visual grammar built from spheres, paths, orbit or shell traces, and scale collapse, rather than introducing unrelated representational systems at different levels.
 - The rendered primitive vocabulary should remain intentionally narrow so most scenes can be expressed as compositions of spheres, paths, orbit or shell traces, ellipses or ellipsoids, callouts, and labels.
@@ -1207,7 +1207,7 @@ This section merges the remaining useful requirements into one set.
 ### 3. Scene and assembly requirements
 
 - Assemblies should be recursive. A scene may contain nested assemblies, and an assembly may contain sub-assemblies with their own local frames, transforms, and motion.
-- The same composition model should work for simple scene nodes, Noether cores, bound charges, and larger particle-like assemblies.
+- The same composition model should work for simple scene nodes, Noether cores, bound axial architrinos, and larger particle-like assemblies.
 - Each authored assembly should expose, at minimum, a stable assembly id, a display name, a member list, an optional parent assembly id, and a local position relative to its parent or the scene root.
 - Member ids should be treated as stable authored identities so later transfers, provenance, and reaction steps can refer to them directly.
 - Larger-scale authored objects should be allowed to collapse to sphere-like proxies when detail is not useful at the current scale, provided the deeper structure remains recoverable by drill-down or reveal.
@@ -1241,13 +1241,13 @@ This section merges the remaining useful requirements into one set.
 - Local orbital motion should compose cleanly with parent assembly transforms and parent path motion.
 - Phase, angular speed, tilt, band attachment, and modulation should be explicit authored parameters.
 
-### 6. Personality charge requirements
+### 6. Axial architrino requirements
 
-- Personality charges should be first-class typed entities such as `electrino` and `positrino`, with room for future extensions.
-- Charges should support both independent scene-level placement and bound-to-core attachment derived from core configuration.
-- Charge placement, count, sizing, orientation, and attachment policy should be declarative.
-- The composer should support secondary small-scale charge motion such as jiggle, wobble, or bounded local perturbation without hiding that behavior in renderer-only code.
-- Charge motion should be able to ride on top of larger assembly translation, rotation, and reaction choreography.
+- Axial architrinos should be first-class typed entities such as `electrino` and `positrino`, with room for future extensions.
+- Axial architrinos should support both independent scene-level placement and core-bound attachment derived from core configuration.
+- Axial placement, inventory, sizing, orientation, and attachment policy should be declarative.
+- The composer should support secondary small-scale axial motion such as jiggle, wobble, or bounded local perturbation without hiding that behavior in renderer-only code.
+- Axial architrino motion should be able to ride on top of larger assembly translation, rotation, and reaction choreography.
 
 ### 7. Motion, transform, and path requirements
 
@@ -2372,7 +2372,7 @@ Purpose:
 
 - define reusable assembly-oriented structures,
 - support recursive composition,
-- carry local attributes such as geometry, transforms, charges, and internal organization.
+- carry local attributes such as geometry, transforms, axial members, and internal organization.
 
 Draft shape:
 
@@ -2820,7 +2820,7 @@ The draft schema above is intended to be able to describe the target scenes disc
 
 - A translating electron-like assembly is covered by `TimeSpec`, a root `AssemblySpec`, a straight-line `PathSpec`, a `CoreSpec` with internal `architrinos`, and bound `ChargeSpec` entries for the six electrino axial architrinos.
 - A high-velocity Lorentz-oblate flythrough is covered by parent transport motion plus `CoreSpec.deformation` with `type: "lorentz_oblate"` and an axis derived from velocity or path tangent.
-- A curved-path assembly with charge jiggle is covered by spline or point-based `PathSpec` plus local `jiggle` motions on the charge specs.
+- A curved-path assembly with axial jiggle is covered by spline or point-based `PathSpec` plus local `jiggle` motions on the axial-member specs.
 - Reaction coverage is detailed in [reaction.md](reaction.md), including `ReactionSpec`, `TransferSpec`, and `ProvenanceSpec` on the shared scene timeline.
 - A photon-like paired-core assembly is covered by one parent `AssemblySpec` containing two child flat `CoreSpec` objects, a small authored offset in local transforms, and explicit `binaries` whose motions carry `direction: "cw"` or `direction: "ccw"`.
 - Camera action across any of these scenes is covered by `ViewSpec` plus `CameraPathSpec`, either as explicit waypoints with `position`, `lookAt`, or `orientation`, or as authored follow modes such as trail, lead, flank, or orbit around a moving target assembly.
@@ -2945,7 +2945,7 @@ This is not a full production scene. It is a minimum coherent example showing on
       timing: { start: 5.0, fadeIn: 0.25, hold: 1.0, fadeOut: 0.25 },
       payload: {
         target: "electron-1",
-        label: "Fourth-shell charge structure",
+        label: "Fourth-shell axial structure",
         lineStyle: "straight",
         endcap: "dot",
         attachTo: "center"
@@ -3185,7 +3185,7 @@ The long-term vision should be:
 - canonical JSON export from structured authored data,
 - a general runtime that can render any valid composed-animation scene,
 - one coherent sphere-path-orbit visual grammar across all authoring scales,
-- explicit Noether core, charge, path, and reaction authoring,
+- explicit Noether core, axial architrino, path, and reaction authoring,
 - explicit time-aware playback,
 - recursive assembly construction,
 - explicit provenance and path-history.
@@ -3277,13 +3277,13 @@ In any of these scenes, observer path and observer orientation may also change a
 
 - A Noether core assembly accelerates into a high-velocity segment.
 - The deformation profile becomes Lorentz-oblate along the direction of travel as velocity approaches \(c_f\).
-- Internal constituents and bound charges remain visually attached to the deformed assembly through the authored motion.
+- Internal constituents and bound axial architrinos remain visually attached to the deformed assembly through the authored motion.
 
-### 4. Curved-path assembly with charge jiggle
+### 4. Curved-path assembly with axial jiggle
 
 - A bound assembly follows a curved spline path through the scene.
-- Personality charges are attached declaratively to the core.
-- Charges exhibit small local jiggle motion superposed on the larger assembly transport.
+- Axial architrinos are attached declaratively to the core.
+- Axial architrinos exhibit small local jiggle motion superposed on the larger assembly transport.
 
 ### 5. Reaction with disassembly and reassembly
 

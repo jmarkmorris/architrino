@@ -37,4 +37,4 @@ Deliverables:
 - Exact DDE statements and causal-root definitions suitable for analysis and computation.
 - Notes on symmetry and qualitative properties without invoking approximations.
 
-Plain language: Two like charges at rest push apart along the line under the delayed law; the governing equations are implicit in the causal times, and no closed-form solution is currently known.
+Plain language: Two like polarities at rest push apart along the line under the delayed law; the governing equations are implicit in the causal times, and no closed-form solution is currently known.

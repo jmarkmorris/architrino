@@ -25,7 +25,7 @@ Symmetric two-body on a line (exact DDE; challenges):
   $$
   r(t) + r\!\big(t-\tau(t)\big) \;=\; 2\,\tau(t).
   $$
-- For opposite charges, the exact relative-coordinate equation is the state-dependent DDE
+- For opposite polarities, the exact relative-coordinate equation is the state-dependent DDE
   $$
   \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2\,|J(t)|},
   $$

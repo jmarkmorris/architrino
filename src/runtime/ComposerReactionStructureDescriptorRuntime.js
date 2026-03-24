@@ -165,6 +165,33 @@ function getQuarkDescriptorLabel(family = "") {
   return family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK ? "Up quark" : "Down quark";
 }
 
+function buildCoreAssemblyDescriptorTree(structureRoot, fallbackLabel) {
+  return [{
+    id: String(structureRoot?.id ?? "root"),
+    label: String(structureRoot?.label ?? fallbackLabel).trim() || fallbackLabel,
+    renderMode: REACTION_STRUCTURE_RENDER_MODES.ASSEMBLY_CLUSTER_GRID,
+    children: getStructureNodeChildren(structureRoot).map((childNode, index) => ({
+      id: childNode.id || `core_${index + 1}`,
+      label: String(childNode?.label ?? "Noether core").trim() || "Noether core",
+      renderMode: REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID,
+      inventory: String(getStructureTrait(childNode, "polarity", "")).trim().toLowerCase() === "anti"
+        ? { antiCore: 1 }
+        : { proCore: 1 },
+      children: STRUCTURE_SLOT_ORDER.map((slotName) =>
+        createBinarySlotDescriptor(
+          `${childNode.id}/${slotName}`,
+          `${slotName} binary`,
+          getSlotCode(slotName),
+          {
+            withPersonality: false,
+            renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE,
+          }
+        )
+      ),
+    })),
+  }];
+}
+
 function buildCompositeParticleDescriptorTree(structureRoot) {
   const family = String(structureRoot?.classification?.family ?? "").trim();
   if (family === STRUCTURE_CLASSIFICATION_FAMILIES.BARYON) {
@@ -195,30 +222,11 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
   }
 
   if (String(structureRoot?.species ?? "").trim() === "higgs_cluster") {
-    return [{
-      id: String(structureRoot?.id ?? "root"),
-      label: String(structureRoot?.label ?? "Higgs cluster").trim() || "Higgs cluster",
-      renderMode: REACTION_STRUCTURE_RENDER_MODES.ASSEMBLY_CLUSTER_GRID,
-      children: getStructureNodeChildren(structureRoot).map((childNode, index) => ({
-        id: childNode.id || `core_${index + 1}`,
-        label: String(childNode?.label ?? "Noether core").trim() || "Noether core",
-        renderMode: REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID,
-        inventory: String(getStructureTrait(childNode, "polarity", "")).trim().toLowerCase() === "anti"
-          ? { antiCore: 1 }
-          : { proCore: 1 },
-        children: STRUCTURE_SLOT_ORDER.map((slotName) =>
-          createBinarySlotDescriptor(
-            `${childNode.id}/${slotName}`,
-            `${slotName} binary`,
-            getSlotCode(slotName),
-            {
-              withPersonality: false,
-              renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE,
-            }
-          )
-        ),
-      })),
-    }];
+    return buildCoreAssemblyDescriptorTree(structureRoot, "Higgs cluster");
+  }
+
+  if (String(structureRoot?.species ?? "").trim() === "photon") {
+    return buildCoreAssemblyDescriptorTree(structureRoot, "Photon");
   }
 
   if (String(structureRoot?.species ?? "").trim() === "transmute") {

@@ -368,8 +368,8 @@ $$
 
 $$
 \sigma_{ij} = \mathrm{sign}(q_i q_j) = \begin{cases}
-+1 & \text{like charges (repel)} \\
--1 & \text{unlike charges (attract)}
++1 & \text{like polarities (repel)} \\
+-1 & \text{unlike polarities (attract)}
 \end{cases}
 $$
 
@@ -444,7 +444,7 @@ $$
 \underbrace{\sum_{j \neq i} \sum_{t_0 \in \mathcal{C}_{ij}(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|} \, \hat{\mathbf{r}}_{ij}}_{\text{Partner hits}} + \underbrace{\sum_{t_0 \in \mathcal{C}_{ii}(t)} \kappa \, \sigma_{ii} \, \frac{|q_i q_i|}{r_{ii}^2\,\left|J_{ii}(t;t_0)\right|} \, \hat{\mathbf{r}}_{ii}}_{\text{Self-hits}}.
 $$
 
-**Note:** $\sigma_{ii} = +1$ (like charges repel), so self-hits are always **repulsive**.
+**Note:** $\sigma_{ii} = +1$ (like polarities repel), so self-hits are always **repulsive**.
 
 This sum can be viewed as a **path-history branch sum**: each emission time in $\mathcal{C}_{ij}(t)$ marks where the receiver's worldline crosses the causal wake surface emitted at $t_0$. The integral representation above is simply the distributional encoding of this branch-selection rule.
 
@@ -491,13 +491,13 @@ $\hat{\mathbf{r}}_{ij}$ points **from the source's historical position** $\mathb
 **Sign of the force:**
 
 - **Like charges** ($\sigma_{ij} = +1$): Force along $+\hat{\mathbf{r}}_{ij}$ (repulsion; pushes receiver away from emission point)
-- **Unlike charges** ($\sigma_{ij} = -1$): Force along $-\hat{\mathbf{r}}_{ij}$ (attraction; pulls receiver toward emission point)
+- **Unlike polarities** ($\sigma_{ij} = -1$): Force along $-\hat{\mathbf{r}}_{ij}$ (attraction; pulls receiver toward emission point)
 
 **Two-body checks (stationary sources):**
 
-- Electrino + Electrino (like charges): repulsion
-- Positrino + Positrino (like charges): repulsion
-- Electrino + Positrino (unlike charges): attraction
+- Electrino + Electrino (like polarities): repulsion
+- Positrino + Positrino (like polarities): repulsion
+- Electrino + Positrino (unlike polarities): attraction
 - All symmetric: if source and receiver swap roles, the force direction reverses (Newton's third law in the instantaneous-interaction limit)
 
 #### Scaling and Normalization
@@ -766,7 +766,7 @@ $$
 \, \hat{\mathbf{r}}_{ii},
 $$
 
-where $\sigma_{ii} = +1$ (like charges repel), so each self-hit contributes an **outward** (repulsive) force.
+where $\sigma_{ii} = +1$ (like polarities repel), so each self-hit contributes an **outward** (repulsive) force.
 
 #### Persistent Memory (Self-Hit After Slowing Down)
 
@@ -828,7 +828,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 #### Sub-Field-Speed Circular Orbit (Instability)
 
 **Setup:**
-- Two opposite charges in symmetric circular orbit at radius $R$, speed $v < c_f$
+- Two opposite polarities in symmetric circular orbit at radius $R$, speed $v < c_f$
 - No self-hits (sub-field-speed regime)
 
 **Partner contribution:**
@@ -1112,7 +1112,7 @@ This is the basic consistency-check regime of the theory.
 
 Setup:
 
-- Two opposite charges on a line, starting at rest, moving directly toward each other,
+- Two opposite polarities on a line, starting at rest, moving directly toward each other,
 - Symmetry: center‑of‑mass at rest, only radial variable $r(t)$,
 - Speeds sub‑$c_f$ so no self‑hit.
 
@@ -1258,7 +1258,7 @@ $$
 \qquad
 J_{12}=1-\frac{\mathbf{v}_2(t_0)\cdot\hat{\mathbf{r}}_{12}}{c_f}=1+\beta\sin\xi.
 $$
-Because $\sigma_{12}=-1$ for opposite charges, the branch acceleration is $-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/(r_{12}^2J_{12})$, and projecting onto $\mathbf{e}_r(t)$ and $\mathbf{e}_\theta(t)$ yields the stated components. Since $\xi\in(0,\pi/2)$, every factor in the denominators is positive and $\sin\xi>0$, proving the sign claims. $\square$
+Because $\sigma_{12}=-1$ for opposite polarities, the branch acceleration is $-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/(r_{12}^2J_{12})$, and projecting onto $\mathbf{e}_r(t)$ and $\mathbf{e}_\theta(t)$ yields the stated components. Since $\xi\in(0,\pi/2)$, every factor in the denominators is positive and $\sin\xi>0$, proving the sign claims. $\square$
 
 #### Corollary (Tangential positivity and circular instability)
 
@@ -1530,7 +1530,7 @@ J_{12}
 \Big[\sin\Delta-a(\cos\Delta+\rho)\Big].
 $$
 
-For opposite charges, the branch acceleration is
+For opposite polarities, the branch acceleration is
 $$
 \mathbf{a}_{12}
 =
