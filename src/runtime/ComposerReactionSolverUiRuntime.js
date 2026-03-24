@@ -3,6 +3,15 @@ import {
   evaluateComposerReactionMappingCandidate,
 } from "./ComposerReactionRulesRuntime.js";
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
+import { buildReactionSolverHierarchyFromStructure } from "./ComposerReactionStructureHierarchyRuntime.js";
+import {
+  cloneStructureNode,
+  getStructureNodeChildren,
+  getStructureTrait,
+  STRUCTURE_CLASSIFICATION_FAMILIES,
+  STRUCTURE_KINDS,
+} from "../domain/structure/StructureSchema.js";
+import { validateStructureTree } from "../domain/structure/StructureValidation.js";
 
 const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
@@ -328,6 +337,58 @@ function buildParticipantStructure(participantId, templateId, baseLabel, polarit
   });
 }
 
+function buildParticipantHierarchy(structureRoot, fallbackHierarchy = []) {
+  const derivedHierarchy = buildReactionSolverHierarchyFromStructure(structureRoot);
+  return Array.isArray(derivedHierarchy) && derivedHierarchy.length
+    ? derivedHierarchy
+    : Array.isArray(fallbackHierarchy)
+      ? fallbackHierarchy
+      : [];
+}
+
+function inferTemplateIdFromStructure(structureRoot) {
+  if (!structureRoot) {
+    return "noether_core";
+  }
+  const structureKind = String(structureRoot?.kind ?? "").trim();
+  const structureSpecies = String(structureRoot?.species ?? "").trim().toLowerCase();
+  const family = String(structureRoot?.classification?.family ?? "").trim();
+  if (structureKind === STRUCTURE_KINDS.NOETHER_CORE) {
+    return "noether_core";
+  }
+  if (structureSpecies === "higgs_cluster") {
+    return "higgs_cluster";
+  }
+  if (structureSpecies === "proton") {
+    return "proton";
+  }
+  if (structureSpecies === "neutron") {
+    return "neutron";
+  }
+  if (family === STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON) {
+    return "electron";
+  }
+  if (family === STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO) {
+    return "neutrino";
+  }
+  if (family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK) {
+    return "up_quark";
+  }
+  if (family === STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK) {
+    return "down_quark";
+  }
+  return structureSpecies || "noether_core";
+}
+
+function inferParticipantPolarityFromStructure(structureRoot) {
+  const polarity = String(getStructureTrait(structureRoot, "polarity", "")).trim().toLowerCase();
+  return polarity === "anti" ? "anti" : "pro";
+}
+
+function inferParticipantBaseLabelFromStructure(structureRoot) {
+  return String(structureRoot?.label ?? structureRoot?.species ?? "Structure").trim() || "Structure";
+}
+
 function syncParticipantHierarchyForPolarity(participant) {
   if (!participant || !supportsParticipantPolarity(participant.templateId)) {
     return;
@@ -431,14 +492,6 @@ function buildHierarchyForTemplate(templateId, label) {
   }
   return [
     createBinarySelectorGroupBranch("root", "pro/anti Noether core", normalizedTemplate),
-  ];
-}
-
-function buildSplitCoreHierarchy(label, options = {}) {
-  return [
-    createNoetherCoreBranch("root", label, {
-      anti: !!options.anti,
-    }),
   ];
 }
 
@@ -1159,31 +1212,48 @@ export function createComposerReactionSolverUiRuntime(deps) {
     templateId,
     label,
     hierarchy,
+    structure = null,
     extraFields = {},
   }) {
-    const resolvedBaseLabel = stripLeadingParticipantPolarity(label);
-    const resolvedPolarity = supportsParticipantPolarity(templateId)
-      ? normalizeParticipantPolarity(extraFields.polarity)
+    const resolvedTemplateId = templateId || inferTemplateIdFromStructure(structure?.root ?? structure);
+    const resolvedBaseLabel = stripLeadingParticipantPolarity(
+      label || inferParticipantBaseLabelFromStructure(structure?.root ?? structure)
+    );
+    const resolvedPolarity = supportsParticipantPolarity(resolvedTemplateId)
+      ? normalizeParticipantPolarity(
+          extraFields.polarity ?? inferParticipantPolarityFromStructure(structure?.root ?? structure)
+        )
       : "";
     const participant = {
       id: `solver_participant_${state.nextParticipantId++}`,
       side,
-      templateId,
+      templateId: resolvedTemplateId,
       baseLabel: resolvedBaseLabel,
       polarity: resolvedPolarity,
-      label: formatParticipantLabel(resolvedBaseLabel, templateId, resolvedPolarity),
-      hierarchy,
+      label: formatParticipantLabel(resolvedBaseLabel, resolvedTemplateId, resolvedPolarity),
+      hierarchy: Array.isArray(hierarchy) ? hierarchy : [],
       binarySelections: {},
       ...extraFields,
     };
-    const structure = buildParticipantStructure(
-      participant.id,
-      participant.templateId,
-      participant.baseLabel,
-      participant.polarity
-    );
-    participant.structure = structure.root;
-    participant.structureValidation = structure.validation;
+    const participantStructure = structure?.root
+      ? {
+          root: cloneStructureNode(structure.root),
+          validation: structure.validation ?? validateStructureTree(structure.root),
+        }
+      : structure
+        ? {
+            root: cloneStructureNode(structure),
+            validation: validateStructureTree(structure),
+          }
+        : buildParticipantStructure(
+            participant.id,
+            participant.templateId,
+            participant.baseLabel,
+            participant.polarity
+          );
+    participant.structure = participantStructure.root;
+    participant.structureValidation = participantStructure.validation;
+    participant.hierarchy = buildParticipantHierarchy(participantStructure.root, hierarchy);
     syncParticipantHierarchyForPolarity(participant);
     participant.binarySelections = getInitialParticipantBinarySelections(participant);
     return participant;
@@ -1420,12 +1490,29 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
     participant.structure = structure.root;
     participant.structureValidation = structure.validation;
+    participant.hierarchy = buildParticipantHierarchy(structure.root, participant.hierarchy);
     closeMenu();
     render();
     setStatus(
       `${getParticipantSideLabel(participant.side, { capitalized: true })} ${participant.label} updated.`
     );
     return true;
+  }
+
+  function buildSplitParticipantsFromChildStructures(participant, childStructures = [], extraFieldsByIndex = () => ({})) {
+    return (Array.isArray(childStructures) ? childStructures : []).map((childStructure, index) =>
+      createParticipantRecord({
+        side: participant.side,
+        templateId: inferTemplateIdFromStructure(childStructure),
+        label: inferParticipantBaseLabelFromStructure(childStructure),
+        structure: childStructure,
+        hierarchy: buildParticipantHierarchy(childStructure, []),
+        extraFields: {
+          polarity: inferParticipantPolarityFromStructure(childStructure),
+          ...extraFieldsByIndex(childStructure, index),
+        },
+      })
+    );
   }
 
   function splitHiggsParticipantById(participantId) {
@@ -1439,60 +1526,20 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
 
     const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
-    const replacementParticipants = [
-      createParticipantRecord({
-        side: participant.side,
-        templateId: "noether_core",
-        label: "Noether core",
-        hierarchy: buildSplitCoreHierarchy("Pro core"),
-        extraFields: {
-          polarity: "pro",
-          splitGroupId,
-          splitOriginTemplateId: "higgs_cluster",
-          splitOriginRole: "pro",
-          splitOriginIndex: 0,
-        },
-      }),
-      createParticipantRecord({
-        side: participant.side,
-        templateId: "noether_core",
-        label: "Noether core",
-        hierarchy: buildSplitCoreHierarchy("Anti core", { anti: true }),
-        extraFields: {
-          polarity: "anti",
-          splitGroupId,
-          splitOriginTemplateId: "higgs_cluster",
-          splitOriginRole: "anti",
-          splitOriginIndex: 1,
-        },
-      }),
-      createParticipantRecord({
-        side: participant.side,
-        templateId: "noether_core",
-        label: "Noether core",
-        hierarchy: buildSplitCoreHierarchy("Pro core"),
-        extraFields: {
-          polarity: "pro",
-          splitGroupId,
-          splitOriginTemplateId: "higgs_cluster",
-          splitOriginRole: "pro",
-          splitOriginIndex: 2,
-        },
-      }),
-      createParticipantRecord({
-        side: participant.side,
-        templateId: "noether_core",
-        label: "Noether core",
-        hierarchy: buildSplitCoreHierarchy("Anti core", { anti: true }),
-        extraFields: {
-          polarity: "anti",
-          splitGroupId,
-          splitOriginTemplateId: "higgs_cluster",
-          splitOriginRole: "anti",
-          splitOriginIndex: 3,
-        },
-      }),
-    ];
+    const childStructures = getStructureNodeChildren(participant.structure);
+    const replacementParticipants = buildSplitParticipantsFromChildStructures(
+      participant,
+      childStructures,
+      (childStructure, index) => ({
+        splitGroupId,
+        splitOriginTemplateId: "higgs_cluster",
+        splitOriginRole: inferParticipantPolarityFromStructure(childStructure),
+        splitOriginIndex: index,
+      })
+    );
+    if (!replacementParticipants.length) {
+      return false;
+    }
 
     state.participants.splice(participantIndex, 1, ...replacementParticipants);
     removeMappingsForParticipant(participantId);
@@ -1520,27 +1567,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
       (entry) => String(entry?.id ?? "") === participantId
     );
     const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
-    const quarkTemplates =
-      participant.templateId === "proton"
-        ? ["up_quark", "down_quark", "up_quark"]
-        : ["down_quark", "up_quark", "down_quark"];
-    const replacementParticipants = quarkTemplates.map((templateId, index) =>
-      createParticipantRecord({
-        side: participant.side,
-        templateId,
-        label: templateId === "up_quark" ? "Up Quark" : "Down Quark",
-        hierarchy: buildHierarchyForTemplate(
-          templateId,
-          templateId === "up_quark" ? "Up Quark" : "Down Quark"
-        ),
-        extraFields: {
-          polarity: "pro",
-          splitGroupId,
-          splitOriginTemplateId: participant.templateId,
-          splitOriginIndex: index,
-        },
+    const childStructures = getStructureNodeChildren(participant.structure);
+    const replacementParticipants = buildSplitParticipantsFromChildStructures(
+      participant,
+      childStructures,
+      (_childStructure, index) => ({
+        splitGroupId,
+        splitOriginTemplateId: participant.templateId,
+        splitOriginIndex: index,
       })
     );
+    if (!replacementParticipants.length) {
+      return false;
+    }
 
     state.participants.splice(participantIndex, 1, ...replacementParticipants);
     removeMappingsForParticipant(participantId);

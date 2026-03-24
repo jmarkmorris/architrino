@@ -1613,7 +1613,7 @@ body {
 .composer-reaction-solver-surface {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(280px, 1fr) minmax(200px, 0.72fr) minmax(280px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 0.72fr) minmax(0, 1fr);
   gap: 18px;
   flex: 1;
   min-height: 0;
@@ -1699,6 +1699,7 @@ body {
 .composer-reaction-solver-center {
   position: relative;
   z-index: 2;
+  min-width: 0;
   min-height: 0;
 }
 
@@ -1712,7 +1713,7 @@ body {
 }
 
 .composer-reaction-solver-column.is-products {
-  padding-left: 48px;
+  padding-left: 28px;
   padding-right: 0;
 }
 
@@ -2044,7 +2045,20 @@ body {
 .composer-reaction-solver-composite-visual-rail {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+}
+
+.composer-reaction-solver-composite-root-anchor {
+  position: relative;
+  z-index: 2;
+}
+
+.composer-reaction-solver-participant:not(.is-product) .composer-reaction-solver-composite-root-anchor {
+  margin-left: -6px;
+}
+
+.composer-reaction-solver-participant.is-product .composer-reaction-solver-composite-root-anchor {
+  margin-right: -6px;
 }
 
 .composer-reaction-solver-binary-selector {
