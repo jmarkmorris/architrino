@@ -87,6 +87,12 @@ function getBinarySelectorGroupLabel(structureRoot = null) {
   return `${prefix} Noether core`;
 }
 
+function getCanonicalNoetherCoreLabel(polarity = "") {
+  return String(polarity ?? "").trim().toLowerCase() === "anti"
+    ? "Anti Noether core"
+    : "Pro Noether core";
+}
+
 function getBinarySelectorTemplateId(structureRoot = null) {
   const family = String(structureRoot?.classification?.family ?? "").trim();
   if (family === STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON) {
@@ -170,25 +176,26 @@ function buildCoreAssemblyDescriptorTree(structureRoot, fallbackLabel) {
     id: String(structureRoot?.id ?? "root"),
     label: String(structureRoot?.label ?? fallbackLabel).trim() || fallbackLabel,
     renderMode: REACTION_STRUCTURE_RENDER_MODES.ASSEMBLY_CLUSTER_GRID,
-    children: getStructureNodeChildren(structureRoot).map((childNode, index) => ({
-      id: childNode.id || `core_${index + 1}`,
-      label: String(childNode?.label ?? "Noether core").trim() || "Noether core",
-      renderMode: REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID,
-      inventory: String(getStructureTrait(childNode, "polarity", "")).trim().toLowerCase() === "anti"
-        ? { antiCore: 1 }
-        : { proCore: 1 },
-      children: STRUCTURE_SLOT_ORDER.map((slotName) =>
-        createBinarySlotDescriptor(
-          `${childNode.id}/${slotName}`,
-          `${slotName} binary`,
-          getSlotCode(slotName),
-          {
-            withPersonality: false,
-            renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE,
-          }
-        )
-      ),
-    })),
+    children: getStructureNodeChildren(structureRoot).map((childNode, index) => {
+      const polarity = String(getStructureTrait(childNode, "polarity", "")).trim().toLowerCase();
+      return {
+        id: childNode.id || `core_${index + 1}`,
+        label: getCanonicalNoetherCoreLabel(polarity),
+        renderMode: REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID,
+        inventory: polarity === "anti" ? { antiCore: 1 } : { proCore: 1 },
+        children: STRUCTURE_SLOT_ORDER.map((slotName) =>
+          createBinarySlotDescriptor(
+            `${childNode.id}/${slotName}`,
+            `${slotName} binary`,
+            getSlotCode(slotName),
+            {
+              withPersonality: false,
+              renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE,
+            }
+          )
+        ),
+      };
+    }),
   }];
 }
 
@@ -257,6 +264,30 @@ export function isReactionStructureInlineAnchorRenderMode(renderMode = "") {
   );
 }
 
+export function walkReactionStructureDescriptorTree(nodes = [], visitor = () => {}) {
+  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
+    visitor(node);
+    walkReactionStructureDescriptorTree(node?.children, visitor);
+  });
+}
+
+export function findReactionStructureDescriptorNode(nodes = [], nodeId = "") {
+  const normalizedId = String(nodeId ?? "").trim();
+  if (!normalizedId) {
+    return null;
+  }
+  for (const node of Array.isArray(nodes) ? nodes : []) {
+    if (String(node?.id ?? "").trim() === normalizedId) {
+      return node;
+    }
+    const childMatch = findReactionStructureDescriptorNode(node?.children, normalizedId);
+    if (childMatch) {
+      return childMatch;
+    }
+  }
+  return null;
+}
+
 export function shouldRenderReactionStructureDescriptorChildren(node = null) {
   const renderMode = String(node?.renderMode ?? "").trim();
   return (
@@ -302,6 +333,46 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
     }];
   }
   return [];
+}
+
+export function getReactionBinarySelectorGroups(structureRoot) {
+  const descriptorTree = buildReactionStructureDescriptorTree(structureRoot);
+  const groups = [];
+  walkReactionStructureDescriptorTree(descriptorTree, (node) => {
+    if (node?.renderMode !== REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
+      return;
+    }
+    const slotNodes = Array.isArray(node?.children)
+      ? node.children.filter(
+          (childNode) =>
+            childNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR ||
+            childNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE
+        )
+      : [];
+    groups.push({
+      id: String(node?.id ?? "").trim(),
+      templateId: String(node?.templateId ?? "").trim().toLowerCase(),
+      label: String(node?.label ?? "").trim(),
+      slotNodes,
+      occupancy: node?.traits?.occupancy ?? null,
+      binaryPresence: node?.traits?.binaryPresence ?? null,
+    });
+  });
+  return groups;
+}
+
+export function findReactionBinarySelectorGroup(structureRoot, targetNodeId = "") {
+  const normalizedId = String(targetNodeId ?? "").trim();
+  if (!normalizedId) {
+    return null;
+  }
+  return (
+    getReactionBinarySelectorGroups(structureRoot).find(
+      (group) =>
+        group.id === normalizedId ||
+        group.slotNodes.some((slotNode) => slotNode?.id === normalizedId)
+    ) ?? null
+  );
 }
 
 export function buildReactionSolverHierarchyFromStructure(structureRoot) {

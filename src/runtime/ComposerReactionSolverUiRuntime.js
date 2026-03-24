@@ -9,9 +9,11 @@ import {
 } from "./ComposerReactionStructureSelectionRuntime.js";
 import {
   buildReactionStructureDescriptorTree,
+  findReactionStructureDescriptorNode,
   isReactionStructureCompositeGridRenderMode,
   isReactionStructureInlineAnchorRenderMode,
   REACTION_STRUCTURE_RENDER_MODES,
+  walkReactionStructureDescriptorTree,
   shouldRenderReactionStructureDescriptorChildren,
 } from "./ComposerReactionStructureDescriptorRuntime.js";
 import {
@@ -35,7 +37,7 @@ import { validateStructureTree } from "../domain/structure/StructureValidation.j
 const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
   higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
-  photon: { shortLabel: "Ph", accent: "#ffd34a" },
+  photon: { shortLabel: "Ph", accent: "#a259ff" },
   neutron: { shortLabel: "N", accent: "#a259ff" },
   proton: { shortLabel: "P", accent: "#ff5a4a" },
   transmute: { shortLabel: "T", accent: "#a259ff" },
@@ -245,17 +247,17 @@ function createBinaryBranch(
 function createProAntiCoreBranch(id) {
   return {
     id,
-    label: "Pro/anti core",
+    label: "Pro/anti Noether core",
     children: [
       {
         id: `${id}/pro_core`,
-        label: "Pro core",
+        label: "Pro Noether core",
         children: [],
         inventory: { proCore: 1 },
       },
       {
         id: `${id}/anti_core`,
-        label: "Anti core",
+        label: "Anti Noether core",
         children: [],
         inventory: { antiCore: 1 },
       },
@@ -492,12 +494,12 @@ function buildHierarchyForTemplate(templateId, label) {
         label: "Higgs cluster",
         renderMode: "assembly-cluster-grid",
         children: [
-          createNoetherCoreBranch("root/pro_core_1", "Pro core"),
-          createNoetherCoreBranch("root/anti_core_1", "Anti core", {
+          createNoetherCoreBranch("root/pro_core_1", "Pro Noether core"),
+          createNoetherCoreBranch("root/anti_core_1", "Anti Noether core", {
             anti: true,
           }),
-          createNoetherCoreBranch("root/pro_core_2", "Pro core"),
-          createNoetherCoreBranch("root/anti_core_2", "Anti core", {
+          createNoetherCoreBranch("root/pro_core_2", "Pro Noether core"),
+          createNoetherCoreBranch("root/anti_core_2", "Anti Noether core", {
             anti: true,
           }),
         ],
@@ -511,8 +513,8 @@ function buildHierarchyForTemplate(templateId, label) {
         label: "Photon",
         renderMode: "assembly-cluster-grid",
         children: [
-          createNoetherCoreBranch("root/pro_core_1", "Pro core"),
-          createNoetherCoreBranch("root/anti_core_1", "Anti core", {
+          createNoetherCoreBranch("root/pro_core_1", "Pro Noether core"),
+          createNoetherCoreBranch("root/anti_core_1", "Anti Noether core", {
             anti: true,
           }),
         ],
@@ -624,7 +626,7 @@ function getParticipantCardMeta(participant = null) {
   if (templateId === "photon") {
     return {
       ...baseMeta,
-      accent: "#ffd34a",
+      accent: "#a259ff",
     };
   }
   if (templateId === "electron" || templateId === "down_quark") {
@@ -1164,26 +1166,6 @@ function getInitialParticipantBinarySelections(participant) {
   );
 }
 
-function visitHierarchyNodes(nodes = [], visitor = () => {}) {
-  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
-    visitor(node);
-    visitHierarchyNodes(node?.children, visitor);
-  });
-}
-
-function findHierarchyNodeById(nodes = [], nodeId = "") {
-  for (const node of Array.isArray(nodes) ? nodes : []) {
-    if (node?.id === nodeId) {
-      return node;
-    }
-    const childMatch = findHierarchyNodeById(node?.children, nodeId);
-    if (childMatch) {
-      return childMatch;
-    }
-  }
-  return null;
-}
-
 function topLevelHierarchyHasRenderMode(nodes = [], renderMode = "") {
   return (Array.isArray(nodes) ? nodes : []).some((node) => node?.renderMode === renderMode);
 }
@@ -1463,41 +1445,26 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant || !node?.id) {
       return null;
     }
+    const descriptorNode =
+      findReactionStructureDescriptorNode(participant?.hierarchy, node.id) ?? node;
     return {
       participant,
-      node,
-      structureNode: participant.structure ? findStructureNodeById(participant.structure, node.id) : null,
+      node: descriptorNode,
+      structureNode: participant.structure
+        ? findStructureNodeById(participant.structure, descriptorNode.id)
+        : null,
     };
   }
 
   function rebuildAnchorRegistry() {
     const registry = new Map();
     state.participants.forEach((participant) => {
-      visitHierarchyNodes(participant.hierarchy, (node) => {
+      walkReactionStructureDescriptorTree(participant.hierarchy, (node) => {
         const nodeKey = buildNodeKey(participant.id, node.id);
         const context = createAnchorContext(participant, node);
         if (context) {
           registry.set(nodeKey, context);
         }
-      });
-      getParticipantBinarySelectorGroups(participant).forEach((groupNode) => {
-        const groupKey = buildNodeKey(participant.id, groupNode.id);
-        if (!registry.has(groupKey)) {
-          const groupContext = createAnchorContext(participant, groupNode);
-          if (groupContext) {
-            registry.set(groupKey, groupContext);
-          }
-        }
-        (Array.isArray(groupNode?.slotNodes) ? groupNode.slotNodes : []).forEach((slotNode) => {
-          const slotKey = buildNodeKey(participant.id, slotNode.id);
-          if (registry.has(slotKey)) {
-            return;
-          }
-          const slotContext = createAnchorContext(participant, slotNode);
-          if (slotContext) {
-            registry.set(slotKey, slotContext);
-          }
-        });
       });
     });
     state.anchorRegistry = registry;
@@ -1880,7 +1847,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     closeMenu();
     render();
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster split into four core assemblies.`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster split into four Noether core assemblies.`
     );
     return true;
   }
@@ -1925,8 +1892,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     render();
     const splitSummary =
       participant.templateId === "photon"
-        ? "split into pro and anti core assemblies."
-        : "split into constituent quarks.";
+        ? "split into pro and anti Noether core assemblies."
+        : participant.templateId === "higgs_cluster"
+          ? "split into four Noether core assemblies."
+          : "split into constituent quarks.";
     setStatus(
       `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} ${splitSummary}`
     );
@@ -2713,7 +2682,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return header;
   }
 
-  function createNoetherCoreGridSections(participant, node) {
+  function createNoetherCoreGridSections(participant, node, options = {}) {
+    const { interactiveBinaryAnchors = true } = options;
     const tiles = document.createElement("div");
     tiles.className = "composer-reaction-solver-noether-core-grid-track";
     const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
@@ -2727,14 +2697,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
         childNode.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE
           ? null
           : getBinaryPersonalitySelection(participant, childNode);
-      const tile = createAnchorButton(participant, childNode, nodeKey, {
-        extraClassNames: [
-          "composer-reaction-solver-binary-choice",
-          "composer-reaction-solver-binary-choice-is-anchor",
-          "composer-reaction-solver-noether-core-grid-tile",
-          "is-static",
-        ],
-      });
+      const tile = interactiveBinaryAnchors
+        ? createAnchorButton(participant, childNode, nodeKey, {
+            extraClassNames: [
+              "composer-reaction-solver-binary-choice",
+              "composer-reaction-solver-binary-choice-is-anchor",
+              "composer-reaction-solver-noether-core-grid-tile",
+              "is-static",
+            ],
+          })
+        : Object.assign(document.createElement("div"), {
+            className:
+              "composer-reaction-solver-binary-choice composer-reaction-solver-noether-core-grid-tile is-static",
+          });
       tile.style.setProperty(
         "--binary-choice-accent",
         choice?.accent ?? "#b889ff"
@@ -2886,7 +2861,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function createCompositeAssemblyRowTrack(participant, rowNode) {
     if (rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID) {
-      return createNoetherCoreGridSections(participant, rowNode).tiles;
+      return createNoetherCoreGridSections(participant, rowNode, {
+        interactiveBinaryAnchors: false,
+      }).tiles;
     }
     if (rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
       return isQuarkTemplateId(rowNode.templateId ?? participant.templateId)

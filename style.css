@@ -1862,10 +1862,6 @@ body {
   color: rgba(244, 247, 255, 0.88);
 }
 
-.composer-reaction-solver-particle.is-anti-polarity .composer-reaction-solver-particle-label {
-  color: #ffffff;
-}
-
 .composer-reaction-solver-particle-label-line {
   display: block;
 }

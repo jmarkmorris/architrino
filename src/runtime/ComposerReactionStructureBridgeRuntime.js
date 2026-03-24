@@ -9,6 +9,12 @@ import {
 } from "../domain/structure/StructureSchema.js";
 import { validateStructureTree } from "../domain/structure/StructureValidation.js";
 
+function formatNoetherCoreLabel(polarity = "pro") {
+  return String(polarity ?? "").trim().toLowerCase() === "anti"
+    ? "Anti Noether core"
+    : "Pro Noether core";
+}
+
 function createArchitrinoNode(id, charge, role, label) {
   return createStructureNode({
     id,
@@ -176,10 +182,22 @@ function createHiggsClusterNode(id, options = {}) {
       source: "derived",
     },
     children: [
-      createNoetherCoreNode(`${id}/core_pro_1`, { label: "Pro core", polarity: "pro" }),
-      createNoetherCoreNode(`${id}/core_anti_1`, { label: "Anti core", polarity: "anti" }),
-      createNoetherCoreNode(`${id}/core_pro_2`, { label: "Pro core", polarity: "pro" }),
-      createNoetherCoreNode(`${id}/core_anti_2`, { label: "Anti core", polarity: "anti" }),
+      createNoetherCoreNode(`${id}/core_pro_1`, {
+        label: formatNoetherCoreLabel("pro"),
+        polarity: "pro",
+      }),
+      createNoetherCoreNode(`${id}/core_anti_1`, {
+        label: formatNoetherCoreLabel("anti"),
+        polarity: "anti",
+      }),
+      createNoetherCoreNode(`${id}/core_pro_2`, {
+        label: formatNoetherCoreLabel("pro"),
+        polarity: "pro",
+      }),
+      createNoetherCoreNode(`${id}/core_anti_2`, {
+        label: formatNoetherCoreLabel("anti"),
+        polarity: "anti",
+      }),
     ],
   });
 }
@@ -196,8 +214,14 @@ function createPhotonNode(id, options = {}) {
       source: "derived",
     },
     children: [
-      createNoetherCoreNode(`${id}/core_pro_1`, { label: "Pro core", polarity: "pro" }),
-      createNoetherCoreNode(`${id}/core_anti_1`, { label: "Anti core", polarity: "anti" }),
+      createNoetherCoreNode(`${id}/core_pro_1`, {
+        label: formatNoetherCoreLabel("pro"),
+        polarity: "pro",
+      }),
+      createNoetherCoreNode(`${id}/core_anti_1`, {
+        label: formatNoetherCoreLabel("anti"),
+        polarity: "anti",
+      }),
     ],
   });
 }
