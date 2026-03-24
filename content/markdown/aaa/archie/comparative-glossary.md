@@ -34,6 +34,7 @@ This glossary provides a comparative reference between standard modern framework
 | Electrino | No fundamental $-e/6$ charge; electron is elementary with charge $-e$. | Negative-polarity architrino. When electric bookkeeping is needed for comparison or continuity, it carries effective label $q=-\epsilon$ where $\epsilon=\lvert e\rvert/6$. |
 | Emission Time | Usually implicit as retarded time in propagators/Green-function methods. | Explicit source-emission timestamp $t_0$ for a wake contribution later received at $(\mathbf{x},t)$ under the causal condition. |
 | Euclidean Void | No fixed Euclidean background; $\mathrm{GR}$ uses dynamical spacetime geometry, $\mathrm{QM}/\mathrm{QFT}$ assumes a background only in specific approximations. | Continuous, unmoving $\mathbb{R}^3$ container. |
+| Background (AAA ontology) | Often ambiguous between spacetime, vacuum, and medium. | Prefer `background` for the fixed container only: absolute time + Euclidean void. Do not let it silently absorb the Noether Sea contents. |
 | Event-Horizon Alignment Condition | Event horizon is a null surface in GR. | Planck-scale alignment: middle and outer binaries reach $v=c_f$ and become coplanar/co-linear with the inner binary; precession ceases. |
 | Field Speed ($c_f$, $\mathbb{A}\mathbb{A}\mathbb{A}$ reference speed) | Speed of light $c$ in vacuum; invariant signal speed in $\mathrm{SR}/\mathrm{GR}$. | Propagation speed of architrino potential wakes relative to the void; reference speed for self-hit threshold. |
 | Field-Speed Threshold | No special threshold at $v=c$ beyond kinematic invariance. | Symmetry-breaking boundary at $v=c_f$ separating partner-only and self-hit regimes. |
@@ -43,7 +44,7 @@ This glossary provides a comparative reference between standard modern framework
 | Measurement Interaction | In standard usage, "measurement" is often formalized by projection, POVMs, or decoherence models. | Physical interaction between assemblies and environment/detector that drives irreversible record formation and effective outcome selection without invoking ontic wavefunction collapse. |
 | Neutral Assemblies | Rough analog to non-luminous gravitating matter components in dark-sector modeling. | Dark-sector-like gravitating structures made of neutral tri-binary assemblies. |
 | Noether Core | No such assembly; vacuum is not composed of cores. | Neutral assembly (coupled pro/anti tri-binaries) forming a spacetime medium node. |
-| Noether Sea | No physical sea; vacuum is the ground state of fields, not a substance. | Lattice/network of Noether cores filling space; the spacetime medium. |
+| Noether Sea | No physical sea; vacuum is the ground state of fields, not a substance. | Lattice/network of Noether cores occupying the Euclidean void; the canonical ontological term for the ambient substrate contents. |
 | Noether Sea Density ($\rho_{vac}$) | Vacuum energy density or cosmological-constant density $\rho_\Lambda$; typically treated as constant in $\Lambda\mathrm{CDM}$. | Local Noether core number density $\rho_{vac}(\mathbf{x},t)$; sets refractive index and clock rates. |
 | Non-Markovian Memory | Memory effects appear in many-body/open-system models but are not a foundational ontology term in GR/QM/ΛCDM. | Evolution depends on path history (past wake emissions/intersections), not only the instantaneous state; key in self-hit dynamics and delayed interactions. |
 | Partner-Only Hit | No analogue in standard models. | Interaction regime with $v<c_f$ where an architrino only intercepts partner wakes (no self-hit). |
@@ -73,6 +74,8 @@ This glossary provides a comparative reference between standard modern framework
 | --- | --- | --- | --- |
 | vacuum (as physical emptiness) | vacuum state / medium context | Noether Sea; spacetime medium; tri-binary spacetime | Use "vacuum" only when explicitly discussing mainstream historical semantics. |
 | ether / aether (alone) | medium (clarified) | Noether Sea; spacetime medium | Avoid ambiguous historical "luminiferous ether" connotations. |
+| background (when meaning the fixed container) | background spacetime | Euclidean void; absolute background | Keep `background` tied to the fixed container in ontology-first prose. |
+| background (when meaning what fills the container) | medium / vacuum background | Noether Sea; ambient substrate contents; spacetime medium | Do not blur the contents with the fixed background itself. |
 | curved space (as fundamental ontology) | effective geometry | effective metric; refractive geometry from medium density/stress | In $\mathbb{A}\mathbb{A}\mathbb{A}$, fundamental ontology is Euclidean void + assembly medium; GR-like curvature is emergent. |
 | retarded / retard (as shorthand) | delayed causal contribution | path history; causal wake surface; causal isochron | Keeps language tied to explicit wake-emission bookkeeping. |
 | field (for emitted architrino influence) | effective field | wake; causal wake | Prefer `wake` for the emitted substrate structure. Keep `field` only when the discussion is explicitly effective, continuum, or QFT-comparative. |
@@ -86,7 +89,7 @@ This glossary provides a comparative reference between standard modern framework
 | charge (when used as the default name for an architrino) | charge-like polarity bookkeeping | architrino; polarity; axial architrino; transceiver of potential | Avoid collapsing architrino ontology into point-charge language. Keep `charge` for historical continuity, standard-model comparison, or higher-level electric/color/gauge bookkeeping when that is the real topic. |
 | axial layer / axial pattern / axial frame | older fermion-structure wording | axial layer / axial pattern / axial frame | Use `axial` for the system-level organization and `polar` for the specific site geometry. |
 | global time (when referring to universal clocking) | universal time parameter | absolute time; universal synchronization | Keep "global" for non-time global constraints (e.g., neutrality) when mathematically precise. |
-| spacetime (when used as a standalone fundamental ontology) | effective/emergent spacetime description | spacetime sea; tri-binary sea; Noether core sea; spacetime medium | $\mathbb{A}\mathbb{A}\mathbb{A}$ uses "spacetime"; prefer qualified terms to avoid ontology drift. |
+| spacetime (when used as a standalone fundamental ontology) | effective/emergent spacetime description | spacetime medium; Noether Sea; Euclidean void | $\mathbb{A}\mathbb{A}\mathbb{A}$ uses `spacetime` at the effective level. Use `spacetime medium` only as a bridge term, `Noether Sea` for substrate contents, and `Euclidean void` for the fixed container. |
 | vacuum fluctuation (if interpreted as empty-space randomness) | effective fluctuation in medium fields | potential fluctuation in architrino/Noether-sea system | Use when describing local transient potential-pattern variation. |
 
 ---

@@ -222,6 +222,18 @@ Prefer:
 
 Reserve `field` for effective, continuum, or explicitly comparative discussion. When the prose is naming emitted substrate-level AAA structure, prefer `wake` so the emission order and ontological level remain explicit.
 
+### Background vs Contents
+
+Keep the 3D container distinct from what occupies it.
+
+Prefer:
+
+- `Euclidean void` for the fixed background container
+- `Noether Sea` for the ambient substrate contents
+- `spacetime medium` only as a neutral bridge term when translating toward effective spacetime language
+
+Avoid letting `background`, `space`, `spacetime`, and `medium` drift into one another without an explicit level shift. In ontology-first prose, `background` should normally mean the fixed container, not the contents.
+
 Avoid outdated terminology built from `retard` or `retarded` outside literal quotation or code identifiers.
 
 ### Reader-facing posture

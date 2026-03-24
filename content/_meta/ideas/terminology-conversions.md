@@ -164,6 +164,44 @@ Do not blanket-replace every use of `field`. Each sentence should be checked for
 - If the sentence is effective or comparative, `field` may still be correct.
 - If the sentence mixes both, rewrite it so the bridge is explicit rather than hybridized.
 
+## Background-vs-Contents Guidance
+
+The 3D ontological picture should distinguish clearly between the fixed container and what occupies it.
+
+Recommended stack:
+
+- `absolute time + Euclidean void` = the fixed ontological background
+- `Noether Sea` = the ambient contents of that background
+- `spacetime medium` = a neutral bridge term for those contents when translating toward effective spacetime language
+- `spacetime` = emergent/effective geometry or observer-level description
+
+### Preferred usage
+
+- Use `Euclidean void` when the fixed 3D container itself is meant.
+- Use `Noether Sea` when the ontological substrate population inside that container is meant.
+- Use `spacetime medium` as a bridge term when prose needs to connect reader expectations about spacetime with the constitutive substrate, without yet forcing the full `Noether Sea` term.
+- Use `background` carefully: in ontology-first prose, let it mean the fixed container, not the contents.
+
+### Terms to watch
+
+These phrases often need review because they blur container and contents:
+
+- `the background is the Noether Sea`
+- `space is the medium`
+- `spacetime is filled with`
+- `background medium` when it is unclear whether the void or the contents are meant
+
+### Translation table
+
+| Current usage | Preferred direction |
+| --- | --- |
+| `background` when meaning the fixed container | `Euclidean void`, `absolute background`, or `fixed background` |
+| `background` when meaning the ambient substrate | `Noether Sea`, `ambient Noether Sea`, or `background contents` |
+| `space is filled with ...` | `the Euclidean void is populated by ...` |
+| `the background is the Noether Sea` | `the fixed background is the Euclidean void; its ambient contents are the Noether Sea` |
+| `spacetime medium` used as ontology without clarification | keep only if presented as a bridge term; otherwise prefer `Noether Sea` or `Euclidean void` depending on meaning |
+| `spacetime` when meaning the substrate contents | `Noether Sea` or `spacetime medium` depending on level |
+
 ## Decoration-Language Review
 
 All remaining uses of `decoration`, `decorated`, and `fermion-decoration` should be audited across the corpus and locally rewritten where a more exact AAA term exists.
@@ -239,7 +277,7 @@ Recommended direction:
 - Use `vacuum` mainly for Standard Model/QFT comparison or translation into observer-level language.
 - Use `aether` sparingly, if at all, and only where historical comparison is genuinely useful.
 - Use `medium` only when a generic constitutive statement is sufficient and the substrate identity is already clear.
-- Clarify whether `spacetime medium` is meant as an effective/emergent bridge term or as a synonym for the ontological substrate; it should not float between both without notice.
+- Treat `spacetime medium` as a neutral bridge term, not the primary ontological label. It is useful when connecting emergent spacetime language to constitutive substrate language, but it should not replace the clearer `Noether Sea` / `Euclidean void` distinction.
 
 Representative files:
 
@@ -261,6 +299,7 @@ Recommended direction:
 - Use `spacetime` for emergent, effective, geometric, relativistic, or observer-level structure.
 - Clarify whether `timespace` is a canonical AAA term with a distinct meaning or whether it should be reduced in favor of the more stable `void` / `spacetime` distinction.
 - Avoid letting plain `spacetime` stand in for the ontological substrate unless the document explicitly says it is speaking at an emergent level.
+- Keep the container/content distinction explicit: the `Euclidean void` is the fixed background, while the `Noether Sea` is what occupies that background.
 
 Representative files:
 

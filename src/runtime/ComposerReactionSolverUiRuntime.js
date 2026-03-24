@@ -990,6 +990,7 @@ function canTargetMappingRole(role = "") {
 
 const transmuteCardHeightPx = 72;
 const transmuteSlotStepPx = 108;
+const recentRouteFadeMs = 1600;
 const transmuteSlotEdgePaddingPx = 18;
 
 function getParticipantSideLabel(side = "", options = {}) {
@@ -1083,9 +1084,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     dragParticipantId: "",
     dragPointerId: null,
     hoveredMappingIds: [],
+    recentMappingIds: [],
   };
 
   let drawFrameId = 0;
+  const recentRouteTimeoutIds = new Map();
 
   function findMappingsByNodeKey(nodeKey) {
     return state.mappings.filter(
@@ -1115,6 +1118,66 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return mapping.targetKey;
     }
     return "";
+  }
+
+  function clearRecentRouteTimeout(mappingId) {
+    const timeoutId = recentRouteTimeoutIds.get(mappingId);
+    if (!timeoutId) {
+      return;
+    }
+    window.clearTimeout(timeoutId);
+    recentRouteTimeoutIds.delete(mappingId);
+  }
+
+  function pruneRecentRouteState() {
+    const activeMappingIds = new Set(state.mappings.map((mapping) => mapping.id));
+    state.recentMappingIds = state.recentMappingIds.filter((mappingId) =>
+      activeMappingIds.has(mappingId)
+    );
+    [...recentRouteTimeoutIds.keys()].forEach((mappingId) => {
+      if (!activeMappingIds.has(mappingId)) {
+        clearRecentRouteTimeout(mappingId);
+      }
+    });
+  }
+
+  function clearAllRecentRouteState() {
+    [...recentRouteTimeoutIds.keys()].forEach((mappingId) => clearRecentRouteTimeout(mappingId));
+    state.recentMappingIds = [];
+  }
+
+  function markMappingsRecent(mappingIds = []) {
+    pruneRecentRouteState();
+    const activeMappingIds = new Set(state.mappings.map((mapping) => mapping.id));
+    const nextRecentIds = [...new Set(mappingIds.filter((mappingId) => activeMappingIds.has(mappingId)))];
+    if (!nextRecentIds.length) {
+      return;
+    }
+    const recentIds = new Set(state.recentMappingIds);
+    let didChange = false;
+    nextRecentIds.forEach((mappingId) => {
+      if (!recentIds.has(mappingId)) {
+        recentIds.add(mappingId);
+        didChange = true;
+      }
+      clearRecentRouteTimeout(mappingId);
+      recentRouteTimeoutIds.set(
+        mappingId,
+        window.setTimeout(() => {
+          recentRouteTimeoutIds.delete(mappingId);
+          const nextIds = state.recentMappingIds.filter((entry) => entry !== mappingId);
+          if (nextIds.length === state.recentMappingIds.length) {
+            return;
+          }
+          state.recentMappingIds = nextIds;
+          applyHoveredRouteState();
+        }, recentRouteFadeMs)
+      );
+    });
+    if (didChange) {
+      state.recentMappingIds = [...recentIds];
+    }
+    applyHoveredRouteState();
   }
 
   function getConflictingMappings(nodeKey, role) {
@@ -1406,6 +1469,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function removeMappingById(mappingId) {
     const beforeCount = state.mappings.length;
     state.mappings = state.mappings.filter((mapping) => mapping.id !== mappingId);
+    pruneRecentRouteState();
     return beforeCount !== state.mappings.length;
   }
 
@@ -1423,6 +1487,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.hoveredMappingIds = state.hoveredMappingIds.filter((mappingId) =>
       state.mappings.some((mapping) => mapping.id === mappingId)
     );
+    pruneRecentRouteState();
     return beforeCount !== state.mappings.length;
   }
 
@@ -1690,14 +1755,17 @@ export function createComposerReactionSolverUiRuntime(deps) {
         : false;
       return !(sourceConflict || targetConflict);
     });
+    pruneRecentRouteState();
+    const mappingId = `solver_mapping_${state.nextMappingId++}`;
     state.mappings.push({
-      id: `solver_mapping_${state.nextMappingId++}`,
+      id: mappingId,
       sourceKey,
       targetKey,
       sourceRole,
       targetRole,
     });
     state.hoveredMappingIds = [];
+    return mappingId;
   }
 
   function clearPendingSource() {
@@ -1962,6 +2030,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
     state.hoveredMappingIds = [];
+    clearAllRecentRouteState();
     closeMenu();
     render();
     setStatus("Reaction canvas cleared.");
@@ -1972,7 +2041,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     const hoveredMappingIds = new Set(state.hoveredMappingIds);
-    const hasHoveredRoute = hoveredMappingIds.size > 0;
+    const recentMappingIds = new Set(state.recentMappingIds);
 
     surface
       .querySelectorAll(".composer-reaction-solver-anchor[data-anchor-key][data-anchor-side]")
@@ -1983,18 +2052,26 @@ export function createComposerReactionSolverUiRuntime(deps) {
         const isMapped = mappingIds.length > 0;
         const isHighlighted =
           isMapped && mappingIds.some((mappingId) => hoveredMappingIds.has(mappingId));
+        const isRecent =
+          isMapped && mappingIds.some((mappingId) => recentMappingIds.has(mappingId));
         anchor.classList.toggle("is-route-highlighted", isHighlighted);
+        anchor.classList.toggle("is-route-recent", !isHighlighted && isRecent);
         anchor.classList.toggle(
           "is-route-dimmed",
-          hasHoveredRoute && isMapped && !isHighlighted
+          isMapped && !isHighlighted && !isRecent
         );
       });
 
     mapSvg.querySelectorAll(".composer-reaction-solver-path[data-mapping-id]").forEach((path) => {
       const mappingId = path.getAttribute("data-mapping-id") ?? "";
       const isHighlighted = hoveredMappingIds.has(mappingId);
+      const isRecent = recentMappingIds.has(mappingId);
       path.classList.toggle("is-route-highlighted", isHighlighted);
-      path.classList.toggle("is-route-dimmed", hasHoveredRoute && !isHighlighted);
+      path.classList.toggle("is-route-recent", !isHighlighted && isRecent);
+      path.classList.toggle(
+        "is-route-dimmed",
+        !isHighlighted && !isRecent
+      );
     });
   }
 
@@ -2006,6 +2083,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       nextIds.every((mappingId, index) => mappingId === currentIds[index])
     ) {
       return;
+    }
+    if (!nextIds.length && currentIds.length) {
+      markMappingsRecent(currentIds);
     }
     state.hoveredMappingIds = nextIds;
     applyHoveredRouteState();
@@ -2245,7 +2325,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
 
-    addOrReplaceMapping(state.pendingSourceKey, state.pendingSourceRole, nodeKey, role);
+    const mappingId = addOrReplaceMapping(
+      state.pendingSourceKey,
+      state.pendingSourceRole,
+      nodeKey,
+      role
+    );
+    markMappingsRecent([mappingId]);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
     render();
@@ -2390,7 +2476,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
       setHoveredMappingIds(getMappingIdsForAnchor(nodeKey, anchorRole))
     );
     anchor.addEventListener("pointerleave", () => setHoveredMappingIds([]));
-    anchor.addEventListener("click", () => handleAnchorClick(anchorRole, nodeKey));
+    anchor.addEventListener("click", () => {
+      markMappingsRecent(getMappingIdsForAnchor(nodeKey, anchorRole));
+      handleAnchorClick(anchorRole, nodeKey);
+    });
     return anchor;
   }
 

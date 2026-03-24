@@ -103,6 +103,7 @@ Notes:
 - Vocabulary: Use “expanding causal isochrons” as the canonical term for emitted structures; “wavefront” may be included once as a parenthetical synonym at first use. Avoid generic “spheres” or “ridges” in technical statements (reserve “ridges” for analogies).
 - Vocabulary: Prefer `wake` or `causal wake` to `field` in substrate-level discussion. Use `field` mainly for effective-level observer descriptions or when translating into standard modern terminology.
 - Translation rule: `field` -> `wake` when the prose means emitted architrino influence; `wake field` should usually be split into either `causal wake` or `effective field`, depending on level.
+- Vocabulary: Keep the container/content distinction explicit. `Euclidean void` names the fixed spatial container; `Noether Sea` names the ambient substrate contents; `spacetime medium` is acceptable only as a bridge term when translating toward effective spacetime language.
 - Vocabulary: In fermion axial-structure discussion, use `axial` for the six-site system-level organization and `polar` for the specific site geometry. Prefer `axial architrino`, `axial layer`, `axial pattern`, `axial inventory`, `axial frame`, `polar site`, and `polar dyad`.
 - This glossary canonicalizes cross-chapter symbols. Specialized chapter-local symbols (e.g., CKM matrix entries, isotope labels, detector-specific nuisance parameters) should be defined at first use in their own documents.
 
