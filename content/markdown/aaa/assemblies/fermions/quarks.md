@@ -2,9 +2,9 @@
 
 ## Overview
 
-This chapter collects the current quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the tri-binary program, how their decoration patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
+This chapter collects the current quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the tri-binary program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
 
-At the substrate level, a quark is a decorated Noether-core assembly. The core fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active decoration pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
+At the substrate level, a quark is a Noether-core assembly with an axial layer. The core fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
 Illustrative diagrams can be added later. For now the chapter uses axis strings and tables so the catalog is explicit without waiting on artwork.
 
@@ -15,7 +15,7 @@ Illustrative diagrams can be added later. For now the chapter uses axis strings 
 The quark construction used here follows the same nucleus-plus-axial split already used in the fermion mapping chapters:
 
 - The **Noether core** is the neutral binary scaffold.
-- The **axial layer** is the six-site decoration carrying the visible charge pattern.
+- The **axial layer** is the six-site organization carrying the visible charge pattern.
 
 For matter quarks, the core is a **pro-core**. It is neutral in total charge and differs across generations only by shielding level:
 
@@ -43,7 +43,7 @@ for Generations I, II, and III respectively. This gives:
 
 ### Axis notation
 
-To describe color and decoration geometry compactly, use the three core axes $(H,M,L)$ and the following axis classes:
+To describe color and axial geometry compactly, use the three core axes $(H,M,L)$ and the following axis classes:
 
 - $P^+ = (+,+)$: an axis whose two polar sites are both positrino.
 - $P^- = (-,-)$: an axis whose two polar sites are both electrino.
@@ -62,7 +62,7 @@ Colorless fermions keep the three axes equivalent. Quarks do not. A quark become
 
 ### Up-type template
 
-All up-type quarks share the same six-site decoration count:
+All up-type quarks share the same six-site axial count:
 $$
 5P + 1E.
 $$
@@ -83,7 +83,7 @@ $$
 
 ### Down-type template
 
-All down-type quarks share the same six-site decoration count:
+All down-type quarks share the same six-site axial count:
 $$
 2P + 4E.
 $$
@@ -113,7 +113,7 @@ The image-level implementation candidate for right-handed pro-core couplings mat
 
 For right-handed quarks:
 
-- the six-site decoration counts stay the same as in the flavor catalog,
+- the six-site axial counts stay the same as in the flavor catalog,
 - the weak-active triad is treated as hidden or inactive,
 - therefore
   $$
@@ -131,7 +131,7 @@ This gives the standard singlet assignments:
 | $u^R,c^R,t^R$ | $5P,1E$ | $+2/3$ | $T_3=0,\ Y=+4/3$ |
 | $d^R,s^R,b^R$ | $2P,4E$ | $-1/3$ | $T_3=0,\ Y=-2/3$ |
 
-The same count logic is what makes the right-handed quark sector look naturally like an SU(2) singlet arc in the six-site axial space: once the Weak-Coupling Triad is no longer exposed, the only remaining electroweak datum is the net decoration charge. In that sense, the right-handed quark state is not defined by a new decoration pattern, but by the same pattern viewed in a geometrically shielded coupling posture.
+The same count logic is what makes the right-handed quark sector look naturally like an SU(2) singlet arc in the six-site axial space: once the Weak-Coupling Triad is no longer exposed, the only remaining electroweak datum is the net axial charge. In that sense, the right-handed quark state is not defined by a new axial pattern, but by the same pattern viewed in a geometrically shielded coupling posture.
 
 ### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
@@ -139,12 +139,12 @@ The corresponding left-handed image suggests a useful implementation candidate f
 
 - the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
 - the up-type and down-type quarks then sit on the same electroweak doublet arc,
-- and the distinction between them is carried by the exposed Weak-Coupling Triad rather than by a different total decoration inventory.
+- and the distinction between them is carried by the exposed Weak-Coupling Triad rather than by a different total axial inventory.
 
 In this bookkeeping:
 
-- the left-handed up-type states keep the $5P,1E$ decoration count,
-- the left-handed down-type states keep the $2P,4E$ decoration count,
+- the left-handed up-type states keep the $5P,1E$ axial count,
+- the left-handed down-type states keep the $2P,4E$ axial count,
 - the up-type branch carries
   $$
   T_3 = +\frac{1}{2}, \qquad Y = +\frac{1}{3},
@@ -156,7 +156,7 @@ In this bookkeeping:
 
 This gives the standard doublet bookkeeping:
 
-| State family | Decoration count | Electric charge $Q$ | Left-handed assignment |
+| State family | Axial count | Electric charge $Q$ | Left-handed assignment |
 | --- | --- | ---: | ---: |
 | $u^L,c^L,t^L$ | $5P,1E$ | $+2/3$ | $T_3=+1/2,\ Y=+1/3$ |
 | $d^L,s^L,b^L$ | $2P,4E$ | $-1/3$ | $T_3=-1/2,\ Y=+1/3$ |
@@ -197,7 +197,7 @@ At a broader bookkeeping level, it also suggests a compact charged-fermion rule:
 
 In this reverse-engineered candidate:
 
-| State family | Decoration count | Electric charge $Q$ | Right-handed anti-core assignment |
+| State family | Axial count | Electric charge $Q$ | Right-handed anti-core assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^R,\bar c^R,\bar t^R$ | $1P,5E$ | $-2/3$ | $T_3=-1/2,\ Y=-1/3$ |
 | $\bar d^R,\bar s^R,\bar b^R$ | $4P,2E$ | $+1/3$ | $T_3=+1/2,\ Y=-1/3$ |
@@ -212,7 +212,7 @@ $$
 
 For the left-handed anti-core branch, the same mirror logic gives:
 
-| State family | Decoration count | Electric charge $Q$ | Left-handed anti-core assignment |
+| State family | Axial count | Electric charge $Q$ | Left-handed anti-core assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^L,\bar c^L,\bar t^L$ | $1P,5E$ | $-2/3$ | $T_3=0,\ Y=-4/3$ |
 | $\bar d^L,\bar s^L,\bar b^L$ | $4P,2E$ | $+1/3$ | $T_3=0,\ Y=+2/3$ |
@@ -285,11 +285,11 @@ The down quark is the ground-state down-type quark. It also uses the full pro tr
 
 #### Charm quark
 
-The charm quark keeps the up-type decoration pattern but sheds the outer shielding binary. In this bookkeeping it is therefore a Generation-II up-type core with the same visible charge geometry as the up quark but a more exposed core.
+The charm quark keeps the up-type axial pattern but sheds the outer shielding binary. In this bookkeeping it is therefore a Generation-II up-type core with the same visible charge geometry as the up quark but a more exposed core.
 
 #### Strange quark
 
-The strange quark is the Generation-II down-type partner of charm. It keeps the $2P,4E$ decoration pattern but lives on a bi-binary core rather than a tri-binary core.
+The strange quark is the Generation-II down-type partner of charm. It keeps the $2P,4E$ axial pattern but lives on a bi-binary core rather than a tri-binary core.
 
 #### Top quark
 
@@ -297,7 +297,7 @@ The top quark is the most exposed up-type branch in the present catalog. It carr
 
 #### Bottom quark
 
-The bottom quark is the Generation-III down-type branch. It carries the down-type $2P,4E$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type decoration geometry remains distinct.
+The bottom quark is the Generation-III down-type branch. It carries the down-type $2P,4E$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type axial geometry remains distinct.
 
 ## Color assignments
 
@@ -338,8 +338,8 @@ The most concrete current implementation candidate is:
 
 - every axis keeps its neutral source binary,
 - two axes carry polar-dyad decorations $(+,+)$,
-- one axis carries the mixed decoration $(+,-)$ or $(-,+)$,
-- and the color label is set by which axis carries that mixed decoration.
+- one axis carries the mixed polar dyad $(+,-)$ or $(-,+)$,
+- and the color label is set by which axis carries that mixed polar dyad.
 
 So for an up quark:
 
@@ -445,7 +445,7 @@ The catalog uses the following working rules:
 - **Up-type quarks couple to gluons through the exceptional mixed axis** against the two $P^+$ axes.
 - **Down-type quarks couple to gluons through the exceptional axis** against the two background axes of the chosen family.
 - **Local gluon complex:** the exchanged object should be understood as the coupled vortex corridor together with the source-binary vortex generators that sustain it, not as a detached tube with no source-side structure.
-- **Captive-potential transfer:** gluon exchange may swap or relabel captive axial potentials between coupled vortex channels so long as the quark remains in the same flavor class and keeps the same total decoration inventory.
+- **Captive-potential transfer:** gluon exchange may swap or relabel captive axial potentials between coupled vortex channels so long as the quark remains in the same flavor class and keeps the same total axial inventory.
 - **Flavor-blindness of strong coupling:** the same color operator acts on $u,c,t$ within the up-type template and on $d,s,b$ within the down-type template.
 - **No strong flavor change:** gluons do not turn $u$ into $d$, $c$ into $s$, or $t$ into $b$.
 - **No strong generation change:** gluons do not by themselves add or remove shielding binaries.
@@ -457,8 +457,8 @@ The catalog uses the following working rules:
 
 The following parts of the quark catalog are already fixed strongly enough to be treated as canonical in the present writeup:
 
-- up-type decoration count $5P,1E$,
-- down-type decoration count $2P,4E$,
+- up-type axial count $5P,1E$,
+- down-type axial count $2P,4E$,
 - generation as core shielding level,
 - architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
 - color as axis exceptionality in the three-state $(H,M,L)$ basis,

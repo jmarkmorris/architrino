@@ -84,7 +84,7 @@ One candidate periodic table classifies assemblies by:
 - winding numbers around self-hit regions
 - handedness (pro/anti: H/M/L vs H/L/M frequency ordering)
 - orbit chirality (CW vs CCW around the momentum vector)
-- charge decoration on six polar sites ($\pm \epsilon$ assignments)
+- axial-charge assignment on six polar sites ($\pm \epsilon$ assignments)
 
 A first-pass causal self-linking picture is to treat the trajectory $\gamma(t)$ together with its dominant causal-hit direction $\hat{\mathbf{r}}(t)$ as a ribbon and define a causal offset curve $\gamma_\epsilon(t) = \gamma(t) + \epsilon\,\hat{\mathbf{r}}(t)$. One then writes
 $$

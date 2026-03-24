@@ -189,7 +189,7 @@ If the effective nuclear potential cannot even satisfy the sign structure needed
 
 ## Relation to Mesons
 
-Mesons are not optional decoration in this story. They are the main residual-strong exchange channel already identified elsewhere in the repo.
+Mesons are not an optional add-on in this story. They are the main residual-strong exchange channel already identified elsewhere in the repo.
 
 The division of labor is:
 

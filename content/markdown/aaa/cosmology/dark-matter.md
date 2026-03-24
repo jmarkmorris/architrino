@@ -16,7 +16,7 @@ Throughout, "dark matter" refers to the set of phenomena conventionally attribut
 
 In the architrino framework, the Euclidean void is populated by a dense lattice of coupled neutral tri-binary assemblies—the Noether Sea. Each tri-binary consists of three nested electrino–positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent refractive effect: local variations in Noether-Sea density $\rho_{\mathrm{NS}}(\mathbf{x},t)$ alter effective signal-propagation speeds and the transmission of delayed causal flux, producing geodesic deviation and an effective metric $g_{\mu\nu}$ experienced by all assemblies.
 
-Massive composite assemblies (protons, atoms, stars) are tri-binary configurations with decoration charges; they locally compress the Noether Sea, increasing $\rho_{\mathrm{NS}}$ and slowing effective light propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to the medium compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../spacetime/emergent-metric.md)).
+Massive composite assemblies (protons, atoms, stars) are tri-binary configurations with axial layers; they locally compress the Noether Sea, increasing $\rho_{\mathrm{NS}}$ and slowing effective light propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to the medium compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../spacetime/emergent-metric.md)).
 
 ### What Counts as "Dark" in this Ontology
 
@@ -31,11 +31,11 @@ Two substrate-level mechanisms can satisfy these conditions, either separately o
 
 ### Candidate A — Neutral Assembly Populations
 
-**Definition.** Neutral tri-binary assemblies that lack exposed charged decoration sites. The minimal examples are:
+**Definition.** Neutral tri-binary assemblies that lack exposed charged polar sites in their axial layers. The minimal examples are:
 
-- **Neutrino-class assemblies:** Pro-tri-binary cores with balanced axial layers (3P, 3E decoration). These are the SM neutrinos themselves; their masses ($\sum m_\nu < 0.12$ eV from cosmological bounds) are too small to account for the full $\Omega_{\mathrm{DM}}$, but they contribute to the hot dark-matter fraction and to $N_{\mathrm{eff}}$.
+- **Neutrino-class assemblies:** Pro-tri-binary cores with balanced axial layers ($3P,3E$). These are the SM neutrinos themselves; their masses ($\sum m_\nu < 0.12$ eV from cosmological bounds) are too small to account for the full $\Omega_{\mathrm{DM}}$, but they contribute to the hot dark-matter fraction and to $N_{\mathrm{eff}}$.
 
-- **Heavier neutral assemblies (hypothetical):** Tri-binary cores carrying decoration patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment—analogous to the neutrino's balanced decoration but realized on a heavier core (e.g., a bi-binary or uni-binary nucleus with appropriately locked decoration, or a multi-core composite). The mass scale is set by the core's internal binding energy and Noether-Sea drag.
+- **Heavier neutral assemblies (hypothetical):** Tri-binary cores carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier core (e.g., a bi-binary or uni-binary nucleus with an appropriately locked axial layer, or a multi-core composite). The mass scale is set by the core's internal binding energy and Noether-Sea drag.
 
 - **Primordial Noether-core defects:** Dense, self-gravitating clusters of maximally contracted tri-binaries produced in the high-energy epoch—analogous to primordial black holes in standard cosmology but with internal Planck-core structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics.
 

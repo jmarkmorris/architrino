@@ -60,7 +60,7 @@ General Relativity predicts that an accelerating observer sees a thermal bath of
 Why are charges quantized in units of e/3?
 *   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ derives it.
 *   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $|e/6|$ charges are likely unstable. They either collapse (self-hit singularity) or fly apart.
-*   **The Survivors:** Only specific geometric configurations (the 6-pole decoration patterns) establish a stable resonance where attractive and repulsive forces balance via the tri-binary structure. These stable islands correspond exactly to the SM particle spectrum.
+*   **The Survivors:** Only specific geometric configurations (the six-pole axial patterns) establish a stable resonance where attractive and repulsive forces balance via the tri-binary structure. These stable islands correspond exactly to the SM particle spectrum.
 
 **SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six e/6 Axial Architrinos)**
 

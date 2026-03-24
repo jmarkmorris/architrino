@@ -85,16 +85,16 @@ Let's visualize how the APE would solve this.
 
 **1. Reactant:** Neutron ($u d d$)
 *   Core: 3 Tri-binaries, one per quark.
-*   Decorations: Net charge 0 (balanced mix of $+|e/6|$ and $-|e/6|$).
+*   Axial layer: Net charge 0 (balanced mix of $+|e/6|$ and $-|e/6|$).
 
 **2. The Event:**
 *   A "virtual W boson" event occurs. In APE terms, the Neutron core undergoes a geometric instability.
 *   A Spacetime Assembly (ST) is pulled in from the vacuum.
 
 **3. The Provenance Swap:**
-*   **Neutron Core:** Remains mostly intact but shifts configuration (Outer binary adjusts). It sheds a specific negative decoration pattern.
+*   **Neutron Core:** Remains mostly intact but shifts configuration (Outer binary adjusts). It sheds a specific negative axial pattern.
 *   **The Spacetime Assembly:** Breaks apart.
-    *   Part of it bonds with the shed decoration to form the **Electron** ($e^-$).
+    *   Part of it bonds with the shed axial architrinos to form the **Electron** ($e^-$).
     *   The complementary part (balancing momentum/spin) forms the **Anti-Neutrino** ($\bar{\nu}_e$).
     *   A quark is converted from a down to an up.
     *   The Neutron Core re-stabilizes as a **Proton** ($u u d$).

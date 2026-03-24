@@ -233,7 +233,7 @@ Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to 
 
 Let $L$ denote the total orbital angular momentum of a tri-binary assembly.
 
-- For generic modes $n$, $L(n)$ depends on decoration and environment.
+- For generic modes $n$, $L(n)$ depends on axial structure and environment.
 - For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:
   - the fundamental charge unit $\epsilon = e/6$ (A2),
   - the coupling $\kappa$ (A6),

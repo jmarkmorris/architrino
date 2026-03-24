@@ -41,7 +41,7 @@ The recursive picture is easiest to read as a bottom-up construction ladder:
 3. **Primal assembly:** a stable orbiting electrino-positrino binary is the first bound assembly.
 4. **Nested cores:** binaries can capture into larger nested systems, giving isolated-binary, bi-binary, and tri-binary cores with progressively stronger shielding structure.
 5. **Noether core stabilization:** the triply nested binary is the first fully three-dimensional shielded core. Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
-6. **Decorated fermions:** attaching six polar polar sites to a Noether core produces the fermion families; changing the core shielding tier changes generation, while pro/anti orientation tracks the handedness of the same core architecture rather than a separate substance type.
+6. **Fermions with axial layers:** attaching a six-site axial layer to a Noether core produces the fermion families; changing the core shielding tier changes generation, while pro/anti orientation tracks the handedness of the same core architecture rather than a separate substance type.
 7. **Collective medium:** larger balanced populations of cores organize into the spacetime medium, so the Noether Sea is a higher-order collective state of cores rather than a second fundamental substrate.
 8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels. Photons, weak corridors, and gluonic links therefore belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species.
 9. **Composite matter and reactions:** nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
@@ -50,7 +50,7 @@ This ladder matters because it prevents category drift. Fermions, bosons, and sp
 
 Just as important, the ladder should not be read as a single unbranched stack after the Noether core appears. Once stable cores exist, three descriptive branches open at once:
 
--   **Matter branch:** decorated cores yield fermions and then larger composites.
+-   **Matter branch:** Noether cores carrying axial layers yield fermions and then larger composites.
 -   **Medium branch:** dense balanced populations of cores yield the spacetime aether.
 -   **Interaction branch:** phase-locked disturbances and exchange corridors yield effective bosonic behavior.
 

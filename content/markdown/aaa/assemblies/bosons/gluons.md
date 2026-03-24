@@ -4,7 +4,7 @@
 
 ## The Geometric Origin of Color Charge
 
-In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a decorated Noether core: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet.
+In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether core with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet.
 
 ### The Tri-Binary Substrate
 
@@ -12,7 +12,7 @@ Timespace itself is populated by high-energy, small-scale tri-binaries, often in
 
 A quark core also has three ordered axes $(H,M,L)$, each carrying two polar sites.
 
-- **Axial layer:** 6 decoration sites total, 2 per axis.
+- **Axial layer:** 6 polar sites total, 2 per axis.
 - **Symmetry breaking:** quarks do not keep the three axes equivalent.
 - **Axis-exceptionality rule:** exactly one axis sits in an axial class different from the other two.
 

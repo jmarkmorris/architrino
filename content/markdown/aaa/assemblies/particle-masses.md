@@ -72,7 +72,7 @@ $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}.
 $$
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same decorated core architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from tri-binary, bi-binary, and uni-binary cores is more constrained than a generic monotone hierarchy.
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same core-plus-axial-layer architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from tri-binary, bi-binary, and uni-binary cores is more constrained than a generic monotone hierarchy.
 
 The conservative use of Koide here is therefore:
 
@@ -141,7 +141,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
  \zeta = \frac{|\Phi_{\text{far}}|}{|\Phi_{\text{internal}}|}.
  $$
  - For a perfectly shielded assembly (e.g., neutrino), $\zeta \to 0$.
- - For an unshielded charge (e.g., electron), $\zeta$ is determined by the asymmetry in the decoration layer.
+ - For an unshielded charge (e.g., electron), $\zeta$ is determined by the asymmetry in the axial layer.
 
 3. **Generational Scaling**:
  - Show that $\zeta_{\text{Gen I}} < \zeta_{\text{Gen II}} < \zeta_{\text{Gen III}}$ due to missing shielding binaries.
@@ -180,7 +180,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 
 **Actions:**
 1. **Electron Mass Calculation**:
- - Input: Tri-binary radius, frequency, decoration (\$6E$).
+ - Input: Tri-binary radius, frequency, axial layer (\$6E$).
  - Compute: $E_{\text{internal}}$, $\zeta$, $\beta$.
  - Output: Predicted $m_e$.
  - **Target:** Match $m_e = 0.511$ MeV to within 10%.

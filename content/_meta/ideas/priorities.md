@@ -141,7 +141,7 @@ Scoring system:
 - Current composer baseline, only what matters for the remainder:
   - blank-scene startup, canvas-first assembly placement, and canonical export are working;
   - timeline items for `Pause`, `Warp`, `Reaction`, `Graphic`, `Image`, and `Video` already behave like real spans;
-  - assemblies already support scene roles, members, personality slots, subassemblies, parent rebasing, path editing, transfer drafting, and history/envelope display toggles;
+  - assemblies already support scene roles, members, polar-site slots, subassemblies, parent rebasing, path editing, transfer drafting, and history/envelope display toggles;
   - the reaction app is now a real dedicated mode rather than only a `Map On Canvas` bridge:
     - it opens from the header `Reaction` pill,
     - it supports right-click add flows for reactants, products, and center-lane `Transmute` tiles,
@@ -189,14 +189,14 @@ Scoring system:
   - improve media-asset entry beyond typed paths where practical;
   - continue visible observer-language cleanup while allowing runtime internals to remain transitional until the object model is stable.
 - Priority 4: deepen structural editing beyond the current baseline:
-  - add structure-changing edits such as detaching a personality charge into a free architrino and breaking a binary into free architrinos;
+  - add structure-changing edits such as detaching an axial architrino into a free architrino and breaking a binary into free architrinos;
   - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
   - make parent/child nesting read as local structure rather than grouped ids alone;
   - add richer subassembly transforms, presets, and instance overrides;
   - add theory-facing overlays and rendering modes such as tracers, trails, and calculated shaded `E-B` wave patterns;
   - make scale changes legible in-scene, including clear indication when a structure, inset, or derived view is shown at a different scale;
   - support richer geometric depictions that matter across cases, especially oblate spheroids and spiral structures;
-  - animate deeper structural behaviors directly from the point-charge picture, including photon counter-rotation, self-propulsion, polarization, Malus-law behavior, personality-charge-driven precession, equivalence-principle explanations, and ephemeral `W` and `Z` configurations;
+  - animate deeper structural behaviors directly from the point-charge picture, including photon counter-rotation, self-propulsion, polarization, Malus-law behavior, axial-charge-driven precession, equivalence-principle explanations, and ephemeral `W` and `Z` configurations;
   - make momentum constraints legible in the structure model, especially the angular/linear momentum relations that maintain relative plane angles;
   - add notation and display conventions that distinguish apparent energy from total energy;
   - keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps.
@@ -278,7 +278,7 @@ Scoring system:
     2. coarse-grain the same causal medium into a constitutive response that yields `g_{\mu\nu}^{\mathrm{eff}}`, weak-field PPN closure, and suppressed preferred-frame leakage;
   - make the empirical stakes explicit:
     - the absolute-time / Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below `10^{-17}`,
-    - if the contraction and clock-slowing law require ad hoc tuning of `\kappa`, `\eta`, or decoration-specific structure, the bridge fails;
+    - if the contraction and clock-slowing law require ad hoc tuning of `\kappa`, `\eta`, or axial-structure-specific detail, the bridge fails;
   - close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional;
   - derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md);
   - derive the constitutive closure from the coarse-grained medium itself:
@@ -292,7 +292,7 @@ Scoring system:
   1. exact Noether derivation of momentum and angular momentum from the delayed action;
   2. `\eta \to 0` existence / uniqueness theory for the exact shell model;
   3. controlled kinetic / coarse-grained equation from the master law;
-  4. Lorentz-suppression emergence for moving assemblies in the full dynamics, ideally independent of specific charge decoration details;
+  4. Lorentz-suppression emergence for moving assemblies in the full dynamics, ideally independent of specific axial-layer details;
   5. effective magnetic / Lorentz-force emergence from assemblies;
   6. full attractor landscape for binaries and tri-binaries;
   7. quantum closure from the master equation.
@@ -302,7 +302,7 @@ Scoring system:
 - Keep terminology work small, surgical, and theory-protective: the goal is not literary variation but preventing category mistakes across ontology levels.
 - Immediate scope:
   - review all uses of `charge`, especially where the text may be treating an architrino as if it were merely a traditional point charge;
-  - replace architrino-level uses with more exact language such as `architrino`, `polarity`, `personality architrino`, or `transceiver of potential` where that sharpens the ontology;
+  - replace architrino-level uses with more exact language such as `architrino`, `polarity`, `axial architrino`, or `transceiver of potential` where that sharpens the ontology;
   - keep `charge` where it is genuinely the right term:
     - historical comparisons,
     - continuity with standard physics,

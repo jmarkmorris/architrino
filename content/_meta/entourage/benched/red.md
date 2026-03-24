@@ -226,7 +226,7 @@ Violations don't immediately kill the framework but require **major revision**:
 **From Particle Physics:**
 - **Identical particle interference:** Bosons **must** interfere constructively; fermions **destructively**--not "approximately," but exactly.
 - **Pauli exclusion precision:** Zero violations ever observed. If volume exclusion is the mechanism, it must be 100.000...% effective.
-- **Neutron-proton mass difference:** $(m_n - m_p) = 1.293$ MeV must **emerge** from decoration differences, not be input.
+- **Neutron-proton mass difference:** $(m_n - m_p) = 1.293$ MeV must **emerge** from axial-structure differences, not be input.
 - **Neutron magnetic moment:** $\mu_n = -1.913 \mu_N$ despite zero net charge. Can tri-binary geometry explain this sign and magnitude?
 - **Vacuum birefringence:** QED predicts tiny effect in strong B-fields. Does tri-binary medium enhance, suppress, or leave it unchanged? (Testable with next-gen lasers.)
 

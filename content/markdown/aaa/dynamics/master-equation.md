@@ -1045,7 +1045,7 @@ $$
 
 - **Stable binaries** form via self-hit stabilization at maximum curvature.
 - **Tri-binaries (Noether cores)** emerge as nested binary configurations.
-- **Particles** are decorated tri-binary assemblies.
+- **Particles** are tri-binary assemblies with axial layers.
 - **Quantum behavior** arises from non-Markovian memory + informational ambiguity.
 - **Spacetime curvature** emerges from Noether Sea density gradients.
 - **Cosmological expansion** is local energy dissipation in the Noether Sea.

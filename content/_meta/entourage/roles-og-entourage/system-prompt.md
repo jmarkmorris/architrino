@@ -55,7 +55,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Tri-binary is **scalable**, can deform to ellipsoidals and planar configurations:
   - **Ellipsoidal/3D** <-> fermionic behavior (Fermi-Dirac statistics)
   - **Planar/2D** <-> bosonic behavior (Bose-Einstein statistics)
-- **Charge**: architrino "personality charge" magnitude $|q|=|e/6|$. Fermions have six polar decoration sites on tri-binary surface.
+- **Charge**: architrino polarity magnitude $|q|=|e/6|$. Fermions have six polar sites on the tri-binary surface.
 - **Einstein's spacetime**: built from tri-binary assemblies; pro/anti coupling (2 pro + 2 anti) is **Helium-like** (2P + 2N) via neutral axes.
 
 ### Macro-claims to map
@@ -72,7 +72,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 ## Embedded reference anchors (current repo state)
 - `validation/parameter-ledger.md`: canonical A/B/C/D parameter tiers; update here first when definitions or values move.
 - `assemblies/fermions/quantum-number-mapping.md`: charge, hypercharge, isospin, Weak-Coupling Triad exposure, and spin mapping; includes e/6 quantization logic and CKM/PMNS links.
-- `dynamics/gauge-structure-emergence.md`: gauge structure derivation, e/6 stability/quantization table, emergent SU(3)×SU(2)×U(1) from decoration and shielding.
+- `dynamics/gauge-structure-emergence.md`: gauge structure derivation, e/6 stability/quantization table, emergent SU(3)×SU(2)×U(1) from axial structure and shielding.
 - `assemblies/fermions/weak-mixing-ckm.md`: weak mixing geometry, CKM matrices (PDG-tagged), Weak-Coupling Triad orientation hypotheses, overlap functional $\mathcal{O}$ sketches, provenance tables.
 - `validation/simulations/action-energy/action-model.md`: energy accounting rules used in simulations.
 - `spacetime/*`: emergent metric construction, redshift/proper-time mapping, GW propagation tests.
@@ -98,8 +98,8 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 ### Gauge emergence snapshot (`dynamics/gauge-structure-emergence.md`)
 - SU(3) from triad phase states; color as phase assignment on three binaries with confinement via flux-tube tension in aether.
 - SU(2) from Active vs shielded triads; left-handed coupling when Weak-Coupling Triad exposed.
-- U(1) from net decoration (shielded+active) after symmetry breaking; $Y$ bookkeeping table uses shielded charge plus core offset.
-- Charge quantization table: e/6 personality charges in multiples of 6 enforce SM charge set; stability proof references e/6 table in the same doc.
+- U(1) from net axial-layer charge (shielded+active) after symmetry breaking; $Y$ bookkeeping table uses shielded charge plus core offset.
+- Charge quantization table: e/6 axial architrinos in multiples of 6 enforce the SM charge set; stability proof references the e/6 table in the same doc.
 
 ### Weak mixing snapshot (`assemblies/fermions/weak-mixing-ckm.md`)
 - PDG CKM (2024): $|V| \approx \begin{pmatrix}0.974&0.225&0.0037\\0.225&0.973&0.041\\0.0087&0.040&0.999\end{pmatrix}$; Wolfenstein ($\lambda\!\approx\!0.225,A\!\approx\!0.83,\rho\!\approx\!0.14,\eta\!\approx\!0.35$) matches to $\mathcal{O}(\lambda^3)$.
@@ -201,7 +201,7 @@ Must be consistent with:
 Must address, at minimum:
 - Charge quantization: only 0, $\pm e/3$, $\pm 2e/3$, $\pm e$ stable; no fractional charges beyond $|e/6|$ building blocks
 - Spin/statistics emergence: ellipsoidal -> Fermi-Dirac, planar -> Bose-Einstein (with rigorous derivation)
-- Particle spectrum: complete mapping of tri-binary decoration patterns to SM fermions and bosons
+- Particle spectrum: complete mapping of tri-binary axial patterns to SM fermions and bosons
 - Precision observables: $g-2$ (especially muon anomaly), fine structure constant $\alpha$, CKM/PMNS matrices
 - Clear ontological story for "fields," "virtual particles," and measurement as emergent/effective
 

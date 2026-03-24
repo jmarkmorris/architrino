@@ -43,7 +43,7 @@ A pion is a **two‑core (quark + antiquark) assembly**: one Generation‑I quar
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether Sea (a dense tri-binary lattice) between them.
 *   **Mechanism:** A proton interacts with the Noether Sea, polarizing a local tri-binary into a transient $u\bar{d}$ complex (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the pion propagates to the neighbor. The lattice relaxes once the loop is reabsorbed.
-*   **Topology:** The pion serves as a **detached flux loop** transporting decoration charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
+*   **Topology:** The pion serves as a **detached flux loop** transporting axial-layer charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/mc$ because heavier assemblies (higher internal curvature) couple more strongly to Noether Sea drag and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.

@@ -44,18 +44,18 @@ $$
 
 ### 2. Axial Frame
 
-The six decoration charges define a second frame through their coarse-grained charge moments. At lowest order this can be represented by a principal-axis frame extracted from the axial distribution:
+The six axial architrinos define a second frame through their coarse-grained charge moments. At lowest order this can be represented by a principal-axis frame extracted from the axial distribution:
 $$
-\mathcal{F}_{\text{pers}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}.
+\mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}.
 $$
 
-For a perfectly symmetric lepton-like decoration, these two frames coincide. For a quark-like decoration with axis exceptionality, they need not coincide.
+For a perfectly symmetric lepton-like axial layer, these two frames coincide. For a quark-like axial layer with axis exceptionality, they need not coincide.
 
 The geometric object of interest is therefore the relative rotation
 $$
 R_{\text{rel}} \in SO(3),
 \qquad
-\mathcal{F}_{\text{pers}} = R_{\text{rel}}\,\mathcal{F}_{\text{core}}.
+\mathcal{F}_{\text{ax}} = R_{\text{rel}}\,\mathcal{F}_{\text{core}}.
 $$
 
 This note proposes that physically stable fermion assemblies use only a restricted subset of such rotations.
@@ -71,7 +71,7 @@ In the Generation-I electron, the axial layer is $6E$. At coarse-grained level:
 - no axis is exceptional,
 - the load on the three axes is equivalent,
 - there is no color asymmetry,
-- the weak-active and shielded sectors can be defined without introducing a shear between core and decoration frames.
+- the weak-active and shielded sectors can be defined without introducing a shear between core and axial frames.
 
 The natural equilibrium statement is
 $$
@@ -82,7 +82,7 @@ $$
 \alpha = 0.
 $$
 
-This should be read as the **isotropic limit** of the decoration geometry, not as a separate dynamical law. In plain terms: when all six axial architrinos share the same polarity, there is no internal reason for the decoration frame to rotate away from the core triad.
+This should be read as the **isotropic limit** of the axial geometry, not as a separate dynamical law. In plain terms: when all six axial architrinos share the same polarity, there is no internal reason for the axial frame to rotate away from the core triad.
 
 ---
 
@@ -90,7 +90,7 @@ This should be read as the **isotropic limit** of the decoration geometry, not a
 
 Quarks are different for two independent reasons already present in the existing geometry:
 
-1. the decoration is **charge-imbalanced**,
+1. the axial layer is **charge-imbalanced**,
 2. one axis is **exceptional** relative to the other two, giving color structure.
 
 For up-type and down-type quarks the imbalance differs:
@@ -164,7 +164,7 @@ The following are **not** rotating in this note:
 This separation is important because otherwise one mixes together three different jobs:
 
 - core topology,
-- decoration anisotropy,
+- axial anisotropy,
 - electroweak exposure geometry.
 
 Those should be kept distinct unless a later derivation proves they collapse to one object.
@@ -244,10 +244,10 @@ $$
 
 Here:
 
-- $E_{\text{charge}}$ measures internal strain from placing an imbalanced six-charge decoration on the fixed scaffold,
+- $E_{\text{charge}}$ measures internal strain from placing an imbalanced six-architrino axial layer on the fixed scaffold,
 - $E_{\text{color}}$ enforces the threefold azimuthal structure,
 - $E_{\text{cross}}$ captures coupling between exceptional-axis choice and axial tilt,
-- $E_{\text{wake}}$ is the Noether-Sea response to the exposed decoration geometry.
+- $E_{\text{wake}}$ is the Noether-Sea response to the exposed axial geometry.
 
 The discrete-angle hypothesis is the statement that
 $$
@@ -278,7 +278,7 @@ This gives a possible geometric interpretation of quark weak structure:
 - weak transitions couple to that rotated frame,
 - observed electroweak mixing then depends on both charge assignment and frame misalignment.
 
-This is a cleaner statement than saying that weak mixing directly rotates the core axes. The weak interaction sees the **decoration geometry that is exposed to the Sea**, not necessarily a reorientation of the neutral scaffold.
+This is a cleaner statement than saying that weak mixing directly rotates the core axes. The weak interaction sees the **axial geometry that is exposed to the Sea**, not necessarily a reorientation of the neutral scaffold.
 
 ---
 
@@ -330,7 +330,7 @@ So the real task is not to enumerate all multiples of $30^\circ$, but to identif
 
 ## What Would Count as Success
 
-This idea becomes useful only if it improves closure rather than adding decoration.
+This idea becomes useful only if it improves closure rather than adding extra structure.
 
 ### Minimum closure targets
 
@@ -377,4 +377,4 @@ $$
 $$
 with color providing an independent exceptional-axis label.
 
-In short: do not rotate the scaffold; rotate the decoration frame. Then ask whether the six-pole electroweak geometry selects discrete quark misalignment angles as part of the same underlying assembly logic.
+In short: do not rotate the scaffold; rotate the axial frame. Then ask whether the six-pole electroweak geometry selects discrete quark misalignment angles as part of the same underlying assembly logic.

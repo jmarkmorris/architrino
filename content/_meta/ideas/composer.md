@@ -12,7 +12,7 @@ This note is the single reference for:
 - what requirements the composed-animation scene type must satisfy,
 - and what near-term implementation path makes sense.
 
-The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is the future authoring layer for explicit assembly geometry: nested binaries, Noether-core-like structures, bound personality charges, internal orbital motion, reaction choreography, transport paths, and authored observer motion on one shared timeline. That matters because the theory does not stop at isolated pointlike objects. It claims that larger assemblies and their observable behavior arise from explicit internal organization and delayed dynamics, and the composer is the place where those structures become authorable, inspectable, exportable, and eventually reusable across scenes. It should be strong enough to depict either an imaginative construction or an observation-grounded reconstruction with the same rigorous timeline and graphics language.
+The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is the future authoring layer for explicit assembly geometry: nested binaries, Noether-core-like structures, bound axial architrinos, internal orbital motion, reaction choreography, transport paths, and authored observer motion on one shared timeline. That matters because the theory does not stop at isolated pointlike objects. It claims that larger assemblies and their observable behavior arise from explicit internal organization and delayed dynamics, and the composer is the place where those structures become authorable, inspectable, exportable, and eventually reusable across scenes. It should be strong enough to depict either an imaginative construction or an observation-grounded reconstruction with the same rigorous timeline and graphics language.
 
 ---
 
@@ -130,14 +130,14 @@ The composer should not treat free electrinos or positrinos as primary add-menu 
 The preferred authoring story is structural:
 
 - authors add built assemblies;
-- free architrinos appear when the author explicitly detaches a personality charge from an assembly;
+- free architrinos appear when the author explicitly detaches an axial architrino from an assembly;
 - or when the author explicitly breaks a binary into its constituent architrinos as part of a larger structural or reaction edit.
 
 This matters because a free architrino in the composer should usually mean that some prior structure has been opened, split, or transferred. That is a stronger and more informative authoring grammar than treating bare charges as generic top-level scene stamps.
 
 So future UI work should prioritize:
 
-- detaching a personality charge into a free architrino,
+- detaching an axial architrino into a free architrino,
 - breaking a binary into two free architrinos,
 - and carrying those outputs forward through path authoring, transfer, and reaction staging.
 
@@ -1013,12 +1013,12 @@ Observed composer capabilities in the runtime:
 - browser-local draft library save/load/delete alongside canonical JSON preview and export;
 - explicit assemblies with stable ids, names, scene roles, parent assignment, local positioning, and canonical per-assembly path data;
 - built-in assembly templates for Noether core, electron, down quark, and up quark;
-- assembly center handles, per-assembly path points, member handles, personality-slot handles, subassembly halos, and observer-path waypoints as live canvas objects;
+- assembly center handles, per-assembly path points, member handles, polar-site handles, subassembly halos, and observer-path waypoints as live canvas objects;
 - per-assembly path editing with direct point dragging, spline or polyline interpolation, and closed/open path state;
-- canvas-first assembly editing through center-handle menus, including member creation, personality assignment, parent rebasing, subassembly creation/dissolve, transfer start/complete, and per-assembly display toggles;
+- canvas-first assembly editing through center-handle menus, including member creation, axial assignment, parent rebasing, subassembly creation/dissolve, transfer start/complete, and per-assembly display toggles;
 - scene-role tagging as `Assembly`, `Reactant`, or `Product`, visible in the canvas, assembly list, and authored document;
 - timeline spans for `Pause`, `Warp`, `Reaction`, `Graphic`, `Image`, and `Video`, with overlap checks and direct edit/remove menus;
-- reaction spans with authored stage rows and a real `Map On Canvas` flow for reactant-to-product member/personality mapping;
+- reaction spans with authored stage rows and a real `Map On Canvas` flow for reactant-to-product member/axial mapping;
 - text callout overlays attached to assemblies or path points, with drag placement and shell-contact leader behavior;
 - fixed viewport image and video overlays with drag and resize behavior plus constrained media-path validation;
 - history traces, envelopes, transfer lines, and reaction-stage highlighting in the runtime document/path;
@@ -2559,7 +2559,7 @@ CoreSpec {
 
 Purpose:
 
-- define typed personality charges,
+- define typed axial architrinos,
 - support binding mode, placement policy, and local secondary motion.
 
 Draft shape:
@@ -2818,7 +2818,7 @@ Bad ticket grain:
 
 The draft schema above is intended to be able to describe the target scenes discussed so far.
 
-- A translating electron-like assembly is covered by `TimeSpec`, a root `AssemblySpec`, a straight-line `PathSpec`, a `CoreSpec` with internal `architrinos`, and bound `ChargeSpec` entries for the six electrino personality charges.
+- A translating electron-like assembly is covered by `TimeSpec`, a root `AssemblySpec`, a straight-line `PathSpec`, a `CoreSpec` with internal `architrinos`, and bound `ChargeSpec` entries for the six electrino axial architrinos.
 - A high-velocity Lorentz-oblate flythrough is covered by parent transport motion plus `CoreSpec.deformation` with `type: "lorentz_oblate"` and an axis derived from velocity or path tangent.
 - A curved-path assembly with charge jiggle is covered by spline or point-based `PathSpec` plus local `jiggle` motions on the charge specs.
 - Reaction coverage is detailed in [reaction.md](reaction.md), including `ReactionSpec`, `TransferSpec`, and `ProvenanceSpec` on the shared scene timeline.
@@ -3262,10 +3262,10 @@ In any of these scenes, observer path and observer orientation may also change a
 
 - A low apparent energy Noether core.
 - Internal orbital planes are approximately orthogonal.
-- The nested assembly is configured as an electron-like structure with six electrino personality charges arranged in a fourth shell.
+- The nested assembly is configured as an electron-like structure with six electrino axial architrinos arranged in a fourth shell.
 - The full assembly travels through the scene on a straight-line path.
 - Internal architrinos continue their authored orbital motion while the assembly translates.
-- Bound personality charges remain attached to the assembly while preserving their own placement and optional secondary motion.
+- Bound axial architrinos remain attached to the assembly while preserving their own placement and optional secondary motion.
 
 ### 2. Translating and rotating bound assembly
 

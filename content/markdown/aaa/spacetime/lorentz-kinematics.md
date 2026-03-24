@@ -570,7 +570,7 @@ Promote to nested tri-binary with coupled orbital scales. Establish:
 
 1. Persistence of aligned attractor family under drift.
 2. Factorization or controlled coupling of inner/middle/outer period shifts.
-3. Emergent universal $\gamma$-law independent of decoration details, within a defined class.
+3. Emergent universal $\gamma$-law independent of axial-structure details, within a defined class.
 
 ### 5.3 Stage C: continuum handoff
 

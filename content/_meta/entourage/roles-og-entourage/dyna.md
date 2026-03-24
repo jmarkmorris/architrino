@@ -369,7 +369,7 @@ You can consider the role successful if:
 - Effective field equations and approximate Lorentz invariance are derived in controlled limits.
 - There is a **coherent geometric/topological account** of:
   - Mass (as dynamical/topological resistance),
-  - Charge (from architrino personalities and decoration),
+  - Charge (from architrino polarity and axial structure),
   - Spin (from tri-binary geometry),
   - And at least a plausible path to generations.
 

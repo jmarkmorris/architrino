@@ -1016,7 +1016,7 @@ This is a **high-priority explanatory target**. Current hypothesis: the tri-bina
 - **Quarks**: $e/3$ (two architrinos), $2e/3$ (four architrinos)
 - **Leptons**: $0$ (six balanced architrinos), $\pm e$ (six of one sign)
 
-**Particle construction:** The $|e/6|$ unit creates a clear combinatorial path: nucleons are built from quarks ($e/3, 2e/3$) via integer counting of architrino charges. Leptons ($e$) similarly arise from specific six-architrino configurations on tri-binary polar decoration sites. This provides a unified explanation for charge quantization across all observed particles.
+**Particle construction:** The $|e/6|$ unit creates a clear combinatorial path: nucleons are built from quarks ($e/3, 2e/3$) via integer counting of architrino charges. Leptons ($e$) similarly arise from specific six-architrino configurations on tri-binary polar sites. This provides a unified explanation for charge quantization across all observed particles.
 
 See TOC Ch. 18 ("Fermions: Leptons and Quarks") and Ch. 22 ("Charge Stability Map") for detailed assembly-to-particle mappings.
 
@@ -1702,7 +1702,7 @@ The following questions remain open and are active areas of investigation:
 
 2. **What is the origin of $\epsilon = e/6$?**
  - Can this be derived from tri-binary topology, or is it a brute fact?
- - Connection to 6-fold symmetry of tri-binary polar decoration?
+ - Connection to 6-fold symmetry of tri-binary polar-site geometry?
 
 3. **What determines $\kappa$?**
  - Is it related to Planck units? To $e$, $c_f$, $\hbar$?

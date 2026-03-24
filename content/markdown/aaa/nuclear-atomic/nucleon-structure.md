@@ -13,14 +13,14 @@ A nucleon is a confined three-quark color-singlet assembly built from three Gene
 - a **proton** is the ground-state `uud` tri-core,
 - a **neutron** is the ground-state `udd` tri-core.
 
-Each constituent quark is itself a decorated Noether-core assembly of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md).
+Each constituent quark is itself a Noether-core assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md).
 
 ## Constituents and Counting
 
 For Generation-I quarks:
 
 - each quark core contributes 6 scaffold architrinos,
-- each quark axial layer contributes 6 decorations,
+- each quark axial layer contributes 6 axial architrinos,
 - so each Generation-I quark contributes 12 architrinos total.
 
 Therefore a nucleon contains
@@ -105,7 +105,7 @@ $$
 \frac{9-9}{6}e=0.
 $$
 
-The neutron is therefore not neutral because it lacks internal charge structure, but because its quark-level decoration asymmetries cancel in total.
+The neutron is therefore not neutral because it lacks internal charge structure, but because its quark-level axial asymmetries cancel in total.
 
 ## Effective Internal Geometry
 

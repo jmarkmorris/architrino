@@ -155,7 +155,7 @@ The points below are collected as a framework-internal research program, not as 
 
 ### 7.2 Assumptions
 
-- The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries decorated with six axial architrinos.
+- The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries carrying six axial architrinos.
 - Electron tri-binaries are assumed to couple to a central nuclear Noether core through local spacetime-aether gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
@@ -167,7 +167,7 @@ The points below are collected as a framework-internal research program, not as 
 - Volume-exclusion mechanism: each electron tri-binary displaces local spacetime aether, and overlap of two precessing ellipsoidal exclusion volumes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
 - Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by aether-displacement pressure rather than only an abstract occupancy postulate.
-- Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar decoration sites.
+- Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar sites.
 - Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer tri-binaries, which controls preferred bonding directions.
 - Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
 
@@ -179,7 +179,7 @@ The points below are collected as a framework-internal research program, not as 
 
 ### 7.5 Failure Modes and Falsification Criteria
 
-- If multi-body simulations of decorated tri-binaries do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
+- If multi-body simulations of tri-binaries with axial layers do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
 - If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
 - If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
 

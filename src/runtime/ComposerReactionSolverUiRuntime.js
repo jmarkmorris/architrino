@@ -3,11 +3,17 @@ import {
   evaluateComposerReactionMappingCandidate,
 } from "./ComposerReactionStructureMappingRuntime.js";
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
-import { buildReactionSolverHierarchyFromStructure } from "./ComposerReactionStructureHierarchyRuntime.js";
 import {
   findReactionBinarySelectorGroup,
   getReactionBinarySelectorGroups,
 } from "./ComposerReactionStructureSelectionRuntime.js";
+import {
+  buildReactionStructureDescriptorTree,
+  isReactionStructureCompositeGridRenderMode,
+  isReactionStructureInlineAnchorRenderMode,
+  REACTION_STRUCTURE_RENDER_MODES,
+  shouldRenderReactionStructureDescriptorChildren,
+} from "./ComposerReactionStructureDescriptorRuntime.js";
 import {
   getNoetherCoreSlotBinaryPresence,
 } from "../domain/structure/StructureClassification.js";
@@ -347,7 +353,7 @@ function buildParticipantStructure(participantId, templateId, baseLabel, polarit
 }
 
 function buildParticipantHierarchy(structureRoot, fallbackHierarchy = []) {
-  const derivedHierarchy = buildReactionSolverHierarchyFromStructure(structureRoot);
+  const derivedHierarchy = buildReactionStructureDescriptorTree(structureRoot);
   return Array.isArray(derivedHierarchy) && derivedHierarchy.length
     ? derivedHierarchy
     : Array.isArray(fallbackHierarchy)
@@ -683,13 +689,7 @@ function countDescendants(node) {
 }
 
 function shouldRenderChildNodes(node) {
-  return (
-    node?.renderMode !== "binary-selector" &&
-    node?.renderMode !== "binary-selector-grid" &&
-    node?.renderMode !== "higgs-cluster-grid" &&
-    node?.renderMode !== "assembly-cluster-grid" &&
-    node?.renderMode !== "binary-bare"
-  );
+  return shouldRenderReactionStructureDescriptorChildren(node);
 }
 
 function getBinaryPersonalityChoice(choiceId) {
@@ -768,7 +768,7 @@ function isQuarkTemplateId(templateId) {
 
 function collectLegacyBinarySelectorNodes(nodes = [], bucket = []) {
   (Array.isArray(nodes) ? nodes : []).forEach((node) => {
-    if (node?.renderMode === "binary-selector") {
+    if (node?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR) {
       bucket.push(node);
     }
     collectLegacyBinarySelectorNodes(node?.children, bucket);
@@ -778,7 +778,7 @@ function collectLegacyBinarySelectorNodes(nodes = [], bucket = []) {
 
 function collectLegacyBinarySelectorGroupNodes(nodes = [], bucket = []) {
   (Array.isArray(nodes) ? nodes : []).forEach((node) => {
-    if (node?.renderMode === "binary-selector-grid") {
+    if (node?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
       bucket.push(node);
     }
     collectLegacyBinarySelectorGroupNodes(node?.children, bucket);
@@ -788,7 +788,8 @@ function collectLegacyBinarySelectorGroupNodes(nodes = [], bucket = []) {
 
 function findLegacyBinarySelectorGroupNode(nodes = [], targetNodeId = "", currentGroup = null) {
   for (const node of Array.isArray(nodes) ? nodes : []) {
-    const nextGroup = node?.renderMode === "binary-selector-grid" ? node : currentGroup;
+    const nextGroup =
+      node?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID ? node : currentGroup;
     if (node?.id === targetNodeId) {
       return nextGroup;
     }
@@ -1130,7 +1131,7 @@ function topLevelHierarchyHasRenderMode(nodes = [], renderMode = "") {
 }
 
 function isCompositeGridRenderMode(renderMode = "") {
-  return renderMode === "higgs-cluster-grid" || renderMode === "assembly-cluster-grid";
+  return isReactionStructureCompositeGridRenderMode(renderMode);
 }
 
 function getParticipantRootNode(participant) {
@@ -2659,7 +2660,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       }
       const nodeKey = buildNodeKey(participant.id, childNode.id);
       const choice =
-        childNode.renderMode === "binary-bare"
+        childNode.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE
           ? null
           : getBinaryPersonalitySelection(participant, childNode);
       const tile = createAnchorButton(participant, childNode, nodeKey, {
@@ -2676,7 +2677,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       );
       tile.appendChild(
         createBinaryGlyph(choice, {
-          showPersonality: childNode.renderMode !== "binary-bare",
+          showPersonality: childNode.renderMode !== REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE,
           showBinary: childNode.hasBinary !== false,
         })
       );
@@ -2809,10 +2810,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function createCompositeAssemblyRowTrack(participant, rowNode) {
-    if (rowNode?.renderMode === "noether-core-grid") {
+    if (rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID) {
       return createNoetherCoreGridSections(participant, rowNode).tiles;
     }
-    if (rowNode?.renderMode === "binary-selector-grid") {
+    if (rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
       return isQuarkTemplateId(rowNode.templateId ?? participant.templateId)
         ? createQuarkPresetRowTrack(participant, rowNode)
         : createBinarySelectorGridTrack(participant, rowNode);
@@ -2823,7 +2824,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function createCompositeAssemblyRowCard(participant, rowNode) {
     const antiCoreCount = Number(rowNode?.inventory?.antiCore ?? 0);
     const inferredTemplateId =
-      rowNode?.renderMode === "noether-core-grid"
+      rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID
         ? "noether_core"
         : String(rowNode?.templateId ?? "").trim().toLowerCase();
     const inferredPolarity =
@@ -3315,7 +3316,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const nodeKey = buildNodeKey(participant.id, node.id);
       const hasChildren = Array.isArray(node.children) && node.children.length > 0;
       const canRenderChildren = hasChildren && shouldRenderChildNodes(node);
-      const rendersChildrenInline = node.renderMode === "noether-core-grid";
+      const rendersChildrenInline =
+        node.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID;
       const mapping = findMappingByNodeKey(nodeKey);
       const isCollapsed = !!mapping && canRenderChildren && !rendersChildrenInline;
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
@@ -3342,11 +3344,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const content = document.createElement("div");
       content.className = "composer-reaction-solver-tree-content";
       content.style.setProperty("--solver-depth", String(depth));
-      const usesInlineAnchor =
-        node.renderMode === "noether-core-grid" ||
-        node.renderMode === "binary-selector-grid" ||
-        node.renderMode === "higgs-cluster-grid" ||
-        node.renderMode === "assembly-cluster-grid";
+      const usesInlineAnchor = isReactionStructureInlineAnchorRenderMode(node.renderMode);
       if (usesInlineAnchor) {
         row.classList.add("is-inline-anchor");
       }
@@ -3358,25 +3356,22 @@ export function createComposerReactionSolverUiRuntime(deps) {
               textContent: `${hiddenDescendantCount} hidden`,
             })
           : null;
-      if (node.renderMode === "noether-core-grid") {
+      if (node.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID) {
         row.classList.add("is-noether-core-grid");
         content.classList.add("is-noether-core-grid");
         content.appendChild(createNoetherCoreGridContent(participant, node));
-      } else if (
-        node.renderMode === "higgs-cluster-grid" ||
-        node.renderMode === "assembly-cluster-grid"
-      ) {
+      } else if (isReactionStructureCompositeGridRenderMode(node.renderMode)) {
         row.classList.add("is-higgs-cluster-grid");
         content.classList.add("is-higgs-cluster-grid");
         content.appendChild(createCompositeAssemblyGridContent(participant, node));
-      } else if (node.renderMode === "binary-selector-grid") {
+      } else if (node.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
         row.classList.add("is-binary-selector-grid");
         content.classList.add("is-binary-selector-grid");
         content.appendChild(createBinarySelectorGridContent(participant, node));
-      } else if (node.renderMode === "binary-selector") {
+      } else if (node.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR) {
         row.classList.add("is-binary-selector");
         content.appendChild(createBinarySelectorContent(participant, node));
-      } else if (node.renderMode === "binary-bare") {
+      } else if (node.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE) {
         row.classList.add("is-binary-selector");
         content.appendChild(createBareBinaryContent(participant, node));
       } else {
@@ -3412,15 +3407,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
       participant.side === "product" && rootNodeKey
         ? getAnchorAvailability(participant.side, rootNodeKey)
         : null;
-    if (topLevelHierarchyHasRenderMode(participant.hierarchy, "noether-core-grid")) {
+    if (
+      topLevelHierarchyHasRenderMode(
+        participant.hierarchy,
+        REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID
+      )
+    ) {
       card.classList.add("has-noether-core-grid");
     }
-    if (
-      topLevelRenderMode === "noether-core-grid" ||
-      topLevelRenderMode === "binary-selector-grid" ||
-      topLevelRenderMode === "higgs-cluster-grid" ||
-      topLevelRenderMode === "assembly-cluster-grid"
-    ) {
+    if (isReactionStructureInlineAnchorRenderMode(topLevelRenderMode)) {
       card.classList.add("has-inline-field-header");
     }
     if (isComposite) {
