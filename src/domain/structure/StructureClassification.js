@@ -40,6 +40,12 @@ function getPrimaryNoetherCore(node) {
   return getStructureNodeChildren(node).find((child) => child?.kind === STRUCTURE_KINDS.NOETHER_CORE) ?? null;
 }
 
+function getSlotOccupant(slotNode) {
+  return getStructureNodeChildren(slotNode).find(
+    (child) => child?.kind === STRUCTURE_KINDS.PERSONALITY_DRESSED_BINARY
+  ) ?? null;
+}
+
 export function getNoetherCoreSlotOccupancy(coreNode) {
   const occupancy = {
     inner: false,
@@ -61,9 +67,38 @@ export function getNoetherCoreSlotOccupancy(coreNode) {
   return occupancy;
 }
 
+export function getNoetherCoreSlotBinaryPresence(coreNode) {
+  const presence = {
+    inner: false,
+    middle: false,
+    outer: false,
+  };
+  if (!coreNode || coreNode.kind !== STRUCTURE_KINDS.NOETHER_CORE) {
+    return presence;
+  }
+  getStructureNodeChildren(coreNode)
+    .filter((child) => child?.kind === STRUCTURE_KINDS.SLOT)
+    .forEach((slotNode) => {
+      const slotName = String(getStructureTrait(slotNode, "slot", "")).trim();
+      if (!STRUCTURE_SLOT_ORDER.includes(slotName)) {
+        return;
+      }
+      const occupant = getSlotOccupant(slotNode);
+      presence[slotName] = getStructureNodeChildren(occupant).some(
+        (child) => child?.kind === STRUCTURE_KINDS.BINARY
+      );
+    });
+  return presence;
+}
+
 export function getNoetherCoreOccupancyKey(coreNode) {
   const occupancy = getNoetherCoreSlotOccupancy(coreNode);
   return STRUCTURE_SLOT_ORDER.filter((slotName) => occupancy[slotName]).join("_");
+}
+
+export function getNoetherCoreBinaryPresenceKey(coreNode) {
+  const presence = getNoetherCoreSlotBinaryPresence(coreNode);
+  return STRUCTURE_SLOT_ORDER.filter((slotName) => presence[slotName]).join("_");
 }
 
 export function deriveStructureClassification(node) {
@@ -84,8 +119,8 @@ export function deriveStructureClassification(node) {
       },
     };
   }
-  const occupancyKey = getNoetherCoreOccupancyKey(getPrimaryNoetherCore(node));
-  const derived = familySpeciesMap[occupancyKey] ?? null;
+  const binaryPresenceKey = getNoetherCoreBinaryPresenceKey(getPrimaryNoetherCore(node));
+  const derived = familySpeciesMap[binaryPresenceKey] ?? null;
   return {
     species: derived?.species ?? node?.species,
     classification: {

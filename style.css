@@ -1587,7 +1587,7 @@ body {
 
 .composer-reaction-solver-topbar {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 46ch);
   align-items: start;
   gap: 14px;
 }
@@ -1752,22 +1752,29 @@ body {
   pointer-events: none;
 }
 
-.composer-reaction-solver-hint {
-  max-width: 520px;
-  min-height: 38px;
-  padding: 8px 16px;
-  border-radius: 14px;
-  border: 1px solid rgba(196, 74, 214, 0.72);
-  background: linear-gradient(180deg, rgba(15, 18, 38, 0.9), rgba(11, 14, 28, 0.94));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 0 0 1px rgba(196, 74, 214, 0.1);
+#composer-reaction-solver-hint.composer-reaction-solver-hint {
+  width: 100% !important;
+  max-width: 46ch !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
   color: rgba(244, 247, 255, 0.88);
-  font-size: 12px;
-  line-height: 1.2;
-  text-align: center;
-  align-self: center;
-  white-space: nowrap;
+  font-size: 13px;
+  line-height: 1.28;
+  text-align: left;
+  align-self: start;
+  justify-self: end;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: clip;
 }
 
 .composer-reaction-solver-participant {

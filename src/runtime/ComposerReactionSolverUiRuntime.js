@@ -4,7 +4,13 @@ import {
 } from "./ComposerReactionStructureMappingRuntime.js";
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 import { buildReactionSolverHierarchyFromStructure } from "./ComposerReactionStructureHierarchyRuntime.js";
-import { getNoetherCoreSlotOccupancy } from "../domain/structure/StructureClassification.js";
+import {
+  findReactionBinarySelectorGroup,
+  getReactionBinarySelectorGroups,
+} from "./ComposerReactionStructureSelectionRuntime.js";
+import {
+  getNoetherCoreSlotBinaryPresence,
+} from "../domain/structure/StructureClassification.js";
 import {
   cloneStructureNode,
   getStructureNodeChildren,
@@ -12,7 +18,7 @@ import {
   STRUCTURE_CLASSIFICATION_FAMILIES,
   STRUCTURE_KINDS,
 } from "../domain/structure/StructureSchema.js";
-import { mapStructure } from "../domain/structure/StructureTraversal.js";
+import { findStructureNodeById, mapStructure } from "../domain/structure/StructureTraversal.js";
 import { clearNoetherCoreSlotOccupant } from "../domain/structure/StructureTransforms.js";
 import { validateStructureTree } from "../domain/structure/StructureValidation.js";
 
@@ -760,23 +766,42 @@ function isQuarkTemplateId(templateId) {
   return normalizedTemplateId === "up_quark" || normalizedTemplateId === "down_quark";
 }
 
-function getBinarySelectorTemplateIdForNode(participant, groupNode = null) {
-  return String(groupNode?.templateId ?? participant?.templateId ?? "").trim().toLowerCase();
-}
-
-function collectBinarySelectorNodes(nodes = [], bucket = []) {
+function collectLegacyBinarySelectorNodes(nodes = [], bucket = []) {
   (Array.isArray(nodes) ? nodes : []).forEach((node) => {
     if (node?.renderMode === "binary-selector") {
       bucket.push(node);
     }
-    collectBinarySelectorNodes(node?.children, bucket);
+    collectLegacyBinarySelectorNodes(node?.children, bucket);
   });
   return bucket;
 }
 
-function getBinarySelectorNodes(participant, groupNode = null) {
-  const rootNodes = groupNode ? [groupNode] : participant?.hierarchy;
-  return collectBinarySelectorNodes(rootNodes, []).sort((left, right) => {
+function collectLegacyBinarySelectorGroupNodes(nodes = [], bucket = []) {
+  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
+    if (node?.renderMode === "binary-selector-grid") {
+      bucket.push(node);
+    }
+    collectLegacyBinarySelectorGroupNodes(node?.children, bucket);
+  });
+  return bucket;
+}
+
+function findLegacyBinarySelectorGroupNode(nodes = [], targetNodeId = "", currentGroup = null) {
+  for (const node of Array.isArray(nodes) ? nodes : []) {
+    const nextGroup = node?.renderMode === "binary-selector-grid" ? node : currentGroup;
+    if (node?.id === targetNodeId) {
+      return nextGroup;
+    }
+    const childMatch = findLegacyBinarySelectorGroupNode(node?.children, targetNodeId, nextGroup);
+    if (childMatch) {
+      return childMatch;
+    }
+  }
+  return null;
+}
+
+function sortBinarySelectorNodes(nodes = []) {
+  return [...nodes].sort((left, right) => {
     const leftRank = binarySlotRankByCode[left?.slotCode] ?? Number.MAX_SAFE_INTEGER;
     const rightRank = binarySlotRankByCode[right?.slotCode] ?? Number.MAX_SAFE_INTEGER;
     if (leftRank !== rightRank) {
@@ -784,6 +809,53 @@ function getBinarySelectorNodes(participant, groupNode = null) {
     }
     return String(left?.id ?? "").localeCompare(String(right?.id ?? ""));
   });
+}
+
+function getParticipantBinarySelectorGroups(participant) {
+  const structureGroups = getReactionBinarySelectorGroups(participant?.structure);
+  if (structureGroups.length) {
+    return structureGroups;
+  }
+  return collectLegacyBinarySelectorGroupNodes(participant?.hierarchy, []).map((groupNode) => ({
+    id: groupNode.id,
+    templateId: String(groupNode?.templateId ?? participant?.templateId ?? "").trim().toLowerCase(),
+    slotNodes: sortBinarySelectorNodes(collectLegacyBinarySelectorNodes([groupNode], [])),
+  }));
+}
+
+function resolveBinarySelectorGroup(participant, groupNodeOrNodeId = null) {
+  const explicitId =
+    typeof groupNodeOrNodeId === "string"
+      ? groupNodeOrNodeId
+      : String(groupNodeOrNodeId?.id ?? "").trim();
+  if (!explicitId) {
+    return null;
+  }
+  const structureGroup = findReactionBinarySelectorGroup(participant?.structure, explicitId);
+  if (structureGroup) {
+    return structureGroup;
+  }
+  return findLegacyBinarySelectorGroupNode(participant?.hierarchy, explicitId);
+}
+
+function getBinarySelectorTemplateIdForNode(participant, groupNode = null) {
+  const groupRecord = resolveBinarySelectorGroup(participant, groupNode);
+  return String(groupRecord?.templateId ?? participant?.templateId ?? "").trim().toLowerCase();
+}
+
+function getBinarySelectorNodes(participant, groupNode = null) {
+  const groupRecord = groupNode ? resolveBinarySelectorGroup(participant, groupNode) : null;
+  if (groupRecord?.slotNodes) {
+    return sortBinarySelectorNodes(groupRecord.slotNodes);
+  }
+  if (groupRecord && !groupRecord.slotNodes) {
+    return sortBinarySelectorNodes(collectLegacyBinarySelectorNodes([groupRecord], []));
+  }
+  const structureGroups = getParticipantBinarySelectorGroups(participant);
+  if (structureGroups.length) {
+    return sortBinarySelectorNodes(structureGroups.flatMap((group) => group.slotNodes ?? []));
+  }
+  return sortBinarySelectorNodes(collectLegacyBinarySelectorNodes(participant?.hierarchy, []));
 }
 
 function getDefaultBinaryChoiceIdForNode(participant, node, groupNode = null) {
@@ -1015,32 +1087,8 @@ function getAllowedBinaryChoiceIds(participant, node, groupNode = null) {
   );
 }
 
-function findBinarySelectorGroupNode(nodes = [], targetNodeId = "", currentGroup = null) {
-  for (const node of Array.isArray(nodes) ? nodes : []) {
-    const nextGroup = node?.renderMode === "binary-selector-grid" ? node : currentGroup;
-    if (node?.id === targetNodeId) {
-      return nextGroup;
-    }
-    const childMatch = findBinarySelectorGroupNode(node?.children, targetNodeId, nextGroup);
-    if (childMatch) {
-      return childMatch;
-    }
-  }
-  return null;
-}
-
-function collectBinarySelectorGroupNodes(nodes = [], bucket = []) {
-  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
-    if (node?.renderMode === "binary-selector-grid") {
-      bucket.push(node);
-    }
-    collectBinarySelectorGroupNodes(node?.children, bucket);
-  });
-  return bucket;
-}
-
 function getInitialParticipantBinarySelections(participant) {
-  const groupNodes = collectBinarySelectorGroupNodes(participant?.hierarchy, []);
+  const groupNodes = getParticipantBinarySelectorGroups(participant);
   if (!groupNodes.length) {
     return {};
   }
@@ -1055,6 +1103,13 @@ function getInitialParticipantBinarySelections(participant) {
       )
     )
   );
+}
+
+function visitHierarchyNodes(nodes = [], visitor = () => {}) {
+  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
+    visitor(node);
+    visitHierarchyNodes(node?.children, visitor);
+  });
 }
 
 function findHierarchyNodeById(nodes = [], nodeId = "") {
@@ -1205,6 +1260,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     menuOpen: false,
     menuClientX: 0,
     menuClientY: 0,
+    anchorRegistry: new Map(),
     dragParticipantId: "",
     dragPointerId: null,
     hoveredMappingIds: [],
@@ -1306,18 +1362,87 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function getNodeContext(nodeKey) {
-    const { participantId, nodeId } = parseNodeKey(nodeKey);
-    const participant = findParticipantById(participantId);
-    const node = participant ? findHierarchyNodeById(participant.hierarchy, nodeId) : null;
-    if (!participant || !node) {
+    if (!nodeKey) {
       return null;
     }
-    return { participant, node };
+    const existingContext = state.anchorRegistry.get(nodeKey) ?? null;
+    if (existingContext) {
+      return existingContext;
+    }
+    return rebuildAnchorRegistry().get(nodeKey) ?? null;
   }
 
   function resolveBinaryChoiceInventory(participant, node, groupNode = null) {
     const choice = getBinaryPersonalitySelection(participant, node, groupNode);
-    return getBinaryChoiceInventory(choice?.id);
+    const baseInventory = getBinaryChoiceInventory(choice?.id);
+    const slotName = String(node?.slotName ?? "").trim().toLowerCase() || ({
+      I: "inner",
+      M: "middle",
+      O: "outer",
+    }[String(node?.slotCode ?? "").trim().toUpperCase()] ?? "");
+    const groupRecord = resolveBinarySelectorGroup(participant, groupNode ?? node);
+    const structureNode = participant?.structure && groupRecord?.id
+      ? findStructureNodeById(participant.structure, groupRecord.id)
+      : null;
+    const coreNode =
+      structureNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
+        ? structureNode
+        : getStructureNodeChildren(structureNode).find(
+            (childNode) => childNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
+          ) ?? null;
+    const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
+    if (!slotName || binaryPresence[slotName] !== false) {
+      return baseInventory;
+    }
+    return {
+      electrino: Math.max(0, Number(baseInventory.electrino ?? 0) - 1),
+      positrino: Math.max(0, Number(baseInventory.positrino ?? 0) - 1),
+    };
+  }
+
+  function createAnchorContext(participant, node) {
+    if (!participant || !node?.id) {
+      return null;
+    }
+    return {
+      participant,
+      node,
+      structureNode: participant.structure ? findStructureNodeById(participant.structure, node.id) : null,
+    };
+  }
+
+  function rebuildAnchorRegistry() {
+    const registry = new Map();
+    state.participants.forEach((participant) => {
+      visitHierarchyNodes(participant.hierarchy, (node) => {
+        const nodeKey = buildNodeKey(participant.id, node.id);
+        const context = createAnchorContext(participant, node);
+        if (context) {
+          registry.set(nodeKey, context);
+        }
+      });
+      getParticipantBinarySelectorGroups(participant).forEach((groupNode) => {
+        const groupKey = buildNodeKey(participant.id, groupNode.id);
+        if (!registry.has(groupKey)) {
+          const groupContext = createAnchorContext(participant, groupNode);
+          if (groupContext) {
+            registry.set(groupKey, groupContext);
+          }
+        }
+        (Array.isArray(groupNode?.slotNodes) ? groupNode.slotNodes : []).forEach((slotNode) => {
+          const slotKey = buildNodeKey(participant.id, slotNode.id);
+          if (registry.has(slotKey)) {
+            return;
+          }
+          const slotContext = createAnchorContext(participant, slotNode);
+          if (slotContext) {
+            registry.set(slotKey, slotContext);
+          }
+        });
+      });
+    });
+    state.anchorRegistry = registry;
+    return registry;
   }
 
   function createEmptyLedger() {
@@ -1629,14 +1754,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return null;
     }
     const coreNode = getParticipantPrimaryNoetherCore(participant);
-    const occupancy = getNoetherCoreSlotOccupancy(coreNode);
-    if (occupancy.outer) {
+    const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
+    if (binaryPresence.outer) {
       return {
         slotName: "outer",
         menuLabel: "Remove outer binary",
       };
     }
-    if (occupancy.middle) {
+    if (binaryPresence.middle) {
       return {
         slotName: "middle",
         menuLabel: "Remove middle binary",
@@ -1839,7 +1964,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant || !nodeId) {
       return;
     }
-    const groupNode = findBinarySelectorGroupNode(participant.hierarchy, nodeId);
+    const groupNode = resolveBinarySelectorGroup(participant, nodeId);
     const nextSelections =
       findBestBinarySelectionAssignment(participant, groupNode, {
         pinnedNodeId: nodeId,
@@ -1857,7 +1982,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant || !nodeId) {
       return;
     }
-    const groupNode = findBinarySelectorGroupNode(participant.hierarchy, nodeId);
+    const groupNode = resolveBinarySelectorGroup(participant, nodeId);
     if (!groupNode || !isQuarkTemplateId(groupNode.templateId)) {
       return;
     }
@@ -2348,41 +2473,43 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function createBinaryGlyph(choice = null, options = {}) {
-    const { showPersonality = true } = options;
+    const { showPersonality = true, showBinary = true } = options;
     const glyph = createSvgElement("svg");
     glyph.classList.add("composer-reaction-solver-binary-glyph");
     glyph.setAttribute("viewBox", "0 0 120 120");
     glyph.setAttribute("aria-hidden", "true");
 
-    const orbit = createSvgElement("ellipse");
-    orbit.classList.add("composer-reaction-solver-binary-glyph-orbit");
-    orbit.setAttribute("cx", "60");
-    orbit.setAttribute("cy", "60");
-    orbit.setAttribute("rx", "38");
-    orbit.setAttribute("ry", "13");
-    glyph.appendChild(orbit);
+    if (showBinary) {
+      const orbit = createSvgElement("ellipse");
+      orbit.classList.add("composer-reaction-solver-binary-glyph-orbit");
+      orbit.setAttribute("cx", "60");
+      orbit.setAttribute("cy", "60");
+      orbit.setAttribute("rx", "38");
+      orbit.setAttribute("ry", "13");
+      glyph.appendChild(orbit);
 
-    const axis = createSvgElement("line");
-    axis.classList.add("composer-reaction-solver-binary-glyph-axis");
-    axis.setAttribute("x1", "60");
-    axis.setAttribute("y1", "18");
-    axis.setAttribute("x2", "60");
-    axis.setAttribute("y2", "102");
-    glyph.appendChild(axis);
+      const axis = createSvgElement("line");
+      axis.classList.add("composer-reaction-solver-binary-glyph-axis");
+      axis.setAttribute("x1", "60");
+      axis.setAttribute("y1", "18");
+      axis.setAttribute("x2", "60");
+      axis.setAttribute("y2", "102");
+      glyph.appendChild(axis);
 
-    const leftPole = createSvgElement("circle");
-    leftPole.classList.add("composer-reaction-solver-binary-dot", "is-left", "is-electrino");
-    leftPole.setAttribute("cx", "22");
-    leftPole.setAttribute("cy", "60");
-    leftPole.setAttribute("r", "8.5");
-    glyph.appendChild(leftPole);
+      const leftPole = createSvgElement("circle");
+      leftPole.classList.add("composer-reaction-solver-binary-dot", "is-left", "is-electrino");
+      leftPole.setAttribute("cx", "22");
+      leftPole.setAttribute("cy", "60");
+      leftPole.setAttribute("r", "8.5");
+      glyph.appendChild(leftPole);
 
-    const rightPole = createSvgElement("circle");
-    rightPole.classList.add("composer-reaction-solver-binary-dot", "is-right", "is-positrino");
-    rightPole.setAttribute("cx", "98");
-    rightPole.setAttribute("cy", "60");
-    rightPole.setAttribute("r", "8.5");
-    glyph.appendChild(rightPole);
+      const rightPole = createSvgElement("circle");
+      rightPole.classList.add("composer-reaction-solver-binary-dot", "is-right", "is-positrino");
+      rightPole.setAttribute("cx", "98");
+      rightPole.setAttribute("cy", "60");
+      rightPole.setAttribute("r", "8.5");
+      glyph.appendChild(rightPole);
+    }
 
     if (showPersonality && choice) {
       const topDot = createSvgElement("circle");
@@ -2550,6 +2677,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       tile.appendChild(
         createBinaryGlyph(choice, {
           showPersonality: childNode.renderMode !== "binary-bare",
+          showBinary: childNode.hasBinary !== false,
         })
       );
       tiles.appendChild(tile);
@@ -2604,7 +2732,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         } else {
           button.classList.add("is-dimmed");
         }
-        button.appendChild(createBinaryGlyph(choice));
+        button.appendChild(createBinaryGlyph(choice, { showBinary: childNode.hasBinary !== false }));
         button.addEventListener("click", () =>
           setBinaryPersonalitySelection(participant.id, childNode.id, choice.id)
         );
@@ -2634,7 +2762,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       button.style.setProperty("--binary-choice-accent", selectedChoice.accent);
       button.setAttribute("aria-label", `${childNode.label}: ${selectedChoice.label}`);
       button.title = `${childNode.label}: ${selectedChoice.label}`;
-      button.appendChild(createBinaryGlyph(selectedChoice));
+      button.appendChild(
+        createBinaryGlyph(selectedChoice, { showBinary: childNode.hasBinary !== false })
+      );
       button.addEventListener("click", () =>
         cycleQuarkBinaryPreset(participant.id, childNode.id)
       );
@@ -3162,7 +3292,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       } else {
         button.classList.add("is-dimmed");
       }
-      button.appendChild(createBinaryGlyph(choice));
+      button.appendChild(createBinaryGlyph(choice, { showBinary: node.hasBinary !== false }));
       button.addEventListener("click", () =>
         setBinaryPersonalitySelection(participant.id, node.id, choice.id)
       );
@@ -3329,19 +3459,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Right-click the reaction canvas to add reactants, products, or a Transmute tile.";
+        "Right-click the reaction canvas to add reactants, products, or a transmute tile.";
       return;
     }
     if (state.pendingSourceKey) {
       mapHint.textContent =
         state.pendingSourceRole === "transmute-output"
-          ? "Transmute output selected. Conservative product targets remain active; incompatible targets are dimmed."
-          : "Source anchor selected. Conservative product and Transmute targets remain active; incompatible targets are dimmed.";
+          ? "transmute output selected. Conservative product targets remain active; incompatible targets are dimmed."
+          : "Source anchor selected. Conservative product and transmute targets remain active; incompatible targets are dimmed.";
       return;
     }
     if (!state.mappings.length) {
       mapHint.textContent =
-        "Choose a reactant anchor, then a product or Transmute anchor, to author the first mapping.";
+        "Choose a reactant anchor, then a product or transmute anchor, to author the first mapping.";
       return;
     }
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
@@ -3458,9 +3588,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
       if (mapSvg) {
         mapSvg.innerHTML = "";
       }
+      state.anchorRegistry = new Map();
       state.hoveredMappingIds = [];
       return;
     }
+    rebuildAnchorRegistry();
     const reactantParticipants = state.participants.filter(
       (participant) => participant.side === "reactant"
     );

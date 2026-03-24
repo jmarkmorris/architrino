@@ -1,4 +1,5 @@
 import {
+  getNoetherCoreSlotBinaryPresence,
   getNoetherCoreSlotOccupancy,
 } from "../domain/structure/StructureClassification.js";
 import {
@@ -34,6 +35,7 @@ function createBinarySelectorNode(id, label, slotCode, options = {}) {
     label,
     renderMode: options.renderMode ?? "binary-selector",
     slotCode,
+    hasBinary: options.hasBinary !== false,
     children: options.withPersonality === false
       ? [
           createLeafNode(`${id}/binary`, "binary", createInventory(1, 1)),
@@ -124,22 +126,23 @@ function buildFamilyParticleHierarchy(structureRoot) {
   const coreNode = getPrimaryNoetherCore(structureRoot);
   const templateId = getBinarySelectorTemplateId(structureRoot);
   const occupancy = getNoetherCoreSlotOccupancy(coreNode);
+  const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
   return [{
     id: String(structureRoot?.id ?? "root"),
     label: getBinarySelectorGroupLabel(structureRoot),
     templateId,
     renderMode: "binary-selector-grid",
-    children: STRUCTURE_SLOT_ORDER
-      .filter((slotName) => occupancy[slotName])
-      .map((slotName) =>
-        createBinarySelectorNode(
-          `${structureRoot?.id ?? "root"}/${slotName}`,
-          `${slotName} binary with personality`,
-          getSlotCode(slotName)
-        )
-      ),
+    children: STRUCTURE_SLOT_ORDER.map((slotName) =>
+      createBinarySelectorNode(
+        `${structureRoot?.id ?? "root"}/${slotName}`,
+        `${slotName} binary with personality`,
+        getSlotCode(slotName),
+        { hasBinary: binaryPresence[slotName] }
+      )
+    ),
     traits: {
       occupancy,
+      binaryPresence,
     },
   }];
 }
@@ -157,6 +160,7 @@ function buildCompositeParticleHierarchy(structureRoot) {
       renderMode: "assembly-cluster-grid",
       children: getStructureNodeChildren(structureRoot).map((childNode, index) => {
         const childFamily = String(childNode?.classification?.family ?? "").trim();
+        const childBinaryPresence = getNoetherCoreSlotBinaryPresence(getPrimaryNoetherCore(childNode));
         return {
           id: childNode.id || `quark_${index + 1}`,
           label: getQuarkNodeLabel(childFamily),
@@ -167,7 +171,8 @@ function buildCompositeParticleHierarchy(structureRoot) {
             createBinarySelectorNode(
               `${childNode.id}/${slotName}`,
               `${slotName} binary with personality`,
-              getSlotCode(slotName)
+              getSlotCode(slotName),
+              { hasBinary: childBinaryPresence[slotName] }
             )
           ),
         };

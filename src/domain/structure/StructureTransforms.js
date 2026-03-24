@@ -44,9 +44,22 @@ export function clearNoetherCoreSlotOccupant(root, noetherCoreId, slotName) {
           child?.kind === STRUCTURE_KINDS.SLOT &&
           String(getStructureTrait(child, "slot", "")).trim() === targetSlotName
         ) {
+          const occupant = getStructureNodeChildren(child).find(
+            (slotChild) => slotChild?.kind === STRUCTURE_KINDS.PERSONALITY_DRESSED_BINARY
+          );
+          if (!occupant) {
+            return child;
+          }
           return {
             ...child,
-            children: [],
+            children: [
+              {
+                ...occupant,
+                children: getStructureNodeChildren(occupant).filter(
+                  (occupantChild) => occupantChild?.kind !== STRUCTURE_KINDS.BINARY
+                ),
+              },
+            ],
           };
         }
         return child;

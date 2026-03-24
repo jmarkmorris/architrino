@@ -1,4 +1,6 @@
-import { getNoetherCoreSlotOccupancy } from "../domain/structure/StructureClassification.js";
+import {
+  getNoetherCoreSlotOccupancy,
+} from "../domain/structure/StructureClassification.js";
 import {
   getStructureNodeChildren,
   getStructureTrait,

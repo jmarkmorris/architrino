@@ -21,6 +21,8 @@
   - and speculative extensions.
 - When an insight feels foundational, prefer wording such as "deeper basis," "ontological basis," "microscopic ledger," or "stronger claim than" before escalating to universal statements like "root of all" or "explains everything."
 - Do not flatten a real insight into timid prose; keep the force of the insight, but name its scope, what it directly establishes, and what still requires separate argument.
+- Avoid using `charge` as the default ontological name for an architrino. At the architrino level, prefer language such as `architrino`, `polarity`, `personality architrino`, or `transceiver of potential` as appropriate.
+- Preserve the stronger ontological distinction: an architrino is not merely a traditional point charge. It is a specific transceiver of potential with its own physics, while `charge` remains useful mainly for historical continuity, standard-model comparison, or higher-level effective/gauge/bookkeeping contexts where that language is genuinely the right level.
 - Use causal-delay terminology in prose (`causal`, `delayed`, `path-history`) and avoid `retard`/`retarded` wording outside literal quotations or code identifiers.
 - Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
 - When giving the user step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one ELI5 step at a time.

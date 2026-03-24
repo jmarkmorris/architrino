@@ -61,11 +61,11 @@ function validatePersonalityDressedBinaryNode(node, errors) {
       child?.kind === STRUCTURE_KINDS.ARCHITRINO &&
       getStructureTrait(child, "role") === STRUCTURE_ARCHITRINO_ROLES.PERSONALITY_CHARGE
   );
-  if (binaryChildren.length !== 1) {
+  if (binaryChildren.length > 1) {
     pushError(
       errors,
       "personality_dressed_binary.binary_count",
-      "Personality-dressed binaries must contain exactly one binary child.",
+      "Personality-dressed binaries may contain at most one binary child.",
       node
     );
   }
