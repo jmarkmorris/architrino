@@ -141,28 +141,53 @@ Scoring system:
   - blank-scene startup, canvas-first assembly placement, and canonical export are working;
   - timeline items for `Pause`, `Warp`, `Reaction`, `Graphic`, `Image`, and `Video` already behave like real spans;
   - assemblies already support scene roles, members, personality slots, subassemblies, parent rebasing, path editing, transfer drafting, and history/envelope display toggles;
-  - reactions already have a partial visual bridge through `Map On Canvas`, but that bridge is still transitional;
+  - the reaction app is now a real dedicated mode rather than only a `Map On Canvas` bridge:
+    - it opens from the header `Reaction` pill,
+    - it supports right-click add flows for reactants, products, and center-lane `Transmute` tiles,
+    - it renders hierarchy-first reactant and product columns with explicit attach points,
+    - it supports manual conservative mapping with invalid targets dimmed live,
+    - it can split neutron, proton, and Higgs-cluster-like composite participants into constituent rows near the mapping seam,
+    - it clears affected mappings on `split`, `make pro`, and `make anti`,
+    - and it already enforces the current electrino / positrino ledger rule, including many-input / many-output balancing through `Transmute`;
+  - the old `Map On Canvas` bridge should now be treated as transitional scaffolding rather than as the main reaction future;
   - observer-path controls exist in the runtime, but a true authored observer interval does not yet exist;
   - `Audio` is still placeholder-only.
 - Remaining composer objectives, in order:
-  1. finish reaction authoring and provenance as a truly visual workflow;
-  2. replace observer/editorial placeholders with a real authored timeline model;
-  3. deepen structural editing beyond the current member/subassembly baseline.
-- Priority 1: finish reaction authoring and provenance:
-  - stop treating typed transfer refs as the lasting primary authoring path;
-  - replace the current straight source-to-destination draft line with a more direct visual mapping model;
-  - move toward the blank reaction canvas described in [composer.md](composer.md), with free reactant/product placement and one-to-one authored mappings;
-  - make the authored mapping geometry the actual playback guide, not just a temporary authoring hint;
-  - make provenance and persistent identity readable directly from the mapping layer through selection, highlighting, and labeling;
-  - keep the current timeline reaction spans, active-reaction highlighting, and canvas-mapping bridge only as transitional scaffolding while the stronger visual model is built.
-- Priority 2: replace observer/editorial placeholders with a real authored timeline model:
+  1. finish the reaction app as a genuinely usable manual provenance tool;
+  2. bridge solved reactions back into the main composer as staged animated results;
+  3. replace observer/editorial placeholders with a real authored timeline model;
+  4. deepen structural editing beyond the current member/subassembly baseline.
+- Priority 1: finish the reaction app manual workflow:
+  - keep the current left / center / right hierarchy solver as the near-term reaction-authoring baseline rather than trying to jump immediately to full free placement;
+  - improve state legibility inside the existing reaction app:
+    - show explicit `Transmute` incoming / outgoing ledgers,
+    - make balanced vs unbalanced center tiles self-explanatory,
+    - make source / target / mapped / ineligible anchor roles more visually distinct,
+    - and make path tracing easier through hover, selection, endpoint emphasis, or temporary dimming of unrelated mappings;
+  - keep refining composite depiction:
+    - preserve seam-side composite cards,
+    - keep split behavior reversible through re-add rather than hidden state,
+    - and keep internal composite join lines visually subordinate to the main mapping lines;
+  - clean up the right-click grammar and top-bar guidance so the reaction app can be learned from the surface itself;
+  - add the first serious validation coverage for solver behavior, especially:
+    - ledger conservation at each attachment point,
+    - mapping invalidation after split / polarity changes,
+    - and `Transmute` balancing and overflow blocking;
+  - keep the old straight transfer-drafting bridge only as compatibility scaffolding while the dedicated reaction app becomes the clear primary workflow.
+- Priority 2: bridge solved reactions back into the main composer:
+  - convert an accepted reaction-app solve into durable reaction data rather than leaving it trapped in the temporary solver UI state;
+  - feed solved participants, mappings, and provenance into the shared reaction item on the timeline;
+  - define the first concrete handoff from hierarchy mappings to staged motion grammar such as `detach`, `flight`, and `reassemble`;
+  - make the accepted mapping geometry become the starting point for observer-facing spline refinement rather than a disposable diagnostic overlay;
+  - and keep the normal composer responsible for staging, timing, viewpoint, and explanatory overlays rather than for re-solving the reaction.
+- Priority 3: replace observer/editorial placeholders with a real authored timeline model:
   - turn `Observer` into a true timeline item with authored spans, framing intent, and synchronized observer-path behavior;
   - define the first concrete observer-object model for the design view, the observer path, and any future synchronized inset;
   - finish the placeholder editorial items, especially `Audio`, observer transitions, and framing behavior;
   - improve timeline zoom and local navigation so short spans remain editable in long scenes;
   - improve media-asset entry beyond typed paths where practical;
   - continue visible observer-language cleanup while allowing runtime internals to remain transitional until the object model is stable.
-- Priority 3: deepen structural editing beyond the current baseline:
+- Priority 4: deepen structural editing beyond the current baseline:
   - add structure-changing edits such as detaching a personality charge into a free architrino and breaking a binary into free architrinos;
   - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
   - make parent/child nesting read as local structure rather than grouped ids alone;
@@ -174,14 +199,14 @@ Scoring system:
   - make momentum constraints legible in the structure model, especially the angular/linear momentum relations that maintain relative plane angles;
   - add notation and display conventions that distinguish apparent energy from total energy;
   - keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps.
-- Keep active but below the top three:
-  - PDG solver after the scene system is genuinely usable:
-    - provenance,
-    - diagrams,
-    - core disposition,
-    - use the API that now exists,
-    - look into MadGraph for reactions,
-    - and use the scene builder in API mode;
+- Keep active but below the active four:
+  - PDG solver and reaction-app follow-on after the manual workflow is genuinely solid:
+    - ranked candidate proposals,
+    - pin / forbid / rerun-on-remainder controls,
+    - provenance summaries and diagram exports,
+    - external API use where it sharpens solving rather than distracting from the manual baseline,
+    - possible MadGraph-assisted channel work,
+    - and scene-builder / API-mode handoff once the stored reaction payload is stable;
   - composer architecture follow-on:
     - retire the remaining raw timing / reaction text bridges once structured authoring can replace them cleanly;
     - close the gap between the current preview bridge and the dedicated `Scene-Composed-Animation` runtime path;

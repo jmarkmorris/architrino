@@ -1005,6 +1005,10 @@ function canTargetMappingRole(role = "") {
   return role === "product" || role === "transmute-input";
 }
 
+const transmuteCardHeightPx = 72;
+const transmuteSlotStepPx = 108;
+const transmuteSlotEdgePaddingPx = 18;
+
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
     side === "product" ? "product" : side === "center" ? "transmute tile" : "reactant";
@@ -1094,6 +1098,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     menuClientY: 0,
     dragParticipantId: "",
     dragPointerId: null,
+    hoveredMappingIds: [],
   };
 
   let drawFrameId = 0;
@@ -1106,6 +1111,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function findMappingByNodeKey(nodeKey) {
     return findMappingsByNodeKey(nodeKey)[0] ?? null;
+  }
+
+  function getMappingIdsForAnchor(nodeKey, role) {
+    return state.mappings
+      .filter(
+        (mapping) =>
+          (mapping.sourceKey === nodeKey && mapping.sourceRole === role) ||
+          (mapping.targetKey === nodeKey && mapping.targetRole === role)
+      )
+      .map((mapping) => mapping.id);
   }
 
   function getMappedKeyForRole(mapping, role) {
@@ -1332,6 +1347,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       state.pendingSourceKey = "";
       state.pendingSourceRole = "";
     }
+    state.hoveredMappingIds = state.hoveredMappingIds.filter((mappingId) =>
+      state.mappings.some((mapping) => mapping.id === mappingId)
+    );
     return beforeCount !== state.mappings.length;
   }
 
@@ -1525,6 +1543,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       sourceRole,
       targetRole,
     });
+    state.hoveredMappingIds = [];
   }
 
   function clearPendingSource() {
@@ -1769,17 +1788,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function addTransmuteParticipant() {
-    const centerCount = state.participants.filter((participant) => participant.side === "center").length;
     const participant = createParticipantRecord({
       side: "center",
       templateId: "transmute",
       label: "Transmute",
       hierarchy: createTransmuteHierarchy(),
       extraFields: {
-        centerYRatio: Math.min(0.82, 0.28 + centerCount * 0.18),
+        centerSlotIndex: 0,
+        centerYRatio: 0.5,
       },
     });
     state.participants.push(participant);
+    assignTransmuteParticipantToSlot(participant, getFirstAvailableTransmuteSlotIndex(participant.id));
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
     closeMenu();
@@ -1798,9 +1818,54 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.mappings = [];
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.hoveredMappingIds = [];
     closeMenu();
     render();
     setStatus("Reaction canvas cleared.");
+  }
+
+  function applyHoveredRouteState() {
+    if (!surface || !mapSvg) {
+      return;
+    }
+    const hoveredMappingIds = new Set(state.hoveredMappingIds);
+    const hasHoveredRoute = hoveredMappingIds.size > 0;
+
+    surface
+      .querySelectorAll(".composer-reaction-solver-anchor[data-anchor-key][data-anchor-side]")
+      .forEach((anchor) => {
+        const anchorKey = anchor.getAttribute("data-anchor-key") ?? "";
+        const anchorRole = anchor.getAttribute("data-anchor-side") ?? "";
+        const mappingIds = getMappingIdsForAnchor(anchorKey, anchorRole);
+        const isMapped = mappingIds.length > 0;
+        const isHighlighted =
+          isMapped && mappingIds.some((mappingId) => hoveredMappingIds.has(mappingId));
+        anchor.classList.toggle("is-route-highlighted", isHighlighted);
+        anchor.classList.toggle(
+          "is-route-dimmed",
+          hasHoveredRoute && isMapped && !isHighlighted
+        );
+      });
+
+    mapSvg.querySelectorAll(".composer-reaction-solver-path[data-mapping-id]").forEach((path) => {
+      const mappingId = path.getAttribute("data-mapping-id") ?? "";
+      const isHighlighted = hoveredMappingIds.has(mappingId);
+      path.classList.toggle("is-route-highlighted", isHighlighted);
+      path.classList.toggle("is-route-dimmed", hasHoveredRoute && !isHighlighted);
+    });
+  }
+
+  function setHoveredMappingIds(mappingIds = []) {
+    const nextIds = [...new Set(mappingIds.filter(Boolean))].sort();
+    const currentIds = [...state.hoveredMappingIds].sort();
+    if (
+      nextIds.length === currentIds.length &&
+      nextIds.every((mappingId, index) => mappingId === currentIds[index])
+    ) {
+      return;
+    }
+    state.hoveredMappingIds = nextIds;
+    applyHoveredRouteState();
   }
 
   function renderMenu() {
@@ -2151,6 +2216,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (hasRoleMapping) {
       anchor.classList.add("is-mapped");
     }
+    anchor.addEventListener("pointerenter", () =>
+      setHoveredMappingIds(getMappingIdsForAnchor(nodeKey, anchorRole))
+    );
+    anchor.addEventListener("pointerleave", () => setHoveredMappingIds([]));
     anchor.addEventListener("click", () => handleAnchorClick(anchorRole, nodeKey));
     return anchor;
   }
@@ -2459,6 +2528,132 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return `${Math.max(0.08, Math.min(0.92, Number(centerYRatio) || 0.5)) * 100}%`;
   }
 
+  function getCenterLaneFallbackSlotRatios(requiredCount = 1) {
+    const fallbackCount = Math.max(1, requiredCount);
+    const startRatio = 0.28;
+    const stepRatio = 0.18;
+    return Array.from({ length: fallbackCount }, (_, index) =>
+      Math.max(0.08, Math.min(0.92, startRatio + index * stepRatio))
+    );
+  }
+
+  function getTransmuteSlotRatios(requiredCount = 1) {
+    if (!centerColumn) {
+      return getCenterLaneFallbackSlotRatios(requiredCount);
+    }
+    const bounds = centerColumn.getBoundingClientRect();
+    const height = Math.max(1, bounds.height);
+    const minCenter = transmuteCardHeightPx / 2 + transmuteSlotEdgePaddingPx;
+    const maxCenter = Math.max(minCenter, height - transmuteCardHeightPx / 2 - transmuteSlotEdgePaddingPx);
+
+    const baseCenters = [
+      ...surface.querySelectorAll(".composer-reaction-solver-participant:not(.is-center)"),
+    ]
+      .map((element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.top + rect.height / 2 - bounds.top;
+      })
+      .filter((value) => Number.isFinite(value))
+      .sort((left, right) => left - right)
+      .reduce((centers, value) => {
+        if (!centers.length || Math.abs(centers[centers.length - 1] - value) > 16) {
+          centers.push(Math.max(minCenter, Math.min(maxCenter, value)));
+        }
+        return centers;
+      }, []);
+
+    if (!baseCenters.length) {
+      return getCenterLaneFallbackSlotRatios(requiredCount);
+    }
+
+    const deltas = [];
+    for (let index = 1; index < baseCenters.length; index += 1) {
+      deltas.push(baseCenters[index] - baseCenters[index - 1]);
+    }
+    const sortedDeltas = deltas.filter((value) => value > 0).sort((left, right) => left - right);
+    const derivedStep =
+      sortedDeltas.length > 0
+        ? sortedDeltas[Math.floor(sortedDeltas.length / 2)]
+        : transmuteSlotStepPx;
+    const slotStep = Math.max(64, derivedStep || transmuteSlotStepPx);
+    const centers = [...baseCenters];
+
+    while (centers.length < requiredCount) {
+      const nextCenter = centers[centers.length - 1] + slotStep;
+      if (nextCenter > maxCenter + 0.5) {
+        break;
+      }
+      centers.push(nextCenter);
+    }
+    while (centers.length < requiredCount) {
+      const previousCenter = centers[0] - slotStep;
+      if (previousCenter < minCenter - 0.5) {
+        break;
+      }
+      centers.unshift(previousCenter);
+    }
+
+    return centers.map((center) => center / height);
+  }
+
+  function getOccupiedTransmuteSlotIndexes(excludedParticipantId = "") {
+    return new Set(
+      state.participants
+        .filter(
+          (participant) =>
+            isTransmuteParticipant(participant) && String(participant.id) !== String(excludedParticipantId)
+        )
+        .map((participant) => Number(participant.centerSlotIndex))
+        .filter((slotIndex) => Number.isInteger(slotIndex) && slotIndex >= 0)
+    );
+  }
+
+  function getFirstAvailableTransmuteSlotIndex(excludedParticipantId = "") {
+    const occupied = getOccupiedTransmuteSlotIndexes(excludedParticipantId);
+    let slotIndex = 0;
+    while (occupied.has(slotIndex)) {
+      slotIndex += 1;
+    }
+    return slotIndex;
+  }
+
+  function findNearestAvailableTransmuteSlotIndex(targetIndex, excludedParticipantId = "") {
+    const occupied = getOccupiedTransmuteSlotIndexes(excludedParticipantId);
+    const preferredIndex = Math.max(0, Math.round(Number(targetIndex) || 0));
+    if (!occupied.has(preferredIndex)) {
+      return preferredIndex;
+    }
+    for (let distance = 1; distance < 64; distance += 1) {
+      const lowerIndex = preferredIndex - distance;
+      const upperIndex = preferredIndex + distance;
+      if (lowerIndex >= 0 && !occupied.has(lowerIndex)) {
+        return lowerIndex;
+      }
+      if (!occupied.has(upperIndex)) {
+        return upperIndex;
+      }
+    }
+    return getFirstAvailableTransmuteSlotIndex(excludedParticipantId);
+  }
+
+  function assignTransmuteParticipantToSlot(participant, requestedSlotIndex) {
+    if (!participant || !isTransmuteParticipant(participant)) {
+      return;
+    }
+    const resolvedSlotIndex = findNearestAvailableTransmuteSlotIndex(
+      requestedSlotIndex,
+      participant.id
+    );
+    const slotRatios = getTransmuteSlotRatios(resolvedSlotIndex + 1);
+    const resolvedRatio =
+      slotRatios[resolvedSlotIndex] ??
+      slotRatios[slotRatios.length - 1] ??
+      getCenterLaneFallbackSlotRatios(resolvedSlotIndex + 1)[resolvedSlotIndex] ??
+      0.5;
+    participant.centerSlotIndex = resolvedSlotIndex;
+    participant.centerYRatio = resolvedRatio;
+  }
+
   function syncTransmuteCardPosition(participantId) {
     if (!surface) {
       return;
@@ -2470,6 +2665,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant || !card) {
       return;
     }
+    assignTransmuteParticipantToSlot(participant, participant.centerSlotIndex);
     card.style.top = getTransmuteCardTop(participant.centerYRatio);
   }
 
@@ -2483,10 +2679,33 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     const bounds = centerColumn.getBoundingClientRect();
     const height = Math.max(1, bounds.height);
-    const nextRatio = Math.max(0.08, Math.min(0.92, (clientY - bounds.top) / height));
-    if (Math.abs((participant.centerYRatio ?? 0.5) - nextRatio) < 0.001) {
+    const targetRatio = Math.max(0.08, Math.min(0.92, (clientY - bounds.top) / height));
+    const slotRatios = getTransmuteSlotRatios(
+      Math.max(
+        getFirstAvailableTransmuteSlotIndex(participant.id) + 1,
+        state.participants.filter((entry) => isTransmuteParticipant(entry)).length + 2
+      )
+    );
+    const nearestSlotIndex = slotRatios.reduce((bestIndex, ratio, index) => {
+      if (bestIndex < 0) {
+        return index;
+      }
+      return Math.abs(ratio - targetRatio) < Math.abs(slotRatios[bestIndex] - targetRatio)
+        ? index
+        : bestIndex;
+    }, -1);
+    const nextSlotIndex = findNearestAvailableTransmuteSlotIndex(
+      nearestSlotIndex,
+      participant.id
+    );
+    const nextRatio = slotRatios[nextSlotIndex] ?? participant.centerYRatio ?? 0.5;
+    if (
+      participant.centerSlotIndex === nextSlotIndex &&
+      Math.abs((participant.centerYRatio ?? 0.5) - nextRatio) < 0.001
+    ) {
       return;
     }
+    participant.centerSlotIndex = nextSlotIndex;
     participant.centerYRatio = nextRatio;
     syncTransmuteCardPosition(participant.id);
     scheduleMappingDraw();
@@ -2586,6 +2805,38 @@ export function createComposerReactionSolverUiRuntime(deps) {
       extraClassNames: ["composer-reaction-solver-transmute-particle"],
     });
     const ledgerSummary = getTransmuteLedgerSummary(participant.id);
+    [
+      {
+        className: "is-top-left is-positrino",
+        count: ledgerSummary.incomingLedger.positrino,
+        label: "ε+",
+        title: "Incoming positrino count",
+      },
+      {
+        className: "is-top-right is-positrino",
+        count: ledgerSummary.outgoingLedger.positrino,
+        label: "ε+",
+        title: "Outgoing positrino count",
+      },
+      {
+        className: "is-bottom-left is-electrino",
+        count: ledgerSummary.incomingLedger.electrino,
+        label: "ε-",
+        title: "Incoming electrino count",
+      },
+      {
+        className: "is-bottom-right is-electrino",
+        count: ledgerSummary.outgoingLedger.electrino,
+        label: "ε-",
+        title: "Outgoing electrino count",
+      },
+    ].forEach((entry) => {
+      const badge = document.createElement("span");
+      badge.className = `composer-reaction-solver-transmute-ledger ${entry.className}`;
+      badge.textContent = `${Number(entry.count ?? 0)} ${entry.label}`;
+      badge.title = entry.title;
+      visual.appendChild(badge);
+    });
     if (!ledgerSummary.isBalanced) {
       card.classList.add("is-ineligible");
       visual.title = `Transmute remains dim until incoming and outgoing ledgers match. Incoming: ${formatLedger(
@@ -2900,8 +3151,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
         `M ${startX} ${startY} C ${startX + deltaX} ${startY}, ${endX - deltaX} ${endY}, ${endX} ${endY}`
       );
       path.setAttribute("class", "composer-reaction-solver-path");
+      path.dataset.mappingId = mapping.id;
+      path.addEventListener("pointerenter", () => setHoveredMappingIds([mapping.id]));
+      path.addEventListener("pointerleave", () => setHoveredMappingIds([]));
       mapSvg.appendChild(path);
     });
+    applyHoveredRouteState();
   }
 
   function scheduleMappingDraw() {
@@ -2924,6 +3179,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       if (mapSvg) {
         mapSvg.innerHTML = "";
       }
+      state.hoveredMappingIds = [];
       return;
     }
     const reactantParticipants = state.participants.filter(
@@ -2944,11 +3200,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (productParticipants.length) {
       productsColumn.appendChild(createSideSlotHeader("product"));
     }
-    centerParticipants.forEach((participant) => {
-      centerColumn.appendChild(createTransmuteParticipantCard(participant));
-    });
     productParticipants.forEach((participant) => {
       productsColumn.appendChild(renderParticipantCard(participant));
+    });
+    centerParticipants.forEach((participant) => {
+      assignTransmuteParticipantToSlot(participant, participant.centerSlotIndex);
+      centerColumn.appendChild(createTransmuteParticipantCard(participant));
     });
     updateHint();
     scheduleMappingDraw();

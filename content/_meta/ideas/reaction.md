@@ -51,20 +51,28 @@ The blank reaction canvas is still the right target for final authored reaction 
 
 ### Current implementation and next target
 
-The composer no longer treats reactions as purely typed bookkeeping.
+The composer no longer treats reactions as purely typed bookkeeping, but the implemented surface is now clearly split into two layers:
 
-Current implemented reaction behavior:
+- the shared composer timeline and reaction span model;
+- and a dedicated manual reaction-solver screen for provenance closure.
 
-- assemblies can already be tagged as `Assembly`, `Reactant`, or `Product`;
-- reactions are true timeline spans with labels and stage rows;
-- stage actions are authored in the timeline menu rather than only implied from raw text;
-- an active reaction can enter `Map On Canvas` mode;
-- in that mode, the author can click a reactant-side member or personality handle, then a product-side member or personality handle, to create a mapped transfer inside the active reaction;
-- and the canvas already shows a live draft corridor while the target is being chosen.
+Current implemented behavior:
 
-That is enough to make reaction authoring real, but it is not yet the final visual model. The current bridge still writes low-level transfer lines and uses a straight drafted corridor between endpoints. It does not yet provide the dedicated blank reaction canvas, authored spline geometry, constituent-reveal tools, or richer provenance highlighting described below.
+- reactions exist as true timeline spans with labels and stage rows;
+- an active reaction can open a dedicated solver surface from the composer header;
+- the solver is a structured 2D hierarchy canvas rather than a free-placement scene canvas;
+- blank-space right-click on that solver surface offers `Add Reactant`, `Add Product`, `Add Transmute`, `Clear reaction canvas`, and a disabled `Auto solve`;
+- reactants render in a left column, products render in a right column, and the mapping field lives between them;
+- hierarchy rows expose explicit attachment points, with reactant anchors on the right edge of the reactant tree rows and product anchors on the left edge of the product tree rows;
+- mappings are authored manually by clicking a source anchor and then a valid target anchor;
+- invalid targets dim immediately while a source is pending, so the user sees the current conservation gate before committing a line;
+- neutron, proton, and Higgs-cluster-like composite assemblies can be split into constituent rows, and those composite rows render near the mapping seam rather than buried back in the outer card lane;
+- a center-lane `Transmute` tile now exists as a manual many-input / many-output junction, with one input anchor on its left and one output anchor on its right;
+- and the `Transmute` tile can be dragged vertically along the center lane while keeping the left-to-right reaction grammar intact.
 
-The next step should still be to redesign reaction authoring around a blank canvas rather than around transfer refs as the lasting underlying authoring grammar.
+That is enough to make manual reaction solving real, but it is not yet the final reaction-authoring model. The current implemented solver is intentionally constrained: it is hierarchy-first, lane-based, and manual. It does not yet provide ranked solver proposals, free placement of assemblies anywhere on the reaction surface, authored bend handles for the main reaction paths, or the richer stage-timing and playback choreography described below.
+
+The next target should still be to keep the current solver for provenance closure while separately evolving the blank reaction canvas into the final observer-facing choreography surface.
 
 The authoring flow should begin from nothing visible except the reaction surface itself. On an empty reaction canvas, the first right-click should offer:
 
@@ -73,12 +81,14 @@ The authoring flow should begin from nothing visible except the reaction surface
 
 That starting point matters because a reaction should read first as an authored relation between incoming and outgoing assemblies, not as a form that asks for low-level bookkeeping before the geometry is visible.
 
-The preferred layout is:
+The preferred long-range layout is still:
 
 - reactants and products can be placed anywhere on the reaction canvas;
 - placement should be author-controlled rather than forced into left/right stacks;
 - the user should be able to arrange assemblies to emulate a Feynman diagram when that is the clearest explanation;
-- the canvas should remain sparse enough that most reactions with six or fewer total reactants/products are still legible without a second layout mode.
+- and the canvas should remain sparse enough that most reactions with six or fewer total reactants/products are still legible without a second layout mode.
+
+But that should now be understood as the downstream choreography target, not as a description of the currently implemented solver. The current solver deliberately keeps the stronger left-to-right ledger grammar because that makes manual provenance closure much easier to read.
 
 This should feel closer to a Feynman-diagram composition surface than to a spreadsheet of transfer ids.
 
@@ -355,32 +365,43 @@ The solver should likely begin in a text-forward hierarchy view rather than in a
 
 The first prototype can also be explicitly 2D rather than pretending to be a mini version of the 3D scene composer.
 
-That first prototype should open from a top-right `Reaction` pill in the composer header. Clicking that pill should switch the author into the dedicated solver canvas rather than into the normal scene-staging canvas.
+That first prototype now does open from a top-right `Reaction` pill in the composer header. Clicking that pill switches the author into the dedicated solver canvas rather than into the normal scene-staging canvas.
 
-On that 2D solver canvas, right-clicking blank space should offer:
+On that 2D solver canvas, right-clicking blank space currently offers:
 
 - `Add Reactant`
 - `Add Product`
+- `Add Transmute`
+- `Clear reaction canvas`
 - `Auto Solve`
-  - not yet implemented in the first manual prototype, but visible as the future direction.
+  - visible but still not implemented in the current manual prototype.
 
-The first useful version could be:
+The first useful version is now:
 
 - a nested reactant hierarchy on the left;
 - a nested product hierarchy on the right;
-- and a central mapping field showing the proposed paths or correspondences between them.
+- a central mapping field showing the authored paths between them;
+- optional center-lane `Transmute` tiles that act as conservative junctions;
+- and a narrow top status bar that reports authored mapping count and short interaction guidance.
 
 When a reactant is added:
 
 - the author chooses from the particle list already available in the app;
-- the particle image appears in the leftmost lane;
-- and its text hierarchy with attach points appears immediately to the right of that image.
+- the particle card appears in the leftmost lane;
+- and its hierarchy with attach points appears immediately to the right of that card.
 
 When a product is added:
 
 - the author chooses from the same particle list;
-- the particle image appears in the rightmost lane;
-- and its text hierarchy with attach points appears immediately to the left of that image.
+- the particle card appears in the rightmost lane;
+- and its hierarchy with attach points appears immediately to the left of that card.
+
+When a `Transmute` tile is added:
+
+- it appears in the exact horizontal middle lane;
+- it has one input anchor on the left and one output anchor on the right;
+- it can accept many incoming mappings on the input side and many outgoing mappings on the output side;
+- and it stays visually dim until the incoming and outgoing ledgers balance.
 
 That hierarchy should allow the author to work at several levels:
 
@@ -392,23 +413,31 @@ That hierarchy should allow the author to work at several levels:
 
 This matters because most PDG-style reactions should not require the author to move every constituent by hand. In many channels, most structure is spectator carry-through and only a smaller active frontier needs detailed solving. The solver should therefore prefer the coarsest mapping that closes the ledger honestly, and only expand a node when the author or the solver needs more detail there.
 
-The intended authoring loop is:
+The intended manual authoring loop is now:
 
 1. choose the reactants and products to solve;
-2. inspect the reactant and product hierarchies;
-3. let the solver produce one or more candidate mappings;
-4. review those mappings in the center field;
-5. accept one candidate or edit it locally;
-6. then hand the accepted structure off to the normal composer for final animation work.
+2. add a `Transmute` tile if the reaction needs a multi-input / multi-output handoff hub;
+3. inspect the reactant and product hierarchies;
+4. manually author mappings by clicking a valid source anchor and then a valid target anchor;
+5. split coarse composite participants only when finer provenance is required;
+6. adjust the vertical position of `Transmute` to reduce visual crossings when helpful;
+7. review the resulting conservative paths in the center field;
+8. then hand the accepted structure off to the normal composer for final animation work.
 
-The center mapping field should not be a dead report. It should be directly editable:
+The center mapping field is already directly editable in a manual sense:
 
-- detach a proposed mapping from the product side and retarget it;
-- pin a mapping that is known to be correct;
-- forbid a mapping that the solver should not use;
-- split a coarse node into finer subnodes when more detail is needed;
-- rerun the solver on only the unresolved remainder;
-- and keep the visible paths as the starting point for later spline authoring in the animation composer.
+- clicking a mapped anchor removes that mapping;
+- selecting a source anchor re-evaluates which targets remain conservative;
+- splitting a composite participant removes attached mappings and reopens the finer rows;
+- `make pro` / `make anti` also clear attached mappings before re-rendering;
+- and the visible paths are now the manual provenance graph that a later spline-authoring surface can inherit.
+
+What is not implemented yet:
+
+- ranked solver proposals;
+- pin / forbid controls;
+- rerun-on-remainder solving;
+- and automatic candidate generation in the center field.
 
 ### Attachment grammar for the hierarchy view
 
@@ -473,7 +502,7 @@ This seems especially well suited to PDG-style reactions because it allows:
 
 The mapping rules themselves should be conservative and provenance-aware:
 
-- a mapping should only be allowed when the source and target conserve the same inventory of `Pro core`, `Anti core`, `electrino`, and `positrino` for the modeled unit being moved;
+- a mapping should only be allowed when the source and target conserve the same inventory of `electrino` and `positrino` for the modeled unit being moved;
 - every accepted mapping should carry provenance, even if the solver or author has to guess leaf-level architrino provenance to keep the ledger closed honestly;
 - and when a reactant attach point is selected, product attach points that are not conservative with that source should gray out and deactivate rather than allowing an invalid mapping to be drawn.
 
@@ -481,13 +510,24 @@ This first-pass conservation rule should not assume that a binary keeps the same
 
 So the conservative test should be inventory-based rather than label-based:
 
-- `Pro core` may only map to `Pro core`;
-- `Anti core` may only map to `Anti core`;
 - `electrino` count must be conserved exactly per mapping;
 - `positrino` count must be conserved exactly per mapping;
-- and a mapping should be blocked if the source and target do not carry the same architrino inventory vector for the unit being mapped.
+- and a mapping should be blocked if the source and target do not carry the same `electrino` / `positrino` ledger for the unit being mapped.
 
 That means the solver should not treat `inner`, `middle`, `outer`, or a binary flavor label by itself as enough to declare a mapping conservative. Those descriptors may still matter for readability, provenance explanation, or later rule families, but the first-pass gate should be exact inventory conservation in the mapped packet.
+
+The implemented ledger now follows the currently exposed attachment points rather than a static template guess:
+
+- a binary-selector attachment point derives its live ledger from the selected binary state;
+- a coarse attachment point derives its ledger from the subassembly rooted at that row;
+- and a `Transmute` tile sums all incoming mapped ledgers on its left anchor and all outgoing mapped ledgers on its right anchor.
+
+The current `Transmute` rule is:
+
+- it may collect multiple incoming reactant mappings;
+- it may emit multiple outgoing product mappings;
+- its output side remains conservative only while the accumulated outgoing ledger stays within the accumulated incoming ledger;
+- and the tile should remain dim until incoming and outgoing ledgers match exactly.
 
 Those rules should not remain scattered through UI conditionals forever. The solver will likely need a centralized rule registry with rule classes that can be reused or swapped in different solving situations.
 
@@ -497,13 +537,15 @@ Someday that may want its own small language or API for specifying reaction rule
 
 The solver needs explicit wildcard participants for spacetime recruitment and return.
 
-For the first pass, the composer should add a `Higgs cluster` assembly type that can act as an `ST-in` or `ST-out` wildcard in the solver.
+For the current pass, the composer already has a `Higgs cluster` assembly type available in the solver, and it may still serve as an `ST-in` or `ST-out` wildcard when that is the right coarse model.
 
 That means:
 
 - a reaction may recruit one or more `Higgs cluster` participants from spacetime;
 - a reaction may return unused or broken material back into spacetime;
 - and a proposed solution does not need to consume or produce every part of a wildcard participant symmetrically.
+
+Separately, the implemented `Transmute` tile should be treated as a reaction-logic junction, not as a spacetime ontology claim. It is a UI object for collecting multiple conservative inputs and redistributing them to conservative outputs inside one manually authored reaction solution.
 
 This should remain an intentionally open modeling boundary rather than a hard ontology claim. It may be that local spacetime inventory is well represented by `Higgs cluster` inputs and outputs in the first implementation. It may also be that spacetime should later be modeled as containing additional detritus, partial remnants, or other reusable substrate packets beyond one named cluster type.
 
