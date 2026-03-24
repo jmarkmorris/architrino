@@ -2,6 +2,7 @@ import {
   classifyComposerReactionNode,
   evaluateComposerReactionMappingCandidate,
 } from "./ComposerReactionRulesRuntime.js";
+import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 
 const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
@@ -316,6 +317,15 @@ function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") 
     return cleanedBaseLabel;
   }
   return `${normalizeParticipantPolarity(polarity)} ${cleanedBaseLabel}`;
+}
+
+function buildParticipantStructure(participantId, templateId, baseLabel, polarity = "") {
+  const structureId = `${participantId}__structure`;
+  return buildReactionParticipantStructure(templateId, {
+    id: structureId,
+    label: formatParticipantLabel(baseLabel, templateId, polarity),
+    polarity,
+  });
 }
 
 function syncParticipantHierarchyForPolarity(participant) {
@@ -1166,6 +1176,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
       binarySelections: {},
       ...extraFields,
     };
+    const structure = buildParticipantStructure(
+      participant.id,
+      participant.templateId,
+      participant.baseLabel,
+      participant.polarity
+    );
+    participant.structure = structure.root;
+    participant.structureValidation = structure.validation;
     syncParticipantHierarchyForPolarity(participant);
     participant.binarySelections = getInitialParticipantBinarySelections(participant);
     return participant;
@@ -1394,6 +1412,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
       participant.templateId,
       resolvedPolarity
     );
+    const structure = buildParticipantStructure(
+      participant.id,
+      participant.templateId,
+      participant.baseLabel ?? participant.label,
+      resolvedPolarity
+    );
+    participant.structure = structure.root;
+    participant.structureValidation = structure.validation;
     closeMenu();
     render();
     setStatus(
