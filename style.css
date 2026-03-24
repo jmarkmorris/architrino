@@ -1728,8 +1728,10 @@ body {
 }
 
 .composer-reaction-solver-center {
-  display: grid;
-  place-items: center;
+  position: relative;
+  min-height: 100%;
+  overflow: visible;
+  pointer-events: none;
 }
 
 .composer-reaction-solver-hint {
@@ -1769,6 +1771,20 @@ body {
 
 .composer-reaction-solver-participant.is-product {
   justify-self: end;
+}
+
+.composer-reaction-solver-participant.is-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+.composer-reaction-solver-participant.is-center.is-dragging {
+  z-index: 4;
 }
 
 .composer-reaction-solver-participant.is-composite-participant {
@@ -1827,6 +1843,22 @@ body {
 
 .composer-reaction-solver-particle-label-line {
   display: block;
+}
+
+.composer-reaction-solver-transmute-particle {
+  width: 120px;
+  min-width: 120px;
+  padding-inline: 12px;
+  cursor: grab;
+}
+
+.composer-reaction-solver-participant.is-center.is-dragging .composer-reaction-solver-transmute-particle {
+  cursor: grabbing;
+}
+
+.composer-reaction-solver-transmute-particle .composer-reaction-solver-particle-label {
+  font-size: 11px;
+  line-height: 1.1;
 }
 
 .composer-reaction-solver-tree {
@@ -2292,6 +2324,11 @@ body {
   background: rgba(10, 14, 26, 0.96);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.34);
   backdrop-filter: blur(12px);
+}
+
+.composer-reaction-solver-menu[data-menu-mode="template-picker"] {
+  min-width: 154px;
+  max-width: min(196px, calc(100vw - 32px));
 }
 
 .composer-reaction-solver-menu[data-menu-mode="root"] {

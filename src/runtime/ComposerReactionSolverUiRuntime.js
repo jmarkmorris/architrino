@@ -1,10 +1,14 @@
-import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionRulesRuntime.js";
+import {
+  classifyComposerReactionNode,
+  evaluateComposerReactionMappingCandidate,
+} from "./ComposerReactionRulesRuntime.js";
 
 const solverTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
   higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
-  neutron: { shortLabel: "n", accent: "#a259ff" },
-  proton: { shortLabel: "p", accent: "#ff5a4a" },
+  neutron: { shortLabel: "N", accent: "#a259ff" },
+  proton: { shortLabel: "P", accent: "#ff5a4a" },
+  transmute: { shortLabel: "T", accent: "#a259ff" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
   neutrino: { shortLabel: "𝜈", accent: "#a259ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
@@ -105,6 +109,17 @@ const participantPolarityTemplateIds = new Set([
   "fermion_gen1",
 ]);
 
+const templatePickerOrder = Object.freeze([
+  "higgs_cluster",
+  "proton",
+  "neutron",
+  "up_quark",
+  "neutrino",
+  "down_quark",
+  "electron",
+  "noether_core",
+]);
+
 function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const entries = [];
   const seen = new Set();
@@ -132,6 +147,21 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
     });
   });
   return entries;
+}
+
+function sortTemplatePickerEntries(entries = []) {
+  return [...entries].sort((left, right) => {
+    const leftTemplate = String(left?.template ?? "").trim().toLowerCase();
+    const rightTemplate = String(right?.template ?? "").trim().toLowerCase();
+    const leftIndex = templatePickerOrder.indexOf(leftTemplate);
+    const rightIndex = templatePickerOrder.indexOf(rightTemplate);
+    const leftRank = leftIndex >= 0 ? leftIndex : Number.MAX_SAFE_INTEGER;
+    const rightRank = rightIndex >= 0 ? rightIndex : Number.MAX_SAFE_INTEGER;
+    if (leftRank !== rightRank) {
+      return leftRank - rightRank;
+    }
+    return String(left?.label ?? "").localeCompare(String(right?.label ?? ""));
+  });
 }
 
 function createBinaryBranch(
@@ -466,6 +496,9 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   }
   if (normalizedTemplateId === "proton") {
     return "Proton";
+  }
+  if (normalizedTemplateId === "transmute") {
+    return "Transmute";
   }
   if (normalizedTemplateId === "neutron") {
     return "Neutron";
@@ -940,6 +973,10 @@ function getParticipantRootNode(participant) {
   return Array.isArray(participant?.hierarchy) ? participant.hierarchy[0] ?? null : null;
 }
 
+function getTransmuteNode(participant) {
+  return participant?.templateId === "transmute" ? getParticipantRootNode(participant) : null;
+}
+
 function isCompositeParticipant(participant) {
   return isCompositeGridRenderMode(getParticipantRootNode(participant)?.renderMode ?? "");
 }
@@ -950,6 +987,31 @@ function isReactantCompositeParticipant(participant) {
 
 function isProductCompositeParticipant(participant) {
   return participant?.side === "product" && isCompositeParticipant(participant);
+}
+
+function isTransmuteParticipant(participant) {
+  return participant?.side === "center" && String(participant?.templateId ?? "") === "transmute";
+}
+
+function isSingleMappingAnchorRole(role = "") {
+  return role === "reactant" || role === "product";
+}
+
+function canStartMappingFromRole(role = "") {
+  return role === "reactant" || role === "transmute-output";
+}
+
+function canTargetMappingRole(role = "") {
+  return role === "product" || role === "transmute-input";
+}
+
+function getParticipantSideLabel(side = "", options = {}) {
+  const label =
+    side === "product" ? "product" : side === "center" ? "transmute tile" : "reactant";
+  if (!options.capitalized) {
+    return label;
+  }
+  return label[0]?.toUpperCase() + label.slice(1);
 }
 
 function createSvgElement(name) {
@@ -1012,7 +1074,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     storageKey = "",
   } = deps;
 
+  const centerColumn = root?.querySelector(".composer-reaction-solver-center") ?? null;
   const templateEntries = dedupeTemplateEntries(templateMenuRows, extraTemplateEntries);
+  const sortedTemplateEntries = sortTemplatePickerEntries(templateEntries);
   const state = {
     active: false,
     nextParticipantId: 1,
@@ -1021,31 +1085,42 @@ export function createComposerReactionSolverUiRuntime(deps) {
     participants: [],
     mappings: [],
     pendingSourceKey: "",
+    pendingSourceRole: "",
     menuMode: "root",
     menuSide: "reactant",
     menuParticipantId: "",
     menuOpen: false,
     menuClientX: 0,
     menuClientY: 0,
+    dragParticipantId: "",
+    dragPointerId: null,
   };
 
   let drawFrameId = 0;
 
-  function findMappingByNodeKey(nodeKey) {
-    return (
-      state.mappings.find(
-        (mapping) => mapping.sourceKey === nodeKey || mapping.targetKey === nodeKey
-      ) ?? null
+  function findMappingsByNodeKey(nodeKey) {
+    return state.mappings.filter(
+      (mapping) => mapping.sourceKey === nodeKey || mapping.targetKey === nodeKey
     );
   }
 
-  function getMappedKeyForSide(mapping, side) {
-    return side === "reactant" ? mapping.sourceKey : mapping.targetKey;
+  function findMappingByNodeKey(nodeKey) {
+    return findMappingsByNodeKey(nodeKey)[0] ?? null;
   }
 
-  function getConflictingMappings(nodeKey, side) {
+  function getMappedKeyForRole(mapping, role) {
+    if (mapping.sourceRole === role) {
+      return mapping.sourceKey;
+    }
+    if (mapping.targetRole === role) {
+      return mapping.targetKey;
+    }
+    return "";
+  }
+
+  function getConflictingMappings(nodeKey, role) {
     return state.mappings.filter((mapping) => {
-      const mappedKey = getMappedKeyForSide(mapping, side);
+      const mappedKey = getMappedKeyForRole(mapping, role);
       return mappedKey ? nodeKeysConflict(mappedKey, nodeKey) : false;
     });
   }
@@ -1091,12 +1166,100 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return { participant, node };
   }
 
-  function getAnchorAvailability(side, nodeKey) {
-    if (findMappingByNodeKey(nodeKey)) {
+  function createEmptyLedger() {
+    return {
+      electrino: 0,
+      positrino: 0,
+    };
+  }
+
+  function addLedgers(leftLedger = null, rightLedger = null) {
+    return {
+      electrino: Number(leftLedger?.electrino ?? 0) + Number(rightLedger?.electrino ?? 0),
+      positrino: Number(leftLedger?.positrino ?? 0) + Number(rightLedger?.positrino ?? 0),
+    };
+  }
+
+  function ledgerFitsWithin(limitLedger = null, candidateLedger = null) {
+    const limit = createEmptyLedger();
+    const candidate = createEmptyLedger();
+    limit.electrino = Number(limitLedger?.electrino ?? 0);
+    limit.positrino = Number(limitLedger?.positrino ?? 0);
+    candidate.electrino = Number(candidateLedger?.electrino ?? 0);
+    candidate.positrino = Number(candidateLedger?.positrino ?? 0);
+    return (
+      candidate.electrino <= limit.electrino &&
+      candidate.positrino <= limit.positrino
+    );
+  }
+
+  function ledgersMatch(leftLedger = null, rightLedger = null) {
+    return (
+      Number(leftLedger?.electrino ?? 0) === Number(rightLedger?.electrino ?? 0) &&
+      Number(leftLedger?.positrino ?? 0) === Number(rightLedger?.positrino ?? 0)
+    );
+  }
+
+  function hasLedger(ledger = null) {
+    return Number(ledger?.electrino ?? 0) > 0 || Number(ledger?.positrino ?? 0) > 0;
+  }
+
+  function formatLedger(ledger = null) {
+    const parts = [];
+    const electrinoCount = Number(ledger?.electrino ?? 0);
+    const positrinoCount = Number(ledger?.positrino ?? 0);
+    if (electrinoCount) {
+      parts.push(`${electrinoCount} electrino`);
+    }
+    if (positrinoCount) {
+      parts.push(`${positrinoCount} positrino`);
+    }
+    return parts.join(" + ") || "empty ledger";
+  }
+
+  function getNodeLedger(nodeKey) {
+    const context = getNodeContext(nodeKey);
+    const spec = context
+      ? classifyComposerReactionNode(context.participant, context.node)
+      : null;
+    return spec?.inventory ?? createEmptyLedger();
+  }
+
+  function getTransmuteLedgerSummary(participantId) {
+    const incomingMappings = state.mappings.filter((mapping) => {
+      const { participantId: targetParticipantId } = parseNodeKey(mapping.targetKey);
+      return targetParticipantId === participantId && mapping.targetRole === "transmute-input";
+    });
+    const outgoingMappings = state.mappings.filter((mapping) => {
+      const { participantId: sourceParticipantId } = parseNodeKey(mapping.sourceKey);
+      return sourceParticipantId === participantId && mapping.sourceRole === "transmute-output";
+    });
+    const incomingLedger = incomingMappings.reduce(
+      (ledger, mapping) => addLedgers(ledger, getNodeLedger(mapping.sourceKey)),
+      createEmptyLedger()
+    );
+    const outgoingLedger = outgoingMappings.reduce(
+      (ledger, mapping) => addLedgers(ledger, getNodeLedger(mapping.targetKey)),
+      createEmptyLedger()
+    );
+    return {
+      incomingLedger,
+      outgoingLedger,
+      isBalanced: hasLedger(incomingLedger) && hasLedger(outgoingLedger) && ledgersMatch(incomingLedger, outgoingLedger),
+    };
+  }
+
+  function isTransmuteParticipantBalanced(participantId) {
+    return getTransmuteLedgerSummary(participantId).isBalanced;
+  }
+
+  function getAnchorAvailability(role, nodeKey) {
+    const existingMappings = findMappingsByNodeKey(nodeKey);
+    if (existingMappings.length && isSingleMappingAnchorRole(role)) {
       return { disabled: false, reason: "" };
     }
-    const hasConflict = getConflictingMappings(nodeKey, side).some((mapping) => {
-      const mappedKey = getMappedKeyForSide(mapping, side);
+    const hasConflict = isSingleMappingAnchorRole(role) && getConflictingMappings(nodeKey, role).some((mapping) => {
+      const mappedKey = getMappedKeyForRole(mapping, role);
       return mappedKey && mappedKey !== nodeKey;
     });
     if (hasConflict) {
@@ -1105,19 +1268,47 @@ export function createComposerReactionSolverUiRuntime(deps) {
         reason: "Blocked by an existing ancestor or descendant mapping.",
       };
     }
-    if (side === "product" && state.pendingSourceKey) {
+    if (canTargetMappingRole(role) && state.pendingSourceKey) {
       const sourceContext = getNodeContext(state.pendingSourceKey);
       const targetContext = getNodeContext(nodeKey);
-      const evaluation = evaluateComposerReactionMappingCandidate({
-        sourceParticipant: sourceContext?.participant,
-        sourceNode: sourceContext?.node,
-        targetParticipant: targetContext?.participant,
-        targetNode: targetContext?.node,
-      });
-      if (!evaluation.allowed) {
+      if (state.pendingSourceRole === "reactant" && role === "product") {
+        const evaluation = evaluateComposerReactionMappingCandidate({
+          sourceParticipant: sourceContext?.participant,
+          sourceNode: sourceContext?.node,
+          targetParticipant: targetContext?.participant,
+          targetNode: targetContext?.node,
+        });
+        if (!evaluation.allowed) {
+          return {
+            disabled: true,
+            reason: evaluation.reason,
+          };
+        }
+      }
+      if (state.pendingSourceRole === "transmute-output" && role === "product") {
+        const transmuteId = parseNodeKey(state.pendingSourceKey).participantId;
+        const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
+        const candidateLedger = addLedgers(
+          transmuteSummary.outgoingLedger,
+          classifyComposerReactionNode(targetContext?.participant, targetContext?.node)?.inventory
+        );
+        if (!hasLedger(transmuteSummary.incomingLedger)) {
+          return {
+            disabled: true,
+            reason: "Add conservative reactant inputs to this Transmute tile first.",
+          };
+        }
+        if (!ledgerFitsWithin(transmuteSummary.incomingLedger, candidateLedger)) {
+          return {
+            disabled: true,
+            reason: `Transmute output would exceed its incoming ledger: ${formatLedger(transmuteSummary.incomingLedger)} available.`,
+          };
+        }
+      }
+      if (state.pendingSourceRole === "transmute-output" && role === "transmute-input") {
         return {
           disabled: true,
-          reason: evaluation.reason,
+          reason: "Transmute outputs connect to product targets only.",
         };
       }
     }
@@ -1139,6 +1330,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     });
     if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
       state.pendingSourceKey = "";
+      state.pendingSourceRole = "";
     }
     return beforeCount !== state.mappings.length;
   }
@@ -1155,7 +1347,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     closeMenu();
     render();
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} removed from the reaction solver.`
+      `${getParticipantSideLabel(participant.side, { capitalized: true })} ${participant.label} removed from the reaction solver.`
     );
     return true;
   }
@@ -1187,7 +1379,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     closeMenu();
     render();
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} updated.`
+      `${getParticipantSideLabel(participant.side, { capitalized: true })} ${participant.label} updated.`
     );
     return true;
   }
@@ -1316,17 +1508,22 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
-  function addOrReplaceMapping(sourceKey, targetKey) {
+  function addOrReplaceMapping(sourceKey, sourceRole, targetKey, targetRole) {
     state.mappings = state.mappings.filter((mapping) => {
-      return !(
-        nodeKeysConflict(mapping.sourceKey, sourceKey) ||
-        nodeKeysConflict(mapping.targetKey, targetKey)
-      );
+      const sourceConflict = isSingleMappingAnchorRole(sourceRole)
+        ? nodeKeysConflict(mapping.sourceKey, sourceKey) || nodeKeysConflict(mapping.targetKey, sourceKey)
+        : false;
+      const targetConflict = isSingleMappingAnchorRole(targetRole)
+        ? nodeKeysConflict(mapping.sourceKey, targetKey) || nodeKeysConflict(mapping.targetKey, targetKey)
+        : false;
+      return !(sourceConflict || targetConflict);
     });
     state.mappings.push({
       id: `solver_mapping_${state.nextMappingId++}`,
       sourceKey,
       targetKey,
+      sourceRole,
+      targetRole,
     });
   }
 
@@ -1335,26 +1532,36 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
     render();
   }
 
-  function getAnchorDisabled(side, nodeKey) {
-    return getAnchorAvailability(side, nodeKey).disabled;
+  function getAnchorDisabled(role, nodeKey) {
+    return getAnchorAvailability(role, nodeKey).disabled;
   }
 
-  function countEligibleProductTargets() {
+  function countEligibleTargets() {
     if (!state.pendingSourceKey) {
       return 0;
     }
     let count = 0;
     state.participants
-      .filter((participant) => participant.side === "product")
+      .filter((participant) => participant.side === "product" || participant.side === "center")
       .forEach((participant) => {
         const visit = (nodes = []) => {
           nodes.forEach((node) => {
             const nodeKey = buildNodeKey(participant.id, node.id);
-            if (!getAnchorAvailability("product", nodeKey).disabled) {
-              count += 1;
+            if (participant.side === "product") {
+              if (!getAnchorAvailability("product", nodeKey).disabled) {
+                count += 1;
+              }
+            } else if (participant.side === "center") {
+              const transmuteNode = getTransmuteNode(participant);
+              if (transmuteNode && node.id === transmuteNode.id) {
+                if (!getAnchorAvailability("transmute-input", nodeKey).disabled) {
+                  count += 1;
+                }
+              }
             }
             if (shouldRenderChildNodes(node)) {
               visit(node.children);
@@ -1550,6 +1757,36 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
+  function createTransmuteHierarchy() {
+    return [
+      {
+        id: "root",
+        label: "Transmute",
+        renderMode: "transmute-tile",
+        children: [],
+      },
+    ];
+  }
+
+  function addTransmuteParticipant() {
+    const centerCount = state.participants.filter((participant) => participant.side === "center").length;
+    const participant = createParticipantRecord({
+      side: "center",
+      templateId: "transmute",
+      label: "Transmute",
+      hierarchy: createTransmuteHierarchy(),
+      extraFields: {
+        centerYRatio: Math.min(0.82, 0.28 + centerCount * 0.18),
+      },
+    });
+    state.participants.push(participant);
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    closeMenu();
+    render();
+    setStatus("Transmute tile added to the reaction solver.");
+  }
+
   function clearReactionCanvas() {
     if (!state.participants.length && !state.mappings.length && !state.pendingSourceKey) {
       closeMenu();
@@ -1560,6 +1797,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.participants = [];
     state.mappings = [];
     state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
     closeMenu();
     render();
     setStatus("Reaction canvas cleared.");
@@ -1577,7 +1815,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       renderMenuTitle(
         state.menuSide === "product" ? "Choose product" : "Choose reactant"
       );
-      templateEntries.forEach((entry) => {
+      sortedTemplateEntries.forEach((entry) => {
         const itemButton = renderMenuButton(entry.label, {
           onClick: () =>
             addParticipant(state.menuSide, entry.template, {
@@ -1627,7 +1865,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         );
       }
       renderMenuButton(
-        `Remove ${participant.side === "reactant" ? "reactant" : "product"}`,
+        `Remove ${getParticipantSideLabel(participant.side)}`,
         {
           onClick: () => removeParticipantById(participant.id),
         }
@@ -1651,6 +1889,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
         lines: ["Add", "Product"],
         extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("product"),
+      });
+      renderMenuButton("Add transmute", {
+        lines: ["Add", "Transmute"],
+        extraClassNames: ["is-wide", "is-root-tile"],
+        onClick: () => addTransmuteParticipant(),
       });
       renderMenuButton("Clear reaction canvas", {
         kind: "secondary",
@@ -1687,6 +1930,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     state.active = nextActive;
     state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
     closeMenu();
     closeExternalMenus();
     if (root) {
@@ -1705,7 +1949,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Right-click the 2D canvas to add reactants or products."
+          ? "Reaction solver opened. Right-click the reaction canvas to add reactants, products, or a Transmute tile."
           : "Reaction solver closed."
       );
     }
@@ -1715,42 +1959,84 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setActive(!state.active);
   }
 
-  function handleAnchorClick(side, nodeKey) {
-    const existingMapping = findMappingByNodeKey(nodeKey);
-    if (existingMapping) {
-      state.pendingSourceKey = "";
-      if (removeMappingById(existingMapping.id)) {
-        render();
-        setStatus("Removed reaction mapping.");
+  function handleAnchorClick(role, nodeKey) {
+    if (isSingleMappingAnchorRole(role)) {
+      const existingMapping = findMappingByNodeKey(nodeKey);
+      if (existingMapping) {
+        state.pendingSourceKey = "";
+        state.pendingSourceRole = "";
+        if (removeMappingById(existingMapping.id)) {
+          render();
+          setStatus("Removed reaction mapping.");
+        }
+        return;
+      }
+    }
+
+    const anchorAvailability = getAnchorAvailability(role, nodeKey);
+    if (anchorAvailability.disabled) {
+      if (anchorAvailability.reason) {
+        setStatus(anchorAvailability.reason);
       }
       return;
     }
-    if (getAnchorDisabled(side, nodeKey)) {
-      return;
-    }
-    if (side === "reactant") {
-      state.pendingSourceKey = state.pendingSourceKey === nodeKey ? "" : nodeKey;
+
+    if (canStartMappingFromRole(role)) {
+      const isClearingPending =
+        state.pendingSourceKey === nodeKey && state.pendingSourceRole === role;
+      state.pendingSourceKey = isClearingPending ? "" : nodeKey;
+      state.pendingSourceRole = isClearingPending ? "" : role;
       render();
-      if (state.pendingSourceKey) {
-        const eligibleProductCount = countEligibleProductTargets();
+      if (!state.pendingSourceKey) {
         setStatus(
-          eligibleProductCount
-            ? "Reactant attach point selected. Conservative product targets remain active; incompatible targets are grayed out."
-            : "Reactant attach point selected, but no conservative product targets are currently available."
+          role === "transmute-output"
+            ? "Transmute output anchor cleared."
+            : "Reactant anchor cleared."
         );
-      } else {
-        setStatus("Reactant attach point cleared.");
+        return;
       }
+      const eligibleTargetCount = countEligibleTargets();
+      if (role === "transmute-output") {
+        setStatus(
+          eligibleTargetCount
+            ? "Transmute output selected. Conservative product targets remain active; incompatible targets are dimmed."
+            : "Transmute output selected, but no conservative product targets are currently available."
+        );
+        return;
+      }
+      setStatus(
+        eligibleTargetCount
+          ? "Reactant anchor selected. Conservative product and Transmute targets remain active; incompatible targets are dimmed."
+          : "Reactant anchor selected, but no conservative targets are currently available."
+      );
       return;
     }
-    if (!state.pendingSourceKey) {
-      setStatus("Choose a reactant attach point first.");
+
+    if (!state.pendingSourceKey || !state.pendingSourceRole) {
+      setStatus("Choose a reactant or Transmute output anchor first.");
       return;
     }
-    addOrReplaceMapping(state.pendingSourceKey, nodeKey);
+
+    if (
+      state.pendingSourceRole === "reactant" &&
+      role !== "product" &&
+      role !== "transmute-input"
+    ) {
+      setStatus("Reactant anchors connect to products or to a Transmute input.");
+      return;
+    }
+    if (state.pendingSourceRole === "transmute-output" && role !== "product") {
+      setStatus("Transmute outputs connect to product anchors only.");
+      return;
+    }
+
+    addOrReplaceMapping(state.pendingSourceKey, state.pendingSourceRole, nodeKey, role);
     state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
     render();
-    setStatus("Reaction mapping added.");
+    setStatus(
+      role === "transmute-input" ? "Reactant routed into Transmute." : "Reaction mapping added."
+    );
   }
 
   function createBinaryGlyph(choice = null, options = {}) {
@@ -1834,9 +2120,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function createAnchorButton(participant, node, nodeKey, options = {}) {
-    const { extraClassNames = [] } = options;
-    const anchorAvailability = getAnchorAvailability(participant.side, nodeKey);
-    const mapping = findMappingByNodeKey(nodeKey);
+    const { extraClassNames = [], anchorRole = participant.side } = options;
+    const anchorAvailability = getAnchorAvailability(anchorRole, nodeKey);
+    const mappings = findMappingsByNodeKey(nodeKey);
+    const mapping = isSingleMappingAnchorRole(anchorRole) ? mappings[0] ?? null : null;
+    const hasRoleMapping = isSingleMappingAnchorRole(anchorRole)
+      ? !!mapping
+      : mappings.some((entry) =>
+          entry.sourceRole === anchorRole || entry.targetRole === anchorRole
+        );
     const anchor = document.createElement("button");
     anchor.type = "button";
     anchor.className = "composer-reaction-solver-anchor";
@@ -1844,22 +2136,22 @@ export function createComposerReactionSolverUiRuntime(deps) {
       .filter(Boolean)
       .forEach((className) => anchor.classList.add(className));
     anchor.dataset.anchorKey = nodeKey;
-    anchor.dataset.anchorSide = participant.side;
+    anchor.dataset.anchorSide = anchorRole;
     anchor.setAttribute(
       "aria-label",
-      `${participant.side === "product" ? "Product" : "Reactant"} attach point for ${node.label}`
+      `${anchorRole === "product" ? "Product" : anchorRole === "transmute-input" ? "Transmute input" : anchorRole === "transmute-output" ? "Transmute output" : "Reactant"} attach point for ${node.label}`
     );
     anchor.disabled = anchorAvailability.disabled;
     if (anchorAvailability.reason) {
       anchor.title = anchorAvailability.reason;
     }
-    if (state.pendingSourceKey === nodeKey) {
+    if (state.pendingSourceKey === nodeKey && state.pendingSourceRole === anchorRole) {
       anchor.classList.add("is-pending");
     }
-    if (mapping) {
+    if (hasRoleMapping) {
       anchor.classList.add("is-mapped");
     }
-    anchor.addEventListener("click", () => handleAnchorClick(participant.side, nodeKey));
+    anchor.addEventListener("click", () => handleAnchorClick(anchorRole, nodeKey));
     return anchor;
   }
 
@@ -2136,9 +2428,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return wrapper;
   }
 
-  function createParticipantVisual(participant) {
+  function createParticipantVisual(participant, options = {}) {
+    const { extraClassNames = [] } = options;
     const visual = document.createElement("div");
     visual.className = "composer-reaction-solver-particle";
+    extraClassNames.filter(Boolean).forEach((className) => visual.classList.add(className));
     if (participant.polarity === "anti") {
       visual.classList.add("is-anti-polarity");
     }
@@ -2159,6 +2453,84 @@ export function createComposerReactionSolverUiRuntime(deps) {
       openParticipantMenuAt(participant.id, event.clientX, event.clientY);
     });
     return visual;
+  }
+
+  function getTransmuteCardTop(centerYRatio = 0.5) {
+    return `${Math.max(0.08, Math.min(0.92, Number(centerYRatio) || 0.5)) * 100}%`;
+  }
+
+  function syncTransmuteCardPosition(participantId) {
+    if (!surface) {
+      return;
+    }
+    const participant = findParticipantById(participantId);
+    const card = surface.querySelector(
+      `.composer-reaction-solver-participant.is-center[data-participant-id="${CSS.escape(participantId)}"]`
+    );
+    if (!participant || !card) {
+      return;
+    }
+    card.style.top = getTransmuteCardTop(participant.centerYRatio);
+  }
+
+  function updateTransmuteDrag(clientY) {
+    if (!state.dragParticipantId || !centerColumn) {
+      return;
+    }
+    const participant = findParticipantById(state.dragParticipantId);
+    if (!participant) {
+      return;
+    }
+    const bounds = centerColumn.getBoundingClientRect();
+    const height = Math.max(1, bounds.height);
+    const nextRatio = Math.max(0.08, Math.min(0.92, (clientY - bounds.top) / height));
+    if (Math.abs((participant.centerYRatio ?? 0.5) - nextRatio) < 0.001) {
+      return;
+    }
+    participant.centerYRatio = nextRatio;
+    syncTransmuteCardPosition(participant.id);
+    scheduleMappingDraw();
+  }
+
+  function stopTransmuteDrag() {
+    if (!state.dragParticipantId || !surface) {
+      state.dragParticipantId = "";
+      state.dragPointerId = null;
+      return;
+    }
+    const card = surface.querySelector(
+      `.composer-reaction-solver-participant.is-center[data-participant-id="${CSS.escape(state.dragParticipantId)}"]`
+    );
+    if (card) {
+      card.classList.remove("is-dragging");
+    }
+    state.dragParticipantId = "";
+    state.dragPointerId = null;
+  }
+
+  function startTransmuteDrag(event, participantId) {
+    if (event.button !== 0 || !centerColumn) {
+      return;
+    }
+    const target = event.target;
+    if (target instanceof Element && target.closest(".composer-reaction-solver-anchor")) {
+      return;
+    }
+    state.dragParticipantId = participantId;
+    state.dragPointerId = event.pointerId;
+    const card = event.currentTarget;
+    if (card instanceof HTMLElement) {
+      card.classList.add("is-dragging");
+      if (typeof card.setPointerCapture === "function") {
+        try {
+          card.setPointerCapture(event.pointerId);
+        } catch (_error) {
+          // Ignore capture failures and continue with document-level dragging.
+        }
+      }
+    }
+    updateTransmuteDrag(event.clientY);
+    event.preventDefault();
   }
 
   function createCompositeVisualRail(participant) {
@@ -2188,6 +2560,44 @@ export function createComposerReactionSolverUiRuntime(deps) {
       rail.appendChild(rootAnchor);
     }
     return rail;
+  }
+
+  function createTransmuteParticipantCard(participant) {
+    const card = document.createElement("article");
+    card.className = "composer-reaction-solver-participant is-center is-transmute-participant";
+    card.dataset.participantId = participant.id;
+    card.style.top = getTransmuteCardTop(participant.centerYRatio);
+
+    const rootNode = getTransmuteNode(participant);
+    const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
+    const inputAnchor = rootNode
+      ? createAnchorButton(participant, rootNode, rootNodeKey, {
+          anchorRole: "transmute-input",
+          extraClassNames: ["composer-reaction-solver-transmute-anchor", "is-input"],
+        })
+      : null;
+    const outputAnchor = rootNode
+      ? createAnchorButton(participant, rootNode, rootNodeKey, {
+          anchorRole: "transmute-output",
+          extraClassNames: ["composer-reaction-solver-transmute-anchor", "is-output"],
+        })
+      : null;
+    const visual = createParticipantVisual(participant, {
+      extraClassNames: ["composer-reaction-solver-transmute-particle"],
+    });
+    const ledgerSummary = getTransmuteLedgerSummary(participant.id);
+    if (!ledgerSummary.isBalanced) {
+      card.classList.add("is-ineligible");
+      visual.title = `Transmute remains dim until incoming and outgoing ledgers match. Incoming: ${formatLedger(
+        ledgerSummary.incomingLedger
+      )}. Outgoing: ${formatLedger(ledgerSummary.outgoingLedger)}.`;
+    }
+    if (state.dragParticipantId === participant.id) {
+      card.classList.add("is-dragging");
+    }
+    card.append(inputAnchor, visual, outputAnchor);
+    card.addEventListener("pointerdown", (event) => startTransmuteDrag(event, participant.id));
+    return card;
   }
 
   function createBinarySelectorContent(participant, node) {
@@ -2389,17 +2799,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Right-click the reaction canvas to add reactants or products.";
+        "Right-click the reaction canvas to add reactants, products, or a Transmute tile.";
       return;
     }
     if (state.pendingSourceKey) {
       mapHint.textContent =
-        "Reactant anchor selected. Conservative product targets active; incompatible targets dimmed.";
+        state.pendingSourceRole === "transmute-output"
+          ? "Transmute output selected. Conservative product targets remain active; incompatible targets are dimmed."
+          : "Source anchor selected. Conservative product and Transmute targets remain active; incompatible targets are dimmed.";
       return;
     }
     if (!state.mappings.length) {
       mapHint.textContent =
-        "Choose a reactant anchor, then a product anchor, to author the first mapping.";
+        "Choose a reactant anchor, then a product or Transmute anchor, to author the first mapping.";
       return;
     }
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
@@ -2467,10 +2879,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     drawCompositeLinks(bounds);
     state.mappings.forEach((mapping) => {
       const sourceAnchor = surface.querySelector(
-        `.composer-reaction-solver-anchor[data-anchor-key="${CSS.escape(mapping.sourceKey)}"]`
+        `.composer-reaction-solver-anchor[data-anchor-key="${CSS.escape(mapping.sourceKey)}"][data-anchor-side="${CSS.escape(mapping.sourceRole)}"]`
       );
       const targetAnchor = surface.querySelector(
-        `.composer-reaction-solver-anchor[data-anchor-key="${CSS.escape(mapping.targetKey)}"]`
+        `.composer-reaction-solver-anchor[data-anchor-key="${CSS.escape(mapping.targetKey)}"][data-anchor-side="${CSS.escape(mapping.targetRole)}"]`
       );
       if (!sourceAnchor || !targetAnchor) {
         return;
@@ -2500,12 +2912,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function render() {
-    if (!root || !reactantsColumn || !productsColumn) {
+    if (!root || !reactantsColumn || !productsColumn || !centerColumn) {
       return;
     }
     root.classList.toggle("is-open", state.active);
     root.setAttribute("aria-hidden", state.active ? "false" : "true");
     reactantsColumn.innerHTML = "";
+    centerColumn.innerHTML = "";
     productsColumn.innerHTML = "";
     if (!state.active) {
       if (mapSvg) {
@@ -2519,6 +2932,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const productParticipants = state.participants.filter(
       (participant) => participant.side === "product"
     );
+    const centerParticipants = state.participants.filter(
+      (participant) => participant.side === "center"
+    );
     if (reactantParticipants.length) {
       reactantsColumn.appendChild(createSideSlotHeader("reactant"));
     }
@@ -2528,6 +2944,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (productParticipants.length) {
       productsColumn.appendChild(createSideSlotHeader("product"));
     }
+    centerParticipants.forEach((participant) => {
+      centerColumn.appendChild(createTransmuteParticipantCard(participant));
+    });
     productParticipants.forEach((participant) => {
       productsColumn.appendChild(renderParticipantCard(participant));
     });
@@ -2551,6 +2970,26 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     closeMenu();
+  }
+
+  function handleDocumentPointerMove(event) {
+    if (!state.active || !state.dragParticipantId) {
+      return;
+    }
+    if (state.dragPointerId !== null && event.pointerId !== state.dragPointerId) {
+      return;
+    }
+    updateTransmuteDrag(event.clientY);
+  }
+
+  function handleDocumentPointerUp(event) {
+    if (!state.active || !state.dragParticipantId) {
+      return;
+    }
+    if (state.dragPointerId !== null && event.pointerId !== state.dragPointerId) {
+      return;
+    }
+    stopTransmuteDrag();
   }
 
   function handleRootKeyDown(event) {
@@ -2592,6 +3031,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!document.body.dataset.composerReactionSolverDocumentBound) {
       document.body.dataset.composerReactionSolverDocumentBound = "true";
       document.addEventListener("pointerdown", handleDocumentPointerDown, true);
+      document.addEventListener("pointermove", handleDocumentPointerMove, true);
+      document.addEventListener("pointerup", handleDocumentPointerUp, true);
+      document.addEventListener("pointercancel", handleDocumentPointerUp, true);
       window.addEventListener("resize", () => {
         if (state.active) {
           updateMenuPosition();
