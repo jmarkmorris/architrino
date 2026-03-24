@@ -154,7 +154,7 @@ for any parametrization $s$ of the worldline.
 
 **Causal Ordering:** Event A can influence event B **only if** $t_B > t_A$.
 
-**Finite Propagation Speed:** All physical interactions are mediated by fields (potentials) that propagate at a **finite speed** $c_f$ (the "field speed"), defined in the context of the Interaction Law (Section 2.6).
+**Finite Propagation Speed:** All physical interactions are mediated by causal wakes (potentials) that propagate at a **finite speed** $c_f$ (the "wake speed"), defined in the context of the Interaction Law (Section 2.6).
 
 **Path History Interactions:** If a source is located at $(\hat{t}_0, \mathbf{x}_0)$, its influence reaches a receiver at $(\hat{t}, \mathbf{x})$ at the **emission time**:
 $$
@@ -185,12 +185,12 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dy
 
 -- **Geodesics of time** are trivial: they are simply the flow $t \mapsto t$ at constant rate.
 -- All **forces and accelerations** arise from:
- - **Fields and potentials** acting within the fixed Euclidean space,
+ - **Wakes and potentials** acting within the fixed Euclidean space,
  - **Self-interaction** of extended assemblies (e.g., self-hit regime of binaries),
 
 **not** from any curvature or dynamics of the time coordinate itself.
 
-**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**; any time-like curvature or dilation observed in experiments must emerge from the dynamics of assemblies and fields acting within this rigid temporal framework.
+**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**; any time-like curvature or dilation observed in experiments must emerge from the dynamics of assemblies and effective fields acting within this rigid temporal framework.
 
 **Distinction from Relativistic Time:**
 
@@ -208,7 +208,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dy
 **Summary Postulate (Absolute Time):**
 
 > **Postulate 1 (Absolute Time):** 
-> Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed field propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no reparametrization freedom. Any physical "arrow of time" or observed time dilation is an emergent property of assemblies and their dynamics, not a feature of the background $t$ parameter itself.
+> Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed wake propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no reparametrization freedom. Any physical "arrow of time" or observed time dilation is an emergent property of assemblies and their dynamics, not a feature of the background $t$ parameter itself.
 
 ### Absolute Space (Euclidean Void)
 
@@ -1386,7 +1386,7 @@ The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is a conceptual (no
 - **Position and velocity** of every architrino: $\{(\mathbf{x}_i(t), \mathbf{v}_i(t))\}_{i=1}^N$
 - **Charge state** (electrino, positrino, magnitude $|e/6|$): $\{q_i, \sigma_i\}$
 - **Path history**: For any causal wake surface passing a point, the $\mathbb{U}_{\text{now}}$ knows the emission event $(\mathbf{x}_{\text{emit}}, t_{\text{emit}})$ and emitter identity
-- **Full potential field configuration**: From which it can derive all outgoing causal wake surfaces from all sources at all past times
+- **Full potential/wake configuration**: From which it can derive all outgoing causal wake surfaces from all sources at all past times
 - **Self-hit histories**: Which causal wake surfaces have returned to intersect their sources
 
 **What the $\mathbb{U}_{\text{now}}$ universe-state perspective is NOT:**
