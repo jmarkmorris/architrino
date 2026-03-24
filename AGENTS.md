@@ -11,7 +11,10 @@
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
 - In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
 - Documents in `content/markdown/aaa` must not refer or link to documents in `content/_meta`. If `_meta` material matters, restate or promote the needed content within `content/markdown/aaa` instead.
-- For textbook-facing prose and notation in `content/markdown/aaa`, follow the Archie guides in `content/markdown/aaa/archie/academic-style-guide.md`, `content/markdown/aaa/archie/mathematics-style-guide.md`, and `content/markdown/aaa/archie/mathematics-terminology.md` as applicable.
+- For textbook-facing prose, notation, and terminology in `content/markdown/aaa`, follow the Archie guides and glossaries rather than restating glossary-style rules in this file.
+- Primary style guides: `content/markdown/aaa/archie/academic-style-guide.md` and `content/markdown/aaa/archie/mathematics-style-guide.md`.
+- Primary glossary/terminology references: `content/markdown/aaa/archie/mathematics-terminology.md` and `content/markdown/aaa/archie/comparative-glossary.md`.
+- For in-progress terminology migrations and conversion notes used during editing, see `content/_meta/ideas/terminology-conversions.md`, but promote any needed canon into `content/markdown/aaa` before relying on it in textbook-facing docs.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.
 - In theory-facing prose, distinguish carefully between:
@@ -21,8 +24,6 @@
   - and speculative extensions.
 - When an insight feels foundational, prefer wording such as "deeper basis," "ontological basis," "microscopic ledger," or "stronger claim than" before escalating to universal statements like "root of all" or "explains everything."
 - Do not flatten a real insight into timid prose; keep the force of the insight, but name its scope, what it directly establishes, and what still requires separate argument.
-- Avoid using `charge` as the default ontological name for an architrino. At the architrino level, prefer language such as `architrino`, `polarity`, `personality architrino`, or `transceiver of potential` as appropriate.
-- Preserve the stronger ontological distinction: an architrino is not merely a traditional point charge. It is a specific transceiver of potential with its own physics, while `charge` remains useful mainly for historical continuity, standard-model comparison, or higher-level effective/gauge/bookkeeping contexts where that language is genuinely the right level.
 - Use causal-delay terminology in prose (`causal`, `delayed`, `path-history`) and avoid `retard`/`retarded` wording outside literal quotations or code identifiers.
 - Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
 - When giving the user step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one ELI5 step at a time.
