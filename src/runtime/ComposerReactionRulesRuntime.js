@@ -3,7 +3,7 @@ export const composerReactionRuleRegistry = Object.freeze([
     id: "inventory-conservation",
     category: "core",
     description:
-      "Mappings must conserve pro-core and anti-core polarity counts together with exact electrino and positrino counts for the mapped unit.",
+      "Mappings must conserve exact electrino and positrino counts for the mapped unit.",
   },
   {
     id: "provenance-required",
@@ -20,6 +20,13 @@ export const composerReactionRuleRegistry = Object.freeze([
 ]);
 
 const reactionInventoryKeys = Object.freeze(["proCore", "antiCore", "electrino", "positrino"]);
+const reactionLedgerKeys = Object.freeze(["electrino", "positrino"]);
+const binaryChoiceInventoryById = Object.freeze({
+  ee: Object.freeze({ electrino: 3, positrino: 1 }),
+  ep: Object.freeze({ electrino: 2, positrino: 2 }),
+  pe: Object.freeze({ electrino: 2, positrino: 2 }),
+  pp: Object.freeze({ electrino: 1, positrino: 3 }),
+});
 
 function normalizeText(value = "") {
   return String(value ?? "").trim().toLowerCase();
@@ -56,10 +63,21 @@ function addInventories(leftInventory = null, rightInventory = null) {
   return sum;
 }
 
-function getNodeInventory(node = null) {
+function getBinarySelectorInventory(participant = null, node = null) {
+  const choiceId = normalizeText(participant?.binarySelections?.[node?.id]);
+  return normalizeInventory(binaryChoiceInventoryById[choiceId] ?? null);
+}
+
+function getNodeInventory(participant = null, node = null) {
+  if (normalizeText(node?.renderMode) === "binary-selector") {
+    return getBinarySelectorInventory(participant, node);
+  }
   const baseInventory = normalizeInventory(node?.inventory);
   const children = Array.isArray(node?.children) ? node.children : [];
-  return children.reduce((inventory, child) => addInventories(inventory, getNodeInventory(child)), baseInventory);
+  return children.reduce(
+    (inventory, child) => addInventories(inventory, getNodeInventory(participant, child)),
+    baseInventory
+  );
 }
 
 function hasInventory(inventory = null) {
@@ -76,10 +94,18 @@ function getNodeProvenanceMode(node = null) {
   return children.some((child) => getNodeProvenanceMode(child) === "guessed") ? "guessed" : "direct";
 }
 
-function inventoriesEqual(leftInventory = null, rightInventory = null) {
+function ledgersEqual(leftInventory = null, rightInventory = null) {
   const left = normalizeInventory(leftInventory);
   const right = normalizeInventory(rightInventory);
-  return reactionInventoryKeys.every((key) => left[key] === right[key]);
+  return reactionLedgerKeys.every((key) => left[key] === right[key]);
+}
+
+function formatLedger(inventory = null) {
+  const normalized = normalizeInventory(inventory);
+  const parts = reactionLedgerKeys
+    .filter((key) => normalized[key])
+    .map((key) => `${normalized[key]} ${key}`);
+  return parts.join(" + ") || "empty ledger";
 }
 
 function formatInventory(inventory = null) {
@@ -107,7 +133,7 @@ export function classifyComposerReactionNode(participant = null, node = null) {
   if (!templateId || !nodeId || !label) {
     return null;
   }
-  const inventory = getNodeInventory(node);
+  const inventory = getNodeInventory(participant, node);
   return {
     kind: normalizeText(label).replace(/\s+/g, "_"),
     label,
@@ -135,10 +161,10 @@ export function evaluateComposerReactionMappingCandidate({
     };
   }
 
-  if (!inventoriesEqual(sourceSpec.inventory, targetSpec.inventory)) {
+  if (!ledgersEqual(sourceSpec.inventory, targetSpec.inventory)) {
     return {
       allowed: false,
-      reason: `Not conservative: ${formatInventory(sourceSpec.inventory)} cannot map to ${formatInventory(
+      reason: `Not conservative: ${formatLedger(sourceSpec.inventory)} cannot map to ${formatLedger(
         targetSpec.inventory
       )}.`,
       sourceSpec,
@@ -155,8 +181,8 @@ export function evaluateComposerReactionMappingCandidate({
     allowed: true,
     reason:
       provenanceMode === "guessed"
-        ? `Conservative with guessed provenance: ${formatInventory(sourceSpec.inventory)}.`
-        : `Conservative with direct provenance: ${formatInventory(sourceSpec.inventory)}.`,
+        ? `Conservative with guessed provenance: ${formatLedger(sourceSpec.inventory)}.`
+        : `Conservative with direct provenance: ${formatLedger(sourceSpec.inventory)}.`,
     sourceSpec,
     targetSpec,
     provenanceMode,

@@ -1587,6 +1587,13 @@ body {
 
 .composer-reaction-solver-topbar {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 14px;
+}
+
+.composer-reaction-solver-topbar-copy {
+  display: grid;
   gap: 4px;
 }
 
@@ -1640,6 +1647,19 @@ body {
   stroke-width: 2.5;
   stroke-linecap: round;
   filter: drop-shadow(0 0 10px rgba(82, 152, 255, 0.2));
+}
+
+.composer-reaction-solver-composite-link {
+  fill: none;
+  stroke: rgba(153, 211, 255, 0.86);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 10px rgba(82, 152, 255, 0.2));
+}
+
+.composer-reaction-solver-composite-link.is-ineligible {
+  stroke: rgba(123, 148, 182, 0.34);
+  filter: none;
 }
 
 .composer-reaction-solver-empty {
@@ -1708,29 +1728,28 @@ body {
 }
 
 .composer-reaction-solver-center {
-  display: grid;
-  place-content: center;
-  gap: 10px;
-  text-align: center;
-}
-
-.composer-reaction-solver-center-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(244, 247, 255, 0.58);
+  position: relative;
+  min-height: 100%;
+  overflow: visible;
+  pointer-events: none;
 }
 
 .composer-reaction-solver-hint {
-  max-width: 240px;
-  padding: 12px 14px;
+  max-width: 520px;
+  min-height: 38px;
+  padding: 8px 16px;
   border-radius: 14px;
-  border: 1px solid rgba(160, 170, 220, 0.14);
-  background: rgba(12, 17, 31, 0.72);
-  color: rgba(244, 247, 255, 0.84);
+  border: 1px solid rgba(196, 74, 214, 0.72);
+  background: linear-gradient(180deg, rgba(15, 18, 38, 0.9), rgba(11, 14, 28, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 0 0 1px rgba(196, 74, 214, 0.1);
+  color: rgba(244, 247, 255, 0.88);
   font-size: 12px;
-  line-height: 1.45;
+  line-height: 1.2;
+  text-align: center;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .composer-reaction-solver-participant {
@@ -1752,6 +1771,32 @@ body {
 
 .composer-reaction-solver-participant.is-product {
   justify-self: end;
+}
+
+.composer-reaction-solver-participant.is-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+.composer-reaction-solver-participant.is-center.is-dragging {
+  z-index: 4;
+}
+
+.composer-reaction-solver-participant.is-composite-participant {
+  align-items: center;
+}
+
+.composer-reaction-solver-participant.is-ineligible {
+  opacity: 0.42;
+}
+
+.composer-reaction-solver-participant.is-ineligible .composer-reaction-solver-particle-label {
+  color: rgba(170, 178, 204, 0.58);
 }
 
 .composer-reaction-solver-particle {
@@ -1798,6 +1843,22 @@ body {
 
 .composer-reaction-solver-particle-label-line {
   display: block;
+}
+
+.composer-reaction-solver-transmute-particle {
+  width: 120px;
+  min-width: 120px;
+  padding-inline: 12px;
+  cursor: grab;
+}
+
+.composer-reaction-solver-participant.is-center.is-dragging .composer-reaction-solver-transmute-particle {
+  cursor: grabbing;
+}
+
+.composer-reaction-solver-transmute-particle .composer-reaction-solver-particle-label {
+  font-size: 11px;
+  line-height: 1.1;
 }
 
 .composer-reaction-solver-tree {
@@ -1918,6 +1979,12 @@ body {
   place-items: center;
 }
 
+.composer-reaction-solver-composite-visual-rail {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .composer-reaction-solver-binary-selector {
   display: grid;
   grid-template-columns: auto max-content;
@@ -1986,10 +2053,19 @@ body {
   grid-auto-columns: max-content;
   align-items: flex-start;
   gap: var(--solver-tile-gap);
+  overflow: visible;
 }
 
 .composer-reaction-solver-composite-row-card {
   margin-top: 0;
+}
+
+.composer-reaction-solver-composite-row-selector-lane {
+  display: grid;
+  align-self: start;
+  width: 18px;
+  height: var(--binary-choice-size, 72px);
+  place-items: center;
 }
 
 .composer-reaction-solver-higgs-cluster-grid-row.has-selector {
@@ -2175,6 +2251,15 @@ body {
   background: rgba(24, 92, 64, 0.92);
 }
 
+.composer-reaction-solver-composite-collector {
+  pointer-events: none;
+  border-color: rgba(198, 150, 255, 0.86);
+  background: rgba(43, 28, 66, 0.92);
+  box-shadow:
+    inset 0 0 0 2px rgba(176, 111, 255, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
 .composer-reaction-solver-anchor:disabled {
   cursor: default;
   border-color: rgba(255, 255, 255, 0.12);
@@ -2241,7 +2326,18 @@ body {
   backdrop-filter: blur(12px);
 }
 
+.composer-reaction-solver-menu[data-menu-mode="template-picker"] {
+  min-width: 154px;
+  max-width: min(196px, calc(100vw - 32px));
+}
+
+.composer-reaction-solver-menu[data-menu-mode="root"] {
+  min-width: 320px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .composer-reaction-solver-menu-title {
+  grid-column: 1 / -1;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -2261,6 +2357,38 @@ body {
   font-size: 12px;
   text-align: left;
   cursor: pointer;
+}
+
+.composer-reaction-solver-menu-button.is-wide {
+  grid-column: 1 / -1;
+}
+
+.composer-reaction-solver-menu-button.is-root-tile {
+  min-height: 72px;
+  padding: 10px 8px;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.composer-reaction-solver-menu-button-line {
+  display: block;
+}
+
+.composer-reaction-solver-menu-button.is-root-tile .composer-reaction-solver-menu-button-line:first-child {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(244, 247, 255, 0.74);
+}
+
+.composer-reaction-solver-menu-button.is-root-tile .composer-reaction-solver-menu-button-line:last-child {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #f5f7ff;
 }
 
 .composer-reaction-solver-menu-button[data-short-label] {
@@ -3261,9 +3389,12 @@ body {
     align-content: start;
   }
 
+  .composer-reaction-solver-topbar {
+    grid-template-columns: 1fr;
+  }
+
   .composer-reaction-solver-center {
-    order: -1;
-    place-content: start center;
+    display: none;
   }
 
   .composer-reaction-solver-participant,
