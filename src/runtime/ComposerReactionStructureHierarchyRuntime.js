@@ -123,20 +123,23 @@ function buildNoetherCoreGridHierarchy(coreNode) {
 function buildFamilyParticleHierarchy(structureRoot) {
   const coreNode = getPrimaryNoetherCore(structureRoot);
   const templateId = getBinarySelectorTemplateId(structureRoot);
+  const occupancy = getNoetherCoreSlotOccupancy(coreNode);
   return [{
     id: String(structureRoot?.id ?? "root"),
     label: getBinarySelectorGroupLabel(structureRoot),
     templateId,
     renderMode: "binary-selector-grid",
-    children: STRUCTURE_SLOT_ORDER.map((slotName) =>
-      createBinarySelectorNode(
-        `${structureRoot?.id ?? "root"}/${slotName}`,
-        `${slotName} binary with personality`,
-        getSlotCode(slotName)
-      )
-    ),
+    children: STRUCTURE_SLOT_ORDER
+      .filter((slotName) => occupancy[slotName])
+      .map((slotName) =>
+        createBinarySelectorNode(
+          `${structureRoot?.id ?? "root"}/${slotName}`,
+          `${slotName} binary with personality`,
+          getSlotCode(slotName)
+        )
+      ),
     traits: {
-      occupancy: getNoetherCoreSlotOccupancy(coreNode),
+      occupancy,
     },
   }];
 }
@@ -240,4 +243,3 @@ export function buildReactionSolverHierarchyFromStructure(structureRoot) {
   }
   return [];
 }
-

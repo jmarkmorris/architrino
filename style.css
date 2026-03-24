@@ -2098,6 +2098,10 @@ body {
   gap: 10px;
 }
 
+.composer-reaction-solver-binary-selector-column.is-placeholder {
+  pointer-events: none;
+}
+
 .composer-reaction-solver-binary-selector-grid-options {
   display: grid;
   justify-items: center;
@@ -2211,6 +2215,14 @@ body {
 .composer-reaction-solver-binary-choice.is-static {
   cursor: default;
   border-color: color-mix(in srgb, var(--binary-choice-accent) 62%, rgba(255, 255, 255, 0.14));
+}
+
+.composer-reaction-solver-binary-choice.is-placeholder {
+  opacity: 0;
+  pointer-events: none;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
 }
 
 .composer-reaction-solver-binary-choice.is-selected {
