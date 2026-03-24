@@ -604,41 +604,6 @@ function isQuarkTemplateId(templateId) {
   return normalizedTemplateId === "up_quark" || normalizedTemplateId === "down_quark";
 }
 
-function collectLegacyBinarySelectorNodes(nodes = [], bucket = []) {
-  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
-    if (node?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR) {
-      bucket.push(node);
-    }
-    collectLegacyBinarySelectorNodes(node?.children, bucket);
-  });
-  return bucket;
-}
-
-function collectLegacyBinarySelectorGroupNodes(nodes = [], bucket = []) {
-  (Array.isArray(nodes) ? nodes : []).forEach((node) => {
-    if (node?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
-      bucket.push(node);
-    }
-    collectLegacyBinarySelectorGroupNodes(node?.children, bucket);
-  });
-  return bucket;
-}
-
-function findLegacyBinarySelectorGroupNode(nodes = [], targetNodeId = "", currentGroup = null) {
-  for (const node of Array.isArray(nodes) ? nodes : []) {
-    const nextGroup =
-      node?.renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID ? node : currentGroup;
-    if (node?.id === targetNodeId) {
-      return nextGroup;
-    }
-    const childMatch = findLegacyBinarySelectorGroupNode(node?.children, targetNodeId, nextGroup);
-    if (childMatch) {
-      return childMatch;
-    }
-  }
-  return null;
-}
-
 function sortBinarySelectorNodes(nodes = []) {
   return [...nodes].sort((left, right) => {
     const leftRank = binarySlotRankByCode[left?.slotCode] ?? Number.MAX_SAFE_INTEGER;
@@ -651,14 +616,9 @@ function sortBinarySelectorNodes(nodes = []) {
 }
 
 function getParticipantBinarySelectorGroups(participant) {
-  const structureGroups = getReactionBinarySelectorGroups(participant?.structure);
-  if (structureGroups.length) {
-    return structureGroups;
-  }
-  return collectLegacyBinarySelectorGroupNodes(participant?.hierarchy, []).map((groupNode) => ({
-    id: groupNode.id,
-    templateId: String(groupNode?.templateId ?? participant?.templateId ?? "").trim().toLowerCase(),
-    slotNodes: sortBinarySelectorNodes(collectLegacyBinarySelectorNodes([groupNode], [])),
+  return getReactionBinarySelectorGroups(participant?.structure).map((groupNode) => ({
+    ...groupNode,
+    slotNodes: sortBinarySelectorNodes(groupNode?.slotNodes ?? []),
   }));
 }
 
@@ -670,11 +630,7 @@ function resolveBinarySelectorGroup(participant, groupNodeOrNodeId = null) {
   if (!explicitId) {
     return null;
   }
-  const structureGroup = findReactionBinarySelectorGroup(participant?.structure, explicitId);
-  if (structureGroup) {
-    return structureGroup;
-  }
-  return findLegacyBinarySelectorGroupNode(participant?.hierarchy, explicitId);
+  return findReactionBinarySelectorGroup(participant?.structure, explicitId);
 }
 
 function getBinarySelectorTemplateIdForNode(participant, groupNode = null) {
@@ -687,14 +643,11 @@ function getBinarySelectorNodes(participant, groupNode = null) {
   if (groupRecord?.slotNodes) {
     return sortBinarySelectorNodes(groupRecord.slotNodes);
   }
-  if (groupRecord && !groupRecord.slotNodes) {
-    return sortBinarySelectorNodes(collectLegacyBinarySelectorNodes([groupRecord], []));
-  }
   const structureGroups = getParticipantBinarySelectorGroups(participant);
   if (structureGroups.length) {
     return sortBinarySelectorNodes(structureGroups.flatMap((group) => group.slotNodes ?? []));
   }
-  return sortBinarySelectorNodes(collectLegacyBinarySelectorNodes(participant?.hierarchy, []));
+  return [];
 }
 
 function getDefaultBinaryChoiceIdForNode(participant, node, groupNode = null) {
