@@ -234,7 +234,7 @@ export function openComposerSubassemblyMenu(config) {
     appendMenuNote,
     appendMenuButtonRow,
     appendMenuSectionHeader,
-    dissolveSubassembly,
+    splitGroup,
     closeMenu,
     renderAssemblyEditor,
     renderJsonPreview,
@@ -283,11 +283,11 @@ export function openComposerSubassemblyMenu(config) {
 
   appendMenuButtonRow(menu, [
     {
-      text: "Dissolve Group",
+      text: "Split Group",
       className: "composer-assembly-menu-danger",
       onClick: () => {
         const liveAssembly = getAssemblyDraftById(assemblyId);
-        if (!liveAssembly || !dissolveSubassembly(liveAssembly, normalizedSubassemblyId)) {
+        if (!liveAssembly || !splitGroup(liveAssembly, normalizedSubassemblyId)) {
           return;
         }
         closeMenu();

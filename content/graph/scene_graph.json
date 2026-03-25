@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 411,
-      "edges": 1153,
-      "scenes": 284,
+      "nodes": 413,
+      "edges": 1155,
+      "scenes": 285,
       "markdownIndexes": 0,
-      "markdownDocs": 127,
+      "markdownDocs": 128,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1853,6 +1853,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "dynamics__planar_bridge_closure",
+      "name": "Planar Bridge Closure",
+      "path": "content/scenes/dynamics/planar_bridge_closure.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2138,6 +2144,12 @@
       "id": "content/markdown/aaa/dynamics/mode-taxonomy.md",
       "name": "Mode Taxonomy",
       "path": "content/markdown/aaa/dynamics/mode-taxonomy.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+      "name": "Planar Bridge Closure",
+      "path": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3208,6 +3220,15 @@
       "name": "Mode Taxonomy",
       "path": "content/scenes/dynamics/mode_taxonomy.json",
       "searchTarget": "content/scenes/dynamics/mode_taxonomy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/planar_bridge_closure.json",
+      "nodeType": "scene",
+      "id": "dynamics__planar_bridge_closure",
+      "name": "Planar Bridge Closure",
+      "path": "content/scenes/dynamics/planar_bridge_closure.json",
+      "searchTarget": "content/scenes/dynamics/planar_bridge_closure.json",
       "implicit": false
     },
     {
@@ -5605,6 +5626,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/planar-bridge-closure.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+      "name": "Planar Bridge Closure",
+      "path": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+      "searchTarget": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-dynamics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
@@ -6840,7 +6870,7 @@
       "to": "scene:content/scenes/dynamics/horizon_chirality.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -6861,28 +6891,35 @@
       "to": "scene:content/scenes/dynamics/master_equation_breather.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/master_equation_of_motion.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/mode_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[13]"
+      "field": "scene.children[14]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/planar_bridge_closure.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[14]"
+      "field": "scene.children[15]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -10550,6 +10587,13 @@
       "to": "markdown_doc:content/markdown/aaa/dynamics/mode-taxonomy.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/mode_taxonomy.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/planar_bridge_closure.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/planar-bridge-closure.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/planar_bridge_closure.json",
       "field": "scene.source.path"
     },
     {

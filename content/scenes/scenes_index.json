@@ -1419,6 +1419,11 @@
       "id": "dynamics__horizon_chirality",
       "name": "Horizon Chirality",
       "path": "content/scenes/dynamics/horizon_chirality.json"
+    },
+    {
+      "id": "dynamics__planar_bridge_closure",
+      "name": "Planar Bridge Closure",
+      "path": "content/scenes/dynamics/planar_bridge_closure.json"
     }
   ]
 }

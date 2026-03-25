@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 124,
-      "sections": 839
+      "entries": 125,
+      "sections": 850
     }
   },
   "tocRoot": {
@@ -1494,6 +1494,104 @@
                 "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
                 "markdownSection": "Constraints, Assumptions, and Failure Modes",
                 "sectionKey": "constraints assumptions and failure modes",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__planar_bridge_closure",
+            "title": "Planar Bridge Closure",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/planar_bridge_closure.json",
+            "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Purpose",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Purpose",
+                "sectionKey": "purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Position in the Dynamics Stack",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Position in the Dynamics Stack",
+                "sectionKey": "position in the dynamics stack",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced Planar Bridge Regime",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Reduced Planar Bridge Regime",
+                "sectionKey": "reduced planar bridge regime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Rotational Gauge and Return Section",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Rotational Gauge and Return Section",
+                "sectionKey": "rotational gauge and return section",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Branch-Topology Control",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Branch-Topology Control",
+                "sectionKey": "branch topology control",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Vector Recapture Margins",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Vector Recapture Margins",
+                "sectionKey": "vector recapture margins",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Tame-Envelope Closure",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Tame-Envelope Closure",
+                "sectionKey": "tame envelope closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Failure Alternatives",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Failure Alternatives",
+                "sectionKey": "failure alternatives",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Immediate Theorem Program",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Immediate Theorem Program",
+                "sectionKey": "immediate theorem program",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why This Is the Best Next Closure Target",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Why This Is the Best Next Closure Target",
+                "sectionKey": "why this is the best next closure target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interfaces to Other Chapters",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Interfaces to Other Chapters",
+                "sectionKey": "interfaces to other chapters",
                 "headingLevel": 2
               }
             ]

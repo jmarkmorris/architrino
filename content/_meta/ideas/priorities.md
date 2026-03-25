@@ -181,7 +181,7 @@ Scoring system:
 - Priority 4: move composer-side structure onto the shared canonical model:
   - keep the new canonical structure bridge as the only direction of travel and stop adding fresh ontology to ad hoc composer-only assembly helpers;
   - extend the first composer-side visual path that already reads canonical structure into additional viewport and editor surfaces instead of leaving the bridge as isolated summaries and badges;
-  - move at least one actual composer mutation path onto shared structure transforms, likely regroup/dissolve or another narrow hierarchy edit;
+  - move at least one actual composer mutation path onto shared structure transforms, likely regroup/group-split or another narrow hierarchy edit;
   - make parent/child nesting read as local structure rather than grouped ids alone;
   - add richer subassembly transforms, presets, and instance overrides once the canonical edit path exists;
   - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;

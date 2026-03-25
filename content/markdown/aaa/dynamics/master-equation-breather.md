@@ -384,6 +384,8 @@ The most sensible continuation after the frozen collinear model is not the compl
 
 The natural candidate is a reflection-symmetric planar binary with a codimension-one return section chosen to control both radial and tangential escape. That regime is still close enough to the collinear reference model to inherit much of the return-map architecture, but it is already far enough from the line to force genuinely new geometry.
 
+The active working chapter for that bridge is now [Planar Bridge Closure](./planar-bridge-closure.md). The present document remains the larger roadmap and dependency spine.
+
 If that planar bridge regime also resists tame-envelope closure, then the obstruction will be informative: it will show exactly where the collinear proof architecture ceases to transport.
 
 ## First Planar Bridge Regime
