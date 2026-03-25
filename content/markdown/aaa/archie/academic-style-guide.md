@@ -230,6 +230,21 @@ In AAA-first prose, prefer `assembly and wake`:
 - `particle` and `wave` for standard comparative or observer-level discussion.
 
 The important editorial point is that AAA does not frame the issue as one thing being either particle or wave depending on circumstance. The localized assembly and the distributed wake are both part of the same causal account.
+
+### Spacetime terminology
+
+Do not let `spacetime`, `void`, `timespace`, `Noether Sea`, and `spacetime medium` drift into one another.
+
+Preferred prose discipline:
+
+- `Euclidean void` for the fixed spatial container
+- `absolute time` for the universal temporal parameter
+- `absolute timespace` for the formal product background $\mathbb{R}\times\mathbb{R}^3$
+- `Noether Sea` for the ambient contents
+- `spacetime medium` only as a bridge term
+- `spacetime` for emergent or observer-level geometry
+
+If a sentence could refer either to the background, the contents, or the emergent geometry, rewrite it until the level is explicit.
 - causal wake
 
 Reserve `field` for effective, continuum, or explicitly comparative discussion. When the prose is naming emitted substrate-level AAA structure, prefer `wake` so the emission order and ontological level remain explicit.

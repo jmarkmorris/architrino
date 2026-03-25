@@ -102,11 +102,39 @@ Sentence guidance:
 
 Use `spacetime` for emergent/effective structure, not as the default name for the substrate.
 
+The preferred AAA stack is:
+
+- `Euclidean void` for the fixed 3D spatial container
+- `absolute time` for the universal temporal parameter
+- `absolute timespace` for the formal product background $\mathbb{R}\times\mathbb{R}^3$
+- `Noether Sea` for the ambient substrate contents within that background
+- `spacetime medium` only as a bridge term toward effective spacetime language
+- `spacetime` for emergent relativistic or observer-level geometry
+
+The critical discipline is that `spacetime` should not silently absorb the ontology. In AAA, the ontological backdrop is not a curved four-dimensional spacetime manifold. The void and absolute time are fundamental; effective spacetime is a downstream description of how assemblies and wakes propagate through the Noether Sea.
+
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
 | fixed ontological container | `Euclidean void` | plain `spacetime` | "The Euclidean void does not curve." |
-| global product background | `absolute timespace` | vague `spacetime` in ontology-first prose | "Absolute timespace is $\mathbb{R}\times\mathbb{R}^3$." |
+| global product background as a formal ontology term | `absolute timespace` | bare `timespace`, vague `spacetime` in ontology-first prose | "Absolute timespace is $\mathbb{R}\times\mathbb{R}^3$." |
+| the ambient contents of that background | `Noether Sea` | `spacetime` when the contents are meant directly | "The Noether Sea occupies the Euclidean void within absolute timespace." |
+| a bridge from ontology to relativistic reader language | `spacetime medium` | using it as the primary ontological term | "The spacetime medium is a bridge term for reader-facing translation." |
 | emergent relativistic geometry | `spacetime`, `effective metric`, `effective geometry` | not applicable | "Spacetime curvature is an emergent refractive effect." |
+
+Sentence guidance:
+
+- Prefer: "The Euclidean void is the fixed spatial container."
+- Prefer: "Absolute timespace is the formal product of absolute time and the Euclidean void."
+- Prefer: "Spacetime is an emergent effective geometry, not the ontological background."
+- Prefer: "The Noether Sea occupies the void; it is not identical with the void."
+- Avoid by default: "Spacetime is the fundamental container."
+- Avoid by default: "Timespace" as a loose synonym for everything from container to contents to effective geometry.
+
+Editorial rule:
+
+- Use `absolute timespace` when a chapter truly needs the formal product-manifold label.
+- Use `Euclidean void` and `absolute time` when the prose is naming the substrate concretely.
+- Use plain `spacetime` only when the sentence is deliberately operating at the emergent, relativistic, or observer-level description.
 
 ## Particle, Wave, Assembly, and Wake
 

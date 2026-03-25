@@ -249,17 +249,18 @@ The `particle` / `wave` / `assembly` / `wake` family is also now moving into can
 
 ### 1. `spacetime` vs `void` vs `timespace`
 
-This family needs a stronger policy distinction between fundamental ontology and emergent description.
+This family is now moving into first-draft canon, but the corpus still needs a cleanup pass.
 
 - Some chapters carefully distinguish `Euclidean void` and `absolute time` from emergent `spacetime`.
 - Other chapters allow `spacetime` to drift back toward a fundamental substrate term.
-- `timespace` also appears in some places and may not yet have a fully stabilized role.
+- `timespace` also appears in some places and needs to be narrowed.
 
 Recommended direction:
 
 - Use `Euclidean void` and `absolute time` for the fundamental ontological backdrop when that is the intended meaning.
+- Use `absolute timespace` only for the formal product background $\mathbb{R}\times\mathbb{R}^3$ when that full structure matters.
 - Use `spacetime` for emergent, effective, geometric, relativistic, or observer-level structure.
-- Clarify whether `timespace` is a canonical AAA term with a distinct meaning or whether it should be reduced in favor of the more stable `void` / `spacetime` distinction.
+- Avoid loose `timespace` usage; either make it `absolute timespace` in the formal sense or replace it with the more specific term actually meant.
 - Avoid letting plain `spacetime` stand in for the ontological substrate unless the document explicitly says it is speaking at an emergent level.
 - Keep the container/content distinction explicit: the `Euclidean void` is the fixed background, while the `Noether Sea` is what occupies that background.
 
@@ -383,7 +384,7 @@ Representative files:
 
 If a new terminology pass is scheduled, the most important order appears to be:
 
-1. `spacetime` vs `void` vs `timespace`
+1. apply the `spacetime` / `void` / `absolute timespace` policy across the corpus
 2. `nucleus` vs `core` vs `Noether core`
 3. `orbit` / `orbital` / `circulation`
 4. `shell` vs `layer`
