@@ -1,6 +1,8 @@
 # Terminology Usage
 
-This document preserves durable terminology guidance for $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook-facing writing. Its purpose is not to track migration work, but to record canonical usage patterns, level distinctions, and sentence-level examples that remain valuable even after older terminology has been removed from the corpus. As terminology families stabilize, their durable guidance should live here and be removed from the open conversion queue.
+This document preserves durable terminology guidance for $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook-facing writing. Its purpose is not to track migration work, but to record canonical usage patterns, level distinctions, sentence-level examples, and the underlying rationale when a terminology choice protects the ontology from being blurred by inherited language. As terminology families stabilize, their durable guidance should live here and be removed from the open conversion queue.
+
+Despite the filename, this document is not only a usage sheet in the narrow copyediting sense. It is also the place where the project records why certain terms are preferred, what level-boundary errors those preferences prevent, and how $\mathbb{A}\mathbb{A}\mathbb{A}$ native wording should relate to older Standard Model or relativistic vocabulary. In that sense it functions as a canon-and-rationale reference for terminology decisions that remain important after the immediate cleanup pass is over.
 
 Use this document alongside [academic-style-guide.md](./academic-style-guide.md), [mathematics-style-guide.md](./mathematics-style-guide.md), [mathematics-terminology.md](./mathematics-terminology.md), and [comparative-glossary.md](./comparative-glossary.md).
 
@@ -209,6 +211,62 @@ Use `Noether core` for the central tri-binary scaffold. Use `particle` mainly at
 | the central neutral scaffold of a fermion | `Noether core`, `core` | vague central-structure wording when the scaffold itself is meant | "The axial layer is bound to the Noether core." |
 | $\mathbb{A}\mathbb{A}\mathbb{A}$ compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
 | Standard Model or observer-facing language | `particle` | not applicable | "The particle is observed as electrically neutral." |
+
+## Association and Dissociation in Reactions
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$-first reaction prose, do not use `decay` as the native verb for an assembly event. Use `associate` for the formation or docking of a reaction-built sub-assembly, and use `dissociate` for the breakup, release, or channel exit of that assembly.
+
+This rule is specifically about assembly events and reaction narration. It does not ban every use of the English word `decay`.
+
+The deeper reason is ontological, not merely stylistic. `Decay` is a poor explanatory verb for $\mathbb{A}\mathbb{A}\mathbb{A}$ because it suppresses the very questions the theory is trying to keep visible: what sub-assemblies formed, what sub-assemblies broke apart, what shielding changed, what corridor associated, what corridor dissociated, and how provenance was preserved. In other words, `decay` tends to package a structured reaction into an opaque one-word outcome label.
+
+This is why repeated use of Standard Model `decay` language can mislead even when the underlying mathematics is not in question. The issue is not that mainstream physics lacks calculational structure for those channels. The issue is that `decay` carries a weak ontological picture. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the stronger explanatory task is to identify the assembly process: association, dissociation, reconfiguration, shielding gain, shielding loss, corridor formation, corridor release, or some other specific channel.
+
+For that reason, the project should not solve the problem by constantly repeating `decay` and then adding parenthetical apologies. The cleaner discipline is to make `decay` non-default everywhere in $\mathbb{A}\mathbb{A}\mathbb{A}$ prose. Native wording should carry the explanation. Legacy wording should be quarantined as a comparison label only when needed for interoperability with standard literature.
+
+The practical mapping rule is therefore:
+
+- `reaction` is the default replacement when a sentence names a channel but does not yet specify the mechanism in detail.
+- `associate` and `dissociate` are the preferred mechanistic verbs when the sentence is about the formation or breakup of assemblies or sub-assemblies.
+- `reconfigure`, `convert`, `relax`, `shielding-gain transition`, and `shielding-loss transition` remain available when they are the sharper mechanism.
+- `decay` should appear only as a quoted or explicitly marked legacy label, for example at first mention of a Standard Model channel name.
+
+This policy also reveals an important mapping fact between ontologies: many processes that standard language groups under `decay` are not one kind of thing in $\mathbb{A}\mathbb{A}\mathbb{A}$. Some are dissociations of unstable assemblies. Some are associations of new shielding layers or new binaries. Some are corridor-mediated reconfigurations. Some are mixed association-dissociation events. Treating them all as `decay` hides those distinctions precisely where $\mathbb{A}\mathbb{A}\mathbb{A}$ most needs them.
+
+`Reaction` also needs to stay broader than collision language. In $\mathbb{A}\mathbb{A}\mathbb{A}$, a reaction is a channel event, not necessarily a visibly two-body encounter. A reaction may involve multiple incoming assemblies, medium-mediated forcing, or a single assembly reaching instability while unresolved ambient path-history and a local potential pulse together open a dissociation channel. For that reason, `reaction` is the right umbrella term even when the event looks spontaneous at observer level.
+
+This point is worth stating explicitly because the ontology is causal, not magical. A "spontaneous" reaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ does not mean uncaused. It means that the relevant micro-causal trigger was not operationally resolved in the sentence, model, or experiment. If an assembly reaches an edge orbit or instability threshold at the same moment that a potential pulse ripples through and the assembly dissociates, that is still a reaction. The word `reaction` names the channel event. The sharper follow-up question is then whether the channel is best described as dissociation, association, reconfiguration, shielding loss, or some more specific mechanism.
+
+| When you mean... | Prefer | Keep other wording only when... | Example |
+| --- | --- | --- | --- |
+| a reaction channel in general, when mechanism detail is not yet being foregrounded | `reaction` | not applicable | "The charged-current reaction connects the heavy and light assembly channels." |
+| an apparently spontaneous threshold event affecting one assembly | `reaction`, `spontaneous reaction` | the sentence needs to emphasize that the trigger is unresolved at observer level rather than absent in ontology | "The excited assembly undergoes a spontaneous reaction when a threshold pulse opens a dissociation corridor." |
+| a transient sub-assembly or corridor forming during a reaction | `associate`, `association` | not applicable | "A charged corridor associates during the weak interaction." |
+| a transient or unstable assembly breaking apart into other assemblies or released channels | `dissociate`, `dissociation` | not applicable | "The meson dissociates into lighter assemblies." |
+| a stable relation, equilibrium hold, or energy term | `bind`, `binding`, `bound state` | the sentence is about sustained structure, binding energy, or equilibrium rather than the reaction event itself | "The axial layer is bound to the Noether core." |
+| a Standard Model comparative label or fixed historical name | quoted legacy label plus native replacement, for example `beta reaction` (SM label: `beta decay`) | the sentence is explicitly introducing a mainstream canonical label or quoting a source | "At first mention, write `beta reaction` (SM label: `beta decay`)." |
+| a non-assembly quantity such as trajectory loss, amplitude falloff, or a measured rate label | `orbital decay`, `geometric decay`, `decay rate` | the sentence is not using `decay` as an ontological event verb for assemblies | "The observed orbital decay constrains extra drag." |
+
+Sentence guidance:
+
+- Prefer: "During the reaction, a transient corridor associates and then dissociates after charge transfer."
+- Prefer: "The unstable assembly dissociates into a lighter assembly and emitted byproducts."
+- Prefer: "During nucleosynthesis, proton and neutron assemblies associate into light nuclei."
+- Prefer: "The top-to-bottom weak reaction proceeds through corridor association and later dissociation."
+- Prefer: "The unstable assembly undergoes a spontaneous reaction when an ambient pulse opens a dissociation path."
+- Prefer: "The event appears spontaneous at observer level, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it is still a causal reaction driven by local threshold conditions and path history."
+- Prefer at first mention: "`beta reaction` (SM label: `beta decay`)."
+- Avoid by default: "The assembly decays..." when the prose is stating $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology directly.
+
+Editorial boundary:
+
+- Keep `decay` for mathematical or continuum phrases such as `orbital decay`, `geometric decay`, `exponentially decaying amplitude`, or `decaying equation of state`.
+- Do not use generic Standard Model `decay` wording as running prose in $\mathbb{A}\mathbb{A}\mathbb{A}$ chapters. Replace it with `reaction` unless a sharper mechanism term is ready.
+- Keep `decay` only when the text is naming a fixed historical or canonical label from standard literature, and translate it immediately into native $\mathbb{A}\mathbb{A}\mathbb{A}$ wording.
+- Rewrite `decay` to `dissociate` when the sentence is explaining what an assembly physically does in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+- Rewrite reaction-built `assembled`, `capture`, `regrowth`, `re-binding`, or similar event language to `associate` when the point is the formation of a transient or newly stabilized sub-assembly.
+- Do not let `reaction` shrink into collision-only language. A reaction may be multi-assembly, medium-mediated, or apparently spontaneous when a single assembly crosses a threshold under unresolved local driving.
+- When in doubt, ask: is this sentence naming a Standard Model label, or is it trying to explain the actual $\mathbb{A}\mathbb{A}\mathbb{A}$ process? If it is explaining the process, do not use `decay`.
 
 ## Orbit, Circulation, Shell, and Layer Usage
 
