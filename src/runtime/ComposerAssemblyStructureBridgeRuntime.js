@@ -294,10 +294,29 @@ export function formatComposerAssemblyStructureSummary(summary = {}) {
   } • ${binarySlotCount} occupied binary slot${binarySlotCount === 1 ? "" : "s"}`;
 }
 
-export function formatComposerAssemblyStructureBadgeSummary(summary = {}) {
-  const nodeCount = Math.max(0, Number(summary?.nodeCount ?? 0) || 0);
+export function formatComposerAssemblyStructureStatus(summary = {}, assembly = null) {
   const slotCount = Math.max(0, Number(summary?.slotCount ?? 0) || 0);
   const binarySlotCount = Math.max(0, Number(summary?.binarySlotCount ?? 0) || 0);
-  const suffix = summary?.valid === false ? " !" : "";
-  return `N${nodeCount} · S${slotCount} · B${binarySlotCount}${suffix}`;
+  const subassemblyCount = Array.isArray(assembly?.subassemblies) ? assembly.subassemblies.length : 0;
+  const memberCount = Array.isArray(assembly?.members) ? assembly.members.length : 0;
+
+  let label = "Assembly structure";
+  if (slotCount > 0 || summary?.kindCounts?.noether_core > 0 || assembly?.core) {
+    if (slotCount > 0 && binarySlotCount === slotCount) {
+      label = "Noether core • full";
+    } else if (slotCount > 0) {
+      label = `Noether core • ${binarySlotCount}/${slotCount} binaries`;
+    } else {
+      label = "Noether core";
+    }
+  } else if (subassemblyCount > 0) {
+    label = `Composite • ${subassemblyCount} group${subassemblyCount === 1 ? "" : "s"}`;
+  } else if (memberCount > 0) {
+    label = `Assembly • ${memberCount} member${memberCount === 1 ? "" : "s"}`;
+  }
+
+  if (summary?.valid === false) {
+    return `${label} • warning`;
+  }
+  return label;
 }

@@ -64,7 +64,7 @@ import {
 import { createBuiltInComposerAssemblyDraftRuntime } from "./src/runtime/ComposerAssemblyFactoryRuntime.js";
 import {
   buildComposerAssemblyStructure,
-  formatComposerAssemblyStructureBadgeSummary,
+  formatComposerAssemblyStructureStatus,
   formatComposerAssemblyStructureSummary,
   summarizeComposerAssemblyStructure,
 } from "./src/runtime/ComposerAssemblyStructureBridgeRuntime.js";
@@ -6719,7 +6719,7 @@ function addComposerAssemblyProxy(center, assembly, index) {
     if (canonicalSummary) {
       const structureBadge = createComposerAssemblyBadgeSprite(
         getComposerAssemblyViewportLabel(assembly, index),
-        formatComposerAssemblyStructureBadgeSummary(canonicalSummary)
+        formatComposerAssemblyStructureStatus(canonicalSummary, assembly)
       );
       structureBadge.position.copy(proxyBadgeOffset.clone().add(new THREE.Vector3(0.22, 0.14, 0)));
       centerMarker.userData.structureBadgeSprite = structureBadge;

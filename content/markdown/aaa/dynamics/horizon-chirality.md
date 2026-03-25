@@ -27,6 +27,18 @@ Away from the horizon, the project already treats `pro/anti` as a handedness or 
 
 That distinction is natural in the ordinary tri-binary because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
 
+The strongest current mathematical candidate beneath that datum comes from [causal-action-functional.md](./causal-action-functional.md): the causal writhe
+
+$$
+Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}}
+\mathrm{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
+$$
+
+is a signed measure of handedness for the self-interaction pattern, and the same chapter states that changing $Wr_c$ requires tearing the causal locus. So the cleanest current reading is:
+
+- the surface convention for `pro/anti` remains the ordered `HML/HLM` tri-binary distinction;
+- the best current formalization candidate is a topological branch label carried by the causal locus, with $Wr_c$ as the leading chirality measure.
+
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
 ## Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$
@@ -96,6 +108,8 @@ The planar spin table is viewpoint dependent in a controlled way.
 - **Co-moving or assembly-built observer:** may not have direct access to the absolute normal choice and instead infer only relative handedness, exposure, or wake asymmetry.
 
 So the physically stronger datum is not the literal word `CW` or `CCW` by itself. It is the sign of the planar angular momentum relative to a chosen normal. This is why the chapter treats boundary helicity as a sign-bearing branch quantity rather than as a naive visual label.
+
+This is also the right place to keep the substrate/effective split explicit: the substrate dynamics know about absolute path histories, delayed branch intersections, and topological branch labels. Observer-level helicity is a **dimensional reduction** of that deeper structure, not a primitive substrate variable.
 
 ## Boundary Helicity Versus Deeper Chirality
 
@@ -169,6 +183,16 @@ $$
 so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}} \to c_f$.
 
 This gives a precise version of the intuition: a high-velocity tri-binary should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
+
+## Exact Conservation Versus Dynamical Selection
+
+This distinction is important enough to state plainly.
+
+- **Exact conserved quantities:** the dynamics preserve total momentum and total angular momentum through substrate translation and rotation symmetry.
+- **Topological branch data:** writhe and winding-class labels of the causal locus are not ordinary Noether charges, but they are robust branch labels that change only through reconnection or tearing events.
+- **Dynamical selection:** alignment of the net orbital axis with the translation direction is neither a new conserved quantity nor a kinematic identity. It is a high-velocity attractor selected by the anisotropic delayed geometry.
+
+In symmetry language, the ambient substrate begins with the full spatial isotropy of $SO(3)$. A fast translating assembly supplies a distinguished direction $\hat{\mathbf V}$ and therefore selects a reduced effective symmetry around that axis, schematically $SO(3)\to SO(2)$, with the remaining planar phase behaving in the aligned limit like a $U(1)$-type degree of freedom. The near-horizon planar lock should therefore be read as a **symmetry-broken dynamical branch** of the underlying theory, not as a new exact conservation law.
 
 ## State-Transition Ladder
 
@@ -275,6 +299,7 @@ The current chapter mixes canonical inputs with stronger and weaker hypotheses. 
 | --- | --- |
 | horizon lock drives the tri-binary toward coplanarity and suppresses precession | canonical in current project framing |
 | `pro/anti` is a deeper 3D core-chirality label rather than a net-charge label | canonical working convention |
+| `Wr_c` and causal-locus topology supply the best current formalization candidate for that chirality | strong structural candidate, not yet sole canonical definition |
 | the planar exterior sign space has 8 rows for labeled `H/M/L` binaries | exact combinatorial statement |
 | high translation speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
 | the two uniform planar rows are the most likely stable terminal horizon branches | strong working hypothesis |
@@ -294,6 +319,8 @@ That possibility raises three immediate questions:
 
 The present note favors the third reading: mixed-sign planar states are more naturally interpreted as transition or frustration states than as clean final branches. But this remains an open dynamics question rather than a closed derivation.
 
+One reason for that preference is action-geometric rather than merely visual. In a strictly flattened disk, mixed-sign configurations plausibly generate stronger phase-slip and more severe branch competition, because not all tangential drives can cooperate in closing the delayed loop on one clean planar branch family. That does not yet amount to a theorem, but it points to the right criterion: mixed rows should be judged by whether they force larger Jacobian stress, larger cycle-to-cycle action variance, or repeated failure of singularity-free phase closure.
+
 ## Transition Rules for Pro/Anti Conversion
 
 One of the biggest unresolved questions is whether a core can flip from `pro` to `anti` smoothly, or only through a more singular reconfiguration.
@@ -305,6 +332,10 @@ The current chapter points toward the second option. The likely possibilities ar
 3. **Full reconfiguration / reaction channel:** a deeper split, exchange, or reconstruction of the constituent binaries could permit a true `pro \leftrightarrow anti` conversion.
 
 This is exactly where the language of "annihilation" starts to look too weak. If a pro/anti encounter opens the core and allows branch-changing reconfiguration, the physical process is better described as a structured reaction than as disappearance.
+
+The strongest current language from the dynamics stack is that true branch conversion should be associated with a **mode-lock event** or related non-perturbative reconfiguration, not with an adiabatic drift. If the branch label is indeed carried by the topology of the causal locus, then a smooth `pro \leftrightarrow anti` conversion would require passage through a singular or near-singular reconnection stage rather than ordinary continuous motion.
+
+Put differently: if branch-changing evolution forces an active delayed branch toward a Jacobian-null boundary, then the exact dynamics encounter the same kind of amplitude wall already familiar from the self-hit geometry. That is why smooth branch inversion should be treated as forbidden or at least highly non-generic in the exact theory. The expected route is instead a discrete mode-lock / reconnection event in which the old branch graph fails and a new one nucleates.
 
 For now, the safest working rule is:
 

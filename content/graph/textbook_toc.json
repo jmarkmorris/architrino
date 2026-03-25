@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 124,
-      "sections": 838
+      "sections": 839
     }
   },
   "tocRoot": {
@@ -1576,6 +1576,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
                 "markdownSection": "Translation-Axis Alignment at High Velocity",
                 "sectionKey": "translation axis alignment at high velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Conservation Versus Dynamical Selection",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Exact Conservation Versus Dynamical Selection",
+                "sectionKey": "exact conservation versus dynamical selection",
                 "headingLevel": 2
               },
               {

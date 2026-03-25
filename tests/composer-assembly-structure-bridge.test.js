@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   buildComposerAssemblyStructure,
-  formatComposerAssemblyStructureBadgeSummary,
+  formatComposerAssemblyStructureStatus,
   formatComposerAssemblyStructureSummary,
   summarizeComposerAssemblyStructure,
 } from "../src/runtime/ComposerAssemblyStructureBridgeRuntime.js";
@@ -46,24 +46,45 @@ test("composer assembly bridge formats a compact canonical summary string", () =
   );
 });
 
-test("composer assembly bridge formats a viewport badge summary string", () => {
+test("composer assembly bridge formats a human-readable core status string", () => {
   assert.equal(
-    formatComposerAssemblyStructureBadgeSummary({
-      nodeCount: 7,
+    formatComposerAssemblyStructureStatus({
+      slotCount: 3,
+      binarySlotCount: 3,
+      valid: true,
+    }, {
+      core: { binaries: [{}, {}, {}] },
+    }),
+    "Noether core • full"
+  );
+  assert.equal(
+    formatComposerAssemblyStructureStatus({
       slotCount: 3,
       binarySlotCount: 2,
       valid: true,
+    }, {
+      core: { binaries: [{}, {}, {}] },
     }),
-    "N7 · S3 · B2"
+    "Noether core • 2/3 binaries"
+  );
+});
+
+test("composer assembly bridge formats non-core and warning statuses readably", () => {
+  assert.equal(
+    formatComposerAssemblyStructureStatus({
+      valid: true,
+    }, {
+      subassemblies: [{ id: "sub_1" }],
+    }),
+    "Composite • 1 group"
   );
   assert.equal(
-    formatComposerAssemblyStructureBadgeSummary({
-      nodeCount: 4,
-      slotCount: 0,
-      binarySlotCount: 0,
+    formatComposerAssemblyStructureStatus({
       valid: false,
+    }, {
+      members: [{ id: "member_1" }, { id: "member_2" }],
     }),
-    "N4 · S0 · B0 !"
+    "Assembly • 2 members • warning"
   );
 });
 

@@ -193,6 +193,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Observer Views](../aaa/dynamics/horizon-chirality.md?section=Observer+Views)
     - [Boundary Helicity Versus Deeper Chirality](../aaa/dynamics/horizon-chirality.md?section=Boundary+Helicity+Versus+Deeper+Chirality)
     - [Translation-Axis Alignment at High Velocity](../aaa/dynamics/horizon-chirality.md?section=Translation-Axis+Alignment+at+High+Velocity)
+    - [Exact Conservation Versus Dynamical Selection](../aaa/dynamics/horizon-chirality.md?section=Exact+Conservation+Versus+Dynamical+Selection)
     - [State-Transition Ladder](../aaa/dynamics/horizon-chirality.md?section=State-Transition+Ladder)
     - [Canonical Horizon Branch Hypothesis](../aaa/dynamics/horizon-chirality.md?section=Canonical+Horizon+Branch+Hypothesis)
     - [Candidate Theories for Pro and Anti at the Horizon](../aaa/dynamics/horizon-chirality.md?section=Candidate+Theories+for+Pro+and+Anti+at+the+Horizon)

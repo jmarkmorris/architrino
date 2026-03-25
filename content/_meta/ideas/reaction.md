@@ -68,7 +68,13 @@ Current implemented behavior:
 - invalid targets dim immediately while a source is pending, so the user sees the current conservation gate before committing a line;
 - neutron, proton, and Higgs-cluster-like composite assemblies can be split into constituent rows, and those composite rows render near the mapping seam rather than buried back in the outer card lane;
 - a center-lane `Transmute` tile now exists as a manual many-input / many-output junction, with one input anchor on its left and one output anchor on its right;
-- and the `Transmute` tile can be dragged vertically along the center lane while keeping the left-to-right reaction grammar intact.
+- the `Transmute` tile can be dragged vertically along the center lane while keeping the left-to-right reaction grammar intact;
+- product-side hierarchy display now mirrors to `O M I` while canonical slot order remains `inner, middle, outer`;
+- trimming a generation now strips the inner binary from a slot while keeping the tile and its axial-architrino dressing visible, so the UI does not misrepresent the surviving structure;
+- full tri-binary pro and anti Noether-core-like packets are now blocked from mapping directly to each other even when coarse inventory counts match, while Gen II / Gen III structures still fall back to conservative inventory rules;
+- and the solver is no longer one mostly monolithic UI file:
+  - shared runtimes now own canonical structure bridging, descriptor generation, mapping semantics, binary selection, participant mutation, anchor state, anchor rendering, participant rendering, and binary glyph rendering,
+  - and those extracted paths now have local automated coverage for selection rules, mutation flows, descriptor shape, mapping constraints, anchor state, and core render primitives.
 
 That is enough to make manual reaction solving real, but it is not yet the final reaction-authoring model. The current implemented solver is intentionally constrained: it is hierarchy-first, lane-based, and manual. It does not yet provide ranked solver proposals, free placement of assemblies anywhere on the reaction surface, authored bend handles for the main reaction paths, or the richer stage-timing and playback choreography described below.
 
