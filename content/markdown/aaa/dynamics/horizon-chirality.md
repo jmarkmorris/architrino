@@ -36,12 +36,12 @@ Fix one exterior viewing direction normal to the horizon disk. From that viewpoi
 | Row | H | M | L | Class | Comment |
 | --- | --- | --- | --- | --- | --- |
 | 1 | `CW` | `CW` | `CW` | uniform | clean common-sign lock |
-| 2 | `CW` | `CW` | `CCW` | mixed | one binary opposed |
-| 3 | `CW` | `CCW` | `CW` | mixed | one binary opposed |
-| 4 | `CW` | `CCW` | `CCW` | mixed | two binaries opposed to one |
-| 5 | `CCW` | `CW` | `CW` | mixed | one binary opposed |
-| 6 | `CCW` | `CW` | `CCW` | mixed | two binaries opposed to one |
-| 7 | `CCW` | `CCW` | `CW` | mixed | one binary opposed |
+| 2 | `CW` | `CW` | `CCW` | mixed |  |
+| 3 | `CW` | `CCW` | `CW` | mixed |  |
+| 4 | `CW` | `CCW` | `CCW` | mixed |  |
+| 5 | `CCW` | `CW` | `CW` | mixed |  |
+| 6 | `CCW` | `CW` | `CCW` | mixed |  |
+| 7 | `CCW` | `CCW` | `CW` | mixed |  |
 | 8 | `CCW` | `CCW` | `CCW` | uniform | clean common-sign lock |
 
 This is the complete planar-sign table as viewed from one fixed exterior side of the black-hole horizon. Reversing the viewing side flips `CW` and `CCW`, so the table should always be read relative to a chosen exterior normal.

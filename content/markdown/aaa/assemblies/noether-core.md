@@ -29,10 +29,10 @@ A particularly important and stable configuration is the **triply nested binary*
 The broader assembly program suggests reading the nested-binary family as a natural hierarchy of fermion core tiers:
 
 -   **Isolated binary:** the most exposed core tier, corresponding to Generation III.
--   **Bi-binary:** one shielding shell restored, corresponding to the Generation-II core tier.
--   **Tri-binary / Noether core:** the fully shielded three-shell core, corresponding to the Generation-I core tier.
+-   **Bi-binary:** one shielding tier restored, corresponding to the Generation-II core tier.
+-   **Tri-binary / Noether core:** the fully shielded three-tier core, corresponding to the Generation-I core tier.
 
-On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding shells still surround the deepest binary engine.
+On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine.
 
 ### Tri-Binary Alignment and Planck-Scale Framing
 

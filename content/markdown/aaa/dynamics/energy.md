@@ -184,7 +184,7 @@ The surrounding tri-binary sea, and the arrangement of pro/anti architrinos insi
 
 - **Charge cancellation**: positive and negative architrinos within the assembly (and in surrounding tri-binaries) emit wakes that interfere destructively at larger distances.
 - **Sphere-stream structuring**: the geometry of internal orbits and tri-binary polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size (multipole cancellation in the far field).
-- **Nested-shell screening**: in multi-binary fermion cores, outer binaries partially screen the deeper binaries from the surrounding sea. Generation shifts can therefore be read as loss of shielding shells, not only as loss of constituent count.
+- **Nested shielding**: in multi-binary fermion cores, outer binaries partially screen the deeper binaries from the surrounding sea. Generation shifts can therefore be read as loss of shielding tiers, not only as loss of constituent count.
 
 Define a **shielding (leakage) factor** $\zeta(A)\in[0,1]$ for an assembly $A$ as:
 

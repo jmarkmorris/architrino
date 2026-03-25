@@ -284,3 +284,12 @@ export function summarizeComposerAssemblyStructure(root = null, validation = nul
     errorCount: Array.isArray(validation?.errors) ? validation.errors.length : 0,
   };
 }
+
+export function formatComposerAssemblyStructureSummary(summary = {}) {
+  const nodeCount = Math.max(0, Number(summary?.nodeCount ?? 0) || 0);
+  const slotCount = Math.max(0, Number(summary?.slotCount ?? 0) || 0);
+  const binarySlotCount = Math.max(0, Number(summary?.binarySlotCount ?? 0) || 0);
+  return `${nodeCount} node${nodeCount === 1 ? "" : "s"} • ${slotCount} slot${
+    slotCount === 1 ? "" : "s"
+  } • ${binarySlotCount} occupied binary slot${binarySlotCount === 1 ? "" : "s"}`;
+}

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   buildComposerAssemblyStructure,
+  formatComposerAssemblyStructureSummary,
   summarizeComposerAssemblyStructure,
 } from "../src/runtime/ComposerAssemblyStructureBridgeRuntime.js";
 
@@ -31,6 +32,17 @@ test("composer assembly bridge builds a canonical structure summary for a core a
   assert.equal(summary.kindCounts.noether_core, 1);
   assert.equal(summary.slotCount, 3);
   assert.equal(summary.binarySlotCount, 3);
+});
+
+test("composer assembly bridge formats a compact canonical summary string", () => {
+  assert.equal(
+    formatComposerAssemblyStructureSummary({
+      nodeCount: 7,
+      slotCount: 3,
+      binarySlotCount: 2,
+    }),
+    "7 nodes • 3 slots • 2 occupied binary slots"
+  );
 });
 
 test("composer assembly bridge includes shallow subassemblies and root members", () => {

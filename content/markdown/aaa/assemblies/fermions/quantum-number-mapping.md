@@ -25,7 +25,7 @@ Note: **Mass is derived**, not a quantum number here; it comes from core shieldi
 Every fermion contains a central engine composed of nested binary pairs.
 *   **Composition:** Each binary contains 1 Positrino + 1 Electrino (Neutral).
 *   **Generation-I Noether Core (Tri-Binary):** 3 Nested Binaries (Inner, Middle, Outer). Total 6 architrinos (3P, 3E).
-*   **Nested-scale picture:** The three binaries should be read as a genuine radial hierarchy, not just as three items in a list. The middle binary sits inside the shielding domain of the outer binary, and the inner binary sits inside the shielding domains of both. In that sense, the higher-generation core may be viewed as what is revealed when the outer shielding shell is removed and the assembly is read further inward.
+*   **Nested-scale picture:** The three binaries should be read as a genuine radial hierarchy, not just as three items in a list. The middle binary sits inside the shielding domain of the outer binary, and the inner binary sits inside the shielding domains of both. In that sense, the higher-generation core may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
     *   **Pro-Core:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
     *   **Anti-Core:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
@@ -421,20 +421,20 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 
 Generations are defined by the **shedding of shielding binaries** from the Nucleus. The axial layer remains constant.
 
-Equivalently, the generation ladder can be read as a nested-shell hierarchy:
+Equivalently, the generation ladder can be read as a nested shielding hierarchy:
 
-- **Generation I:** full three-shell shielding, with inner binaries screened by outer ones,
-- **Generation II:** one shielding shell removed, exposing the deeper engine more directly,
+- **Generation I:** full three-tier shielding, with inner binaries screened by outer ones,
+- **Generation II:** one shielding tier removed, exposing the deeper engine more directly,
 - **Generation III:** only the innermost engine remains exposed.
 
-This is stronger than the statement "fewer binaries means more mass." The outer binaries act as real shielding shells for deeper core energy, so moving from Generation I to II to III is a progressive loss of energy screening.
+This is stronger than the statement "fewer binaries means more mass." The outer binaries act as real shielding tiers for deeper core energy, so moving from Generation I to II to III is a progressive loss of energy screening.
 
 ### Generation II (Muon, Charm, Strange)
 *   **Architecture:** Missing the **Outer Binary**.
 *   **Nucleus:** **Bi-Binary** (Inner, Middle).
     *   Composition: 2P, 2E (4 architrinos).
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Without the outer binary shell, the high-energy inner binaries are more exposed to the Noether Sea, creating higher drag/interaction (Mass). In the nested-shell picture, Generation II is the same core hierarchy viewed one layer deeper.
+*   **Physics:** Without the outer binary tier, the high-energy inner binaries are more exposed to the Noether Sea, creating higher drag/interaction (Mass). In the nested shielding picture, Generation II is the same core hierarchy viewed one level deeper.
 *   **Example: The Muon ($\mu^-$)**
     *   Nucleus: Pro-Bi-Binary (4 architrinos).
     *   Axial Layer: 6E.
@@ -446,7 +446,7 @@ This is stronger than the statement "fewer binaries means more mass." The outer 
     *   Composition: 1P, 1E (2 architrinos).
     *   *Note:* This is the bare high-energy engine, extremely unstable/reactive.
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest Mass. Shortest lifetime. In the nested-shell picture, this is the innermost engine with essentially no outer energy screen remaining.
+*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest Mass. Shortest lifetime. In the nested shielding picture, this is the innermost engine with essentially no outer energy screen remaining.
 *   **Example: The Top Quark ($t$)**
     *   Nucleus: Pro-Uni-Binary (2 architrinos).
     *   Axial Layer: 5P, 1E.
@@ -456,7 +456,7 @@ This is stronger than the statement "fewer binaries means more mass." The outer 
 
 - **What the binaries do:** Each binary carries a pair of axial vortices—think of them as rails that hold the six axial architrinos in place and share load into the Noether Sea.
 - **Gen I (tri-binary):** Three binaries = three vortex pairs → a stiff 3D scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
-- **Gen II (bi-binary):** One binary removed → one vortex pair gone. The remaining scaffold is weaker, and one shielding shell is lost, so small perturbations kick the core off its attractor more easily. Lifetime drops.
+- **Gen II (bi-binary):** One binary removed → one vortex pair gone. The remaining scaffold is weaker, and one shielding tier is lost, so small perturbations kick the core off its attractor more easily. Lifetime drops.
 - **Gen III (uni-binary):** Only one binary → a single vortex pair must hold all six charges. Stability margin is tiny, and almost no outer screening remains for the deepest core energy. Very short-lived.
 - **Takeaway:** Fewer binaries → fewer vortex rails → weaker topological confinement → faster decay.
 
