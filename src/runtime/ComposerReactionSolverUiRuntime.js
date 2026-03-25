@@ -1373,6 +1373,20 @@ export function createComposerReactionSolverUiRuntime(deps) {
     renderMenu();
   }
 
+  function insertParticipantAtTopOfSide(participant) {
+    if (!participant) {
+      return;
+    }
+    const insertionIndex = state.participants.findIndex(
+      (entry) => String(entry?.side ?? "") === String(participant.side ?? "")
+    );
+    if (insertionIndex < 0) {
+      state.participants.push(participant);
+      return;
+    }
+    state.participants.splice(insertionIndex, 0, participant);
+  }
+
   function addParticipant(side, templateId, options = {}) {
     const templateEntry =
       templateEntries.find((entry) => entry.template === templateId) ??
@@ -1392,7 +1406,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         polarity: options.initialPolarity ?? templateEntry.initialPolarity ?? "",
       },
     });
-    state.participants.push(participant);
+    insertParticipantAtTopOfSide(participant);
     state.pendingSourceKey = "";
     closeMenu();
     render();
@@ -1412,7 +1426,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       hierarchy: buildFallbackHierarchyForTemplate(pickerCell.templateId, pickerCell.label),
       structureOptions: pickerCell.structureOptions,
     });
-    state.participants.push(participant);
+    insertParticipantAtTopOfSide(participant);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
     closeMenu();

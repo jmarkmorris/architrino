@@ -123,12 +123,13 @@ function getPrimaryNoetherCore(node = null) {
 function buildNoetherCoreDescriptorTree(coreNode) {
   const coreLabel = String(coreNode?.label ?? "Noether core").trim() || "Noether core";
   const polarity = String(getStructureTrait(coreNode, "polarity", "")).trim().toLowerCase();
+  const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
   return [{
     id: String(coreNode?.id ?? "root"),
     label: coreLabel,
     renderMode: REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID,
     inventory: polarity === "anti" ? { antiCore: 1 } : { proCore: 1 },
-    children: STRUCTURE_SLOT_ORDER.map((slotName) =>
+    children: STRUCTURE_SLOT_ORDER.filter((slotName) => binaryPresence[slotName]).map((slotName) =>
       createBinarySlotDescriptor(
         `${coreNode?.id ?? "root"}/${slotName}`,
         `${slotName} binary`,
@@ -152,7 +153,7 @@ function buildFamilyParticleDescriptorTree(structureRoot) {
     label: getBinarySelectorGroupLabel(structureRoot),
     templateId,
     renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
-    children: STRUCTURE_SLOT_ORDER.map((slotName) =>
+    children: STRUCTURE_SLOT_ORDER.filter((slotName) => binaryPresence[slotName]).map((slotName) =>
       createBinarySlotDescriptor(
         `${structureRoot?.id ?? "root"}/${slotName}`,
         `${slotName} binary with personality`,
@@ -183,7 +184,9 @@ function buildCoreAssemblyDescriptorTree(structureRoot, fallbackLabel) {
         label: getCanonicalNoetherCoreLabel(polarity),
         renderMode: REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID,
         inventory: polarity === "anti" ? { antiCore: 1 } : { proCore: 1 },
-        children: STRUCTURE_SLOT_ORDER.map((slotName) =>
+        children: STRUCTURE_SLOT_ORDER
+          .filter((slotName) => childBinaryPresence[slotName])
+          .map((slotName) =>
           createBinarySlotDescriptor(
             `${childNode.id}/${slotName}`,
             `${slotName} binary`,

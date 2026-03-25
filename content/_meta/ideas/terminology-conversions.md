@@ -243,9 +243,9 @@ The following review notes come from a close scan of the Markdown documents unde
 - blur ontological AAA language with effective or Standard Model language,
 - or risk confusion with established terminology from quantum mechanics, relativity, field theory, or higher ontology layers.
 
-Completed families such as `field` to `wake`, background-vs-contents, and the main `Noether Sea` / `spacetime medium` policy are now documented in `content/markdown/aaa/archie/terminology-usage.md` and should no longer be treated as open queue items here.
+Completed families such as `field` to `wake`, background-vs-contents, the main `Noether Sea` / `spacetime medium` policy, and the `particle` / `wave` / `assembly` / `wake` family are now documented in `content/markdown/aaa/archie/terminology-usage.md` and should no longer be treated as open queue items here.
 
-The `particle` / `wave` / `assembly` / `wake` family is also now moving into canon: the preferred AAA response to standard `particle versus wave` language is `assembly and wake`. Use `particle` and `wave` for standard comparative framing when needed, but treat `assembly` and `wake` as the native ontological pair.
+For the `particle` / `wave` / `assembly` / `wake` family, the preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ response to standard `particle versus wave` language is `assembly and wake`. Use `particle` and `wave` for standard comparative framing when needed, but treat `assembly` and `wake` as the native ontological pair.
 
 ### 1. `spacetime` vs `void` vs `timespace`
 
