@@ -29,7 +29,7 @@ At the absolute level, any local neighborhood is crowded:
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
 - At a given absolute time $t$, the **net potential** at a point is the **vector sum** of:
-  - Local spacetime-assembly wakes,
+  - Local Noether-Sea assembly wakes,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
@@ -277,12 +277,12 @@ Concretely:
 - Parameters could include:
   - Effective coupling strengths between sub‑assemblies (tri‑binary networks),
   - Orientation/phase relationships among middle binaries (near $v\approx c_f$),
-  - Local aether‑coupling “stiffness” (how strongly sub‑assemblies respond to given wake amplitudes).
+  - Local Noether-Sea-coupling “stiffness” (how strongly sub-assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:
   - The assembly can hold a “configuration of sensitivity” over many incoming wake peaks,
   - But can still adjust that configuration over longer time (learning, context).
 
-**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the aether to maintain a tuned state.
+**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the surrounding Noether Sea to maintain a tuned state.
 
 ---
 

@@ -28,7 +28,7 @@
 - Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
 - When giving the user step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one ELI5 step at a time.
 - When asking the user questions needed to proceed, ask them one at a time and phrase each question in ELI5 terms.
-- When asking the operator a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(Y/n)` or `(a/B)`.
+- When asking the operator a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(y/n)` or `(a/b)`.
 - For fixed-choice prompts, always list options in the agent's ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
 - If the question is nuanced, open-ended, or needs discussion rather than a crisp operator choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
 - The user-visible composer header version in `index.html` should increment by `1` on each code-changing turn. The baseline has been reset to `v1`; the next code-changing turn should become `v2`.

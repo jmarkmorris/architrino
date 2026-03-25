@@ -212,7 +212,7 @@ The universe does not care. **We do**, because a theory needs a language in whic
 The bootstrapping procedure is straightforward. The simulation has access to all architrino positions and can compute wake geometries exactly. The coordinate system is simply a data structure: an origin offset plus three orthonormal vectors.
 
 **For Operational Observers (Made of Assemblies):**
-We cannot directly measure the concentric wake geometry or identify an absolutely stationary architrino. Our rulers and clocks are themselves assemblies, distorted by motion and coupling to the aether. We measure:
+We cannot directly measure the concentric wake geometry or identify an absolutely stationary architrino. Our rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether Sea. We measure:
 - **Proper time** $\tau$, not absolute time $t$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
