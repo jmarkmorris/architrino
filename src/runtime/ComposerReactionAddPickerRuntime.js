@@ -1,4 +1,5 @@
 import { STRUCTURE_SLOT_ORDER } from "../domain/structure/StructureSchema.js";
+import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 
 function getOccupiedSlots(count = 0) {
   const normalizedCount = Math.max(
@@ -20,7 +21,7 @@ function createPickerEntry({
     label: String(label ?? "").trim(),
     templateId: String(templateId ?? "").trim(),
     vacant: vacant === true,
-    structureOptions:
+    structureBuildOptions:
       Number.isFinite(Number(occupiedCount)) && Number(occupiedCount) > 0
         ? Object.freeze({ occupiedSlots: Object.freeze(getOccupiedSlots(occupiedCount)) })
         : null,
@@ -199,4 +200,23 @@ export function getComposerReactionAddPickerCells() {
     });
   });
   return cells;
+}
+
+export function buildReactionParticipantStructureForPickerCell(
+  pickerCell = null,
+  options = {}
+) {
+  if (!pickerCell || pickerCell.vacant || !pickerCell.templateId) {
+    return null;
+  }
+  const participantId = String(options.participantId ?? "").trim() || "picker_participant";
+  const structureId = `${participantId}__structure`;
+  const polarity = String(options.polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
+  const label = String(options.label ?? pickerCell.label ?? "").trim() || "Structure";
+  return buildReactionParticipantStructure(pickerCell.templateId, {
+    id: structureId,
+    label,
+    polarity,
+    ...(pickerCell.structureBuildOptions ?? {}),
+  });
 }

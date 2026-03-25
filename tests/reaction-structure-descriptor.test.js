@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import {
   buildReactionStructureDescriptorTree,
   REACTION_STRUCTURE_RENDER_MODES,
+  supportsReactionStructureDescriptorTree,
 } from "../src/runtime/ComposerReactionStructureDescriptorRuntime.js";
 import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
 import { clearNoetherCoreSlotOccupant } from "../src/domain/structure/StructureTransforms.js";
@@ -75,4 +76,16 @@ test("transmute descriptor tree produces a single transmute tile", () => {
   assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE);
   assert.equal(root.label, "Transmute");
   assert.equal(root.children.length, 0);
+});
+
+test("descriptor runtime reports unsupported structures explicitly", () => {
+  const unsupportedStructure = {
+    id: "unsupported_structure",
+    kind: "composite",
+    species: "custom_exotic",
+    children: [],
+  };
+
+  assert.equal(supportsReactionStructureDescriptorTree(unsupportedStructure), false);
+  assert.deepEqual(buildReactionStructureDescriptorTree(unsupportedStructure), []);
 });

@@ -129,12 +129,13 @@ function buildNoetherCoreDescriptorTree(coreNode) {
     label: coreLabel,
     renderMode: REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID,
     inventory: polarity === "anti" ? { antiCore: 1 } : { proCore: 1 },
-    children: STRUCTURE_SLOT_ORDER.filter((slotName) => binaryPresence[slotName]).map((slotName) =>
+    children: STRUCTURE_SLOT_ORDER.map((slotName) =>
       createBinarySlotDescriptor(
         `${coreNode?.id ?? "root"}/${slotName}`,
         `${slotName} binary`,
         getSlotCode(slotName),
         {
+          hasBinary: binaryPresence[slotName],
           withPersonality: false,
           renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_BARE,
         }
@@ -153,7 +154,7 @@ function buildFamilyParticleDescriptorTree(structureRoot) {
     label: getBinarySelectorGroupLabel(structureRoot),
     templateId,
     renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
-    children: STRUCTURE_SLOT_ORDER.filter((slotName) => binaryPresence[slotName]).map((slotName) =>
+    children: STRUCTURE_SLOT_ORDER.map((slotName) =>
       createBinarySlotDescriptor(
         `${structureRoot?.id ?? "root"}/${slotName}`,
         `${slotName} binary with personality`,
@@ -179,6 +180,7 @@ function buildCoreAssemblyDescriptorTree(structureRoot, fallbackLabel) {
     renderMode: REACTION_STRUCTURE_RENDER_MODES.ASSEMBLY_CLUSTER_GRID,
     children: getStructureNodeChildren(structureRoot).map((childNode, index) => {
       const polarity = String(getStructureTrait(childNode, "polarity", "")).trim().toLowerCase();
+      const childBinaryPresence = getNoetherCoreSlotBinaryPresence(childNode);
       return {
         id: childNode.id || `core_${index + 1}`,
         label: getCanonicalNoetherCoreLabel(polarity),
@@ -336,6 +338,10 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
     }];
   }
   return [];
+}
+
+export function supportsReactionStructureDescriptorTree(structureRoot) {
+  return buildReactionStructureDescriptorTree(structureRoot).length > 0;
 }
 
 export function getReactionBinarySelectorGroups(structureRoot) {
