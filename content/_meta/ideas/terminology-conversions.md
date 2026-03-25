@@ -243,7 +243,7 @@ The following review notes come from a close scan of the Markdown documents unde
 - blur ontological AAA language with effective or Standard Model language,
 - or risk confusion with established terminology from quantum mechanics, relativity, field theory, or higher ontology layers.
 
-Completed families such as `field` to `wake`, background-vs-contents, the main `Noether Sea` / `spacetime medium` policy, the `particle` / `wave` / `assembly` / `wake` family, the `nucleus` / `core` / `Noether core` cleanup, and the main `orbit` / `orbital` / `circulation` cleanup are now documented in `content/markdown/aaa/archie/terminology-usage.md` and should no longer be treated as open queue items here.
+Completed families such as `field` to `wake`, background-vs-contents, the main `Noether Sea` / `spacetime medium` policy, the `particle` / `wave` / `assembly` / `wake` family, the `nucleus` / `core` / `Noether core` cleanup, the main `orbit` / `orbital` / `circulation` cleanup, and the `weak-coupling triad` canon are now documented in `content/markdown/aaa/archie/terminology-usage.md` and should no longer be treated as open queue items here.
 
 For the `particle` / `wave` / `assembly` / `wake` family, the preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ response to standard `particle versus wave` language is `assembly and wake`. Use `particle` and `wave` for standard comparative framing when needed, but treat `assembly` and `wake` as the native ontological pair.
 
@@ -298,30 +298,7 @@ Representative files:
 - `content/markdown/aaa/spacetime/black-holes.md`
 - `content/markdown/aaa/dynamics/master-equation.md`
 
-### 3. Weak-sector local geometry terms
-
-This cluster is smaller, but it still looks under-consolidated.
-
-- `Weak-Coupling Triad` appears to be the intended canonical term.
-- Nearby variants still appear, including `exposed triad`, `shielded triad`, and `weak-active triad`.
-- Some of these may be useful secondary descriptors rather than errors, but their relationship to the canonical term is not yet crisply stated.
-
-Recommended direction:
-
-- Keep `Weak-Coupling Triad` as the canonical technical term if that remains the intended canon.
-- Decide whether `exposed triad` and `shielded triad` are:
-  - acceptable descriptive modifiers,
-  - subordinate posture descriptions of the same triad,
-  - or legacy terms that should be retired.
-- Remove or convert `weak-active triad` if it no longer has a distinct canonical role.
-
-Representative files:
-
-- `content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md`
-- `content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md`
-- `content/markdown/aaa/assemblies/fermions/quarks.md`
-
-### 4. Lower-priority but worth watching: `spin` vs `helicity` vs `chirality`
+### 3. Lower-priority but worth watching: `spin` vs `helicity` vs `chirality`
 
 This family looked more controlled than the others during the scan, so it is not the first conversion target.
 
@@ -345,6 +322,4 @@ If a new terminology pass is scheduled, the most important order appears to be:
 
 1. apply the `spacetime` / `void` / `absolute timespace` policy across the corpus
 2. `shell` vs `layer`
-3. weak-sector triad-family terms
-
 These categories appear to offer the largest clarity gains while reducing the strongest terminology collisions with quantum mechanics, relativity, and higher-level ontological language.

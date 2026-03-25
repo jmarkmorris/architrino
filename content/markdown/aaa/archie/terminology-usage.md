@@ -18,13 +18,13 @@ Use `axial` for the six-site system-level organization and `polar` for the local
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| one of the six outward fermion constituents | `axial architrino` | `charge`, `personality architrino`, `decoration` | "The fermion contains six axial architrinos bound to polar sites." |
-| the six-site organization as a whole | `axial layer` | `personality layer`, `decoration layer` | "Weak bookkeeping is carried by the axial layer." |
-| one local attachment location | `polar site` | `personality site`, generic `slot` when geometry matters | "Each axis contributes two polar sites." |
+| one of the six outward fermion constituents | `axial architrino` | `charge` | "The fermion contains six axial architrinos bound to polar sites." |
+| the six-site organization as a whole | `axial layer` | vague six-site wording when the organized structure matters | "Weak bookkeeping is carried by the axial layer." |
+| one local attachment location | `polar site` | generic `slot` when geometry matters | "Each axis contributes two polar sites." |
 | the two local sites on one axis | `polar dyad` | `doublet`, `axial dyad` | "A polar dyad may be occupied symmetrically or asymmetrically." |
-| the six-site arrangement | `axial pattern` | `decoration pattern`, vague `configuration` when six-site structure is meant | "Color and weak assignments depend on the axial pattern." |
-| the count/composition across the six sites | `axial inventory` | `decoration count`, generic `charges` | "The electron has an all-electrino axial inventory." |
-| coarse-grained orientation of the six-site structure | `axial frame` | `personality frame` | "Weak mixing is phrased as axial-frame misalignment." |
+| the six-site arrangement | `axial pattern` | vague `configuration` when six-site structure is meant | "Color and weak assignments depend on the axial pattern." |
+| the count/composition across the six sites | `axial inventory` | generic `charges` | "The electron has an all-electrino axial inventory." |
+| coarse-grained orientation of the six-site structure | `axial frame` | vague orientation wording when frame structure matters | "Weak mixing is phrased as axial-frame misalignment." |
 | microscopic motion of the six-site structure | `axial circulation` | `axial orbit` | "Use axial circulation when the motion is internal and nonclassical." |
 
 ## Charge, Polarity, and Architrino Usage
@@ -212,7 +212,13 @@ These pairs are context-sensitive and should not be flattened.
 
 ## Weak-Sector Local Geometry
 
-Use `Weak-Coupling Triad` as the canonical technical term. Descriptive phrases such as `exposed triad` or `shielded triad` may be useful locally, but they should be written as posture descriptions of the same canonical structure rather than as competing base terms.
+Use `weak-coupling triad` as the canonical technical term and the only base term for the three-site weak-coupling geometry.
+
+If a sentence needs to describe coupling posture, keep `weak-coupling triad` as the noun and write the posture around it, for example:
+
+- "the weak-coupling triad is exposed to the Noether Sea"
+- "the weak-coupling triad is rotated into the wake"
+- "the complementary three polar sites carry the remaining bookkeeping"
 
 ## Editorial Rule of Thumb
 

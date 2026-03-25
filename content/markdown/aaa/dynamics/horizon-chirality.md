@@ -29,6 +29,22 @@ That distinction is natural in the ordinary tri-binary because the three binarie
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
+## Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The medium picture is instead built around persistent local or mesoscopic balance between complementary Noether-core orientations.
+
+Several standing examples point in that direction.
+
+- **Noether Sea / spacetime medium:** the ambient medium is already framed as a coupled pro/anti population rather than a single-sign sea.
+- **Photon-like planar pair:** a photon-like planar assembly is naturally read as containing one pro and one anti core, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
+- **Higgs-like cluster:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti cores in a three-dimensional coupled state rather than a single-sign configuration.
+
+So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the core strongly enough that the binary branch structure becomes especially visible.
+
+The matter sector then becomes the special case. In the current intuition, what we call ordinary matter may be the regime where pro-core and anti-core encounters act as a kind of geometric can-opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
+
+That broader matter/reaction thesis deserves its own dedicated treatment elsewhere. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
+
 ## Exterior Planar Spin Basis
 
 Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by role as `H`, `M`, and `L`, then the full planar spin-sign space contains exactly \(2^3 = 8\) possibilities.
@@ -66,6 +82,59 @@ That motivates the following working distinction:
 
 If this distinction is correct, then the horizon does not necessarily erase `pro/anti`, but it may compress it so strongly that the exterior observer sees only a reduced proxy.
 
+## Translation-Axis Alignment at High Velocity
+
+The next question is whether a rapidly translating tri-binary should drive the three orbital angular-momentum vectors toward the translation axis itself.
+
+The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
+
+The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [tri-binary-dynamics.md](./tri-binary-dynamics.md):
+
+$$
+\frac{x^2+y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,
+\qquad
+R_\parallel = \frac{R_\perp}{\gamma},
+\qquad
+\gamma = \frac{1}{\sqrt{1-\beta^2}},
+\qquad
+\beta = \frac{v_{\text{trans}}}{c_f}.
+$$
+
+Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\alpha$ with the translation axis $\hat z$. The central cross-section of the ellipsoid cut by that orbital plane has area
+
+$$
+A(\alpha)
+=
+\frac{\pi R_\perp^2 R_\parallel}
+{\sqrt{R_\perp^2\sin^2\alpha + R_\parallel^2\cos^2\alpha}}
+=
+\frac{\pi R_\perp^2}
+{\sqrt{\gamma^2\sin^2\alpha + \cos^2\alpha}}.
+$$
+
+This area is maximal at $\alpha = 0$ or $\alpha = \pi$, meaning the orbital normal is parallel or antiparallel to the line of translation. It is minimal at $\alpha = \pi/2$, when the orbital normal is transverse to the motion.
+
+So the delayed geometry creates a real high-speed bias:
+
+- planes with normals parallel or antiparallel to the line of translation inherit the largest available cross-section;
+- tilted planes suffer stronger anisotropic squeezing;
+- the penalty for tilt grows with $\gamma$.
+
+For small tilt,
+
+$$
+A(\alpha)
+\approx
+\pi R_\perp^2
+\left[
+1-\frac{\gamma^2-1}{2}\alpha^2
+\right],
+$$
+
+so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}} \to c_f$.
+
+This gives a precise version of the intuition: a high-velocity tri-binary should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
+
 ## Canonical Horizon Branch Hypothesis
 
 The most conservative horizon hypothesis is that the stable terminal branches are the two uniform planar rows:
@@ -82,6 +151,8 @@ The six mixed rows should be treated more cautiously. At present they are best r
 - or short-lived reconfiguration states rather than canonical terminal locks.
 
 This is only a working hypothesis. The current theory does not yet derive that mixed-sign planar states are forbidden. It says only that the two uniform rows are the strongest candidates for stable horizon identities, while the mixed rows appear less natural as endpoint states.
+
+Under the translation-axis argument above, those two rows can be restated more sharply: in the terminal branch the three orbital normals are expected to become coaxial with $\pm \hat{\mathbf V}$, where $\hat{\mathbf V}$ is the unit translation direction. The remaining binary choice is then the sign of the common axial spin.
 
 ## Candidate Theories for Pro and Anti at the Horizon
 
@@ -108,6 +179,33 @@ In the more cautious reduction, the two uniform planar states are still the visi
 On this reading, the horizon preserves only a compressed image of the deeper tri-binary chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
 
 At present, Theory B is the stronger conceptual fit with the existing 3D `HML/HLM` framing, because that framing is richer than a single planar spin sign.
+
+## Possible Left/Right Spin Mapping
+
+The translation-axis picture opens one further possibility. If the terminal high-velocity attractor really forces the common orbital axis onto the line of translation, then the two axial branches
+
+$$
+\hat J_{\text{net}} \parallel +\hat{\mathbf V},
+\qquad
+\hat J_{\text{net}} \parallel -\hat{\mathbf V}
+$$
+
+are natural candidates for a left/right or helicity-like pair.
+
+That does **not** automatically make them identical to weak-interaction chirality. The current canon already uses left/right language operationally in terms of whether the weak-coupling triad is exposed or hidden relative to motion and wake geometry. Still, the axial-lock picture suggests a possible underlying bridge:
+
+- the high-velocity core first selects one of the two axial branches $\pm \hat{\mathbf V}$;
+- that branch then influences which side of the axial structure is forward-exposed versus wake-hidden;
+- the observer-level left/right distinction may therefore descend from the sign choice of the common axial angular momentum in the translating aligned state.
+
+In that reading, the horizon or near-horizon limit does not merely present two boundary-helicity states. It may also reveal the deepest geometric ancestor of a left/right spin distinction:
+
+- `right-like`: net core axis aligned with translation;
+- `left-like`: net core axis anti-aligned with translation;
+
+or the reverse, depending on the eventual sign convention.
+
+This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the tri-binary angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
 
 ## Mixed-Sign Planar States
 

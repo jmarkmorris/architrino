@@ -530,6 +530,8 @@ export function openComposerAssemblyPropertiesMenu(config) {
     appendMenuSectionHeader,
     appendMenuButtonRow,
     getAssemblyDraftById,
+    getAssemblyCanonicalBridgeSummary,
+    formatAssemblyCanonicalBridgeSummary,
     renderAssemblyEditor,
     assemblyPositionInputs,
     renderJsonPreview,
@@ -583,6 +585,26 @@ export function openComposerAssemblyPropertiesMenu(config) {
     transferDraft.className = "composer-assembly-menu-subtitle";
     transferDraft.textContent = `Transfer from ${pendingTransferSource.assemblyId}.${pendingTransferSource.memberId}`;
     menu.appendChild(transferDraft);
+  }
+
+  const canonicalSummary =
+    typeof getAssemblyCanonicalBridgeSummary === "function"
+      ? getAssemblyCanonicalBridgeSummary(assembly)
+      : null;
+  if (canonicalSummary && typeof formatAssemblyCanonicalBridgeSummary === "function") {
+    const canonicalBridge = document.createElement("div");
+    canonicalBridge.className = "composer-assembly-menu-subtitle";
+    canonicalBridge.textContent = `Canonical bridge: ${formatAssemblyCanonicalBridgeSummary(canonicalSummary)}`;
+    menu.appendChild(canonicalBridge);
+
+    appendMenuNote(
+      menu,
+      canonicalSummary.valid
+        ? "Canonical bridge is valid for this assembly."
+        : `Canonical bridge currently reports ${canonicalSummary.errorCount} validation issue${
+            canonicalSummary.errorCount === 1 ? "" : "s"
+          }. This menu remains read-only with respect to the canonical structure model.`
+    );
   }
 
   const form = document.createElement("div");

@@ -106,19 +106,19 @@ All Generation I particles utilize the full **Tri-Binary Nucleus** (3 Binaries).
 
 ## Weak Isospin ($T_3$) and Chirality
 
-In the Standard Model, the Weak Force only acts on "Left-Handed" particles. It transforms members of a doublet (e.g., $e^- \leftrightarrow \nu_e$) into each other. We map this to the **Weak-Coupling Triad Hypothesis**.
+In the Standard Model, the Weak Force only acts on "Left-Handed" particles. It transforms members of a doublet (e.g., $e^- \leftrightarrow \nu_e$) into each other. We map this to the **weak-coupling-triad hypothesis**.
 
 ### The Weak-Coupling Triad Geometry
 Every fermion axial layer consists of 6 polar sites. We hypothesize that these are organized into two groups based on the tri-binary rotation axis:
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These axial occupancies *cannot* be swapped without destroying the particle.
-2.  **The Weak-Coupling Triad (3 sites):** Exposed to the Noether Sea. These are the "switchable bits."
+2.  **The weak-coupling triad (3 sites):** Exposed to the Noether Sea. These are the "switchable bits."
 
 **Which three are active? (hypothesis)**
 - In translation, either the forward or rearward hemisphere could be more exposed. We currently favor the **forward three sites**: the leading side is not in its own wake, while the trailing side sits in that wake and slipstream, which likely damps docking by a $W$ corridor. This needs simulation to confirm the exposure asymmetry.
 
-**Weak Isospin ($T_3$)** is defined by the polarity of this **Weak-Coupling Triad**:
-*   **$T_3 = +1/2$ (Up-State):** The Weak-Coupling Triad contains maximal **Positrinos** (relative to the baseline).
-*   **$T_3 = -1/2$ (Down-State):** The Weak-Coupling Triad contains maximal **Electrinos**.
+**Weak Isospin ($T_3$)** is defined by the polarity of this **weak-coupling triad**:
+*   **$T_3 = +1/2$ (Up-State):** The weak-coupling triad contains maximal **Positrinos** (relative to the baseline).
+*   **$T_3 = -1/2$ (Down-State):** The weak-coupling triad contains maximal **Electrinos**.
 
 ### Mapping the Doublets
 
@@ -126,20 +126,20 @@ Every fermion axial layer consists of 6 polar sites. We hypothesize that these a
 *   **Base (Shielded):** 3 Electrinos ($3E$).
 *   **Neutrino ($\nu_e$):** Shielded ($3E$) + Active ($3P$).
     *   Net: $3E, 3P$ (Neutral).
-    *   State: Weak-Coupling Triad is Positive $\to T_3 = +1/2$.
+    *   State: weak-coupling triad is positive $\to T_3 = +1/2$.
 *   **Electron ($e^-_L$):** Shielded ($3E$) + Active ($3E$).
     *   Net: $6E$ (Charge -1).
-    *   State: Weak-Coupling Triad is Negative $\to T_3 = -1/2$.
+    *   State: weak-coupling triad is negative $\to T_3 = -1/2$.
 *   **The Transformation:** The $W^-$ boson is the packet that removes $3P$ and replaces them with $3E$.
 
 **The Quark Doublet ($u_L, d_L$)**
 *   **Base (Shielded):** 2 Positrinos, 1 Electrino ($2P, 1E$).
 *   **Up Quark ($u_L$):** Shielded ($2P, 1E$) + Active ($3P$).
     *   Net: $5P, 1E$ (Charge +2/3).
-    *   State: Weak-Coupling Triad is Positive $\to T_3 = +1/2$.
+    *   State: weak-coupling triad is positive $\to T_3 = +1/2$.
 *   **Down Quark ($d_L$):** Shielded ($2P, 1E$) + Active ($3E$).
     *   Net: $2P, 4E$ (Charge -1/3).
-    *   State: Weak-Coupling Triad is Negative $\to T_3 = -1/2$.
+    *   State: weak-coupling triad is negative $\to T_3 = -1/2$.
 
 ### Gell-Mann–Nishijima consistency check
 Using a single symbol $Y$ for hypercharge, $Q = T_3 + Y/2$:
@@ -151,14 +151,14 @@ Using a single symbol $Y$ for hypercharge, $Q = T_3 + Y/2$:
 **Quarks ($Y=+1/3$):**
 *   $u$: $T_3 (+1/2) + Y/2 (+1/6) = +2/3$.
 *   $d$: $T_3 (-1/2) + Y/2 (+1/6) = -1/3$.
-*   Geometric insight: hypercharge lives on the **Shielded Triad** plus any core offset; the Weak-Coupling Triad sets $T_3$.
+*   Geometric insight: hypercharge lives on the three complementary polar sites plus any core offset; the weak-coupling triad sets $T_3$.
 
 ### Chirality (Why Right-Handed = 0?)
 Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 *   **Geometric Mechanism:** Chirality is the alignment of the particle's **Spin** with its **Momentum**.
-*   **Lock-out:** In the "Right-Handed" configuration, the **Weak-Coupling Triad** is geometrically rotated *into the wake* of the particle or shielded by the binary arms.
-*   **Result:** The $W$ boson (which has its own helicity) cannot physically "dock" with the Weak-Coupling Triad to perform the swap. It bounces off.
-*   Therefore, $e^-_R$ has no "Active" Triad accessible to the Weak force. $T_3 = 0$.
+*   **Lock-out:** In the "Right-Handed" configuration, the **weak-coupling triad** is geometrically rotated *into the wake* of the particle or shielded by the binary arms.
+*   **Result:** The $W$ boson (which has its own helicity) cannot physically "dock" with the weak-coupling triad to perform the swap. It bounces off.
+*   Therefore, $e^-_R$ has no accessible weak-coupling triad. $T_3 = 0$.
 
 ---
 
@@ -219,9 +219,9 @@ The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 The full SM gauge group is captured geometrically as:
 
 - **$SU(3)_c$ (color):** axis-exceptionality of the Noether core plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while leptons remain axis-uniform singlets. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
-- **$SU(2)_L$ (weak isospin):** polarity of the **Weak-Coupling Triad** (three exposed polar sites). Left-handed fermions are doublets; right-handed fermions are singlets (Weak-Coupling Triad hidden).
+- **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
 - **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
-- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving Weak-Coupling Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
+- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
 
 **Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). In this chapter we write weak hypercharge as $Y$ rather than $Y_w$. Relation: $Q = T_3 + Y/2$ for all fields.
 
@@ -229,19 +229,19 @@ The full SM gauge group is captured geometrically as:
 
 | Field | SU(3) | SU(2) | $Y$ | $Q = T_3 + Y/2$ | Geometric handle |
 | --- | --- | --- | --- | --- | --- |
-| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | Weak-Coupling Triad P- or E-dominant on quark core; axis exceptionality sets color |
-| $u_R$ | 3 | 1 | +4/3 | +2/3 | Weak-Coupling Triad hidden; asymmetry 5P/1E fixes $Q$ |
-| $d_R$ | 3 | 1 | -2/3 | -1/3 | Weak-Coupling Triad hidden; asymmetry 2P/4E |
-| $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | Weak-Coupling Triad P vs E on lepton core; azimuthal symmetry (colorless) |
-| $e_R$ | 1 | 1 | -2 | -1 | Weak-Coupling Triad hidden; axial layer 6E |
-| (optional) $\nu_R$ | 1 | 1 | 0 | 0 | Not present in current architecture; would be symmetric/hidden Weak-Coupling Triad |
+| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on quark core; axis exceptionality sets color |
+| $u_R$ | 3 | 1 | +4/3 | +2/3 | weak-coupling triad hidden; asymmetry 5P/1E fixes $Q$ |
+| $d_R$ | 3 | 1 | -2/3 | -1/3 | weak-coupling triad hidden; asymmetry 2P/4E |
+| $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | weak-coupling triad P vs E on lepton core; azimuthal symmetry (colorless) |
+| $e_R$ | 1 | 1 | -2 | -1 | weak-coupling triad hidden; axial layer 6E |
+| (optional) $\nu_R$ | 1 | 1 | 0 | 0 | Not present in current architecture; would be symmetric/hidden weak-coupling triad |
 
 ### Gauge boson summary
 
 - **Gluons (8):** axis-reconfiguration ribbons on flux tubes; adjoint of SU(3), no net electric bookkeeping charge.
-- **$W^\pm$, $Z$:** transient recoupling corridors moving Weak-Coupling Triad charge/phase between assemblies (spin-1, weak SU(2) triplet).
+- **$W^\pm$, $Z$:** transient recoupling corridors moving weak-coupling-triad charge/phase between assemblies (spin-1, weak SU(2) triplet).
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
-- **Photon:** mixed planar mode aligned to leave Shielded + Weak-Coupling Triad combination invariant ($Q$-coupling only).
+- **Photon:** mixed planar mode aligned to leave Shielded + weak-coupling-triad combination invariant ($Q$-coupling only).
 
 *Boson details:* see [assemblies/bosons/gluons.md](../bosons/gluons.md) (color sector) and [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md) (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.) 
 ### Hypercharge bookkeeping (Shielded triad → $Y$)
@@ -298,7 +298,7 @@ The geometrical interpretation is:
 - generation is primarily a **radial / shielding** variable,
 - electroweak quantum numbers are primarily an **angular / exposure** variable,
 - charge conjugation mirrors the pattern across the same bookkeeping plane,
-- handedness selects whether the Weak-Coupling Triad is exposed or hidden.
+- handedness selects whether the weak-coupling triad is exposed or hidden.
 
 The neutral sector is less settled. The left-handed neutrino branch fits naturally into the same scheme, but the fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
 
@@ -413,9 +413,9 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 ### Right-handed neutrino stance and mass eigenstates (hypothesis)
 
 - **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
-- **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ core with shielded/Weak-Coupling Triads fully symmetric; it would couple only via mixing terms (Dirac/Majorana choice left open).
+- **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ core with shielded/weak-coupling-triad sectors fully symmetric; it would couple only via mixing terms (Dirac/Majorana choice left open).
 - **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be metastable; continual micro reconfiguration exposes its three nearby mass eigenstates, giving oscillations. Other fermions have much stiffer cores (full or partly shielded binaries) so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
-- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (Weak-Coupling Triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
+- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
 
 ## The Generation Mechanism (Mass Hierarchy)
 
@@ -500,11 +500,11 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | Quantum Number | Symbol | Standard Model Definition | Architrino Geometric Definition |
 | :--- | :---: | :--- | :--- |
 | **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | **Net Axial Count.** Sum of Positrinos ($+e/6$) and Electrinos ($-e/6$) in the Axial Layer. $Q = \sum P - \sum E$. |
-| **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the Weak-Coupling Triad.** The net charge state of the 3 exposed polar sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
+| **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
 | **Spin** | $J$ | Intrinsic angular momentum ($1/2\hbar$). | **Core Topology.** The ellipsoidal rotation path of the tri-binary Noether core. Fermions are spin-1/2 because the path requires 720 degrees to return to the initial state (spinor behavior). |
-| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-Coupling Triad Exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the Weak-Coupling Triad to the vacuum (Interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the Weak-Coupling Triad into the particle's "wake" or shield (Interaction blocked). |
+| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **weak-coupling-triad exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the weak-coupling triad to the vacuum (Interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the weak-coupling triad into the particle's "wake" or shield (Interaction blocked). |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
 | **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-core vs anti-core orientation. |
 

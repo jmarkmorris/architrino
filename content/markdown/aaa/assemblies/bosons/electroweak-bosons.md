@@ -69,7 +69,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 *   **Spin-1 (Vector):** The corridor possesses a defined axis and transverse phase structure, giving it an effective angular momentum of $1\hbar$.
 *   **W Boson ($W^\pm$):**
     *   **Function:** Transports net charge $\pm 6\epsilon$ ($3P \leftrightarrow 3E$ swap).
-    *   **Bookkeeping:** The corridor physically moves the "Weak-Coupling Triad" components.
+    *   **Bookkeeping:** The corridor physically moves the "weak-coupling-triad" components.
 *   **Z Boson ($Z^0$):**
     *   **Function:** Transports energy, momentum, and phase *without* net charge flux.
     *   **Bookkeeping:** A neutral corridor enabling re-phasing and mode exchange.

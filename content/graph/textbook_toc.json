@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 124,
-      "sections": 828
+      "sections": 831
     }
   },
   "tocRoot": {
@@ -1524,6 +1524,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "sectionKey": "broader pro anti balance in mathbb a mathbb a mathbb a",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Exterior Planar Spin Basis",
                 "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
                 "markdownSection": "Exterior Planar Spin Basis",
@@ -1540,6 +1548,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Translation-Axis Alignment at High Velocity",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Translation-Axis Alignment at High Velocity",
+                "sectionKey": "translation axis alignment at high velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Canonical Horizon Branch Hypothesis",
                 "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
                 "markdownSection": "Canonical Horizon Branch Hypothesis",
@@ -1552,6 +1568,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
                 "markdownSection": "Candidate Theories for Pro and Anti at the Horizon",
                 "sectionKey": "candidate theories for pro and anti at the horizon",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Possible Left/Right Spin Mapping",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Possible Left/Right Spin Mapping",
+                "sectionKey": "possible left right spin mapping",
                 "headingLevel": 2
               },
               {
