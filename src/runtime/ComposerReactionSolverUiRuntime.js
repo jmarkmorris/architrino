@@ -6,6 +6,12 @@ import {
   createComposerReactionParticipantMutationRuntime,
 } from "./ComposerReactionParticipantMutationRuntime.js";
 import {
+  buildNodeKey,
+  createComposerReactionAnchorStateRuntime,
+  nodeKeysConflict,
+  parseNodeKey,
+} from "./ComposerReactionAnchorStateRuntime.js";
+import {
   createComposerReactionBinarySelectionRuntime,
   getBinaryPersonalityChoice,
   invertBinaryChoiceId,
@@ -370,37 +376,6 @@ function getParticipantCardLabelLines(label = "", participant = null) {
   return [words.slice(0, -1).join(" "), words.at(-1) ?? ""];
 }
 
-function buildNodeKey(participantId, nodeId) {
-  return `${participantId}::${nodeId}`;
-}
-
-function parseNodeKey(nodeKey) {
-  const [participantId = "", ...rest] = String(nodeKey ?? "").split("::");
-  return {
-    participantId,
-    nodeId: rest.join("::"),
-  };
-}
-
-function isSameOrAncestorPath(candidatePath, targetPath) {
-  if (!candidatePath || !targetPath) {
-    return false;
-  }
-  return targetPath === candidatePath || targetPath.startsWith(`${candidatePath}/`);
-}
-
-function nodeKeysConflict(leftKey, rightKey) {
-  const left = parseNodeKey(leftKey);
-  const right = parseNodeKey(rightKey);
-  if (!left.participantId || !right.participantId || left.participantId !== right.participantId) {
-    return false;
-  }
-  return (
-    isSameOrAncestorPath(left.nodeId, right.nodeId) ||
-    isSameOrAncestorPath(right.nodeId, left.nodeId)
-  );
-}
-
 function countDescendants(node) {
   const children = Array.isArray(node?.children) ? node.children : [];
   return children.reduce((total, child) => total + 1 + countDescendants(child), 0);
@@ -559,104 +534,83 @@ export function createComposerReactionSolverUiRuntime(deps) {
   };
 
   let drawFrameId = 0;
-  const recentRouteTimeoutIds = new Map();
 
-  function findMappingsByNodeKey(nodeKey) {
-    return state.mappings.filter(
-      (mapping) => mapping.sourceKey === nodeKey || mapping.targetKey === nodeKey
-    );
-  }
-
-  function findMappingByNodeKey(nodeKey) {
-    return findMappingsByNodeKey(nodeKey)[0] ?? null;
-  }
-
-  function getMappingIdsForAnchor(nodeKey, role) {
-    return state.mappings
-      .filter(
-        (mapping) =>
-          (mapping.sourceKey === nodeKey && mapping.sourceRole === role) ||
-          (mapping.targetKey === nodeKey && mapping.targetRole === role)
-      )
-      .map((mapping) => mapping.id);
-  }
-
-  function getMappedKeyForRole(mapping, role) {
-    if (mapping.sourceRole === role) {
-      return mapping.sourceKey;
-    }
-    if (mapping.targetRole === role) {
-      return mapping.targetKey;
-    }
-    return "";
-  }
-
-  function clearRecentRouteTimeout(mappingId) {
-    const timeoutId = recentRouteTimeoutIds.get(mappingId);
-    if (!timeoutId) {
-      return;
-    }
-    window.clearTimeout(timeoutId);
-    recentRouteTimeoutIds.delete(mappingId);
-  }
-
-  function pruneRecentRouteState() {
-    const activeMappingIds = new Set(state.mappings.map((mapping) => mapping.id));
-    state.recentMappingIds = state.recentMappingIds.filter((mappingId) =>
-      activeMappingIds.has(mappingId)
-    );
-    [...recentRouteTimeoutIds.keys()].forEach((mappingId) => {
-      if (!activeMappingIds.has(mappingId)) {
-        clearRecentRouteTimeout(mappingId);
+  const anchorStateRuntime = createComposerReactionAnchorStateRuntime({
+    canTargetMappingRole,
+    getMappings: () => state.mappings,
+    getNodeContext,
+    getRecentMappingIds: () => state.recentMappingIds,
+    getPendingSourceKey: () => state.pendingSourceKey,
+    getPendingSourceRole: () => state.pendingSourceRole,
+    isSingleMappingAnchorRole,
+    onRecentStateChange: () => applyHoveredRouteState(),
+    recentRouteFadeMs,
+    resolvePendingTargetAvailability: ({
+      pendingSourceKey,
+      pendingSourceRole,
+      role,
+      sourceContext,
+      targetContext,
+    }) => {
+      if (pendingSourceRole === "reactant" && role === "product") {
+        const evaluation = evaluateComposerReactionMappingCandidate({
+          sourceParticipant: sourceContext?.participant,
+          sourceNode: sourceContext?.node,
+          targetParticipant: targetContext?.participant,
+          targetNode: targetContext?.node,
+          resolveBinaryChoiceInventory,
+        });
+        if (!evaluation.allowed) {
+          return {
+            disabled: true,
+            reason: evaluation.reason,
+          };
+        }
       }
-    });
-  }
-
-  function clearAllRecentRouteState() {
-    [...recentRouteTimeoutIds.keys()].forEach((mappingId) => clearRecentRouteTimeout(mappingId));
-    state.recentMappingIds = [];
-  }
-
-  function markMappingsRecent(mappingIds = []) {
-    pruneRecentRouteState();
-    const activeMappingIds = new Set(state.mappings.map((mapping) => mapping.id));
-    const nextRecentIds = [...new Set(mappingIds.filter((mappingId) => activeMappingIds.has(mappingId)))];
-    if (!nextRecentIds.length) {
-      return;
-    }
-    const recentIds = new Set(state.recentMappingIds);
-    let didChange = false;
-    nextRecentIds.forEach((mappingId) => {
-      if (!recentIds.has(mappingId)) {
-        recentIds.add(mappingId);
-        didChange = true;
+      if (pendingSourceRole === "transmute-output" && role === "product") {
+        const transmuteId = parseNodeKey(pendingSourceKey).participantId;
+        const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
+        const candidateLedger = addLedgers(
+          transmuteSummary.outgoingLedger,
+          classifyComposerReactionNode(targetContext?.participant, targetContext?.node, {
+            resolveBinaryChoiceInventory,
+          })?.inventory
+        );
+        if (!hasLedger(transmuteSummary.incomingLedger)) {
+          return {
+            disabled: true,
+            reason: "Add conservative reactant inputs to this transmute tile first.",
+          };
+        }
+        if (!ledgerFitsWithin(transmuteSummary.incomingLedger, candidateLedger)) {
+          return {
+            disabled: true,
+            reason: `Transmute output would exceed its incoming ledger: ${formatLedger(transmuteSummary.incomingLedger)} available.`,
+          };
+        }
       }
-      clearRecentRouteTimeout(mappingId);
-      recentRouteTimeoutIds.set(
-        mappingId,
-        window.setTimeout(() => {
-          recentRouteTimeoutIds.delete(mappingId);
-          const nextIds = state.recentMappingIds.filter((entry) => entry !== mappingId);
-          if (nextIds.length === state.recentMappingIds.length) {
-            return;
-          }
-          state.recentMappingIds = nextIds;
-          applyHoveredRouteState();
-        }, recentRouteFadeMs)
-      );
-    });
-    if (didChange) {
-      state.recentMappingIds = [...recentIds];
-    }
-    applyHoveredRouteState();
-  }
-
-  function getConflictingMappings(nodeKey, role) {
-    return state.mappings.filter((mapping) => {
-      const mappedKey = getMappedKeyForRole(mapping, role);
-      return mappedKey ? nodeKeysConflict(mappedKey, nodeKey) : false;
-    });
-  }
+      if (pendingSourceRole === "transmute-output" && role === "transmute-input") {
+        return {
+          disabled: true,
+          reason: "Transmute outputs connect to product targets only.",
+        };
+      }
+      return null;
+    },
+    setRecentMappingIds: (mappingIds) => {
+      state.recentMappingIds = Array.isArray(mappingIds) ? mappingIds : [];
+    },
+  });
+  const {
+    clearAllRecentRouteState,
+    findMappingByNodeKey,
+    findMappingsByNodeKey,
+    getAnchorAvailability,
+    getConflictingMappings,
+    getMappingIdsForAnchor,
+    markMappingsRecent,
+    pruneRecentRouteState,
+  } = anchorStateRuntime;
 
   function findParticipantById(participantId) {
     return state.participants.find((participant) => participant?.id === participantId) ?? null;
@@ -870,71 +824,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function isTransmuteParticipantBalanced(participantId) {
     return getTransmuteLedgerSummary(participantId).isBalanced;
-  }
-
-  function getAnchorAvailability(role, nodeKey) {
-    const existingMappings = findMappingsByNodeKey(nodeKey);
-    if (existingMappings.length && isSingleMappingAnchorRole(role)) {
-      return { disabled: false, reason: "" };
-    }
-    const hasConflict = isSingleMappingAnchorRole(role) && getConflictingMappings(nodeKey, role).some((mapping) => {
-      const mappedKey = getMappedKeyForRole(mapping, role);
-      return mappedKey && mappedKey !== nodeKey;
-    });
-    if (hasConflict) {
-      return {
-        disabled: true,
-        reason: "Blocked by an existing ancestor or descendant mapping.",
-      };
-    }
-    if (canTargetMappingRole(role) && state.pendingSourceKey) {
-      const sourceContext = getNodeContext(state.pendingSourceKey);
-      const targetContext = getNodeContext(nodeKey);
-      if (state.pendingSourceRole === "reactant" && role === "product") {
-        const evaluation = evaluateComposerReactionMappingCandidate({
-          sourceParticipant: sourceContext?.participant,
-          sourceNode: sourceContext?.node,
-          targetParticipant: targetContext?.participant,
-          targetNode: targetContext?.node,
-          resolveBinaryChoiceInventory,
-        });
-        if (!evaluation.allowed) {
-          return {
-            disabled: true,
-            reason: evaluation.reason,
-          };
-        }
-      }
-      if (state.pendingSourceRole === "transmute-output" && role === "product") {
-        const transmuteId = parseNodeKey(state.pendingSourceKey).participantId;
-        const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
-        const candidateLedger = addLedgers(
-          transmuteSummary.outgoingLedger,
-          classifyComposerReactionNode(targetContext?.participant, targetContext?.node, {
-            resolveBinaryChoiceInventory,
-          })?.inventory
-        );
-        if (!hasLedger(transmuteSummary.incomingLedger)) {
-          return {
-            disabled: true,
-            reason: "Add conservative reactant inputs to this Transmute tile first.",
-          };
-        }
-        if (!ledgerFitsWithin(transmuteSummary.incomingLedger, candidateLedger)) {
-          return {
-            disabled: true,
-            reason: `Transmute output would exceed its incoming ledger: ${formatLedger(transmuteSummary.incomingLedger)} available.`,
-          };
-        }
-      }
-      if (state.pendingSourceRole === "transmute-output" && role === "transmute-input") {
-        return {
-          disabled: true,
-          reason: "Transmute outputs connect to product targets only.",
-        };
-      }
-    }
-    return { disabled: false, reason: "" };
   }
 
   function removeMappingById(mappingId) {

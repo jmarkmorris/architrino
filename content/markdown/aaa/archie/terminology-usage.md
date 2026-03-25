@@ -35,7 +35,7 @@ At the architrino level, the ontological term is not `charge`. The primitive is 
 | --- | --- | --- | --- |
 | the basic entity | `architrino`, `electrino`, `positrino` | not applicable | "The architrino is a transceiver of potential." |
 | the primitive sign carried by that entity | `polarity` | not applicable | "Like polarities repel; unlike polarities attract." |
-| effective electric bookkeeping | `electric charge`, `charge`, `$q=\pm\epsilon$` | comparison, bookkeeping, gauge language, or observer-level description | "The axial inventory yields net electric charge $-e$." |
+| effective electric bookkeeping | `electric charge`, `charge`, $q=\pm\epsilon$ | comparison, bookkeeping, gauge language, or observer-level description | "The axial inventory yields net electric charge $-e$." |
 | a fermion’s outward six-site contribution | `axial inventory`, `axial pattern`, `axial architrinos` | not applicable | "The quark’s axial inventory determines its electric bookkeeping." |
 
 Sentence guidance:
@@ -46,7 +46,7 @@ Sentence guidance:
 
 ## Field and Wake Usage
 
-Use `wake` or `causal wake` for emitted substrate-level AAA structure. Reserve `field` for effective, continuum, or explicitly comparative discussion.
+Use `wake` or `causal wake` for emitted substrate-level $\mathbb{A}\mathbb{A}\mathbb{A}$ structure. Reserve `field` for effective, continuum, or explicitly comparative discussion.
 
 | When you mean... | Prefer | Keep `field` only when... | Example |
 | --- | --- | --- | --- |
@@ -61,7 +61,7 @@ Sentence guidance:
 
 - Prefer: "The wake propagates at speed $c_f$."
 - Prefer: "The coarse-grained wake behaves like an effective field."
-- Avoid by default: "The field emitted by the architrino..." when pure substrate AAA prose is intended.
+- Avoid by default: "The field emitted by the architrino..." when pure substrate $\mathbb{A}\mathbb{A}\mathbb{A}$ prose is intended.
 
 ## Background and Contents Usage
 
@@ -96,13 +96,13 @@ Sentence guidance:
 
 - Prefer: "The Noether Sea is the canonical ontological term."
 - Prefer: "Use `spacetime medium` when easing the reader from effective spacetime language to constitutive substrate language."
-- Avoid by default: "vacuum" as the native AAA ontology term.
+- Avoid by default: "vacuum" as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology term.
 
 ## Spacetime, Void, and Timespace
 
 Use `spacetime` for emergent/effective structure, not as the default name for the substrate.
 
-The preferred AAA stack is:
+The preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ stack is:
 
 - `Euclidean void` for the fixed 3D spatial container
 - `absolute time` for the universal temporal parameter
@@ -111,7 +111,7 @@ The preferred AAA stack is:
 - `spacetime medium` only as a bridge term toward effective spacetime language
 - `spacetime` for emergent relativistic or observer-level geometry
 
-The critical discipline is that `spacetime` should not silently absorb the ontology. In AAA, the ontological backdrop is not a curved four-dimensional spacetime manifold. The void and absolute time are fundamental; effective spacetime is a downstream description of how assemblies and wakes propagate through the Noether Sea.
+The critical discipline is that `spacetime` should not silently absorb the ontology. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the ontological backdrop is not a curved four-dimensional spacetime manifold. The void and absolute time are fundamental; effective spacetime is a downstream description of how assemblies and wakes propagate through the Noether Sea.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
@@ -130,6 +130,28 @@ Sentence guidance:
 - Avoid by default: "Spacetime is the fundamental container."
 - Avoid by default: "Timespace" as a loose synonym for everything from container to contents to effective geometry.
 
+Usage examples:
+
+| Instead of... | Prefer... | Why |
+| --- | --- | --- |
+| "Spacetime is filled with Noether cores." | "The Euclidean void is populated by Noether cores." | The sentence is about contents occupying the fixed container, not about emergent geometry. |
+| "Spacetime contains the Noether Sea." | "The Noether Sea occupies the Euclidean void." | `Spacetime` should not stand in for the ontological background here. |
+| "Timespace bends around matter." | "Effective spacetime curvature appears around matter-rich regions." | The claim is observer-level and geometric, not about the fixed substrate. |
+| "The timespace medium slows clocks." | "The Noether Sea slows physical clocks." | The sentence is about substrate contents, not the formal product background. |
+| "Spacetime is the absolute background." | "Absolute time and the Euclidean void form the fixed background." | Splits the temporal and spatial factors cleanly instead of importing relativistic wording. |
+| "Timespace is filled with a dense medium." | "Absolute timespace contains a Euclidean void populated by the Noether Sea." | Use `absolute timespace` only when the full product structure matters, then name the contents separately. |
+| "The medium is spacetime itself." | "The spacetime medium is a bridge term for the Noether Sea." | Keeps the bridge term from becoming the ontology. |
+| "Spacetime expands as the medium evolves." | "Effective spacetime expansion summarizes evolving Noether-Sea structure." | Marks the level shift from constitutive substrate to effective description. |
+| "Matter curves the void." | "Matter changes Noether-Sea density and stress, producing an emergent effective metric." | The void stays fixed; the response belongs to the contents and the effective geometry. |
+| "Timespace redshifts the photon." | "Redshift reflects Noether-Sea evolution and clock-rate comparison across the path." | Replaces vague background-language with the specific constitutive mechanism. |
+
+Bridge examples:
+
+- Good bridge sentence: "For reader-facing translation, one may say that the spacetime medium acquires an effective metric response, but the underlying ontology remains absolute time, Euclidean void, and Noether-Sea contents."
+- Good formal sentence: "Absolute timespace is the product background $\mathbb{R}\times\mathbb{R}^3$, while relativistic spacetime is an effective geometry reconstructed from assembly and wake dynamics."
+- Good ontological sentence: "The Euclidean void does not expand; what evolves is the Noether Sea within it."
+- Bad mixed-level sentence: "Spacetime, the medium, and the background are all the same thing."
+
 Editorial rule:
 
 - Use `absolute timespace` when a chapter truly needs the formal product-manifold label.
@@ -138,33 +160,33 @@ Editorial rule:
 
 ## Particle, Wave, Assembly, and Wake
 
-The standard quantum phrase `particle versus wave` should be treated as a description of a limit or paradox inside the standard mathematical formalism, not as the native AAA ontology.
+The standard quantum phrase `particle versus wave` should be treated as a description of a limit or paradox inside the standard mathematical formalism, not as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
-The preferred AAA response is `assembly and wake`.
+The preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ response is `assembly and wake`.
 
 - `assembly` names the localized ontological object: an architrino or a bound hierarchy of architrinos with definite geometry, inventory, stability conditions, and interaction channels.
 - `wake` names the distributed causal structure emitted by those architrinos or assemblies: the potential-bearing residue that propagates outward, overlaps, interferes, and later contributes to received interactions.
 - The point of the `and` is that the two are not rival identities of one thing. The assembly is the source-organized object; the wake is its emitted causal structure.
-- In AAA, interference, diffraction, phase accumulation, and nonlocal-looking transport belong primarily to wake behavior, while localization, counting, detection records, and bound-state identity belong primarily to assembly behavior.
+- In $\mathbb{A}\mathbb{A}\mathbb{A}$, interference, diffraction, phase accumulation, and nonlocal-looking transport belong primarily to wake behavior, while localization, counting, detection records, and bound-state identity belong primarily to assembly behavior.
 
 This yields a cleaner translation rule:
 
-| When standard prose says... | AAA clarification |
+| When standard prose says... | $\mathbb{A}\mathbb{A}\mathbb{A}$ clarification |
 | --- | --- |
 | `particle` | usually an `assembly` viewed at the observer or phenomenological level |
 | `wave` | usually a `wake`, `causal wake`, or effective wake superposition |
-| `particle-wave duality` | an effective observational tension that AAA reinterprets as `assembly and wake` |
-| `wave-particle paradox` | not a native AAA paradox; it marks a limit of the standard formal split between localized entity and distributed propagation |
+| `particle-wave duality` | an effective observational tension that $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterprets as `assembly and wake` |
+| `wave-particle paradox` | not a native $\mathbb{A}\mathbb{A}\mathbb{A}$ paradox; it marks a limit of the standard formal split between localized entity and distributed propagation |
 
-Use `particle` when doing Standard Model comparison, detector language, cross-section language, or historical discussion of quantum mechanics. Use `assembly` when stating AAA ontology directly.
+Use `particle` when doing Standard Model comparison, detector language, cross-section language, or historical discussion of quantum mechanics. Use `assembly` when stating $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology directly.
 
-Use `wave` when discussing standard QM language, experimental narratives, or intentionally effective descriptions. Use `wake` when naming the emitted substrate-level causal structure in AAA.
+Use `wave` when discussing standard QM language, experimental narratives, or intentionally effective descriptions. Use `wake` when naming the emitted substrate-level causal structure in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 Sentence guidance:
 
-- Prefer: "The observed particle is an assembly in AAA ontology."
+- Prefer: "The observed particle is an assembly in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology."
 - Prefer: "The interference pattern is produced by wake structure, not by an ontic wave-particle ambiguity."
-- Prefer: "AAA responds to particle-versus-wave language with assembly and wake."
+- Prefer: "$\mathbb{A}\mathbb{A}\mathbb{A}$ responds to particle-versus-wave language with assembly and wake."
 - Avoid by default: "The assembly is sometimes a particle and sometimes a wave."
 
 ## Core, Nucleus, and Assembly Usage
@@ -174,7 +196,7 @@ Use `Noether core` for the central tri-binary scaffold. Use `particle` mainly at
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
 | the central neutral scaffold of a fermion | `Noether core`, `core` | `nucleus` when that would collide with atomic/nuclear meaning | "The axial layer is bound to the Noether core." |
-| AAA compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
 | Standard Model or observer-facing language | `particle` | not applicable | "The particle is observed as electrically neutral." |
 
 ## Orbit, Circulation, Shell, and Layer Usage

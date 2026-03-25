@@ -221,15 +221,15 @@ Prefer:
 
 ### Quantum-comparison terminology
 
-When a chapter is translating standard quantum language, preserve the historical phrase `particle-wave duality` as a comparative label when needed. But do not let that phrase become the native AAA ontology.
+When a chapter is translating standard quantum language, preserve the historical phrase `particle-wave duality` as a comparative label when needed. But do not let that phrase become the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
-In AAA-first prose, prefer `assembly and wake`:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$-first prose, prefer `assembly and wake`:
 
 - `assembly` for the localized ontological object or bound hierarchy,
 - `wake` for the emitted distributed causal structure,
 - `particle` and `wave` for standard comparative or observer-level discussion.
 
-The important editorial point is that AAA does not frame the issue as one thing being either particle or wave depending on circumstance. The localized assembly and the distributed wake are both part of the same causal account.
+The important editorial point is that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not frame the issue as one thing being either particle or wave depending on circumstance. The localized assembly and the distributed wake are both part of the same causal account.
 
 ### Spacetime terminology
 
@@ -247,7 +247,7 @@ Preferred prose discipline:
 If a sentence could refer either to the background, the contents, or the emergent geometry, rewrite it until the level is explicit.
 - causal wake
 
-Reserve `field` for effective, continuum, or explicitly comparative discussion. When the prose is naming emitted substrate-level AAA structure, prefer `wake` so the emission order and ontological level remain explicit.
+Reserve `field` for effective, continuum, or explicitly comparative discussion. When the prose is naming emitted substrate-level $\mathbb{A}\mathbb{A}\mathbb{A}$ structure, prefer `wake` so the emission order and ontological level remain explicit.
 
 ### Background vs Contents
 
