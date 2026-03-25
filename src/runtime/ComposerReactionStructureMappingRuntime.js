@@ -1,4 +1,5 @@
 import {
+  getNoetherCoreSlotBinaryPresence,
   getNoetherCoreSlotOccupancy,
 } from "../domain/structure/StructureClassification.js";
 import {
@@ -225,7 +226,10 @@ function classifyBinarySelectorGroupNode(
   structureNode = null,
   resolveBinaryChoiceInventory
 ) {
-  const occupancy = getNoetherCoreSlotOccupancy(getPrimaryNoetherCore(structureNode));
+  const primaryCore = getPrimaryNoetherCore(structureNode);
+  const occupancy = getNoetherCoreSlotOccupancy(primaryCore);
+  const binaryPresence = getNoetherCoreSlotBinaryPresence(primaryCore);
+  const corePolarity = normalizeText(getStructureTrait(primaryCore, "polarity", ""));
   const inventory = STRUCTURE_SLOT_ORDER.reduce((sum, slotName) => {
     if (!occupancy[slotName]) {
       return sum;
@@ -244,14 +248,17 @@ function classifyBinarySelectorGroupNode(
     inventory,
     provenanceMode: "guessed",
     hasInventory: hasInventory(inventory),
+    corePolarity,
+    binarySlotCount: STRUCTURE_SLOT_ORDER.filter((slotName) => binaryPresence[slotName]).length,
   };
 }
 
 function classifyNoetherCoreGridNode(node = null, structureNode = null) {
   const occupancy = getNoetherCoreSlotOccupancy(structureNode);
+  const binaryPresence = getNoetherCoreSlotBinaryPresence(structureNode);
   const inventory = createEmptyInventory();
-  const polarity = normalizeText(getStructureTrait(structureNode, "polarity", ""));
-  inventory[polarity === "anti" ? "antiCore" : "proCore"] += 1;
+  const corePolarity = normalizeText(getStructureTrait(structureNode, "polarity", ""));
+  inventory[corePolarity === "anti" ? "antiCore" : "proCore"] += 1;
   STRUCTURE_SLOT_ORDER.forEach((slotName) => {
     if (!occupancy[slotName]) {
       return;
@@ -265,7 +272,13 @@ function classifyNoetherCoreGridNode(node = null, structureNode = null) {
     inventory,
     provenanceMode: "direct",
     hasInventory: hasInventory(inventory),
+    corePolarity,
+    binarySlotCount: STRUCTURE_SLOT_ORDER.filter((slotName) => binaryPresence[slotName]).length,
   };
+}
+
+function isFullTriBinaryCoreSpec(spec = null) {
+  return Number(spec?.binarySlotCount ?? 0) === 3;
 }
 
 function classifyAggregateHierarchyNode(participant = null, node = null, options = {}) {
@@ -357,6 +370,21 @@ export function evaluateComposerReactionMappingCandidate({
       reason: `Not conservative: ${formatLedger(sourceSpec.inventory)} cannot map to ${formatLedger(
         targetSpec.inventory
       )}.`,
+      sourceSpec,
+      targetSpec,
+    };
+  }
+
+  if (
+    isFullTriBinaryCoreSpec(sourceSpec) &&
+    isFullTriBinaryCoreSpec(targetSpec) &&
+    sourceSpec.corePolarity &&
+    targetSpec.corePolarity &&
+    sourceSpec.corePolarity !== targetSpec.corePolarity
+  ) {
+    return {
+      allowed: false,
+      reason: "Full tri-binary pro and anti Noether cores cannot map directly to each other.",
       sourceSpec,
       targetSpec,
     };

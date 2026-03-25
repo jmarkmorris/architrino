@@ -12,7 +12,7 @@ Illustrative diagrams can be added later. For now the chapter uses axis strings 
 
 ### Core and axial split
 
-The quark construction used here follows the same nucleus-plus-axial split already used in the fermion mapping chapters:
+The quark construction used here follows the same Noether-core-plus-axial split already used in the fermion mapping chapters:
 
 - The **Noether core** is the neutral binary scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
@@ -114,7 +114,7 @@ The image-level implementation candidate for right-handed pro-core couplings mat
 For right-handed quarks:
 
 - the six-site axial counts stay the same as in the flavor catalog,
-- the weak-active triad is treated as hidden or inactive,
+- the weak-coupling triad is treated as hidden or inactive,
 - therefore
   $$
   T_3 = 0,
@@ -131,7 +131,7 @@ This gives the standard singlet assignments:
 | $u^R,c^R,t^R$ | $5P,1E$ | $+2/3$ | $T_3=0,\ Y=+4/3$ |
 | $d^R,s^R,b^R$ | $2P,4E$ | $-1/3$ | $T_3=0,\ Y=-2/3$ |
 
-The same count logic is what makes the right-handed quark sector look naturally like an SU(2) singlet arc in the six-site axial space: once the Weak-Coupling Triad is no longer exposed, the only remaining electroweak datum is the net axial charge. In that sense, the right-handed quark state is not defined by a new axial pattern, but by the same pattern viewed in a geometrically shielded coupling posture.
+The same count logic is what makes the right-handed quark sector look naturally like an SU(2) singlet arc in the six-site axial space: once the weak-coupling triad is no longer exposed, the only remaining electroweak datum is the net axial charge. In that sense, the right-handed quark state is not defined by a new axial pattern, but by the same pattern viewed in a geometrically shielded coupling posture.
 
 ### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
@@ -139,7 +139,7 @@ The corresponding left-handed image suggests a useful implementation candidate f
 
 - the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
 - the up-type and down-type quarks then sit on the same electroweak doublet arc,
-- and the distinction between them is carried by the exposed Weak-Coupling Triad rather than by a different total axial inventory.
+- and the distinction between them is carried by the exposed weak-coupling triad rather than by a different total axial inventory.
 
 In this bookkeeping:
 

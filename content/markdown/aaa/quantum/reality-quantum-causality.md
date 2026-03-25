@@ -29,12 +29,12 @@ At the absolute level, any local neighborhood is crowded:
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
 - At a given absolute time $t$, the **net potential** at a point is the **vector sum** of:
-  - Local spacetime-assembly wakes,
+  - Local Noether-Sea assembly wakes,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
 
-- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a strict 50/50 mix of electrinos ($q=-$) and positrinos ($q=+$). Consequently, the potential contributions from distant regions statistically cancel out (effective screening). More precisely: in a statistically homogeneous 50/50 mixture the mean far‑field cancels, while fluctuations and local charge imbalances remain and dominate the dynamics on finite scales. Screening is therefore statistical and scale‑dependent, not an exact cancellation theorem. The "weather" is, with high probability, a local fluctuating noise floor, not an infinite static field.
+- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a strict 50/50 mix of electrinos ($q=-$) and positrinos ($q=+$). Consequently, the potential contributions from distant regions statistically cancel out (effective screening). More precisely: in a statistically homogeneous 50/50 mixture the mean far‑field cancels, while fluctuations and local charge imbalances remain and dominate the dynamics on finite scales. Screening is therefore statistical and scale‑dependent, not an exact cancellation theorem. The "weather" is, with high probability, a local fluctuating noise floor, not an infinite static wake background.
 
 “Stable” particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 
@@ -79,11 +79,11 @@ There is **no backward-in-$t$ influence**. The absolute-time ordering is strictl
 
 From the viewpoint of an embedded assembly:
 
-- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with spacetime assemblies / photon-like modes.
+- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with Noether-Sea assemblies and photon-like modes.
 - Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
-   - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit; the wake front stays ahead and cannot intersect the trajectory. At exactly $v = c_f$ the coupling is **zero-action** (a separatrix): the front co-moves but does not intersect the path. Self-hit resonance turns on only for $v>c_f$, when the wake front can overlap the path and phase-lock. In that regime small perturbations are strongly amplified or damped depending on phase. The field does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
+   - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit; the wake front stays ahead and cannot intersect the trajectory. At exactly $v = c_f$ the coupling is **zero-action** (a separatrix): the front co-moves but does not intersect the path. Self-hit resonance turns on only for $v>c_f$, when the wake front can overlap the path and phase-lock. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
    - **The Curvature Solution (Stable Stealth):** Stable assemblies at $v \approx c_f$ (like the middle binary) use **curvature or internal modulation** to continuously rotate/de-phase their self-hit geometry. This allows the assembly to keep a "hard" potential front externally while avoiding runaway self-reinforcement.
    - **Operational Effect:** A receiver sees little change until the corkscrewing assembly is very close, then feels a rapid, modulated potential surge—a "digital" shockwave delivered without warning.
 
@@ -197,7 +197,7 @@ Here I’ll sharpen this in terms of **minimal structural/dynamical conditions**
 
 We keep everything strictly dynamical:
 
-- There is no extra “will field.”
+- There is no extra “will” substance or separate agency medium.
 - “Decision” = **the assembly’s internal state and architecture bias which attractor/transition is realized** for a given class of incoming potential patterns.
 
 So the question becomes: what is the minimal set of features an assembly must have to *non‑trivially* modulate its own threshold behavior, instead of being a passive, fixed-threshold detector?
@@ -277,12 +277,12 @@ Concretely:
 - Parameters could include:
   - Effective coupling strengths between sub‑assemblies (tri‑binary networks),
   - Orientation/phase relationships among middle binaries (near $v\approx c_f$),
-  - Local aether‑coupling “stiffness” (how strongly sub‑assemblies respond to given wake amplitudes).
+  - Local Noether-Sea-coupling “stiffness” (how strongly sub-assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:
   - The assembly can hold a “configuration of sensitivity” over many incoming wake peaks,
   - But can still adjust that configuration over longer time (learning, context).
 
-**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the aether to maintain a tuned state.
+**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the surrounding Noether Sea to maintain a tuned state.
 
 ---
 
@@ -584,7 +584,7 @@ To build the minimal **Switch**, I recommend:
 #### Rationale for Atom Selection
 
 **1. The Sensor (Rubidium): The "Feeler"**
-*   **Architrino Physics:** Rubidium is an Alkali metal. It has one lonely electron in its outer shell (5s orbital). This electron is heavily shielded by the inner core. In architrino terms, this outer tri-binary assembly is loosely coupled to its nucleus.
+*   **Architrino Physics:** Rubidium is an Alkali metal. It has one lonely electron in its outer shell (5s orbital). This electron is heavily shielded by the inner core. In architrino terms, this outer tri-binary assembly is loosely coupled to the atomic nucleus.
 *   **The "Edge" State:** Because it is so loosely bound, we can easily excite this electron into a **Rydberg State** (a high principal quantum number, e.g., $n=50$). In this state, the electron's orbital radius is huge, and its velocity slows down, but its sensitivity to external fields skyrockets. It is essentially a giant antenna, flapping in the architrino breeze, barely holding on. It is perpetually **metastable**.
 
 **2. The Bias Unit (The Helium Pair): The "Vise"**
@@ -645,7 +645,7 @@ If the Rb is ionized, subtract **12** per missing electron.
 ## Suggested Refinements
 
 1. **Natural Selection of States**
-   - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable orbital/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
+   - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable circulation-locked/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
 
 2. **Middle-binary bifurcation**
    - We should specify at least one toy dynamical system (even a low-dimensional map) where:

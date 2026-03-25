@@ -36,7 +36,7 @@ In the Standard Model, a particle is a set of quantum numbers ($Q, S, L, B, etc.
 *   **The Core (Tri-Binary):**
     *   Inner Binary (IDs: $i_1, i_2$) - High energy/Max curvature.
     *   Middle Binary (IDs: $m_1, m_2$) - Symmetry breaker.
-    *   Outer Binary (IDs: $o_1, o_2$) - Energy shell.
+    *   Outer Binary (IDs: $o_1, o_2$) - Outer energy-screen tier.
 *   **The Axial Layer (Decorations):**
     *   List of specific architrinos (IDs: $p_1, p_2...$) attached to the poles.
 *   **The State:** Velocity, Orientation, Phase.

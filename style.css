@@ -1649,10 +1649,16 @@ body {
   filter: drop-shadow(0 0 10px rgba(82, 152, 255, 0.2));
   pointer-events: stroke;
   transition:
-    stroke 120ms ease,
-    stroke-width 120ms ease,
-    opacity 120ms ease,
-    filter 120ms ease;
+    stroke 900ms linear,
+    stroke-width 900ms linear,
+    opacity 900ms linear,
+    filter 900ms linear;
+}
+
+.composer-reaction-solver-path.is-route-recent {
+  stroke: rgba(190, 230, 255, 0.94);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 12px rgba(108, 180, 255, 0.28));
 }
 
 .composer-reaction-solver-path.is-route-highlighted {
@@ -1750,6 +1756,65 @@ body {
   min-height: 100%;
   overflow: visible;
   pointer-events: none;
+}
+
+.composer-reaction-solver-add-control {
+  display: flex;
+  width: 100%;
+}
+
+.composer-reaction-solver-add-control.is-reactant {
+  justify-content: flex-start;
+}
+
+.composer-reaction-solver-add-control.is-product {
+  justify-content: flex-end;
+}
+
+.composer-reaction-solver-add-control.is-center {
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.composer-reaction-solver-add-button {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(176, 194, 255, 0.26);
+  background:
+    radial-gradient(circle at 30% 28%, rgba(96, 140, 226, 0.26), rgba(18, 26, 44, 0.94) 58%),
+    rgba(18, 26, 44, 0.94);
+  color: rgba(244, 247, 255, 0.96);
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 500;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.composer-reaction-solver-add-button:hover,
+.composer-reaction-solver-add-button:focus-visible,
+.composer-reaction-solver-add-button.is-active {
+  border-color: rgba(214, 232, 255, 0.54);
+  background:
+    radial-gradient(circle at 30% 28%, rgba(126, 176, 255, 0.36), rgba(28, 40, 68, 0.98) 58%),
+    rgba(28, 40, 68, 0.98);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 16px rgba(88, 150, 255, 0.18);
+  transform: translateY(-1px);
+  outline: none;
 }
 
 #composer-reaction-solver-hint.composer-reaction-solver-hint {
@@ -1860,10 +1925,6 @@ body {
   font-weight: 700;
   line-height: 1.15;
   color: rgba(244, 247, 255, 0.88);
-}
-
-.composer-reaction-solver-particle.is-anti-polarity .composer-reaction-solver-particle-label {
-  color: #ffffff;
 }
 
 .composer-reaction-solver-particle-label-line {
@@ -2329,11 +2390,20 @@ body {
   font-size: 0;
   line-height: 0;
   transition:
-    border-color 120ms ease,
-    background 120ms ease,
-    box-shadow 120ms ease,
-    opacity 120ms ease,
-    transform 120ms ease;
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    opacity 620ms ease,
+    transform 180ms ease;
+}
+
+.composer-reaction-solver-anchor.is-route-recent {
+  border-color: rgba(202, 236, 255, 0.9);
+  background: rgba(42, 92, 148, 0.9);
+  box-shadow:
+    inset 0 0 0 2px rgba(169, 219, 255, 0.22),
+    0 0 10px rgba(98, 170, 255, 0.22);
+  transform: scale(1.05);
 }
 
 .composer-reaction-solver-anchor:hover,
@@ -2445,6 +2515,15 @@ body {
   max-width: min(196px, calc(100vw - 32px));
 }
 
+.composer-reaction-solver-menu[data-menu-mode="template-grid-picker"] {
+  --binary-choice-size: 72px;
+  min-width: auto;
+  max-width: min(664px, calc(100vw - 32px));
+  grid-template-columns: repeat(7, var(--binary-choice-size));
+  gap: 14px;
+  padding: 14px;
+}
+
 .composer-reaction-solver-menu[data-menu-mode="root"] {
   min-width: 320px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2536,6 +2615,55 @@ body {
 .composer-reaction-solver-menu-button:disabled {
   opacity: 0.48;
   cursor: default;
+}
+
+.composer-reaction-solver-picker-tile,
+.composer-reaction-solver-picker-vacant {
+  width: var(--binary-choice-size, 72px);
+  min-width: var(--binary-choice-size, 72px);
+  height: var(--binary-choice-size, 72px);
+}
+
+.composer-reaction-solver-picker-tile {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.composer-reaction-solver-picker-vacant {
+  pointer-events: none;
+}
+
+.composer-reaction-solver-picker-card {
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease;
+}
+
+.composer-reaction-solver-picker-card.is-vacant {
+  opacity: 0;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.composer-reaction-solver-picker-tile:hover .composer-reaction-solver-picker-card,
+.composer-reaction-solver-picker-tile:focus-visible .composer-reaction-solver-picker-card {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--solver-accent) 82%, rgba(255, 255, 255, 0.22));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px color-mix(in srgb, var(--solver-accent) 30%, transparent),
+    0 0 18px color-mix(in srgb, var(--solver-accent) 14%, transparent);
+}
+
+.composer-reaction-solver-picker-tile:focus-visible {
+  outline: none;
 }
 
 .composer-assembly-menu {

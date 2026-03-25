@@ -4,13 +4,13 @@ This document combines the CMB origin timeline and prediction layer in one place
 
 ## Core Idea
 
-The CMB timeline is presented as an effective observer-level chronology map that is interpreted through one fixed-void, evolving-medium ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+The CMB timeline is presented as an effective observer-level chronology map that is interpreted through one fixed-void, evolving-Noether-Sea ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ## Framing Guardrails
 
 - The Euclidean void is fixed; cosmological language describes Noether-sea evolution within that fixed container.
-- Redshift language is consistent with medium evolution plus clock-rate comparison across environments.
-- Background and growth claims are kept in one shared medium-and-assembly ontology.
+- Redshift language is consistent with Noether-Sea evolution plus clock-rate comparison across environments.
+- Background and growth claims are kept in one shared Noether-Sea-and-assembly ontology.
 - Epoch times below are an effective observer-level chronology map, not a claim of one literal global launch event in absolute-time ontology.
 
 ## Chronology Mapping Note
@@ -24,7 +24,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Outside the model; $\Lambda\mathrm{CDM}$ does not define a pre-Big-Bang state.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The universe is a fixed Euclidean container filled with a Noether-core sea. Galaxies and SMBHs have existed indefinitely in a steady-state, recycling regime. SMBHs act as strong-field recycling sites whose horizon interfaces can return processed content to the surrounding sea through several release channels. Those channels may include visible outflows, diffuse radiative release, and initially dark-sector or dark-photon-like excitations. The released content then traverses an evolving tri-binary medium and can be thermally reprocessed by repeated interactions with assemblies. This steady-state backdrop is the source reservoir that later maps onto the Big Bang timeline for physical observers.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The universe is a fixed Euclidean container populated by the Noether Sea. Galaxies and SMBHs have existed indefinitely in a steady-state, recycling regime. SMBHs act as strong-field recycling sites whose horizon interfaces can return processed content to the surrounding Noether Sea through several release channels. Those channels may include visible outflows, diffuse radiative release, and initially dark-sector or dark-photon-like excitations. The released content then traverses the evolving Noether Sea and can be thermally reprocessed by repeated interactions with assemblies. This steady-state backdrop is the source reservoir that later maps onto the Big Bang timeline for physical observers.
 
 ## Planck Epoch (0 to $\sim 10^{-43}$ s)
 - Time window: 0 to $\sim 10^{-43}$ s.
@@ -51,7 +51,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** A scalar field drives exponential expansion, smoothing curvature and seeding primordial perturbations.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Inflationary Epoch: Noether-Core Transition):** $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts that inflation-like behavior is sourced in SMBH-core interior dynamics. The self-hit regime of inner assemblies drives rapid effective expansion/relaxation of the surrounding tri-binary medium. Near the Planck-alignment boundary, terminal lock and release behavior organizes the transition from maximal-curvature dynamics into a broader, more uniform background state. In the mapped chronology, Noether-core (tri-binary spacetime assembly) behavior enters a coherent regime that later supports emergent metric summaries without invoking literal expansion of the void.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Inflationary Epoch: Noether-Core Transition):** $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts that inflation-like behavior is sourced in SMBH-core interior dynamics. The self-hit regime of inner assemblies drives rapid effective expansion/relaxation of the surrounding Noether Sea. Near the Planck-alignment boundary, terminal lock and release behavior organizes the transition from maximal-curvature dynamics into a broader, more uniform ambient state. In the mapped chronology, Noether-core (tri-binary spacetime assembly) behavior enters a coherent regime that later supports emergent metric summaries without invoking literal expansion of the void.
 
 ## Electroweak Epoch ($\sim 10^{-12}$ s)
 - Time window: $\sim 10^{-12}$ s.
@@ -89,7 +89,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 **$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath.
 **$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether Cores with 6*|e/6| Axial Architrinos Form):** Stable lepton analogs form from Noether cores carrying six bound axial architrinos (net $|e|$ from six $|e/6|$ units). Lepton-like assemblies populate the medium and mediate charge-neutralization channels.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether Cores with 6*|e/6| Axial Architrinos Form):** Stable lepton analogs form from Noether cores carrying six bound axial architrinos (net $|e|$ from six $|e/6|$ units). Lepton-like assemblies populate the Noether Sea and mediate charge-neutralization channels.
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether Cores with Neutral Axial Layers):** Nearly neutral tri-binary assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language.
 
 ## Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)
@@ -117,7 +117,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Acoustic oscillations in the photon-baryon fluid generate the familiar harmonic peaks. Peak positions are set by the sound horizon at recombination; relative heights encode baryon loading and radiation driving.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Tri-Binary Energy Ladder):** The tri-binary system supplies three intrinsic energy scales (outer, middle, inner) that act as primary mode seeds. Coupling through the Noether sea generates a harmonic ladder from those seeds, analogous to standing acoustic modes in a cavity. The effective “sound horizon” scale is set by the medium’s coupling length and the duration of the high-optical-depth phase, while the odd/even peak pattern reflects how baryon-like assemblies load the oscillations relative to photon-like planar modes.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Tri-Binary Energy Ladder):** The tri-binary system supplies three intrinsic energy scales (outer, middle, inner) that act as primary mode seeds. Coupling through the Noether Sea generates a harmonic ladder from those seeds, analogous to standing acoustic modes in a cavity. The effective “sound horizon” scale is set by the Noether Sea's coupling length and the duration of the high-optical-depth phase, while the odd/even peak pattern reflects how baryon-like assemblies load the oscillations relative to photon-like planar modes.
 
 ## Recombination ($\sim 3.8\times10^5$ years)
 - Time window: $\sim 3.8\times10^5$ years.

@@ -10,7 +10,7 @@ This chapter is written as a bridge text: it first states CKM in standard SM lan
 
 | Standard-Model concept | $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping used here | Status in this chapter |
 | --- | --- | --- |
-| Quark weak basis in charged current | Exposed Weak-Coupling Triad basis | $\mathbb{A}\mathbb{A}\mathbb{A}$ premise |
+| Quark weak basis in charged current | Exposed weak-coupling-triad basis | $\mathbb{A}\mathbb{A}\mathbb{A}$ premise |
 | Quark mass basis | Shielding eigenstates by generation tier (Gen I/II/III) | $\mathbb{A}\mathbb{A}\mathbb{A}$ premise |
 | CKM entry $V_{ij}$ | Overlap amplitude between weak-basis and mass-basis states | SM object with $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation |
 | $\theta_{12},\theta_{23},\theta_{13}$ | Generation-chain transport amplitudes $(\kappa_{12},\kappa_{23},\sigma)$ via exponential ansatz | $\mathbb{A}\mathbb{A}\mathbb{A}$ postulate + calibration |
@@ -55,42 +55,42 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
 
 ### Weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms
 - The weak force is the only one that swaps quark types (down ↔ up, strange ↔ charm, etc.).
-- Each quark has two “bases”: a **weak basis** (set by the exposed Weak-Coupling Triad) and a **mass basis** (set by core shielding). These bases aren’t aligned.
+- Each quark has two “bases”: a **weak basis** (set by the weak-coupling triad) and a **mass basis** (set by core shielding). These bases aren’t aligned.
 - When a W acts, it “sees” the weak basis; the chance to land in a particular mass state is set by the overlap between these bases → the CKM numbers.
 - Big overlaps (similar shielding) give big CKM entries; mismatched shielding gives tiny entries.
 
 - In this $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, a $W^\pm$ is not created ex nihilo and is not treated as a preexisting free field quantum; it is a transient “corridor” assembled during a weak interaction:
-  - Assembly mechanism: localized polarization of the Noether Sea provides two neutral cores, while the interacting Active Triad transfers a six-charge excess ($\pm e$ net) into the corridor.
+  - Assembly mechanism: localized polarization of the Noether Sea provides two neutral cores, while the interacting weak-coupling triad transfers a six-charge excess ($\pm e$ net) into the corridor.
   - Geometrically it’s a short-lived, high-tension bundle (see [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md)) that ferries charge/phase between source and sink.
   - It decays/disconnects quickly (lifetime set by corridor instability), matching the short-lived SM W.
   - So: it is a transient, bound excitation of the Noether-Sea medium from reconfiguration of participants’ wakes and axial structure, not from a standing background field.
 
 ## Minimal premises
 - **Generations = shielding level:** Gen I tri-binary (u,d), Gen II bi-binary (c,s), Gen III uni-binary (t,b).
-- **Weak basis = Weak-Coupling Triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ.
+- **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ.
 - **Mass basis = shielding eigenstates:** Core shielding/drag sets the mass scale; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type).
 
-Weak-Coupling Triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the Weak-Coupling Triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
+Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
 Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether Sea ahead of the translating quark group, where cores are unshadowed and available to couple.
 
 Vacuum sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty vacuum—only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during decay as speculative until energy/number flow is explicitly budgeted.
 
 Left/right coupling note (SM statement): charged-current SU(2), and therefore CKM mixing, act only on left-handed quarks (equivalently right-handed antiquarks). Right-handed quarks are SU(2) singlets and do not mix via CKM.
 
-Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for LH helicity the Weak-Coupling Triad should face forward (exposed), while for RH it should rotate into the wake/shield.
-Chiral Selection Mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): for right-handed helicity, the Weak-Coupling Triad is rotated into the particle’s own wake/slipstream (shielded). A charged $W$ corridor cannot dock onto a shielded triad, so right-handed fermions are sterile to charged-current interactions.
+Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for LH helicity the weak-coupling triad should face forward (exposed), while for RH it should rotate into the wake/shield.
+Chiral Selection Mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): for right-handed helicity, the weak-coupling triad is rotated into the particle’s own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
 
 Validation task: simulate exposure vs helicity to confirm or falsify this geometric criterion.
 
 ## Geometric picture of CKM
-- A down-type quark state in the **weak basis** is a Weak-Coupling Triad configuration living on a specific core (shielding level) but not yet diagonal in mass.
+- A down-type quark state in the **weak basis** is a weak-coupling-triad configuration living on a specific core (shielding level) but not yet diagonal in mass.
 - The **mass basis** is the set of stable shielding eigenstates (Gen I/II/III). The overlap between the weak-basis state and each mass eigenstate gives the CKM elements for that row/column.
 - **Suppression intuition:** Larger shielding mismatch → smaller geometric overlap. Thus $\lvert V_{ud}\rvert$ is large (same shielding tier), $\lvert V_{us}\rvert$ smaller (tri ↔ bi), $\lvert V_{ub}\rvert$ tiny (tri ↔ uni). Similar logic for the up-type rows.
 - **Provenance lens:** $V_{ij}$ can be read as a coherent sum over admissible architrino transport paths from weak-state geometry to shielding eigenstate geometry; $\lvert V_{ij}\rvert^2$ is the net channel weight after interference.
 
 ### Wolfenstein parametrization (to 𝒪(λ³))
 
-Use this as a target when deriving overlaps/angles from shielding geometry and Weak-Coupling Triad alignment.
+Use this as a target when deriving overlaps/angles from shielding geometry and weak-coupling-triad alignment.
 
 With the parameters below, this Wolfenstein form reproduces the PDG magnitudes above to 𝒪(λ³).
 
@@ -130,7 +130,7 @@ Data note (source/uncertainty): values shown are rounded PDG 2024 central values
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding-tier view (IMO = Inner/Middle/Outer present)
 
-Interpretation (hypothesis): overlaps fall with shielding mismatch. Rows = up-type cores, cols = down-type cores. What “overlap” means here: the projection of a weak-basis state (Weak-Coupling Triad configuration) onto a mass eigenstate (shielding geometry). In practice it is an inner product of their wavefunctions/configurations; $\lvert\langle \text{mass} | \text{weak} \rangle\rvert^2$ gives the CKM entry’s probability weight. A concrete minimal functional is defined in the next section.
+Interpretation (hypothesis): overlaps fall with shielding mismatch. Rows = up-type cores, cols = down-type cores. What “overlap” means here: the projection of a weak-basis state (weak-coupling-triad configuration) onto a mass eigenstate (shielding geometry). In practice it is an inner product of their wavefunctions/configurations; $\lvert\langle \text{mass} | \text{weak} \rangle\rvert^2$ gives the CKM entry’s probability weight. A concrete minimal functional is defined in the next section.
 
 $$
 \begin{array}{c|ccc}
@@ -162,7 +162,7 @@ $$
 \lvert d_i^{(w)}\rangle=\sum_{j\in\{d,s,b\}}V_{ij}\lvert d_j^{(m)}\rangle,\qquad
 V_{ij}\equiv\langle d_j^{(m)}\vert d_i^{(w)}\rangle.
 $$
-On the Weak-Coupling Triad domain $\Sigma_{\mathrm{WCT}}$, model this overlap as
+On the weak-coupling-triad domain $\Sigma_{\mathrm{WCT}}$, model this overlap as
 $$
 V_{ij}=\int_{\Sigma_{\mathrm{WCT}}}\psi_{j,m}^{d*}(x)\,\psi_{i,w}^{d}(x)\,d\mu(x),
 $$
@@ -334,7 +334,7 @@ $$
 so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are calibrated, $J$ is fixed.
 
 ## Working hypotheses
-1. **Basis misalignment source:** The Weak-Coupling Triad orientation couples weakly to shielding-induced drag axes, producing a small rotation between weak and mass bases proportional to the shielding contrast.
+1. **Basis misalignment source:** The weak-coupling-triad orientation couples weakly to shielding-induced drag axes, producing a small rotation between weak and mass bases proportional to the shielding contrast.
 2. **Matrix structure:** Off-diagonal CKM elements scale as geometric transport amplitudes on the generation chain, with $s_{13}=\xi s_{12}s_{23}$ enforcing the observed hierarchy.
 3. **CP phase:** The CKM phase is identified with a transport holonomy angle constrained by $\cos\delta=\xi$.
 
@@ -342,28 +342,28 @@ so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are cali
 - Derive $(\kappa_{12},\kappa_{23},\sigma)$ from first-principles $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry (radii ratios, wake exposure, and triad transport), rather than CKM calibration.
 - Prove or falsify the holonomy closure law $\cos\delta=\xi$ from explicit triad transport on the Noether-Sea background.
 - Quantify scale dependence: test whether the fitted actions remain stable under renormalization-scale translation of CKM inputs.
-- Simulate wake exposure to confirm/deny forward-hemisphere Weak-Coupling Triad; falsify the model if trailing-site coupling dominates.
+- Simulate wake exposure to confirm/deny a forward-hemisphere weak-coupling triad; falsify the model if trailing-site coupling dominates.
 - Extend the same overlap geometry to PMNS and test whether the larger lepton mixing follows from different shielding/transport actions.
 
 ## Pointers
-- Weak-Coupling Triad & shielding definitions: [assemblies/fermions/quantum-number-mapping.md](./quantum-number-mapping.md) (Sections on weak isospin, generation hierarchy).
-- Gauge-boson couplings: [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md) (W/Z corridors acting on Weak-Coupling Triad).
+- weak-coupling triad & shielding definitions: [assemblies/fermions/quantum-number-mapping.md](./quantum-number-mapping.md) (Sections on weak isospin, generation hierarchy).
+- Gauge-boson couplings: [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md) (W/Z corridors acting on the weak-coupling triad).
 
 _Status: speculative scaffold for a derivation. Fill in with explicit states, overlaps, and phase calculations._
 
 ## Speculative Bookkeeping Sketch
 
 - **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, and architrino counts close. Mark allowed vs. unseen channels and why.
-- **Forward axial sites:** Weak-Coupling Triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
+- **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
 - **Environmental partners:**
   - Photon (speculative): Two planar Bose-Einstein state Noether cores, possibly pro/anti, or pro/pro with opposite spins (L/R).
   - Noether Sea: hypothesized as paired pro/anti Noether cores; a local interaction could draw 2 pro + 2 anti cores (4 units) to participate - dualistic to Heliums 2P2N.
-- **Architrino budget example:** reacting with a spacetime super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
+- **Architrino budget example:** reacting with a Noether-Sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Next step:** draft a reaction table/ledger listing reactants, participating cores/architrinos, allowed products, and “forbidden” outcomes with reasons (e.g., shielding mismatch, insufficient flux-tube closure, unmet charge quantization).
 
 ### First-cut reaction ledger (speculative, to fill)
 
-| Reactant set | Core shielding (IMO/HML) | Weak-Coupling Triad polarity | Sea cores tapped? | Candidate products | Corridor(s) | Allowed? | Reason/constraint |
+| Reactant set | Core shielding (IMO/HML) | weak-coupling-triad polarity | Sea cores tapped? | Candidate products | Corridor(s) | Allowed? | Reason/constraint |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
 | $s$ (IM-) → $u$ (IMO) + $W^-$ | bi → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
@@ -375,7 +375,7 @@ _Status: speculative scaffold for a derivation. Fill in with explicit states, ov
 | $t$ (I--; weak-active sites 1/5) → $b$ (I--; weak-active 4/2) + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | P→E swap | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea cores assemble $W^+$; lepton leg is weak singlet (0/6) |
 | $t$ (I--; 1/5) → $b$ (I--; 4/2) + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | P→E swap | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active 2/4, up 1/5); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
 | $e^- (6/0)$ + $e^+ (0/6)$ → $Z$ → $\nu_\mu + \bar\nu_\mu$ | leptons | WK: e 6/0, e+ 0/6 | 0–4 | $\nu_\mu + \bar\nu_\mu$ | neutral corridor ($Z$) | allowed (NC) | $Z$ neutral; couples to L/R leptons; final $\nu,\bar\nu$ weak-active 3/0, 0/3 |
-| $\mu^- (Gen\ II, 6E)$ → $e^- (Gen\ I, 6E) + \bar\nu_e + \nu_\mu$ | bi → tri | E→P swap on Weak-Coupling Triad; shed outer binary | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding drop (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-Sea absorbs balance ($\bar\nu_e$) |
+| $\mu^- (Gen\ II, 6E)$ → $e^- (Gen\ I, 6E) + \bar\nu_e + \nu_\mu$ | bi → tri | E→P swap on weak-coupling triad; shed outer binary | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding drop (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-Sea absorbs balance ($\bar\nu_e$) |
 | Neutron $n(udd)$ → Proton $p(uud)$ + $e^- + \bar\nu_e$ | tri → tri (one $d\to u$; two spectators) | E→P on one $d$ | 0–4 | $p + e^- + \bar\nu_e$ | $W^-$ forward corridor | allowed (beta decay) | spectators intact; $d\to u$ flip; lepton leg weak-active (6/0), $\bar\nu_e$ weak singlet (0/3) |
 | $W$ corridor budget (generic) | — | — | 2 neutral cores + 6 excess decorations | returns neutral cores to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 cores + (9P,3E) → +e; $W^-$: 2 cores + (3P,9E) → –e; cores end neutral |
 

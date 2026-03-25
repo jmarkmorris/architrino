@@ -75,13 +75,13 @@ Let's look at the **Axial-Layer Swap** (The Weak Interaction).
 The output has 14 Electrinos and 18 Positrinos.
 The Top Quark provided 2 Electrinos and 6 Positrinos.
 **Deficit:** We need to find $12E$ and $12P$.
-**Source:** This requires exactly **2 Full Noether Cores** (each $6E, 6P$) or **4 Tri-binaries** worth of material pulled from the vacuum to construct the Lepton and Neutrino bodies.
+**Source:** This requires exactly **2 Full Noether Cores** (each $6E, 6P$) or **4 Tri-binaries** worth of material recruited from the surrounding Noether Sea to construct the Lepton and Neutrino bodies.
 
 ### Conclusion on Mechanism
-The decay of a high-energy Top quark disrupts the local spacetime fabric, recruiting **24 architrinos** (two full cores' worth) from the sea.
+The decay of a high-energy Top quark disrupts the local Noether-Sea structure, recruiting **24 architrinos** (two full cores' worth) from the sea.
 1.  The Top sheds its specific "flavor" delta ($3P/3E$ swap).
-2.  This disturbance polarizes the vacuum.
-3.  The vacuum clumps into a Lepton-Antilepton pair ($e^+ + \nu_e$) to balance the energy and charge equations.
+2.  This disturbance polarizes the local Noether Sea.
+3.  The local Noether Sea clumps into a Lepton-Antilepton pair ($e^+ + \nu_e$) to balance the energy and charge equations.
 
 ---
 

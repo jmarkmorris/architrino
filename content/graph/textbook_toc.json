@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 123,
-      "sections": 819
+      "entries": 124,
+      "sections": 839
     }
   },
   "tocRoot": {
@@ -260,10 +260,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "The Physical Medium (Noether Sea / Spacetime Aether)",
+                "title": "The Physical Medium (Noether Sea / Spacetime Medium)",
                 "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "The Physical Medium (Noether Sea / Spacetime Aether)",
-                "sectionKey": "the physical medium noether sea spacetime aether",
+                "markdownSection": "The Physical Medium (Noether Sea / Spacetime Medium)",
+                "sectionKey": "the physical medium noether sea spacetime medium",
                 "headingLevel": 2
               },
               {
@@ -1220,10 +1220,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Spacetime as a Tri-Binary Sea and Energy Storage",
+                "title": "Noether Sea, Effective Spacetime, and Energy Storage",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Spacetime as a Tri-Binary Sea and Energy Storage",
-                "sectionKey": "spacetime as a tri binary sea and energy storage",
+                "markdownSection": "Noether Sea, Effective Spacetime, and Energy Storage",
+                "sectionKey": "noether sea effective spacetime and energy storage",
                 "headingLevel": 2
               },
               {
@@ -1494,6 +1494,176 @@
                 "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
                 "markdownSection": "Constraints, Assumptions, and Failure Modes",
                 "sectionKey": "constraints assumptions and failure modes",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__horizon_chirality",
+            "title": "Horizon Chirality",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/horizon_chirality.json",
+            "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Horizon Condition",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Canonical Horizon Condition",
+                "sectionKey": "canonical horizon condition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Pro/Anti Before Planar Lock",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Pro/Anti Before Planar Lock",
+                "sectionKey": "pro anti before planar lock",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "sectionKey": "broader pro anti balance in mathbb a mathbb a mathbb a",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Working Dictionary",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Working Dictionary",
+                "sectionKey": "working dictionary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison Across Sectors",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Comparison Across Sectors",
+                "sectionKey": "comparison across sectors",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exterior Planar Spin Basis",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Exterior Planar Spin Basis",
+                "sectionKey": "exterior planar spin basis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer Views",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Observer Views",
+                "sectionKey": "observer views",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Boundary Helicity Versus Deeper Chirality",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Boundary Helicity Versus Deeper Chirality",
+                "sectionKey": "boundary helicity versus deeper chirality",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Translation-Axis Alignment at High Velocity",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Translation-Axis Alignment at High Velocity",
+                "sectionKey": "translation axis alignment at high velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Conservation Versus Dynamical Selection",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Exact Conservation Versus Dynamical Selection",
+                "sectionKey": "exact conservation versus dynamical selection",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "State-Transition Ladder",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "State-Transition Ladder",
+                "sectionKey": "state transition ladder",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Horizon Branch Hypothesis",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Canonical Horizon Branch Hypothesis",
+                "sectionKey": "canonical horizon branch hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Theories for Pro and Anti at the Horizon",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Candidate Theories for Pro and Anti at the Horizon",
+                "sectionKey": "candidate theories for pro and anti at the horizon",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Possible Left/Right Spin Mapping",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Possible Left/Right Spin Mapping",
+                "sectionKey": "possible left right spin mapping",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Status Table",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Status Table",
+                "sectionKey": "status table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mixed-Sign Planar States",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Mixed-Sign Planar States",
+                "sectionKey": "mixed sign planar states",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Transition Rules for Pro/Anti Conversion",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Transition Rules for Pro/Anti Conversion",
+                "sectionKey": "transition rules for pro anti conversion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Diagnostics",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Simulation Diagnostics",
+                "sectionKey": "simulation diagnostics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Provisional Conclusion",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Provisional Conclusion",
+                "sectionKey": "provisional conclusion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interfaces to Other Chapters",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Interfaces to Other Chapters",
+                "sectionKey": "interfaces to other chapters",
                 "headingLevel": 2
               }
             ]

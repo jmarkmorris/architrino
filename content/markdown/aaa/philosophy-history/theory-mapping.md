@@ -648,7 +648,7 @@ $$
 w = \frac{p}{\rho}, \quad w=-1.
 $$
 For a cosmological constant, $w=-1$.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the tri-binary spacetime medium itself. Its effective equation of state $w$ reflects how the Noether-core medium responds to expansion—whether it behaves like a quasi-constant tension, a slowly evolving scalar-like field, or a more complex assembly phase.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether Sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether-core medium responds to expansion—whether it behaves like a quasi-constant tension, a slowly evolving scalar-like field, or a more complex assembly phase.
 
 **What Still Works:** Dark Energy (Beyond $\Lambda$) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.

@@ -62,6 +62,12 @@ import {
   openComposerSubassemblyMenu,
 } from "./src/runtime/ComposerCanvasMenuRuntime.js";
 import { createBuiltInComposerAssemblyDraftRuntime } from "./src/runtime/ComposerAssemblyFactoryRuntime.js";
+import {
+  buildComposerAssemblyStructure,
+  formatComposerAssemblyStructureStatus,
+  formatComposerAssemblyStructureSummary,
+  summarizeComposerAssemblyStructure,
+} from "./src/runtime/ComposerAssemblyStructureBridgeRuntime.js";
 import { createComposerEditorStore } from "./src/runtime/ComposerStoreRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
@@ -2978,15 +2984,44 @@ function renderComposerAssemblyEditor() {
   meta.textContent = `${selectedAssembly.name.trim() || selectedAssembly.id} - ${selectedAssembly.id}`;
   body.appendChild(meta);
 
+  const memberCount = Array.isArray(selectedAssembly?.members) ? selectedAssembly.members.length : 0;
   const structureSummary = document.createElement("div");
   structureSummary.className = "composer-assembly-summary";
   const subassemblyCount = Array.isArray(selectedAssembly.subassemblies)
     ? selectedAssembly.subassemblies.length
     : 0;
-  structureSummary.textContent = `${selectedAssembly.members.length} member${
-    selectedAssembly.members.length === 1 ? "" : "s"
+  structureSummary.textContent = `${memberCount} member${
+    memberCount === 1 ? "" : "s"
   } • ${subassemblyCount} subassembl${subassemblyCount === 1 ? "y" : "ies"}`;
   body.appendChild(structureSummary);
+
+  try {
+    const canonicalStructure = buildComposerAssemblyStructure(selectedAssembly);
+    const canonicalSummary = summarizeComposerAssemblyStructure(
+      canonicalStructure.root,
+      canonicalStructure.validation
+    );
+
+    const canonicalSummaryLabel = document.createElement("div");
+    canonicalSummaryLabel.className = "composer-assembly-summary";
+    canonicalSummaryLabel.textContent = `Canonical bridge: ${formatComposerAssemblyStructureSummary(canonicalSummary)}`;
+    body.appendChild(canonicalSummaryLabel);
+
+    const canonicalValidationNote = document.createElement("div");
+    canonicalValidationNote.className = "composer-field-note";
+    canonicalValidationNote.textContent = canonicalSummary.valid
+      ? "Canonical structure bridge is valid for this assembly."
+      : `Canonical structure bridge has ${canonicalSummary.errorCount} validation issue${
+          canonicalSummary.errorCount === 1 ? "" : "s"
+        }. This is read-only for now and does not affect canvas editing.`;
+    body.appendChild(canonicalValidationNote);
+  } catch (_error) {
+    const canonicalValidationNote = document.createElement("div");
+    canonicalValidationNote.className = "composer-field-note";
+    canonicalValidationNote.textContent =
+      "Canonical structure bridge is temporarily unavailable for this assembly. Canvas editing is unaffected.";
+    body.appendChild(canonicalValidationNote);
+  }
 
   const hint = document.createElement("div");
   hint.className = "composer-field-note";
@@ -3012,6 +3047,68 @@ function getComposerAssemblyDraftById(assemblyId) {
   const index = getComposerAssemblyDraftIndexById(assemblyId);
   const assemblyDrafts = getComposerAssemblyDraftsState();
   return index >= 0 ? assemblyDrafts[index] : null;
+}
+
+function getComposerAssemblyCanonicalBridgeSummary(assembly = null) {
+  if (!assembly?.id) {
+    return null;
+  }
+  try {
+    const canonicalStructure = buildComposerAssemblyStructure(assembly);
+    const canonicalSummary = summarizeComposerAssemblyStructure(
+      canonicalStructure.root,
+      canonicalStructure.validation
+    );
+    return canonicalSummary;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function createComposerAssemblyStructureTooltipContent(assembly = null) {
+  if (!assembly?.id) {
+    return null;
+  }
+  const canonicalSummary = getComposerAssemblyCanonicalBridgeSummary(assembly);
+  if (!canonicalSummary) {
+    return null;
+  }
+  const content = document.createElement("div");
+  const title = document.createElement("div");
+  title.textContent = assembly.name?.trim() || assembly.id;
+  content.appendChild(title);
+
+  const summary = document.createElement("div");
+  summary.textContent = formatComposerAssemblyStructureSummary(canonicalSummary);
+  content.appendChild(summary);
+
+  const validation = document.createElement("div");
+  validation.textContent = canonicalSummary.valid
+    ? "Canonical bridge valid"
+    : `${canonicalSummary.errorCount} validation issue${
+        canonicalSummary.errorCount === 1 ? "" : "s"
+      }`;
+  content.appendChild(validation);
+  return content;
+}
+
+function updateComposerAssemblyHoverTooltip(assemblyId, event) {
+  if (!assemblyId || !event) {
+    composerHoveredStructureTooltipAssemblyId = "";
+    composerHoveredStructureTooltipContent = null;
+    hideHoverTooltip();
+    return;
+  }
+  if (composerHoveredStructureTooltipAssemblyId !== assemblyId || !composerHoveredStructureTooltipContent) {
+    const assembly = getComposerAssemblyDraftById(assemblyId);
+    composerHoveredStructureTooltipContent = createComposerAssemblyStructureTooltipContent(assembly);
+    composerHoveredStructureTooltipAssemblyId = composerHoveredStructureTooltipContent ? assemblyId : "";
+  }
+  if (!composerHoveredStructureTooltipContent) {
+    hideHoverTooltip();
+    return;
+  }
+  showHoverTooltip(composerHoveredStructureTooltipContent, event.clientX, event.clientY);
 }
 
 function getComposerAssemblyWorldCenterById(assemblyId) {
@@ -3221,6 +3318,19 @@ function applyComposerViewportDisplayState() {
     if (labelSprite) {
       labelSprite.visible = true;
     }
+  });
+  composerAssemblyMeshes.forEach((mesh) => {
+    mesh.visible = true;
+    mesh.traverse?.((child) => {
+      const labelSprite = child.userData?.pointLabelSprite;
+      if (labelSprite) {
+        labelSprite.visible = showLabels;
+      }
+      const structureBadgeSprite = child.userData?.structureBadgeSprite;
+      if (structureBadgeSprite) {
+        structureBadgeSprite.visible = showLabels;
+      }
+    });
   });
   if (composerDocumentCameraPathLine) {
     composerDocumentCameraPathLine.visible = showCameraGuides;
@@ -3650,6 +3760,8 @@ function openComposerAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
     appendMenuSectionHeader: appendComposerMenuSectionHeader,
     appendMenuButtonRow: appendComposerMenuButtonRow,
     getAssemblyDraftById: getComposerAssemblyDraftById,
+    getAssemblyCanonicalBridgeSummary: getComposerAssemblyCanonicalBridgeSummary,
+    formatAssemblyCanonicalBridgeSummary: formatComposerAssemblyStructureSummary,
     renderAssemblyEditor: renderComposerAssemblyEditor,
     assemblyPositionInputs: composerAssemblyPositionInputs,
     renderJsonPreview: renderComposerJsonPreview,
@@ -5271,6 +5383,8 @@ function openComposerTimelineMenuAt(clientX, clientY, options = {}) {
     appendComposerMenuField,
     appendComposerMenuNote,
     appendComposerMenuSelectField,
+    appendComposerAuthoringLine,
+    replaceComposerAuthoringLineById,
     normalizeComposerTimelineAddType,
     getComposerTimelineEditKindTitle,
     formatComposerTimeLabel,
@@ -6393,10 +6507,11 @@ function addComposerAssemblyProxy(center, assembly, index) {
   group.userData.assemblyIndex = index;
   group.userData.draggable = true;
   const isBareArchitrino = isComposerBareArchitrinoAssembly(assembly);
+  let centerMarker = null;
 
   if (!isBareArchitrino) {
     const sceneRole = normalizeComposerAssemblySceneRole(assembly?.sceneRole);
-    const centerMarker = new THREE.Mesh(
+    centerMarker = new THREE.Mesh(
       new THREE.SphereGeometry(0.085, 20, 20),
       new THREE.MeshBasicMaterial({
         color: getComposerAssemblySceneRoleColor(sceneRole),
@@ -6597,6 +6712,19 @@ function addComposerAssemblyProxy(center, assembly, index) {
       group.add(memberDot);
       composerPersonalityHandleMeshes.push(memberDot);
     });
+  }
+
+  if (centerMarker && assembly?.id === getComposerSelectedAssemblyIdState()) {
+    const canonicalSummary = getComposerAssemblyCanonicalBridgeSummary(assembly);
+    if (canonicalSummary) {
+      const structureBadge = createComposerAssemblyBadgeSprite(
+        getComposerAssemblyViewportLabel(assembly, index),
+        formatComposerAssemblyStructureStatus(canonicalSummary, assembly)
+      );
+      structureBadge.position.copy(proxyBadgeOffset.clone().add(new THREE.Vector3(0.22, 0.14, 0)));
+      centerMarker.userData.structureBadgeSprite = structureBadge;
+      centerMarker.add(structureBadge);
+    }
   }
 
   composerViewportGroup?.add(group);
@@ -7559,10 +7687,43 @@ function onComposerTimelineClick(event) {
   }
 }
 
+function resolveComposerHoverAssemblyId(event) {
+  if (!composerCanvas || !composerCamera || !composerRaycaster || !event) {
+    return "";
+  }
+  const { x, y } = getComposerPointerNdc(event);
+  composerRaycaster.setFromCamera({ x, y }, composerCamera);
+
+  const personalityHits = composerRaycaster.intersectObjects(composerPersonalityHandleMeshes, true);
+  if (personalityHits.length) {
+    return resolveComposerPersonalityHandleHit(personalityHits[0].object)?.assemblyId ?? "";
+  }
+
+  const memberHits = composerRaycaster.intersectObjects(composerMemberHandleMeshes, true);
+  if (memberHits.length) {
+    return resolveComposerMemberHandleHit(memberHits[0].object)?.assemblyId ?? "";
+  }
+
+  const subassemblyHits = composerRaycaster.intersectObjects(composerSubassemblyHandleMeshes, true);
+  if (subassemblyHits.length) {
+    return resolveComposerSubassemblyHandleHit(subassemblyHits[0].object)?.assemblyId ?? "";
+  }
+
+  const assemblyHits = composerRaycaster.intersectObjects(composerAssemblyMeshes, true);
+  if (assemblyHits.length) {
+    return resolveComposerAssemblyHit(assemblyHits[0].object)?.assemblyId ?? "";
+  }
+  return "";
+}
+
 function onComposerPointerMove(event) {
   if (!composerDragState.mode) {
+    updateComposerAssemblyHoverTooltip(resolveComposerHoverAssemblyId(event), event);
     return;
   }
+  hideHoverTooltip();
+  composerHoveredStructureTooltipAssemblyId = "";
+  composerHoveredStructureTooltipContent = null;
   const dx = event.clientX - composerDragState.startX;
   const dy = event.clientY - composerDragState.startY;
   if (composerDragState.mode === "point") {
@@ -7752,6 +7913,9 @@ function onComposerPointerMove(event) {
 }
 
 function onComposerPointerUp(event) {
+  hideHoverTooltip();
+  composerHoveredStructureTooltipAssemblyId = "";
+  composerHoveredStructureTooltipContent = null;
   if (composerDragState.mode === "point" && composerDragState.pointIndex != null) {
     updateComposerPointMaterials();
   }
@@ -8338,6 +8502,8 @@ const detailFieldOrder = [
 let activeDetailNodeId = null;
 let hoveredDetailNodeId = null;
 let hoverTooltipVisible = false;
+let composerHoveredStructureTooltipAssemblyId = "";
+let composerHoveredStructureTooltipContent = null;
 const periodicCategoryColors = {
   "alkali metal": "#d24d57",
   "alkaline earth metal": "#e67e22",

@@ -20,7 +20,7 @@ $$
 \theta_W^{\text{bare}}=30^\circ.
 $$
 
-This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The tri-binary scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **Weak-Coupling Triad** relative to the fixed core frame.
+This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The tri-binary scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
 
 ---
 
@@ -150,7 +150,7 @@ To avoid ambiguity, this idea should be stated in operational terms.
 The following are allowed to rotate relative to the fixed core frame:
 
 - the principal axes of the six-site axial-distribution tensor,
-- the coarse orientation of the Weak-Coupling Triad,
+- the coarse orientation of the weak-coupling triad,
 - the effective exposed-vs-shielded partition in the forward coupling geometry,
 - the dominant dipole/quadrupole direction associated with quark asymmetry.
 
@@ -269,7 +269,7 @@ where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a
 
 ## Weak-Coupling Interpretation
 
-In the current AAA dictionary, the weak sector acts on the **Weak-Coupling Triad**, the three more exposed polar sites. If the axial frame rotates relative to the core frame, then the exposed triad need not sit in the same orientation as it does in the electron.
+In the current AAA dictionary, the weak sector acts on the **weak-coupling triad**, the three more exposed polar sites. If the axial frame rotates relative to the core frame, then the weak-coupling triad need not sit in the same orientation as it does in the electron.
 
 This gives a possible geometric interpretation of quark weak structure:
 

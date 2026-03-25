@@ -25,6 +25,8 @@ export function buildComposerTimelineMenu(config) {
     appendComposerMenuField,
     appendComposerMenuNote,
     appendComposerMenuSelectField,
+    appendComposerAuthoringLine,
+    replaceComposerAuthoringLineById,
     normalizeComposerTimelineAddType,
     getComposerTimelineEditKindTitle,
     formatComposerTimeLabel,

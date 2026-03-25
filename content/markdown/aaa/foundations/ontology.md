@@ -10,7 +10,7 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** (absolute time, Euclidean space, and their product structure)
 2. **The Fundamental Entity** (architrino: point transmitter/receiver of potential)
-3. **The Physical Medium** (Noether Sea / spacetime aether: assembly lattice)
+3. **The Physical Medium** (Noether Sea / spacetime medium: assembly lattice)
 4. **The Observer Framework** (Absolute vs Physical observers; ontic vs epistemic)
 5. **Terminology Discipline** (locked definitions to prevent semantic drift)
 6. **Parameter Ledger** (fundamental postulates vs derived quantities)
@@ -154,7 +154,7 @@ for any parametrization $s$ of the worldline.
 
 **Causal Ordering:** Event A can influence event B **only if** $t_B > t_A$.
 
-**Finite Propagation Speed:** All physical interactions are mediated by fields (potentials) that propagate at a **finite speed** $c_f$ (the "field speed"), defined in the context of the Interaction Law (Section 2.6).
+**Finite Propagation Speed:** All physical interactions are mediated by causal wakes (potentials) that propagate at a **finite speed** $c_f$ (the "wake speed"), defined in the context of the Interaction Law (Section 2.6).
 
 **Path History Interactions:** If a source is located at $(\hat{t}_0, \mathbf{x}_0)$, its influence reaches a receiver at $(\hat{t}, \mathbf{x})$ at the **emission time**:
 $$
@@ -185,12 +185,12 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dy
 
 -- **Geodesics of time** are trivial: they are simply the flow $t \mapsto t$ at constant rate.
 -- All **forces and accelerations** arise from:
- - **Fields and potentials** acting within the fixed Euclidean space,
+ - **Wakes and potentials** acting within the fixed Euclidean space,
  - **Self-interaction** of extended assemblies (e.g., self-hit regime of binaries),
 
 **not** from any curvature or dynamics of the time coordinate itself.
 
-**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**; any time-like curvature or dilation observed in experiments must emerge from the dynamics of assemblies and fields acting within this rigid temporal framework.
+**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**; any time-like curvature or dilation observed in experiments must emerge from the dynamics of assemblies and effective fields acting within this rigid temporal framework.
 
 **Distinction from Relativistic Time:**
 
@@ -208,7 +208,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dy
 **Summary Postulate (Absolute Time):**
 
 > **Postulate 1 (Absolute Time):** 
-> Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed field propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no reparametrization freedom. Any physical "arrow of time" or observed time dilation is an emergent property of assemblies and their dynamics, not a feature of the background $t$ parameter itself.
+> Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed wake propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no reparametrization freedom. Any physical "arrow of time" or observed time dilation is an emergent property of assemblies and their dynamics, not a feature of the background $t$ parameter itself.
 
 ### Absolute Space (Euclidean Void)
 
@@ -507,7 +507,7 @@ Absolute space serves as the **fixed container** for all physical interactions:
 - **Distances** and **spatial separations** are measured using the Euclidean metric.
 - **Interactions** depend on spatial position and separation, but the underlying space itself does not curve or respond.
 
-Any observed "curvature," such as the bending of light or the precession of orbits, must emerge from the **dynamics of tri-binary assemblies** and their interactions with the surrounding **spacetime tri-binary sea**—not from a curvature of the space background itself.
+Any observed "curvature," such as the bending of light or the precession of orbits, must emerge from the **dynamics of tri-binary assemblies** and their interactions with the surrounding **Noether Sea** rather than from any curvature of the fixed Euclidean background itself.
 
 **Summary Postulate (Absolute Space):**
 
@@ -519,7 +519,7 @@ Any observed "curvature," such as the bending of light or the precession of orbi
 
 #### Core Concept
 
-Absolute timespace is the combined, non-dynamical background arena for all physical phenomena. It is the direct product of absolute time and absolute space, forming a **foliated structure** where each "leaf" is a complete, instantaneous 3D snapshot of Euclidean space, indexed by the universal time parameter. We deliberately use the term "timespace" (time first) to distinguish this fixed arena from the dynamic, unified "spacetime" of General Relativity.
+Absolute timespace is the formal, non-dynamical product background for all physical phenomena. It is the direct product of absolute time and absolute space, forming a **foliated structure** where each "leaf" is a complete, instantaneous 3D snapshot of Euclidean space, indexed by the universal time parameter. We deliberately use the term `absolute timespace` to distinguish this fixed product background from the dynamic, unified `spacetime` of General Relativity.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 - Time and space are **logically and mathematically separate** at the kinematic level.
@@ -527,7 +527,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 - There is **no mixing** of temporal and spatial dimensions into a single 4D metric.
 - The background is **non-dynamical**: it does not respond to matter or energy; all curvature, expansion, and relativistic phenomena are emergent from the dynamics of assemblies within this fixed framework.
 
-Notably, any metric expansion of the universe (à la FLRW) must be recovered as an **effective** description of tri-binary medium dynamics, not as literal stretching of $\mathbb{R}^3$ itself. Similarly, all gravitational phenomena—including lensing and cosmological expansion—will be derived as emergent properties of a **dynamic medium of tri-binary assemblies** that populates this fixed timespace, not from the geometry of the background itself.
+Notably, any metric expansion of the universe (à la FLRW) must be recovered as an **effective** description of tri-binary medium dynamics, not as literal stretching of $\mathbb{R}^3$ itself. Similarly, all gravitational phenomena—including lensing and cosmological expansion—will be derived as emergent properties of a **dynamic medium of tri-binary assemblies** that populates this fixed background, not from the geometry of the background itself.
 
 ---
 
@@ -535,13 +535,13 @@ Notably, any metric expansion of the universe (à la FLRW) must be recovered as 
 
 ##### Product Manifold Structure
 
-The timespace arena is the Cartesian product of absolute time and absolute space:
+The absolute-timespace background is the Cartesian product of absolute time and absolute space:
 $$
 \mathcal{M} = \mathbb{R} \times \mathbb{R}^3,
 $$
 with coordinates $(t, \mathbf{x}) = (t, x, y, z)$.
 
-Each point in timespace represents a **spacetime event**: a location $\mathbf{x}$ at a definite instant $t$.
+Each point in absolute timespace represents an event in the product background: a location $\mathbf{x}$ at a definite instant $t$.
 
 **Foliations:**
 
@@ -549,7 +549,7 @@ Each point in timespace represents a **spacetime event**: a location $\mathbf{x}
 $$
 \Sigma_{t_0} = \{t_0\} \times \mathbb{R}^3 \cong \mathbb{R}^3.
 $$
-Every point in timespace $(t, \mathbf{x})$ belongs to exactly one slice. This foliation is **absolute and frame-independent**.
+Every point in absolute timespace $(t, \mathbf{x})$ belongs to exactly one slice. This foliation is **absolute and frame-independent**.
 
 - **Worldlines:** A particle or extended object traces out a curve:
 $$
@@ -708,7 +708,7 @@ combining time translations, spatial translations/rotations, and boosts in the s
 
 **Important note:** While the **background kinematics** are invariant under all Galilean transformations, the **interaction law** (defining forces and accelerations) selects a **preferred frame**: the **absolute rest frame** in which the maximum signal speed $c_f$ (field speed) is isotropic. This breaks the boost symmetry at the dynamical level, recovering a preferred frame for non-relativistic dynamics.
 
-This symmetry breaking is precisely what allows for a preferred "aether" frame for the dynamics, a concept forbidden in relativity but essential for $\mathbb{A}\mathbb{A}\mathbb{A}$'s propagation of potentials and the self-hit mechanisms. The field speed $c_f$, measured in this preferred rest frame, is isotropic and fundamental to $\mathbb{A}\mathbb{A}\mathbb{A}$. In this sense, the absolute rest frame is not a kinematic postulate but a **dynamical necessity**.
+This symmetry breaking is precisely what allows for a preferred medium rest frame for the dynamics, a concept forbidden in relativity but essential for $\mathbb{A}\mathbb{A}\mathbb{A}$'s propagation of potentials and the self-hit mechanisms. The field speed $c_f$, measured in this preferred rest frame, is isotropic and fundamental to $\mathbb{A}\mathbb{A}\mathbb{A}$. In this sense, the absolute rest frame is not a kinematic postulate but a **dynamical necessity**.
 
 ---
 
@@ -846,11 +846,11 @@ For comparison and clarity:
 
 #### Role of Timespace in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-Absolute timespace is the fundamental arena in which all architrino dynamics unfold:
+Absolute timespace is the formal product background in which all architrino dynamics unfold:
 
 - **architrino worldlines** are curves $(t, \mathbf{x}(t))$ in $\mathcal{M}$, parametrized by universal time $t$.
 
-- **Potential fields** $\Phi(t, \mathbf{x})$ are functions defined on timespace, evolving according to the interaction law.
+- **Potential fields** $\Phi(t, \mathbf{x})$ are functions defined on absolute timespace, evolving according to the interaction law.
 
 - **Causality** is enforced by the history propagation rule: potentials emitted at earlier times intersect receivers at later times.
 
@@ -864,8 +864,8 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 
 #### Summary of Postulate (Absolute Timespace)
 
-> **Postulate 3 (Absolute Timespace):** 
-> The background arena for all physics is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$, equipped with absolute time $\tau = dt$ and absolute space metric $h_{ij} = \delta_{ij}$. This defines a foliation into global, simultaneous 3D Euclidean slices indexed by universal time. The background is non-dynamical and non-curved ($R = 0$ everywhere). Causality is defined by absolute temporal ordering and finite propagation speed $c_f$. The background preserves Galilean kinematic symmetries, but the interaction law selects a preferred rest frame, breaking boost invariance dynamically. This preferred frame is essential for the propagation of potentials and the self-hit mechanisms that underpin $\mathbb{A}\mathbb{A}\mathbb{A}$. All relativistic phenomena—including effective Lorentz invariance at certain scales—are emergent from the dynamics of assemblies. All gravitational phenomena, including lensing and cosmological expansion, are derived as emergent properties of a **dynamic medium of tri-binary assemblies** that populates this fixed timespace, not from the geometry of the background itself.
+> **Postulate 3 (Absolute Timespace):**
+> The background arena for all physics is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$, equipped with absolute time $\tau = dt$ and absolute space metric $h_{ij} = \delta_{ij}$. This defines a foliation into global, simultaneous 3D Euclidean slices indexed by universal time. The background is non-dynamical and non-curved ($R = 0$ everywhere). Causality is defined by absolute temporal ordering and finite propagation speed $c_f$. The background preserves Galilean kinematic symmetries, but the interaction law selects a preferred rest frame, breaking boost invariance dynamically. This preferred frame is essential for the propagation of potentials and the self-hit mechanisms that underpin $\mathbb{A}\mathbb{A}\mathbb{A}$. All relativistic phenomena, including effective Lorentz invariance at certain scales, are emergent from the dynamics of assemblies. All gravitational phenomena, including lensing and cosmological expansion, are derived as emergent properties of a **dynamic medium of tri-binary assemblies** that occupies the Euclidean void within this absolute-timespace background, not from the geometry of the background itself.
 
 ---
 
@@ -873,8 +873,8 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 
 - **Section 00.0.1 (Absolute Time):** Defines the temporal component of the background; $\tau = dt$.
 - **Section 00.0.2 (Absolute Space):** Defines the spatial component of the background; $h_{ij} = \delta_{ij}$.
-- **Section 1.2 (Architrino Interaction Law):** Defines how forces and potentials propagate through timespace.
-- **Part 2 (Particle Mapping):** Shows how stable assemblies form and move through timespace.
+- **Section 1.2 (Architrino Interaction Law):** Defines how forces and potentials propagate on the absolute-timespace background.
+- **Part 2 (Particle Mapping):** Shows how stable assemblies form and move within absolute timespace.
 - **Part 4 (Emergent Spacetime and Gravity):** Explains how an effective curved spacetime geometry emerges from the tri-binary medium, while the fundamental background remains eternally flat and non-dynamical.
 
 
@@ -892,11 +892,11 @@ An **architrino** is the sole fundamental entity in $\mathbb{A}\mathbb{A}\mathbb
 - **Deterministic**: its motion is governed by a universal reception rule that converts incoming potential into acceleration; given initial conditions, its future path is determined, with **deterministic multistability** at threshold regimes.
 - **Charged**: each architrino carries a fundamental charge magnitude $|e/6|$ (see Section 2.3).
 
-The architrino has **no internal structure**, no spin in the classical sense, and no other intrinsic properties beyond position, velocity, and charge polarity. All structure—particles, fields, spacetime itself—emerges from coordinated configurations and interactions of many architrinos.
+The architrino has **no internal structure**, no spin in the classical sense, and no other intrinsic properties beyond position, velocity, and charge polarity. All structure—particles, fields, and effective spacetime itself—emerges from coordinated configurations and interactions of many architrinos.
 
 **Ontological Clarity on Potential:**
 
-The potential emitted by an architrino is not a substance but a **formal channel of interaction**. It is a measure-valued distribution in spacetime that encodes how one architrino influences others. Potentials from distinct sources superpose linearly; the total potential at any location is the sum of all individual contributions. Potential is neither a "thing" nor a "field" in the classical electromagnetic sense, but rather a **lawful coupling** between the states of separated architrinos.
+The potential emitted by an architrino is not a substance but a **formal channel of interaction**. It is a measure-valued distribution on the absolute-timespace background that encodes how one architrino influences others. Potentials from distinct sources superpose linearly; the total potential at any location is the sum of all individual contributions. Potential is neither a "thing" nor a "field" in the classical electromagnetic sense, but rather a **lawful coupling** between the states of separated architrinos.
 
 **Ontological Status:**
 
@@ -946,7 +946,7 @@ An architrino is a transceiver: it continuously emits potential flux and simulta
 - **Radial propagation:** Each causal surface expands outward at the field speed $v_f$ (we set $v_f=1$ in natural units). The geometric locus of points receiving the contribution emitted at time $t_0$ satisfies $\|\mathbf{s}-\mathbf{s}_0\| = v_f(t - t_0)$ and defines a causal wake surface (isochron) in the spatial slice at time $t$.
 - **Conserved intensity:** The surface density on each isochron falls as $1/r^2$ so that the total flux through the causal wake surface remains $q$ as the surface expands.
 
-**Geometric characterization:** In timespace $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, an emission event at $(t_0, \mathbf{s}_0)$ generates a radially symmetric, measure-valued contribution supported on the expanding causal surface
+**Geometric characterization:** In absolute timespace $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, an emission event at $(t_0, \mathbf{s}_0)$ generates a radially symmetric, measure-valued contribution supported on the expanding causal surface
 
 $$
 \mathcal{C}=\{(t,\mathbf{s}) : t\ge t_0,\; r = v_f(t-t_0)\},\quad r=\|\mathbf{s}-\mathbf{s}_0\|.
@@ -1022,7 +1022,7 @@ See TOC Ch. 18 ("Fermions: Leptons and Quarks") and Ch. 22 ("Charge Stability Ma
 
 ### Architrino Paths
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the architrino-path account describes how each fundamental point particle threads through absolute timespace, carrying energy, fields, and history.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the architrino-path account describes how each fundamental architrino traces a worldline through absolute timespace, carrying energy, potentials, and history.
 
 #### Definition and Persistence
 
@@ -1193,7 +1193,7 @@ However, determinism does not imply practical predictability: the non-linear, no
 
 **Causality and local causality:**
 
-Accelerations are propagated at the field speed $v_f$. An architrino at $\mathbf{s}_a$ at time $t$ cannot be affected by events outside its **causal past light cone**, defined by $|\Delta \mathbf{s}| \leq v_f \, \Delta t$ from $\mathbf{s}_a$'s perspective. This preserves a notion of local causality compatible with absolute time and finite field speed.
+Accelerations are propagated at the field speed $v_f$. An architrino at $\mathbf{s}_a$ at time $t$ cannot be affected by events outside its **causal past region**, defined by $|\Delta \mathbf{s}| \leq v_f \, \Delta t$ from $\mathbf{s}_a$'s perspective. This preserves a notion of local causality compatible with absolute time and finite field speed.
 
 **Superluminal aspects without causality violation:**
 
@@ -1237,7 +1237,7 @@ C(v)=\sqrt{1-\beta^2}=\gamma^{-1},\qquad T(v)=T_0\gamma,\quad T_0=\frac{2L_0}{c_
 $$
 Hence the Lorentz contraction/dilation scaling is derived in a controlled reduced model. What remains open is extension to the full multi-mode tri-binary NFDE dynamics without assuming a two-leg closure.
 
-## The Physical Medium (Noether Sea / Spacetime Aether)
+## The Physical Medium (Noether Sea / Spacetime Medium)
 
 ### Void vs Vacuum Distinction
 
@@ -1246,7 +1246,7 @@ Hence the Lorentz contraction/dilation scaling is derived in a controlled reduce
 $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes sharply between:
 
 1. **The Euclidean Void** (substrate, ontological ground)
-2. **The Noether Sea / Spacetime Aether** (physical medium, emergent structure)
+2. **The Noether Sea / Spacetime Medium** (physical contents, emergent structure)
 
 **The Euclidean Void:**
 
@@ -1255,7 +1255,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes sharply between:
 - It carries **no energy**, has **no dynamics**, and does **not respond** to matter.
 - Coordinates $(x,y,z,t)$ are **permanent addresses** in this fixed background.
 
-**The Noether Sea / Spacetime Aether:**
+**The Noether Sea / Spacetime Medium:**
 
 - A **dense lattice** of coupled neutral tri-binary assemblies (see Section 3.2).
 - Also called the "**Sea of Noether Cores**" or "**Spacetime Fabric**."
@@ -1265,8 +1265,8 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes sharply between:
 
 **Terminology Lock:**
 
-✅ **USE:** "Euclidean void" (substrate), "Noether Sea" / "Spacetime medium" / "Aether" (physical substance) 
-❌ **AVOID:** "Vacuum" alone (ambiguous; connotes emptiness), "Curved space" (space itself is flat; only the medium's effective geometry curves)
+✅ **USE:** "Euclidean void" (fixed container/background), "Noether Sea" (canonical ambient contents), "spacetime medium" (bridge term toward effective spacetime language)
+❌ **AVOID:** "Vacuum" alone (ambiguous; connotes emptiness), "Aether" as the default ontological name, "Curved space" (space itself is flat; only the medium's effective geometry curves)
 
 ### Ontological Status of the Noether Sea
 
@@ -1386,7 +1386,7 @@ The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is a conceptual (no
 - **Position and velocity** of every architrino: $\{(\mathbf{x}_i(t), \mathbf{v}_i(t))\}_{i=1}^N$
 - **Charge state** (electrino, positrino, magnitude $|e/6|$): $\{q_i, \sigma_i\}$
 - **Path history**: For any causal wake surface passing a point, the $\mathbb{U}_{\text{now}}$ knows the emission event $(\mathbf{x}_{\text{emit}}, t_{\text{emit}})$ and emitter identity
-- **Full potential field configuration**: From which it can derive all outgoing causal wake surfaces from all sources at all past times
+- **Full potential/wake configuration**: From which it can derive all outgoing causal wake surfaces from all sources at all past times
 - **Self-hit histories**: Which causal wake surfaces have returned to intersect their sources
 
 **What the $\mathbb{U}_{\text{now}}$ universe-state perspective is NOT:**
@@ -1521,7 +1521,7 @@ $$
 t_1 = t_2.
 $$
 
-This is a **frame-independent fact**, witnessed by the $\mathbb{U}_{\text{now}}$ universe-state perspective. The global foliation of timespace into $\Sigma_t$ surfaces is unique and absolute.
+This is a **frame-independent fact**, witnessed by the $\mathbb{U}_{\text{now}}$ universe-state perspective. The global foliation of absolute timespace into $\Sigma_t$ surfaces is unique and absolute.
 
 **Relative Simultaneity (Epistemic):**
 
@@ -1554,11 +1554,12 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 | **Term** | **Definition** |
 |:---------|:---------------|
 | **Path History** | Time-delayed potential from past emissions (avoid outdated terminology) |
-| **Noether Sea** / **Spacetime Medium** / **Aether** | Physical lattice of coupled pro/anti Noether cores |
+| **Noether Sea** | Canonical ontological name for the ambient coupled tri-binary contents that populate the Euclidean void |
+| **Spacetime Medium** | Neutral bridge term for those contents when translating toward effective spacetime language |
 | **Euclidean Void** | Fundamental 3D container $\mathbb{R}^3$ with rigid metric $\delta_{ij}$ |
 | **Absolute Time** | Universal parameter $t \in \mathbb{R}$, advancing uniformly |
 | **Absolute $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)** / **$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)** | Conceptual probe with complete microstate knowledge |
-| **Physical Observer (PO)** | Assembly-based detector/observer subject to medium dynamics |
+| **Physical Observer (PO)** | Assembly-based detector/observer subject to Noether-Sea or spacetime-medium dynamics |
 | **Emission Time** | Time $t_0$ when a causal wake surface was emitted (we label this simply an emission time) |
 | **Self-Hit** | Intersection of an architrino with its own past causal wake surfaces |
 | **Field Speed** | Fundamental propagation speed $c_f$ (set to 1 in natural units) |
@@ -1571,8 +1572,9 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 |:--------------------|:-----------|:----------------|
 | **Causal Propogating Potential** | Implies backward-looking calculation; prefer forward causal language | **Emission Time** / **Path History** |
 | **Vacuum** (alone) | Ambiguous; connotes emptiness (void) or QFT vacuum energy | **Noether Sea** / **Spacetime Medium** |
+| **Aether** (as default ontology term) | Historical baggage; obscures the distinction between canon and bridge language | **Noether Sea** / **Spacetime Medium** |
 | **Curved Space** | The void is flat; only the medium's effective geometry curves | **Effective Metric** / **Refractive Gravity** |
-| **Spacetime** (without qualifier) | Ambiguous; conflates substrate (void+time) with medium (Noether Sea) | **Absolute Timespace** (substrate) vs **Spacetime Aether** (medium) |
+| **Spacetime** (without qualifier) | Ambiguous; conflates substrate (void+time) with contents (Noether Sea) | **Euclidean Void** + **Absolute Time** (substrate) vs **Spacetime Medium** (bridge term) vs **Effective Spacetime** (emergent description) |
 | **Virtual Particle** | QFT jargon; unclear ontology | **Transient Assembly** / **Potential Fluctuation** (context-dependent) |
 | **Collapse** (wavefunction) | Implies discontinuous physical process | **Measurement Interaction** / **Decoherence** / **Effective Update** |
 
@@ -1643,7 +1645,7 @@ The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted
 
 | **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:-------------------|:----------------|:------------|
-| Noether Sea density | $\rho_{vac}$ | TBD | Number/Volume | Baseline vacuum density |
+| Noether Sea density | $\rho_{vac}$ | TBD | Number/Volume | Baseline ambient Noether-Sea density |
 | Tri-binary radius (inner) | $R_{\text{inner}}$ | TBD | Length | Maximum-curvature orbit radius |
 | Tri-binary radius (middle) | $R_{\text{middle}}$ | TBD | Length | At-field-speed ($v = c_f$) orbit |
 | Tri-binary radius (outer) | $R_{\text{outer}}$ | TBD | Length | Sub-field-speed orbit |

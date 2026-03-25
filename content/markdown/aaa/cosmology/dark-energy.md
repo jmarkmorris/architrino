@@ -18,7 +18,7 @@ The Euclidean void $\mathbb{R}^3$ with metric $h_{ij} = \delta_{ij}$ is static, 
 
 ### The Noether Sea Carries the Dynamics
 
-The physical medium that implements Einstein's spacetime is the Noether Sea: a dense lattice of coupled neutral pro/anti tri-binary pairs. Each tri-binary has internal energy stored across three nested binaries operating in distinct field-speed regimes. The collective state of this medium—its local density $\rho_{\mathrm{NS}}(\mathbf{x},t)$, its internal energy spectrum, and its anisotropy—defines the effective metric experienced by all embedded assemblies.
+The Noether Sea is the constitutive medium from which effective spacetime behavior is reconstructed: a dense lattice of coupled neutral pro/anti tri-binary pairs. Each tri-binary has internal energy stored across three nested binaries operating in distinct field-speed regimes. The collective state of this medium—its local density $\rho_{\mathrm{NS}}(\mathbf{x},t)$, its internal energy spectrum, and its anisotropy—defines the effective metric experienced by all embedded assemblies.
 
 Late-time cosmological acceleration, in this picture, is a statement about how the Noether Sea's aggregate properties evolve on Hubble timescales, not about the container expanding.
 

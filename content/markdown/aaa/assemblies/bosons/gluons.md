@@ -8,7 +8,7 @@ In the Standard Model, color is an abstract $SU(3)$ label. In the current $\math
 
 ### The Tri-Binary Substrate
 
-Timespace itself is populated by high-energy, small-scale tri-binaries, often in tightly bound pro/anti groups. These form a background sea of Noether cores in color-singlet configurations.
+The Euclidean void is populated by high-energy, small-scale tri-binaries, often in tightly bound pro/anti groups. These form an ambient Noether Sea of color-singlet cores.
 
 A quark core also has three ordered axes $(H,M,L)$, each carrying two polar sites.
 
@@ -48,9 +48,9 @@ In this model, the gluon is not a fundamental point particle but an emergent met
 
 ### Polar Vortices and Flux Tubes
 
-- **Source:** each orbiting binary within the Noether core generates a pair of persistent, high-intensity polar vortices along its rotation axis.
-- **Coupling:** when colored quarks interact, these vortices do not terminate in the vacuum. Instead, they twist the surrounding Noether Sea into a **flux tube**, a coherent bundle of vacuum tri-binaries carrying the open color corridor between exceptional-axis sectors.
-- **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the vacuum to its isotropic ground state.
+- **Source:** each circulating binary within the Noether core generates a pair of persistent, high-intensity polar vortices along its rotation axis.
+- **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether Sea into a **flux tube**, a coherent bundle of ambient tri-binaries carrying the open color corridor between exceptional-axis sectors.
+- **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether Sea to its isotropic ground state.
 
 This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored cores therefore remain open at their poles unless another core accepts the flux. A gluon tube is the medium's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
 
@@ -59,7 +59,7 @@ This can also be read as the strong-force version of the pole problem. Rotationa
 A gluon is a propagating disturbance in the tri-binary lattice that reconfigures axis exceptionality within the quark color basis.
 
 - **The operator:** when a Red quark $|q_H\rangle$ interacts with a Green quark $|q_M\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between $H$ and $M$.
-- **The braid:** geometrically, this is realized as a twisting of the vacuum flux tube: a braid segment that propagates between the cores and carries the topology required to move exceptionality from one axis sector to another.
+- **The braid:** geometrically, this is realized as a twisting of the Noether-Sea flux tube: a braid segment that propagates between the cores and carries the topology required to move exceptionality from one axis sector to another.
 
 ### The 8 Gluon Modes (Deriving the Octet)
 
@@ -86,12 +86,12 @@ Standard Model gluons are spin-1 bosons. In the architrino framework, this emerg
 
 ## Confinement and Energetics
 
-Quarks are confined because an open color corridor stores energy in the vacuum lattice.
+Quarks are confined because an open color corridor stores energy in the surrounding Noether-Sea lattice.
 
 ### Energy Density Calculation
 
-- **Vacuum lattice:** the Noether Sea has a characteristic spacing $L_{vac}$ of order $1\;\mathrm{fm}$.
-- **Cost of ordering:** forcing a line of vacuum cores to align with an open color corridor costs an energy $E_{vac}$ per coherence length.
+- **Noether-Sea lattice:** the Noether Sea has a characteristic spacing $L_{vac}$ of order $1\;\mathrm{fm}$.
+- **Cost of ordering:** forcing a line of ambient Noether-Sea cores to align with an open color corridor costs an energy $E_{vac}$ per coherence length.
 - **String tension ($\sigma$):**
   $$
   \sigma \sim \frac{E_{vac}}{L_{vac}}.
@@ -114,7 +114,7 @@ A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the t
   $$
   3\otimes 3\otimes 3 \supset 1.
   $$
-- **Far field:** at distances larger than the proton radius, the open color corridors close and no net color flux leaks to the vacuum. The composite is therefore vacuum-transparent in the color channel.
+- **Far field:** at distances larger than the proton radius, the open color corridors close and no net color flux leaks into the surrounding Noether Sea. The composite is therefore transparent in the color channel at large distances.
 
 ---
 
@@ -124,9 +124,9 @@ Unlike photons, gluons carry color structure themselves because they represent r
 
 ### The 3-Gluon Vertex
 
-- **Mechanism:** since a gluon is a polarized distortion of the vacuum lattice, two gluon braids can interact when they cross or share corridor structure.
-- **Topology:** flux tubes can merge or split. Geometrically, this is the tangling of vacuum vortices, the strong-sector origin of non-Abelian self-interaction.
+- **Mechanism:** since a gluon is a polarized distortion of the Noether-Sea lattice, two gluon braids can interact when they cross or share corridor structure.
+- **Topology:** flux tubes can merge or split. Geometrically, this is the tangling of Noether-Sea vortices, the strong-sector origin of non-Abelian self-interaction.
 
 ### Glueballs
 
-If these self-interacting braids form a closed loop without quarks at the ends, they produce a glueball: a massive, unstable resonance of pure strong-sector vacuum excitation.
+If these self-interacting braids form a closed loop without quarks at the ends, they produce a glueball: a massive, unstable resonance of pure strong-sector excitation of the Noether Sea.

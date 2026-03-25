@@ -378,13 +378,13 @@ The immediate task is to identify which subset dominates $\partial \tau_{\text{o
 Working assumption:
 
 1. The outer precessing binary of a Noether core defines the effective exclusion volume boundary.
-2. Each tri-binary layer ($H,M,L$) has its own orbital axis.
+2. Each tri-binary layer ($H,M,L$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
 Proposed mechanism chain under applied force (acceleration of a Noether-core-based assembly):
 
 1. External forcing increases translational state.
-2. Axis coupling drives partial alignment of $H,M,L$ orbital axes.
+2. Axis coupling drives partial alignment of $H,M,L$ circulation axes.
 3. Alignment is accompanied by binary radius contraction across layers (with layer-dependent sensitivity).
 4. The exclusion volume changes shape and orientation because its boundary is set by the precessing outer binary $L$.
 5. Neighboring assemblies then see changed path-history geometry and interaction timing.
@@ -566,7 +566,7 @@ Start with a single causal path-history binary under constant drift $\mathbf{v}$
 
 ### 5.2 Stage B: tri-binary full closure
 
-Promote to nested tri-binary with coupled orbital scales. Establish:
+Promote to nested tri-binary with coupled circulation scales. Establish:
 
 1. Persistence of aligned attractor family under drift.
 2. Factorization or controlled coupling of inner/middle/outer period shifts.

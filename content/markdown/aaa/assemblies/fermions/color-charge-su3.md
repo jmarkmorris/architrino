@@ -158,7 +158,7 @@ The key structural rule for **admissible, stable quark‑like Noether cores** is
 
 > Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).  
 
-We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three‑different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the spacetime assembly medium and quickly relax or disintegrate.
+We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether-Sea medium and quickly relax or disintegrate.
 
 Therefore:
 

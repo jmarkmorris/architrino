@@ -68,8 +68,8 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
 
 3. **Shape deformation (Lorentz‑link hypothesis):** 
  To remain dynamically stable under increased $|\mathbf{v}|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
- - At low $v$, the outer orbit is nearly spherical.
- - As $v\to c_f$, the orbit contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
+ - At low $v$, the outer exclusion surface is nearly spherical.
+ - As $v\to c_f$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
 **Kinematic hypothesis:**
