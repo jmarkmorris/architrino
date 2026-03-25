@@ -12,6 +12,17 @@ Choose terms by ontological level.
 - Use effective or comparative language when the subject is observer-level closure, continuum approximation, or Standard Model comparison.
 - Do not let terms drift across levels without saying so explicitly.
 
+## Canon Maintenance Rule
+
+Treat terminology maintenance as a theory-protective cleanup discipline, not as a search for literary variation.
+
+- Keep changes small, surgical, and level-aware.
+- Use terminology cleanup to prevent category mistakes across ontology levels, not to add synonym churn.
+- Once a terminology family is stable, place its durable rule in the Archie canon docs and remove it from transition notes or open cleanup queues.
+- Keep canon docs positive-only and canonical; do not preserve retired AAA vocabulary for its own sake.
+- When a sentence still blurs levels, rewrite it so ontology, effective bookkeeping, and comparative language are explicitly separated.
+- Pay special attention to recurring confusion pairs such as `spacetime` versus `Euclidean void` / `absolute timespace`, and `shell` versus `layer`, because those often hide constitutive ambiguity rather than harmless style variation.
+
 ## Axial and Polar Usage
 
 Use `axial` for the six-site system-level organization and `polar` for the local site geometry.
@@ -21,7 +32,7 @@ Use `axial` for the six-site system-level organization and `polar` for the local
 | one of the six outward fermion constituents | `axial architrino` | `charge` | "The fermion contains six axial architrinos bound to polar sites." |
 | the six-site organization as a whole | `axial layer` | vague six-site wording when the organized structure matters | "Weak bookkeeping is carried by the axial layer." |
 | one local attachment location | `polar site` | generic `slot` when geometry matters | "Each axis contributes two polar sites." |
-| the two local sites on one axis | `polar dyad` | `doublet`, `axial dyad` | "A polar dyad may be occupied symmetrically or asymmetrically." |
+| the two local sites on one axis | `polar dyad` | generic pair-language when the site geometry matters | "A polar dyad may be occupied symmetrically or asymmetrically." |
 | the six-site arrangement | `axial pattern` | vague `configuration` when six-site structure is meant | "Color and weak assignments depend on the axial pattern." |
 | the count/composition across the six sites | `axial inventory` | generic `charges` | "The electron has an all-electrino axial inventory." |
 | coarse-grained orientation of the six-site structure | `axial frame` | vague orientation wording when frame structure matters | "Weak mixing is phrased as axial-frame misalignment." |
@@ -189,13 +200,13 @@ Sentence guidance:
 - Prefer: "$\mathbb{A}\mathbb{A}\mathbb{A}$ responds to particle-versus-wave language with assembly and wake."
 - Avoid by default: "The assembly is sometimes a particle and sometimes a wave."
 
-## Core, Nucleus, and Assembly Usage
+## Core and Assembly Usage
 
 Use `Noether core` for the central tri-binary scaffold. Use `particle` mainly at the effective or comparative level.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| the central neutral scaffold of a fermion | `Noether core`, `core` | `nucleus` when that would collide with atomic/nuclear meaning | "The axial layer is bound to the Noether core." |
+| the central neutral scaffold of a fermion | `Noether core`, `core` | vague central-structure wording when the scaffold itself is meant | "The axial layer is bound to the Noether core." |
 | $\mathbb{A}\mathbb{A}\mathbb{A}$ compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
 | Standard Model or observer-facing language | `particle` | not applicable | "The particle is observed as electrically neutral." |
 

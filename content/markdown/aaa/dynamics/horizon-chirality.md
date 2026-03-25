@@ -45,6 +45,31 @@ The matter sector then becomes the special case. In the current intuition, what 
 
 That broader matter/reaction thesis deserves its own dedicated treatment elsewhere. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
+## Working Dictionary
+
+To keep terms from sliding into one another, use the following provisional dictionary throughout this chapter:
+
+| Label | Meaning in this note | Typical regime |
+| --- | --- | --- |
+| `pro/anti` | the deeper 3D Noether-core chirality, currently tracked by ordered tri-binary structure such as `HML` versus `HLM` | pre-planar 3D core |
+| `CW/CCW` | the exterior planar spin sign seen from one chosen viewing side of a planarized core | horizon / planar lock |
+| `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
+
+This chapter treats these as related but not yet identical labels. One of its main goals is to understand how they may collapse onto one another in the terminal high-velocity regime.
+
+## Comparison Across Sectors
+
+The horizon question becomes clearer when compared against the main assembly sectors already present in the theory.
+
+| Sector | Pro/anti organization | Dimensional character | Why it matters here |
+| --- | --- | --- | --- |
+| Noether Sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that AAA does not predict a large universal imbalance |
+| Photon-like pair | one pro + one anti, or one `CW` + one `CCW` planar branch | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
+| Higgs-like cluster | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-core organization without collapsing to one sign |
+| Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |
+
+This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed tri-binary advertises its branch structure when driven into the strongest alignment regime.
+
 ## Exterior Planar Spin Basis
 
 Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by role as `H`, `M`, and `L`, then the full planar spin-sign space contains exactly \(2^3 = 8\) possibilities.
@@ -61,6 +86,16 @@ Fix one exterior viewing direction normal to the horizon disk. From that viewpoi
 | 8 | `CCW` | `CCW` | `CCW` | uniform | clean common-sign lock |
 
 This is the complete planar-sign table as viewed from one fixed exterior side of the black-hole horizon. Reversing the viewing side flips `CW` and `CCW`, so the table should always be read relative to a chosen exterior normal.
+
+## Observer Views
+
+The planar spin table is viewpoint dependent in a controlled way.
+
+- **Absolute-frame exterior observer:** fixes one normal to the planar disk and reads the visible planar circulation as `CW` or `CCW`.
+- **Observer on the opposite side of the same disk:** reverses the normal and therefore swaps `CW` with `CCW`.
+- **Co-moving or assembly-built observer:** may not have direct access to the absolute normal choice and instead infer only relative handedness, exposure, or wake asymmetry.
+
+So the physically stronger datum is not the literal word `CW` or `CCW` by itself. It is the sign of the planar angular momentum relative to a chosen normal. This is why the chapter treats boundary helicity as a sign-bearing branch quantity rather than as a naive visual label.
 
 ## Boundary Helicity Versus Deeper Chirality
 
@@ -135,6 +170,31 @@ so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}
 
 This gives a precise version of the intuition: a high-velocity tri-binary should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
 
+## State-Transition Ladder
+
+The emerging picture is easier to reason about if written as a shape-and-label ladder:
+
+$$
+\text{3D precessing core}
+\;\to\;
+\text{oblate translating core}
+\;\to\;
+\text{axialized high-}v\text{ core}
+\;\to\;
+\text{planar horizon lock}
+\;\to\;
+\text{post-lock reconfiguration or reopening}.
+$$
+
+The intended label flow along that ladder is:
+
+1. In the ordinary 3D regime, `pro/anti` is carried by ordered tri-binary chirality.
+2. Under high translation speed, the orbital normals are biased toward the translation axis.
+3. Near the terminal aligned state, the surviving branch data may reduce to the sign of the common axial orientation and then to the sign of the visible planar helicity.
+4. After passage through the lock, the core may either preserve that branch, re-expand with the same handed history, or undergo a deeper reconfiguration if the planar degeneracy is strong enough.
+
+This ladder is still a working map, not a completed derivation. Its value is organizational: it shows where the theory expects information to be compressed, preserved, or potentially switched.
+
 ## Canonical Horizon Branch Hypothesis
 
 The most conservative horizon hypothesis is that the stable terminal branches are the two uniform planar rows:
@@ -207,6 +267,21 @@ or the reverse, depending on the eventual sign convention.
 
 This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the tri-binary angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
 
+## Status Table
+
+The current chapter mixes canonical inputs with stronger and weaker hypotheses. The distinction should stay explicit.
+
+| Claim | Status |
+| --- | --- |
+| horizon lock drives the tri-binary toward coplanarity and suppresses precession | canonical in current project framing |
+| `pro/anti` is a deeper 3D core-chirality label rather than a net-charge label | canonical working convention |
+| the planar exterior sign space has 8 rows for labeled `H/M/L` binaries | exact combinatorial statement |
+| high translation speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
+| the two uniform planar rows are the most likely stable terminal horizon branches | strong working hypothesis |
+| the six mixed rows are transitional or frustrated rather than stable endpoint states | plausible but still open |
+| the axial sign $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$ underlies a left/right spin distinction | live speculative hypothesis |
+| `pro/anti`, `CW/CCW`, and `left/right` all become the same label in the terminal regime | not yet established |
+
 ## Mixed-Sign Planar States
 
 If mixed-sign rows are admitted at all, then the horizon theory becomes more complicated than a simple two-branch picture. Rows 2 through 7 would imply that the three binaries can remain role-distinct in the planar lock while not sharing a common in-plane circulation.
@@ -218,6 +293,35 @@ That possibility raises three immediate questions:
 3. If they are unstable, are they the natural transition states through which a core passes while entering or leaving the horizon interface?
 
 The present note favors the third reading: mixed-sign planar states are more naturally interpreted as transition or frustration states than as clean final branches. But this remains an open dynamics question rather than a closed derivation.
+
+## Transition Rules for Pro/Anti Conversion
+
+One of the biggest unresolved questions is whether a core can flip from `pro` to `anti` smoothly, or only through a more singular reconfiguration.
+
+The current chapter points toward the second option. The likely possibilities are:
+
+1. **No flip in ordinary smooth evolution:** away from the planar degeneracy, the ordered 3D core chirality appears robust and should survive adiabatic deformations.
+2. **Near-degenerate branch switch at planar lock:** when the three planes collapse into one planar state, some 3D chirality data are compressed strongly enough that a branch change may become dynamically accessible.
+3. **Full reconfiguration / reaction channel:** a deeper split, exchange, or reconstruction of the constituent binaries could permit a true `pro \leftrightarrow anti` conversion.
+
+This is exactly where the language of "annihilation" starts to look too weak. If a pro/anti encounter opens the core and allows branch-changing reconfiguration, the physical process is better described as a structured reaction than as disappearance.
+
+For now, the safest working rule is:
+
+- smooth motion should preserve the deeper branch label;
+- planar degeneracy may permit branch ambiguity;
+- true branch conversion likely requires a reconfiguration event rather than a mild perturbation.
+
+## Simulation Diagnostics
+
+If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent tri-binaries:
+
+- **Axis-alignment diagnostic:** track $\hat J_{\text{net}} \cdot \hat{\mathbf V}$ and test whether it tends toward $\pm 1$ as $v_{\text{trans}} \to c_f$.
+- **Tilt decay diagnostic:** track each orbital-normal angle $\alpha_i$ to test whether non-axial states relax toward the translation axis with a rate that grows with $\gamma$.
+- **Planar branch diagnostic:** once the planarity threshold is met, record which of the 8 planar sign rows the assembly occupies.
+- **Mixed-row lifetime diagnostic:** test whether rows 2 through 7 are long-lived or short-lived compared with the two uniform rows.
+- **Exposure diagnostic:** compare the sign of $\hat J_{\text{net}} \cdot \hat{\mathbf V}$ against forward exposure of the weak-active structure to test the left/right bridge hypothesis.
+- **Branch persistence diagnostic:** drive a core into and back out of the planar regime and test whether the same deeper branch label is recovered after re-expansion.
 
 ## Provisional Conclusion
 

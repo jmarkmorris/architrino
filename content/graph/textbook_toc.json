@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 124,
-      "sections": 831
+      "sections": 838
     }
   },
   "tocRoot": {
@@ -1532,10 +1532,34 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Working Dictionary",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Working Dictionary",
+                "sectionKey": "working dictionary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison Across Sectors",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Comparison Across Sectors",
+                "sectionKey": "comparison across sectors",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Exterior Planar Spin Basis",
                 "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
                 "markdownSection": "Exterior Planar Spin Basis",
                 "sectionKey": "exterior planar spin basis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer Views",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Observer Views",
+                "sectionKey": "observer views",
                 "headingLevel": 2
               },
               {
@@ -1552,6 +1576,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
                 "markdownSection": "Translation-Axis Alignment at High Velocity",
                 "sectionKey": "translation axis alignment at high velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "State-Transition Ladder",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "State-Transition Ladder",
+                "sectionKey": "state transition ladder",
                 "headingLevel": 2
               },
               {
@@ -1580,10 +1612,34 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Status Table",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Status Table",
+                "sectionKey": "status table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Mixed-Sign Planar States",
                 "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
                 "markdownSection": "Mixed-Sign Planar States",
                 "sectionKey": "mixed sign planar states",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Transition Rules for Pro/Anti Conversion",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Transition Rules for Pro/Anti Conversion",
+                "sectionKey": "transition rules for pro anti conversion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Diagnostics",
+                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownSection": "Simulation Diagnostics",
+                "sectionKey": "simulation diagnostics",
                 "headingLevel": 2
               },
               {

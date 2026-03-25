@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   buildComposerAssemblyStructure,
+  formatComposerAssemblyStructureBadgeSummary,
   formatComposerAssemblyStructureSummary,
   summarizeComposerAssemblyStructure,
 } from "../src/runtime/ComposerAssemblyStructureBridgeRuntime.js";
@@ -42,6 +43,27 @@ test("composer assembly bridge formats a compact canonical summary string", () =
       binarySlotCount: 2,
     }),
     "7 nodes • 3 slots • 2 occupied binary slots"
+  );
+});
+
+test("composer assembly bridge formats a viewport badge summary string", () => {
+  assert.equal(
+    formatComposerAssemblyStructureBadgeSummary({
+      nodeCount: 7,
+      slotCount: 3,
+      binarySlotCount: 2,
+      valid: true,
+    }),
+    "N7 · S3 · B2"
+  );
+  assert.equal(
+    formatComposerAssemblyStructureBadgeSummary({
+      nodeCount: 4,
+      slotCount: 0,
+      binarySlotCount: 0,
+      valid: false,
+    }),
+    "N4 · S0 · B0 !"
   );
 });
 

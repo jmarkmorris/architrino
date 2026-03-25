@@ -19,16 +19,15 @@ Scoring system:
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
 | 3 | Scene system, composer, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
 | 4 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
-| 5 | Terminology consistency, consolidation, and correctness | 2 | 1 | 2.00 |
-| 6 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
-| 7 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
-| 8 | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
-| 9 | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
-| 10 | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
-| 11 | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
-| 12 | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
-| 13 | Cosmology transfer-function closure | 2 | 9 | 0.22 |
-| 14 | Deferred product / outlook work | 1 | 6 | 0.17 |
+| 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
+| 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
+| 7 | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
+| 8 | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
+| 9 | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
+| 10 | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
+| 11 | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
+| 12 | Cosmology transfer-function closure | 2 | 9 | 0.22 |
+| 13 | Deferred product / outlook work | 1 | 6 | 0.17 |
 
 ## Overall Task List
 
@@ -122,7 +121,7 @@ Scoring system:
 ### 2. Finish Noether-core stability, shielding, the parameter ledger, and the first mass map
 - Value `10`, Cost `4`, ROI `2.50`.
 - For scorecard purposes, this is now the main Parameter Closure + Mass Formulas bucket.
-- If the goal is fastest total-score increase, pair this item with item `11` for Parameter Closure + Coverage first.
+- If the goal is fastest total-score increase, pair this item with item `10` for Parameter Closure + Coverage first.
 - Treat [parameter-ledger.md](../../markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The real priority is to turn the open mass-side symbols it names into one reusable derived map.
 - First concrete deliverable: one derived tri-binary attractor family with radii, frequencies, binding scales, and a reproducible shielding-extraction protocol.
 - Second concrete deliverable: derive `\zeta(A)` from the delayed kernel strongly enough to predict a baseline electron mass and at least one next-step hierarchy check such as `m_\mu / m_e`.
@@ -297,21 +296,7 @@ Scoring system:
   6. full attractor landscape for binaries and tri-binaries;
   7. quantum closure from the master equation.
 
-### 5. Improve terminology consistency, consolidation, and correctness
-- Value `2`, Cost `1`, ROI `2.00`.
-- Keep terminology work small, surgical, and theory-protective: the goal is not literary variation but preventing category mistakes across ontology levels.
-- Immediate scope:
-  - review all uses of `charge`, especially where the text may be treating an architrino as if it were merely a traditional point charge;
-  - replace architrino-level uses with more exact language such as `architrino`, `polarity`, `axial architrino`, or `transceiver of potential` where that sharpens the ontology;
-  - keep `charge` where it is genuinely the right term:
-    - historical comparisons,
-    - continuity with standard physics,
-    - electric/color/gauge/effective bookkeeping at higher ontology levels;
-  - consolidate glossary and house-style language so the same distinction is stated the same way across canonical docs;
-  - correct ambiguous mixed-level phrasing that slides between microscopic architrino ontology and higher-level charge bookkeeping without warning.
-- The concrete deliverable is a terminology pass that makes the ontology cleaner without rewriting the scientific claims.
-
-### 6. Advance the dyadic resonance lock reduced-map program
+### 5. Advance the dyadic resonance lock reduced-map program
 - Value `7`, Cost `4`, ROI `1.75`.
 - [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) should now be treated as the live note for a **candidate** dyadic lock, not as a proof that the full dynamics uniquely select `1:2:4`.
 - What is now solid enough to build on:
@@ -333,7 +318,7 @@ Scoring system:
   4. Study the Jacobian and eigenvalues near the suspected dyadic fixed point as `\beta \to 1`.
   5. Only after that revisit `\eta \to 0^+` and promote archive material that can be rederived from the reduced dynamics.
 
-### 7. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
+### 6. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
 - Value `8`, Cost `5`, ROI `1.60`.
 - The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
   - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
@@ -348,7 +333,7 @@ Scoring system:
 - Work the chirality crisis explicitly: show whether spiral handedness can generate the weak `V-A` selection rule. If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 
-### 8. Lock the simulations, regularization, and shell numerics
+### 7. Lock the simulations, regularization, and shell numerics
 - Value `8`, Cost `5`, ROI `1.60`.
 - Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/validation/simulations/run-protocols.md) and the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
@@ -357,7 +342,7 @@ Scoring system:
 - Tie Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
 - If a quick intuition tool is useful, make a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
 
-### 9. Finish the remaining black-hole / strong-field quantitative closure
+### 8. Finish the remaining black-hole / strong-field quantitative closure
 - Value `4`, Cost `5`, ROI `0.80`.
 - The core chapter architecture is now in place:
   - [black-holes.md](../../markdown/aaa/spacetime/black-holes.md),
@@ -369,7 +354,7 @@ Scoring system:
   - decide the release-channel selection between jets, diffuse outflow, and dark-sector escape,
   - and extract at least one discriminating observable that separates this story from GR-like strong-field behavior.
 
-### 10. Preserve the strong-field / tri-binary hypotheses
+### 9. Preserve the strong-field / tri-binary hypotheses
 - Value `2`, Cost `3`, ROI `0.67`.
 - Keep the following strong-field / tri-binary ideas alive while the quantitative closures tighten:
   - the tri-binary may open up inside the black hole, with quadrupole resonance appearing when a given core pops early or late;
@@ -387,10 +372,10 @@ Scoring system:
   - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
   - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing `c_f`, though that seems doubtful.
 
-### 11. Run the chapter authoring queue and recover useful old material
+### 10. Run the chapter authoring queue and recover useful old material
 - Value `3`, Cost `5`, ROI `0.60`.
 - This item is the ranked queue for chapter-writing work.
-- This is also now the home of the old material-recovery task. Item `14` is no longer separate.
+- This is also now the home of the old material-recovery task. Item `13` is no longer separate.
 - For scorecard purposes, this is the main Coverage bucket.
 - If the goal is fastest total-score increase, pair this item with item `2` for Coverage + Parameter Closure first.
 - Fast practical lift inside this queue: fill empty or thin chapters with formal minimums:
@@ -431,7 +416,7 @@ Scoring system:
   12. `Reconstructing Physics and Cosmology`
   13. `Vision for the Future / Toward New Technologies`
 
-### 12. Close the Born-rule / quantum gap only after making it testable
+### 11. Close the Born-rule / quantum gap only after making it testable
 - Value `4`, Cost `8`, ROI `0.50`.
 - Populate the missing `quantum/*.md` with pilot-wave / self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
 - Make the Born-rule target fully measure-theoretic rather than only interpretive:
@@ -443,7 +428,7 @@ Scoring system:
 - Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
 - Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether core?
 
-### 13. Convert cosmology from narrative strength to equation-level closure
+### 12. Convert cosmology from narrative strength to equation-level closure
 - Value `2`, Cost `9`, ROI `0.22`.
 - Turn the current CMB / tri-binary cosmology story into a predictive transfer-function pipeline.
 - Build per-component observable interfaces for `\Lambda\mathrm{CDM}` comparison:
@@ -455,7 +440,7 @@ Scoring system:
 - Goal: isolate dependencies so removing one foundation assumption does not collapse the whole stack, and expose exactly where `$\mathbb{A}\mathbb{A}\mathbb{A}$` matches, replaces, or diverges from each component.
 - This is the path to direct CMB / `H_0` / `S_8` comparison rather than narrative analogy.
 
-### 14. Defer product / outlook work until the theory spine is stable
+### 13. Defer product / outlook work until the theory spine is stable
 - Value `1`, Cost `6`, ROI `0.17`.
 - Keep productization, big-picture outlook writing, and future-technology packaging behind the core theory and derivation work.
 - This includes:

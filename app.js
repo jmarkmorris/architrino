@@ -64,6 +64,7 @@ import {
 import { createBuiltInComposerAssemblyDraftRuntime } from "./src/runtime/ComposerAssemblyFactoryRuntime.js";
 import {
   buildComposerAssemblyStructure,
+  formatComposerAssemblyStructureBadgeSummary,
   formatComposerAssemblyStructureSummary,
   summarizeComposerAssemblyStructure,
 } from "./src/runtime/ComposerAssemblyStructureBridgeRuntime.js";
@@ -3318,6 +3319,19 @@ function applyComposerViewportDisplayState() {
       labelSprite.visible = true;
     }
   });
+  composerAssemblyMeshes.forEach((mesh) => {
+    mesh.visible = true;
+    mesh.traverse?.((child) => {
+      const labelSprite = child.userData?.pointLabelSprite;
+      if (labelSprite) {
+        labelSprite.visible = showLabels;
+      }
+      const structureBadgeSprite = child.userData?.structureBadgeSprite;
+      if (structureBadgeSprite) {
+        structureBadgeSprite.visible = showLabels;
+      }
+    });
+  });
   if (composerDocumentCameraPathLine) {
     composerDocumentCameraPathLine.visible = showCameraGuides;
   }
@@ -6493,10 +6507,11 @@ function addComposerAssemblyProxy(center, assembly, index) {
   group.userData.assemblyIndex = index;
   group.userData.draggable = true;
   const isBareArchitrino = isComposerBareArchitrinoAssembly(assembly);
+  let centerMarker = null;
 
   if (!isBareArchitrino) {
     const sceneRole = normalizeComposerAssemblySceneRole(assembly?.sceneRole);
-    const centerMarker = new THREE.Mesh(
+    centerMarker = new THREE.Mesh(
       new THREE.SphereGeometry(0.085, 20, 20),
       new THREE.MeshBasicMaterial({
         color: getComposerAssemblySceneRoleColor(sceneRole),
@@ -6697,6 +6712,19 @@ function addComposerAssemblyProxy(center, assembly, index) {
       group.add(memberDot);
       composerPersonalityHandleMeshes.push(memberDot);
     });
+  }
+
+  if (centerMarker && assembly?.id === getComposerSelectedAssemblyIdState()) {
+    const canonicalSummary = getComposerAssemblyCanonicalBridgeSummary(assembly);
+    if (canonicalSummary) {
+      const structureBadge = createComposerAssemblyBadgeSprite(
+        getComposerAssemblyViewportLabel(assembly, index),
+        formatComposerAssemblyStructureBadgeSummary(canonicalSummary)
+      );
+      structureBadge.position.copy(proxyBadgeOffset.clone().add(new THREE.Vector3(0.22, 0.14, 0)));
+      centerMarker.userData.structureBadgeSprite = structureBadge;
+      centerMarker.add(structureBadge);
+    }
   }
 
   composerViewportGroup?.add(group);
